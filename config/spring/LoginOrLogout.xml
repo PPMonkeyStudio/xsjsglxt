@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="loginOrLogoutAction"
+		class="com.xsjsglxt.action.informationmanagement.LoginOrLogoutAction"
+		scope="prototype">
+		<property name="loginOrLogoutService" ref="loginOrLogoutService"></property>
+	</bean>
+
+	<bean id="loginOrLogoutService"
+		class="com.xsjsglxt.service.impl.informationmanagement.LoginOrLogoutServiceImpl">
+		<property name="loginOrLogoutDao" ref="loginOrLogoutDao"></property>
+	</bean>
+
+	<bean id="loginOrLogoutDao"
+		class="com.xsjsglxt.dao.impl.informationmanagement.LoginOrLogoutDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+
+</beans>
