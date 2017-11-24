@@ -16,9 +16,17 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 	public Session getSession() {
 		return this.sessionFactory.getCurrentSession();
 	}
-	
-	
-	
-	
-	
+
+	// 保存
+	@Override
+	public int saveObject(Object object) {
+		int i = 1;
+		try {
+			getSession().saveOrUpdate(object);
+		} catch (Exception e) {
+			i = 2;
+			e.printStackTrace();
+		}
+		return i;
+	}
 }

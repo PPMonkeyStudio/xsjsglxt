@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-11-24 0:23:22 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_check_not_admissible" table="XSJSGLXT_CHECK_NOT_ADMISSIBLE">
+        <id name="xsjsglxt_check_not_admissible_id" type="java.lang.String">
+            <column name="XSJSGLXT_CHECK_NOT_ADMISSIBLE_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="check_not_admissible_entrustment_book" type="java.lang.String">
+            <column name="CHECK_NOT_ADMISSIBLE_ENTRUSTMENT_BOOK" />
+        </property>
+        <property name="check_not_admissible_case_name" type="java.lang.String">
+            <column name="CHECK_NOT_ADMISSIBLE_CASE_NAME" />
+        </property>
+        <property name="check_not_admissible_case_num" type="java.lang.String">
+            <column name="CHECK_NOT_ADMISSIBLE_CASE_NUM" />
+        </property>
+        <property name="check_not_admissible_unit" type="java.lang.String">
+            <column name="CHECK_NOT_ADMISSIBLE_UNIT" />
+        </property>
+        <property name="check_not_admissible_inspectors_time" type="java.lang.String">
+            <column name="CHECK_NOT_ADMISSIBLE_INSPECTORS_TIME" />
+        </property>
+        <property name="check_not_admissible_inspectors_name" type="java.lang.String">
+            <column name="CHECK_NOT_ADMISSIBLE_INSPECTORS_NAME" />
+        </property>
+        <property name="check_not_admissible_inspectors_certificate_name_num" type="java.lang.String">
+            <column name="CHECK_NOT_ADMISSIBLE_INSPECTORS_CERTIFICATE_NAME_NUM" />
+        </property>
+        <property name="check_not_admissible_instruction" type="java.lang.String">
+            <column name="CHECK_NOT_ADMISSIBLE_INSTRUCTION" />
+        </property>
+        <property name="check_not_admissible_entrustment_situation" type="java.lang.String">
+            <column name="CHECK_NOT_ADMISSIBLE_ENTRUSTMENT_SITUATION" />
+        </property>
+        <property name="check_not_admissible_gmt_create" type="java.lang.String">
+            <column name="CHECK_NOT_ADMISSIBLE_GMT_CREATE" />
+        </property>
+        <property name="check_not_admissible_gmt_modified" type="java.lang.String">
+            <column name="CHECK_NOT_ADMISSIBLE_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>
