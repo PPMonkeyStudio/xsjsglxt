@@ -50,7 +50,7 @@
 		<div id="navbar-menu">
 			<ul class="nav navbar-nav navbar-left" style="margin: 0 0 0 20px">
 				<li class="dropdown" style="float: left;"><a
-					href="<%=basePath%>loginLogout/LoginLogoutManagement_index"> <span>首页</span>
+					href="<%=basePath%>user/User_index"> <span>首页</span>
 				</a></li>
 				<!--  -->
 				<li class="leader_control dropdown" style="float: left;"><a
@@ -70,7 +70,8 @@
 						<i class="icon-submenu lnr lnr-chevron-down"></i>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="#">痕迹委托检验</a></li>
+						<li><a
+							href="<%=basePath%>inspectionIdentific/TranceCheckEntrustmentBook_TranceCheckEntrustmentBookManagement">痕迹委托检验</a></li>
 						<li><a href="#">法医委托检验</a></li>
 						<li><a href="#">检验记录</a></li>
 						<li><a href="#">检验结果</a></li>

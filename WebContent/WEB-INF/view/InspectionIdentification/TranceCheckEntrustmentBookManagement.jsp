@@ -73,12 +73,9 @@
 						<tr>
 							<th>学号</th>
 							<th>姓名</th>
-
 						</tr>
 					</tbody>
 				</table>
-
-
 				<div id="i_pulse" style="text-align: center;">
 					<i class="fa fa-spinner fa-pulse fa-3x"></i>
 				</div>
