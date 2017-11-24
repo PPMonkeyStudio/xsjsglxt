@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-11-24 0:23:22 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_trance_check_entrustment_book" table="XSJSGLXT_TRANCE_CHECK_ENTRUSTMENT_BOOK">
+        <id name="xsjsglxt_trance_check_entrustment_book_id" type="java.lang.String">
+            <column name="XSJSGLXT_TRANCE_CHECK_ENTRUSTMENT_BOOK_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="trance_check_entrustment_book_physical_evidence" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_PHYSICAL_EVIDENCE" />
+        </property>
+        <property name="trance_check_entrustment_book_case_name" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_CASE_NAME" />
+        </property>
+        <property name="trance_check_entrustment_book_case_num" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_CASE_NUM" />
+        </property>
+        <property name="trance_check_entrustment_book_entrustment_unit" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_ENTRUSTMENT_UNIT" />
+        </property>
+        <property name="trance_check_entrustment_book_entrustment_time" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_ENTRUSTMENT_TIME" />
+        </property>
+        <property name="trance_check_entrustment_book_inspectors_name" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_INSPECTORS_NAME" />
+        </property>
+        <property name="trance_check_entrustment_book_entrustment_name" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_ENTRUSTMENT_NAME" />
+        </property>
+        <property name="trance_check_entrustment_book_case_situation" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_CASE_SITUATION" />
+        </property>
+        <property name="trance_check_entrustment_book_old_entrustment_situation" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_OLD_ENTRUSTMENT_SITUATION" />
+        </property>
+        <property name="trance_check_entrustment_book_sample_situation" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_SAMPLE_SITUATION" />
+        </property>
+        <property name="trance_check_entrustment_book_entrustment_request" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_ENTRUSTMENT_REQUEST" />
+        </property>
+        <property name="trance_check_entrustment_book_entrustment_unit_responsible_person" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_ENTRUSTMENT_UNIT_RESPONSIBLE_PERSON" />
+        </property>
+        <property name="trance_check_entrustment_book_state" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_STATE" />
+        </property>
+        <property name="trance_check_entrustment_book_signature_time" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_SIGNATURE_TIME" />
+        </property>
+        <property name="trance_check_entrustment_book_gmt_create" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_GMT_CREATE" />
+        </property>
+        <property name="trance_check_entrustment_book_gmt_modified" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>
