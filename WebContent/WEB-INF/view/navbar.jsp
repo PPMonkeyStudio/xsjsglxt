@@ -70,7 +70,8 @@
 						<i class="icon-submenu lnr lnr-chevron-down"></i>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="#">委托书管理</a></li>
+						<li><a href="#">痕迹委托检验</a></li>
+						<li><a href="#">法医委托检验</a></li>
 						<li><a href="#">检验记录</a></li>
 						<li><a href="#">检验结果</a></li>
 					</ul></li>
