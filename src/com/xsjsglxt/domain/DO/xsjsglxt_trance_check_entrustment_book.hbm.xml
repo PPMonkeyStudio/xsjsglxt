@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2017-11-24 0:23:22 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2017-11-24 21:47:21 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="com.xsjsglxt.domain.DO.xsjsglxt_trance_check_entrustment_book" table="XSJSGLXT_TRANCE_CHECK_ENTRUSTMENT_BOOK">
         <id name="xsjsglxt_trance_check_entrustment_book_id" type="java.lang.String">
@@ -11,44 +11,71 @@
         <property name="trance_check_entrustment_book_physical_evidence" type="java.lang.String">
             <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_PHYSICAL_EVIDENCE" />
         </property>
-        <property name="trance_check_entrustment_book_case_name" type="java.lang.String">
-            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_CASE_NAME" />
-        </property>
-        <property name="trance_check_entrustment_book_case_num" type="java.lang.String">
-            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_CASE_NUM" />
+        <property name="trance_check_entrustment_book_num" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_NUM" />
         </property>
         <property name="trance_check_entrustment_book_entrustment_unit" type="java.lang.String">
             <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_ENTRUSTMENT_UNIT" />
         </property>
-        <property name="trance_check_entrustment_book_entrustment_time" type="java.lang.String">
-            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_ENTRUSTMENT_TIME" />
+        <property name="trance_check_entrustment_book_inspectors1_name" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_INSPECTORS1_NAME" />
         </property>
-        <property name="trance_check_entrustment_book_inspectors_name" type="java.lang.String">
-            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_INSPECTORS_NAME" />
+        <property name="trance_check_entrustment_book_inspectors2_name" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_INSPECTORS2_NAME" />
         </property>
-        <property name="trance_check_entrustment_book_entrustment_name" type="java.lang.String">
-            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_ENTRUSTMENT_NAME" />
+        <property name="trance_check_entrustment_book_inspectors1_jobcard_number" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_INSPECTORS1_JOBCARD_NUMBER" />
         </property>
-        <property name="trance_check_entrustment_book_case_situation" type="java.lang.String">
-            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_CASE_SITUATION" />
+        <property name="trance_check_entrustment_book_inspectors2_jobcard_number" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_INSPECTORS2_JOBCARD_NUMBER" />
+        </property>
+        <property name="trance_check_entrustment_book_inspectors1_phone" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_INSPECTORS1_PHONE" />
+        </property>
+        <property name="trance_check_entrustment_book_inspectors2_phone" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_INSPECTORS2_PHONE" />
+        </property>
+        <property name="trance_check_entrustment_book_inspect_time" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_INSPECT_TIME" />
+        </property>
+        <property name="trance_check_entrustment_book_communication_address" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_COMMUNICATION_ADDRESS" />
+        </property>
+        <property name="trance_check_entrustment_book_zip_code" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_ZIP_CODE" />
+        </property>
+        <property name="trance_check_entrustment_book_entrustment_unit_name" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_ENTRUSTMENT_UNIT_NAME" />
+        </property>
+        <property name="trance_check_entrustment_book_majors" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_MAJORS" />
+        </property>
+        <property name="trance_check_entrustment_book_entrustment_reason" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_ENTRUSTMENT_REASON" />
+        </property>
+        <property name="trance_check_entrustment_book_case_num" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_CASE_NUM" />
+        </property>
+        <property name="trance_check_entrustment_book_case_name" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_CASE_NAME" />
+        </property>
+        <property name="trance_check_entrustment_book_simple_case_situation" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_SIMPLE_CASE_SITUATION" />
         </property>
         <property name="trance_check_entrustment_book_old_entrustment_situation" type="java.lang.String">
             <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_OLD_ENTRUSTMENT_SITUATION" />
         </property>
-        <property name="trance_check_entrustment_book_sample_situation" type="java.lang.String">
-            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_SAMPLE_SITUATION" />
+        <property name="trance_check_entrustment_book_old_entrustment_name" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_OLD_ENTRUSTMENT_NAME" />
+        </property>
+        <property name="trance_check_entrustment_book_old_entrustment_conclusion" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_OLD_ENTRUSTMENT_CONCLUSION" />
         </property>
         <property name="trance_check_entrustment_book_entrustment_request" type="java.lang.String">
             <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_ENTRUSTMENT_REQUEST" />
         </property>
-        <property name="trance_check_entrustment_book_entrustment_unit_responsible_person" type="java.lang.String">
-            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_ENTRUSTMENT_UNIT_RESPONSIBLE_PERSON" />
-        </property>
-        <property name="trance_check_entrustment_book_state" type="java.lang.String">
-            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_STATE" />
-        </property>
-        <property name="trance_check_entrustment_book_signature_time" type="java.lang.String">
-            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_SIGNATURE_TIME" />
+        <property name="trance_check_entrustment_book_surplus_slove" type="java.lang.String">
+            <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_SURPLUS_SLOVE" />
         </property>
         <property name="trance_check_entrustment_book_gmt_create" type="java.lang.String">
             <column name="TRANCE_CHECK_ENTRUSTMENT_BOOK_GMT_CREATE" />
