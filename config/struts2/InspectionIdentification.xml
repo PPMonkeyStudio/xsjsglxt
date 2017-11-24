@@ -3,11 +3,12 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
-	<package name="InspectionIdentification" namespace="/inspectionIdentification"
+	<package name="InspectionIdentification" namespace="/inspectionIdentific"
 		extends="struts-default">
-		<action name="inspection_*" class="inspectionIdentificationAction"
+		<action name="TranceCheckEntrustmentBook_*"
+			class="com.xsjsglxt.action.InspectionIdentification.InspectionIdentificationAction"
 			method="{1}">
-			<result name="traceCheckBookManagement">/WEB-INF/view/InspectionIdentification/TranceCheckEntrustmentBookManagement.jsp
+			<result name="TranceCheckEntrustmentBookManagement">/WEB-INF/view/InspectionIdentification/TranceCheckEntrustmentBookManagement.jsp
 			</result>
 		</action>
 	</package>
