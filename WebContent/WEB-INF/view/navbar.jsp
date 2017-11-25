@@ -58,7 +58,7 @@
 						<i class="icon-submenu lnr lnr-chevron-down"></i>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="#">现场管理</a></li>
+						<li><a href="<%=basePath%>case/Case_page_SiteManagement">现场管理</a></li>
 						<li><a href="#">案件串并</a></li>
 						<li><a href="#">案件材料</a></li>
 						<li><a href="#">办案管理</a></li>
