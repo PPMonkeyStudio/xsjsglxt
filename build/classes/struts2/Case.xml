@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="Case" namespace="/case" extends="struts-default">
+		<action name="Case_*" class="com.xsjsglxt.action.Case.SenceAction"
+			method="{1}">
+			<result name="page_SiteManagement">/WEB-INF/view/Case/SiteManagement.jsp</result>
+			<result name="page_Sneceinput">/WEB-INF/view/Case/SneceInput.jsp</result>
+		</action>
+	</package>
+</struts>

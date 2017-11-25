@@ -96,6 +96,7 @@ public page_list_senceInformationVO VO_SneceInformation_By_PageAndSearch(
      xsjsglxt_resevidence resevidence;//
 	// 获取筛选后所有的记录
 	int i = senceDao.getCountSenceInformationByPage(page_list_senceInformation);
+	System.out.println(i);
 	page_list_senceInformation.setTotalRecords(i);
 	page_list_senceInformation.setTotalPages(((i - 1) / page_list_senceInformation.getPageSize()) + 1);
 	if (page_list_senceInformation.getPageIndex() <= 1) {
@@ -112,75 +113,64 @@ public page_list_senceInformationVO VO_SneceInformation_By_PageAndSearch(
 	// 根据筛选条件获取list数据
 	listCase = senceDao.getListSenceInformatioByPage(page_list_senceInformation);
 	for (xsjsglxt_case Case : listCase) {
-	
-		
-		
-		             // 1
-					if (page_list_senceInformation.getCase_totalCategory() != null
-							&& page_list_senceInformation.getCase_totalCategory().trim().length() > 0) {
+     // 1
+	if (page_list_senceInformation.getCase_totalCategory() != null&& page_list_senceInformation.getCase_totalCategory().trim().length() > 0) {
 						Case.setCase_totalCategory(Case.getCase_totalCategory().replaceAll(Case.getCase_totalCategory(),"<span style='color: #ff5063;'>" + Case.getCase_totalCategory().trim()+ "</span>" ));
-							
-					}
-					// 2
-					if (page_list_senceInformation.getCase_sonCategory() != null
-							&& page_list_senceInformation.getCase_sonCategory().trim().length() > 0) {
-						Case.setCase_sonCategory(Case.getCase_sonCategory().replaceAll(Case.getCase_sonCategory(),"<span style='color: #ff5063;'>" + Case.getCase_sonCategory().trim()+ "</span>" ));
-					}
-					// 3
-					if (page_list_senceInformation.getCase_classify() != null
-							&& page_list_senceInformation.getCase_classify().trim().length() > 0) {
-						Case.setCase_classify(Case.getCase_classify().replaceAll(Case.getCase_classify(),"<span style='color: #ff5063;'>" + Case.getCase_classify().trim()+ "</span>" ));
-					}
-					// 4
-					if (page_list_senceInformation.getCase_residence() != null
-							&& page_list_senceInformation.getCase_residence().trim().length() > 0) {
-						Case.setCase_sonCategory(Case.getCase_residence().replaceAll(Case.getCase_residence(),"<span style='color: #ff5063;'>" + Case.getCase_residence().trim()+ "</span>" ));
-					}
-					// 5
-					if (page_list_senceInformation.getCase_concreteResidence() != null
-							&& page_list_senceInformation.getCase_concreteResidence().trim().length() > 0) {
-						Case.setCase_sonCategory(Case.getCase_concreteResidence().replaceAll(Case.getCase_concreteResidence(),"<span style='color: #ff5063;'>" + Case.getCase_concreteResidence().trim()+ "</span>" ));
-					}
-					// 6
-//					if (page_list_senceInformation.getSnece_inquestPerson() != null
-//							&& page_list_senceInformation.getSnece_inquestPerson().trim().length() > 0) {
-//						
-//					}
-					// 7
-					if (page_list_senceInformation.getCase_makeTime() != null
-							&& page_list_senceInformation.getCase_makeTime().trim().length() > 0) {
-						Case.setCase_sonCategory(Case.getCase_makeTime().replaceAll(Case.getCase_makeTime(),"<span style='color: #ff5063;'>" + Case.getCase_makeTime().trim()+ "</span>" ));
-					}
-					// 8
-					if (page_list_senceInformation.getCase_makeMeans() != null
-							&& page_list_senceInformation.getCase_makeMeans().trim().length() > 0) {
-						Case.setCase_sonCategory(Case.getCase_makeMeans().replaceAll(Case.getCase_makeMeans(),"<span style='color: #ff5063;'>" + Case.getCase_makeMeans().trim()+ "</span>" ));
-					}
-					// 9
-					if (page_list_senceInformation.getCase_concreteMakeMeans() != null
-							&& page_list_senceInformation.getCase_concreteMakeMeans().trim().length() > 0) {
-						Case.setCase_sonCategory(Case.getCase_concreteMakeMeans().replaceAll(Case.getCase_concreteMakeMeans(),"<span style='color: #ff5063;'>" + Case.getCase_concreteMakeMeans().trim()+ "</span>" ));
-					}
-					briefdetails=senceDao.get_briefdetails_Byxsjsglxt_case_id(Case);//1
-					
-					lost_computer=senceDao.get_lost_computer_Byxsjsglxt_case_id(Case);//2
-					
-					lost_mobilephone=senceDao.get_lost_mobilephone_Byxsjsglxt_case_id(Case);//3
-					
-					lost=senceDao.get_lost_Byxsjsglxt_case_id(Case);//4
-					
-					picture=senceDao.get_picture_Byxsjsglxt_case_id(Case);//5
-					
-					sence=senceDao.get_sence_Byxsjsglxt_case_id(Case);//6
-					
-					resevidence=senceDao.get_resevidence_Byxsjsglxt_case_id(Case);
-					
-					senceInformationDTO=new SenceInformationDTO(briefdetails,Case,lost_computer,lost_mobilephone,lost,picture,sence,resevidence);
-					
-					SenceInformationDTOList.add(senceInformationDTO);
 	}
-	page_list_senceInformation.setSenceInformationDTOList(SenceInformationDTOList);
-	return page_list_senceInformation;
+	// 2
+	if (page_list_senceInformation.getCase_sonCategory() != null&& page_list_senceInformation.getCase_sonCategory().trim().length() > 0) {
+						Case.setCase_sonCategory(Case.getCase_sonCategory().replaceAll(Case.getCase_sonCategory(),"<span style='color: #ff5063;'>" + Case.getCase_sonCategory().trim()+ "</span>" ));
+	}
+	// 3
+	if (page_list_senceInformation.getCase_classify() != null&&page_list_senceInformation.getCase_classify().trim().length() > 0) {
+						Case.setCase_classify(Case.getCase_classify().replaceAll(Case.getCase_classify(),"<span style='color:#ff5063;'>" + Case.getCase_classify().trim()+ "</span>" ));
+	}
+	// 4
+	if (page_list_senceInformation.getCase_residence() != null&&page_list_senceInformation.getCase_residence().trim().length() > 0) {
+						Case.setCase_sonCategory(Case.getCase_residence().replaceAll(Case.getCase_residence(),"<span style='color:#ff5063;'>" + Case.getCase_residence().trim()+ "</span>" ));
+	}
+	// 5
+	if(page_list_senceInformation.getCase_concreteResidence() != null&&page_list_senceInformation.getCase_concreteResidence().trim().length() > 0) {
+						Case.setCase_sonCategory(Case.getCase_concreteResidence().replaceAll(Case.getCase_concreteResidence(),"<span style='color: #ff5063;'>" + Case.getCase_concreteResidence().trim()+ "</span>" ));
+	}
+	// 6
+    if (page_list_senceInformation.getSnece_inquestPerson() != null&&page_list_senceInformation.getSnece_inquestPerson().trim().length() > 0) {
+						
+	}
+	// 7
+    if (page_list_senceInformation.getCase_makeTime() != null&&page_list_senceInformation.getCase_makeTime().trim().length() > 0) {
+						Case.setCase_sonCategory(Case.getCase_makeTime().replaceAll(Case.getCase_makeTime(),"<span style='color:#ff5063;'>" + Case.getCase_makeTime().trim()+ "</span>" ));
+	}
+	// 8
+   if (page_list_senceInformation.getCase_makeMeans() != null&&page_list_senceInformation.getCase_makeMeans().trim().length() > 0) {
+						Case.setCase_sonCategory(Case.getCase_makeMeans().replaceAll(Case.getCase_makeMeans(),"<span style='color:#ff5063;'>" + Case.getCase_makeMeans().trim()+ "</span>" ));
+	}
+	// 9
+	if (page_list_senceInformation.getCase_concreteMakeMeans() != null&&page_list_senceInformation.getCase_concreteMakeMeans().trim().length() > 0) {
+						Case.setCase_sonCategory(Case.getCase_concreteMakeMeans().replaceAll(Case.getCase_concreteMakeMeans(),"<span style='color: #ff5063;'>" + Case.getCase_concreteMakeMeans().trim()+ "</span>" ));
+    }
+		
+			briefdetails = senceDao.get_briefdetails_Byxsjsglxt_case_id(Case);// 1
+
+			lost_computer = senceDao.get_lost_computer_Byxsjsglxt_case_id(Case);// 2
+
+			lost_mobilephone = senceDao.get_lost_mobilephone_Byxsjsglxt_case_id(Case);// 3
+
+			lost = senceDao.get_lost_Byxsjsglxt_case_id(Case);// 4
+
+			picture = senceDao.get_picture_Byxsjsglxt_case_id(Case);// 5
+
+			sence = senceDao.get_sence_Byxsjsglxt_case_id(Case);// 6
+
+			resevidence = senceDao.get_resevidence_Byxsjsglxt_case_id(Case);
+
+			senceInformationDTO = new SenceInformationDTO(briefdetails, Case, lost_computer, lost_mobilephone, lost,
+					picture, sence, resevidence);
+
+			SenceInformationDTOList.add(senceInformationDTO);
+		}
+		page_list_senceInformation.setSenceInformationDTOList(SenceInformationDTOList);
+		return page_list_senceInformation;
 
 }
 
