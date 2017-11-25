@@ -3,6 +3,7 @@ package com.xsjsglxt.dao.impl.InspectionIdentification;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -133,5 +134,20 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		}
 		getSession().clear();
 		return listPage;
+	}
+
+	@Override
+	public int deleteCheckEntrustmentBookById(String checkEntrustmentBookId) {
+		int i = 1;
+		String hql = "delete xsjsglxt_check_entrustment_book where xsjsglxt_check_entrustment_book_id='"
+				+ checkEntrustmentBookId + "'";
+		try {
+			Query query = getSession().createQuery(hql);
+			query.executeUpdate();
+		} catch (HibernateException e) {
+			i = 2;
+			e.printStackTrace();
+		}
+		return i;
 	}
 }

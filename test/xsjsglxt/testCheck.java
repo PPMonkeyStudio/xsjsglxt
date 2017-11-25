@@ -1,5 +1,8 @@
 package xsjsglxt;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -38,6 +41,16 @@ public class testCheck {
 		CheckEntrustmentBookVO checkEntrustmentBookVO = new CheckEntrustmentBookVO();
 		checkEntrustmentBookVO = inspectionIdentificationService.getListCheckEntrustmentBook(checkEntrustmentBookVO);
 		System.out.println(checkEntrustmentBookVO);
+	}
+
+	// 测试批量删除
+	@Test
+	public void deleteTest() {
+		List<String> listtt = new ArrayList<>();
+		listtt.add("6542b5d9-192e-4e3f-a3a9-5c6d161db939");
+		listtt.add("8963e030-541c-416c-90cf-bac688630c25");
+		int i = inspectionIdentificationService.deleteListCheckEntrustmentBook(listtt);
+		System.out.println(i);
 	}
 
 }

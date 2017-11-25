@@ -16,4 +16,6 @@ public interface InspectionIdentificationDao {
 	public List<xsjsglxt_check_entrustment_book> getListCheckEntrustmentBookByPage(
 			CheckEntrustmentBookVO checkEntrustmentBookVO);
 
+	public int deleteCheckEntrustmentBookById(String checkEntrustmentBookId);
+
 }

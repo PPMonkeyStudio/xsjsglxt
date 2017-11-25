@@ -58,4 +58,17 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		return checkEntrustmentBookVO;
 	}
 
+	// 批量删除委托书ID
+	@Override
+	public int deleteListCheckEntrustmentBook(List<String> listCheckEntrustmentBookId) {
+		int i = 0;
+		for (String checkEntrustmentBookId : listCheckEntrustmentBookId) {
+			i = inspectionIdentificationDao.deleteCheckEntrustmentBookById(checkEntrustmentBookId);
+			if (i == 2) {
+				return -1;
+			}
+		}
+		return i;
+	}
+
 }

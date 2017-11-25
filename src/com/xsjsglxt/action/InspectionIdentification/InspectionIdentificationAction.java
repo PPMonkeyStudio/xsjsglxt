@@ -1,6 +1,7 @@
 package com.xsjsglxt.action.InspectionIdentification;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,6 +29,8 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	private xsjsglxt_check_entrustment_book tranceCheckBook;
 	// 分页显示委托书
 	private CheckEntrustmentBookVO checkEntrustmentBookVO;
+	// 批量的委托书ID
+	private List<String> listCheckEntrustmentBookId;
 
 	/**
 	 * 
@@ -41,16 +44,16 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 
 	// 点击保存
 	public void addCheckBook() {
-		int i = inspectionIdentificationService.saveTranceCheckBook(tranceCheckBook);
 		try {
-			response.getWriter().write(i);
+			response.getWriter().write(inspectionIdentificationService.saveTranceCheckBook(tranceCheckBook));
 		} catch (IOException e) {
 			System.out.println("保存委托书报错");
 			e.printStackTrace();
 		}
 	}
 
-	private void getListCheckEntrustmentBook() {
+	// 分页获取
+	private void getListCheckEntrustmentBookByPage() {
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
@@ -60,6 +63,17 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 			response.getWriter().write(gson.toJson(checkEntrustmentBookVO));
 		} catch (IOException e) {
 			System.out.println("分页显示委托书出错");
+			e.printStackTrace();
+		}
+	}
+
+	// 批量删除 -1 失败 1成功
+	public void deleteListCheckEntrustmentBook() {
+		try {
+			response.getWriter()
+					.write(inspectionIdentificationService.deleteListCheckEntrustmentBook(listCheckEntrustmentBookId));
+		} catch (IOException e) {
+			System.out.println("批量删除委托书出错");
 			e.printStackTrace();
 		}
 	}
@@ -83,6 +97,14 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 
 	public void setCheckEntrustmentBookVO(CheckEntrustmentBookVO checkEntrustmentBookVO) {
 		this.checkEntrustmentBookVO = checkEntrustmentBookVO;
+	}
+
+	public List<String> getListCheckEntrustmentBookId() {
+		return listCheckEntrustmentBookId;
+	}
+
+	public void setListCheckEntrustmentBookId(List<String> listCheckEntrustmentBookId) {
+		this.listCheckEntrustmentBookId = listCheckEntrustmentBookId;
 	}
 
 	@Override
