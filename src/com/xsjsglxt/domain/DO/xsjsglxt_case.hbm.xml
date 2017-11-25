@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-11-25 13:53:03 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_case" table="XSJSGLXT_CASE">
+        <id name="xsjsglxt_case_id" type="java.lang.String">
+            <column name="XSJSGLXT_CASE_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="case_parallel" type="java.lang.String">
+            <column name="CASE_PARALLEL" />
+        </property>
+        <property name="case_name" type="java.lang.String">
+            <column name="CASE_NAME" />
+        </property>
+        <property name="case_classify" type="java.lang.String">
+            <column name="CASE_CLASSIFY" />
+        </property>
+        <property name="case_totalCategory" type="java.lang.String">
+            <column name="CASE_TOTALCATEGORY" />
+        </property>
+        <property name="case_sonCategory" type="java.lang.String">
+            <column name="CASE_SONCATEGORY" />
+        </property>
+        <property name="case_extentOfInjury" type="java.lang.String">
+            <column name="CASE_EXTENTOFINJURY" />
+        </property>
+        <property name="case_receivingAlarmDate" type="java.lang.String">
+            <column name="CASE_RECEIVINGALARMDATE" />
+        </property>
+        <property name="case_register" type="int">
+            <column name="CASE_REGISTER" />
+        </property>
+        <property name="case_address" type="java.lang.String">
+            <column name="CASE_ADDRESS" />
+        </property>
+        <property name="case_makeTime" type="java.lang.String">
+            <column name="CASE_MAKETIME" />
+        </property>
+        <property name="case_jurisdiction" type="java.lang.String">
+            <column name="CASE_JURISDICTION" />
+        </property>
+        <property name="case_makeMeans" type="java.lang.String">
+            <column name="CASE_MAKEMEANS" />
+        </property>
+        <property name="case_concreteMakeMeans" type="java.lang.String">
+            <column name="CASE_CONCRETEMAKEMEANS" />
+        </property>
+        <property name="case_residence" type="java.lang.String">
+            <column name="CASE_RESIDENCE" />
+        </property>
+        <property name="case_concreteResidence" type="java.lang.String">
+            <column name="CASE_CONCRETERESIDENCE" />
+        </property>
+        <property name="case_exit" type="java.lang.String">
+            <column name="CASE_EXIT" />
+        </property>
+        <property name="case_process" type="java.lang.String">
+            <column name="CASE_PROCESS" />
+        </property>
+        <property name="case_reporterName" type="java.lang.String">
+            <column name="CASE_REPORTERNAME" />
+        </property>
+        <property name="case_reporterSex" type="int">
+            <column name="CASE_REPORTERSEX" />
+        </property>
+        <property name="case_reporterJobUnit" type="java.lang.String">
+            <column name="CASE_REPORTERJOBUNIT" />
+        </property>
+        <property name="case_reporterPhone" type="java.lang.String">
+            <column name="CASE_REPORTERPHONE" />
+        </property>
+        <property name="case_reporterAddress" type="java.lang.String">
+            <column name="CASE_REPORTERADDRESS" />
+        </property>
+        <property name="case_gmt_create" type="java.lang.String">
+            <column name="CASE_GMT_CREATE" />
+        </property>
+        <property name="case_gmt_modified" type="java.lang.String">
+            <column name="CASE_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>
