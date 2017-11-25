@@ -48,5 +48,21 @@
 	<bean id="equipmentDao" class="com.xsjsglxt.dao.impl.Technology.EquipmentDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	
+	<!--                                                                                                                                            -->
+	
+	<bean id="contrastFingerPrintAction" class="com.xsjsglxt.action.Technology.ContrastFingerPrintAction"
+		scope="prototype">
+		<property name="contrastFingerPrintService" ref="contrastFingerPrintService"></property>
+	</bean>
+
+	<bean id="contrastFingerPrintService"
+		class="com.xsjsglxt.service.impl.Technology.ContrastFingerPrintServiceImpl">
+		<property name="contrastFingerPrintDao" ref="contrastFingerPrintDao"></property>
+	</bean>
+
+	<bean id="contrastFingerPrintDao" class="com.xsjsglxt.dao.impl.Technology.ContrastFingerPrintDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 
 </beans>

@@ -1,4 +1,4 @@
-package com.xsjsglxt.action.Technology;
+package com.xsjsglxt.service.impl.Technology;
 
 import java.util.List;
 
@@ -11,10 +11,18 @@ import util.TeamUtil;
 
 public class ContrastFingerPrintServiceImpl implements ContrastFingerPrintService {
 	
+	public ContrastFingerPrintDao getContrastFingerPrintDao() {
+		return contrastFingerPrintDao;
+	}
+
+	public void setContrastFingerPrintDao(ContrastFingerPrintDao contrastFingerPrintDao) {
+		this.contrastFingerPrintDao = contrastFingerPrintDao;
+	}
+
 	private ContrastFingerPrintDao contrastFingerPrintDao;
 
 	@Override
-	public int saveDNA(xsjsglxt_contrast_fingerprint contrastFingerPrint) {
+	public int saveContrast(xsjsglxt_contrast_fingerprint contrastFingerPrint) {
 		contrastFingerPrint.setContrast_fingerprint_id(TeamUtil.getUuid());
 		contrastFingerPrint.setContrast_fingerprint_gmt_modified(TeamUtil.getStringSecond());
 		contrastFingerPrint.setContrast_fingerprint_gmt_create(TeamUtil.getStringSecond());

@@ -30,7 +30,7 @@ public class ContrastFingerPrintAction extends ActionSupport implements ServletR
 	private xsjsglxt_contrast_fingerprint contrastFingerPrint;
 	
 	public void CreateContrast() throws IOException {
-		int result = contrastFingerPrintService.saveDNA(contrastFingerPrint);
+		int result = contrastFingerPrintService.saveContrast(contrastFingerPrint);
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
