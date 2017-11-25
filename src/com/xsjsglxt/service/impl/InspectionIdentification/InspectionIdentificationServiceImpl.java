@@ -22,12 +22,11 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	public int saveTranceCheckBook(xsjsglxt_check_entrustment_book tranceCheckBook) {
 		tranceCheckBook.setCheck_entrustment_book_state("已送检");
 		tranceCheckBook.setXsjsglxt_check_entrustment_book_id(TeamUtil.getUuid());
-		// 给年份
-		tranceCheckBook.setCheck_entrustment_book_year(TeamUtil.getCurrentYear());
 		// 查找数量,并且填写编号
-		tranceCheckBook.setCheck_entrustment_book_num(
-				inspectionIdentificationDao.getCountCheckNum(tranceCheckBook.getCheck_entrustment_book_year(),
-						tranceCheckBook.getCheck_entrustment_book_type()) + 1 + "");
+		int i = inspectionIdentificationDao.getCountCheckNum(TeamUtil.getCurrentYear(),
+				tranceCheckBook.getCheck_entrustment_book_type()) + 1;
+		System.out.println(i);
+		tranceCheckBook.setCheck_entrustment_book_num(TeamUtil.getCurrentYear() + String.format("%04d", i));
 		tranceCheckBook.setCheck_entrustment_book_gmt_create(TeamUtil.getStringSecond());
 		tranceCheckBook.setCheck_entrustment_book_gmt_modified(tranceCheckBook.getCheck_entrustment_book_gmt_create());
 		return inspectionIdentificationDao.saveObject(tranceCheckBook);
@@ -39,6 +38,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		List<xsjsglxt_check_entrustment_book> listCheckEntrustmentBook = new ArrayList<xsjsglxt_check_entrustment_book>();
 		// 根据筛选获取总计路数
 		int i = inspectionIdentificationDao.getCountByPageAndSearch(checkEntrustmentBookVO);
+		System.out.println(i);
 		checkEntrustmentBookVO.setTotalRecords(i);
 		checkEntrustmentBookVO.setTotalPages(((i - 1) / checkEntrustmentBookVO.getPageSize()) + 1);
 		if (checkEntrustmentBookVO.getPageIndex() <= 1) {

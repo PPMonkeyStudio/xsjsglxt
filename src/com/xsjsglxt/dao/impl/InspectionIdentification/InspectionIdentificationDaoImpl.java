@@ -39,7 +39,7 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 	@Override
 	public int getCountCheckNum(String check_entrustment_book_year, String type) {
 		Long i;
-		String hql = "select count(*) from xsjsglxt_check_entrustment_book where check_entrustment_book_year='"
+		String hql = "select count(*) from xsjsglxt_check_entrustment_book where substring(check_entrustment_book_num,1,4)='"
 				+ check_entrustment_book_year + "' and check_entrustment_book_type='" + type + "'";
 		Query query = getSession().createQuery(hql);
 		i = (Long) query.uniqueResult();
@@ -54,7 +54,8 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		String stopTime = "9999-99-99";
 		String hql = "select count(*) from xsjsglxt_check_entrustment_book where 1=1 ";
 		if (checkEntrustmentBookVO.getBookNum() != null && checkEntrustmentBookVO.getBookNum().trim().length() > 0) {
-			// hql = hql + " and ";check_entrustment_book_case_name
+			String bookNum = "%" + checkEntrustmentBookVO.getBookNum().trim() + "%";
+			hql = hql + " and check_entrustment_book_num like '" + bookNum + "'";
 		}
 		if (checkEntrustmentBookVO.getCaseName() != null && checkEntrustmentBookVO.getCaseName().trim().length() > 0) {
 			String caseName = "%" + checkEntrustmentBookVO.getCaseName() + "%";
@@ -93,7 +94,8 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		String hql = "from xsjsglxt_check_entrustment_book where 1=1 ";
 		List<xsjsglxt_check_entrustment_book> listPage = new ArrayList<xsjsglxt_check_entrustment_book>();
 		if (checkEntrustmentBookVO.getBookNum() != null && checkEntrustmentBookVO.getBookNum().trim().length() > 0) {
-			// hql = hql + " and ";check_entrustment_book_case_name
+			String bookNum = "%" + checkEntrustmentBookVO.getBookNum().trim() + "%";
+			hql = hql + " and check_entrustment_book_num like '" + bookNum + "'";
 		}
 		if (checkEntrustmentBookVO.getCaseName() != null && checkEntrustmentBookVO.getCaseName().trim().length() > 0) {
 			String caseName = "%" + checkEntrustmentBookVO.getCaseName() + "%";
@@ -130,6 +132,14 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().replaceAll(
 								checkEntrustmentBookVO.getCaseName().trim(), "<span style='color: #ff5063;'>"
 										+ checkEntrustmentBookVO.getCaseName().trim() + "</span>"));
+			}
+		}
+		if (checkEntrustmentBookVO.getBookNum() != null && checkEntrustmentBookVO.getBookNum().trim().length() > 0) {
+			for (xsjsglxt_check_entrustment_book check_entrustment_book : listPage) {
+				check_entrustment_book
+						.setCheck_entrustment_book_num(check_entrustment_book.getCheck_entrustment_book_num()
+								.replaceAll(checkEntrustmentBookVO.getBookNum().trim(), "<span style='color: #ff5063;'>"
+										+ checkEntrustmentBookVO.getBookNum().trim() + "</span>"));
 			}
 		}
 		getSession().clear();

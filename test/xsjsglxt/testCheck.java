@@ -39,6 +39,7 @@ public class testCheck {
 	@Test
 	public void listShow() {
 		CheckEntrustmentBookVO checkEntrustmentBookVO = new CheckEntrustmentBookVO();
+		checkEntrustmentBookVO.setBookNum("201");
 		checkEntrustmentBookVO = inspectionIdentificationService.getListCheckEntrustmentBook(checkEntrustmentBookVO);
 		System.out.println(checkEntrustmentBookVO);
 	}
