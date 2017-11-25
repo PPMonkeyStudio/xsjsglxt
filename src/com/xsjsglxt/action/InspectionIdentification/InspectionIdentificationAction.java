@@ -9,7 +9,7 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.xsjsglxt.domain.DO.xsjsglxt_trance_check_entrustment_book;
+import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
 import com.xsjsglxt.service.InspectionIdentification.InspectionIdentificationService;
 
 @SuppressWarnings("serial")
@@ -26,8 +26,14 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	 * 
 	 *
 	 */
+
 	// 痕迹检验委托书
-	private xsjsglxt_trance_check_entrustment_book tranceCheckBook;
+	private xsjsglxt_check_entrustment_book tranceCheckBook;
+
+	/**
+	 * 
+	 * 
+	 */
 
 	// 点击进入检验鉴定委托管理
 	public String TranceCheckEntrustmentBookManagement() {
@@ -35,17 +41,21 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	}
 
 	// 点击保存
-	public void addTranceCheckBook() {
+	public void addCheckBook() {
 		int i = inspectionIdentificationService.saveTranceCheckBook(tranceCheckBook);
 		try {
 			response.getWriter().write(i);
 		} catch (IOException e) {
-			System.out.println("保存痕迹鉴定委托书报错");
+			System.out.println("保存委托书报错");
 			e.printStackTrace();
 		}
-		;
 	}
-
+	/**
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
 	@Override
 	public void setServletRequest(HttpServletRequest request) {
 		this.request = request;
@@ -73,11 +83,11 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		this.request = request;
 	}
 
-	public xsjsglxt_trance_check_entrustment_book getTranceCheckBook() {
+	public xsjsglxt_check_entrustment_book getTranceCheckBook() {
 		return tranceCheckBook;
 	}
 
-	public void setTranceCheckBook(xsjsglxt_trance_check_entrustment_book tranceCheckBook) {
+	public void setTranceCheckBook(xsjsglxt_check_entrustment_book tranceCheckBook) {
 		this.tranceCheckBook = tranceCheckBook;
 	}
 
