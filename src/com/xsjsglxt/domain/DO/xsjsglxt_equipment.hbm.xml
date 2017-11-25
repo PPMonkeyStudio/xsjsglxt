@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-11-25 17:40:22 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_equipment" table="XSJSGLXT_EQUIPMENT">
+        <id name="xsjsglxt_equipment_id" type="java.lang.String">
+            <column name="XSJSGLXT_EQUIPMENT_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="equipment_serial_number" type="java.lang.String">
+            <column name="EQUIPMENT_SERIAL_NUMBER" />
+        </property>
+        <property name="equipment_name" type="java.lang.String">
+            <column name="EQUIPMENT_NAME" />
+        </property>
+        <property name="equipment_type" type="java.lang.String">
+            <column name="EQUIPMENT_TYPE" />
+        </property>
+        <property name="equipment_feature" type="java.lang.String">
+            <column name="EQUIPMENT_FEATURE" />
+        </property>
+        <property name="equipment_number" type="java.lang.Integer">
+            <column name="EQUIPMENT_NUMBER" />
+        </property>
+        <property name="equipment_money" type="java.lang.String">
+            <column name="EQUIPMENT_MONEY" />
+        </property>
+        <property name="equipment_enablement_time" type="java.lang.String">
+            <column name="EQUIPMENT_ENABLEMENT_TIME" />
+        </property>
+        <property name="equipment_use_note" type="java.lang.String">
+            <column name="EQUIPMENT_USE_NOTE" />
+        </property>
+        <property name="equipment_remark" type="java.lang.String">
+            <column name="EQUIPMENT_REMARK" />
+        </property>
+        <property name="equipment_gmt_create" type="java.lang.String">
+            <column name="EQUIPMENT_GMT_CREATE" />
+        </property>
+        <property name="equipment_gmt_modified" type="java.lang.String">
+            <column name="EQUIPMENT_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>
