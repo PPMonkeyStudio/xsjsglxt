@@ -8,6 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
+import com.xsjsglxt.domain.VO.InspectionIdentification.CheckEntrustmentBookVO;
 import com.xsjsglxt.service.InspectionIdentification.InspectionIdentificationService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -29,6 +30,14 @@ public class testCheck {
 		int k = 0;
 		k = inspectionIdentificationService.saveTranceCheckBook(tranceCheckBook);
 		System.out.println(k);
+	}
+
+	// 测试分页显示
+	@Test
+	public void listShow() {
+		CheckEntrustmentBookVO checkEntrustmentBookVO = new CheckEntrustmentBookVO();
+		checkEntrustmentBookVO = inspectionIdentificationService.getListCheckEntrustmentBook(checkEntrustmentBookVO);
+		System.out.println(checkEntrustmentBookVO);
 	}
 
 }
