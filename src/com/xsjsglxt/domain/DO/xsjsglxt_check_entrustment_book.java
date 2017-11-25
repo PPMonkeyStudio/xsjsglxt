@@ -15,6 +15,11 @@ public class xsjsglxt_check_entrustment_book {
 	private String check_entrustment_book_inspectors2_jobcard_number;// 送检人2工作证号
 	private String check_entrustment_book_phone;// 联系电话
 	private String check_entrustment_book_fax_num;// 传真号码
+	private String check_entrustment_book_entrustmentor_name;// 被鉴定人姓名
+	private String check_entrustment_book_entrustmentor_sex;// 被鉴定人性别
+	private String check_entrustment_book_entrustmentor_phone;// 被鉴定人电话
+	private String check_entrustment_book_entrustmentor_unit;// 被鉴定人单位
+	private String check_entrustment_book_entrustmentor_address;// 被鉴定人现住址
 	private String check_entrustment_book_inspect_time;// 委托日期
 	private String check_entrustment_book_communication_address;// 通信地址
 	private String check_entrustment_book_zip_code;// 邮政编码
@@ -46,6 +51,11 @@ public class xsjsglxt_check_entrustment_book {
 				+ ", check_entrustment_book_inspectors2_jobcard_number="
 				+ check_entrustment_book_inspectors2_jobcard_number + ", check_entrustment_book_phone="
 				+ check_entrustment_book_phone + ", check_entrustment_book_fax_num=" + check_entrustment_book_fax_num
+				+ ", check_entrustment_book_entrustmentor_name=" + check_entrustment_book_entrustmentor_name
+				+ ", check_entrustment_book_entrustmentor_sex=" + check_entrustment_book_entrustmentor_sex
+				+ ", check_entrustment_book_entrustmentor_phone=" + check_entrustment_book_entrustmentor_phone
+				+ ", check_entrustment_book_entrustmentor_unit=" + check_entrustment_book_entrustmentor_unit
+				+ ", check_entrustment_book_entrustmentor_address=" + check_entrustment_book_entrustmentor_address
 				+ ", check_entrustment_book_inspect_time=" + check_entrustment_book_inspect_time
 				+ ", check_entrustment_book_communication_address=" + check_entrustment_book_communication_address
 				+ ", check_entrustment_book_zip_code=" + check_entrustment_book_zip_code
@@ -113,6 +123,26 @@ public class xsjsglxt_check_entrustment_book {
 
 	public String getCheck_entrustment_book_fax_num() {
 		return check_entrustment_book_fax_num;
+	}
+
+	public String getCheck_entrustment_book_entrustmentor_name() {
+		return check_entrustment_book_entrustmentor_name;
+	}
+
+	public String getCheck_entrustment_book_entrustmentor_sex() {
+		return check_entrustment_book_entrustmentor_sex;
+	}
+
+	public String getCheck_entrustment_book_entrustmentor_phone() {
+		return check_entrustment_book_entrustmentor_phone;
+	}
+
+	public String getCheck_entrustment_book_entrustmentor_unit() {
+		return check_entrustment_book_entrustmentor_unit;
+	}
+
+	public String getCheck_entrustment_book_entrustmentor_address() {
+		return check_entrustment_book_entrustmentor_address;
 	}
 
 	public String getCheck_entrustment_book_inspect_time() {
@@ -223,6 +253,26 @@ public class xsjsglxt_check_entrustment_book {
 
 	public void setCheck_entrustment_book_fax_num(String check_entrustment_book_fax_num) {
 		this.check_entrustment_book_fax_num = check_entrustment_book_fax_num;
+	}
+
+	public void setCheck_entrustment_book_entrustmentor_name(String check_entrustment_book_entrustmentor_name) {
+		this.check_entrustment_book_entrustmentor_name = check_entrustment_book_entrustmentor_name;
+	}
+
+	public void setCheck_entrustment_book_entrustmentor_sex(String check_entrustment_book_entrustmentor_sex) {
+		this.check_entrustment_book_entrustmentor_sex = check_entrustment_book_entrustmentor_sex;
+	}
+
+	public void setCheck_entrustment_book_entrustmentor_phone(String check_entrustment_book_entrustmentor_phone) {
+		this.check_entrustment_book_entrustmentor_phone = check_entrustment_book_entrustmentor_phone;
+	}
+
+	public void setCheck_entrustment_book_entrustmentor_unit(String check_entrustment_book_entrustmentor_unit) {
+		this.check_entrustment_book_entrustmentor_unit = check_entrustment_book_entrustmentor_unit;
+	}
+
+	public void setCheck_entrustment_book_entrustmentor_address(String check_entrustment_book_entrustmentor_address) {
+		this.check_entrustment_book_entrustmentor_address = check_entrustment_book_entrustmentor_address;
 	}
 
 	public void setCheck_entrustment_book_inspect_time(String check_entrustment_book_inspect_time) {
