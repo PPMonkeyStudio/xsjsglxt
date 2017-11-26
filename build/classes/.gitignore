@@ -1,10 +1,4 @@
-/applicationContext-beans.xml
-/applicationContext.xml
+/xsjsglxt/
 /com/
-/db.properties
-/hibernate.cfg.xml
-/log4j.properties
-/spring/
-/struts.xml
-/struts2/
 /util/
+/spring/

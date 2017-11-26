@@ -9,6 +9,7 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.junit.Test;
 
 public class TeamUtil {
 
@@ -182,6 +183,14 @@ public class TeamUtil {
 		NumberFormat nt = NumberFormat.getPercentInstance();
 		nt.setMinimumFractionDigits(2);
 		return "" + nt.format(percent);
+	}
+
+	@Test
+	public void tettt() {
+		int i = 9;
+		String k;
+		k = String.format("%04d", i, i + 1);
+		System.out.println(k);
 	}
 
 }
