@@ -45,7 +45,7 @@
 					</div>
 					<!-- 检索 -->
 					<div class="input-group" style="width: 300px; float: right;">
-						<input id="input_search" class="form-control" oninput=""
+						<input id="input_search" class="form-control" oninput="List_EntrustmentBook(1)"
 							type="text"> <span class="input-group-addon"> <i
 							class="fa fa-search"></i>
 						</span>
@@ -62,6 +62,10 @@
 							<th>类别</th>
 							<th>状态</th>
 							<th>操作</th>
+							<th><label class="fancy-checkbox"> <input
+									id="checkbox_all_select" type="checkbox" onclick="all_select()">
+									<span>全选</span>
+							</label></th>
 						</tr>
 					</tbody>
 				</table>
@@ -70,7 +74,7 @@
 				</div>
 
 				<div style="height: 34px; margin: 0 0 20px 0;">
-					<button class="btn btn-danger" onclick="Delete_Student()"
+					<button class="btn btn-danger" onclick="Remove_EntrustmentBook()"
 						style="float: right; margin: 0 10px;">
 						<i class="fa fa-trash-o"></i> 删除委托
 					</button>
@@ -111,4 +115,7 @@
 	src="<%=basePath%>js/InspectionIdentification/Create_TranceCheckEntrustmentBook.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/InspectionIdentification/Create_ForensicCheckEntrustmentBook.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/InspectionIdentification/Remove_EntrustmentBook.js"></script>
+
 </html>

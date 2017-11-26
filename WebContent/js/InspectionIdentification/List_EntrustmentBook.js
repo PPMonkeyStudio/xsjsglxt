@@ -86,7 +86,9 @@ function List_EntrustmentBook(pageIndex) {
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
 					new_td.innerHTML = '<label class="fancy-checkbox">'
-							+ '<input type="checkbox" class="checkbox_select">'
+							+ '<input id="'
+							+ EntrustmentBook_json.listCheckEntrustmentBook[num].xsjsglxt_check_entrustment_book_id
+							+ '" type="checkbox" class="checkbox_select">'
 							+ '<span></span></label>';
 
 				}
