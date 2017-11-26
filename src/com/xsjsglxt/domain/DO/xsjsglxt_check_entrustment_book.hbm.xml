@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2017-11-25 14:27:32 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2017-11-25 21:13:51 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book" table="XSJSGLXT_CHECK_ENTRUSTMENT_BOOK">
         <id name="xsjsglxt_check_entrustment_book_id" type="java.lang.String">
@@ -10,9 +10,6 @@
         </id>
         <property name="check_entrustment_book_physical_evidence" type="java.lang.String">
             <column name="CHECK_ENTRUSTMENT_BOOK_PHYSICAL_EVIDENCE" />
-        </property>
-        <property name="check_entrustment_book_year" type="java.lang.String">
-            <column name="CHECK_ENTRUSTMENT_BOOK_YEAR" />
         </property>
         <property name="check_entrustment_book_num" type="java.lang.String">
             <column name="CHECK_ENTRUSTMENT_BOOK_NUM" />
@@ -43,6 +40,21 @@
         </property>
         <property name="check_entrustment_book_fax_num" type="java.lang.String">
             <column name="CHECK_ENTRUSTMENT_BOOK_FAX_NUM" />
+        </property>
+        <property name="check_entrustment_book_entrustmentor_name" type="java.lang.String">
+            <column name="CHECK_ENTRUSTMENT_BOOK_ENTRUSTMENTOR_NAME" />
+        </property>
+        <property name="check_entrustment_book_entrustmentor_sex" type="java.lang.String">
+            <column name="CHECK_ENTRUSTMENT_BOOK_ENTRUSTMENTOR_SEX" />
+        </property>
+        <property name="check_entrustment_book_entrustmentor_phone" type="java.lang.String">
+            <column name="CHECK_ENTRUSTMENT_BOOK_ENTRUSTMENTOR_PHONE" />
+        </property>
+        <property name="check_entrustment_book_entrustmentor_unit" type="java.lang.String">
+            <column name="CHECK_ENTRUSTMENT_BOOK_ENTRUSTMENTOR_UNIT" />
+        </property>
+        <property name="check_entrustment_book_entrustmentor_address" type="java.lang.String">
+            <column name="CHECK_ENTRUSTMENT_BOOK_ENTRUSTMENTOR_ADDRESS" />
         </property>
         <property name="check_entrustment_book_inspect_time" type="java.lang.String">
             <column name="CHECK_ENTRUSTMENT_BOOK_INSPECT_TIME" />
@@ -79,6 +91,9 @@
         </property>
         <property name="check_entrustment_book_type" type="java.lang.String">
             <column name="CHECK_ENTRUSTMENT_BOOK_TYPE" />
+        </property>
+        <property name="check_entrustment_book_state" type="java.lang.String">
+            <column name="CHECK_ENTRUSTMENT_BOOK_STATE" />
         </property>
         <property name="check_entrustment_book_gmt_create" type="java.lang.String">
             <column name="CHECK_ENTRUSTMENT_BOOK_GMT_CREATE" />

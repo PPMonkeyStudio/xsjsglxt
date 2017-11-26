@@ -4,7 +4,6 @@ package com.xsjsglxt.domain.DO;
 public class xsjsglxt_check_entrustment_book {
 	private String xsjsglxt_check_entrustment_book_id;// 痕迹检验委托书ID
 	private String check_entrustment_book_physical_evidence;// 所属物证
-	private String check_entrustment_book_year;// 委托书年份
 	private String check_entrustment_book_num;// 委托书编号
 	private String check_entrustment_book_entrustment_unit;// 鉴定委托单位
 	private String check_entrustment_book_inspectors1_name;// 送检人1姓名
@@ -32,6 +31,7 @@ public class xsjsglxt_check_entrustment_book {
 	private String check_entrustment_book_sample_situation;// 送检的检材和样本等情况
 	private String check_entrustment_book_responsible_person;// 负责人
 	private String check_entrustment_book_type;// 委托书类型
+	private String check_entrustment_book_state;// 委托书状态
 	private String check_entrustment_book_gmt_create;// 创建时间
 	private String check_entrustment_book_gmt_modified;// 修改时间
 
@@ -39,14 +39,13 @@ public class xsjsglxt_check_entrustment_book {
 	public String toString() {
 		return "xsjsglxt_check_entrustment_book [xsjsglxt_check_entrustment_book_id="
 				+ xsjsglxt_check_entrustment_book_id + ", check_entrustment_book_physical_evidence="
-				+ check_entrustment_book_physical_evidence + ", check_entrustment_book_year="
-				+ check_entrustment_book_year + ", check_entrustment_book_num=" + check_entrustment_book_num
-				+ ", check_entrustment_book_entrustment_unit=" + check_entrustment_book_entrustment_unit
-				+ ", check_entrustment_book_inspectors1_name=" + check_entrustment_book_inspectors1_name
-				+ ", check_entrustment_book_inspectors2_name=" + check_entrustment_book_inspectors2_name
-				+ ", check_entrustment_book_inspectors1_duty=" + check_entrustment_book_inspectors1_duty
-				+ ", check_entrustment_book_inspectors2_duty=" + check_entrustment_book_inspectors2_duty
-				+ ", check_entrustment_book_inspectors1_jobcard_number="
+				+ check_entrustment_book_physical_evidence + ", check_entrustment_book_num="
+				+ check_entrustment_book_num + ", check_entrustment_book_entrustment_unit="
+				+ check_entrustment_book_entrustment_unit + ", check_entrustment_book_inspectors1_name="
+				+ check_entrustment_book_inspectors1_name + ", check_entrustment_book_inspectors2_name="
+				+ check_entrustment_book_inspectors2_name + ", check_entrustment_book_inspectors1_duty="
+				+ check_entrustment_book_inspectors1_duty + ", check_entrustment_book_inspectors2_duty="
+				+ check_entrustment_book_inspectors2_duty + ", check_entrustment_book_inspectors1_jobcard_number="
 				+ check_entrustment_book_inspectors1_jobcard_number
 				+ ", check_entrustment_book_inspectors2_jobcard_number="
 				+ check_entrustment_book_inspectors2_jobcard_number + ", check_entrustment_book_phone="
@@ -68,9 +67,9 @@ public class xsjsglxt_check_entrustment_book {
 				+ check_entrustment_book_entrustment_request + ", check_entrustment_book_sample_situation="
 				+ check_entrustment_book_sample_situation + ", check_entrustment_book_responsible_person="
 				+ check_entrustment_book_responsible_person + ", check_entrustment_book_type="
-				+ check_entrustment_book_type + ", check_entrustment_book_gmt_create="
-				+ check_entrustment_book_gmt_create + ", check_entrustment_book_gmt_modified="
-				+ check_entrustment_book_gmt_modified + "]";
+				+ check_entrustment_book_type + ", check_entrustment_book_state=" + check_entrustment_book_state
+				+ ", check_entrustment_book_gmt_create=" + check_entrustment_book_gmt_create
+				+ ", check_entrustment_book_gmt_modified=" + check_entrustment_book_gmt_modified + "]";
 	}
 
 	public String getXsjsglxt_check_entrustment_book_id() {
@@ -79,10 +78,6 @@ public class xsjsglxt_check_entrustment_book {
 
 	public String getCheck_entrustment_book_physical_evidence() {
 		return check_entrustment_book_physical_evidence;
-	}
-
-	public String getCheck_entrustment_book_year() {
-		return check_entrustment_book_year;
 	}
 
 	public String getCheck_entrustment_book_num() {
@@ -193,6 +188,10 @@ public class xsjsglxt_check_entrustment_book {
 		return check_entrustment_book_type;
 	}
 
+	public String getCheck_entrustment_book_state() {
+		return check_entrustment_book_state;
+	}
+
 	public String getCheck_entrustment_book_gmt_create() {
 		return check_entrustment_book_gmt_create;
 	}
@@ -207,10 +206,6 @@ public class xsjsglxt_check_entrustment_book {
 
 	public void setCheck_entrustment_book_physical_evidence(String check_entrustment_book_physical_evidence) {
 		this.check_entrustment_book_physical_evidence = check_entrustment_book_physical_evidence;
-	}
-
-	public void setCheck_entrustment_book_year(String check_entrustment_book_year) {
-		this.check_entrustment_book_year = check_entrustment_book_year;
 	}
 
 	public void setCheck_entrustment_book_num(String check_entrustment_book_num) {
@@ -322,6 +317,10 @@ public class xsjsglxt_check_entrustment_book {
 
 	public void setCheck_entrustment_book_type(String check_entrustment_book_type) {
 		this.check_entrustment_book_type = check_entrustment_book_type;
+	}
+
+	public void setCheck_entrustment_book_state(String check_entrustment_book_state) {
+		this.check_entrustment_book_state = check_entrustment_book_state;
 	}
 
 	public void setCheck_entrustment_book_gmt_create(String check_entrustment_book_gmt_create) {
