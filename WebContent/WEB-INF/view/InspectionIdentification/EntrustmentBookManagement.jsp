@@ -51,7 +51,7 @@
 						</span>
 					</div>
 				</div>
-				<table id="table_student" class="table table-hover"
+				<table id="table_EntrustmentBook" class="table table-hover"
 					style="text-align: center; margin: 20px 0;">
 					<tbody>
 						<tr>

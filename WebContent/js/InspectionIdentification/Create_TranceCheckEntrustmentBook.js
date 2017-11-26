@@ -14,8 +14,8 @@ function Create_TranceCheckEntrustmentBook() {
 						+ '<tbody>'
 						+ '<tr>'
 						+ '<td><i class="fa fa-warning" style="color:#D9534F;"></i> 负责人：</td><td><input   class="form-control" id="create_check_entrustment_book_responsible_person" /></td>'
-						+ '<td><i class="fa fa-warning" style="color:#D9534F;"></i> 委托单位：</td><td><input   class="form-control" id="create_trance_check_entrustment_book_entrustment_unit" /></td>'
-						+ '<td><i class="fa fa-warning" style="color:#D9534F;"></i> 委托时间：</td><td><input class="form-control" id="create_trance_check_entrustment_book_inspect_time" /></td></tr>'
+						+ '<td><i class="fa fa-warning" style="color:#D9534F;"></i> 委托单位：</td><td><input   class="form-control" id="create_check_entrustment_book_entrustment_unit" /></td>'
+						+ '<td><i class="fa fa-warning" style="color:#D9534F;"></i> 委托时间：</td><td><input class="form-control" id="create_check_entrustment_book_inspect_time" /></td></tr>'
 						+ '</tbody>'
 						+ '</table>'
 						+ '<br>'
@@ -81,7 +81,7 @@ function Create_TranceCheckEntrustmentBook() {
 				onContentReady : function() {
 					var date = new Date();
 					document
-							.getElementById("create_trance_check_entrustment_book_inspect_time").value = date
+							.getElementById("create_check_entrustment_book_inspect_time").value = date
 							.getFullYear()
 							+ '-'
 							+ (parseInt(date.getMonth()) + 1)
@@ -271,6 +271,6 @@ function addTranceCheckBook() {
 	 */
 	xhr
 			.open("POST",
-					"/xsjsglxt/inspectionIdentific/TranceCheckEntrustmentBook_addTranceCheckBook");
+					"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_addTranceCheckBook");
 	xhr.send(formData);
 }

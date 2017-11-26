@@ -36,6 +36,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 
 	// 点击保存
 	public void addTranceCheckBook() {
+		System.out.println(tranceCheckBook);
 		int i = inspectionIdentificationService.saveTranceCheckBook(tranceCheckBook);
 		try {
 			response.getWriter().write(i);
