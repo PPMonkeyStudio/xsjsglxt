@@ -45,19 +45,28 @@
 					</div>
 					<!-- 检索 -->
 					<div class="input-group" style="width: 300px; float: right;">
-						<input id="input_search" class="form-control" oninput="List_EntrustmentBook(1)"
-							type="text"> <span class="input-group-addon"> <i
-							class="fa fa-search"></i>
+						<input id="input_search" class="form-control"
+							oninput="List_EntrustmentBook(1)" type="text"> <span
+							class="input-group-addon"> <i class="fa fa-search"></i>
 						</span>
 					</div>
 				</div>
-				<table id="table_EntrustmentBook" class="table table-hover"
+				<table id="table_EntrustmentBook" class="table table-hover table-bordered"
 					style="text-align: center; margin: 20px 0;">
 					<tbody>
 						<tr>
 							<th>委托编号</th>
 							<th>案（事）件名称</th>
-							<th>被委托鉴定机构名称</th>
+							<th><select class="selectpicker"
+								id="select_check_entrustment_book_entrustment_unit_name"
+								style="width: auto;" onchange="List_EntrustmentBook(1)">
+									<option value="-1">被委托鉴定机构（全部）</option>
+									<option value="萍乡市公安司法鉴定中心">萍乡市公安司法鉴定中心</option>
+									<option value="萍乡市公安局物证鉴定所">萍乡市公安局物证鉴定所</option>
+									<option value="萍乡市安源公安司法鉴定中心">萍乡市安源公安司法鉴定中心</option>
+									<option value="江西省公安厅物证鉴定中心">江西省公安厅物证鉴定中心</option>
+									<option value="公安部物证鉴定中心">公安部物证鉴定中心</option>
+							</select></th>
 							<th>委托日期</th>
 							<th>类别</th>
 							<th>状态</th>

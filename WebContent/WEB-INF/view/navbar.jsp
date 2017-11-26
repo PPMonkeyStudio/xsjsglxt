@@ -149,6 +149,10 @@ td {
 	line-height: 33px !important;
 }
 
+th {
+	line-height: 34px !important;
+}
+
 td i {
 	line-height: 33px !important;
 }

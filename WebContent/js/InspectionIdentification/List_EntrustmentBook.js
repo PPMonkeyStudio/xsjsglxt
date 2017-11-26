@@ -133,9 +133,17 @@ function List_EntrustmentBook(pageIndex) {
 		formData.append("entrustmentBookManagementVO.search", search);
 	}
 	/*
-	 * 
+	 * 筛选：被委托鉴定机构
 	 */
-
+	if (document
+			.getElementById("select_check_entrustment_book_entrustment_unit_name").value == "-1") {
+	} else {
+		formData
+				.append(
+						"studentInformationManagementVO.unitName",
+						document
+								.getElementById("select_check_entrustment_book_entrustment_unit_name").value);
+	}
 	/*
 	 * 
 	 */
