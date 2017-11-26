@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
-import com.xsjsglxt.domain.VO.InspectionIdentification.CheckEntrustmentBookVO;
+import com.xsjsglxt.domain.VO.InspectionIdentification.EntrustmentBookManagementVO;
 import com.xsjsglxt.service.InspectionIdentification.InspectionIdentificationService;
 
 @SuppressWarnings("serial")
@@ -28,7 +28,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	// 痕迹检验委托书
 	private xsjsglxt_check_entrustment_book tranceCheckBook;
 	// 分页显示委托书
-	private CheckEntrustmentBookVO checkEntrustmentBookVO;
+	private EntrustmentBookManagementVO entrustmentBookManagementVO;
 	// 批量的委托书ID
 	private List<String> listCheckEntrustmentBookId;
 
@@ -54,14 +54,15 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	}
 
 	// 分页获取
-	private void getListCheckEntrustmentBookByPage() {
+	public void getListCheckEntrustmentBookByPage() {
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
-		checkEntrustmentBookVO = inspectionIdentificationService.getListCheckEntrustmentBook(checkEntrustmentBookVO);
+		entrustmentBookManagementVO = inspectionIdentificationService
+				.getListCheckEntrustmentBook(entrustmentBookManagementVO);
 		response.setContentType("text/html;charset=utf-8");
 		try {
-			response.getWriter().write(gson.toJson(checkEntrustmentBookVO));
+			response.getWriter().write(gson.toJson(entrustmentBookManagementVO));
 		} catch (IOException e) {
 			System.out.println("分页显示委托书出错");
 			e.printStackTrace();
@@ -92,12 +93,16 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 
 	}
 
-	public CheckEntrustmentBookVO getCheckEntrustmentBookVO() {
-		return checkEntrustmentBookVO;
+	public EntrustmentBookManagementVO getEntrustmentBookManagementVO() {
+		return entrustmentBookManagementVO;
 	}
 
-	public void setCheckEntrustmentBookVO(CheckEntrustmentBookVO checkEntrustmentBookVO) {
-		this.checkEntrustmentBookVO = checkEntrustmentBookVO;
+	public void setEntrustmentBookManagementVO(EntrustmentBookManagementVO entrustmentBookManagementVO) {
+		this.entrustmentBookManagementVO = entrustmentBookManagementVO;
+	}
+
+	public InspectionIdentificationService getInspectionIdentificationService() {
+		return inspectionIdentificationService;
 	}
 
 	public List<String> getListCheckEntrustmentBookId() {

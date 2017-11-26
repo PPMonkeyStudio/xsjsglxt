@@ -10,7 +10,7 @@ import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.InspectionIdentification.InspectionIdentificationDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
-import com.xsjsglxt.domain.VO.InspectionIdentification.CheckEntrustmentBookVO;
+import com.xsjsglxt.domain.VO.InspectionIdentification.EntrustmentBookManagementVO;
 
 public class InspectionIdentificationDaoImpl implements InspectionIdentificationDao {
 	private SessionFactory sessionFactory;
@@ -48,7 +48,7 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 	}
 
 	@Override
-	public int getCountByPageAndSearch(CheckEntrustmentBookVO checkEntrustmentBookVO) {
+	public int getCountByPageAndSearch(EntrustmentBookManagementVO checkEntrustmentBookVO) {
 		Long i;
 		String startTime = "0000-00-00";
 		String stopTime = "9999-99-99";
@@ -88,7 +88,7 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 	// 分页查询所有
 	@Override
 	public List<xsjsglxt_check_entrustment_book> getListCheckEntrustmentBookByPage(
-			CheckEntrustmentBookVO checkEntrustmentBookVO) {
+			EntrustmentBookManagementVO checkEntrustmentBookVO) {
 		String startTime = "0000-00-00";
 		String stopTime = "9999-99-99";
 		String hql = "from xsjsglxt_check_entrustment_book where 1=1 ";

@@ -11,7 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
-import com.xsjsglxt.domain.VO.InspectionIdentification.CheckEntrustmentBookVO;
+import com.xsjsglxt.domain.VO.InspectionIdentification.EntrustmentBookManagementVO;
 import com.xsjsglxt.service.InspectionIdentification.InspectionIdentificationService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -38,7 +38,7 @@ public class testCheck {
 	// 测试分页显示
 	@Test
 	public void listShow() {
-		CheckEntrustmentBookVO checkEntrustmentBookVO = new CheckEntrustmentBookVO();
+		EntrustmentBookManagementVO checkEntrustmentBookVO = new EntrustmentBookManagementVO();
 		checkEntrustmentBookVO.setBookNum("201");
 		checkEntrustmentBookVO = inspectionIdentificationService.getListCheckEntrustmentBook(checkEntrustmentBookVO);
 		System.out.println(checkEntrustmentBookVO);

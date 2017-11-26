@@ -57,7 +57,7 @@
 						<tr>
 							<th>委托编号</th>
 							<th>案（事）件名称</th>
-							<th>鉴定机构名称</th>
+							<th>被委托鉴定机构名称</th>
 							<th>委托日期</th>
 							<th>类别</th>
 							<th>状态</th>
@@ -102,6 +102,11 @@
 
 
 </body>
+<script type="text/javascript"
+	src="<%=basePath%>js/InspectionIdentification/List_EntrustmentBook.js"></script>
+<script>
+	List_EntrustmentBook(1);
+</script>
 <script type="text/javascript"
 	src="<%=basePath%>js/InspectionIdentification/Create_TranceCheckEntrustmentBook.js"></script>
 <script type="text/javascript"

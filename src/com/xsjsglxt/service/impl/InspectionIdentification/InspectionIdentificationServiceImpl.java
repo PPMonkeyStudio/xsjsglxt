@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.xsjsglxt.dao.InspectionIdentification.InspectionIdentificationDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
-import com.xsjsglxt.domain.VO.InspectionIdentification.CheckEntrustmentBookVO;
+import com.xsjsglxt.domain.VO.InspectionIdentification.EntrustmentBookManagementVO;
 import com.xsjsglxt.service.InspectionIdentification.InspectionIdentificationService;
 
 import util.TeamUtil;
@@ -34,7 +34,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 
 	// 分页获取委托书状态
 	@Override
-	public CheckEntrustmentBookVO getListCheckEntrustmentBook(CheckEntrustmentBookVO checkEntrustmentBookVO) {
+	public EntrustmentBookManagementVO getListCheckEntrustmentBook(EntrustmentBookManagementVO checkEntrustmentBookVO) {
 		List<xsjsglxt_check_entrustment_book> listCheckEntrustmentBook = new ArrayList<xsjsglxt_check_entrustment_book>();
 		// 根据筛选获取总计路数
 		int i = inspectionIdentificationDao.getCountByPageAndSearch(checkEntrustmentBookVO);
