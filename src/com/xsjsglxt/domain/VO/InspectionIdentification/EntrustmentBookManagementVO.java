@@ -13,7 +13,7 @@ public class EntrustmentBookManagementVO {
 	// 总记录数
 	private int totalRecords = 0;
 	// 每页显示记录数
-	private int pageSize = 20;
+	private int pageSize = 10;
 	// 总页数
 	private int totalPages = 1;
 	// 是否有上一页
