@@ -72,8 +72,8 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	// 批量删除 -1 失败 1成功
 	public void deleteListCheckEntrustmentBook() {
 		try {
-			response.getWriter()
-					.write(inspectionIdentificationService.deleteListCheckEntrustmentBook(listCheckEntrustmentBookId));
+			response.getWriter().write(
+					"" + inspectionIdentificationService.deleteListCheckEntrustmentBook(listCheckEntrustmentBookId));
 		} catch (IOException e) {
 			System.out.println("批量删除委托书出错");
 			e.printStackTrace();

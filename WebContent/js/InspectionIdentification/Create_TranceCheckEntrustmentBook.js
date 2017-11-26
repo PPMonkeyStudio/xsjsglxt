@@ -113,6 +113,7 @@ function addTranceCheckBook(js) {
 				if (xhr.responseText == 1) {
 					toastr.success("保存成功");
 					js.close();
+					List_EntrustmentBook(1);
 				} else {
 					toastr.error("填写格式错误");
 				}
@@ -272,6 +273,10 @@ function addTranceCheckBook(js) {
 	formData.append(
 			"tranceCheckBook.check_entrustment_book_entrustment_request",
 			create_check_entrustment_book_entrustment_request.value);
+	/*
+	 * 
+	 */
+	formData.append("tranceCheckBook.check_entrustment_book_type", '痕迹');
 	/*
 	 * 
 	 */

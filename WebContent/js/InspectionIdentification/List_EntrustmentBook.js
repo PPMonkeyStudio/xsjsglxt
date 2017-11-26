@@ -86,7 +86,9 @@ function List_EntrustmentBook(pageIndex) {
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
 					new_td.innerHTML = '<label class="fancy-checkbox">'
-							+ '<input type="checkbox" class="checkbox_select">'
+							+ '<input id="'
+							+ EntrustmentBook_json.listCheckEntrustmentBook[num].xsjsglxt_check_entrustment_book_id
+							+ '" type="checkbox" class="checkbox_select">'
 							+ '<span></span></label>';
 
 				}
@@ -131,9 +133,17 @@ function List_EntrustmentBook(pageIndex) {
 		formData.append("entrustmentBookManagementVO.search", search);
 	}
 	/*
-	 * 
+	 * 筛选：被委托鉴定机构
 	 */
-
+	if (document
+			.getElementById("select_check_entrustment_book_entrustment_unit_name").value == "-1") {
+	} else {
+		formData
+				.append(
+						"studentInformationManagementVO.unitName",
+						document
+								.getElementById("select_check_entrustment_book_entrustment_unit_name").value);
+	}
 	/*
 	 * 
 	 */
