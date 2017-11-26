@@ -38,14 +38,15 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	 */
 
 	// 点击进入检验鉴定委托管理
-	public String TranceCheckEntrustmentBookManagement() {
-		return "TranceCheckEntrustmentBookManagement";
+	public String EntrustmentBookManagement() {
+		return "EntrustmentBookManagement";
 	}
 
 	// 点击保存
 	public void addCheckBook() {
 		try {
-			response.getWriter().write(inspectionIdentificationService.saveTranceCheckBook(tranceCheckBook));
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter().write("" + inspectionIdentificationService.saveTranceCheckBook(tranceCheckBook));
 		} catch (IOException e) {
 			System.out.println("保存委托书报错");
 			e.printStackTrace();

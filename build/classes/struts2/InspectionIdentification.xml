@@ -5,10 +5,10 @@
 <struts>
 	<package name="InspectionIdentification" namespace="/inspectionIdentific"
 		extends="struts-default">
-		<action name="TranceCheckEntrustmentBook_*"
+		<action name="EntrustmentBookManagement_*"
 			class="com.xsjsglxt.action.InspectionIdentification.InspectionIdentificationAction"
 			method="{1}">
-			<result name="TranceCheckEntrustmentBookManagement">/WEB-INF/view/InspectionIdentification/TranceCheckEntrustmentBookManagement.jsp
+			<result name="EntrustmentBookManagement">/WEB-INF/view/InspectionIdentification/EntrustmentBookManagement.jsp
 			</result>
 		</action>
 	</package>

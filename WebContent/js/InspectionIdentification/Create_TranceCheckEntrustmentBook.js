@@ -92,7 +92,7 @@ function Create_TranceCheckEntrustmentBook() {
 					'确认委托' : {
 						btnClass : 'btn-blue',
 						action : function() {
-							addTranceCheckBook();
+							addTranceCheckBook(js);
 							return false;
 						}
 					},
@@ -102,7 +102,7 @@ function Create_TranceCheckEntrustmentBook() {
 			});
 }
 
-function addTranceCheckBook() {
+function addTranceCheckBook(js) {
 	var xhr = false;
 	xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
@@ -110,6 +110,12 @@ function addTranceCheckBook() {
 		if (xhr.readyState == 4) {
 			if (xhr.status == 200) {
 				console.debug(xhr.responseText);
+				if (xhr.responseText == 1) {
+					toastr.success("保存成功");
+					js.close();
+				} else {
+					toastr.error("填写格式错误");
+				}
 			} else {
 				toastr.error(xhr.status);
 			}
@@ -271,6 +277,6 @@ function addTranceCheckBook() {
 	 */
 	xhr
 			.open("POST",
-					"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_addTranceCheckBook");
+					"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_addCheckBook");
 	xhr.send(formData);
 }
