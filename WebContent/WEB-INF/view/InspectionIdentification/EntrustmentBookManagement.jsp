@@ -11,28 +11,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!---------------------------------------------------------------------------------------------------->
-<script type="text/javascript"
-	src="<%=basePath%>js/StudentInformationManagement/List_Student_By_PageAndSearch.js"></script>
-<script type="text/javascript"
-	src="<%=basePath%>js/StudentInformationManagement/Student_Information_Display.js"></script>
-<script type="text/javascript"
-	src="<%=basePath%>js/StudentInformationManagement/PreviewStudentEXCEL.js"></script>
-<script type="text/javascript"
-	src="<%=basePath%>js/StudentInformationManagement/Delete_Student.js"></script>
-<script type="text/javascript"
-	src="<%=basePath%>js/StudentInformationManagement/Get_Student_Major.js"></script>
-<script type="text/javascript"
-	src="<%=basePath%>js/StudentInformationManagement/Get_Student_Level.js"></script>
-<script type="text/javascript"
-	src="<%=basePath%>js/StudentInformationManagement/Update_Student.js"></script>
-<script type="text/javascript"
-	src="<%=basePath%>js/StudentInformationManagement/Student_Give_Operate_Premission.js"></script>
-<script type="text/javascript"
-	src="<%=basePath%>js/StudentInformationManagement/Student_Take_Operate_Premission.js"></script>
-<script type="text/javascript"
-	src="<%=basePath%>js/StudentInformationManagement/assignmentStudentTopic.js"></script>
+
+
 <!---------------------------------------------------------------------------------------------------->
-<title>学生信息管理</title>
+<title>痕迹检验委托管理</title>
 </head>
 <body>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
@@ -52,18 +34,20 @@
 			<div class="panel-body">
 				<div style="height: 34px;">
 					<div style="width: 500px; float: left;">
-						<button class="btn btn-default" id="button_">
-							<i class="fa fa-plus-square"></i> 痕迹检验委托
+						<button class="btn btn-default"
+							id="button_Create_TranceCheckEntrustmentBook">
+							<i class="fa fa-pencil-square-o"></i> 痕迹检验委托鉴定
 						</button>
-						<button class="btn btn-default" id="">
-							<i class="fa fa-plus-square"></i> 法医检验委托
+						<button class="btn btn-default"
+							id="button_Create_ForensicCheckEntrustmentBook">
+							<i class="fa fa-pencil-square-o"></i> 法医检验委托鉴定
 						</button>
 					</div>
 					<!-- 检索 -->
 					<div class="input-group" style="width: 300px; float: right;">
-						<input id="input_search" class="form-control"
-							oninput="List_Student_By_PageAndSearch(1)" type="text"> <span
-							class="input-group-addon"> <i class="fa fa-search"></i>
+						<input id="input_search" class="form-control" oninput=""
+							type="text"> <span class="input-group-addon"> <i
+							class="fa fa-search"></i>
 						</span>
 					</div>
 				</div>
@@ -71,8 +55,13 @@
 					style="text-align: center; margin: 20px 0;">
 					<tbody>
 						<tr>
-							<th>学号</th>
-							<th>姓名</th>
+							<th>委托编号</th>
+							<th>案（事）件名称</th>
+							<th>鉴定机构名称</th>
+							<th>委托日期</th>
+							<th>类别</th>
+							<th>状态</th>
+							<th>操作</th>
 						</tr>
 					</tbody>
 				</table>
@@ -80,23 +69,10 @@
 					<i class="fa fa-spinner fa-pulse fa-3x"></i>
 				</div>
 
-
-
 				<div style="height: 34px; margin: 0 0 20px 0;">
-
 					<button class="btn btn-danger" onclick="Delete_Student()"
 						style="float: right; margin: 0 10px;">
-						<i class="fa fa-trash-o"></i> 删除所选
-					</button>
-					<button class="btn btn-default"
-						onclick="Student_Take_Operate_Premission()"
-						style="float: right; margin: 0 10px;">
-						<i class="fa fa-exclamation-triangle"></i> 关闭学生
-					</button>
-					<button class="btn btn-default"
-						onclick="Student_Give_Operate_Premission()"
-						style="float: right; margin: 0 10px;">
-						<i class="fa fa-key"></i> 打开学生
+						<i class="fa fa-trash-o"></i> 删除委托
 					</button>
 				</div>
 				<div style="margin: 0 auto; width: 400px; text-align: center;">
@@ -126,11 +102,8 @@
 
 
 </body>
-<script>
-	document.getElementById("test").onclick = function() {
-		alert("js动态绑定的事件！");
-
-	}
-</script>
-
+<script type="text/javascript"
+	src="<%=basePath%>js/InspectionIdentification/Create_TranceCheckEntrustmentBook.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/InspectionIdentification/Create_ForensicCheckEntrustmentBook.js"></script>
 </html>

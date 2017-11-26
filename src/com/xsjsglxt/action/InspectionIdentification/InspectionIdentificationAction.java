@@ -29,9 +29,9 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	// 痕迹检验委托书
 	private xsjsglxt_trance_check_entrustment_book tranceCheckBook;
 
-	// 点击进入检验鉴定委托管理
-	public String TranceCheckEntrustmentBookManagement() {
-		return "TranceCheckEntrustmentBookManagement";
+	// 委托书管理
+	public String EntrustmentBookManagement() {
+		return "EntrustmentBookManagement";
 	}
 
 	// 点击保存
@@ -43,7 +43,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 			System.out.println("保存痕迹鉴定委托书报错");
 			e.printStackTrace();
 		}
-		;
+
 	}
 
 	@Override

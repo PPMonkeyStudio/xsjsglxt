@@ -46,10 +46,10 @@
 				<div class="panel-body no-padding bg-primary text-center">
 					<div class="padding-top-30 padding-bottom-30">
 						<i class="fa fa-plus-circle fa-4x"></i>
-						<h3>录入没有现场的物证</h3>
+						<h3>录入物证的信息</h3>
 					</div>
 				</div>
-			</div>
+			</div> 
 			<!--  -->
 			<div class="panel"
 				style="width: 350px; float: left; margin-right: 40px;">
@@ -166,7 +166,7 @@
 				<div class="panel-body no-padding bg-primary text-center">
 					<div class="padding-top-30 padding-bottom-30">
 						<i class="fa fa-users fa-4x"></i>
-						<h3>创建一条人员信息</h3>
+						<h3>新增一条人员信息</h3>
 					</div>
 				</div>
 			</div>

@@ -71,7 +71,7 @@
 				</a>
 					<ul class="dropdown-menu">
 						<li><a
-							href="<%=basePath%>inspectionIdentific/TranceCheckEntrustmentBook_TranceCheckEntrustmentBookManagement">痕迹委托检验</a></li>
+							href="<%=basePath%>inspectionIdentific/EntrustmentBookManagement_EntrustmentBookManagement">痕迹委托检验</a></li>
 						<li><a href="#">法医委托检验</a></li>
 						<li><a href="#">检验记录</a></li>
 						<li><a href="#">检验结果</a></li>
@@ -140,7 +140,7 @@
 		</nav>
 </body>
 <script type="text/javascript">
-	getUserSessionForAjax();
+	//getUserSessionForAjax();
 </script>
 <style>
 td {
