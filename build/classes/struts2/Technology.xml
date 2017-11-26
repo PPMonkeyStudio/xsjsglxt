@@ -11,14 +11,6 @@
 			</result>
 		</action>
 	</package>
-	<package name="ContrastFingerPrintManagement" namespace="/ContrastFingerPrint"
-		extends="struts-default">
-		<action name="ContrastFingerPrintManagement_*" class="com.xsjsglxt.action.Technology.ContrastFingerPrintAction"
-			method="{1}">
-			<result name="ContrastFingerPrintManagementPage">/WEB-INF/view/Technology/ContrastFingerPrintManagement/ContrastFingerPrintManagement.jsp
-			</result>
-		</action>
-	</package>
 	
 	<package name="FingerPrintManagement" namespace="/FingerPrint"
 		extends="struts-default">
