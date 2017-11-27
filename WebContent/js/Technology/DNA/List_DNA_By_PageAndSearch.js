@@ -98,7 +98,8 @@ function List_DNA_By_PageAndSearch(pageIndex) {
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
-					new_td.innerHTML = '<button id="'+DNA_VO.list_xsjsglxt_dna[num].xsjsglxt_dna_id+'" onClick=DNADetails(this)>详细</button>';
+					new_td.innerHTML = '<i  id="'+DNA_VO.list_xsjsglxt_dna[num].xsjsglxt_dna_id+'" onClick=DNADetails(this) class="fa fa-pencil-square-o" aria-hidden="true"></i>';
+					new_td.style.cursor="pointer";
 					
 					/*
 					 *9. 复选框
