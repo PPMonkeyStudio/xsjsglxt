@@ -13,6 +13,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
+import com.xsjsglxt.domain.DO.xsjsglxt_identifieder_case_confirm_book;
+import com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform;
 import com.xsjsglxt.domain.VO.InspectionIdentification.EntrustmentBookManagementVO;
 import com.xsjsglxt.service.InspectionIdentification.InspectionIdentificationService;
 
@@ -31,6 +33,10 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	private EntrustmentBookManagementVO entrustmentBookManagementVO;
 	// 批量的委托书ID
 	private List<String> listCheckEntrustmentBookId;
+	// 鉴定事项确认书
+	private xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook;
+	// 不受理委托鉴定告知
+	private xsjsglxt_not_acceptance_entrustment_inform notAcceptanceEntrustmentInform;
 
 	/**
 	 * 
@@ -80,6 +86,30 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		}
 	}
 
+	// 点击填写确认书表
+	public void addConfirmBook() {
+		try {
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter().write(
+					"" + inspectionIdentificationService.saveIdentifiederCaseConfirmBook(identifiederCaseConfirmBook));
+		} catch (IOException e) {
+			System.out.println("填写确认书报错");
+			e.printStackTrace();
+		}
+	}
+
+	// 点击填写不受理委托鉴定告知表
+	public void addNotAcceptance() {
+		try {
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter().write(
+					"" + inspectionIdentificationService.saveNotAcceptanceInform(notAcceptanceEntrustmentInform));
+		} catch (IOException e) {
+			System.out.println("填写不受理委托鉴定告知报错");
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * 
 	 * 
@@ -91,6 +121,23 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void setServletRequest(HttpServletRequest request) {
 		this.request = request;
 
+	}
+
+	public xsjsglxt_not_acceptance_entrustment_inform getNotAcceptanceEntrustmentInform() {
+		return notAcceptanceEntrustmentInform;
+	}
+
+	public void setNotAcceptanceEntrustmentInform(
+			xsjsglxt_not_acceptance_entrustment_inform notAcceptanceEntrustmentInform) {
+		this.notAcceptanceEntrustmentInform = notAcceptanceEntrustmentInform;
+	}
+
+	public xsjsglxt_identifieder_case_confirm_book getIdentifiederCaseConfirmBook() {
+		return identifiederCaseConfirmBook;
+	}
+
+	public void setIdentifiederCaseConfirmBook(xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook) {
+		this.identifiederCaseConfirmBook = identifiederCaseConfirmBook;
 	}
 
 	public EntrustmentBookManagementVO getEntrustmentBookManagementVO() {

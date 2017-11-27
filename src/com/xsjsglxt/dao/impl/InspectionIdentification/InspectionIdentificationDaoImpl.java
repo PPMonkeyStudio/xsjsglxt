@@ -10,6 +10,8 @@ import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.InspectionIdentification.InspectionIdentificationDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
+import com.xsjsglxt.domain.DO.xsjsglxt_identifieder_case_confirm_book;
+import com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform;
 import com.xsjsglxt.domain.VO.InspectionIdentification.EntrustmentBookManagementVO;
 
 public class InspectionIdentificationDaoImpl implements InspectionIdentificationDao {
@@ -60,6 +62,9 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 			hql = hql + " and check_entrustment_book_num like '" + search
 					+ "' or check_entrustment_book_case_name like '" + search + "'";
 		}
+		if (checkEntrustmentBookVO.getState() != null && checkEntrustmentBookVO.getState().trim().length() > 0) {
+			hql = hql + " and check_entrustment_book_state='" + checkEntrustmentBookVO.getState().trim() + "'";
+		}
 		if (checkEntrustmentBookVO.getUnitName() != null && checkEntrustmentBookVO.getUnitName().trim().length() > 0) {
 			hql = hql + " and check_entrustment_book_entrustment_unit_name='"
 					+ checkEntrustmentBookVO.getUnitName().trim() + "'";
@@ -78,6 +83,7 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		hql = hql + " and check_entrustment_book_inspect_time>='" + startTime
 				+ "' and check_entrustment_book_inspect_time<='" + stopTime
 				+ "' order by check_entrustment_book_inspect_time";
+		System.out.println(hql);
 		Query query = getSession().createQuery(hql);
 		i = (Long) query.uniqueResult();
 		getSession().clear();
@@ -96,6 +102,9 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 			String search = "%" + checkEntrustmentBookVO.getSearch().trim() + "%";
 			hql = hql + " and check_entrustment_book_num like '" + search
 					+ "' or check_entrustment_book_case_name like '" + search + "'";
+		}
+		if (checkEntrustmentBookVO.getState() != null && checkEntrustmentBookVO.getState().trim().length() > 0) {
+			hql = hql + " and check_entrustment_book_state='" + checkEntrustmentBookVO.getState().trim() + "'";
 		}
 		if (checkEntrustmentBookVO.getUnitName() != null && checkEntrustmentBookVO.getUnitName().trim().length() > 0) {
 			hql = hql + " and check_entrustment_book_entrustment_unit_name='"
@@ -155,6 +164,47 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 			e.printStackTrace();
 		}
 		return i;
+	}
+
+	// 根据id获取委托书
+	@Override
+	public xsjsglxt_check_entrustment_book getCheckEntrustmentBookById(
+			String identifieder_case_confirm_book_belong_entrustment_book) {
+		xsjsglxt_check_entrustment_book checkEntrustmentBook = new xsjsglxt_check_entrustment_book();
+		Session session = getSession();
+		String hql = "from xsjsglxt_check_entrustment_book where xsjsglxt_check_entrustment_book_id='"
+				+ identifieder_case_confirm_book_belong_entrustment_book + "'";
+		Query query = session.createQuery(hql);
+		checkEntrustmentBook = (xsjsglxt_check_entrustment_book) query.uniqueResult();
+		session.clear();
+		return checkEntrustmentBook;
+	}
+
+	// 根据ID获取鉴定事项确认书表
+	@Override
+	public xsjsglxt_identifieder_case_confirm_book getIdentifiederCaseConfirmBookById(
+			String xsjsglxt_check_entrustment_book_id) {
+		xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook = new xsjsglxt_identifieder_case_confirm_book();
+		Session session = getSession();
+		String hql = "from xsjsglxt_identifieder_case_confirm_book where identifieder_case_confirm_book_belong_entrustment_book='"
+				+ xsjsglxt_check_entrustment_book_id + "'";
+		Query query = session.createQuery(hql);
+		identifiederCaseConfirmBook = (xsjsglxt_identifieder_case_confirm_book) query.uniqueResult();
+		session.clear();
+		return identifiederCaseConfirmBook;
+	}
+
+	@Override
+	public xsjsglxt_not_acceptance_entrustment_inform getNotAcceptanceEntrustmentInform(
+			String xsjsglxt_check_entrustment_book_id) {
+		xsjsglxt_not_acceptance_entrustment_inform notAcceptanceEntrustmentInform = new xsjsglxt_not_acceptance_entrustment_inform();
+		Session session = getSession();
+		String hql = "from xsjsglxt_not_acceptance_entrustment_inform where not_acceptance_entrustment_inform_belong_entrustment_book='"
+				+ xsjsglxt_check_entrustment_book_id + "'";
+		Query query = session.createQuery(hql);
+		notAcceptanceEntrustmentInform = (xsjsglxt_not_acceptance_entrustment_inform) query.uniqueResult();
+		session.clear();
+		return notAcceptanceEntrustmentInform;
 	}
 
 }

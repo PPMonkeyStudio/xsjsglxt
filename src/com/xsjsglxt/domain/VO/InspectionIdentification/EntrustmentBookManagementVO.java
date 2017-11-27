@@ -3,11 +3,12 @@ package com.xsjsglxt.domain.VO.InspectionIdentification;
 import java.util.List;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
+import com.xsjsglxt.domain.DTO.InspectionIdentification.EntrustmentBookManagementDTO;
 
 public class EntrustmentBookManagementVO {
 
 	// 委托书
-	private List<xsjsglxt_check_entrustment_book> listCheckEntrustmentBook;
+	private List<EntrustmentBookManagementDTO> listEntrustmentBookManagementDTO;
 	// 当前页
 	private int pageIndex = 1;
 	// 总记录数
@@ -35,15 +36,15 @@ public class EntrustmentBookManagementVO {
 
 	@Override
 	public String toString() {
-		return "EntrustmentBookManagementVO [listCheckEntrustmentBook=" + listCheckEntrustmentBook + ", pageIndex="
-				+ pageIndex + ", totalRecords=" + totalRecords + ", pageSize=" + pageSize + ", totalPages=" + totalPages
-				+ ", HavePrePage=" + HavePrePage + ", HaveNextPage=" + HaveNextPage + ", start_time=" + start_time
-				+ ", stop_time=" + stop_time + ", search=" + search + ", unitName=" + unitName + ", type=" + type
-				+ ", state=" + state + "]";
+		return "EntrustmentBookManagementVO [listEntrustmentBookManagementDTO=" + listEntrustmentBookManagementDTO
+				+ ", pageIndex=" + pageIndex + ", totalRecords=" + totalRecords + ", pageSize=" + pageSize
+				+ ", totalPages=" + totalPages + ", HavePrePage=" + HavePrePage + ", HaveNextPage=" + HaveNextPage
+				+ ", start_time=" + start_time + ", stop_time=" + stop_time + ", search=" + search + ", unitName="
+				+ unitName + ", type=" + type + ", state=" + state + "]";
 	}
 
-	public List<xsjsglxt_check_entrustment_book> getListCheckEntrustmentBook() {
-		return listCheckEntrustmentBook;
+	public List<EntrustmentBookManagementDTO> getListEntrustmentBookManagementDTO() {
+		return listEntrustmentBookManagementDTO;
 	}
 
 	public int getPageIndex() {
@@ -94,8 +95,9 @@ public class EntrustmentBookManagementVO {
 		return state;
 	}
 
-	public void setListCheckEntrustmentBook(List<xsjsglxt_check_entrustment_book> listCheckEntrustmentBook) {
-		this.listCheckEntrustmentBook = listCheckEntrustmentBook;
+	public void setListEntrustmentBookManagementDTO(
+			List<EntrustmentBookManagementDTO> listEntrustmentBookManagementDTO) {
+		this.listEntrustmentBookManagementDTO = listEntrustmentBookManagementDTO;
 	}
 
 	public void setPageIndex(int pageIndex) {

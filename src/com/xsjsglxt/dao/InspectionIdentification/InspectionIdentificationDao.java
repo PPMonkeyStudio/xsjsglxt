@@ -3,6 +3,7 @@ package com.xsjsglxt.dao.InspectionIdentification;
 import java.util.List;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
+import com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform;
 import com.xsjsglxt.domain.VO.InspectionIdentification.EntrustmentBookManagementVO;
 
 public interface InspectionIdentificationDao {
@@ -17,5 +18,14 @@ public interface InspectionIdentificationDao {
 			EntrustmentBookManagementVO checkEntrustmentBookVO);
 
 	public int deleteCheckEntrustmentBookById(String checkEntrustmentBookId);
+
+	public xsjsglxt_check_entrustment_book getCheckEntrustmentBookById(
+			String identifieder_case_confirm_book_belong_entrustment_book);
+
+	public com.xsjsglxt.domain.DO.xsjsglxt_identifieder_case_confirm_book getIdentifiederCaseConfirmBookById(
+			String xsjsglxt_check_entrustment_book_id);
+
+	public xsjsglxt_not_acceptance_entrustment_inform getNotAcceptanceEntrustmentInform(
+			String xsjsglxt_check_entrustment_book_id);
 
 }

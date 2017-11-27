@@ -11,6 +11,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
+import com.xsjsglxt.domain.DO.xsjsglxt_identifieder_case_confirm_book;
+import com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform;
 import com.xsjsglxt.domain.VO.InspectionIdentification.EntrustmentBookManagementVO;
 import com.xsjsglxt.service.InspectionIdentification.InspectionIdentificationService;
 
@@ -39,9 +41,10 @@ public class testCheck {
 	@Test
 	public void listShow() {
 		EntrustmentBookManagementVO checkEntrustmentBookVO = new EntrustmentBookManagementVO();
-		checkEntrustmentBookVO.setSearch("20");
+		checkEntrustmentBookVO.setState("正在送检");
 		checkEntrustmentBookVO = inspectionIdentificationService.getListCheckEntrustmentBook(checkEntrustmentBookVO);
-		System.out.println(checkEntrustmentBookVO);
+		System.out.println("....." + checkEntrustmentBookVO.getTotalRecords());
+		System.out.println(checkEntrustmentBookVO.getListEntrustmentBookManagementDTO());
 	}
 
 	// 测试批量删除
@@ -52,6 +55,26 @@ public class testCheck {
 		listtt.add("2bc8bcad-5849-474b-9be2-a105c3f7c519");
 		int i = inspectionIdentificationService.deleteListCheckEntrustmentBook(listtt);
 		System.out.println(i);
+	}
+
+	// 测试填写确认书
+	@Test
+	public void addConfirmBook() {
+		xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook = new xsjsglxt_identifieder_case_confirm_book();
+		identifiederCaseConfirmBook
+				.setIdentifieder_case_confirm_book_belong_entrustment_book("c1edfb16-44b3-4e18-8220-de738469bc87");
+		System.out
+				.println(inspectionIdentificationService.saveIdentifiederCaseConfirmBook(identifiederCaseConfirmBook));
+
+	}
+
+	// 填写拒绝
+	@Test
+	public void addNotAcceptance() {
+		xsjsglxt_not_acceptance_entrustment_inform notAcceptanceEntrustmentInform = new xsjsglxt_not_acceptance_entrustment_inform();
+		notAcceptanceEntrustmentInform
+				.setNot_acceptance_entrustment_inform_belong_entrustment_book("c1edfb16-44b3-4e18-8220-de738469bc87");
+		System.out.println(inspectionIdentificationService.saveNotAcceptanceInform(notAcceptanceEntrustmentInform));
 	}
 
 }
