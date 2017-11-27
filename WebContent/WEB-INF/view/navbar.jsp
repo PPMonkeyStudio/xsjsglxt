@@ -73,8 +73,7 @@
 				</a>
 					<ul class="dropdown-menu">
 						<li><a
-							href="<%=basePath%>inspectionIdentific/EntrustmentBookManagement_EntrustmentBookManagement">痕迹委托检验</a></li>
-						<li><a href="#">法医委托检验</a></li>
+							href="<%=basePath%>inspectionIdentific/EntrustmentBookManagement_EntrustmentBookManagement">委托检验</a></li>
 						<li><a href="#">检验记录</a></li>
 						<li><a href="#">检验结果</a></li>
 					</ul></li>
@@ -147,10 +146,12 @@
 <style>
 td {
 	line-height: 33px !important;
+	vertical-align: middle !important;
 }
 
 th {
 	line-height: 34px !important;
+	vertical-align: middle !important;
 }
 
 td i {
@@ -163,6 +164,13 @@ td button i {
 
 td .label {
 	line-height: 33px !important;
+}
+
+table {
+}
+
+table select {
+	margin: auto;
 }
 </style>
 <script>

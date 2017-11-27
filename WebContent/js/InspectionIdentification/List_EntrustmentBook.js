@@ -73,13 +73,36 @@ function List_EntrustmentBook(pageIndex) {
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
-					new_td.innerHTML = EntrustmentBook_json.listCheckEntrustmentBook[num].check_entrustment_book_state;
+					switch (EntrustmentBook_json.listCheckEntrustmentBook[num].check_entrustment_book_state) {
+					case '正在申请': {
+						new_td.innerHTML = '<span class="label label-primary">正在申请</span>';
+						break;
+					}
+					case '申请已受理': {
+						new_td.innerHTML = '<span class="label label-primary">申请已受理</span>';
+						break;
+					}
+					case '申请被拒绝': {
+						new_td.innerHTML = '<span class="label label-danger">申请被拒绝</span>';
+						break;
+					}
+					case '已记录': {
+						new_td.innerHTML = '<span class="label label-primary">已记录</span>';
+						break;
+					}
+					case '已鉴定': {
+						new_td.innerHTML = '<span class="label label-default">已鉴定</span>';
+						break;
+					}
+					}
+
 					/*
 					 * 操作
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
-					new_td.innerHTML = '';
+					new_td.innerHTML = '<button class="btn btn-default" id="" onclick="" ><i class="fa fa-legal"></i> 受理</button>'
+							+ '<button class="btn btn-default" id="" onclick="" ><i class="fa fa-recycle"></i> 不受理</button>';
 					/*
 					 * 
 					 */

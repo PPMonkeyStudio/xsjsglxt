@@ -28,7 +28,7 @@
 		<div class="panel" style="width: 95%; margin: 20px auto;">
 			<!--  -->
 			<div class="panel-heading">
-				<h3 class="panel-title">委托检验</h3>
+				<h3 class="panel-title">委托书管理</h3>
 			</div>
 			<!--  -->
 			<div class="panel-body">
@@ -51,13 +51,14 @@
 						</span>
 					</div>
 				</div>
-				<table id="table_EntrustmentBook" class="table table-hover table-bordered"
+				<table id="table_EntrustmentBook"
+					class="table table-hover table-bordered"
 					style="text-align: center; margin: 20px 0;">
 					<tbody>
 						<tr>
 							<th>委托编号</th>
 							<th>案（事）件名称</th>
-							<th><select class="selectpicker"
+							<th><select class="form-control"
 								id="select_check_entrustment_book_entrustment_unit_name"
 								style="width: auto;" onchange="List_EntrustmentBook(1)">
 									<option value="-1">被委托鉴定机构（全部）</option>
@@ -68,8 +69,23 @@
 									<option value="公安部物证鉴定中心">公安部物证鉴定中心</option>
 							</select></th>
 							<th>委托日期</th>
-							<th>类别</th>
-							<th>状态</th>
+							<th><select class="form-control"
+								id="select_check_entrustment_book_entrustment_unit_name"
+								style="width: auto;" onchange="List_EntrustmentBook(1)">
+									<option value="-1">类别（全部）</option>
+									<option value="痕迹">痕迹</option>
+									<option value="法医">法医</option>
+							</select></th>
+							<th><select class="form-control"
+								id="select_check_entrustment_book_entrustment_unit_name"
+								style="width: auto;" onchange="List_EntrustmentBook(1)">
+									<option value="-1">状态（全部）</option>
+									<option value="正在申请">正在申请</option>
+									<option value="申请已受理">申请已受理</option>
+									<option value="申请被拒绝">申请被拒绝</option>
+									<option value="已记录">已记录</option>
+									<option value="已鉴定">已鉴定</option>
+							</select></th>
 							<th>操作</th>
 							<th><label class="fancy-checkbox"> <input
 									id="checkbox_all_select" type="checkbox" onclick="all_select()">
