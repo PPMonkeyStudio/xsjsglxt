@@ -143,5 +143,15 @@
 	src="<%=basePath%>js/InspectionIdentification/Acceptance_EntrustmentBook.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/InspectionIdentification/Refuse_EntrustmentBook.js"></script>
-
+<script type="text/javascript"
+	src="<%=basePath%>js/InspectionIdentification/Record_InspectionRecord.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/InspectionIdentification/Issue_AppraisalLetter.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/InspectionIdentification/Detail_EntrustmentBook.js"></script>
+<style>
+li a {
+	cursor: pointer;
+}
+</style>
 </html>
