@@ -79,7 +79,7 @@ function List_EntrustmentBook(pageIndex) {
 						break;
 					}
 					case '申请已受理': {
-						new_td.innerHTML = '<span class="label label-primary">申请已受理</span>';
+						new_td.innerHTML = '<span class="label label-success">申请已受理</span>';
 						break;
 					}
 					case '申请被拒绝': {
@@ -87,7 +87,7 @@ function List_EntrustmentBook(pageIndex) {
 						break;
 					}
 					case '已记录': {
-						new_td.innerHTML = '<span class="label label-primary">已记录</span>';
+						new_td.innerHTML = '<span class="label label-success">已记录</span>';
 						break;
 					}
 					case '已鉴定': {
@@ -101,12 +101,60 @@ function List_EntrustmentBook(pageIndex) {
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
-					new_td.innerHTML = '<button class="btn btn-default" id="'
-							+ EntrustmentBook_json.listCheckEntrustmentBook[num].xsjsglxt_check_entrustment_book_id
-							+ '" onclick="Acceptance_EntrustmentBook(this)" ><i class="fa fa-legal"></i> 受理</button>'
-							+ '<button class="btn btn-default" id="'
-							+ EntrustmentBook_json.listCheckEntrustmentBook[num].xsjsglxt_check_entrustment_book_id
-							+ '" onclick="" ><i class="fa fa-recycle"></i> 不受理</button>';
+					switch (EntrustmentBook_json.listCheckEntrustmentBook[num].check_entrustment_book_state) {
+					case '正在申请': {
+						new_td.innerHTML = '<div class="dropdown" ><i  class="fa fa-ellipsis-v fa-2x" style="cursor: pointer;" id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>'
+								+ '<ul class="dropdown-menu" aria-labelledby="dLabel">'
+								+ '<li><a onclick="Detail_EntrustmentBook("'
+								+ EntrustmentBook_json.listCheckEntrustmentBook[num].xsjsglxt_check_entrustment_book_id
+								+ '")"><i class="fa fa-file-text-o"></i> 查看鉴定委托书</a></li>'
+								+ '<li><a onclick="Acceptance_EntrustmentBook(this)"><i class="fa fa-legal"></i> 受理</a></li>'
+								+ '<li><a onclick="Refuse_EntrustmentBook(this)"><i class="fa fa-recycle"></i> 不受理</a></li>'
+								+ '</ul></div>';
+						break;
+					}
+					case '申请已受理': {
+						new_td.innerHTML = '<div class="dropdown" ><i  class="fa fa-ellipsis-v fa-2x" style="cursor: pointer;" id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>'
+								+ '<ul class="dropdown-menu" aria-labelledby="dLabel">'
+								+ '<li><a><i class="fa fa-file-text-o"></i> 查看鉴定委托书</a></li>'
+								+ '<li><a><i class="fa fa-file-text-o"></i> 查看鉴定事项确认书</a></li>'
+								+ '<li><a><i class="fa fa-file-text-o"></i> 查看受理鉴定回执</a></li>'
+								+ '<li><a onclick="Issue_AppraisRecord_InspectionRecordalLetter(this)"><i class="fa fa-pencil-square-o"></i> 记录检验过程</a></li>'
+								+ '</ul></div>';
+						break;
+					}
+					case '申请被拒绝': {
+						new_td.innerHTML = '<div class="dropdown"><i style="cursor: pointer;" class="fa fa-ellipsis-v fa-2x" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>'
+								+ '<ul class="dropdown-menu" aria-labelledby="dLabel">'
+								+ '<li><a><i class="fa fa-file-text-o"></i> 查看鉴定委托书</a></li>'
+								+ '<li><a><i class="fa fa-file-text-o"></i> 查看不受理委托鉴定告知书</a></li>'
+								+ '</ul></div>';
+						break;
+					}
+					case '已记录': {
+						new_td.innerHTML = '<div class="dropdown" ><i  class="fa fa-ellipsis-v fa-2x" style="cursor: pointer;" id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>'
+								+ '<ul class="dropdown-menu" aria-labelledby="dLabel">'
+								+ '<li><a><i class="fa fa-file-text-o"></i> 查看鉴定委托书</a></li>'
+								+ '<li><a><i class="fa fa-file-text-o"></i> 查看鉴定事项确认书</a></li>'
+								+ '<li><a><i class="fa fa-file-text-o"></i> 查看受理鉴定回执</a></li>'
+								+ '<li><a><i class="fa fa-file-text-o"></i> 查看检验记录</a></li>'
+								+ '<li><a onclick="Issue_AppraisalLetter(this)"><i class="fa fa-pencil-square-o"></i> 出具鉴定文书</a></li>'
+								+ '</ul></div>';
+						break;
+					}
+					case '已鉴定': {
+						new_td.innerHTML = '<div class="dropdown"><i style="cursor: pointer;" class="fa fa-ellipsis-v fa-2x" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>'
+								+ '<ul class="dropdown-menu" aria-labelledby="dLabel">'
+								+ '<li><a><i class="fa fa-file-text-o"></i> 查看鉴定委托书</a></li>'
+								+ '<li><a><i class="fa fa-file-text-o"></i> 查看鉴定事项确认书</a></li>'
+								+ '<li><a><i class="fa fa-file-text-o"></i> 查看受理鉴定回执</a></li>'
+								+ '<li><a><i class="fa fa-file-text-o"></i> 查看检验记录</a></li>'
+								+ '<li><a><i class="fa fa-file-text-o"></i> 查看鉴定文书</a></li>'
+								+ '</ul></div>';
+						break;
+					}
+					}
+
 					/*
 					 * 
 					 */
@@ -162,15 +210,32 @@ function List_EntrustmentBook(pageIndex) {
 	/*
 	 * 筛选：被委托鉴定机构
 	 */
-	if (document
-			.getElementById("select_check_entrustment_book_entrustment_unit_name").value == "-1") {
+	if (document.getElementById("select_unitName").value == "-1") {
 	} else {
-		formData
-				.append(
-						"entrustmentBookManagementVO.unitName",
-						document
-								.getElementById("select_check_entrustment_book_entrustment_unit_name").value);
+		formData.append("entrustmentBookManagementVO.unitName", document
+				.getElementById("select_unitName").value);
 	}
+	/*
+	 * 筛选：类型
+	 */
+	if (document.getElementById("select_type").value == "-1") {
+	} else {
+		formData.append("entrustmentBookManagementVO.type", document
+				.getElementById("select_type").value);
+	}
+	/*
+	 * 筛选：状态
+	 */
+	if (document.getElementById("select_state").value == "-1") {
+	} else {
+		formData.append("entrustmentBookManagementVO.state", document
+				.getElementById("select_state").value);
+	}
+
+	/*
+	 * 
+	 */
+
 	/*
 	 * 
 	 */

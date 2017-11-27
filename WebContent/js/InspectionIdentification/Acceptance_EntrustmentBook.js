@@ -8,15 +8,16 @@ function Acceptance_EntrustmentBook() {
 				icon : 'fa fa-map-o',
 				title : '受理委托书',
 				content : '<hr>'
-						+ '<h3>鉴定事项确认书</h3>'
+						+ '<br>'
 						+ '<table  class="table table-bordered" style="text-align: center;">'
 						+ '<tbody>'
 						+ '<tr>'
 						+ '<td><i class="fa fa-warning" style="color:#D9534F;"></i> 受理人：</td>'
-						+ '<td><input  class="form-control" id="" /></td></tr>'
-						+ '<tr><td><i class="fa fa-warning" style="color:#D9534F;"></i> 备注：</td>'
-						+ '<td><textarea class="form-control" style="resize: none;height:100px;" id=""></textarea></td></tr>'
-						+ '</tbody>' + '</table>',
+						+ '<td><input  class="form-control" id="create_identifieder_case_confirm_book_acceptance_human_name" /></td></tr>'
+						+ '<tr><td>备注：</td>'
+						+ '<td><textarea class="form-control" style="resize: none;height:100px;" id="create_identifieder_case_confirm_book_mark"></textarea></td></tr>'
+						+ '</tbody>' + '</table>'
+						+ '<h4>受理后，将自动生成《鉴定事项确认书》以及《受理鉴定回执》。</h4>',
 				type : 'green',
 				columnClass : 'col-md-12',
 				theme : 'modern',
@@ -28,10 +29,62 @@ function Acceptance_EntrustmentBook() {
 					'确认受理' : {
 						btnClass : 'btn-green',
 						action : function() {
+							SureAcceptance();
 						}
 					},
 					'放弃受理' : function() {
 					}
 				}
 			});
+}
+
+function SureAcceptance() {
+	var xhr = false;
+	xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		var message;
+		if (xhr.readyState == 4) {
+			if (xhr.status == 200) {
+				console.debug(xhr.responseText);
+				if (xhr.responseText == 1) {
+					toastr.success("保存成功");
+					js.close();
+					List_EntrustmentBook(1);
+				} else {
+					toastr.error("填写格式错误");
+				}
+			} else {
+				toastr.error(xhr.status);
+			}
+		}
+	}
+	/*
+	 * 
+	 */
+	var formData = new FormData();
+	/*
+	 * 负责人
+	 */
+	var create_identifieder_case_confirm_book_acceptance_human_name = document
+			.getElementById("create_identifieder_case_confirm_book_acceptance_human_name");
+	if (create_identifieder_case_confirm_book_acceptance_human_name.value == '') {
+		toastr.error("受理人不可为空");
+		return;
+	}
+	formData.append(".identifieder_case_confirm_book_acceptance_human_name",
+			create_identifieder_case_confirm_book_acceptance_human_name.value);
+	/*
+	 * 备注
+	 */
+	var create_identifieder_case_confirm_book_mark = document
+			.getElementById("create_identifieder_case_confirm_book_mark");
+	formData.append(".identifieder_case_confirm_book_mark",
+			create_identifieder_case_confirm_book_mark.value);
+	/*
+	 * 
+	 */
+	xhr
+			.open("POST",
+					"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_addCheckBook");
+	xhr.send(formData);
 }
