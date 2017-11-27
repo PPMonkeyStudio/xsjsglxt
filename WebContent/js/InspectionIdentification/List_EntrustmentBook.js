@@ -101,8 +101,12 @@ function List_EntrustmentBook(pageIndex) {
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
-					new_td.innerHTML = '<button class="btn btn-default" id="" onclick="" ><i class="fa fa-legal"></i> 受理</button>'
-							+ '<button class="btn btn-default" id="" onclick="" ><i class="fa fa-recycle"></i> 不受理</button>';
+					new_td.innerHTML = '<button class="btn btn-default" id="'
+							+ EntrustmentBook_json.listCheckEntrustmentBook[num].xsjsglxt_check_entrustment_book_id
+							+ '" onclick="Acceptance_EntrustmentBook(this)" ><i class="fa fa-legal"></i> 受理</button>'
+							+ '<button class="btn btn-default" id="'
+							+ EntrustmentBook_json.listCheckEntrustmentBook[num].xsjsglxt_check_entrustment_book_id
+							+ '" onclick="" ><i class="fa fa-recycle"></i> 不受理</button>';
 					/*
 					 * 
 					 */
@@ -163,7 +167,7 @@ function List_EntrustmentBook(pageIndex) {
 	} else {
 		formData
 				.append(
-						"studentInformationManagementVO.unitName",
+						"entrustmentBookManagementVO.unitName",
 						document
 								.getElementById("select_check_entrustment_book_entrustment_unit_name").value);
 	}
