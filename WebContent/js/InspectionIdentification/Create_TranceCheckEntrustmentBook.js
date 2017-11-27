@@ -1,7 +1,9 @@
 document.getElementById("button_Create_TranceCheckEntrustmentBook").onclick = function() {
 	Create_TranceCheckEntrustmentBook();
 }
-
+/*
+ * 创建痕迹检验委托书
+ */
 function Create_TranceCheckEntrustmentBook() {
 	var js = $
 			.confirm({
@@ -73,9 +75,7 @@ function Create_TranceCheckEntrustmentBook() {
 						+ '<textarea class="form-control" style="resize: none;height:100px;" id="create_check_entrustment_book_entrustment_request"></textarea>',
 				type : 'blue',
 				theme : 'modern',
-				draggable : false,
 				columnClass : 'col-md-12',
-				escapeKey : true,
 				onOpenBefore : function() {
 				},
 				onContentReady : function() {
