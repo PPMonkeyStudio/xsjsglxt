@@ -58,8 +58,7 @@
 						<tr>
 							<th>委托编号</th>
 							<th>案（事）件名称</th>
-							<th><select class="form-control"
-								id="select_check_entrustment_book_entrustment_unit_name"
+							<th><select class="form-control" id="select_unitName"
 								style="width: auto;" onchange="List_EntrustmentBook(1)">
 									<option value="-1">被委托鉴定机构（全部）</option>
 									<option value="萍乡市公安司法鉴定中心">萍乡市公安司法鉴定中心</option>
@@ -69,15 +68,13 @@
 									<option value="公安部物证鉴定中心">公安部物证鉴定中心</option>
 							</select></th>
 							<th>委托日期</th>
-							<th><select class="form-control"
-								id="select_check_entrustment_book_entrustment_unit_name"
+							<th><select class="form-control" id="select_type"
 								style="width: auto;" onchange="List_EntrustmentBook(1)">
 									<option value="-1">类别（全部）</option>
 									<option value="痕迹">痕迹</option>
 									<option value="法医">法医</option>
 							</select></th>
-							<th><select class="form-control"
-								id="select_check_entrustment_book_entrustment_unit_name"
+							<th><select class="form-control" id="select_state"
 								style="width: auto;" onchange="List_EntrustmentBook(1)">
 									<option value="-1">状态（全部）</option>
 									<option value="正在申请">正在申请</option>

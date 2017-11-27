@@ -79,7 +79,7 @@ function List_EntrustmentBook(pageIndex) {
 						break;
 					}
 					case '申请已受理': {
-						new_td.innerHTML = '<span class="label label-primary">申请已受理</span>';
+						new_td.innerHTML = '<span class="label label-success">申请已受理</span>';
 						break;
 					}
 					case '申请被拒绝': {
@@ -87,7 +87,7 @@ function List_EntrustmentBook(pageIndex) {
 						break;
 					}
 					case '已记录': {
-						new_td.innerHTML = '<span class="label label-primary">已记录</span>';
+						new_td.innerHTML = '<span class="label label-success">已记录</span>';
 						break;
 					}
 					case '已鉴定': {
@@ -101,12 +101,43 @@ function List_EntrustmentBook(pageIndex) {
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
-					new_td.innerHTML = '<button class="btn btn-default" id="'
-							+ EntrustmentBook_json.listCheckEntrustmentBook[num].xsjsglxt_check_entrustment_book_id
-							+ '" onclick="Acceptance_EntrustmentBook(this)" ><i class="fa fa-legal"></i> 受理</button>'
-							+ '<button class="btn btn-default" id="'
-							+ EntrustmentBook_json.listCheckEntrustmentBook[num].xsjsglxt_check_entrustment_book_id
-							+ '" onclick="Refuse_EntrustmentBook(this)" ><i class="fa fa-recycle"></i> 不受理</button>';
+					switch (EntrustmentBook_json.listCheckEntrustmentBook[num].check_entrustment_book_state) {
+					case '正在申请': {
+						new_td.innerHTML = '<button class="btn btn-default" id="'
+								+ EntrustmentBook_json.listCheckEntrustmentBook[num].xsjsglxt_check_entrustment_book_id
+								+ '" onclick="Acceptance_EntrustmentBook(this)" ><i class="fa fa-legal"></i> 受理</button>'
+								+ '<button class="btn btn-default" id="'
+								+ EntrustmentBook_json.listCheckEntrustmentBook[num].xsjsglxt_check_entrustment_book_id
+								+ '" onclick="Refuse_EntrustmentBook(this)" ><i class="fa fa-recycle"></i> 不受理</button>';
+						break;
+					}
+					case '申请已受理': {
+						new_td.innerHTML = '<button class="btn btn-default" id="'
+								+ EntrustmentBook_json.listCheckEntrustmentBook[num].xsjsglxt_check_entrustment_book_id
+								+ '" onclick="Refuse_EntrustmentBook(this)" ><i class="fa fa-pencil-square-o"></i> 记录检验过程</button>';
+						break;
+					}
+					case '申请被拒绝': {
+						new_td.innerHTML = '<button class="btn btn-default" id="'
+								+ EntrustmentBook_json.listCheckEntrustmentBook[num].xsjsglxt_check_entrustment_book_id
+								+ '" onclick="Refuse_EntrustmentBook(this)" >不受理委托鉴定告知书</button>';
+						break;
+					}
+					case '已记录': {
+						new_td.innerHTML = '<button class="btn btn-default" id="'
+								+ '<button class="btn btn-default" id="'
+								+ EntrustmentBook_json.listCheckEntrustmentBook[num].xsjsglxt_check_entrustment_book_id
+								+ '" onclick="(this)" ><i class="fa fa-pencil-square-o"></i> 出具鉴定文书</button>';
+						break;
+					}
+					case '已鉴定': {
+						new_td.innerHTML = '<button class="btn btn-default" id="'
+								+ EntrustmentBook_json.listCheckEntrustmentBook[num].xsjsglxt_check_entrustment_book_id
+								+ '" onclick="(this)" >查看鉴定文书</button>';
+						break;
+					}
+					}
+
 					/*
 					 * 
 					 */
@@ -162,15 +193,32 @@ function List_EntrustmentBook(pageIndex) {
 	/*
 	 * 筛选：被委托鉴定机构
 	 */
-	if (document
-			.getElementById("select_check_entrustment_book_entrustment_unit_name").value == "-1") {
+	if (document.getElementById("select_unitName").value == "-1") {
 	} else {
-		formData
-				.append(
-						"entrustmentBookManagementVO.unitName",
-						document
-								.getElementById("select_check_entrustment_book_entrustment_unit_name").value);
+		formData.append("entrustmentBookManagementVO.unitName", document
+				.getElementById("select_unitName").value);
 	}
+	/*
+	 * 筛选：类型
+	 */
+	if (document.getElementById("select_type").value == "-1") {
+	} else {
+		formData.append("entrustmentBookManagementVO.type", document
+				.getElementById("select_type").value);
+	}
+	/*
+	 * 筛选：状态
+	 */
+	if (document.getElementById("select_state").value == "-1") {
+	} else {
+		formData.append("entrustmentBookManagementVO.state", document
+				.getElementById("select_state").value);
+	}
+
+	/*
+	 * 
+	 */
+
 	/*
 	 * 
 	 */
