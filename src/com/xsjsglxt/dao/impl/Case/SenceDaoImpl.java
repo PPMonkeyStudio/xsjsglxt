@@ -119,7 +119,7 @@ public class SenceDaoImpl implements SenceDao {
 	public String getSenceInformationInquestId() {
 		// TODO Auto-generated method stub
 		Session session = getSession();
-		String hql = "SELECT COUNT(*) FROM xsjsglxt_snece WHERE DATE_FORMAT( snece_gmt_create, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )";
+		String hql = "SELECT COUNT(*) FROM xsjsglxt_snece WHERE DATE_FORMAT( snece_gmt_create,  '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )";
 		org.hibernate.Query query = session.createQuery(hql);
 		int count = ((Number) query.uniqueResult()).intValue();
 		Date date = new Date();
@@ -424,7 +424,7 @@ public class SenceDaoImpl implements SenceDao {
 	public boolean deleteCaseById(String xsjsglxt_case_id) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
-		String hql = "delete from xsjsglxt_case where briefdetails_case='" + xsjsglxt_case_id + "'";
+		String hql = "delete from xsjsglxt_case where xsjsglxt_case_id='" + xsjsglxt_case_id + "'";
 		Query query = session.createQuery(hql);
 		query.executeUpdate();
        return true;
@@ -433,30 +433,50 @@ public class SenceDaoImpl implements SenceDao {
 	@Override
 	public boolean deleteLost_computerById(String xsjsglxt_case_id) {
 		// TODO Auto-generated method stub
-		return false;
+		Session session = getSession();
+		String hql = "delete from xsjsglxt_lost_computer where lost_computer_case='" + xsjsglxt_case_id + "'";
+		Query query = session.createQuery(hql);
+		query.executeUpdate();
+       return true;
 	}
 
 	@Override
 	public boolean deleteLost_mobilephoneById(String xsjsglxt_case_id) {
 		// TODO Auto-generated method stub
-		return false;
+		Session session = getSession();
+		String hql = "delete from xsjsglxt_lost_mobilephone where lost_mobilephone_case='" + xsjsglxt_case_id + "'";
+		Query query = session.createQuery(hql);
+		query.executeUpdate();
+       return true;
 	}
 
 	@Override
 	public boolean deleteLostById(String xsjsglxt_case_id) {
 		// TODO Auto-generated method stub
-		return false;
+		Session session = getSession();
+		String hql = "delete from xsjsglxt_lost where lost_case='" + xsjsglxt_case_id + "'";
+		Query query = session.createQuery(hql);
+		query.executeUpdate();
+       return true;
 	}
 
 	@Override
 	public boolean deletePictureById(String xsjsglxt_case_id) {
 		// TODO Auto-generated method stub
-		return false;
+		Session session = getSession();
+		String hql = "delete from xsjsglxt_picture where picture_case='" + xsjsglxt_case_id + "'";
+		Query query = session.createQuery(hql);
+		query.executeUpdate();
+       return true;
 	}
 
 	@Override
 	public boolean deleteSenceById(String xsjsglxt_case_id) {
 		// TODO Auto-generated method stub
-		return false;
+		Session session = getSession();
+		String hql = "delete from xsjsglxt_snece where snece_case='" + xsjsglxt_case_id + "'";
+		Query query = session.createQuery(hql);
+		query.executeUpdate();
+       return true;
 	}
 }

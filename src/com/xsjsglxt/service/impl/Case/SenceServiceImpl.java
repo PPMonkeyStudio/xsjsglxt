@@ -16,6 +16,8 @@ import com.xsjsglxt.domain.DTO.Case.SenceInformationDTO;
 import com.xsjsglxt.domain.VO.Case.page_list_senceInformationVO;
 import com.xsjsglxt.service.Case.SenceService;
 
+import util.TeamUtil;
+
 public class SenceServiceImpl implements SenceService {
 private SenceDao  senceDao;
 
@@ -30,36 +32,54 @@ public void setSenceDao(SenceDao senceDao) {
 @Override
 public void save(xsjsglxt_snece sence) {
 	// TODO Auto-generated method stub
+	sence.setXsjsglxt_snece_id(TeamUtil.getUuid());
+	sence.setSnece_gmt_create(TeamUtil.getStringSecond());
+	sence.setSnece_gmt_modified(sence.getSnece_gmt_create());
 	senceDao.save(sence);
 }
 
 @Override
 public void save(xsjsglxt_case case1) {
 	// TODO Auto-generated method stub
+	case1.setXsjsglxt_case_id(TeamUtil.getUuid());
+	case1.setCase_gmt_create(TeamUtil.getStringSecond());
+	case1.setCase_gmt_modified(case1.getCase_gmt_create());
 	senceDao.save(case1);
 }
 
 @Override
 public void save(xsjsglxt_briefdetails briefdetails) {
 	// TODO Auto-generated method stub
+	briefdetails.setXsjsglxt_briefdetails_id(TeamUtil.getUuid());
+	briefdetails.setBriefdetails_gmt_create(TeamUtil.getStringSecond());
+	briefdetails.setBriefdetails_details_modified(briefdetails.getBriefdetails_gmt_create());
 	senceDao.save(briefdetails);
 }
 
 @Override
 public void save(xsjsglxt_lost lost) {
 	// TODO Auto-generated method stub
+	lost.setXsjsglxt_lost_id(TeamUtil.getUuid());
+	lost.setLost_gmt_create(TeamUtil.getStringSecond());
+	lost.setLost_gmt_modified(lost.getLost_gmt_create());
 	senceDao.save(lost);
 }
 
 @Override
 public void save(xsjsglxt_lost_mobilephone lost_mobilephone) {
 	// TODO Auto-generated method stub
+	lost_mobilephone.setXsjsglxt_lost_mobilephone_id(TeamUtil.getUuid());
+	lost_mobilephone.setLost_mobilephone_gmt_create(TeamUtil.getStringSecond());
+	lost_mobilephone.setLost_mobilephone_gmt_modified(lost_mobilephone.getLost_mobilephone_gmt_create());
 	senceDao.save(lost_mobilephone);
 }
 
 @Override
 public void save(xsjsglxt_lost_computer lost_computer) {
 	// TODO Auto-generated method stub
+	lost_computer.setXsjsglxt_lost_computer_id(TeamUtil.getUuid());
+	lost_computer.setLost_computer_gmt_create(TeamUtil.getStringSecond());
+	lost_computer.setLost_computer_gmt_modified(lost_computer.getLost_computer_gmt_create());
 	senceDao.save(lost_computer);
 }
 /*
