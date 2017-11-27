@@ -1,22 +1,23 @@
-function CreateFingerPrint() {
+function DNADetails(button) {
 	var jc = $
 			.confirm({
 				columnClass : 'col-md-6 col-md-offset-3',
-				title : '指纹卡信息录入',
+				title : 'DNA信息详情',
 				content : '<table class="table table-hover"><tbody>'
+						+ '<tr><th>DNA编号：</th><td><input type="text" id="input_dna_number" class="form-control" disabled /></td></tr>'
 						+ '<tr><th>姓名：</th><td><input type="text" id="input_name" class="form-control" /></td></tr>'
 						+ '<tr><th>性别：</th>'
 						+ '<td><label style="margin:0 10px;">'
-						+ '<input type="radio" name="input_sex"  checked="checked" value="1">'
+						+ '<input type="radio" name="input_sex" value="男">'
 						+ '男'
 						+ '</label> '
 						+ ' <label style="margin:0 10px;" >'
-						+ '<input type="radio" name="input_sex" value="2">'
+						+ '<input type="radio" name="input_sex" value="女">'
 						+ '女'
 						+ '</label></td></tr>'
 						+ '<tr><th>出生日期：</th><td><input type="text" id="input_birth" class="form-control" /></td></tr>'
 						+ '<tr><th>身份证号：</th><td><input type="text" id="input_IDCard" class="form-control" /></td></tr>'
-						+ '<tr><th>地址：</th><td><input type="text" id="input_address" class="form-control" /></td></tr>'
+						+ '<tr><th>住址：</th><td><input type="text" id="input_address" class="form-control" /></td></tr>'
 						+ '<tr><th>违法事实：</th><td><input type="text" id="input_illegalFact" class="form-control" /></td></tr>'
 						+ '<tr><th>建档单位：</th><td><input type="text" id="input_inputtingUnit" class="form-control" /></td></tr>'
 						+ '<tr><th>建档人：</th><td><input type="text" id="input_inputtingPerson" class="form-control" /></td></tr>'
@@ -25,7 +26,8 @@ function CreateFingerPrint() {
 						+ '<tr><th>备注：</th><td><textarea class="form-control" id="textarea_remark" rows="5" style="resize:none;"></textarea></td></tr>'
 						+ '</tbody></table>',
 				buttons : {
-					创建 : function() {
+					修改 : function() {
+						var input_dna_number = document.getElementById("input_dna_number");
 						var input_name = document.getElementById("input_name");
 						var input_birth = document
 								.getElementById("input_birth");
@@ -50,7 +52,7 @@ function CreateFingerPrint() {
 							return false;
 						}
 						if (input_address.value == "") {
-							toastr.error("地址不能为空！");
+							toastr.error("住址不能为空！");
 							return false;
 						}
 						if (input_birth.value == "") {
@@ -87,56 +89,116 @@ function CreateFingerPrint() {
 									/*
 									 * responseText的值为1代表创建成功 2代表创建失败
 									 */
-									console.debug(xhr.responseText);
 									if (xhr.responseText == "1") {
 										// jc.close();
-
-										toastr.success("指纹卡信息录入成功！");
+										toastr.success("DNA信息修改成功！");
+										List_DNA_By_PageAndSearch(1);
 									}
 								} else {
 									toastr.error(xhr.status);
 								}
 							}
 						}
-						formData.append("fingerprint.fingerprint_name",
-								input_name.value);
+						formData.append("dna.xsjsglxt_dna_id", input_dna_number.value);	
+						formData.append("dna.dna_name", input_name.value);
 						var input_sex = document.getElementsByName("input_sex");
 						for (var num = 0; num < 2; num++) {
 							if (input_sex[num].checked) {
-								formData.append("fingerprint.fingerprint_sex",
+								formData.append("dna.dna_sex",
 										input_sex[num].value);
 							}
 						}
-						formData.append("fingerprint.fingerprint_birthday",
-								input_birth.value);
-						formData.append("fingerprint.fingerprint_identity",
-								input_IDCard.value);
-						formData.append("fingerprint.fingerprint_address",
-								input_address.value);
-						formData.append("fingerprint.fingerprint_illegal_fact",
+						formData.append("dna.dna_birthday", input_birth.value);
+						formData.append("dna.dna_identity", input_IDCard.value);
+						formData.append("dna.dna_address", input_address.value);
+						formData.append("dna.dna_illegal_fact",
 								input_illegalFact.value);
-						formData.append(
-								"fingerprint.fingerprint_record_organization",
+						formData.append("dna.dna_record_organization",
 								input_inputtingUnit.value);
-						formData.append("fingerprint.fingerprint_organizer",
+						formData.append("dna.dna_organizer",
 								input_inputtingPerson.value);
-						formData.append("fingerprint.fingerprint_record_time",
+						formData.append("dna.dna_record_time",
 								input_inputtingTime.value);
-						formData.append("fingerprint.fingerprint_submit_time",
+						formData.append("dna.dna_submit_time",
 								input_makingTime.value);
-						formData.append("fingerprint.fingerprint_remark",
-								textarea_remark.value);
+						formData
+								.append("dna.dna_remark", textarea_remark.value);
 
-						xhr
-								.open("POST",
-										"/xsjsglxt/FingerPrint/FingerPrintManagement_saveFingerPrint");
+						xhr.open("POST",
+								"/xsjsglxt/DNA/DNAManagement_modifiedDNA");
 						xhr.send(formData);
+
 
 					},
 					取消 : function() {
 
 					}
+				},
+				onContentReady : function() {
+					var button_id = button.id;
+					for (var num = 0; num < DNA_VO.list_xsjsglxt_dna.length; num++) {
+						var dna_number = DNA_VO.list_xsjsglxt_dna[num].dna_num;
+						if (dna_number == button_id) {
+							var input_dna_number = document
+									.getElementById("input_dna_number");
+							input_dna_number.value = DNA_VO.list_xsjsglxt_dna[num].dna_num;
+
+							var input_name = document
+									.getElementById("input_name");
+							input_name.value = DNA_VO.list_xsjsglxt_dna[num].dna_name;
+
+							var input_sex = document
+									.getElementsByName("input_sex");
+							var sex_value = DNA_VO.list_xsjsglxt_dna[num].dna_sex;
+							for (var i = 0; i < input_sex.length; i++) {
+								if (sex_value == "男") {
+									input_sex[0].checked = "checked";
+								} else {
+									input_sex[1].checked = "checked";
+								}
+							}
+
+							var input_birth = document
+									.getElementById("input_birth");
+							input_birth.value = DNA_VO.list_xsjsglxt_dna[num].dna_birthday;
+
+							var input_IDCard = document
+									.getElementById("input_IDCard");
+							input_IDCard.value = DNA_VO.list_xsjsglxt_dna[num].dna_identity;
+
+							var input_address = document
+									.getElementById("input_address");
+							input_address.value = DNA_VO.list_xsjsglxt_dna[num].dna_address;
+
+							var input_illegalFact = document
+									.getElementById("input_illegalFact");
+							input_illegalFact.value = DNA_VO.list_xsjsglxt_dna[num].dna_illegal_fact;
+
+							var input_inputtingUnit = document
+									.getElementById("input_inputtingUnit");
+							input_inputtingUnit.value = DNA_VO.list_xsjsglxt_dna[num].dna_record_organization;
+
+							var input_inputtingPerson = document
+									.getElementById("input_inputtingPerson");
+							input_inputtingPerson.value = DNA_VO.list_xsjsglxt_dna[num].dna_organizer;
+
+							var input_inputtingTime = document
+									.getElementById("input_inputtingTime");
+							input_inputtingTime.value = DNA_VO.list_xsjsglxt_dna[num].dna_record_time;
+
+							var input_makingTime = document
+									.getElementById("input_makingTime");
+							input_makingTime.value = DNA_VO.list_xsjsglxt_dna[num].dna_submit_time;
+
+							var textarea_remark = document
+									.getElementById("textarea_remark");
+							textarea_remark.value = DNA_VO.list_xsjsglxt_dna[num].dna_remark;
+							if (textarea_remark.value == "undefined") {
+								textarea_remark.value = "";
+							}
+
+						}
+					}
 				}
 			});
-
 }

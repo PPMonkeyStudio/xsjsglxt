@@ -7,7 +7,7 @@
 		extends="struts-default">
 		<action name="DNAManagement_*" class="com.xsjsglxt.action.Technology.DNAAction"
 			method="{1}">
-			<result name="DNAManagementPage">/WEB-INF/view/Technology/DNAManagement/DNAManagement.jsp
+			<result name="DNAManagementPage">/WEB-INF/view/Technology/DNA/DNAManagement.jsp
 			</result>
 		</action>
 	</package>
@@ -15,7 +15,7 @@
 		extends="struts-default">
 		<action name="ContrastFingerPrintManagement_*" class="com.xsjsglxt.action.Technology.ContrastFingerPrintAction"
 			method="{1}">
-			<result name="ContrastFingerPrintManagementPage">/WEB-INF/view/Technology/ContrastFingerPrintManagement/ContrastFingerPrintManagement.jsp
+			<result name="ContrastFingerPrintManagementPage">/WEB-INF/view/Technology/ContrastFingerPrint/ContrastFingerPrintManagement.jsp
 			</result>
 		</action>
 	</package>
@@ -24,7 +24,7 @@
 		extends="struts-default">
 		<action name="FingerPrintManagement_*" class="com.xsjsglxt.action.Technology.FingerPrintAction"
 			method="{1}">
-			<result name="FingerPrintManagementPage">/WEB-INF/view/Technology/FingerPrintManagement/FingerPrintManagement.jsp
+			<result name="FingerPrintManagementPage">/WEB-INF/view/Technology/FingerPrint/FingerPrintManagement.jsp
 			</result>
 		</action>
 	</package>
@@ -33,17 +33,9 @@
 		extends="struts-default">
 		<action name="EquipmentManagement_*" class="com.xsjsglxt.action.Technology.EquipmentAction"
 			method="{1}">
-			<result name="EquipmentManagementPage">/WEB-INF/view/Technology/EquipmentManagement/EquipmentManagement.jsp
+			<result name="EquipmentManagementPage">/WEB-INF/view/Technology/Equipment/EquipmentManagement.jsp
 			</result>
 		</action>
 	</package>
 	
-	<package name="ContrastFingerPrintManagement" namespace="/ContrastFingerPrint"
-		extends="struts-default">
-		<action name="ContrastFingerPrintManagement_*" class="com.xsjsglxt.action.Technology.ContrastFingerPrintAction"
-			method="{1}">
-			<result name="ContrastFingerPrintManagementPage">/WEB-INF/view/Technology/ContrastFingerPrintManagement/ContrastFingerPrintManagement.jsp
-			</result>
-		</action>
-	</package>
 </struts>

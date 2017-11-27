@@ -74,6 +74,10 @@ public class ContrastFingerPrintAction extends ActionSupport implements ServletR
 		http_response.getWriter().write(gson.toJson(contrast));
 	}
 	
+	public String ContrastFingerPrintManagementPage() {
+		return "ContrastFingerPrintManagementPage";
+	}
+	
 	@Override
 	public String toString() {
 		return "ContrastFingerPrintAction [contrastFingerPrintService=" + contrastFingerPrintService

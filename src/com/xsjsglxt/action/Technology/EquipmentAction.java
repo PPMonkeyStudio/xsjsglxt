@@ -85,6 +85,10 @@ public class EquipmentAction extends ActionSupport implements ServletRequestAwar
 		http_response.setContentType("text/html;charset=utf-8");
 		http_response.getWriter().write(gson.toJson(vo));
 	}
+	
+	public String EquipmentManagementPage() {
+		return "EquipmentManagementPage";
+	}
 
 	@Override
 	public void setServletResponse(HttpServletResponse http_response) {
