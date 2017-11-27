@@ -7,6 +7,7 @@ import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone;
+import com.xsjsglxt.domain.DO.xsjsglxt_picture;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
 import com.xsjsglxt.domain.VO.Case.page_list_senceInformationVO;
 
@@ -23,6 +24,8 @@ public void save(xsjsglxt_lost lost);
 public void save(xsjsglxt_lost_mobilephone lost_mobilephone);
 
 public void save(xsjsglxt_lost_computer lost_computer);
+
+public void save(xsjsglxt_picture picture);
 /*
  * 获得勘探编号
  */
@@ -37,5 +40,7 @@ public page_list_senceInformationVO VO_SneceInformation_By_PageAndSearch(
  * 删除现场信息列表
  */
 public boolean remove_SenceInformationList(List<String> useSenceInformationNumList);
+
+
 
 }

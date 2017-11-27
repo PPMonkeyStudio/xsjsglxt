@@ -74,7 +74,7 @@ public void test(){
 	}
 	@Test
 	public void test3(){
-		System.out.println(senceDao.getCountSenceInformationByPage(page_list_senceInformation));
+		System.out.println(senceDao.getSenceInformationInquestId());
 	}
 	
 }

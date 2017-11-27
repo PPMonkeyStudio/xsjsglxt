@@ -82,6 +82,14 @@ public void save(xsjsglxt_lost_computer lost_computer) {
 	lost_computer.setLost_computer_gmt_modified(lost_computer.getLost_computer_gmt_create());
 	senceDao.save(lost_computer);
 }
+@Override
+public void save(xsjsglxt_picture picture) {
+	// TODO Auto-generated method stub
+	picture.setXsjsglxt_picture_id(TeamUtil.getUuid());
+	picture.setPicture_gmt_create(TeamUtil.getStringSecond());
+	picture.setPicture_gmt_modified(picture.getPicture_gmt_create());
+	senceDao.save(picture);
+}
 /*
  * (non-Javadoc)获得勘探编号
  * @see com.xsjsglxt.service.Case.SenceService#getSenceInformationInquestId()
@@ -210,6 +218,8 @@ public boolean remove_SenceInformationList(List<String> useSenceInformationNumLi
 	}
 return flag;
 }
+
+
 
 
 

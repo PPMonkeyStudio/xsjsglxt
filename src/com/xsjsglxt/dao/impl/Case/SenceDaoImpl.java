@@ -111,6 +111,17 @@ public class SenceDaoImpl implements SenceDao {
 					e.printStackTrace();
 				}
 	}
+	@Override
+	public void save(xsjsglxt_picture picture) {
+		// TODO Auto-generated method stub
+		try {
+			getSession().save(picture);
+			
+		} catch (Error e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 /*
  * (non-Javadoc)获得勘探编号
  * @see com.xsjsglxt.dao.Case.SenceDao#getSenceInformationInquestId()
@@ -119,25 +130,38 @@ public class SenceDaoImpl implements SenceDao {
 	public String getSenceInformationInquestId() {
 		// TODO Auto-generated method stub
 		Session session = getSession();
-		String hql = "SELECT COUNT(*) FROM xsjsglxt_snece WHERE DATE_FORMAT( snece_gmt_create,  '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )";
-		org.hibernate.Query query = session.createQuery(hql);
-		int count = ((Number) query.uniqueResult()).intValue();
+		//String hql = "SELECT COUNT(*) FROM xsjsglxt_snece WHERE DATE_FORMAT( snece_gmt_create,  '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )";
+		//org.hibernate.Query query = session.createQuery(hql);
+		//int count = ((Number) query.uniqueResult()).intValue();
+		int i=getMaxSenceInquestId();
 		Date date = new Date();
 		DateFormat format = new SimpleDateFormat("yyyyMM");
 		String time = format.format(date);
-		String SenceInformationInquestId = null;
-		if (count < 9) {
-			SenceInformationInquestId = "K360302001" + time + "000" + (count + 1);
-		} else if (9 <= count && count < 99) {
-			SenceInformationInquestId = "K360302001" + time + "00" + (count + 1);
-		} else if (99 <= count && count < 999) {
-			SenceInformationInquestId = "K360302001" + time + "0" + (count + 1);
-		} else if (999 <= count && count < 9999) {
-			SenceInformationInquestId = "K360302001" + time + (count + 1);
-		}
+		String SenceInformationInquestId ="K360302001" + time + i ;
+		
+//		if (count < 9) {
+//			SenceInformationInquestId = "K360302001" + time + "000" + (count + 1);
+//		} else if (9 <= count && count < 99) {
+//			SenceInformationInquestId = "K360302001" + time + "00" + (count + 1);
+//		} else if (99 <= count && count < 999) {
+//			SenceInformationInquestId = "K360302001" + time + "0" + (count + 1);
+//		} else if (999 <= count && count < 9999) {
+//			SenceInformationInquestId = "K360302001" + time + (count + 1);
+//		}
 		session.clear();
+		System.out.println(SenceInformationInquestId);
 		return SenceInformationInquestId;
 		
+	}
+	public int getMaxSenceInquestId() {
+		int i;
+		String hql = "select substring(snece_inquestId,-1,4) from xsjsglxt_snece where substring(snece_inquestId,1,4) order by substring(snece_inquestId,-1,4) desc limit 1";
+		System.out.println(hql);
+		Query query = getSession().createSQLQuery(hql);
+		i = Integer.parseInt((String) query.uniqueResult());
+		getSession().clear();
+		System.out.println(i);
+		return i;
 	}
 
 	@Override
@@ -479,4 +503,6 @@ public class SenceDaoImpl implements SenceDao {
 		query.executeUpdate();
        return true;
 	}
+
+	
 }

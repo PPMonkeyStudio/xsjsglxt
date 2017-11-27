@@ -26,6 +26,8 @@ public void save(xsjsglxt_lost_mobilephone lost_mobilephone);
 
 public void save(xsjsglxt_lost_computer lost_computer);
 
+public void save(xsjsglxt_picture picture);
+
 public String getSenceInformationInquestId();
 
 public int getCountSenceInformationByPage(page_list_senceInformationVO page_list_senceInformation);
@@ -63,5 +65,7 @@ public boolean deleteLostById(String xsjsglxt_case_id);
 public boolean deletePictureById(String xsjsglxt_case_id);
 
 public boolean deleteSenceById(String xsjsglxt_case_id);
+
+
 
 }

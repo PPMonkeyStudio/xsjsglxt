@@ -5,6 +5,7 @@ import java.util.List;
 import com.xsjsglxt.dao.Case.ParallelDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_parallel;
+import com.xsjsglxt.domain.VO.Case.page_list_parallelInformationVO;
 import com.xsjsglxt.service.Case.ParallelService;
 
 import util.TeamUtil;
@@ -12,9 +13,12 @@ import util.TeamUtil;
 public class ParallelServiceImpl implements ParallelService {
 
 	private ParallelDao parallelDao;
-
-
-	
+	public ParallelDao getParallelDao() {
+		return parallelDao;
+	}
+	public void setParallelDao(ParallelDao parallelDao) {
+		this.parallelDao = parallelDao;
+	}
 
 	@Override
 	public void saveParallel(List<String> CaseNumList,xsjsglxt_parallel parallel) {
@@ -30,19 +34,12 @@ public class ParallelServiceImpl implements ParallelService {
 		}
 	}
 
-
-	public ParallelDao getParallelDao() {
-		return parallelDao;
+	@Override
+	public page_list_parallelInformationVO VO_Parallelformation_By_PageAndSearch(
+			page_list_parallelInformationVO page_list_parallelInformation) {
+		// TODO Auto-generated method stub
+		return null;
 	}
-
-
-	public void setParallelDao(ParallelDao parallelDao) {
-		this.parallelDao = parallelDao;
-	}
-
-
-	
-
 
 
 	

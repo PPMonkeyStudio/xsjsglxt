@@ -18,6 +18,7 @@ import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone;
+import com.xsjsglxt.domain.DO.xsjsglxt_picture;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
 import com.xsjsglxt.domain.VO.Case.page_list_senceInformationVO;
 import com.xsjsglxt.service.Case.SenceService;
@@ -29,6 +30,7 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	private xsjsglxt_briefdetails briefdetails;
 	private xsjsglxt_lost lost;
 	private xsjsglxt_lost_mobilephone lost_mobilephone;
+	private xsjsglxt_picture picture ;
 	private xsjsglxt_lost_computer lost_computer;
 	private HttpServletResponse http_response;
 
@@ -72,6 +74,8 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 			lost_computer.setLost_computer_case(Case.getXsjsglxt_case_id());
 			senceService.save(lost_computer);
 			
+			picture.setPicture_case(Case.getXsjsglxt_case_id());
+			senceService.save(picture);
 			http_response.setContentType("text/html;charset=utf-8");
 			http_response.getWriter().write("success");
 		} catch (Exception e) {
