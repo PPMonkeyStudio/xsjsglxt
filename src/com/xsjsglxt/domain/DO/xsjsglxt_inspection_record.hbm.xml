@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-11-27 19:21:05 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_inspection_record" table="XSJSGLXT_INSPECTION_RECORD">
+        <id name="xsjsglxt_inspection_record_id" type="java.lang.String">
+            <column name="XSJSGLXT_INSPECTION_RECORD_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="inspection_belong_entrustment_book" type="java.lang.String">
+            <column name="INSPECTION_BELONG_ENTRUSTMENT_BOOK" />
+        </property>
+        <property name="inspection_check_material_situation" type="java.lang.String">
+            <column name="INSPECTION_CHECK_MATERIAL_SITUATION" />
+        </property>
+        <property name="inspection_sample_situation" type="java.lang.String">
+            <column name="INSPECTION_SAMPLE_SITUATION" />
+        </property>
+        <property name="inspection_equipment" type="java.lang.String">
+            <column name="INSPECTION_EQUIPMENT" />
+        </property>
+        <property name="inspection_method" type="java.lang.String">
+            <column name="INSPECTION_METHOD" />
+        </property>
+        <property name="inspection_time" type="java.lang.String">
+            <column name="INSPECTION_TIME" />
+        </property>
+        <property name="inspection_location" type="java.lang.String">
+            <column name="INSPECTION_LOCATION" />
+        </property>
+        <property name="inspection_people" type="java.lang.String">
+            <column name="INSPECTION_PEOPLE" />
+        </property>
+        <property name="inspection_process" type="java.lang.String">
+            <column name="INSPECTION_PROCESS" />
+        </property>
+        <property name="inspection_option" type="java.lang.String">
+            <column name="INSPECTION_OPTION" />
+        </property>
+        <property name="inspection_mark" type="java.lang.String">
+            <column name="INSPECTION_MARK" />
+        </property>
+        <property name="inspection_gmt_create" type="java.lang.String">
+            <column name="INSPECTION_GMT_CREATE" />
+        </property>
+        <property name="inspection_gmt_modified" type="java.lang.String">
+            <column name="INSPECTION_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>
