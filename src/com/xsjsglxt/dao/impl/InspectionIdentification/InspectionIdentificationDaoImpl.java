@@ -37,14 +37,16 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 	}
 
 	@Override
-	public int getCountCheckNum(String check_entrustment_book_year, String type) {
-		Long i;
-		String hql = "select count(*) from xsjsglxt_check_entrustment_book where substring(check_entrustment_book_num,1,4)='"
-				+ check_entrustment_book_year + "' and check_entrustment_book_type='" + type + "'";
-		Query query = getSession().createQuery(hql);
-		i = (Long) query.uniqueResult();
+	public int getMaxCheckNum(String check_entrustment_book_year, String type) {
+		int i;
+		String hql = "select substring(check_entrustment_book_num,-1,4) from xsjsglxt_check_entrustment_book where substring(check_entrustment_book_num,1,4)='"
+				+ check_entrustment_book_year + "' and check_entrustment_book_type='" + type
+				+ "' order by substring(check_entrustment_book_num,-1,4) desc limit 1";
+		System.out.println(hql);
+		Query query = getSession().createSQLQuery(hql);
+		i = Integer.parseInt((String) query.uniqueResult());
 		getSession().clear();
-		return i.intValue();
+		return i;
 	}
 
 	@Override
@@ -53,13 +55,10 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		String startTime = "0000-00-00";
 		String stopTime = "9999-99-99";
 		String hql = "select count(*) from xsjsglxt_check_entrustment_book where 1=1 ";
-		if (checkEntrustmentBookVO.getBookNum() != null && checkEntrustmentBookVO.getBookNum().trim().length() > 0) {
-			String bookNum = "%" + checkEntrustmentBookVO.getBookNum().trim() + "%";
-			hql = hql + " and check_entrustment_book_num like '" + bookNum + "'";
-		}
-		if (checkEntrustmentBookVO.getCaseName() != null && checkEntrustmentBookVO.getCaseName().trim().length() > 0) {
-			String caseName = "%" + checkEntrustmentBookVO.getCaseName() + "%";
-			hql = hql + " and check_entrustment_book_case_name like '" + caseName + "'";
+		if (checkEntrustmentBookVO.getSearch() != null && checkEntrustmentBookVO.getSearch().trim().length() > 0) {
+			String search = "%" + checkEntrustmentBookVO.getSearch().trim() + "%";
+			hql = hql + " and check_entrustment_book_num like '" + search
+					+ "' or check_entrustment_book_case_name like '" + search + "'";
 		}
 		if (checkEntrustmentBookVO.getUnitName() != null && checkEntrustmentBookVO.getUnitName().trim().length() > 0) {
 			hql = hql + " and check_entrustment_book_entrustment_unit_name='"
@@ -93,13 +92,10 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		String stopTime = "9999-99-99";
 		String hql = "from xsjsglxt_check_entrustment_book where 1=1 ";
 		List<xsjsglxt_check_entrustment_book> listPage = new ArrayList<xsjsglxt_check_entrustment_book>();
-		if (checkEntrustmentBookVO.getBookNum() != null && checkEntrustmentBookVO.getBookNum().trim().length() > 0) {
-			String bookNum = "%" + checkEntrustmentBookVO.getBookNum().trim() + "%";
-			hql = hql + " and check_entrustment_book_num like '" + bookNum + "'";
-		}
-		if (checkEntrustmentBookVO.getCaseName() != null && checkEntrustmentBookVO.getCaseName().trim().length() > 0) {
-			String caseName = "%" + checkEntrustmentBookVO.getCaseName() + "%";
-			hql = hql + " and check_entrustment_book_case_name like '" + caseName + "'";
+		if (checkEntrustmentBookVO.getSearch() != null && checkEntrustmentBookVO.getSearch().trim().length() > 0) {
+			String search = "%" + checkEntrustmentBookVO.getSearch().trim() + "%";
+			hql = hql + " and check_entrustment_book_num like '" + search
+					+ "' or check_entrustment_book_case_name like '" + search + "'";
 		}
 		if (checkEntrustmentBookVO.getUnitName() != null && checkEntrustmentBookVO.getUnitName().trim().length() > 0) {
 			hql = hql + " and check_entrustment_book_entrustment_unit_name='"
@@ -122,24 +118,24 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		Query query = getSession().createQuery(hql);
 		query.setFirstResult((checkEntrustmentBookVO.getPageIndex() - 1) * checkEntrustmentBookVO.getPageSize());
 		query.setMaxResults(checkEntrustmentBookVO.getPageSize());
+		System.out.println(hql);
 		listPage = query.list();
-		if (checkEntrustmentBookVO.getBookNum() != null && checkEntrustmentBookVO.getBookNum().trim().length() > 0) {
-
-		}
-		if (checkEntrustmentBookVO.getCaseName() != null && checkEntrustmentBookVO.getCaseName().trim().length() > 0) {
+		if (checkEntrustmentBookVO.getSearch() != null && checkEntrustmentBookVO.getSearch().trim().length() > 0) {
 			for (xsjsglxt_check_entrustment_book xsjsglxt_check_entrustment_book : listPage) {
-				xsjsglxt_check_entrustment_book.setCheck_entrustment_book_case_name(
-						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().replaceAll(
-								checkEntrustmentBookVO.getCaseName().trim(), "<span style='color: #ff5063;'>"
-										+ checkEntrustmentBookVO.getCaseName().trim() + "</span>"));
-			}
-		}
-		if (checkEntrustmentBookVO.getBookNum() != null && checkEntrustmentBookVO.getBookNum().trim().length() > 0) {
-			for (xsjsglxt_check_entrustment_book check_entrustment_book : listPage) {
-				check_entrustment_book
-						.setCheck_entrustment_book_num(check_entrustment_book.getCheck_entrustment_book_num()
-								.replaceAll(checkEntrustmentBookVO.getBookNum().trim(), "<span style='color: #ff5063;'>"
-										+ checkEntrustmentBookVO.getBookNum().trim() + "</span>"));
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim().length() > 0) {
+					xsjsglxt_check_entrustment_book.setCheck_entrustment_book_case_name(
+							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().replaceAll(
+									checkEntrustmentBookVO.getSearch().trim(), "<span style='color: #ff5063;'>"
+											+ checkEntrustmentBookVO.getSearch().trim() + "</span>"));
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim().length() > 0) {
+					xsjsglxt_check_entrustment_book.setCheck_entrustment_book_num(
+							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().replaceAll(
+									checkEntrustmentBookVO.getSearch().trim(), "<span style='color: #ff5063;'>"
+											+ checkEntrustmentBookVO.getSearch().trim() + "</span>"));
+				}
 			}
 		}
 		getSession().clear();
@@ -149,7 +145,7 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 	@Override
 	public int deleteCheckEntrustmentBookById(String checkEntrustmentBookId) {
 		int i = 1;
-		String hql = "delete xsjsglxt_check_entrustment_book where xsjsglxt_check_entrustment_book_id='"
+		String hql = "delete from xsjsglxt_check_entrustment_book where xsjsglxt_check_entrustment_book_id='"
 				+ checkEntrustmentBookId + "'";
 		try {
 			Query query = getSession().createQuery(hql);
@@ -160,4 +156,5 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		}
 		return i;
 	}
+
 }

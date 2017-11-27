@@ -9,7 +9,7 @@ public interface InspectionIdentificationDao {
 
 	public int saveObject(Object object);
 
-	public int getCountCheckNum(String check_entrustment_book_year,String type);
+	public int getMaxCheckNum(String check_entrustment_book_year, String type);
 
 	public int getCountByPageAndSearch(EntrustmentBookManagementVO checkEntrustmentBookVO);
 

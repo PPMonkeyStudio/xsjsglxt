@@ -20,10 +20,11 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	// 保存痕迹检验委托书
 	@Override
 	public int saveTranceCheckBook(xsjsglxt_check_entrustment_book tranceCheckBook) {
-		tranceCheckBook.setCheck_entrustment_book_state("已送检");
+		// 状态 已申请、已受理、已记录、鉴定完成
+		tranceCheckBook.setCheck_entrustment_book_state("正在申请");
 		tranceCheckBook.setXsjsglxt_check_entrustment_book_id(TeamUtil.getUuid());
-		// 查找数量,并且填写编号
-		int i = inspectionIdentificationDao.getCountCheckNum(TeamUtil.getCurrentYear(),
+		// 查找最大值,并且填写编号
+		int i = inspectionIdentificationDao.getMaxCheckNum(TeamUtil.getCurrentYear(),
 				tranceCheckBook.getCheck_entrustment_book_type()) + 1;
 		System.out.println(i);
 		tranceCheckBook.setCheck_entrustment_book_num(TeamUtil.getCurrentYear() + String.format("%04d", i));
@@ -32,7 +33,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		return inspectionIdentificationDao.saveObject(tranceCheckBook);
 	}
 
-	// 分页获取委托书状态
+	// 分页获取委托书
 	@Override
 	public EntrustmentBookManagementVO getListCheckEntrustmentBook(EntrustmentBookManagementVO checkEntrustmentBookVO) {
 		List<xsjsglxt_check_entrustment_book> listCheckEntrustmentBook = new ArrayList<xsjsglxt_check_entrustment_book>();
@@ -70,5 +71,4 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		}
 		return i;
 	}
-
 }

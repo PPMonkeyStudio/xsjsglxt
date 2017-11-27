@@ -39,7 +39,7 @@ public class testCheck {
 	@Test
 	public void listShow() {
 		EntrustmentBookManagementVO checkEntrustmentBookVO = new EntrustmentBookManagementVO();
-		checkEntrustmentBookVO.setBookNum("201");
+		checkEntrustmentBookVO.setSearch("20");
 		checkEntrustmentBookVO = inspectionIdentificationService.getListCheckEntrustmentBook(checkEntrustmentBookVO);
 		System.out.println(checkEntrustmentBookVO);
 	}
@@ -48,8 +48,8 @@ public class testCheck {
 	@Test
 	public void deleteTest() {
 		List<String> listtt = new ArrayList<>();
-		listtt.add("6542b5d9-192e-4e3f-a3a9-5c6d161db939");
-		listtt.add("8963e030-541c-416c-90cf-bac688630c25");
+		listtt.add("8fbd9a0c-6aeb-431a-a5ef-dc541535ed26");
+		listtt.add("2bc8bcad-5849-474b-9be2-a105c3f7c519");
 		int i = inspectionIdentificationService.deleteListCheckEntrustmentBook(listtt);
 		System.out.println(i);
 	}

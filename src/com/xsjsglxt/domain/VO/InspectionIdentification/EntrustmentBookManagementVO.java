@@ -24,10 +24,8 @@ public class EntrustmentBookManagementVO {
 	private String start_time = "0000-00-00";
 	// 委托日期结束时间
 	private String stop_time = "9999-99-99";
-	// 搜索委托编号
-	private String bookNum;
-	// 搜索案事件名称
-	private String caseName;
+	// 搜索
+	private String search;
 	// 筛选鉴定机构名称
 	private String unitName;
 	// 类别
@@ -37,11 +35,11 @@ public class EntrustmentBookManagementVO {
 
 	@Override
 	public String toString() {
-		return "CheckEntrustmentBookVO [listCheckEntrustmentBook=" + listCheckEntrustmentBook + ", pageIndex="
+		return "EntrustmentBookManagementVO [listCheckEntrustmentBook=" + listCheckEntrustmentBook + ", pageIndex="
 				+ pageIndex + ", totalRecords=" + totalRecords + ", pageSize=" + pageSize + ", totalPages=" + totalPages
 				+ ", HavePrePage=" + HavePrePage + ", HaveNextPage=" + HaveNextPage + ", start_time=" + start_time
-				+ ", stop_time=" + stop_time + ", bookNum=" + bookNum + ", caseName=" + caseName + ", unitName="
-				+ unitName + ", type=" + type + ", state=" + state + "]";
+				+ ", stop_time=" + stop_time + ", search=" + search + ", unitName=" + unitName + ", type=" + type
+				+ ", state=" + state + "]";
 	}
 
 	public List<xsjsglxt_check_entrustment_book> getListCheckEntrustmentBook() {
@@ -80,12 +78,8 @@ public class EntrustmentBookManagementVO {
 		return stop_time;
 	}
 
-	public String getBookNum() {
-		return bookNum;
-	}
-
-	public String getCaseName() {
-		return caseName;
+	public String getSearch() {
+		return search;
 	}
 
 	public String getUnitName() {
@@ -136,12 +130,8 @@ public class EntrustmentBookManagementVO {
 		this.stop_time = stop_time;
 	}
 
-	public void setBookNum(String bookNum) {
-		this.bookNum = bookNum;
-	}
-
-	public void setCaseName(String caseName) {
-		this.caseName = caseName;
+	public void setSearch(String search) {
+		this.search = search;
 	}
 
 	public void setUnitName(String unitName) {
