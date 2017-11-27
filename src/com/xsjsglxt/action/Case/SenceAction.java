@@ -31,7 +31,7 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	private HttpServletResponse http_response;
 
 	private HttpServletRequest http_request;
-    private page_list_senceInformationVO page_list_senceInformation;
+	private page_list_senceInformationVO page_list_senceInformation;
 
 	/*
 	 * 跳转页面
@@ -51,7 +51,7 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	 * 保存基本信息
 	 */
 	public void saveSenceInformation() {
-		
+
 		try {
 			senceService.save(sence);
 			senceService.save(Case);
@@ -72,7 +72,7 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 				e1.printStackTrace();
 			}
 		}
-     
+
 	}
 
 	/*
@@ -85,10 +85,11 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 		String senceInformationInquestId = senceService.getSenceInformationInquestId();
 		http_response.setContentType("text/html;charset=utf-8");
 		http_response.getWriter().write(gson.toJson(senceInformationInquestId));
-    }
-    /*
-     * 现场信息列表
-     */
+	}
+
+	/*
+	 * 现场信息列表
+	 */
 	public void ListSneceInformationByPageAndSearch() throws IOException {
 
 		GsonBuilder gsonBuilder = new GsonBuilder();
@@ -96,8 +97,7 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 		Gson gson = gsonBuilder.create();
 
 		// 获取所有现场录入信息列表
-		 page_list_senceInformation = senceService
-			.VO_SneceInformation_By_PageAndSearch(page_list_senceInformation);
+		page_list_senceInformation = senceService.VO_SneceInformation_By_PageAndSearch(page_list_senceInformation);
 
 		http_response.setContentType("text/html;charset=utf-8");
 

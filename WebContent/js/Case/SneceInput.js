@@ -1,10 +1,10 @@
 $(function() {
 	$('.form_time').val(new Date().toLocaleDateString());
 
-	$.post('/xsjsglxt/sneceInformation/SneceInformation_getSenceInformationInquestId', '', function(xhr) {
-		$('input[name="sneceInformation.scene_information_inquestId"]').val(xhr);
+	$.post('/xsjsglxt/case/Case_getSenceInquestId', function(xhr) {
+		$('input[name="sence.snece_inquestId"]').val(xhr);
 		//接警时间改变时勘验编号相应改变
-		$('input[name="sneceInformation.scene_information_receivingAlarmDate"]').blur(function() {
+		$('input[name="Case.case_receivingAlarmDate"]').blur(function() {
 			var time = new Date($(this).val());
 			//toastr.danger("请输入正确的时间");
 			if (time == "Invalid Date") {
@@ -16,14 +16,18 @@ $(function() {
 			if (month > 0 && month < 10) {
 				month = "0" + month;
 			}
-			$('input[name="sneceInformation.scene_information_inquestId"]').val(xhr.substring(0, 10) + tear + month + xhr.substring(16, xhr.length));
+			$('input[name="sence.snece_inquestId"]').val(xhr.substring(0, 10) + tear + month + xhr.substring(16, xhr.length));
 		});
 
 	}, 'json')
 
 	$('.sneceInformation_finish').click(function() {
+		if (($('select').val() == "" || $('select').val() == null) && ($('input').val() == "" || $('input').val() == null)) {
+			toastr.error("信息不能为空");
+			return;
+		}
 		$.ajax({
-			url : "/xsjsglxt/sneceInformation/SneceInformation_saveSenceInformation",
+			url : "/xsjsglxt/case/Case_saveSenceInformation",
 			type : "post",
 			async : false,
 			timeout : 3000,
@@ -258,4 +262,9 @@ function setSectionmAddress(chapter) {
 	for (var i = 0; i < length; i++) {
 		$('.specific_space').append("<option value='" + chapterAddressArr[chapter][2][i] + "'>" + chapterAddressArr[chapter][2][i] + "</option>");
 	}
+}
+
+//-------------------------------------------------立案与否
+function buildCase_chose(obj) {
+	$('input[name="Csae.case_register"]').val($(obj).val());
 }
