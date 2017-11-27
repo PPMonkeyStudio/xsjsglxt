@@ -106,7 +106,7 @@ function List_EntrustmentBook(pageIndex) {
 							+ '" onclick="Acceptance_EntrustmentBook(this)" ><i class="fa fa-legal"></i> 受理</button>'
 							+ '<button class="btn btn-default" id="'
 							+ EntrustmentBook_json.listCheckEntrustmentBook[num].xsjsglxt_check_entrustment_book_id
-							+ '" onclick="" ><i class="fa fa-recycle"></i> 不受理</button>';
+							+ '" onclick="Refuse_EntrustmentBook(this)" ><i class="fa fa-recycle"></i> 不受理</button>';
 					/*
 					 * 
 					 */

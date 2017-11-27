@@ -144,4 +144,7 @@
 	src="<%=basePath%>js/InspectionIdentification/Remove_EntrustmentBook.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/InspectionIdentification/Acceptance_EntrustmentBook.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/InspectionIdentification/Refuse_EntrustmentBook.js"></script>
+
 </html>
