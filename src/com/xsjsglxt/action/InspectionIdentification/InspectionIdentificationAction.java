@@ -12,8 +12,10 @@ import org.apache.struts2.interceptor.ServletResponseAware;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionSupport;
+import com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter;
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
 import com.xsjsglxt.domain.DO.xsjsglxt_identifieder_case_confirm_book;
+import com.xsjsglxt.domain.DO.xsjsglxt_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform;
 import com.xsjsglxt.domain.VO.InspectionIdentification.EntrustmentBookManagementVO;
 import com.xsjsglxt.service.InspectionIdentification.InspectionIdentificationService;
@@ -37,6 +39,10 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	private xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook;
 	// 不受理委托鉴定告知
 	private xsjsglxt_not_acceptance_entrustment_inform notAcceptanceEntrustmentInform;
+	// 检验记录
+	private xsjsglxt_inspection_record inspectionRecord;
+	// 鉴定文书表
+	private xsjsglxt_appraisal_letter appraisalLetter;
 
 	/**
 	 * 
@@ -110,6 +116,33 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		}
 	}
 
+	// 填写检验记录表
+	// 1 OK
+	// 2 失败
+	// 3 开启状态不对
+	public void addInspectionRecord() {
+		try {
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter().write(
+					"" + inspectionIdentificationService.saveInspectionRecord(inspectionRecord));
+		} catch (IOException e) {
+			System.out.println("填写不受理委托鉴定告知报错");
+			e.printStackTrace();
+		}
+	}
+
+	// 填写鉴定文书表
+	public void addAppraisalLetter() {
+		try {
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter().write(
+					"" + inspectionIdentificationService.saveAppraisalLetter(appraisalLetter));
+		} catch (IOException e) {
+			System.out.println("填写鉴定文书表报错");
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * 
 	 * 
@@ -121,6 +154,22 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void setServletRequest(HttpServletRequest request) {
 		this.request = request;
 
+	}
+
+	public xsjsglxt_appraisal_letter getAppraisalLetter() {
+		return appraisalLetter;
+	}
+
+	public void setAppraisalLetter(xsjsglxt_appraisal_letter appraisalLetter) {
+		this.appraisalLetter = appraisalLetter;
+	}
+
+	public xsjsglxt_inspection_record getInspectionRecord() {
+		return inspectionRecord;
+	}
+
+	public void setInspectionRecord(xsjsglxt_inspection_record inspectionRecord) {
+		this.inspectionRecord = inspectionRecord;
 	}
 
 	public xsjsglxt_not_acceptance_entrustment_inform getNotAcceptanceEntrustmentInform() {

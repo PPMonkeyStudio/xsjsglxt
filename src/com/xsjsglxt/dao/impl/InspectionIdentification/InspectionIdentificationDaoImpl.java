@@ -9,8 +9,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.InspectionIdentification.InspectionIdentificationDao;
+import com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter;
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
 import com.xsjsglxt.domain.DO.xsjsglxt_identifieder_case_confirm_book;
+import com.xsjsglxt.domain.DO.xsjsglxt_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform;
 import com.xsjsglxt.domain.VO.InspectionIdentification.EntrustmentBookManagementVO;
 
@@ -35,18 +37,24 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 			i = 2;
 			e.printStackTrace();
 		}
+		getSession().flush();
 		return i;
 	}
 
 	@Override
 	public int getMaxCheckNum(String check_entrustment_book_year, String type) {
-		int i;
+		int i = 0;
+		String ji = "";
 		String hql = "select substring(check_entrustment_book_num,-1,4) from xsjsglxt_check_entrustment_book where substring(check_entrustment_book_num,1,4)='"
 				+ check_entrustment_book_year + "' and check_entrustment_book_type='" + type
 				+ "' order by substring(check_entrustment_book_num,-1,4) desc limit 1";
-		System.out.println(hql);
 		Query query = getSession().createSQLQuery(hql);
-		i = Integer.parseInt((String) query.uniqueResult());
+		ji = (String) query.uniqueResult();
+		if (ji == null || ji.trim().length() <= 0) {
+			getSession().clear();
+			return 0;
+		}
+		i = Integer.parseInt(ji);
 		getSession().clear();
 		return i;
 	}
@@ -83,7 +91,6 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		hql = hql + " and check_entrustment_book_inspect_time>='" + startTime
 				+ "' and check_entrustment_book_inspect_time<='" + stopTime
 				+ "' order by check_entrustment_book_inspect_time";
-		System.out.println(hql);
 		Query query = getSession().createQuery(hql);
 		i = (Long) query.uniqueResult();
 		getSession().clear();
@@ -127,7 +134,6 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		Query query = getSession().createQuery(hql);
 		query.setFirstResult((checkEntrustmentBookVO.getPageIndex() - 1) * checkEntrustmentBookVO.getPageSize());
 		query.setMaxResults(checkEntrustmentBookVO.getPageSize());
-		System.out.println(hql);
 		listPage = query.list();
 		if (checkEntrustmentBookVO.getSearch() != null && checkEntrustmentBookVO.getSearch().trim().length() > 0) {
 			for (xsjsglxt_check_entrustment_book xsjsglxt_check_entrustment_book : listPage) {
@@ -205,6 +211,30 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		notAcceptanceEntrustmentInform = (xsjsglxt_not_acceptance_entrustment_inform) query.uniqueResult();
 		session.clear();
 		return notAcceptanceEntrustmentInform;
+	}
+
+	@Override
+	public xsjsglxt_inspection_record getInspectionRecordById(String xsjsglxt_check_entrustment_book_id) {
+		xsjsglxt_inspection_record xsjsglxt_inspection_record = new xsjsglxt_inspection_record();
+		Session session = getSession();
+		String hql = "from xsjsglxt_inspection_record where inspection_belong_entrustment_book='"
+				+ xsjsglxt_check_entrustment_book_id + "'";
+		Query query = session.createQuery(hql);
+		xsjsglxt_inspection_record = (xsjsglxt_inspection_record) query.uniqueResult();
+		session.clear();
+		return xsjsglxt_inspection_record;
+	}
+
+	@Override
+	public xsjsglxt_appraisal_letter getAppraisalLetterById(String xsjsglxt_check_entrustment_book_id) {
+		xsjsglxt_appraisal_letter xsjsglxt_appraisal_letter = new xsjsglxt_appraisal_letter();
+		Session session = getSession();
+		String hql = "from xsjsglxt_appraisal_letter where appraisal_letter_belong_entrustment_book='"
+				+ xsjsglxt_check_entrustment_book_id + "'";
+		Query query = session.createQuery(hql);
+		xsjsglxt_appraisal_letter = (xsjsglxt_appraisal_letter) query.uniqueResult();
+		session.clear();
+		return xsjsglxt_appraisal_letter;
 	}
 
 }

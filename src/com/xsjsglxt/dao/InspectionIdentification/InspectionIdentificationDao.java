@@ -2,7 +2,9 @@ package com.xsjsglxt.dao.InspectionIdentification;
 
 import java.util.List;
 
+import com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter;
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
+import com.xsjsglxt.domain.DO.xsjsglxt_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform;
 import com.xsjsglxt.domain.VO.InspectionIdentification.EntrustmentBookManagementVO;
 
@@ -28,4 +30,7 @@ public interface InspectionIdentificationDao {
 	public xsjsglxt_not_acceptance_entrustment_inform getNotAcceptanceEntrustmentInform(
 			String xsjsglxt_check_entrustment_book_id);
 
+	public xsjsglxt_inspection_record getInspectionRecordById(String xsjsglxt_check_entrustment_book_id);
+
+	public xsjsglxt_appraisal_letter getAppraisalLetterById(String xsjsglxt_check_entrustment_book_id);
 }
