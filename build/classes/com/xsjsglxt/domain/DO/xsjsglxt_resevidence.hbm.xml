@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-11-25 13:53:03 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_resevidence" table="XSJSGLXT_RESEVIDENCE">
+        <id name="xsjsglxt_resevidence_id" type="java.lang.String">
+            <column name="XSJSGLXT_RESEVIDENCE_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="resevidence_case" type="java.lang.String">
+            <column name="RESEVIDENCE_CASE" />
+        </property>
+        <property name="resevidence_name" type="java.lang.String">
+            <column name="RESEVIDENCE_NAME" />
+        </property>
+        <property name="resevidence_extractUnit" type="java.lang.String">
+            <column name="RESEVIDENCE_EXTRACTUNIT" />
+        </property>
+        <property name="resevidence_type" type="java.lang.String">
+            <column name="RESEVIDENCE_TYPE" />
+        </property>
+        <property name="resevidence_extractPart" type="java.lang.String">
+            <column name="RESEVIDENCE_EXTRACTPART" />
+        </property>
+        <property name="resevidence_extractMethod" type="java.lang.String">
+            <column name="RESEVIDENCE_EXTRACTMETHOD" />
+        </property>
+        <property name="resevidence_extractNumber" type="int">
+            <column name="RESEVIDENCE_EXTRACTNUMBER" />
+        </property>
+        <property name="resevidence_extractPerson" type="java.lang.String">
+            <column name="RESEVIDENCE_EXTRACTPERSON" />
+        </property>
+        <property name="resevidence_extractTime" type="java.lang.String">
+            <column name="RESEVIDENCE_EXTRACTTIME" />
+        </property>
+        <property name="resevidence_remarks" type="java.lang.String">
+            <column name="RESEVIDENCE_REMARKS" />
+        </property>
+        <property name="resevidence_teststate" type="java.lang.String">
+            <column name="RESEVIDENCE_TESTSTATE" />
+        </property>
+        <property name="resevidence_gmt_create" type="java.lang.String">
+            <column name="RESEVIDENCE_GMT_CREATE" />
+        </property>
+        <property name="resevidence_gmt_modified" type="java.lang.String">
+            <column name="RESEVIDENCE_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>
