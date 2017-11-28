@@ -66,6 +66,6 @@ public boolean deletePictureById(String xsjsglxt_case_id);
 
 public boolean deleteSenceById(String xsjsglxt_case_id);
 
-
+public int getMaxSenceInquestId();
 
 }

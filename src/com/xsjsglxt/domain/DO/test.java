@@ -1,7 +1,5 @@
 package com.xsjsglxt.domain.DO;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -10,6 +8,8 @@ import org.junit.Test;
 import com.xsjsglxt.dao.Case.SenceDao;
 import com.xsjsglxt.domain.VO.Case.page_list_senceInformationVO;
 import com.xsjsglxt.service.Case.SenceService;
+
+
 
 public class test {
 	private String username;
@@ -74,7 +74,15 @@ public void test(){
 	}
 	@Test
 	public void test3(){
-		System.out.println(senceDao.getSenceInformationInquestId());
+		page_list_senceInformationVO page_list_senceInformation=new page_list_senceInformationVO();
+		page_list_senceInformation.setCase_classify("WW");
+		page_list_senceInformation.setCase_totalCategory("ww");
+		senceDao.getCountSenceInformationByPage(page_list_senceInformation);
 	}
+	@Test
+	public void teste(){
+		System.out.println(senceDao);
+		System.out.println("qqq"+senceDao.getSenceInformationInquestId());
 	
+	}
 }

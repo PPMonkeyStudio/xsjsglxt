@@ -1,10 +1,19 @@
 package com.xsjsglxt.service.impl.Case;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.xsjsglxt.dao.Case.ParallelDao;
+import com.xsjsglxt.domain.DO.xsjsglxt_briefdetails;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
+import com.xsjsglxt.domain.DO.xsjsglxt_lost;
+import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
+import com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone;
 import com.xsjsglxt.domain.DO.xsjsglxt_parallel;
+import com.xsjsglxt.domain.DO.xsjsglxt_picture;
+import com.xsjsglxt.domain.DO.xsjsglxt_resevidence;
+import com.xsjsglxt.domain.DO.xsjsglxt_snece;
+import com.xsjsglxt.domain.DTO.Case.SenceInformationDTO;
 import com.xsjsglxt.domain.VO.Case.page_list_parallelInformationVO;
 import com.xsjsglxt.service.Case.ParallelService;
 
@@ -38,7 +47,43 @@ public class ParallelServiceImpl implements ParallelService {
 	public page_list_parallelInformationVO VO_Parallelformation_By_PageAndSearch(
 			page_list_parallelInformationVO page_list_parallelInformation) {
 		// TODO Auto-generated method stub
-		return null;
+		List<xsjsglxt_parallel> parallelList = new ArrayList<xsjsglxt_parallel>();
+		List<xsjsglxt_parallel> listParallel = new ArrayList<xsjsglxt_parallel>();
+		
+		
+		// 获取筛选后所有的记录
+		int i = parallelDao.getCountParallelInformationByPage(page_list_parallelInformation);
+		System.out.println(i);
+		page_list_parallelInformation.setTotalRecords(i);
+		page_list_parallelInformation.setTotalPages(((i - 1) / page_list_parallelInformation.getPageSize()) + 1);
+		if (page_list_parallelInformation.getPageIndex() <= 1) {
+			page_list_parallelInformation.setHavePrePage(false);
+		} else {
+			page_list_parallelInformation.setHavePrePage(true);
+		}
+		if (page_list_parallelInformation.getPageIndex() >= page_list_parallelInformation.getTotalPages()) {
+			page_list_parallelInformation.setHaveNextPage(false);
+		} else {
+			page_list_parallelInformation.setHaveNextPage(true);
+		}
+		
+		// 根据筛选条件获取list数据
+		listParallel = parallelDao.getListParallelInformatioByPage(page_list_parallelInformation);
+		for (xsjsglxt_parallel parallel : listParallel) {
+	     // 1
+		if (page_list_parallelInformation.getParallel_casename() != null&& page_list_parallelInformation.getParallel_casename().trim().length() > 0) {
+			parallel.setParallel_casename(parallel.getParallel_casename().replaceAll(parallel.getParallel_casename(),"<span style='color: #ff5063;'>" + parallel.getParallel_casename().trim()+ "</span>" ));
+		}
+		// 2
+		if (page_list_parallelInformation.getParallel_person() != null&& page_list_parallelInformation.getParallel_person().trim().length() > 0) {
+			parallel.setParallel_person(parallel.getParallel_person().replaceAll(parallel.getParallel_person(),"<span style='color: #ff5063;'>" + parallel.getParallel_person().trim()+ "</span>" ));
+		}
+		
+		parallelList.add(parallel);
+			}
+		page_list_parallelInformation.setParallelList(parallelList);
+			return page_list_parallelInformation;
+
 	}
 
 

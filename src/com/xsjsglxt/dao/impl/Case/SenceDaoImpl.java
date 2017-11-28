@@ -21,6 +21,8 @@ import com.xsjsglxt.domain.DO.xsjsglxt_resevidence;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
 import com.xsjsglxt.domain.VO.Case.page_list_senceInformationVO;
 
+import util.TeamUtil;
+
 public class SenceDaoImpl implements SenceDao {
 	private SessionFactory sessionFactory;
 
@@ -129,15 +131,16 @@ public class SenceDaoImpl implements SenceDao {
 	@Override
 	public String getSenceInformationInquestId() {
 		// TODO Auto-generated method stub
-		Session session = getSession();
+		//Session session = getSession();
 		//String hql = "SELECT COUNT(*) FROM xsjsglxt_snece WHERE DATE_FORMAT( snece_gmt_create,  '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )";
 		//org.hibernate.Query query = session.createQuery(hql);
 		//int count = ((Number) query.uniqueResult()).intValue();
 		int i=getMaxSenceInquestId();
+		//System.out.println("aaa"+i);
 		Date date = new Date();
 		DateFormat format = new SimpleDateFormat("yyyyMM");
 		String time = format.format(date);
-		String SenceInformationInquestId ="K360302001" + time + i ;
+		String SenceInformationInquestId ="K360302001" + time + (i) ;
 		
 //		if (count < 9) {
 //			SenceInformationInquestId = "K360302001" + time + "000" + (count + 1);
@@ -148,20 +151,33 @@ public class SenceDaoImpl implements SenceDao {
 //		} else if (999 <= count && count < 9999) {
 //			SenceInformationInquestId = "K360302001" + time + (count + 1);
 //		}
-		session.clear();
-		System.out.println(SenceInformationInquestId);
+		//session.clear();
+		
 		return SenceInformationInquestId;
 		
 	}
 	public int getMaxSenceInquestId() {
 		int i;
-		String hql = "select substring(snece_inquestId,-1,4) from xsjsglxt_snece where substring(snece_inquestId,1,4) order by substring(snece_inquestId,-1,4) desc limit 1";
+		//201711
+		String yearAndMonth =TeamUtil.yearAndMonth();
+		List<xsjsglxt_snece> xsjsglxt_snece = new ArrayList<xsjsglxt_snece>();
+		//K3603020012017110001
+		String hql = "select substring(snece_inquestId,-1,4) from xsjsglxt_snece where substring(snece_inquestId,11,6)='"+yearAndMonth+"' order by substring(snece_inquestId,-1,4) desc limit 1";
 		System.out.println(hql);
 		Query query = getSession().createSQLQuery(hql);
+		//i = Integer.parseInt((String) query.uniqueResult());
+		//xsjsglxt_snece = query.list();
 		i = Integer.parseInt((String) query.uniqueResult());
+   
+		// i=xsjsglxt_snece.size();
 		getSession().clear();
-		System.out.println(i);
-		return i;
+		if(i==0){
+			return 0;
+		}else{
+			return  i;	
+		}
+		
+		
 	}
 
 	@Override
@@ -169,7 +185,7 @@ public class SenceDaoImpl implements SenceDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 		Long i;
-		String hql = "select count(*) from xsjsglxt_case,xsjsglxt_snece where snece_case=xsjsglxt_case_id";
+		String hql = "select count(*) from xsjsglxt_case where 1=1";
 		String startTime = "0000-00-00";
 		String stopTime = "9999-99-99";
 		  // 1
@@ -247,7 +263,7 @@ public class SenceDaoImpl implements SenceDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 		List<xsjsglxt_case> listSenceInformationByPage = new ArrayList<xsjsglxt_case>();
-		String hql = "from xsjsglxt_case,xsjsglxt_snece where snece_case=xsjsglxt_case_id";
+		String hql = "from xsjsglxt_case where 1=1";
 		String startTime = "0000-00-00";
 		String stopTime = "9999-99-99";
 		  // 1
@@ -318,6 +334,7 @@ public class SenceDaoImpl implements SenceDao {
 				(page_list_senceInformation.getPageIndex() - 1) * page_list_senceInformation.getPageSize());
 		query.setMaxResults(page_list_senceInformation.getPageSize());
 		listSenceInformationByPage = query.list();
+		System.out.println(hql);
 		session.clear();
 		return listSenceInformationByPage;
 	}

@@ -1,6 +1,7 @@
 package com.xsjsglxt.action.Case;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,6 +36,8 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 	public void saveparallel() {
 		
 		try {
+			
+			//parallelService.saveParallel(CaseNumList, parallel);
 			http_response.setContentType("text/html;charset=utf-8");
 			http_response.getWriter().write("success");	
 		} catch (Exception e) {

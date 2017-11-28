@@ -15,7 +15,7 @@ public interface SenceService {
 
 public 	void save(xsjsglxt_snece sence);
 
-public void save(xsjsglxt_case case1);
+public boolean save(xsjsglxt_case case1);
 
 public void save(xsjsglxt_briefdetails briefdetails);
 
@@ -42,5 +42,6 @@ public page_list_senceInformationVO VO_SneceInformation_By_PageAndSearch(
 public boolean remove_SenceInformationList(List<String> useSenceInformationNumList);
 
 
+public String getMaxSenceInquestId();
 
 }
