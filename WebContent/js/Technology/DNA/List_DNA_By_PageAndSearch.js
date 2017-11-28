@@ -1,5 +1,6 @@
 var DNA_VO = null;
 function List_DNA_By_PageAndSearch(pageIndex) {
+
 	var input_DNASearchText = document.getElementById("input_DNASearchText").value;
 	var formData = new FormData();
 
@@ -27,8 +28,10 @@ function List_DNA_By_PageAndSearch(pageIndex) {
 
 				var old_tr = document.getElementsByClassName("new_tr");
 				console.debug(old_tr.length);
-				for (var i = 0; i < old_tr.length; i++) {
-					table_DNA.firstElementChild.removeChild(old_tr[0]);
+				var long = old_tr.length;
+				for (var i = 0; i < long; i++) {
+					old_tr[0].parentNode.removeChild(old_tr[0]);
+					// table_DNA.firstElementChild.removeChild(old_tr[0]);
 				}
 
 				/*
@@ -40,79 +43,72 @@ function List_DNA_By_PageAndSearch(pageIndex) {
 					new_tr.appendChild(document.createTextNode(''));
 					table_DNA.firstElementChild.appendChild(new_tr);
 					/*
-					 * 1
+					 * 
+					 */
+					new_td = document.createElement("td");
+					new_tr.appendChild(new_td);
+					new_td.style.display = "none";
+					new_td.className = "tr_dna_id";
+					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].xsjsglxt_dna_id;
+					console.debug(new_td.innerHTML);
+					/*
+					 *1. DNA编号
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
 					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].dna_num;
 					/*
-					 * 2
+					 *2. 姓名
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
 					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].dna_name;
 					/*
-					 * 3
+					 *3. 性别
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
 					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].dna_sex;
 					/*
-					 * 4
+					 *4. 出生日期
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
 					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].dna_birthday;
 					/*
-					 * 5
+					 *5. 身份证号
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
 					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].dna_identity;
 					/*
-					 * 6
+					 *6. 地址
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
 					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].dna_address;
 					/*
-					 * 7
+					 *7. 违法事实
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
 					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].dna_illegal_fact;
 					/*
-					 * 8
+					 *8. 操作
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
-					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].dna_record_organization;
+					new_td.innerHTML = '<i  id="'+DNA_VO.list_xsjsglxt_dna[num].xsjsglxt_dna_id+'" onClick=DNADetails(this) class="fa fa-pencil-square-o" aria-hidden="true"></i>';
+					new_td.style.cursor="pointer";
+					
 					/*
-					 * 9
-					 */
-					new_td = document.createElement("td");
-					new_tr.appendChild(new_td);
-					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].dna_organizer;
-					/*
-					 * 10
-					 */
-					new_td = document.createElement("td");
-					new_tr.appendChild(new_td);
-					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].dna_record_time;
-					/*
-					 * 11
-					 */
-					new_td = document.createElement("td");
-					new_tr.appendChild(new_td);
-					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].dna_submit_time;
-					/*
-					 * 
+					 *9. 复选框
 					 */
 					new_td = document.createElement("td");
 					new_td.appendChild(document.createTextNode(''));
 					new_tr.appendChild(new_td);
 					new_td.innerHTML = '<label class="fancy-checkbox" >'
-							+ '<input  id="" type="checkbox" class="checkbox_select">'
+							+ '<input  type="checkbox" class="checkbox_select">'
 							+ '<span></span></label></div>';
 
 				}
@@ -149,27 +145,27 @@ function List_DNA_By_PageAndSearch(pageIndex) {
 function flip(flipPage) {
 	switch (flipPage) {
 	case 1: {
-		List_Topic_By_PageAndSearch(1)
+		List_DNA_By_PageAndSearch(1)
 		break;
 	}
 	case 2: {
-		if (topic_json.pageIndex - 1 == 0) {
+		if (DNA_VO.pageIndex - 1 == 0) {
 			toastr.warning("已经是第一页了");
 		} else {
-			List_Topic_By_PageAndSearch(topic_json.pageIndex - 1);
+			List_DNA_By_PageAndSearch(DNA_VO.pageIndex - 1);
 		}
 		break;
 	}
 	case 3: {
-		if (topic_json.pageIndex == topic_json.totalPages) {
+		if (DNA_VO.pageIndex == DNA_VO.totalPages) {
 			toastr.warning("已经是最后一页了");
 		} else {
-			List_Topic_By_PageAndSearch(topic_json.pageIndex + 1);
+			List_DNA_By_PageAndSearch(DNA_VO.pageIndex + 1);
 		}
 		break;
 	}
 	case 4: {
-		List_Topic_By_PageAndSearch(topic_json.totalPages);
+		List_DNA_By_PageAndSearch(DNA_VO.totalPages);
 
 		break;
 	}

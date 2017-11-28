@@ -90,10 +90,10 @@
 						<i class="icon-submenu lnr lnr-chevron-down"></i>
 				</a>
 					<ul class="dropdown-menu">
-						<li class="teacher_control"><a href="#">DNA</a></li>
-						<li class="teacher_control"><a href="#">指纹</a></li>
-						<li class="teacher_control"><a href="#">器材装备</a></li>
-						<li class="teacher_control"><a href="#">比中指纹</a></li>
+						<li class="teacher_control"><a href="<%=basePath%>DNA/DNAManagement_DNAManagementPage">DNA</a></li>
+						<li class="teacher_control"><a href="<%=basePath%>FingerPrint/FingerPrintManagement_FingerPrintManagementPage">指纹</a></li>
+						<li class="teacher_control"><a href="<%=basePath%>Equipment/EquipmentManagement_EquipmentManagementPage">器材装备</a></li>
+						<li class="teacher_control"><a href="<%=basePath%>ContrastFingerPrint/ContrastFingerPrintManagement_ContrastFingerPrintManagementPage">比中指纹</a></li>
 					</ul></li>
 				<!--  -->
 				<li class="dropdown" style="float: left;"><a href="#"

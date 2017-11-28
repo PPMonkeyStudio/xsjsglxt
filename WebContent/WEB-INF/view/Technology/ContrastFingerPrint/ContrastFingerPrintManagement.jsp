@@ -13,15 +13,15 @@
 <!---------------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------------->
 <script type="text/javascript"
-	src="<%=basePath%>js/SkillManagement/EquipmentManagement/CreateEquipment.js"></script>
+	src="<%=basePath%>js/SkillManagement/CompareFingerPrintManagement/CreateDNA.js"></script>
 <script type="text/javascript"
-	src="<%=basePath%>js/SkillManagement/EquipmentManagement/List_Equipment_By_PageAndSearch.js"></script>
+	src="<%=basePath%>js/SkillManagement/CompareFingerPrintManagement/List_DNA_By_PageAndSearch.js"></script>
 <!---------------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------------->
-<title>技术管理 > 器材装备</title>
+<title>技术管理 > 比中指纹</title>
 </head>
 <body>
-	<s:action name="LoginLogoutManagement_navbar" namespace="/loginLogout"
+	<s:action name="User_navbar" namespace="/user"
 		executeResult="true" />
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
@@ -33,7 +33,7 @@
 		<div class="panel" style="width: 95%; margin: 20px auto;">
 			<!--  -->
 			<div class="panel-heading">
-				<h3 class="panel-title">器材装备管理</h3>
+				<h3 class="panel-title">比中指纹管理</h3>
 			</div>
 			<!--  -->
 			<div class="panel-body">
@@ -41,7 +41,7 @@
 
 					<div style="width: 500px; float: left;">
 						<button class="btn btn-default" onclick="CreateDNA()">
-							<i class="fa fa-plus-square"></i> 新增器材装备
+							<i class="fa fa-plus-square"></i> 新增比中指纹
 						</button>
 
 					</div>
@@ -56,12 +56,16 @@
 					style="text-align: center; margin: 20px 0;">
 					<tbody>
 						<tr>
-							<th>装备序号</th>
-							<th>装备名称</th>
-							<th>装备类型</th>
-							<th>数量</th>
-							<th>启用日期</th>
-							<th>管理</th>
+							<th>DNA编号</th>
+							<th>姓名</th>
+							<th>性别</th>
+							<th>出生日期</th>
+							<th>身份证号</th>
+							<th>违法事实</th>
+							<th>建档单位</th>
+							<th>建档人</th>
+							<th>建档时间</th>
+							<th>交档时间</th>
 							<th>操作</th>
 							<th><label class="fancy-checkbox"> <input
 									id="checkbox_all_select" type="checkbox" onclick="all_select()">

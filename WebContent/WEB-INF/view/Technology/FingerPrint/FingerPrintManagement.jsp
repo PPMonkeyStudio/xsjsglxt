@@ -11,17 +11,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!---------------------------------------------------------------------------------------------------->
-<script type="text/javascript"
-	src="<%=basePath%>js/SkillManagement/DNAManagement/CreateDNA.js"></script>
-	<script type="text/javascript"
-	src="<%=basePath%>js/SkillManagement/DNAManagement/DeleteDNA.js"></script>
-<script type="text/javascript"
-	src="<%=basePath%>js/SkillManagement/DNAManagement/List_DNA_By_PageAndSearch.js"></script>
 <!---------------------------------------------------------------------------------------------------->
-<title>技术管理 > DNA信息</title>
+<script type="text/javascript"
+	src="<%=basePath%>js/Technology/FingerPrint/CreateFingerPrint.js"></script>
+	<script type="text/javascript"
+	src="<%=basePath%>js/Technology/FingerPrint/DeleteFingerPrint.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/Technology/FingerPrint/List_FingerPrint_By_PageAndSearch.js"></script>
+<!---------------------------------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------------------------------->
+<title>技术管理 > 指纹信息</title>
 </head>
 <body>
-	<s:action name="LoginLogoutManagement_navbar" namespace="/loginLogout"
+	<s:action name="User_navbar" namespace="/user"
 		executeResult="true" />
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
@@ -33,30 +35,31 @@
 		<div class="panel" style="width: 95%; margin: 20px auto;">
 			<!--  -->
 			<div class="panel-heading">
-				<h3 class="panel-title">DNA信息管理</h3>
+				<h3 class="panel-title">指纹信息管理</h3>
 			</div>
 			<!--  -->
 			<div class="panel-body">
-				<div style="height: 34px;">
+					<div style="height: 34px;">
 
 					<div style="width: 500px; float: left;">
-						<button class="btn btn-default" onclick="CreateDNA()">
-							<i class="fa fa-plus-square"></i> 新增DNA记录
+						<button class="btn btn-default"
+							onclick="CreateFingerPrint()">
+							<i class="fa fa-plus-square"></i> 新增指纹记录
 						</button>
 
 					</div>
 					<!-- 检索 -->
 					<div class="input-group" style="width: 300px; float: right;">
-						<input id="input_DNASearchText" class="form-control" oninput="List_DNA_By_PageAndSearch(1)" type="text">
+						<input id="input_FingerPrintSearchText" class="form-control" oninput="List_FingerPrint_By_PageAndSearch(1)" type="text">
 						<span class="input-group-addon"> <i class="fa fa-search"></i>
 						</span>
 					</div>
 				</div>
-				<table id="table_DNA" class="table table-hover table-bordered"
+				<table id="table_fingerPrint" class="table table-hover"
 					style="text-align: center; margin: 20px 0;">
 					<tbody>
 						<tr>
-							<th>DNA编号</th>
+							<th>指纹卡编号</th>
 							<th>姓名</th>
 							<th>性别</th>
 							<th>出生日期</th>
@@ -65,11 +68,10 @@
 							<th>建档单位</th>
 							<th>建档人</th>
 							<th>建档时间</th>
-							<th>交档时间</th>
 							<th>操作</th>
 							<th><label class="fancy-checkbox"> <input
 									id="checkbox_all_select" type="checkbox" onclick="all_select()">
-									<span></span>
+									<span>全选</span>
 							</label></th>
 						</tr>
 					</tbody>
@@ -84,7 +86,7 @@
 
 				<div style="height: 34px; margin: 0 0 20px 0;">
 
-					<button class="btn btn-danger" onclick="DeleteDNA()"
+					<button class="btn btn-danger" onclick="DeleteFingerPrint()"
 						style="float: right; margin: 0 10px;">
 						<i class="fa fa-trash-o"></i> 删除所选
 					</button>
@@ -113,7 +115,7 @@
 		<!---------------------------------------------------------------------------------------------------->
 		<!---------------------------------------------------------------------------------------------------->
 	</div>
-
+	
 	</div>
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
@@ -123,6 +125,6 @@
 <script type="text/javascript" src="<%=basePath%>js/icheck.js"></script>
 
 <script type="text/javascript">
-	List_DNA_By_PageAndSearch(1);
+List_FingerPrint_By_PageAndSearch(1);
 </script>
 </html>

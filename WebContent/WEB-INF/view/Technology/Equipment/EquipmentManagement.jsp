@@ -13,15 +13,15 @@
 <!---------------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------------->
 <script type="text/javascript"
-	src="<%=basePath%>js/SkillManagement/FingerPrintManagement/CreateFingerPrint.js"></script>
+	src="<%=basePath%>js/SkillManagement/EquipmentManagement/CreateEquipment.js"></script>
 <script type="text/javascript"
-	src="<%=basePath%>js/SkillManagement/FingerPrintManagement/List_FingerPrint_By_PageAndSearch.js"></script>
+	src="<%=basePath%>js/SkillManagement/EquipmentManagement/List_Equipment_By_PageAndSearch.js"></script>
 <!---------------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------------->
-<title>技术管理 > 指纹信息</title>
+<title>技术管理 > 器材装备</title>
 </head>
 <body>
-	<s:action name="LoginLogoutManagement_navbar" namespace="/loginLogout"
+	<s:action name="User_navbar" namespace="/user"
 		executeResult="true" />
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
@@ -33,43 +33,39 @@
 		<div class="panel" style="width: 95%; margin: 20px auto;">
 			<!--  -->
 			<div class="panel-heading">
-				<h3 class="panel-title">指纹信息管理</h3>
+				<h3 class="panel-title">器材装备管理</h3>
 			</div>
 			<!--  -->
 			<div class="panel-body">
-					<div style="height: 34px;">
+				<div style="height: 34px;">
 
 					<div style="width: 500px; float: left;">
-						<button class="btn btn-default"
-							onclick="CreateFingerPrint()">
-							<i class="fa fa-plus-square"></i> 新增指纹记录
+						<button class="btn btn-default" onclick="CreateDNA()">
+							<i class="fa fa-plus-square"></i> 新增器材装备
 						</button>
 
 					</div>
 					<!-- 检索 -->
 					<div class="input-group" style="width: 300px; float: right;">
-						<input id="input_FingerPrintSearchText" class="form-control" oninput="List_FingerPrint_By_PageAndSearch(1)" type="text">
+						<input id="input_DNASearchText" class="form-control" oninput="List_DNA_By_PageAndSearch(1)" type="text">
 						<span class="input-group-addon"> <i class="fa fa-search"></i>
 						</span>
 					</div>
 				</div>
-				<table id="table_fingerPrint" class="table table-hover"
+				<table id="table_DNA" class="table table-hover table-bordered"
 					style="text-align: center; margin: 20px 0;">
 					<tbody>
 						<tr>
-							<th>指纹卡编号</th>
-							<th>姓名</th>
-							<th>性别</th>
-							<th>出生日期</th>
-							<th>身份证号</th>
-							<th>违法事实</th>
-							<th>建档单位</th>
-							<th>建档人</th>
-							<th>建档时间</th>
+							<th>装备序号</th>
+							<th>装备名称</th>
+							<th>装备类型</th>
+							<th>数量</th>
+							<th>启用日期</th>
+							<th>管理</th>
 							<th>操作</th>
 							<th><label class="fancy-checkbox"> <input
 									id="checkbox_all_select" type="checkbox" onclick="all_select()">
-									<span>全选</span>
+									<span></span>
 							</label></th>
 						</tr>
 					</tbody>
@@ -84,7 +80,7 @@
 
 				<div style="height: 34px; margin: 0 0 20px 0;">
 
-					<button class="btn btn-danger" onclick="DeleteFingerPrint()"
+					<button class="btn btn-danger" onclick="Delete_Student()"
 						style="float: right; margin: 0 10px;">
 						<i class="fa fa-trash-o"></i> 删除所选
 					</button>
@@ -119,10 +115,7 @@
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 </body>
-<link rel="stylesheet" href="<%=basePath%>css/square/blue.css" />
-<script type="text/javascript" src="<%=basePath%>js/icheck.js"></script>
-
-<script type="text/javascript">
-List_FingerPrint_By_PageAndSearch(1);
+<script>
+	
 </script>
 </html>
