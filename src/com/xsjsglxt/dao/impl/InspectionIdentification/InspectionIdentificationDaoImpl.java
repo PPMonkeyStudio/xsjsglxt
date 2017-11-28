@@ -237,4 +237,52 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		return xsjsglxt_appraisal_letter;
 	}
 
+	@Override
+	public xsjsglxt_identifieder_case_confirm_book getIdentifiederCaseConfirmBookByOwnId(String xsjsglxt_identifieder_case_confirm_book_id) {
+		xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook = new xsjsglxt_identifieder_case_confirm_book();
+		Session session = getSession();
+		String hql = "from xsjsglxt_identifieder_case_confirm_book where xsjsglxt_identifieder_case_confirm_book_id='"
+				+ xsjsglxt_identifieder_case_confirm_book_id + "'";
+		Query query = session.createQuery(hql);
+		identifiederCaseConfirmBook = (xsjsglxt_identifieder_case_confirm_book) query.uniqueResult();
+		session.clear();
+		return identifiederCaseConfirmBook;
+	}
+
+	@Override
+	public xsjsglxt_not_acceptance_entrustment_inform getNotAcceptanceEntrustmentInformByOwnId(String xsjsglxt_not_acceptance_entrustment_inform_id) {
+		xsjsglxt_not_acceptance_entrustment_inform notAcceptanceEntrustmentInform = new xsjsglxt_not_acceptance_entrustment_inform();
+		Session session = getSession();
+		String hql = "from xsjsglxt_not_acceptance_entrustment_inform where xsjsglxt_not_acceptance_entrustment_inform_id='"
+				+ xsjsglxt_not_acceptance_entrustment_inform_id + "'";
+		Query query = session.createQuery(hql);
+		notAcceptanceEntrustmentInform = (xsjsglxt_not_acceptance_entrustment_inform) query.uniqueResult();
+		session.clear();
+		return notAcceptanceEntrustmentInform;
+	}
+
+	@Override
+	public xsjsglxt_inspection_record getInspectionRecordByOwnId(String xsjsglxt_inspection_record_id) {
+		xsjsglxt_inspection_record xsjsglxt_inspection_record = new xsjsglxt_inspection_record();
+		Session session = getSession();
+		String hql = "from xsjsglxt_inspection_record where xsjsglxt_inspection_record_id='"
+				+ xsjsglxt_inspection_record_id + "'";
+		Query query = session.createQuery(hql);
+		xsjsglxt_inspection_record = (xsjsglxt_inspection_record) query.uniqueResult();
+		session.clear();
+		return xsjsglxt_inspection_record;
+	}
+
+	@Override
+	public xsjsglxt_appraisal_letter getAppraisalLetterByOwnId(String xsjsglxt_appraisal_letter_id) {
+		xsjsglxt_appraisal_letter xsjsglxt_appraisal_letter = new xsjsglxt_appraisal_letter();
+		Session session = getSession();
+		String hql = "from xsjsglxt_appraisal_letter where xsjsglxt_appraisal_letter_id='"
+				+ xsjsglxt_appraisal_letter_id + "'";
+		Query query = session.createQuery(hql);
+		xsjsglxt_appraisal_letter = (xsjsglxt_appraisal_letter) query.uniqueResult();
+		session.clear();
+		return xsjsglxt_appraisal_letter;
+	}
+
 }

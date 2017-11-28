@@ -25,4 +25,14 @@ public interface InspectionIdentificationService {
 
 	public int saveAppraisalLetter(xsjsglxt_appraisal_letter appraisalLetter);
 
+	public int updateTranceCheckBook(xsjsglxt_check_entrustment_book tranceCheckBook);
+
+	public int updateIdentifiederCaseConfirmBook(xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook);
+
+	public int updateNotAcceptanceInform(xsjsglxt_not_acceptance_entrustment_inform notAcceptanceEntrustmentInform);
+
+	public int updateInspectionRecord(xsjsglxt_inspection_record inspectionRecord);
+	
+	public int updateAppraisalLetter(xsjsglxt_appraisal_letter appraisalLetter);
+	
 }

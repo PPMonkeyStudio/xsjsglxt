@@ -143,6 +143,66 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		}
 	}
 
+	// 更改委托书
+	public void updateTranceCheckBook() {
+		try {
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter().write(
+					"" + inspectionIdentificationService.updateTranceCheckBook(tranceCheckBook));
+		} catch (IOException e) {
+			System.out.println("更改委托书报错");
+			e.printStackTrace();
+		}
+	}
+
+	// 更改鉴定事项确认书表
+	public void updateIdentifiederCaseConfirmBook() {
+		try {
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter().write(
+					"" + inspectionIdentificationService.updateIdentifiederCaseConfirmBook(identifiederCaseConfirmBook));
+		} catch (IOException e) {
+			System.out.println("更改鉴定事项确认书报错");
+			e.printStackTrace();
+		}
+	}
+
+	// 更改不受理委托鉴定告知表
+	public void updateNotAcceptanceInform() {
+		try {
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter().write(
+					"" + inspectionIdentificationService.updateNotAcceptanceInform(notAcceptanceEntrustmentInform));
+		} catch (IOException e) {
+			System.out.println("更改不受理委托鉴定告知报错");
+			e.printStackTrace();
+		}
+	}
+
+	// 更改检验记录
+	public void updateInspectionRecord() {
+		try {
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter().write(
+					"" + inspectionIdentificationService.updateInspectionRecord(inspectionRecord));
+		} catch (IOException e) {
+			System.out.println("更改不受理委托鉴定告知报错");
+			e.printStackTrace();
+		}
+	}
+
+	// 更改鉴定文书表
+	public void updateAppraisalLetter() {
+		try {
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter().write(
+					"" + inspectionIdentificationService.updateAppraisalLetter(appraisalLetter));
+		} catch (IOException e) {
+			System.out.println("更改不受理委托鉴定告知报错");
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * 
 	 * 

@@ -118,6 +118,10 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	@Override
 	public int saveIdentifiederCaseConfirmBook(xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook) {
 		int i = 2;
+		// 处于正在申请
+		if (!("正在申请".equals(entrustmentBookState(identifiederCaseConfirmBook.getIdentifieder_case_confirm_book_belong_entrustment_book().trim())))) {
+			return 3;
+		}
 		// 填写鉴定事项确认书
 		identifiederCaseConfirmBook.setXsjsglxt_identifieder_case_confirm_book_id(TeamUtil.getUuid());
 		identifiederCaseConfirmBook.setIdentifieder_case_confirm_book_acceptance_num("待定");
@@ -142,6 +146,10 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	@Override
 	public int saveNotAcceptanceInform(xsjsglxt_not_acceptance_entrustment_inform notAcceptanceEntrustmentInform) {
 		int i = 2;
+		// 处于正在申请
+		if (!("正在申请".equals(entrustmentBookState(notAcceptanceEntrustmentInform.getNot_acceptance_entrustment_inform_belong_entrustment_book().trim())))) {
+			return 3;
+		}
 		notAcceptanceEntrustmentInform.setXsjsglxt_not_acceptance_entrustment_inform_id(TeamUtil.getUuid());
 		notAcceptanceEntrustmentInform.setNot_acceptance_entrustment_inform_num("待定");
 		notAcceptanceEntrustmentInform.setNot_acceptance_entrustment_inform_gmt_create(TeamUtil.getStringSecond());
@@ -206,6 +214,83 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		// 更改委托书状态
 		i = updateEntrustmentBookState(appraisalLetter.getAppraisal_letter_belong_entrustment_book().trim(), "已鉴定");
 		return i;
+	}
+
+	// 更改委托书
+	// 3 传过来的参数有误
+	@Override
+	public int updateTranceCheckBook(xsjsglxt_check_entrustment_book tranceCheckBook) {
+		xsjsglxt_check_entrustment_book xsjsglxt_check_entrustment_book = new xsjsglxt_check_entrustment_book();
+		// 获取原有对象
+		xsjsglxt_check_entrustment_book = inspectionIdentificationDao.getCheckEntrustmentBookById(tranceCheckBook.getXsjsglxt_check_entrustment_book_id());
+		if (xsjsglxt_check_entrustment_book == null)
+			return 3;
+		tranceCheckBook.setCheck_entrustment_book_physical_evidence(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_physical_evidence());
+		tranceCheckBook.setCheck_entrustment_book_num(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num());
+		tranceCheckBook.setCheck_entrustment_book_gmt_modified(TeamUtil.getStringSecond());
+		tranceCheckBook.setCheck_entrustment_book_type(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_type());
+		tranceCheckBook.setCheck_entrustment_book_state(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_state());
+		tranceCheckBook.setCheck_entrustment_book_gmt_create(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_gmt_create());
+		return inspectionIdentificationDao.saveObject(tranceCheckBook);
+	}
+
+	// 更改鉴定事项确认书表
+	@Override
+	public int updateIdentifiederCaseConfirmBook(xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook) {
+		xsjsglxt_identifieder_case_confirm_book xsjsglxt_identifieder_case_confirm_book = new xsjsglxt_identifieder_case_confirm_book();
+		xsjsglxt_identifieder_case_confirm_book = inspectionIdentificationDao
+				.getIdentifiederCaseConfirmBookByOwnId(identifiederCaseConfirmBook.getXsjsglxt_identifieder_case_confirm_book_id());
+		if (xsjsglxt_identifieder_case_confirm_book == null)
+			return 3;
+		identifiederCaseConfirmBook
+				.setIdentifieder_case_confirm_book_belong_entrustment_book(xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_belong_entrustment_book());
+		identifiederCaseConfirmBook.setIdentifieder_case_confirm_book_acceptance_num(xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_num());
+		identifiederCaseConfirmBook.setIdentifieder_case_confirm_book_gmt_create(xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_gmt_create());
+		identifiederCaseConfirmBook.setIdentifieder_case_confirm_book_gmt_modified(TeamUtil.getStringSecond());
+		return inspectionIdentificationDao.saveObject(identifiederCaseConfirmBook);
+	}
+
+	// 不受理委托鉴定告知表
+	@Override
+	public int updateNotAcceptanceInform(xsjsglxt_not_acceptance_entrustment_inform notAcceptanceEntrustmentInform) {
+		xsjsglxt_not_acceptance_entrustment_inform xsjsglxt_not_acceptance_entrustment_inform = new xsjsglxt_not_acceptance_entrustment_inform();
+		xsjsglxt_not_acceptance_entrustment_inform = inspectionIdentificationDao
+				.getNotAcceptanceEntrustmentInformByOwnId(notAcceptanceEntrustmentInform.getXsjsglxt_not_acceptance_entrustment_inform_id());
+		if (xsjsglxt_not_acceptance_entrustment_inform == null)
+			return 3;
+		notAcceptanceEntrustmentInform.setNot_acceptance_entrustment_inform_belong_entrustment_book(
+				xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_belong_entrustment_book());
+		notAcceptanceEntrustmentInform.setNot_acceptance_entrustment_inform_num(xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_num());
+		notAcceptanceEntrustmentInform
+				.setNot_acceptance_entrustment_inform_gmt_create(xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_gmt_create());
+		notAcceptanceEntrustmentInform.setNot_acceptance_entrustment_inform_gmt_modified(TeamUtil.getStringSecond());
+		return inspectionIdentificationDao.saveObject(notAcceptanceEntrustmentInform);
+	}
+
+	// 检验记录表
+	@Override
+	public int updateInspectionRecord(xsjsglxt_inspection_record inspectionRecord) {
+		xsjsglxt_inspection_record xsjsglxt_inspection_record = new xsjsglxt_inspection_record();
+		xsjsglxt_inspection_record = inspectionIdentificationDao.getInspectionRecordByOwnId(inspectionRecord.getXsjsglxt_inspection_record_id());
+		if (xsjsglxt_inspection_record == null)
+			return 3;
+		inspectionRecord.setInspection_belong_entrustment_book(xsjsglxt_inspection_record.getInspection_belong_entrustment_book());
+		inspectionRecord.setInspection_gmt_create(xsjsglxt_inspection_record.getInspection_gmt_create());
+		inspectionRecord.setInspection_gmt_modified(TeamUtil.getStringSecond());
+		return inspectionIdentificationDao.saveObject(inspectionRecord);
+	}
+
+	// 更改鉴定文书
+	@Override
+	public int updateAppraisalLetter(xsjsglxt_appraisal_letter appraisalLetter) {
+		xsjsglxt_appraisal_letter xsjsglxt_appraisal_letter = new xsjsglxt_appraisal_letter();
+		xsjsglxt_appraisal_letter = inspectionIdentificationDao.getAppraisalLetterByOwnId(appraisalLetter.getXsjsglxt_appraisal_letter_id());
+		if (xsjsglxt_appraisal_letter == null)
+			return 3;
+		appraisalLetter.setAppraisal_letter_belong_entrustment_book(xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book());
+		appraisalLetter.setAppraisal_letter_gmt_create(xsjsglxt_appraisal_letter.getAppraisal_letter_gmt_create());
+		appraisalLetter.setAppraisal_letter_gmt_modified(TeamUtil.getStringSecond());
+		return inspectionIdentificationDao.saveObject(appraisalLetter);
 	}
 
 	/**

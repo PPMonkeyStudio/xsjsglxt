@@ -62,7 +62,7 @@ public class testCheck {
 	public void addConfirmBook() {
 		xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook = new xsjsglxt_identifieder_case_confirm_book();
 		identifiederCaseConfirmBook
-				.setIdentifieder_case_confirm_book_belong_entrustment_book("c1edfb16-44b3-4e18-8220-de738469bc87");
+				.setIdentifieder_case_confirm_book_belong_entrustment_book("598b97c2-1cbe-400a-9150-3df76acd8c52");
 		System.out
 				.println(inspectionIdentificationService.saveIdentifiederCaseConfirmBook(identifiederCaseConfirmBook));
 
@@ -73,7 +73,7 @@ public class testCheck {
 	public void addNotAcceptance() {
 		xsjsglxt_not_acceptance_entrustment_inform notAcceptanceEntrustmentInform = new xsjsglxt_not_acceptance_entrustment_inform();
 		notAcceptanceEntrustmentInform
-				.setNot_acceptance_entrustment_inform_belong_entrustment_book("c1edfb16-44b3-4e18-8220-de738469bc87");
+				.setNot_acceptance_entrustment_inform_belong_entrustment_book("598b97c2-1cbe-400a-9150-3df76acd8c52");
 		System.out.println(inspectionIdentificationService.saveNotAcceptanceInform(notAcceptanceEntrustmentInform));
 	}
 
@@ -81,7 +81,7 @@ public class testCheck {
 	@Test
 	public void addInspectionRecord() {
 		xsjsglxt_inspection_record inspection_record = new xsjsglxt_inspection_record();
-		inspection_record.setInspection_belong_entrustment_book("c7da5063-8209-42b4-a12d-8c490075b41d");
+		inspection_record.setInspection_belong_entrustment_book("598b97c2-1cbe-400a-9150-3df76acd8c52");
 		System.out.println(inspectionIdentificationService.saveInspectionRecord(inspection_record));
 	}
 
@@ -89,8 +89,48 @@ public class testCheck {
 	@Test
 	public void addAppraisalLetter() {
 		xsjsglxt_appraisal_letter xsjsglxt_appraisal_letter = new xsjsglxt_appraisal_letter();
-		xsjsglxt_appraisal_letter.setAppraisal_letter_belong_entrustment_book("c7da5063-8209-42b4-a12d-8c490075b41d");
+		xsjsglxt_appraisal_letter.setAppraisal_letter_belong_entrustment_book("598b97c2-1cbe-400a-9150-3df76acd8c52");
 		System.out.println(inspectionIdentificationService.saveAppraisalLetter(xsjsglxt_appraisal_letter));
+	}
+
+	// 更改委托书
+	@Test
+	public void updateTranceCheckBook() {
+		xsjsglxt_check_entrustment_book tranceCheckBook = new xsjsglxt_check_entrustment_book();
+		tranceCheckBook.setXsjsglxt_check_entrustment_book_id("598b97c2-1cbe-400a-9150-3df76acd8c52");
+		System.out.println(inspectionIdentificationService.updateTranceCheckBook(tranceCheckBook));
+	}
+
+	// 更改确认书
+	@Test
+	public void updateIdentifiederCaseConfirmBook() {
+		xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook = new xsjsglxt_identifieder_case_confirm_book();
+		identifiederCaseConfirmBook.setXsjsglxt_identifieder_case_confirm_book_id("5faa0efc-e0ff-4a9e-b0c8-f6ea482fdfad");
+		System.out.println(inspectionIdentificationService.updateIdentifiederCaseConfirmBook(identifiederCaseConfirmBook));
+	}
+
+	// 更改不受理委托鉴定告知表
+	@Test
+	public void updateNotAcceptanceInform() {
+		xsjsglxt_not_acceptance_entrustment_inform notAcceptanceEntrustmentInform = new xsjsglxt_not_acceptance_entrustment_inform();
+		notAcceptanceEntrustmentInform.setXsjsglxt_not_acceptance_entrustment_inform_id("9036e35a-c9f0-4fa3-90f8-3273fa374d76");
+		System.out.println(inspectionIdentificationService.updateNotAcceptanceInform(notAcceptanceEntrustmentInform));
+	}
+
+	// 更改检验记录表
+	@Test
+	public void updateInspectionRecord() {
+		xsjsglxt_inspection_record inspection_record = new xsjsglxt_inspection_record();
+		inspection_record.setXsjsglxt_inspection_record_id("3d69d4aa-e4e2-4b97-95fa-8d5edb72c112");
+		System.out.println(inspectionIdentificationService.updateInspectionRecord(inspection_record));
+	}
+
+	// 更改鉴定文书
+	@Test
+	public void updateAppraisalLetter() {
+		xsjsglxt_appraisal_letter xsjsglxt_appraisal_letter = new xsjsglxt_appraisal_letter();
+		xsjsglxt_appraisal_letter.setXsjsglxt_appraisal_letter_id("7a09b392-78f0-4bcb-b64e-8531bad27ded");
+		System.out.println(inspectionIdentificationService.updateAppraisalLetter(xsjsglxt_appraisal_letter));
 	}
 
 }

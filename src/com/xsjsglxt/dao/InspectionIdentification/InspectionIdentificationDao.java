@@ -33,4 +33,12 @@ public interface InspectionIdentificationDao {
 	public xsjsglxt_inspection_record getInspectionRecordById(String xsjsglxt_check_entrustment_book_id);
 
 	public xsjsglxt_appraisal_letter getAppraisalLetterById(String xsjsglxt_check_entrustment_book_id);
+
+	public com.xsjsglxt.domain.DO.xsjsglxt_identifieder_case_confirm_book getIdentifiederCaseConfirmBookByOwnId(String xsjsglxt_identifieder_case_confirm_book_id);
+
+	public com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform getNotAcceptanceEntrustmentInformByOwnId(String xsjsglxt_not_acceptance_entrustment_inform_id);
+
+	public com.xsjsglxt.domain.DO.xsjsglxt_inspection_record getInspectionRecordByOwnId(String xsjsglxt_inspection_record_id);
+
+	public com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter getAppraisalLetterByOwnId(String xsjsglxt_appraisal_letter_id);
 }
