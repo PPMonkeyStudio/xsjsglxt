@@ -51,8 +51,7 @@
 						</span>
 					</div>
 				</div>
-				<table id="table_EntrustmentBook"
-					class="table table-hover table-bordered"
+				<table id="table_EntrustmentBook" class="table table-hover"
 					style="text-align: center; margin: 20px 0;">
 					<tbody>
 						<tr>
@@ -147,8 +146,23 @@
 	src="<%=basePath%>js/InspectionIdentification/Record_InspectionRecord.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/InspectionIdentification/Issue_AppraisalLetter.js"></script>
+<!---------------------------------------------------------------------------------------->
 <script type="text/javascript"
-	src="<%=basePath%>js/InspectionIdentification/Detail_EntrustmentBook.js"></script>
+	src="<%=basePath%>js/InspectionIdentification/Preview_EntrustmentBook.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/InspectionIdentification/Preview_ConfirmBook.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/InspectionIdentification/Preview_AcceptanceEntrustmentInform.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/InspectionIdentification/Preview_NotAcceptanceEntrustmentInform.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/InspectionIdentification/Preview_InspectionRecord.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/InspectionIdentification/Preview_AppraisalLetter.js"></script>
+<!---------------------------------------------------------------------------------------->
+<script type="text/javascript"
+	src="<%=basePath%>js/InspectionIdentification/Update_EntrustmentBook.js"></script>
+<!---------------------------------------------------------------------------------------->
 <style>
 li a {
 	cursor: pointer;

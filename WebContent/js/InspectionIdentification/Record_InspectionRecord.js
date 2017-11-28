@@ -42,7 +42,7 @@ function Record_InspectionRecord() {
 						+ '<td><textarea class="form-control" style="resize: none;height:100px;" id=""></textarea></td></tr>'
 						+ '<tr><td>备注：</td>'
 						+ '<td><textarea class="form-control" style="resize: none;height:100px;" id=""></textarea></td></tr>'
-						+ '</tbody>' + '</table>',
+						+ '</tbody>' + '</table>' + '<br>' + '<hr>',
 				type : 'blue',
 				columnClass : 'col-md-12',
 				theme : 'modern',

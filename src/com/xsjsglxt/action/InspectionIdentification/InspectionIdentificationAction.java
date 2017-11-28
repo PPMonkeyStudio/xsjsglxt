@@ -123,8 +123,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void addInspectionRecord() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			response.getWriter().write(
-					"" + inspectionIdentificationService.saveInspectionRecord(inspectionRecord));
+			response.getWriter().write("" + inspectionIdentificationService.saveInspectionRecord(inspectionRecord));
 		} catch (IOException e) {
 			System.out.println("填写不受理委托鉴定告知报错");
 			e.printStackTrace();
@@ -135,8 +134,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void addAppraisalLetter() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			response.getWriter().write(
-					"" + inspectionIdentificationService.saveAppraisalLetter(appraisalLetter));
+			response.getWriter().write("" + inspectionIdentificationService.saveAppraisalLetter(appraisalLetter));
 		} catch (IOException e) {
 			System.out.println("填写鉴定文书表报错");
 			e.printStackTrace();

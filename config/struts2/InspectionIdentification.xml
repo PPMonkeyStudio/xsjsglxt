@@ -10,6 +10,8 @@
 			method="{1}">
 			<result name="EntrustmentBookManagement">/WEB-INF/view/InspectionIdentification/EntrustmentBookManagement.jsp
 			</result>
+			<result name="PreviewEntrustmentBook">/WEB-INF/view/InspectionIdentification/Preview_EntrustmentBook.jsp
+			</result>
 		</action>
 	</package>
 </struts>
