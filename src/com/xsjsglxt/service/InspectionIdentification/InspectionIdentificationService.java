@@ -1,5 +1,6 @@
 package com.xsjsglxt.service.InspectionIdentification;
 
+import java.io.File;
 import java.util.List;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter;
@@ -32,11 +33,11 @@ public interface InspectionIdentificationService {
 	public int updateNotAcceptanceInform(xsjsglxt_not_acceptance_entrustment_inform notAcceptanceEntrustmentInform);
 
 	public int updateInspectionRecord(xsjsglxt_inspection_record inspectionRecord);
-	
+
 	public int updateAppraisalLetter(xsjsglxt_appraisal_letter appraisalLetter);
-	
-	
-	
-	
-	
+
+	public File exportTranceCheckBook(String id) throws Exception;
+
+	public File exportIdentifiederCaseConfirmBook(String id) throws Exception;
+
 }

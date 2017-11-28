@@ -1,5 +1,6 @@
 package xsjsglxt;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,7 +62,7 @@ public class testCheck {
 	public void addConfirmBook() {
 		xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook = new xsjsglxt_identifieder_case_confirm_book();
 		identifiederCaseConfirmBook
-				.setIdentifieder_case_confirm_book_belong_entrustment_book("b4b0f331-7d76-4ec7-b586-e19efb243ece");
+				.setIdentifieder_case_confirm_book_belong_entrustment_book("14a289b8-7856-40da-a787-f27277573422");
 		System.out
 				.println(inspectionIdentificationService.saveIdentifiederCaseConfirmBook(identifiederCaseConfirmBook));
 
@@ -131,5 +132,28 @@ public class testCheck {
 		xsjsglxt_appraisal_letter.setXsjsglxt_appraisal_letter_id("7a09b392-78f0-4bcb-b64e-8531bad27ded");
 		System.out.println(inspectionIdentificationService.updateAppraisalLetter(xsjsglxt_appraisal_letter));
 	}
-
+	
+	
+	
+	// 测试导出委托书
+	@Test
+	public void testExport() {
+		try {
+			inspectionIdentificationService.exportTranceCheckBook("14a289b8-7856-40da-a787-f27277573422");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	//导出确认书
+	@Test
+	public void testEEE(){
+		try {
+			inspectionIdentificationService.exportIdentifiederCaseConfirmBook("58a6031e-501b-4c7f-8272-1bf609ddaf5a");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
 }

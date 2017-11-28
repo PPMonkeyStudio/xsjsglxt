@@ -1,7 +1,16 @@
 package com.xsjsglxt.service.impl.InspectionIdentification;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
 import com.xsjsglxt.dao.InspectionIdentification.InspectionIdentificationDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter;
@@ -14,6 +23,7 @@ import com.xsjsglxt.domain.VO.InspectionIdentification.EntrustmentBookManagement
 import com.xsjsglxt.service.InspectionIdentification.InspectionIdentificationService;
 
 import util.TeamUtil;
+import util.XwpfTUtil;
 
 public class InspectionIdentificationServiceImpl implements InspectionIdentificationService {
 	private InspectionIdentificationDao inspectionIdentificationDao;
@@ -331,6 +341,50 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		return inspectionIdentificationDao.saveObject(appraisalLetter);
 	}
 
+	// 导出委托书
+	@Override
+	public File exportTranceCheckBook(String id) throws Exception {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.putAll(mapTranceCheckBook(id));
+		XwpfTUtil xwpfTUtil = new XwpfTUtil();
+		XWPFDocument doc;
+		String fileNameInResource = "F:\\xsjsglxt.docx";
+		InputStream is;
+		is = new FileInputStream(fileNameInResource);
+		doc = new XWPFDocument(is);
+		xwpfTUtil.replaceInPara(doc, params);
+		xwpfTUtil.replaceInTable(doc, params);
+		OutputStream os = new FileOutputStream("F:\\kokokoko.docx");
+		doc.write(os);
+		xwpfTUtil.close(os);
+		xwpfTUtil.close(is);
+		os.flush();
+		os.close();
+		return new File("F:\\kokokoko.docx");
+	}
+
+	// 导出确认书
+	@Override
+	public File exportIdentifiederCaseConfirmBook(String id) throws Exception {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.putAll(mapIdentifiederCaseConfirmBook(id));
+		XwpfTUtil xwpfTUtil = new XwpfTUtil();
+		XWPFDocument doc;
+		String fileNameInResource = "F:\\xsjsglxt.docx";
+		InputStream is;
+		is = new FileInputStream(fileNameInResource);
+		doc = new XWPFDocument(is);
+		xwpfTUtil.replaceInPara(doc, params);
+		xwpfTUtil.replaceInTable(doc, params);
+		OutputStream os = new FileOutputStream("F:\\kokokoko.docx");
+		doc.write(os);
+		xwpfTUtil.close(os);
+		xwpfTUtil.close(is);
+		os.flush();
+		os.close();
+		return new File("F:\\kokokoko.docx");
+	}
+
 	/**
 	 *
 	 * 
@@ -338,6 +392,367 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	 * 
 	 * 
 	 */
+
+	// 鉴定确认书
+	public Map<String, Object> mapIdentifiederCaseConfirmBook(String id) {
+		xsjsglxt_check_entrustment_book xsjsglxt_check_entrustment_book = new xsjsglxt_check_entrustment_book();
+		xsjsglxt_identifieder_case_confirm_book xsjsglxt_identifieder_case_confirm_book = new xsjsglxt_identifieder_case_confirm_book();
+		Map<String, Object> params = new HashMap<String, Object>();
+		xsjsglxt_identifieder_case_confirm_book = inspectionIdentificationDao.getIdentifiederCaseConfirmBookByOwnId(id);
+		if (xsjsglxt_identifieder_case_confirm_book != null) {
+			if (xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_belong_entrustment_book() != null
+					&& xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_belong_entrustment_book().trim().length() > 0) {
+				xsjsglxt_check_entrustment_book = inspectionIdentificationDao
+						.getCheckEntrustmentBookById(xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_belong_entrustment_book().trim());
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit_name() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit_name().trim().length() > 0) {
+					params.put("${q3}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit_name().trim());
+				} else {
+					params.put("${q3}", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim().length() > 0) {
+					params.put("${q4}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
+				} else {
+					params.put("${q4}", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim().length() > 0) {
+					params.put("${q5}", (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4));
+					params.put("${q6}", (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4));
+				} else {
+					params.put("${q5}", "");
+					params.put("${q6}", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name().trim().length() > 0) {
+					params.put("${q7}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name().trim());
+				} else {
+					params.put("${q7}", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name().trim().length() > 0) {
+					params.put("${q10}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name().trim());
+				} else {
+					params.put("${q10}", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_duty() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_duty().trim().length() > 0) {
+					params.put("${q8}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_duty().trim());
+				} else {
+					params.put("${q8}", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_duty() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_duty().trim().length() > 0) {
+					params.put("${q11}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_duty().trim());
+				} else {
+					params.put("${q11}", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_jobcard_number() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_jobcard_number().trim().length() > 0) {
+					params.put("${q9}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_jobcard_number().trim());
+				} else {
+					params.put("${q9}", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_jobcard_number() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_jobcard_number().trim().length() > 0) {
+					params.put("${q12}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_jobcard_number().trim());
+				} else {
+					params.put("${q12}", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_communication_address() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_communication_address().trim().length() > 0) {
+					params.put("${q13}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_communication_address().trim());
+				} else {
+					params.put("${q13}", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_zip_code() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_zip_code().trim().length() > 0) {
+					params.put("${q14}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_zip_code().trim());
+				} else {
+					params.put("${q14}", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_phone() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_phone().trim().length() > 0) {
+					params.put("${q15}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_phone().trim());
+				} else {
+					params.put("${q15}", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_fax_num() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_fax_num().trim().length() > 0) {
+					params.put("${q16}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_fax_num().trim());
+				} else {
+					params.put("${q16}", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim().length() > 0) {
+					params.put("${q17}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim());
+				} else {
+					params.put("${q17}", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num().trim().length() > 0) {
+					params.put("${q18}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num().trim());
+				} else {
+					params.put("${q18}", "");
+				}
+				if ("痕迹检验".equals(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_type())) {
+					params.put("${q19}", "/");
+					params.put("${q20}", "/");
+					params.put("${q21}", "/");
+					params.put("${q22}", "/");
+					params.put("${q23}", "/");
+					params.put("${q24}", "/");
+				} else {
+					if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name() != null
+							&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name().trim().length() > 0) {
+						params.put("${q19}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name().trim());
+					} else {
+						params.put("${q19}", "");
+					}
+					if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_sex() != null
+							&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_sex().trim().length() > 0) {
+						params.put("${q20}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_sex().trim());
+					} else {
+						params.put("${q20}", "");
+					}
+					if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_age() != null
+							&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_age().trim().length() > 0) {
+						params.put("${q21}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_age().trim());
+					} else {
+						params.put("${q21}", "");
+					}
+					if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_phone() != null
+							&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_phone().trim().length() > 0) {
+						params.put("${q22}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_phone().trim());
+					} else {
+						params.put("${q22}", "");
+					}
+					if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
+							&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim().length() > 0) {
+						params.put("${q23}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
+					} else {
+						params.put("${q23}", "");
+					}
+					if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_address() != null
+							&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_address().trim().length() > 0) {
+						params.put("${q24}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_address().trim());
+					} else {
+						params.put("${q24}", "");
+					}
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation().trim().length() > 0) {
+					params.put("${q25}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation().trim());
+				} else {
+					params.put("${q25}", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation().trim().length() > 0) {
+					params.put("${q26}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation().trim());
+				} else {
+					params.put("${q26}", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim().length() > 0) {
+					params.put("${q27}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim());
+				} else {
+					params.put("${q27}", "");
+				}
+			}
+			if (xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_human_name() != null
+					&& xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_human_name().trim().length() > 0) {
+				params.put("${q28}", xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_human_name().trim());
+			} else {
+				params.put("${q28}", "");
+			}
+		}
+		return params;
+	}
+
+	// 鉴定委托书Map
+	public Map<String, Object> mapTranceCheckBook(String id) {
+		xsjsglxt_check_entrustment_book xsjsglxt_check_entrustment_book = new xsjsglxt_check_entrustment_book();
+		Map<String, Object> params = new HashMap<String, Object>();
+		// 根据ID获取委托书
+		xsjsglxt_check_entrustment_book = inspectionIdentificationDao.getCheckEntrustmentBookById(id);
+		if (xsjsglxt_check_entrustment_book != null) {
+			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num() != null && xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim().length() > 0) {
+				params.put("${x1}", (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4));
+				params.put("${x2}", (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4));
+			} else {
+				params.put("${x1}", "");
+				params.put("${x2}", "");
+			}
+			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
+					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim().length() > 0) {
+				params.put("${x3}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
+			} else {
+				params.put("${x3}", "");
+			}
+			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time() != null
+					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim().length() > 0) {
+				params.put("${x4}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim());
+			} else {
+				params.put("${x4}", "");
+			}
+			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name() != null
+					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name().trim().length() > 0) {
+				params.put("${x5}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name().trim());
+			} else {
+				params.put("${x5}", "");
+			}
+			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name() != null
+					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name().trim().length() > 0) {
+				params.put("${x8}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name().trim());
+			} else {
+				params.put("${x8}", "");
+			}
+			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_duty() != null
+					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_duty().trim().length() > 0) {
+				params.put("${x6}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_duty().trim());
+			} else {
+				params.put("${x6}", "");
+			}
+			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_duty() != null
+					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_duty().trim().length() > 0) {
+				params.put("${x9}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_duty().trim());
+			} else {
+				params.put("${x9}", "");
+			}
+			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_jobcard_number() != null
+					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_jobcard_number().trim().length() > 0) {
+				params.put("${x7}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_jobcard_number().trim());
+			} else {
+				params.put("${x7}", "");
+			}
+			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_jobcard_number() != null
+					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_jobcard_number().trim().length() > 0) {
+				params.put("${x10}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_jobcard_number().trim());
+			} else {
+				params.put("${x10}", "");
+			}
+			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_communication_address() != null
+					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_communication_address().trim().length() > 0) {
+				params.put("${x11}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_communication_address().trim());
+			} else {
+				params.put("${x11}", "");
+			}
+			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_zip_code() != null
+					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_zip_code().trim().length() > 0) {
+				params.put("${x12}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_zip_code().trim());
+			} else {
+				params.put("${x12}", "");
+			}
+			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_phone() != null
+					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_phone().trim().length() > 0) {
+				params.put("${x13}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_phone().trim());
+			} else {
+				params.put("${x13}", "");
+			}
+			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_fax_num() != null
+					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_fax_num().trim().length() > 0) {
+				params.put("${x14}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_fax_num().trim());
+			} else {
+				params.put("${x14}", "");
+			}
+			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit_name() != null
+					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit_name().trim().length() > 0) {
+				params.put("${x15}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit_name().trim());
+			} else {
+				params.put("${x15}", "");
+			}
+			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name() != null
+					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim().length() > 0) {
+				params.put("${x16}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim());
+			} else {
+				params.put("${x16}", "");
+			}
+			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num() != null
+					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num().trim().length() > 0) {
+				params.put("${x17}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num().trim());
+			} else {
+				params.put("${x17}", "");
+			}
+			if ("痕迹检验".equals(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_type())) {
+				params.put("${x18}", "/");
+				params.put("${x19}", "/");
+				params.put("${x20}", "/");
+				params.put("${x21}", "/");
+				params.put("${x22}", "/");
+				params.put("${x23}", "/");
+			} else {
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name().trim().length() > 0) {
+					params.put("${x18}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name().trim());
+				} else {
+					params.put("${x18}", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_sex() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_sex().trim().length() > 0) {
+					params.put("${x19}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_sex().trim());
+				} else {
+					params.put("${x19}", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_age() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_age().trim().length() > 0) {
+					params.put("${x20}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_age().trim());
+				} else {
+					params.put("${x20}", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_phone() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_phone().trim().length() > 0) {
+					params.put("${x21}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_phone().trim());
+				} else {
+					params.put("${x21}", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim().length() > 0) {
+					params.put("${x22}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
+				} else {
+					params.put("${x22}", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_address() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_address().trim().length() > 0) {
+					params.put("${x23}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_address().trim());
+				} else {
+					params.put("${x23}", "");
+				}
+			}
+			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation() != null
+					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation().trim().length() > 0) {
+				params.put("${x24}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation().trim());
+			} else {
+				params.put("${x24}", "");
+			}
+			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_old_entrustment_situation() != null
+					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_old_entrustment_situation().trim().length() > 0) {
+				params.put("${x25}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_old_entrustment_situation().trim());
+			} else {
+				params.put("${x25}", "");
+			}
+			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation() != null
+					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation().trim().length() > 0) {
+				params.put("${x26}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation().trim());
+			} else {
+				params.put("${x26}", "");
+			}
+			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request() != null
+					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim().length() > 0) {
+				params.put("${x27}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim());
+			} else {
+				params.put("${x27}", "");
+			}
+			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_responsible_person() != null
+					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_responsible_person().trim().length() > 0) {
+				params.put("${x28}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_responsible_person().trim());
+			} else {
+				params.put("${x28}", "");
+			}
+		}
+		return params;
+	}
+
 	// 获取委托书状态
 	public String entrustmentBookState(String id) {
 		xsjsglxt_check_entrustment_book checkEntrustmentBook = new xsjsglxt_check_entrustment_book();
