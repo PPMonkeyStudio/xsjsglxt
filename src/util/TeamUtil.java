@@ -63,7 +63,19 @@ public class TeamUtil {
 		}
 
 	}
+	public static String yearAndMonth() {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMM");
+		Date secondDate = new Date();
+		String date = formatter.format(secondDate);
+		try {
+			secondDate = formatter.parse(date);
+			return date;
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return "0000-00";
+		}
 
+	}
 	public static String getDay_Of_Week(Date date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("E");
 		String week = sdf.format(date);
@@ -168,7 +180,7 @@ public class TeamUtil {
 		String year = now.get(Calendar.YEAR) + "";
 		return year;
 	}
-
+//获取当前年月
 	// 两个整数相除求百分数
 	public static String getPercent(int a, int b) {
 		if (a == 0 && b > 0) {

@@ -2,6 +2,7 @@ package com.xsjsglxt.action.Case;
 
 import java.io.IOException;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,11 +12,13 @@ import org.apache.struts2.interceptor.ServletResponseAware;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionSupport;
+import com.xsjsglxt.dao.Case.SenceDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_briefdetails;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone;
+import com.xsjsglxt.domain.DO.xsjsglxt_picture;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
 import com.xsjsglxt.domain.VO.Case.page_list_senceInformationVO;
 import com.xsjsglxt.service.Case.SenceService;
@@ -27,6 +30,7 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	private xsjsglxt_briefdetails briefdetails;
 	private xsjsglxt_lost lost;
 	private xsjsglxt_lost_mobilephone lost_mobilephone;
+	private xsjsglxt_picture picture ;
 	private xsjsglxt_lost_computer lost_computer;
 	private HttpServletResponse http_response;
 
@@ -53,12 +57,25 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	public void saveSenceInformation() {
 
 		try {
-			senceService.save(sence);
 			senceService.save(Case);
+			
+			sence.setSnece_case(Case.getXsjsglxt_case_id());
+			senceService.save(sence);
+			
+			briefdetails.setBriefdetails_case(Case.getXsjsglxt_case_id());
 			senceService.save(briefdetails);
+			
+			lost.setLost_case(Case.getXsjsglxt_case_id());
 			senceService.save(lost);
+			
+			lost_mobilephone.setLost_mobilephone_case(Case.getXsjsglxt_case_id());
 			senceService.save(lost_mobilephone);
+			
+			lost_computer.setLost_computer_case(Case.getXsjsglxt_case_id());
 			senceService.save(lost_computer);
+			
+			picture.setPicture_case(Case.getXsjsglxt_case_id());
+			senceService.save(picture);
 			http_response.setContentType("text/html;charset=utf-8");
 			http_response.getWriter().write("success");
 		} catch (Exception e) {
@@ -104,6 +121,9 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 		http_response.getWriter().write(gson.toJson(page_list_senceInformation));
 
 	}
+
+
+
 
 	public SenceService getSenceService() {
 		return senceService;
@@ -188,5 +208,5 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	public void setHttp_request(HttpServletRequest http_request) {
 		this.http_request = http_request;
 	}
-
+	
 }

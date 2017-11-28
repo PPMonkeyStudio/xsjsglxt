@@ -5,7 +5,7 @@ import java.util.List;
 import com.xsjsglxt.domain.DTO.Case.SenceInformationDTO;
 
 public class page_list_senceInformationVO {
-	// 当前页
+	    // 当前页
 		private int pageIndex = 1;
 	    //总记录数
 		private int totalRecords = 0;
