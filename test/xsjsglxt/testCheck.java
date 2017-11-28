@@ -51,8 +51,7 @@ public class testCheck {
 	@Test
 	public void deleteTest() {
 		List<String> listtt = new ArrayList<>();
-		listtt.add("8fbd9a0c-6aeb-431a-a5ef-dc541535ed26");
-		listtt.add("2bc8bcad-5849-474b-9be2-a105c3f7c519");
+		listtt.add("5562e23a-dc66-4bed-9522-6210fdfcc60a");
 		int i = inspectionIdentificationService.deleteListCheckEntrustmentBook(listtt);
 		System.out.println(i);
 	}
@@ -62,7 +61,7 @@ public class testCheck {
 	public void addConfirmBook() {
 		xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook = new xsjsglxt_identifieder_case_confirm_book();
 		identifiederCaseConfirmBook
-				.setIdentifieder_case_confirm_book_belong_entrustment_book("598b97c2-1cbe-400a-9150-3df76acd8c52");
+				.setIdentifieder_case_confirm_book_belong_entrustment_book("b4b0f331-7d76-4ec7-b586-e19efb243ece");
 		System.out
 				.println(inspectionIdentificationService.saveIdentifiederCaseConfirmBook(identifiederCaseConfirmBook));
 
@@ -73,7 +72,7 @@ public class testCheck {
 	public void addNotAcceptance() {
 		xsjsglxt_not_acceptance_entrustment_inform notAcceptanceEntrustmentInform = new xsjsglxt_not_acceptance_entrustment_inform();
 		notAcceptanceEntrustmentInform
-				.setNot_acceptance_entrustment_inform_belong_entrustment_book("598b97c2-1cbe-400a-9150-3df76acd8c52");
+				.setNot_acceptance_entrustment_inform_belong_entrustment_book("5562e23a-dc66-4bed-9522-6210fdfcc60a");
 		System.out.println(inspectionIdentificationService.saveNotAcceptanceInform(notAcceptanceEntrustmentInform));
 	}
 
@@ -81,7 +80,7 @@ public class testCheck {
 	@Test
 	public void addInspectionRecord() {
 		xsjsglxt_inspection_record inspection_record = new xsjsglxt_inspection_record();
-		inspection_record.setInspection_belong_entrustment_book("598b97c2-1cbe-400a-9150-3df76acd8c52");
+		inspection_record.setInspection_belong_entrustment_book("b4b0f331-7d76-4ec7-b586-e19efb243ece");
 		System.out.println(inspectionIdentificationService.saveInspectionRecord(inspection_record));
 	}
 
@@ -89,7 +88,7 @@ public class testCheck {
 	@Test
 	public void addAppraisalLetter() {
 		xsjsglxt_appraisal_letter xsjsglxt_appraisal_letter = new xsjsglxt_appraisal_letter();
-		xsjsglxt_appraisal_letter.setAppraisal_letter_belong_entrustment_book("598b97c2-1cbe-400a-9150-3df76acd8c52");
+		xsjsglxt_appraisal_letter.setAppraisal_letter_belong_entrustment_book("b4b0f331-7d76-4ec7-b586-e19efb243ece");
 		System.out.println(inspectionIdentificationService.saveAppraisalLetter(xsjsglxt_appraisal_letter));
 	}
 

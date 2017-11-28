@@ -35,4 +35,8 @@ public interface InspectionIdentificationService {
 	
 	public int updateAppraisalLetter(xsjsglxt_appraisal_letter appraisalLetter);
 	
+	
+	
+	
+	
 }

@@ -172,6 +172,66 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		return i;
 	}
 
+	@Override
+	public int deleteIdentifiederCaseConfirmBookId(String xsjsglxt_identifieder_case_confirm_book_id) {
+		int i = 1;
+		String hql = "delete from xsjsglxt_identifieder_case_confirm_book where xsjsglxt_identifieder_case_confirm_book_id='"
+				+ xsjsglxt_identifieder_case_confirm_book_id + "'";
+		try {
+			Query query = getSession().createQuery(hql);
+			query.executeUpdate();
+		} catch (HibernateException e) {
+			i = 2;
+			e.printStackTrace();
+		}
+		return i;
+	}
+
+	@Override
+	public int deleteNotAcceptanceEntrusmentInformById(String xsjsglxt_not_acceptance_entrustment_inform_id) {
+		int i = 1;
+		String hql = "delete from xsjsglxt_not_acceptance_entrustment_inform where xsjsglxt_not_acceptance_entrustment_inform_id='"
+				+ xsjsglxt_not_acceptance_entrustment_inform_id + "'";
+		try {
+			Query query = getSession().createQuery(hql);
+			query.executeUpdate();
+		} catch (HibernateException e) {
+			i = 2;
+			e.printStackTrace();
+		}
+		return i;
+	}
+
+	@Override
+	public int deleteInsoectionRecordById(String xsjsglxt_inspection_record_id) {
+		int i = 1;
+		String hql = "delete from xsjsglxt_inspection_record where xsjsglxt_inspection_record_id='"
+				+ xsjsglxt_inspection_record_id + "'";
+		try {
+			Query query = getSession().createQuery(hql);
+			query.executeUpdate();
+		} catch (HibernateException e) {
+			i = 2;
+			e.printStackTrace();
+		}
+		return i;
+	}
+
+	@Override
+	public int deleteAppraisalLetter(String xsjsglxt_appraisal_letter_id) {
+		int i = 1;
+		String hql = "delete from xsjsglxt_appraisal_letter where xsjsglxt_appraisal_letter_id='"
+				+ xsjsglxt_appraisal_letter_id + "'";
+		try {
+			Query query = getSession().createQuery(hql);
+			query.executeUpdate();
+		} catch (HibernateException e) {
+			i = 2;
+			e.printStackTrace();
+		}
+		return i;
+	}
+
 	// 根据id获取委托书
 	@Override
 	public xsjsglxt_check_entrustment_book getCheckEntrustmentBookById(

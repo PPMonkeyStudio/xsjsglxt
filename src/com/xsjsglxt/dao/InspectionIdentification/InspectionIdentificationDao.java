@@ -41,4 +41,13 @@ public interface InspectionIdentificationDao {
 	public com.xsjsglxt.domain.DO.xsjsglxt_inspection_record getInspectionRecordByOwnId(String xsjsglxt_inspection_record_id);
 
 	public com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter getAppraisalLetterByOwnId(String xsjsglxt_appraisal_letter_id);
+
+	public int deleteIdentifiederCaseConfirmBookId(String xsjsglxt_identifieder_case_confirm_book_id);
+
+	public int deleteNotAcceptanceEntrusmentInformById(String xsjsglxt_not_acceptance_entrustment_inform_id);
+
+	public int deleteInsoectionRecordById(String xsjsglxt_inspection_record_id);
+
+	public int deleteAppraisalLetter(String xsjsglxt_appraisal_letter_id);
+
 }

@@ -105,7 +105,45 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	@Override
 	public int deleteListCheckEntrustmentBook(List<String> listCheckEntrustmentBookId) {
 		int i = 0;
+		xsjsglxt_not_acceptance_entrustment_inform xsjsglxt_not_acceptance_entrustment_inform = null;
+		xsjsglxt_inspection_record xsjsglxt_inspection_record = null;
+		xsjsglxt_appraisal_letter xsjsglxt_appraisal_letter = null;
+		xsjsglxt_identifieder_case_confirm_book xsjsglxt_identifieder_case_confirm_book = null;
 		for (String checkEntrustmentBookId : listCheckEntrustmentBookId) {
+			xsjsglxt_identifieder_case_confirm_book = new xsjsglxt_identifieder_case_confirm_book();
+			xsjsglxt_inspection_record = new xsjsglxt_inspection_record();
+			xsjsglxt_appraisal_letter = new xsjsglxt_appraisal_letter();
+			xsjsglxt_not_acceptance_entrustment_inform = new xsjsglxt_not_acceptance_entrustment_inform();
+			// 根据ID删除确认书
+			xsjsglxt_identifieder_case_confirm_book = inspectionIdentificationDao.getIdentifiederCaseConfirmBookById(checkEntrustmentBookId);
+			if (xsjsglxt_identifieder_case_confirm_book != null) {
+				i = inspectionIdentificationDao.deleteIdentifiederCaseConfirmBookId(xsjsglxt_identifieder_case_confirm_book.getXsjsglxt_identifieder_case_confirm_book_id());
+				if (i == 2)
+					return -1;
+			}
+			// 根据ID删除不受理书
+			xsjsglxt_not_acceptance_entrustment_inform = inspectionIdentificationDao.getNotAcceptanceEntrustmentInform(checkEntrustmentBookId);
+			if (xsjsglxt_not_acceptance_entrustment_inform != null) {
+				i = inspectionIdentificationDao
+						.deleteNotAcceptanceEntrusmentInformById(xsjsglxt_not_acceptance_entrustment_inform.getXsjsglxt_not_acceptance_entrustment_inform_id());
+				if (i == 2)
+					return -1;
+			}
+			// 根据ID删除记录表
+			xsjsglxt_inspection_record = inspectionIdentificationDao.getInspectionRecordById(checkEntrustmentBookId);
+			if (xsjsglxt_inspection_record != null) {
+				i = inspectionIdentificationDao.deleteInsoectionRecordById(xsjsglxt_inspection_record.getXsjsglxt_inspection_record_id());
+				if (i == 2)
+					return -1;
+			}
+			// 删除鉴定文书
+			xsjsglxt_appraisal_letter = inspectionIdentificationDao.getAppraisalLetterById(checkEntrustmentBookId);
+			if (xsjsglxt_inspection_record != null) {
+				i = inspectionIdentificationDao.deleteAppraisalLetter(xsjsglxt_appraisal_letter.getXsjsglxt_appraisal_letter_id());
+				if (i == 2)
+					return -1;
+			}
+			// 删除委托书
 			i = inspectionIdentificationDao.deleteCheckEntrustmentBookById(checkEntrustmentBookId);
 			if (i == 2) {
 				return -1;
