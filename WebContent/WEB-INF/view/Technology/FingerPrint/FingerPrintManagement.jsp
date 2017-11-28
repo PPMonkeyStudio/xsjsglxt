@@ -15,6 +15,8 @@
 <script type="text/javascript"
 	src="<%=basePath%>js/Technology/FingerPrint/CreateFingerPrint.js"></script>
 	<script type="text/javascript"
+	src="<%=basePath%>js/Technology/FingerPrint/FingerPrintDetails.js"></script>
+	<script type="text/javascript"
 	src="<%=basePath%>js/Technology/FingerPrint/DeleteFingerPrint.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/Technology/FingerPrint/List_FingerPrint_By_PageAndSearch.js"></script>
@@ -55,7 +57,7 @@
 						</span>
 					</div>
 				</div>
-				<table id="table_fingerPrint" class="table table-hover"
+				<table id="table_fingerPrint" class="table table-hover table-bordered"
 					style="text-align: center; margin: 20px 0;">
 					<tbody>
 						<tr>
@@ -64,10 +66,8 @@
 							<th>性别</th>
 							<th>出生日期</th>
 							<th>身份证号</th>
+							<th>住址</th>
 							<th>违法事实</th>
-							<th>建档单位</th>
-							<th>建档人</th>
-							<th>建档时间</th>
 							<th>操作</th>
 							<th><label class="fancy-checkbox"> <input
 									id="checkbox_all_select" type="checkbox" onclick="all_select()">
@@ -123,7 +123,7 @@
 </body>
 <link rel="stylesheet" href="<%=basePath%>css/square/blue.css" />
 <script type="text/javascript" src="<%=basePath%>js/icheck.js"></script>
-
+<script type="text/javascript" src="<%=basePath%>js/Input_Select.js"></script>
 <script type="text/javascript">
 List_FingerPrint_By_PageAndSearch(1);
 </script>

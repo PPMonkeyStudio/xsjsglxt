@@ -11,18 +11,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!---------------------------------------------------------------------------------------------------->
-<!---------------------------------------------------------------------------------------------------->
 <script type="text/javascript"
-	src="<%=basePath%>js/SkillManagement/CompareFingerPrintManagement/CreateDNA.js"></script>
+	src="<%=basePath%>js/Technology/ContrastFingerPrint/CreateContrastFingerPrint.js"></script>
 <script type="text/javascript"
-	src="<%=basePath%>js/SkillManagement/CompareFingerPrintManagement/List_DNA_By_PageAndSearch.js"></script>
-<!---------------------------------------------------------------------------------------------------->
+	src="<%=basePath%>js/Technology/ContrastFingerPrint/ContrastFingerPrintDetails.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/Technology/ContrastFingerPrint/DeleteContrastFingerPrint.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/Technology/ContrastFingerPrint/List_ContrastFingerPrint_By_PageAndSearch.js"></script>
 <!---------------------------------------------------------------------------------------------------->
 <title>技术管理 > 比中指纹</title>
 </head>
 <body>
-	<s:action name="User_navbar" namespace="/user"
-		executeResult="true" />
+	<s:action name="User_navbar" namespace="/user" executeResult="true" />
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
@@ -40,19 +41,20 @@
 				<div style="height: 34px;">
 
 					<div style="width: 500px; float: left;">
-						<button class="btn btn-default" onclick="CreateDNA()">
+						<button class="btn btn-default" onclick="CreateContrastFingerPrint()">
 							<i class="fa fa-plus-square"></i> 新增比中指纹
 						</button>
 
 					</div>
 					<!-- 检索 -->
 					<div class="input-group" style="width: 300px; float: right;">
-						<input id="input_DNASearchText" class="form-control" oninput="List_DNA_By_PageAndSearch(1)" type="text">
-						<span class="input-group-addon"> <i class="fa fa-search"></i>
+						<input id="input_ContrastFingerPrintSearchText" class="form-control"
+							oninput="List_ContrastFingerPrint_By_PageAndSearch(1)" type="text"> <span
+							class="input-group-addon"> <i class="fa fa-search"></i>
 						</span>
 					</div>
 				</div>
-				<table id="table_DNA" class="table table-hover table-bordered"
+				<table id="table_ContrastFingerPrint" class="table table-hover table-bordered"
 					style="text-align: center; margin: 20px 0;">
 					<tbody>
 						<tr>
@@ -61,11 +63,8 @@
 							<th>性别</th>
 							<th>出生日期</th>
 							<th>身份证号</th>
+							<th>住址</th>
 							<th>违法事实</th>
-							<th>建档单位</th>
-							<th>建档人</th>
-							<th>建档时间</th>
-							<th>交档时间</th>
 							<th>操作</th>
 							<th><label class="fancy-checkbox"> <input
 									id="checkbox_all_select" type="checkbox" onclick="all_select()">
@@ -84,7 +83,7 @@
 
 				<div style="height: 34px; margin: 0 0 20px 0;">
 
-					<button class="btn btn-danger" onclick="Delete_Student()"
+					<button class="btn btn-danger" onclick="DeleteDNA()"
 						style="float: right; margin: 0 10px;">
 						<i class="fa fa-trash-o"></i> 删除所选
 					</button>
@@ -113,13 +112,17 @@
 		<!---------------------------------------------------------------------------------------------------->
 		<!---------------------------------------------------------------------------------------------------->
 	</div>
-	
+
 	</div>
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 </body>
-<script>
-	
+<link rel="stylesheet" href="<%=basePath%>css/square/blue.css" />
+<script type="text/javascript" src="<%=basePath%>js/icheck.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/Input_Select.js"></script>
+
+<script type="text/javascript">
+	List_DNA_By_PageAndSearch(1);
 </script>
 </html>
