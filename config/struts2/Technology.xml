@@ -3,6 +3,7 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
+  
 	<package name="DNAManagement" namespace="/DNA"
 		extends="struts-default">
 		<action name="DNAManagement_*" class="com.xsjsglxt.action.Technology.DNAAction"
@@ -11,6 +12,7 @@
 			</result>
 		</action>
 	</package>
+  
 	<package name="ContrastFingerPrintManagement" namespace="/ContrastFingerPrint"
 		extends="struts-default">
 		<action name="ContrastFingerPrintManagement_*" class="com.xsjsglxt.action.Technology.ContrastFingerPrintAction"
@@ -19,6 +21,7 @@
 			</result>
 		</action>
 	</package>
+
 	
 	<package name="FingerPrintManagement" namespace="/FingerPrint"
 		extends="struts-default">
