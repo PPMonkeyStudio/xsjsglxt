@@ -16,6 +16,7 @@ public class xsjsglxt_check_entrustment_book {
 	private String check_entrustment_book_fax_num;// 传真号码
 	private String check_entrustment_book_entrustmentor_name;// 被鉴定人姓名
 	private String check_entrustment_book_entrustmentor_sex;// 被鉴定人性别
+	private String check_entrustment_book_entrustmentor_age;// 被鉴定人年龄
 	private String check_entrustment_book_entrustmentor_phone;// 被鉴定人电话
 	private String check_entrustment_book_entrustmentor_unit;// 被鉴定人单位
 	private String check_entrustment_book_entrustmentor_address;// 被鉴定人现住址
@@ -37,38 +38,26 @@ public class xsjsglxt_check_entrustment_book {
 
 	@Override
 	public String toString() {
-		return "xsjsglxt_check_entrustment_book [xsjsglxt_check_entrustment_book_id="
-				+ xsjsglxt_check_entrustment_book_id + ", check_entrustment_book_physical_evidence="
-				+ check_entrustment_book_physical_evidence + ", check_entrustment_book_num="
-				+ check_entrustment_book_num + ", check_entrustment_book_entrustment_unit="
-				+ check_entrustment_book_entrustment_unit + ", check_entrustment_book_inspectors1_name="
-				+ check_entrustment_book_inspectors1_name + ", check_entrustment_book_inspectors2_name="
-				+ check_entrustment_book_inspectors2_name + ", check_entrustment_book_inspectors1_duty="
-				+ check_entrustment_book_inspectors1_duty + ", check_entrustment_book_inspectors2_duty="
-				+ check_entrustment_book_inspectors2_duty + ", check_entrustment_book_inspectors1_jobcard_number="
-				+ check_entrustment_book_inspectors1_jobcard_number
-				+ ", check_entrustment_book_inspectors2_jobcard_number="
-				+ check_entrustment_book_inspectors2_jobcard_number + ", check_entrustment_book_phone="
-				+ check_entrustment_book_phone + ", check_entrustment_book_fax_num=" + check_entrustment_book_fax_num
-				+ ", check_entrustment_book_entrustmentor_name=" + check_entrustment_book_entrustmentor_name
-				+ ", check_entrustment_book_entrustmentor_sex=" + check_entrustment_book_entrustmentor_sex
-				+ ", check_entrustment_book_entrustmentor_phone=" + check_entrustment_book_entrustmentor_phone
-				+ ", check_entrustment_book_entrustmentor_unit=" + check_entrustment_book_entrustmentor_unit
-				+ ", check_entrustment_book_entrustmentor_address=" + check_entrustment_book_entrustmentor_address
-				+ ", check_entrustment_book_inspect_time=" + check_entrustment_book_inspect_time
-				+ ", check_entrustment_book_communication_address=" + check_entrustment_book_communication_address
-				+ ", check_entrustment_book_zip_code=" + check_entrustment_book_zip_code
-				+ ", check_entrustment_book_entrustment_unit_name=" + check_entrustment_book_entrustment_unit_name
-				+ ", check_entrustment_book_case_num=" + check_entrustment_book_case_num
-				+ ", check_entrustment_book_case_name=" + check_entrustment_book_case_name
-				+ ", check_entrustment_book_simple_case_situation=" + check_entrustment_book_simple_case_situation
-				+ ", check_entrustment_book_old_entrustment_situation="
-				+ check_entrustment_book_old_entrustment_situation + ", check_entrustment_book_entrustment_request="
-				+ check_entrustment_book_entrustment_request + ", check_entrustment_book_sample_situation="
-				+ check_entrustment_book_sample_situation + ", check_entrustment_book_responsible_person="
-				+ check_entrustment_book_responsible_person + ", check_entrustment_book_type="
-				+ check_entrustment_book_type + ", check_entrustment_book_state=" + check_entrustment_book_state
-				+ ", check_entrustment_book_gmt_create=" + check_entrustment_book_gmt_create
+		return "xsjsglxt_check_entrustment_book [xsjsglxt_check_entrustment_book_id=" + xsjsglxt_check_entrustment_book_id + ", check_entrustment_book_physical_evidence="
+				+ check_entrustment_book_physical_evidence + ", check_entrustment_book_num=" + check_entrustment_book_num + ", check_entrustment_book_entrustment_unit="
+				+ check_entrustment_book_entrustment_unit + ", check_entrustment_book_inspectors1_name=" + check_entrustment_book_inspectors1_name
+				+ ", check_entrustment_book_inspectors2_name=" + check_entrustment_book_inspectors2_name + ", check_entrustment_book_inspectors1_duty="
+				+ check_entrustment_book_inspectors1_duty + ", check_entrustment_book_inspectors2_duty=" + check_entrustment_book_inspectors2_duty
+				+ ", check_entrustment_book_inspectors1_jobcard_number=" + check_entrustment_book_inspectors1_jobcard_number
+				+ ", check_entrustment_book_inspectors2_jobcard_number=" + check_entrustment_book_inspectors2_jobcard_number + ", check_entrustment_book_phone="
+				+ check_entrustment_book_phone + ", check_entrustment_book_fax_num=" + check_entrustment_book_fax_num + ", check_entrustment_book_entrustmentor_name="
+				+ check_entrustment_book_entrustmentor_name + ", check_entrustment_book_entrustmentor_sex=" + check_entrustment_book_entrustmentor_sex
+				+ ", check_entrustment_book_entrustmentor_age=" + check_entrustment_book_entrustmentor_age + ", check_entrustment_book_entrustmentor_phone="
+				+ check_entrustment_book_entrustmentor_phone + ", check_entrustment_book_entrustmentor_unit=" + check_entrustment_book_entrustmentor_unit
+				+ ", check_entrustment_book_entrustmentor_address=" + check_entrustment_book_entrustmentor_address + ", check_entrustment_book_inspect_time="
+				+ check_entrustment_book_inspect_time + ", check_entrustment_book_communication_address=" + check_entrustment_book_communication_address
+				+ ", check_entrustment_book_zip_code=" + check_entrustment_book_zip_code + ", check_entrustment_book_entrustment_unit_name="
+				+ check_entrustment_book_entrustment_unit_name + ", check_entrustment_book_case_num=" + check_entrustment_book_case_num + ", check_entrustment_book_case_name="
+				+ check_entrustment_book_case_name + ", check_entrustment_book_simple_case_situation=" + check_entrustment_book_simple_case_situation
+				+ ", check_entrustment_book_old_entrustment_situation=" + check_entrustment_book_old_entrustment_situation + ", check_entrustment_book_entrustment_request="
+				+ check_entrustment_book_entrustment_request + ", check_entrustment_book_sample_situation=" + check_entrustment_book_sample_situation
+				+ ", check_entrustment_book_responsible_person=" + check_entrustment_book_responsible_person + ", check_entrustment_book_type=" + check_entrustment_book_type
+				+ ", check_entrustment_book_state=" + check_entrustment_book_state + ", check_entrustment_book_gmt_create=" + check_entrustment_book_gmt_create
 				+ ", check_entrustment_book_gmt_modified=" + check_entrustment_book_gmt_modified + "]";
 	}
 
@@ -126,6 +115,10 @@ public class xsjsglxt_check_entrustment_book {
 
 	public String getCheck_entrustment_book_entrustmentor_sex() {
 		return check_entrustment_book_entrustmentor_sex;
+	}
+
+	public String getCheck_entrustment_book_entrustmentor_age() {
+		return check_entrustment_book_entrustmentor_age;
 	}
 
 	public String getCheck_entrustment_book_entrustmentor_phone() {
@@ -232,13 +225,11 @@ public class xsjsglxt_check_entrustment_book {
 		this.check_entrustment_book_inspectors2_duty = check_entrustment_book_inspectors2_duty;
 	}
 
-	public void setCheck_entrustment_book_inspectors1_jobcard_number(
-			String check_entrustment_book_inspectors1_jobcard_number) {
+	public void setCheck_entrustment_book_inspectors1_jobcard_number(String check_entrustment_book_inspectors1_jobcard_number) {
 		this.check_entrustment_book_inspectors1_jobcard_number = check_entrustment_book_inspectors1_jobcard_number;
 	}
 
-	public void setCheck_entrustment_book_inspectors2_jobcard_number(
-			String check_entrustment_book_inspectors2_jobcard_number) {
+	public void setCheck_entrustment_book_inspectors2_jobcard_number(String check_entrustment_book_inspectors2_jobcard_number) {
 		this.check_entrustment_book_inspectors2_jobcard_number = check_entrustment_book_inspectors2_jobcard_number;
 	}
 
@@ -256,6 +247,10 @@ public class xsjsglxt_check_entrustment_book {
 
 	public void setCheck_entrustment_book_entrustmentor_sex(String check_entrustment_book_entrustmentor_sex) {
 		this.check_entrustment_book_entrustmentor_sex = check_entrustment_book_entrustmentor_sex;
+	}
+
+	public void setCheck_entrustment_book_entrustmentor_age(String check_entrustment_book_entrustmentor_age) {
+		this.check_entrustment_book_entrustmentor_age = check_entrustment_book_entrustmentor_age;
 	}
 
 	public void setCheck_entrustment_book_entrustmentor_phone(String check_entrustment_book_entrustmentor_phone) {
@@ -298,8 +293,7 @@ public class xsjsglxt_check_entrustment_book {
 		this.check_entrustment_book_simple_case_situation = check_entrustment_book_simple_case_situation;
 	}
 
-	public void setCheck_entrustment_book_old_entrustment_situation(
-			String check_entrustment_book_old_entrustment_situation) {
+	public void setCheck_entrustment_book_old_entrustment_situation(String check_entrustment_book_old_entrustment_situation) {
 		this.check_entrustment_book_old_entrustment_situation = check_entrustment_book_old_entrustment_situation;
 	}
 
