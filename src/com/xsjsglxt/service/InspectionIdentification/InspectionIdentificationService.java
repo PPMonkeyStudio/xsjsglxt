@@ -16,6 +16,8 @@ public interface InspectionIdentificationService {
 
 	public EntrustmentBookManagementVO getListCheckEntrustmentBook(EntrustmentBookManagementVO checkEntrustmentBookVO);
 
+	public String exportTraceCheckBookName(String id);
+	
 	public int deleteListCheckEntrustmentBook(List<String> listCheckEntrustmentBookId);
 
 	public int saveIdentifiederCaseConfirmBook(xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook);
@@ -39,5 +41,5 @@ public interface InspectionIdentificationService {
 	public File exportTranceCheckBook(String id) throws Exception;
 
 	public File exportIdentifiederCaseConfirmBook(String id) throws Exception;
-
+	
 }

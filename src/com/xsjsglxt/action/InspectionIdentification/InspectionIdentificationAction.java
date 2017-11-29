@@ -1,6 +1,9 @@
 package com.xsjsglxt.action.InspectionIdentification;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +32,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	 * 
 	 *
 	 */
-	// 痕迹检验委托书
+	// 检验委托书
 	private xsjsglxt_check_entrustment_book tranceCheckBook;
 	// 分页显示委托书
 	private EntrustmentBookManagementVO entrustmentBookManagementVO;
@@ -43,6 +46,10 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	private xsjsglxt_inspection_record inspectionRecord;
 	// 鉴定文书表
 	private xsjsglxt_appraisal_letter appraisalLetter;
+	// 流
+	private InputStream inputStream;
+	// 名
+	private String fileName;
 
 	/**
 	 * 
@@ -203,6 +210,22 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		}
 	}
 
+	// 导出委托书
+	public String exportTranceCheckBook() {
+		try {
+			File exportTranceCheckBookFile = inspectionIdentificationService.exportTranceCheckBook(tranceCheckBook.getXsjsglxt_check_entrustment_book_id());
+			fileName = new String(
+					("鉴定委托书" + inspectionIdentificationService.exportTraceCheckBookName(tranceCheckBook.getXsjsglxt_check_entrustment_book_id()) + ".docx").getBytes("ISO-8859-1"),
+					"UTF-8");
+			System.out.println(fileName);
+			inputStream = new FileInputStream(exportTranceCheckBookFile);
+			exportTranceCheckBookFile.delete();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "exportTranceCheckBook";
+	}
+
 	/**
 	 * 
 	 * 
@@ -300,6 +323,22 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 
 	public void setInspectionIdentificationService(InspectionIdentificationService inspectionIdentificationService) {
 		this.inspectionIdentificationService = inspectionIdentificationService;
+	}
+
+	public InputStream getInputStream() {
+		return inputStream;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setInputStream(InputStream inputStream) {
+		this.inputStream = inputStream;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
 }

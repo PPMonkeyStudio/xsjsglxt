@@ -10,6 +10,14 @@
 			method="{1}">
 			<result name="EntrustmentBookManagement">/WEB-INF/view/InspectionIdentification/EntrustmentBookManagement.jsp
 			</result>
+			<result name="exportTranceCheckBook" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">
+					filename=${fileName}
+				</param>
+				<param name="bufferSize">1024</param>
+			</result>
 		</action>
 	</package>
 </struts>

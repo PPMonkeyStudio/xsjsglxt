@@ -341,6 +341,16 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		return inspectionIdentificationDao.saveObject(appraisalLetter);
 	}
 
+	@Override
+	public String exportTraceCheckBookName(String id) {
+		xsjsglxt_check_entrustment_book xsjsglxt_check_entrustment_book = new xsjsglxt_check_entrustment_book();
+		xsjsglxt_check_entrustment_book = inspectionIdentificationDao.getCheckEntrustmentBookById(id);
+		if (xsjsglxt_check_entrustment_book != null) {
+			return xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num();
+		}
+		return null;
+	}
+
 	// 导出委托书
 	@Override
 	public File exportTranceCheckBook(String id) throws Exception {
