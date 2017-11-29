@@ -102,6 +102,29 @@ function Preview_EntrustmentBook(obj) {
 					'导出' : {
 						btnClass : 'btn-green',
 						action : function() {
+							var xhr = false;
+							xhr = new XMLHttpRequest();
+							xhr.onreadystatechange = function() {
+								var message;
+								if (xhr.readyState == 4) {
+									if (xhr.status == 200) {
+									} else {
+										toastr.error(xhr.status);
+									}
+								}
+							}
+							/*
+							 * 
+							 */
+							var formData = new FormData();
+							formData
+									.append(
+											"tranceCheckBook.xsjsglxt_check_entrustment_book_id",
+											obj.id);
+							xhr
+									.open("POST",
+											"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_exportTranceCheckBook");
+							xhr.send(formData);
 							return false;
 						}
 					},
