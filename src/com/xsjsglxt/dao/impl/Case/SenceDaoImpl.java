@@ -520,6 +520,123 @@ public class SenceDaoImpl implements SenceDao {
 		query.executeUpdate();
        return true;
 	}
+/*
+ * (non-Javadoc)详细现场信息
+ * @see com.xsjsglxt.dao.Case.SenceDao#getSeceBySenceId(com.xsjsglxt.domain.DO.xsjsglxt_snece)
+ */
+	@Override
+	public xsjsglxt_snece getSeceBySenceId(xsjsglxt_snece sence) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_snece sence where sence.xsjsglxt_snece_id='" + sence.getXsjsglxt_snece_id() + "'";
+
+		Query query = session.createQuery(hql);
+
+		 sence = (xsjsglxt_snece) query.uniqueResult();
+
+		return sence;
+		
+	}
+
+	@Override
+	public xsjsglxt_case getCaseBySenceId(xsjsglxt_snece sence) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_case Case where Case.xsjsglxt_case_id='" + sence.getSnece_case() + "'";
+
+		Query query = session.createQuery(hql);
+
+		xsjsglxt_case	Case = (xsjsglxt_case) query.uniqueResult();
+
+		return Case;
+		
+	}
+
+	@Override
+	public xsjsglxt_briefdetails getBriefdetailsByCaseID(xsjsglxt_case case1) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_briefdetails briefdetails where briefdetails.briefdetails_case='" + case1.getXsjsglxt_case_id() + "'";
+
+		Query query = session.createQuery(hql);
+
+		xsjsglxt_briefdetails	briefdetails = (xsjsglxt_briefdetails) query.uniqueResult();
+
+		return briefdetails;
+	}
+
+	@Override
+	public xsjsglxt_lost getLostByCaseID(xsjsglxt_case case1) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_lost lost where lost.lost_case='" + case1.getXsjsglxt_case_id() + "'";
+
+		Query query = session.createQuery(hql);
+
+		xsjsglxt_lost	lost = (xsjsglxt_lost) query.uniqueResult();
+
+		return lost;
+	}
+
+	@Override
+	public xsjsglxt_lost_mobilephone getLost_mobilephoneByCaseId(xsjsglxt_case case1) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_lost_mobilephone lost_mobilephone where lost_mobilephone.lost_mobilephone_case='" + case1.getXsjsglxt_case_id() + "'";
+
+		Query query = session.createQuery(hql);
+
+		xsjsglxt_lost_mobilephone	lost_mobilephone = (xsjsglxt_lost_mobilephone) query.uniqueResult();
+
+		return lost_mobilephone;
+	}
+
+	@Override
+	public xsjsglxt_resevidence getResevidenceByCaseId(xsjsglxt_case case1) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_resevidence resevidence where resevidence.resevidence_case='" + case1.getXsjsglxt_case_id() + "'";
+
+		Query query = session.createQuery(hql);
+
+		xsjsglxt_resevidence	resevidence = (xsjsglxt_resevidence) query.uniqueResult();
+
+		return resevidence;
+	}
+
+	@Override
+	public xsjsglxt_lost_computer getLost_computerByCaseId(xsjsglxt_case case1) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_lost_computer lost_computer where lost_computer.lost_computer_case='" + case1.getXsjsglxt_case_id() + "'";
+
+		Query query = session.createQuery(hql);
+
+		xsjsglxt_lost_computer	lost_computer = (xsjsglxt_lost_computer) query.uniqueResult();
+
+		return lost_computer;
+	}
+
+	@Override
+	public xsjsglxt_picture getPicturtByCaseId(xsjsglxt_case case1) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_picture picture where picture.picture_case='" + case1.getXsjsglxt_case_id() + "'";
+
+		Query query = session.createQuery(hql);
+
+		xsjsglxt_picture	picture = (xsjsglxt_picture) query.uniqueResult();
+
+		return picture;
+	}
 
 	
 }

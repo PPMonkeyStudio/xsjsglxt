@@ -67,5 +67,23 @@ public boolean deletePictureById(String xsjsglxt_case_id);
 public boolean deleteSenceById(String xsjsglxt_case_id);
 
 public int getMaxSenceInquestId();
+/*
+ * 详细现场信息
+ */
+public xsjsglxt_snece getSeceBySenceId(xsjsglxt_snece sence);
+
+public xsjsglxt_case getCaseBySenceId(xsjsglxt_snece sence);
+
+public xsjsglxt_briefdetails getBriefdetailsByCaseID(xsjsglxt_case case1);
+
+public xsjsglxt_lost getLostByCaseID(xsjsglxt_case case1);
+
+public xsjsglxt_lost_mobilephone getLost_mobilephoneByCaseId(xsjsglxt_case case1);
+
+public xsjsglxt_resevidence getResevidenceByCaseId(xsjsglxt_case case1);
+
+public xsjsglxt_lost_computer getLost_computerByCaseId(xsjsglxt_case case1);
+
+public xsjsglxt_picture getPicturtByCaseId(xsjsglxt_case case1);
 
 }

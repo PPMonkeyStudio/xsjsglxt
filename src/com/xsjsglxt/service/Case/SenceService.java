@@ -9,6 +9,7 @@ import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone;
 import com.xsjsglxt.domain.DO.xsjsglxt_picture;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
+import com.xsjsglxt.domain.DTO.Case.SenceInformationDTO;
 import com.xsjsglxt.domain.VO.Case.page_list_senceInformationVO;
 
 public interface SenceService {
@@ -43,5 +44,9 @@ public boolean remove_SenceInformationList(List<String> useSenceInformationNumLi
 
 
 public String getMaxSenceInquestId();
+/*
+ * 现场详细信息
+ */
+public SenceInformationDTO SecneInformationOne(xsjsglxt_snece sence);
 
 }

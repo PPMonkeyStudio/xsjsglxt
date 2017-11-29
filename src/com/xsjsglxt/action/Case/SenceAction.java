@@ -20,6 +20,7 @@ import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone;
 import com.xsjsglxt.domain.DO.xsjsglxt_picture;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
+import com.xsjsglxt.domain.DTO.Case.SenceInformationDTO;
 import com.xsjsglxt.domain.VO.Case.page_list_senceInformationVO;
 import com.xsjsglxt.service.Case.SenceService;
 
@@ -36,6 +37,8 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 
 	private HttpServletRequest http_request;
     private page_list_senceInformationVO page_list_senceInformation;
+    
+    private SenceInformationDTO senceInformationDTO;
 
 	/*
 	 * 跳转页面
@@ -65,17 +68,17 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 			briefdetails.setBriefdetails_case(Case.getXsjsglxt_case_id());
 			senceService.save(briefdetails);
 			
-			lost.setLost_case(Case.getXsjsglxt_case_id());
-			senceService.save(lost);
+			//lost.setLost_case(Case.getXsjsglxt_case_id());
+			//senceService.save(lost);
 			
-			lost_mobilephone.setLost_mobilephone_case(Case.getXsjsglxt_case_id());
-			senceService.save(lost_mobilephone);
+			//lost_mobilephone.setLost_mobilephone_case(Case.getXsjsglxt_case_id());
+			//senceService.save(lost_mobilephone);
 			
-			lost_computer.setLost_computer_case(Case.getXsjsglxt_case_id());
-			senceService.save(lost_computer);
+			//lost_computer.setLost_computer_case(Case.getXsjsglxt_case_id());
+			//senceService.save(lost_computer);
 			
-			picture.setPicture_case(Case.getXsjsglxt_case_id());
-			senceService.save(picture);
+			//picture.setPicture_case(Case.getXsjsglxt_case_id());
+			//senceService.save(picture);
 			http_response.setContentType("text/html;charset=utf-8");
 			http_response.getWriter().write("success");
 		} catch (Exception e) {
@@ -122,8 +125,18 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 
 	}
 
+/*
+ * 列表详细信息
+ */
+public void SecneInformationOne() throws IOException{
+	GsonBuilder gsonBuilder = new GsonBuilder();
+	gsonBuilder.setPrettyPrinting();// 格式化json数据
+	Gson gson = gsonBuilder.create();
+	senceInformationDTO = senceService.SecneInformationOne(sence);
+	http_response.setContentType("text/html;charset=utf-8");
 
-
+	http_response.getWriter().write(gson.toJson(senceInformationDTO));
+}
 
 	public SenceService getSenceService() {
 		return senceService;

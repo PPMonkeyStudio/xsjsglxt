@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="lostAction" class="com.xsjsglxt.action.Case.LostAction"
+		scope="prototype">
+		<property name="lostService" ref="lostService"></property>
+	</bean>
+
+	<bean id="lostService" class="com.xsjsglxt.service.impl.Case.LostServiceImpl">
+		<property name="lostDao" ref="lostDao"></property>
+	</bean>
+
+	<bean id="lostDao" class="com.xsjsglxt.dao.impl.Case.LostDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+
+</beans>
