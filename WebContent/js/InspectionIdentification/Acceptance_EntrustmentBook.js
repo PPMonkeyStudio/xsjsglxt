@@ -67,11 +67,12 @@ function SureAcceptance(js) {
 	 */
 	var formData = new FormData();
 	/*
-	 * ID
+	 * 所属委托书
 	 */
-	formData.append(
-			"identifiederCaseConfirmBook.xsjsglxt_check_entrustment_book_id",
-			create_xsjsglxt_check_entrustment_book_id.value);
+	formData
+			.append(
+					"identifiederCaseConfirmBook.identifieder_case_confirm_book_belong_entrustment_book",
+					create_xsjsglxt_check_entrustment_book_id.value);
 	/*
 	 * 负责人
 	 */

@@ -4,7 +4,7 @@ function Preview_EntrustmentBook(obj) {
 			.confirm({
 				theme : 'Modern',
 				icon : 'fa fa-file-text-o',
-				title : '鉴定委托书（预览）',
+				title : '鉴定委托书',
 				content : '',
 				type : 'green',
 				columnClass : 'col-md-12',
@@ -27,41 +27,41 @@ function Preview_EntrustmentBook(obj) {
 							+ '号</h5>'
 							+ '<table  class="table table-bordered" style="text-align: center;">'
 							+ '<tbody>'
-							+ '<tr><td colspan="2">鉴定委托单位</td><td colspan="3">'
+							+ '<tr><td colspan="2">鉴定委托单位</td><td colspan="4">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_unit
-							+ '</td><td >委托时间</td><td>'
+							+ '</td><td colspan="2">委托时间</td><td>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspect_time
 							+ '</td></tr>'
 							+ '<tr><td rowspan="4">送检人</td><td>姓名</td><td>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspectors1_name
-							+ '</td><td>职务</td><td>'
+							+ '</td><td>职务</td><td colspan="2">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspectors1_duty
-							+ '</td><td>证件名称及号码</td><td>'
+							+ '</td><td colspan="2">证件名称及号码</td><td>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspectors1_jobcard_number
 							+ '</td></tr>'
 							+ '<tr><td>姓名</td><td>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspectors2_name
-							+ '</td><td>职务</td><td>'
+							+ '</td><td>职务</td><td colspan="2">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspectors2_duty
-							+ '</td><td>证件名称及号码</td><td>'
+							+ '</td><td colspan="2">证件名称及号码</td><td>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspectors2_jobcard_number
 							+ '</td></tr>'
-							+ '<tr><td>通讯地址</td><td colspan="3">'
+							+ '<tr><td>通讯地址</td><td colspan="4">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_communication_address
-							+ '</td><td>邮政编码</td><td>'
+							+ '</td><td  colspan="2">邮政编码</td><td>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_zip_code
 							+ '</td></tr>'
-							+ '<tr><td>联系电话</td><td colspan="3">'
+							+ '<tr><td>联系电话</td><td colspan="4">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_phone
-							+ '</td><td>传真号码</td><td>'
+							+ '</td><td  colspan="2">传真号码</td><td>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_fax_num
 							+ '</td></tr>'
-							+ '<tr><td colspan="2">鉴定机构名称</td><td colspan="5">'
+							+ '<tr><td colspan="2">鉴定机构名称</td><td colspan="7">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_unit_name
 							+ '</tr>'
 							+ '<tr><td colspan="2">案（事）件名称</td><td colspan="3">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_case_name
-							+ '<td>案件编号</td><td>'
+							+ '<td colspan="2">案件编号</td><td colspan="2">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_case_num
 							+ '</td></tr>'
 							+ '<tr><td rowspan="2">被鉴定人的情况</td><td>姓名</td><td>'
@@ -73,21 +73,21 @@ function Preview_EntrustmentBook(obj) {
 							+ '</td><td>电话</td><td>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_phone
 							+ '</td></tr>'
-							+ '<tr><td>单位</td><td colspan="2">'
+							+ '<tr><td>单位</td><td colspan="3">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_unit
-							+ '</td><td>住址</td><td colspan="2">'
+							+ '</td><td>住址</td><td colspan="3">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_address
 							+ '</td></tr>'
-							+ '<tr><td colspan="1">案（事）件简要情况</td><td colspan="6">'
+							+ '<tr><td colspan="1">案（事）件简要情况</td><td colspan="8">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_simple_case_situation
 							+ '</tr>'
-							+ '<tr><td colspan="1">原鉴定情况</td><td colspan="6">'
+							+ '<tr><td colspan="1">原鉴定情况</td><td colspan="8">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_old_entrustment_situation
 							+ '</td></tr>'
-							+ '<tr><td colspan="1">送检的检材和样本等情况（包括名称、数量、性状、包装，检材提取部位和方法等）</td><td colspan="6">'
+							+ '<tr><td colspan="1">送检的检材和样本等情况（包括名称、数量、性状、包装，检材提取部位和方法等）</td><td colspan="8">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_sample_situation
 							+ '</td></tr>'
-							+ '<tr><td colspan="1">委托鉴定单位的鉴定要求和诚信声明</td><td colspan="6" style="text-align: left;">鉴定要求：'
+							+ '<tr><td colspan="1">委托鉴定单位的鉴定要求和诚信声明</td><td colspan="8" style="text-align: left;">鉴定要求：'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request
 							+ '<br><br>负责人签字：'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_responsible_person

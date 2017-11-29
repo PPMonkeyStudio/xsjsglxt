@@ -174,7 +174,7 @@ function Update_EntrustmentBook(obj) {
 					'确认修改' : {
 						btnClass : 'btn-blue',
 						action : function() {
-							updateTranceCheckBook(jc);
+							updateTranceCheckBook(jc, obj);
 
 						}
 					},
@@ -198,7 +198,6 @@ function updateTranceCheckBook(jc) {
 					toastr.success("修改成功");
 					jc.close();
 					List_EntrustmentBook(1);
-					Preview_EntrustmentBook(obj);
 				} else {
 					toastr.error("填写格式错误");
 				}
@@ -384,12 +383,11 @@ function updateTranceCheckBook(jc) {
 	/*
 	 * 
 	 */
-	formData.append("tranceCheckBook.check_entrustment_book_type", '痕迹');
 	/*
 	 * 
 	 */
 	xhr
 			.open("POST",
-					"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_updateCheckBook");
+					"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_updateTranceCheckBook");
 	xhr.send(formData);
 }
