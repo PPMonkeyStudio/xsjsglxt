@@ -8,7 +8,7 @@ function List_Equipment_By_PageAndSearch(pageIndex) {
 		var message;
 		if (xhr.readyState == 4) {
 			if (xhr.status == 200) {
-				console.debug(xhr.responseText);
+/*console.debug(xhr.responseText);*/
 				equipment_VO = JSON.parse(xhr.responseText);
 
 				/*
@@ -24,7 +24,7 @@ function List_Equipment_By_PageAndSearch(pageIndex) {
 				 */
 
 				var old_tr = document.getElementsByClassName("new_tr");
-				console.debug(old_tr.length);
+/*console.debug(old_tr.length);*/
 				var long = old_tr.length;
 				for (var i = 0; i < long; i++) {
 					old_tr[0].parentNode.removeChild(old_tr[0]);
@@ -47,7 +47,7 @@ function List_Equipment_By_PageAndSearch(pageIndex) {
 					new_td.style.display = "none";
 					new_td.className = "tr_equipment_id";
 					new_td.innerHTML = equipment_VO.list_xsjsglxt_equipment[num].xsjsglxt_equipment_id;
-					console.debug(new_td.innerHTML);
+/*console.debug(new_td.innerHTML);*/
 					/*
 					 *1. 装备序号
 					 */

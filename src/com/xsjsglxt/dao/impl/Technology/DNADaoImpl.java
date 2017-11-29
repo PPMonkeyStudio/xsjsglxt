@@ -32,7 +32,7 @@ public class DNADaoImpl implements DNADao {
 			String search = "%" + dNAVO.getSearch().trim() + "%";
 			hql = hql + " and dna_num like '" + search + "' or dna_name like '" + search + "'";
 		}
-		hql = hql + " order by dna_record_time";
+		hql = hql + " order by dna_gmt_create";
 		Query query = session.createQuery(hql);
 		query.setFirstResult((dNAVO.getPageIndex() - 1) * dNAVO.getPageSize());
 		query.setMaxResults(dNAVO.getPageSize());
