@@ -1,8 +1,8 @@
-function CreateDNA() {
+function CreateFingerPrint() {
 	var jc = $
 			.confirm({
 				columnClass : 'col-md-6 col-md-offset-3',
-				title : 'DNA信息录入',	
+				title : '指纹信息录入',
 				content : '<table class="table table-hover"><tbody>'
 						+ '<tr><th>姓名：</th><td><input type="text" id="input_name" class="form-control" /></td></tr>'
 						+ '<tr><th>性别：</th>'
@@ -53,7 +53,6 @@ function CreateDNA() {
 							toastr.error("姓名不能为空！");
 							return false;
 						}
-						
 						if (input_birth.value == "") {
 							toastr.error("出生日期不能为空！");
 							return false;
@@ -90,8 +89,8 @@ function CreateDNA() {
 									 */
 									if (xhr.responseText == "1") {
 										// jc.close();
-										toastr.success("DNA信息录入成功！");
-										List_DNA_By_PageAndSearch(1);
+										toastr.success("指纹信息录入成功！");
+										List_FingerPrint_By_PageAndSearch(1);
 									}
 								} else {
 									toastr.error(xhr.status);
@@ -99,32 +98,32 @@ function CreateDNA() {
 							}
 						}
 
-						formData.append("dna.dna_name", input_name.value);
+						formData.append("fingerprint.fingerprint_name", input_name.value);
 						var input_sex = document.getElementsByName("input_sex");
 						for (var num = 0; num < 2; num++) {
 							if (input_sex[num].checked) {
-								formData.append("dna.dna_sex",
+								formData.append("fingerprint.fingerprint_sex",
 										input_sex[num].value);
 							}
 						}
-						formData.append("dna.dna_birthday", input_birth.value);
-						formData.append("dna.dna_identity", input_IDCard.value);
-						formData.append("dna.dna_address", input_address.value);
-						formData.append("dna.dna_illegal_fact",
+						formData.append("fingerprint.fingerprint_birthday", input_birth.value);
+						formData.append("fingerprint.fingerprint_identity", input_IDCard.value);
+						formData.append("fingerprint.fingerprint_address", input_address.value);
+						formData.append("fingerprint.fingerprint_illegal_fact",
 								input_illegalFact.value);
-						formData.append("dna.dna_record_organization",
+						formData.append("fingerprint.fingerprint_record_organization",
 								input_inputtingUnit.value);
-						formData.append("dna.dna_organizer",
+						formData.append("fingerprint.fingerprint_organizer",
 								input_inputtingPerson.value);
-						formData.append("dna.dna_record_time",
+						formData.append("fingerprint.fingerprint_record_time",
 								input_inputtingTime.value);
-						formData.append("dna.dna_submit_time",
+						formData.append("fingerprint.fingerprint_submit_time",
 								input_makingTime.value);
 						formData
-								.append("dna.dna_remark", textarea_remark.value);
+								.append("fingerprint.fingerprint_remark", textarea_remark.value);
 
 						xhr.open("POST",
-								"/xsjsglxt/DNA/DNAManagement_CreateDNA");
+								"/xsjsglxt/FingerPrint/FingerPrintManagement_saveFingerPrint");
 						xhr.send(formData);
 
 					},

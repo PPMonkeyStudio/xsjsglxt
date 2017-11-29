@@ -120,7 +120,6 @@
 </body>
 <link rel="stylesheet" href="<%=basePath%>css/square/blue.css" />
 <script type="text/javascript" src="<%=basePath%>js/icheck.js"></script>
-
 <script type="text/javascript" src="<%=basePath%>js/Input_Select.js"></script>
 
 <script type="text/javascript">
