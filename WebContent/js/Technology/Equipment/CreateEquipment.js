@@ -95,19 +95,16 @@ function CreateEquipment() {
 						formData.append("equipment.equipment_type",
 								input_type.value);
 						var select_feature = document
-								.getElementsByName("select_feature");
-						alert("select_feature.option.length:"
-								+ select_feature.option.length);
-						for (var num = 0; num < select_feature.option.length; num++) {
-							if (select_feature.option[num].selected) {
-								formData
-										.append(
-												"contrastFingerPrint.contrast_fingerprint_level",
-												select_feature.option[num].value);
-							}
+								.getElementById("select_feature");
+						if(select_feature.value=="其他"){
+							formData.append("equipment.equipment_feature",
+									input_feature.value);
 						}
-						formData.append("equipment.equipment_feature",
-								input_feature.value);
+						else{
+							formData.append("equipment.equipment_feature",
+									select_feature.value);
+						}
+						
 						formData.append("equipment.equipment_number",
 								input_number.value);
 						formData.append("equipment.equipment_money",

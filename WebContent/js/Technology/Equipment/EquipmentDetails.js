@@ -98,8 +98,15 @@ function EquipmentDetails(button) {
 								input_name.value);
 						formData.append("equipment.equipment_type",
 								input_type.value);
-						formData.append("equipment.equipment_feature",
-								input_feature.value);
+						var select_feature = document
+								.getElementById("select_feature");
+						if (select_feature.value == "其他") {
+							formData.append("equipment.equipment_feature",
+									input_feature.value);
+						} else {
+							formData.append("equipment.equipment_feature",
+									select_feature.value);
+						}
 						formData.append("equipment.equipment_number",
 								input_number.value);
 						formData.append("equipment.equipment_money",
@@ -148,14 +155,42 @@ function EquipmentDetails(button) {
 							var input_type = document
 									.getElementById("input_type");
 							input_type.value = equipment_VO.list_xsjsglxt_equipment[num].equipment_type;
-							if(input_type.value=="undefined"){
-								input_type.value="";
+							if (input_type.value == "undefined") {
+								input_type.value = "";
 							}
+							
 							var select_feature = document
 									.getElementById("select_feature");
 							var input_feature = document
 									.getElementById("input_feature");
-							input_feature.value = equipment_VO.list_xsjsglxt_equipment[num].equipment_feature;
+							switch (equipment_VO.list_xsjsglxt_equipment[num].equipment_feature) {
+							case "不限":
+								select_feature.value = equipment_VO.list_xsjsglxt_equipment[num].equipment_feature;
+								input_feature.value =select_feature.value;
+								input_feature.disabled="disabled";
+								break;
+							case "痕迹":
+								select_feature.value = equipment_VO.list_xsjsglxt_equipment[num].equipment_feature;
+								input_feature.value =select_feature.value;
+								break;
+							case "法医":
+								select_feature.value = equipment_VO.list_xsjsglxt_equipment[num].equipment_feature;
+								input_feature.value =select_feature.value;
+								break;
+							case "影像":
+								select_feature.value = equipment_VO.list_xsjsglxt_equipment[num].equipment_feature;
+								input_feature.value =select_feature.value;
+								break;
+							case "技管":
+								select_feature.value = equipment_VO.list_xsjsglxt_equipment[num].equipment_feature;
+								input_feature.value =select_feature.value;
+								break;
+
+							default:
+								select_feature.value="其他";
+								input_feature.value = equipment_VO.list_xsjsglxt_equipment[num].equipment_feature;
+								break;
+							}
 							var input_number = document
 									.getElementById("input_number");
 							input_number.value = equipment_VO.list_xsjsglxt_equipment[num].equipment_number;
