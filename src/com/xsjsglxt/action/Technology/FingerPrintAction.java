@@ -98,7 +98,6 @@ public class FingerPrintAction implements ServletRequestAware, ServletResponseAw
 		Gson gson = gsonBuilder.create();
 		http_response.setContentType("text/html;charset=utf-8");
 		http_response.getWriter().write(gson.toJson(vo));
-		System.out.println("gson.toJson(vo):"+gson.toJson(vo));
 	}
 	
 	/**

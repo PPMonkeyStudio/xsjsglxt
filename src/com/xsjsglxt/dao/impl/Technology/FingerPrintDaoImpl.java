@@ -93,7 +93,7 @@ public class FingerPrintDaoImpl implements FingerPrintDao {
 			String search = "%" + fingerprintVO.getSearch().trim() + "%";
 			hql = hql + " and fingerprint_num like '" + search + "' or fingerprint_name like '" + search + "'";
 		}
-		hql = hql + " order by fingerprint_record_time";
+		hql = hql + " order by fingerprint_gmt_create";
 		Query query = session.createQuery(hql);
 		query.setFirstResult((fingerprintVO.getPageIndex() - 1) * fingerprintVO.getPageSize());
 		query.setMaxResults(fingerprintVO.getPageSize());

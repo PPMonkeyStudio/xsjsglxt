@@ -5,6 +5,8 @@ import java.util.List;
 import com.xsjsglxt.dao.Technology.ContrastFingerPrintDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_contrast_fingerprint;
 import com.xsjsglxt.domain.DO.xsjsglxt_dna;
+import com.xsjsglxt.domain.VO.Technology.ContrastFingerPrintVO;
+import com.xsjsglxt.domain.VO.Technology.DNAVO;
 import com.xsjsglxt.service.Technology.ContrastFingerPrintService;
 
 import util.TeamUtil;
@@ -69,6 +71,38 @@ public class ContrastFingerPrintServiceImpl implements ContrastFingerPrintServic
 	public xsjsglxt_contrast_fingerprint get_contrast(String contrast_fingerprint_id) {
 		xsjsglxt_contrast_fingerprint contrast = contrastFingerPrintDao.get_contrast(contrast_fingerprint_id);
 		return contrast;
+	}
+
+	@Override
+	public ContrastFingerPrintVO list_xsjsglxt_contrast(ContrastFingerPrintVO contrastFingerPrintVO) {
+		int totalRecords = contrastFingerPrintDao.count_contrast_all();
+		ContrastFingerPrintVO vo = new ContrastFingerPrintVO();
+		vo.setPageIndex(contrastFingerPrintVO.getPageIndex());
+		vo.setPageSize(contrastFingerPrintVO.getPageSize());
+		vo.setTotalRecords(totalRecords);
+		vo.setTotalPages(((totalRecords - 1) / vo.getPageSize()) + 1);
+		if (vo.getPageIndex() <= 1) {
+			vo.setHavePrePage(false);
+		} else {
+			vo.setHavePrePage(true);
+		}
+		if (vo.getPageIndex() >= vo.getTotalPages()) {
+			vo.setHaveNextPage(false);
+		} else {
+			vo.setHaveNextPage(true);
+		}
+		List<xsjsglxt_contrast_fingerprint> list = contrastFingerPrintDao.list_xsjsglxt_contrast(contrastFingerPrintVO);
+		/*高亮现场指纹编号、按印指纹编号*/
+		for (xsjsglxt_contrast_fingerprint cotrast : list) {
+			if (contrastFingerPrintVO.getSearch() != null && contrastFingerPrintVO.getSearch().trim().length() > 0) {
+				cotrast.setContrast_fingerprint_locale_fingerprint_number(cotrast.getContrast_fingerprint_locale_fingerprint_number().replaceAll(contrastFingerPrintVO.getSearch(),
+						"<span style='color: #ff5063;'>" + contrastFingerPrintVO.getSearch() + "</span>"));
+				cotrast.setContrast_fingerprint_press_fingerprint_number(cotrast.getContrast_fingerprint_press_fingerprint_number().replaceAll(contrastFingerPrintVO.getSearch(),
+						"<span style='color: #ff5063;'>" + contrastFingerPrintVO.getSearch() + "</span>"));
+			}
+		}
+		vo.setList_xsjsglxt_contrast_fingerprint(list);
+		return vo;
 	}
 
 }

@@ -8,6 +8,16 @@ public class xsjsglxt_equipment {
 	private String equipment_serial_number;
 	//装备名称
 	private String equipment_name;
+	
+	private String equipment_type_choose;
+	public String getEquipment_type_choose() {
+		return equipment_type_choose;
+	}
+
+	public void setEquipment_type_choose(String equipment_type_choose) {
+		this.equipment_type_choose = equipment_type_choose;
+	}
+
 	//装备类型
 	private String equipment_type;
 	//装备特征
@@ -126,12 +136,13 @@ public class xsjsglxt_equipment {
 	@Override
 	public String toString() {
 		return "xsjsglxt_equipment [xsjsglxt_equipment_id=" + xsjsglxt_equipment_id + ", equipment_serial_number="
-				+ equipment_serial_number + ", equipment_name=" + equipment_name + ", equipment_type=" + equipment_type
-				+ ", equipment_feature=" + equipment_feature + ", equipment_number=" + equipment_number
-				+ ", equipment_money=" + equipment_money + ", equipment_enablement_time=" + equipment_enablement_time
-				+ ", equipment_use_note=" + equipment_use_note + ", equipment_remark=" + equipment_remark
-				+ ", equipment_gmt_create=" + equipment_gmt_create + ", equipment_gmt_modified="
-				+ equipment_gmt_modified + "]";
+				+ equipment_serial_number + ", equipment_name=" + equipment_name + ", equipment_type_choose="
+				+ equipment_type_choose + ", equipment_type=" + equipment_type + ", equipment_feature="
+				+ equipment_feature + ", equipment_number=" + equipment_number + ", equipment_money=" + equipment_money
+				+ ", equipment_enablement_time=" + equipment_enablement_time + ", equipment_use_note="
+				+ equipment_use_note + ", equipment_remark=" + equipment_remark + ", equipment_gmt_create="
+				+ equipment_gmt_create + ", equipment_gmt_modified=" + equipment_gmt_modified + "]";
 	}
+	
 	
 }
