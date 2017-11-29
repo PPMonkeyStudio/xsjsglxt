@@ -100,9 +100,9 @@ public class EquipmentServiceImpl implements EquipmentService {
 		List<xsjsglxt_equipment> list = equipmentDao.list_xsjsglxt_equipment(equipmentVO);
 		for (xsjsglxt_equipment equipment : list) {
 			if (equipmentVO.getSearch() != null && equipmentVO.getSearch().trim().length() > 0) {
-				equipment.setEquipment_name(equipment.getEquipment_name().replaceAll(equipmentVO.getSearch(),
-						"<span style='color: #ff5063;'>" + equipmentVO.getSearch() + "</span>"));
 				equipment.setEquipment_serial_number(equipment.getEquipment_serial_number().replaceAll(equipmentVO.getSearch(),
+						"<span style='color: #ff5063;'>" + equipmentVO.getSearch() + "</span>"));
+				equipment.setEquipment_name(equipment.getEquipment_name().replaceAll(equipmentVO.getSearch(),
 						"<span style='color: #ff5063;'>" + equipmentVO.getSearch() + "</span>"));
 			}
 		}

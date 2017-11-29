@@ -110,7 +110,7 @@ public class ContrastFingerPrintDaoImpl implements ContrastFingerPrintDao {
 			String search = "%" + contrastFingerPrintVO.getSearch().trim() + "%";
 			hql = hql + " and dna_num like '" + search + "' or dna_name like '" + search + "'";
 		}
-		hql = hql + " order by dna_record_time";
+		hql = hql + " order by contrast_fingerprint_gmt_create";
 		Query query = session.createQuery(hql);
 		query.setFirstResult((contrastFingerPrintVO.getPageIndex() - 1) * contrastFingerPrintVO.getPageSize());
 		query.setMaxResults(contrastFingerPrintVO.getPageSize());

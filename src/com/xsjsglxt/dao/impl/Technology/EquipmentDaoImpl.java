@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.Technology.EquipmentDao;
+import com.xsjsglxt.domain.DO.xsjsglxt_dna;
 import com.xsjsglxt.domain.DO.xsjsglxt_equipment;
 import com.xsjsglxt.domain.VO.Technology.EquipmentVO;
 
@@ -26,7 +27,7 @@ public class EquipmentDaoImpl implements EquipmentDao {
 	public int saveEquipment(xsjsglxt_equipment equipment) {
 		Session session = getSession();
 		try {
-			session.saveOrUpdate(equipment);
+			session.save(equipment);
 			return 1;
 		} catch (Exception e) {
 			return 2;
@@ -85,13 +86,15 @@ public class EquipmentDaoImpl implements EquipmentDao {
 		String hql = "from xsjsglxt_equipment where 1=1";
 		if (equipmentVO.getSearch() != null && equipmentVO.getSearch().trim().length() > 0) {
 			String search = "%" + equipmentVO.getSearch().trim() + "%";
-			hql = hql + " and equipment_name like '" + search + "'";
+			hql = hql + " and equipment_name like '" + search + "' or equipment_serial_number like '" +search+"'";
 		}
-		hql = hql + " order by equipment_enablement_time";
+		hql = hql + " order by equipment_gmt_create";
 		Query query = session.createQuery(hql);
 		query.setFirstResult((equipmentVO.getPageIndex() - 1) * equipmentVO.getPageSize());
 		query.setMaxResults(equipmentVO.getPageSize());
-		return query.list();
+		List<xsjsglxt_equipment> list = query.list();
+		session.clear();
+		return list;
 	}
 
 }
