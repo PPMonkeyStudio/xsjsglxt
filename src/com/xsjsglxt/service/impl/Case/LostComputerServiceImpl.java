@@ -43,7 +43,7 @@ public page_list_CasematerialVO VO_LostComputerformation_By_PageAndSearch(
 	List<xsjsglxt_lost_computer> lost_computerList= new ArrayList<xsjsglxt_lost_computer>();
 	LostComputerInformationDTO lostComputerInformationDTO;
 	   
-	xsjsglxt_case Case;
+	xsjsglxt_case case1;
 	xsjsglxt_snece snece;
 	// 获取筛选后所有的记录
 	int i = lostComputerDao.getCountLostComputerInformationByPage(page_list_Casematerial);
@@ -80,9 +80,9 @@ public page_list_CasematerialVO VO_LostComputerformation_By_PageAndSearch(
 					lost_computer.setLost_computer_MAC(lost_computer.getLost_computer_MAC().replaceAll(lost_computer.getLost_computer_MAC(),
 							"<span style='color: #ff5063;'>" + lost_computer.getLost_computer_MAC() + "</span>"));
 				}
-		Case=lostComputerDao.getCaseByxsjsglxt_lost_computer_id(lost_computer);
-		snece=lostComputerDao.getSenceByxsjsglxt_case_id(Case);
-		lostComputerInformationDTO = new LostComputerInformationDTO(Case,snece,lost_computer);
+				case1=lostComputerDao.getCaseByxsjsglxt_lost_computer_id(lost_computer);
+		snece=lostComputerDao.getSenceByxsjsglxt_case_id(case1);
+		lostComputerInformationDTO = new LostComputerInformationDTO(case1,snece,lost_computer);
 		LostComputerInformationDTOList.add(lostComputerInformationDTO);
 	}
 	page_list_Casematerial.setLostComputerInformationDTOList(LostComputerInformationDTOList);

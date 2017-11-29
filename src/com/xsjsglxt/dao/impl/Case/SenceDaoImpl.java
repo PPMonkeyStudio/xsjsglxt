@@ -160,22 +160,27 @@ public class SenceDaoImpl implements SenceDao {
 		int i;
 		//201711
 		String yearAndMonth =TeamUtil.yearAndMonth();
-		List<xsjsglxt_snece> xsjsglxt_snece = new ArrayList<xsjsglxt_snece>();
+		String li="";
+		//List<xsjsglxt_snece> xsjsglxt_snece = new ArrayList<xsjsglxt_snece>();
 		//K3603020012017110001
 		String hql = "select substring(snece_inquestId,-1,4) from xsjsglxt_snece where substring(snece_inquestId,11,6)='"+yearAndMonth+"' order by substring(snece_inquestId,-1,4) desc limit 1";
 		System.out.println(hql);
 		Query query = getSession().createSQLQuery(hql);
+		li=(String) query.uniqueResult();
+		if(li==null || li.trim().length()<=0){
+			getSession().clear();
+			return 0;
+		}
+		i=Integer.parseInt(li);
+		getSession().clear();
+		return i;
 		//i = Integer.parseInt((String) query.uniqueResult());
 		//xsjsglxt_snece = query.list();
-		i = Integer.parseInt((String) query.uniqueResult());
+		//i = Integer.parseInt((String) query.uniqueResult());
    
 		// i=xsjsglxt_snece.size();
-		getSession().clear();
-		if(i==0){
-			return 0;
-		}else{
-			return  i;	
-		}
+		
+		
 		
 		
 	}
@@ -445,7 +450,7 @@ public class SenceDaoImpl implements SenceDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 		xsjsglxt_case CaseInformation = null;
-		String hql = "from xsjsglxt_case Case where Case.xsjsglxt_case_id='" + case_id + "'";
+		String hql = "from xsjsglxt_case case1 where case1.xsjsglxt_case_id='" + case_id + "'";
 		Query query = session.createQuery(hql);
 		CaseInformation = (xsjsglxt_case) query.uniqueResult();
        return CaseInformation;
@@ -544,13 +549,13 @@ public class SenceDaoImpl implements SenceDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
-		String hql = "from xsjsglxt_case Case where Case.xsjsglxt_case_id='" + sence.getSnece_case() + "'";
+		String hql = "from xsjsglxt_case case1 where case1.xsjsglxt_case_id='" + sence.getSnece_case() + "'";
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_case	Case = (xsjsglxt_case) query.uniqueResult();
+		xsjsglxt_case	case1 = (xsjsglxt_case) query.uniqueResult();
 
-		return Case;
+		return case1;
 		
 	}
 
