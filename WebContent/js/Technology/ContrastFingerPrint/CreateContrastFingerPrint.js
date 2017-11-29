@@ -168,8 +168,10 @@ function CreateContrastFingerPrint() {
 						var formData = new FormData();
 						var xhr = false;
 						xhr = new XMLHttpRequest();
+						alert("0");
 						xhr.onreadystatechange = function() {
 							if (xhr.readyState == 4) {
+								alert("1");
 								if (xhr.status == 200) {
 									/*
 									 * responseText的值为1代表创建成功 2代表创建失败

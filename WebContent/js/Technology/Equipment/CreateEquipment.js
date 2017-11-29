@@ -35,7 +35,8 @@ function CreateEquipment() {
 								.getElementById("input_serial_number");
 						var input_name = document.getElementById("input_name");
 						var input_type = document.getElementById("input_type");
-						var select_feature=document.getElementById("select_feature");
+						var select_feature = document
+								.getElementById("select_feature");
 						var input_feature = document
 								.getElementById("input_feature");
 						var input_number = document
@@ -87,30 +88,47 @@ function CreateEquipment() {
 								}
 							}
 						}
-						formData.append("equipment.equipment_serial_number", input_serial_number.value);
-						formData.append("equipment.equipment_name", input_name.value);
-						formData.append("equipment.equipment_type", input_type.value);
+						formData.append("equipment.equipment_serial_number",
+								input_serial_number.value);
+						formData.append("equipment.equipment_name",
+								input_name.value);
+						formData.append("equipment.equipment_type",
+								input_type.value);
+						var select_feature = document
+								.getElementsByName("select_feature");
+						alert("select_feature.option.length:"
+								+ select_feature.option.length);
+						for (var num = 0; num < select_feature.option.length; num++) {
+							if (select_feature.option[num].selected) {
+								formData
+										.append(
+												"contrastFingerPrint.contrast_fingerprint_level",
+												select_feature.option[num].value);
+							}
+						}
 						formData.append("equipment.equipment_feature",
 								input_feature.value);
 						formData.append("equipment.equipment_number",
 								input_number.value);
 						formData.append("equipment.equipment_money",
 								input_money.value);
-						
+
 						formData.append("equipment.equipment_enablement_time",
 								input_enablement_time.value);
-						var input_use_note = document.getElementsByName("input_use_note");
+						var input_use_note = document
+								.getElementsByName("input_use_note");
 						for (var num = 0; num < 2; num++) {
 							if (input_use_note[num].checked) {
 								formData.append("equipment.equipment_use_note",
 										input_use_note[num].value);
 							}
 						}
-						formData
-								.append("equipment.equipment_remark", textarea_remark.value);
+						formData.append("equipment.equipment_remark",
+								textarea_remark.value);
 
-						xhr.open("POST",
-								"/xsjsglxt/Equipment/EquipmentManagement_CreateEquipment");
+						xhr
+								.open("POST",
+										"/xsjsglxt/Equipment/EquipmentManagement_CreateEquipment");
 						xhr.send(formData);
 
 					},
