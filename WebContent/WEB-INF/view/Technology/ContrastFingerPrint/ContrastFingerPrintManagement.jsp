@@ -58,13 +58,13 @@
 					style="text-align: center; margin: 20px 0;">
 					<tbody>
 						<tr>
-							<th>DNA编号</th>
-							<th>姓名</th>
-							<th>性别</th>
-							<th>出生日期</th>
-							<th>身份证号</th>
-							<th>住址</th>
-							<th>违法事实</th>
+							<th>现场指印编号</th>
+							<th>比中时间</th>
+							<th>按印指印编号</th>
+							<th>嫌疑人姓名</th>
+							<th>比对单位</th>
+							<th>比对人</th>
+							<th>是否抓获</th>
 							<th>操作</th>
 							<th><label class="fancy-checkbox"> <input
 									id="checkbox_all_select" type="checkbox" onclick="all_select()">
@@ -83,7 +83,7 @@
 
 				<div style="height: 34px; margin: 0 0 20px 0;">
 
-					<button class="btn btn-danger" onclick="DeleteDNA()"
+					<button class="btn btn-danger" onclick="DeleteContrastFingerPrint()"
 						style="float: right; margin: 0 10px;">
 						<i class="fa fa-trash-o"></i> 删除所选
 					</button>
@@ -123,6 +123,6 @@
 <script type="text/javascript" src="<%=basePath%>js/Input_Select.js"></script>
 
 <script type="text/javascript">
-	List_DNA_By_PageAndSearch(1);
+List_ContrastFingerPrint_By_PageAndSearch(1);
 </script>
 </html>

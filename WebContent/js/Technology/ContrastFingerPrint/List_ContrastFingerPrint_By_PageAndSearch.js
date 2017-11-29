@@ -1,7 +1,7 @@
-var DNA_VO = null;
-function List_DNA_By_PageAndSearch(pageIndex) {
+var contrastFingerPrint_VO = null;
+function List_ContrastFingerPrint_By_PageAndSearch(pageIndex) {
 
-	var input_DNASearchText = document.getElementById("input_DNASearchText").value;
+	var input_ContrastFingerPrintSearchText = document.getElementById("input_ContrastFingerPrintSearchText").value;
 	var formData = new FormData();
 
 	var xhr = false;
@@ -12,7 +12,7 @@ function List_DNA_By_PageAndSearch(pageIndex) {
 		if (xhr.readyState == 4) {
 			if (xhr.status == 200) {
 				console.debug(xhr.responseText);
-				DNA_VO = JSON.parse(xhr.responseText);
+				contrastFingerPrint_VO = JSON.parse(xhr.responseText);
 
 				/*
 				 * 
@@ -20,7 +20,7 @@ function List_DNA_By_PageAndSearch(pageIndex) {
 
 				var new_tr = null;
 				var new_td = null;
-				var table_DNA = document.getElementById("table_DNA");
+				var table_ContrastFingerPrint = document.getElementById("table_ContrastFingerPrint");
 
 				/*
 				 * 移出除标题以外的所有行
@@ -37,68 +37,68 @@ function List_DNA_By_PageAndSearch(pageIndex) {
 				/*
 				 * 将数据库的数据取出来放到表格里
 				 */
-				for (var num = 0; num < DNA_VO.list_xsjsglxt_dna.length; num++) {
+				for (var num = 0; num < contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint.length; num++) {
 					new_tr = document.createElement("tr");
 					new_tr.className = "new_tr";
 					new_tr.appendChild(document.createTextNode(''));
-					table_DNA.firstElementChild.appendChild(new_tr);
+					table_ContrastFingerPrint.firstElementChild.appendChild(new_tr);
 					/*
 					 * 
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
 					new_td.style.display = "none";
-					new_td.className = "tr_dna_id";
-					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].xsjsglxt_dna_id;
+					new_td.className = "tr_contrastFingerPrint_id";
+					new_td.innerHTML = contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_id;
 					console.debug(new_td.innerHTML);
 					/*
-					 *1. DNA编号
+					 *1. 现场指印编号
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
-					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].dna_num;
+					new_td.innerHTML = contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_locale_fingerprint_number;
 					/*
-					 *2. 姓名
+					 *2. 比中时间
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
-					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].dna_name;
+					new_td.innerHTML = contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_time;
 					/*
-					 *3. 性别
+					 *3. 按印指印编号
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
-					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].dna_sex;
+					new_td.innerHTML = contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_press_fingerprint_number;
 					/*
-					 *4. 出生日期
+					 *4. 嫌疑人姓名
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
-					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].dna_birthday;
+					new_td.innerHTML = contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_suspecter_name;
 					/*
-					 *5. 身份证号
+					 *5. 比对单位
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
-					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].dna_identity;
+					new_td.innerHTML = contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_contrast_organization;
 					/*
-					 *6. 地址
+					 *6. 比对人
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
-					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].dna_address;
+					new_td.innerHTML = contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_contraster;
 					/*
-					 *7. 违法事实
+					 *7. 是否抓获
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
-					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].dna_illegal_fact;
+					new_td.innerHTML = contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_suspecter_arrested;
 					/*
 					 *8. 操作
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
-					new_td.innerHTML = '<i  id="'+DNA_VO.list_xsjsglxt_dna[num].xsjsglxt_dna_id+'" onClick=DNADetails(this) class="fa fa-pencil-square-o" aria-hidden="true"></i>';
+					new_td.innerHTML = '<i  id="'+contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_id+'" onClick=ContrastFingerPrintDetails(this) class="fa fa-pencil-square-o" aria-hidden="true"></i>';
 					new_td.style.cursor="pointer";
 					
 					/*
@@ -121,9 +121,9 @@ function List_DNA_By_PageAndSearch(pageIndex) {
 				/*
 				 * * 设置页数 /
 				 */
-				document.getElementById("span_pageIndex").innerHTML = DNA_VO.pageIndex;
-				document.getElementById("span_totalPages").innerHTML = DNA_VO.totalPages;
-				document.getElementById("span_totalRecords").innerHTML = DNA_VO.totalRecords;
+				document.getElementById("span_pageIndex").innerHTML = contrastFingerPrint_VO.pageIndex;
+				document.getElementById("span_totalPages").innerHTML = contrastFingerPrint_VO.totalPages;
+				document.getElementById("span_totalRecords").innerHTML = contrastFingerPrint_VO.totalRecords;
 			} else {
 				toastr.error(xhr.status);
 			}
@@ -132,9 +132,9 @@ function List_DNA_By_PageAndSearch(pageIndex) {
 	if (pageIndex == null || pageIndex.preventDefault) {
 		pageIndex = 1;
 	}
-	formData.append("xsjsglxt_dna_VO.pageIndex", pageIndex);
-	formData.append("xsjsglxt_dna_VO.search", input_DNASearchText);
-	xhr.open("POST", "/xsjsglxt/DNA/DNAManagement_ListDNAByPageAndSearch");
+	formData.append("contrastFingerPrintVO.pageIndex", pageIndex);
+	formData.append("contrastFingerPrintVO.search", input_ContrastFingerPrintSearchText);
+	xhr.open("POST", "/xsjsglxt/ContrastFingerPrint/ContrastFingerPrintManagement_ListDNAByPageAndSearch");
 	xhr.send(formData);
 
 }
@@ -145,27 +145,27 @@ function List_DNA_By_PageAndSearch(pageIndex) {
 function flip(flipPage) {
 	switch (flipPage) {
 	case 1: {
-		List_DNA_By_PageAndSearch(1)
+		List_ContrastFingerPrint_By_PageAndSearch(1)
 		break;
 	}
 	case 2: {
-		if (DNA_VO.pageIndex - 1 == 0) {
+		if (contrastFingerPrint_VO.pageIndex - 1 == 0) {
 			toastr.warning("已经是第一页了");
 		} else {
-			List_DNA_By_PageAndSearch(DNA_VO.pageIndex - 1);
+			List_ContrastFingerPrint_By_PageAndSearch(contrastFingerPrint_VO.pageIndex - 1);
 		}
 		break;
 	}
 	case 3: {
-		if (DNA_VO.pageIndex == DNA_VO.totalPages) {
+		if (contrastFingerPrint_VO.pageIndex == contrastFingerPrint_VO.totalPages) {
 			toastr.warning("已经是最后一页了");
 		} else {
-			List_DNA_By_PageAndSearch(DNA_VO.pageIndex + 1);
+			List_ContrastFingerPrint_By_PageAndSearch(contrastFingerPrint_VO.pageIndex + 1);
 		}
 		break;
 	}
 	case 4: {
-		List_DNA_By_PageAndSearch(DNA_VO.totalPages);
+		List_ContrastFingerPrint_By_PageAndSearch(contrastFingerPrint_VO.totalPages);
 
 		break;
 	}
