@@ -8,6 +8,7 @@
 			method="{1}">
 			<result name="page_SiteManagement">/WEB-INF/view/Case/SiteManagement.jsp</result>
 			<result name="page_Sneceinput">/WEB-INF/view/Case/SneceInput.jsp</result>
+			<result name="page_CaseMerger">/WEB-INF/view/Case/CaseMerger.jsp</result>
 		</action>
 	</package>
 </struts>

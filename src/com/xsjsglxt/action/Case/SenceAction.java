@@ -2,7 +2,6 @@ package com.xsjsglxt.action.Case;
 
 import java.io.IOException;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -31,14 +30,15 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	private xsjsglxt_briefdetails briefdetails;
 	private xsjsglxt_lost lost;
 	private xsjsglxt_lost_mobilephone lost_mobilephone;
-	private xsjsglxt_picture picture ;
+	private xsjsglxt_picture picture;
 	private xsjsglxt_lost_computer lost_computer;
 	private HttpServletResponse http_response;
 
 	private HttpServletRequest http_request;
-    private page_list_senceInformationVO page_list_senceInformation;
-    
-    private SenceInformationDTO senceInformationDTO;
+
+	private page_list_senceInformationVO page_list_senceInformation;
+
+	private SenceInformationDTO senceInformationDTO;
 
 	/*
 	 * 跳转页面
@@ -55,30 +55,37 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	}
 
 	/*
+	 * 跳转现场录入页面
+	 */
+	public String page_CaseMerger() {
+		return "page_CaseMerger";
+	}
+
+	/*
 	 * 保存基本信息
 	 */
 	public void saveSenceInformation() {
-		
+
 		try {
 			senceService.save(Case);
-			
+
 			sence.setSnece_case(Case.getXsjsglxt_case_id());
 			senceService.save(sence);
-			
+
 			briefdetails.setBriefdetails_case(Case.getXsjsglxt_case_id());
 			senceService.save(briefdetails);
-			
-			//lost.setLost_case(Case.getXsjsglxt_case_id());
-			//senceService.save(lost);
-			
-			//lost_mobilephone.setLost_mobilephone_case(Case.getXsjsglxt_case_id());
-			//senceService.save(lost_mobilephone);
-			
-			//lost_computer.setLost_computer_case(Case.getXsjsglxt_case_id());
-			//senceService.save(lost_computer);
-			
-			//picture.setPicture_case(Case.getXsjsglxt_case_id());
-			//senceService.save(picture);
+
+			// lost.setLost_case(Case.getXsjsglxt_case_id());
+			// senceService.save(lost);
+
+			// lost_mobilephone.setLost_mobilephone_case(Case.getXsjsglxt_case_id());
+			// senceService.save(lost_mobilephone);
+
+			// lost_computer.setLost_computer_case(Case.getXsjsglxt_case_id());
+			// senceService.save(lost_computer);
+
+			// picture.setPicture_case(Case.getXsjsglxt_case_id());
+			// senceService.save(picture);
 			http_response.setContentType("text/html;charset=utf-8");
 			http_response.getWriter().write("success");
 		} catch (Exception e) {
@@ -92,7 +99,7 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 				e1.printStackTrace();
 			}
 		}
-     
+
 	}
 
 	/*
@@ -105,10 +112,11 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 		String senceInformationInquestId = senceService.getSenceInformationInquestId();
 		http_response.setContentType("text/html;charset=utf-8");
 		http_response.getWriter().write(gson.toJson(senceInformationInquestId));
-    }
-    /*
-     * 现场信息列表
-     */
+	}
+
+	/*
+	 * 现场信息列表
+	 */
 	public void ListSneceInformationByPageAndSearch() throws IOException {
 
 		GsonBuilder gsonBuilder = new GsonBuilder();
@@ -116,8 +124,7 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 		Gson gson = gsonBuilder.create();
 
 		// 获取所有现场录入信息列表
-		 page_list_senceInformation = senceService
-			.VO_SneceInformation_By_PageAndSearch(page_list_senceInformation);
+		page_list_senceInformation = senceService.VO_SneceInformation_By_PageAndSearch(page_list_senceInformation);
 
 		http_response.setContentType("text/html;charset=utf-8");
 
@@ -125,18 +132,18 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 
 	}
 
-/*
- * 列表详细信息
- */
-public void SecneInformationOne() throws IOException{
-	GsonBuilder gsonBuilder = new GsonBuilder();
-	gsonBuilder.setPrettyPrinting();// 格式化json数据
-	Gson gson = gsonBuilder.create();
-	senceInformationDTO = senceService.SecneInformationOne(sence);
-	http_response.setContentType("text/html;charset=utf-8");
+	/*
+	 * 列表详细信息
+	 */
+	public void SecneInformationOne() throws IOException {
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
+		Gson gson = gsonBuilder.create();
+		senceInformationDTO = senceService.SecneInformationOne(sence);
+		http_response.setContentType("text/html;charset=utf-8");
 
-	http_response.getWriter().write(gson.toJson(senceInformationDTO));
-}
+		http_response.getWriter().write(gson.toJson(senceInformationDTO));
+	}
 
 	public SenceService getSenceService() {
 		return senceService;
@@ -221,5 +228,5 @@ public void SecneInformationOne() throws IOException{
 	public void setHttp_request(HttpServletRequest http_request) {
 		this.http_request = http_request;
 	}
-	
+
 }

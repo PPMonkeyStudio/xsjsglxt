@@ -18,8 +18,7 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
-<link rel="stylesheet"
-	href="<%=basePath%>css/SneceInformation/table.css">
+<link rel="stylesheet" href="<%=basePath%>css/Case/table.css">
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
@@ -31,11 +30,17 @@
 		<!--  -->
 		<!---------------------------------------------------------------------------------------------------->
 		<!---------------------------------------------------------------------------------------------------->
-		<div class="panel" style="width: 95%; margin: 20px auto;">
+		<div class="panel" style="width: 95% margin: 20px auto;">
 			<!--  -->
 			<div class="panel-heading">
 				<h3 class="panel-title">现场录入</h3>
 			</div>
+			<button
+				style="margin-top: 6px; margin-left:20px; float: left; position: absolute;"
+				onclick="javascript:history.go(-1)" type="button"
+				class="btn btn-default">
+				<i class="fa fa-reply"></i> 返回列表
+			</button>
 			<!--  -->
 			<div class="panel-body">
 				<form id="sneceInformation" action="">
@@ -43,16 +48,12 @@
 						<tr>
 							<td>勘探编号</td>
 							<td><input style="font-size: 12px;"
-								name="sneceInformation.scene_information_inquestId"
-								class="form-control" type="text"></td>
+								name="sence.snece_inquestId" class="form-control" type="text"></td>
 							<td style="padding-left:5px;">勘探系统编号</td>
-							<td><input
-								name="sneceInformation.scene_information_InquestSystemId"
+							<td><input name="sence.snece_inquestSystemId"
 								class="form-control" type="text"></td>
 							<td>案件分类</td>
-							<td><select
-								name="sneceInformation.scene_information_caseClassify"
-								class=" form-control">
+							<td><select name="Case.case_classify" class=" form-control">
 									<option value="" selected></option>
 									<option value="非刑事案件">非刑事案件</option>
 									<option value="刑事案件">刑事案件</option>
@@ -61,12 +62,10 @@
 						</tr>
 						<tr>
 							<td>接警时间</td>
-							<td><input
-								name="sneceInformation.scene_information_receivingAlarmDate"
+							<td><input name="Case.case_receivingAlarmDate"
 								class="form-control" style="margin-top: 6px;" type="text"></td>
 							<td>危害程度</td>
-							<td><select
-								name="sneceInformation.scene_information_extentOfInjury"
+							<td><select name="Case.case_extentOfInjury"
 								class="form-control" style="margin-top: 6px;">
 									<option selected></option>
 									<option>一般</option>
@@ -76,24 +75,22 @@
 							</select></td>
 							<td>是否立案</td>
 							<td><label style="float: left;" class="fancy-radio">
-									<input name="sneceInformation.scene_information_register"
-									type="radio"> <span><i></i>是</span>
+									<input name="register" onclick="buildCase_chose(this)"
+									type="radio" value="1"> <span><i></i>是</span>
 							</label><label style="float: left; margin-left: 10px;"
-								class="fancy-radio"> <input
-									name="sneceInformation.scene_information_register" type="radio">
+								class="fancy-radio"> <input name="register"
+									onclick="buildCase_chose(this)" type="radio" value="2">
 									<span><i></i>否</span>
-							</label></td>
+							</label> <input type="hidden" name="Csae.case_register"></td>
 						</tr>
 						<tr>
 							<td>案发地点</td>
-							<td colspan="3"><input
-								name="sneceInformation.scene_information_address"
+							<td colspan="3"><input name="Case.case_address"
 								style="margin-top: 6px;" class="case_place form-control"
 								type="text" value="萍乡市安源区"></td>
 
 							<td rowspan="2">案件类别</td>
-							<td rowspan="2"><select
-								name="sneceInformation.scene_information_totalCategory"
+							<td rowspan="2"><select name="Case.case_totalCategory"
 								name="case_class1" onchange="setSectionCase(this.selectedIndex)"
 								class="main_case form-control"><option
 										selected="selected" value="">请选择案件总类别</option>
@@ -110,15 +107,14 @@
 									<option value="非正常死亡">非正常死亡</option>
 									<option value="故意损坏公私财物">故意损坏公私财物</option>
 									<option value="其它">其它</option></select> <select
-								name="sneceInformation.scene_informaton_sonCategory"
-								style="margin-top: 6px;" class="other_case form-control">
+								name="Case.case_sonCategory" style="margin-top: 6px;"
+								class="other_case form-control">
 									<option selected value="">请选择案件子类别</option>
 							</select></td>
 						</tr>
 						<tr>
 							<td>案发名称</td>
-							<td colspan="3"><input
-								name="sneceInformation.scene_information_caseName"
+							<td colspan="3"><input name="Case.case_name"
 								style="margin-top: 6px;" class="case_name form-control"
 								type="text"></td>
 						</tr>
@@ -127,23 +123,18 @@
 					<table>
 						<tr>
 							<td width="85">移动基站</td>
-							<td><input
-								name="sneceInformation.scene_information_mobileVillage"
-								placeholder="小区号" class="form-control" type="text"> <input
-								name="sneceInformation.scene_information_mobileStation"
-								placeholder="基站号" style="margin-top: 6px;" class="form-control"
-								type="text"></td>
+							<td><input name="sence.snece_mobileStation"
+								placeholder="基站号" class="form-control" type="text"> <input
+								name="sence.snece_mobileVillage" placeholder="小区号"
+								style="margin-top: 6px;" class="form-control" type="text"></td>
 							<td width="85">联通基站</td>
-							<td><input
-								name="sneceInformation.scene_information_unicomStation"
+							<td><input name="sence.snece_unicomSwitchboard"
 								placeholder="交换机" class="form-control" type="text"> <input
-								name="sneceInformation.scene_information_unicomVillage"
-								placeholder="小区号" style="margin-top: 6px;" class="form-control"
-								type="text"></td>
+								name="sence.snece_unicomVillage" placeholder="小区号"
+								style="margin-top: 6px;" class="form-control" type="text"></td>
 							<td width="85">电信基站</td>
-							<td><input
-								name="sneceInformation.snece_information_telecomStation"
-								placeholder="小区号" width="40%;" class="form-control" type="text"></td>
+							<td><input name="sence.snece_telecomStation"
+								placeholder="基站号" width="40%;" class="form-control" type="text"></td>
 						</tr>
 					</table>
 					<hr>
@@ -151,31 +142,30 @@
 						<tr>
 							<td style="height: 74;">报案人基本情况</td>
 							<td colspan="5"><input style=" width: 24%;float:left; "
-								name="sneceInformation.scene_information_reporterName"
-								class="form-control" type="text" placeholder="姓名"> <input
+								name="Case.case_reporterName" class="form-control" type="text"
+								placeholder="姓名"> <input
 								style="width: 24%; float:left;margin-left: 6px;"
-								name="sneceInformation.scene_information_reporterSex"
-								class="form-control" type="text" placeholder="年龄 "> <input
+								name="Case.case_reporterSex" class="form-control" type="text"
+								placeholder="年龄 "> <input
 								style="width: 24%; float:left; margin-left: 6px;"
-								name="sneceInformation.scene_information_reporterJobUnit"
-								class="form-control" type="text" placeholder="工作单位 "> <input
+								name="Case.case_reporterJobUnit" class="form-control"
+								type="text" placeholder="工作单位 "> <input
 								style="width: 25%; margin-left: 6px; float: left;"
-								name="sneceInformation.scene_information_reporterPhone"
-								class="form-control" type="text" placeholder="联系电话 "> <input
+								name="Case.case_reporterPhone" class="form-control" type="text"
+								placeholder="联系电话 "> <input
 								style="margin-top: 6px;float: right;"
-								name="sneceInformation.scene_information_reporterAddress"
-								class="form-control" type="text" placeholder="家庭住址 "></td>
+								name="Case.case_reporterAddress" class="form-control"
+								type="text" placeholder="家庭住址 "></td>
 						</tr>
 						<tr>
 							<td>简要案情</td>
 							<td colspan="5"><textarea style="margin-top: 6px;"
-									name="sneceInformation.scene_information_briefCase"
-									class="form-control" rows="4"></textarea></td>
+									name="briefdetails.briefdetails_details" class="form-control"
+									rows="4"></textarea></td>
 						</tr>
 						<tr>
 							<td height="39px;">天气情况</td>
-							<td><select
-								name="sneceInformation.scene_information_weather"
+							<td><select name="sence.snece_weather"
 								style="width:74px; float:left; margin-top: 6px;"
 								class=" form-control" id="weather" name="weather">
 									<option selected value=""></option>
@@ -187,13 +177,11 @@
 									<option value="其他">其他</option>
 							</select>
 								<p style="float:left; margin-top: 6px;">温度</p> <input
-								name="sneceInformation.scene_information_weatherTemperature"
+								name="sence.snece_weatherTemperature"
 								style="width: 50px; float:left; margin-top: 6px;"
 								class="form-control" type="text">°C</td>
 							<td width="85">作案时段</td>
-							<td><select
-								name="sneceInformation.scene_information_makeTime"
-								class=" form-control">
+							<td><select name="Case.case_makeTime" class=" form-control">
 									<option selected value=""></option>
 									<option value="昼">昼</option>
 									<option value="夜">夜</option>
@@ -206,8 +194,7 @@
 									<option value="其他">其他</option>
 							</select></td>
 							<td>发案辖区</td>
-							<td><select
-								name="sneceInformation.scene_information_caseArea"
+							<td><select name="Case.case_jurisdiction"
 								class=" form-control">
 									<option value="" selected></option>
 									<option value="东大派出所">东大派出所</option>
@@ -228,8 +215,7 @@
 
 						<tr style="margin-top: -6px;">
 							<td height="78px;">作案手段</td>
-							<td><select
-								name="sneceInformation.snece_information_makeMeans"
+							<td><select name="Case.case_makeMeans"
 								onchange="setSectionmMethod(this.selectedIndex)"
 								class=" crime_means form-control">
 									<option selected value="作案手段">作案手段</option>
@@ -238,14 +224,12 @@
 									<option value="攀爬侵入">攀爬侵入</option>
 									<option value="洞口侵入">洞口侵入</option>
 									<option value="其它">其它</option>
-							</select> <select
-								name="sneceInformation.snece_information_concreteMakeMeans"
+							</select> <select name="Case.case_concreteMakeMeans"
 								style="margin-top: 6px;" class=" specific_means form-control">
 									<option value="">具体手段</option>
 							</select></td>
 							<td>选择处所</td>
-							<td><select
-								name="sneceInformation.snece_information_residence"
+							<td><select name="Case.case_residence"
 								onchange="setSectionmAddress(this.selectedIndex)"
 								class=" widel_space form-control"><option selected
 										value="">选择处所</option>
@@ -253,13 +237,12 @@
 									<option value="单位场所">单位场所</option>
 									<option value="服务行业">服务行业</option>
 									<option value="其它处所">其它处所</option></select><select
-								name="sneceInformation.snece_information_concreteResidence"
-								style="margin-top: 6px;" class=" specific_space form-control">
+								name="Case.case_concreteResidence" style="margin-top: 6px;"
+								class=" specific_space form-control">
 									<option value="">具体处所</option>
 							</select></td>
 							<td width="85">进出口</td>
-							<td><select name="sneceInformation.snece_information_exit"
-								class=" form-control">
+							<td><select name="Case.case_exit" class=" form-control">
 									<option value="" selected></option>
 									<option value="窗进窗出">窗进窗出</option>
 									<option value="窗进门出">窗进门出</option>
@@ -272,18 +255,17 @@
 							</select></td>
 						</tr>
 						<tr>
-							<td>物证编号</td>
+							<!-- <td>物证编号</td>
 							<td><input
 								name="sneceInformation.snece_information_physicalEvidenceId"
 								style="margin-top: 4px;" class="form-control" type="text"></td>
 							<td>照片编号</td>
-							<td><input
-								name="sneceInformation.snece_information_pictureId"
-								style="margin-top: 4px;" class="form-control" type="text"></td>
+							<td><input name="" style="margin-top: 6px;"
+								class="form-control" type="text"></td>
 							<td>损失物品</td>
 							<td><select
 								name="sneceInformation.snece_information_lossArticle"
-								class=" form-control">
+								class=" form-control" style="margin-top: 6px;">
 									<option value="" selected></option>
 									<option value="各类财物">各类财物</option>
 									<option value="现金">现金</option>
@@ -297,38 +279,41 @@
 									<option value="女性">女性</option>
 									<option value="其他">其他</option>
 									<option value="无">无</option>
-							</select></td>
+							</select></td> -->
 						</tr>
 					</table>
 					<hr>
 					<table>
 						<tr>
 							<td>作案过程</td>
-							<td colspan="5"><textarea
-									name="sneceInformation.snece_information_caseProcess"
+							<td colspan="5"><textarea name="Case.case_process"
 									class="form-control" rows="4"></textarea></td>
 						</tr>
 						<tr>
 							<td colspan="6"><label style="margin-left: 30%;"
 								class="fancy-checkbox"><input
-									name="sneceInformation.snece_information_state" type="checkbox">
-									<span>已拍照</span> </label> <label class="fancy-checkbox"><input
-									name="sneceInformation.snece_information_state" type="checkbox">
-									<span>已录入</span> </label> <label class="fancy-checkbox"><input
-									name="sneceInformation.snece_information_state" type="checkbox">
-									<span>已制作</span> </label> <label class="fancy-checkbox"><input
-									name="sneceInformation.snece_information_state" type="checkbox">
-									<span>已分析</span> </label> <label class="fancy-checkbox"><input
-									name="sneceInformation.snece_information_state" type="checkbox">
-									<span>已存档</span> </label> <label class="fancy-checkbox"> <input
-									name="sneceInformation.snece_information_state" type="checkbox">
-									<span>已认定</span>
+									onclick="sence_checkbox(this)" name="sence.snece_photographed"
+									type="checkbox"> <span>已拍照</span> </label> <label
+								class="fancy-checkbox"><input
+									onclick="sence_checkbox(this)" name="sence.snece_entered"
+									type="checkbox"> <span>已录入</span> </label> <label
+								class="fancy-checkbox"><input
+									onclick="sence_checkbox(this)" name="sence.snece_areadymade"
+									type="checkbox"> <span>已制作</span> </label> <label
+								class="fancy-checkbox"><input
+									onclick="sence_checkbox(this)" name="sence.snece_parsed"
+									type="checkbox"> <span>已分析</span> </label> <label
+								class="fancy-checkbox"><input
+									onclick="sence_checkbox(this)" name="sence.snece_archived"
+									type="checkbox"> <span>已存档</span> </label> <label
+								class="fancy-checkbox"> <input
+									onclick="sence_checkbox(this)" name="sence.snece_identified"
+									type="checkbox"> <span>已认定</span>
 							</label></td>
 						</tr>
 						<tr>
 							<td>勘验人员</td>
-							<td colspan="5"><select
-								name="sneceInformation.snece_information_inquestPerson"
+							<td colspan="5"><select name="sence.snece_inquestPerson"
 								id="exploration_personnel"
 								class="selectpicker show-tick form-control dropup" multiple
 								data-live-search="true" data-dropup-auto="false" title="请选择">
@@ -350,16 +335,13 @@
 						</tr>
 						<tr>
 							<td>填表人员</td>
-							<td><input
-								name="sneceInformation.snece_information_fillPerson"
+							<td><input name="sence.snece_fillPerson"
 								style="margin-top: 6px;" class="form-control" type="text"></td>
 							<td>填表单位</td>
-							<td><input
-								name="sneceInformation.snece_information_fillUnit"
+							<td><input name="sence.snece_fillUnit"
 								style="margin-top: 6px;" class="form-control" type="text"></td>
 							<td>填表时间</td>
-							<td><input
-								name="sneceInformation.snece_information_fillTime"
+							<td><input name="sence.snece_fillTime"
 								style="margin-top: 6px;" class="form_time form-control"
 								type="text"></td>
 						</tr>
@@ -497,7 +479,7 @@
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-primary">提交更改</button>
+								<button type="button" class="btn btn-primary">提交</button>
 								<button type="button" class="btn btn-default"
 									data-dismiss="modal">关闭</button>
 
@@ -512,7 +494,7 @@
 			<!---------------------------------------------------------------------------------------------------->
 			<!---------------------------------------------------------------------------------------------------->
 		</div>
-		<script type="text/javascript"
-			src="<%=basePath%>js/case/SneceInput.js"></script>
+	</div>
+	<script type="text/javascript" src="<%=basePath%>js/Case/SneceInput.js"></script>
 </body>
 </html>
