@@ -5,7 +5,7 @@ document.getElementById("button_Create_TranceCheckEntrustmentBook").onclick = fu
  * 创建痕迹检验委托书
  */
 function Create_TranceCheckEntrustmentBook() {
-	var js = $
+	var jc = $
 			.confirm({
 				title : '痕迹检验鉴定委托书',
 				content : '<hr>'
@@ -72,7 +72,8 @@ function Create_TranceCheckEntrustmentBook() {
 						+ '<br>'
 						+ '<br>'
 						+ '<h4><i class="fa fa-warning" style="color:#D9534F;"></i> 鉴定要求</h4>'
-						+ '<textarea class="form-control" style="resize: none;height:100px;" id="create_check_entrustment_book_entrustment_request"></textarea>',
+						+ '<textarea class="form-control" style="resize: none;height:100px;" id="create_check_entrustment_book_entrustment_request"></textarea>'
+						+ '<br>' + '<hr>',
 				type : 'blue',
 				theme : 'modern',
 				columnClass : 'col-md-12',
@@ -92,7 +93,7 @@ function Create_TranceCheckEntrustmentBook() {
 					'确认委托' : {
 						btnClass : 'btn-blue',
 						action : function() {
-							addTranceCheckBook(js);
+							addTranceCheckBook(jc);
 							return false;
 						}
 					},
@@ -191,6 +192,21 @@ function addTranceCheckBook(js) {
 			.append(
 					"tranceCheckBook.check_entrustment_book_inspectors2_jobcard_number",
 					create_check_entrustment_book_inspectors2_jobcard_number.value);
+	/*
+	 * 被鉴定人
+	 */
+	formData.append(
+			"tranceCheckBook.check_entrustment_book_entrustmentor_name", "无");
+	formData.append("tranceCheckBook.check_entrustment_book_entrustmentor_sex",
+			"无");
+	formData.append(
+			"tranceCheckBook.check_entrustment_book_entrustmentor_phone", "无");
+	formData.append(
+			"tranceCheckBook.check_entrustment_book_entrustmentor_unit", "无");
+	formData
+			.append(
+					"tranceCheckBook.check_entrustment_book_entrustmentor_address",
+					"无");
 	/*
 	 * 通讯地址
 	 */

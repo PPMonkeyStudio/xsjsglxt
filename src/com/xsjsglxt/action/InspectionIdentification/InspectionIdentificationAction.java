@@ -130,8 +130,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void addInspectionRecord() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			response.getWriter().write(
-					"" + inspectionIdentificationService.saveInspectionRecord(inspectionRecord));
+			response.getWriter().write("" + inspectionIdentificationService.saveInspectionRecord(inspectionRecord));
 		} catch (IOException e) {
 			System.out.println("填写不受理委托鉴定告知报错");
 			e.printStackTrace();
@@ -142,8 +141,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void addAppraisalLetter() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			response.getWriter().write(
-					"" + inspectionIdentificationService.saveAppraisalLetter(appraisalLetter));
+			response.getWriter().write("" + inspectionIdentificationService.saveAppraisalLetter(appraisalLetter));
 		} catch (IOException e) {
 			System.out.println("填写鉴定文书表报错");
 			e.printStackTrace();
@@ -154,8 +152,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void updateTranceCheckBook() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			response.getWriter().write(
-					"" + inspectionIdentificationService.updateTranceCheckBook(tranceCheckBook));
+			response.getWriter().write("" + inspectionIdentificationService.updateTranceCheckBook(tranceCheckBook));
 		} catch (IOException e) {
 			System.out.println("更改委托书报错");
 			e.printStackTrace();
@@ -166,8 +163,8 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void updateIdentifiederCaseConfirmBook() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			response.getWriter().write(
-					"" + inspectionIdentificationService.updateIdentifiederCaseConfirmBook(identifiederCaseConfirmBook));
+			response.getWriter().write(""
+					+ inspectionIdentificationService.updateIdentifiederCaseConfirmBook(identifiederCaseConfirmBook));
 		} catch (IOException e) {
 			System.out.println("更改鉴定事项确认书报错");
 			e.printStackTrace();
@@ -190,8 +187,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void updateInspectionRecord() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			response.getWriter().write(
-					"" + inspectionIdentificationService.updateInspectionRecord(inspectionRecord));
+			response.getWriter().write("" + inspectionIdentificationService.updateInspectionRecord(inspectionRecord));
 		} catch (IOException e) {
 			System.out.println("更改不受理委托鉴定告知报错");
 			e.printStackTrace();
@@ -202,8 +198,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void updateAppraisalLetter() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			response.getWriter().write(
-					"" + inspectionIdentificationService.updateAppraisalLetter(appraisalLetter));
+			response.getWriter().write("" + inspectionIdentificationService.updateAppraisalLetter(appraisalLetter));
 		} catch (IOException e) {
 			System.out.println("更改不受理委托鉴定告知报错");
 			e.printStackTrace();
