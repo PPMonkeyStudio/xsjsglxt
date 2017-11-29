@@ -264,4 +264,20 @@ public class SenceServiceImpl implements SenceService {
 		return SenceInformationInquestId;
 	}
 
+	@Override
+	public SenceInformationDTO SecneInformationOne(xsjsglxt_snece sence) {
+		// TODO Auto-generated method stub
+		sence=senceDao.getSeceBySenceId(sence);
+		xsjsglxt_case Case =  senceDao.getCaseBySenceId(sence);
+		xsjsglxt_briefdetails briefdetails=senceDao.getBriefdetailsByCaseID(Case);
+		xsjsglxt_lost lost = senceDao.getLostByCaseID(Case);
+		xsjsglxt_lost_mobilephone lost_mobilephone =senceDao.getLost_mobilephoneByCaseId(Case);
+		xsjsglxt_lost_computer lost_computer=senceDao.getLost_computerByCaseId(Case);
+		xsjsglxt_resevidence resevidence =senceDao.getResevidenceByCaseId(Case);
+		xsjsglxt_picture picture=senceDao.getPicturtByCaseId(Case);
+		SenceInformationDTO senceInformationDTO =new SenceInformationDTO(briefdetails, Case, lost_computer, lost_mobilephone, lost,
+				picture, sence, resevidence);
+		return senceInformationDTO;
+	}
+
 }
