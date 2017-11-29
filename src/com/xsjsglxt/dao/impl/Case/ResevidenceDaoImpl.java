@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.Case.ResevidenceDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
+import com.xsjsglxt.domain.DO.xsjsglxt_circulation;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
 import com.xsjsglxt.domain.DO.xsjsglxt_resevidence;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
@@ -130,5 +131,18 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 		xsjsglxt_snece sence = (xsjsglxt_snece) query.uniqueResult();
 
 		return sence;
+	}
+
+	@Override
+	public xsjsglxt_circulation getCirculationByxsjsglxt_resevidence_id(xsjsglxt_resevidence resevidence) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		String hql = "from xsjsglxt_circulation circulation where circulation.circulation_resevidence='" + resevidence.getXsjsglxt_resevidence_id() + "'";
+
+		Query query = session.createQuery(hql);
+
+		xsjsglxt_circulation circulation = (xsjsglxt_circulation) query.uniqueResult();
+
+		return circulation;
 	}
 }

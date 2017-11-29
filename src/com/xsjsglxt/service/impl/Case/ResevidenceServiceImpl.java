@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.xsjsglxt.dao.Case.ResevidenceDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
+import com.xsjsglxt.domain.DO.xsjsglxt_circulation;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
 import com.xsjsglxt.domain.DO.xsjsglxt_resevidence;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
@@ -45,6 +46,7 @@ public page_list_ResevidenceInformationVO VO_Resevidenceformation_By_PageAndSear
 	   
 	xsjsglxt_case Case;
 	xsjsglxt_snece snece;
+	xsjsglxt_circulation circulation;
 	// 获取筛选后所有的记录
 	int i = resevidenceDao.getCountResevidenceInformationByPage(page_list_ResevidenceInformation);
 	page_list_ResevidenceInformation.setTotalRecords(i);
@@ -71,7 +73,8 @@ public page_list_ResevidenceInformationVO VO_Resevidenceformation_By_PageAndSear
 				
 		Case=resevidenceDao.getCaseByxsjsglxt_resevidence_id(resevidence);
 		snece=resevidenceDao.getSenceByxsjsglxt_case_id(Case);
-		resevidenceInformationDTO = new ResevidenceInformationDTO(resevidence,Case,snece);
+		circulation=resevidenceDao.getCirculationByxsjsglxt_resevidence_id(resevidence);
+		resevidenceInformationDTO = new ResevidenceInformationDTO(resevidence,Case,snece,circulation);
 		ResevidenceInformationDTOList.add(resevidenceInformationDTO);
 	}
 	page_list_ResevidenceInformation.setResevidenceInformationDTOList(ResevidenceInformationDTOList);

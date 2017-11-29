@@ -61,6 +61,9 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 
 				http_response.getWriter().write(gson.toJson(page_list_ResevidenceInformation));
 	}
+	/*
+	 * 
+	 */
 	@Override
 	public void setServletResponse(HttpServletResponse arg0) {
 		// TODO Auto-generated method stub

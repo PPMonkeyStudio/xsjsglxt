@@ -3,6 +3,7 @@ package com.xsjsglxt.dao.Case;
 import java.util.List;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
+import com.xsjsglxt.domain.DO.xsjsglxt_circulation;
 import com.xsjsglxt.domain.DO.xsjsglxt_resevidence;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
 import com.xsjsglxt.domain.VO.Case.page_list_ResevidenceInformationVO;
@@ -19,5 +20,7 @@ public List<xsjsglxt_resevidence> getListResevidenceInformatioByPage(
 public xsjsglxt_case getCaseByxsjsglxt_resevidence_id(xsjsglxt_resevidence resevidence);
 
 public xsjsglxt_snece getSenceByxsjsglxt_case_id(xsjsglxt_case case1);
+
+public xsjsglxt_circulation getCirculationByxsjsglxt_resevidence_id(xsjsglxt_resevidence resevidence);
 
 }
