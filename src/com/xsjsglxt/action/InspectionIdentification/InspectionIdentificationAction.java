@@ -214,7 +214,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 					"UTF-8");
 			System.out.println(fileName);
 			inputStream = new FileInputStream(exportTranceCheckBookFile);
-			exportTranceCheckBookFile.delete();
+			// exportTranceCheckBookFile.delete();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
