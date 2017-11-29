@@ -9,6 +9,25 @@
 			<result name="page_SiteManagement">/WEB-INF/view/Case/SiteManagement.jsp</result>
 			<result name="page_Sneceinput">/WEB-INF/view/Case/SneceInput.jsp</result>
 			<result name="page_CaseMerger">/WEB-INF/view/Case/CaseMerger.jsp</result>
+			<result name="page_CaseDetails">/WEB-INF/view/Case/CaseDetails.jsp</result>
+		</action>
+		<action name="Resevidence_*" class="com.xsjsglxt.action.Case.ResevidenceAction"
+			method="{1}">
+		</action>
+		<action name="Parallel_*" class="com.xsjsglxt.action.Case.ParallelAction"
+			method="{1}">
+		</action>
+		<action name="LostMobilephone_*" class="com.xsjsglxt.action.Case.LostMobilephoneAction"
+			method="{1}">
+		</action>
+		<action name="LostComputer_*" class="com.xsjsglxt.action.Case.LostComputerAction"
+			method="{1}">
+		</action>
+		<action name="Lost_*" class="com.xsjsglxt.action.Case.LostAction"
+			method="{1}">
+		</action>
+		<action name="Image_*" class="com.xsjsglxt.action.Case.ImageAction"
+			method="{1}">
 		</action>
 	</package>
 </struts>

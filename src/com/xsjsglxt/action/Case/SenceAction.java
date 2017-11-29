@@ -10,6 +10,7 @@ import org.apache.struts2.interceptor.ServletResponseAware;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.dao.Case.SenceDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_briefdetails;
@@ -62,14 +63,22 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	}
 
 	/*
+	 * 跳转案件详情页面
+	 */
+	public String page_CaseDetails() {
+		ActionContext.getContext().getValueStack().set("id", http_request.getParameter("id"));
+		return "page_CaseDetails";
+	}
+
+	/*
 	 * 保存基本信息
 	 */
 	public void saveSenceInformation() {
 
 		try {
-		
+
 			senceService.save(case1);
-          
+
 			sence.setSnece_case(case1.getXsjsglxt_case_id());
 			senceService.save(sence);
 
@@ -174,7 +183,6 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 		this.sence = sence;
 	}
 
-	
 	public xsjsglxt_case getCase1() {
 		return case1;
 	}

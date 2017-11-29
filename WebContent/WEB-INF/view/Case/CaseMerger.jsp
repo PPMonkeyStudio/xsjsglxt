@@ -50,7 +50,7 @@
 				<table class="table table-hover table-condensed table_main">
 					<thead>
 						<tr>
-							<thh>
+							<th>#</th>
 							<th>勘验编号</th>
 							<th>接警时间</th>
 							<th>案发地点</th>
@@ -134,7 +134,7 @@
 					</table>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary to_quert">完成</button>
+					<button type="button" class="btn btn-primary to_quert">查询</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 				</div>
 			</div>
