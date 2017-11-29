@@ -16,7 +16,6 @@ import com.xsjsglxt.domain.DO.xsjsglxt_dna;
 import com.xsjsglxt.domain.VO.Technology.DNAVO;
 import com.xsjsglxt.service.Technology.DNAService;
 
-
 public class DNAAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
 
 	private DNAService dNAService;
@@ -25,14 +24,13 @@ public class DNAAction extends ActionSupport implements ServletRequestAware, Ser
 
 	private HttpServletRequest http_request;
 
-	private DNAVO dNAVO;
+	private DNAVO dnaVO;
 
 	private xsjsglxt_dna dna;
 
 	private List<String> listDeleteDNAID;
-	
+
 	private String xsjsglxt_dna_id;
-	
 
 	public void get_dna() throws IOException {
 		xsjsglxt_dna d = dNAService.get_dna(xsjsglxt_dna_id);
@@ -48,7 +46,7 @@ public class DNAAction extends ActionSupport implements ServletRequestAware, Ser
 	 * 
 	 */
 	public void modifiedDNA() throws IOException {
-		System.out.println("dna:"+dna);
+		System.out.println("dna:" + dna);
 		int result = dNAService.modifiedDNA(dna);
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
@@ -82,21 +80,18 @@ public class DNAAction extends ActionSupport implements ServletRequestAware, Ser
 		http_response.getWriter().write(gson.toJson(result));
 	}
 
-
 	public void ListDNAByPageAndSearch() throws IOException {
-		DNAVO vo = dNAService.list_xsjsglxt_dna(dNAVO);
+		DNAVO vo = dNAService.list_xsjsglxt_dna(dnaVO);
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
 		http_response.setContentType("text/html;charset=utf-8");
 		http_response.getWriter().write(gson.toJson(vo));
 	}
-	
-	
+
 	/**
-	 * @author gxr
-	 * 添加DNA
-	 * */
+	 * @author gxr 添加DNA
+	 */
 	public void CreateDNA() throws IOException {
 		int result = dNAService.saveDNA(dna);
 		GsonBuilder gsonBuilder = new GsonBuilder();
@@ -121,13 +116,15 @@ public class DNAAction extends ActionSupport implements ServletRequestAware, Ser
 	public String CreateDNAPage() {
 		return "CreateDNAPage";
 	}
-	
-	public DNAVO getXsjsglxt_dna_VO() {
-		return dNAVO;
+
+
+
+	public DNAVO getDnaVO() {
+		return dnaVO;
 	}
 
-	public void setXsjsglxt_dna_VO(DNAVO dNAVO) {
-		this.dNAVO = dNAVO;
+	public void setDnaVO(DNAVO dnaVO) {
+		this.dnaVO = dnaVO;
 	}
 
 	public DNAService getdNAService() {
@@ -159,9 +156,8 @@ public class DNAAction extends ActionSupport implements ServletRequestAware, Ser
 		this.http_request = http_request;
 	}
 
-
-	public void setServletResponse(HttpServletResponse http_response	) {
-		this.http_response = http_response;		
+	public void setServletResponse(HttpServletResponse http_response) {
+		this.http_response = http_response;
 	}
 
 	public List<String> getListDeleteDNAID() {

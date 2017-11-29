@@ -1,5 +1,7 @@
 package com.xsjsglxt.dao.impl.Technology;
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -7,6 +9,7 @@ import org.hibernate.SessionFactory;
 import com.xsjsglxt.dao.Technology.ContrastFingerPrintDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_contrast_fingerprint;
 import com.xsjsglxt.domain.DO.xsjsglxt_dna;
+import com.xsjsglxt.domain.VO.Technology.ContrastFingerPrintVO;
 
 public class ContrastFingerPrintDaoImpl implements ContrastFingerPrintDao {
 	
@@ -86,6 +89,34 @@ public class ContrastFingerPrintDaoImpl implements ContrastFingerPrintDao {
 		Query query = session.createQuery(hql);
 		xsjsglxt_contrast_fingerprint contrast = (xsjsglxt_contrast_fingerprint) query.uniqueResult();
 		return contrast;
+	}
+
+	@Override
+	public int count_contrast_all() {
+		Session session = getSession();
+		String hql = "select count(*) from xsjsglxt_contrast_fingerprint";
+		Query query = session.createQuery(hql);
+		Long i = (Long)query.uniqueResult();
+		int count = i.intValue();
+		session.clear();
+		return count;
+	}
+
+	@Override
+	public List<xsjsglxt_contrast_fingerprint> list_xsjsglxt_contrast(ContrastFingerPrintVO contrastFingerPrintVO) {
+		Session session = getSession();
+		String hql = "from xsjsglxt_contrast_fingerprint where 1=1";
+		if (contrastFingerPrintVO.getSearch() != null && contrastFingerPrintVO.getSearch().trim().length() > 0) {
+			String search = "%" + contrastFingerPrintVO.getSearch().trim() + "%";
+			hql = hql + " and dna_num like '" + search + "' or dna_name like '" + search + "'";
+		}
+		hql = hql + " order by dna_record_time";
+		Query query = session.createQuery(hql);
+		query.setFirstResult((contrastFingerPrintVO.getPageIndex() - 1) * contrastFingerPrintVO.getPageSize());
+		query.setMaxResults(contrastFingerPrintVO.getPageSize());
+		List<xsjsglxt_contrast_fingerprint> list = query.list();
+		session.clear();
+		return list;
 	}
 
 }

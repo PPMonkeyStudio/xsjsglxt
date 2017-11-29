@@ -15,6 +15,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_contrast_fingerprint;
 import com.xsjsglxt.domain.DO.xsjsglxt_dna;
 import com.xsjsglxt.domain.VO.Technology.ContrastFingerPrintVO;
+import com.xsjsglxt.domain.VO.Technology.DNAVO;
 import com.xsjsglxt.service.Technology.ContrastFingerPrintService;
 
 public class ContrastFingerPrintAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
@@ -28,7 +29,16 @@ public class ContrastFingerPrintAction extends ActionSupport implements ServletR
 	private ContrastFingerPrintVO contrastFingerPrintVO;
 
 	private xsjsglxt_contrast_fingerprint contrastFingerPrint;
-	
+
+	public void ListContrastByPageAndSearch() throws IOException {
+		ContrastFingerPrintVO vo = contrastFingerPrintService.list_xsjsglxt_contrast(contrastFingerPrintVO);
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
+		Gson gson = gsonBuilder.create();
+		http_response.setContentType("text/html;charset=utf-8");
+		http_response.getWriter().write(gson.toJson(vo));
+	}
+
 	public void CreateContrast() throws IOException {
 		int result = contrastFingerPrintService.saveContrast(contrastFingerPrint);
 		GsonBuilder gsonBuilder = new GsonBuilder();
@@ -37,7 +47,7 @@ public class ContrastFingerPrintAction extends ActionSupport implements ServletR
 		http_response.setContentType("text/html;charset=utf-8");
 		http_response.getWriter().write(gson.toJson(result));
 	}
-	
+
 	public void deleteContrast() throws IOException {
 		int result = contrastFingerPrintService.deleteContrast(contrast_fingerprint_id);
 		GsonBuilder gsonBuilder = new GsonBuilder();
@@ -46,7 +56,7 @@ public class ContrastFingerPrintAction extends ActionSupport implements ServletR
 		http_response.setContentType("text/html;charset=utf-8");
 		http_response.getWriter().write(gson.toJson(result));
 	}
-	
+
 	public void deleteListContrast() throws IOException {
 		int result = contrastFingerPrintService.deleteListContrast(listDeleteContrastID);
 		GsonBuilder gsonBuilder = new GsonBuilder();
@@ -55,7 +65,7 @@ public class ContrastFingerPrintAction extends ActionSupport implements ServletR
 		http_response.setContentType("text/html;charset=utf-8");
 		http_response.getWriter().write(gson.toJson(result));
 	}
-	
+
 	public void modifiedContrast() throws IOException {
 		int result = contrastFingerPrintService.modifiedContrast(contrastFingerPrint);
 		GsonBuilder gsonBuilder = new GsonBuilder();
@@ -73,11 +83,11 @@ public class ContrastFingerPrintAction extends ActionSupport implements ServletR
 		http_response.setContentType("text/html;charset=utf-8");
 		http_response.getWriter().write(gson.toJson(contrast));
 	}
-	
+
 	public String ContrastFingerPrintManagementPage() {
 		return "ContrastFingerPrintManagementPage";
 	}
-	
+
 	@Override
 	public String toString() {
 		return "ContrastFingerPrintAction [contrastFingerPrintService=" + contrastFingerPrintService
@@ -143,9 +153,9 @@ public class ContrastFingerPrintAction extends ActionSupport implements ServletR
 	}
 
 	private List<String> listDeleteContrastID;
-	
+
 	private String contrast_fingerprint_id;
-	
+
 	@Override
 	public void setServletResponse(HttpServletResponse http_response) {
 		this.http_response = http_response;

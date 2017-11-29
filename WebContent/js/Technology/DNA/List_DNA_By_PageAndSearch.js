@@ -11,9 +11,10 @@ function List_DNA_By_PageAndSearch(pageIndex) {
 
 		if (xhr.readyState == 4) {
 			if (xhr.status == 200) {
-				console.debug(xhr.responseText);
-				DNA_VO = JSON.parse(xhr.responseText);
+/*console.debug(xhr.responseText);*/
 
+				DNA_VO = JSON.parse(xhr.responseText);
+/*DNA_VO = xhr.responseText;*/
 				/*
 				 * 
 				 */
@@ -132,8 +133,8 @@ function List_DNA_By_PageAndSearch(pageIndex) {
 	if (pageIndex == null || pageIndex.preventDefault) {
 		pageIndex = 1;
 	}
-	formData.append("xsjsglxt_dna_VO.pageIndex", pageIndex);
-	formData.append("xsjsglxt_dna_VO.search", input_DNASearchText);
+	formData.append("dnaVO.pageIndex", pageIndex);
+	formData.append("dnaVO.search", input_DNASearchText);
 	xhr.open("POST", "/xsjsglxt/DNA/DNAManagement_ListDNAByPageAndSearch");
 	xhr.send(formData);
 
@@ -144,10 +145,12 @@ function List_DNA_By_PageAndSearch(pageIndex) {
  */
 function flip(flipPage) {
 	switch (flipPage) {
+	/*首页*/
 	case 1: {
 		List_DNA_By_PageAndSearch(1)
 		break;
 	}
+	/*上一页*/
 	case 2: {
 		if (DNA_VO.pageIndex - 1 == 0) {
 			toastr.warning("已经是第一页了");
@@ -156,6 +159,7 @@ function flip(flipPage) {
 		}
 		break;
 	}
+	/*下一页*/
 	case 3: {
 		if (DNA_VO.pageIndex == DNA_VO.totalPages) {
 			toastr.warning("已经是最后一页了");
@@ -164,6 +168,7 @@ function flip(flipPage) {
 		}
 		break;
 	}
+	/*尾页*/
 	case 4: {
 		List_DNA_By_PageAndSearch(DNA_VO.totalPages);
 

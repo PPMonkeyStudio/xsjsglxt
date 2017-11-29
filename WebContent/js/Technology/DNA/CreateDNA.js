@@ -2,7 +2,7 @@ function CreateDNA() {
 	var jc = $
 			.confirm({
 				columnClass : 'col-md-6 col-md-offset-3',
-				title : 'DNA信息录入',
+				title : 'DNA信息录入',	
 				content : '<table class="table table-hover"><tbody>'
 						+ '<tr><th>姓名：</th><td><input type="text" id="input_name" class="form-control" /></td></tr>'
 						+ '<tr><th>性别：</th>'

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2017-11-25 17:40:22 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2017-11-29 15:59:49 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="com.xsjsglxt.domain.DO.xsjsglxt_equipment" table="XSJSGLXT_EQUIPMENT">
         <id name="xsjsglxt_equipment_id" type="java.lang.String">
@@ -13,6 +13,9 @@
         </property>
         <property name="equipment_name" type="java.lang.String">
             <column name="EQUIPMENT_NAME" />
+        </property>
+        <property name="equipment_type_choose" type="java.lang.String">
+            <column name="EQUIPMENT_TYPE_CHOOSE" />
         </property>
         <property name="equipment_type" type="java.lang.String">
             <column name="EQUIPMENT_TYPE" />
