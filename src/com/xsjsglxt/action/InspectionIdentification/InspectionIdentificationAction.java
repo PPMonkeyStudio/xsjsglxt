@@ -206,20 +206,15 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	}
 
 	// 导出委托书
-	public String exportTranceCheckBook() {
-		try {
-			File exportTranceCheckBookFile = inspectionIdentificationService
-					.exportTranceCheckBook(tranceCheckBook.getXsjsglxt_check_entrustment_book_id());
-			fileName = new String(
-					(inspectionIdentificationService.exportTraceCheckBookName(
-							tranceCheckBook.getXsjsglxt_check_entrustment_book_id()) + ".docx").getBytes("GBK"),
-					"ISO-8859-1");
-			inputStream = new FileInputStream(exportTranceCheckBookFile);
-			System.out.println(inputStream);
-			exportTranceCheckBookFile.delete();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public String exportTranceCheckBook() throws Exception {
+		File exportTranceCheckBookFile = inspectionIdentificationService
+				.exportTranceCheckBook(tranceCheckBook.getXsjsglxt_check_entrustment_book_id());
+		fileName = new String(("鉴定委托书" + inspectionIdentificationService
+				.exportTraceCheckBookName(tranceCheckBook.getXsjsglxt_check_entrustment_book_id()) + ".docx")
+						.getBytes("GBK"),
+				"ISO-8859-1");
+		inputStream = new FileInputStream(exportTranceCheckBookFile);
+		exportTranceCheckBookFile.delete();
 		return "exportTranceCheckBook";
 	}
 

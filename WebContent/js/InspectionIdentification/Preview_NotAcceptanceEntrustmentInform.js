@@ -6,7 +6,7 @@ function Preview_NotAcceptanceEntrustmentInform(obj) {
 				icon : 'fa fa-file-text-o',
 				title : '<p>萍乡市安源区公安司法鉴定中心</p><p>不受理委托告知书</p>',
 				content : '',
-				type : 'green',
+				type : 'red',
 				columnClass : 'col-md-12',
 				theme : 'modern',
 				onOpenBefore : function() {
@@ -19,6 +19,13 @@ function Preview_NotAcceptanceEntrustmentInform(obj) {
 					}
 					var con = '<div style="margin:0 20px 0 0;">'
 							+ '<hr>'
+							+ '<h3  style="text-align: right;">编号：【'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num
+									.substring(0, 4)
+							+ '】第'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num
+									.substring(4)
+							+ '号</h3>'
 							+ '<h3 style="text-align: left;text-indent:2em;">'
 							+ '<p>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_not_acceptance_entrustment_inform.not_acceptance_entrustment_inform_reason
@@ -39,7 +46,7 @@ function Preview_NotAcceptanceEntrustmentInform(obj) {
 				},
 				buttons : {
 					'导出' : {
-						btnClass : 'btn-green',
+						btnClass : 'btn-red',
 						action : function() {
 
 							return false;
