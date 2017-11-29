@@ -46,7 +46,7 @@ public page_list_CasematerialVO VO_LostMobilephoneformation_By_PageAndSearch(
 	List<xsjsglxt_lost_mobilephone> lost_mobilephoneList= new ArrayList<xsjsglxt_lost_mobilephone>();
 	LostMobilephoneInformationDTO lostMobilephoneInformationDTO;
 	   
-	xsjsglxt_case Case;
+	xsjsglxt_case case1;
 	xsjsglxt_snece snece;
 	// 获取筛选后所有的记录
 	int i = lostMobilephoneDao.getCountLostMobilephoneInformationByPage(page_list_Casematerial);
@@ -83,9 +83,9 @@ public page_list_CasematerialVO VO_LostMobilephoneformation_By_PageAndSearch(
 			lost_mobilephone.setLost_mobilephone_feature(lost_mobilephone.getLost_mobilephone_feature().replaceAll(lost_mobilephone.getLost_mobilephone_feature(),
 					"<span style='color: #ff5063;'>" + lost_mobilephone.getLost_mobilephone_feature() + "</span>"));
 		}
-		Case=lostMobilephoneDao.getCaseByxsjsglxt_lost_mobilephone_id(lost_mobilephone);
-		snece=lostMobilephoneDao.getSenceByxsjsglxt_case_id(Case);
-		lostMobilephoneInformationDTO = new LostMobilephoneInformationDTO(Case,snece,lost_mobilephone);
+		case1=lostMobilephoneDao.getCaseByxsjsglxt_lost_mobilephone_id(lost_mobilephone);
+		snece=lostMobilephoneDao.getSenceByxsjsglxt_case_id(case1);
+		lostMobilephoneInformationDTO = new LostMobilephoneInformationDTO(case1,snece,lost_mobilephone);
 		LostMobilephoneInformationDTOList.add(lostMobilephoneInformationDTO);
 	}
 	page_list_Casematerial.setLostMobilephoneInformationDTOList(LostMobilephoneInformationDTOList);

@@ -92,13 +92,13 @@ public class LostDaoImpl implements LostDao {
 		
 		Session session = getSession();
 
-		String hql = "from xsjsglxt_case Case where Case.xsjsglxt_case_id='" + lost.getLost_case() + "'";
+		String hql = "from xsjsglxt_case case1 where case1.xsjsglxt_case_id='" + lost.getLost_case() + "'";
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_case Case = (xsjsglxt_case) query.uniqueResult();
+		xsjsglxt_case case1 = (xsjsglxt_case) query.uniqueResult();
 
-		return Case;
+		return case1;
 	}
 
 	@Override

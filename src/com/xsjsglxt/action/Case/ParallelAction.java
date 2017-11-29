@@ -24,7 +24,7 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 
 	private HttpServletRequest http_request;
 
-	private xsjsglxt_case Case;
+	private xsjsglxt_case case1;
 	private xsjsglxt_parallel parallel;
 
 	private page_list_parallelInformationVO page_list_parallelInformation;
@@ -107,12 +107,14 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 		this.http_request = http_request;
 	}
 
-	public xsjsglxt_case getCase() {
-		return Case;
+	
+
+	public xsjsglxt_case getCase1() {
+		return case1;
 	}
 
-	public void setCase(xsjsglxt_case case1) {
-		Case = case1;
+	public void setCase1(xsjsglxt_case case1) {
+		this.case1 = case1;
 	}
 
 	public xsjsglxt_parallel getParallel() {

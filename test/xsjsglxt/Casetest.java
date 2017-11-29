@@ -44,7 +44,7 @@ private SenceDao senceDao;
 	}
 	@Test
 	public void test1(){
-		System.out.println(senceService.getSenceInformationInquestId());
+		System.out.println(senceService.getMaxSenceInquestId());
 	}
 	@Test
 	public void test2(){

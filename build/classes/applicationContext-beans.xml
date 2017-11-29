@@ -4,4 +4,10 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	<import resource="spring/user.xml" />
 	<import resource="spring/Sence.xml" />
+	<import resource="spring/Resevidence.xml"/>
+	<import resource="spring/Parallel.xml"/>
+	<import resource="spring/LostMobilephone.xml"/>
+	<import resource="spring/LostComputer.xml"/>
+	<import resource="spring/Lost.xml"/>
+	<import resource="spring/Image.xml"/>
 </beans>

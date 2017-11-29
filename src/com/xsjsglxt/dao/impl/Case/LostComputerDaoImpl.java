@@ -121,13 +121,13 @@ public class LostComputerDaoImpl implements LostComputerDao {
 	public xsjsglxt_case getCaseByxsjsglxt_lost_computer_id(xsjsglxt_lost_computer lost_computer) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
-		String hql = "from xsjsglxt_case Case where Case.xsjsglxt_case_id='" + lost_computer.getLost_computer_case() + "'";
+		String hql = "from xsjsglxt_case case1 where case1.xsjsglxt_case_id='" + lost_computer.getLost_computer_case() + "'";
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_case Case = (xsjsglxt_case) query.uniqueResult();
+		xsjsglxt_case case1 = (xsjsglxt_case) query.uniqueResult();
 
-		return Case;
+		return case1;
 	}
 
 	@Override

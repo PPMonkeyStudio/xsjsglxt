@@ -20,7 +20,7 @@ private HttpServletResponse http_response;
 private xsjsglxt_image image;
 private HttpServletRequest http_request;	
 private xsjsglxt_picture picture;
-private xsjsglxt_case Case;
+private xsjsglxt_case case1;
 /*
  * 保存光盘
  */
@@ -42,7 +42,7 @@ public void saveCD() throws IOException{
  */
 public void savePicture() throws IOException{
 try {
-	picture.setPicture_case(Case.getXsjsglxt_case_id());
+	picture.setPicture_case(case1.getXsjsglxt_case_id());
 	picture.setPicture_image(image.getXsjsglxt_image_id());
 		imageService.savePicture(picture);
 		http_response.setContentType("text/html;charset=utf-8");

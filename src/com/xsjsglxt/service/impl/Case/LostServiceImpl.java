@@ -46,7 +46,7 @@ public page_list_CasematerialVO VO_Lostformation_By_PageAndSearch(page_list_Case
 	List<xsjsglxt_lost> lostList= new ArrayList<xsjsglxt_lost>();
 	LostInformationDTO lostInformationDTO;
 	   
-	xsjsglxt_case Case;
+	xsjsglxt_case case1;
 	xsjsglxt_snece snece;
 	// 获取筛选后所有的记录
 	int i = lostDao.getCountLostInformationByPage(page_list_Casematerial);
@@ -70,9 +70,9 @@ public page_list_CasematerialVO VO_Lostformation_By_PageAndSearch(page_list_Case
 			lost.setLost_name(lost.getLost_name().replaceAll(lost.getLost_name(),
 					"<span style='color: #ff5063;'>" + lost.getLost_name().trim() + "</span>"));
 		}
-		Case=lostDao.getCaseByxsjsglxt_lost_id(lost);
-		snece=lostDao.getSenceByxsjsglxt_case_id(Case);
-		lostInformationDTO = new LostInformationDTO(Case,snece,lost);
+		case1=lostDao.getCaseByxsjsglxt_lost_id(lost);
+		snece=lostDao.getSenceByxsjsglxt_case_id(case1);
+		lostInformationDTO = new LostInformationDTO(case1,snece,lost);
 		LostInformationDTOList.add(lostInformationDTO);
 	}
 	page_list_Casematerial.setLostInformationDTOList(LostInformationDTOList);

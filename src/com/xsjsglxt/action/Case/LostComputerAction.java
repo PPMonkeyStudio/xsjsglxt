@@ -19,7 +19,7 @@ import com.xsjsglxt.service.Case.LostComputerService;
 
 public class LostComputerAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
  private LostComputerService lostComputerService;
-	private xsjsglxt_case Case;
+	private xsjsglxt_case case1;
 	private xsjsglxt_lost_computer lost_computer;
 	private HttpServletResponse http_response;
 
@@ -32,7 +32,7 @@ public class LostComputerAction extends ActionSupport implements ServletRequestA
 	 */
 	public void saveLostComputer() throws IOException{
 		try {
-			lost_computer.setLost_computer_case(Case.getXsjsglxt_case_id());
+			lost_computer.setLost_computer_case(case1.getXsjsglxt_case_id());
 			lostComputerService.saveLostComputer(lost_computer);
 			http_response.setContentType("text/html;charset=utf-8");
 			http_response.getWriter().write("success");
@@ -77,11 +77,12 @@ public void setLostComputerService(LostComputerService lostComputerService) {
 		// TODO Auto-generated method stub
 		this.http_request = arg0;
 	}
-	public xsjsglxt_case getCase() {
-		return Case;
+	
+	public xsjsglxt_case getCase1() {
+		return case1;
 	}
-	public void setCase(xsjsglxt_case case1) {
-		Case = case1;
+	public void setCase1(xsjsglxt_case case1) {
+		this.case1 = case1;
 	}
 	public xsjsglxt_lost_computer getLost_computer() {
 		return lost_computer;

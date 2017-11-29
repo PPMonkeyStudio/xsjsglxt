@@ -11,7 +11,7 @@ import com.xsjsglxt.domain.DO.xsjsglxt_snece;
 
 public class SenceInformationDTO {
 private xsjsglxt_briefdetails briefdetails;
-private xsjsglxt_case Case;
+private xsjsglxt_case case1;
 private xsjsglxt_lost_computer lost_computer;
 private xsjsglxt_lost_mobilephone lost_mobilephone;
 private xsjsglxt_lost lost;
@@ -31,11 +31,12 @@ public xsjsglxt_briefdetails getBriefdetails() {
 public void setBriefdetails(xsjsglxt_briefdetails briefdetails) {
 	this.briefdetails = briefdetails;
 }
-public xsjsglxt_case getCase() {
-	return Case;
+
+public xsjsglxt_case getCase1() {
+	return case1;
 }
-public void setCase(xsjsglxt_case case1) {
-	Case = case1;
+public void setCase1(xsjsglxt_case case1) {
+	this.case1 = case1;
 }
 public xsjsglxt_lost_computer getLost_computer() {
 	return lost_computer;
@@ -68,12 +69,13 @@ public void setSence(xsjsglxt_snece sence) {
 	this.sence = sence;
 }
 
+
 public SenceInformationDTO(xsjsglxt_briefdetails briefdetails, xsjsglxt_case case1,
 		xsjsglxt_lost_computer lost_computer, xsjsglxt_lost_mobilephone lost_mobilephone, xsjsglxt_lost lost,
 		xsjsglxt_picture picture, xsjsglxt_snece sence, xsjsglxt_resevidence resevidence) {
-
+	
 	this.briefdetails = briefdetails;
-	Case = case1;
+	this.case1 = case1;
 	this.lost_computer = lost_computer;
 	this.lost_mobilephone = lost_mobilephone;
 	this.lost = lost;
@@ -83,10 +85,11 @@ public SenceInformationDTO(xsjsglxt_briefdetails briefdetails, xsjsglxt_case cas
 }
 @Override
 public String toString() {
-	return "SenceInformationDTO [briefdetails=" + briefdetails + ", Case=" + Case + ", lost_computer=" + lost_computer
+	return "SenceInformationDTO [briefdetails=" + briefdetails + ", case1=" + case1 + ", lost_computer=" + lost_computer
 			+ ", lost_mobilephone=" + lost_mobilephone + ", lost=" + lost + ", picture=" + picture + ", sence=" + sence
 			+ ", resevidence=" + resevidence + "]";
 }
+
 
 
 }

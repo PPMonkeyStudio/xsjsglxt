@@ -44,7 +44,7 @@ public page_list_ResevidenceInformationVO VO_Resevidenceformation_By_PageAndSear
 	List<xsjsglxt_resevidence> resevidenceList= new ArrayList<xsjsglxt_resevidence>();
 	ResevidenceInformationDTO resevidenceInformationDTO;
 	   
-	xsjsglxt_case Case;
+	xsjsglxt_case case1;
 	xsjsglxt_snece snece;
 	xsjsglxt_circulation circulation;
 	// 获取筛选后所有的记录
@@ -71,10 +71,10 @@ public page_list_ResevidenceInformationVO VO_Resevidenceformation_By_PageAndSear
 							"<span style='color: #ff5063;'>" + resevidence.getResevidence_extractPerson().trim() + "</span>"));
 				}
 				
-		Case=resevidenceDao.getCaseByxsjsglxt_resevidence_id(resevidence);
-		snece=resevidenceDao.getSenceByxsjsglxt_case_id(Case);
+		case1=resevidenceDao.getCaseByxsjsglxt_resevidence_id(resevidence);
+		snece=resevidenceDao.getSenceByxsjsglxt_case_id(case1);
 		circulation=resevidenceDao.getCirculationByxsjsglxt_resevidence_id(resevidence);
-		resevidenceInformationDTO = new ResevidenceInformationDTO(resevidence,Case,snece,circulation);
+		resevidenceInformationDTO = new ResevidenceInformationDTO(resevidence,case1,snece,circulation);
 		ResevidenceInformationDTOList.add(resevidenceInformationDTO);
 	}
 	page_list_ResevidenceInformation.setResevidenceInformationDTOList(ResevidenceInformationDTOList);

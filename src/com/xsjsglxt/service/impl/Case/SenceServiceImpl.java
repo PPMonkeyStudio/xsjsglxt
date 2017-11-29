@@ -45,6 +45,7 @@ public class SenceServiceImpl implements SenceService {
 	public boolean save(xsjsglxt_case case1) {
 		// TODO Auto-generated method stub
 		case1.setXsjsglxt_case_id(TeamUtil.getUuid());
+		//System.out.println("UUID"+case1.getXsjsglxt_case_id());
 		case1.setCase_gmt_create(TeamUtil.getStringSecond());
 		case1.setCase_gmt_modified(case1.getCase_gmt_create());
 		senceDao.save(case1);
@@ -150,36 +151,36 @@ public class SenceServiceImpl implements SenceService {
 		// 根据筛选条件获取list数据
 		listCase = senceDao.getListSenceInformatioByPage(page_list_senceInformation);
 		System.out.println(listCase);
-		for (xsjsglxt_case Case : listCase) {
+		for (xsjsglxt_case case1 : listCase) {
 			// 1
 			if (page_list_senceInformation.getCase_totalCategory() != null
 					&& page_list_senceInformation.getCase_totalCategory().trim().length() > 0) {
-				Case.setCase_totalCategory(Case.getCase_totalCategory().replaceAll(Case.getCase_totalCategory(),
-						"<span style='color: #ff5063;'>" + Case.getCase_totalCategory().trim() + "</span>"));
+				case1.setCase_totalCategory(case1.getCase_totalCategory().replaceAll(case1.getCase_totalCategory(),
+						"<span style='color: #ff5063;'>" + case1.getCase_totalCategory().trim() + "</span>"));
 			}
 			// 2
 			if (page_list_senceInformation.getCase_sonCategory() != null
 					&& page_list_senceInformation.getCase_sonCategory().trim().length() > 0) {
-				Case.setCase_sonCategory(Case.getCase_sonCategory().replaceAll(Case.getCase_sonCategory(),
-						"<span style='color: #ff5063;'>" + Case.getCase_sonCategory().trim() + "</span>"));
+				case1.setCase_sonCategory(case1.getCase_sonCategory().replaceAll(case1.getCase_sonCategory(),
+						"<span style='color: #ff5063;'>" + case1.getCase_sonCategory().trim() + "</span>"));
 			}
 			// 3
 			if (page_list_senceInformation.getCase_classify() != null
 					&& page_list_senceInformation.getCase_classify().trim().length() > 0) {
-				Case.setCase_classify(Case.getCase_classify().replaceAll(Case.getCase_classify(),
-						"<span style='color:#ff5063;'>" + Case.getCase_classify().trim() + "</span>"));
+				case1.setCase_classify(case1.getCase_classify().replaceAll(case1.getCase_classify(),
+						"<span style='color:#ff5063;'>" + case1.getCase_classify().trim() + "</span>"));
 			}
 			// 4
 			if (page_list_senceInformation.getCase_residence() != null
 					&& page_list_senceInformation.getCase_residence().trim().length() > 0) {
-				Case.setCase_sonCategory(Case.getCase_residence().replaceAll(Case.getCase_residence(),
-						"<span style='color:#ff5063;'>" + Case.getCase_residence().trim() + "</span>"));
+				case1.setCase_sonCategory(case1.getCase_residence().replaceAll(case1.getCase_residence(),
+						"<span style='color:#ff5063;'>" + case1.getCase_residence().trim() + "</span>"));
 			}
 			// 5
 			if (page_list_senceInformation.getCase_concreteResidence() != null
 					&& page_list_senceInformation.getCase_concreteResidence().trim().length() > 0) {
-				Case.setCase_sonCategory(Case.getCase_concreteResidence().replaceAll(Case.getCase_concreteResidence(),
-						"<span style='color: #ff5063;'>" + Case.getCase_concreteResidence().trim() + "</span>"));
+				case1.setCase_sonCategory(case1.getCase_concreteResidence().replaceAll(case1.getCase_concreteResidence(),
+						"<span style='color: #ff5063;'>" + case1.getCase_concreteResidence().trim() + "</span>"));
 			}
 			// 6
 			if (page_list_senceInformation.getSnece_inquestPerson() != null
@@ -189,38 +190,38 @@ public class SenceServiceImpl implements SenceService {
 			// 7
 			if (page_list_senceInformation.getCase_makeTime() != null
 					&& page_list_senceInformation.getCase_makeTime().trim().length() > 0) {
-				Case.setCase_sonCategory(Case.getCase_makeTime().replaceAll(Case.getCase_makeTime(),
-						"<span style='color:#ff5063;'>" + Case.getCase_makeTime().trim() + "</span>"));
+				case1.setCase_sonCategory(case1.getCase_makeTime().replaceAll(case1.getCase_makeTime(),
+						"<span style='color:#ff5063;'>" + case1.getCase_makeTime().trim() + "</span>"));
 			}
 			// 8
 			if (page_list_senceInformation.getCase_makeMeans() != null
 					&& page_list_senceInformation.getCase_makeMeans().trim().length() > 0) {
-				Case.setCase_sonCategory(Case.getCase_makeMeans().replaceAll(Case.getCase_makeMeans(),
-						"<span style='color:#ff5063;'>" + Case.getCase_makeMeans().trim() + "</span>"));
+				case1.setCase_sonCategory(case1.getCase_makeMeans().replaceAll(case1.getCase_makeMeans(),
+						"<span style='color:#ff5063;'>" + case1.getCase_makeMeans().trim() + "</span>"));
 			}
 			// 9
 			if (page_list_senceInformation.getCase_concreteMakeMeans() != null
 					&& page_list_senceInformation.getCase_concreteMakeMeans().trim().length() > 0) {
-				Case.setCase_sonCategory(Case.getCase_concreteMakeMeans().replaceAll(Case.getCase_concreteMakeMeans(),
-						"<span style='color: #ff5063;'>" + Case.getCase_concreteMakeMeans().trim() + "</span>"));
+				case1.setCase_sonCategory(case1.getCase_concreteMakeMeans().replaceAll(case1.getCase_concreteMakeMeans(),
+						"<span style='color: #ff5063;'>" + case1.getCase_concreteMakeMeans().trim() + "</span>"));
 			}
 
-			briefdetails = senceDao.get_briefdetails_Byxsjsglxt_case_id(Case);// 1
+			briefdetails = senceDao.get_briefdetails_Byxsjsglxt_case_id(case1);// 1
 			
 
-			lost_computer = senceDao.get_lost_computer_Byxsjsglxt_case_id(Case);// 2
+			lost_computer = senceDao.get_lost_computer_Byxsjsglxt_case_id(case1);// 2
 
-			lost_mobilephone = senceDao.get_lost_mobilephone_Byxsjsglxt_case_id(Case);// 3
+			lost_mobilephone = senceDao.get_lost_mobilephone_Byxsjsglxt_case_id(case1);// 3
 
-			lost = senceDao.get_lost_Byxsjsglxt_case_id(Case);// 4
+			lost = senceDao.get_lost_Byxsjsglxt_case_id(case1);// 4
 
-			picture = senceDao.get_picture_Byxsjsglxt_case_id(Case);// 5
+			picture = senceDao.get_picture_Byxsjsglxt_case_id(case1);// 5
 
-			sence = senceDao.get_sence_Byxsjsglxt_case_id(Case);// 6
+			sence = senceDao.get_sence_Byxsjsglxt_case_id(case1);// 6
 
-			resevidence = senceDao.get_resevidence_Byxsjsglxt_case_id(Case);
+			resevidence = senceDao.get_resevidence_Byxsjsglxt_case_id(case1);
 
-			senceInformationDTO = new SenceInformationDTO(briefdetails, Case, lost_computer, lost_mobilephone, lost,
+			senceInformationDTO = new SenceInformationDTO(briefdetails, case1, lost_computer, lost_mobilephone, lost,
 					picture, sence, resevidence);
 
 			SenceInformationDTOList.add(senceInformationDTO);
@@ -252,6 +253,7 @@ public class SenceServiceImpl implements SenceService {
 	public String getMaxSenceInquestId() {
 		// TODO Auto-generated method stub
 		int i = senceDao.getMaxSenceInquestId();
+		System.out.println("aaaaaaaaa"+i);
 		//System.out.println("iiiiii"+i);
 		String num = "";
 		num = num.format("%04d", i+1);

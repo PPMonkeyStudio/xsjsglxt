@@ -25,7 +25,7 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 	
 	private xsjsglxt_resevidence resevidence;
 	
-	private xsjsglxt_case Case;
+	private xsjsglxt_case case1;
 	
 	private	page_list_ResevidenceInformationVO page_list_ResevidenceInformation;
 	
@@ -35,7 +35,7 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 	 */
 	public void saveResevidence() throws IOException{
 		try {
-			resevidence.setResevidence_case(Case.getXsjsglxt_case_id());
+			resevidence.setResevidence_case(case1.getXsjsglxt_case_id());
 			resevidenceService.saveResevidence(resevidence);
 			http_response.setContentType("text/html;charset=utf-8");
 			http_response.getWriter().write("success");

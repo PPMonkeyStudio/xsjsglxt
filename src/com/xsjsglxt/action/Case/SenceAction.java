@@ -26,7 +26,7 @@ import com.xsjsglxt.service.Case.SenceService;
 public class SenceAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
 	private SenceService senceService;
 	private xsjsglxt_snece sence;
-	private xsjsglxt_case Case;
+	private xsjsglxt_case case1;
 	private xsjsglxt_briefdetails briefdetails;
 	private xsjsglxt_lost lost;
 	private xsjsglxt_lost_mobilephone lost_mobilephone;
@@ -67,12 +67,13 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	public void saveSenceInformation() {
 
 		try {
-			senceService.save(Case);
-
-			sence.setSnece_case(Case.getXsjsglxt_case_id());
+		
+			senceService.save(case1);
+          
+			sence.setSnece_case(case1.getXsjsglxt_case_id());
 			senceService.save(sence);
 
-			briefdetails.setBriefdetails_case(Case.getXsjsglxt_case_id());
+			briefdetails.setBriefdetails_case(case1.getXsjsglxt_case_id());
 			senceService.save(briefdetails);
 
 			// lost.setLost_case(Case.getXsjsglxt_case_id());
@@ -109,7 +110,7 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
-		String senceInformationInquestId = senceService.getSenceInformationInquestId();
+		String senceInformationInquestId = senceService.getMaxSenceInquestId();
 		http_response.setContentType("text/html;charset=utf-8");
 		http_response.getWriter().write(gson.toJson(senceInformationInquestId));
 	}
@@ -173,12 +174,13 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 		this.sence = sence;
 	}
 
-	public xsjsglxt_case getCase() {
-		return Case;
+	
+	public xsjsglxt_case getCase1() {
+		return case1;
 	}
 
-	public void setCase(xsjsglxt_case case1) {
-		Case = case1;
+	public void setCase1(xsjsglxt_case case1) {
+		this.case1 = case1;
 	}
 
 	public xsjsglxt_briefdetails getBriefdetails() {
@@ -227,6 +229,30 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 
 	public void setHttp_request(HttpServletRequest http_request) {
 		this.http_request = http_request;
+	}
+
+	public xsjsglxt_picture getPicture() {
+		return picture;
+	}
+
+	public void setPicture(xsjsglxt_picture picture) {
+		this.picture = picture;
+	}
+
+	public page_list_senceInformationVO getPage_list_senceInformation() {
+		return page_list_senceInformation;
+	}
+
+	public void setPage_list_senceInformation(page_list_senceInformationVO page_list_senceInformation) {
+		this.page_list_senceInformation = page_list_senceInformation;
+	}
+
+	public SenceInformationDTO getSenceInformationDTO() {
+		return senceInformationDTO;
+	}
+
+	public void setSenceInformationDTO(SenceInformationDTO senceInformationDTO) {
+		this.senceInformationDTO = senceInformationDTO;
 	}
 
 }

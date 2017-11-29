@@ -18,7 +18,7 @@ import com.xsjsglxt.service.Case.LostService;
 
 public class LostAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
 private LostService lostService;
-private xsjsglxt_case Case;
+private xsjsglxt_case case1;
 private xsjsglxt_lost lost;
 private HttpServletResponse http_response;
 
@@ -31,7 +31,7 @@ private page_list_CasematerialVO page_list_Casematerial;
  */
 public void saveLost() throws IOException{
 	try {
-		lost.setLost_case(Case.getXsjsglxt_case_id());
+		lost.setLost_case(case1.getXsjsglxt_case_id());
 		lostService.saveLost(lost);
 		http_response.setContentType("text/html;charset=utf-8");
 		http_response.getWriter().write("success");
@@ -76,11 +76,12 @@ public void setLostService(LostService lostService) {
 		// TODO Auto-generated method stub
 		this.http_request = arg0;
 	}
-	public xsjsglxt_case getCase() {
-		return Case;
+	
+	public xsjsglxt_case getCase1() {
+		return case1;
 	}
-	public void setCase(xsjsglxt_case case1) {
-		Case = case1;
+	public void setCase1(xsjsglxt_case case1) {
+		this.case1 = case1;
 	}
 	public xsjsglxt_lost getLost() {
 		return lost;

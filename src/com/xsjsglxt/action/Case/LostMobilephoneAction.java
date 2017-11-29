@@ -22,7 +22,7 @@ public class LostMobilephoneAction extends ActionSupport implements ServletReque
 
 	private LostMobilephoneService lostMobilephoneService;
 	
-	private xsjsglxt_case Case;
+	private xsjsglxt_case case1;
 	private xsjsglxt_lost_mobilephone lost_mobilephone;
 	private HttpServletResponse http_response;
 
@@ -35,7 +35,7 @@ public class LostMobilephoneAction extends ActionSupport implements ServletReque
 	 */
 	public void saveLostMobilephone() throws IOException{
 		try {
-			lost_mobilephone.setLost_mobilephone_case(Case.getXsjsglxt_case_id());
+			lost_mobilephone.setLost_mobilephone_case(case1.getXsjsglxt_case_id());
 			lostMobilephoneService.saveLostMobilephone(lost_mobilephone);
 			http_response.setContentType("text/html;charset=utf-8");
 			http_response.getWriter().write("success");
@@ -80,11 +80,12 @@ public class LostMobilephoneAction extends ActionSupport implements ServletReque
 		// TODO Auto-generated method stub
 		this.http_request = arg0;
 	}
-	public xsjsglxt_case getCase() {
-		return Case;
+	
+	public xsjsglxt_case getCase1() {
+		return case1;
 	}
-	public void setCase(xsjsglxt_case case1) {
-		Case = case1;
+	public void setCase1(xsjsglxt_case case1) {
+		this.case1 = case1;
 	}
 	public xsjsglxt_lost_mobilephone getLost_mobilephone() {
 		return lost_mobilephone;
