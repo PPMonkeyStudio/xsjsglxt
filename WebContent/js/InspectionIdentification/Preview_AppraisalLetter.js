@@ -36,22 +36,36 @@ function Preview_AppraisalLetter(obj) {
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspectors2_name
 							+ '</p>'
 							+ '<p>（三）受理日期：'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_unit
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_gmt_create
 							+ '</p>'
-							+ '<p>（四）案件情况摘要：</p>'
-							+ '<p>（五）检材和样本：</p>'
-							+ '<p>（六）鉴定要求：</p>'
-							+ '<p>（七）检验开始日期：</p>'
-							+ '<p>（八）检验地点：</p>'
+							+ '<p>（四）案件情况摘要：'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_simple_case_situation
+							+ '</p>'
+							+ '<p>（五）检材和样本：'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_sample_situation
+							+ '</p>'
+							+ '<p>（六）鉴定要求：'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request
+							+ '</p>'
+							+ '<p>（七）检验开始日期：	</p>'
+							+ '<p>（八）检验地点：'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_location
+							+ '</p>'
 							+ '</h3>'
 							+ '<h3  style="text-align: left;">'
-							+ '<p>二、检验</p><p></p>'
+							+ '<p>二、检验</p><p>'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.appraisal_letter_inspection
+							+ '</p>'
 							+ '</h3>'
 							+ '<h3  style="text-align: left;">'
-							+ '<p>三、论证</p><p></p>'
+							+ '<p>三、论证</p><p>'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.appraisal_letter_argumentation
+							+ '</p>'
 							+ '</h3>'
 							+ '<h3  style="text-align: left;">'
-							+ '<p>四、鉴定意见</p><p></p>' + '</h3>' + '<hr></div>';
+							+ '<p>四、鉴定意见</p><p>'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.appraisal_letter_expert_opinion
+							+ '</p>' + '</h3>' + '<hr></div>';
 					jc.setContentAppend(con);
 				},
 				buttons : {
