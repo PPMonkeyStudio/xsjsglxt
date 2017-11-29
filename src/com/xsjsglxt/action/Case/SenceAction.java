@@ -35,13 +35,10 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	private HttpServletResponse http_response;
 
 	private HttpServletRequest http_request;
-<<<<<<< HEAD
+
 	private page_list_senceInformationVO page_list_senceInformation;
-=======
-    private page_list_senceInformationVO page_list_senceInformation;
-    
-    private SenceInformationDTO senceInformationDTO;
->>>>>>> origin/LWK
+
+	private SenceInformationDTO senceInformationDTO;
 
 	/*
 	 * 跳转页面
@@ -77,33 +74,18 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 
 			briefdetails.setBriefdetails_case(Case.getXsjsglxt_case_id());
 			senceService.save(briefdetails);
-<<<<<<< HEAD
 
-			lost.setLost_case(Case.getXsjsglxt_case_id());
-			senceService.save(lost);
+			// lost.setLost_case(Case.getXsjsglxt_case_id());
+			// senceService.save(lost);
 
-			lost_mobilephone.setLost_mobilephone_case(Case.getXsjsglxt_case_id());
-			senceService.save(lost_mobilephone);
+			// lost_mobilephone.setLost_mobilephone_case(Case.getXsjsglxt_case_id());
+			// senceService.save(lost_mobilephone);
 
-			lost_computer.setLost_computer_case(Case.getXsjsglxt_case_id());
-			senceService.save(lost_computer);
+			// lost_computer.setLost_computer_case(Case.getXsjsglxt_case_id());
+			// senceService.save(lost_computer);
 
-			picture.setPicture_case(Case.getXsjsglxt_case_id());
-			senceService.save(picture);
-=======
-			
-			//lost.setLost_case(Case.getXsjsglxt_case_id());
-			//senceService.save(lost);
-			
-			//lost_mobilephone.setLost_mobilephone_case(Case.getXsjsglxt_case_id());
-			//senceService.save(lost_mobilephone);
-			
-			//lost_computer.setLost_computer_case(Case.getXsjsglxt_case_id());
-			//senceService.save(lost_computer);
-			
-			//picture.setPicture_case(Case.getXsjsglxt_case_id());
-			//senceService.save(picture);
->>>>>>> origin/LWK
+			// picture.setPicture_case(Case.getXsjsglxt_case_id());
+			// senceService.save(picture);
 			http_response.setContentType("text/html;charset=utf-8");
 			http_response.getWriter().write("success");
 		} catch (Exception e) {
@@ -150,22 +132,19 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 
 	}
 
-<<<<<<< HEAD
-=======
-/*
- * 列表详细信息
- */
-public void SecneInformationOne() throws IOException{
-	GsonBuilder gsonBuilder = new GsonBuilder();
-	gsonBuilder.setPrettyPrinting();// 格式化json数据
-	Gson gson = gsonBuilder.create();
-	senceInformationDTO = senceService.SecneInformationOne(sence);
-	http_response.setContentType("text/html;charset=utf-8");
+	/*
+	 * 列表详细信息
+	 */
+	public void SecneInformationOne() throws IOException {
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
+		Gson gson = gsonBuilder.create();
+		senceInformationDTO = senceService.SecneInformationOne(sence);
+		http_response.setContentType("text/html;charset=utf-8");
 
-	http_response.getWriter().write(gson.toJson(senceInformationDTO));
-}
+		http_response.getWriter().write(gson.toJson(senceInformationDTO));
+	}
 
->>>>>>> origin/LWK
 	public SenceService getSenceService() {
 		return senceService;
 	}
