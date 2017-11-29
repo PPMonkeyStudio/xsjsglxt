@@ -36,14 +36,14 @@
 						<td><input name="sence.snece_inquestSystemId"
 							class="form-control" type="text"></td>
 						<td>案件分类</td>
-						<td><input name="Case.case_classify" class=" form-control">
+						<td><input name="case1.case_classify" class=" form-control">
 					</tr>
 					<tr>
 						<td>接警时间</td>
-						<td><input name="Case.case_receivingAlarmDate"
+						<td><input name="case1.case_receivingAlarmDate"
 							class="form-control" style="margin-top: 6px;" type="text"></td>
 						<td>危害程度</td>
-						<td><input name="Case.case_extentOfInjury"
+						<td><input name="case1.case_extentOfInjury"
 							class="form-control" style="margin-top: 6px;"></td>
 						<td>是否立案</td>
 						<td><label style="float: left;" class="fancy-radio">
@@ -56,19 +56,19 @@
 					</tr>
 					<tr>
 						<td>案发地点</td>
-						<td colspan="3"><input name="Case.case_address"
+						<td colspan="3"><input name="case1.case_address"
 							style="margin-top: 6px;" class="case_place form-control"
 							type="text" value="萍乡市安源区"></td>
 
 						<td rowspan="2">案件类别</td>
-						<td rowspan="2"><input name="Case.case_totalCategory"
+						<td rowspan="2"><input name="case1.case_totalCategory"
 							name="case_class1" class="main_case form-control"> <input
-							name="Case.case_sonCategory" style="margin-top: 6px;"
+							name="case1.case_sonCategory" style="margin-top: 6px;"
 							class="other_case form-control"></td>
 					</tr>
 					<tr>
 						<td>案发名称</td>
-						<td colspan="3"><input name="Case.case_name"
+						<td colspan="3"><input name="case1.case_name"
 							style="margin-top: 6px;" class="case_name form-control"
 							type="text"></td>
 					</tr>
@@ -96,20 +96,20 @@
 					<tr>
 						<td style="height: 74;">报案人基本情况</td>
 						<td colspan="5"><input style=" width: 24%;float:left; "
-							name="Case.case_reporterName" class="form-control" type="text"
+							name="case1.case_reporterName" class="form-control" type="text"
 							placeholder="姓名"> <input
 							style="width: 24%; float:left;margin-left: 6px;"
-							name="Case.case_reporterSex" class="form-control" type="text"
+							name="case1.case_reporterSex" class="form-control" type="text"
 							placeholder="年龄 "> <input
 							style="width: 24%; float:left; margin-left: 6px;"
-							name="Case.case_reporterJobUnit" class="form-control" type="text"
-							placeholder="工作单位 "> <input
+							name="case1.case_reporterJobUnit" class="form-control"
+							type="text" placeholder="工作单位 "> <input
 							style="width: 25%; margin-left: 6px; float: left;"
-							name="Case.case_reporterPhone" class="form-control" type="text"
+							name="case1.case_reporterPhone" class="form-control" type="text"
 							placeholder="联系电话 "> <input
 							style="margin-top: 6px;float: right;"
-							name="Case.case_reporterAddress" class="form-control" type="text"
-							placeholder="家庭住址 "></td>
+							name="case1.case_reporterAddress" class="form-control"
+							type="text" placeholder="家庭住址 "></td>
 					</tr>
 					<tr>
 						<td>简要案情</td>
@@ -127,25 +127,25 @@
 							style="width: 50px; float:left; margin-top: 6px;"
 							class="form-control" type="text">°C</td>
 						<td width="85">作案时段</td>
-						<td><input name="Case.case_makeTime" class=" form-control">
+						<td><input name="case1.case_makeTime" class=" form-control">
 						</td>
 						<td>发案辖区</td>
-						<td><input name="Case.case_jurisdiction"
+						<td><input name="case1.case_jurisdiction"
 							class=" form-control"></td>
 					</tr>
 
 					<tr style="margin-top: -6px;">
 						<td height="78px;">作案手段</td>
-						<td><input name="Case.case_makeMeans"
+						<td><input name="case1.case_makeMeans"
 							class=" crime_means form-control"></td>
 						<td>选择处所</td>
-						<td><input name="Case.case_residence"
+						<td><input name="case1.case_residence"
 							onchange="setSectionmAddress(this.inputedIndex)"
 							class=" widel_space form-control"> <input
-							name="Case.case_concreteResidence" style="margin-top: 6px;"
+							name="case1.case_concreteResidence" style="margin-top: 6px;"
 							class=" specific_space form-control"></td>
 						<td width="85">进出口</td>
-						<td><input name="Case.case_exit" class=" form-control">
+						<td><input name="case1.case_exit" class=" form-control">
 						</td>
 					</tr>
 					<tr>
@@ -180,7 +180,7 @@
 				<table>
 					<tr>
 						<td>作案过程</td>
-						<td colspan="5"><textarea name="Case.case_process"
+						<td colspan="5"><textarea name="case1.case_process"
 								class="form-control" rows="4"></textarea></td>
 					</tr>
 					<tr>

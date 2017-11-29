@@ -26,6 +26,6 @@
 
 <body>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
-	
+
 </body>
 </html>
