@@ -215,12 +215,9 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 							tranceCheckBook.getXsjsglxt_check_entrustment_book_id()) + ".docx").getBytes("GBK"),
 					"ISO-8859-1");
 			inputStream = new FileInputStream(exportTranceCheckBookFile);
-<<<<<<< HEAD
 			// exportTranceCheckBookFile.delete();
-=======
 			System.out.println(inputStream);
 			exportTranceCheckBookFile.delete();
->>>>>>> ZB
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
