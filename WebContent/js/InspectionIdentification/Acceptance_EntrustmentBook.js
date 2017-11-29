@@ -2,14 +2,14 @@
  * 受理任务书
  */
 function Acceptance_EntrustmentBook(obj) {
-	var js = $
+	var jc = $
 			.confirm({
 				theme : 'Modern',
 				icon : 'fa fa-map-o',
 				title : '受理委托书',
 				content : '<input value="'
 						+ obj.id
-						+ '"  class="form-control" id="create_xsjsglxt_check_entrustment_book_id" style="display:none;"/>'
+						+ '"  class="form-control" id="create_identifieder_case_confirm_book_belong_entrustment_book" style="display:none;"/>'
 						+ '<hr>'
 						+ '<br>'
 						+ '<table  class="table table-bordered" style="text-align: center;">'
@@ -33,7 +33,7 @@ function Acceptance_EntrustmentBook(obj) {
 					'确认受理' : {
 						btnClass : 'btn-green',
 						action : function() {
-							SureAcceptance(js);
+							SureAcceptance(jc);
 						}
 					},
 					'放弃受理' : function() {
@@ -42,7 +42,7 @@ function Acceptance_EntrustmentBook(obj) {
 			});
 }
 
-function SureAcceptance(js) {
+function SureAcceptance(jc) {
 	var xhr = false;
 	xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
@@ -51,8 +51,8 @@ function SureAcceptance(js) {
 			if (xhr.status == 200) {
 				console.debug(xhr.responseText);
 				if (xhr.responseText == 1) {
-					toastr.success("保存成功");
-					js.close();
+					toastr.success("受理成功");
+					jc.close();
 					List_EntrustmentBook(1);
 				} else {
 					toastr.error("填写格式错误");
@@ -69,10 +69,12 @@ function SureAcceptance(js) {
 	/*
 	 * 所属委托书
 	 */
+	var create_identifieder_case_confirm_book_belong_entrustment_book = document
+			.getElementById("create_identifieder_case_confirm_book_belong_entrustment_book");
 	formData
 			.append(
 					"identifiederCaseConfirmBook.identifieder_case_confirm_book_belong_entrustment_book",
-					create_xsjsglxt_check_entrustment_book_id.value);
+					create_identifieder_case_confirm_book_belong_entrustment_book.value);
 	/*
 	 * 负责人
 	 */

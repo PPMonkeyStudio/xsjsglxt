@@ -46,7 +46,9 @@ function Preview_AcceptanceEntrustmentInform(obj) {
 							+ '<p>委托编号：'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num
 							+ '</p>'
-							+ '<p>受理编号：（存疑）</p>'
+							+ '<p>受理编号：'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_acceptance_num
+							+ '</p>'
 							+ '<p>受理专业：'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_type
 							+ '</p>'

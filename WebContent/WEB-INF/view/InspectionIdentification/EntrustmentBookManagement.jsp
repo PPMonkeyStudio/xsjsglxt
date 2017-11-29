@@ -143,9 +143,9 @@
 <script type="text/javascript"
 	src="<%=basePath%>js/InspectionIdentification/Refuse_EntrustmentBook.js"></script>
 <script type="text/javascript"
-	src="<%=basePath%>js/InspectionIdentification/Record_InspectionRecord.js"></script>
+	src="<%=basePath%>js/InspectionIdentification/Create_InspectionRecord.js"></script>
 <script type="text/javascript"
-	src="<%=basePath%>js/InspectionIdentification/Issue_AppraisalLetter.js"></script>
+	src="<%=basePath%>js/InspectionIdentification/Create_AppraisalLetter.js"></script>
 <!---------------------------------------------------------------------------------------->
 <script type="text/javascript"
 	src="<%=basePath%>js/InspectionIdentification/Preview_EntrustmentBook.js"></script>
