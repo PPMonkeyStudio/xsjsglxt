@@ -11,18 +11,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!---------------------------------------------------------------------------------------------------->
-<!---------------------------------------------------------------------------------------------------->
 <script type="text/javascript"
-	src="<%=basePath%>js/SkillManagement/EquipmentManagement/CreateEquipment.js"></script>
+	src="<%=basePath%>js/Technology/Equipment/CreateEquipment.js"></script>
 <script type="text/javascript"
-	src="<%=basePath%>js/SkillManagement/EquipmentManagement/List_Equipment_By_PageAndSearch.js"></script>
-<!---------------------------------------------------------------------------------------------------->
+	src="<%=basePath%>js/Technology/Equipment/EquipmentDetails.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/Technology/Equipment/DeleteEquipment.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/Technology/Equipment/List_Equipment_By_PageAndSearch.js"></script>
 <!---------------------------------------------------------------------------------------------------->
 <title>技术管理 > 器材装备</title>
 </head>
 <body>
-	<s:action name="User_navbar" namespace="/user"
-		executeResult="true" />
+	<s:action name="User_navbar" namespace="/user" executeResult="true" />
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
@@ -40,19 +41,20 @@
 				<div style="height: 34px;">
 
 					<div style="width: 500px; float: left;">
-						<button class="btn btn-default" onclick="CreateDNA()">
+						<button class="btn btn-default" onclick="CreateEquipment()">
 							<i class="fa fa-plus-square"></i> 新增器材装备
 						</button>
 
 					</div>
 					<!-- 检索 -->
 					<div class="input-group" style="width: 300px; float: right;">
-						<input id="input_DNASearchText" class="form-control" oninput="List_DNA_By_PageAndSearch(1)" type="text">
-						<span class="input-group-addon"> <i class="fa fa-search"></i>
+						<input id="input_EquipmentSearchText" class="form-control"
+							oninput="List_Equipment_By_PageAndSearch(1)" type="text"> <span
+							class="input-group-addon"> <i class="fa fa-search"></i>
 						</span>
 					</div>
 				</div>
-				<table id="table_DNA" class="table table-hover table-bordered"
+				<table id="table_Equipment" class="table table-hover table-bordered"
 					style="text-align: center; margin: 20px 0;">
 					<tbody>
 						<tr>
@@ -61,7 +63,7 @@
 							<th>装备类型</th>
 							<th>数量</th>
 							<th>启用日期</th>
-							<th>管理</th>
+							<th>使用情况</th>
 							<th>操作</th>
 							<th><label class="fancy-checkbox"> <input
 									id="checkbox_all_select" type="checkbox" onclick="all_select()">
@@ -80,7 +82,7 @@
 
 				<div style="height: 34px; margin: 0 0 20px 0;">
 
-					<button class="btn btn-danger" onclick="Delete_Student()"
+					<button class="btn btn-danger" onclick="DeleteEquipment()"
 						style="float: right; margin: 0 10px;">
 						<i class="fa fa-trash-o"></i> 删除所选
 					</button>
@@ -109,13 +111,17 @@
 		<!---------------------------------------------------------------------------------------------------->
 		<!---------------------------------------------------------------------------------------------------->
 	</div>
-	
+
 	</div>
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 </body>
-<script>
-	
+<link rel="stylesheet" href="<%=basePath%>css/square/blue.css" />
+<script type="text/javascript" src="<%=basePath%>js/icheck.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/Input_Select.js"></script>
+
+<script type="text/javascript">
+List_Equipment_By_PageAndSearch(1);
 </script>
 </html>
