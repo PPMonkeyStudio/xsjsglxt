@@ -2,7 +2,6 @@ package com.xsjsglxt.action.Case;
 
 import java.io.IOException;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -30,7 +29,7 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	private xsjsglxt_briefdetails briefdetails;
 	private xsjsglxt_lost lost;
 	private xsjsglxt_lost_mobilephone lost_mobilephone;
-	private xsjsglxt_picture picture ;
+	private xsjsglxt_picture picture;
 	private xsjsglxt_lost_computer lost_computer;
 	private HttpServletResponse http_response;
 
@@ -52,28 +51,35 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	}
 
 	/*
+	 * 跳转现场录入页面
+	 */
+	public String page_CaseMerger() {
+		return "page_CaseMerger";
+	}
+
+	/*
 	 * 保存基本信息
 	 */
 	public void saveSenceInformation() {
 
 		try {
 			senceService.save(Case);
-			
+
 			sence.setSnece_case(Case.getXsjsglxt_case_id());
 			senceService.save(sence);
-			
+
 			briefdetails.setBriefdetails_case(Case.getXsjsglxt_case_id());
 			senceService.save(briefdetails);
-			
+
 			lost.setLost_case(Case.getXsjsglxt_case_id());
 			senceService.save(lost);
-			
+
 			lost_mobilephone.setLost_mobilephone_case(Case.getXsjsglxt_case_id());
 			senceService.save(lost_mobilephone);
-			
+
 			lost_computer.setLost_computer_case(Case.getXsjsglxt_case_id());
 			senceService.save(lost_computer);
-			
+
 			picture.setPicture_case(Case.getXsjsglxt_case_id());
 			senceService.save(picture);
 			http_response.setContentType("text/html;charset=utf-8");
@@ -121,9 +127,6 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 		http_response.getWriter().write(gson.toJson(page_list_senceInformation));
 
 	}
-
-
-
 
 	public SenceService getSenceService() {
 		return senceService;
@@ -208,5 +211,5 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	public void setHttp_request(HttpServletRequest http_request) {
 		this.http_request = http_request;
 	}
-	
+
 }

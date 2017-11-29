@@ -34,13 +34,12 @@
 			<!--  -->
 			<div class="panel-heading">
 				<h3 class="panel-title">现场录入</h3>
-
 			</div>
 			<button
 				style="margin-top: 6px; margin-left:20px; float: left; position: absolute;"
 				onclick="javascript:history.go(-1)" type="button"
 				class="btn btn-default">
-				<i class="fa fa-reply"></i> 返回
+				<i class="fa fa-reply"></i> 返回列表
 			</button>
 			<!--  -->
 			<div class="panel-body">
@@ -76,10 +75,10 @@
 							</select></td>
 							<td>是否立案</td>
 							<td><label style="float: left;" class="fancy-radio">
-									<input onclick="buildCase_chose(this)" type="radio" value="1">
-									<span><i></i>是</span>
+									<input name="register" onclick="buildCase_chose(this)"
+									type="radio" value="1"> <span><i></i>是</span>
 							</label><label style="float: left; margin-left: 10px;"
-								class="fancy-radio"> <input
+								class="fancy-radio"> <input name="register"
 									onclick="buildCase_chose(this)" type="radio" value="2">
 									<span><i></i>否</span>
 							</label> <input type="hidden" name="Csae.case_register"></td>
@@ -259,15 +258,14 @@
 							<!-- <td>物证编号</td>
 							<td><input
 								name="sneceInformation.snece_information_physicalEvidenceId"
-								style="margin-top: 4px;" class="form-control" type="text"></td> -->
-							<td>照片编号</td>
-							<td><input
-								name="sneceInformation.snece_information_pictureId"
 								style="margin-top: 4px;" class="form-control" type="text"></td>
+							<td>照片编号</td>
+							<td><input name="" style="margin-top: 6px;"
+								class="form-control" type="text"></td>
 							<td>损失物品</td>
 							<td><select
 								name="sneceInformation.snece_information_lossArticle"
-								class=" form-control">
+								class=" form-control" style="margin-top: 6px;">
 									<option value="" selected></option>
 									<option value="各类财物">各类财物</option>
 									<option value="现金">现金</option>
@@ -281,7 +279,7 @@
 									<option value="女性">女性</option>
 									<option value="其他">其他</option>
 									<option value="无">无</option>
-							</select></td>
+							</select></td> -->
 						</tr>
 					</table>
 					<hr>
@@ -294,17 +292,23 @@
 						<tr>
 							<td colspan="6"><label style="margin-left: 30%;"
 								class="fancy-checkbox"><input
-									name="sence.snece_photographed" type="checkbox"> <span>已拍照</span>
-							</label> <label class="fancy-checkbox"><input
-									name="sence.snece_entered" type="checkbox"> <span>已录入</span>
-							</label> <label class="fancy-checkbox"><input
-									name="sence.snece_areadymade" type="checkbox"> <span>已制作</span>
-							</label> <label class="fancy-checkbox"><input
-									name="sence.snece_parsed" type="checkbox"> <span>已分析</span>
-							</label> <label class="fancy-checkbox"><input
-									name="sence.snece_archived" type="checkbox"> <span>已存档</span>
-							</label> <label class="fancy-checkbox"> <input
-									name="sence.snece_identified" type="checkbox"> <span>已认定</span>
+									onclick="sence_checkbox(this)" name="sence.snece_photographed"
+									type="checkbox"> <span>已拍照</span> </label> <label
+								class="fancy-checkbox"><input
+									onclick="sence_checkbox(this)" name="sence.snece_entered"
+									type="checkbox"> <span>已录入</span> </label> <label
+								class="fancy-checkbox"><input
+									onclick="sence_checkbox(this)" name="sence.snece_areadymade"
+									type="checkbox"> <span>已制作</span> </label> <label
+								class="fancy-checkbox"><input
+									onclick="sence_checkbox(this)" name="sence.snece_parsed"
+									type="checkbox"> <span>已分析</span> </label> <label
+								class="fancy-checkbox"><input
+									onclick="sence_checkbox(this)" name="sence.snece_archived"
+									type="checkbox"> <span>已存档</span> </label> <label
+								class="fancy-checkbox"> <input
+									onclick="sence_checkbox(this)" name="sence.snece_identified"
+									type="checkbox"> <span>已认定</span>
 							</label></td>
 						</tr>
 						<tr>
