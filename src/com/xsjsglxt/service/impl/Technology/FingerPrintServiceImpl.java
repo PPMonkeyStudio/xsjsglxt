@@ -45,8 +45,8 @@ public class FingerPrintServiceImpl implements FingerPrintService {
 public FingerPrintVO list_xsjsglxt_fingerprint(FingerPrintVO fingerprintVO) {
 		int totalRecords = fingerPrintDao.count_fingerprint_all();
 		FingerPrintVO vo = new FingerPrintVO();
-		vo.setPageIndex(vo.getPageIndex());
-		vo.setPageSize(vo.getPageSize());
+		vo.setPageIndex(fingerprintVO.getPageIndex());
+		vo.setPageSize(fingerprintVO.getPageSize());
 		vo.setTotalRecords(totalRecords);
 		vo.setTotalPages(((totalRecords - 1) / vo.getPageSize()) + 1);
 		if (vo.getPageIndex() <= 1) {
