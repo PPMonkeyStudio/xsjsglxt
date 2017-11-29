@@ -102,8 +102,6 @@ public class EquipmentServiceImpl implements EquipmentService {
 			if (equipmentVO.getSearch() != null && equipmentVO.getSearch().trim().length() > 0) {
 				equipment.setEquipment_name(equipment.getEquipment_name().replaceAll(equipmentVO.getSearch(),
 						"<span style='color: #ff5063;'>" + equipmentVO.getSearch() + "</span>"));
-			}
-			if (equipmentVO.getSearch() != null && equipmentVO.getSearch().trim().length() > 0) {
 				equipment.setEquipment_serial_number(equipment.getEquipment_serial_number().replaceAll(equipmentVO.getSearch(),
 						"<span style='color: #ff5063;'>" + equipmentVO.getSearch() + "</span>"));
 			}
