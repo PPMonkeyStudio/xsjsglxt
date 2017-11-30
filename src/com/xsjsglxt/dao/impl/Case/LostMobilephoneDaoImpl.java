@@ -28,7 +28,7 @@ public class LostMobilephoneDaoImpl implements LostMobilephoneDao {
 		return this.sessionFactory.getCurrentSession();
 	}
 /*
- * (non-Javadoc)淇濆瓨鎹熷け鎵嬫満
+ * (non-Javadoc)保存损失手机
  * @see com.xsjsglxt.dao.Case.LostMobilephoneDao#saveLostMobilephone(com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone)
  */
 	@Override
@@ -42,7 +42,7 @@ public class LostMobilephoneDaoImpl implements LostMobilephoneDao {
 		}
 	}
 /*
- * (non-Javadoc)鎹熷け鎵嬫満淇℃伅鍒楄〃
+ * (non-Javadoc)损失手机信息列表
  * @see com.xsjsglxt.dao.Case.LostMobilephoneDao#getCountLostMobilephoneInformationByPage(com.xsjsglxt.domain.VO.Case.page_list_CasematerialVO)
  */
 	@Override
@@ -142,5 +142,19 @@ public class LostMobilephoneDaoImpl implements LostMobilephoneDao {
 		xsjsglxt_snece sence = (xsjsglxt_snece) query.uniqueResult();
 
 		return sence;
+	}
+
+	@Override
+	public xsjsglxt_lost_mobilephone getLostMobiephoneById(xsjsglxt_lost_mobilephone lost_mobilephone) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_lost_mobilephone lost_mobilephone where lost_mobilephone.xsjsglxt_lost_mobilephone_id='" + lost_mobilephone.getXsjsglxt_lost_mobilephone_id() + "'";
+
+		Query query = session.createQuery(hql);
+
+		lost_mobilephone = (xsjsglxt_lost_mobilephone) query.uniqueResult();
+
+		return lost_mobilephone;
 	}
 }

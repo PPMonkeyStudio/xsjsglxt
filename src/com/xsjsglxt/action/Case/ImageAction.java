@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_image;
@@ -22,7 +24,7 @@ private HttpServletRequest http_request;
 private xsjsglxt_picture picture;
 private xsjsglxt_case case1;
 /*
- * 淇濆瓨鍏夌洏
+ * 保存光盘
  */
 public void saveCD() throws IOException{
 	try {
@@ -38,7 +40,7 @@ public void saveCD() throws IOException{
 	}
 }
 /*
- * 淇濆瓨鐓х墖
+ * 保存照片
  */
 public void savePicture() throws IOException{
 try {
@@ -55,7 +57,29 @@ try {
 	}
 }
 
+/*
+ * 光盘编号
+ */
+public void getImage_number() throws IOException {
+	GsonBuilder gsonBuilder = new GsonBuilder();
+	gsonBuilder.setPrettyPrinting();// 格式化json数据
+	Gson gson = gsonBuilder.create();
+	String Image_number = imageService.getMaxImage_number();
+	http_response.setContentType("text/html;charset=utf-8");
+	http_response.getWriter().write(gson.toJson(Image_number));
+}
 
+/*
+ * 照片编号
+ */
+public void getPicture_identifier() throws IOException {
+	GsonBuilder gsonBuilder = new GsonBuilder();
+	gsonBuilder.setPrettyPrinting();// 格式化json数据
+	Gson gson = gsonBuilder.create();
+	String Picture_identifier = imageService.getMaxPicture_identifier();
+	http_response.setContentType("text/html;charset=utf-8");
+	http_response.getWriter().write(gson.toJson(Picture_identifier));
+}
 	public ImageService getImageService() {
 	return imageService;
 }
@@ -74,6 +98,36 @@ public void setImageService(ImageService imageService) {
 	public void setServletRequest(HttpServletRequest arg0) {
 		// TODO Auto-generated method stub
 		this.http_request = arg0;
+	}
+	public HttpServletResponse getHttp_response() {
+		return http_response;
+	}
+	public void setHttp_response(HttpServletResponse http_response) {
+		this.http_response = http_response;
+	}
+	public xsjsglxt_image getImage() {
+		return image;
+	}
+	public void setImage(xsjsglxt_image image) {
+		this.image = image;
+	}
+	public HttpServletRequest getHttp_request() {
+		return http_request;
+	}
+	public void setHttp_request(HttpServletRequest http_request) {
+		this.http_request = http_request;
+	}
+	public xsjsglxt_picture getPicture() {
+		return picture;
+	}
+	public void setPicture(xsjsglxt_picture picture) {
+		this.picture = picture;
+	}
+	public xsjsglxt_case getCase1() {
+		return case1;
+	}
+	public void setCase1(xsjsglxt_case case1) {
+		this.case1 = case1;
 	}
 
 }

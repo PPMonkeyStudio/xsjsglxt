@@ -7,34 +7,34 @@ import com.xsjsglxt.domain.DTO.Case.LostInformationDTO;
 import com.xsjsglxt.domain.DTO.Case.LostMobilephoneInformationDTO;
 
 public class page_list_CasematerialVO {
-	        // å½“å‰é¡µ
+	        // µ±Ç°Ò³
 			private int pageIndex = 1;
-		    //æ€»è®°å½•æ•°
+		    //×Ü¼ÇÂ¼Êı
 			private int totalRecords = 0;
-		    //æ¯é¡µæ˜¾ç¤ºè®°å½•æ•°
+		    //Ã¿Ò³ÏÔÊ¾¼ÇÂ¼Êı
 			private int pageSize = 20;
-			// æ€»é¡µæ•°
+			// ×ÜÒ³Êı
 			private int totalPages = 1;
-			// æ˜¯å¦æœ‰ä¸Šä¸€é¡µ
+			// ÊÇ·ñÓĞÉÏÒ»Ò³
 			private boolean HavePrePage = false;
-			// æ˜¯å¦æœ‰ä¸‹ä¸€é¡µ
+			// ÊÇ·ñÓĞÏÂÒ»Ò³
 			private boolean HaveNextPage = false;
 			
-			  private String lost_name; //æŸå¤±ç‰©å“åç§°
+			  private String lost_name; //ËğÊ§ÎïÆ·Ãû³Æ
 			  
-			  private String lost_mobilephone_phone;//æ‰‹æœºå·ç 
-			  private String lost_mobilephone_feature;//æ‰‹æœºç‰¹å¾
-			  private String  lost_mobilephone_IMEI;//æ‰‹æœºä¸²å·
+			  private String lost_mobilephone_phone;//ÊÖ»úºÅÂë
+			  private String lost_mobilephone_feature;//ÊÖ»úÌØÕ÷
+			  private String  lost_mobilephone_IMEI;//ÊÖ»ú´®ºÅ
 			  
-			  private String lost_computer_brand;//ç”µè„‘å“ç‰Œ
-			  private String lost_computer_internetAccount;//ä¸Šç½‘è´¦å·
-			  private String lost_computer_MAC;//MACåœ°å€
+			  private String lost_computer_brand;//µçÄÔÆ·ÅÆ
+			  private String lost_computer_internetAccount;//ÉÏÍøÕËºÅ
+			  private String lost_computer_MAC;//MACµØÖ·
 			  
-			  private List<LostInformationDTO> LostInformationDTOList;//æŸå¤±ç‰©å“è¡¨
+			  private List<LostInformationDTO> LostInformationDTOList;//ËğÊ§ÎïÆ·±í
 			  
-			  private List<LostMobilephoneInformationDTO> LostMobilephoneInformationDTOList;//æŸå¤±æ‰‹æœºè¡¨
+			  private List<LostMobilephoneInformationDTO> LostMobilephoneInformationDTOList;//ËğÊ§ÊÖ»ú±í
 			
-			  private List<LostComputerInformationDTO> LostComputerInformationDTOList;//æŸå¤±ç”µè„‘è¡¨
+			  private List<LostComputerInformationDTO> LostComputerInformationDTOList;//ËğÊ§µçÄÔ±í
 			  
 			  public List<LostInformationDTO> getLostInformationDTOList() {
 				return LostInformationDTOList;

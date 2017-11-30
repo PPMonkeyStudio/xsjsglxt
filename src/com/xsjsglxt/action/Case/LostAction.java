@@ -13,6 +13,7 @@ import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost;
+import com.xsjsglxt.domain.DTO.Case.LostInformationDTO;
 import com.xsjsglxt.domain.VO.Case.page_list_CasematerialVO;
 import com.xsjsglxt.service.Case.LostService;
 
@@ -24,10 +25,12 @@ private HttpServletResponse http_response;
 
 private HttpServletRequest http_request;	
 
+private LostInformationDTO lostInformationDTO;
+
 private page_list_CasematerialVO page_list_Casematerial;
 
 /*
- * 淇濆瓨鎹熷け鐗╁搧
+ * 保存损失物品
  */
 public void saveLost() throws IOException{
 	try {
@@ -43,11 +46,11 @@ public void saveLost() throws IOException{
 	}
 }
 /*
- * 鍒楄〃淇℃伅
+ * 列表信息
  */
 public void  ListLostInformationByPageAndSearch() throws IOException{
 	GsonBuilder gsonBuilder = new GsonBuilder();
-	gsonBuilder.setPrettyPrinting();// 鏍煎紡鍖杍son鏁版嵁
+	gsonBuilder.setPrettyPrinting();// 格式化json数据
 	Gson gson = gsonBuilder.create();
 	page_list_Casematerial = lostService
 				.VO_Lostformation_By_PageAndSearch(page_list_Casematerial);
@@ -56,6 +59,19 @@ public void  ListLostInformationByPageAndSearch() throws IOException{
 
 			http_response.getWriter().write(gson.toJson(page_list_Casematerial));
 }
+/*
+ * 详细信息
+ */
+public void LostInformationOne() throws IOException {
+	GsonBuilder gsonBuilder = new GsonBuilder();
+	gsonBuilder.setPrettyPrinting();// 格式化json数据
+	Gson gson = gsonBuilder.create();
+	lostInformationDTO = lostService.LostInformationOne(lost);
+	http_response.setContentType("text/html;charset=utf-8");
+
+	http_response.getWriter().write(gson.toJson(lostInformationDTO));
+}
+
 
 public LostService getLostService() {
 	return lostService;
@@ -106,6 +122,12 @@ public void setLostService(LostService lostService) {
 	}
 	public void setPage_list_Casematerial(page_list_CasematerialVO page_list_Casematerial) {
 		this.page_list_Casematerial = page_list_Casematerial;
+	}
+	public LostInformationDTO getLostInformationDTO() {
+		return lostInformationDTO;
+	}
+	public void setLostInformationDTO(LostInformationDTO lostInformationDTO) {
+		this.lostInformationDTO = lostInformationDTO;
 	}
 
 }

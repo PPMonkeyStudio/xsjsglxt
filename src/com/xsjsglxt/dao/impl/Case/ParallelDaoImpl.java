@@ -8,9 +8,15 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.Case.ParallelDao;
+import com.xsjsglxt.domain.DO.xsjsglxt_briefdetails;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
+import com.xsjsglxt.domain.DO.xsjsglxt_lost;
 import com.xsjsglxt.domain.DO.xsjsglxt_parallel;
+import com.xsjsglxt.domain.DO.xsjsglxt_resevidence;
+import com.xsjsglxt.domain.DO.xsjsglxt_snece;
 import com.xsjsglxt.domain.VO.Case.page_list_parallelInformationVO;
+
+import util.TeamUtil;
 
 public class ParallelDaoImpl implements ParallelDao {
 	private SessionFactory sessionFactory;
@@ -134,5 +140,97 @@ public class ParallelDaoImpl implements ParallelDao {
 		listParallelInformationByPage = query.list();
 		session.clear();
 		return listParallelInformationByPage;
+	}
+
+	@Override
+	public xsjsglxt_parallel getparallelById(xsjsglxt_parallel parallel) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_parallel parallel where parallel.xsjsglxt_parallel_id='" + parallel.getXsjsglxt_parallel_id() + "'";
+
+		Query query = session.createQuery(hql);
+
+		 parallel = (xsjsglxt_parallel) query.uniqueResult();
+
+		return parallel;
+	}
+
+	@Override
+	public xsjsglxt_case getcaseByparallelId(xsjsglxt_parallel parallel) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_case case1 where case1.case_parallel='" + parallel.getXsjsglxt_parallel_id() + "'";
+
+		Query query = session.createQuery(hql);
+
+		xsjsglxt_case	 case1 = (xsjsglxt_case) query.uniqueResult();
+
+		return case1;
+	}
+
+	@Override
+	public xsjsglxt_snece getsneceByCaseId(xsjsglxt_case case1) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_snece sence where sence.snece_case='" + case1.getXsjsglxt_case_id() + "'";
+
+		Query query = session.createQuery(hql);
+
+		xsjsglxt_snece	 sence = (xsjsglxt_snece) query.uniqueResult();
+
+		return sence;
+	}
+
+	@Override
+	public xsjsglxt_briefdetails getbriefdetailsByCaseId(xsjsglxt_case case1) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_briefdetails briefdetails where briefdetails.briefdetails_case='" + case1.getXsjsglxt_case_id() + "'";
+
+		Query query = session.createQuery(hql);
+
+		xsjsglxt_briefdetails	 briefdetails = (xsjsglxt_briefdetails) query.uniqueResult();
+
+		return briefdetails;
+	}
+
+	@Override
+	public xsjsglxt_resevidence getresevidenceByCaseId(xsjsglxt_case case1) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_resevidence resevidence where resevidence.resevidence_case='" + case1.getXsjsglxt_case_id() + "'";
+
+		Query query = session.createQuery(hql);
+
+		xsjsglxt_resevidence	 resevidence = (xsjsglxt_resevidence) query.uniqueResult();
+
+		return resevidence;
+	}
+
+	@Override
+	public int getMaxParallelNum() {
+		// TODO Auto-generated method stub
+		int i;
+	
+		String year =TeamUtil.getCurrentYear();
+		String li="";
+	
+		String hql = "select substring(parallel_num,-1,4) from xsjsglxt_parallel where substring(parallel_num,1,8)='"+year+"' order by substring(parallel_num,-1,4) desc limit 1";
+		System.out.println(hql);
+		Query query = getSession().createSQLQuery(hql);
+		li=(String) query.uniqueResult();
+		if(li==null || li.trim().length()<=0){
+			getSession().clear();
+			return 0;
+		}
+		i=Integer.parseInt(li);
+		getSession().clear();
+		return i;
+		
 	}
 }

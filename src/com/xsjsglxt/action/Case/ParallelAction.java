@@ -14,6 +14,7 @@ import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_parallel;
+import com.xsjsglxt.domain.DTO.Case.ParallelInformationDTO;
 import com.xsjsglxt.domain.VO.Case.page_list_parallelInformationVO;
 import com.xsjsglxt.service.Case.ParallelService;
 
@@ -29,10 +30,12 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 
 	private page_list_parallelInformationVO page_list_parallelInformation;
 
-	private List<String> CaeNumList;
+	private String CaeNumList;
+	
+	private ParallelInformationDTO parallelInformationDTO;
 
 	/*
-	 * (non-Javadoc)淇濆瓨
+	 * (non-Javadoc)保存
 	 * 
 	 * @see
 	 * org.apache.struts2.interceptor.ServletResponseAware#setServletResponse(
@@ -53,7 +56,7 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 	}
 
 	/*
-	 * (non-Javadoc)涓插苟鍒楄〃淇℃伅
+	 * (non-Javadoc)串并列表信息
 	 * 
 	 * @see
 	 * org.apache.struts2.interceptor.ServletResponseAware#setServletResponse(
@@ -61,7 +64,7 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 	 */
 	public void ListParallelInformationByPageAndSearch() throws IOException {
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// 鏍煎紡鍖杍son鏁版嵁
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
 		page_list_parallelInformation = parallelService
 				.VO_Parallelformation_By_PageAndSearch(page_list_parallelInformation);
@@ -71,6 +74,32 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 		http_response.getWriter().write(gson.toJson(page_list_parallelInformation));
 	}
 
+	/*
+	 * (non-Javadoc)串并案件详细信息
+	 * @see org.apache.struts2.interceptor.ServletResponseAware#setServletResponse(javax.servlet.http.HttpServletResponse)
+	 */
+	public void ParallelInformationOne() throws IOException{
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
+		Gson gson = gsonBuilder.create();
+		parallelInformationDTO = parallelService.ParallelInformationOne(parallel);
+		http_response.setContentType("text/html;charset=utf-8");
+
+		http_response.getWriter().write(gson.toJson(parallelInformationDTO));
+	}
+	/*
+	 * (non-Javadoc)串并号
+	 * @see org.apache.struts2.interceptor.ServletResponseAware#setServletResponse(javax.servlet.http.HttpServletResponse)
+	 */
+	public void getParallelNum() throws IOException {
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
+		Gson gson = gsonBuilder.create();
+		String ParallelNum = parallelService.getMaxParallelNum();
+		http_response.setContentType("text/html;charset=utf-8");
+		http_response.getWriter().write(gson.toJson(ParallelNum));
+	}   
+	
 	@Override
 	public void setServletResponse(HttpServletResponse arg0) {
 		// TODO Auto-generated method stub
@@ -133,12 +162,22 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 		this.page_list_parallelInformation = page_list_parallelInformation;
 	}
 
-	public List<String> getCaeNumList() {
+	
+
+	public String getCaeNumList() {
 		return CaeNumList;
 	}
 
-	public void setCaeNumList(List<String> caeNumList) {
+	public void setCaeNumList(String caeNumList) {
 		CaeNumList = caeNumList;
+	}
+
+	public ParallelInformationDTO getParallelInformationDTO() {
+		return parallelInformationDTO;
+	}
+
+	public void setParallelInformationDTO(ParallelInformationDTO parallelInformationDTO) {
+		this.parallelInformationDTO = parallelInformationDTO;
 	}
 
 }

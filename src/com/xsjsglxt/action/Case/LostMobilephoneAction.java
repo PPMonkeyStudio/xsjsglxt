@@ -1,4 +1,4 @@
-package com.xsjsglxt.action.Case;
+ package com.xsjsglxt.action.Case;
 
 import java.io.IOException;
 
@@ -14,6 +14,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone;
+import com.xsjsglxt.domain.DTO.Case.LostMobilephoneInformationDTO;
 import com.xsjsglxt.domain.VO.Case.page_list_CasematerialVO;
 import com.xsjsglxt.service.Case.LostMobilephoneService;
 import com.xsjsglxt.service.Case.LostService;
@@ -27,11 +28,13 @@ public class LostMobilephoneAction extends ActionSupport implements ServletReque
 	private HttpServletResponse http_response;
 
 	private HttpServletRequest http_request;	
+	
+	private LostMobilephoneInformationDTO lostMobilephoneInformationDTO;
 
 	private page_list_CasematerialVO page_list_Casematerial;
 	
 	/*
-	 * 淇濆瓨鎹熷け鎵嬫満
+	 * 保存损失手机
 	 */
 	public void saveLostMobilephone() throws IOException{
 		try {
@@ -47,11 +50,11 @@ public class LostMobilephoneAction extends ActionSupport implements ServletReque
 		}
 	}
 	/*
-	 * 鎹熷け鎵嬫満鍒楄〃
+	 * 损失手机列表
 	 */
 	public void  ListLostMobilephoneInformationByPageAndSearch() throws IOException{
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// 鏍煎紡鍖杍son鏁版嵁
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
 		page_list_Casematerial = lostMobilephoneService
 					.VO_LostMobilephoneformation_By_PageAndSearch(page_list_Casematerial);
@@ -60,7 +63,19 @@ public class LostMobilephoneAction extends ActionSupport implements ServletReque
 
 				http_response.getWriter().write(gson.toJson(page_list_Casematerial));
 	}
+/*
+ * 详细信息
+ */
+	public void LostMobiephoneInformationOne() throws IOException {
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
+		Gson gson = gsonBuilder.create();
+		lostMobilephoneInformationDTO = lostMobilephoneService.LostMobiephoneInformationOne(lost_mobilephone);
+		http_response.setContentType("text/html;charset=utf-8");
 
+		http_response.getWriter().write(gson.toJson(lostMobilephoneInformationDTO));
+	}
+	
 	public LostMobilephoneService getLostMobilephoneService() {
 		return lostMobilephoneService;
 	}
@@ -110,6 +125,12 @@ public class LostMobilephoneAction extends ActionSupport implements ServletReque
 	}
 	public void setPage_list_Casematerial(page_list_CasematerialVO page_list_Casematerial) {
 		this.page_list_Casematerial = page_list_Casematerial;
+	}
+	public LostMobilephoneInformationDTO getLostMobilephoneInformationDTO() {
+		return lostMobilephoneInformationDTO;
+	}
+	public void setLostMobilephoneInformationDTO(LostMobilephoneInformationDTO lostMobilephoneInformationDTO) {
+		this.lostMobilephoneInformationDTO = lostMobilephoneInformationDTO;
 	}
 
 }

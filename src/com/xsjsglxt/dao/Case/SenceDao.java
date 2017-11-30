@@ -48,7 +48,7 @@ public xsjsglxt_snece get_sence_Byxsjsglxt_case_id(xsjsglxt_case case1);
 
 public xsjsglxt_resevidence get_resevidence_Byxsjsglxt_case_id(xsjsglxt_case case1);
 /*
- * 鍒犻櫎妗堜欢
+ * 删除案件
  */
 public com.xsjsglxt.domain.DO.xsjsglxt_case getCaseByNum(String case_id);
 
@@ -68,7 +68,7 @@ public boolean deleteSenceById(String xsjsglxt_case_id);
 
 public int getMaxSenceInquestId();
 /*
- * 璇︾粏鐜板満淇℃伅
+ * 详细现场信息
  */
 public xsjsglxt_snece getSeceBySenceId(xsjsglxt_snece sence);
 
