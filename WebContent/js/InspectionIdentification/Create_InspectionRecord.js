@@ -128,7 +128,7 @@ function addInspectionRecord(jc) {
 	 * 检验地点
 	 */
 	var create_inspection_location = document
-			.getElementById("create_inspection_belong_entrustment_book");
+			.getElementById("create_inspection_location");
 	formData.append("inspectionRecord.inspection_location",
 			create_inspection_location.value);
 	/*
