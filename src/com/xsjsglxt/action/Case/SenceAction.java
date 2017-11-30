@@ -62,12 +62,7 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 		return "page_CaseMergerList";
 	}
 
-	/*
-	 * 跳转现场录入页面
-	 */
-	public String page_CaseMergerList() {
-		return "page_CaseMergerList";
-	}
+
 
 	/*
 	 * 璺宠浆鐜板満褰曞叆椤甸潰
@@ -77,22 +72,18 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	}
 
 	/*
-<<<<<<< HEAD
+
 	 * 跳转现场录入页面
-=======
-	 * 璺宠浆鐜板満褰曞叆椤甸潰
->>>>>>> 9013b795a14a67abf2397029b2265c8833cd584b
+
 	 */
 	public String page_CaseMaterials() {
 		return "page_CaseMaterials";
 	}
 
 	/*
-<<<<<<< HEAD
+
 	 * 跳转案件详情页面
-=======
-	 * 璺宠浆妗堜欢璇︽儏椤甸潰
->>>>>>> 9013b795a14a67abf2397029b2265c8833cd584b
+
 	 */
 	public String page_CaseDetails() {
 		ActionContext.getContext().getValueStack().set("id", http_request.getParameter("id"));
@@ -100,11 +91,9 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	}
 
 	/*
-<<<<<<< HEAD
+
 	 * 保存基本信息
-=======
-	 * 淇濆瓨鍩烘湰淇℃伅
->>>>>>> 9013b795a14a67abf2397029b2265c8833cd584b
+
 	 */
 	public void saveSenceInformation() {
 
