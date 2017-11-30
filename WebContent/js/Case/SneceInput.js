@@ -29,13 +29,13 @@ $(function() {
 		$.ajax({
 			url : "/xsjsglxt/case/Case_saveSenceInformation",
 			type : "post",
-			async : false,
 			timeout : 3000,
 			data : $('#sneceInformation').serialize(),
-			dataType : "json",
+			dataType : "text",
 			success : function(xhr_data) {
 				if (xhr_data == 'success') {
 					toastr.success("录入成功！");
+				//location.href = '/xsjsglxt/case/Case_page_CaseDetails?id=';
 				} else {
 					toastr.success("录入失败！");
 				}
@@ -266,5 +266,5 @@ function setSectionmAddress(chapter) {
 
 //-------------------------------------------------立案与否
 function buildCase_chose(obj) {
-	$('input[name="Csae.case_register"]').val($(obj).val());
+	$('input[name="case1.case_register"]').val($(obj).val());
 }
