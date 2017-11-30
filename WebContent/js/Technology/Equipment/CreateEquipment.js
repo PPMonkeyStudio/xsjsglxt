@@ -9,7 +9,7 @@ function CreateEquipment() {
 						+ '<tr><th>装备类型：</th><td><input type="text" id="input_type" class="form-control" /></td></tr>'
 						+ '<tr><th>装备特征：</th>'
 						+ '<td><label style="margin:0 10px 0 0;">'
-						+ '<select id="select_feature"><option value="不限">不限</option><option value="痕迹">痕迹</option ><option value="法医">法医</option ><option value="影像">影像</option><option value="技管">技管</option><option value="其他">其他</option></select>'
+						+ '<select id="select_feature" onChange="EquipmentSelectChange()"><option value="不限">不限</option><option value="痕迹">痕迹</option ><option value="法医">法医</option ><option value="影像">影像</option><option value="技管">技管</option><option value="其他">其他</option></select>'
 						+ '</label> '
 						+ ' <label style="margin:0 10px;">'
 						+ '<input type="text" id="input_feature" class="form-control" />'
@@ -35,7 +35,6 @@ function CreateEquipment() {
 								.getElementById("input_serial_number");
 						var input_name = document.getElementById("input_name");
 						var input_type = document.getElementById("input_type");
-						var select_feature=document.getElementById("select_feature");
 						var input_feature = document
 								.getElementById("input_feature");
 						var input_number = document
@@ -87,35 +86,58 @@ function CreateEquipment() {
 								}
 							}
 						}
-						formData.append("equipment.equipment_serial_number", input_serial_number.value);
-						formData.append("equipment.equipment_name", input_name.value);
-						formData.append("equipment.equipment_type", input_type.value);
-						formData.append("equipment.equipment_feature",
-								input_feature.value);
+						formData.append("equipment.equipment_serial_number",
+								input_serial_number.value);
+						formData.append("equipment.equipment_name",
+								input_name.value);
+						formData.append("equipment.equipment_type",
+								input_type.value);
+						var select_feature = document
+								.getElementById("select_feature");
+						if (select_feature.value == "其他") {
+							formData.append("equipment.equipment_feature",
+									input_feature.value);
+						} else {
+							formData.append("equipment.equipment_feature",
+									select_feature.value);
+						}
+
 						formData.append("equipment.equipment_number",
 								input_number.value);
 						formData.append("equipment.equipment_money",
 								input_money.value);
-						
+
 						formData.append("equipment.equipment_enablement_time",
 								input_enablement_time.value);
-						var input_use_note = document.getElementsByName("input_use_note");
+						var input_use_note = document
+								.getElementsByName("input_use_note");
 						for (var num = 0; num < 2; num++) {
 							if (input_use_note[num].checked) {
 								formData.append("equipment.equipment_use_note",
 										input_use_note[num].value);
 							}
 						}
-						formData
-								.append("equipment.equipment_remark", textarea_remark.value);
+						formData.append("equipment.equipment_remark",
+								textarea_remark.value);
 
-						xhr.open("POST",
-								"/xsjsglxt/Equipment/EquipmentManagement_CreateEquipment");
+						xhr
+								.open("POST",
+										"/xsjsglxt/Equipment/EquipmentManagement_CreateEquipment");
 						xhr.send(formData);
 
 					},
 					取消 : function() {
 
+					}
+				},onContentReady : function() {
+					var select_feature=document.getElementById("select_feature");
+					var input_feature=document.getElementById("input_feature");
+					if(select_feature.value=="其他"){
+						input_feature.value="";
+						input_feature.disabled="";
+					}else{
+						input_feature.value=select_feature.value;
+						input_feature.disabled="disabled"; 
 					}
 				}
 			});
