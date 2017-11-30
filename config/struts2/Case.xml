@@ -8,8 +8,10 @@
 			method="{1}">
 			<result name="page_SiteManagement">/WEB-INF/view/Case/SiteManagement.jsp</result>
 			<result name="page_Sneceinput">/WEB-INF/view/Case/SneceInput.jsp</result>
-			<result name="page_CaseMerger">/WEB-INF/view/Case/CaseMerger.jsp</result>
+			<result name="page_CaseMergerList">/WEB-INF/view/Case/CaseMergerList.jsp</result>
 			<result name="page_CaseDetails">/WEB-INF/view/Case/CaseDetails.jsp</result>
+			<result name="page_CaseMerger">/WEB-INF/view/Case/CaseMerger.jsp</result>
+			<result name="page_CaseMaterials">/WEB-INF/view/Case/CaseMaterials.jsp</result>
 		</action>
 		<action name="Resevidence_*" class="com.xsjsglxt.action.Case.ResevidenceAction"
 			method="{1}">

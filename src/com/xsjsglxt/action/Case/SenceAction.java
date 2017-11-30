@@ -58,8 +58,22 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	/*
 	 * 跳转现场录入页面
 	 */
+	public String page_CaseMergerList() {
+		return "page_CaseMergerList";
+	}
+
+	/*
+	 * 跳转现场录入页面
+	 */
 	public String page_CaseMerger() {
 		return "page_CaseMerger";
+	}
+
+	/*
+	 * 跳转现场录入页面
+	 */
+	public String page_CaseMaterials() {
+		return "page_CaseMaterials";
 	}
 
 	/*

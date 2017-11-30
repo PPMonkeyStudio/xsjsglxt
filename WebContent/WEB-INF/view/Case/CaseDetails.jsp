@@ -275,94 +275,95 @@
 				</div>
 				<div class="modal-body">
 					<div class="panel-body">
-						<table>
-							<tbody>
-								<tr>
-									<td>案发时间:</td>
-									<td><input name="sneceInformation." class="form-control"
-										value="1900-1-10" maxlength="19" type="text"></td>
-									<td>物证名称:</td>
-									<td><input name="sneceInformation." class="form-control"
-										value="" size="30" maxlength="19" type="text"></td>
+						<form id="lost_evidence" action="">
+							<table>
+								<tbody>
+									<tr>
+										<td>案发时间:</td>
+										<td><input name="case_receivingAlarmDate"
+											class="form-control" value="1900-1-10" maxlength="19"
+											type="text"></td>
+										<td>物证名称:</td>
+										<td><input name="resevidence.resevidence_name"
+											class="form-control" value="" size="30" maxlength="19"
+											type="text"></td>
 
-								</tr>
-								<tr>
-									<td>案发地点:</td>
-									<td><input name="sneceInformation." class="form-control"
-										value="萍乡市安源区" size="30" maxlength="19" type="text"></td>
-									<td>提取部位:</td>
-									<td><input name="sneceInformation." class="form-control"
-										value="" size="30" maxlength="19" type="text"></td>
+									</tr>
+									<tr>
+										<td>案发地点:</td>
+										<td><input name="case_address" class="form-control"
+											value="萍乡市安源区" size="30" maxlength="19" type="text"></td>
+										<td>提取部位:</td>
+										<td><input name="resevidence.resevidence_extractPart"
+											class="form-control" value="" size="30" maxlength="19"
+											type="text"></td>
 
-								</tr>
-								<tr>
-									<td>案件性质:</td>
-									<td><input name="sneceInformation." class="form-control"
-										value="" size="30" maxlength="19" type="text"></td>
-									<td>提取方法:</td>
-									<td><select name="sneceInformation." class="form-control">
-											<option value="" selected="">请输入提取方法</option>
-											<option value="粉末显现">粉末显现</option>
-											<option value="茚三酮熏显">茚三酮熏显</option>
-											<option value="502熏显">502熏显</option>
-											<option value="实物提取">实物提取</option>
-											<option value="照相提取">照相提取</option>
-											<option value="静电吸附">静电吸附</option>
-											<option value="纱布转移">纱布转移</option>
-											<option value="其他">其他</option>
-									</select></td>
-								</tr>
-								<tr>
-									<td>物证编号:</td>
-									<td><input name="sneceInformation." class="form-control"
-										value="" size="30" maxlength="19" type="text"></td>
-
-									<td>提取数量:</td>
-									<td><input name="sneceInformation." class="form-control"
-										value="" size="30" maxlength="19" type="text"></td>
-
-								</tr>
-								<tr>
-									<td>提取单位:</td>
-									<td><input name="sneceInformation." class="form-control"
-										value="安源分局刑事科学技术室" size="30" maxlength="19" type="text"></td>
-									<td>提取人:</td>
-									<td><input name="sneceInformation." class="form-control"
-										value="" size="30" maxlength="19" type="text"></td>
-
-								</tr>
-								<tr>
-									<td>物证序号:</td>
-									<td><input name="sneceInformation." class="form-control"
-										value="" size="30" maxlength="19" type="text"></td>
-
-									<td>提取日期:</td>
-									<td><input name="sneceInformation." class="form-control"
-										value="" size="30" maxlength="19" type="text"></td>
-								</tr>
-								<tr>
-									<td>物证类型：</td>
-									<td><select name="sneceInformation." class="form-control">
-											<option value="" selected>请选择物证类型</option>
-											<option value="手印痕迹">手印痕迹</option>
-											<option value="足迹痕迹">足迹痕迹</option>
-											<option value="工具痕迹">工具痕迹</option>
-											<option value="生物物证">生物物证</option>
-											<option value="理化物证">理化物证</option>
-											<option value="其他">其他</option>
-									</select></td>
-								</tr>
-								<tr>
-									<td>备注:</td>
-									<td colspan="3"><textarea class="form-control"
-											placeholder="请填写" rows="2"></textarea></td>
-								</tr>
-							</tbody>
-						</table>
+									</tr>
+									<tr>
+										<td>案件性质:</td>
+										<td><input name="case_classify" class="form-control"
+											value="" size="30" maxlength="19" type="text"></td>
+										<td>提取方法:</td>
+										<td><select name="resevidence.resevidence_extractMethod"
+											class="form-control">
+												<option value="" selected="">请输入提取方法</option>
+												<option value="粉末显现">粉末显现</option>
+												<option value="茚三酮熏显">茚三酮熏显</option>
+												<option value="502熏显">502熏显</option>
+												<option value="实物提取">实物提取</option>
+												<option value="照相提取">照相提取</option>
+												<option value="静电吸附">静电吸附</option>
+												<option value="纱布转移">纱布转移</option>
+												<option value="其他">其他</option>
+										</select></td>
+									</tr>
+									<tr>
+										<td>提取数量:</td>
+										<td><input name="resevidence.resevidence_extractNumber"
+											class="form-control" value="" size="30" maxlength="19"
+											type="text"></td>
+										<td>提取人:</td>
+										<td><input name="resevidence.resevidence_extractPerson"
+											class="form-control" value="" size="30" maxlength="19"
+											type="text"></td>
+									</tr>
+									<tr>
+										<td>物证类型：</td>
+										<td><select name="resevidence.resevidence_type"
+											class="form-control">
+												<option value="" selected>请选择物证类型</option>
+												<option value="手印痕迹">手印痕迹</option>
+												<option value="足迹痕迹">足迹痕迹</option>
+												<option value="工具痕迹">工具痕迹</option>
+												<option value="生物物证">生物物证</option>
+												<option value="理化物证">理化物证</option>
+												<option value="其他">其他</option>
+										</select></td>
+										<td>提取日期:</td>
+										<td><input name="resevidence.resevidence_extractTime"
+											class="form-control" value="" size="30" maxlength="19"
+											type="text"></td>
+									</tr>
+									<tr>
+										<td>提取单位:</td>
+										<td colspan="3"><input
+											name="resevidence.resevidence_extractUnit"
+											class="form-control" value="安源分局刑事科学技术室" size="30"
+											maxlength="19" type="text"></td>
+									</tr>
+									<tr>
+										<td>备注:</td>
+										<td colspan="3"><textarea
+												name="resevidence.resevidence_remarks" class="form-control"
+												placeholder="请填写" rows="2"></textarea></td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">提交</button>
+					<button type="button" class="btn btn-primary add_evidence">提交</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 
 				</div>
@@ -374,7 +375,7 @@
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
-	<!-- 添加照片-模态框（Modal） -->
+	<!-- 添加丢失物品-模态框（Modal） -->
 	<div class="modal fade" id="LossOfGoods" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
@@ -382,7 +383,7 @@
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">添加照片</h4>
+					<h4 class="modal-title" id="myModalLabel">添加diushiwupin</h4>
 				</div>
 				<div class="modal-body">
 					<div class="panel-body">
@@ -394,7 +395,7 @@
 												style="padding-left:10px; float: left; width: 16%;">丢失类型</div>
 											<select class="form-control" onchange="ChangeItemType(this)"
 											style="width: 84%;">
-												<option value="">请选择</option>
+												<option value="" selected="selected">请选择</option>
 												<option value="lost_goods">物品</option>
 												<option value="lost_mobilephone">电脑</option>
 												<option value="lost_computer">手机</option>
@@ -476,7 +477,7 @@
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
-	<!-- 添加损失物品-模态框（Modal） -->
+	<!-- 添加光盘照片-模态框（Modal） -->
 	<div class="modal fade" id="picture" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">

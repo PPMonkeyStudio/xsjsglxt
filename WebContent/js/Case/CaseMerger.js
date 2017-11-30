@@ -22,32 +22,6 @@ var page_infomantion = {
 	HaveNextPage : false,
 }
 
-$(function() {
-	$('.to_quert').click(function() {
-		var arr = $('#query_infomantion_inmodal').serializeArray();
-		$.each(arr, function(key, value) {
-			//key为arr里对象的索引，value为索引为key的对象。对象以{name: 'firstname', value: 'Hello'}形式存储, 以obj.name和obj.value形式遍历 
-			query_data[value.name] = value.value;
-		});
-		$('.query_prompting_info').text('接警时间从' + $('input[name="page_list_senceInformation.start_time"]').val() + '到' + $('input[name="page_list_senceInformation.stop_time"]').val());
-		get_ListSneceInformationByPageAndSearch(query_data);
-	});
-	$('.empty_quert').click(function() {
-		for (var i in query_data) {
-			query_data[i] = "";
-		}
-		//选择框清除内容
-		$('.Query_table select').val("");
-		//输入框清除内容
-		$('.Query_table input').val("");
-		/*//影藏模态框
-		$('#newQuery').modal('hide');*/
-		//成功提示
-		toastr.success('清除查询信息成功');
-	});
-	get_ListSneceInformationByPageAndSearch(query_data);
-})
-
 function get_ListSneceInformationByPageAndSearch(data) {
 	$.post('/xsjsglxt/case/Case_ListSneceInformationByPageAndSearch', data, function(xhr) {
 		$('.case_table_info tbody').empty();
@@ -55,7 +29,7 @@ function get_ListSneceInformationByPageAndSearch(data) {
 		for (var len = 0; len < xhr.SenceInformationDTOList.length; len++) {
 			var data_list = xhr.SenceInformationDTOList[len];
 			str += '<tr>';
-			str += '<td>' + (len + 1) + '</td>';
+			str += '<td><input class="form-control" type="checkbox" vlaue="' + data_list.sence.xsjsglxt_snece_id + '"></td>';
 			str += '<td><a href="/xsjsglxt/case/Case_page_CaseDetails?id=' + data_list.sence.xsjsglxt_snece_id + '">' + data_list.sence.snece_inquestId + '</a></td>';
 			str += '<td>' + data_list.case1.case_receivingAlarmDate + '</td>';
 			str += '<td>' + data_list.case1.case_address + '</td>';
@@ -83,6 +57,14 @@ function get_ListSneceInformationByPageAndSearch(data) {
 
 		//影藏模态框
 		$('#newQuery').modal('hide')
+
+		//
+		$('.case_table_info tbody tr').click(function() {
+			var inp_obj = $(this).children('td:first-child').children('input[type="checkbox"]');
+			if (inp_obj.attr('checked') == 'checked') {
+				inp_obj.removeAttr('checked');
+			} else inp_obj.attr('checked', 'checked');
+		});
 	}, 'json')
 }
 
@@ -127,3 +109,42 @@ function toPage(object) {
 	query_data['page_list_senceInformation.pageIndex'] = $(object).val();
 	get_ListSneceInformationByPageAndSearch(query_data);
 }
+
+$(function() {
+	$('.to_quert').click(function() {
+		var arr = $('#query_infomantion_inmodal').serializeArray();
+		$.each(arr, function(key, value) {
+			//key为arr里对象的索引，value为索引为key的对象。对象以{name: 'firstname', value: 'Hello'}形式存储, 以obj.name和obj.value形式遍历 
+			query_data[value.name] = value.value;
+		});
+		$('.query_prompting_info').text('接警时间从' + $('input[name="page_list_senceInformation.start_time"]').val() + '到' + $('input[name="page_list_senceInformation.stop_time"]').val());
+		get_ListSneceInformationByPageAndSearch(query_data);
+	});
+	$('.empty_quert').click(function() {
+		for (var i in query_data) {
+			query_data[i] = "";
+		}
+		//选择框清除内容
+		$('.Query_table select').val("");
+		//输入框清除内容
+		$('.Query_table input').val("");
+		//成功提示
+		toastr.success('清除查询信息成功');
+	});
+	get_ListSneceInformationByPageAndSearch(query_data);
+
+
+	/*$('.case_table_info tbody').children('tr').each(function() {
+		$(this).click(function() {
+			alert(';');
+			var inp_obj = $(this).children('td:first-child').children('input');
+			if (inp_obj.attr('checked') == 'checked') {
+				inp_obj.attr('checked', '');
+			} else inp_obj.attr('checked', 'checked');
+		});
+	});*/
+
+
+
+
+})

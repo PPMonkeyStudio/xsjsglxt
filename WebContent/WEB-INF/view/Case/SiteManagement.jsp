@@ -116,9 +116,7 @@ a {
 										</a>&nbsp&nbsp <a onclick="lastPage()">尾页<i
 												class="fa fa-angle-double-right"></i>
 										</a> <br />
-											<p class='info'>
-												共 1317条信息 当前1/95页 14条信息/页&nbsp&nbsp转到第<select></select> 页
-											</p></td>
+											<p class='info'></p></td>
 									</tr>
 								</tfoot>
 							</table>
@@ -183,7 +181,7 @@ a {
 									<td>作案时段</td>
 									<td><select
 										name="page_list_senceInformation.case_makeTime"
-										class=" form-control">
+										class="form-control">
 											<option selected value=""></option>
 											<option value="昼">昼</option>
 											<option value="夜">夜</option>

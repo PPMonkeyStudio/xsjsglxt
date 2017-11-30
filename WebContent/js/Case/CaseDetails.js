@@ -25,8 +25,14 @@ $(function() {
 
 		});
 	}, 'json');
+
+	//添加丢失物品(物品，手机，电脑)
 	$('.add_goods').click(function() {
-		var data = $('#LossOfGoods table tbody:visible').serialize();
+		if ($('#LossOfGoods table tbody:visible').find('input,textarea').val() == "") {
+			toastr.error('请添加完整信息！');
+			return;
+		}
+		var data = $('#Lost_Goods').serialize() + '&case1.xsjsglxt_case_id=' + $('#sence_id').val();
 		var url = '';
 		switch ($('#LossOfGoods table tbody:visible').attr('class')) {
 		case 'lost_goods':			url = '/xsjsglxt/case/Lost_saveLost';
@@ -39,9 +45,29 @@ $(function() {
 			url = '';
 			break;
 		}
-		$.post(url, data, function() {});
+		$.post(url, data, function(xhr_data) {
+			if (xhr_data == 'success') {
+				toastr.success('添加成功！');
+				$('#Lost_Goods table tbody').find('input,textarea').val("");
+			} else {
+				toastr.error('添加失败！');
+			}
+		}, 'text');
+	});
+	//添加物证信息
+	$('.add_evidence').click(function() {
+		$.post('/xsjsglxt/case/Resevidence_saveResevidence', $('#lost_evidence').serialize() + '&case1.xsjsglxt_case_id=' + $('#sence_id').val(), function(xhr_data) {
+			if (xhr_data == 'success') {
+				toastr.success('添加成功！');
+				$('#Lost_Goods table tbody').find('input,textarea').val("");
+			} else {
+				toastr.error('添加失败！');
+			}
+		}, 'text');
 	});
 })
+
+
 
 
 
