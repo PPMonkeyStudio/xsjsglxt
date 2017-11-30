@@ -22,6 +22,10 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 <style type="text/css">
+a {
+	cursor: pointer;
+}
+
 .table-condensed thead tr>th {
 	text-align: left;
 }
@@ -79,7 +83,7 @@
 								query.</p>
 						</div>
 						<div class="panel-body">
-							<table class="table table-hover table-condensed">
+							<table class="table table-hover table-condensed case_table_info">
 								<thead>
 									<tr>
 										<th>#</th>
@@ -88,31 +92,31 @@
 										<th>案发地点</th>
 										<th>案件类别</th>
 										<th>报案人基本情况</th>
-										<th>物证编号</th>
 										<th>主勘人员</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
 										<td>1</td>
-										<td>2017110002</td>
+										<td><a>K3603020012017110001</a></td>
 										<td>2017/11/12</td>
 										<td>萍乡市</td>
 										<td>其它盗窃</td>
 										<td>李显明 13979987657</td>
-										<td>W2017110001</td>
 										<td>杨立宇 吴昊晟</td>
 									</tr>
 								</tbody>
 								<tfoot>
 									<tr>
-										<td colspan="8" style="font-size: 12px;"><a><i
-												class="fa fa-angle-double-left">首页</i> </a>&nbsp&nbsp<a><i
-												class="fa fa-angle-left"></i>上一页 </a>&nbsp&nbsp<a>下一页<i
-												class="fa fa-angle-right"></i>
-										</a>&nbsp&nbsp <a>尾页<i class="fa fa-angle-double-right"></i>
-										</a> &nbsp&nbsp转到第<select></select> 页 <br />共 1317条信息 当前1/95页
-											14条信息/页</td>
+										<td colspan="8" style="font-size: 12px;" class="page_info"><a
+											onclick="firstPage()"><i class="fa fa-angle-double-left">首页</i>
+										</a>&nbsp&nbsp<a onclick="prePage()"><i
+												class="fa fa-angle-left"></i>上一页 </a>&nbsp&nbsp<a
+											onclick="nextPage()">下一页<i class="fa fa-angle-right"></i>
+										</a>&nbsp&nbsp <a onclick="lastPage()">尾页<i
+												class="fa fa-angle-double-right"></i>
+										</a> <br />
+											<p class='info'></p></td>
 									</tr>
 								</tfoot>
 							</table>
@@ -139,7 +143,7 @@
 				</div>
 				<div class="modal-body">
 					<form id="query_infomantion_inmodal" action="">
-						<table style="width: 100%;">
+						<table style="width: 100%;" class="Query_table">
 							<tbody>
 								<tr>
 									<td>案件类别</td>
@@ -177,7 +181,7 @@
 									<td>作案时段</td>
 									<td><select
 										name="page_list_senceInformation.case_makeTime"
-										class=" form-control">
+										class="form-control">
 											<option selected value=""></option>
 											<option value="昼">昼</option>
 											<option value="夜">夜</option>
@@ -233,7 +237,7 @@
 										name="page_list_senceInformation.case_makeMeans"
 										onchange="setSectionmMethod(this.selectedIndex)"
 										class=" crime_means form-control">
-											<option selected value="作案手段">作案手段</option>
+											<option selected value="">作案手段</option>
 											<option value="从门侵入">从门侵入</option>
 											<option value="从窗侵入">从窗侵入</option>
 											<option value="攀爬侵入">攀爬侵入</option>
@@ -258,7 +262,8 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary to_quert">查询</button>
+					<button type="button" class="btn btn-primary to_quert">确认查询</button>
+					<button type="button" class="btn btn-danger empty_quert">清空查询</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 				</div>
 			</div>
@@ -267,33 +272,6 @@
 		<!-- /.modal -->
 	</div>
 	<!---------------------------------------------------------------------------------------------------->
-	<!---------------------------------------------------------------------------------------------------->
-	<!---------------------------------------------------------------------------------------------------->
-	<!---------------------------------------------------------------------------------------------------->
-	<!---------------------------------------------------------------------------------------------------->
-	<!---------------------------------------------------------------------------------------------------->
-	<!-- 案件串并-模态框（Modal） -->
-	<div class="modal fade" id="chuan" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">现场勘验信息修改查询</h4>
-				</div>
-				<div class="modal-body">
-					<form id="chuan_inmodal" action=""></form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary to_chuan">查询</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-				</div>
-			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal -->
-	</div>
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->

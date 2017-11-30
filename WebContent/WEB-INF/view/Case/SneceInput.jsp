@@ -81,7 +81,7 @@
 								class="fancy-radio"> <input name="register"
 									onclick="buildCase_chose(this)" type="radio" value="2">
 									<span><i></i>否</span>
-							</label> <input type="hidden" name="Csae.case_register"></td>
+							</label> <input type="hidden" name="case1.case_register"></td>
 						</tr>
 						<tr>
 							<td>案发地点</td>
@@ -291,22 +291,22 @@
 						</tr>
 						<tr>
 							<td colspan="6"><label style="margin-left: 30%;"
-								class="fancy-checkbox"><input
+								class="fancy-checkbox"><input value="2"
 									onclick="sence_checkbox(this)" name="sence.snece_photographed"
 									type="checkbox"> <span>已拍照</span> </label> <label
-								class="fancy-checkbox"><input
+								class="fancy-checkbox"><input value="2"
 									onclick="sence_checkbox(this)" name="sence.snece_entered"
 									type="checkbox"> <span>已录入</span> </label> <label
-								class="fancy-checkbox"><input
+								class="fancy-checkbox"><input value="2"
 									onclick="sence_checkbox(this)" name="sence.snece_areadymade"
 									type="checkbox"> <span>已制作</span> </label> <label
-								class="fancy-checkbox"><input
+								class="fancy-checkbox"><input value="2"
 									onclick="sence_checkbox(this)" name="sence.snece_parsed"
 									type="checkbox"> <span>已分析</span> </label> <label
-								class="fancy-checkbox"><input
+								class="fancy-checkbox"><input value="2"
 									onclick="sence_checkbox(this)" name="sence.snece_archived"
 									type="checkbox"> <span>已存档</span> </label> <label
-								class="fancy-checkbox"> <input
+								class="fancy-checkbox"> <input value="2"
 									onclick="sence_checkbox(this)" name="sence.snece_identified"
 									type="checkbox"> <span>已认定</span>
 							</label></td>
@@ -350,12 +350,6 @@
 				<table>
 					<tr>
 						<td align="right">
-							<!-- 按钮触发模态框 -->
-							<button style="margin-top: 6px;" type="button"
-								class="btn btn-default" data-toggle="modal"
-								data-target="#evidence">
-								<i class="fa fa-plus-square"></i> 添加物证
-							</button>
 							<button style="margin-top: 6px; margin-right: 10px;"
 								type="button" class="btn btn-default sneceInformation_finish">
 								<i class="fa fa-check-circle"></i> 完成
@@ -363,132 +357,6 @@
 						</td>
 					</tr>
 				</table>
-
-
-
-
-				<!-- 模态框（Modal） -->
-				<div class="modal fade" id="evidence" tabindex="-1" role="dialog"
-					aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
-									aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="myModalLabel">痕迹物证单</h4>
-							</div>
-							<div class="modal-body">
-								<div class="panel-body">
-									<table>
-										<tbody>
-											<tr>
-												<td>案发时间:</td>
-												<td><input name="sneceInformation."
-													class="form-control" value="1900-1-10" maxlength="19"
-													type="text"></td>
-												<td>物证名称:</td>
-												<td><input name="sneceInformation."
-													class="form-control" value="" size="30" maxlength="19"
-													type="text"></td>
-
-											</tr>
-											<tr>
-												<td>案发地点:</td>
-												<td><input name="sneceInformation."
-													class="form-control" value="萍乡市安源区" size="30"
-													maxlength="19" type="text"></td>
-												<td>提取部位:</td>
-												<td><input name="sneceInformation."
-													class="form-control" value="" size="30" maxlength="19"
-													type="text"></td>
-
-											</tr>
-											<tr>
-												<td>案件性质:</td>
-												<td><input name="sneceInformation."
-													class="form-control" value="" size="30" maxlength="19"
-													type="text"></td>
-												<td>提取方法:</td>
-												<td><select name="sneceInformation."
-													class="form-control">
-														<option value="" selected="">请输入提取方法</option>
-														<option value="粉末显现">粉末显现</option>
-														<option value="茚三酮熏显">茚三酮熏显</option>
-														<option value="502熏显">502熏显</option>
-														<option value="实物提取">实物提取</option>
-														<option value="照相提取">照相提取</option>
-														<option value="静电吸附">静电吸附</option>
-														<option value="纱布转移">纱布转移</option>
-														<option value="其他">其他</option>
-												</select></td>
-											</tr>
-											<tr>
-												<td>物证编号:</td>
-												<td><input name="sneceInformation."
-													class="form-control" value="" size="30" maxlength="19"
-													type="text"></td>
-
-												<td>提取数量:</td>
-												<td><input name="sneceInformation."
-													class="form-control" value="" size="30" maxlength="19"
-													type="text"></td>
-
-											</tr>
-											<tr>
-												<td>提取单位:</td>
-												<td><input name="sneceInformation."
-													class="form-control" value="安源分局刑事科学技术室" size="30"
-													maxlength="19" type="text"></td>
-												<td>提取人:</td>
-												<td><input name="sneceInformation."
-													class="form-control" value="" size="30" maxlength="19"
-													type="text"></td>
-
-											</tr>
-											<tr>
-												<td>物证序号:</td>
-												<td><input name="sneceInformation."
-													class="form-control" value="" size="30" maxlength="19"
-													type="text"></td>
-
-												<td>提取日期:</td>
-												<td><input name="sneceInformation."
-													class="form-control" value="" size="30" maxlength="19"
-													type="text"></td>
-											</tr>
-											<tr>
-												<td>物证类型：</td>
-												<td><select name="sneceInformation."
-													class="form-control">
-														<option value="" selected="">请选择物证类型</option>
-														<option value="手印痕迹">手印痕迹</option>
-														<option value="足迹痕迹">足迹痕迹</option>
-														<option value="工具痕迹">工具痕迹</option>
-														<option value="生物物证">生物物证</option>
-														<option value="理化物证">理化物证</option>
-														<option value="其他">其他</option>
-												</select></td>
-											</tr>
-											<tr>
-												<td>备注:</td>
-												<td colspan="3"><textarea class="form-control"
-														placeholder="请填写" rows="2"></textarea></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-primary">提交</button>
-								<button type="button" class="btn btn-default"
-									data-dismiss="modal">关闭</button>
-
-							</div>
-						</div>
-						<!-- /.modal-content -->
-					</div>
-					<!-- /.modal -->
-				</div>
 				<!--  -->
 			</div>
 			<!---------------------------------------------------------------------------------------------------->
@@ -496,5 +364,7 @@
 		</div>
 	</div>
 	<script type="text/javascript" src="<%=basePath%>js/Case/SneceInput.js"></script>
+	<script type="text/javascript"
+		src="<%=basePath%>js/Case/sence_checkbox.js"></script>
 </body>
 </html>

@@ -23,7 +23,15 @@
 	-->
 
 </head>
+<style type="text/css">
+.table-condensed thead tr>th {
+	text-align: left;
+}
 
+.table-condensed tbody>tr>td {
+	font-size: 15px;
+}
+</style>
 <body>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
 	<!---------------------------------------------------------------------------------------------------->
@@ -35,14 +43,49 @@
 			<div class="panel-heading">
 				<h3 class="panel-title">案件材料</h3>
 			</div>
-			<select class="form-control" onchange="material(this)">
-				<option value="">请选择</option>
-				<option>物证</option>
-				<option>光碟(照片)</option>
-				<option>遗失物品</option>
-			</select>
+			<div class="operation" style="margin-bottom: 6px; ">
+				<select style="width:120px; margin-left:15px;" class="form-control"
+					onchange="material(this)">
+					<option value="">请选择</option>
+					<option>物证</option>
+					<option>光碟(照片)</option>
+					<option>遗失物品</option>
+				</select>
+			</div>
 			<div class="panel-body">
-				<table style="width: 100%;">
+				<table style="display: block; width: 100%;"
+					class="table table-hover table-condensed evidence_table_info">
+					<thead style="width: 100%;">
+						<tr>
+							<td><strong>#</strong></td>
+							<td><strong><input class="form-control"
+									placeholder="物证名称"></strong></td>
+							<td><strong>提取日期</strong></td>
+							<td><strong><input class="form-control"
+									placeholder="提取人"> </strong></td>
+							<td><strong><select class="form-control">
+										<option value="">全</option>
+										<option value="">已检验</option>
+										<option value="">正在委托检验</option>
+										<option value="">送检不受理</option>
+										<option value="">送检已受理</option>
+										<option value="">已送检</option>
+										<option value="">正在自检</option>
+										<option value="">正在送检</option>
+										<option value="">未检验</option>
+								</select></strong></td>
+							<td><strong>操作</strong></td>
+							<td><strong>管理</strong></td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+
+						</tr>
+					</tbody>
+				</table>
+				<!-- <table style="display: none;"
+					class="table table-hover table-condensed picture_table_info">
 					<thead>
 						<tr>
 							<th>物证查询</th>
@@ -60,11 +103,30 @@
 						</tr>
 					</tbody>
 				</table>
+				<table style="display: none;"
+					class="table table-hover table-condensed Goods_table_info">
+					<thead>
+						<tr>
+							<th>物证查询</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>提取日期</td>
+							<td><input></td>
+							<td>至</td>
+							<td><input></td>
+							<td>提取人</td>
+							<td><input></td>
+							<td><input value="搜索"></td>
+						</tr>
+					</tbody>
+				</table> -->
 			</div>
 		</div>
 	</div>
 	<!---------------------------------------------------------------------------------------------------->
-	<!---------------------------------------------------------------------------------------------------->
+	<!------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<script type="text/javascript"
 		src="<%=basePath%>js/Case/CaseMaterials.js"></script>
