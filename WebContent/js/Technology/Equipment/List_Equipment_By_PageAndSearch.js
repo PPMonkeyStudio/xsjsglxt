@@ -75,6 +75,9 @@ function List_Equipment_By_PageAndSearch(pageIndex) {
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
 					new_td.innerHTML = equipment_VO.list_xsjsglxt_equipment[num].equipment_number;
+					if(new_td.innerHTML=="undefined"){
+						new_td.innerHTML="";
+					}
 					/*
 					 *5. 启用日期
 					 */

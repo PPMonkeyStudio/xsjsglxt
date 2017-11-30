@@ -27,7 +27,6 @@ function List_ContrastFingerPrint_By_PageAndSearch(pageIndex) {
 				 */
 
 				var old_tr = document.getElementsByClassName("new_tr");
-				console.debug(old_tr.length);
 				var long = old_tr.length;
 				for (var i = 0; i < long; i++) {
 					old_tr[0].parentNode.removeChild(old_tr[0]);
@@ -50,7 +49,6 @@ function List_ContrastFingerPrint_By_PageAndSearch(pageIndex) {
 					new_td.style.display = "none";
 					new_td.className = "tr_contrastFingerPrint_id";
 					new_td.innerHTML = contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_id;
-					console.debug(new_td.innerHTML);
 					/*
 					 *1. 现场指印编号
 					 */
@@ -134,7 +132,7 @@ function List_ContrastFingerPrint_By_PageAndSearch(pageIndex) {
 	}
 	formData.append("contrastFingerPrintVO.pageIndex", pageIndex);
 	formData.append("contrastFingerPrintVO.search", input_ContrastFingerPrintSearchText);
-	xhr.open("POST", "/xsjsglxt/ContrastFingerPrint/ContrastFingerPrintManagement_ListDNAByPageAndSearch");
+	xhr.open("POST", "/xsjsglxt/ContrastFingerPrint/ContrastFingerPrintManagement_ListContrastByPageAndSearch");
 	xhr.send(formData);
 
 }

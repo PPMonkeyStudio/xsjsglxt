@@ -1,8 +1,8 @@
 function DeleteDNA() {
 
 	$.confirm({
-		title : '警告！删除DNA信息',
-		content : '此操作将删除所有所选的DNA信息',
+		title : '警告！删除比中指纹',
+		content : '此操作将删除所有所选的比中指纹',
 		type : 'red',
 		autoClose : '取消|5000',// 自动关闭
 		buttons : {
@@ -18,7 +18,7 @@ function DeleteDNA() {
 							if (xhr.status == 200) {
 								if (xhr.responseText == "1") {
 									toastr.success("删除成功");
-									List_DNA_By_PageAndSearch(1);
+									List_ContrastFingerPrint_By_PageAndSearch(1);
 								}
 							} else {
 								toastr.error(xhr.status);
@@ -27,19 +27,18 @@ function DeleteDNA() {
 					}
 					var checkbox_select = document
 							.getElementsByClassName("checkbox_select");
-					var tr_dna_id = document
-							.getElementsByClassName("tr_dna_id");
-
+					var tr_contrastFingerPrint_id = document
+							.getElementsByClassName("tr_contrastFingerPrint_id");
 					var formData = new FormData();
 					for (var num = 0; num < checkbox_select.length; num++) {
 						if (checkbox_select[num].checked) {
 							formData.append("listDeleteDNAID",
-									tr_dna_id[num].innerHTML);
+									tr_contrastFingerPrint_id[num].innerHTML);
 
 						}
 					}
 					xhr.open("POST",
-							"/xsjsglxt/DNA/DNAManagement_deleteListDNA");
+							"/xsjsglxt/ContrastFingerPrint/ContrastFingerPrintManagement_deleteListContrast");
 					xhr.send(formData);
 				}
 			},

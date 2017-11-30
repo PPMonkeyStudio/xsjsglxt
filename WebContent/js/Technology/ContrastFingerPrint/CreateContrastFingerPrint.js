@@ -75,18 +75,19 @@ function CreateContrastFingerPrint() {
 								.getElementById("input_press_fingerprint_number").value;
 						// 案件属地（单选框）
 						// 案件级别(下拉)
-						// 现场指纹编号
-						var input_locale_fingerprint_number = document
-								.getElementById("input_locale_fingerprint_number").value;
-						if (input_locale_fingerprint_number == "") {
-							toastr.error("现场指纹编号不能为空！");
-							return false;
-						}
+
 						// 案件类型
 						var input_case_type = document
 								.getElementById("input_case_type").value;
 						if (input_case_type == "") {
 							toastr.error("案件类型不能为空！");
+							return false;
+						}
+						// 现场指纹编号
+						var input_locale_fingerprint_number = document
+								.getElementById("input_locale_fingerprint_number").value;
+						if (input_locale_fingerprint_number == "") {
+							toastr.error("现场指纹编号不能为空！");
 							return false;
 						}
 						// 简要案情
@@ -168,10 +169,9 @@ function CreateContrastFingerPrint() {
 						var formData = new FormData();
 						var xhr = false;
 						xhr = new XMLHttpRequest();
-						alert("0");
+
 						xhr.onreadystatechange = function() {
 							if (xhr.readyState == 4) {
-								alert("1");
 								if (xhr.status == 200) {
 									/*
 									 * responseText的值为1代表创建成功 2代表创建失败
@@ -193,31 +193,17 @@ function CreateContrastFingerPrint() {
 										input_contrast_fingerprint_time);
 						// 案件级别（下拉）
 						var select_contrast_fingerprint_level = document
-								.getElementsByName("select_contrast_fingerprint_level");
-						alert("select_contrast_fingerprint_level.option.length:"
-								+ select_contrast_fingerprint_level.option.length);
-						for (var num = 0; num < select_contrast_fingerprint_level.option.length; num++) {
-							if (select_contrast_fingerprint_level.option[num].selected) {
-								formData
-										.append(
-												"contrastFingerPrint.contrast_fingerprint_level",
-												select_contrast_fingerprint_level.option[num].value);
-							}
-						}
+								.getElementById("select_contrast_fingerprint_level");
+						formData.append("contrastFingerPrint.contrast_fingerprint_level",select_contrast_fingerprint_level.value);
 
 						// 对比方式（下拉）
 						var select_contrast_fingerprint_way = document
-								.getElementsByName("select_contrast_fingerprint_way");
-						alert("select_contrast_fingerprint_way.option.length:"
-								+ select_contrast_fingerprint_way.option.length);
-						for (var num = 0; num < select_contrast_fingerprint_way.option.length; num++) {
-							if (select_contrast_fingerprint_way.option[num].selected) {
-								formData.append(
-										"contrastFingerPrint.contrast_fingerprint_way",
-										select_contrast_fingerprint_way.option[num].value);
-							}
-						}
-						
+						.getElementById("select_contrast_fingerprint_way");
+						formData
+						.append(
+								"contrastFingerPrint.contrast_fingerprint_way",
+								select_contrast_fingerprint_way.value);
+
 						// 案件类型
 						formData
 								.append(
@@ -269,24 +255,14 @@ function CreateContrastFingerPrint() {
 						}
 
 						// 是否抓获（下拉）
-
 						var select_suspecter_arrested = document
-								.getElementsByName("select_suspecter_arrested");
-						alert("select_suspecter_arrested.option.length:"
-								+ select_suspecter_arrested.option.length);
-						for (var num = 0; num < select_suspecter_arrested.option.length; num++) {
-							if (select_suspecter_arrested.option[num].selected) {
-								formData
-										.append(
-												"contrastFingerPrint.contrast_fingerprint_suspecter_arrested",
-												select_suspecter_arrested.option[num].value);
-							}
-						}
+						.getElementById("select_suspecter_arrested");
 
 						formData
 								.append(
 										"contrastFingerPrint.contrast_fingerprint_suspecter_arrested",
-										contrast_fingerprint_suspecter_arrested);
+										select_suspecter_arrested.value);
+
 						// 出生日期
 						formData
 								.append(

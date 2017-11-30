@@ -13,6 +13,8 @@
 <!---------------------------------------------------------------------------------------------------->
 <script type="text/javascript"
 	src="<%=basePath%>js/Technology/Equipment/CreateEquipment.js"></script>
+	<script type="text/javascript" 
+	src="<%=basePath%>js/Technology/Equipment/EquipmentSelectChange.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/Technology/Equipment/EquipmentDetails.js"></script>
 <script type="text/javascript"

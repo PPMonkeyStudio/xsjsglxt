@@ -9,7 +9,7 @@ function CreateEquipment() {
 						+ '<tr><th>装备类型：</th><td><input type="text" id="input_type" class="form-control" /></td></tr>'
 						+ '<tr><th>装备特征：</th>'
 						+ '<td><label style="margin:0 10px 0 0;">'
-						+ '<select id="select_feature"><option value="不限">不限</option><option value="痕迹">痕迹</option ><option value="法医">法医</option ><option value="影像">影像</option><option value="技管">技管</option><option value="其他">其他</option></select>'
+						+ '<select id="select_feature" onChange="EquipmentSelectChange()"><option value="不限">不限</option><option value="痕迹">痕迹</option ><option value="法医">法医</option ><option value="影像">影像</option><option value="技管">技管</option><option value="其他">其他</option></select>'
 						+ '</label> '
 						+ ' <label style="margin:0 10px;">'
 						+ '<input type="text" id="input_feature" class="form-control" />'
@@ -35,8 +35,6 @@ function CreateEquipment() {
 								.getElementById("input_serial_number");
 						var input_name = document.getElementById("input_name");
 						var input_type = document.getElementById("input_type");
-						var select_feature = document
-								.getElementById("select_feature");
 						var input_feature = document
 								.getElementById("input_feature");
 						var input_number = document
@@ -96,15 +94,14 @@ function CreateEquipment() {
 								input_type.value);
 						var select_feature = document
 								.getElementById("select_feature");
-						if(select_feature.value=="其他"){
+						if (select_feature.value == "其他") {
 							formData.append("equipment.equipment_feature",
 									input_feature.value);
-						}
-						else{
+						} else {
 							formData.append("equipment.equipment_feature",
 									select_feature.value);
 						}
-						
+
 						formData.append("equipment.equipment_number",
 								input_number.value);
 						formData.append("equipment.equipment_money",
@@ -131,6 +128,16 @@ function CreateEquipment() {
 					},
 					取消 : function() {
 
+					}
+				},onContentReady : function() {
+					var select_feature=document.getElementById("select_feature");
+					var input_feature=document.getElementById("input_feature");
+					if(select_feature.value=="其他"){
+						input_feature.value="";
+						input_feature.disabled="";
+					}else{
+						input_feature.value=select_feature.value;
+						input_feature.disabled="disabled"; 
 					}
 				}
 			});
