@@ -1,5 +1,7 @@
 function DeleteContrastFingerPrint() {
-	$.confirm({ 
+
+	$.confirm({
+
 		title : '警告！删除比中指纹',
 		content : '此操作将删除所有所选的比中指纹',
 		type : 'red',
@@ -30,7 +32,7 @@ function DeleteContrastFingerPrint() {
 					var formData = new FormData();
 					for (var num = 0; num < checkbox_select.length; num++) {
 						if (checkbox_select[num].checked) {
-							formData.append("listDeleteDNAID",
+							formData.append("listDeleteContrastID",
 									tr_contrastFingerPrint_id[num].innerHTML);
 
 						}

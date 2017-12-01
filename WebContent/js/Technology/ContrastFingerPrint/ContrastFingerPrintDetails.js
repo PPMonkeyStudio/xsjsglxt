@@ -4,6 +4,7 @@ function ContrastFingerPrintDetails(button) {
 				columnClass : 'col-md-9 col-md-offset-1',
 				title : '比中指纹信息详情',
 				content : '<table class="table table-hover table-bordered"><tbody>'
+						+ '<tr  style="display:none;"><th>contrastID：</th><td><input type="text" id="input_contrast_id" class="form-control" disabled /></td></tr>'
 						+ '<tr><th>比中时间：</th><td><input type="text" id="input_contrast_fingerprint_time" class="form-control" /></td>'
 						+ '<th>案件级别：</th><td><label style="margin:0 10px;" >'
 						+ '<select class="form-control" id="select_contrast_fingerprint_level"><option value="A级" checked="checked">A级</option><option value="B级">B级</option><option value="C级">C级</option></select>'
@@ -61,6 +62,8 @@ function ContrastFingerPrintDetails(button) {
 						+ '</tbody></table>',
 				buttons : {
 					修改 : function() {
+						var input_contrast_id = document
+						.getElementById("input_contrast_id");
 						/*
 						 * 对比方式（下拉）、现场指纹编号、案件类型、案件级别（下拉）、简要案情不为空 户籍地、现住址不为空
 						 * 按印部门不为空
@@ -186,6 +189,11 @@ function ContrastFingerPrintDetails(button) {
 								}
 							}
 						}
+						
+						
+						formData.append("contrastFingerPrint.contrast_fingerprint_id",
+								input_contrast_id.value);
+						
 						// 比中时间
 						formData
 								.append(
@@ -365,8 +373,12 @@ function ContrastFingerPrintDetails(button) {
 					for (var num = 0; num < contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint.length; num++) {
 						
 						var contrastFingerPrint_id = contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_id;
-						console.debug("contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint.contrast_fingerprint_id:"+contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_id);
 						if (contrastFingerPrint_id == button_id) {
+							
+							var input_contrast_id = document
+								.getElementById("input_contrast_id");
+							input_contrast_id.value = contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_id;
+					
 							// 比中时间
 							var input_contrast_fingerprint_time = document
 									.getElementById("input_contrast_fingerprint_time");

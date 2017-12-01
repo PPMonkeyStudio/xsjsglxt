@@ -7,8 +7,10 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.xsjsglxt.domain.DO.xsjsglxt_contrast_fingerprint;
 import com.xsjsglxt.domain.DO.xsjsglxt_dna;
 import com.xsjsglxt.domain.VO.Technology.DNAVO;
+import com.xsjsglxt.service.Technology.ContrastFingerPrintService;
 import com.xsjsglxt.service.Technology.DNAService;
 
 @RunWith(SpringJUnit4ClassRunner.class)  
@@ -17,6 +19,17 @@ public class DNATest {
 	
 	@Resource
 	private DNAService dNAService;
+	
+	@Resource
+	private ContrastFingerPrintService contrastFingerPrintService;
+	
+	@Test
+	public void saveContrast() {
+		xsjsglxt_contrast_fingerprint contrast = new xsjsglxt_contrast_fingerprint();
+		contrast.setContrast_fingerprint_id(TeamUtil.getUuid());
+		int i = contrastFingerPrintService.saveContrast(contrast);
+System.out.println(i);
+	}
 
 /*	@Test
 	public void list() {
