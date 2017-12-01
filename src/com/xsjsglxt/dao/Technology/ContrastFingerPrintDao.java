@@ -11,7 +11,7 @@ public interface ContrastFingerPrintDao {
 
 	int deleteContrast(String contrast_fingerprint_id);
 
-	int modifiedDNA(xsjsglxt_contrast_fingerprint contrastFingerPrint);
+	int modifiedContrast(xsjsglxt_contrast_fingerprint contrastFingerPrint);
 
 	xsjsglxt_contrast_fingerprint get_contrast(String contrast_fingerprint_id);
 

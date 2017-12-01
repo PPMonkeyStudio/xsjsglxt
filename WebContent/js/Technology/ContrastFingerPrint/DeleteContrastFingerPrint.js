@@ -1,4 +1,4 @@
-function DeleteDNA() {
+function DeleteContrastFingerPrint() {
 
 	$.confirm({
 		title : '警告！删除比中指纹',
@@ -32,7 +32,7 @@ function DeleteDNA() {
 					var formData = new FormData();
 					for (var num = 0; num < checkbox_select.length; num++) {
 						if (checkbox_select[num].checked) {
-							formData.append("listDeleteDNAID",
+							formData.append("listDeleteContrastID",
 									tr_contrastFingerPrint_id[num].innerHTML);
 
 						}

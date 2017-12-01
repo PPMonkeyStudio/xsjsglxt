@@ -26,7 +26,7 @@ public class ContrastFingerPrintServiceImpl implements ContrastFingerPrintServic
 	@Override
 	public int saveContrast(xsjsglxt_contrast_fingerprint contrastFingerPrint) {
 		contrastFingerPrint.setContrast_fingerprint_id(TeamUtil.getUuid());
-		contrastFingerPrint.setContrast_fingerprint_time(TeamUtil.getStringSecond());
+//		contrastFingerPrint.setContrast_fingerprint_time(TeamUtil.getStringSecond());
 		contrastFingerPrint.setContrast_fingerprint_gmt_modified(TeamUtil.getStringSecond());
 		contrastFingerPrint.setContrast_fingerprint_gmt_create(TeamUtil.getStringSecond());
 		int result = contrastFingerPrintDao.saveContrast(contrastFingerPrint);
@@ -60,7 +60,7 @@ public class ContrastFingerPrintServiceImpl implements ContrastFingerPrintServic
 	@Override
 	public int modifiedContrast(xsjsglxt_contrast_fingerprint contrastFingerPrint) {
 		contrastFingerPrint.setContrast_fingerprint_gmt_modified(TeamUtil.getStringSecond());
-		int result = contrastFingerPrintDao.modifiedDNA(contrastFingerPrint);
+		int result = contrastFingerPrintDao.modifiedContrast(contrastFingerPrint);
 		if (result > 0) {
 			return 1;
 		}

@@ -28,7 +28,7 @@ function List_DNA_By_PageAndSearch(pageIndex) {
 				 */
 
 				var old_tr = document.getElementsByClassName("new_tr");
-				console.debug(old_tr.length);
+/*console.debug(old_tr.length);*/
 				var long = old_tr.length;
 				for (var i = 0; i < long; i++) {
 					old_tr[0].parentNode.removeChild(old_tr[0]);
@@ -51,7 +51,7 @@ function List_DNA_By_PageAndSearch(pageIndex) {
 					new_td.style.display = "none";
 					new_td.className = "tr_dna_id";
 					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].xsjsglxt_dna_id;
-					console.debug(new_td.innerHTML);
+/*console.debug(new_td.innerHTML);*/
 					/*
 					 *1. DNA编号
 					 */

@@ -8,7 +8,6 @@ import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.Technology.ContrastFingerPrintDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_contrast_fingerprint;
-import com.xsjsglxt.domain.DO.xsjsglxt_dna;
 import com.xsjsglxt.domain.VO.Technology.ContrastFingerPrintVO;
 
 public class ContrastFingerPrintDaoImpl implements ContrastFingerPrintDao {
@@ -45,7 +44,7 @@ public class ContrastFingerPrintDaoImpl implements ContrastFingerPrintDao {
 	}
 
 	@Override
-	public int modifiedDNA(xsjsglxt_contrast_fingerprint contrastFingerPrint) {
+	public int modifiedContrast(xsjsglxt_contrast_fingerprint contrastFingerPrint) {
 		Session session = getSession();
 		String hql = "update xsjsglxt_contrast_fingerprint set contrast_fingerprint_time='"+ contrastFingerPrint.getContrast_fingerprint_time()
 						+"', contrast_fingerprint_way='"+contrastFingerPrint.getContrast_fingerprint_way()
@@ -108,7 +107,7 @@ public class ContrastFingerPrintDaoImpl implements ContrastFingerPrintDao {
 		String hql = "from xsjsglxt_contrast_fingerprint where 1=1";
 		if (contrastFingerPrintVO.getSearch() != null && contrastFingerPrintVO.getSearch().trim().length() > 0) {
 			String search = "%" + contrastFingerPrintVO.getSearch().trim() + "%";
-			hql = hql + " and dna_num like '" + search + "' or dna_name like '" + search + "'";
+			hql = hql + " and contrast_fingerprint_locale_fingerprint_number like '" + search + "' or contrast_fingerprint_press_fingerprint_number like '" + search + "'";
 		}
 		hql = hql + " order by contrast_fingerprint_gmt_create";
 		Query query = session.createQuery(hql);

@@ -29,7 +29,7 @@ public class ContrastFingerPrintAction extends ActionSupport implements ServletR
 	private ContrastFingerPrintVO contrastFingerPrintVO;
 
 	private xsjsglxt_contrast_fingerprint contrastFingerPrint;
-
+	
 	public void ListContrastByPageAndSearch() throws IOException {
 		ContrastFingerPrintVO vo = contrastFingerPrintService.list_xsjsglxt_contrast(contrastFingerPrintVO);
 		GsonBuilder gsonBuilder = new GsonBuilder();
@@ -65,7 +65,7 @@ public class ContrastFingerPrintAction extends ActionSupport implements ServletR
 		http_response.setContentType("text/html;charset=utf-8");
 		http_response.getWriter().write(gson.toJson(result));
 	}
-
+ 
 	public void modifiedContrast() throws IOException {
 		int result = contrastFingerPrintService.modifiedContrast(contrastFingerPrint);
 		GsonBuilder gsonBuilder = new GsonBuilder();

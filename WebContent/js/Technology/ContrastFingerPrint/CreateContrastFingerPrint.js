@@ -194,13 +194,15 @@ function CreateContrastFingerPrint() {
 						// 案件级别（下拉）
 						var select_contrast_fingerprint_level = document
 								.getElementById("select_contrast_fingerprint_level");
-						formData.append("contrastFingerPrint.contrast_fingerprint_level",select_contrast_fingerprint_level.value);
+						formData
+								.append(
+										"contrastFingerPrint.contrast_fingerprint_level",
+										select_contrast_fingerprint_level.value);
 
 						// 对比方式（下拉）
 						var select_contrast_fingerprint_way = document
-						.getElementById("select_contrast_fingerprint_way");
-						formData
-						.append(
+								.getElementById("select_contrast_fingerprint_way");
+						formData.append(
 								"contrastFingerPrint.contrast_fingerprint_way",
 								select_contrast_fingerprint_way.value);
 
@@ -256,7 +258,7 @@ function CreateContrastFingerPrint() {
 
 						// 是否抓获（下拉）
 						var select_suspecter_arrested = document
-						.getElementById("select_suspecter_arrested");
+								.getElementById("select_suspecter_arrested");
 
 						formData
 								.append(
@@ -352,10 +354,8 @@ function CreateContrastFingerPrint() {
 								.open("POST",
 										"/xsjsglxt/ContrastFingerPrint/ContrastFingerPrintManagement_CreateContrast");
 						xhr.send(formData);
-
 					},
 					取消 : function() {
-
 					}
 				}
 			});

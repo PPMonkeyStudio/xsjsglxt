@@ -16,7 +16,7 @@ public class xsjsglxt_contrast_fingerprint {
 	private String contrast_fingerprint_suspecter_domicile;// 户籍地
 	private String contrast_fingerprint_suspecter_identity;// 身份证号
 	private String contrast_fingerprint_present_address;// 现住址
-	private Integer contrast_fingerprint_suspecter_arrested;// 是否抓获
+	private String contrast_fingerprint_suspecter_arrested;// 是否抓获
 	private String contrast_fingerprint_press_department;// 按印部门
 	private String contrast_fingerprint_extract_department;// 提取部门
 	private String contrast_fingerprint_presser;// 按印人
@@ -65,6 +65,14 @@ public class xsjsglxt_contrast_fingerprint {
 				+ ", contrast_fingerprint_remark=" + contrast_fingerprint_remark + ", contrast_fingerprint_gmt_create="
 				+ contrast_fingerprint_gmt_create + ", contrast_fingerprint_gmt_modified="
 				+ contrast_fingerprint_gmt_modified + "]";
+	}
+
+	public String getContrast_fingerprint_suspecter_arrested() {
+		return contrast_fingerprint_suspecter_arrested;
+	}
+
+	public void setContrast_fingerprint_suspecter_arrested(String contrast_fingerprint_suspecter_arrested) {
+		this.contrast_fingerprint_suspecter_arrested = contrast_fingerprint_suspecter_arrested;
 	}
 
 	public String getContrast_fingerprint_id() {
@@ -186,14 +194,6 @@ public class xsjsglxt_contrast_fingerprint {
 
 	public void setContrast_fingerprint_present_address(String contrast_fingerprint_present_address) {
 		this.contrast_fingerprint_present_address = contrast_fingerprint_present_address;
-	}
-
-	public Integer getContrast_fingerprint_suspecter_arrested() {
-		return contrast_fingerprint_suspecter_arrested;
-	}
-
-	public void setContrast_fingerprint_suspecter_arrested(Integer contrast_fingerprint_suspecter_arrested) {
-		this.contrast_fingerprint_suspecter_arrested = contrast_fingerprint_suspecter_arrested;
 	}
 
 	public String getContrast_fingerprint_press_department() {
