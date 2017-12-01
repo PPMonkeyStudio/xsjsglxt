@@ -4,7 +4,7 @@ $(function() {
 	$.post('/xsjsglxt/case/Case_getSenceInquestId', function(xhr) {
 		$('input[name="sence.snece_inquestId"]').val(xhr);
 		//接警时间改变时勘验编号相应改变
-		$('input[name="Case.case_receivingAlarmDate"]').blur(function() {
+		$('input[name="case1.case_receivingAlarmDate"]').blur(function() {
 			var time = new Date($(this).val());
 			//toastr.danger("请输入正确的时间");
 			if (time == "Invalid Date") {
