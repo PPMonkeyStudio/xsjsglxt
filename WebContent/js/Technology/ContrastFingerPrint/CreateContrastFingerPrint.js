@@ -348,6 +348,7 @@ function CreateContrastFingerPrint() {
 								.append(
 										"contrastFingerPrint.contrast_fingerprint_remark",
 										textarea_fingerprint_remark);
+						console.debug("formData:"+formData);
 						xhr
 								.open("POST",
 										"/xsjsglxt/ContrastFingerPrint/ContrastFingerPrintManagement_CreateContrast");
