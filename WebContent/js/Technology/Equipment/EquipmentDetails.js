@@ -11,7 +11,7 @@ function EquipmentDetails(button) {
 						+ '<tr><th>装备特征：</th>'
 						+ '<td><label style="margin:0 10px 0 0;">'
 						+ '<select  id="select_feature"  onChange="EquipmentSelectChange()"><option value="不限">不限</option><option value="痕迹">痕迹</option ><option value="法医">法医</option ><option value="影像">影像</option><option value="技管">技管</option><option value="其他">其他</option></select>'
-						+ '</label> '
+						+ '</label>'
 						+ ' <label style="margin:0 10px;">'
 						+ '<input type="text" id="input_feature" class="form-control" />'
 						+ '</label></td></tr>'
