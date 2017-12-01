@@ -181,8 +181,6 @@ public class SenceDaoImpl implements SenceDao {
 		// i=xsjsglxt_snece.size();
 		
 		
-		
-		
 	}
 
 	@Override

@@ -61,15 +61,15 @@ private SenceDao senceDao;
 	}
 	@Test
 	public void tesrr(){
-		page_list_senceInformationVO page_list_senceInformation=new page_list_senceInformationVO();
-		//page_list_senceInformation.setCase_classify("绫诲埆");
-		page_list_senceInformation.setStart_time("2017-11-20");
-		page_list_senceInformation.setStop_time("2017-11-30");
-		
-		//page_list_senceInformation.setSnece_inquestPerson("龙建平");
-		//System.out.println(senceDao.getCountSenceInformationByPage(page_list_senceInformation));
-		senceService.VO_SneceInformation_By_PageAndSearch(page_list_senceInformation);
-	  System.out.println(page_list_senceInformation.getTotalRecords());
+//		page_list_senceInformationVO page_list_senceInformation=new page_list_senceInformationVO();
+//		//page_list_senceInformation.setCase_classify("绫诲埆");
+//		page_list_senceInformation.setStart_time("2017-11-20");
+//		page_list_senceInformation.setStop_time("2017-11-30");
+//		
+//		//page_list_senceInformation.setSnece_inquestPerson("龙建平");
+//		//System.out.println(senceDao.getCountSenceInformationByPage(page_list_senceInformation));
+//		senceService.VO_SneceInformation_By_PageAndSearch(page_list_senceInformation);
+//	  System.out.println(page_list_senceInformation.getTotalRecords());
 	  
 	
 	}
