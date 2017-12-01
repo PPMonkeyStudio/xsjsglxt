@@ -47,15 +47,15 @@
 				<select style="width:120px; margin-left:15px;" class="form-control"
 					onchange="material(this)">
 					<option value="">请选择</option>
-					<option>物证</option>
-					<option>光碟(照片)</option>
-					<option>遗失物品</option>
+					<option value="evidence_table_info">物证</option>
+					<option value="picture_table_info">光碟(照片)</option>
+					<option value="Goods_table_info">遗失物品</option>
 				</select>
 			</div>
 			<div class="panel-body">
-				<table style="display: block; width: 100%;"
+				<table style=""
 					class="table table-hover table-condensed evidence_table_info">
-					<thead style="width: 100%;">
+					<thead style="">
 						<tr>
 							<td><strong>#</strong></td>
 							<td><strong><input class="form-control"
@@ -80,11 +80,10 @@
 					</thead>
 					<tbody>
 						<tr>
-
 						</tr>
 					</tbody>
 				</table>
-				<!-- <table style="display: none;"
+				<table style="display: none;"
 					class="table table-hover table-condensed picture_table_info">
 					<thead>
 						<tr>
@@ -121,7 +120,7 @@
 							<td><input value="搜索"></td>
 						</tr>
 					</tbody>
-				</table> -->
+				</table>
 			</div>
 		</div>
 	</div>
