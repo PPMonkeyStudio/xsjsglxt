@@ -105,6 +105,7 @@ public class FingerPrintAction implements ServletRequestAware, ServletResponseAw
 	 * 添加
 	 * */
 	public void saveFingerPrint() throws IOException {
+		System.out.println("fingerprint:"+fingerprint);
 		int result = fingerPrintService.saveFingerPrint(fingerprint);
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
