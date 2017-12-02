@@ -86,7 +86,7 @@ a {
 							<table class="table table-hover table-condensed case_table_info">
 								<thead>
 									<tr>
-										<th>#</th>
+										<th>序号</th>
 										<th>勘验编号</th>
 										<th>接警时间</th>
 										<th>案发地点</th>
