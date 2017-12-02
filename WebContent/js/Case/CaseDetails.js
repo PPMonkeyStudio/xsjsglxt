@@ -1,6 +1,6 @@
 $(function() {
 	$.post('/xsjsglxt/case/Case_SecneInformationOne', {
-		"sence.xsjsglxt_snece_id" : $('#sence_id').val(),
+		"case1.xsjsglxt_case_id" : $('#case1_id').val(),
 	}, function(xhr_data) {
 		var case1 = xhr_data.case1;
 		$.each(case1, function(k, v) {
@@ -32,7 +32,7 @@ $(function() {
 			toastr.error('请添加完整信息！');
 			return;
 		}
-		var data = $('#Lost_Goods').serialize() + '&case1.xsjsglxt_case_id=' + $('#sence_id').val();
+		var data = $('#Lost_Goods').serialize() + '&case1.xsjsglxt_case_id=' + $('#case1_id').val();
 		var url = '';
 		switch ($('#LossOfGoods table tbody:visible').attr('class')) {
 		case 'lost_goods':			url = '/xsjsglxt/case/Lost_saveLost';
@@ -56,7 +56,7 @@ $(function() {
 	});
 	//添加物证信息
 	$('.add_evidence').click(function() {
-		$.post('/xsjsglxt/case/Resevidence_saveResevidence', $('#lost_evidence').serialize() + '&case1.xsjsglxt_case_id=' + $('#sence_id').val(), function(xhr_data) {
+		$.post('/xsjsglxt/case/Resevidence_saveResevidence', $('#lost_evidence').serialize() + '&case1.xsjsglxt_case_id=' + $('#case1_id').val(), function(xhr_data) {
 			if (xhr_data == 'success') {
 				toastr.success('添加成功！');
 				$('#Lost_Goods table tbody').find('input,textarea').val("");
