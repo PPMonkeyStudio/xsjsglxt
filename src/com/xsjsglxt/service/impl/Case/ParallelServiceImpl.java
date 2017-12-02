@@ -1,6 +1,10 @@
 package com.xsjsglxt.service.impl.Case;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import com.xsjsglxt.dao.Case.ParallelDao;
@@ -13,6 +17,7 @@ import com.xsjsglxt.domain.DO.xsjsglxt_parallel;
 import com.xsjsglxt.domain.DO.xsjsglxt_picture;
 import com.xsjsglxt.domain.DO.xsjsglxt_resevidence;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
+import com.xsjsglxt.domain.DTO.Case.ParallelInformationDTO;
 import com.xsjsglxt.domain.DTO.Case.SenceInformationDTO;
 import com.xsjsglxt.domain.VO.Case.page_list_parallelInformationVO;
 import com.xsjsglxt.service.Case.ParallelService;
@@ -30,13 +35,17 @@ public class ParallelServiceImpl implements ParallelService {
 	}
 
 	@Override
-	public void saveParallel(List<String> CaseNumList,xsjsglxt_parallel parallel) {
+	public void saveParallel(String caeNumList,xsjsglxt_parallel parallel) {
 		// TODO Auto-generated method stub
 		parallel.setXsjsglxt_parallel_id(TeamUtil.getUuid());
 		parallel.setParallel_gmt_create(TeamUtil.getStringSecond());
 		parallel.setParallel_gmt_modified(parallel.getParallel_gmt_create());
 		parallelDao.saveparallel(parallel);
-		for(String Case_id : CaseNumList){
+		
+		List<String> result = Arrays.asList(caeNumList.split(","));  
+		System.out.println("a"+caeNumList);
+		System.out.println("b"+result);
+		for(String Case_id : result){
 			xsjsglxt_case xsjsglxt_case = parallelDao.getCaseByNum(Case_id);
 			xsjsglxt_case.setCase_parallel(parallel.getXsjsglxt_parallel_id());
 			parallelDao.save(xsjsglxt_case);
@@ -51,7 +60,7 @@ public class ParallelServiceImpl implements ParallelService {
 		List<xsjsglxt_parallel> listParallel = new ArrayList<xsjsglxt_parallel>();
 		
 		
-		// èŽ·å–ç­›é€‰åŽæ‰€æœ‰çš„è®°å½•
+		// »ñÈ¡É¸Ñ¡ºóËùÓÐµÄ¼ÇÂ¼
 		int i = parallelDao.getCountParallelInformationByPage(page_list_parallelInformation);
 		System.out.println(i);
 		page_list_parallelInformation.setTotalRecords(i);
@@ -67,7 +76,7 @@ public class ParallelServiceImpl implements ParallelService {
 			page_list_parallelInformation.setHaveNextPage(true);
 		}
 		
-		// æ ¹æ®ç­›é€‰æ¡ä»¶èŽ·å–listæ•°æ®
+		// ¸ù¾ÝÉ¸Ñ¡Ìõ¼þ»ñÈ¡listÊý¾Ý
 		listParallel = parallelDao.getListParallelInformatioByPage(page_list_parallelInformation);
 		for (xsjsglxt_parallel parallel : listParallel) {
 	     // 1
@@ -84,6 +93,40 @@ public class ParallelServiceImpl implements ParallelService {
 		page_list_parallelInformation.setParallelList(parallelList);
 			return page_list_parallelInformation;
 
+	}
+	/*
+	 * (non-Javadoc)´®²¢°¸¼þÏêÏ¸ÐÅÏ¢
+	 * @see com.xsjsglxt.service.Case.ParallelService#ParallelInformationOne(com.xsjsglxt.domain.DO.xsjsglxt_parallel)
+	 */
+	@Override
+	public ParallelInformationDTO ParallelInformationOne(xsjsglxt_parallel parallel) {
+		// TODO Auto-generated method stub
+		parallel=parallelDao.getparallelById(parallel);
+		xsjsglxt_case case1=parallelDao.getcaseByparallelId(parallel);
+		 xsjsglxt_snece snece=parallelDao.getsneceByCaseId(case1);
+		 xsjsglxt_briefdetails briefdetails=parallelDao.getbriefdetailsByCaseId(case1);
+		 xsjsglxt_resevidence resevidence=parallelDao.getresevidenceByCaseId(case1);
+		 ParallelInformationDTO parallelInformationDTO=new ParallelInformationDTO(parallel,snece,case1,briefdetails,resevidence);
+		return parallelInformationDTO;
+	}
+	/*
+	 * (non-Javadoc)´®²¢ºÅ
+	 * @see com.xsjsglxt.service.Case.ParallelService#getMaxParallelNum()
+	 */
+	@Override
+	public String getMaxParallelNum() {
+		// TODO Auto-generated method stub
+		int i = parallelDao.getMaxParallelNum();
+		System.out.println("aaaaaaaaa"+i);
+		//System.out.println("iiiiii"+i);
+		String num = "";
+		num = num.format("%04d", i+1);
+		Date date = new Date();
+		DateFormat format = new SimpleDateFormat("yyyy");
+		String time = format.format(date);
+		String ParallelNum = time + num  ;
+		//System.out.println("SenceInformationInquestIdSenceInformationInquestIdSenceInformationInquestId"+SenceInformationInquestId);
+		return ParallelNum;
 	}
 
 

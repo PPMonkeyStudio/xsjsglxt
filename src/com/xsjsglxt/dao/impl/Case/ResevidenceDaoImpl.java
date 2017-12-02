@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.Case.ResevidenceDao;
+import com.xsjsglxt.domain.DO.xsjsglxt_briefdetails;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_circulation;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
@@ -144,5 +145,112 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 		xsjsglxt_circulation circulation = (xsjsglxt_circulation) query.uniqueResult();
 
 		return circulation;
+	}
+	/*
+	 * (non-Javadoc)物证详细信息
+	 * @see com.xsjsglxt.dao.Case.ResevidenceDao#getcirculationByresevidenceId(com.xsjsglxt.domain.DO.xsjsglxt_resevidence)
+	 */
+	@Override
+	public xsjsglxt_resevidence getResevidenceById(xsjsglxt_resevidence resevidence) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_resevidence resevidence where resevidence.xsjsglxt_resevidence_id='" + resevidence.getXsjsglxt_resevidence_id() + "'";
+
+		Query query = session.createQuery(hql);
+
+		resevidence = (xsjsglxt_resevidence) query.uniqueResult();
+
+		return resevidence;
+	}
+
+	@Override
+	public xsjsglxt_case getcaseByresevidenceId(xsjsglxt_resevidence resevidence) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_case case1 where case1.xsjsglxt_case_id='" + resevidence.getResevidence_case() + "'";
+
+		Query query = session.createQuery(hql);
+
+		xsjsglxt_case  case1= (xsjsglxt_case) query.uniqueResult();
+
+		return case1;
+	}
+
+	@Override
+	public xsjsglxt_snece getsenceBycase1Id(xsjsglxt_case case1) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_snece sence where sence.snece_case='" + case1.getXsjsglxt_case_id() + "'";
+
+		Query query = session.createQuery(hql);
+
+		xsjsglxt_snece  sence= (xsjsglxt_snece) query.uniqueResult();
+
+		return sence;
+	}
+
+	@Override
+	public xsjsglxt_circulation getcirculationByresevidenceId(xsjsglxt_resevidence resevidence) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_circulation circulation where circulation.circulation_resevidence='" + resevidence.getXsjsglxt_resevidence_id() + "'";
+
+		Query query = session.createQuery(hql);
+
+		xsjsglxt_circulation  circulation= (xsjsglxt_circulation) query.uniqueResult();
+
+		return circulation;
+	}
+/*
+ *保存物证流转信息
+ * 
+ */
+	@Override
+	public void saveCirculation(xsjsglxt_circulation circulation) {
+		// TODO Auto-generated method stub
+		try {
+			getSession().save(circulation);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+/*
+ * (non-Javadoc)删除物证
+ * @see com.xsjsglxt.dao.Case.ResevidenceDao#getByResevidenceNum(java.lang.String)
+ */
+	@Override
+	public xsjsglxt_resevidence getByResevidenceNum(String resevidence_id) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		xsjsglxt_resevidence ResevidenceInformation = null;
+		String hql = "from xsjsglxt_resevidence resevidence where resevidence.xsjsglxt_resevidence_id='" + resevidence_id + "'";
+		Query query = session.createQuery(hql);
+		ResevidenceInformation = (xsjsglxt_resevidence) query.uniqueResult();
+       return ResevidenceInformation;
+	}
+
+	@Override
+	public boolean deleteResevidenceById(String xsjsglxt_resevidence_id) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		String hql = "delete from xsjsglxt_resevidence where xsjsglxt_resevidence_id='" + xsjsglxt_resevidence_id + "'";
+		Query query = session.createQuery(hql);
+		query.executeUpdate();
+       return true;
+	}
+
+	@Override
+	public boolean deleteCirculationById(String xsjsglxt_resevidence_id) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		String hql = "delete from xsjsglxt_circulation where circulation_resevidence='" + xsjsglxt_resevidence_id + "'";
+		Query query = session.createQuery(hql);
+		query.executeUpdate();
+       return true;
 	}
 }

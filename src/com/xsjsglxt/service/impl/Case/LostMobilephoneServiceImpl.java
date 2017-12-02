@@ -26,7 +26,7 @@ public void setLostMobilephoneDao(LostMobilephoneDao lostMobilephoneDao) {
 	this.lostMobilephoneDao = lostMobilephoneDao;
 }
 /*
- * (non-Javadoc)保存损失手机
+ * (non-Javadoc)������ʧ�ֻ�
  * @see com.xsjsglxt.service.Case.LostMobilephoneService#saveLostMobilephone(com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone)
  */
 @Override
@@ -48,7 +48,7 @@ public page_list_CasematerialVO VO_LostMobilephoneformation_By_PageAndSearch(
 	   
 	xsjsglxt_case case1;
 	xsjsglxt_snece snece;
-	// 获取筛选后所有的记录
+	// ��ȡɸѡ�����еļ�¼
 	int i = lostMobilephoneDao.getCountLostMobilephoneInformationByPage(page_list_Casematerial);
 	page_list_Casematerial.setTotalRecords(i);
 	page_list_Casematerial.setTotalPages(((i - 1) / page_list_Casematerial.getPageSize()) + 1);
@@ -62,7 +62,7 @@ public page_list_CasematerialVO VO_LostMobilephoneformation_By_PageAndSearch(
 	} else {
 		page_list_Casematerial.setHaveNextPage(true);
 	}
-	// 根据筛选条件获取list数据
+	// ����ɸѡ������ȡlist����
 	lost_mobilephoneList = lostMobilephoneDao.getListLostMobilephoneInformatioByPage(page_list_Casematerial);
 	for (xsjsglxt_lost_mobilephone lost_mobilephone : lost_mobilephoneList) {
 		//1
@@ -90,6 +90,18 @@ public page_list_CasematerialVO VO_LostMobilephoneformation_By_PageAndSearch(
 	}
 	page_list_Casematerial.setLostMobilephoneInformationDTOList(LostMobilephoneInformationDTOList);
 	return page_list_Casematerial;
+}
+
+@Override
+public LostMobilephoneInformationDTO LostMobiephoneInformationOne(xsjsglxt_lost_mobilephone lost_mobilephone) {
+	// TODO Auto-generated method stub
+	lost_mobilephone=lostMobilephoneDao.getLostMobiephoneById(lost_mobilephone);
+	xsjsglxt_case case1=lostMobilephoneDao.getCaseByxsjsglxt_lost_mobilephone_id(lost_mobilephone);
+	xsjsglxt_snece snece=lostMobilephoneDao.getSenceByxsjsglxt_case_id(case1);
+	LostMobilephoneInformationDTO lostMobilephoneInformationDTO=new LostMobilephoneInformationDTO(case1,snece,lost_mobilephone);
+	
+	return lostMobilephoneInformationDTO;
+	
 }
 
 }

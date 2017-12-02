@@ -5,152 +5,262 @@ import java.util.List;
 import com.xsjsglxt.domain.DTO.Case.SenceInformationDTO;
 
 public class page_list_senceInformationVO {
-	    // å½“å‰é¡µ
+	    // µ±Ç°Ò³
 		private int pageIndex = 1;
-	    //æ€»è®°å½•æ•°
+	    //×Ü¼ÇÂ¼Êı
 		private int totalRecords = 0;
-	    //æ¯é¡µæ˜¾ç¤ºè®°å½•æ•°
+	    //Ã¿Ò³ÏÔÊ¾¼ÇÂ¼Êı
 		private int pageSize = 20;
-		// æ€»é¡µæ•°
+		// ×ÜÒ³Êı
 		private int totalPages = 1;
-		// æ˜¯å¦æœ‰ä¸Šä¸€é¡µ
+		// ÊÇ·ñÓĞÉÏÒ»Ò³
 		private boolean HavePrePage = false;
-		// æ˜¯å¦æœ‰ä¸‹ä¸€é¡µ
+		// ÊÇ·ñÓĞÏÂÒ»Ò³
 		private boolean HaveNextPage = false;
-		// å¼€å§‹æ—¶é—´
+		// ¿ªÊ¼Ê±¼ä
 		private String start_time = "0000-00-00";
 
-		// ç»“æŸæ—¶é—´
+		// ½áÊøÊ±¼ä
 		private String stop_time = "9999-99-99";
-		//æ¡ˆä»¶æ€»ç±»åˆ«
+		//°¸¼ş×ÜÀà±ğ
 	    private String case_totalCategory; 
-	   //æ¡ˆä»¶å­ç±»åˆ«
+	   //°¸¼ş×ÓÀà±ğ
 	    private String  case_sonCategory;
-	    //æ¡ˆä»¶åˆ†ç±»
+	    //°¸¼ş·ÖÀà
 	    private String case_classify;
-	    //é€‰æ‹©ä½æ‰€
+	    //Ñ¡Ôñ×¡Ëù
 	    private String case_residence;
-	    //é€‰æ‹©å…·ä½“ä½æ‰€
+	    //Ñ¡Ôñ¾ßÌå×¡Ëù
 	    private String case_concreteResidence;
-	    //å‹˜éªŒäººå‘˜
+	    //¿±ÑéÈËÔ±
 	    private String snece_inquestPerson;
-	    //ä½œæ¡ˆæ—¶æ®µ
+	    //×÷°¸Ê±¶Î
 	    private String case_makeTime;
-	    //ä½œæ¡ˆæ‰‹æ®µ
+	    //×÷°¸ÊÖ¶Î
 	    private String case_makeMeans;
-	    //ä½œæ¡ˆå…·ä½“æ‰‹æ®µ
+	    //×÷°¸¾ßÌåÊÖ¶Î
 	    private String case_concreteMakeMeans;
 	    
 	    private List<SenceInformationDTO> SenceInformationDTOList;
 	    
-		public List<SenceInformationDTO> getSenceInformationDTOList() {
-			return SenceInformationDTOList;
-		}
-		public void setSenceInformationDTOList(List<SenceInformationDTO> senceInformationDTOList) {
-			SenceInformationDTOList = senceInformationDTOList;
-		}
+		
+	
 		public int getPageIndex() {
 			return pageIndex;
 		}
+
+
+
 		public void setPageIndex(int pageIndex) {
 			this.pageIndex = pageIndex;
 		}
+
+
+
 		public int getTotalRecords() {
 			return totalRecords;
 		}
+
+
+
 		public void setTotalRecords(int totalRecords) {
 			this.totalRecords = totalRecords;
 		}
+
+
+
 		public int getPageSize() {
 			return pageSize;
 		}
+
+
+
 		public void setPageSize(int pageSize) {
 			this.pageSize = pageSize;
 		}
+
+
+
 		public int getTotalPages() {
 			return totalPages;
 		}
+
+
+
 		public void setTotalPages(int totalPages) {
 			this.totalPages = totalPages;
 		}
+
+
+
 		public boolean isHavePrePage() {
 			return HavePrePage;
 		}
+
+
+
 		public void setHavePrePage(boolean havePrePage) {
 			HavePrePage = havePrePage;
 		}
+
+
+
 		public boolean isHaveNextPage() {
 			return HaveNextPage;
 		}
+
+
+
 		public void setHaveNextPage(boolean haveNextPage) {
 			HaveNextPage = haveNextPage;
 		}
+
+
+
 		public String getStart_time() {
 			return start_time;
 		}
+
+
+
 		public void setStart_time(String start_time) {
 			this.start_time = start_time;
 		}
+
+
+
 		public String getStop_time() {
 			return stop_time;
 		}
+
+
+
 		public void setStop_time(String stop_time) {
 			this.stop_time = stop_time;
 		}
+
+
+
 		public String getCase_totalCategory() {
 			return case_totalCategory;
 		}
+
+
+
 		public void setCase_totalCategory(String case_totalCategory) {
 			this.case_totalCategory = case_totalCategory;
 		}
+
+
+
 		public String getCase_sonCategory() {
 			return case_sonCategory;
 		}
+
+
+
 		public void setCase_sonCategory(String case_sonCategory) {
 			this.case_sonCategory = case_sonCategory;
 		}
+
+
+
 		public String getCase_classify() {
 			return case_classify;
 		}
+
+
+
 		public void setCase_classify(String case_classify) {
 			this.case_classify = case_classify;
 		}
+
+
+
 		public String getCase_residence() {
 			return case_residence;
 		}
+
+
+
 		public void setCase_residence(String case_residence) {
 			this.case_residence = case_residence;
 		}
+
+
+
 		public String getCase_concreteResidence() {
 			return case_concreteResidence;
 		}
+
+
+
 		public void setCase_concreteResidence(String case_concreteResidence) {
 			this.case_concreteResidence = case_concreteResidence;
 		}
+
+
+
 		public String getSnece_inquestPerson() {
 			return snece_inquestPerson;
 		}
+
+
+
 		public void setSnece_inquestPerson(String snece_inquestPerson) {
 			this.snece_inquestPerson = snece_inquestPerson;
 		}
+
+
+
 		public String getCase_makeTime() {
 			return case_makeTime;
 		}
+
+
+
 		public void setCase_makeTime(String case_makeTime) {
 			this.case_makeTime = case_makeTime;
 		}
+
+
+
 		public String getCase_makeMeans() {
 			return case_makeMeans;
 		}
+
+
+
 		public void setCase_makeMeans(String case_makeMeans) {
 			this.case_makeMeans = case_makeMeans;
 		}
+
+
+
 		public String getCase_concreteMakeMeans() {
 			return case_concreteMakeMeans;
 		}
+
+
+
 		public void setCase_concreteMakeMeans(String case_concreteMakeMeans) {
 			this.case_concreteMakeMeans = case_concreteMakeMeans;
 		}
+
+
+
+		public List<SenceInformationDTO> getSenceInformationDTOList() {
+			return SenceInformationDTOList;
+		}
+
+
+
+		public void setSenceInformationDTOList(List<SenceInformationDTO> senceInformationDTOList) {
+			SenceInformationDTOList = senceInformationDTOList;
+		}
+
+
+
 		@Override
 		public String toString() {
 			return "page_list_senceInformationVO [pageIndex=" + pageIndex + ", totalRecords=" + totalRecords
@@ -163,6 +273,7 @@ public class page_list_senceInformationVO {
 					+ ", case_concreteMakeMeans=" + case_concreteMakeMeans + ", SenceInformationDTOList="
 					+ SenceInformationDTOList + "]";
 		}
+		
 		
 	    
 		

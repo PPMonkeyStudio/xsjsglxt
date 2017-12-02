@@ -10,7 +10,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.xsjsglxt.dao.Case.SenceDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
+import com.xsjsglxt.domain.DO.xsjsglxt_parallel;
 import com.xsjsglxt.domain.VO.Case.page_list_senceInformationVO;
+import com.xsjsglxt.service.Case.ParallelService;
 import com.xsjsglxt.service.Case.SenceService;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext*.xml" })
@@ -37,10 +39,10 @@ private SenceDao senceDao;
 	}
 	@Test
 	public void test(){
-		xsjsglxt_case Case=new xsjsglxt_case();
-		Case.setCase_address("sdsvda");
-		senceService.save(Case);
-		System.out.println(senceService);
+//		xsjsglxt_case Case=new xsjsglxt_case();
+//		Case.setCase_address("sdsvda");
+//		senceService.save(Case);
+//		System.out.println(senceService);
 	}
 	@Test
 	public void test1(){
@@ -59,15 +61,31 @@ private SenceDao senceDao;
 	}
 	@Test
 	public void tesrr(){
-		page_list_senceInformationVO page_list_senceInformation=new page_list_senceInformationVO();
-		//page_list_senceInformation.setCase_classify("ç±»åˆ«");
-		page_list_senceInformation.setStart_time("2017-11-20");
-		page_list_senceInformation.setStop_time("2017-11-27");
-		page_list_senceInformation.setCase_classify("ç±»åˆ«");
-		//System.out.println(senceDao.getCountSenceInformationByPage(page_list_senceInformation));
-		senceService.VO_SneceInformation_By_PageAndSearch(page_list_senceInformation);
-	  //System.out.println(page_list_senceInformation.getTotalRecords());
-	  System.out.println(page_list_senceInformation.getCase_classify());
-		//System.out.println("aaa"+senceDao.getCountSenceInformationByPage(page_list_senceInformation));
+//		page_list_senceInformationVO page_list_senceInformation=new page_list_senceInformationVO();
+//		//page_list_senceInformation.setCase_classify("ç±»åˆ«");
+//		page_list_senceInformation.setStart_time("2017-11-20");
+//		page_list_senceInformation.setStop_time("2017-11-30");
+//		
+//		//page_list_senceInformation.setSnece_inquestPerson("Áú½¨Æ½");
+//		//System.out.println(senceDao.getCountSenceInformationByPage(page_list_senceInformation));
+//		senceService.VO_SneceInformation_By_PageAndSearch(page_list_senceInformation);
+//	  System.out.println(page_list_senceInformation.getTotalRecords());
+	  
+	
+	}
+	@Resource
+	private ParallelService parallelService;
+
+
+	public void setParallelService(ParallelService parallelService) {
+		this.parallelService = parallelService;
+	}
+	@Test
+	public void save(){
+	    String caeNumList="1,2,3,4,5,6,7";
+	    xsjsglxt_parallel parallel=new xsjsglxt_parallel();
+	    parallel.setParallel_accordingAddress("fggn");
+		parallelService.saveParallel(caeNumList, parallel);
+		
 	}
 }

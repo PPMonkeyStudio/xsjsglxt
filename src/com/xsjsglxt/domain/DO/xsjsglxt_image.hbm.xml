@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2017-11-25 13:53:03 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2017-11-29 15:16:36 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="com.xsjsglxt.domain.DO.xsjsglxt_image" table="XSJSGLXT_IMAGE">
         <id name="xsjsglxt_image_id" type="java.lang.String">
             <column name="XSJSGLXT_IMAGE_ID" />
             <generator class="assigned" />
         </id>
+        <property name="image_number" type="java.lang.String">
+            <column name="IMAGE_NUMBER" />
+        </property>
         <property name="image_remarks" type="java.lang.String">
             <column name="IMAGE_REMARKS" />
         </property>

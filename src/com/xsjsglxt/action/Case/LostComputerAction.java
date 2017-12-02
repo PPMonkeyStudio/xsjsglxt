@@ -14,6 +14,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone;
+import com.xsjsglxt.domain.DTO.Case.LostComputerInformationDTO;
 import com.xsjsglxt.domain.VO.Case.page_list_CasematerialVO;
 import com.xsjsglxt.service.Case.LostComputerService;
 
@@ -23,12 +24,14 @@ public class LostComputerAction extends ActionSupport implements ServletRequestA
 	private xsjsglxt_lost_computer lost_computer;
 	private HttpServletResponse http_response;
 
-	private HttpServletRequest http_request;	
+	private HttpServletRequest http_request; 	
+	
+	private LostComputerInformationDTO lostComputerInformationDTO;
 
 	private page_list_CasematerialVO page_list_Casematerial;
 	
 	/*
-	 * 淇濆瓨鎹熷け鐢佃剳
+	 * 保存损失电脑
 	 */
 	public void saveLostComputer() throws IOException{
 		try {
@@ -44,11 +47,11 @@ public class LostComputerAction extends ActionSupport implements ServletRequestA
 		}
 	}
 	/*
-	 * 鎹熷け鐢佃剳鍒楄〃
+	 * 损失电脑列表
 	 */
 	public void  ListLostComputerInformationByPageAndSearch() throws IOException{
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// 鏍煎紡鍖杍son鏁版嵁
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
 		page_list_Casematerial = lostComputerService
 					.VO_LostComputerformation_By_PageAndSearch(page_list_Casematerial);
@@ -62,6 +65,21 @@ public class LostComputerAction extends ActionSupport implements ServletRequestA
 	return lostComputerService;
 }
 
+	
+	/*
+	 * 详细信息
+	 */
+	public void LostComputerInformationOne() throws IOException {
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
+		Gson gson = gsonBuilder.create();
+		lostComputerInformationDTO = lostComputerService.LostComputerInformationOne(lost_computer);
+		http_response.setContentType("text/html;charset=utf-8");
+
+		http_response.getWriter().write(gson.toJson(lostComputerInformationDTO));
+	}
+	
+	
 public void setLostComputerService(LostComputerService lostComputerService) {
 	this.lostComputerService = lostComputerService;
 }
@@ -107,6 +125,12 @@ public void setLostComputerService(LostComputerService lostComputerService) {
 	}
 	public void setPage_list_Casematerial(page_list_CasematerialVO page_list_Casematerial) {
 		this.page_list_Casematerial = page_list_Casematerial;
+	}
+	public LostComputerInformationDTO getLostComputerInformationDTO() {
+		return lostComputerInformationDTO;
+	}
+	public void setLostComputerInformationDTO(LostComputerInformationDTO lostComputerInformationDTO) {
+		this.lostComputerInformationDTO = lostComputerInformationDTO;
 	}
 
 }

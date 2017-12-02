@@ -125,7 +125,7 @@ public class SenceDaoImpl implements SenceDao {
 		}
 	}
 /*
- * (non-Javadoc)鑾峰緱鍕樻帰缂栧彿
+ * (non-Javadoc)获得勘探编号
  * @see com.xsjsglxt.dao.Case.SenceDao#getSenceInformationInquestId()
  */
 	@Override
@@ -181,8 +181,6 @@ public class SenceDaoImpl implements SenceDao {
 		// i=xsjsglxt_snece.size();
 		
 		
-		
-		
 	}
 
 	@Override
@@ -190,6 +188,7 @@ public class SenceDaoImpl implements SenceDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 		Long i;
+		//String hql = "select count(*) from xsjsglxt_case,xsjsglxt_snece where xsjsglxt_case_id=snece_case";
 		String hql = "select count(*) from xsjsglxt_case where 1=1";
 		String startTime = "0000-00-00";
 		String stopTime = "9999-99-99";
@@ -442,7 +441,7 @@ public class SenceDaoImpl implements SenceDao {
 		return resevidence;
 	}
 /*
- * (non-Javadoc)鍒犻櫎妗堜欢
+ * (non-Javadoc)删除案件
  * @see com.xsjsglxt.dao.Case.SenceDao#getCaseByNum(java.lang.String)
  */
 	@Override
@@ -526,7 +525,7 @@ public class SenceDaoImpl implements SenceDao {
        return true;
 	}
 /*
- * (non-Javadoc)璇︾粏鐜板満淇℃伅
+ * (non-Javadoc)详细现场信息
  * @see com.xsjsglxt.dao.Case.SenceDao#getSeceBySenceId(com.xsjsglxt.domain.DO.xsjsglxt_snece)
  */
 	@Override

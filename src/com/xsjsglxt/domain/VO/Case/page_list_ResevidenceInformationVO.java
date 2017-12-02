@@ -7,25 +7,25 @@ import com.xsjsglxt.domain.DTO.Case.LostComputerInformationDTO;
 import com.xsjsglxt.domain.DTO.Case.ResevidenceInformationDTO;
 
 public class page_list_ResevidenceInformationVO {
-	 // å½“å‰é¡µ
+	 // µ±Ç°Ò³
 	private int pageIndex = 1;
-    //æ€»è®°å½•æ•°
+    //×Ü¼ÇÂ¼Êı
 	private int totalRecords = 0;
-    //æ¯é¡µæ˜¾ç¤ºè®°å½•æ•°
+    //Ã¿Ò³ÏÔÊ¾¼ÇÂ¼Êı
 	private int pageSize = 20;
-	// æ€»é¡µæ•°
+	// ×ÜÒ³Êı
 	private int totalPages = 1;
-	// æ˜¯å¦æœ‰ä¸Šä¸€é¡µ
+	// ÊÇ·ñÓĞÉÏÒ»Ò³
 	private boolean HavePrePage = false;
-	// æ˜¯å¦æœ‰ä¸‹ä¸€é¡µ
+	// ÊÇ·ñÓĞÏÂÒ»Ò³
 	private boolean HaveNextPage = false;
-	// å¼€å§‹æ—¶é—´
+	// ¿ªÊ¼Ê±¼ä
 	private String start_time = "0000-00-00";
 
-	// ç»“æŸæ—¶é—´
+	// ½áÊøÊ±¼ä
 	private String stop_time = "9999-99-99";
 	
-	private String resevidence_extractPerson;//æå–äºº
+	private String resevidence_extractPerson;//ÌáÈ¡ÈË
 	
 	private List<ResevidenceInformationDTO> ResevidenceInformationDTOList;
 

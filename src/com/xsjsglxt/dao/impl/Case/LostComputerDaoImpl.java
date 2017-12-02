@@ -29,7 +29,7 @@ public class LostComputerDaoImpl implements LostComputerDao {
 		return this.sessionFactory.getCurrentSession();
 	}
 /*
- * (non-Javadoc)ä¿å­˜æŸå¤±ç”µè„‘
+ * (non-Javadoc)±£´æËğÊ§µçÄÔ
  * @see com.xsjsglxt.dao.Case.LostComputerDao#saveLostComputer(com.xsjsglxt.domain.DO.xsjsglxt_lost_computer)
  */
 	@Override
@@ -43,7 +43,7 @@ public class LostComputerDaoImpl implements LostComputerDao {
 		}
 	}
 /*
- * (non-Javadoc)ç”µè„‘æŸå¤±è¡¨
+ * (non-Javadoc)µçÄÔËğÊ§±í
  * @see com.xsjsglxt.dao.Case.LostComputerDao#getCountLostComputerInformationByPage(com.xsjsglxt.domain.VO.Case.page_list_CasematerialVO)
  */
 	@Override
@@ -142,5 +142,19 @@ public class LostComputerDaoImpl implements LostComputerDao {
 		xsjsglxt_snece sence = (xsjsglxt_snece) query.uniqueResult();
 
 		return sence;
+	}
+
+	@Override
+	public xsjsglxt_lost_computer getLostComputerById(xsjsglxt_lost_computer lost_computer) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_lost_computer lost_computer where lost_computer.xsjsglxt_lost_computer_id='" + lost_computer.getXsjsglxt_lost_computer_id() + "'";
+
+		Query query = session.createQuery(hql);
+
+		 lost_computer = (xsjsglxt_lost_computer) query.uniqueResult();
+
+		return lost_computer;
 	}
 }

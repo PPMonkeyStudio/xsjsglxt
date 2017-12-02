@@ -28,7 +28,7 @@ public class LostDaoImpl implements LostDao {
 		return this.sessionFactory.getCurrentSession();
 	}
 /*
- * (non-Javadoc)淇濆瓨鎹熷け鐗╁搧
+ * (non-Javadoc)保存损失物品
  * @see com.xsjsglxt.dao.Case.LostDao#save(com.xsjsglxt.domain.DO.xsjsglxt_lost)
  */
 	@Override
@@ -43,7 +43,7 @@ public class LostDaoImpl implements LostDao {
 		}
 	}
 /*
- * (non-Javadoc)鎹熷け鐗╁搧鍒楄〃淇℃伅
+ * (non-Javadoc)损失物品列表信息
  * @see com.xsjsglxt.dao.Case.LostDao#getCountLostInformationByPage(com.xsjsglxt.domain.VO.Case.page_list_CasematerialVO)
  */
 	@Override
@@ -113,5 +113,19 @@ public class LostDaoImpl implements LostDao {
 		xsjsglxt_snece sence = (xsjsglxt_snece) query.uniqueResult();
 
 		return sence;
+	}
+
+	@Override
+	public xsjsglxt_lost getLostById(xsjsglxt_lost lost) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_lost lost where lost.xsjsglxt_lost_id='" + lost.getXsjsglxt_lost_id() + "'";
+
+		Query query = session.createQuery(hql);
+
+		 lost = (xsjsglxt_lost) query.uniqueResult();
+
+		return lost;
 	}
 }

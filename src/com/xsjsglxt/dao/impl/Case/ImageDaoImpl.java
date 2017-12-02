@@ -1,11 +1,14 @@
 package com.xsjsglxt.dao.impl.Case;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.Case.ImageDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_image;
 import com.xsjsglxt.domain.DO.xsjsglxt_picture;
+
+import util.TeamUtil;
 
 public class ImageDaoImpl implements ImageDao {
 	private SessionFactory sessionFactory;
@@ -42,5 +45,49 @@ public class ImageDaoImpl implements ImageDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public int getMaxImage_number() {
+		// TODO Auto-generated method stub
+		int i;
+		//201711
+		String yearAndMonth =TeamUtil.yearAndMonth();
+		String li="";
+		
+		String hql = "select substring(image_number,-1,4) from xsjsglxt_image where substring(image_number,2,6)='"+yearAndMonth+"' order by substring(image_number,-1,4) desc limit 1";
+		System.out.println(hql);
+		Query query = getSession().createSQLQuery(hql);
+		li=(String) query.uniqueResult();
+		if(li==null || li.trim().length()<=0){
+			getSession().clear();
+			return 0;
+		}
+		i=Integer.parseInt(li);
+		getSession().clear();
+		return i;
+		
+		
+	}
+
+	@Override
+	public int getMaxPicture_identifier() {
+		// TODO Auto-generated method stub
+		int i;
+		//201711
+		String yearAndMonth =TeamUtil.yearAndMonth();
+		String li="";
+		
+		String hql = "select substring(picture_identifier,-1,4) from xsjsglxt_picture where substring(picture_identifier,2,6)='"+yearAndMonth+"' order by substring(picture_identifier,-1,4) desc limit 1";
+		System.out.println(hql);
+		Query query = getSession().createSQLQuery(hql);
+		li=(String) query.uniqueResult();
+		if(li==null || li.trim().length()<=0){
+			getSession().clear();
+			return 0;
+		}
+		i=Integer.parseInt(li);
+		getSession().clear();
+		return i;
 	}
 }

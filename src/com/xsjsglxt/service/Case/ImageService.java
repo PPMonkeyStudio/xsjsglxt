@@ -9,4 +9,8 @@ public	void saveCD(xsjsglxt_image image);
 
 public void savePicture(xsjsglxt_picture picture);
 
+public String getMaxImage_number();
+
+public String getMaxPicture_identifier();
+
 }

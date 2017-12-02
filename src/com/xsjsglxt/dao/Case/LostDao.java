@@ -9,7 +9,7 @@ import com.xsjsglxt.domain.VO.Case.page_list_CasematerialVO;
 
 public interface LostDao {
 /*
- * ä¿å­˜æŸå¤±ç‰©å“
+ * ±£´æËğÊ§ÎïÆ·
  */
 public 	void save(xsjsglxt_lost lost);
 
@@ -20,5 +20,7 @@ public List<xsjsglxt_lost> getListLostInformatioByPage(page_list_CasematerialVO 
 public xsjsglxt_case getCaseByxsjsglxt_lost_id(xsjsglxt_lost lost);
 
 public xsjsglxt_snece getSenceByxsjsglxt_case_id(xsjsglxt_case case1);
+
+public xsjsglxt_lost getLostById(xsjsglxt_lost lost);
 
 }

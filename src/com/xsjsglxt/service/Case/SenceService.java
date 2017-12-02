@@ -28,24 +28,24 @@ public void save(xsjsglxt_lost_computer lost_computer);
 
 public void save(xsjsglxt_picture picture);
 /*
- * 鑾峰緱鍕樻帰缂栧彿
+ * 获得勘探编号
  */
 public String getSenceInformationInquestId();
 /*
- * 鐜板満淇℃伅鍒楄〃
+ * 现场信息列表
  */
 public page_list_senceInformationVO VO_SneceInformation_By_PageAndSearch(
 		page_list_senceInformationVO page_list_senceInformation);
 
 /*
- * 鍒犻櫎鐜板満淇℃伅鍒楄〃
+ * 删除现场信息列表
  */
 public boolean remove_SenceInformationList(List<String> useSenceInformationNumList);
 
 
 public String getMaxSenceInquestId();
 /*
- * 鐜板満璇︾粏淇℃伅
+ * 现场详细信息
  */
 public SenceInformationDTO SecneInformationOne(xsjsglxt_snece sence);
 

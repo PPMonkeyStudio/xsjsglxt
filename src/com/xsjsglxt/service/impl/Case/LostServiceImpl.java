@@ -24,7 +24,7 @@ public void setLostDao(LostDao lostDao) {
 	this.lostDao = lostDao;
 }
 /*
- * (non-Javadoc)保存损失物品
+ * (non-Javadoc)������ʧ��Ʒ
  * @see com.xsjsglxt.service.Case.LostService#saveLost(com.xsjsglxt.domain.DO.xsjsglxt_lost)
  */
 @Override
@@ -36,7 +36,7 @@ public void saveLost(xsjsglxt_lost lost) {
 	lostDao.save(lost);
 }
 /*
- * (non-Javadoc)列表信息
+ * (non-Javadoc)�б���Ϣ
  * @see com.xsjsglxt.service.Case.LostService#VO_Lostformation_By_PageAndSearch(com.xsjsglxt.domain.VO.Case.page_list_CasematerialVO)
  */
 @Override
@@ -48,7 +48,7 @@ public page_list_CasematerialVO VO_Lostformation_By_PageAndSearch(page_list_Case
 	   
 	xsjsglxt_case case1;
 	xsjsglxt_snece snece;
-	// 获取筛选后所有的记录
+	// ��ȡɸѡ�����еļ�¼
 	int i = lostDao.getCountLostInformationByPage(page_list_Casematerial);
 	page_list_Casematerial.setTotalRecords(i);
 	page_list_Casematerial.setTotalPages(((i - 1) / page_list_Casematerial.getPageSize()) + 1);
@@ -62,7 +62,7 @@ public page_list_CasematerialVO VO_Lostformation_By_PageAndSearch(page_list_Case
 	} else {
 		page_list_Casematerial.setHaveNextPage(true);
 	}
-	// 根据筛选条件获取list数据
+	// ����ɸѡ������ȡlist����
 	lostList = lostDao.getListLostInformatioByPage(page_list_Casematerial);
 	for (xsjsglxt_lost lost : lostList) {
 		if (page_list_Casematerial.getLost_name() != null
@@ -77,6 +77,16 @@ public page_list_CasematerialVO VO_Lostformation_By_PageAndSearch(page_list_Case
 	}
 	page_list_Casematerial.setLostInformationDTOList(LostInformationDTOList);
 	return page_list_Casematerial;
+}
+
+@Override
+public LostInformationDTO LostInformationOne(xsjsglxt_lost lost) {
+	// TODO Auto-generated method stub
+	lost=lostDao.getLostById(lost);
+	xsjsglxt_case case1=lostDao.getCaseByxsjsglxt_lost_id(lost);
+	xsjsglxt_snece snece=lostDao.getSenceByxsjsglxt_case_id(case1);
+	LostInformationDTO lostInformationDTO = new LostInformationDTO(case1,snece,lost);
+	return lostInformationDTO;
 }
 
 }

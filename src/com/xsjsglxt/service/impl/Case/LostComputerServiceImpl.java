@@ -45,7 +45,7 @@ public page_list_CasematerialVO VO_LostComputerformation_By_PageAndSearch(
 	   
 	xsjsglxt_case case1;
 	xsjsglxt_snece snece;
-	// 获取筛选后所有的记录
+	// ��ȡɸѡ�����еļ�¼
 	int i = lostComputerDao.getCountLostComputerInformationByPage(page_list_Casematerial);
 	page_list_Casematerial.setTotalRecords(i);
 	page_list_Casematerial.setTotalPages(((i - 1) / page_list_Casematerial.getPageSize()) + 1);
@@ -59,7 +59,7 @@ public page_list_CasematerialVO VO_LostComputerformation_By_PageAndSearch(
 	} else {
 		page_list_Casematerial.setHaveNextPage(true);
 	}
-	// 根据筛选条件获取list数据
+	// ����ɸѡ������ȡlist����
 	lost_computerList = lostComputerDao.getListLostComputerInformatioByPage(page_list_Casematerial);
 	for (xsjsglxt_lost_computer lost_computer : lost_computerList) {
 		//1
@@ -88,5 +88,17 @@ public page_list_CasematerialVO VO_LostComputerformation_By_PageAndSearch(
 	page_list_Casematerial.setLostComputerInformationDTOList(LostComputerInformationDTOList);
 	return page_list_Casematerial;
 }
+
+@Override
+public LostComputerInformationDTO LostComputerInformationOne(xsjsglxt_lost_computer lost_computer) {
+	// TODO Auto-generated method stub
+	lost_computer=lostComputerDao.getLostComputerById(lost_computer);
+	xsjsglxt_case case1=lostComputerDao.getCaseByxsjsglxt_lost_computer_id(lost_computer);
+	xsjsglxt_snece snece=lostComputerDao.getSenceByxsjsglxt_case_id(case1);
+	LostComputerInformationDTO lostComputerInformationDTO= new LostComputerInformationDTO(case1,snece,lost_computer);
+	return lostComputerInformationDTO;
+}
+
+
 
 }
