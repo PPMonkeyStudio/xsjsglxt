@@ -24,7 +24,7 @@ private HttpServletRequest http_request;
 private xsjsglxt_picture picture;
 private xsjsglxt_case case1;
 /*
- * ±£´æ¹âÅÌ
+ * ä¿å­˜å…‰ç›˜
  */
 public void saveCD() throws IOException{
 	try {
@@ -40,7 +40,7 @@ public void saveCD() throws IOException{
 	}
 }
 /*
- * ±£´æÕÕÆ¬
+ * ä¿å­˜ç…§ç‰‡
  */
 public void savePicture() throws IOException{
 try {
@@ -58,11 +58,11 @@ try {
 }
 
 /*
- * ¹âÅÌ±àºÅ
+ * å…‰ç›˜ç¼–å·
  */
 public void getImage_number() throws IOException {
 	GsonBuilder gsonBuilder = new GsonBuilder();
-	gsonBuilder.setPrettyPrinting();// ¸ñÊ½»¯jsonÊı¾İ
+	gsonBuilder.setPrettyPrinting();// ï¿½ï¿½Ê½ï¿½ï¿½jsonï¿½ï¿½ï¿½ï¿½
 	Gson gson = gsonBuilder.create();
 	String Image_number = imageService.getMaxImage_number();
 	http_response.setContentType("text/html;charset=utf-8");
@@ -70,11 +70,11 @@ public void getImage_number() throws IOException {
 }
 
 /*
- * ÕÕÆ¬±àºÅ
+ * ç…§ç‰‡ç¼–å·
  */
 public void getPicture_identifier() throws IOException {
 	GsonBuilder gsonBuilder = new GsonBuilder();
-	gsonBuilder.setPrettyPrinting();// ¸ñÊ½»¯jsonÊı¾İ
+	gsonBuilder.setPrettyPrinting();// ï¿½ï¿½Ê½ï¿½ï¿½jsonï¿½ï¿½ï¿½ï¿½
 	Gson gson = gsonBuilder.create();
 	String Picture_identifier = imageService.getMaxPicture_identifier();
 	http_response.setContentType("text/html;charset=utf-8");

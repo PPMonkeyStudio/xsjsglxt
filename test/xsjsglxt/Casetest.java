@@ -11,7 +11,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.xsjsglxt.dao.Case.SenceDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_parallel;
+import com.xsjsglxt.domain.VO.Case.page_list_CasematerialVO;
 import com.xsjsglxt.domain.VO.Case.page_list_senceInformationVO;
+import com.xsjsglxt.service.Case.LostService;
 import com.xsjsglxt.service.Case.ParallelService;
 import com.xsjsglxt.service.Case.SenceService;
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -66,7 +68,7 @@ private SenceDao senceDao;
 //		page_list_senceInformation.setStart_time("2017-11-20");
 //		page_list_senceInformation.setStop_time("2017-11-30");
 //		
-//		//page_list_senceInformation.setSnece_inquestPerson("Áú½¨Æ½");
+//		//page_list_senceInformation.setSnece_inquestPerson("ï¿½ï¿½ï¿½ï¿½Æ½");
 //		//System.out.println(senceDao.getCountSenceInformationByPage(page_list_senceInformation));
 //		senceService.VO_SneceInformation_By_PageAndSearch(page_list_senceInformation);
 //	  System.out.println(page_list_senceInformation.getTotalRecords());
@@ -87,5 +89,19 @@ private SenceDao senceDao;
 	    parallel.setParallel_accordingAddress("fggn");
 		parallelService.saveParallel(caeNumList, parallel);
 		
+	}
+	@Resource
+	private LostService lostService;
+
+
+	public void setLostService(LostService lostService) {
+		this.lostService = lostService;
+	}
+	@Test
+	public void t(){
+		page_list_CasematerialVO page_list_Casematerial=new page_list_CasematerialVO();
+	page_list_Casematerial.setLost_name("2");
+		
+		lostService.VO_Lostformation_By_PageAndSearch(page_list_Casematerial);
 	}
 }

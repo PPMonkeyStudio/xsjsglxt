@@ -28,7 +28,7 @@ public class LostDaoImpl implements LostDao {
 		return this.sessionFactory.getCurrentSession();
 	}
 /*
- * (non-Javadoc)±£´æËðÊ§ÎïÆ·
+ * (non-Javadoc)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½Æ·
  * @see com.xsjsglxt.dao.Case.LostDao#save(com.xsjsglxt.domain.DO.xsjsglxt_lost)
  */
 	@Override
@@ -43,7 +43,7 @@ public class LostDaoImpl implements LostDao {
 		}
 	}
 /*
- * (non-Javadoc)ËðÊ§ÎïÆ·ÁÐ±íÐÅÏ¢
+ * (non-Javadoc)ï¿½ï¿½Ê§ï¿½ï¿½Æ·ï¿½Ð±ï¿½ï¿½ï¿½Ï¢
  * @see com.xsjsglxt.dao.Case.LostDao#getCountLostInformationByPage(com.xsjsglxt.domain.VO.Case.page_list_CasematerialVO)
  */
 	@Override
@@ -51,7 +51,7 @@ public class LostDaoImpl implements LostDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 		Long i;
-		String hql = "select count(*) from xsjsglxt_lost where 1=1 order by lost_gmt_create";
+		String hql = "select count(*) from xsjsglxt_lost where 1=1 ";
 		if (page_list_Casematerial.getLost_name() != null
 				&& page_list_Casematerial.getLost_name().trim().length() > 0) {
 			String lost_name = "%" + page_list_Casematerial.getLost_name() + "%";
@@ -69,7 +69,7 @@ public class LostDaoImpl implements LostDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 		List<xsjsglxt_lost> listLostInformationByPage = new ArrayList<xsjsglxt_lost>();
-		String hql = "from xsjsglxt_lost where 1=1 order by lost_gmt_create";
+		String hql = "from xsjsglxt_lost where 1=1 ";
 		if (page_list_Casematerial.getLost_name() != null
 				&& page_list_Casematerial.getLost_name().trim().length() > 0) {
 			String lost_name = "%" + page_list_Casematerial.getLost_name() + "%";
