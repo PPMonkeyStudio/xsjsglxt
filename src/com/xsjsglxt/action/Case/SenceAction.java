@@ -171,7 +171,7 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();// ��ʽ��json����
 		Gson gson = gsonBuilder.create();
-		senceInformationDTO = senceService.SecneInformationOne(sence);
+		senceInformationDTO = senceService.SecneInformationOne(case1);
 		http_response.setContentType("text/html;charset=utf-8");
 
 		http_response.getWriter().write(gson.toJson(senceInformationDTO));

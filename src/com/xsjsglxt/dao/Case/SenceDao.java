@@ -48,7 +48,7 @@ public xsjsglxt_snece get_sence_Byxsjsglxt_case_id(xsjsglxt_case case1);
 
 public xsjsglxt_resevidence get_resevidence_Byxsjsglxt_case_id(xsjsglxt_case case1);
 /*
- * É¾³ý°¸¼þ
+ * É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 public com.xsjsglxt.domain.DO.xsjsglxt_case getCaseByNum(String case_id);
 
@@ -68,11 +68,11 @@ public boolean deleteSenceById(String xsjsglxt_case_id);
 
 public int getMaxSenceInquestId();
 /*
- * ÏêÏ¸ÏÖ³¡ÐÅÏ¢
+ * ï¿½ï¿½Ï¸ï¿½Ö³ï¿½ï¿½ï¿½Ï¢
  */
-public xsjsglxt_snece getSeceBySenceId(xsjsglxt_snece sence);
+public xsjsglxt_snece getSeceByCaseId(xsjsglxt_case case1);
 
-public xsjsglxt_case getCaseBySenceId(xsjsglxt_snece sence);
+public xsjsglxt_case getCaseByCaseId(xsjsglxt_case case1);
 
 public xsjsglxt_briefdetails getBriefdetailsByCaseID(xsjsglxt_case case1);
 
