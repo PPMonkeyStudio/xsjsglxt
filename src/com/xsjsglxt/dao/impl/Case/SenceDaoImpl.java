@@ -343,7 +343,33 @@ public class SenceDaoImpl implements SenceDao {
 		session.clear();
 		return listSenceInformationByPage;
 	}
+	@Override
+	public xsjsglxt_snece getSeceByCaseId(xsjsglxt_case case1) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
 
+		String hql = "from xsjsglxt_snece sence where sence.snece_case='" + case1.getXsjsglxt_case_id() + "'";
+
+		Query query = session.createQuery(hql);
+
+		xsjsglxt_snece sence = (xsjsglxt_snece) query.uniqueResult();
+
+		return sence;
+	}
+
+	@Override
+	public xsjsglxt_case getCaseByCaseId(xsjsglxt_case case1) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_case case1 where case1.xsjsglxt_case_id='" + case1.getXsjsglxt_case_id() + "'";
+
+		Query query = session.createQuery(hql);
+
+		 case1 = (xsjsglxt_case) query.uniqueResult();
+
+		return case1;
+	}
 	@Override
 	public xsjsglxt_briefdetails get_briefdetails_Byxsjsglxt_case_id(xsjsglxt_case case1) {
 		// TODO Auto-generated method stub
@@ -529,35 +555,7 @@ public class SenceDaoImpl implements SenceDao {
  * (non-Javadoc)��ϸ�ֳ���Ϣ
  * @see com.xsjsglxt.dao.Case.SenceDao#getSeceBySenceId(com.xsjsglxt.domain.DO.xsjsglxt_snece)
  */
-	@Override
-	public xsjsglxt_snece getSeceBySenceId(xsjsglxt_snece sence) {
-		// TODO Auto-generated method stub
-		Session session = getSession();
-
-		String hql = "from xsjsglxt_snece sence where sence.xsjsglxt_snece_id='" + sence.getXsjsglxt_snece_id() + "'";
-
-		Query query = session.createQuery(hql);
-
-		 sence = (xsjsglxt_snece) query.uniqueResult();
-
-		return sence;
-		
-	}
-
-	@Override
-	public xsjsglxt_case getCaseBySenceId(xsjsglxt_snece sence) {
-		// TODO Auto-generated method stub
-		Session session = getSession();
-
-		String hql = "from xsjsglxt_case case1 where case1.xsjsglxt_case_id='" + sence.getSnece_case() + "'";
-
-		Query query = session.createQuery(hql);
-
-		xsjsglxt_case	case1 = (xsjsglxt_case) query.uniqueResult();
-
-		return case1;
-		
-	}
+	
 
 	@Override
 	public xsjsglxt_briefdetails getBriefdetailsByCaseID(xsjsglxt_case case1) {
@@ -642,6 +640,8 @@ public class SenceDaoImpl implements SenceDao {
 
 		return picture;
 	}
+
+	
 
 	
 }

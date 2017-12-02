@@ -28,25 +28,25 @@ public void save(xsjsglxt_lost_computer lost_computer);
 
 public void save(xsjsglxt_picture picture);
 /*
- * ╩Я╣ц©╠л╫╠Ю╨е
+ * О©╫О©╫ц©О©╫л╫О©╫О©╫О©╫
  */
 public String getSenceInformationInquestId();
 /*
- * ожЁ║пео╒ап╠М
+ * О©╫жЁО©╫О©╫О©╫о╒О©╫п╠О©╫
  */
 public page_list_senceInformationVO VO_SneceInformation_By_PageAndSearch(
 		page_list_senceInformationVO page_list_senceInformation);
 
 /*
- * и╬ЁЩожЁ║пео╒ап╠М
+ * и╬О©╫О©╫О©╫жЁО©╫О©╫О©╫о╒О©╫п╠О©╫
  */
 public boolean remove_SenceInformationList(List<String> useSenceInformationNumList);
 
 
 public String getMaxSenceInquestId();
 /*
- * ожЁ║оЙо╦пео╒
+ * О©╫жЁО©╫О©╫О©╫о╦О©╫О©╫о╒
  */
-public SenceInformationDTO SecneInformationOne(xsjsglxt_snece sence);
+public SenceInformationDTO SecneInformationOne(xsjsglxt_case case1);
 
 }
