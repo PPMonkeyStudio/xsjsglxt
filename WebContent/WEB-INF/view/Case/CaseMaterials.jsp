@@ -44,20 +44,27 @@
 				<h3 class="panel-title">案件材料</h3>
 			</div>
 			<div class="operation" style="margin-bottom: 6px; ">
-				<select style="width:120px; margin-left:15px;" class="form-control"
-					onchange="material(this)">
-					<option value="">请选择</option>
+				<select style="width:120px; margin-left:15px; float: left; "
+					class="form-control" onchange="material(this)">
+					<option selected="selected" value="">请选择</option>
 					<option value="evidence_table_info">物证</option>
 					<option value="picture_table_info">光碟(照片)</option>
 					<option value="Goods_table_info">遗失物品</option>
+				</select> <select id="goods_chose"
+					style="width: 120px; margin-left:6px; display:none;"
+					class="form-control" onchange="lost_chose(this)">
+					<option value="">请选择</option>
+					<option value="lost">物品</option>
+					<option value="lost_computer">电脑</option>
+					<option value="lost_mobilephone">手机</option>
 				</select>
 			</div>
 			<div class="panel-body">
-				<table style=""
+				<table style="display: none;"
 					class="table table-hover table-condensed evidence_table_info">
 					<thead style="">
 						<tr>
-							<td><strong>#</strong></td>
+							<td><strong>序号</strong></td>
 							<td><strong><input class="form-control"
 									placeholder="物证名称"></strong></td>
 							<td><strong>提取日期</strong></td>
@@ -104,21 +111,44 @@
 				</table>
 				<table style="display: none;"
 					class="table table-hover table-condensed Goods_table_info">
-					<thead>
+					<!-- <thead id="select">
 						<tr>
-							<th>物证查询</th>
+							<td></td>
+						</tr>
+					</thead> -->
+					<thead id="lost" style="display: none;">
+						<tr>
+							<th>序号</th>
+							<th>名称</th>
+							<th>所属案件</th>
+							<th>备注</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<thead id="lost_mobilephone" style="display: none;">
+						<tr>
+							<th>序号</th>
+							<th>所属案件</th>
+							<th>手机号码</th>
+							<th>手机串号</th>
+							<th>手机特征</th>
+							<th>备注</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<thead id="lost_computer" style="display: none;">
+						<tr>
+							<th>序号</th>
+							<th>所属案件</th>
+							<th>电脑品牌</th>
+							<th>上网账号</th>
+							<th>MAC地址</th>
+							<th>备注</th>
+							<th>操作</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>提取日期</td>
-							<td><input></td>
-							<td>至</td>
-							<td><input></td>
-							<td>提取人</td>
-							<td><input></td>
-							<td><input value="搜索"></td>
-						</tr>
+
 					</tbody>
 				</table>
 			</div>

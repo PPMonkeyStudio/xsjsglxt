@@ -35,7 +35,7 @@ $(function() {
 			success : function(xhr_data) {
 				if (xhr_data == 'success') {
 					toastr.success("录入成功！");
-				//location.href = '/xsjsglxt/case/Case_page_CaseDetails?id=';
+				/*location.href = '/xsjsglxt/case/Case_page_CaseDetails?id='+;*/
 				} else {
 					toastr.success("录入失败！");
 				}

@@ -37,9 +37,9 @@ $(function() {
 		switch ($('#LossOfGoods table tbody:visible').attr('class')) {
 		case 'lost_goods':			url = '/xsjsglxt/case/Lost_saveLost';
 			break;
-		case 'lost_mobilephone':			url = '/xsjsglxt/case/LostComputer_saveLostComputer';
+		case 'lost_mobilephone':			url = '/xsjsglxt/case/LostMobilephone_saveLostMobilephone';
 			break;
-		case 'lost_computer':			url = '/xsjsglxt/case/LostMobilephone_saveLostMobilephone';
+		case 'lost_computer':			url = '/xsjsglxt/case/LostComputer_saveLostComputer';
 			break;
 		default:
 			url = '';

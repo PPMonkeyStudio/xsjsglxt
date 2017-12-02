@@ -383,7 +383,7 @@
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">添加diushiwupin</h4>
+					<h4 class="modal-title" id="myModalLabel">添加丢失物品</h4>
 				</div>
 				<div class="modal-body">
 					<div class="panel-body">
@@ -397,8 +397,8 @@
 											style="width: 84%;">
 												<option value="" selected="selected">请选择</option>
 												<option value="lost_goods">物品</option>
-												<option value="lost_mobilephone">电脑</option>
-												<option value="lost_computer">手机</option>
+												<option value="lost_computer">电脑</option>
+												<option value="lost_mobilephone">手机</option>
 										</select></td>
 									</tr>
 								</thead>
