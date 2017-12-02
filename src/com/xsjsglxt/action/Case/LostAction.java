@@ -30,7 +30,7 @@ private LostInformationDTO lostInformationDTO;
 private page_list_CasematerialVO page_list_Casematerial;
 
 /*
- * 保存损失物品
+ * 淇濆瓨鎹熷け鐗╁搧
  */
 public void saveLost() throws IOException{
 	try {
@@ -46,11 +46,11 @@ public void saveLost() throws IOException{
 	}
 }
 /*
- * 列表信息
+ * 鍒楄〃淇℃伅
  */
 public void  ListLostInformationByPageAndSearch() throws IOException{
 	GsonBuilder gsonBuilder = new GsonBuilder();
-	gsonBuilder.setPrettyPrinting();// 格式化json数据
+	gsonBuilder.setPrettyPrinting();// 鏍煎紡鍖杍son鏁版嵁
 	Gson gson = gsonBuilder.create();
 	page_list_Casematerial = lostService
 				.VO_Lostformation_By_PageAndSearch(page_list_Casematerial);
@@ -60,11 +60,11 @@ public void  ListLostInformationByPageAndSearch() throws IOException{
 			http_response.getWriter().write(gson.toJson(page_list_Casematerial));
 }
 /*
- * 详细信息
+ * 璇︾粏淇℃伅
  */
 public void LostInformationOne() throws IOException {
 	GsonBuilder gsonBuilder = new GsonBuilder();
-	gsonBuilder.setPrettyPrinting();// 格式化json数据
+	gsonBuilder.setPrettyPrinting();// 鏍煎紡鍖杍son鏁版嵁
 	Gson gson = gsonBuilder.create();
 	lostInformationDTO = lostService.LostInformationOne(lost);
 	http_response.setContentType("text/html;charset=utf-8");

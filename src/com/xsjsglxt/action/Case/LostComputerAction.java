@@ -31,7 +31,7 @@ public class LostComputerAction extends ActionSupport implements ServletRequestA
 	private page_list_CasematerialVO page_list_Casematerial;
 	
 	/*
-	 * 保存损失电脑
+	 * 淇濆瓨鎹熷け鐢佃剳
 	 */
 	public void saveLostComputer() throws IOException{
 		try {
@@ -47,11 +47,11 @@ public class LostComputerAction extends ActionSupport implements ServletRequestA
 		}
 	}
 	/*
-	 * 损失电脑列表
+	 *  鎹熷け鐢佃剳鍒楄〃
 	 */
 	public void  ListLostComputerInformationByPageAndSearch() throws IOException{
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// 格式化json数据
+		gsonBuilder.setPrettyPrinting();// 鏍煎紡鍖杍son鏁版嵁
 		Gson gson = gsonBuilder.create();
 		page_list_Casematerial = lostComputerService
 					.VO_LostComputerformation_By_PageAndSearch(page_list_Casematerial);
@@ -67,11 +67,11 @@ public class LostComputerAction extends ActionSupport implements ServletRequestA
 
 	
 	/*
-	 * 详细信息
+	 *璇︾粏淇℃伅
 	 */
 	public void LostComputerInformationOne() throws IOException {
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// 格式化json数据
+		gsonBuilder.setPrettyPrinting();// 鏍煎紡鍖杍son鏁版嵁
 		Gson gson = gsonBuilder.create();
 		lostComputerInformationDTO = lostComputerService.LostComputerInformationOne(lost_computer);
 		http_response.setContentType("text/html;charset=utf-8");

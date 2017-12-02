@@ -24,7 +24,7 @@ public void setLostDao(LostDao lostDao) {
 	this.lostDao = lostDao;
 }
 /*
- * (non-Javadoc)±£´æËðÊ§ÎïÆ·
+ * (non-Javadoc)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½Æ·
  * @see com.xsjsglxt.service.Case.LostService#saveLost(com.xsjsglxt.domain.DO.xsjsglxt_lost)
  */
 @Override
@@ -36,7 +36,7 @@ public void saveLost(xsjsglxt_lost lost) {
 	lostDao.save(lost);
 }
 /*
- * (non-Javadoc)ÁÐ±íÐÅÏ¢
+ * (non-Javadoc)ï¿½Ð±ï¿½ï¿½ï¿½Ï¢
  * @see com.xsjsglxt.service.Case.LostService#VO_Lostformation_By_PageAndSearch(com.xsjsglxt.domain.VO.Case.page_list_CasematerialVO)
  */
 @Override
@@ -48,8 +48,9 @@ public page_list_CasematerialVO VO_Lostformation_By_PageAndSearch(page_list_Case
 	   
 	xsjsglxt_case case1;
 	xsjsglxt_snece snece;
-	// »ñÈ¡É¸Ñ¡ºóËùÓÐµÄ¼ÇÂ¼
+	// ï¿½ï¿½È¡É¸Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ¼ï¿½Â¼
 	int i = lostDao.getCountLostInformationByPage(page_list_Casematerial);
+	System.out.println(i);
 	page_list_Casematerial.setTotalRecords(i);
 	page_list_Casematerial.setTotalPages(((i - 1) / page_list_Casematerial.getPageSize()) + 1);
 	if (page_list_Casematerial.getPageIndex() <= 1) {
@@ -62,7 +63,7 @@ public page_list_CasematerialVO VO_Lostformation_By_PageAndSearch(page_list_Case
 	} else {
 		page_list_Casematerial.setHaveNextPage(true);
 	}
-	// ¸ù¾ÝÉ¸Ñ¡Ìõ¼þ»ñÈ¡listÊý¾Ý
+	// ï¿½ï¿½ï¿½ï¿½É¸Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡listï¿½ï¿½ï¿½ï¿½
 	lostList = lostDao.getListLostInformatioByPage(page_list_Casematerial);
 	for (xsjsglxt_lost lost : lostList) {
 		if (page_list_Casematerial.getLost_name() != null

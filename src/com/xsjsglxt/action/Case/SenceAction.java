@@ -42,21 +42,21 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	private SenceInformationDTO senceInformationDTO;
 
 	/*
-	 * Ìø×ªÒ³Ãæ
+	 * è·³è½¬é¡µé¢
 	 */
 	public String page_SiteManagement() {
 		return "page_SiteManagement";
 	}
 
 	/*
-	 * Ìø×ªÏÖ³¡Â¼ÈëÒ³Ãæ
+	 * è·³è½¬ç°åœºå½•å…¥é¡µé¢
 	 */
 	public String page_Sneceinput() {
 		return "page_Sneceinput";
 	}
 
 	/*
-	 * Ìø×ªÏÖ³¡Â¼ÈëÒ³Ãæ
+	 * ï¿½ï¿½×ªï¿½Ö³ï¿½Â¼ï¿½ï¿½Ò³ï¿½ï¿½
 	 */
 	public String page_CaseMergerList() {
 		return "page_CaseMergerList";
@@ -73,7 +73,7 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 
 	/*
 
-	 * Ìø×ªÏÖ³¡Â¼ÈëÒ³Ãæ
+	 * ï¿½ï¿½×ªï¿½Ö³ï¿½Â¼ï¿½ï¿½Ò³ï¿½ï¿½
 
 	 */
 	public String page_CaseMaterials() {
@@ -82,7 +82,7 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 
 	/*
 
-	 * Ìø×ª°¸¼şÏêÇéÒ³Ãæ
+	 * ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½
 
 	 */
 	public String page_CaseDetails() {
@@ -92,7 +92,7 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 
 	/*
 
-	 * ±£´æ»ù±¾ĞÅÏ¢
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 
 	 */
 	public void saveSenceInformation() {
@@ -135,11 +135,11 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	}
 
 	/*
-	 * »ñµÃ¿±Ì½±àºÅ
+	 * ï¿½ï¿½Ã¿ï¿½Ì½ï¿½ï¿½ï¿½
 	 */
 	public void getSenceInquestId() throws IOException {
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// ¸ñÊ½»¯jsonÊı¾İ
+		gsonBuilder.setPrettyPrinting();// ï¿½ï¿½Ê½ï¿½ï¿½jsonï¿½ï¿½ï¿½ï¿½
 		Gson gson = gsonBuilder.create();
 		String senceInformationInquestId = senceService.getMaxSenceInquestId();
 		http_response.setContentType("text/html;charset=utf-8");
@@ -147,15 +147,15 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	}
 
 	/*
-	 * ÏÖ³¡ĞÅÏ¢ÁĞ±í
+	 * ï¿½Ö³ï¿½ï¿½ï¿½Ï¢ï¿½Ğ±ï¿½
 	 */
 	public void ListSneceInformationByPageAndSearch() throws IOException {
 
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// ¸ñÊ½»¯jsonÊı¾İ
+		gsonBuilder.setPrettyPrinting();// ï¿½ï¿½Ê½ï¿½ï¿½jsonï¿½ï¿½ï¿½ï¿½
 		Gson gson = gsonBuilder.create();
 
-		// »ñÈ¡ËùÓĞÏÖ³¡Â¼ÈëĞÅÏ¢ÁĞ±í
+		// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ö³ï¿½Â¼ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½Ğ±ï¿½
 		page_list_senceInformation = senceService.VO_SneceInformation_By_PageAndSearch(page_list_senceInformation);
 
 		http_response.setContentType("text/html;charset=utf-8");
@@ -165,11 +165,11 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	}
 
 	/*
-	 * ÁĞ±íÏêÏ¸ĞÅÏ¢
+	 * è¯¦ç»†ä¿¡æ¯
 	 */
 	public void SecneInformationOne() throws IOException {
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// ¸ñÊ½»¯jsonÊı¾İ
+		gsonBuilder.setPrettyPrinting();// ï¿½ï¿½Ê½ï¿½ï¿½jsonï¿½ï¿½ï¿½ï¿½
 		Gson gson = gsonBuilder.create();
 		senceInformationDTO = senceService.SecneInformationOne(sence);
 		http_response.setContentType("text/html;charset=utf-8");

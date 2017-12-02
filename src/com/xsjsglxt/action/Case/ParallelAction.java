@@ -35,7 +35,7 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 	private ParallelInformationDTO parallelInformationDTO;
 
 	/*
-	 * (non-Javadoc)±£´æ
+	 * (non-Javadoc)ä¿å­˜
 	 * 
 	 * @see
 	 * org.apache.struts2.interceptor.ServletResponseAware#setServletResponse(
@@ -56,7 +56,7 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 	}
 
 	/*
-	 * (non-Javadoc)´®²¢ÁĞ±íĞÅÏ¢
+	 * (non-Javadoc)ï¿½ï¿½ï¿½ï¿½ï¿½Ğ±ï¿½ï¿½ï¿½Ï¢
 	 * 
 	 * @see
 	 * org.apache.struts2.interceptor.ServletResponseAware#setServletResponse(
@@ -64,7 +64,7 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 	 */
 	public void ListParallelInformationByPageAndSearch() throws IOException {
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// ¸ñÊ½»¯jsonÊı¾İ
+		gsonBuilder.setPrettyPrinting();// ï¿½ï¿½Ê½ï¿½ï¿½jsonï¿½ï¿½ï¿½ï¿½
 		Gson gson = gsonBuilder.create();
 		page_list_parallelInformation = parallelService
 				.VO_Parallelformation_By_PageAndSearch(page_list_parallelInformation);
@@ -75,12 +75,12 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 	}
 
 	/*
-	 * (non-Javadoc)´®²¢°¸¼şÏêÏ¸ĞÅÏ¢
+	 * (non-Javadoc)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ï¢
 	 * @see org.apache.struts2.interceptor.ServletResponseAware#setServletResponse(javax.servlet.http.HttpServletResponse)
 	 */
 	public void ParallelInformationOne() throws IOException{
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// ¸ñÊ½»¯jsonÊı¾İ
+		gsonBuilder.setPrettyPrinting();// ï¿½ï¿½Ê½ï¿½ï¿½jsonï¿½ï¿½ï¿½ï¿½
 		Gson gson = gsonBuilder.create();
 		parallelInformationDTO = parallelService.ParallelInformationOne(parallel);
 		http_response.setContentType("text/html;charset=utf-8");
@@ -88,12 +88,12 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 		http_response.getWriter().write(gson.toJson(parallelInformationDTO));
 	}
 	/*
-	 * (non-Javadoc)´®²¢ºÅ
+	 * (non-Javadoc)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @see org.apache.struts2.interceptor.ServletResponseAware#setServletResponse(javax.servlet.http.HttpServletResponse)
 	 */
 	public void getParallelNum() throws IOException {
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// ¸ñÊ½»¯jsonÊı¾İ
+		gsonBuilder.setPrettyPrinting();// ï¿½ï¿½Ê½ï¿½ï¿½jsonï¿½ï¿½ï¿½ï¿½
 		Gson gson = gsonBuilder.create();
 		String ParallelNum = parallelService.getMaxParallelNum();
 		http_response.setContentType("text/html;charset=utf-8");

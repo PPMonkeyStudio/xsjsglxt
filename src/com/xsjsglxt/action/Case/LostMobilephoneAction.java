@@ -34,7 +34,7 @@ public class LostMobilephoneAction extends ActionSupport implements ServletReque
 	private page_list_CasematerialVO page_list_Casematerial;
 	
 	/*
-	 * 保存损失手机
+	 *淇濆瓨鎹熷け鎵嬫満
 	 */
 	public void saveLostMobilephone() throws IOException{
 		try {
@@ -50,11 +50,11 @@ public class LostMobilephoneAction extends ActionSupport implements ServletReque
 		}
 	}
 	/*
-	 * 损失手机列表
+	 *鎹熷け鎵嬫満鍒楄〃
 	 */
 	public void  ListLostMobilephoneInformationByPageAndSearch() throws IOException{
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// 格式化json数据
+		gsonBuilder.setPrettyPrinting();// 鏍煎紡鍖杍son鏁版嵁
 		Gson gson = gsonBuilder.create();
 		page_list_Casematerial = lostMobilephoneService
 					.VO_LostMobilephoneformation_By_PageAndSearch(page_list_Casematerial);
@@ -64,11 +64,11 @@ public class LostMobilephoneAction extends ActionSupport implements ServletReque
 				http_response.getWriter().write(gson.toJson(page_list_Casematerial));
 	}
 /*
- * 详细信息
+ *  璇︾粏淇℃伅
  */
 	public void LostMobiephoneInformationOne() throws IOException {
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// 格式化json数据
+		gsonBuilder.setPrettyPrinting();// 鏍煎紡鍖杍son鏁版嵁
 		Gson gson = gsonBuilder.create();
 		lostMobilephoneInformationDTO = lostMobilephoneService.LostMobiephoneInformationOne(lost_mobilephone);
 		http_response.setContentType("text/html;charset=utf-8");
