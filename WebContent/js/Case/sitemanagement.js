@@ -56,7 +56,7 @@ function get_ListSneceInformationByPageAndSearch(data) {
 			var data_list = xhr.SenceInformationDTOList[len];
 			str += '<tr>';
 			str += '<td>' + (len + 1) + '</td>';
-			str += '<td><a href="/xsjsglxt/case/Case_page_CaseDetails?id=' + data_list.sence.xsjsglxt_snece_id + '">' + data_list.sence.snece_inquestId + '</a></td>';
+			str += '<td><a href="/xsjsglxt/case/Case_page_CaseDetails?id=' + data_list.case1.xsjsglxt_case_id + '">' + data_list.sence.snece_inquestId + '</a></td>';
 			str += '<td>' + data_list.case1.case_receivingAlarmDate + '</td>';
 			str += '<td>' + data_list.case1.case_address + '</td>';
 			str += '<td>' + data_list.case1.case_sonCategory + '</td>';
