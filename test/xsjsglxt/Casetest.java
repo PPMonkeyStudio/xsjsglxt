@@ -13,6 +13,7 @@ import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_parallel;
 import com.xsjsglxt.domain.VO.Case.page_list_CasematerialVO;
 import com.xsjsglxt.domain.VO.Case.page_list_senceInformationVO;
+import com.xsjsglxt.service.Case.ImageService;
 import com.xsjsglxt.service.Case.LostService;
 import com.xsjsglxt.service.Case.ParallelService;
 import com.xsjsglxt.service.Case.SenceService;
@@ -48,14 +49,14 @@ private SenceDao senceDao;
 	}
 	@Test
 	public void test1(){
-		System.out.println(senceService.getMaxSenceInquestId());
+//		System.out.println(senceService.getMaxSenceInquestId());
 	}
 	@Test
 	public void test2(){
-		page_list_senceInformationVO page_list_senceInformation=new page_list_senceInformationVO();
-		page_list_senceInformation.setCase_totalCategory("FHJVF");
-	int i=	senceDao.getCountSenceInformationByPage(page_list_senceInformation);
-	System.out.println(i);
+//		page_list_senceInformationVO page_list_senceInformation=new page_list_senceInformationVO();
+//		page_list_senceInformation.setCase_totalCategory("FHJVF");
+//	int i=	senceDao.getCountSenceInformationByPage(page_list_senceInformation);
+//	System.out.println(i);
 	}
 	@Test
 	public void test3(){
@@ -84,10 +85,10 @@ private SenceDao senceDao;
 	}
 	@Test
 	public void save(){
-	    String caeNumList="1,2,3,4,5,6,7";
-	    xsjsglxt_parallel parallel=new xsjsglxt_parallel();
-	    parallel.setParallel_accordingAddress("fggn");
-		parallelService.saveParallel(caeNumList, parallel);
+//	    String caeNumList="1,2,3,4,5,6,7";
+//	    xsjsglxt_parallel parallel=new xsjsglxt_parallel();
+//	    parallel.setParallel_accordingAddress("fggn");
+//		parallelService.saveParallel(caeNumList, parallel);
 		
 	}
 	@Resource
@@ -99,9 +100,21 @@ private SenceDao senceDao;
 	}
 	@Test
 	public void t(){
-		page_list_CasematerialVO page_list_Casematerial=new page_list_CasematerialVO();
-	page_list_Casematerial.setLost_name("2");
-		
-		lostService.VO_Lostformation_By_PageAndSearch(page_list_Casematerial);
+//		page_list_CasematerialVO page_list_Casematerial=new page_list_CasematerialVO();
+//	page_list_Casematerial.setLost_name("1");
+//		
+//		lostService.VO_Lostformation_By_PageAndSearch(page_list_Casematerial);
+	}
+	@Resource
+	private ImageService imageService;
+
+
+	public void setImageService(ImageService imageService) {
+		this.imageService = imageService;
+	}
+	@Test
+	public void s(){
+		imageService.getMaxImage_number();
+		imageService.getMaxPicture_identifier();
 	}
 }

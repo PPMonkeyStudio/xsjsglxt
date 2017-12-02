@@ -65,13 +65,16 @@ public page_list_CasematerialVO VO_Lostformation_By_PageAndSearch(page_list_Case
 	}
 	// ����ɸѡ������ȡlist����
 	lostList = lostDao.getListLostInformatioByPage(page_list_Casematerial);
+	System.out.println("lostList"+lostList);
 	for (xsjsglxt_lost lost : lostList) {
 		if (page_list_Casematerial.getLost_name() != null
 				&& page_list_Casematerial.getLost_name().trim().length() > 0) {
 			lost.setLost_name(lost.getLost_name().replaceAll(lost.getLost_name(),
 					"<span style='color: #ff5063;'>" + lost.getLost_name().trim() + "</span>"));
 		}
+		System.out.println("lost"+lost);
 		case1=lostDao.getCaseByxsjsglxt_lost_id(lost);
+		System.out.println("case"+case1);
 		snece=lostDao.getSenceByxsjsglxt_case_id(case1);
 		lostInformationDTO = new LostInformationDTO(case1,snece,lost);
 		LostInformationDTOList.add(lostInformationDTO);

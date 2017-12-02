@@ -55,7 +55,7 @@ public class ImageDaoImpl implements ImageDao {
 		String yearAndMonth =TeamUtil.yearAndMonth();
 		String li="";
 		
-		String hql = "select substring(image_number,-1,4) from xsjsglxt_image where substring(image_number,2,6)='"+yearAndMonth+"' order by substring(image_number,-1,4) desc limit 1";
+		String hql = "select right(image_number,4) from xsjsglxt_image ORDER BY right(image_number,4) desc limit 1";
 		System.out.println(hql);
 		Query query = getSession().createSQLQuery(hql);
 		li=(String) query.uniqueResult();
@@ -77,8 +77,8 @@ public class ImageDaoImpl implements ImageDao {
 		//201711
 		String yearAndMonth =TeamUtil.yearAndMonth();
 		String li="";
-		
-		String hql = "select substring(picture_identifier,-1,4) from xsjsglxt_picture where substring(picture_identifier,2,6)='"+yearAndMonth+"' order by substring(picture_identifier,-1,4) desc limit 1";
+	
+		String hql = "select right(picture_identifier,4) from xsjsglxt_picture ORDER BY right(picture_identifier,4) desc limit 1";
 		System.out.println(hql);
 		Query query = getSession().createSQLQuery(hql);
 		li=(String) query.uniqueResult();

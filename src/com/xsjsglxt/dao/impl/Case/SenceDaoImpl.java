@@ -125,7 +125,7 @@ public class SenceDaoImpl implements SenceDao {
 		}
 	}
 /*
- * (non-Javadoc)»ñµÃ¿±Ì½±àºÅ
+ * (non-Javadoc)ï¿½ï¿½Ã¿ï¿½Ì½ï¿½ï¿½ï¿½
  * @see com.xsjsglxt.dao.Case.SenceDao#getSenceInformationInquestId()
  */
 	@Override
@@ -163,7 +163,8 @@ public class SenceDaoImpl implements SenceDao {
 		String li="";
 		//List<xsjsglxt_snece> xsjsglxt_snece = new ArrayList<xsjsglxt_snece>();
 		//K3603020012017110001
-		String hql = "select substring(snece_inquestId,-1,4) from xsjsglxt_snece where substring(snece_inquestId,11,6)='"+yearAndMonth+"' order by substring(snece_inquestId,-1,4) desc limit 1";
+		String hql = "select right(snece_inquestId,4) from xsjsglxt_snece ORDER BY right(snece_inquestId,4) desc limit 1";
+		
 		System.out.println(hql);
 		Query query = getSession().createSQLQuery(hql);
 		li=(String) query.uniqueResult();
@@ -441,7 +442,7 @@ public class SenceDaoImpl implements SenceDao {
 		return resevidence;
 	}
 /*
- * (non-Javadoc)É¾³ý°¸¼þ
+ * (non-Javadoc)É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * @see com.xsjsglxt.dao.Case.SenceDao#getCaseByNum(java.lang.String)
  */
 	@Override
@@ -525,7 +526,7 @@ public class SenceDaoImpl implements SenceDao {
        return true;
 	}
 /*
- * (non-Javadoc)ÏêÏ¸ÏÖ³¡ÐÅÏ¢
+ * (non-Javadoc)ï¿½ï¿½Ï¸ï¿½Ö³ï¿½ï¿½ï¿½Ï¢
  * @see com.xsjsglxt.dao.Case.SenceDao#getSeceBySenceId(com.xsjsglxt.domain.DO.xsjsglxt_snece)
  */
 	@Override

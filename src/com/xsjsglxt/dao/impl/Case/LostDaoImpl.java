@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.Case.LostDao;
+import com.xsjsglxt.domain.DO.xsjsglxt_briefdetails;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
@@ -97,7 +98,7 @@ public class LostDaoImpl implements LostDao {
 		Query query = session.createQuery(hql);
 
 		xsjsglxt_case case1 = (xsjsglxt_case) query.uniqueResult();
-
+         System.out.println("case1"+case1);
 		return case1;
 	}
 
