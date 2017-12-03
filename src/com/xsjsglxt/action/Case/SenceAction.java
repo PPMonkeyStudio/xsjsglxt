@@ -122,7 +122,7 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 			// picture.setPicture_case(Case.getXsjsglxt_case_id());
 			// senceService.save(picture);
 			http_response.setContentType("text/html;charset=utf-8");
-			http_response.getWriter().write(gson.toJson(case1));
+			http_response.getWriter().write(gson.toJson(case1.getXsjsglxt_case_id()));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
