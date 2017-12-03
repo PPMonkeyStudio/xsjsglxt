@@ -62,7 +62,7 @@ try {
  */
 public void getImage_number() throws IOException {
 	GsonBuilder gsonBuilder = new GsonBuilder();
-	gsonBuilder.setPrettyPrinting();// ��ʽ��json����
+	gsonBuilder.setPrettyPrinting();// 格式化json数据
 	Gson gson = gsonBuilder.create();
 	String Image_number = imageService.getMaxImage_number();
 	http_response.setContentType("text/html;charset=utf-8");
@@ -74,7 +74,7 @@ public void getImage_number() throws IOException {
  */
 public void getPicture_identifier() throws IOException {
 	GsonBuilder gsonBuilder = new GsonBuilder();
-	gsonBuilder.setPrettyPrinting();// ��ʽ��json����
+	gsonBuilder.setPrettyPrinting();//格式化json数据
 	Gson gson = gsonBuilder.create();
 	String Picture_identifier = imageService.getMaxPicture_identifier();
 	http_response.setContentType("text/html;charset=utf-8");

@@ -61,41 +61,6 @@ public class SenceServiceImpl implements SenceService {
 		senceDao.save(briefdetails);
 	}
 
-	@Override
-	public void save(xsjsglxt_lost lost) {
-		// TODO Auto-generated method stub
-		lost.setXsjsglxt_lost_id(TeamUtil.getUuid());
-		lost.setLost_gmt_create(TeamUtil.getStringSecond());
-		lost.setLost_gmt_modified(lost.getLost_gmt_create());
-		senceDao.save(lost);
-	}
-
-	@Override
-	public void save(xsjsglxt_lost_mobilephone lost_mobilephone) {
-		// TODO Auto-generated method stub
-		lost_mobilephone.setXsjsglxt_lost_mobilephone_id(TeamUtil.getUuid());
-		lost_mobilephone.setLost_mobilephone_gmt_create(TeamUtil.getStringSecond());
-		lost_mobilephone.setLost_mobilephone_gmt_modified(lost_mobilephone.getLost_mobilephone_gmt_create());
-		senceDao.save(lost_mobilephone);
-	}
-
-	@Override
-	public void save(xsjsglxt_lost_computer lost_computer) {
-		// TODO Auto-generated method stub
-		lost_computer.setXsjsglxt_lost_computer_id(TeamUtil.getUuid());
-		lost_computer.setLost_computer_gmt_create(TeamUtil.getStringSecond());
-		lost_computer.setLost_computer_gmt_modified(lost_computer.getLost_computer_gmt_create());
-		senceDao.save(lost_computer);
-	}
-
-	@Override
-	public void save(xsjsglxt_picture picture) {
-		// TODO Auto-generated method stub
-		picture.setXsjsglxt_picture_id(TeamUtil.getUuid());
-		picture.setPicture_gmt_create(TeamUtil.getStringSecond());
-		picture.setPicture_gmt_modified(picture.getPicture_gmt_create());
-		senceDao.save(picture);
-	}
 
 	/*
 	 * (non-Javadoc)��ÿ�̽���
@@ -103,13 +68,7 @@ public class SenceServiceImpl implements SenceService {
 	 * @see
 	 * com.xsjsglxt.service.Case.SenceService#getSenceInformationInquestId()
 	 */
-	@Override
-	public String getSenceInformationInquestId() {
-		// TODO Auto-generated method stub
-		
-		String senceInformationId = senceDao.getSenceInformationInquestId();
-		return senceInformationId;
-	}
+	
 
 	@Override
 	public page_list_senceInformationVO VO_SneceInformation_By_PageAndSearch(

@@ -36,8 +36,8 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 	private	page_list_ResevidenceInformationVO page_list_ResevidenceInformation;
 	
 	/*
-	 * (non-Javadoc)保存物证
-	 * @see org.apache.struts2.interceptor.ServletResponseAware#setServletResponse(javax.servlet.http.HttpServletResponse)
+	 * 淇濆瓨鐗╄瘉
+	 * 
 	 */
 	public void saveResevidence() throws IOException{
 		try {
@@ -54,11 +54,11 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 	}
 	
 	/*
-	 * 列表信息
+	 *鍒楄〃淇℃伅
 	 */
 	public void  ListResevidenceInformationByPageAndSearch() throws IOException{
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// 格式化json数据
+		gsonBuilder.setPrettyPrinting();// 鏍煎紡鍖杍son鏁版嵁
 		Gson gson = gsonBuilder.create();
 		page_list_ResevidenceInformation = resevidenceService
 					.VO_Resevidenceformation_By_PageAndSearch(page_list_ResevidenceInformation);
@@ -68,11 +68,11 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 				http_response.getWriter().write(gson.toJson(page_list_ResevidenceInformation));
 	}
 	/*
-	 * 物证详细信息
+	 *璇︾粏淇℃伅
 	 */
 	public void ResevidenceInformationOne() throws IOException{
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// 格式化json数据
+		gsonBuilder.setPrettyPrinting();// 鏍煎紡鍖杍son鏁版嵁
 		Gson gson = gsonBuilder.create();
 		resevidenceInformationDTO = resevidenceService.ResevidenceInformationOne(resevidence);
 		http_response.setContentType("text/html;charset=utf-8");
@@ -80,7 +80,7 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 		http_response.getWriter().write(gson.toJson(resevidenceInformationDTO));
 	}
 	/*
-	 * 保存物证流转信息
+	 *淇濆瓨娴佽浆淇℃伅
 	 */
 	public void saveCirculation() throws IOException{
 		try {

@@ -28,8 +28,7 @@ public class LostMobilephoneDaoImpl implements LostMobilephoneDao {
 		return this.sessionFactory.getCurrentSession();
 	}
 /*
- * (non-Javadoc)保存损失手机
- * @see com.xsjsglxt.dao.Case.LostMobilephoneDao#saveLostMobilephone(com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone)
+ *淇濆瓨鎵嬫満淇℃伅
  */
 	@Override
 	public void saveLostMobilephone(xsjsglxt_lost_mobilephone lost_mobilephone) {
@@ -42,8 +41,7 @@ public class LostMobilephoneDaoImpl implements LostMobilephoneDao {
 		}
 	}
 /*
- * (non-Javadoc)损失手机信息列表
- * @see com.xsjsglxt.dao.Case.LostMobilephoneDao#getCountLostMobilephoneInformationByPage(com.xsjsglxt.domain.VO.Case.page_list_CasematerialVO)
+ * 閬楀け鎵嬫満鐨勮褰曟暟
  */
 	@Override
 	public int getCountLostMobilephoneInformationByPage(page_list_CasematerialVO page_list_Casematerial) {

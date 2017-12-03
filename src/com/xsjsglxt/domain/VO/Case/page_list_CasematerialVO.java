@@ -7,34 +7,34 @@ import com.xsjsglxt.domain.DTO.Case.LostInformationDTO;
 import com.xsjsglxt.domain.DTO.Case.LostMobilephoneInformationDTO;
 
 public class page_list_CasematerialVO {
-	        // µ±Ç°Ò³
+	        // é¦–é¡µ
 			private int pageIndex = 1;
-		    //×Ü¼ÇÂ¼Êı
+		    //æ€»è®°å½•æ•°
 			private int totalRecords = 0;
-		    //Ã¿Ò³ÏÔÊ¾¼ÇÂ¼Êı
+		    //æ¯é¡µçš„è®°å½•æ•°
 			private int pageSize = 20;
-			// ×ÜÒ³Êı
+			// æ€»é¡µæ•°
 			private int totalPages = 1;
-			// ÊÇ·ñÓĞÉÏÒ»Ò³
+			// ä¸Šä¸€é¡µ
 			private boolean HavePrePage = false;
-			// ÊÇ·ñÓĞÏÂÒ»Ò³
+			// ä¸‹ä¸€é¡µ
 			private boolean HaveNextPage = false;
 			
-			  private String lost_name; //ËğÊ§ÎïÆ·Ãû³Æ
+			  private String lost_name; //ï¿½ï¿½Ê§ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
 			  
-			  private String lost_mobilephone_phone;//ÊÖ»úºÅÂë
-			  private String lost_mobilephone_feature;//ÊÖ»úÌØÕ÷
-			  private String  lost_mobilephone_IMEI;//ÊÖ»ú´®ºÅ
+			  private String lost_mobilephone_phone;//ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½
+			  private String lost_mobilephone_feature;//ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½
+			  private String  lost_mobilephone_IMEI;//ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½
 			  
-			  private String lost_computer_brand;//µçÄÔÆ·ÅÆ
-			  private String lost_computer_internetAccount;//ÉÏÍøÕËºÅ
-			  private String lost_computer_MAC;//MACµØÖ·
+			  private String lost_computer_brand;//ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½
+			  private String lost_computer_internetAccount;//ï¿½ï¿½ï¿½ï¿½ï¿½Ëºï¿½
+			  private String lost_computer_MAC;//MACï¿½ï¿½Ö·
 			  
-			  private List<LostInformationDTO> LostInformationDTOList;//ËğÊ§ÎïÆ·±í
+			  private List<LostInformationDTO> LostInformationDTOList;//ï¿½ï¿½Ê§ï¿½ï¿½Æ·ï¿½ï¿½
 			  
-			  private List<LostMobilephoneInformationDTO> LostMobilephoneInformationDTOList;//ËğÊ§ÊÖ»ú±í
+			  private List<LostMobilephoneInformationDTO> LostMobilephoneInformationDTOList;//ï¿½ï¿½Ê§ï¿½Ö»ï¿½ï¿½ï¿½
 			
-			  private List<LostComputerInformationDTO> LostComputerInformationDTOList;//ËğÊ§µçÄÔ±í
+			  private List<LostComputerInformationDTO> LostComputerInformationDTOList;//ï¿½ï¿½Ê§ï¿½ï¿½ï¿½Ô±ï¿½
 			  
 			  public List<LostInformationDTO> getLostInformationDTOList() {
 				return LostInformationDTOList;

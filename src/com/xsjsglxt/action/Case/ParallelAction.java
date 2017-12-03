@@ -35,11 +35,8 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 	private ParallelInformationDTO parallelInformationDTO;
 
 	/*
-	 * (non-Javadoc)保存
+	 *保存串并案件信息
 	 * 
-	 * @see
-	 * org.apache.struts2.interceptor.ServletResponseAware#setServletResponse(
-	 * javax.servlet.http.HttpServletResponse)
 	 */
 	public void saveparallel() {
 
@@ -56,15 +53,12 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 	}
 
 	/*
-	 * (non-Javadoc)�����б���Ϣ
+	 * 列表信息
 	 * 
-	 * @see
-	 * org.apache.struts2.interceptor.ServletResponseAware#setServletResponse(
-	 * javax.servlet.http.HttpServletResponse)
 	 */
 	public void ListParallelInformationByPageAndSearch() throws IOException {
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// ��ʽ��json����
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
 		page_list_parallelInformation = parallelService
 				.VO_Parallelformation_By_PageAndSearch(page_list_parallelInformation);
@@ -75,12 +69,12 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 	}
 
 	/*
-	 * (non-Javadoc)����������ϸ��Ϣ
-	 * @see org.apache.struts2.interceptor.ServletResponseAware#setServletResponse(javax.servlet.http.HttpServletResponse)
+	 *串并案件的详细信息
+	 * 
 	 */
 	public void ParallelInformationOne() throws IOException{
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// ��ʽ��json����
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
 		parallelInformationDTO = parallelService.ParallelInformationOne(parallel);
 		http_response.setContentType("text/html;charset=utf-8");
@@ -88,12 +82,12 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 		http_response.getWriter().write(gson.toJson(parallelInformationDTO));
 	}
 	/*
-	 * (non-Javadoc)������
-	 * @see org.apache.struts2.interceptor.ServletResponseAware#setServletResponse(javax.servlet.http.HttpServletResponse)
+	 * 获得串并编号
+	 * 
 	 */
 	public void getParallelNum() throws IOException {
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// ��ʽ��json����
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
 		String ParallelNum = parallelService.getMaxParallelNum();
 		http_response.setContentType("text/html;charset=utf-8");

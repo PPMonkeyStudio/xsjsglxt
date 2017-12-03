@@ -44,16 +44,12 @@ public void savePicture(xsjsglxt_picture picture) {
 public String getMaxImage_number() {
 	// TODO Auto-generated method stub
 	int i = imageDao.getMaxImage_number();
-	System.out.println("aaaaaaaaa"+i);
-	//System.out.println("iiiiii"+i);
 	String num = "";
 	num = num.format("%04d", i+1);
-	System.out.println("mummunmumn"+num);
 	Date date = new Date();
 	DateFormat format = new SimpleDateFormat("yyyyMM");
 	String time = format.format(date);
 	String Image_number ="G" + time + num ;
-	//System.out.println("SenceInformationInquestIdSenceInformationInquestIdSenceInformationInquestId"+SenceInformationInquestId);
 	return Image_number;
 }
 
