@@ -54,7 +54,6 @@ public class ImageDaoImpl implements ImageDao {
 		//201711
 		String yearAndMonth =TeamUtil.yearAndMonth();
 		String li="";
-		
 		String hql = "select right(image_number,4) from xsjsglxt_image ORDER BY right(image_number,4) desc limit 1";
 		System.out.println(hql);
 		Query query = getSession().createSQLQuery(hql);

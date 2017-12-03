@@ -8,9 +8,7 @@ import com.xsjsglxt.domain.DO.xsjsglxt_snece;
 import com.xsjsglxt.domain.VO.Case.page_list_CasematerialVO;
 
 public interface LostDao {
-/*
- * ±£´æËğÊ§ÎïÆ·
- */
+
 public 	void save(xsjsglxt_lost lost);
 
 public int getCountLostInformationByPage(page_list_CasematerialVO page_list_Casematerial);

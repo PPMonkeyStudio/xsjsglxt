@@ -13,23 +13,22 @@ import com.xsjsglxt.domain.DO.xsjsglxt_snece;
 import com.xsjsglxt.domain.VO.Case.page_list_senceInformationVO;
 
 public interface SenceDao {
-
+/*
+ * 保存现场勘验表信息
+ */
 public 	void save(xsjsglxt_snece sence);
-
+/*
+ * 保存案件表信息
+ */
 public void save(xsjsglxt_case case1);
-
+/*
+ * 保存简要详情表信息
+ */
 public void save(xsjsglxt_briefdetails briefdetails);
 
-public void save(xsjsglxt_lost lost);
-
-public void save(xsjsglxt_lost_mobilephone lost_mobilephone);
-
-public void save(xsjsglxt_lost_computer lost_computer);
-
-public void save(xsjsglxt_picture picture);
-
-public String getSenceInformationInquestId();
-
+/*
+ * 案件的记录数
+ */
 public int getCountSenceInformationByPage(page_list_senceInformationVO page_list_senceInformation);
 
 public List<xsjsglxt_case> getListSenceInformatioByPage(page_list_senceInformationVO page_list_senceInformation);
@@ -47,9 +46,7 @@ public xsjsglxt_picture get_picture_Byxsjsglxt_case_id(xsjsglxt_case case1);
 public xsjsglxt_snece get_sence_Byxsjsglxt_case_id(xsjsglxt_case case1);
 
 public xsjsglxt_resevidence get_resevidence_Byxsjsglxt_case_id(xsjsglxt_case case1);
-/*
- * ɾ������
- */
+
 public com.xsjsglxt.domain.DO.xsjsglxt_case getCaseByNum(String case_id);
 
 public boolean deleteBriefdetailsById(String xsjsglxt_case_id);
@@ -67,9 +64,7 @@ public boolean deletePictureById(String xsjsglxt_case_id);
 public boolean deleteSenceById(String xsjsglxt_case_id);
 
 public int getMaxSenceInquestId();
-/*
- * ��ϸ�ֳ���Ϣ
- */
+
 public xsjsglxt_snece getSeceByCaseId(xsjsglxt_case case1);
 
 public xsjsglxt_case getCaseByCaseId(xsjsglxt_case case1);

@@ -55,7 +55,6 @@ public class SenceDaoImpl implements SenceDao {
 		// TODO Auto-generated method stub
 		try {
 			getSession().save(case1);
-			
 		} catch (Error e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -75,87 +74,8 @@ public class SenceDaoImpl implements SenceDao {
 				}
 	}
 
-	@Override
-	public void save(xsjsglxt_lost lost) {
-		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
-				try {
-					getSession().save(lost);
-					
-				} catch (Error e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-	}
+	
 
-	@Override
-	public void save(xsjsglxt_lost_mobilephone lost_mobilephone) {
-		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
-				try {
-					getSession().save(lost_mobilephone);
-					
-				} catch (Error e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-	}
-
-	@Override
-	public void save(xsjsglxt_lost_computer lost_computer) {
-		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
-				try {
-					getSession().save(lost_computer);
-					
-				} catch (Error e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-	}
-	@Override
-	public void save(xsjsglxt_picture picture) {
-		// TODO Auto-generated method stub
-		try {
-			getSession().save(picture);
-			
-		} catch (Error e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-/*
- * (non-Javadoc)��ÿ�̽���
- * @see com.xsjsglxt.dao.Case.SenceDao#getSenceInformationInquestId()
- */
-	@Override
-	public String getSenceInformationInquestId() {
-		// TODO Auto-generated method stub
-		//Session session = getSession();
-		//String hql = "SELECT COUNT(*) FROM xsjsglxt_snece WHERE DATE_FORMAT( snece_gmt_create,  '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )";
-		//org.hibernate.Query query = session.createQuery(hql);
-		//int count = ((Number) query.uniqueResult()).intValue();
-		int i=getMaxSenceInquestId();
-		//System.out.println("aaa"+i);
-		Date date = new Date();
-		DateFormat format = new SimpleDateFormat("yyyyMM");
-		String time = format.format(date);
-		String SenceInformationInquestId ="K360302001" + time + (i) ;
-		
-//		if (count < 9) {
-//			SenceInformationInquestId = "K360302001" + time + "000" + (count + 1);
-//		} else if (9 <= count && count < 99) {
-//			SenceInformationInquestId = "K360302001" + time + "00" + (count + 1);
-//		} else if (99 <= count && count < 999) {
-//			SenceInformationInquestId = "K360302001" + time + "0" + (count + 1);
-//		} else if (999 <= count && count < 9999) {
-//			SenceInformationInquestId = "K360302001" + time + (count + 1);
-//		}
-		//session.clear();
-		
-		return SenceInformationInquestId;
-		
-	}
 	public int getMaxSenceInquestId() {
 		int i;
 		//201711
@@ -442,15 +362,11 @@ public class SenceDaoImpl implements SenceDao {
 
 	@Override
 	public xsjsglxt_snece get_sence_Byxsjsglxt_case_id(xsjsglxt_case case1) {
-		// TODO Auto-generated method stub
 		Session session = getSession();
-
 		String hql = "from xsjsglxt_snece sence where sence.snece_case='" + case1.getXsjsglxt_case_id() + "'";
-
 		Query query = session.createQuery(hql);
-
 		xsjsglxt_snece sence = (xsjsglxt_snece) query.uniqueResult();
-
+		session.clear();
 		return sence;
 	}
 

@@ -27,6 +27,12 @@ public class Casetest {
 	public void setSenceService(SenceService senceService) {
 		this.senceService = senceService;
 	}
+	@Test
+	public void tes(){
+		page_list_senceInformationVO page_list_senceInformation=new page_list_senceInformationVO();
+		
+		senceService.VO_SneceInformation_By_PageAndSearch(page_list_senceInformation);
+	}
 @Resource
 private SenceDao senceDao;
 

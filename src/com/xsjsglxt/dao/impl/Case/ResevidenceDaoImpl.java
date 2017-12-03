@@ -146,10 +146,7 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 
 		return circulation;
 	}
-	/*
-	 * (non-Javadoc)物证详细信息
-	 * @see com.xsjsglxt.dao.Case.ResevidenceDao#getcirculationByresevidenceId(com.xsjsglxt.domain.DO.xsjsglxt_resevidence)
-	 */
+	
 	@Override
 	public xsjsglxt_resevidence getResevidenceById(xsjsglxt_resevidence resevidence) {
 		// TODO Auto-generated method stub
@@ -206,7 +203,7 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 		return circulation;
 	}
 /*
- *保存物证流转信息
+ *淇濆瓨鐗╄瘉娴佽浆淇℃伅
  * 
  */
 	@Override
@@ -219,10 +216,7 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 			e.printStackTrace();
 		}
 	}
-/*
- * (non-Javadoc)删除物证
- * @see com.xsjsglxt.dao.Case.ResevidenceDao#getByResevidenceNum(java.lang.String)
- */
+
 	@Override
 	public xsjsglxt_resevidence getByResevidenceNum(String resevidence_id) {
 		// TODO Auto-generated method stub

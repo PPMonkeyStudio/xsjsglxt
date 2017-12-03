@@ -2,15 +2,15 @@ package com.xsjsglxt.domain.DO;
 
 public class xsjsglxt_image {
 	
-private String xsjsglxt_image_id;//影像光盘ID
+private String xsjsglxt_image_id;//褰卞儚鍏夌洏ID
 
-private String image_number;//影像光盘编号
+private String image_number;//褰卞儚鍏夌洏缂栧彿
 
-private String image_remarks;//备注
+private String image_remarks;//澶囨敞
 
-private String image_gmt_create;//创建时间
+private String image_gmt_create;//鍒涘缓鏃堕棿
 
-private String image_gmt_modified;//修改时间
+private String image_gmt_modified;//淇敼鏃堕棿
 
 public xsjsglxt_image() {
 

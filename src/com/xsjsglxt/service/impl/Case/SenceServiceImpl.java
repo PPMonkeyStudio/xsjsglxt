@@ -61,41 +61,6 @@ public class SenceServiceImpl implements SenceService {
 		senceDao.save(briefdetails);
 	}
 
-	@Override
-	public void save(xsjsglxt_lost lost) {
-		// TODO Auto-generated method stub
-		lost.setXsjsglxt_lost_id(TeamUtil.getUuid());
-		lost.setLost_gmt_create(TeamUtil.getStringSecond());
-		lost.setLost_gmt_modified(lost.getLost_gmt_create());
-		senceDao.save(lost);
-	}
-
-	@Override
-	public void save(xsjsglxt_lost_mobilephone lost_mobilephone) {
-		// TODO Auto-generated method stub
-		lost_mobilephone.setXsjsglxt_lost_mobilephone_id(TeamUtil.getUuid());
-		lost_mobilephone.setLost_mobilephone_gmt_create(TeamUtil.getStringSecond());
-		lost_mobilephone.setLost_mobilephone_gmt_modified(lost_mobilephone.getLost_mobilephone_gmt_create());
-		senceDao.save(lost_mobilephone);
-	}
-
-	@Override
-	public void save(xsjsglxt_lost_computer lost_computer) {
-		// TODO Auto-generated method stub
-		lost_computer.setXsjsglxt_lost_computer_id(TeamUtil.getUuid());
-		lost_computer.setLost_computer_gmt_create(TeamUtil.getStringSecond());
-		lost_computer.setLost_computer_gmt_modified(lost_computer.getLost_computer_gmt_create());
-		senceDao.save(lost_computer);
-	}
-
-	@Override
-	public void save(xsjsglxt_picture picture) {
-		// TODO Auto-generated method stub
-		picture.setXsjsglxt_picture_id(TeamUtil.getUuid());
-		picture.setPicture_gmt_create(TeamUtil.getStringSecond());
-		picture.setPicture_gmt_modified(picture.getPicture_gmt_create());
-		senceDao.save(picture);
-	}
 
 	/*
 	 * (non-Javadoc)��ÿ�̽���
@@ -103,13 +68,7 @@ public class SenceServiceImpl implements SenceService {
 	 * @see
 	 * com.xsjsglxt.service.Case.SenceService#getSenceInformationInquestId()
 	 */
-	@Override
-	public String getSenceInformationInquestId() {
-		// TODO Auto-generated method stub
-		
-		String senceInformationId = senceDao.getSenceInformationInquestId();
-		return senceInformationId;
-	}
+	
 
 	@Override
 	public page_list_senceInformationVO VO_SneceInformation_By_PageAndSearch(
@@ -134,7 +93,7 @@ public class SenceServiceImpl implements SenceService {
 		xsjsglxt_resevidence resevidence;//
 		// ��ȡɸѡ�����еļ�¼
 		int i = senceDao.getCountSenceInformationByPage(page_list_senceInformation);
-		System.out.println(i);
+	//	System.out.println(i);
 		page_list_senceInformation.setTotalRecords(i);
 		page_list_senceInformation.setTotalPages(((i - 1) / page_list_senceInformation.getPageSize()) + 1);
 		if (page_list_senceInformation.getPageIndex() <= 1) {
@@ -150,7 +109,7 @@ public class SenceServiceImpl implements SenceService {
 
 		// ����ɸѡ������ȡlist����
 		listCase = senceDao.getListSenceInformatioByPage(page_list_senceInformation);
-		System.out.println(listCase);
+	//	System.out.println(listCase);
 		for (xsjsglxt_case case1 : listCase) {
 			// 1
 			if (page_list_senceInformation.getCase_totalCategory() != null
@@ -216,11 +175,10 @@ public class SenceServiceImpl implements SenceService {
 			lost = senceDao.get_lost_Byxsjsglxt_case_id(case1);// 4
 
 			picture = senceDao.get_picture_Byxsjsglxt_case_id(case1);// 5
-
 			sence = senceDao.get_sence_Byxsjsglxt_case_id(case1);// 6
-
+			sence.setSnece_inquestId(sence.getSnece_inquestId().substring(10));
+			System.out.println("getSnece_inquestId:"+sence.getSnece_inquestId());
 			resevidence = senceDao.get_resevidence_Byxsjsglxt_case_id(case1);
-
 			senceInformationDTO = new SenceInformationDTO(briefdetails, case1, lost_computer, lost_mobilephone, lost,
 					picture, sence, resevidence);
 

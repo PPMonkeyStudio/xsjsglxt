@@ -92,13 +92,16 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 
 	/*
 
-	 * ���������Ϣ
+	 * 保存信息
 
 	 */
 	public void saveSenceInformation() {
 
 		try {
-
+			GsonBuilder gsonBuilder = new GsonBuilder();
+			gsonBuilder.setPrettyPrinting();// 格式化json数据
+			Gson gson = gsonBuilder.create();
+			
 			senceService.save(case1);
 
 			sence.setSnece_case(case1.getXsjsglxt_case_id());
@@ -119,7 +122,7 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 			// picture.setPicture_case(Case.getXsjsglxt_case_id());
 			// senceService.save(picture);
 			http_response.setContentType("text/html;charset=utf-8");
-			http_response.getWriter().write("success");
+			http_response.getWriter().write(gson.toJson(case1.getXsjsglxt_case_id()));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -135,11 +138,11 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	}
 
 	/*
-	 * ��ÿ�̽���
+	 * 得到勘验编号
 	 */
 	public void getSenceInquestId() throws IOException {
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// ��ʽ��json����
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
 		String senceInformationInquestId = senceService.getMaxSenceInquestId();
 		http_response.setContentType("text/html;charset=utf-8");
@@ -147,15 +150,15 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	}
 
 	/*
-	 * �ֳ���Ϣ�б�
+	 * 列表信息
 	 */
 	public void ListSneceInformationByPageAndSearch() throws IOException {
 
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// ��ʽ��json����
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
 
-		// ��ȡ�����ֳ�¼����Ϣ�б�
+	
 		page_list_senceInformation = senceService.VO_SneceInformation_By_PageAndSearch(page_list_senceInformation);
 
 		http_response.setContentType("text/html;charset=utf-8");
@@ -169,7 +172,7 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	 */
 	public void SecneInformationOne() throws IOException {
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// ��ʽ��json����
+		gsonBuilder.setPrettyPrinting();//格式化json数据
 		Gson gson = gsonBuilder.create();
 		senceInformationDTO = senceService.SecneInformationOne(case1);
 		http_response.setContentType("text/html;charset=utf-8");

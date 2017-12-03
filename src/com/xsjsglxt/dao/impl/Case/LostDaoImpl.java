@@ -28,8 +28,7 @@ public class LostDaoImpl implements LostDao {
 		return this.sessionFactory.getCurrentSession();
 	}
 /*
- * (non-Javadoc)������ʧ��Ʒ
- * @see com.xsjsglxt.dao.Case.LostDao#save(com.xsjsglxt.domain.DO.xsjsglxt_lost)
+ * 保存遗失物品
  */
 	@Override
 	public void save(xsjsglxt_lost lost) {
@@ -43,8 +42,7 @@ public class LostDaoImpl implements LostDao {
 		}
 	}
 /*
- * (non-Javadoc)��ʧ��Ʒ�б���Ϣ
- * @see com.xsjsglxt.dao.Case.LostDao#getCountLostInformationByPage(com.xsjsglxt.domain.VO.Case.page_list_CasematerialVO)
+ * 遗失物品记录数
  */
 	@Override
 	public int getCountLostInformationByPage(page_list_CasematerialVO page_list_Casematerial) {

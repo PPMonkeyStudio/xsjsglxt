@@ -30,13 +30,9 @@ public xsjsglxt_case getcaseByresevidenceId(xsjsglxt_resevidence resevidence);
 public xsjsglxt_snece getsenceBycase1Id(xsjsglxt_case case1);
 
 public xsjsglxt_circulation getcirculationByresevidenceId(xsjsglxt_resevidence resevidence);
-/*
- * 保存物证流转信息
- */
+
 public void saveCirculation(xsjsglxt_circulation circulation);
-/*
- * 删除物证
- */
+
 public xsjsglxt_resevidence getByResevidenceNum(String resevidence_id);
 
 public boolean deleteResevidenceById(String xsjsglxt_resevidence_id);

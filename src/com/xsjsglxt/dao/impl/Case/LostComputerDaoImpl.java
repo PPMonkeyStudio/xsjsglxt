@@ -29,8 +29,8 @@ public class LostComputerDaoImpl implements LostComputerDao {
 		return this.sessionFactory.getCurrentSession();
 	}
 /*
- * (non-Javadoc)±£´æËğÊ§µçÄÔ
- * @see com.xsjsglxt.dao.Case.LostComputerDao#saveLostComputer(com.xsjsglxt.domain.DO.xsjsglxt_lost_computer)
+ * ä¿å­˜ç”µè„‘ä¿¡æ¯
+ * 
  */
 	@Override
 	public void saveLostComputer(xsjsglxt_lost_computer lost_computer) {
@@ -43,8 +43,7 @@ public class LostComputerDaoImpl implements LostComputerDao {
 		}
 	}
 /*
- * (non-Javadoc)µçÄÔËğÊ§±í
- * @see com.xsjsglxt.dao.Case.LostComputerDao#getCountLostComputerInformationByPage(com.xsjsglxt.domain.VO.Case.page_list_CasematerialVO)
+ * æŸå¤±ç”µè„‘çš„è®°å½•æ•°
  */
 	@Override
 	public int getCountLostComputerInformationByPage(page_list_CasematerialVO page_list_Casematerial) {
