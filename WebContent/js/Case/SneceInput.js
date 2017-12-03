@@ -95,6 +95,7 @@ function setSectionCase(chapter) {
 	if (chapter > 3 && chapter != 13) {
 		$('.other_case').hide();
 	} else if (chapter == 13) {
+		//清空other_case的select元素，改为input元素
 		$('.main_case').next().remove();
 		$('.main_case').after('<input style="margin-top: 6px; width:65%;" class="other_case form-control" type="text">');
 	} else {
