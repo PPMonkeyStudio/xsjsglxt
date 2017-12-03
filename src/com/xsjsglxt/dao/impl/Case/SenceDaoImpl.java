@@ -55,7 +55,6 @@ public class SenceDaoImpl implements SenceDao {
 		// TODO Auto-generated method stub
 		try {
 			getSession().save(case1);
-			
 		} catch (Error e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -442,15 +441,11 @@ public class SenceDaoImpl implements SenceDao {
 
 	@Override
 	public xsjsglxt_snece get_sence_Byxsjsglxt_case_id(xsjsglxt_case case1) {
-		// TODO Auto-generated method stub
 		Session session = getSession();
-
 		String hql = "from xsjsglxt_snece sence where sence.snece_case='" + case1.getXsjsglxt_case_id() + "'";
-
 		Query query = session.createQuery(hql);
-
 		xsjsglxt_snece sence = (xsjsglxt_snece) query.uniqueResult();
-
+		session.clear();
 		return sence;
 	}
 

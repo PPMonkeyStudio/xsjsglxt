@@ -134,7 +134,7 @@ public class SenceServiceImpl implements SenceService {
 		xsjsglxt_resevidence resevidence;//
 		// ��ȡɸѡ�����еļ�¼
 		int i = senceDao.getCountSenceInformationByPage(page_list_senceInformation);
-		System.out.println(i);
+	//	System.out.println(i);
 		page_list_senceInformation.setTotalRecords(i);
 		page_list_senceInformation.setTotalPages(((i - 1) / page_list_senceInformation.getPageSize()) + 1);
 		if (page_list_senceInformation.getPageIndex() <= 1) {
@@ -150,7 +150,7 @@ public class SenceServiceImpl implements SenceService {
 
 		// ����ɸѡ������ȡlist����
 		listCase = senceDao.getListSenceInformatioByPage(page_list_senceInformation);
-		System.out.println(listCase);
+	//	System.out.println(listCase);
 		for (xsjsglxt_case case1 : listCase) {
 			// 1
 			if (page_list_senceInformation.getCase_totalCategory() != null
@@ -216,11 +216,10 @@ public class SenceServiceImpl implements SenceService {
 			lost = senceDao.get_lost_Byxsjsglxt_case_id(case1);// 4
 
 			picture = senceDao.get_picture_Byxsjsglxt_case_id(case1);// 5
-
 			sence = senceDao.get_sence_Byxsjsglxt_case_id(case1);// 6
-
+			sence.setSnece_inquestId(sence.getSnece_inquestId().substring(10));
+			System.out.println("getSnece_inquestId:"+sence.getSnece_inquestId());
 			resevidence = senceDao.get_resevidence_Byxsjsglxt_case_id(case1);
-
 			senceInformationDTO = new SenceInformationDTO(briefdetails, case1, lost_computer, lost_mobilephone, lost,
 					picture, sence, resevidence);
 
