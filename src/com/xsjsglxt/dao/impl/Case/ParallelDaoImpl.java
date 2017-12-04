@@ -59,7 +59,7 @@ public class ParallelDaoImpl implements ParallelDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 		xsjsglxt_case CaseInformation = null;
-		String hql = "from xsjsglxt_case Case where Case.xsjsglxt_case_id='" + case_id + "'";
+		String hql = "from xsjsglxt_case case1 where case1.xsjsglxt_case_id='" + case_id + "'";
 		Query query = session.createQuery(hql);
 		CaseInformation = (xsjsglxt_case) query.uniqueResult();
        return CaseInformation;
