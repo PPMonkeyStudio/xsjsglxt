@@ -110,7 +110,7 @@ public class SenceDaoImpl implements SenceDao {
 		Session session = getSession();
 		Long i;
 		//String hql = "select count(*) from xsjsglxt_case,xsjsglxt_snece where xsjsglxt_case_id=snece_case";
-		String hql = "select count(*) from xsjsglxt_case ,xsjsglxt_snece where 1=1 and xsjsglxt_case_id=snece_case";
+		String hql = "select count(*) from xsjsglxt_case  where 1=1 ";
 		String startTime = "0000-00-00";
 		String stopTime = "9999-99-99";
 		  // 1
@@ -188,7 +188,7 @@ public class SenceDaoImpl implements SenceDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 		List<xsjsglxt_case> listSenceInformationByPage = new ArrayList<xsjsglxt_case>();
-		String hql = "from xsjsglxt_case,xsjsglxt_snece where 1=1 and xsjsglxt_case_id=snece_case";
+		String hql = "from xsjsglxt_case where 1=1 ";
 		String startTime = "0000-00-00";
 		String stopTime = "9999-99-99";
 		  // 1
