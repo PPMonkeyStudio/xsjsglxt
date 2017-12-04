@@ -29,7 +29,7 @@ function get_ListSneceInformationByPageAndSearch(data) {
 		for (var len = 0; len < xhr.SenceInformationDTOList.length; len++) {
 			var data_list = xhr.SenceInformationDTOList[len];
 			str += '<tr>';
-			str += '<td><input class="form-control" type="checkbox" vlaue="' + data_list.sence.xsjsglxt_snece_id + '"></td>';
+			str += '<td><input class="form-control" type="checkbox" id="' + data_list.case1.xsjsglxt_case_id + '"></td>';
 			str += '<td><a href="/xsjsglxt/case/Case_page_CaseDetails?id=' + data_list.sence.xsjsglxt_snece_id + '">' + data_list.sence.snece_inquestId + '</a></td>';
 			str += '<td>' + data_list.case1.case_receivingAlarmDate + '</td>';
 			str += '<td>' + data_list.case1.case_address + '</td>';
@@ -110,6 +110,11 @@ function toPage(object) {
 	get_ListSneceInformationByPageAndSearch(query_data);
 }
 
+//-------------------------------------------------破案情况
+function buildCase_chose(obj) {
+	$('input[name="parallel.parallel_breakecaseSituation"]').val($(obj).val());
+}
+
 $(function() {
 	$('.to_quert').click(function() {
 		var arr = $('#query_infomantion_inmodal').serializeArray();
@@ -130,6 +135,17 @@ $(function() {
 		$('.Query_table input').val("");
 		//成功提示
 		toastr.success('清除查询信息成功');
+	});
+	$('.finish_merger').click(function() {
+		var $areaId = $("input[type='checkbox']:checked").map(function() {
+			return $(this).attr('id');
+		}).get().join(",");
+		alert($('#merger_info').serialize() + '&CaeNumList=' + $areaId);
+		$.post('/xsjsglxt/case/Parallel_saveparallel', $('#merger_info').serialize() + '&caeNumList=' + $areaId, function(xhr_data) {
+			if (xhr_data == 'success') {
+				toastr.success('创建成功!');
+			} else toastr.error('创建失败!');
+		}, 'json');
 	});
 	get_ListSneceInformationByPageAndSearch(query_data);
 
