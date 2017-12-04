@@ -110,7 +110,7 @@ public class SenceDaoImpl implements SenceDao {
 		Session session = getSession();
 		Long i;
 		//String hql = "select count(*) from xsjsglxt_case,xsjsglxt_snece where xsjsglxt_case_id=snece_case";
-		String hql = "select count(*) from xsjsglxt_case  where 1=1 ";
+		String hql = "select count(*) from xsjsglxt_case,xsjsglxt_snece  where 1=1 and snece_case= xsjsglxt_case_id";
 		String startTime = "0000-00-00";
 		String stopTime = "9999-99-99";
 		  // 1
@@ -147,8 +147,8 @@ public class SenceDaoImpl implements SenceDao {
 		// 6
 		if (page_list_senceInformation.getSnece_inquestPerson() != null
 				&& page_list_senceInformation.getSnece_inquestPerson().trim().length() > 0) {
-			String person = "%"+page_list_senceInformation.getSnece_inquestPerson().trim()+"%";
-			hql = hql + " and snece_inquestPerson='"+person+"'";
+			String person = "%" + page_list_senceInformation.getSnece_inquestPerson().trim()+ "%";
+			hql = hql + " and snece_inquestPerson like'" + person+ "'";
 		}
 		// 7
 		if (page_list_senceInformation.getCase_makeTime() != null
@@ -188,7 +188,8 @@ public class SenceDaoImpl implements SenceDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 		List<xsjsglxt_case> listSenceInformationByPage = new ArrayList<xsjsglxt_case>();
-		String hql = "from xsjsglxt_case where 1=1 ";
+		String hql = "select case1  from xsjsglxt_case case1,xsjsglxt_snece sence where 1=1 and sence.snece_case=case1.xsjsglxt_case_id";
+		System.out.println("每条数据"+hql);
 		String startTime = "0000-00-00";
 		String stopTime = "9999-99-99";
 		  // 1
@@ -225,8 +226,8 @@ public class SenceDaoImpl implements SenceDao {
 		// 6
 		if (page_list_senceInformation.getSnece_inquestPerson() != null
 				&& page_list_senceInformation.getSnece_inquestPerson().trim().length() > 0) {
-			String person = "%"+page_list_senceInformation.getSnece_inquestPerson().trim()+"%";
-			hql = hql + " and snece_inquestPerson='"+person+"'";
+			String person ="%" + page_list_senceInformation.getSnece_inquestPerson().trim()+ "%";
+			hql = hql + " and snece_inquestPerson like '"+ person + "'";
 		}
 		// 7
 		if (page_list_senceInformation.getCase_makeTime() != null
@@ -260,7 +261,7 @@ public class SenceDaoImpl implements SenceDao {
 		query.setMaxResults(page_list_senceInformation.getPageSize());
 		listSenceInformationByPage = query.list();
 		System.out.println(hql);
-		System.out.println("query"+listSenceInformationByPage.toString());
+	
 		session.clear();
 		return listSenceInformationByPage;
 	}

@@ -5,40 +5,40 @@ import java.util.List;
 import com.xsjsglxt.domain.DTO.Case.SenceInformationDTO;
 
 public class page_list_senceInformationVO {
-	    // µ±Ç°Ò³
+	    // ï¿½ï¿½Ç°Ò³
 		private int pageIndex = 1;
-	    //×Ü¼ÇÂ¼Êý
+	    //ï¿½Ü¼ï¿½Â¼ï¿½ï¿½
 		private int totalRecords = 0;
-	    //Ã¿Ò³ÏÔÊ¾¼ÇÂ¼Êý
+	    //Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½Â¼ï¿½ï¿½
 		private int pageSize = 20;
-		// ×ÜÒ³Êý
+		// ï¿½ï¿½Ò³ï¿½ï¿½
 		private int totalPages = 1;
-		// ÊÇ·ñÓÐÉÏÒ»Ò³
+		// ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Ò³
 		private boolean HavePrePage = false;
-		// ÊÇ·ñÓÐÏÂÒ»Ò³
+		// ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Ò³
 		private boolean HaveNextPage = false;
-		// ¿ªÊ¼Ê±¼ä
+		// ï¿½ï¿½Ê¼Ê±ï¿½ï¿½
 		private String start_time = "0000-00-00";
 
-		// ½áÊøÊ±¼ä
+		// ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 		private String stop_time = "9999-99-99";
-		//°¸¼þ×ÜÀà±ð
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	    private String case_totalCategory; 
-	   //°¸¼þ×ÓÀà±ð
+	   //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	    private String  case_sonCategory;
-	    //°¸¼þ·ÖÀà
+	    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	    private String case_classify;
-	    //Ñ¡Ôñ×¡Ëù
+	    //Ñ¡ï¿½ï¿½×¡ï¿½ï¿½
 	    private String case_residence;
-	    //Ñ¡Ôñ¾ßÌå×¡Ëù
+	    //Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½×¡ï¿½ï¿½
 	    private String case_concreteResidence;
-	    //¿±ÑéÈËÔ±
+	    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±
 	    private String snece_inquestPerson;
-	    //×÷°¸Ê±¶Î
+	    //ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	    private String case_makeTime;
-	    //×÷°¸ÊÖ¶Î
+	    //ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½
 	    private String case_makeMeans;
-	    //×÷°¸¾ßÌåÊÖ¶Î
+	    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½
 	    private String case_concreteMakeMeans;
 	    
 	    private List<SenceInformationDTO> SenceInformationDTOList;
@@ -273,6 +273,9 @@ public class page_list_senceInformationVO {
 					+ ", case_concreteMakeMeans=" + case_concreteMakeMeans + ", SenceInformationDTOList="
 					+ SenceInformationDTOList + "]";
 		}
+
+
+
 		
 		
 	    
