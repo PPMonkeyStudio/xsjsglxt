@@ -85,13 +85,15 @@
 						</tr>
 						<tr>
 							<td>案发地点</td>
-							<td colspan="3"><input name="case1.case_address"
+							<td colspan="2"><input name="case1.case_address"
 								style="margin-top: 6px;" class="case_place form-control"
 								type="text" value="萍乡市安源区"></td>
 
-							<td rowspan="2">案件类别</td>
-							<td rowspan="2"><select name="case1.case_totalCategory"
-								name="case_class1" onchange="setSectionCase(this.selectedIndex)"
+							<td>案件类别</td>
+							<td colspan="2"><select
+								style="width:67%; float:left; margin-top: 6px;margin-left:-100px;"
+								name="case1.case_totalCategory" name="case_class1"
+								onchange="setSectionCase(this.selectedIndex)"
 								class="main_case form-control"><option
 										selected="selected" value="">请选择案件总类别</option>
 									<option value="盗窃案">盗窃案</option>
@@ -107,14 +109,15 @@
 									<option value="非正常死亡">非正常死亡</option>
 									<option value="故意损坏公私财物">故意损坏公私财物</option>
 									<option value="其它">其它</option></select> <select
-								name="case1.case_sonCategory" style="margin-top: 6px;"
+								name="case1.case_sonCategory"
+								style="margin-top: 6px; width:67%;"
 								class="other_case form-control">
 									<option selected value="">请选择案件子类别</option>
 							</select></td>
 						</tr>
 						<tr>
 							<td>案发名称</td>
-							<td colspan="3"><input name="case1.case_name"
+							<td colspan="5"><input name="case1.case_name"
 								style="margin-top: 6px;" class="case_name form-control"
 								type="text"></td>
 						</tr>

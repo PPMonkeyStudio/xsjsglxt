@@ -95,11 +95,16 @@ function setSectionCase(chapter) {
 	if (chapter > 3 && chapter != 13) {
 		$('.other_case').hide();
 	} else if (chapter == 13) {
+		//清空other_case的select元素，改为input元素
 		$('.main_case').next().remove();
-		$('.main_case').after('<input style="margin-top: 6px;" class="other_case form-control" type="text">');
+		$('.main_case').after('<input style="margin-top: 6px; width:65%;" class="other_case form-control" type="text">');
 	} else {
 		$('.other_case').empty().show();
 		var length = chapterCaseArr[chapter][2].length;
+		if ($('select[class="other_case form-control"]').length == 0) {
+			$('input[class="other_case form-control"]').remove();
+			$('.main_case').after('<select name="case1.case_sonCategory" style="margin-top: 6px; width:65%;"class="other_case form-control"></select>');
+		}
 		for (var i = 0; i < length; i++) {
 			$('.other_case').append("<option value='" + chapterCaseArr[chapter][2][i] + "'>" + chapterCaseArr[chapter][2][i] + "</option>");
 		}
