@@ -60,7 +60,7 @@ public class ParallelServiceImpl implements ParallelService {
 		List<xsjsglxt_parallel> listParallel = new ArrayList<xsjsglxt_parallel>();
 		
 		
-		// »ñÈ¡É¸Ñ¡ºóËùÓÐµÄ¼ÇÂ¼
+		// ï¿½ï¿½È¡É¸Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ¼ï¿½Â¼
 		int i = parallelDao.getCountParallelInformationByPage(page_list_parallelInformation);
 		System.out.println(i);
 		page_list_parallelInformation.setTotalRecords(i);
@@ -76,7 +76,7 @@ public class ParallelServiceImpl implements ParallelService {
 			page_list_parallelInformation.setHaveNextPage(true);
 		}
 		
-		// ¸ù¾ÝÉ¸Ñ¡Ìõ¼þ»ñÈ¡listÊý¾Ý
+		// ï¿½ï¿½ï¿½ï¿½É¸Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡listï¿½ï¿½ï¿½ï¿½
 		listParallel = parallelDao.getListParallelInformatioByPage(page_list_parallelInformation);
 		for (xsjsglxt_parallel parallel : listParallel) {
 	     // 1
@@ -95,7 +95,7 @@ public class ParallelServiceImpl implements ParallelService {
 
 	}
 	/*
-	 * (non-Javadoc)´®²¢°¸¼þÏêÏ¸ÐÅÏ¢
+	 * (non-Javadoc)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ï¢
 	 * @see com.xsjsglxt.service.Case.ParallelService#ParallelInformationOne(com.xsjsglxt.domain.DO.xsjsglxt_parallel)
 	 */
 	@Override
@@ -110,7 +110,7 @@ public class ParallelServiceImpl implements ParallelService {
 		return parallelInformationDTO;
 	}
 	/*
-	 * (non-Javadoc)´®²¢ºÅ
+	 * (non-Javadoc)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @see com.xsjsglxt.service.Case.ParallelService#getMaxParallelNum()
 	 */
 	@Override
