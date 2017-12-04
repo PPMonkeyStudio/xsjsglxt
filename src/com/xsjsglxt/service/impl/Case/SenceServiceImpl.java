@@ -109,7 +109,7 @@ public class SenceServiceImpl implements SenceService {
 
 		// ����ɸѡ������ȡlist����
 		listCase = senceDao.getListSenceInformatioByPage(page_list_senceInformation);
-	//	System.out.println(listCase);
+		System.out.println("listcase"+listCase);
 		for (xsjsglxt_case case1 : listCase) {
 			// 1
 			if (page_list_senceInformation.getCase_totalCategory() != null
@@ -142,10 +142,10 @@ public class SenceServiceImpl implements SenceService {
 						"<span style='color: #ff5063;'>" + case1.getCase_concreteResidence().trim() + "</span>"));
 			}
 			// 6
-			if (page_list_senceInformation.getSnece_inquestPerson() != null
-					&& page_list_senceInformation.getSnece_inquestPerson().trim().length() > 0) {
-
-			}
+//			if (page_list_senceInformation.getSnece_inquestPerson() != null
+//					&& page_list_senceInformation.getSnece_inquestPerson().trim().length() > 0) {
+//
+//			}
 			// 7
 			if (page_list_senceInformation.getCase_makeTime() != null
 					&& page_list_senceInformation.getCase_makeTime().trim().length() > 0) {
@@ -164,7 +164,7 @@ public class SenceServiceImpl implements SenceService {
 				case1.setCase_sonCategory(case1.getCase_concreteMakeMeans().replaceAll(case1.getCase_concreteMakeMeans(),
 						"<span style='color: #ff5063;'>" + case1.getCase_concreteMakeMeans().trim() + "</span>"));
 			}
-
+ 
 			briefdetails = senceDao.get_briefdetails_Byxsjsglxt_case_id(case1);// 1
 			
 

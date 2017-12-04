@@ -30,7 +30,7 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 
 	private page_list_parallelInformationVO page_list_parallelInformation;
 
-	private String CaeNumList;
+	private String caeNumList;
 	
 	private ParallelInformationDTO parallelInformationDTO;
 
@@ -42,7 +42,7 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 
 		try {
 
-			parallelService.saveParallel(CaeNumList, parallel);
+			parallelService.saveParallel(caeNumList, parallel);
 			http_response.setContentType("text/html;charset=utf-8");
 			http_response.getWriter().write("success");
 		} catch (Exception e) {
@@ -158,12 +158,14 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 
 	
 
+	
+
 	public String getCaeNumList() {
-		return CaeNumList;
+		return caeNumList;
 	}
 
 	public void setCaeNumList(String caeNumList) {
-		CaeNumList = caeNumList;
+		this.caeNumList = caeNumList;
 	}
 
 	public ParallelInformationDTO getParallelInformationDTO() {
