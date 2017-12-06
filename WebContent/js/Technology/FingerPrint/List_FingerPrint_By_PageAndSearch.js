@@ -124,6 +124,7 @@ function List_FingerPrint_By_PageAndSearch(pageIndex) {
 				document.getElementById("span_pageIndex").innerHTML = fingerPrint_VO.pageIndex;
 				document.getElementById("span_totalPages").innerHTML = fingerPrint_VO.totalPages;
 				document.getElementById("span_totalRecords").innerHTML = fingerPrint_VO.totalRecords;
+				document.getElementById("checkbox_all_select").checked=false;
 			} else {
 				toastr.error(xhr.status);
 			}

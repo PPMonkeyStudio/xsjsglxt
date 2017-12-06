@@ -19,7 +19,7 @@ function List_Equipment_By_PageAndSearch(pageIndex) {
 				var new_td = null;
 				var table_Equipment = document.getElementById("table_Equipment");
 
-				/*
+				/* 
 				 * 移出除标题以外的所有行
 				 */
 
@@ -122,6 +122,7 @@ function List_Equipment_By_PageAndSearch(pageIndex) {
 				document.getElementById("span_pageIndex").innerHTML = equipment_VO.pageIndex;
 				document.getElementById("span_totalPages").innerHTML = equipment_VO.totalPages;
 				document.getElementById("span_totalRecords").innerHTML = equipment_VO.totalRecords;
+				document.getElementById("checkbox_all_select").checked=false; 
 			} else {
 				toastr.error(xhr.status);
 			}

@@ -13,6 +13,8 @@
 <!---------------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------------->
 <script type="text/javascript"
+	src="<%=basePath%>js/Technology/FingerPrint/FingerPrintGetBirth.js"></script>
+<script type="text/javascript"
 	src="<%=basePath%>js/Technology/FingerPrint/CreateFingerPrint.js"></script>
 	<script type="text/javascript"
 	src="<%=basePath%>js/Technology/FingerPrint/FingerPrintDetails.js"></script>
@@ -124,6 +126,7 @@
 <link rel="stylesheet" href="<%=basePath%>css/square/blue.css" />
 <script type="text/javascript" src="<%=basePath%>js/icheck.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/Input_Select.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/laydate/laydate.js"></script>
 <script type="text/javascript">
 List_FingerPrint_By_PageAndSearch(1);
 </script>

@@ -11,8 +11,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!---------------------------------------------------------------------------------------------------->
+<link rel="stylesheet" href="<%=basePath%>css/square/blue.css" />
+<script type="text/javascript"
+	src="<%=basePath%>js/Technology/DNA/DNAGetBirth.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/Technology/DNA/CreateDNA.js"></script>
+
 <script type="text/javascript"
 	src="<%=basePath%>js/Technology/DNA/DNADetails.js"></script>
 <script type="text/javascript"
@@ -39,7 +43,6 @@
 			<!--  -->
 			<div class="panel-body">
 				<div style="height: 34px;">
-
 					<div style="width: 500px; float: left;">
 						<button class="btn btn-default" onclick="CreateDNA()">
 							<i class="fa fa-plus-square"></i> 新增DNA记录
@@ -118,10 +121,11 @@
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 </body>
-<link rel="stylesheet" href="<%=basePath%>css/square/blue.css" />
+
 <script type="text/javascript" src="<%=basePath%>js/icheck.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/Input_Select.js"></script>
-
+<script type="text/javascript" src="<%=basePath%>js/laydate/laydate.js"></script>
+<script src="/laydate/laydate.js"></script>
 <script type="text/javascript">
 	List_DNA_By_PageAndSearch(1);
 </script>
