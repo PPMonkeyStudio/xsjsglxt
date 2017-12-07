@@ -78,7 +78,7 @@ public class DNADaoImpl implements DNADao {
 		Session session = getSession();
 		try {
 			session.save(dNA);
-			// session.clear();去掉，因为会切断数据库连接，切断前无法保证事务是否提交
+//			session.clear();//去掉，因为会切断数据库连接，切断前无法保证事务是否提交
 			return 1;
 		} catch (Exception e) {
 			return 2;
