@@ -43,11 +43,18 @@
 			<!--  -->
 			<div class="panel-body">
 				<div style="height: 34px;">
-					<div style="width: 500px; float: left;">
+					<div style="width: 150px;  float: left; margin:0 20px 0 0">
 						<button class="btn btn-default" onclick="CreateDNA()">
 							<i class="fa fa-plus-square"></i> 新增DNA记录
 						</button>
-
+					</div>
+					<div style="float: left;display:none;">
+						<input type="file" class="form-control" id="input_excel" style="float:left;"/>
+					</div>
+					<div style="width: 150px;  float: left;">
+						<button class="btn btn-default" onclick=""  style="float:left;">
+							<i class="fa fa-plus-square"></i> 导入Excel表
+						</button>
 					</div>
 					<!-- 检索 -->
 					<div class="input-group" style="width: 300px; float: right;">

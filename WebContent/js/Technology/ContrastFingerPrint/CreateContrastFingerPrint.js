@@ -41,7 +41,7 @@ function CreateContrastFingerPrint() {
 						+ '<th>是否抓获：</th><td><label style="margin:0 10px;">'
 						+ '<select class="form-control" id="select_suspecter_arrested"><option value="是">是</option><option value="否">否</option></select>'
 						+ '</label></td></tr>'
-						+ '<tr><th>身份证号码：</th><td><input type="text" id="input_suspecter_identity" class="form-control"  maxlength="18" onblur="ContrastFingerPrintGetBirth()"/></td>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>身份证号码：</th><td><input type="text" id="input_suspecter_identity" class="form-control"  maxlength="18" onblur="ContrastFingerPrintGetBirth()"/></td>'
 						+ '<th>出生日期：</th><td  colspan="3"><input type="text" id="input_suspecter_birthday" class="form-control" /></td></tr>'
 						+ '<tr><th><span style="color:red;">*&nbsp;</span>户籍地：</th><td><input type="text" id="input_suspecter_domicile" class="form-control" /></td>'
 						+ '<th><span style="color:red;">*&nbsp;</span>现住址：</th><td colspan="3"><input type="text" id="input_present_address" class="form-control" /></td></tr>'
@@ -107,7 +107,10 @@ function CreateContrastFingerPrint() {
 						// 身份证号码
 						var input_suspecter_identity = document
 								.getElementById("input_suspecter_identity").value;
-						if (input_suspecter_identity.value != "") {
+						if (input_suspecter_identity.value== "") {
+							toastr.error("身份证号不能为空！");
+							return false;
+						}else{
 							//判断身份证号并获取出生日期
 							var result=ContrastFingerPrintGetBirth();
 							if(result==false){
