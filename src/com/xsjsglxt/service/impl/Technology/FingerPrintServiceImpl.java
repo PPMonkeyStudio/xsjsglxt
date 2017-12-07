@@ -79,7 +79,7 @@ public FingerPrintVO list_xsjsglxt_fingerprint(FingerPrintVO fingerprintVO) {
 		fingerprint.setXsjsglxt_fingerprint_id(TeamUtil.getUuid());
 		fingerprint.setFingerprint_num(this.create_fingerprint_num());
 		fingerprint.setFingerprint_gmt_create(TeamUtil.getStringSecond());
-		fingerprint.setFingerprint_gmt_modified(TeamUtil.getStringSecond());
+//		fingerprint.setFingerprint_gmt_modified(TeamUtil.getStringSecond());
 		int result = fingerPrintDao.saveFingerPrint(fingerprint);
 		if (result > 0) {
 			return 1;

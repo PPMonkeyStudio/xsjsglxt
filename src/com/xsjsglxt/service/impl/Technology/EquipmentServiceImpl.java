@@ -27,7 +27,7 @@ public class EquipmentServiceImpl implements EquipmentService {
 		String i = this.create_equipment_serial();
 		equipment.setEquipment_serial_number(i);
 		equipment.setEquipment_gmt_create(TeamUtil.getStringSecond());
-		equipment.setEquipment_gmt_modified(TeamUtil.getStringSecond());
+//		equipment.setEquipment_gmt_modified(TeamUtil.getStringSecond());
 		int result = equipmentDao.saveEquipment(equipment);
 		if (result > 0) {
 			return 1;

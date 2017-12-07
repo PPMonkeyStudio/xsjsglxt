@@ -27,7 +27,7 @@ public class ContrastFingerPrintServiceImpl implements ContrastFingerPrintServic
 	public int saveContrast(xsjsglxt_contrast_fingerprint contrastFingerPrint) {
 		contrastFingerPrint.setContrast_fingerprint_id(TeamUtil.getUuid());
 //		contrastFingerPrint.setContrast_fingerprint_time(TeamUtil.getStringSecond());
-		contrastFingerPrint.setContrast_fingerprint_gmt_modified(TeamUtil.getStringSecond());
+//		contrastFingerPrint.setContrast_fingerprint_gmt_modified(TeamUtil.getStringSecond());
 		contrastFingerPrint.setContrast_fingerprint_gmt_create(TeamUtil.getStringSecond());
 		int result = contrastFingerPrintDao.saveContrast(contrastFingerPrint);
 		if (result > 0) {

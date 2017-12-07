@@ -114,7 +114,7 @@ public class ContrastFingerPrintDaoImpl implements ContrastFingerPrintDao {
 			String search = "%" + contrastFingerPrintVO.getSearch().trim() + "%";
 			hql = hql + " and contrast_fingerprint_locale_fingerprint_number like '" + search + "' or contrast_fingerprint_press_fingerprint_number like '" + search + "'";
 		}
-		hql = hql + " order by contrast_fingerprint_gmt_create";
+		hql = hql + " order by contrast_fingerprint_gmt_create desc";
 		Query query = session.createQuery(hql);
 		query.setFirstResult((contrastFingerPrintVO.getPageIndex() - 1) * contrastFingerPrintVO.getPageSize());
 		query.setMaxResults(contrastFingerPrintVO.getPageSize());
