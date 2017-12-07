@@ -1,6 +1,7 @@
 package com.xsjsglxt.service.impl.Technology;
 
-import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import com.xsjsglxt.dao.Technology.DNADao;
@@ -16,17 +17,19 @@ public class DNAServiceImpl implements DNAService {
 
 	// 自动创建DNA编号
 	public String create_dna_num() {
-		String dna_num = "D360302001";
-		String year_month = String.valueOf(Calendar.getInstance().get(Calendar.YEAR))
-				+ String.valueOf(Calendar.getInstance().get(Calendar.MONTH));
-		dna_num += year_month;
-		dna_num += String.valueOf(dNADao.count_DNA_all() + 1);
-		return dna_num;
+		StringBuffer num = new StringBuffer("D360302001");
+		String time = new SimpleDateFormat("yyyyMM").format(new Date());
+		int lastFour = dNADao.getFeild();
+		String four = "";
+		four = four.format("%04d", lastFour+1);
+		num.append(time);
+		num.append(four);
+		return num.toString();	
 	}
-
+	
 	// 分页
 	public DNAVO list_xsjsglxt_dna(DNAVO dNAVO) {
-		int totalRecords = dNADao.count_DNA_all();
+		int totalRecords = dNADao.count_DNA_all(dNAVO);
 		DNAVO vo = new DNAVO();
 		vo.setPageIndex(dNAVO.getPageIndex());
 		vo.setPageSize(dNAVO.getPageSize());
@@ -88,11 +91,6 @@ public class DNAServiceImpl implements DNAService {
 		return 2;
 	}
 
-	@Override
-	public int count_DNA_all() {
-		int totalRecords = dNADao.count_DNA_all();
-		return totalRecords;
-	}
 
 	@Override
 	public int deleteDNA(String xsjsglxt_dna_id) {

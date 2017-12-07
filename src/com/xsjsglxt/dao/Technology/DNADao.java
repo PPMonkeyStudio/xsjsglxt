@@ -15,7 +15,9 @@ public interface DNADao {
 	
 	int deleteDNA(String dna_id);
 	
-	int count_DNA_all();
+	int count_DNA_all(DNAVO dNAVO);
+	
+	int getFeild();
 
 	int modifiedDNA(xsjsglxt_dna dNA);
 	

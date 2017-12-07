@@ -18,8 +18,6 @@ public interface DNAService {
 
 	int deleteListDNA(List<String> listDeleteDNAID);
 	
-	int count_DNA_all();
-
 	int modifiedDNA(xsjsglxt_dna dNA);
 
 	xsjsglxt_dna get_dna(String dna_id);

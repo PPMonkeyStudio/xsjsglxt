@@ -75,7 +75,7 @@ public class ContrastFingerPrintServiceImpl implements ContrastFingerPrintServic
 
 	@Override
 	public ContrastFingerPrintVO list_xsjsglxt_contrast(ContrastFingerPrintVO contrastFingerPrintVO) {
-		int totalRecords = contrastFingerPrintDao.count_contrast_all();
+		int totalRecords = contrastFingerPrintDao.count_contrast_all(contrastFingerPrintVO);
 		ContrastFingerPrintVO vo = new ContrastFingerPrintVO();
 		vo.setPageIndex(contrastFingerPrintVO.getPageIndex());
 		vo.setPageSize(contrastFingerPrintVO.getPageSize());

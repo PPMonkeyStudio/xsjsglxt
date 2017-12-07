@@ -7,7 +7,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.Technology.EquipmentDao;
-import com.xsjsglxt.domain.DO.xsjsglxt_dna;
 import com.xsjsglxt.domain.DO.xsjsglxt_equipment;
 import com.xsjsglxt.domain.VO.Technology.EquipmentVO;
 
@@ -35,15 +34,22 @@ public class EquipmentDaoImpl implements EquipmentDao {
 	}
 
 	@Override
-	public int count_equipment_all() {
+	public int count_equipment_all(EquipmentVO equipmentVO) {
 		Session session = getSession();
-		String hql = "select count(*) from xsjsglxt_equipment";
+		String hql = "select count(*) from xsjsglxt_equipment where 1=1";
+		if (equipmentVO.getSearch() != null && equipmentVO.getSearch().trim().length() > 0) {
+			String search = "%" + equipmentVO.getSearch().trim() + "%";
+			hql = hql + " and equipment_serial_number like '" + search + "' or equipment_name like '" + search + "'";
+		}
+		hql = hql + " order by equipment_gmt_create";
 		Query query = session.createQuery(hql);
 		Long i = (Long)query.uniqueResult();
 		int count = i.intValue();
 		session.clear();
 		return count;
 	}
+	
+	
 
 	@Override
 	public int deleteEquipment(String xsjsglxt_equipment_id) {
@@ -95,6 +101,20 @@ public class EquipmentDaoImpl implements EquipmentDao {
 		List<xsjsglxt_equipment> list = query.list();
 		session.clear();
 		return list;
+	}
+
+//	@Override
+	public int getMaxSerialNum() {
+		Session session = getSession();
+		String hql = "select max(equipment_serial_number) from xsjsglxt_equipment";
+		Query query = session.createQuery(hql);
+		String l = (String) query.uniqueResult();
+		if (l == null || l.length() == 0) {
+			return 0;
+		}
+		int count = Integer.valueOf(l);
+		session.clear();
+		return count;
 	}
 
 }
