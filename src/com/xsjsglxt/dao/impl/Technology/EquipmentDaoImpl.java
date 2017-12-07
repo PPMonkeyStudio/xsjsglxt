@@ -107,8 +107,8 @@ public class EquipmentDaoImpl implements EquipmentDao {
 //	@Override
 	public int getMaxSerialNum() {
 		Session session = getSession();
-		String hql = "select max(equipment_serial_number) from xsjsglxt_equipment";
-		Query query = session.createQuery(hql);
+		String hql = "select equipment_serial_number from xsjsglxt_equipment order by equipment_gmt_create desc limit 1";
+		Query query = session.createSQLQuery(hql);
 		String l = (String) query.uniqueResult();
 		if (l == null || l.length() == 0) {
 			return 0;

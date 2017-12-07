@@ -70,8 +70,8 @@ public class DNAServiceImpl implements DNAService {
 	public int saveDNA(xsjsglxt_dna dNA) {
 		dNA.setXsjsglxt_dna_id(TeamUtil.getUuid());
 		dNA.setDna_num(this.create_dna_num());
-//		dNA.setDna_gmt_create(TeamUtil.getStringSecond());
-		dNA.setDna_gmt_modified(TeamUtil.getStringSecond());
+		dNA.setDna_gmt_create(TeamUtil.getStringSecond());
+//		dNA.setDna_gmt_modified(TeamUtil.getStringSecond());
 		int result = dNADao.saveDNA(dNA);
 		if (result > 0) {
 			return 1;
