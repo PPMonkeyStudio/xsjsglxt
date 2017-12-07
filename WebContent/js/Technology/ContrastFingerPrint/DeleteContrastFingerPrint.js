@@ -1,6 +1,7 @@
 function DeleteContrastFingerPrint() {
 
 	$.confirm({
+
 		title : '警告！删除比中指纹',
 		content : '此操作将删除所有所选的比中指纹',
 		type : 'red',
@@ -13,7 +14,6 @@ function DeleteContrastFingerPrint() {
 					xhr = new XMLHttpRequest();
 					xhr.onreadystatechange = function() {
 						var message;
-
 						if (xhr.readyState == 4) {
 							if (xhr.status == 200) {
 								if (xhr.responseText == "1") {
