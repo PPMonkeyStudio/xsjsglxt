@@ -4,22 +4,20 @@ function EquipmentDetails(button) {
 				columnClass : 'col-md-6 col-md-offset-3',
 				title : '器材装备详情',
 				content : '<table class="table table-hover"><tbody>'
-						+ '<tr  style="display:none;"><th>equipmentId：</th><td><input type="text" id="input_equipment_id" class="form-control" disabled /></td></tr>'
-						+ '<tr><th>装备序号：</th><td><input type="text" id="input_serial_number" class="form-control" disabled /></td></tr>'
-						+ '<tr><th>装备名称：</th><td><input type="text" id="input_name" class="form-control" /></td></tr>'
-						+ '<tr><th>装备类型：</th><td><input type="text" id="input_type" class="form-control" /></td></tr>'
+						+ '<tr  style="display:none;"><th>equipmentId：</th><td colspan="2"><input type="text" id="input_equipment_id" class="form-control" disabled /></td></tr>'
+						+ '<tr><th>装备序号：</th><td colspan="2"><input type="text" id="input_serial_number" class="form-control" disabled /></td></tr>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>装备名称：</th><td colspan="2"><input type="text" id="input_name" class="form-control" /></td></tr>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>装备类型：</th><td colspan="2"><input type="text" id="input_type" class="form-control" /></td></tr>'
 						+ '<tr><th>装备特征：</th>'
-						+ '<td><label style="margin:0 10px 0 0;">'
-						+ '<select  id="select_feature"  onChange="EquipmentSelectChange()"><option value="不限">不限</option><option value="痕迹">痕迹</option ><option value="法医">法医</option ><option value="影像">影像</option><option value="技管">技管</option><option value="其他">其他</option></select>'
-						+ '</label>'
-						+ ' <label style="margin:0 10px;">'
-						+ '<input type="text" id="input_feature" class="form-control" />'
-						+ '</label></td></tr>'
-						+ '<tr><th>数量：</th><td><input type="text" id="input_number" class="form-control" /></td></tr>'
-						+ '<tr><th>金额：</th><td><input type="text" id="input_money" class="form-control" /></td></tr>'
-						+ '<tr><th>启用日期：</th><td><input type="text" id="input_enablement_time" class="form-control" /></td></tr>'
-						+ '<tr><th>使用情況：</th>'
-						+ '<td><label style="margin:0 10px;">'
+						+ '<td><label>'
+						+ '<select   id="select_feature"  class="form-control"  onChange="EquipmentSelectChange()" ><option value="不限">不限</option><option value="痕迹">痕迹</option ><option value="法医">法医</option ><option value="影像">影像</option><option value="技管">技管</option><option value="其他">其他</option></select>'
+						+ '</label></td> '
+						+ '<td><input type="text" id="input_feature" class="form-control" /></td></tr>'
+						+ '<tr><th>数量：</th><td colspan="2"><input type="text" id="input_number" class="form-control" /></td></tr>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>金额：</th><td colspan="2"><input type="text" id="input_money" class="form-control" /></td></tr>'
+						+ '<tr><th>启用日期：</th><td colspan="2"><input type="text" id="input_enablement_time" class="form-control" /></td></tr>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>使用情況：</th>'
+						+ '<td colspan="2"><label style="margin:0 10px;">'
 						+ '<input type="radio" name="input_use_note"   value="正常">'
 						+ '正常'
 						+ '</label> '
@@ -27,7 +25,7 @@ function EquipmentDetails(button) {
 						+ '<input type="radio" name="input_use_note" value="报废">'
 						+ '报废'
 						+ '</label></td></tr>'
-						+ '<tr><th>备注：</th><td><textarea class="form-control" id="textarea_remark" rows="5" style="resize:none;"></textarea></td></tr>'
+						+ '<tr><th>备注：</th><td colspan="2"><textarea class="form-control" id="textarea_remark" rows="5" style="resize:none;"></textarea></td></tr>'
 						+ '</tbody></table>',
 				buttons : {
 					修改 : function() {
@@ -48,7 +46,7 @@ function EquipmentDetails(button) {
 						var textarea_remark = document
 								.getElementById("textarea_remark");
 						/*
-						 * 装备序号、装备名称、装备类型、金额、使用情况不能为空
+						 * 装备名称、装备类型、金额、使用情况不能为空
 						 */
 						if (input_serial_number.value == "") {
 							toastr.error("装备序号不能为空！");
@@ -228,6 +226,10 @@ function EquipmentDetails(button) {
 							if (textarea_remark.value == "undefined") {
 								textarea_remark.value = "";
 							}
+							// 执行一个laydate实例
+							laydate.render({
+								elem : '#input_enablement_time' ,// 指定元素启用时间
+							});
 
 						}
 					}

@@ -122,6 +122,7 @@ function List_ContrastFingerPrint_By_PageAndSearch(pageIndex) {
 				document.getElementById("span_pageIndex").innerHTML = contrastFingerPrint_VO.pageIndex;
 				document.getElementById("span_totalPages").innerHTML = contrastFingerPrint_VO.totalPages;
 				document.getElementById("span_totalRecords").innerHTML = contrastFingerPrint_VO.totalRecords;
+				document.getElementById("checkbox_all_select").checked=false; 
 			} else {
 				toastr.error(xhr.status);
 			}

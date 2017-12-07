@@ -120,11 +120,13 @@ function List_DNA_By_PageAndSearch(pageIndex) {
 				i_pulse.style.display = "none";
 
 				/*
-				 * * 设置页数 /
+				 * * 设置页数 / 
 				 */
 				document.getElementById("span_pageIndex").innerHTML = DNA_VO.pageIndex;
 				document.getElementById("span_totalPages").innerHTML = DNA_VO.totalPages;
 				document.getElementById("span_totalRecords").innerHTML = DNA_VO.totalRecords;
+				document.getElementById("checkbox_all_select").checked=false;
+				
 			} else {
 				toastr.error(xhr.status);
 			}

@@ -2,10 +2,10 @@ function CreateDNA() {
 	var jc = $
 			.confirm({
 				columnClass : 'col-md-6 col-md-offset-3',
-				title : 'DNA信息录入',	
+				title : 'DNA信息录入',
 				content : '<table class="table table-hover"><tbody>'
-						+ '<tr><th>姓名：</th><td><input type="text" id="input_name" class="form-control" /></td></tr>'
-						+ '<tr><th>性别：</th>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>姓名：</th><td><input type="text" id="input_name" class="form-control" /></td></tr>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>性别：</th>'
 						+ '<td><label style="margin:0 10px;">'
 						+ '<input type="radio" name="input_sex"  checked="checked" value="男">'
 						+ '男'
@@ -14,14 +14,14 @@ function CreateDNA() {
 						+ '<input type="radio" name="input_sex" value="女">'
 						+ '女'
 						+ '</label></td></tr>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>身份证号：</th><td><input type="text" id="input_IDCard" class="form-control" maxlength="18" onblur="DNAGetBirth()" /></td></tr>'
 						+ '<tr><th>出生日期：</th><td><input type="text" id="input_birth" class="form-control" /></td></tr>'
-						+ '<tr><th>身份证号：</th><td><input type="text" id="input_IDCard" class="form-control" /></td></tr>'
 						+ '<tr><th>住址：</th><td><input type="text" id="input_address" class="form-control" /></td></tr>'
-						+ '<tr><th>违法事实：</th><td><input type="text" id="input_illegalFact" class="form-control" /></td></tr>'
-						+ '<tr><th>建档单位：</th><td><input type="text" id="input_inputtingUnit" class="form-control" /></td></tr>'
-						+ '<tr><th>建档人：</th><td><input type="text" id="input_inputtingPerson" class="form-control" /></td></tr>'
-						+ '<tr><th>建档时间：</th><td><input type="text" id="input_inputtingTime" class="form-control" /></td></tr>'
-						+ '<tr><th>交档时间：</th><td><input type="text" id="input_makingTime"  class="form-control" /></td></tr>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>违法事实：</th><td><input type="text" id="input_illegalFact" class="form-control" /></td></tr>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>建档单位：</th><td><input type="text" id="input_inputtingUnit" class="form-control" /></td></tr>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>建档人：</th><td><input type="text" id="input_inputtingPerson" class="form-control" /></td></tr>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>建档时间：</th><td><input type="text" id="input_inputtingTime" class="form-control" /></td></tr>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>交档时间：</th><td><input type="text" id="input_makingTime"  class="form-control" /></td></tr>'
 						+ '<tr><th>备注：</th><td><textarea class="form-control" id="textarea_remark" rows="5" style="resize:none;"></textarea></td></tr>'
 						+ '</tbody></table>',
 				buttons : {
@@ -47,17 +47,26 @@ function CreateDNA() {
 						var textarea_remark = document
 								.getElementById("textarea_remark");
 						/*
-						 * 姓名、性别、出生日期、违法事实、建档单位、建档人、建档时间、交档事件不为空 
+						 * 姓名、性别、身份证号、出生日期、违法事实、建档单位、建档人、建档时间、交档事件不为空
 						 */
 						if (input_name.value == "") {
 							toastr.error("姓名不能为空！");
 							return false;
 						}
-						
-						if (input_birth.value == "") {
+						if (input_IDCard.value == "") {
+							toastr.error("身份证号不能为空！");
+							return false;
+						}else{
+							//判断身份证号并获取出生日期
+							var result=DNAGetBirth();
+							if(result==false){
+								return false;
+							}
+						}
+						/*if (input_birth.value == "") {
 							toastr.error("出生日期不能为空！");
 							return false;
-						}
+						}*/
 						if (input_illegalFact.value == "") {
 							toastr.error("违法事实不能为空！");
 							return false;
@@ -131,6 +140,17 @@ function CreateDNA() {
 					取消 : function() {
 
 					}
+				},
+				onContentReady : function() {
+					// 执行一个laydate实例
+					laydate.render({
+						elem : '#input_inputtingTime' ,// 指定元素建档时间
+							value : new Date()
+					});
+					laydate.render({
+						elem : '#input_makingTime' ,// 指定元素交档时间
+							value : new Date()
+					});
 				}
 			});
 

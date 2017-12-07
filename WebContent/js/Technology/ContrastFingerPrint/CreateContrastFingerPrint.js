@@ -5,13 +5,13 @@ function CreateContrastFingerPrint() {
 				title : '比中指纹录入',
 				content : '<table class="table table-hover table-bordered"><tbody>'
 						+ '<tr><th>比中时间：</th><td><input type="text" id="input_contrast_fingerprint_time" class="form-control" /></td>'
-						+ '<th>案件级别：</th><td><label style="margin:0 10px;" >'
+						+ '<th><span style="color:red;">*&nbsp;</span>案件级别：</th><td><label style="margin:0 10px;" >'
 						+ '<select class="form-control" id="select_contrast_fingerprint_level"><option value="A级" checked="checked">A级</option><option value="B级">B级</option><option value="C级">C级</option></select>'
 						+ '</label></td>'
-						+ '<th>对比方式：</th><td><label style="margin:0 10px;">'
+						+ '<th><span style="color:red;">*&nbsp;</span>对比方式：</th><td><label style="margin:0 10px;">'
 						+ '<select class="form-control" id="select_contrast_fingerprint_way"><option value="正查">正查</option><option value="倒查">倒查</option><option value="人工">人工</option></select>'
 						+ '</label></td></tr>'
-						+ '<tr><th>案件类型：</th><td><input type="text" id="input_case_type" class="form-control" /></td>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>案件类型：</th><td><input type="text" id="input_case_type" class="form-control" /></td>'
 						+ '<th>案件属地：</th>'
 						+ '<td colspan="3"><label style="margin:0 10px;">'
 						+ '<input type="radio" name="input_case_territorial"  checked="checked" value="本地">'
@@ -25,9 +25,9 @@ function CreateContrastFingerPrint() {
 						+ '<input type="radio" name="input_case_territorial" value="公安部协查">'
 						+ '公安部协查'
 						+ '</label></td></tr>'
-						+ '<tr><th>现场指纹编号：</th><td><input type="text" id="input_locale_fingerprint_number" class="form-control" /></td>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>现场指纹编号：</th><td><input type="text" id="input_locale_fingerprint_number" class="form-control" /></td>'
 						+ '<th>按印指纹编号：</th><td colspan="3"><input type="text" id="input_press_fingerprint_number" class="form-control" /></td></tr>'
-						+ '<th>简要案情：</th><td colspan="5"><textarea class="form-control" id="textarea_case_note" rows="5" style="resize:none;"></textarea></td></tr>'
+						+ '<th><span style="color:red;">*&nbsp;</span>简要案情：</th><td colspan="5"><textarea class="form-control" id="textarea_case_note" rows="5" style="resize:none;"></textarea></td></tr>'
 						+ '<tr><th>嫌疑人姓名：</th><td><input type="text" id="input_suspecter_name" class="form-control" /></td>'
 						+ '<th>性别：</th>'
 						+ '<td><label style="margin:0 10px;">'
@@ -41,11 +41,11 @@ function CreateContrastFingerPrint() {
 						+ '<th>是否抓获：</th><td><label style="margin:0 10px;">'
 						+ '<select class="form-control" id="select_suspecter_arrested"><option value="是">是</option><option value="否">否</option></select>'
 						+ '</label></td></tr>'
-						+ '<tr><th>出生日期：</th><td><input type="text" id="input_suspecter_birthday" class="form-control" /></td>'
-						+ '<th>身份证号码：</th><td colspan="3"><input type="text" id="input_suspecter_identity" class="form-control" /></td></tr>'
-						+ '<tr><th>户籍地：</th><td><input type="text" id="input_suspecter_domicile" class="form-control" /></td>'
-						+ '<th>现住址：</th><td colspan="3"><input type="text" id="input_present_address" class="form-control" /></td></tr>'
-						+ '<tr><th>按印部门：</th><td><input type="text" id="input_press_department" class="form-control" /></td>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>身份证号码：</th><td><input type="text" id="input_suspecter_identity" class="form-control"  maxlength="18" onblur="ContrastFingerPrintGetBirth()"/></td>'
+						+ '<th>出生日期：</th><td  colspan="3"><input type="text" id="input_suspecter_birthday" class="form-control" /></td></tr>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>户籍地：</th><td><input type="text" id="input_suspecter_domicile" class="form-control" /></td>'
+						+ '<th><span style="color:red;">*&nbsp;</span>现住址：</th><td colspan="3"><input type="text" id="input_present_address" class="form-control" /></td></tr>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>按印部门：</th><td><input type="text" id="input_press_department" class="form-control" /></td>'
 						+ '<th>提取部门：</th><td colspan="3"><input type="text" id="input_extract_department" class="form-control" /></td></tr>'
 						+ '<tr><th>按印人：</th><td><input type="text" id="input_fingerprint_presser" class="form-control" /></td>'
 						+ '<th>提取人：</th><td colspan="3"><input type="text" id="input_fingerprint_extracter" class="form-control" /></td></tr>'
@@ -107,6 +107,16 @@ function CreateContrastFingerPrint() {
 						// 身份证号码
 						var input_suspecter_identity = document
 								.getElementById("input_suspecter_identity").value;
+						if (input_suspecter_identity.value== "") {
+							toastr.error("身份证号不能为空！");
+							return false;
+						}else{
+							//判断身份证号并获取出生日期
+							var result=ContrastFingerPrintGetBirth();
+							if(result==false){
+								return false;
+							}
+						}
 						// 是否抓获（下拉）
 						// 户籍地
 						var input_suspecter_domicile = document
@@ -350,7 +360,7 @@ function CreateContrastFingerPrint() {
 								.append(
 										"contrastFingerPrint.contrast_fingerprint_remark",
 										textarea_fingerprint_remark);
-						console.debug("formData:"+formData);
+						console.debug("formData:" + formData);
 						xhr
 								.open("POST",
 										"/xsjsglxt/ContrastFingerPrint/ContrastFingerPrintManagement_CreateContrast");
@@ -358,6 +368,22 @@ function CreateContrastFingerPrint() {
 					},
 					取消 : function() {
 					}
+				},
+				onContentReady : function() {
+					// 执行一个laydate实例
+					
+					laydate.render({
+						elem : '#input_contrast_fingerprint_time',// 指定元素比中时间
+						value : new Date()
+					});
+					laydate.render({
+						elem : '#input_press_time',// 指定元素按印时间
+						value : new Date()
+					});
+					laydate.render({
+						elem : '#input_arrested_time',// 指定元素抓获时间
+						value : new Date()
+					});
 				}
 			});
 

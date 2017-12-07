@@ -12,6 +12,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!---------------------------------------------------------------------------------------------------->
 <script type="text/javascript"
+	src="<%=basePath%>js/Technology/ContrastFingerPrint/ContrastFingerPrintGetBirth.js"></script>
+<script type="text/javascript"
 	src="<%=basePath%>js/Technology/ContrastFingerPrint/CreateContrastFingerPrint.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/Technology/ContrastFingerPrint/ContrastFingerPrintDetails.js"></script>
@@ -121,6 +123,7 @@
 <link rel="stylesheet" href="<%=basePath%>css/square/blue.css" />
 <script type="text/javascript" src="<%=basePath%>js/icheck.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/Input_Select.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/laydate/laydate.js"></script>
 
 <script type="text/javascript">
 List_ContrastFingerPrint_By_PageAndSearch(1);

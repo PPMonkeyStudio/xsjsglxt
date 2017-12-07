@@ -6,13 +6,13 @@ function ContrastFingerPrintDetails(button) {
 				content : '<table class="table table-hover table-bordered"><tbody>'
 						+ '<tr  style="display:none;"><th>contrastID：</th><td><input type="text" id="input_contrast_id" class="form-control" disabled /></td></tr>'
 						+ '<tr><th>比中时间：</th><td><input type="text" id="input_contrast_fingerprint_time" class="form-control" /></td>'
-						+ '<th>案件级别：</th><td><label style="margin:0 10px;" >'
+						+ '<th><span style="color:red;">*&nbsp;</span>案件级别：</th><td><label style="margin:0 10px;" >'
 						+ '<select class="form-control" id="select_contrast_fingerprint_level"><option value="A级" checked="checked">A级</option><option value="B级">B级</option><option value="C级">C级</option></select>'
 						+ '</label></td>'
-						+ '<th>对比方式：</th><td><label style="margin:0 10px;">'
+						+ '<th><span style="color:red;">*&nbsp;</span>对比方式：</th><td><label style="margin:0 10px;">'
 						+ '<select class="form-control" id="select_contrast_fingerprint_way"><option value="正查">正查</option><option value="倒查">倒查</option><option value="人工">人工</option></select>'
 						+ '</label></td></tr>'
-						+ '<tr><th>案件类型：</th><td><input type="text" id="input_case_type" class="form-control" /></td>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>案件类型：</th><td><input type="text" id="input_case_type" class="form-control" /></td>'
 						+ '<th>案件属地：</th>'
 						+ '<td colspan="3"><label style="margin:0 10px;">'
 						+ '<input type="radio" name="input_case_territorial"  value="本地">'
@@ -26,9 +26,9 @@ function ContrastFingerPrintDetails(button) {
 						+ '<input type="radio" name="input_case_territorial" value="公安部协查">'
 						+ '公安部协查'
 						+ '</label></td></tr>'
-						+ '<tr><th>现场指纹编号：</th><td><input type="text" id="input_locale_fingerprint_number" class="form-control" /></td>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>现场指纹编号：</th><td><input type="text" id="input_locale_fingerprint_number" class="form-control" /></td>'
 						+ '<th>按印指纹编号：</th><td colspan="3"><input type="text" id="input_press_fingerprint_number" class="form-control" /></td></tr>'
-						+ '<th>简要案情：</th><td colspan="5"><textarea class="form-control" id="textarea_case_note" rows="5" style="resize:none;"></textarea></td></tr>'
+						+ '<th><span style="color:red;">*&nbsp;</span>简要案情：</th><td colspan="5"><textarea class="form-control" id="textarea_case_note" rows="5" style="resize:none;"></textarea></td></tr>'
 						+ '<tr><th>嫌疑人姓名：</th><td><input type="text" id="input_suspecter_name" class="form-control" /></td>'
 						+ '<th>性别：</th>'
 						+ '<td><label style="margin:0 10px;">'
@@ -42,11 +42,11 @@ function ContrastFingerPrintDetails(button) {
 						+ '<th>是否抓获：</th><td><label style="margin:0 10px;">'
 						+ '<select class="form-control" id="select_suspecter_arrested"><option value="是">是</option><option value="否">否</option></select>'
 						+ '</label></td></tr>'
-						+ '<tr><th>出生日期：</th><td><input type="text" id="input_suspecter_birthday" class="form-control" /></td>'
-						+ '<th>身份证号码：</th><td colspan="3"><input type="text" id="input_suspecter_identity" class="form-control" /></td></tr>'
-						+ '<tr><th>户籍地：</th><td><input type="text" id="input_suspecter_domicile" class="form-control" /></td>'
-						+ '<th>现住址：</th><td colspan="3"><input type="text" id="input_present_address" class="form-control" /></td></tr>'
-						+ '<tr><th>按印部门：</th><td><input type="text" id="input_press_department" class="form-control" /></td>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>身份证号码：</th><td><input type="text" id="input_suspecter_identity" class="form-control" maxlength="18" onblur="ContrastFingerPrintGetBirth()"/></td>'
+						+ '<th>出生日期：</th><td  colspan="3"><input type="text" id="input_suspecter_birthday" class="form-control" /></td></tr>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>户籍地：</th><td><input type="text" id="input_suspecter_domicile" class="form-control" /></td>'
+						+ '<th><span style="color:red;">*&nbsp;</span>现住址：</th><td colspan="3"><input type="text" id="input_present_address" class="form-control" /></td></tr>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>按印部门：</th><td><input type="text" id="input_press_department" class="form-control" /></td>'
 						+ '<th>提取部门：</th><td colspan="3"><input type="text" id="input_extract_department" class="form-control" /></td></tr>'
 						+ '<tr><th>按印人：</th><td><input type="text" id="input_fingerprint_presser" class="form-control" /></td>'
 						+ '<th>提取人：</th><td colspan="3"><input type="text" id="input_fingerprint_extracter" class="form-control" /></td></tr>'
@@ -63,7 +63,7 @@ function ContrastFingerPrintDetails(button) {
 				buttons : {
 					修改 : function() {
 						var input_contrast_id = document
-						.getElementById("input_contrast_id");
+								.getElementById("input_contrast_id");
 						/*
 						 * 对比方式（下拉）、现场指纹编号、案件类型、案件级别（下拉）、简要案情不为空 户籍地、现住址不为空
 						 * 按印部门不为空
@@ -110,6 +110,16 @@ function ContrastFingerPrintDetails(button) {
 						// 身份证号码
 						var input_suspecter_identity = document
 								.getElementById("input_suspecter_identity").value;
+						if (input_suspecter_identity.value == "") {
+							toastr.error("身份证号不能为空！");
+							return false;
+						} else {
+							// 判断身份证号并获取出生日期
+							var result = ContrastFingerPrintGetBirth();
+							if (result == false) {
+								return false;
+							}
+						}
 						// 是否抓获（下拉）
 						// 户籍地
 						var input_suspecter_domicile = document
@@ -181,7 +191,7 @@ function ContrastFingerPrintDetails(button) {
 									 */
 									if (xhr.responseText == "1") {
 										// jc.close();
-										toastr.success("比中指纹录入成功！");
+										toastr.success("比中指纹修改成功！");
 										List_ContrastFingerPrint_By_PageAndSearch(1);
 									}
 								} else {
@@ -189,11 +199,11 @@ function ContrastFingerPrintDetails(button) {
 								}
 							}
 						}
-						
-						
-						formData.append("contrastFingerPrint.contrast_fingerprint_id",
+
+						formData.append(
+								"contrastFingerPrint.contrast_fingerprint_id",
 								input_contrast_id.value);
-						
+
 						// 比中时间
 						formData
 								.append(
@@ -371,33 +381,39 @@ function ContrastFingerPrintDetails(button) {
 				onContentReady : function() {
 					var button_id = button.id;
 					for (var num = 0; num < contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint.length; num++) {
-						
+
 						var contrastFingerPrint_id = contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_id;
 						if (contrastFingerPrint_id == button_id) {
-							
+
 							var input_contrast_id = document
-								.getElementById("input_contrast_id");
+									.getElementById("input_contrast_id");
 							input_contrast_id.value = contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_id;
-					
+
 							// 比中时间
 							var input_contrast_fingerprint_time = document
 									.getElementById("input_contrast_fingerprint_time");
 							input_contrast_fingerprint_time.value = contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_time;
-							console.debug("contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_time:"+contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_time);
+							console
+									.debug("contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_time:"
+											+ contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_time);
 							// 对比方式(下拉)
 							var select_contrast_fingerprint_way = document
 									.getElementById("select_contrast_fingerprint_way");
 							select_contrast_fingerprint_way.value = contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_way;
-							console.debug("contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_way:"+contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_way);
+							console
+									.debug("contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_way:"
+											+ contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_way);
 							// 按印指纹编号
 							var input_press_fingerprint_number = document
 									.getElementById("input_press_fingerprint_number");
 							input_press_fingerprint_number.value = contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_press_fingerprint_number;
-							console.debug("contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_press_fingerprint_number;:"+contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_press_fingerprint_number);
+							console
+									.debug("contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_press_fingerprint_number;:"
+											+ contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_press_fingerprint_number);
 							// 案件属地（单选框）
 							var input_case_territorial = document
 									.getElementsByName("input_case_territorial");
-							var input_case_territorial_value  = contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_case_territorial;
+							var input_case_territorial_value = contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_case_territorial;
 							for (var i = 0; i < input_case_territorial.length; i++) {
 								if (input_case_territorial_value == "本地") {
 									input_case_territorial[0].checked = "checked";
@@ -407,27 +423,37 @@ function ContrastFingerPrintDetails(button) {
 									input_case_territorial[2].checked = "checked";
 								}
 							}
-							console.debug("contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_case_territorial:"+contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_case_territorial);
+							console
+									.debug("contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_case_territorial:"
+											+ contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_case_territorial);
 							// 案件级别(下拉)
 							var select_contrast_fingerprint_level = document
 									.getElementById("select_contrast_fingerprint_level");
 							select_contrast_fingerprint_level.value = contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_level;
-							console.debug("contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_case_territorial:"+contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_level);
+							console
+									.debug("contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_case_territorial:"
+											+ contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_level);
 							// 案件类型
 							var input_case_type = document
 									.getElementById("input_case_type");
 							input_case_type.value = contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_case_type;
-							console.debug("contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_case_territorial:"+contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_case_type);
+							console
+									.debug("contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_case_territorial:"
+											+ contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_case_type);
 							// 现场指纹编号
 							var input_locale_fingerprint_number = document
 									.getElementById("input_locale_fingerprint_number");
 							input_locale_fingerprint_number.value = contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_locale_fingerprint_number;
-							console.debug("contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_case_territorial:"+contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_locale_fingerprint_number);
+							console
+									.debug("contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_case_territorial:"
+											+ contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_locale_fingerprint_number);
 							// 简要案情
 							var textarea_case_note = document
 									.getElementById("textarea_case_note");
 							textarea_case_note.value = contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_case_note;
-							console.debug("contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_case_territorial:"+ contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_case_note);
+							console
+									.debug("contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_case_territorial:"
+											+ contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_case_note);
 							// 嫌疑人姓名
 							var input_suspecter_name = document
 									.getElementById("input_suspecter_name");
@@ -435,13 +461,12 @@ function ContrastFingerPrintDetails(button) {
 							// 性别（单选框）
 							var input_suspecter_sex = document
 									.getElementsByName("input_suspecter_sex");
-							var input_suspecter_sex_value  = contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_suspecter_sex;
+							var input_suspecter_sex_value = contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_suspecter_sex;
 							for (var i = 0; i < input_suspecter_sex.length; i++) {
 								if (input_suspecter_sex_value == "男") {
 									input_suspecter_sex[0].checked = "checked";
-								}
-								 else {
-									 input_suspecter_sex[1].checked = "checked";
+								} else {
+									input_suspecter_sex[1].checked = "checked";
 								}
 							}
 							// 出生日期
@@ -454,7 +479,7 @@ function ContrastFingerPrintDetails(button) {
 							input_suspecter_identity.value = contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_suspecter_identity;
 							// 是否抓获（下拉）
 							var select_suspecter_arrested = document
-							.getElementById("select_suspecter_arrested");
+									.getElementById("select_suspecter_arrested");
 							select_suspecter_arrested.value = contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_suspecter_arrested;
 
 							// 户籍地
@@ -517,6 +542,16 @@ function ContrastFingerPrintDetails(button) {
 							var textarea_fingerprint_remark = document
 									.getElementById("textarea_fingerprint_remark");
 							textarea_fingerprint_remark.value = contrastFingerPrint_VO.list_xsjsglxt_contrast_fingerprint[num].contrast_fingerprint_remark;
+
+							laydate.render({
+								elem : '#input_contrast_fingerprint_time',// 指定元素比中时间
+							});
+							laydate.render({
+								elem : '#input_press_time',// 指定元素按印时间
+							});
+							laydate.render({
+								elem : '#input_arrested_time',// 指定元素抓获时间
+							});
 						}
 					}
 				}
