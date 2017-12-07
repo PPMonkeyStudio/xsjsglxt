@@ -36,7 +36,7 @@ public class DNADaoImpl implements DNADao {
 			String search = "%" + dNAVO.getSearch().trim() + "%";
 			hql = hql + " and dna_num like '" + search + "' or dna_name like '" + search + "'";
 		}
-		hql = hql + " order by dna_gmt_create";
+		hql = hql + " order by dna_gmt_create desc";
 		Query query = session.createQuery(hql);
 		query.setFirstResult((dNAVO.getPageIndex() - 1) * dNAVO.getPageSize());
 		query.setMaxResults(dNAVO.getPageSize());
@@ -51,7 +51,7 @@ public class DNADaoImpl implements DNADao {
 		Session session = getSession();
 		String hql = "select right(dna_num,4) FROM xsjsglxt_dna ORDER BY right(dna_num,4) desc limit 1";
 		/**
-		 * 这里要记得使用  createSQLQuery  可能hql并不支持这种用法
+		 * 这里要记得使用 createSQLQuery 可能hql并不支持这种用法
 		 */
 		Query query = session.createSQLQuery(hql);
 		String field = (String) query.uniqueResult();
@@ -106,13 +106,19 @@ public class DNADaoImpl implements DNADao {
 	@Override
 	public int modifiedDNA(xsjsglxt_dna dna) {
 		Session session = getSession();
-		String hql = "update xsjsglxt_dna set dna_name='" + dna.getDna_name() + "', dna_sex='" + dna.getDna_sex()
-				+ "' ,dna_birthday='" + dna.getDna_birthday() + "', dna_identity='" + dna.getDna_identity()
-				+ "',dna_address='" + dna.getDna_address() + "',dna_illegal_fact='" + dna.getDna_illegal_fact()
-				+ "',dna_record_organization='" + dna.getDna_record_organization() + "' ,dna_organizer='"
-				+ dna.getDna_organizer() + "' ,dna_record_time='" + dna.getDna_record_time() + "' ,dna_submit_time='"
-				+ dna.getDna_submit_time() + "',dna_remark='" + dna.getDna_remark() + "' ,dna_gmt_modified='"
-				+ dna.getDna_gmt_modified() + "' where xsjsglxt_dna_id='" + dna.getXsjsglxt_dna_id() + "'";
+		String hql = "update xsjsglxt_dna set dna_name='" + dna.getDna_name() 
+				+ "', dna_sex='" + dna.getDna_sex()
+				+ "' ,dna_birthday='" + dna.getDna_birthday() 
+				+ "', dna_identity='" + dna.getDna_identity()
+				+ "',dna_address='" + dna.getDna_address() 
+				+ "',dna_illegal_fact='" + dna.getDna_illegal_fact()
+				+ "',dna_record_organization='" + dna.getDna_record_organization() 
+				+ "' ,dna_organizer='" + dna.getDna_organizer() 
+				+ "' ,dna_record_time='" + dna.getDna_record_time() 
+				+ "' ,dna_submit_time='" + dna.getDna_submit_time() 
+				+ "',dna_remark='" + dna.getDna_remark() 
+				+ "' ,dna_gmt_modified='" + dna.getDna_gmt_modified() 
+				+ "' where xsjsglxt_dna_id='" + dna.getXsjsglxt_dna_id() + "'";
 		Query query = session.createQuery(hql);
 		int result = query.executeUpdate();
 		return result;

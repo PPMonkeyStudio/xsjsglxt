@@ -71,6 +71,7 @@ public class EquipmentDaoImpl implements EquipmentDao {
 						+"', equipment_enablement_time='"+equipment.getEquipment_enablement_time()
 						+"',equipment_use_note='"+equipment.getEquipment_use_note()
 						+"' ,equipment_remark='"+equipment.getEquipment_remark()
+						+ "' ,equipment_gmt_modified='" + equipment.getEquipment_gmt_modified() 
 						+ "' where xsjsglxt_equipment_id='" + equipment.getXsjsglxt_equipment_id() + "'";
 		Query query = session.createQuery(hql);
 		int result = query.executeUpdate();
@@ -94,7 +95,7 @@ public class EquipmentDaoImpl implements EquipmentDao {
 			String search = "%" + equipmentVO.getSearch().trim() + "%";
 			hql = hql + " and equipment_name like '" + search + "' or equipment_serial_number like '" +search+"'";
 		}
-		hql = hql + " order by equipment_gmt_create";
+		hql = hql + " order by equipment_gmt_create desc";
 		Query query = session.createQuery(hql);
 		query.setFirstResult((equipmentVO.getPageIndex() - 1) * equipmentVO.getPageSize());
 		query.setMaxResults(equipmentVO.getPageSize());
