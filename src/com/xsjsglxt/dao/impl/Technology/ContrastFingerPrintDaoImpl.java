@@ -91,11 +91,16 @@ public class ContrastFingerPrintDaoImpl implements ContrastFingerPrintDao {
 	}
 
 	@Override
-	public int count_contrast_all() {
+	public int count_contrast_all(ContrastFingerPrintVO contrastFingerPrintVO) {
 		Session session = getSession();
-		String hql = "select count(*) from xsjsglxt_contrast_fingerprint";
+		String hql = "select count(*) from xsjsglxt_contrast_fingerprint where 1=1";
+		if (contrastFingerPrintVO.getSearch() != null && contrastFingerPrintVO.getSearch().trim().length() > 0) {
+			String search = "%" + contrastFingerPrintVO.getSearch().trim() + "%";
+			hql = hql + " and 	contrast_fingerprint_locale_fingerprint_number like '" + search + "' or contrast_fingerprint_press_fingerprint_number like '" + search + "'";
+		}
+		hql = hql + " order by contrast_fingerprint_gmt_create";
 		Query query = session.createQuery(hql);
-		Long i = (Long)query.uniqueResult();
+		Long i = (Long) query.uniqueResult();
 		int count = i.intValue();
 		session.clear();
 		return count;

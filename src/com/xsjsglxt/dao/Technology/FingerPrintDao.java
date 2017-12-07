@@ -9,8 +9,6 @@ public interface FingerPrintDao {
 
 	int saveFingerPrint(xsjsglxt_fingerprint fingerprint);
 
-	int count_fingerprint_all();
-
 	int deleteFingerPrint(String xsjsglxt_fingerprint_id);
 
 	xsjsglxt_fingerprint get_fingerprint(String xsjsglxt_fingerprint_id);
@@ -18,5 +16,9 @@ public interface FingerPrintDao {
 	int modifiedFingerPrint(xsjsglxt_fingerprint fingerprint);
 
 	List<xsjsglxt_fingerprint> list_xsjsglxt_finger(FingerPrintVO fingerprintVO);
+
+	int count_fingerprint_all(FingerPrintVO fingerprintVO);
+
+	int getFeild();
 
 }

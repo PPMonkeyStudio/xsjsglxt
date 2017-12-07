@@ -12,7 +12,7 @@ import com.xsjsglxt.domain.DO.xsjsglxt_fingerprint;
 import com.xsjsglxt.domain.VO.Technology.FingerPrintVO;
 
 public class FingerPrintDaoImpl implements FingerPrintDao {
-	
+
 	private SessionFactory sessionFactory;
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
@@ -32,15 +32,37 @@ public class FingerPrintDaoImpl implements FingerPrintDao {
 		} catch (Exception e) {
 			return 2;
 		}
-		}
-
-	//获取总记录数量
+	}
+	
 	@Override
-	public int count_fingerprint_all() {
+	public int getFeild() {
 		Session session = getSession();
-		String hql = "select count(*) from xsjsglxt_fingerprint";
+		String hql = "select right(fingerprint_num,4) FROM xsjsglxt_fingerprint ORDER BY right(fingerprint_num,4) desc limit 1";
+		/**
+		 * 这里要记得使用  createSQLQuery  可能hql并不支持这种用法
+		 */
+		Query query = session.createSQLQuery(hql);
+		String field = (String) query.uniqueResult();
+		if (field == null || field.length() == 0) {
+			session.clear();
+			return 0;
+		}
+		session.clear();
+		return Integer.parseInt(field);
+	}
+
+	// 获取总记录数量
+	@Override
+	public int count_fingerprint_all(FingerPrintVO fingerprintVO) {
+		Session session = getSession();
+		String hql = "select count(*) from xsjsglxt_fingerprint where 1=1";
+		if (fingerprintVO.getSearch() != null && fingerprintVO.getSearch().trim().length() > 0) {
+			String search = "%" + fingerprintVO.getSearch().trim() + "%";
+			hql = hql + " and fingerprint_num like '" + search + "' or fingerprint_name like '" + search + "'";
+		}
+		hql = hql + " order by fingerprint_gmt_create";
 		Query query = session.createQuery(hql);
-		Long i = (Long)query.uniqueResult();
+		Long i = (Long) query.uniqueResult();
 		int count = i.intValue();
 		session.clear();
 		return count;
@@ -67,19 +89,19 @@ public class FingerPrintDaoImpl implements FingerPrintDao {
 	@Override
 	public int modifiedFingerPrint(xsjsglxt_fingerprint fingerprint) {
 		Session session = getSession();
-		String hql = "update xsjsglxt_fingerprint set fingerprint_name='"+fingerprint.getFingerprint_name()
-						+"', fingerprint_sex='"+fingerprint.getFingerprint_sex()
-						+"' ,fingerprint_birthday='" +fingerprint.getFingerprint_birthday()
-						+"', fingerprint_identity='"+fingerprint.getFingerprint_identity()
-						+"',fingerprint_address='"+fingerprint.getFingerprint_address()
-						+"', fingerprint_illegal_fact='"+fingerprint.getFingerprint_illegal_fact()
-						+"',fingerprint_record_organization='"+fingerprint.getFingerprint_record_organization()
-						+"' ,fingerprint_organizer='"+fingerprint.getFingerprint_organizer()
-						+"' ,fingerprint_record_time='"+fingerprint.getFingerprint_record_time()
-						+"' ,fingerprint_submit_time='"+fingerprint.getFingerprint_submit_time()
-						+"',fingerprint_remark='"+fingerprint.getFingerprint_remark()
-						+"' ,fingerprint_gmt_modified='"+fingerprint.getFingerprint_gmt_modified()
-						+ "' where xsjsglxt_fingerprint_id='" + fingerprint.getXsjsglxt_fingerprint_id() + "'";
+		String hql = "update xsjsglxt_fingerprint set fingerprint_name='" + fingerprint.getFingerprint_name()
+				+ "', fingerprint_sex='" + fingerprint.getFingerprint_sex() + "' ,fingerprint_birthday='"
+				+ fingerprint.getFingerprint_birthday() + "', fingerprint_identity='"
+				+ fingerprint.getFingerprint_identity() + "',fingerprint_address='"
+				+ fingerprint.getFingerprint_address() + "', fingerprint_illegal_fact='"
+				+ fingerprint.getFingerprint_illegal_fact() + "',fingerprint_record_organization='"
+				+ fingerprint.getFingerprint_record_organization() + "' ,fingerprint_organizer='"
+				+ fingerprint.getFingerprint_organizer() + "' ,fingerprint_record_time='"
+				+ fingerprint.getFingerprint_record_time() + "' ,fingerprint_submit_time='"
+				+ fingerprint.getFingerprint_submit_time() + "',fingerprint_remark='"
+				+ fingerprint.getFingerprint_remark() + "' ,fingerprint_gmt_modified='"
+				+ fingerprint.getFingerprint_gmt_modified() + "' where xsjsglxt_fingerprint_id='"
+				+ fingerprint.getXsjsglxt_fingerprint_id() + "'";
 		Query query = session.createQuery(hql);
 		int result = query.executeUpdate();
 		return result;

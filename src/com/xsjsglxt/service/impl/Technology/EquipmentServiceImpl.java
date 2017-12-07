@@ -1,12 +1,9 @@
 package com.xsjsglxt.service.impl.Technology;
 
-import java.util.Calendar;
 import java.util.List;
 
 import com.xsjsglxt.dao.Technology.EquipmentDao;
-import com.xsjsglxt.domain.DO.xsjsglxt_dna;
 import com.xsjsglxt.domain.DO.xsjsglxt_equipment;
-import com.xsjsglxt.domain.VO.Technology.DNAVO;
 import com.xsjsglxt.domain.VO.Technology.EquipmentVO;
 import com.xsjsglxt.service.Technology.EquipmentService;
 
@@ -27,7 +24,8 @@ public class EquipmentServiceImpl implements EquipmentService {
 	@Override
 	public int saveEquipment(xsjsglxt_equipment equipment) {
 		equipment.setXsjsglxt_equipment_id(TeamUtil.getUuid());
-		equipment.setEquipment_serial_number(this.create_dna_num());
+		String i = this.create_equipment_serial();
+		equipment.setEquipment_serial_number(i);
 		equipment.setEquipment_gmt_create(TeamUtil.getStringSecond());
 		equipment.setEquipment_gmt_modified(TeamUtil.getStringSecond());
 		int result = equipmentDao.saveEquipment(equipment);
@@ -37,9 +35,10 @@ public class EquipmentServiceImpl implements EquipmentService {
 		return 2;
 	}
 
-	private String create_dna_num() {
-		String dna_num = String.valueOf(equipmentDao.count_equipment_all() + 1);
-		return dna_num;
+	private String create_equipment_serial() {
+		int i = equipmentDao.getMaxSerialNum() + 1;
+		String serial = String.valueOf(i);
+		return serial;
 	}
 
 	@Override
@@ -81,7 +80,7 @@ public class EquipmentServiceImpl implements EquipmentService {
 
 	@Override
 	public EquipmentVO list_xsjsglxt_equipment(EquipmentVO equipmentVO) {
-		int totalRecords = equipmentDao.count_equipment_all();
+		int totalRecords = equipmentDao.count_equipment_all(equipmentVO);
 		EquipmentVO vo = new EquipmentVO();
 		vo.setPageIndex(equipmentVO.getPageIndex());
 		vo.setPageSize(equipmentVO.getPageSize());

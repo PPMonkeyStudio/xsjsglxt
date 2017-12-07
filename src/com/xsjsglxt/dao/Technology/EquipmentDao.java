@@ -8,8 +8,8 @@ import com.xsjsglxt.domain.VO.Technology.EquipmentVO;
 public interface EquipmentDao {
 
 	int saveEquipment(xsjsglxt_equipment equipment);
-
-	int count_equipment_all();
+	
+	int count_equipment_all(EquipmentVO equipmentVO);
 
 	int deleteEquipment(String xsjsglxt_equipment_id);
 
@@ -18,5 +18,7 @@ public interface EquipmentDao {
 	xsjsglxt_equipment get_equipment(String xsjsglxt_equipment_id);
 
 	List<xsjsglxt_equipment> list_xsjsglxt_equipment(EquipmentVO equipmentVO);
+
+	int getMaxSerialNum();
 
 }

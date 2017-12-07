@@ -1,5 +1,7 @@
 package util;
 
+import java.util.UUID;
+
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -24,9 +26,17 @@ public class EquipmentTest {
 	
 	@Resource
 	private EquipmentService equipmentService;
+	@Resource
+	private EquipmentDao dao;
 
 
 	@Test
+	public void ttt() {
+		xsjsglxt_equipment x = new xsjsglxt_equipment();
+		x.setXsjsglxt_equipment_id(UUID.randomUUID().toString());
+		int i = equipmentService.saveEquipment(x);
+		System.out.println(i);
+	}
 	/*public void get_dna() {
 		System.out.println(equipmentService.get_equipment("1416e2cd-f1df-4edd-a336-bf23ab9854cb"));
 	}*/
@@ -42,12 +52,12 @@ public class EquipmentTest {
 	/*public void delete() {
 		System.out.println(equipmentService.deleteEquipment("f4b32b0f-3d9b-420a-b279-fd716888b150"));
 	}*/
-	public void modified() {
+	/*public void modified() {
 		xsjsglxt_equipment equipment = new xsjsglxt_equipment();
 		equipment.setEquipment_name("sdfasdfdsffffffffffffffffffffffffffffff");
 		equipment.setXsjsglxt_equipment_id("1416e2cd-f1df-4edd-a336-bf23ab9854cb");
 		equipment.setEquipment_number(2);
 		System.out.println(equipmentService.modifiedEquipment(equipment));
-	}
+	}*/
 	
 }

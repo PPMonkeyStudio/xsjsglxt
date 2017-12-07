@@ -15,7 +15,7 @@ public interface ContrastFingerPrintDao {
 
 	xsjsglxt_contrast_fingerprint get_contrast(String contrast_fingerprint_id);
 
-	int count_contrast_all();
+	int count_contrast_all(ContrastFingerPrintVO contrastFingerPrintVO);
 
 	List<xsjsglxt_contrast_fingerprint> list_xsjsglxt_contrast(ContrastFingerPrintVO contrastFingerPrintVO);
 

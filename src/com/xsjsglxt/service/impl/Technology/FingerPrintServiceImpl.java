@@ -1,6 +1,8 @@
 package com.xsjsglxt.service.impl.Technology;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import com.xsjsglxt.dao.Technology.FingerPrintDao;
@@ -43,7 +45,7 @@ public class FingerPrintServiceImpl implements FingerPrintService {
 
 	@Override
 public FingerPrintVO list_xsjsglxt_fingerprint(FingerPrintVO fingerprintVO) {
-		int totalRecords = fingerPrintDao.count_fingerprint_all();
+		int totalRecords = fingerPrintDao.count_fingerprint_all(fingerprintVO);
 		FingerPrintVO vo = new FingerPrintVO();
 		vo.setPageIndex(fingerprintVO.getPageIndex());
 		vo.setPageSize(fingerprintVO.getPageSize());
@@ -89,12 +91,16 @@ public FingerPrintVO list_xsjsglxt_fingerprint(FingerPrintVO fingerprintVO) {
 	 * @author gxr
 	 * 生成指纹编号
 	 * */
-	private String create_fingerprint_num() {
-		String fingerprint_num = "Z360302001";
-		String year_month = String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + String.valueOf(Calendar.getInstance().get(Calendar.MONTH));
-		fingerprint_num += year_month;
-		fingerprint_num += String.valueOf(fingerPrintDao.count_fingerprint_all()+1);
-		return fingerprint_num;
+	private String create_fingerprint_num() {	
+		StringBuffer num = new StringBuffer("Z360302001");
+		String time = new SimpleDateFormat("yyyyMM").format(new Date());
+		int lastFour = fingerPrintDao.getFeild();
+		String four = "";
+		four = four.format("%04d", lastFour+1);
+		num.append(time);
+		num.append(four);
+		return num.toString();	
+		
 	}
 
 	@Override
