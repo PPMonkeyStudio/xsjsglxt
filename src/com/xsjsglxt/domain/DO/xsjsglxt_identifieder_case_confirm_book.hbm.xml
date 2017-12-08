@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2017-11-27 19:21:05 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2017-12-7 21:05:49 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="com.xsjsglxt.domain.DO.xsjsglxt_identifieder_case_confirm_book" table="XSJSGLXT_IDENTIFIEDER_CASE_CONFIRM_BOOK">
         <id name="xsjsglxt_identifieder_case_confirm_book_id" type="java.lang.String">
@@ -14,11 +14,38 @@
         <property name="identifieder_case_confirm_book_acceptance_num" type="java.lang.String">
             <column name="IDENTIFIEDER_CASE_CONFIRM_BOOK_ACCEPTANCE_NUM" />
         </property>
+        <property name="identifieder_case_confirm_book_ishave_num" type="int">
+            <column name="IDENTIFIEDER_CASE_CONFIRM_BOOK_ISHAVE_NUM" />
+        </property>
+        <property name="identifieder_case_confirm_appointment" type="java.lang.String">
+            <column name="IDENTIFIEDER_CASE_CONFIRM_APPOINTMENT" />
+        </property>
         <property name="identifieder_case_confirm_book_acceptance_human_name" type="java.lang.String">
             <column name="IDENTIFIEDER_CASE_CONFIRM_BOOK_ACCEPTANCE_HUMAN_NAME" />
         </property>
+        <property name="identifieder_case_confirm_book_acceptance_date" type="java.lang.String">
+            <column name="IDENTIFIEDER_CASE_CONFIRM_BOOK_ACCEPTANCE_DATE" />
+        </property>
+        <property name="identifieder_case_confirm_book_inspection_date" type="java.lang.String">
+            <column name="IDENTIFIEDER_CASE_CONFIRM_BOOK_INSPECTION_DATE" />
+        </property>
+        <property name="identifieder_case_confirm_book_example_receive_situation" type="java.lang.String">
+            <column name="IDENTIFIEDER_CASE_CONFIRM_BOOK_EXAMPLE_RECEIVE_SITUATION" />
+        </property>
+        <property name="identifieder_case_confirm_book_receiver" type="java.lang.String">
+            <column name="IDENTIFIEDER_CASE_CONFIRM_BOOK_RECEIVER" />
+        </property>
+        <property name="identifieder_case_confirm_book_entrustmentor" type="java.lang.String">
+            <column name="IDENTIFIEDER_CASE_CONFIRM_BOOK_ENTRUSTMENTOR" />
+        </property>
+        <property name="identifieder_case_confirm_book_receive_data" type="java.lang.String">
+            <column name="IDENTIFIEDER_CASE_CONFIRM_BOOK_RECEIVE_DATA" />
+        </property>
         <property name="identifieder_case_confirm_book_mark" type="java.lang.String">
             <column name="IDENTIFIEDER_CASE_CONFIRM_BOOK_MARK" />
+        </property>
+        <property name="identifieder_case_confirm_book_acceptance_major" type="java.lang.String">
+            <column name="IDENTIFIEDER_CASE_CONFIRM_BOOK_ACCEPTANCE_MAJOR" />
         </property>
         <property name="identifieder_case_confirm_book_gmt_create" type="java.lang.String">
             <column name="IDENTIFIEDER_CASE_CONFIRM_BOOK_GMT_CREATE" />

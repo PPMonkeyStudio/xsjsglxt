@@ -199,7 +199,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			return 3;
 		}
 		notAcceptanceEntrustmentInform.setXsjsglxt_not_acceptance_entrustment_inform_id(TeamUtil.getUuid());
-		notAcceptanceEntrustmentInform.setNot_acceptance_entrustment_inform_num("待定");
+		//notAcceptanceEntrustmentInform.setNot_acceptance_entrustment_inform_num("待定");
 		notAcceptanceEntrustmentInform.setNot_acceptance_entrustment_inform_gmt_create(TeamUtil.getStringSecond());
 		notAcceptanceEntrustmentInform.setNot_acceptance_entrustment_inform_gmt_modified(notAcceptanceEntrustmentInform.getNot_acceptance_entrustment_inform_gmt_create());
 		i = inspectionIdentificationDao.saveObject(notAcceptanceEntrustmentInform);
@@ -308,7 +308,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			return 3;
 		notAcceptanceEntrustmentInform.setNot_acceptance_entrustment_inform_belong_entrustment_book(
 				xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_belong_entrustment_book());
-		notAcceptanceEntrustmentInform.setNot_acceptance_entrustment_inform_num(xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_num());
+		//notAcceptanceEntrustmentInform.setNot_acceptance_entrustment_inform_num(xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_num());
 		notAcceptanceEntrustmentInform
 				.setNot_acceptance_entrustment_inform_gmt_create(xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_gmt_create());
 		notAcceptanceEntrustmentInform.setNot_acceptance_entrustment_inform_gmt_modified(TeamUtil.getStringSecond());

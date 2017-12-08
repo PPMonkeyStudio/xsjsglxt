@@ -45,9 +45,9 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 	public int getMaxCheckNum(String check_entrustment_book_year, String type) {
 		int i = 0;
 		String ji = "";
-		String hql = "select substring(check_entrustment_book_num,-1,4) from xsjsglxt_check_entrustment_book where substring(check_entrustment_book_num,1,4)='"
+		String hql = "select substring(check_entrustment_book_num,5) from xsjsglxt_check_entrustment_book where substring(check_entrustment_book_num,1,4)='"
 				+ check_entrustment_book_year + "' and check_entrustment_book_type='" + type
-				+ "' order by substring(check_entrustment_book_num,-1,4) desc limit 1";
+				+ "' order by substring(check_entrustment_book_num,5) desc limit 1";
 		Query query = getSession().createSQLQuery(hql);
 		ji = (String) query.uniqueResult();
 		if (ji == null || ji.trim().length() <= 0) {
@@ -90,7 +90,7 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		}
 		hql = hql + " and check_entrustment_book_inspect_time>='" + startTime
 				+ "' and check_entrustment_book_inspect_time<='" + stopTime
-				+ "' order by check_entrustment_book_inspect_time";
+				+ "' order by check_entrustment_book_inspect_time,check_entrustment_book_num desc";
 		Query query = getSession().createQuery(hql);
 		i = (Long) query.uniqueResult();
 		getSession().clear();
@@ -130,7 +130,7 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		}
 		hql = hql + " and check_entrustment_book_inspect_time>='" + startTime
 				+ "' and check_entrustment_book_inspect_time<='" + stopTime
-				+ "' order by check_entrustment_book_inspect_time";
+				+ "' order by check_entrustment_book_inspect_time,check_entrustment_book_num desc";
 		Query query = getSession().createQuery(hql);
 		query.setFirstResult((checkEntrustmentBookVO.getPageIndex() - 1) * checkEntrustmentBookVO.getPageSize());
 		query.setMaxResults(checkEntrustmentBookVO.getPageSize());

@@ -8,7 +8,8 @@ public class xsjsglxt_inspection_record {
 	private String inspection_sample_situation;
 	private String inspection_equipment;
 	private String inspection_method;
-	private String inspection_time;
+	private String inspection_start_time;
+	private String inspection_stop_time;
 	private String inspection_location;
 	private String inspection_people;
 	private String inspection_process;
@@ -21,10 +22,10 @@ public class xsjsglxt_inspection_record {
 	public String toString() {
 		return "xsjsglxt_inspection_record [xsjsglxt_inspection_record_id=" + xsjsglxt_inspection_record_id + ", inspection_belong_entrustment_book="
 				+ inspection_belong_entrustment_book + ", inspection_check_material_situation=" + inspection_check_material_situation + ", inspection_sample_situation="
-				+ inspection_sample_situation + ", inspection_equipment=" + inspection_equipment + ", inspection_method=" + inspection_method + ", inspection_time="
-				+ inspection_time + ", inspection_location=" + inspection_location + ", inspection_people=" + inspection_people + ", inspection_process=" + inspection_process
-				+ ", inspection_option=" + inspection_option + ", inspection_mark=" + inspection_mark + ", inspection_gmt_create=" + inspection_gmt_create
-				+ ", inspection_gmt_modified=" + inspection_gmt_modified + "]";
+				+ inspection_sample_situation + ", inspection_equipment=" + inspection_equipment + ", inspection_method=" + inspection_method + ", inspection_start_time="
+				+ inspection_start_time + ", inspection_stop_time=" + inspection_stop_time + ", inspection_location=" + inspection_location + ", inspection_people="
+				+ inspection_people + ", inspection_process=" + inspection_process + ", inspection_option=" + inspection_option + ", inspection_mark=" + inspection_mark
+				+ ", inspection_gmt_create=" + inspection_gmt_create + ", inspection_gmt_modified=" + inspection_gmt_modified + "]";
 	}
 
 	public String getXsjsglxt_inspection_record_id() {
@@ -51,8 +52,12 @@ public class xsjsglxt_inspection_record {
 		return inspection_method;
 	}
 
-	public String getInspection_time() {
-		return inspection_time;
+	public String getInspection_start_time() {
+		return inspection_start_time;
+	}
+
+	public String getInspection_stop_time() {
+		return inspection_stop_time;
 	}
 
 	public String getInspection_location() {
@@ -107,8 +112,12 @@ public class xsjsglxt_inspection_record {
 		this.inspection_method = inspection_method;
 	}
 
-	public void setInspection_time(String inspection_time) {
-		this.inspection_time = inspection_time;
+	public void setInspection_start_time(String inspection_start_time) {
+		this.inspection_start_time = inspection_start_time;
+	}
+
+	public void setInspection_stop_time(String inspection_stop_time) {
+		this.inspection_stop_time = inspection_stop_time;
 	}
 
 	public void setInspection_location(String inspection_location) {

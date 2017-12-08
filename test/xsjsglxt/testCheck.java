@@ -52,7 +52,7 @@ public class testCheck {
 	@Test
 	public void deleteTest() {
 		List<String> listtt = new ArrayList<>();
-		listtt.add("5562e23a-dc66-4bed-9522-6210fdfcc60a");
+		listtt.add("35615e16-e38a-4eda-9446-9a9b2f3d0e3d");
 		int i = inspectionIdentificationService.deleteListCheckEntrustmentBook(listtt);
 		System.out.println(i);
 	}
@@ -62,7 +62,7 @@ public class testCheck {
 	public void addConfirmBook() {
 		xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook = new xsjsglxt_identifieder_case_confirm_book();
 		identifiederCaseConfirmBook
-				.setIdentifieder_case_confirm_book_belong_entrustment_book("14a289b8-7856-40da-a787-f27277573422");
+				.setIdentifieder_case_confirm_book_belong_entrustment_book("35615e16-e38a-4eda-9446-9a9b2f3d0e3d");
 		System.out
 				.println(inspectionIdentificationService.saveIdentifiederCaseConfirmBook(identifiederCaseConfirmBook));
 
@@ -81,7 +81,7 @@ public class testCheck {
 	@Test
 	public void addInspectionRecord() {
 		xsjsglxt_inspection_record inspection_record = new xsjsglxt_inspection_record();
-		inspection_record.setInspection_belong_entrustment_book("b4b0f331-7d76-4ec7-b586-e19efb243ece");
+		inspection_record.setInspection_belong_entrustment_book("35615e16-e38a-4eda-9446-9a9b2f3d0e3d");
 		System.out.println(inspectionIdentificationService.saveInspectionRecord(inspection_record));
 	}
 
@@ -89,7 +89,7 @@ public class testCheck {
 	@Test
 	public void addAppraisalLetter() {
 		xsjsglxt_appraisal_letter xsjsglxt_appraisal_letter = new xsjsglxt_appraisal_letter();
-		xsjsglxt_appraisal_letter.setAppraisal_letter_belong_entrustment_book("b4b0f331-7d76-4ec7-b586-e19efb243ece");
+		xsjsglxt_appraisal_letter.setAppraisal_letter_belong_entrustment_book("35615e16-e38a-4eda-9446-9a9b2f3d0e3d");
 		System.out.println(inspectionIdentificationService.saveAppraisalLetter(xsjsglxt_appraisal_letter));
 	}
 
@@ -132,9 +132,7 @@ public class testCheck {
 		xsjsglxt_appraisal_letter.setXsjsglxt_appraisal_letter_id("7a09b392-78f0-4bcb-b64e-8531bad27ded");
 		System.out.println(inspectionIdentificationService.updateAppraisalLetter(xsjsglxt_appraisal_letter));
 	}
-	
-	
-	
+
 	// 测试导出委托书
 	@Test
 	public void testExport() {
@@ -144,16 +142,15 @@ public class testCheck {
 			e.printStackTrace();
 		}
 	}
-	//导出确认书
+
+	// 导出确认书
 	@Test
-	public void testEEE(){
+	public void testEEE() {
 		try {
 			inspectionIdentificationService.exportIdentifiederCaseConfirmBook("58a6031e-501b-4c7f-8272-1bf609ddaf5a");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
+
 }
