@@ -11,6 +11,8 @@ import org.hibernate.SessionFactory;
 import com.xsjsglxt.dao.InspectionIdentification.InspectionIdentificationDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter;
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
+import com.xsjsglxt.domain.DO.xsjsglxt_damage_inspection_record;
+import com.xsjsglxt.domain.DO.xsjsglxt_death_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_identifieder_case_confirm_book;
 import com.xsjsglxt.domain.DO.xsjsglxt_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform;
@@ -203,6 +205,36 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 	}
 
 	@Override
+	public int deleteDamageInspectionRecordById(String xsjsglxt_damage_inspection_record_id) {
+		int i = 1;
+		String hql = "delete from xsjsglxt_damage_inspection_record where xsjsglxt_damage_inspection_record_id='"
+				+ xsjsglxt_damage_inspection_record_id + "'";
+		try {
+			Query query = getSession().createQuery(hql);
+			query.executeUpdate();
+		} catch (HibernateException e) {
+			i = 2;
+			e.printStackTrace();
+		}
+		return i;
+	}
+
+	@Override
+	public int deleteDeathInspectionRecordById(String xsjsglxt_death_inspection_record_id) {
+		int i = 1;
+		String hql = "delete from xsjsglxt_death_inspection_record where xsjsglxt_death_inspection_record_id='"
+				+ xsjsglxt_death_inspection_record_id + "'";
+		try {
+			Query query = getSession().createQuery(hql);
+			query.executeUpdate();
+		} catch (HibernateException e) {
+			i = 2;
+			e.printStackTrace();
+		}
+		return i;
+	}
+
+	@Override
 	public int deleteInsoectionRecordById(String xsjsglxt_inspection_record_id) {
 		int i = 1;
 		String hql = "delete from xsjsglxt_inspection_record where xsjsglxt_inspection_record_id='"
@@ -285,6 +317,32 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		return xsjsglxt_inspection_record;
 	}
 
+	// 根据委托书ID获取尸体检验记录表
+	@Override
+	public xsjsglxt_death_inspection_record getDeathInspectionRecordById(String xsjsglxt_check_entrustment_book_id) {
+		xsjsglxt_death_inspection_record xsjsglxt_death_inspection_record = new xsjsglxt_death_inspection_record();
+		Session session = getSession();
+		String hql = "from xsjsglxt_death_inspection_record where death_inspection_record_belong_entrustment_book='"
+				+ xsjsglxt_check_entrustment_book_id + "'";
+		Query query = session.createQuery(hql);
+		xsjsglxt_death_inspection_record = (xsjsglxt_death_inspection_record) query.uniqueResult();
+		session.clear();
+		return xsjsglxt_death_inspection_record;
+	}
+
+	// 根据委托书ID获取损伤检验记录表
+	@Override
+	public xsjsglxt_damage_inspection_record getDamageInspectionRecordById(String xsjsglxt_check_entrustment_book_id) {
+		xsjsglxt_damage_inspection_record xsjsglxt_damage_inspection_record = new xsjsglxt_damage_inspection_record();
+		Session session = getSession();
+		String hql = "from xsjsglxt_damage_inspection_record where damage_inspection_record_belong_entrustment_book='"
+				+ xsjsglxt_check_entrustment_book_id + "'";
+		Query query = session.createQuery(hql);
+		xsjsglxt_damage_inspection_record = (xsjsglxt_damage_inspection_record) query.uniqueResult();
+		session.clear();
+		return xsjsglxt_damage_inspection_record;
+	}
+
 	@Override
 	public xsjsglxt_appraisal_letter getAppraisalLetterById(String xsjsglxt_check_entrustment_book_id) {
 		xsjsglxt_appraisal_letter xsjsglxt_appraisal_letter = new xsjsglxt_appraisal_letter();
@@ -334,6 +392,18 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 	}
 
 	@Override
+	public xsjsglxt_death_inspection_record getDeathInspectionRecordOwnId(String xsjsglxt_death_inspection_record_id) {
+		xsjsglxt_death_inspection_record xsjsglxt_death_inspection_record = new xsjsglxt_death_inspection_record();
+		Session session = getSession();
+		String hql = "from xsjsglxt_death_inspection_record where xsjsglxt_inspection_record_id='"
+				+ xsjsglxt_death_inspection_record_id + "'";
+		Query query = session.createQuery(hql);
+		xsjsglxt_death_inspection_record = (xsjsglxt_death_inspection_record) query.uniqueResult();
+		session.clear();
+		return xsjsglxt_death_inspection_record;
+	}
+
+	@Override
 	public xsjsglxt_appraisal_letter getAppraisalLetterByOwnId(String xsjsglxt_appraisal_letter_id) {
 		xsjsglxt_appraisal_letter xsjsglxt_appraisal_letter = new xsjsglxt_appraisal_letter();
 		Session session = getSession();
@@ -361,4 +431,5 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		getSession().clear();
 		return i;
 	}
+
 }

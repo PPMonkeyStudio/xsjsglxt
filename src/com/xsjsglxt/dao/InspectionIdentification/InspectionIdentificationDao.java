@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter;
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
+import com.xsjsglxt.domain.DO.xsjsglxt_damage_inspection_record;
+import com.xsjsglxt.domain.DO.xsjsglxt_death_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform;
 import com.xsjsglxt.domain.VO.InspectionIdentification.EntrustmentBookManagementVO;
@@ -51,5 +53,15 @@ public interface InspectionIdentificationDao {
 	public int deleteAppraisalLetter(String xsjsglxt_appraisal_letter_id);
 
 	public int getMaxCofirmBook(String currentYear);
+
+	public xsjsglxt_death_inspection_record getDeathInspectionRecordById(String xsjsglxt_check_entrustment_book_id);
+
+	public xsjsglxt_damage_inspection_record getDamageInspectionRecordById(String xsjsglxt_check_entrustment_book_id);
+
+	public int deleteDeathInspectionRecordById(String xsjsglxt_death_inspection_record_id);
+
+	public int deleteDamageInspectionRecordById(String xsjsglxt_damage_inspection_record_id);
+
+	public com.xsjsglxt.domain.DO.xsjsglxt_death_inspection_record getDeathInspectionRecordOwnId(String xsjsglxt_death_inspection_record_id);
 
 }

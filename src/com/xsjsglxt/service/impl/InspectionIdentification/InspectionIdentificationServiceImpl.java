@@ -15,6 +15,8 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import com.xsjsglxt.dao.InspectionIdentification.InspectionIdentificationDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter;
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
+import com.xsjsglxt.domain.DO.xsjsglxt_damage_inspection_record;
+import com.xsjsglxt.domain.DO.xsjsglxt_death_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_identifieder_case_confirm_book;
 import com.xsjsglxt.domain.DO.xsjsglxt_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform;
@@ -55,6 +57,8 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		xsjsglxt_appraisal_letter appraisalLetter = new xsjsglxt_appraisal_letter();
 		xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook = new xsjsglxt_identifieder_case_confirm_book();
 		xsjsglxt_inspection_record inspectionRecord = new xsjsglxt_inspection_record();
+		xsjsglxt_death_inspection_record death_inspection_record = null;
+		xsjsglxt_damage_inspection_record damage_inspection_record = null;
 		xsjsglxt_not_acceptance_entrustment_inform notAcceptanceEntrustmentInform = new xsjsglxt_not_acceptance_entrustment_inform();
 		List<xsjsglxt_check_entrustment_book> listCheckEntrustmentBook = new ArrayList<xsjsglxt_check_entrustment_book>();
 		// 根据筛选获取总计路数
@@ -79,6 +83,8 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			inspectionRecord = new xsjsglxt_inspection_record();
 			entrustmentBookManagementDTO = new EntrustmentBookManagementDTO();
 			identifiederCaseConfirmBook = new xsjsglxt_identifieder_case_confirm_book();
+			death_inspection_record = new xsjsglxt_death_inspection_record();
+			damage_inspection_record = new xsjsglxt_damage_inspection_record();
 			notAcceptanceEntrustmentInform = new xsjsglxt_not_acceptance_entrustment_inform();
 			entrustmentBookManagementDTO.setXsjsglxt_check_entrustment_book(xsjsglxt_check_entrustment_book);
 			// 根据Id获取鉴定事项确认书表
@@ -90,7 +96,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			// 根据Id获取不受理委托鉴定告知表
 			notAcceptanceEntrustmentInform = inspectionIdentificationDao.getNotAcceptanceEntrustmentInform(
 					xsjsglxt_check_entrustment_book.getXsjsglxt_check_entrustment_book_id());
-
 			if (notAcceptanceEntrustmentInform != null) {
 				entrustmentBookManagementDTO
 						.setXsjsglxt_not_acceptance_entrustment_inform(notAcceptanceEntrustmentInform);
@@ -99,6 +104,16 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			inspectionRecord = inspectionIdentificationDao.getInspectionRecordById(xsjsglxt_check_entrustment_book.getXsjsglxt_check_entrustment_book_id());
 			if (inspectionRecord != null) {
 				entrustmentBookManagementDTO.setXsjsglxt_inspection_record(inspectionRecord);
+			}
+			// 根据委托书Id获取尸体检验记录表
+			death_inspection_record = inspectionIdentificationDao.getDeathInspectionRecordById(xsjsglxt_check_entrustment_book.getXsjsglxt_check_entrustment_book_id());
+			if (death_inspection_record != null) {
+				entrustmentBookManagementDTO.setXsjsglxt_death_inspection_record(death_inspection_record);
+			}
+			// 损伤检验记录表
+			damage_inspection_record = inspectionIdentificationDao.getDamageInspectionRecordById(xsjsglxt_check_entrustment_book.getXsjsglxt_check_entrustment_book_id());
+			if (damage_inspection_record != null) {
+				entrustmentBookManagementDTO.setXsjsglxt_damage_inspection_record(damage_inspection_record);
 			}
 			listEntrustmentBookManagementDTO.add(entrustmentBookManagementDTO);
 			// 根据委托Id获取鉴定文书
@@ -119,8 +134,12 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		xsjsglxt_inspection_record xsjsglxt_inspection_record = null;
 		xsjsglxt_appraisal_letter xsjsglxt_appraisal_letter = null;
 		xsjsglxt_identifieder_case_confirm_book xsjsglxt_identifieder_case_confirm_book = null;
+		xsjsglxt_death_inspection_record xsjsglxt_death_inspection_record = null;
+		xsjsglxt_damage_inspection_record xsjsglxt_damage_inspection_record = null;
 		for (String checkEntrustmentBookId : listCheckEntrustmentBookId) {
+			xsjsglxt_death_inspection_record = new xsjsglxt_death_inspection_record();
 			xsjsglxt_identifieder_case_confirm_book = new xsjsglxt_identifieder_case_confirm_book();
+			xsjsglxt_damage_inspection_record = new xsjsglxt_damage_inspection_record();
 			xsjsglxt_inspection_record = new xsjsglxt_inspection_record();
 			xsjsglxt_appraisal_letter = new xsjsglxt_appraisal_letter();
 			xsjsglxt_not_acceptance_entrustment_inform = new xsjsglxt_not_acceptance_entrustment_inform();
@@ -146,6 +165,21 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				if (i == 2)
 					return -1;
 			}
+			// 根据Id删除尸体检验记录表
+			xsjsglxt_death_inspection_record = inspectionIdentificationDao.getDeathInspectionRecordById(checkEntrustmentBookId);
+			if (xsjsglxt_death_inspection_record != null) {
+				i = inspectionIdentificationDao.deleteDeathInspectionRecordById(xsjsglxt_death_inspection_record.getXsjsglxt_death_inspection_record_id());
+				if (i == 2)
+					return -1;
+			}
+			// 根据Id删除损伤检验记录表
+			xsjsglxt_damage_inspection_record = inspectionIdentificationDao.getDamageInspectionRecordById(checkEntrustmentBookId);
+			if (xsjsglxt_damage_inspection_record != null) {
+				i = inspectionIdentificationDao.deleteDamageInspectionRecordById(xsjsglxt_damage_inspection_record.getXsjsglxt_damage_inspection_record_id());
+				if (i == 2)
+					return -1;
+			}
+
 			// 删除鉴定文书
 			xsjsglxt_appraisal_letter = inspectionIdentificationDao.getAppraisalLetterById(checkEntrustmentBookId);
 			if (xsjsglxt_inspection_record != null) {
@@ -223,7 +257,55 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		return i;
 	}
 
-	// 填写检验记录表
+	/**
+	 * 保存损伤检验记录表
+	 */
+	@Override
+	public int saveDamageInspectionRecord(xsjsglxt_damage_inspection_record damageInspectionRecord) {
+
+		int i = 2;
+		if (!("申请已受理".equals(entrustmentBookState(damageInspectionRecord.getDamage_inspection_record_belong_entrustment_book().trim())))) {
+			return 3;
+		}
+		// 填写损伤检验记录表
+		damageInspectionRecord.setDamage_inspection_record_idcard(TeamUtil.getUuid());
+		damageInspectionRecord.setDamage_inspection_record_gmt_create(TeamUtil.getStringSecond());
+		damageInspectionRecord.setDamage_inspection_record_gmt_modified(damageInspectionRecord.getDamage_inspection_record_gmt_create());
+		i = inspectionIdentificationDao.saveObject(damageInspectionRecord);
+		if (i == 2)
+			return i;
+		// 更改委托书状态
+		i = updateEntrustmentBookState(damageInspectionRecord.getDamage_inspection_record_belong_entrustment_book().trim(), "已记录");
+		return i;
+	}
+
+	/**
+	 *
+	 * 保存尸体检验记录表
+	 *
+	 */
+	@Override
+	public int saveDeathInspectionRecord(xsjsglxt_death_inspection_record deathInspectionRecord) {
+		int i = 2;
+		/**
+		 * 这里是否需要我来进行判断
+		 */
+		if (!("申请已受理".equals(entrustmentBookState(deathInspectionRecord.getDeath_inspection_record_belong_entrustment_book().trim())))) {
+			return 3;
+		}
+		// 填写尸体检验记录表
+		deathInspectionRecord.setXsjsglxt_death_inspection_record_id(TeamUtil.getUuid());
+		deathInspectionRecord.setDeath_inspection_record_gmt_create(TeamUtil.getStringSecond());
+		deathInspectionRecord.setDeath_inspection_record_gmt_modified(deathInspectionRecord.getDeath_inspection_record_gmt_modified());
+		i = inspectionIdentificationDao.saveObject(deathInspectionRecord);
+		if (i == 2)
+			return i;
+		// 更改委托书状态
+		i = updateEntrustmentBookState(deathInspectionRecord.getDeath_inspection_record_belong_entrustment_book().trim(), "已记录");
+		return i;
+	}
+
+	// 填写痕迹检验记录表
 	/**
 	 * 1 OK 2 失败 3 未达到执行条件
 	 */
@@ -315,12 +397,31 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			return 3;
 		notAcceptanceEntrustmentInform.setNot_acceptance_entrustment_inform_belong_entrustment_book(
 				xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_belong_entrustment_book());
-		// notAcceptanceEntrustmentInform.setNot_acceptance_entrustment_inform_num(xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_num());
 		notAcceptanceEntrustmentInform
 				.setNot_acceptance_entrustment_inform_gmt_create(xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_gmt_create());
 		notAcceptanceEntrustmentInform.setNot_acceptance_entrustment_inform_gmt_modified(TeamUtil.getStringSecond());
 		return inspectionIdentificationDao.saveObject(notAcceptanceEntrustmentInform);
 	}
+
+	// 更改尸体检验记录表
+	@Override
+	public int updateDeathInspectionRecord(xsjsglxt_death_inspection_record deathInspectionRecord) {
+		xsjsglxt_death_inspection_record xsjsglxt_death_inspection_record = new xsjsglxt_death_inspection_record();
+		xsjsglxt_death_inspection_record = inspectionIdentificationDao.getDeathInspectionRecordOwnId(deathInspectionRecord.getXsjsglxt_death_inspection_record_id());
+		if (xsjsglxt_death_inspection_record == null)
+			return 3;
+		deathInspectionRecord.setDeath_inspection_record_belong_entrustment_book(xsjsglxt_death_inspection_record.getDeath_inspection_record_belong_entrustment_book());
+		deathInspectionRecord.setDeath_inspection_record_anatomy_picture1(xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomy_picture1());
+		deathInspectionRecord.setDeath_inspection_record_anatomy_picture2(xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomy_picture2());
+		deathInspectionRecord.setDeath_inspection_record_anatomy_picture3(xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomy_picture3());
+		deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture1(xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture1());
+		deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture2(xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture2());
+		deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture3(xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture3());
+		deathInspectionRecord.setDeath_inspection_record_gmt_create(xsjsglxt_death_inspection_record.getDeath_inspection_record_gmt_create());
+		deathInspectionRecord.setDeath_inspection_record_gmt_modified(xsjsglxt_death_inspection_record.getDeath_inspection_record_gmt_modified());
+		return inspectionIdentificationDao.saveObject(deathInspectionRecord);
+	}
+	// 更改损伤检验记录表
 
 	// 检验记录表
 	@Override
