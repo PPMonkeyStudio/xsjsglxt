@@ -44,8 +44,8 @@ public class testCheck {
 	@Test
 	public void listShow() {
 		EntrustmentBookManagementVO checkEntrustmentBookVO = new EntrustmentBookManagementVO();
-		checkEntrustmentBookVO.setSearch("20170006");
 		checkEntrustmentBookVO = inspectionIdentificationService.getListCheckEntrustmentBook(checkEntrustmentBookVO);
+		System.out.println(checkEntrustmentBookVO);
 	}
 
 	// 测试批量删除

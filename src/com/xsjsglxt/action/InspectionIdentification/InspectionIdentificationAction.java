@@ -17,6 +17,8 @@ import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter;
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
+import com.xsjsglxt.domain.DO.xsjsglxt_damage_inspection_record;
+import com.xsjsglxt.domain.DO.xsjsglxt_death_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_identifieder_case_confirm_book;
 import com.xsjsglxt.domain.DO.xsjsglxt_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform;
@@ -40,6 +42,10 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	private List<String> listCheckEntrustmentBookId;
 	// 鉴定事项确认书
 	private xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook;
+	// 尸体检验记录表
+	private xsjsglxt_death_inspection_record deathInspectionRecord;
+	// 损伤检验记录表
+	private xsjsglxt_damage_inspection_record damageInspectionRecord;
 	// 不受理委托鉴定告知
 	private xsjsglxt_not_acceptance_entrustment_inform notAcceptanceEntrustmentInform;
 	// 检验记录
@@ -137,6 +143,28 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		}
 	}
 
+	// 填写尸体检验记录表
+	public void addDeathInspectionRecord() {
+		try {
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter().write("" + inspectionIdentificationService.saveDeathInspectionRecord(deathInspectionRecord));
+		} catch (IOException e) {
+			System.out.println("填写尸体检验记录表报错");
+			e.printStackTrace();
+		}
+	}
+
+	// 填写损伤检验记录表
+	public void addDamageInspectionRecord() {
+		try {
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter().write("" + inspectionIdentificationService.saveDamageInspectionRecord(damageInspectionRecord));
+		} catch (IOException e) {
+			System.out.println("填写损伤检验记录表报错");
+			e.printStackTrace();
+		}
+	}
+
 	// 填写鉴定文书表
 	public void addAppraisalLetter() {
 		try {
@@ -190,6 +218,28 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 			response.getWriter().write("" + inspectionIdentificationService.updateInspectionRecord(inspectionRecord));
 		} catch (IOException e) {
 			System.out.println("更改不受理委托鉴定告知报错");
+			e.printStackTrace();
+		}
+	}
+
+	// 更改尸体检验记录表
+	public void updateDeathInspectionRecord() {
+		try {
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter().write("" + inspectionIdentificationService.updateDeathInspectionRecord(deathInspectionRecord));
+		} catch (IOException e) {
+			System.out.println("更改尸体检验记录表报错");
+			e.printStackTrace();
+		}
+	}
+
+	// 更改损伤检验记录表
+	public void uodateDamageInspectionRecord() {
+		try {
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter().write("" + inspectionIdentificationService.updateDamageInspectionRecord(damageInspectionRecord));
+		} catch (IOException e) {
+			System.out.println("更改损伤检验记录表报错");
 			e.printStackTrace();
 		}
 	}
@@ -330,6 +380,22 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
+	}
+
+	public xsjsglxt_death_inspection_record getDeathInspectionRecord() {
+		return deathInspectionRecord;
+	}
+
+	public xsjsglxt_damage_inspection_record getDamageInspectionRecord() {
+		return damageInspectionRecord;
+	}
+
+	public void setDeathInspectionRecord(xsjsglxt_death_inspection_record deathInspectionRecord) {
+		this.deathInspectionRecord = deathInspectionRecord;
+	}
+
+	public void setDamageInspectionRecord(xsjsglxt_damage_inspection_record damageInspectionRecord) {
+		this.damageInspectionRecord = damageInspectionRecord;
 	}
 
 }
