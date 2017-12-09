@@ -403,6 +403,19 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		return xsjsglxt_death_inspection_record;
 	}
 
+	// 获取损伤记录表
+	@Override
+	public xsjsglxt_damage_inspection_record getDamageInspectionRecordByOwnId(String xsjsglxt_damage_inspection_record_id) {
+		xsjsglxt_damage_inspection_record xsjsglxt_damage_inspection_record = new xsjsglxt_damage_inspection_record();
+		Session session = getSession();
+		String hql = "from xsjsglxt_damage_inspection_record where xsjsglxt_damage_inspection_record_id='"
+				+ xsjsglxt_damage_inspection_record_id + "'";
+		Query query = session.createQuery(hql);
+		xsjsglxt_damage_inspection_record = (xsjsglxt_damage_inspection_record) query.uniqueResult();
+		session.clear();
+		return xsjsglxt_damage_inspection_record;
+	}
+
 	@Override
 	public xsjsglxt_appraisal_letter getAppraisalLetterByOwnId(String xsjsglxt_appraisal_letter_id) {
 		xsjsglxt_appraisal_letter xsjsglxt_appraisal_letter = new xsjsglxt_appraisal_letter();

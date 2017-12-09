@@ -418,10 +418,25 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture2(xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture2());
 		deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture3(xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture3());
 		deathInspectionRecord.setDeath_inspection_record_gmt_create(xsjsglxt_death_inspection_record.getDeath_inspection_record_gmt_create());
-		deathInspectionRecord.setDeath_inspection_record_gmt_modified(xsjsglxt_death_inspection_record.getDeath_inspection_record_gmt_modified());
+		deathInspectionRecord.setDeath_inspection_record_gmt_modified(TeamUtil.getStringSecond());
 		return inspectionIdentificationDao.saveObject(deathInspectionRecord);
 	}
+
 	// 更改损伤检验记录表
+	@Override
+	public int updateDamageInspectionRecord(xsjsglxt_damage_inspection_record damageInspectionRecord) {
+		xsjsglxt_damage_inspection_record xsjsglxt_damage_inspection_record = new xsjsglxt_damage_inspection_record();
+		xsjsglxt_damage_inspection_record = inspectionIdentificationDao.getDamageInspectionRecordByOwnId(damageInspectionRecord.getXsjsglxt_damage_inspection_record_id());
+		if (xsjsglxt_damage_inspection_record == null)
+			return 3;
+		damageInspectionRecord.setDamage_inspection_record_belong_entrustment_book(xsjsglxt_damage_inspection_record.getDamage_inspection_record_belong_entrustment_book());
+		damageInspectionRecord.setDamage_inspection_record_picture1(xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture1());
+		damageInspectionRecord.setDamage_inspection_record_picture2(xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture2());
+		damageInspectionRecord.setDamage_inspection_record_picture3(xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture3());
+		damageInspectionRecord.setDamage_inspection_record_gmt_create(xsjsglxt_damage_inspection_record.getDamage_inspection_record_gmt_create());
+		damageInspectionRecord.setDamage_inspection_record_gmt_modified(TeamUtil.getStringSecond());
+		return inspectionIdentificationDao.saveObject(damageInspectionRecord);
+	}
 
 	// 检验记录表
 	@Override

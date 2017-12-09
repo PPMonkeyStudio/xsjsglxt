@@ -64,4 +64,6 @@ public interface InspectionIdentificationDao {
 
 	public com.xsjsglxt.domain.DO.xsjsglxt_death_inspection_record getDeathInspectionRecordOwnId(String xsjsglxt_death_inspection_record_id);
 
+	public com.xsjsglxt.domain.DO.xsjsglxt_damage_inspection_record getDamageInspectionRecordByOwnId(String xsjsglxt_damage_inspection_record_id);
+
 }
