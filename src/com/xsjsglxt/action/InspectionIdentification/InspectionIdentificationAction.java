@@ -205,7 +205,6 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		}
 	}
 
-	// 导出委托书
 	public String exportTranceCheckBook() throws Exception {
 		File exportTranceCheckBookFile = inspectionIdentificationService
 				.exportTranceCheckBook(tranceCheckBook.getXsjsglxt_check_entrustment_book_id());

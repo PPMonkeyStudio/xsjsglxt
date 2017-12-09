@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-12-9 16:08:54 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_damage_inspection_record" table="XSJSGLXT_DAMAGE_INSPECTION_RECORD">
+        <id name="xsjsglxt_damage_inspection_record_id" type="java.lang.String">
+            <column name="XSJSGLXT_DAMAGE_INSPECTION_RECORD_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="damage_inspection_record_belong_entrustment_book" type="java.lang.String">
+            <column name="DAMAGE_INSPECTION_RECORD_BELONG_ENTRUSTMENT_BOOK" />
+        </property>
+        <property name="damage_inspection_record_name" type="java.lang.String">
+            <column name="DAMAGE_INSPECTION_RECORD_NAME" />
+        </property>
+        <property name="damage_inspection_record_sex" type="java.lang.String">
+            <column name="DAMAGE_INSPECTION_RECORD_SEX" />
+        </property>
+        <property name="damage_inspection_record_birth_date" type="java.lang.String">
+            <column name="DAMAGE_INSPECTION_RECORD_BIRTH_DATE" />
+        </property>
+        <property name="damage_inspection_record_occupation" type="java.lang.String">
+            <column name="DAMAGE_INSPECTION_RECORD_OCCUPATION" />
+        </property>
+        <property name="damage_inspection_record_unit_service" type="java.lang.String">
+            <column name="DAMAGE_INSPECTION_RECORD_UNIT_SERVICE" />
+        </property>
+        <property name="damage_inspection_record_idcard" type="java.lang.String">
+            <column name="DAMAGE_INSPECTION_RECORD_IDCARD" />
+        </property>
+        <property name="damage_inspection_record_adress" type="java.lang.String">
+            <column name="DAMAGE_INSPECTION_RECORD_ADRESS" />
+        </property>
+        <property name="damage_inspection_record_damage_time" type="java.lang.String">
+            <column name="DAMAGE_INSPECTION_RECORD_DAMAGE_TIME" />
+        </property>
+        <property name="damage_inspection_record_time" type="java.lang.String">
+            <column name="DAMAGE_INSPECTION_RECORD_TIME" />
+        </property>
+        <property name="damage_inspection_record_phone" type="java.lang.String">
+            <column name="DAMAGE_INSPECTION_RECORD_PHONE" />
+        </property>
+        <property name="damage_inspection_record_inspection" type="java.lang.String">
+            <column name="DAMAGE_INSPECTION_RECORD_INSPECTION" />
+        </property>
+        <property name="damage_inspection_record_inspection_man" type="java.lang.String">
+            <column name="DAMAGE_INSPECTION_RECORD_INSPECTION_MAN" />
+        </property>
+        <property name="damage_inspection_record_picture1" type="java.lang.String">
+            <column name="DAMAGE_INSPECTION_RECORD_PICTURE1" />
+        </property>
+        <property name="damage_inspection_record_picture2" type="java.lang.String">
+            <column name="DAMAGE_INSPECTION_RECORD_PICTURE2" />
+        </property>
+        <property name="damage_inspection_record_picture3" type="java.lang.String">
+            <column name="DAMAGE_INSPECTION_RECORD_PICTURE3" />
+        </property>
+        <property name="damage_inspection_record_gmt_create" type="java.lang.String">
+            <column name="DAMAGE_INSPECTION_RECORD_GMT_CREATE" />
+        </property>
+        <property name="damage_inspection_record_gmt_modified" type="java.lang.String">
+            <column name="DAMAGE_INSPECTION_RECORD_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>

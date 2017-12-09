@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter;
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
+import com.xsjsglxt.domain.DO.xsjsglxt_damage_inspection_record;
+import com.xsjsglxt.domain.DO.xsjsglxt_death_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_identifieder_case_confirm_book;
 import com.xsjsglxt.domain.DO.xsjsglxt_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform;
@@ -17,7 +19,7 @@ public interface InspectionIdentificationService {
 	public EntrustmentBookManagementVO getListCheckEntrustmentBook(EntrustmentBookManagementVO checkEntrustmentBookVO);
 
 	public String exportTraceCheckBookName(String id);
-	
+
 	public int deleteListCheckEntrustmentBook(List<String> listCheckEntrustmentBookId);
 
 	public int saveIdentifiederCaseConfirmBook(xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook);
@@ -26,11 +28,19 @@ public interface InspectionIdentificationService {
 
 	public int saveInspectionRecord(xsjsglxt_inspection_record inspectionRecord);
 
+	public int saveDeathInspectionRecord(xsjsglxt_death_inspection_record deathInspectionRecord);
+
+	public int saveDamageInspectionRecord(xsjsglxt_damage_inspection_record damageInspectionRecord);
+
 	public int saveAppraisalLetter(xsjsglxt_appraisal_letter appraisalLetter);
 
 	public int updateTranceCheckBook(xsjsglxt_check_entrustment_book tranceCheckBook);
 
+	public int updateDamageInspectionRecord(xsjsglxt_damage_inspection_record damageInspectionRecord);
+	
 	public int updateIdentifiederCaseConfirmBook(xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook);
+
+	public int updateDeathInspectionRecord(xsjsglxt_death_inspection_record deathInspectionRecord);
 
 	public int updateNotAcceptanceInform(xsjsglxt_not_acceptance_entrustment_inform notAcceptanceEntrustmentInform);
 
@@ -41,5 +51,5 @@ public interface InspectionIdentificationService {
 	public File exportTranceCheckBook(String id) throws Exception;
 
 	public File exportIdentifiederCaseConfirmBook(String id) throws Exception;
-	
+
 }
