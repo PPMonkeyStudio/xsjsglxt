@@ -44,8 +44,8 @@ public class testCheck {
 	@Test
 	public void listShow() {
 		EntrustmentBookManagementVO checkEntrustmentBookVO = new EntrustmentBookManagementVO();
-		checkEntrustmentBookVO.setSearch("20170006");
 		checkEntrustmentBookVO = inspectionIdentificationService.getListCheckEntrustmentBook(checkEntrustmentBookVO);
+		System.out.println(checkEntrustmentBookVO);
 	}
 
 	// 测试批量删除
@@ -62,7 +62,7 @@ public class testCheck {
 	public void addConfirmBook() {
 		xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook = new xsjsglxt_identifieder_case_confirm_book();
 		identifiederCaseConfirmBook
-				.setIdentifieder_case_confirm_book_belong_entrustment_book("35615e16-e38a-4eda-9446-9a9b2f3d0e3d");
+				.setIdentifieder_case_confirm_book_belong_entrustment_book("68f67e71-c652-444d-85e4-64b6970029ae");
 		System.out
 				.println(inspectionIdentificationService.saveIdentifiederCaseConfirmBook(identifiederCaseConfirmBook));
 

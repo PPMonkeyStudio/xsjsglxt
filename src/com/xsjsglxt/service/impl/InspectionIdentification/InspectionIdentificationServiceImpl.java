@@ -78,6 +78,9 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		// 获取分页所有
 		listCheckEntrustmentBook = inspectionIdentificationDao
 				.getListCheckEntrustmentBookByPage(checkEntrustmentBookVO);
+		
+		System.out.println(listCheckEntrustmentBook.size());
+		
 		for (xsjsglxt_check_entrustment_book xsjsglxt_check_entrustment_book : listCheckEntrustmentBook) {
 			appraisalLetter = new xsjsglxt_appraisal_letter();
 			inspectionRecord = new xsjsglxt_inspection_record();
