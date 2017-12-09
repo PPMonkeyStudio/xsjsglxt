@@ -18,26 +18,26 @@ function Preview_ConfirmBook(obj) {
 						}
 					}
 					var con = '<div style="margin:0 20px 0 0;"><hr>' + '<br>'
-							+ '<h5 style="text-align: right;">编号：【'
+							+ '<h5 style="text-align: right;">编号：['
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num
 									.substring(0, 4)
-							+ '】第'
+							+ ']第'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num
 									.substring(4)
 							+ '号</h5>'
 							+ '<table  class="table table-bordered" style="text-align: center;">'
 							+ '<tbody>'
-							+ '<tr><td colspan="1">鉴定机构名称</td><td colspan="5">'
+							+ '<tr><td colspan="1" style="width:100px;">鉴定机构名称</td><td colspan="5">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_unit_name
 							+ '</td><td colspan="2">受理人</td><td>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_acceptance_human_name
 							+ '</td></tr>'
 							+ '<tr><td colspan="1">鉴定委托单位</td><td colspan="5">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_unit
-							+ '</td><td colspan="2">委托书编号</td><td>【'
+							+ '</td><td colspan="2">委托书编号</td><td>['
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num
 									.substring(0, 4)
-							+ '】第'
+							+ ']第'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num
 									.substring(4)
 							+ '号</td></tr>'
@@ -93,7 +93,11 @@ function Preview_ConfirmBook(obj) {
 							+ '<tr><td>鉴定要求</td><td colspan="8">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request
 							+ '</td></tr>'
-							+ '<tr><td>双方对鉴定时限以及送检检材样本等使用保管和取回的约定</td><td colspan="8" style="text-align: left;"><br><br>送检人签字：<br>鉴定机构受理人签字：'
+							+ '<tr><td>双方对鉴定时限以及送检检材样本等使用保管和取回的约定</td><td colspan="8" style="text-align: left;"><br><br>送检人签字：'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspectors1_name
+							+ '、'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspectors2_name
+							+ '<span style="float: right;">鉴定机构受理人签字：</span>'
 							+ '</td></tr>'
 							+ '<tr><td>鉴定文书和相关检材等的领取情况</td><td colspan="8" style="text-align: left;"><br><br>领取人签字：'
 							+ '</td></tr>'
@@ -116,15 +120,12 @@ function Preview_ConfirmBook(obj) {
 					'修改' : {
 						btnClass : 'btn-orange',
 						action : function() {
-							Update_ConfirmBook(jc);
+							jc.close();
+							Update_ConfirmBook(obj);
 						}
 					},
 					'放弃' : function() {
 					}
 				}
 			});
-}
-
-function Update_ConfirmBook(jc) {
-	jc.close();
 }

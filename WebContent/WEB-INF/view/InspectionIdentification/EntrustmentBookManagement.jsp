@@ -12,7 +12,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!---------------------------------------------------------------------------------------------------->
 
-
 <!---------------------------------------------------------------------------------------------------->
 <title>痕迹检验委托管理</title>
 </head>
@@ -57,6 +56,21 @@
 						<tr>
 							<th>委托编号</th>
 							<th>案（事）件名称</th>
+							<th><select class="form-control" id="" style="width: auto;"
+								onchange="List_EntrustmentBook(1)">
+									<option value="-1">鉴定要求（全部）</option>
+									<option value="指纹检验鉴定">指纹检验鉴定</option>
+									<option value="足迹检验鉴定">足迹检验鉴定</option>
+									<option value="整体分离检验鉴定">整体分离检验鉴定</option>
+									<option value="车辆痕迹检验鉴定">车辆痕迹检验鉴定</option>
+									<option value="死因鉴定">死因鉴定</option>
+									<option value="损伤鉴定">损伤鉴定</option>
+									<option value="理化检验鉴定">理化检验鉴定</option>
+									<option value="毒物检验鉴定">毒物检验鉴定</option>
+									<option value="失踪人口查询">失踪人口查询</option>
+									<option value="2">其他鉴定要求</option>
+							</select></th>
+							<th>委托单位</th>
 							<th><select class="form-control" id="select_unitName"
 								style="width: auto;" onchange="List_EntrustmentBook(1)">
 									<option value="-1">被委托鉴定机构（全部）</option>
@@ -162,6 +176,11 @@
 <!---------------------------------------------------------------------------------------->
 <script type="text/javascript"
 	src="<%=basePath%>js/InspectionIdentification/Update_EntrustmentBook.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/InspectionIdentification/Update_ConfirmBook.js"></script>
+<!---------------------------------------------------------------------------------------->
+<link rel="stylesheet" href="<%=basePath%>css/square/blue.css" />
+<script type="text/javascript" src="<%=basePath%>js/icheck.js"></script>
 <!---------------------------------------------------------------------------------------->
 <style>
 li a {

@@ -3,7 +3,7 @@ function Update_EntrustmentBook(obj) {
 	var jc = $
 			.confirm({
 				theme : 'Modern',
-				title : '痕迹检验鉴定委托书',
+				title : '痕迹检验鉴定委托书（修改）',
 				content : '',
 				type : 'blue',
 				columnClass : 'col-md-12',
@@ -176,6 +176,7 @@ function Update_EntrustmentBook(obj) {
 						action : function() {
 							updateTranceCheckBook(jc, obj);
 
+							return false;
 						}
 					},
 					'返回' : function() {
@@ -185,8 +186,7 @@ function Update_EntrustmentBook(obj) {
 				}
 			});
 }
-
-function updateTranceCheckBook(jc) {
+function updateTranceCheckBook(jc, obj) {
 	var xhr = false;
 	xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
@@ -198,6 +198,7 @@ function updateTranceCheckBook(jc) {
 					toastr.success("修改成功");
 					jc.close();
 					List_EntrustmentBook(1);
+					Preview_EntrustmentBook(obj);
 				} else {
 					toastr.error("填写格式错误");
 				}
