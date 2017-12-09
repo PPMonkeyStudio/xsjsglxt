@@ -172,7 +172,14 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		}
 		// 填写鉴定事项确认书
 		identifiederCaseConfirmBook.setXsjsglxt_identifieder_case_confirm_book_id(TeamUtil.getUuid());
-		identifiederCaseConfirmBook.setIdentifieder_case_confirm_book_acceptance_num("待定");
+		// 判断编号是否存在
+		if (identifiederCaseConfirmBook.getIdentifieder_case_confirm_book_ishave_num() == 0) {
+			identifiederCaseConfirmBook.setIdentifieder_case_confirm_book_acceptance_num("");
+		} else {
+			// 这里需要生成确认书编号
+			int j = inspectionIdentificationDao.getMaxCofirmBook(TeamUtil.getCurrentYear()) + 1;
+			identifiederCaseConfirmBook.setIdentifieder_case_confirm_book_acceptance_num(TeamUtil.getCurrentYear() + String.format("%04d", j));
+		}
 		identifiederCaseConfirmBook.setIdentifieder_case_confirm_book_gmt_create(TeamUtil.getStringSecond());
 		identifiederCaseConfirmBook.setIdentifieder_case_confirm_book_gmt_modified(identifiederCaseConfirmBook.getIdentifieder_case_confirm_book_gmt_create());
 		i = inspectionIdentificationDao.saveObject(identifiederCaseConfirmBook);
@@ -199,7 +206,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			return 3;
 		}
 		notAcceptanceEntrustmentInform.setXsjsglxt_not_acceptance_entrustment_inform_id(TeamUtil.getUuid());
-		//notAcceptanceEntrustmentInform.setNot_acceptance_entrustment_inform_num("待定");
+		// notAcceptanceEntrustmentInform.setNot_acceptance_entrustment_inform_num("待定");
 		notAcceptanceEntrustmentInform.setNot_acceptance_entrustment_inform_gmt_create(TeamUtil.getStringSecond());
 		notAcceptanceEntrustmentInform.setNot_acceptance_entrustment_inform_gmt_modified(notAcceptanceEntrustmentInform.getNot_acceptance_entrustment_inform_gmt_create());
 		i = inspectionIdentificationDao.saveObject(notAcceptanceEntrustmentInform);
@@ -308,7 +315,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			return 3;
 		notAcceptanceEntrustmentInform.setNot_acceptance_entrustment_inform_belong_entrustment_book(
 				xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_belong_entrustment_book());
-		//notAcceptanceEntrustmentInform.setNot_acceptance_entrustment_inform_num(xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_num());
+		// notAcceptanceEntrustmentInform.setNot_acceptance_entrustment_inform_num(xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_num());
 		notAcceptanceEntrustmentInform
 				.setNot_acceptance_entrustment_inform_gmt_create(xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_gmt_create());
 		notAcceptanceEntrustmentInform.setNot_acceptance_entrustment_inform_gmt_modified(TeamUtil.getStringSecond());

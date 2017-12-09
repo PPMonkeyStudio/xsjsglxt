@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-12-9 16:08:54 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_death_inspection_record" table="XSJSGLXT_DEATH_INSPECTION_RECORD">
+        <id name="xsjsglxt_death_inspection_record_id" type="java.lang.String">
+            <column name="XSJSGLXT_DEATH_INSPECTION_RECORD_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="death_inspection_record_belong_entrustment_book" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_BELONG_ENTRUSTMENT_BOOK" />
+        </property>
+        <property name="death_inspection_record_undertake_personnel" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_UNDERTAKE_PERSONNEL" />
+        </property>
+        <property name="death_inspection_record_phone" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_PHONE" />
+        </property>
+        <property name="death_inspection_record_death_name" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_DEATH_NAME" />
+        </property>
+        <property name="death_inspection_record_death_sex" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_DEATH_SEX" />
+        </property>
+        <property name="death_inspection_record_death_birth_date" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_DEATH_BIRTH_DATE" />
+        </property>
+        <property name="death_inspection_record_private_capital" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_PRIVATE_CAPITAL" />
+        </property>
+        <property name="death_inspection_record_unit_service" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_UNIT_SERVICE" />
+        </property>
+        <property name="death_inspection_record_address" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_ADDRESS" />
+        </property>
+        <property name="death_inspection_record_inspector" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_INSPECTOR" />
+        </property>
+        <property name="death_inspection_record_inspect_time" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_INSPECT_TIME" />
+        </property>
+        <property name="death_inspection_record_inspect_place" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_INSPECT_PLACE" />
+        </property>
+        <property name="death_inspection_record_inspect_ambient_temperature" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_INSPECT_AMBIENT_TEMPERATURE" />
+        </property>
+        <property name="death_inspection_record_ambient_humidity" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_AMBIENT_HUMIDITY" />
+        </property>
+        <property name="death_inspection_record_site_profile" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_SITE_PROFILE" />
+        </property>
+        <property name="death_inspection_record_death_clothing" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_DEATH_CLOTHING" />
+        </property>
+        <property name="death_inspection_record_handover_of_goods" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_HANDOVER_OF_GOODS" />
+        </property>
+        <property name="death_inspection_record_receiver_goods" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_RECEIVER_GOODS" />
+        </property>
+        <property name="death_inspection_record_mark" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_MARK" />
+        </property>
+        <property name="death_inspection_record_autopsy_surface_table_test" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_AUTOPSY_SURFACE_TABLE_TEST" />
+        </property>
+        <property name="death_inspection_record_autopsy_surface_table_test_recorder" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_AUTOPSY_SURFACE_TABLE_TEST_RECORDER" />
+        </property>
+        <property name="death_inspection_record_autopsy_surface_table_test_recorder_time" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_AUTOPSY_SURFACE_TABLE_TEST_RECORDER_TIME" />
+        </property>
+        <property name="death_inspection_record_autopsy_table_test_picture1" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_AUTOPSY_TABLE_TEST_PICTURE1" />
+        </property>
+        <property name="death_inspection_record_autopsy_table_test_picture2" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_AUTOPSY_TABLE_TEST_PICTURE2" />
+        </property>
+        <property name="death_inspection_record_autopsy_table_test_picture3" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_AUTOPSY_TABLE_TEST_PICTURE3" />
+        </property>
+        <property name="death_inspection_record_anatomic_test" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_ANATOMIC_TEST" />
+        </property>
+        <property name="death_inspection_record_anatomic_time" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_ANATOMIC_TIME" />
+        </property>
+        <property name="death_inspection_record_anatomic_place" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_ANATOMIC_PLACE" />
+        </property>
+        <property name="death_inspection_record_autopsy_table_test_photographer" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_AUTOPSY_TABLE_TEST_PHOTOGRAPHER" />
+        </property>
+        <property name="death_inspection_record_autopsy_table_test_video" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_AUTOPSY_TABLE_TEST_VIDEO" />
+        </property>
+        <property name="death_inspection_record_autopsy_table_test_recorder" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_AUTOPSY_TABLE_TEST_RECORDER" />
+        </property>
+        <property name="death_inspection_record_autopsy_table_test_recorder_time" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_AUTOPSY_TABLE_TEST_RECORDER_TIME" />
+        </property>
+        <property name="death_inspection_record_anatomy_picture1" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_ANATOMY_PICTURE1" />
+        </property>
+        <property name="death_inspection_record_anatomy_picture2" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_ANATOMY_PICTURE2" />
+        </property>
+        <property name="death_inspection_record_anatomy_picture3" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_ANATOMY_PICTURE3" />
+        </property>
+        <property name="death_inspection_record_gmt_create" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_GMT_CREATE" />
+        </property>
+        <property name="death_inspection_record_gmt_modified" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>

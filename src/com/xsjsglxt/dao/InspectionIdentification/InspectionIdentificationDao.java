@@ -50,4 +50,6 @@ public interface InspectionIdentificationDao {
 
 	public int deleteAppraisalLetter(String xsjsglxt_appraisal_letter_id);
 
+	public int getMaxCofirmBook(String currentYear);
+
 }

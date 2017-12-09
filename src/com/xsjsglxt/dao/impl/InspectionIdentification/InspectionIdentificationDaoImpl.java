@@ -345,4 +345,20 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		return xsjsglxt_appraisal_letter;
 	}
 
+	@Override
+	public int getMaxCofirmBook(String currentYear) {
+		int i = 0;
+		String ji = "";
+		String hql = "select substring(identifieder_case_confirm_book_acceptance_num,5) from xsjsglxt_identifieder_case_confirm_book where substring(identifieder_case_confirm_book_acceptance_num,1,4)='"
+				+ currentYear + "' order by substring(identifieder_case_confirm_book_acceptance_num,5) desc limit 1";
+		Query query = getSession().createSQLQuery(hql);
+		ji = (String) query.uniqueResult();
+		if (ji == null || ji.trim().length() <= 0) {
+			getSession().clear();
+			return 0;
+		}
+		i = Integer.parseInt(ji);
+		getSession().clear();
+		return i;
+	}
 }
