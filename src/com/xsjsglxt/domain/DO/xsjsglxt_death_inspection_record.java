@@ -13,6 +13,7 @@ public class xsjsglxt_death_inspection_record {
 	private String death_inspection_record_address;
 	private String death_inspection_record_inspector;
 	private String death_inspection_record_inspect_time;
+	private String death_inspection_record_inspect_stop_time;
 	private String death_inspection_record_inspect_place;
 	private String death_inspection_record_inspect_ambient_temperature;
 	private String death_inspection_record_ambient_humidity;
@@ -49,11 +50,12 @@ public class xsjsglxt_death_inspection_record {
 				+ death_inspection_record_death_birth_date + ", death_inspection_record_private_capital=" + death_inspection_record_private_capital
 				+ ", death_inspection_record_unit_service=" + death_inspection_record_unit_service + ", death_inspection_record_address=" + death_inspection_record_address
 				+ ", death_inspection_record_inspector=" + death_inspection_record_inspector + ", death_inspection_record_inspect_time=" + death_inspection_record_inspect_time
-				+ ", death_inspection_record_inspect_place=" + death_inspection_record_inspect_place + ", death_inspection_record_inspect_ambient_temperature="
-				+ death_inspection_record_inspect_ambient_temperature + ", death_inspection_record_ambient_humidity=" + death_inspection_record_ambient_humidity
-				+ ", death_inspection_record_site_profile=" + death_inspection_record_site_profile + ", death_inspection_record_death_clothing="
-				+ death_inspection_record_death_clothing + ", death_inspection_record_handover_of_goods=" + death_inspection_record_handover_of_goods
-				+ ", death_inspection_record_receiver_goods=" + death_inspection_record_receiver_goods + ", death_inspection_record_mark=" + death_inspection_record_mark
+				+ ", death_inspection_record_inspect_stop_time=" + death_inspection_record_inspect_stop_time + ", death_inspection_record_inspect_place="
+				+ death_inspection_record_inspect_place + ", death_inspection_record_inspect_ambient_temperature=" + death_inspection_record_inspect_ambient_temperature
+				+ ", death_inspection_record_ambient_humidity=" + death_inspection_record_ambient_humidity + ", death_inspection_record_site_profile="
+				+ death_inspection_record_site_profile + ", death_inspection_record_death_clothing=" + death_inspection_record_death_clothing
+				+ ", death_inspection_record_handover_of_goods=" + death_inspection_record_handover_of_goods + ", death_inspection_record_receiver_goods="
+				+ death_inspection_record_receiver_goods + ", death_inspection_record_mark=" + death_inspection_record_mark
 				+ ", death_inspection_record_autopsy_surface_table_test=" + death_inspection_record_autopsy_surface_table_test
 				+ ", death_inspection_record_autopsy_surface_table_test_recorder=" + death_inspection_record_autopsy_surface_table_test_recorder
 				+ ", death_inspection_record_autopsy_surface_table_test_recorder_time=" + death_inspection_record_autopsy_surface_table_test_recorder_time
@@ -85,6 +87,14 @@ public class xsjsglxt_death_inspection_record {
 
 	public String getDeath_inspection_record_phone() {
 		return death_inspection_record_phone;
+	}
+
+	public String getDeath_inspection_record_inspect_stop_time() {
+		return death_inspection_record_inspect_stop_time;
+	}
+
+	public void setDeath_inspection_record_inspect_stop_time(String death_inspection_record_inspect_stop_time) {
+		this.death_inspection_record_inspect_stop_time = death_inspection_record_inspect_stop_time;
 	}
 
 	public String getDeath_inspection_record_death_name() {
