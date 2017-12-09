@@ -159,6 +159,10 @@
 <script type="text/javascript"
 	src="<%=basePath%>js/InspectionIdentification/Create_InspectionRecord.js"></script>
 <script type="text/javascript"
+	src="<%=basePath%>js/InspectionIdentification/Create_Damage_InspectionRecord.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/InspectionIdentification/Create_Death_InspectionRecord.js"></script>
+<script type="text/javascript"
 	src="<%=basePath%>js/InspectionIdentification/Create_AppraisalLetter.js"></script>
 <!---------------------------------------------------------------------------------------->
 <script type="text/javascript"
