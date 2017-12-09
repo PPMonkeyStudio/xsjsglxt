@@ -37,7 +37,10 @@
 <script src="<%=basePath%>js/jquery.slimscroll.min.js"></script>
 <script src="<%=basePath%>js/klorofil-common.js"></script>
 <!--------------------------------------------------------------------------------->
-<!---页面公用------------------------------------------------------------------------------>
+<link rel="stylesheet" href="<%=basePath%>css/jquery.datetimepicker.css" />
+<script type="text/javascript"
+	src="<%=basePath%>js/jquery.datetimepicker.full.js"></script>
+<!--------------------------------------------------------------------------------->
 <script type="text/javascript"
 	src="<%=basePath%>js/User/Input_Select.js"></script>
 <!--------------------------------------------------------------------------------->
@@ -67,16 +70,9 @@
 						<li><a href="#">刑事破案</a></li>
 					</ul></li>
 				<!--  -->
-				<li class="dropdown" style="float: left;"><a href="#"
-					class="dropdown-toggle" data-toggle="dropdown"> <span>检验鉴定</span>
-						<i class="icon-submenu lnr lnr-chevron-down"></i>
-				</a>
-					<ul class="dropdown-menu">
-						<li><a
-							href="<%=basePath%>inspectionIdentific/EntrustmentBookManagement_EntrustmentBookManagement">委托检验</a></li>
-						<li><a href="#">检验记录</a></li>
-						<li><a href="#">检验结果</a></li>
-					</ul></li>
+				<li class="dropdown" style="float: left;"><a
+					href="<%=basePath%>inspectionIdentific/EntrustmentBookManagement_EntrustmentBookManagement"> <span>检验鉴定</span>
+				</a></li>
 				<!--  -->
 				<li class="dropdown" style="float: left;"><a href="#"
 					class="dropdown-toggle" data-toggle="dropdown"> <span>队伍</span>
@@ -174,6 +170,5 @@ table select {
 }
 </style>
 <script>
-	
 </script>
 </html>

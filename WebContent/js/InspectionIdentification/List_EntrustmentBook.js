@@ -1,5 +1,4 @@
 var EntrustmentBook_json = null;
-
 function List_EntrustmentBook(pageIndex) {
 
 	document.getElementById("i_pulse").style.display = "block";
@@ -13,7 +12,6 @@ function List_EntrustmentBook(pageIndex) {
 		var message;
 		if (xhr.readyState == 4) {
 			if (xhr.status == 200) {
-				console.debug(xhr.responseText);
 				EntrustmentBook_json = JSON.parse(xhr.responseText);
 				/*
 				 * 
@@ -50,6 +48,18 @@ function List_EntrustmentBook(pageIndex) {
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
 					new_td.innerHTML = EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_case_name;
+					/*
+					 * 鉴定要求
+					 */
+					new_td = document.createElement("td");
+					new_tr.appendChild(new_td);
+					new_td.innerHTML = EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request;
+					/*
+					 * 委托单位
+					 */
+					new_td = document.createElement("td");
+					new_tr.appendChild(new_td);
+					new_td.innerHTML = EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_unit;
 					/*
 					 * 被委托鉴定机构名称
 					 */
@@ -226,7 +236,8 @@ function List_EntrustmentBook(pageIndex) {
 	xhr
 			.open(
 					"POST",
-					"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_getListCheckEntrustmentBookByPage");
+					"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_getListCheckEntrustmentBookByPage",
+					false);
 
 	var formData = new FormData();
 	/*

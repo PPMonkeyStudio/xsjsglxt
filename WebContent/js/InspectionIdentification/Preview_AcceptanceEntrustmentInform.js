@@ -27,10 +27,9 @@ function Preview_AcceptanceEntrustmentInform(obj) {
 									.substring(5, 7)
 							+ '月'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspect_time
-									.substring(8, 11)
+									.substring(8, 10)
 							+ '日，收到'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_unit
-							+ ''
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspectors1_name
 							+ '、'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspectors2_name
