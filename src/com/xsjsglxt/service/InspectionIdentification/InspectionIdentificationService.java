@@ -14,8 +14,8 @@ import com.xsjsglxt.domain.VO.InspectionIdentification.EntrustmentBookManagement
 
 public interface InspectionIdentificationService {
 
-	public int uploadAutopsyTableTestPicture1(File uploadFile);
-	
+	public int uploadAutopsyTableTestPicture1(File uploadFile, String oldFileName, String deathRecordId, String newFileName);
+
 	public int saveTranceCheckBook(xsjsglxt_check_entrustment_book tranceCheckBook);
 
 	public EntrustmentBookManagementVO getListCheckEntrustmentBook(EntrustmentBookManagementVO checkEntrustmentBookVO);
@@ -39,7 +39,7 @@ public interface InspectionIdentificationService {
 	public int updateTranceCheckBook(xsjsglxt_check_entrustment_book tranceCheckBook);
 
 	public int updateDamageInspectionRecord(xsjsglxt_damage_inspection_record damageInspectionRecord);
-	
+
 	public int updateIdentifiederCaseConfirmBook(xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook);
 
 	public int updateDeathInspectionRecord(xsjsglxt_death_inspection_record deathInspectionRecord);

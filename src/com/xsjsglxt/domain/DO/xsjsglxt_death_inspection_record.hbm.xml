@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2017-12-9 16:08:54 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2017-12-10 16:04:58 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="com.xsjsglxt.domain.DO.xsjsglxt_death_inspection_record" table="XSJSGLXT_DEATH_INSPECTION_RECORD">
         <id name="xsjsglxt_death_inspection_record_id" type="java.lang.String">
@@ -40,6 +40,9 @@
         </property>
         <property name="death_inspection_record_inspect_time" type="java.lang.String">
             <column name="DEATH_INSPECTION_RECORD_INSPECT_TIME" />
+        </property>
+        <property name="death_inspection_record_inspect_stop_time" type="java.lang.String">
+            <column name="DEATH_INSPECTION_RECORD_INSPECT_STOP_TIME" />
         </property>
         <property name="death_inspection_record_inspect_place" type="java.lang.String">
             <column name="DEATH_INSPECTION_RECORD_INSPECT_PLACE" />

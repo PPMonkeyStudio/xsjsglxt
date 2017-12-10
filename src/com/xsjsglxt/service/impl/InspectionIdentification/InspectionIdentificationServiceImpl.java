@@ -38,11 +38,38 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	 * 上传尸表检验图1
 	 */
 	@Override
-	public int uploadAutopsyTableTestPicture1(File uploadFile) {
-		
+	public int uploadAutopsyTableTestPicture1(File uploadFile, String oldFileName, String deathRecordId, String newFileName) {
+		String path = "";
+		xsjsglxt_death_inspection_record xsjsglxt_death_inspection_record = new xsjsglxt_death_inspection_record();
+		// 如果新文件为空
+		if (uploadFile == null) {
+			path = "F:/xsjsglxt/";
+			// 判断旧文件是否处于空的状态
+			if ("".equals(oldFileName) || !(oldFileName.trim().length() > 0)) {
+				// 如果是空
+				// 判断：在数据库中属于委托书的该图片是否存在
+				xsjsglxt_death_inspection_record = inspectionIdentificationDao.getDeathInspectionRecordOwnId(deathRecordId);
+				// 如果记录不为空,说明原文件存在
+				if (xsjsglxt_death_inspection_record != null && xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture1() != null
+						&& xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture1().trim().length() > 0) {
+					// 如果存在,则删除原有的
+					// 先进行删除
+					path = path + xsjsglxt_death_inspection_record.getXsjsglxt_death_inspection_record_id()
+							+ "_" + xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture1();
+					File deleteFile = new File(path);
+					deleteFile.delete();
+					// 删除数据库中的数据
+					
+					
+					
+				}
+			}
+
+		}
+
 		return 0;
 	}
-	
+
 	// 保存痕迹检验委托书
 	@Override
 	public int saveTranceCheckBook(xsjsglxt_check_entrustment_book tranceCheckBook) {
@@ -933,6 +960,5 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		}
 		return null;
 	}
-
 
 }
