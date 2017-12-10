@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> f4820d0239a33751036f3c8e3db76db2169387b5
 package com.xsjsglxt.service.impl.Case;
 
 import java.text.DateFormat;
@@ -141,7 +145,11 @@ public class ParallelServiceImpl implements ParallelService {
 
 	
 }
+<<<<<<< HEAD
 
 	
 
 
+=======
+
+>>>>>>> f4820d0239a33751036f3c8e3db76db2169387b5

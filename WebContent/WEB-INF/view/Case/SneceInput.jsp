@@ -11,7 +11,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>My JSP 'SneceInput.jsp' starting page</title>
+<title>现场录入</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -352,6 +352,12 @@
 				</form>
 				<table>
 					<tr>
+						<td align="right">
+							<button style="margin-top: 6px; margin-right: 10px;"
+								type="button" class="btn btn-default sneceInformation_finish">
+								<i class="fa fa-check-circle"></i> 删除
+							</button>
+						</td>
 						<td align="right">
 							<button style="margin-top: 6px; margin-right: 10px;"
 								type="button" class="btn btn-default sneceInformation_finish">
