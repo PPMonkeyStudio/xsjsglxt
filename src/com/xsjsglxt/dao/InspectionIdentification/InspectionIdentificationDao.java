@@ -52,7 +52,7 @@ public interface InspectionIdentificationDao {
 
 	public int deleteAppraisalLetter(String xsjsglxt_appraisal_letter_id);
 
-	public int getMaxCofirmBook(String currentYear);
+	public int getMaxCofirmBook(String currentYear,String type);
 
 	public xsjsglxt_death_inspection_record getDeathInspectionRecordById(String xsjsglxt_check_entrustment_book_id);
 

@@ -78,9 +78,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		// 获取分页所有
 		listCheckEntrustmentBook = inspectionIdentificationDao
 				.getListCheckEntrustmentBookByPage(checkEntrustmentBookVO);
-		
-		System.out.println(listCheckEntrustmentBook.size());
-		
 		for (xsjsglxt_check_entrustment_book xsjsglxt_check_entrustment_book : listCheckEntrustmentBook) {
 			appraisalLetter = new xsjsglxt_appraisal_letter();
 			inspectionRecord = new xsjsglxt_inspection_record();
@@ -210,12 +207,17 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		// 填写鉴定事项确认书
 		identifiederCaseConfirmBook.setXsjsglxt_identifieder_case_confirm_book_id(TeamUtil.getUuid());
 		// 判断编号是否存在
-		if (identifiederCaseConfirmBook.getIdentifieder_case_confirm_book_ishave_num() == 0) {
+		if (identifiederCaseConfirmBook.getIdentifieder_case_confirm_book_ishave_num() == 2) {
 			identifiederCaseConfirmBook.setIdentifieder_case_confirm_book_acceptance_num("");
 		} else {
 			// 这里需要生成确认书编号
-			int j = inspectionIdentificationDao.getMaxCofirmBook(TeamUtil.getCurrentYear()) + 1;
-			identifiederCaseConfirmBook.setIdentifieder_case_confirm_book_acceptance_num(TeamUtil.getCurrentYear() + String.format("%04d", j));
+			String type = entrustmentBookType(identifiederCaseConfirmBook.getIdentifieder_case_confirm_book_belong_entrustment_book().trim());
+			if (type != null && type.trim().length() > 0) {
+				int j = inspectionIdentificationDao.getMaxCofirmBook(TeamUtil.getCurrentYear(), type) + 1;
+				identifiederCaseConfirmBook.setIdentifieder_case_confirm_book_acceptance_num(TeamUtil.getCurrentYear() + String.format("%04d", j));
+			} else {
+				identifiederCaseConfirmBook.setIdentifieder_case_confirm_book_acceptance_num("");
+			}
 		}
 		identifiederCaseConfirmBook.setIdentifieder_case_confirm_book_gmt_create(TeamUtil.getStringSecond());
 		identifiederCaseConfirmBook.setIdentifieder_case_confirm_book_gmt_modified(identifiederCaseConfirmBook.getIdentifieder_case_confirm_book_gmt_create());
@@ -384,7 +386,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			return 3;
 		identifiederCaseConfirmBook
 				.setIdentifieder_case_confirm_book_belong_entrustment_book(xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_belong_entrustment_book());
-		identifiederCaseConfirmBook.setIdentifieder_case_confirm_book_acceptance_num(xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_num());
+		// identifiederCaseConfirmBook.setIdentifieder_case_confirm_book_acceptance_num(xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_num());
 		identifiederCaseConfirmBook.setIdentifieder_case_confirm_book_gmt_create(xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_gmt_create());
 		identifiederCaseConfirmBook.setIdentifieder_case_confirm_book_gmt_modified(TeamUtil.getStringSecond());
 		return inspectionIdentificationDao.saveObject(identifiederCaseConfirmBook);
@@ -911,6 +913,16 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			i = inspectionIdentificationDao.saveObject(checkEntrustmentBook);
 		}
 		return i;
+	}
+
+	// 返回委托书的类型
+	public String entrustmentBookType(String id) {
+		xsjsglxt_check_entrustment_book checkEntrustmentBook = new xsjsglxt_check_entrustment_book();
+		checkEntrustmentBook = inspectionIdentificationDao.getCheckEntrustmentBookById(id);
+		if (checkEntrustmentBook != null) {
+			return checkEntrustmentBook.getCheck_entrustment_book_type();
+		}
+		return null;
 	}
 
 }

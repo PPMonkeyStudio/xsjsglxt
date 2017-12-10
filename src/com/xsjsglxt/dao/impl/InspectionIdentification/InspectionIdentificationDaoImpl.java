@@ -72,6 +72,9 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 			hql = hql + " and check_entrustment_book_num like '" + search
 					+ "' or check_entrustment_book_case_name like '" + search + "'";
 		}
+		if (checkEntrustmentBookVO.getEntrustmentRequire() != null && checkEntrustmentBookVO.getEntrustmentRequire().trim().length() > 0) {
+			hql = hql + " and check_entrustment_book_entrustment_request = '" + checkEntrustmentBookVO.getEntrustmentRequire() + "'";
+		}
 		if (checkEntrustmentBookVO.getState() != null && checkEntrustmentBookVO.getState().trim().length() > 0) {
 			hql = hql + " and check_entrustment_book_state='" + checkEntrustmentBookVO.getState().trim() + "'";
 		}
@@ -96,7 +99,7 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		Query query = getSession().createQuery(hql);
 
 		System.out.println(hql);
-		
+
 		i = (Long) query.uniqueResult();
 		getSession().clear();
 		return i.intValue();
@@ -114,6 +117,9 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 			String search = "%" + checkEntrustmentBookVO.getSearch().trim() + "%";
 			hql = hql + " and check_entrustment_book_num like '" + search
 					+ "' or check_entrustment_book_case_name like '" + search + "'";
+		}
+		if (checkEntrustmentBookVO.getEntrustmentRequire() != null && checkEntrustmentBookVO.getEntrustmentRequire().trim().length() > 0) {
+			hql = hql + " and check_entrustment_book_entrustment_request = '" + checkEntrustmentBookVO.getEntrustmentRequire() + "'";
 		}
 		if (checkEntrustmentBookVO.getState() != null && checkEntrustmentBookVO.getState().trim().length() > 0) {
 			hql = hql + " and check_entrustment_book_state='" + checkEntrustmentBookVO.getState().trim() + "'";
@@ -432,11 +438,12 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 	}
 
 	@Override
-	public int getMaxCofirmBook(String currentYear) {
+	public int getMaxCofirmBook(String currentYear, String type) {
 		int i = 0;
 		String ji = "";
-		String hql = "select substring(identifieder_case_confirm_book_acceptance_num,5) from xsjsglxt_identifieder_case_confirm_book where substring(identifieder_case_confirm_book_acceptance_num,1,4)='"
-				+ currentYear + "' order by substring(identifieder_case_confirm_book_acceptance_num,5) desc limit 1";
+		String hql = "select substring(confirm.identifieder_case_confirm_book_acceptance_num,5) from xsjsglxt_identifieder_case_confirm_book confirm,xsjsglxt_check_entrustment_book entrustment where substring(confirm.identifieder_case_confirm_book_acceptance_num,1,4)='"
+				+ currentYear + "' and entrustment.check_entrustment_book_type='" + type
+				+ "' and confirm.identifieder_case_confirm_book_belong_entrustment_book=entrustment.xsjsglxt_check_entrustment_book_id order by substring(confirm.identifieder_case_confirm_book_acceptance_num,5) desc limit 1";
 		Query query = getSession().createSQLQuery(hql);
 		ji = (String) query.uniqueResult();
 		if (ji == null || ji.trim().length() <= 0) {
