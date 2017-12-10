@@ -12,6 +12,7 @@ function List_EntrustmentBook(pageIndex) {
 		var message;
 		if (xhr.readyState == 4) {
 			if (xhr.status == 200) {
+				console.debug(xhr.responseText);
 				EntrustmentBook_json = JSON.parse(xhr.responseText);
 				/*
 				 * 

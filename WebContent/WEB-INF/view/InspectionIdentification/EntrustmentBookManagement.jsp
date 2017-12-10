@@ -76,7 +76,7 @@
 									<option value="-1">被委托鉴定机构（全部）</option>
 									<option value="萍乡市公安司法鉴定中心">萍乡市公安司法鉴定中心</option>
 									<option value="萍乡市公安局物证鉴定所">萍乡市公安局物证鉴定所</option>
-									<option value="萍乡市安源公安司法鉴定中心">萍乡市安源公安司法鉴定中心</option>
+									<option value="萍乡市安源公安司法鉴定中心">萍乡市安源区公安司法鉴定中心</option>
 									<option value="江西省公安厅物证鉴定中心">江西省公安厅物证鉴定中心</option>
 									<option value="公安部物证鉴定中心">公安部物证鉴定中心</option>
 							</select></th>

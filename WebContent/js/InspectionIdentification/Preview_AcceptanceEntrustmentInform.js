@@ -58,7 +58,8 @@ function Preview_AcceptanceEntrustmentInform(obj) {
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_gmt_create
 									.substring(0, 10)
 							+ '</p>'
-							+ '<p>备注：（存疑）</p>' + '</h3>' + '<hr></div>';
+							+ '</h3>'
+							+ '<hr></div>';
 					jc.setContentAppend(con);
 				},
 				buttons : {

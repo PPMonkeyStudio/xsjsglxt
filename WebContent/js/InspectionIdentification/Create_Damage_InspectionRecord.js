@@ -139,54 +139,96 @@ function addDamageInspectionRecord(jc) {
 			.getElementById("create_damage_inspection_record_belong_entrustment_book");
 	formData
 			.append(
-					"inspectionRecord.damage_inspection_record_belong_entrustment_book",
+					"damageInspectionRecord.damage_inspection_record_belong_entrustment_book",
 					create_damage_inspection_record_belong_entrustment_book.value);
 	/*
 	 * 姓名
 	 */
 	var create_inspection_belong_entrustment_book = document
 			.getElementById("create_inspection_belong_entrustment_book");
-	formData.append("inspectionRecord.damage_inspection_record_name",
+	formData.append("damageInspectionRecord.damage_inspection_record_name",
 			create_inspection_belong_entrustment_book.value);
 	/*
 	 * 性别
 	 */
 	var create_inspection_belong_entrustment_book = document
 			.getElementById("create_inspection_belong_entrustment_book");
-	formData.append("inspectionRecord.damage_inspection_record_sex",
+	formData.append("damageInspectionRecord.damage_inspection_record_sex",
 			create_inspection_belong_entrustment_book.value);
 	/*
 	 * 出生日期
 	 */
+	var create_damage_inspection_record_birth_date = document
+			.getElementById("create_damage_inspection_record_birth_date");
+	formData.append(
+			"damageInspectionRecord.damage_inspection_record_birth_date",
+			create_damage_inspection_record_birth_date.value);
 	/*
 	 * 职业
 	 */
+	var create_damage_inspection_record_occupation = document
+			.getElementById("create_damage_inspection_record_occupation");
+	formData.append(
+			"damageInspectionRecord.damage_inspection_record_occupation",
+			create_damage_inspection_record_occupation.value);
 	/*
 	 * 服务处所
 	 */
+	var create_damage_inspection_record_unit_service = document
+			.getElementById("create_damage_inspection_record_unit_service");
+	formData.append(
+			"damageInspectionRecord.damage_inspection_record_unit_service",
+			create_damage_inspection_record_unit_service.value);
 	/*
 	 * 身份证号码
 	 */
+	var create_damage_inspection_record_idcard = document
+			.getElementById("create_damage_inspection_record_idcard");
+	formData.append("damageInspectionRecord.damage_inspection_record_idcard",
+			create_damage_inspection_record_idcard.value);
 	/*
 	 * 受伤时间
 	 */
+	var create_damage_inspection_record_damage_time = document
+			.getElementById("create_damage_inspection_record_damage_time");
+	formData.append(
+			"damageInspectionRecord.damage_inspection_record_damage_time",
+			create_damage_inspection_record_damage_time.value);
 	/*
 	 * 检验时间
 	 */
+	var create_damage_inspection_record_time = document
+			.getElementById("create_damage_inspection_record_time");
+	formData.append("damageInspectionRecord.damage_inspection_record_time",
+			create_damage_inspection_record_time.value);
 	/*
 	 * 住址
 	 */
+	var create_damage_inspection_record_adress = document
+			.getElementById("create_damage_inspection_record_adress");
+	formData.append("damageInspectionRecord.damage_inspection_record_adress",
+			create_damage_inspection_record_adress.value);
 	/*
 	 * 联系方式
 	 */
+	var create_damage_inspection_record_adress = document
+			.getElementById("create_damage_inspection_record_adress");
+	formData.append("damageInspectionRecord.damage_inspection_record_adress",
+			create_damage_inspection_record_adress.value);
 	/*
 	 * 检验所见
 	 */
+	var create_damage_inspection_record_inspection = document
+			.getElementById("create_damage_inspection_record_inspection");
+	formData.append(
+			"damageInspectionRecord.damage_inspection_record_inspection",
+			create_damage_inspection_record_inspection.value);
 	/*
 	 * 
 	 */
 	xhr
-			.open("POST",
-					"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_addInspectionRecord");
+			.open(
+					"POST",
+					"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_addDamageInspectionRecord");
 	xhr.send(formData);
 }
