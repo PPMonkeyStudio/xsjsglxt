@@ -79,7 +79,20 @@ public class LostComputerAction extends ActionSupport implements ServletRequestA
 		http_response.getWriter().write(gson.toJson(lostComputerInformationDTO));
 	}
 	
+	/*
+	 * 修改损失电脑信息
+	 */
+	public void updateLostComputer() throws IOException{
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();//格式化json数据
+		Gson gson = gsonBuilder.create();
+		lostComputerService.updateLostComputer(lost_computer);
 	
+		http_response.setContentType("text/html;charset=utf-8");
+
+		http_response.getWriter().write(gson.toJson("success"));
+		
+	}
 public void setLostComputerService(LostComputerService lostComputerService) {
 	this.lostComputerService = lostComputerService;
 }

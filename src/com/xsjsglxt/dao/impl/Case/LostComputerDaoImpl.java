@@ -42,9 +42,7 @@ public class LostComputerDaoImpl implements LostComputerDao {
 			e.printStackTrace();
 		}
 	}
-/*
- * 损失电脑的记录数
- */
+
 	@Override
 	public int getCountLostComputerInformationByPage(page_list_CasematerialVO page_list_Casematerial) {
 		// TODO Auto-generated method stub
@@ -155,5 +153,16 @@ public class LostComputerDaoImpl implements LostComputerDao {
 		 lost_computer = (xsjsglxt_lost_computer) query.uniqueResult();
 
 		return lost_computer;
+	}
+
+	@Override
+	public void updateLostComputer(xsjsglxt_lost_computer lost_computer) {
+		// TODO Auto-generated method stub
+		try {
+			getSession().saveOrUpdate(lost_computer);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

@@ -20,5 +20,9 @@ public xsjsglxt_case getCaseByxsjsglxt_lost_id(xsjsglxt_lost lost);
 public xsjsglxt_snece getSenceByxsjsglxt_case_id(xsjsglxt_case case1);
 
 public xsjsglxt_lost getLostById(xsjsglxt_lost lost);
+/*
+ * 修改损失物信息
+ */
+public void updateLost(xsjsglxt_lost lost);
 
 }
