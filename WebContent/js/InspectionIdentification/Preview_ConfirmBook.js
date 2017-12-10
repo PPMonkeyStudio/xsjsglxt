@@ -86,21 +86,38 @@ function Preview_ConfirmBook(obj) {
 							+ '</td></tr>'
 							+ '<tr><td>案（事）件简要情况</td><td colspan="8">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_simple_case_situation
+									.replace(/\n/g, "<br>").replace(/ /g,
+											"&nbsp;")
 							+ '</tr>'
 							+ '<tr><td>收到的检材和样本等情况（包括名称、数量、性状、包装，检材提取部位和方法等）</td><td colspan="8">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_sample_situation
+									.replace(/\n/g, "<br>").replace(/ /g,
+											"&nbsp;")
 							+ '</td></tr>'
 							+ '<tr><td>鉴定要求</td><td colspan="8">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request
 							+ '</td></tr>'
-							+ '<tr><td>双方对鉴定时限以及送检检材样本等使用保管和取回的约定</td><td colspan="8" style="text-align: left;"><br><br>送检人签字：'
+							+ '<tr><td>双方对鉴定时限以及送检检材样本等使用保管和取回的约定</td><td colspan="8" style="text-align: left;">'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_appointment
+									.replace(/\n/g, "<br>").replace(/ /g,
+											"&nbsp;")
+							+ '<br>送检人签字：'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspectors1_name
 							+ '、'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspectors2_name
-							+ '<span style="float: right;">鉴定机构受理人签字：</span>'
+							+ '<span style="float: right;">鉴定机构受理人签字：'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_acceptance_human_name
+							+ '</span>'
 							+ '</td></tr>'
-							+ '<tr><td>鉴定文书和相关检材等的领取情况</td><td colspan="8" style="text-align: left;"><br><br>领取人签字：'
-							+ '</td></tr>'
+							+ '<tr><td>鉴定文书和相关检材等的领取情况</td><td colspan="8" style="text-align: left;">'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_example_receive_situation
+									.replace(/\n/g, "<br>").replace(/ /g,
+											"&nbsp;")
+							+ '<br>领取人签字：'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_receiver
+							+ '<span style="float: right;">鉴定机构经办人签字：'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_entrustmentor
+							+ '</span></td></tr>'
 							+ '<tr><td>备注</td><td colspan="8">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_mark
 							+ '</td></tr>'

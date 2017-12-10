@@ -19,10 +19,10 @@ function Preview_NotAcceptanceEntrustmentInform(obj) {
 					}
 					var con = '<div style="margin:0 20px 0 0;">'
 							+ '<hr>'
-							+ '<h3  style="text-align: right;">编号：【'
+							+ '<h3  style="text-align: right;">编号：['
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num
 									.substring(0, 4)
-							+ '】第'
+							+ ']第'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num
 									.substring(4)
 							+ '号</h3>'

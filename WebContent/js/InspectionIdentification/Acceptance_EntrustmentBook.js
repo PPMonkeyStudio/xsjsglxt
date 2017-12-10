@@ -79,6 +79,14 @@ function Acceptance_EntrustmentBook(obj) {
 							+ (parseInt(date.getMonth()) + 1)
 							+ '-'
 							+ date.getDate() + '';
+					document
+							.getElementById("create_identifieder_case_confirm_book_inspection_date").value = date
+							.getFullYear()
+							+ '-'
+							+ (parseInt(date.getMonth()) + 1)
+							+ '-'
+							+ date.getDate() + '';
+
 					/*
 					 * 
 					 */

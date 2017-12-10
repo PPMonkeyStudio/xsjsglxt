@@ -171,16 +171,21 @@ function addForensicCheckBook(jc) {
 	formData.append(
 			"tranceCheckBook.check_entrustment_book_entrustmentor_name",
 			create_check_entrustment_book_entrustmentor_name.value);
+
 	formData.append("tranceCheckBook.check_entrustment_book_entrustmentor_sex",
 			create_check_entrustment_book_entrustmentor_sex.value);
+
 	formData.append(
 			"tranceCheckBook.check_entrustment_book_entrustmentor_phone",
 			create_check_entrustment_book_entrustmentor_phone.value);
+
 	formData.append("tranceCheckBook.check_entrustment_book_entrustmentor_age",
 			create_check_entrustment_book_entrustmentor_age.value);
+
 	formData.append(
 			"tranceCheckBook.check_entrustment_book_entrustmentor_unit",
 			create_check_entrustment_book_entrustmentor_unit.value);
+
 	formData.append(
 			"tranceCheckBook.check_entrustment_book_entrustmentor_address",
 			create_check_entrustment_book_entrustmentor_address.value);
@@ -246,23 +251,6 @@ function addForensicCheckBook(jc) {
 			.append(
 					"tranceCheckBook.check_entrustment_book_inspectors2_jobcard_number",
 					create_check_entrustment_book_inspectors2_jobcard_number.value);
-	/*
-	 * 被鉴定人
-	 */
-	formData.append(
-			"tranceCheckBook.check_entrustment_book_entrustmentor_name", "/");
-	formData.append("tranceCheckBook.check_entrustment_book_entrustmentor_sex",
-			"/");
-	formData.append(
-			"tranceCheckBook.check_entrustment_book_entrustmentor_phone", "/");
-	formData.append("tranceCheckBook.check_entrustment_book_entrustmentor_age",
-			"/");
-	formData.append(
-			"tranceCheckBook.check_entrustment_book_entrustmentor_unit", "/");
-	formData
-			.append(
-					"tranceCheckBook.check_entrustment_book_entrustmentor_address",
-					"/");
 	/*
 	 * 通讯地址
 	 */
