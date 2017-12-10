@@ -147,7 +147,8 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void addDeathInspectionRecord() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			response.getWriter().write("" + inspectionIdentificationService.saveDeathInspectionRecord(deathInspectionRecord));
+			response.getWriter()
+					.write("" + inspectionIdentificationService.saveDeathInspectionRecord(deathInspectionRecord));
 		} catch (IOException e) {
 			System.out.println("填写尸体检验记录表报错");
 			e.printStackTrace();
@@ -158,7 +159,8 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void addDamageInspectionRecord() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			response.getWriter().write("" + inspectionIdentificationService.saveDamageInspectionRecord(damageInspectionRecord));
+			response.getWriter()
+					.write("" + inspectionIdentificationService.saveDamageInspectionRecord(damageInspectionRecord));
 		} catch (IOException e) {
 			System.out.println("填写损伤检验记录表报错");
 			e.printStackTrace();
@@ -226,7 +228,8 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void updateDeathInspectionRecord() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			response.getWriter().write("" + inspectionIdentificationService.updateDeathInspectionRecord(deathInspectionRecord));
+			response.getWriter()
+					.write("" + inspectionIdentificationService.updateDeathInspectionRecord(deathInspectionRecord));
 		} catch (IOException e) {
 			System.out.println("更改尸体检验记录表报错");
 			e.printStackTrace();
@@ -237,7 +240,8 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void uodateDamageInspectionRecord() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			response.getWriter().write("" + inspectionIdentificationService.updateDamageInspectionRecord(damageInspectionRecord));
+			response.getWriter()
+					.write("" + inspectionIdentificationService.updateDamageInspectionRecord(damageInspectionRecord));
 		} catch (IOException e) {
 			System.out.println("更改损伤检验记录表报错");
 			e.printStackTrace();

@@ -32,7 +32,7 @@ function Create_Death_InspectionRecord(obj) {
 						+ '<td>出生日期：</td>'
 						+ '<td><input  class="form-control mydate" id="create_death_inspection_record_death_birth_date" /></td>'
 						+ '<td>民族：</td>'
-						+ '<td><input  class="form-control" id="create_death_inspection_record_private_capital" value="汉"/></td>'
+						+ '<td><input  class="form-control" id="create_death_inspection_record_private_capital" value="中国"/></td>'
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>服务处所：</td>'
