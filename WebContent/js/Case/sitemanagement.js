@@ -55,6 +55,7 @@ function get_ListSneceInformationByPageAndSearch(data) {
 		for (var len = 0; len < xhr.SenceInformationDTOList.length; len++) {
 			var data_list = xhr.SenceInformationDTOList[len];
 			str += '<tr>';
+			str += '<td><input type="checkbox" class="check_del" style="margin:10px;"/></td>';
 			str += '<td>' + (len + 1) + '</td>';
 			str += '<td><a href="/xsjsglxt/case/Case_page_CaseDetails?id=' + data_list.case1.xsjsglxt_case_id + '">' + data_list.sence.snece_inquestId + '</a></td>';
 			str += '<td>' + data_list.case1.case_receivingAlarmDate + '</td>';

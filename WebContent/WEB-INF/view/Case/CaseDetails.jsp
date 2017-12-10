@@ -33,14 +33,15 @@
 				<i class="fa fa-reply"></i> 返回列表
 			</button>
 			<button  type="button"
-				class="btn btn-default button button_change">
-				<i class="fa fa-pencil" onclick="case_change()"></i> 修改案件
+				class="btn btn-default button button_change" onclick="case_change()">
+				<i class="fa fa-pencil" ></i> 修改案件
 			</button>
 			<button  type="button"
 				class="btn btn-default button button_del" onclick="case_del()">
 				<i class="fa fa-times"></i> 删除案件
 			</button>
 			<div class="panel-body">
+			<form id="caseDetails">
 				<table>
 					<tr>
 						<td>勘探编号</td>
@@ -264,6 +265,7 @@
 						</td>
 					</tr>
 				</table>
+			</form>
 			</div>
 		</div>
 	</div>

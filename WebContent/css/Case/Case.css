@@ -15,3 +15,34 @@
 	margin-top:120px;
 }
 /* CaseDetail.css end*/
+/* sitemanagement.css start */
+a {
+	cursor: pointer;
+}
+
+.table-condensed thead tr>th {
+	text-align: left;
+}
+
+.table-condensed tbody>tr>td {
+	font-size: 15px;
+}
+
+#newQuery table input {
+	width: 50%;
+}
+
+#newQuery table tbody tr td:nth-child(2) select {
+	margin-top: 6px;
+	width: 50%;
+	float: left;
+}
+
+#newQuery table selcet[id="exploration_personnel"] {
+	width: 100%;
+}
+
+.check_del{
+	margrin:10px;
+}
+/* sitemanagement.css end */
