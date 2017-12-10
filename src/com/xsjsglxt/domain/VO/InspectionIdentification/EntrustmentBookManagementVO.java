@@ -33,14 +33,23 @@ public class EntrustmentBookManagementVO {
 	private String type;
 	// 状态
 	private String state;
+	// 鉴定要求
+	private String entrustmentRequire;
 
 	@Override
 	public String toString() {
-		return "EntrustmentBookManagementVO [listEntrustmentBookManagementDTO=" + listEntrustmentBookManagementDTO
-				+ ", pageIndex=" + pageIndex + ", totalRecords=" + totalRecords + ", pageSize=" + pageSize
-				+ ", totalPages=" + totalPages + ", HavePrePage=" + HavePrePage + ", HaveNextPage=" + HaveNextPage
-				+ ", start_time=" + start_time + ", stop_time=" + stop_time + ", search=" + search + ", unitName="
-				+ unitName + ", type=" + type + ", state=" + state + "]";
+		return "EntrustmentBookManagementVO [listEntrustmentBookManagementDTO=" + listEntrustmentBookManagementDTO + ", pageIndex=" + pageIndex + ", totalRecords=" + totalRecords
+				+ ", pageSize=" + pageSize + ", totalPages=" + totalPages + ", HavePrePage=" + HavePrePage + ", HaveNextPage=" + HaveNextPage + ", start_time=" + start_time
+				+ ", stop_time=" + stop_time + ", search=" + search + ", unitName=" + unitName + ", type=" + type + ", state=" + state + ", entrustmentRequire="
+				+ entrustmentRequire + "]";
+	}
+
+	public String getEntrustmentRequire() {
+		return entrustmentRequire;
+	}
+
+	public void setEntrustmentRequire(String entrustmentRequire) {
+		this.entrustmentRequire = entrustmentRequire;
 	}
 
 	public List<EntrustmentBookManagementDTO> getListEntrustmentBookManagementDTO() {
