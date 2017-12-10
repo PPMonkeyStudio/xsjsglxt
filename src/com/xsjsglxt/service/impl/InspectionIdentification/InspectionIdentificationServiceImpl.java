@@ -34,6 +34,15 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		this.inspectionIdentificationDao = inspectionIdentificationDao;
 	}
 
+	/**
+	 * 上传尸表检验图1
+	 */
+	@Override
+	public int uploadAutopsyTableTestPicture1(File uploadFile) {
+		
+		return 0;
+	}
+	
 	// 保存痕迹检验委托书
 	@Override
 	public int saveTranceCheckBook(xsjsglxt_check_entrustment_book tranceCheckBook) {
@@ -924,5 +933,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		}
 		return null;
 	}
+
 
 }

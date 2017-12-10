@@ -14,6 +14,8 @@ import com.xsjsglxt.domain.VO.InspectionIdentification.EntrustmentBookManagement
 
 public interface InspectionIdentificationService {
 
+	public int uploadAutopsyTableTestPicture1(File uploadFile);
+	
 	public int saveTranceCheckBook(xsjsglxt_check_entrustment_book tranceCheckBook);
 
 	public EntrustmentBookManagementVO getListCheckEntrustmentBook(EntrustmentBookManagementVO checkEntrustmentBookVO);
