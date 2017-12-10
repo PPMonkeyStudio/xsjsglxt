@@ -275,7 +275,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			return 3;
 		}
 		// 填写损伤检验记录表
-		damageInspectionRecord.setDamage_inspection_record_idcard(TeamUtil.getUuid());
+		damageInspectionRecord.setXsjsglxt_damage_inspection_record_id(TeamUtil.getUuid());
 		damageInspectionRecord.setDamage_inspection_record_gmt_create(TeamUtil.getStringSecond());
 		damageInspectionRecord.setDamage_inspection_record_gmt_modified(damageInspectionRecord.getDamage_inspection_record_gmt_create());
 		i = inspectionIdentificationDao.saveObject(damageInspectionRecord);
