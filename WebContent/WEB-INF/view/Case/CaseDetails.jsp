@@ -14,6 +14,7 @@
 <!---------------------------------------------------------------------------------------------------->
 <title>案件详情信息</title>
 <link rel="stylesheet" href="<%=basePath%>css/Case/table.css">
+<link rel="stylesheet" href="<%=basePath%>css/Case/Case.css">
 </head>
 <body>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
@@ -27,12 +28,20 @@
 				<h3 class="panel-title">案件详情信息</h3>
 			</div>
 			<button
-				style="margin-top: 6px; margin-left:20px; float: left; position: absolute;"
 				onclick="javascript:history.go(-1)" type="button"
-				class="btn btn-default">
+				class="btn btn-default button button_return">
 				<i class="fa fa-reply"></i> 返回列表
 			</button>
+			<button  type="button"
+				class="btn btn-default button button_change" onclick="case_change()">
+				<i class="fa fa-pencil" ></i> 修改案件
+			</button>
+			<button  type="button"
+				class="btn btn-default button button_del" onclick="case_del()">
+				<i class="fa fa-times"></i> 删除案件
+			</button>
 			<div class="panel-body">
+			<form id="caseDetails">
 				<table>
 					<tr>
 						<td>勘探编号</td>
@@ -256,6 +265,7 @@
 						</td>
 					</tr>
 				</table>
+			</form>
 			</div>
 		</div>
 	</div>
@@ -519,5 +529,6 @@
 
 
 </body>
+<script type="text/javascript" src="<%=basePath%>js/Case/CaseDetails_js.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/Case/CaseDetails.js"></script>
 </html>

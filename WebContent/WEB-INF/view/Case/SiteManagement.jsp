@@ -21,33 +21,7 @@
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-<style type="text/css">
-a {
-	cursor: pointer;
-}
-
-.table-condensed thead tr>th {
-	text-align: left;
-}
-
-.table-condensed tbody>tr>td {
-	font-size: 15px;
-}
-
-#newQuery table input {
-	width: 50%;
-}
-
-#newQuery table tbody tr td:nth-child(2) select {
-	margin-top: 6px;
-	width: 50%;
-	float: left;
-}
-
-#newQuery table selcet[id="exploration_personnel"] {
-	width: 100%;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="<%=basePath %>Case.css"/>
 </head>
 
 <body>
@@ -73,6 +47,7 @@ a {
 						onclick="javascript:location.href='/xsjsglxt/case/Case_page_Sneceinput'">
 						<i class="fa fa-plus-square"></i> 新建案件
 					</button>
+					
 				</div>
 				<div class="col-md-12">
 					<!-- TABLE HOVER -->
@@ -86,6 +61,7 @@ a {
 							<table class="table table-hover table-condensed case_table_info">
 								<thead>
 									<tr>
+										<th>状态</th>
 										<th>序号</th>
 										<th>勘验编号</th>
 										<th>接警时间</th>
@@ -96,15 +72,7 @@ a {
 									</tr>
 								</thead>
 								<tbody>
-									<!-- <tr>
-										<td>1</td>
-										<td><a>K3603020012017110001</a></td>
-										<td>2017/11/12</td>
-										<td>萍乡市</td>
-										<td>其它盗窃</td>
-										<td>李显明 13979987657</td>
-										<td>杨立宇 吴昊晟</td>
-									</tr> -->
+
 								</tbody>
 								<tfoot>
 									<tr>
