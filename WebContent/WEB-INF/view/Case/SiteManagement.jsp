@@ -73,6 +73,7 @@ a {
 						onclick="javascript:location.href='/xsjsglxt/case/Case_page_Sneceinput'">
 						<i class="fa fa-plus-square"></i> 新建案件
 					</button>
+					
 				</div>
 				<div class="col-md-12">
 					<!-- TABLE HOVER -->
