@@ -591,5 +591,33 @@ public class SenceDaoImpl implements SenceDao {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public xsjsglxt_snece getSenceById(String case1) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_snece sence where sence.snece_case='" + case1 + "'";
+
+		Query query = session.createQuery(hql);
+
+		xsjsglxt_snece	sence = (xsjsglxt_snece) query.uniqueResult();
+
+		return sence;
+	}
+
+	@Override
+	public xsjsglxt_briefdetails getBriefdetailsById(String case1) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_briefdetails briefdetails where briefdetails.briefdetails_case='" + case1 + "'";
+
+		Query query = session.createQuery(hql);
+
+		xsjsglxt_briefdetails	briefdetails = (xsjsglxt_briefdetails) query.uniqueResult();
+
+		return briefdetails;
+	}
 	
 }

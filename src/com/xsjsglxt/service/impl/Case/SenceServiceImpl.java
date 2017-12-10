@@ -23,7 +23,7 @@ import util.TeamUtil;
 
 public class SenceServiceImpl implements SenceService {
 	private SenceDao senceDao;
-
+    
 	public SenceDao getSenceDao() {
 		return senceDao;
 	}
@@ -241,8 +241,10 @@ public class SenceServiceImpl implements SenceService {
 	}
 
 	@Override
-	public void updateSence(xsjsglxt_snece sence) {
+	public void updateSence(xsjsglxt_snece sence, String case1) {
 		// TODO Auto-generated method stub
+		
+		sence=senceDao.getSenceById(case1);
 		sence.setSnece_gmt_modified(TeamUtil.getStringSecond());
 		senceDao.updateSence(sence);
 	}
@@ -255,8 +257,9 @@ public class SenceServiceImpl implements SenceService {
 	}
 
 	@Override
-	public void updateBriefdetails(xsjsglxt_briefdetails briefdetails) {
+	public void updateBriefdetails(xsjsglxt_briefdetails briefdetails,String case1) {
 		// TODO Auto-generated method stub
+		briefdetails=senceDao.getBriefdetailsById(case1);
 		briefdetails.setBriefdetails_details_modified(TeamUtil.getStringSecond());
 		senceDao.updateBriefdetails(briefdetails);
 	}
