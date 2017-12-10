@@ -56,6 +56,12 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	private InputStream inputStream;
 	// 名
 	private String fileName;
+	// 尸体检验记录表 图片文件
+	private File[] deathFile;
+	// 尸体检验记录表 图片名称
+	private String[] deathFilename;
+	// 文件类型
+	private String[] deathContentType;
 
 	/**
 	 * 
@@ -147,8 +153,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void addDeathInspectionRecord() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			response.getWriter()
-					.write("" + inspectionIdentificationService.saveDeathInspectionRecord(deathInspectionRecord));
+			response.getWriter().write("" + inspectionIdentificationService.saveDeathInspectionRecord(deathInspectionRecord, deathFile, deathFilename));
 		} catch (IOException e) {
 			System.out.println("填写尸体检验记录表报错");
 			e.printStackTrace();
@@ -159,6 +164,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void addDamageInspectionRecord() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
+			System.out.println("lplp:" + damageInspectionRecord.getDamage_inspection_record_belong_entrustment_book());
 			response.getWriter()
 					.write("" + inspectionIdentificationService.saveDamageInspectionRecord(damageInspectionRecord));
 		} catch (IOException e) {
@@ -228,8 +234,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void updateDeathInspectionRecord() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			response.getWriter()
-					.write("" + inspectionIdentificationService.updateDeathInspectionRecord(deathInspectionRecord));
+			response.getWriter().write("" + inspectionIdentificationService.updateDeathInspectionRecord(deathInspectionRecord, deathFile, deathFilename));
 		} catch (IOException e) {
 			System.out.println("更改尸体检验记录表报错");
 			e.printStackTrace();
@@ -240,6 +245,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void uodateDamageInspectionRecord() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
+			System.out.println("lplp:" + damageInspectionRecord.getDamage_inspection_record_belong_entrustment_book());
 			response.getWriter()
 					.write("" + inspectionIdentificationService.updateDamageInspectionRecord(damageInspectionRecord));
 		} catch (IOException e) {
@@ -400,6 +406,30 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 
 	public void setDamageInspectionRecord(xsjsglxt_damage_inspection_record damageInspectionRecord) {
 		this.damageInspectionRecord = damageInspectionRecord;
+	}
+
+	public File[] getDeathFile() {
+		return deathFile;
+	}
+
+	public String[] getDeathFilename() {
+		return deathFilename;
+	}
+
+	public String[] getDeathContentType() {
+		return deathContentType;
+	}
+
+	public void setDeathFile(File[] deathFile) {
+		this.deathFile = deathFile;
+	}
+
+	public void setDeathFilename(String[] deathFilename) {
+		this.deathFilename = deathFilename;
+	}
+
+	public void setDeathContentType(String[] deathContentType) {
+		this.deathContentType = deathContentType;
 	}
 
 }

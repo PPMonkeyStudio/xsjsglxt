@@ -72,8 +72,13 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 			hql = hql + " and check_entrustment_book_num like '" + search
 					+ "' or check_entrustment_book_case_name like '" + search + "'";
 		}
-		if (checkEntrustmentBookVO.getEntrustmentRequire() != null && checkEntrustmentBookVO.getEntrustmentRequire().trim().length() > 0) {
-			hql = hql + " and check_entrustment_book_entrustment_request = '" + checkEntrustmentBookVO.getEntrustmentRequire() + "'";
+		if (checkEntrustmentBookVO.getEntrustmentRequire() != null && checkEntrustmentBookVO.getEntrustmentRequire().trim().length() > 0
+				&& !(("-1").equals(checkEntrustmentBookVO.getEntrustmentRequire().trim()))) {
+			if (checkEntrustmentBookVO.getEntrustmentRequire().equals("2")) {
+				hql = hql + " and check_entrustment_book_entrustment_request not in ('指纹检验鉴定','足迹检验鉴定','整体分离检验鉴定','车辆痕迹检验鉴定','死因鉴定','损伤鉴定','理化检验鉴定','毒物检验鉴定','失踪人口查询')";
+			} else {
+				hql = hql + " and check_entrustment_book_entrustment_request = '" + checkEntrustmentBookVO.getEntrustmentRequire() + "'";
+			}
 		}
 		if (checkEntrustmentBookVO.getState() != null && checkEntrustmentBookVO.getState().trim().length() > 0) {
 			hql = hql + " and check_entrustment_book_state='" + checkEntrustmentBookVO.getState().trim() + "'";
