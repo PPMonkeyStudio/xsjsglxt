@@ -1,6 +1,7 @@
 package com.xsjsglxt.service.InspectionIdentification;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter;
@@ -13,8 +14,6 @@ import com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform;
 import com.xsjsglxt.domain.VO.InspectionIdentification.EntrustmentBookManagementVO;
 
 public interface InspectionIdentificationService {
-
-	public int uploadAutopsyTableTestPicture1(File uploadFile, String oldFileName, String deathRecordId, String newFileName);
 
 	public int saveTranceCheckBook(xsjsglxt_check_entrustment_book tranceCheckBook);
 
@@ -30,7 +29,7 @@ public interface InspectionIdentificationService {
 
 	public int saveInspectionRecord(xsjsglxt_inspection_record inspectionRecord);
 
-	public int saveDeathInspectionRecord(xsjsglxt_death_inspection_record deathInspectionRecord);
+	public int saveDeathInspectionRecord(xsjsglxt_death_inspection_record deathInspectionRecord, File[] file, String[] fileName) throws IOException;
 
 	public int saveDamageInspectionRecord(xsjsglxt_damage_inspection_record damageInspectionRecord);
 
@@ -42,7 +41,7 @@ public interface InspectionIdentificationService {
 
 	public int updateIdentifiederCaseConfirmBook(xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook);
 
-	public int updateDeathInspectionRecord(xsjsglxt_death_inspection_record deathInspectionRecord);
+	public int updateDeathInspectionRecord(xsjsglxt_death_inspection_record deathInspectionRecord, File[] updateDeathFile, String[] updateDeathFileName) throws IOException;
 
 	public int updateNotAcceptanceInform(xsjsglxt_not_acceptance_entrustment_inform notAcceptanceEntrustmentInform);
 

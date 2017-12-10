@@ -3,6 +3,7 @@ package com.xsjsglxt.service.impl.InspectionIdentification;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
 import com.xsjsglxt.dao.InspectionIdentification.InspectionIdentificationDao;
@@ -32,42 +34,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 
 	public void setInspectionIdentificationDao(InspectionIdentificationDao inspectionIdentificationDao) {
 		this.inspectionIdentificationDao = inspectionIdentificationDao;
-	}
-
-	/**
-	 * 上传尸表检验图1
-	 */
-	@Override
-	public int uploadAutopsyTableTestPicture1(File uploadFile, String oldFileName, String deathRecordId, String newFileName) {
-		String path = "";
-		xsjsglxt_death_inspection_record xsjsglxt_death_inspection_record = new xsjsglxt_death_inspection_record();
-		// 如果新文件为空
-		if (uploadFile == null) {
-			path = "F:/xsjsglxt/";
-			// 判断旧文件是否处于空的状态
-			if ("".equals(oldFileName) || !(oldFileName.trim().length() > 0)) {
-				// 如果是空
-				// 判断：在数据库中属于委托书的该图片是否存在
-				xsjsglxt_death_inspection_record = inspectionIdentificationDao.getDeathInspectionRecordOwnId(deathRecordId);
-				// 如果记录不为空,说明原文件存在
-				if (xsjsglxt_death_inspection_record != null && xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture1() != null
-						&& xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture1().trim().length() > 0) {
-					// 如果存在,则删除原有的
-					// 先进行删除
-					path = path + xsjsglxt_death_inspection_record.getXsjsglxt_death_inspection_record_id()
-							+ "_" + xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture1();
-					File deleteFile = new File(path);
-					deleteFile.delete();
-					// 删除数据库中的数据
-					
-					
-					
-				}
-			}
-
-		}
-
-		return 0;
 	}
 
 	// 保存痕迹检验委托书
@@ -323,19 +289,60 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	/**
 	 *
 	 * 保存尸体检验记录表
+	 * 
+	 * @throws IOException
 	 *
 	 */
 	@Override
-	public int saveDeathInspectionRecord(xsjsglxt_death_inspection_record deathInspectionRecord) {
+	public int saveDeathInspectionRecord(xsjsglxt_death_inspection_record deathInspectionRecord, File[] file, String[] fileName) throws IOException {
 		int i = 2;
+		int x = -1;
+		String path = "";
 		/**
 		 * 这里是否需要我来进行判断
 		 */
 		if (!("申请已受理".equals(entrustmentBookState(deathInspectionRecord.getDeath_inspection_record_belong_entrustment_book().trim())))) {
 			return 3;
 		}
-		// 填写尸体检验记录表
 		deathInspectionRecord.setXsjsglxt_death_inspection_record_id(TeamUtil.getUuid());
+		// 上传图片
+		for (int k = 0; k < file.length; k++) {
+			if (file[k] != null) {
+				path = path + deathInspectionRecord.getXsjsglxt_death_inspection_record_id() + "_" + fileName[k];
+				File newFile = new File(path);
+				FileUtils.copyFile(file[k], newFile);
+			}
+		}
+		// 设置其他字段名
+		for (int j = 0; j < file.length; j++) {
+			x = -1;
+			if (file[j] != null) {
+				x = j;
+			}
+			switch (x) {
+			case 0:
+				deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture1(fileName[x]);
+				break;
+			case 1:
+				deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture2(fileName[x]);
+				break;
+			case 2:
+				deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture3(fileName[x]);
+				break;
+			case 3:
+				deathInspectionRecord.setDeath_inspection_record_anatomy_picture1(fileName[x]);
+				break;
+			case 4:
+				deathInspectionRecord.setDeath_inspection_record_anatomy_picture2(fileName[x]);
+				break;
+			case 5:
+				deathInspectionRecord.setDeath_inspection_record_anatomy_picture3(fileName[x]);
+				break;
+			default:
+				break;
+			}
+		}
+		// 填写尸体检验记录表
 		deathInspectionRecord.setDeath_inspection_record_gmt_create(TeamUtil.getStringSecond());
 		deathInspectionRecord.setDeath_inspection_record_gmt_modified(deathInspectionRecord.getDeath_inspection_record_gmt_modified());
 		i = inspectionIdentificationDao.saveObject(deathInspectionRecord);
@@ -382,7 +389,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		if (!("已记录".equals(entrustmentBookState(appraisalLetter.getAppraisal_letter_belong_entrustment_book().trim())))) {
 			return 3;
 		}
-		// 填写
+		//
 		appraisalLetter.setXsjsglxt_appraisal_letter_id(TeamUtil.getUuid());
 		appraisalLetter.setAppraisal_letter_gmt_create(TeamUtil.getStringSecond());
 		appraisalLetter.setAppraisal_letter_gmt_modified(appraisalLetter.getAppraisal_letter_gmt_create());
@@ -446,19 +453,65 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 
 	// 更改尸体检验记录表
 	@Override
-	public int updateDeathInspectionRecord(xsjsglxt_death_inspection_record deathInspectionRecord) {
-		xsjsglxt_death_inspection_record xsjsglxt_death_inspection_record = new xsjsglxt_death_inspection_record();
-		xsjsglxt_death_inspection_record = inspectionIdentificationDao.getDeathInspectionRecordOwnId(deathInspectionRecord.getXsjsglxt_death_inspection_record_id());
-		if (xsjsglxt_death_inspection_record == null)
+	public int updateDeathInspectionRecord(xsjsglxt_death_inspection_record deathInspectionRecord, File[] updateDeathFile, String[] updateDeathFileName) throws IOException {
+		int i = 1;
+		xsjsglxt_death_inspection_record death_inspection_record = new xsjsglxt_death_inspection_record();
+		death_inspection_record = inspectionIdentificationDao.getDeathInspectionRecordOwnId(deathInspectionRecord.getXsjsglxt_death_inspection_record_id());
+		if (death_inspection_record == null)
 			return 3;
-		deathInspectionRecord.setDeath_inspection_record_belong_entrustment_book(xsjsglxt_death_inspection_record.getDeath_inspection_record_belong_entrustment_book());
-		deathInspectionRecord.setDeath_inspection_record_anatomy_picture1(xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomy_picture1());
-		deathInspectionRecord.setDeath_inspection_record_anatomy_picture2(xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomy_picture2());
-		deathInspectionRecord.setDeath_inspection_record_anatomy_picture3(xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomy_picture3());
-		deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture1(xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture1());
-		deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture2(xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture2());
-		deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture3(xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture3());
-		deathInspectionRecord.setDeath_inspection_record_gmt_create(xsjsglxt_death_inspection_record.getDeath_inspection_record_gmt_create());
+		deathInspectionRecord.setDeath_inspection_record_belong_entrustment_book(death_inspection_record.getDeath_inspection_record_belong_entrustment_book());
+		// 更改图片记录
+		for (int k = 0; k < updateDeathFile.length; k++) {
+			if (updateDeathFile[k] != null) {
+				switch (k) {
+				case 0:
+					i = uploadDeath("尸表检验图1", updateDeathFile[k], death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture1(), death_inspection_record,
+							updateDeathFileName[k]);
+					System.out.println("尸表检验图1:" + i);
+					break;
+				case 1:
+					i = uploadDeath("尸表检验图2", updateDeathFile[k], death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture2(), death_inspection_record,
+							updateDeathFileName[k]);
+					System.out.println("尸表检验图2:" + i);
+					break;
+				case 2:
+					i = uploadDeath("尸表检验图3", updateDeathFile[k], death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture3(), death_inspection_record,
+							updateDeathFileName[k]);
+					System.out.println("尸表检验图3:" + i);
+					break;
+				case 3:
+					i = uploadDeath("解剖检验图1", updateDeathFile[k], death_inspection_record.getDeath_inspection_record_anatomy_picture1(), death_inspection_record,
+							updateDeathFileName[k]);
+					System.out.println("解剖检验图1:" + i);
+					break;
+				case 4:
+					i = uploadDeath("解剖检验图2", updateDeathFile[k], death_inspection_record.getDeath_inspection_record_anatomy_picture2(), death_inspection_record,
+							updateDeathFileName[k]);
+					System.out.println("解剖检验图2:" + i);
+					break;
+				case 5:
+					i = uploadDeath("解剖检验图3", updateDeathFile[k], death_inspection_record.getDeath_inspection_record_anatomy_picture3(), death_inspection_record,
+							updateDeathFileName[k]);
+					System.out.println("解剖检验图3:" + i);
+					break;
+				default:
+					break;
+				}
+			}
+		}
+		deathInspectionRecord.setDeath_inspection_record_anatomy_picture1(
+				death_inspection_record.getDeath_inspection_record_anatomy_picture1());
+		deathInspectionRecord.setDeath_inspection_record_anatomy_picture2(
+				death_inspection_record.getDeath_inspection_record_anatomy_picture2());
+		deathInspectionRecord.setDeath_inspection_record_anatomy_picture3(
+				death_inspection_record.getDeath_inspection_record_anatomy_picture3());
+		deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture1(
+				death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture1());
+		deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture2(
+				death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture2());
+		deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture3(
+				death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture3());
+		deathInspectionRecord.setDeath_inspection_record_gmt_create(death_inspection_record.getDeath_inspection_record_gmt_create());
 		deathInspectionRecord.setDeath_inspection_record_gmt_modified(TeamUtil.getStringSecond());
 		return inspectionIdentificationDao.saveObject(deathInspectionRecord);
 	}
@@ -959,6 +1012,88 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			return checkEntrustmentBook.getCheck_entrustment_book_type();
 		}
 		return null;
+	}
+
+	// 上传尸体检验记录表图片
+	// oldFileName需要供给
+	// uploadName 需要供给
+	public int uploadDeath(String uploadName, File file, String oldFileName, xsjsglxt_death_inspection_record deathInspectionRecord, String newFileName) throws IOException {
+		String path = "F:/xsjsglxt/";
+		// 如果新文件为空
+		if (file == null) {
+			// 判断旧文件是否处于空的状态
+			// 这里的旧文件是指在数据库中自己查出来的原文件名
+			if ("".equals(oldFileName) || !(oldFileName.trim().length() > 0)) {
+				// 旧文件如果为空,则不用进行任何操作
+				return 1;
+			} else {
+				// 如果旧文件存在,则进行操作
+				// 删除旧文件
+				path = path + deathInspectionRecord.getXsjsglxt_death_inspection_record_id() + "_" + oldFileName;
+				File deleteFile = new File(path);
+				deleteFile.delete();
+				switch (uploadName) {
+				case "尸表检验图1":
+					deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture1("");
+					break;
+				case "尸表检验图2":
+					deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture2("");
+					break;
+				case "尸表检验图3":
+					deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture3("");
+					break;
+				case "解剖检验图1":
+					deathInspectionRecord.setDeath_inspection_record_anatomy_picture1("");
+					break;
+				case "解剖检验图2":
+					deathInspectionRecord.setDeath_inspection_record_anatomy_picture2("");
+					break;
+				case "解剖检验图3":
+					deathInspectionRecord.setDeath_inspection_record_anatomy_picture3("");
+					break;
+				}
+				deathInspectionRecord.setDeath_inspection_record_gmt_modified(TeamUtil.getStringSecond());
+				return inspectionIdentificationDao.saveObject(deathInspectionRecord);
+			}
+		} else {
+			// 如果新文件存在
+			// 判断旧文件是否存在
+			if (!("".equals(oldFileName) || !(oldFileName.trim().length() > 0))) {
+				// 如果旧文件存在
+				// 删除旧文件
+				path = path + deathInspectionRecord.getXsjsglxt_death_inspection_record_id() + "_" + oldFileName;
+				File deleteFile = new File(path);
+				deleteFile.delete();
+			}
+			// 直接进行上传以及存入
+			// 上传文件
+			path = path + deathInspectionRecord.getXsjsglxt_death_inspection_record_id() + "_" + newFileName;
+			File newFile = new File(path);
+			FileUtils.copyFile(file, newFile);
+			// 存储到数据库
+			switch (uploadName) {
+			case "尸表检验图1":
+				deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture1(newFileName);
+				break;
+			case "尸表检验图2":
+				deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture2(newFileName);
+				break;
+			case "尸表检验图3":
+				deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture3(newFileName);
+				break;
+			case "解剖检验图1":
+				deathInspectionRecord.setDeath_inspection_record_anatomy_picture1(newFileName);
+				break;
+			case "解剖检验图2":
+				deathInspectionRecord.setDeath_inspection_record_anatomy_picture2(newFileName);
+				break;
+			case "解剖检验图3":
+				deathInspectionRecord.setDeath_inspection_record_anatomy_picture3(newFileName);
+				break;
+			}
+			deathInspectionRecord.setDeath_inspection_record_gmt_modified(TeamUtil.getStringSecond());
+			return inspectionIdentificationDao.saveObject(deathInspectionRecord);
+		}
 	}
 
 }
