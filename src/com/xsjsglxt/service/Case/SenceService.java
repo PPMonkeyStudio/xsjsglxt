@@ -48,8 +48,8 @@ public SenceInformationDTO SecneInformationOne(xsjsglxt_case case1);
 /*
  * 修改信息
  */
-public void updateSence(xsjsglxt_snece sence);
+public void updateSence(xsjsglxt_snece sence, String case1);
 public void updateCase(xsjsglxt_case case1);
-public void updateBriefdetails(xsjsglxt_briefdetails briefdetails);
+public void updateBriefdetails(xsjsglxt_briefdetails briefdetails,String case1);
 
 }

@@ -86,5 +86,7 @@ public xsjsglxt_picture getPicturtByCaseId(xsjsglxt_case case1);
 public void updateSence(xsjsglxt_snece sence);
 public void updateCase(xsjsglxt_case case1);
 public void updateBriefdetails(xsjsglxt_briefdetails briefdetails);
+public xsjsglxt_snece getSenceById(String case1);
+public xsjsglxt_briefdetails getBriefdetailsById(String case1);
 
 }
