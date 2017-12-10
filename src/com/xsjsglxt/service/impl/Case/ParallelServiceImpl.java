@@ -60,7 +60,7 @@ public class ParallelServiceImpl implements ParallelService {
 		List<xsjsglxt_parallel> listParallel = new ArrayList<xsjsglxt_parallel>();
 		
 		
-		// ��ȡɸѡ�����еļ�¼
+		// 符合筛选条件的记录数
 		int i = parallelDao.getCountParallelInformationByPage(page_list_parallelInformation);
 		System.out.println(i);
 		page_list_parallelInformation.setTotalRecords(i);
@@ -76,7 +76,7 @@ public class ParallelServiceImpl implements ParallelService {
 			page_list_parallelInformation.setHaveNextPage(true);
 		}
 		
-		// ����ɸѡ������ȡlist����
+		// 符合筛选条件的记录
 		listParallel = parallelDao.getListParallelInformatioByPage(page_list_parallelInformation);
 		for (xsjsglxt_parallel parallel : listParallel) {
 	     // 1
@@ -95,8 +95,7 @@ public class ParallelServiceImpl implements ParallelService {
 
 	}
 	/*
-	 * (non-Javadoc)����������ϸ��Ϣ
-	 * @see com.xsjsglxt.service.Case.ParallelService#ParallelInformationOne(com.xsjsglxt.domain.DO.xsjsglxt_parallel)
+	 * 串并案件的详细信息
 	 */
 	@Override
 	public ParallelInformationDTO ParallelInformationOne(xsjsglxt_parallel parallel) {
@@ -110,8 +109,8 @@ public class ParallelServiceImpl implements ParallelService {
 		return parallelInformationDTO;
 	}
 	/*
-	 * (non-Javadoc)������
-	 * @see com.xsjsglxt.service.Case.ParallelService#getMaxParallelNum()
+	 * 得到串并号
+	 *
 	 */
 	@Override
 	public String getMaxParallelNum() {
@@ -127,6 +126,15 @@ public class ParallelServiceImpl implements ParallelService {
 		String ParallelNum = time + num  ;
 		//System.out.println("SenceInformationInquestIdSenceInformationInquestIdSenceInformationInquestId"+SenceInformationInquestId);
 		return ParallelNum;
+	}
+	/*
+	 *修改串并案件信息
+	 */
+	@Override
+	public void updateParallel(xsjsglxt_parallel parallel) {
+		// TODO Auto-generated method stub
+		parallel.setParallel_gmt_modified(TeamUtil.getStringSecond());
+		parallelDao.updateParallel(parallel);
 	}
 
 

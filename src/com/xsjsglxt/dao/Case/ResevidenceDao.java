@@ -38,5 +38,9 @@ public xsjsglxt_resevidence getByResevidenceNum(String resevidence_id);
 public boolean deleteResevidenceById(String xsjsglxt_resevidence_id);
 
 public boolean deleteCirculationById(String xsjsglxt_resevidence_id);
+/*
+ * 修改物证信息
+ */
+public void updateResevidenceIn(xsjsglxt_resevidence resevidence);
 
 }

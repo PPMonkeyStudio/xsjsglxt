@@ -1,6 +1,8 @@
+/applicationContext-beans.xml
+/applicationContext.xml
 /com/
-<<<<<<< HEAD
+/spring/
+/struts.xml
+/struts2/
 /util/
-=======
->>>>>>> origin/HY
 /xsjsglxt/

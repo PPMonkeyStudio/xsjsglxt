@@ -16,11 +16,15 @@ public page_list_ResevidenceInformationVO VO_Resevidenceformation_By_PageAndSear
 
 public ResevidenceInformationDTO ResevidenceInformationOne(xsjsglxt_resevidence resevidence);
 /*
- * 保存物证流转信息
+ * 淇濆瓨鐗╄瘉娴佽浆淇℃伅
  */
 public void saveCirculation(xsjsglxt_circulation circulation);
 /*
- * 删除物证
+ * 鍒犻櫎鐗╄瘉
  */
 public boolean removeResevidenceInformationList(List<String> useResevidenceInformationNumList);
+/*
+ * 淇敼鐗╄瘉淇℃伅
+ */
+public void updateResevidenceIn(xsjsglxt_resevidence resevidence);
 }

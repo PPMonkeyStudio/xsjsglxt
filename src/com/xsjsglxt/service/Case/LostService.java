@@ -6,12 +6,16 @@ import com.xsjsglxt.domain.VO.Case.page_list_CasematerialVO;
 
 public interface LostService {
 /*
- * ������ʧ��Ʒ
+ * 保存损失物信息
  */
 public 	void saveLost(xsjsglxt_lost lost);
 
 public page_list_CasematerialVO VO_Lostformation_By_PageAndSearch(page_list_CasematerialVO page_list_Casematerial);
 
 public LostInformationDTO LostInformationOne(xsjsglxt_lost lost);
+/*
+ * 修改损失物信息
+ */
+public void updateLost(xsjsglxt_lost lost);
 
 }

@@ -559,7 +559,37 @@ public class SenceDaoImpl implements SenceDao {
 		return picture;
 	}
 
-	
+	@Override
+	public void updateSence(xsjsglxt_snece sence) {
+		// TODO Auto-generated method stub
+		try {
+			getSession().saveOrUpdate(sence);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
+	@Override
+	public void updateCase(xsjsglxt_case case1) {
+		// TODO Auto-generated method stub
+		try {
+			getSession().saveOrUpdate(case1);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void updateBriefdetails(xsjsglxt_briefdetails briefdetails) {
+		// TODO Auto-generated method stub
+		try {
+			getSession().saveOrUpdate(briefdetails);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 }

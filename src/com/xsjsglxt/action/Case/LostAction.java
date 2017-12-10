@@ -71,7 +71,20 @@ public void LostInformationOne() throws IOException {
 
 	http_response.getWriter().write(gson.toJson(lostInformationDTO));
 }
+/*
+ * 修改损失物信息
+ */
+public void updateLost() throws IOException{
+	GsonBuilder gsonBuilder = new GsonBuilder();
+	gsonBuilder.setPrettyPrinting();//格式化json数据
+	Gson gson = gsonBuilder.create();
+	lostService.updateLost(lost);
+	
+	http_response.setContentType("text/html;charset=utf-8");
 
+	http_response.getWriter().write(gson.toJson("success"));
+	
+}
 
 public LostService getLostService() {
 	return lostService;

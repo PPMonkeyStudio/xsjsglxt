@@ -55,6 +55,12 @@ public xsjsglxt_resevidence getresevidenceByCaseId(xsjsglxt_case case1);
 public int getMaxParallelNum();
 
 
+/*
+ * 修改串并案件信息
+ */
+public void updateParallel(xsjsglxt_parallel parallel);
+
+
 
 
 

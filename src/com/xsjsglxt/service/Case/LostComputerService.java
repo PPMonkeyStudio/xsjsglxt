@@ -13,5 +13,9 @@ public page_list_CasematerialVO VO_LostComputerformation_By_PageAndSearch(
 
 
 public LostComputerInformationDTO LostComputerInformationOne(xsjsglxt_lost_computer lost_computer);
+/*
+ * 修改损失电脑信息
+ */
+public void updateLostComputer(xsjsglxt_lost_computer lost_computer);
 
 }

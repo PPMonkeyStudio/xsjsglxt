@@ -247,4 +247,15 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 		query.executeUpdate();
        return true;
 	}
+
+	@Override
+	public void updateResevidenceIn(xsjsglxt_resevidence resevidence) {
+		// TODO Auto-generated method stub
+		try {
+			getSession().saveOrUpdate(resevidence);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

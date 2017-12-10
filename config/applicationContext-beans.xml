@@ -10,4 +10,5 @@
 	<import resource="spring/LostComputer.xml"/>
 	<import resource="spring/Lost.xml"/>
 	<import resource="spring/Image.xml"/>
+	<import resource="spring/Breakecase.xml"/>
 </beans>

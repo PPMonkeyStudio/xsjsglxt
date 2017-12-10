@@ -21,5 +21,9 @@ public xsjsglxt_case getCaseByxsjsglxt_lost_mobilephone_id(xsjsglxt_lost_mobilep
 public xsjsglxt_snece getSenceByxsjsglxt_case_id(xsjsglxt_case case1);
 
 public xsjsglxt_lost_mobilephone getLostMobiephoneById(xsjsglxt_lost_mobilephone lost_mobilephone);
+/*
+ * 修改损失手机信息
+ */
+public void updateParallel(xsjsglxt_lost_mobilephone lost_mobilephone);
 
 }

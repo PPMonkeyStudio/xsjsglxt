@@ -240,4 +240,26 @@ public class SenceServiceImpl implements SenceService {
 		return senceInformationDTO;
 	}
 
+	@Override
+	public void updateSence(xsjsglxt_snece sence) {
+		// TODO Auto-generated method stub
+		sence.setSnece_gmt_modified(TeamUtil.getStringSecond());
+		senceDao.updateSence(sence);
+	}
+
+	@Override
+	public void updateCase(xsjsglxt_case case1) {
+		// TODO Auto-generated method stub
+		case1.setCase_gmt_modified(TeamUtil.getStringSecond());
+		senceDao.updateCase(case1);
+	}
+
+	@Override
+	public void updateBriefdetails(xsjsglxt_briefdetails briefdetails) {
+		// TODO Auto-generated method stub
+		briefdetails.setBriefdetails_details_modified(TeamUtil.getStringSecond());
+		senceDao.updateBriefdetails(briefdetails);
+	}
+
+
 }

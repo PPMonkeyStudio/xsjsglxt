@@ -14,6 +14,8 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_image;
 import com.xsjsglxt.domain.DO.xsjsglxt_picture;
+import com.xsjsglxt.domain.DTO.Case.ImageInformationDTO;
+import com.xsjsglxt.domain.VO.Case.page_list_imageInformationVO;
 import com.xsjsglxt.service.Case.ImageService;
 
 public class ImageAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
@@ -23,6 +25,8 @@ private xsjsglxt_image image;
 private HttpServletRequest http_request;	
 private xsjsglxt_picture picture;
 private xsjsglxt_case case1;
+private ImageInformationDTO imageInformationDTO;
+private page_list_imageInformationVO page_list_imageInformation;
 /*
  * 保存光盘
  */
@@ -87,7 +91,49 @@ public void getPicture_identifier() throws IOException {
 public void setImageService(ImageService imageService) {
 	this.imageService = imageService;
 }
+/*
+ * 列表信息
+ * 
+ */
+public void ListImageInformationByPageAndSearch() throws IOException {
 
+	GsonBuilder gsonBuilder = new GsonBuilder();
+	gsonBuilder.setPrettyPrinting();// 格式化json数据
+	Gson gson = gsonBuilder.create();
+
+
+	page_list_imageInformation = imageService.VO_ImageInformation_By_PageAndSearch(page_list_imageInformation);
+
+	http_response.setContentType("text/html;charset=utf-8");
+
+	http_response.getWriter().write(gson.toJson(page_list_imageInformation));
+
+}
+public ImageInformationDTO getImageInformationDTO() {
+	return imageInformationDTO;
+}
+public void setImageInformationDTO(ImageInformationDTO imageInformationDTO) {
+	this.imageInformationDTO = imageInformationDTO;
+}
+public page_list_imageInformationVO getPage_list_imageInformation() {
+	return page_list_imageInformation;
+}
+public void setPage_list_imageInformation(page_list_imageInformationVO page_list_imageInformation) {
+	this.page_list_imageInformation = page_list_imageInformation;
+}
+/*
+ * 详细信息
+ * 
+ */
+public void ImageInformationOne() throws IOException {
+	GsonBuilder gsonBuilder = new GsonBuilder();
+	gsonBuilder.setPrettyPrinting();//格式化json数据
+	Gson gson = gsonBuilder.create();
+	imageInformationDTO = imageService.ImageInformationOne(picture);
+	http_response.setContentType("text/html;charset=utf-8");
+
+	http_response.getWriter().write(gson.toJson(imageInformationDTO));
+}
 	@Override
 	public void setServletResponse(HttpServletResponse arg0) {
 		// TODO Auto-generated method stub

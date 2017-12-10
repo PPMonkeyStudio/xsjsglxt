@@ -233,4 +233,15 @@ public class ParallelDaoImpl implements ParallelDao {
 		return i;
 		
 	}
+
+	@Override
+	public void updateParallel(xsjsglxt_parallel parallel) {
+		// TODO Auto-generated method stub
+		try {
+			getSession().saveOrUpdate(parallel);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

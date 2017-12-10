@@ -75,7 +75,17 @@ public class LostMobilephoneAction extends ActionSupport implements ServletReque
 
 		http_response.getWriter().write(gson.toJson(lostMobilephoneInformationDTO));
 	}
-	
+	/*
+	 * 修改损失手机信息 
+	 */
+		public void updateLostMobiephone() throws IOException{
+			GsonBuilder gsonBuilder = new GsonBuilder();
+			gsonBuilder.setPrettyPrinting();// 格式化json数据
+			Gson gson = gsonBuilder.create();
+			lostMobilephoneService.updateParallel(lost_mobilephone);
+			http_response.setContentType("text/html;charset=utf-8");
+			http_response.getWriter().write(gson.toJson("success"));
+		}
 	public LostMobilephoneService getLostMobilephoneService() {
 		return lostMobilephoneService;
 	}

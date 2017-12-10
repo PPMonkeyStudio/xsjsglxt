@@ -21,5 +21,9 @@ public xsjsglxt_case getCaseByxsjsglxt_lost_computer_id(xsjsglxt_lost_computer l
 public xsjsglxt_snece getSenceByxsjsglxt_case_id(xsjsglxt_case case1);
 
 public xsjsglxt_lost_computer getLostComputerById(xsjsglxt_lost_computer lost_computer);
+/*
+ * 修改损失电脑信息
+ */
+public void updateLostComputer(xsjsglxt_lost_computer lost_computer);
 
 }
