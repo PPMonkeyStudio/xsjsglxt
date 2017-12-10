@@ -279,6 +279,14 @@ function List_EntrustmentBook(pageIndex) {
 		formData.append("entrustmentBookManagementVO.state", document
 				.getElementById("select_state").value);
 	}
+	/*
+	 * 筛选：鉴定要求
+	 */
+	if (document.getElementById("select_entrustmentRequire").value == "-1") {
+	} else {
+		formData.append("entrustmentBookManagementVO.entrustmentRequire",
+				document.getElementById("select_entrustmentRequire").value);
+	}
 
 	/*
 	 * 
