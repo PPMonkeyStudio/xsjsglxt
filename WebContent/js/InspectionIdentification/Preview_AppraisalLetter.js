@@ -56,21 +56,24 @@ function Preview_AppraisalLetter(obj) {
 							+ '<h3  style="text-align: left;">'
 							+ '<p>二、检验</p><p>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.appraisal_letter_inspection
-									.replace(/\n/g, "<br>")
+									.replace(/\n/g, "<br>").replace(/ /g,
+											"&nbsp;")
 							+ '</p>'
 							+ '</h3>'
 							+ '<br>'
 							+ '<h3  style="text-align: left;">'
 							+ '<p>三、论证</p><p>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.appraisal_letter_argumentation
-									.replace(/\n/g, "<br>")
+									.replace(/\n/g, "<br>").replace(/ /g,
+											"&nbsp;")
 							+ '</p>'
 							+ '</h3>'
 							+ '<br>'
 							+ '<h3  style="text-align: left;">'
 							+ '<p>四、鉴定意见</p><p>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.appraisal_letter_expert_opinion
-									.replace(/\n/g, "<br>")
+									.replace(/\n/g, "<br>").replace(/ /g,
+											"&nbsp;")
 							+ '</p>'
 							+ '</h3>'
 							+ '<hr></div>';

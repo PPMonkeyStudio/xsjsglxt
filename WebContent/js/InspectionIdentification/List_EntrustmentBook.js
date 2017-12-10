@@ -12,6 +12,7 @@ function List_EntrustmentBook(pageIndex) {
 		var message;
 		if (xhr.readyState == 4) {
 			if (xhr.status == 200) {
+				console.log(xhr.responseText);
 				EntrustmentBook_json = JSON.parse(xhr.responseText);
 				/*
 				 * 
@@ -277,6 +278,14 @@ function List_EntrustmentBook(pageIndex) {
 	} else {
 		formData.append("entrustmentBookManagementVO.state", document
 				.getElementById("select_state").value);
+	}
+	/*
+	 * 筛选：鉴定要求
+	 */
+	if (document.getElementById("select_entrustmentRequire").value == "-1") {
+	} else {
+		formData.append("entrustmentBookManagementVO.entrustmentRequire",
+				document.getElementById("select_entrustmentRequire").value);
 	}
 
 	/*

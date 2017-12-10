@@ -7,48 +7,56 @@ function Create_Damage_InspectionRecord(obj) {
 			.confirm({
 				icon : 'fa fa-pencil-square-o',
 				title : '记录损伤检验过程',
-				content : '<input value="'
+				content : '<form id="form_Damage_InspectionRecord"><input value="'
 						+ obj.id
-						+ '"  class="form-control" id="create_inspection_belong_entrustment_book" style="display:none;"/>'
+						+ '"  class="form-control" name="damageInspectionRecord.damage_inspection_record_belong_entrustment_book"  style="display:none;"/>'
 						+ '<hr>'
 						+ '<table  class="table table-bordered" style="text-align: center;">'
 						+ '<tbody>'
 						+ '<tr>'
 						+ '<td>姓名：</td>'
-						+ '<td><input  class="form-control" id="create_damage_inspection_record_belong_entrustment_book" /></td>'
+						+ '<td><input  class="form-control"  name="damageInspectionRecord.damage_inspection_record_name"/></td>'
 						+ '<td>性别：</td>'
-						+ '<td><select class="form-control" id="create_damage_inspection_record_sex">'
+						+ '<td><select class="form-control" name="damageInspectionRecord.damage_inspection_record_sex">'
 						+ '<option value="男">男</option>'
 						+ '<option value="女">女</option>'
 						+ '</select></td>'
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>出生日期：</td>'
-						+ '<td><input  class="form-control mydate" id="create_damage_inspection_record_birth_date" /></td>'
+						+ '<td><input  class="form-control mydate" name="damageInspectionRecord.damage_inspection_record_birth_date"  /></td>'
 						+ '<td>职业：</td>'
-						+ '<td><input  class="form-control" id="create_damage_inspection_record_occupation" /></td>'
+						+ '<td><input  class="form-control" name="damageInspectionRecord.damage_inspection_record_occupation" /></td>'
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>服务处所：</td>'
-						+ '<td><input  class="form-control" id="create_damage_inspection_record_unit_service" /></td>'
+						+ '<td><input  class="form-control" name="damageInspectionRecord.damage_inspection_record_unit_service" /></td>'
 						+ '<td>身份证号码：</td>'
-						+ '<td><input  class="form-control" id="create_damage_inspection_record_idcard" /></td>'
+						+ '<td><input  class="form-control" name="damageInspectionRecord.damage_inspection_record_idcard" /></td>'
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>受伤时间：</td>'
-						+ '<td><input  class="form-control mydate" id="create_damage_damage_time" /></td>'
+						+ '<td><input  class="form-control mydate" name="damageInspectionRecord.damage_inspection_record_damage_time" /></td>'
 						+ '<td>检验时间：</td>'
-						+ '<td><input  class="form-control mydate" id="create_damage_inspection_record_time" /></td>'
+						+ '<td><input  class="form-control mydate" name="damageInspectionRecord.damage_inspection_record_time" /></td>'
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>住址：</td>'
-						+ '<td><input  class="form-control" id="create_damage_inspection_record_adress" /></td>'
+						+ '<td><input  class="form-control" name="damageInspectionRecord.damage_inspection_record_adress" /></td>'
 						+ '<td>联系方式：</td>'
-						+ '<td><input  class="form-control" id="create_damage_inspection_record_phone" /></td>'
+						+ '<td><input  class="form-control" name="damageInspectionRecord.damage_inspection_record_phone" /></td>'
 						+ '</tr>'
 						+ '<tr><td>检验所见：</td>'
-						+ '<td colspan="3"><textarea class="form-control" style="resize: none;height:100px;" id="create_damage_inspection_record_inspection"></textarea></td>'
-						+ '</tr>' + '</tr>' + '</tbody>' + '</table>' + '<hr>',
+						+ '<td colspan="3"><textarea class="form-control" style="resize: none;height:100px;" name="damageInspectionRecord.damage_inspection_record_inspection" ></textarea></td>'
+						+ '</tr>'
+						+ '</tr>'
+						+ '<tr><td>检查人：</td>'
+						+ '<td ><input class="form-control"  name="damageInspectionRecord.damage_inspection_record_inspection_man" /></td>'
+						+ '</tr>'
+						+ '</tr>'
+						+ '</tbody>'
+						+ '</table></form>'
+						+ '<hr>',
 				type : 'blue',
 				columnClass : 'col-md-12',
 				onOpenBefore : function() {
@@ -64,14 +72,15 @@ function Create_Damage_InspectionRecord(obj) {
 					 * 
 					 */
 					var date = new Date();
-					document.getElementById("create_damage_damage_time").value = date
+					document
+							.getElementsByName("damageInspectionRecord.damage_inspection_record_damage_time")[0].value = date
 							.getFullYear()
 							+ '-'
 							+ (parseInt(date.getMonth()) + 1)
 							+ '-'
 							+ date.getDate();
 					document
-							.getElementById("create_damage_inspection_record_time").value = date
+							.getElementsByName("damageInspectionRecord.damage_inspection_record_time")[0].value = date
 							.getFullYear()
 							+ '-'
 							+ (parseInt(date.getMonth()) + 1)
@@ -99,94 +108,45 @@ function Create_Damage_InspectionRecord(obj) {
 					'记录' : {
 						btnClass : 'btn-blue',
 						action : function() {
-							addDamageInspectionRecord(jc);
+							var xhr = false;
+							xhr = new XMLHttpRequest();
+							xhr.onreadystatechange = function() {
+								var message;
+								if (xhr.readyState == 4) {
+									if (xhr.status == 200) {
+										console.debug(xhr.responseText);
+										if (xhr.responseText == 1) {
+											toastr.success("记录成功");
+											jc.close();
+											List_EntrustmentBook(1);
+										} else {
+											toastr.error("填写格式错误");
+										}
+									} else {
+										toastr.error(xhr.status);
+									}
+								}
+							}
+							/*
+							 * 
+							 */
+							alert(obj.id);
+							var formData = new FormData(
+									document
+											.getElementById("form_Damage_InspectionRecord"));
+
+							/*
+							 * 
+							 */
+							xhr
+									.open(
+											"POST",
+											"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_addDamageInspectionRecord");
+							xhr.send(formData);
 						}
 					},
 					'放弃' : function() {
 					}
 				}
 			});
-}
-
-function addDamageInspectionRecord(jc) {
-	var xhr = false;
-	xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function() {
-		var message;
-		if (xhr.readyState == 4) {
-			if (xhr.status == 200) {
-				console.debug(xhr.responseText);
-				if (xhr.responseText == 1) {
-					toastr.success("记录成功");
-					jc.close();
-					List_EntrustmentBook(1);
-				} else {
-					toastr.error("填写格式错误");
-				}
-			} else {
-				toastr.error(xhr.status);
-			}
-		}
-	}
-	/*
-	 * 
-	 */
-	var formData = new FormData();
-	/*
-	 * 所属委托书
-	 */
-	var create_damage_inspection_record_belong_entrustment_book = document
-			.getElementById("create_damage_inspection_record_belong_entrustment_book");
-	formData
-			.append(
-					"inspectionRecord.damage_inspection_record_belong_entrustment_book",
-					create_damage_inspection_record_belong_entrustment_book.value);
-	/*
-	 * 姓名
-	 */
-	var create_inspection_belong_entrustment_book = document
-			.getElementById("create_inspection_belong_entrustment_book");
-	formData.append("inspectionRecord.damage_inspection_record_name",
-			create_inspection_belong_entrustment_book.value);
-	/*
-	 * 性别
-	 */
-	var create_inspection_belong_entrustment_book = document
-			.getElementById("create_inspection_belong_entrustment_book");
-	formData.append("inspectionRecord.damage_inspection_record_sex",
-			create_inspection_belong_entrustment_book.value);
-	/*
-	 * 出生日期
-	 */
-	/*
-	 * 职业
-	 */
-	/*
-	 * 服务处所
-	 */
-	/*
-	 * 身份证号码
-	 */
-	/*
-	 * 受伤时间
-	 */
-	/*
-	 * 检验时间
-	 */
-	/*
-	 * 住址
-	 */
-	/*
-	 * 联系方式
-	 */
-	/*
-	 * 检验所见
-	 */
-	/*
-	 * 
-	 */
-	xhr
-			.open("POST",
-					"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_addInspectionRecord");
-	xhr.send(formData);
 }

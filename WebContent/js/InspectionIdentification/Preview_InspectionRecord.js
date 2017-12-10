@@ -1,5 +1,27 @@
 function Preview_InspectionRecord(obj) {
+
 	var json_list = EntrustmentBook_json;
+	for (var num = 0; num < json_list.listEntrustmentBookManagementDTO.length; num++) {
+		if (obj.id == json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id) {
+			break;
+		}
+	}
+	switch (json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request) {
+	case '死因鉴定': {
+		Preview_Death_InspectionRecord(obj);
+		return;
+		break;
+	}
+	case '损伤鉴定': {
+		Preview_Damage_InspectionRecord(obj);
+		return;
+		break;
+	}
+	default: {
+		break;
+	}
+	}
+
 	var jc = $
 			.confirm({
 				theme : 'Modern',

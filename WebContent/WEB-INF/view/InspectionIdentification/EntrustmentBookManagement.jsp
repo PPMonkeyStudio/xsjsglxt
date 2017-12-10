@@ -56,7 +56,8 @@
 						<tr>
 							<th>委托编号</th>
 							<th>案（事）件名称</th>
-							<th><select class="form-control" id="" style="width: auto;"
+							<th><select class="form-control"
+								id="select_entrustmentRequire" style="width: auto;"
 								onchange="List_EntrustmentBook(1)">
 									<option value="-1">鉴定要求（全部）</option>
 									<option value="指纹检验鉴定">指纹检验鉴定</option>
@@ -76,7 +77,7 @@
 									<option value="-1">被委托鉴定机构（全部）</option>
 									<option value="萍乡市公安司法鉴定中心">萍乡市公安司法鉴定中心</option>
 									<option value="萍乡市公安局物证鉴定所">萍乡市公安局物证鉴定所</option>
-									<option value="萍乡市安源公安司法鉴定中心">萍乡市安源公安司法鉴定中心</option>
+									<option value="萍乡市安源公安司法鉴定中心">萍乡市安源区公安司法鉴定中心</option>
 									<option value="江西省公安厅物证鉴定中心">江西省公安厅物证鉴定中心</option>
 									<option value="公安部物证鉴定中心">公安部物证鉴定中心</option>
 							</select></th>
@@ -175,6 +176,10 @@
 	src="<%=basePath%>js/InspectionIdentification/Preview_NotAcceptanceEntrustmentInform.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/InspectionIdentification/Preview_InspectionRecord.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/InspectionIdentification/Preview_Death_InspectionRecord.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/InspectionIdentification/Preview_Damage_InspectionRecord.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/InspectionIdentification/Preview_AppraisalLetter.js"></script>
 <!---------------------------------------------------------------------------------------->

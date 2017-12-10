@@ -15,26 +15,22 @@ function Create_ForensicCheckEntrustmentBook() {
 						+ '<tr>'
 						+ '<td><span style="color:#D9534F;">*</span> 负责人：</td><td><input   class="form-control" id="create_check_entrustment_book_responsible_person" /></td>'
 						+ '<td><span style="color:#D9534F;">*</span> 委托单位：</td><td><input   class="form-control" id="create_check_entrustment_book_entrustment_unit" /></td>'
-						+ '<td><span style="color:#D9534F;">*</span> 委托时间：</td><td><input class="form-control" id="create_check_entrustment_book_inspect_time" /></td></tr>'
+						+ '<td><span style="color:#D9534F;">*</span> 委托时间：</td><td><input class="form-control mydate" id="create_check_entrustment_book_inspect_time" /></td></tr>'
 						+ '</tbody>'
 						+ '</table>'
-						+ '<br>'
-						+ '<br>'
 						+ '<table  class="table table-bordered" style="text-align: center;">'
 						+ '<tbody>'
-						+ '<tr><td>送检人</td><td><span style="color:#D9534F;">*</span> 姓名</td><td><i class="fa fa-warning" style="color:#D9534F;" ></i> 职务</td><td><span style="color:#D9534F;">*</span> 证件名称及号码</td></tr>'
+						+ '<tr><td>送检人</td><td><span style="color:#D9534F;">*</span> 姓名</td><td><span style="color:#D9534F;">*</span> 职务</td><td><span style="color:#D9534F;">*</span> 证件名称及号码</td></tr>'
 						+ '<tr><td>送检人一：</td><td><input id="create_check_entrustment_book_inspectors1_name" class="form-control" /></td><td><input id="create_check_entrustment_book_inspectors1_duty"  class="form-control" /></td><td><input id="create_check_entrustment_book_inspectors1_jobcard_number"  class="form-control" /></td></tr>'
 						+ '<tr><td>送检人二：</td><td><input id="create_check_entrustment_book_inspectors2_name"  class="form-control" /></td><td><input  id="create_check_entrustment_book_inspectors2_duty" class="form-control" /></td><td><input  id="create_check_entrustment_book_inspectors2_jobcard_number" class="form-control" /></td></tr>'
 						+ '</tbody>'
 						+ '</table>'
 						+ '<table  class="table table-bordered" style="text-align: center;">'
 						+ '<tbody>'
-						+ '<tr><td>通讯地址：</td><td><input class="form-control" id="create_check_entrustment_book_communication_address"/></td><td>邮政编码：</td><td><input class="form-control" id="create_check_entrustment_book_zip_code"/></td></tr>'
-						+ '<tr><td>联系电话：</td><td><input class="form-control" id="create_check_entrustment_book_phone"/></td><td>传真号码：</td><td><input class="form-control" id="create_check_entrustment_book_fax_num"/></td></tr>'
+						+ '<tr><td><span style="color:#D9534F;">*</span> 通讯地址：</td><td><input class="form-control" id="create_check_entrustment_book_communication_address"/></td><td><span style="color:#D9534F;">*</span> 邮政编码：</td><td><input class="form-control" id="create_check_entrustment_book_zip_code"/></td></tr>'
+						+ '<tr><td><span style="color:#D9534F;">*</span> 联系电话：</td><td><input class="form-control" id="create_check_entrustment_book_phone"/></td><td><span style="color:#D9534F;">*</span> 传真号码：</td><td><input class="form-control" id="create_check_entrustment_book_fax_num"/></td></tr>'
 						+ '</tbody>'
 						+ '</table>'
-						+ '<br>'
-						+ '<br>'
 						+ '<h4>被鉴定人的情况：</h4>'
 						+ '<table  class="table table-bordered" style="text-align: center;">'
 						+ '<tbody>'
@@ -46,22 +42,18 @@ function Create_ForensicCheckEntrustmentBook() {
 						+ '<tr><td>住址：</td><td><input class="form-control" id="create_check_entrustment_book_entrustmentor_address"/></td><td>年龄：</td><td><input class="form-control" id="create_check_entrustment_book_entrustmentor_age"/></td></tr>'
 						+ '</tbody>'
 						+ '</table>'
-						+ '<br>'
-						+ '<br>'
 						+ '<table  class="table table-bordered" style="text-align: center;">'
 						+ '<tbody>'
 						+ '<tr><td><span style="color:#D9534F;">*</span> 被委托鉴定机构名称：</td>'
 						+ '<td><select class="form-control" id="create_check_entrustment_book_entrustment_unit_name">'
 						+ '<option value="萍乡市公安司法鉴定中心">萍乡市公安司法鉴定中心</option>'
 						+ '<option value="萍乡市公安局物证鉴定所">萍乡市公安局物证鉴定所</option>'
-						+ '<option value="萍乡市安源公安司法鉴定中心">萍乡市安源公安司法鉴定中心</option>'
+						+ '<option value="萍乡市安源区公安司法鉴定中心">萍乡市安源区公安司法鉴定中心</option>'
 						+ '<option value="江西省公安厅物证鉴定中心">江西省公安厅物证鉴定中心</option>'
 						+ '<option value="公安部物证鉴定中心">公安部物证鉴定中心</option>'
 						+ '</select></td></tr>'
 						+ '</tbody>'
 						+ '</table>'
-						+ '<br>'
-						+ '<br>'
 						+ '<table  class="table table-bordered" style="text-align: center;">'
 						+ '<tbody>'
 						+ '<tr><td><span style="color:#D9534F;">*</span> 案（事）件名称：</td>'
@@ -72,19 +64,27 @@ function Create_ForensicCheckEntrustmentBook() {
 						+ '<td><textarea class="form-control" style="resize: none;height:100px;" id="create_check_entrustment_book_simple_case_situation"></textarea></td></tr>'
 						+ '</tbody>'
 						+ '</table>'
-						+ '<br>'
-						+ '<br>'
 						+ '<h4>原鉴定情况：</h4>'
 						+ '<textarea class="form-control" style="resize: none;height:100px;" id="create_check_entrustment_book_old_entrustment_situation"></textarea>'
-						+ '<br>'
-						+ '<br>'
 						+ '<h4><span style="color:#D9534F;">*</span> 送检的检材和样本等情况（包括名称、数量、性状、包装，检材提取部位和方法等）：</h4>'
 						+ '<textarea class="form-control" style="resize: none;height:100px;" id="create_check_entrustment_book_sample_situation"></textarea>'
 						+ '<br>'
-						+ '<br>'
-						+ '<h4><span style="color:#D9534F;">*</span> 鉴定要求</h4>'
-						+ '<textarea class="form-control" style="resize: none;height:100px;" id="create_check_entrustment_book_entrustment_request"></textarea>'
-						+ '<br>' + '<hr>',
+						+ '<table  class="table table-bordered" style="text-align: center;">'
+						+ '<tbody>'
+						+ '<tr><td><span style="color:#D9534F;">*</span> 鉴定要求</td>'
+						+ '<td><select class="form-control" id="create_check_entrustment_book_entrustment_request">'
+						+ '<option value="指纹检验鉴定">指纹检验鉴定</option>'
+						+ '<option value="足迹检验鉴定">足迹检验鉴定</option>'
+						+ '<option value="整体分离检验鉴定">整体分离检验鉴定</option>'
+						+ '<option value="车辆痕迹检验鉴定">车辆痕迹检验鉴定</option>'
+						+ '<option value="死因鉴定">死因鉴定</option>'
+						+ '<option value="损伤鉴定">损伤鉴定</option>'
+						+ '<option value="理化检验鉴定">理化检验鉴定</option>'
+						+ '<option value="毒物检验鉴定">毒物检验鉴定</option>'
+						+ '<option value="失踪人口查询">失踪人口查询</option>'
+						+ '<option value="其他">其他</option>'
+						+ '</select><input class="form-control" id="create_check_entrustment_book_entrustment_request_qt" style="margin:10px 0 0 0;"/></td></tr>'
+						+ '</tbody>' + '</table>' + '<br>' + '<hr>',
 				type : 'blue',
 				theme : 'modern',
 				columnClass : 'col-md-12',
@@ -99,6 +99,16 @@ function Create_ForensicCheckEntrustmentBook() {
 							+ (parseInt(date.getMonth()) + 1)
 							+ '-'
 							+ date.getDate();
+					$.datetimepicker.setLocale('ch');
+					$('.mydate').datetimepicker({
+						yearStart : 1990, // 设置最小年份
+						yearEnd : 2050, // 设置最大年份
+						yearOffset : 0, // 年偏差
+						timepicker : false, // 关闭时间选项
+						format : 'Y-m-d', // 格式化日期年-月-日
+						minDate : '1990/01/01', // 设置最小日期
+						maxDate : '2030/01/01', // 设置最大日期
+					});
 				},
 				buttons : {
 					'确认委托' : {
@@ -141,6 +151,44 @@ function addForensicCheckBook(jc) {
 	/*
 	 * 
 	 */
+
+	/*
+	 * 被鉴定人
+	 */
+	var create_check_entrustment_book_entrustmentor_name = document
+			.getElementById("create_check_entrustment_book_entrustmentor_name");
+	var create_check_entrustment_book_entrustmentor_sex = document
+			.getElementById("create_check_entrustment_book_entrustmentor_sex");
+	var create_check_entrustment_book_entrustmentor_phone = document
+			.getElementById("create_check_entrustment_book_entrustmentor_phone");
+	var create_check_entrustment_book_entrustmentor_age = document
+			.getElementById("create_check_entrustment_book_entrustmentor_age");
+	var create_check_entrustment_book_entrustmentor_unit = document
+			.getElementById("create_check_entrustment_book_entrustmentor_unit");
+	var create_check_entrustment_book_entrustmentor_address = document
+			.getElementById("create_check_entrustment_book_entrustmentor_address");
+	//
+	formData.append(
+			"tranceCheckBook.check_entrustment_book_entrustmentor_name",
+			create_check_entrustment_book_entrustmentor_name.value);
+
+	formData.append("tranceCheckBook.check_entrustment_book_entrustmentor_sex",
+			create_check_entrustment_book_entrustmentor_sex.value);
+
+	formData.append(
+			"tranceCheckBook.check_entrustment_book_entrustmentor_phone",
+			create_check_entrustment_book_entrustmentor_phone.value);
+
+	formData.append("tranceCheckBook.check_entrustment_book_entrustmentor_age",
+			create_check_entrustment_book_entrustmentor_age.value);
+
+	formData.append(
+			"tranceCheckBook.check_entrustment_book_entrustmentor_unit",
+			create_check_entrustment_book_entrustmentor_unit.value);
+
+	formData.append(
+			"tranceCheckBook.check_entrustment_book_entrustmentor_address",
+			create_check_entrustment_book_entrustmentor_address.value);
 
 	/*
 	 * 负责人
@@ -203,39 +251,6 @@ function addForensicCheckBook(jc) {
 			.append(
 					"tranceCheckBook.check_entrustment_book_inspectors2_jobcard_number",
 					create_check_entrustment_book_inspectors2_jobcard_number.value);
-	/*
-	 * 被鉴定人
-	 */
-	var create_check_entrustment_book_entrustmentor_name = document
-			.getElementById("create_check_entrustment_book_entrustmentor_name");
-	var create_check_entrustment_book_entrustmentor_sex = document
-			.getElementById("create_check_entrustment_book_entrustmentor_sex");
-	var create_check_entrustment_book_entrustmentor_phone = document
-			.getElementById("create_check_entrustment_book_entrustmentor_phone");
-	var create_check_entrustment_book_entrustmentor_age = document
-			.getElementById("create_check_entrustment_book_entrustmentor_age");
-	var create_check_entrustment_book_entrustmentor_unit = document
-			.getElementById("create_check_entrustment_book_entrustmentor_unit");
-	var create_check_entrustment_book_entrustmentor_address = document
-			.getElementById("create_check_entrustment_book_entrustmentor_address");
-	//
-	formData.append(
-			"tranceCheckBook.check_entrustment_book_entrustmentor_name",
-			create_check_entrustment_book_entrustmentor_name.value);
-	formData.append("tranceCheckBook.check_entrustment_book_entrustmentor_sex",
-			create_check_entrustment_book_entrustmentor_sex.value);
-	formData.append(
-			"tranceCheckBook.check_entrustment_book_entrustmentor_phone",
-			create_check_entrustment_book_entrustmentor_phone.value);
-	formData.append("tranceCheckBook.check_entrustment_book_entrustmentor_age",
-			create_check_entrustment_book_entrustmentor_age.value);
-	formData.append(
-			"tranceCheckBook.check_entrustment_book_entrustmentor_unit",
-			create_check_entrustment_book_entrustmentor_unit.value);
-	formData.append(
-			"tranceCheckBook.check_entrustment_book_entrustmentor_address",
-			create_check_entrustment_book_entrustmentor_address.value);
-
 	/*
 	 * 通讯地址
 	 */
@@ -315,9 +330,18 @@ function addForensicCheckBook(jc) {
 	 */
 	var create_check_entrustment_book_entrustment_request = document
 			.getElementById("create_check_entrustment_book_entrustment_request");
-	formData.append(
-			"tranceCheckBook.check_entrustment_book_entrustment_request",
-			create_check_entrustment_book_entrustment_request.value);
+	if (create_check_entrustment_book_entrustment_request.value == '其他') {
+		formData
+				.append(
+						"tranceCheckBook.check_entrustment_book_entrustment_request",
+						document
+								.getElementById("create_check_entrustment_book_entrustment_request_qt").value);
+	} else {
+		formData.append(
+				"tranceCheckBook.check_entrustment_book_entrustment_request",
+				create_check_entrustment_book_entrustment_request.value);
+	}
+
 	/*
 	 * 
 	 */

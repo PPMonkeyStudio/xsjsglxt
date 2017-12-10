@@ -165,7 +165,8 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		try {
 			response.setContentType("text/html;charset=utf-8");
 			System.out.println("lplp:" + damageInspectionRecord.getDamage_inspection_record_belong_entrustment_book());
-			response.getWriter().write("" + inspectionIdentificationService.saveDamageInspectionRecord(damageInspectionRecord));
+			response.getWriter()
+					.write("" + inspectionIdentificationService.saveDamageInspectionRecord(damageInspectionRecord));
 		} catch (IOException e) {
 			System.out.println("填写损伤检验记录表报错");
 			e.printStackTrace();
@@ -245,7 +246,8 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		try {
 			response.setContentType("text/html;charset=utf-8");
 			System.out.println("lplp:" + damageInspectionRecord.getDamage_inspection_record_belong_entrustment_book());
-			response.getWriter().write("" + inspectionIdentificationService.updateDamageInspectionRecord(damageInspectionRecord));
+			response.getWriter()
+					.write("" + inspectionIdentificationService.updateDamageInspectionRecord(damageInspectionRecord));
 		} catch (IOException e) {
 			System.out.println("更改损伤检验记录表报错");
 			e.printStackTrace();
