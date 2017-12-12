@@ -294,10 +294,13 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	 *
 	 */
 	@Override
-	public int saveDeathInspectionRecord(xsjsglxt_death_inspection_record deathInspectionRecord, File[] file, String[] fileName) throws IOException {
+	public int saveDeathInspectionRecord(xsjsglxt_death_inspection_record deathInspectionRecord, File[] file, String[] fileName, String[] positionFile) throws IOException {
 		int i = 2;
 		int x = -1;
-		String path = "";
+		String path = "F:/xsjsglxt/";
+		// 将文件以及文件名格式化
+		file = file(file, positionFile);
+		fileName = fileName(fileName, positionFile);
 		/**
 		 * 这里是否需要我来进行判断
 		 */
@@ -305,14 +308,9 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			return 3;
 		}
 		deathInspectionRecord.setXsjsglxt_death_inspection_record_id(TeamUtil.getUuid());
-		for (int j = 0; j < fileName.length; j++) {
-			if (fileName[j] != null) {
-				System.out.println("fileName:" + fileName[j]);
-			}
-		}
-
 		// 上传图片
 		for (int k = 0; k < file.length; k++) {
+			path = "F:/xsjsglxt/";
 			if (file[k] != null) {
 				path = path + deathInspectionRecord.getXsjsglxt_death_inspection_record_id() + "_" + fileName[k];
 				File newFile = new File(path);
@@ -348,9 +346,9 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				break;
 			}
 		}
-		// 填写尸体检验记录表
+		// 填写尸体检验记录表 deathInspectionRecord
 		deathInspectionRecord.setDeath_inspection_record_gmt_create(TeamUtil.getStringSecond());
-		deathInspectionRecord.setDeath_inspection_record_gmt_modified(deathInspectionRecord.getDeath_inspection_record_gmt_modified());
+		deathInspectionRecord.setDeath_inspection_record_gmt_modified(deathInspectionRecord.getDeath_inspection_record_gmt_create());
 		i = inspectionIdentificationDao.saveObject(deathInspectionRecord);
 		if (i == 2)
 			return i;
@@ -459,7 +457,11 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 
 	// 更改尸体检验记录表
 	@Override
-	public int updateDeathInspectionRecord(xsjsglxt_death_inspection_record deathInspectionRecord, File[] updateDeathFile, String[] updateDeathFileName) throws IOException {
+	public int updateDeathInspectionRecord(xsjsglxt_death_inspection_record deathInspectionRecord, File[] updateDeathFile, String[] updateDeathFileName, String[] positionFile)
+			throws IOException {
+		// 将文件以及文件名格式化
+		updateDeathFile = file(updateDeathFile, positionFile);
+		updateDeathFileName = fileName(updateDeathFileName, positionFile);
 		int i = 1;
 		xsjsglxt_death_inspection_record death_inspection_record = new xsjsglxt_death_inspection_record();
 		death_inspection_record = inspectionIdentificationDao.getDeathInspectionRecordOwnId(deathInspectionRecord.getXsjsglxt_death_inspection_record_id());
@@ -1100,6 +1102,48 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			deathInspectionRecord.setDeath_inspection_record_gmt_modified(TeamUtil.getStringSecond());
 			return inspectionIdentificationDao.saveObject(deathInspectionRecord);
 		}
+	}
+
+	/**
+	 * 
+	 * @param oldFile
+	 * @param p
+	 * @D 表示某个位置为空
+	 * @D String[] p = {"1","1","1","1","1","1"};
+	 * @D p = {"1","2","1","2","1","2"} 表示位置：1，3，5 为空.1 表示存在文件
+	 * @return
+	 */
+	public File[] file(File[] oldFile, String[] p) {
+		File[] file = new File[6];
+		for (int i = 0, k = 0; i < p.length; i++) {
+			if ("1".equals(p[i])) {
+				file[i] = oldFile[k];
+				k++;
+			} else {
+				file[i] = null;
+			}
+		}
+		return file;
+	}
+
+	/**
+	 * 整合文件名
+	 * 
+	 * @param oldFileName
+	 * @param p
+	 * @return
+	 */
+	public String[] fileName(String[] oldFileName, String[] p) {
+		String[] fileName = new String[6];
+		for (int i = 0, k = 0; i < p.length; i++) {
+			if ("1".equals(p[i])) {
+				fileName[i] = oldFileName[k];
+				k++;
+			} else {
+				fileName[i] = null;
+			}
+		}
+		return fileName;
 	}
 
 }

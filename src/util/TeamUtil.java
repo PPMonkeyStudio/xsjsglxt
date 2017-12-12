@@ -15,23 +15,6 @@ public class TeamUtil {
 
 	static SimpleDateFormat formatter;
 
-	// 5级评分制评分
-	public static String grade(int ggg) {
-
-		switch (ggg / 10) {
-		case 9:
-			return "优秀";
-		case 8:
-			return "中";
-		case 7:
-			return "良";
-		case 6:
-			return "及格";
-		default:
-			return "不及格";
-		}
-	}
-
 	// 一段yyyy-MM-dd HH:mm:ss字符串分成年月日三段
 	// 2017-11-09 15:08:50
 	//
@@ -192,5 +175,4 @@ public class TeamUtil {
 		k = String.format("%04d", i, i + 1);
 		System.out.println(k);
 	}
-
 }
