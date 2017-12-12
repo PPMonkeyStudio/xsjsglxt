@@ -10,9 +10,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.struts2.ServletActionContext;
 
 import com.xsjsglxt.dao.InspectionIdentification.InspectionIdentificationDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter;
@@ -297,7 +299,22 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	public int saveDeathInspectionRecord(xsjsglxt_death_inspection_record deathInspectionRecord, File[] file, String[] fileName, String[] positionFile) throws IOException {
 		int i = 2;
 		int x = -1;
-		String path = "F:/xsjsglxt/";
+
+		/*
+		 * 获取路径
+		 */
+		String lj = "";
+		try {
+			Properties props = new Properties();
+			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
+			lj = props.getProperty("lj");
+		} catch (Exception e) {
+			System.out.println("获取初始路径失败");
+			e.printStackTrace();
+		}
+
+		String path = lj + "xsjsglxt/";
+
 		// 将文件以及文件名格式化
 		file = file(file, positionFile);
 		fileName = fileName(fileName, positionFile);
@@ -310,7 +327,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		deathInspectionRecord.setXsjsglxt_death_inspection_record_id(TeamUtil.getUuid());
 		// 上传图片
 		for (int k = 0; k < file.length; k++) {
-			path = "F:/xsjsglxt/";
+			path = lj + "xsjsglxt/";
 			if (file[k] != null) {
 				path = path + deathInspectionRecord.getXsjsglxt_death_inspection_record_id() + "_" + fileName[k];
 				File newFile = new File(path);
@@ -386,14 +403,29 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		return i;
 	}
 
+	// 填写鉴定文书表
 	@Override
 	public int saveAppraisalLetter(xsjsglxt_appraisal_letter appraisalLetter) {
 		int i = 2;
-		// 1.查询委托书表
+		//
 		if (!("已记录".equals(entrustmentBookState(appraisalLetter.getAppraisal_letter_belong_entrustment_book().trim())))) {
 			return 3;
 		}
-		//
+		// 1.查询委托书表的鉴定要求给予鉴定书类型
+		switch (entrustmentBookRequest(appraisalLetter.getAppraisal_letter_belong_entrustment_book().trim())) {
+		case "损伤鉴定":
+			appraisalLetter.setAppraisal_letter_type("损伤");
+			break;
+		case "死因鉴定":
+			appraisalLetter.setAppraisal_letter_type("尸体");
+			break;
+		default:
+			appraisalLetter.setAppraisal_letter_type("痕迹");
+			break;
+		}
+		// 给予编号
+		int k = inspectionIdentificationDao.getMaxLetterNum(TeamUtil.getCurrentYear(), appraisalLetter.getAppraisal_letter_type()) + 1;
+		appraisalLetter.setAppraisal_letter_num(TeamUtil.getCurrentYear() + String.format("%04d", k));
 		appraisalLetter.setXsjsglxt_appraisal_letter_id(TeamUtil.getUuid());
 		appraisalLetter.setAppraisal_letter_gmt_create(TeamUtil.getStringSecond());
 		appraisalLetter.setAppraisal_letter_gmt_modified(appraisalLetter.getAppraisal_letter_gmt_create());
@@ -583,19 +615,19 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		params.putAll(mapTranceCheckBook(id));
 		XwpfTUtil xwpfTUtil = new XwpfTUtil();
 		XWPFDocument doc;
-		String fileNameInResource = "F:\\xsjsglxt.docx";
+		String fileNameInResource = ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt.docx");
 		InputStream is;
 		is = new FileInputStream(fileNameInResource);
 		doc = new XWPFDocument(is);
 		xwpfTUtil.replaceInPara(doc, params);
 		xwpfTUtil.replaceInTable(doc, params);
-		OutputStream os = new FileOutputStream("F:\\kokokoko.docx");
+		OutputStream os = new FileOutputStream(ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt.docx"));
 		doc.write(os);
 		xwpfTUtil.close(os);
 		xwpfTUtil.close(is);
 		os.flush();
 		os.close();
-		return new File("F:\\kokokoko.docx");
+		return new File(ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt.docx"));
 	}
 
 	// 导出确认书
@@ -605,19 +637,19 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		params.putAll(mapIdentifiederCaseConfirmBook(id));
 		XwpfTUtil xwpfTUtil = new XwpfTUtil();
 		XWPFDocument doc;
-		String fileNameInResource = "F:\\xsjsglxt.docx";
+		String fileNameInResource = ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt.docx");
 		InputStream is;
 		is = new FileInputStream(fileNameInResource);
 		doc = new XWPFDocument(is);
 		xwpfTUtil.replaceInPara(doc, params);
 		xwpfTUtil.replaceInTable(doc, params);
-		OutputStream os = new FileOutputStream("F:\\kokokoko.docx");
+		OutputStream os = new FileOutputStream(ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt.docx"));
 		doc.write(os);
 		xwpfTUtil.close(os);
 		xwpfTUtil.close(is);
 		os.flush();
 		os.close();
-		return new File("F:\\kokokoko.docx");
+		return new File(ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt.docx"));
 	}
 
 	/**
@@ -997,6 +1029,15 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		return checkEntrustmentBook.getCheck_entrustment_book_state();
 	}
 
+	// 获取委托书的鉴定要求
+	public String entrustmentBookRequest(String id) {
+		xsjsglxt_check_entrustment_book checkEntrustmentBook = new xsjsglxt_check_entrustment_book();
+		checkEntrustmentBook = inspectionIdentificationDao.getCheckEntrustmentBookById(id);
+		if (checkEntrustmentBook == null)
+			return null;
+		return checkEntrustmentBook.getCheck_entrustment_book_entrustment_request();
+	}
+
 	// 更改委托书状态
 	public int updateEntrustmentBookState(String id, String state) {
 		int i = 0;
@@ -1026,7 +1067,20 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	// oldFileName需要供给
 	// uploadName 需要供给
 	public int uploadDeath(String uploadName, File file, String oldFileName, xsjsglxt_death_inspection_record deathInspectionRecord, String newFileName) throws IOException {
-		String path = "F:/xsjsglxt/";
+
+		/*
+		 * 获取路径
+		 */
+		String lj = "";
+		try {
+			Properties props = new Properties();
+			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
+			lj = props.getProperty("lj");
+		} catch (Exception e) {
+			System.out.println("获取初始路径失败");
+			e.printStackTrace();
+		}
+		String path = lj + "xsjsglxt/";
 		// 如果新文件为空
 		if (file == null) {
 			// 判断旧文件是否处于空的状态
