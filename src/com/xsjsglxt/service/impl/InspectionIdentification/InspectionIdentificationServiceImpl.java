@@ -305,6 +305,12 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			return 3;
 		}
 		deathInspectionRecord.setXsjsglxt_death_inspection_record_id(TeamUtil.getUuid());
+		for (int j = 0; j < fileName.length; j++) {
+			if (fileName[j] != null) {
+				System.out.println("fileName:" + fileName[j]);
+			}
+		}
+
 		// 上传图片
 		for (int k = 0; k < file.length; k++) {
 			if (file[k] != null) {
