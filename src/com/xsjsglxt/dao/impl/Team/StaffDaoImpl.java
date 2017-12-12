@@ -9,6 +9,8 @@ import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.Team.StaffDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecase;
+import com.xsjsglxt.domain.DO.xsjsglxt_case;
+import com.xsjsglxt.domain.DO.xsjsglxt_snece;
 import com.xsjsglxt.domain.DO.xsjsglxt_staff;
 import com.xsjsglxt.domain.VO.Team.page_list_staffInformationVO;
 
@@ -131,5 +133,51 @@ public class StaffDaoImpl implements StaffDao {
 	
 		session.clear();
 		return listStaffInformationByPage;
+	}
+
+	@Override
+	public xsjsglxt_staff StaffInformationOne(xsjsglxt_staff staff) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_staff staff where staff.xsjsglxt_staff_id='" + staff.getXsjsglxt_staff_id()  + "'";
+
+		Query query = session.createQuery(hql);
+
+			staff = (xsjsglxt_staff) query.uniqueResult();
+
+		return staff;
+	}
+
+	@Override
+	public void updateStaffInformation(xsjsglxt_staff staff) {
+		// TODO Auto-generated method stub
+		try {
+			getSession().saveOrUpdate(staff);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public xsjsglxt_staff getStaffByNum(String staff_id) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		xsjsglxt_staff StaffInformation = null;
+		String hql = "from xsjsglxt_staff staff where staff.xsjsglxt_staff_id='" + staff_id + "'";
+		Query query = session.createQuery(hql);
+		StaffInformation = (xsjsglxt_staff) query.uniqueResult();
+       return StaffInformation;
+	}
+
+	@Override
+	public boolean deleteStaffById(String xsjsglxt_staff_id) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		String hql = "delete from xsjsglxt_staff where xsjsglxt_staff_id='" + xsjsglxt_staff_id + "'";
+		Query query = session.createQuery(hql);
+		query.executeUpdate();
+       return true;
 	}
 }

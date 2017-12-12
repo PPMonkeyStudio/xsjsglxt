@@ -13,4 +13,12 @@ public int getCountStaffInformationByPage(page_list_staffInformationVO page_list
 
 public List<xsjsglxt_staff> getListStaffInformatioByPage(page_list_staffInformationVO page_list_staffInformation);
 
+public xsjsglxt_staff StaffInformationOne(xsjsglxt_staff staff);
+
+public void updateStaffInformation(xsjsglxt_staff staff);
+
+public com.xsjsglxt.domain.DO.xsjsglxt_staff getStaffByNum(String staff_id);
+
+public boolean deleteStaffById(String xsjsglxt_staff_id);
+
 }

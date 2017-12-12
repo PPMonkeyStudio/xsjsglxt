@@ -1,6 +1,7 @@
 package com.xsjsglxt.action.Team;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +20,7 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 
 	private StaffService staffService;
 	private xsjsglxt_staff staff;
+	private List<String> useStaffInformationNumList;
 	private HttpServletResponse http_response;
 
 	private HttpServletRequest http_request;
@@ -61,6 +63,56 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 
 		http_response.getWriter().write(gson.toJson(page_list_staffInformation));
 	}
+	/*
+	 *详细信息 
+	 */
+	public void StaffInformationOne() throws IOException{
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();//格式化json数据
+		Gson gson = gsonBuilder.create();
+		staff = staffService.StaffInformationOne(staff);
+		http_response.setContentType("text/html;charset=utf-8");
+
+		http_response.getWriter().write(gson.toJson(staff));
+	}
+	/*
+	 * 修改信息
+	 */
+	public void updateStaffInformation() throws IOException{
+		try {
+			
+			staffService.updateStaffInformation(staff);
+			http_response.setContentType("text/html;charset=utf-8");
+			http_response.getWriter().write("success");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			http_response.setContentType("text/html;charset=utf-8");
+			http_response.getWriter().write("error");
+		}
+	}
+	/*
+	 *删除信息 
+	 */
+	public void remove_StaffInformationList(){
+	
+		if(	staffService.remove_StaffInformationList( useStaffInformationNumList)){
+			http_response.setContentType("text/html;charset=utf-8");
+			try {
+				http_response.getWriter().write("success");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}}else{
+				http_response.setContentType("text/html;charset=utf-8");
+				try {
+					http_response.getWriter().write("error");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+	}
 	@Override
 	public void setServletResponse(HttpServletResponse arg0) {
 		// TODO Auto-generated method stub
@@ -101,6 +153,12 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 	}
 	public void setPage_list_staffInformation(page_list_staffInformationVO page_list_staffInformation) {
 		this.page_list_staffInformation = page_list_staffInformation;
+	}
+	public List<String> getUseStaffInformationNumList() {
+		return useStaffInformationNumList;
+	}
+	public void setUseStaffInformationNumList(List<String> useStaffInformationNumList) {
+		this.useStaffInformationNumList = useStaffInformationNumList;
 	}
 
 }

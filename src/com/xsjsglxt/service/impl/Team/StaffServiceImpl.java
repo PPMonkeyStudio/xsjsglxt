@@ -70,4 +70,29 @@ public page_list_staffInformationVO VO_StaffInformation_By_PageAndSearch(
 	return page_list_staffInformation;
 }
 
+@Override
+public xsjsglxt_staff StaffInformationOne(xsjsglxt_staff staff) {
+	// TODO Auto-generated method stub
+	return staffDao.StaffInformationOne(staff);
+}
+
+@Override
+public void updateStaffInformation(xsjsglxt_staff staff) {
+	// TODO Auto-generated method stub
+	staff.setStaff_gmt_modified(TeamUtil.getStringSecond());
+	staffDao.updateStaffInformation(staff);
+}
+
+@Override
+public boolean remove_StaffInformationList(List<String> useStaffInformationNumList) {
+	// TODO Auto-generated method stub
+	boolean flag = false;
+	for (String staff_id : useStaffInformationNumList) {
+		xsjsglxt_staff xsjsglxt_staff = staffDao.getStaffByNum(staff_id);
+		flag = staffDao.deleteStaffById(xsjsglxt_staff.getXsjsglxt_staff_id());// ����
+		
+	}
+	return flag;
+}
+
 }
