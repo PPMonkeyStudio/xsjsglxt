@@ -29,22 +29,22 @@ function Create_InspectionRecord(obj) {
 			.confirm({
 				icon : 'fa fa-pencil-square-o',
 				title : '记录检验过程',
-				content : '<input value="'
+				content : '<form id="form_InspectionRecord"><input value="'
 						+ obj.id
-						+ '"  class="form-control" id="create_inspection_belong_entrustment_book" style="display:none;"/>'
+						+ '"  class="form-control" name="inspectionRecord." id="create_inspection_belong_entrustment_book" style="display:none;"/>'
 						+ '<hr>'
 						+ '<table  class="table table-bordered" style="text-align: center;">'
 						+ '<tbody>'
 						+ '<tr><td>检验人：</td>'
-						+ '<td><input  class="form-control" id="create_inspection_people" /></td>'
+						+ '<td><input  class="form-control" name="inspectionRecord." id="create_inspection_people" /></td>'
 						+ '<td>检验开始时间：</td>'
-						+ '<td><input  class="form-control mydate" id="create_inspection_start_time" /></td>'
+						+ '<td><input  class="form-control mydate" name="inspectionRecord." id="create_inspection_start_time" /></td>'
 						+ '<td>检验结束时间：</td>'
-						+ '<td><input  class="form-control mydate" id="create_inspection_stop_time" /></td></tr>'
+						+ '<td><input  class="form-control mydate" name="inspectionRecord." id="create_inspection_stop_time" /></td></tr>'
 						+ '<tr><td colspan="2">检验地点：</td>'
-						+ '<td colspan="2"><input  class="form-control" id="create_inspection_location" /></td>'
+						+ '<td colspan="2"><input  class="form-control" name="inspectionRecord." id="create_inspection_location" /></td>'
 						+ '<td>检验设备：</td>'
-						+ '<td><select class="form-control" id="create_inspection_equipment">'
+						+ '<td><select class="form-control" name="inspectionRecord." id="create_inspection_equipment">'
 						+ '<option value="放大镜">放大镜</option>'
 						+ '<option value="比例尺">比例尺</option>'
 						+ '<option value="尸体解剖检验箱">尸体解剖检验箱</option>'
@@ -54,20 +54,20 @@ function Create_InspectionRecord(obj) {
 						+ '<option value="502熏显柜">502熏显柜</option>'
 						+ '<option value="WBY-5比对显微镜">WBY-5比对显微镜</option>'
 						+ '<option value="其他">其他</option>'
-						+ '</select><input  class="form-control" id="create_inspection_equipment_qt" style="margin:10px 0 0 0;"/></td></tr>'
+						+ '</select><input  class="form-control" name="inspectionRecord." id="create_inspection_equipment_qt" style="margin:10px 0 0 0;"/></td></tr>'
 						+ '<tr><td>检材情况：</td>'
-						+ '<td colspan="5"><textarea class="form-control" style="resize: none;height:100px;" id="create_inspection_check_material_situation"></textarea></td></tr>'
+						+ '<td colspan="5"><textarea class="form-control" style="resize: none;height:100px;" name="inspectionRecord." id="create_inspection_check_material_situation"></textarea></td></tr>'
 						+ '<tr><td>样本情况：</td>'
-						+ '<td colspan="5"><textarea class="form-control" style="resize: none;height:100px;" id="create_inspection_sample_situation"></textarea></td></tr>'
+						+ '<td colspan="5"><textarea class="form-control" style="resize: none;height:100px;" name="inspectionRecord." id="create_inspection_sample_situation"></textarea></td></tr>'
 						+ '<tr><td>检验方法：</td>'
-						+ '<td colspan="5"><textarea class="form-control" style="resize: none;height:100px;" id="create_inspection_method"></textarea></td></tr>'
+						+ '<td colspan="5"><textarea class="form-control" style="resize: none;height:100px;" name="inspectionRecord." id="create_inspection_method"></textarea></td></tr>'
 						+ '<tr><td>检验过程：</td>'
-						+ '<td colspan="5"><textarea class="form-control" style="resize: none;height:200px;" id="create_inspection_process"></textarea></td></tr>'
+						+ '<td colspan="5"><textarea class="form-control" style="resize: none;height:200px;" name="inspectionRecord." id="create_inspection_process"></textarea></td></tr>'
 						+ '<tr><td>检验意见：</td>'
-						+ '<td colspan="5"><textarea class="form-control" style="resize: none;height:100px;" id="create_inspection_option"></textarea></td></tr>'
+						+ '<td colspan="5"><textarea class="form-control" style="resize: none;height:100px;" name="inspectionRecord." id="create_inspection_option"></textarea></td></tr>'
 						+ '<tr><td>备注：</td>'
-						+ '<td colspan="5"><textarea class="form-control" style="resize: none;height:100px;" id="create_inspection_mark"></textarea></td></tr>'
-						+ '</tbody>' + '</table>' + '<hr>',
+						+ '<td colspan="5"><textarea class="form-control" style="resize: none;height:100px;" name="inspectionRecord." id="create_inspection_mark"></textarea></td></tr>'
+						+ '</tbody>' + '</table></form>' + '<hr>',
 				type : 'blue',
 				columnClass : 'col-md-12',
 				onOpenBefore : function() {
@@ -264,35 +264,8 @@ function addInspectionRecord(jc) {
 	/*
 	 * 
 	 */
-	var formData = new FormData();
-	/*
-	 * 所属委托书
-	 */
-	var create_inspection_belong_entrustment_book = document
-			.getElementById("create_inspection_belong_entrustment_book");
-	formData.append("inspectionRecord.inspection_belong_entrustment_book",
-			create_inspection_belong_entrustment_book.value);
-	/*
-	 * 检验人
-	 */
-	var create_inspection_people = document
-			.getElementById("create_inspection_people");
-	formData.append("inspectionRecord.inspection_people",
-			create_inspection_people.value);
-	/*
-	 * 检验时间
-	 */
-	var create_inspection_time = document
-			.getElementById("create_inspection_time");
-	formData.append("inspectionRecord.inspection_time",
-			create_inspection_time.value);
-	/*
-	 * 检验地点
-	 */
-	var create_inspection_location = document
-			.getElementById("create_inspection_location");
-	formData.append("inspectionRecord.inspection_location",
-			create_inspection_location.value);
+	var formData = new FormData(document.getElementById(""));
+
 	/*
 	 * 检验设备
 	 */
@@ -308,48 +281,6 @@ function addInspectionRecord(jc) {
 				create_inspection_equipment.value);
 	}
 
-	/*
-	 * 检材情况
-	 */
-	var create_inspection_check_material_situation = document
-			.getElementById("create_inspection_check_material_situation");
-	formData.append("inspectionRecord.inspection_check_material_situation",
-			create_inspection_check_material_situation.value);
-	/*
-	 * 样本情况
-	 */
-	var create_inspection_sample_situation = document
-			.getElementById("create_inspection_sample_situation");
-	formData.append("inspectionRecord.inspection_sample_situation",
-			create_inspection_sample_situation.value);
-	/*
-	 * 检验方法
-	 */
-	var create_inspection_method = document
-			.getElementById("create_inspection_method");
-	formData.append("inspectionRecord.inspection_method",
-			create_inspection_method.value);
-	/*
-	 * 检验过程
-	 */
-	var create_inspection_process = document
-			.getElementById("create_inspection_process");
-	formData.append("inspectionRecord.inspection_process",
-			create_inspection_process.value);
-	/*
-	 * 检验意见
-	 */
-	var create_inspection_option = document
-			.getElementById("create_inspection_option");
-	formData.append("inspectionRecord.inspection_option",
-			create_inspection_option.value);
-	/*
-	 * 备注
-	 */
-	var create_inspection_mark = document
-			.getElementById("create_inspection_mark");
-	formData.append("inspectionRecord.inspection_mark",
-			create_inspection_mark.value);
 	/*
 	 * 
 	 */
