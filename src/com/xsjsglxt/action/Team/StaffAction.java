@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_staff;
+import com.xsjsglxt.domain.VO.Team.page_list_staffInformationVO;
 import com.xsjsglxt.service.Team.StaffService;
 
 public class StaffAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
@@ -21,6 +22,7 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 	private HttpServletResponse http_response;
 
 	private HttpServletRequest http_request;
+	private page_list_staffInformationVO  page_list_staffInformation;
 	/*
 	 * 跳转列表页
 	 */
@@ -44,7 +46,21 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 			http_response.getWriter().write("error");
 		}
 	}
+	/*
+	 *列表信息 
+	 */
+	public void ListStaffInformationByPageAndSearch() throws IOException{
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
+		Gson gson = gsonBuilder.create();
+
 	
+		page_list_staffInformation = staffService.VO_StaffInformation_By_PageAndSearch(page_list_staffInformation);
+
+		http_response.setContentType("text/html;charset=utf-8");
+
+		http_response.getWriter().write(gson.toJson(page_list_staffInformation));
+	}
 	@Override
 	public void setServletResponse(HttpServletResponse arg0) {
 		// TODO Auto-generated method stub
@@ -73,6 +89,18 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 	}
 	public void setHttp_request(HttpServletRequest http_request) {
 		this.http_request = http_request;
+	}
+	public xsjsglxt_staff getStaff() {
+		return staff;
+	}
+	public void setStaff(xsjsglxt_staff staff) {
+		this.staff = staff;
+	}
+	public page_list_staffInformationVO getPage_list_staffInformation() {
+		return page_list_staffInformation;
+	}
+	public void setPage_list_staffInformation(page_list_staffInformationVO page_list_staffInformation) {
+		this.page_list_staffInformation = page_list_staffInformation;
 	}
 
 }

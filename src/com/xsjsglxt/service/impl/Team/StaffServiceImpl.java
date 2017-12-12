@@ -1,7 +1,15 @@
 package com.xsjsglxt.service.impl.Team;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.xsjsglxt.dao.Team.StaffDao;
+import com.xsjsglxt.domain.DO.xsjsglxt_breakecase;
+import com.xsjsglxt.domain.DO.xsjsglxt_case;
+import com.xsjsglxt.domain.DO.xsjsglxt_snece;
 import com.xsjsglxt.domain.DO.xsjsglxt_staff;
+import com.xsjsglxt.domain.DTO.Case.BreakecaseInformationDTO;
+import com.xsjsglxt.domain.VO.Team.page_list_staffInformationVO;
 import com.xsjsglxt.service.Team.StaffService;
 
 import util.TeamUtil;
@@ -28,6 +36,38 @@ public boolean saveStaff(xsjsglxt_staff staff) {
 	}else{
 		return false;
 	}
+}
+
+@Override
+public page_list_staffInformationVO VO_StaffInformation_By_PageAndSearch(
+		page_list_staffInformationVO page_list_staffInformation) {
+	// TODO Auto-generated method stub
+	//List<BreakecaseInformationDTO> BreakecaseInformationDTOList = new ArrayList<BreakecaseInformationDTO>();
+	List<xsjsglxt_staff> listStaff = new ArrayList<xsjsglxt_staff>();
+	//BreakecaseInformationDTO breakecaseInformationDTO;
+
+	int i = staffDao.getCountStaffInformationByPage(page_list_staffInformation);
+
+	page_list_staffInformation.setTotalRecords(i);
+	page_list_staffInformation.setTotalPages(((i - 1) / page_list_staffInformation.getPageSize()) + 1);
+	if (page_list_staffInformation.getPageIndex() <= 1) {
+		page_list_staffInformation.setHavePrePage(false);
+	} else {
+		page_list_staffInformation.setHavePrePage(true);
+	}
+	if (page_list_staffInformation.getPageIndex() >= page_list_staffInformation.getTotalPages()) {
+		page_list_staffInformation.setHaveNextPage(false);
+	} else {
+		page_list_staffInformation.setHaveNextPage(true);
+	}
+
+	// 符合条件的记录
+	listStaff = staffDao.getListStaffInformatioByPage(page_list_staffInformation);
+
+	
+	page_list_staffInformation.setListStaff(listStaff);
+	
+	return page_list_staffInformation;
 }
 
 }
