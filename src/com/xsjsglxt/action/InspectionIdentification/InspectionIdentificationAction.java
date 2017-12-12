@@ -63,6 +63,8 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	// 文件类型
 	private String[] deathContentType;
 	// 判断文件顺序
+	// 1: 有
+	// 2 ： 无
 	private String[] positionFile;
 
 	/**
@@ -269,6 +271,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		}
 	}
 
+	// 导出检验委托书
 	public String exportTranceCheckBook() throws Exception {
 		File exportTranceCheckBookFile = inspectionIdentificationService
 				.exportTranceCheckBook(tranceCheckBook.getXsjsglxt_check_entrustment_book_id());
@@ -280,6 +283,8 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		exportTranceCheckBookFile.delete();
 		return "exportTranceCheckBook";
 	}
+
+	//
 
 	/**
 	 * 

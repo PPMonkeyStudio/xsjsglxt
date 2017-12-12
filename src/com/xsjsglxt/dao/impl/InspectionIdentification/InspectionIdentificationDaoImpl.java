@@ -460,4 +460,21 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		return i;
 	}
 
+	@Override
+	public int getMaxLetterNum(String currentYear, String type) {
+		int i = 0;
+		String ji = "";
+		String hql = "select substring(appraisal_letter_num,5) from xsjsglxt_appraisal_letter where substring(appraisal_letter_num,1,4)='"
+				+ currentYear + "' and appraisal_letter_type = '" + type + "' order by substring(appraisal_letter_num,5) desc limit 1";
+		Query query = getSession().createSQLQuery(hql);
+		ji = (String) query.uniqueResult();
+		if (ji == null || ji.trim().length() <= 0) {
+			getSession().clear();
+			return 0;
+		}
+		i = Integer.parseInt(ji);
+		getSession().clear();
+		return i;
+	}
+
 }
