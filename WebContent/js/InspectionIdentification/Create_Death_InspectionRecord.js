@@ -7,80 +7,80 @@ function Create_Death_InspectionRecord(obj) {
 			.confirm({
 				icon : 'fa fa-pencil-square-o',
 				title : '尸体检验记录',
-				content : '<input value="'
+				content : '<form id="form_Death_InspectionRecord" ><input value="'
 						+ obj.id
-						+ '"  class="form-control" id="create_death_inspection_record_belong_entrustment_book" style="display:none;"/>'
+						+ '"  class="form-control" name="deathInspectionRecord.death_inspection_record_belong_entrustment_book"  style="display:none;"/>'
 						+ '<hr>'
 						+ '<table  class="table table-bordered" style="text-align: center;">'
 						+ '<tbody>'
 						+ '<tr>'
 						+ '<td style="width:200px;">承办人员：</td>'
-						+ '<td><input  class="form-control" id="create_death_inspection_record_undertake_personnel" /></td>'
+						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_undertake_personnel"  /></td>'
 						+ '<td style="width:200px;">联系电话：</td>'
-						+ '<td><input  class="form-control" id="create_death_inspection_record_phone" /></td>'
+						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_phone"  /></td>'
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>死者姓名：</td>'
-						+ '<td><input  class="form-control" id="create_death_inspection_record_death_name" /></td>'
+						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_death_name"  /></td>'
 						+ '<td>性别：</td>'
-						+ '<td><select class="form-control" id="create_death_inspection_record_death_sex">'
+						+ '<td><select class="form-control" name="deathInspectionRecord.death_inspection_record_death_sex" >'
 						+ '<option value="男">男</option>'
 						+ '<option value="女">女</option>'
 						+ '</select></td>'
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>出生日期：</td>'
-						+ '<td><input  class="form-control mydate" id="create_death_inspection_record_death_birth_date" /></td>'
+						+ '<td><input  class="form-control mydate" name="deathInspectionRecord.death_inspection_record_death_birth_date"  /></td>'
 						+ '<td>民族：</td>'
-						+ '<td><input  class="form-control" id="create_death_inspection_record_private_capital" value="中国"/></td>'
+						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_private_capital"  value="中国"/></td>'
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>服务处所：</td>'
-						+ '<td><input  class="form-control" id="create_death_inspection_record_unit_service" /></td>'
+						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_unit_service"  /></td>'
 						+ '<td>住址：</td>'
-						+ '<td><input  class="form-control" id="create_death_inspection_record_address" /></td>'
+						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_address"  /></td>'
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>检验人：</td>'
-						+ '<td><input  class="form-control" id="create_death_inspection_record_inspector" /></td>'
+						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_inspector"   /></td>'
 						+ '<td>检验地点：</td>'
-						+ '<td><input  class="form-control " id="create_death_inspection_record_inspect_place" value="萍乡市公安局安源分局解剖室"/></td>'
+						+ '<td><input  class="form-control " name="deathInspectionRecord.death_inspection_record_inspect_place"   value="萍乡市公安局安源分局解剖室"/></td>'
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>检验开始时间：</td>'
-						+ '<td ><input  class="form-control mydate_minute" id="create_death_inspection_record_inspect_time"  /></td>'
+						+ '<td ><input  class="form-control mydate_minute" name="deathInspectionRecord.death_inspection_record_inspect_time"    /></td>'
 						+ '<td>检验结束时间：</td>'
-						+ '<td ><input  class="form-control mydate_minute" id="create_death_inspection_record_inspect_stop_time"  /></td>'
+						+ '<td ><input  class="form-control mydate_minute" name="deathInspectionRecord.death_inspection_record_inspect_stop_time"    /></td>'
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>检验环境温度：</td>'
-						+ '<td><input  class="form-control" id="create_death_inspection_record_inspect_ambient_temperature" value="23摄氏度" /></td>'
+						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_inspect_ambient_temperature"   value="23摄氏度" /></td>'
 						+ '<td>检验环境湿度：</td>'
-						+ '<td><input  class="form-control" id="create_death_inspection_record_ambient_humidity" value="30％RH" /></td>'
+						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_ambient_humidity"   value="30％RH" /></td>'
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>现场尸体与血迹概况（尸体所处地点、位置、姿势及与周围环境相互关系等）：</td>'
-						+ '<td colspan="3"><textarea style="resize: none;height:100px;" class="form-control" id="create_death_inspection_record_site_profile"  >死者平躺于萍乡市公安局安源分局解剖室解剖台</textarea></td>'
+						+ '<td colspan="3"><textarea style="resize: none;height:100px;" class="form-control" name="deathInspectionRecord.death_inspection_record_site_profile"    >死者平躺于萍乡市公安局安源分局解剖室解剖台</textarea></td>'
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>尸体衣着、饰物、随身物品性状与数量及其它物品：</td>'
-						+ '<td colspan="3"><textarea style="resize: none;height:100px;" class="form-control" id="create_death_inspection_record_death_clothing"  >死者上着黄色T恤 ，黄色运动短裤，赤足。运动短裤口袋空虚。</textarea></td>'
+						+ '<td colspan="3"><textarea style="resize: none;height:100px;" class="form-control" name="deathInspectionRecord.death_inspection_record_death_clothing"    >死者上着黄色T恤 ，黄色运动短裤，赤足。运动短裤口袋空虚。</textarea></td>'
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>随身物品移交情况：</td>'
-						+ '<td colspan="3"><textarea style="resize: none;height:100px;" class="form-control" id="create_death_inspection_record_handover_of_goods"  ></textarea></td>'
+						+ '<td colspan="3"><textarea style="resize: none;height:100px;" class="form-control"  name="deathInspectionRecord.death_inspection_record_handover_of_goods"   ></textarea></td>'
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>接收物品人员：</td>'
-						+ '<td colspan="3"><input  class="form-control" id="create_death_inspection_record_receiver_goods" /></td>'
+						+ '<td colspan="3"><input  class="form-control" name="deathInspectionRecord.death_inspection_record_receiver_goods"   /></td>'
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>备注：</td>'
-						+ '<td colspan="3"><textarea style="resize: none;height:100px;" class="form-control" id="create_death_inspection_record_mark"  ></textarea></td>'
+						+ '<td colspan="3"><textarea style="resize: none;height:100px;" class="form-control" name="deathInspectionRecord.death_inspection_record_mark"    ></textarea></td>'
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>尸表检验：</td>'
-						+ '<td colspan="3"><textarea style="resize: none;height:500px;" class="form-control" id="create_death_inspection_record_autopsy_surface_table_test"  >'
+						+ '<td colspan="3"><textarea style="resize: none;height:500px;" class="form-control" name="deathInspectionRecord.death_inspection_record_autopsy_surface_table_test"    >'
 						+ '尸长：175 厘米；肤色：黄；发育：正常；营养：中等；'
 						+ '\n尸斑：暗红色，位于：位于项、背、腰部未受压处；指压：稍褪色；'
 						+ '\n尸僵：颌形成；颈形成；上肢形成；下肢形成；强度：强 ；'
@@ -127,13 +127,13 @@ function Create_Death_InspectionRecord(obj) {
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>尸表记录人：</td>'
-						+ '<td><input  class="form-control" id="create_death_inspection_record_autopsy_surface_table_test_recorder" /></td>'
+						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_autopsy_surface_table_test_recorder"   /></td>'
 						+ '<td>尸表记录时间：</td>'
-						+ '<td><input  class="form-control mydate" id="create_death_inspection_record_autopsy_surface_table_test_recorder_time" /></td>'
+						+ '<td><input  class="form-control mydate" name="deathInspectionRecord.death_inspection_record_autopsy_surface_table_test_recorder_time"   /></td>'
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>解剖检验：</td>'
-						+ '<td colspan="3"><textarea style="resize: none;height:500px;" class="form-control" id="create_death_inspection_record_anatomic_test"  >'
+						+ '<td colspan="3"><textarea style="resize: none;height:500px;" class="form-control" name="deathInspectionRecord.death_inspection_record_anatomic_test"    >'
 						+ '\n头皮：右颞、顶部见6×5cm头皮下出血。'
 						+ '\n颞肌：左：无出血，右：5×5cm出血。'
 						+ '\n帽状腱膜：无出血。'
@@ -227,39 +227,53 @@ function Create_Death_InspectionRecord(obj) {
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>解剖时间：</td>'
-						+ '<td><input  class="form-control mydate_minute" id="create_death_inspection_record_anatomic_time" /></td>'
+						+ '<td><input  class="form-control mydate_minute" name="deathInspectionRecord.death_inspection_record_anatomic_time"   /></td>'
 						+ '<td>解剖地点：</td>'
-						+ '<td><input  class="form-control" id="create_death_inspection_record_anatomic_place" value="萍乡市公安局安源分局解剖室"/></td>'
+						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_anatomic_place"   value="萍乡市公安局安源分局解剖室"/></td>'
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>尸体检验拍照人：</td>'
-						+ '<td><input  class="form-control" id="create_death_inspection_record_autopsy_table_test_photographer" /></td>'
+						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_autopsy_table_test_photographer"   /></td>'
 						+ '<td>尸体检验录像人：</td>'
-						+ '<td><input  class="form-control" id="create_death_inspection_record_autopsy_table_test_video" /></td>'
+						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_autopsy_table_test_video"   /></td>'
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>尸体检验记录人：</td>'
-						+ '<td><input  class="form-control" id="create_death_inspection_record_autopsy_table_test_recorder" /></td>'
+						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_autopsy_table_test_recorder"  id="" /></td>'
 						+ '<td>尸体检验记录时间：</td>'
-						+ '<td><input  class="form-control mydate" id="create_death_inspection_record_autopsy_table_test_recorder_time" /></td>'
-						+ '</tr>' + '</tbody>' + '</table>' + '<hr>',
+						+ '<td><input  class="form-control mydate" name="deathInspectionRecord.death_inspection_record_autopsy_table_test_recorder_time"   /></td>'
+						+ '</tr>'
+						+ '<tr>'
+						+ '<td>尸表检验图：</td>'
+						+ '<td>'
+						+ '<input type="file" id="create_death_inspection_record_autopsy_table_test_picture1" />'
+						+ '<input type="file" id="create_death_inspection_record_autopsy_table_test_picture2" />'
+						+ '<input type="file" id="create_death_inspection_record_autopsy_table_test_picture3"  />'
+						+ '</td>'
+						+ '</tr>'
+						+ '<tr>'
+						+ '<td>解剖检验图：</td>'
+						+ '<td>'
+						+ '<input type="file" id="create_death_inspection_record_anatomy_picture1" />'
+						+ '<input type="file" id="create_death_inspection_record_anatomy_picture2" />'
+						+ '<input type="file" id="create_death_inspection_record_anatomy_picture3" />'
+						+ '</td>'
+						+ '</tr>'
+						+ '</tbody>'
+						+ '</table>'
+						+ '</form>' + '<hr>',
 				type : 'blue',
 				columnClass : 'col-md-12',
 				onOpenBefore : function() {
 				},
 				onContentReady : function() {
-					for (var num = 0; num < json_list.listEntrustmentBookManagementDTO.length; num++) {
-						if (obj.id == json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id) {
-							break;
-						}
-					}
 
 					/*
 					 * 
 					 */
 					var date = new Date();
 					document
-							.getElementById("create_death_inspection_record_inspect_time").value = date
+							.getElementsByName("deathInspectionRecord.death_inspection_record_inspect_time")[0].value = date
 							.getFullYear()
 							+ '-'
 							+ (parseInt(date.getMonth()) + 1)
@@ -272,7 +286,7 @@ function Create_Death_InspectionRecord(obj) {
 							+ (date.getMinutes() < 10 ? '0' + date.getMinutes()
 									: date.getMinutes());
 					document
-							.getElementById("create_death_inspection_record_inspect_stop_time").value = date
+							.getElementsByName("deathInspectionRecord.death_inspection_record_inspect_stop_time")[0].value = date
 							.getFullYear()
 							+ '-'
 							+ (parseInt(date.getMonth()) + 1)
@@ -285,14 +299,14 @@ function Create_Death_InspectionRecord(obj) {
 							+ (date.getMinutes() < 10 ? '0' + date.getMinutes()
 									: date.getMinutes());
 					document
-							.getElementById("create_death_inspection_record_autopsy_surface_table_test_recorder_time").value = date
+							.getElementsByName("deathInspectionRecord.death_inspection_record_autopsy_surface_table_test_recorder_time")[0].value = date
 							.getFullYear()
 							+ '-'
 							+ (parseInt(date.getMonth()) + 1)
 							+ '-'
 							+ date.getDate();
 					document
-							.getElementById("create_death_inspection_record_anatomic_time").value = date
+							.getElementsByName("deathInspectionRecord.death_inspection_record_anatomic_time")[0].value = date
 							.getFullYear()
 							+ '-'
 							+ (parseInt(date.getMonth()) + 1)
@@ -305,7 +319,7 @@ function Create_Death_InspectionRecord(obj) {
 							+ (date.getMinutes() < 10 ? '0' + date.getMinutes()
 									: date.getMinutes());
 					document
-							.getElementById("create_death_inspection_record_autopsy_table_test_recorder_time").value = date
+							.getElementsByName("deathInspectionRecord.death_inspection_record_autopsy_table_test_recorder_time")[0].value = date
 							.getFullYear()
 							+ '-'
 							+ (parseInt(date.getMonth()) + 1)
@@ -375,291 +389,79 @@ function addDeathInspectionRecord(jc) {
 	/*
 	 * 
 	 */
-	var formData = new FormData();
+	var formData = new FormData(document
+			.getElementById("form_Death_InspectionRecord"));
 	/*
-	 * 所属委托书
-	 */
-	var create_death_inspection_record_belong_entrustment_book = document
-			.getElementById("create_death_inspection_record_belong_entrustment_book");
-	formData
-			.append(
-					"deathInspectionRecord.death_inspection_record_belong_entrustment_book",
-					create_death_inspection_record_belong_entrustment_book.value);
-	/*
-	 * 承办人员
-	 */
-	var create_death_inspection_record_undertake_personnel = document
-			.getElementById("create_death_inspection_record_undertake_personnel");
-	formData
-			.append(
-					"deathInspectionRecord.death_inspection_record_undertake_personnel",
-					create_death_inspection_record_undertake_personnel.value);
-	/*
-	 * 联系电话
-	 */
-	var create_death_inspection_record_phone = document
-			.getElementById("create_death_inspection_record_phone");
-	formData.append("deathInspectionRecord.death_inspection_record_phone",
-			create_death_inspection_record_phone.value);
-	/*
-	 * 死者姓名
-	 */
-	var create_death_inspection_record_death_name = document
-			.getElementById("create_death_inspection_record_death_name");
-	formData.append("deathInspectionRecord.death_inspection_record_death_name",
-			create_death_inspection_record_death_name.value);
-	/*
-	 * 性别
-	 */
-	var create_death_inspection_record_death_sex = document
-			.getElementById("create_death_inspection_record_death_sex");
-	formData.append("deathInspectionRecord.death_inspection_record_death_sex",
-			create_death_inspection_record_death_sex.value);
-	/*
-	 * 出生日期
-	 */
-	var create_death_inspection_record_death_birth_date = document
-			.getElementById("create_death_inspection_record_death_birth_date");
-	formData.append(
-			"deathInspectionRecord.death_inspection_record_death_birth_date",
-			create_death_inspection_record_death_birth_date.value);
-	/*
-	 * 民族
-	 */
-	var create_death_inspection_record_private_capital = document
-			.getElementById("create_death_inspection_record_private_capital");
-	formData.append(
-			"deathInspectionRecord.death_inspection_record_private_capital",
-			create_death_inspection_record_private_capital.value);
-	/*
-	 * 服务处所
-	 */
-	var create_death_inspection_record_unit_service = document
-			.getElementById("create_death_inspection_record_unit_service");
-	formData.append(
-			"deathInspectionRecord.death_inspection_record_unit_service",
-			create_death_inspection_record_unit_service.value);
-	/*
-	 * 住址
-	 */
-	var create_death_inspection_record_address = document
-			.getElementById("create_death_inspection_record_address");
-	formData.append("deathInspectionRecord.death_inspection_record_address",
-			create_death_inspection_record_address.value);
-	/*
-	 * 检验人
-	 */
-	var create_death_inspection_record_inspector = document
-			.getElementById("create_death_inspection_record_inspector");
-	formData.append("deathInspectionRecord.death_inspection_record_inspector",
-			create_death_inspection_record_inspector.value);
-	/*
-	 * 检验开始时间
-	 */
-	var create_death_inspection_record_inspect_time = document
-			.getElementById("create_death_inspection_record_inspect_time");
-	formData.append(
-			"deathInspectionRecord.death_inspection_record_inspect_time",
-			create_death_inspection_record_inspect_time.value);
-	/*
-	 * 检验结束时间
-	 */
-	var create_death_inspection_record_inspect_stop_time = document
-			.getElementById("create_death_inspection_record_inspect_stop_time");
-	formData.append(
-			"deathInspectionRecord.death_inspection_record_inspect_stop_time",
-			create_death_inspection_record_inspect_stop_time.value);
-	/*
-	 * 检验地点
-	 */
-	var create_death_inspection_record_inspect_place = document
-			.getElementById("create_death_inspection_record_inspect_place");
-	formData.append(
-			"deathInspectionRecord.death_inspection_record_inspect_place",
-			create_death_inspection_record_inspect_place.value);
-	/*
-	 * 检验环境温度
-	 */
-	var create_death_inspection_record_inspect_ambient_temperature = document
-			.getElementById("create_death_inspection_record_inspect_ambient_temperature");
-	formData
-			.append(
-					"deathInspectionRecord.death_inspection_record_inspect_ambient_temperature",
-					create_death_inspection_record_inspect_ambient_temperature.value);
-	/*
-	 * 检验环境湿度
-	 */
-	var create_death_inspection_record_ambient_humidity = document
-			.getElementById("create_death_inspection_record_ambient_humidity");
-	formData.append(
-			"deathInspectionRecord.death_inspection_record_ambient_humidity",
-			create_death_inspection_record_ambient_humidity.value);
-	/*
-	 * 现场尸体与血迹概况（尸体所处地点、位置、姿势及与周围环境相互关系等）
-	 */
-	var create_death_inspection_record_site_profile = document
-			.getElementById("create_death_inspection_record_site_profile");
-	formData.append(
-			"deathInspectionRecord.death_inspection_record_site_profile",
-			create_death_inspection_record_site_profile.value);
-	/*
-	 * 尸体衣着、饰物、随身物品性状与数量及其它物品
-	 */
-	var create_death_inspection_record_death_clothing = document
-			.getElementById("create_death_inspection_record_death_clothing");
-	formData.append(
-			"deathInspectionRecord.death_inspection_record_death_clothing",
-			create_death_inspection_record_death_clothing.value);
-	/*
-	 * 随身物品移交情况
-	 */
-	var create_death_inspection_record_handover_of_goods = document
-			.getElementById("create_death_inspection_record_handover_of_goods");
-	formData.append(
-			"deathInspectionRecord.death_inspection_record_handover_of_goods",
-			create_death_inspection_record_handover_of_goods.value);
-	/*
-	 * 接收物品人员
-	 */
-	var create_death_inspection_record_receiver_goods = document
-			.getElementById("create_death_inspection_record_receiver_goods");
-	formData.append(
-			"deathInspectionRecord.death_inspection_record_receiver_goods",
-			create_death_inspection_record_receiver_goods.value);
-	/*
-	 * 备注
-	 */
-	var create_death_inspection_record_mark = document
-			.getElementById("create_death_inspection_record_mark");
-	formData.append("deathInspectionRecord.death_inspection_record_mark",
-			create_death_inspection_record_mark.value);
-	/*
-	 * 尸表检验
-	 */
-	var create_death_inspection_record_autopsy_surface_table_test = document
-			.getElementById("create_death_inspection_record_autopsy_surface_table_test");
-	formData
-			.append(
-					"deathInspectionRecord.death_inspection_record_autopsy_surface_table_test",
-					create_death_inspection_record_autopsy_surface_table_test.value);
-	/*
-	 * 尸表检验记录人
-	 */
-	var create_death_inspection_record_autopsy_surface_table_test_recorder = document
-			.getElementById("create_death_inspection_record_autopsy_surface_table_test_recorder");
-	formData
-			.append(
-					"deathInspectionRecord.death_inspection_record_autopsy_surface_table_test_recorder",
-					create_death_inspection_record_autopsy_surface_table_test_recorder.value);
-	/*
-	 * 尸表检验记录时间
-	 */
-	var create_death_inspection_record_autopsy_surface_table_test_recorder_time = document
-			.getElementById("create_death_inspection_record_autopsy_surface_table_test_recorder_time");
-	formData
-			.append(
-					"deathInspectionRecord.death_inspection_record_autopsy_surface_table_test_recorder_time",
-					create_death_inspection_record_autopsy_surface_table_test_recorder_time.value);
-
-	/*
-	 * 尸表检验图
+	 * 图片
 	 */
 	var create_death_inspection_record_autopsy_table_test_picture1 = document
 			.getElementById("create_death_inspection_record_autopsy_table_test_picture1");
-	formData
-			.append(
-					"deathInspectionRecord.death_inspection_record_autopsy_table_test_picture1",
-					"");
 	var create_death_inspection_record_autopsy_table_test_picture2 = document
 			.getElementById("create_death_inspection_record_autopsy_table_test_picture2");
-	formData
-			.append(
-					"deathInspectionRecord.death_inspection_record_autopsy_table_test_picture2",
-					"");
 	var create_death_inspection_record_autopsy_table_test_picture3 = document
 			.getElementById("create_death_inspection_record_autopsy_table_test_picture3");
-	formData
-			.append(
-					"deathInspectionRecord.death_inspection_record_autopsy_table_test_picture3",
-					"");
-	/*
-	 * 解剖检验
-	 */
-	var create_death_inspection_record_anatomic_test = document
-			.getElementById("create_death_inspection_record_anatomic_test");
-	formData.append(
-			"deathInspectionRecord.death_inspection_record_anatomic_test",
-			create_death_inspection_record_anatomic_test.value);
-	/*
-	 * 解剖时间
-	 */
-	var create_death_inspection_record_anatomic_time = document
-			.getElementById("create_death_inspection_record_anatomic_time");
-	formData.append(
-			"deathInspectionRecord.death_inspection_record_anatomic_time",
-			create_death_inspection_record_anatomic_time.value);
-	/*
-	 * 解剖地点
-	 */
-	var create_death_inspection_record_anatomic_place = document
-			.getElementById("create_death_inspection_record_anatomic_place");
-	formData.append(
-			"deathInspectionRecord.death_inspection_record_anatomic_place",
-			create_death_inspection_record_anatomic_place.value);
-	/*
-	 * 尸体检验拍照人
-	 */
-	var create_death_inspection_record_autopsy_table_test_photographer = document
-			.getElementById("create_death_inspection_record_autopsy_table_test_photographer");
-	formData
-			.append(
-					"deathInspectionRecord.death_inspection_record_autopsy_table_test_photographer",
-					create_death_inspection_record_autopsy_table_test_photographer.value);
-	/*
-	 * 尸体检验录像人
-	 */
-	var create_death_inspection_record_autopsy_table_test_video = document
-			.getElementById("create_death_inspection_record_autopsy_table_test_video");
-	formData
-			.append(
-					"deathInspectionRecord.death_inspection_record_autopsy_table_test_video",
-					create_death_inspection_record_autopsy_table_test_video.value);
-	/*
-	 * 尸体检验记录人
-	 */
-	var create_death_inspection_record_autopsy_table_test_recorder = document
-			.getElementById("create_death_inspection_record_autopsy_table_test_recorder");
-	formData
-			.append(
-					"deathInspectionRecord.death_inspection_record_autopsy_table_test_recorder",
-					create_death_inspection_record_autopsy_table_test_recorder.value);
-	/*
-	 * 尸体检验记录时间
-	 */
-	var create_death_inspection_record_autopsy_table_test_recorder_time = document
-			.getElementById("create_death_inspection_record_autopsy_table_test_recorder_time");
-	formData
-			.append(
-					"deathInspectionRecord.death_inspection_record_autopsy_table_test_recorder_time",
-					create_death_inspection_record_autopsy_table_test_recorder_time.value);
-	/*
-	 * 解剖检验图
-	 */
+
+	if (create_death_inspection_record_autopsy_table_test_picture1.files[0] != null) {
+		formData
+				.append(
+						"deathFile",
+						create_death_inspection_record_autopsy_table_test_picture1.files[0]);
+	} else {
+		formData.append("deathFile", null);
+	}
+	if (create_death_inspection_record_autopsy_table_test_picture2.files[0] != null) {
+		formData
+				.append(
+						"deathFile",
+						create_death_inspection_record_autopsy_table_test_picture2.files[0]);
+	} else {
+		formData.append("deathFile", null);
+	}
+	//
+	if (create_death_inspection_record_autopsy_table_test_picture3.files[0] != null) {
+		formData
+				.append(
+						"deathFile",
+						create_death_inspection_record_autopsy_table_test_picture3.files[0]);
+	} else {
+		formData.append("deathFile", null);
+	}
+
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 	var create_death_inspection_record_anatomy_picture1 = document
 			.getElementById("create_death_inspection_record_anatomy_picture1");
-	formData.append(
-			"deathInspectionRecord.death_inspection_record_anatomy_picture1",
-			"");
 	var create_death_inspection_record_anatomy_picture2 = document
-			.getElementById("create_death_inspection_record_anatomy_picture2");
-	formData.append(
-			"deathInspectionRecord.death_inspection_record_anatomy_picture2",
-			"");
+			.getElementById("create_death_inspection_record_anatomy_picture1");
 	var create_death_inspection_record_anatomy_picture3 = document
-			.getElementById("create_death_inspection_record_anatomy_picture3");
-	formData.append(
-			"deathInspectionRecord.death_inspection_record_anatomy_picture3",
-			"");
+			.getElementById("create_death_inspection_record_anatomy_picture1");
+
+	if (create_death_inspection_record_anatomy_picture1.files[0] != null) {
+		formData.append("deathFile",
+				create_death_inspection_record_anatomy_picture1.files[0]);
+	} else {
+		formData.append("deathFile", null);
+	}
+	//
+	if (create_death_inspection_record_anatomy_picture2.files[0] != null) {
+		formData.append("deathFile",
+				create_death_inspection_record_anatomy_picture2.files[0]);
+	} else {
+		formData.append("deathFile", null);
+	}
+	//
+	if (create_death_inspection_record_anatomy_picture3.files[0] != null) {
+		formData.append("deathFile",
+				create_death_inspection_record_anatomy_picture3.files[0]);
+	} else {
+		formData.append("deathFile", null);
+	}
 	/*
 	 * 
 	 */

@@ -105,7 +105,60 @@ function Create_TranceCheckEntrustmentBook() {
 					'确认委托' : {
 						btnClass : 'btn-blue',
 						action : function() {
-							addTranceCheckBook(jc);
+							var xhr = false;
+							xhr = new XMLHttpRequest();
+							xhr.onreadystatechange = function() {
+								var message;
+								if (xhr.readyState == 4) {
+									if (xhr.status == 200) {
+										console.debug(xhr.responseText);
+										if (xhr.responseText == 1) {
+											toastr.success("保存成功");
+											jc.close();
+											List_EntrustmentBook(1);
+										} else {
+											toastr.error("填写格式错误");
+										}
+									} else {
+										toastr.error(xhr.status);
+									}
+								}
+							}
+							/*
+							 * 
+							 */
+							var formData = new FormData(
+									document
+											.getElementById("form_TranceCheckEntrustmentBook"));
+							/*
+							 * 
+							 */
+
+							/*
+							 * 鉴定要求
+							 */
+							if (document
+									.getElementsByName("tranceCheckBook.check_entrustment_book_entrustment_request")[0].value == '其他') {
+								formData
+										.set(
+												"tranceCheckBook.check_entrustment_book_entrustment_request",
+												document
+														.getElementsByName("tranceCheckBook.check_entrustment_book_entrustment_request_qt")[0]);
+							}
+							/*
+							 * 
+							 */
+							formData
+									.append(
+											"tranceCheckBook.check_entrustment_book_type",
+											'痕迹');
+							/*
+							 * 
+							 */
+							xhr
+									.open("POST",
+											"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_addCheckBook");
+							xhr.send(formData);
 							return false;
 						}
 					},
@@ -113,57 +166,4 @@ function Create_TranceCheckEntrustmentBook() {
 					}
 				}
 			});
-}
-
-function addTranceCheckBook(jc) {
-	var xhr = false;
-	xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function() {
-		var message;
-		if (xhr.readyState == 4) {
-			if (xhr.status == 200) {
-				console.debug(xhr.responseText);
-				if (xhr.responseText == 1) {
-					toastr.success("保存成功");
-					jc.close();
-					List_EntrustmentBook(1);
-				} else {
-					toastr.error("填写格式错误");
-				}
-			} else {
-				toastr.error(xhr.status);
-			}
-		}
-	}
-	/*
-	 * 
-	 */
-	var formData = new FormData(document
-			.getElementById("form_TranceCheckEntrustmentBook"));
-	/*
-	 * 
-	 */
-
-	/*
-	 * 鉴定要求
-	 */
-	if (document
-			.getElementsByName("tranceCheckBook.check_entrustment_book_entrustment_request")[0].value == '其他') {
-		formData
-				.set(
-						"tranceCheckBook.check_entrustment_book_entrustment_request",
-						document
-								.getElementsByName("tranceCheckBook.check_entrustment_book_entrustment_request_qt")[0]);
-	}
-	/*
-	 * 
-	 */
-	formData.append("tranceCheckBook.check_entrustment_book_type", '痕迹');
-	/*
-	 * 
-	 */
-	xhr
-			.open("POST",
-					"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_addCheckBook");
-	xhr.send(formData);
 }

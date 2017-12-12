@@ -46,13 +46,21 @@ function Create_Damage_InspectionRecord(obj) {
 						+ '<td>联系方式：</td>'
 						+ '<td><input  class="form-control" name="damageInspectionRecord.damage_inspection_record_phone" /></td>'
 						+ '</tr>'
-						+ '<tr><td>检验所见：</td>'
+						+ '<tr>'
+						+ '<td>检验所见：</td>'
 						+ '<td colspan="3"><textarea class="form-control" style="resize: none;height:100px;" name="damageInspectionRecord.damage_inspection_record_inspection" ></textarea></td>'
 						+ '</tr>'
-						+ '</tr>'
-						+ '<tr><td>检查人：</td>'
+						+ '<tr>'
+						+ '<td>检查人：</td>'
 						+ '<td ><input class="form-control"  name="damageInspectionRecord.damage_inspection_record_inspection_man" /></td>'
 						+ '</tr>'
+						+ '<tr>'
+						+ '<td>损伤检验图：</td>'
+						+ '<td>'
+						+ '<input type="file"   id="create_damage_inspection_record_picture1"   />'
+						+ '<input type="file"   id="create_damage_inspection_record_picture2"   />'
+						+ '<input type="file"   id="create_damage_inspection_record_picture3"   />'
+						+ '</td>'
 						+ '</tr>'
 						+ '</tbody>'
 						+ '</table></form>'
@@ -130,11 +138,48 @@ function Create_Damage_InspectionRecord(obj) {
 							/*
 							 * 
 							 */
-							alert(obj.id);
+							// var formData = new FormData(
+							// document
+							// .getElementById("form_Damage_InspectionRecord"));
 							var formData = new FormData(
 									document
 											.getElementById("form_Damage_InspectionRecord"));
+							/*
+							 * 图片
+							 */
+							var create_damage_inspection_record_picture1 = document
+									.getElementById("create_damage_inspection_record_picture1");
+							var create_damage_inspection_record_picture2 = document
+									.getElementById("create_damage_inspection_record_picture2");
+							var create_damage_inspection_record_picture3 = document
+									.getElementById("create_damage_inspection_record_picture3");
 
+							if (create_damage_inspection_record_picture1.files[0] != null) {
+								formData
+										.append(
+												"deathFile",
+												create_damage_inspection_record_picture1.files[0]);
+							} else {
+								formData.append("deathFile", null);
+							}
+							//
+							if (create_damage_inspection_record_picture2.files[0] != null) {
+								formData
+										.append(
+												"deathFile",
+												create_damage_inspection_record_picture2.files[0]);
+							} else {
+								formData.append("deathFile", null);
+							}
+							//
+							if (create_damage_inspection_record_picture3.files[0] != null) {
+								formData
+										.append(
+												"deathFile",
+												create_damage_inspection_record_picture3.files[0]);
+							} else {
+								formData.append("deathFile", null);
+							}
 							/*
 							 * 
 							 */
