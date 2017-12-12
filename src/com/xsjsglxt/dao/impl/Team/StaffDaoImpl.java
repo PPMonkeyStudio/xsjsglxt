@@ -1,0 +1,36 @@
+package com.xsjsglxt.dao.impl.Team;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+import com.xsjsglxt.dao.Team.StaffDao;
+import com.xsjsglxt.domain.DO.xsjsglxt_staff;
+
+public class StaffDaoImpl implements StaffDao {
+	private SessionFactory sessionFactory;
+
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	} 
+	public Session getSession() {
+
+		return this.sessionFactory.getCurrentSession();
+	}
+
+	@Override
+	public boolean saveStaff(xsjsglxt_staff staff) {
+		// TODO Auto-generated method stub
+		try {
+			getSession().saveOrUpdate(staff);
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+}

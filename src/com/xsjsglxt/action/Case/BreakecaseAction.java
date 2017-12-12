@@ -29,6 +29,14 @@ public class BreakecaseAction extends ActionSupport implements ServletResponseAw
 	private BreakecaseInformationDTO breakecaseInformationDTO;
 	
 	private page_list_BreakecaseInformationVO page_list_BreakecaseInformation;
+	/*
+	 *跳转刑事破案列表 
+	 */
+	public String page_BreakCaseList(){
+		return "page_BreakCaseList";
+	}
+	
+	
 	
 	/*
 	 * 保存破案信息

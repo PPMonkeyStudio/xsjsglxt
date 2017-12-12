@@ -31,5 +31,9 @@
 		<action name="Image_*" class="com.xsjsglxt.action.Case.ImageAction"
 			method="{1}">
 		</action>
+		<action name="BreakCase_*" class="com.xsjsglxt.action.Case.BreakecaseAction"
+			method="{1}">
+			<result name="page_BreakCaseList">/WEB-INF/view/Case/BreakCaseList.jsp</result>
+		</action>
 	</package>
 </struts>

@@ -244,7 +244,11 @@ public class SenceServiceImpl implements SenceService {
 	public void updateSence(xsjsglxt_snece sence, String case1) {
 		// TODO Auto-generated method stub
 		
-		sence=senceDao.getSenceById(case1);
+		xsjsglxt_snece	oldsence=senceDao.getSenceById(case1);
+	
+		sence.setXsjsglxt_snece_id(oldsence.getXsjsglxt_snece_id());
+		sence.setSnece_case(oldsence.getSnece_case());
+		sence.setSnece_gmt_create(oldsence.getSnece_gmt_create());
 		sence.setSnece_gmt_modified(TeamUtil.getStringSecond());
 		senceDao.updateSence(sence);
 	}
@@ -259,9 +263,12 @@ public class SenceServiceImpl implements SenceService {
 	@Override
 	public void updateBriefdetails(xsjsglxt_briefdetails briefdetails,String case1) {
 		// TODO Auto-generated method stub
-		briefdetails=senceDao.getBriefdetailsById(case1);
+		xsjsglxt_briefdetails	oldbriefdetails=senceDao.getBriefdetailsById(case1);
+		briefdetails.setXsjsglxt_briefdetails_id(oldbriefdetails.getXsjsglxt_briefdetails_id());
+		briefdetails.setBriefdetails_case(oldbriefdetails.getBriefdetails_case());
+		briefdetails.setBriefdetails_gmt_create(oldbriefdetails.getBriefdetails_gmt_create());
 		briefdetails.setBriefdetails_details_modified(TeamUtil.getStringSecond());
-		senceDao.updateBriefdetails(briefdetails);
+    	senceDao.updateBriefdetails(briefdetails);
 	}
 
 

@@ -563,6 +563,7 @@ public class SenceDaoImpl implements SenceDao {
 	public void updateSence(xsjsglxt_snece sence) {
 		// TODO Auto-generated method stub
 		try {
+			getSession().merge(sence);
 			getSession().saveOrUpdate(sence);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -585,6 +586,7 @@ public class SenceDaoImpl implements SenceDao {
 	public void updateBriefdetails(xsjsglxt_briefdetails briefdetails) {
 		// TODO Auto-generated method stub
 		try {
+			getSession().merge(briefdetails);
 			getSession().saveOrUpdate(briefdetails);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
