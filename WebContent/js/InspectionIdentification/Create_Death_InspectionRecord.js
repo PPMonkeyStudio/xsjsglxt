@@ -406,16 +406,20 @@ function addDeathInspectionRecord(jc) {
 				.append(
 						"death",
 						create_death_inspection_record_autopsy_table_test_picture1.files[0]);
+		formData.append("positionFile", "1");
 	} else {
 		formData.append("death", null);
+		formData.append("positionFile", "2");
 	}
 	if (create_death_inspection_record_autopsy_table_test_picture2.files[0] != null) {
 		formData
 				.append(
 						"death",
 						create_death_inspection_record_autopsy_table_test_picture2.files[0]);
+		formData.append("positionFile", "1");
 	} else {
 		formData.append("death", null);
+		formData.append("positionFile", "2");
 	}
 	//
 	if (create_death_inspection_record_autopsy_table_test_picture3.files[0] != null) {
@@ -423,8 +427,10 @@ function addDeathInspectionRecord(jc) {
 				.append(
 						"death",
 						create_death_inspection_record_autopsy_table_test_picture3.files[0]);
+		formData.append("positionFile", "1");
 	} else {
 		formData.append("death", null);
+		formData.append("positionFile", "2");
 	}
 
 	//
@@ -445,22 +451,28 @@ function addDeathInspectionRecord(jc) {
 	if (create_death_inspection_record_anatomy_picture1.files[0] != null) {
 		formData.append("death",
 				create_death_inspection_record_anatomy_picture1.files[0]);
+		formData.append("positionFile", "1");
 	} else {
 		formData.append("death", null);
+		formData.append("positionFile", "2");
 	}
 	//
 	if (create_death_inspection_record_anatomy_picture2.files[0] != null) {
 		formData.append("death",
 				create_death_inspection_record_anatomy_picture2.files[0]);
+		formData.append("positionFile", "1");
 	} else {
 		formData.append("death", null);
+		formData.append("positionFile", "2");
 	}
 	//
 	if (create_death_inspection_record_anatomy_picture3.files[0] != null) {
 		formData.append("death",
 				create_death_inspection_record_anatomy_picture3.files[0]);
+		formData.append("positionFile", "1");
 	} else {
 		formData.append("death", null);
+		formData.append("positionFile", "2");
 	}
 	/*
 	 * 
