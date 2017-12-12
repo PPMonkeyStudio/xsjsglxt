@@ -134,134 +134,32 @@ function Create_Death_InspectionRecord(obj) {
 						+ '<tr>'
 						+ '<td>解剖检验：</td>'
 						+ '<td colspan="3"><textarea style="resize: none;height:500px;" class="form-control" name="deathInspectionRecord.death_inspection_record_anatomic_test"    >'
-						+ '\n头皮：右颞、顶部见6×5cm头皮下出血。'
-						+ '\n颞肌：左：无出血，右：5×5cm出血。'
-						+ '\n帽状腱膜：无出血。'
-						+ '\n颅盖：无骨折。'
-						+ '\n颅底：无骨折。'
-						+ '\n面颅：无骨折。'
-						+ '\n硬膜外：无出血。'
-						+ '\n硬脑膜：无破损。'
-						+ '\n硬膜下：无异常。'
-						+ '\n蛛网膜下腔：无异常。'
-						+ '\n全脑重1325克'
-						+ '\n脑沟回：无异常。'
-						+ '\n脑血管：无异常。'
-						+ '\n各脑室：正常。'
-						+ '\n大脑：无异常 。'
-						+ '\n小脑：无异常 。'
-						+ '\n脑干：无异常 。'
-						+ '\n脑垂体：无异常 。'
-						+ '\n颈部皮下组织：无出血。'
-						+ '\n颈部肌肉：无出血。'
-						+ '\n颈部大血管：无异常 。'
-						+ '\n甲状腺：无异常 。'
-						+ '\n颌下腺：无异常 。'
-						+ '\n舌骨：无骨折。'
-						+ '\n甲状软骨：无骨折 。'
-						+ '\n环状软骨：无异常 。'
-						+ '\n会厌：无异常 。'
-						+ '\n咽喉粘膜：无充血。'
-						+ '\n喉头：  无异常 。'
-						+ '\n扁桃体：无异常 。'
-						+ '\n椎前筋膜：无异常 。'
-						+ '\n颈椎：无异常 。'
-						+ '\n胸壁：无异常 。'
-						+ '\n胸骨：无骨折 。'
-						+ '\n肋骨：无骨折 。'
-						+ '\n胸膜：无异常 。'
-						+ '\n胸腔：左无异常 。右无异常 。'
-						+ '\n胸腺：已萎缩，重克'
-						+ '\n心包：无异常 。心包腔：无异常 。'
-						+ '\n心脏：重390 克，外观无异常 。'
-						+ '\n      外膜：无异常 。内膜：无异常 。'
-						+ '\n      左心室厚 1.6厘米；右心室厚  0.4 厘米；室间隔厚0.2厘米。'
-						+ '\n      心肌：'
-						+ '\n      心腔：'
-						+ '\n      三 尖 瓣：周径，正常；瓣膜情，况无异常 。'
-						+ '\n      肺动脉瓣：周径，正常；瓣膜情况，无异常 。'
-						+ '\n      二 尖 瓣：周径，正常；瓣膜情况，无异常 。'
-						+ '\n      主动脉瓣：周径，正常；瓣膜情况，无异常 。'
-						+ '\n      大 血 管：正常'
-						+ '\n      冠状动脉口：左，正常；右，轻度狭窄。'
-						+ '\n      冠状动脉：右冠状动脉管壁增厚、管腔轻度狭窄，左冠状动脉前降支、左旋支4级狭窄。'
-						+ '\n气管：正常。'
-						+ '\n支气管（左）：无异常；（右）：无异常。'
-						+ '\n左肺：重690克，表面：光滑，质地：实，切面：淤血状。'
-						+ '\n右肺：重790 克，表面：光滑， 质地：实，切面：淤血状。'
-						+ '\n'
-						+ '\n腹壁：无异常'
-						+ '\n腹腔：无异常'
-						+ '\n腹膜：无异常'
-						+ '\n网膜：无异常'
-						+ '\n器官位置：无异常'
-						+ '\n食道：无异常'
-						+ '\n胃内容物： '
-						+ '\n      性状： 乳糜状'
-						+ '\n      量：150克'
-						+ '\n      成份：不可分辨。'
-						+ '\n胃粘膜：无异常'
-						+ '\n肠管：无异常'
-						+ '\n肠系膜：无异常'
-						+ '\n胰腺：重1250克；颜色：正常；切面：无异常'
-						+ '\n肝脏：重1250克；表面：光滑；切面：无异常；胆囊：无异常'
-						+ '\n脾脏：重量150克；被膜：包膜紧张；表面：光滑；切面：淤血貌。'
-						+ '\n左肾：重量120克；被膜：无异常；表面：光滑；切面：皮髓质界限尚清，无异常。'
-						+ '\n右肾：重量120克；被膜：无异常；表面：光滑；切面：皮髓质界限尚清，无异常。'
-						+ '\n输尿管：无异常。'
-						+ '\n肾上腺：'
-						+ '\n      左，无异常。'
-						+ '\n      右，无异常。'
-						+ '\n膀胱：尿量50毫升；颜色：黄；浊度：清亮。'
-						+ '\n子宫：'
-						+ '\n宫颈：'
-						+ '\n宫腔：'
-						+ '\n内膜：'
-						+ '\n输卵管及卵巢：'
-						+ '\n睾丸及附睾：无异常。'
-						+ '\n'
-						+ '\n脊柱、脊髓、四肢等局部解剖：无异常。'
-						+ '\n'
-						+ '\n其他特殊尸体检验：无。'
-						+ '</textarea></td>'
-						+ '</tr>'
-						+ '<tr>'
-						+ '<td>解剖时间：</td>'
-						+ '<td><input  class="form-control mydate_minute" name="deathInspectionRecord.death_inspection_record_anatomic_time"   /></td>'
-						+ '<td>解剖地点：</td>'
-						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_anatomic_place"   value="萍乡市公安局安源分局解剖室"/></td>'
-						+ '</tr>'
-						+ '<tr>'
-						+ '<td>尸体检验拍照人：</td>'
-						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_autopsy_table_test_photographer"   /></td>'
-						+ '<td>尸体检验录像人：</td>'
-						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_autopsy_table_test_video"   /></td>'
-						+ '</tr>'
-						+ '<tr>'
-						+ '<td>尸体检验记录人：</td>'
-						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_autopsy_table_test_recorder"  id="" /></td>'
+						+ '\n头皮：右颞、顶部见6×5cm头皮下出血。' + '\n颞肌：左：无出血，右：5×5cm出血。' + '\n帽状腱膜：无出血。' + '\n颅盖：无骨折。' + '\n颅底：无骨折。' + '\n面颅：无骨折。' + '\n硬膜外：无出血。' + '\n硬脑膜：无破损。' + '\n硬膜下：无异常。'
+						+ '\n蛛网膜下腔：无异常。' + '\n全脑重1325克' + '\n脑沟回：无异常。' + '\n脑血管：无异常。' + '\n各脑室：正常。' + '\n大脑：无异常 。' + '\n小脑：无异常 。' + '\n脑干：无异常 。' + '\n脑垂体：无异常 。' + '\n颈部皮下组织：无出血。'
+						+ '\n颈部肌肉：无出血。' + '\n颈部大血管：无异常 。' + '\n甲状腺：无异常 。' + '\n颌下腺：无异常 。' + '\n舌骨：无骨折。' + '\n甲状软骨：无骨折 。' + '\n环状软骨：无异常 。' + '\n会厌：无异常 。' + '\n咽喉粘膜：无充血。'
+						+ '\n喉头：  无异常 。' + '\n扁桃体：无异常 。' + '\n椎前筋膜：无异常 。' + '\n颈椎：无异常 。' + '\n胸壁：无异常 。' + '\n胸骨：无骨折 。' + '\n肋骨：无骨折 。' + '\n胸膜：无异常 。' + '\n胸腔：左无异常 。右无异常 。'
+						+ '\n胸腺：已萎缩，重克' + '\n心包：无异常 。心包腔：无异常 。' + '\n心脏：重390 克，外观无异常 。' + '\n      外膜：无异常 。内膜：无异常 。' + '\n      左心室厚 1.6厘米；右心室厚  0.4 厘米；室间隔厚0.2厘米。' + '\n      心肌：'
+						+ '\n      心腔：' + '\n      三 尖 瓣：周径，正常；瓣膜情，况无异常 。' + '\n      肺动脉瓣：周径，正常；瓣膜情况，无异常 。' + '\n      二 尖 瓣：周径，正常；瓣膜情况，无异常 。' + '\n      主动脉瓣：周径，正常；瓣膜情况，无异常 。'
+						+ '\n      大 血 管：正常' + '\n      冠状动脉口：左，正常；右，轻度狭窄。' + '\n      冠状动脉：右冠状动脉管壁增厚、管腔轻度狭窄，左冠状动脉前降支、左旋支4级狭窄。' + '\n气管：正常。' + '\n支气管（左）：无异常；（右）：无异常。'
+						+ '\n左肺：重690克，表面：光滑，质地：实，切面：淤血状。' + '\n右肺：重790 克，表面：光滑， 质地：实，切面：淤血状。' + '\n' + '\n腹壁：无异常' + '\n腹腔：无异常' + '\n腹膜：无异常' + '\n网膜：无异常' + '\n器官位置：无异常'
+						+ '\n食道：无异常' + '\n胃内容物： ' + '\n      性状： 乳糜状' + '\n      量：150克' + '\n      成份：不可分辨。' + '\n胃粘膜：无异常' + '\n肠管：无异常' + '\n肠系膜：无异常' + '\n胰腺：重1250克；颜色：正常；切面：无异常'
+						+ '\n肝脏：重1250克；表面：光滑；切面：无异常；胆囊：无异常' + '\n脾脏：重量150克；被膜：包膜紧张；表面：光滑；切面：淤血貌。' + '\n左肾：重量120克；被膜：无异常；表面：光滑；切面：皮髓质界限尚清，无异常。'
+						+ '\n右肾：重量120克；被膜：无异常；表面：光滑；切面：皮髓质界限尚清，无异常。' + '\n输尿管：无异常。' + '\n肾上腺：' + '\n      左，无异常。' + '\n      右，无异常。' + '\n膀胱：尿量50毫升；颜色：黄；浊度：清亮。' + '\n子宫：'
+						+ '\n宫颈：' + '\n宫腔：' + '\n内膜：' + '\n输卵管及卵巢：' + '\n睾丸及附睾：无异常。' + '\n' + '\n脊柱、脊髓、四肢等局部解剖：无异常。' + '\n' + '\n其他特殊尸体检验：无。' + '</textarea></td>' + '</tr>'
+						+ '<tr>' + '<td>解剖时间：</td>' + '<td><input  class="form-control mydate_minute" name="deathInspectionRecord.death_inspection_record_anatomic_time"   /></td>'
+						+ '<td>解剖地点：</td>' + '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_anatomic_place"   value="萍乡市公安局安源分局解剖室"/></td>'
+						+ '</tr>' + '<tr>' + '<td>尸体检验拍照人：</td>'
+						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_autopsy_table_test_photographer"   /></td>' + '<td>尸体检验录像人：</td>'
+						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_autopsy_table_test_video"   /></td>' + '</tr>' + '<tr>'
+						+ '<td>尸体检验记录人：</td>' + '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_autopsy_table_test_recorder"  id="" /></td>'
 						+ '<td>尸体检验记录时间：</td>'
-						+ '<td><input  class="form-control mydate" name="deathInspectionRecord.death_inspection_record_autopsy_table_test_recorder_time"   /></td>'
-						+ '</tr>'
-						+ '<tr>'
-						+ '<td>尸表检验图：</td>'
-						+ '<td>'
-						+ '<input type="file" id="create_death_inspection_record_autopsy_table_test_picture1" />'
+						+ '<td><input  class="form-control mydate" name="deathInspectionRecord.death_inspection_record_autopsy_table_test_recorder_time"   /></td>' + '</tr>'
+						+ '<tr>' + '<td>尸表检验图：</td>' + '<td>' + '<input type="file" id="create_death_inspection_record_autopsy_table_test_picture1" />'
 						+ '<input type="file" id="create_death_inspection_record_autopsy_table_test_picture2" />'
-						+ '<input type="file" id="create_death_inspection_record_autopsy_table_test_picture3"  />'
-						+ '</td>'
-						+ '</tr>'
-						+ '<tr>'
-						+ '<td>解剖检验图：</td>'
-						+ '<td>'
+						+ '<input type="file" id="create_death_inspection_record_autopsy_table_test_picture3"  />' + '</td>' + '</tr>' + '<tr>' + '<td>解剖检验图：</td>' + '<td>'
 						+ '<input type="file" id="create_death_inspection_record_anatomy_picture1" />'
 						+ '<input type="file" id="create_death_inspection_record_anatomy_picture2" />'
-						+ '<input type="file" id="create_death_inspection_record_anatomy_picture3" />'
-						+ '</td>'
-						+ '</tr>'
-						+ '</tbody>'
-						+ '</table>'
-						+ '</form>' + '<hr>',
+						+ '<input type="file" id="create_death_inspection_record_anatomy_picture3" />' + '</td>' + '</tr>' + '</tbody>' + '</table>' + '</form>' + '<hr>',
 				type : 'blue',
 				columnClass : 'col-md-12',
 				onOpenBefore : function() {
@@ -272,59 +170,19 @@ function Create_Death_InspectionRecord(obj) {
 					 * 
 					 */
 					var date = new Date();
-					document
-							.getElementsByName("deathInspectionRecord.death_inspection_record_inspect_time")[0].value = date
-							.getFullYear()
-							+ '-'
-							+ (parseInt(date.getMonth()) + 1)
-							+ '-'
-							+ date.getDate()
-							+ ' '
-							+ (date.getHours() < 10 ? '0' + date.getHours()
-									: date.getHours())
-							+ ':'
-							+ (date.getMinutes() < 10 ? '0' + date.getMinutes()
-									: date.getMinutes());
-					document
-							.getElementsByName("deathInspectionRecord.death_inspection_record_inspect_stop_time")[0].value = date
-							.getFullYear()
-							+ '-'
-							+ (parseInt(date.getMonth()) + 1)
-							+ '-'
-							+ date.getDate()
-							+ ' '
-							+ (date.getHours() < 10 ? '0' + date.getHours()
-									: date.getHours())
-							+ ':'
-							+ (date.getMinutes() < 10 ? '0' + date.getMinutes()
-									: date.getMinutes());
-					document
-							.getElementsByName("deathInspectionRecord.death_inspection_record_autopsy_surface_table_test_recorder_time")[0].value = date
-							.getFullYear()
-							+ '-'
-							+ (parseInt(date.getMonth()) + 1)
-							+ '-'
-							+ date.getDate();
-					document
-							.getElementsByName("deathInspectionRecord.death_inspection_record_anatomic_time")[0].value = date
-							.getFullYear()
-							+ '-'
-							+ (parseInt(date.getMonth()) + 1)
-							+ '-'
-							+ date.getDate()
-							+ ' '
-							+ (date.getHours() < 10 ? '0' + date.getHours()
-									: date.getHours())
-							+ ':'
-							+ (date.getMinutes() < 10 ? '0' + date.getMinutes()
-									: date.getMinutes());
-					document
-							.getElementsByName("deathInspectionRecord.death_inspection_record_autopsy_table_test_recorder_time")[0].value = date
-							.getFullYear()
-							+ '-'
-							+ (parseInt(date.getMonth()) + 1)
-							+ '-'
-							+ date.getDate();
+					document.getElementsByName("deathInspectionRecord.death_inspection_record_inspect_time")[0].value = date.getFullYear() + '-' + (parseInt(date.getMonth()) + 1)
+							+ '-' + date.getDate() + ' ' + (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':'
+							+ (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes());
+					document.getElementsByName("deathInspectionRecord.death_inspection_record_inspect_stop_time")[0].value = date.getFullYear() + '-'
+							+ (parseInt(date.getMonth()) + 1) + '-' + date.getDate() + ' ' + (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':'
+							+ (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes());
+					document.getElementsByName("deathInspectionRecord.death_inspection_record_autopsy_surface_table_test_recorder_time")[0].value = date.getFullYear() + '-'
+							+ (parseInt(date.getMonth()) + 1) + '-' + date.getDate();
+					document.getElementsByName("deathInspectionRecord.death_inspection_record_anatomic_time")[0].value = date.getFullYear() + '-' + (parseInt(date.getMonth()) + 1)
+							+ '-' + date.getDate() + ' ' + (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':'
+							+ (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes());
+					document.getElementsByName("deathInspectionRecord.death_inspection_record_autopsy_table_test_recorder_time")[0].value = date.getFullYear() + '-'
+							+ (parseInt(date.getMonth()) + 1) + '-' + date.getDate();
 					/*
 					 * 
 					 */
@@ -389,42 +247,29 @@ function addDeathInspectionRecord(jc) {
 	/*
 	 * 
 	 */
-	var formData = new FormData(document
-			.getElementById("form_Death_InspectionRecord"));
+	var formData = new FormData(document.getElementById("form_Death_InspectionRecord"));
 	/*
 	 * 图片
 	 */
-	var create_death_inspection_record_autopsy_table_test_picture1 = document
-			.getElementById("create_death_inspection_record_autopsy_table_test_picture1");
-	var create_death_inspection_record_autopsy_table_test_picture2 = document
-			.getElementById("create_death_inspection_record_autopsy_table_test_picture2");
-	var create_death_inspection_record_autopsy_table_test_picture3 = document
-			.getElementById("create_death_inspection_record_autopsy_table_test_picture3");
+	var create_death_inspection_record_autopsy_table_test_picture1 = document.getElementById("create_death_inspection_record_autopsy_table_test_picture1");
+	var create_death_inspection_record_autopsy_table_test_picture2 = document.getElementById("create_death_inspection_record_autopsy_table_test_picture2");
+	var create_death_inspection_record_autopsy_table_test_picture3 = document.getElementById("create_death_inspection_record_autopsy_table_test_picture3");
 
 	if (create_death_inspection_record_autopsy_table_test_picture1.files[0] != null) {
-		formData
-				.append(
-						"deathFile",
-						create_death_inspection_record_autopsy_table_test_picture1.files[0]);
+		formData.append("death", create_death_inspection_record_autopsy_table_test_picture1.files[0]);
 	} else {
-		formData.append("deathFile", null);
+		formData.append("death", null);
 	}
 	if (create_death_inspection_record_autopsy_table_test_picture2.files[0] != null) {
-		formData
-				.append(
-						"deathFile",
-						create_death_inspection_record_autopsy_table_test_picture2.files[0]);
+		formData.append("death", create_death_inspection_record_autopsy_table_test_picture2.files[0]);
 	} else {
-		formData.append("deathFile", null);
+		formData.append("death", null);
 	}
 	//
 	if (create_death_inspection_record_autopsy_table_test_picture3.files[0] != null) {
-		formData
-				.append(
-						"deathFile",
-						create_death_inspection_record_autopsy_table_test_picture3.files[0]);
+		formData.append("death", create_death_inspection_record_autopsy_table_test_picture3.files[0]);
 	} else {
-		formData.append("deathFile", null);
+		formData.append("death", null);
 	}
 
 	//
@@ -435,39 +280,30 @@ function addDeathInspectionRecord(jc) {
 	//
 	//
 	//
-	var create_death_inspection_record_anatomy_picture1 = document
-			.getElementById("create_death_inspection_record_anatomy_picture1");
-	var create_death_inspection_record_anatomy_picture2 = document
-			.getElementById("create_death_inspection_record_anatomy_picture1");
-	var create_death_inspection_record_anatomy_picture3 = document
-			.getElementById("create_death_inspection_record_anatomy_picture1");
+	var create_death_inspection_record_anatomy_picture1 = document.getElementById("create_death_inspection_record_anatomy_picture1");
+	var create_death_inspection_record_anatomy_picture2 = document.getElementById("create_death_inspection_record_anatomy_picture1");
+	var create_death_inspection_record_anatomy_picture3 = document.getElementById("create_death_inspection_record_anatomy_picture1");
 
 	if (create_death_inspection_record_anatomy_picture1.files[0] != null) {
-		formData.append("deathFile",
-				create_death_inspection_record_anatomy_picture1.files[0]);
+		formData.append("death", create_death_inspection_record_anatomy_picture1.files[0]);
 	} else {
-		formData.append("deathFile", null);
+		formData.append("death", null);
 	}
 	//
 	if (create_death_inspection_record_anatomy_picture2.files[0] != null) {
-		formData.append("deathFile",
-				create_death_inspection_record_anatomy_picture2.files[0]);
+		formData.append("death", create_death_inspection_record_anatomy_picture2.files[0]);
 	} else {
-		formData.append("deathFile", null);
+		formData.append("death", null);
 	}
 	//
 	if (create_death_inspection_record_anatomy_picture3.files[0] != null) {
-		formData.append("deathFile",
-				create_death_inspection_record_anatomy_picture3.files[0]);
+		formData.append("death", create_death_inspection_record_anatomy_picture3.files[0]);
 	} else {
-		formData.append("deathFile", null);
+		formData.append("death", null);
 	}
 	/*
 	 * 
 	 */
-	xhr
-			.open(
-					"POST",
-					"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_addDeathInspectionRecord");
+	xhr.open("POST", "/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_addDeathInspectionRecord");
 	xhr.send(formData);
 }

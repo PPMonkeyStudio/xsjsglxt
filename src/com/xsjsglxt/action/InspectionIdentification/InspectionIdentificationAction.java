@@ -57,9 +57,9 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	// 名
 	private String fileName;
 	// 尸体检验记录表 图片文件
-	private File[] deathFile;
+	private File[] death;
 	// 尸体检验记录表 图片名称
-	private String[] deathFilename;
+	private String[] deathFileName;
 	// 文件类型
 	private String[] deathContentType;
 
@@ -153,7 +153,9 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void addDeathInspectionRecord() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			response.getWriter().write("" + inspectionIdentificationService.saveDeathInspectionRecord(deathInspectionRecord, deathFile, deathFilename));
+			System.out.println("ggg");
+			System.out.println("fff:" + deathFileName.length);
+			response.getWriter().write("" + inspectionIdentificationService.saveDeathInspectionRecord(deathInspectionRecord, death, deathFileName));
 		} catch (IOException e) {
 			System.out.println("填写尸体检验记录表报错");
 			e.printStackTrace();
@@ -234,7 +236,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void updateDeathInspectionRecord() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			response.getWriter().write("" + inspectionIdentificationService.updateDeathInspectionRecord(deathInspectionRecord, deathFile, deathFilename));
+			response.getWriter().write("" + inspectionIdentificationService.updateDeathInspectionRecord(deathInspectionRecord, death, deathFileName));
 		} catch (IOException e) {
 			System.out.println("更改尸体检验记录表报错");
 			e.printStackTrace();
@@ -408,24 +410,24 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		this.damageInspectionRecord = damageInspectionRecord;
 	}
 
-	public File[] getDeathFile() {
-		return deathFile;
-	}
-
-	public String[] getDeathFilename() {
-		return deathFilename;
-	}
-
 	public String[] getDeathContentType() {
 		return deathContentType;
 	}
 
-	public void setDeathFile(File[] deathFile) {
-		this.deathFile = deathFile;
+	public File[] getDeath() {
+		return death;
 	}
 
-	public void setDeathFilename(String[] deathFilename) {
-		this.deathFilename = deathFilename;
+	public void setDeath(File[] death) {
+		this.death = death;
+	}
+
+	public String[] getDeathFileName() {
+		return deathFileName;
+	}
+
+	public void setDeathFileName(String[] deathFileName) {
+		this.deathFileName = deathFileName;
 	}
 
 	public void setDeathContentType(String[] deathContentType) {
