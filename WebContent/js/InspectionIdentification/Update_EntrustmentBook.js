@@ -49,14 +49,14 @@ function Update_EntrustmentBook(obj) {
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspectors1_duty
 							+ '"/></td><td><input name="tranceCheckBook.check_entrustment_book_inspectors1_duty"   class="form-control" value="'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspectors1_duty
-							+ '"/></td><td><input name="check_entrustment_book_inspectors1_jobcard_number"   class="form-control" value="'
+							+ '"/></td><td><input name="tranceCheckBook.check_entrustment_book_inspectors1_jobcard_number"   class="form-control" value="'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspectors1_jobcard_number
 							+ '"/></td></tr>'
 							+ '<tr><td>送检人二：</td><td><input name="tranceCheckBook.check_entrustment_book_inspectors2_name"   class="form-control" value="'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspectors2_name
 							+ '"/></td><td><input name="tranceCheckBook.check_entrustment_book_inspectors2_duty"   class="form-control" value="'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspectors2_duty
-							+ '"/></td><td><input name="check_entrustment_book_inspectors2_jobcard_number"   class="form-control" value="'
+							+ '"/></td><td><input name="tranceCheckBook.check_entrustment_book_inspectors2_jobcard_number"   class="form-control" value="'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspectors2_jobcard_number
 							+ '"/></td></tr>'
 							+ '</tbody>'

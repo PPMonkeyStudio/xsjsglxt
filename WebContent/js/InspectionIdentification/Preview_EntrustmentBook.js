@@ -4,6 +4,7 @@ function Preview_EntrustmentBook(obj) {
 			.confirm({
 				icon : 'fa fa-file-text-o',
 				title : '鉴定委托书',
+				theme : 'Modern',
 				content : '',
 				type : 'green',
 				columnClass : 'col-md-12',
@@ -28,7 +29,7 @@ function Preview_EntrustmentBook(obj) {
 							+ '<tbody>'
 							+ '<tr><td colspan="2">鉴定委托单位</td><td colspan="4">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_unit
-							+ '</td><td colspan="2" >委托时间</td><td>'
+							+ '</td><td colspan="2">委托时间</td><td>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspect_time
 									.substring(0, 4)
 							+ '年'
@@ -105,7 +106,7 @@ function Preview_EntrustmentBook(obj) {
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request
 									.replace(/\n/g, "<br>").replace(/ /g,
 											"&nbsp;")
-							+ '<br>负责人签字：'
+							+ '<br>我单位向你鉴定机构介绍的情况客观真实，提交的检材和样本等来源清楚可靠<br>负责人签字：'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_responsible_person
 							+ '<span style="float:right;">（单位印章）'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspect_time
