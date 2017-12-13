@@ -1,6 +1,6 @@
 var EntrustmentBook_json = null;
-function List_EntrustmentBook(pageIndex) {
 
+function List_EntrustmentBook(pageIndex) {
 	document.getElementById("i_pulse").style.display = "block";
 
 	/*

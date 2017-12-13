@@ -3,6 +3,11 @@
  */
 function Create_Death_InspectionRecord(obj) {
 	var json_list = EntrustmentBook_json;
+	for (var num = 0; num < json_list.listEntrustmentBookManagementDTO.length; num++) {
+		if (obj.id == json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id) {
+			break;
+		}
+	}
 	var jc = $
 			.confirm({
 				icon : 'fa fa-pencil-square-o',
@@ -21,7 +26,9 @@ function Create_Death_InspectionRecord(obj) {
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>死者姓名：</td>'
-						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_death_name"  /></td>'
+						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_death_name"  value="'
+						+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_name
+						+ '"/></td>'
 						+ '<td>性别：</td>'
 						+ '<td><select class="form-control" name="deathInspectionRecord.death_inspection_record_death_sex" >'
 						+ '<option value="男">男</option>'
@@ -38,7 +45,9 @@ function Create_Death_InspectionRecord(obj) {
 						+ '<td>服务处所：</td>'
 						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_unit_service"  /></td>'
 						+ '<td>住址：</td>'
-						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_address"  /></td>'
+						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_address" value="'
+						+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_address
+						+ '" /></td>'
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>检验人：</td>'

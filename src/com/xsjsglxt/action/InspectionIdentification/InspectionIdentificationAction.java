@@ -159,7 +159,8 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 			response.setContentType("text/html;charset=utf-8");
 			System.out.println("ggg");
 			System.out.println("fff:" + deathFileName.length);
-			response.getWriter().write("" + inspectionIdentificationService.saveDeathInspectionRecord(deathInspectionRecord, death, deathFileName, positionFile));
+			response.getWriter().write("" + inspectionIdentificationService
+					.saveDeathInspectionRecord(deathInspectionRecord, death, deathFileName, positionFile));
 		} catch (IOException e) {
 			System.out.println("填写尸体检验记录表报错");
 			e.printStackTrace();
@@ -240,7 +241,8 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void updateDeathInspectionRecord() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			response.getWriter().write("" + inspectionIdentificationService.updateDeathInspectionRecord(deathInspectionRecord, death, deathFileName, positionFile));
+			response.getWriter().write("" + inspectionIdentificationService
+					.updateDeathInspectionRecord(deathInspectionRecord, death, deathFileName, positionFile));
 		} catch (IOException e) {
 			System.out.println("更改尸体检验记录表报错");
 			e.printStackTrace();

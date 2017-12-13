@@ -148,9 +148,7 @@
 	List_EntrustmentBook(1);
 </script>
 <script type="text/javascript"
-	src="<%=basePath%>js/InspectionIdentification/Create_TranceCheckEntrustmentBook.js"></script>
-<script type="text/javascript"
-	src="<%=basePath%>js/InspectionIdentification/Create_ForensicCheckEntrustmentBook.js"></script>
+	src="<%=basePath%>js/InspectionIdentification/Create_EntrustmentBook.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/InspectionIdentification/Remove_EntrustmentBook.js"></script>
 <script type="text/javascript"

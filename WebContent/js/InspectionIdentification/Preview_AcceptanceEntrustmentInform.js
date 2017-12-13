@@ -2,13 +2,11 @@ function Preview_AcceptanceEntrustmentInform(obj) {
 	var json_list = EntrustmentBook_json;
 	var jc = $
 			.confirm({
-				theme : 'Modern',
 				icon : 'fa fa-file-text-o',
 				title : '受理鉴定回执<br><br>（凭此回执领取鉴定文书/材料）',
 				content : '',
 				type : 'green',
-				columnClass : 'col-md-12',
-				theme : 'modern',
+				columnClass : 'col-md-8 col-md-offset-2',
 				onOpenBefore : function() {
 				},
 				onContentReady : function() {

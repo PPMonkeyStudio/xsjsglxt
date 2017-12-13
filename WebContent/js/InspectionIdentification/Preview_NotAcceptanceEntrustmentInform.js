@@ -2,13 +2,11 @@ function Preview_NotAcceptanceEntrustmentInform(obj) {
 	var json_list = EntrustmentBook_json;
 	var jc = $
 			.confirm({
-				theme : 'Modern',
 				icon : 'fa fa-file-text-o',
 				title : '<p>萍乡市安源区公安司法鉴定中心</p><p>不受理委托告知书</p>',
 				content : '',
 				type : 'red',
-				columnClass : 'col-md-12',
-				theme : 'modern',
+				columnClass : 'col-md-8 col-md-offset-2',
 				onOpenBefore : function() {
 				},
 				onContentReady : function() {

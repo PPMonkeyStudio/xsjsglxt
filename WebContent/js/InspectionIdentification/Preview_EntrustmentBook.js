@@ -2,13 +2,11 @@ function Preview_EntrustmentBook(obj) {
 	var json_list = EntrustmentBook_json;
 	var jc = $
 			.confirm({
-				theme : 'Modern',
 				icon : 'fa fa-file-text-o',
 				title : '鉴定委托书',
 				content : '',
 				type : 'green',
 				columnClass : 'col-md-12',
-				theme : 'modern',
 				onOpenBefore : function() {
 				},
 				onContentReady : function() {
@@ -17,7 +15,7 @@ function Preview_EntrustmentBook(obj) {
 							break;
 						}
 					}
-					var con = '<div style="margin:0 20px 0 0;"><hr>' + '<br>'
+					var con = '<div style="margin:0 20px 0 0;"><hr>'
 							+ '<h5 style="text-align: right;">编号：['
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num
 									.substring(0, 4)
@@ -106,7 +104,7 @@ function Preview_EntrustmentBook(obj) {
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request
 									.replace(/\n/g, "<br>").replace(/ /g,
 											"&nbsp;")
-							+ '<br><br>负责人签字：'
+							+ '<br>负责人签字：'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_responsible_person
 							+ '<span style="float:right;">（单位印章）'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspect_time

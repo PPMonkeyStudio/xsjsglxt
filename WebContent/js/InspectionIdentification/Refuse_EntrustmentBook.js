@@ -22,7 +22,7 @@ function Refuse_EntrustmentBook(obj) {
 						+ '<tr><td>批准时间：</td>'
 						+ '<td><input  class="form-control mydate" id="create_not_acceptance_entrustment_inform_approval_time" /></td></tr>'
 						+ '</tbody>' + '</table>',
-				type : 'orange',
+				type : 'red',
 				columnClass : 'col-md-12',
 				onOpenBefore : function() {
 				},
@@ -54,7 +54,7 @@ function Refuse_EntrustmentBook(obj) {
 				},
 				buttons : {
 					'确认' : {
-						btnClass : 'btn-orange',
+						btnClass : 'btn-red',
 						action : function() {
 							SureRefuse(jc);
 						}
