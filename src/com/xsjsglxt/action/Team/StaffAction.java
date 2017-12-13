@@ -32,6 +32,18 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 		return "page_staffList";
 	}
 	/*
+	 * 跳转详情页
+	 */
+	public String page_staffList1(){
+		return "page_staffDetaiils";
+	}
+	/*
+	 * 跳转创建页
+	 */
+	public String page_staffList2(){
+		return "page_newStaff";
+	}
+	/*
 	 *保存人员信息
 	 */
 	public void saveStaff() throws IOException{

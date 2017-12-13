@@ -7,7 +7,12 @@
 		<action name="Staff_*" class="com.xsjsglxt.action.Team.StaffAction"
 			method="{1}">
 			<result name="page_staffList">/WEB-INF/view/Team/staffList.jsp</result>
+<<<<<<< HEAD
 			<result name="page_staffDetails">/WEB-INF/view/Team/staffDetails.jsp</result>
+=======
+			<result name="page_staffDetaiils">/WEB-INF/view/Team/staffDetaiils.jsp</result>
+			<result name="page_newStaff">/WEB-INF/view/Team/newStaff.jsp</result>
+>>>>>>> LWK
 		</action>
 	</package>
 </struts>
