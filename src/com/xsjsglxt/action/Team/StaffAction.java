@@ -22,7 +22,6 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 	private xsjsglxt_staff staff;
 	private List<String> useStaffInformationNumList;
 	private HttpServletResponse http_response;
-
 	private HttpServletRequest http_request;
 	private page_list_staffInformationVO  page_list_staffInformation;
 	/*
