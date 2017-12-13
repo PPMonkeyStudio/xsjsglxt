@@ -210,6 +210,13 @@ function Create_AppraisalLetter(obj) {
 					'记录' : {
 						btnClass : 'btn-blue',
 						action : function() {
+							/*
+							 * 
+							 */
+							jc.showLoading(false);
+							/*
+							 * 
+							 */
 							addAppraisalLetter(jc);
 						}
 					},

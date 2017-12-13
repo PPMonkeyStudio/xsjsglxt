@@ -246,12 +246,18 @@ function Create_InspectionRecord(obj) {
 					/*
 					 * 
 					 */
-
 				},
 				buttons : {
 					'记录' : {
 						btnClass : 'btn-blue',
 						action : function() {
+							/*
+							 * 
+							 */
+							jc.showLoading(false);
+							/*
+							 * 
+							 */
 							addInspectionRecord(jc);
 						}
 					},
@@ -275,9 +281,23 @@ function addInspectionRecord(jc) {
 					List_EntrustmentBook(1);
 				} else {
 					toastr.error("填写格式错误");
+					/*
+					 * 
+					 */
+					jc.hideLoading(true);
+					/*
+					 * 
+					 */
 				}
 			} else {
 				toastr.error(xhr.status);
+				/*
+				 * 
+				 */
+				jc.hideLoading(true);
+				/*
+				 * 
+				 */
 			}
 		}
 	}

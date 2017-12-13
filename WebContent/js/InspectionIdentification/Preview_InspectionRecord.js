@@ -81,6 +81,12 @@ function Preview_InspectionRecord(obj) {
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_mark
 							+ '</tr>' + '</tbody>' + '</table>' + '<hr></div>';
 					jc.setContentAppend(con);
+					/*
+					 * 
+					 */
+					/*
+					 * 
+					 */
 				},
 				buttons : {
 					'导出' : {

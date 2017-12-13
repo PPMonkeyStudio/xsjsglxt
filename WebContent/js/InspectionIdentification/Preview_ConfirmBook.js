@@ -155,6 +155,12 @@ function Preview_ConfirmBook(obj) {
 							+ '鉴定机构承诺：鉴定工作遵循公平公正、主体合法、程序规范、方法科学、结论准确的要求。'
 							+ '<hr></div>';
 					jc.setContentAppend(con);
+					/*
+					 * 
+					 */
+					/*
+					 * 
+					 */
 				},
 				buttons : {
 					'导出' : {

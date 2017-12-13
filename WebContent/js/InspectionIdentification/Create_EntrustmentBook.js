@@ -10,12 +10,13 @@ document.getElementById("button_Create_ForensicCheckEntrustmentBook").onclick = 
 function Create_EntrustmentBook(type) {
 	var jc = $
 			.confirm({
-				title : '痕迹检验鉴定委托书',
+				title : '',
 				content : '<hr>'
 						+ '<h3>委托人声明</h3>'
 						+ '<h4>本人忠于事实真相，送检的检材/样本/材料真实。如有虚假，愿意承担相关法律责任.</h4>'
 						+ '<hr style="margin:30px 0;">'
-						+ '<form id="form_TranceCheckEntrustmentBook"><table  class="table table-bordered" style="text-align: center;">'
+						+ '<form id="form_EntrustmentBook">'
+						+ '<table  class="table table-bordered" style="text-align: center;">'
 						+ '<tbody>'
 						+ '<tr>'
 						+ '<td><span style="color:#D9534F;">*</span> 负责人：</td><td><input  name="tranceCheckBook.check_entrustment_book_responsible_person" class="form-control"  /></td>'
@@ -91,7 +92,7 @@ function Create_EntrustmentBook(type) {
 						+ '<option value="失踪人口查询">失踪人口查询</option>'
 						+ '<option value="其他">其他</option>'
 						+ '</select><input class="form-control" name="tranceCheckBook.check_entrustment_book_entrustment_request_qt"  style="margin:10px 0 0 0;"/></td></tr>'
-						+ '</tbody>' + '</table></form>' + '<br>' + '<hr>',
+						+ '</tbody>' + '</table>' + '</form>' + '<br>' + '<hr>',
 				type : 'blue',
 				theme : 'modern',
 				columnClass : 'col-md-12',
@@ -106,7 +107,9 @@ function Create_EntrustmentBook(type) {
 								.getElementById("div_ForensicCheckEntrustmentBook");
 						div_ForensicCheckEntrustmentBook.parentNode
 								.removeChild(div_ForensicCheckEntrustmentBook);
+						jc.setTitle("痕迹检验鉴定委托书");
 					} else {
+						jc.setTitle("法医检验鉴定委托书");
 
 					}
 					/*
@@ -135,6 +138,13 @@ function Create_EntrustmentBook(type) {
 					'确认委托' : {
 						btnClass : 'btn-blue',
 						action : function() {
+							/*
+							 * 
+							 */
+							jc.showLoading(false);
+							/*
+							 * 
+							 */
 							var xhr = false;
 							xhr = new XMLHttpRequest();
 							xhr.onreadystatechange = function() {
@@ -148,18 +158,31 @@ function Create_EntrustmentBook(type) {
 											List_EntrustmentBook(1);
 										} else {
 											toastr.error("填写格式错误");
+											/*
+											 * 
+											 */
+											jc.hideLoading(true);
+											/*
+											 * 
+											 */
 										}
 									} else {
 										toastr.error(xhr.status);
+										/*
+										 * 
+										 */
+										jc.hideLoading(true);
+										/*
+										 * 
+										 */
 									}
 								}
 							}
 							/*
 							 * 
 							 */
-							var formData = new FormData(
-									document
-											.getElementById("form_TranceCheckEntrustmentBook"));
+							var formData = new FormData(document
+									.getElementById("form_EntrustmentBook"));
 							/*
 							 * 
 							 */

@@ -10,6 +10,7 @@ function Preview_EntrustmentBook(obj) {
 				onOpenBefore : function() {
 				},
 				onContentReady : function() {
+
 					for (var num = 0; num < json_list.listEntrustmentBookManagementDTO.length; num++) {
 						if (obj.id == json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id) {
 							break;
@@ -121,6 +122,13 @@ function Preview_EntrustmentBook(obj) {
 							+ '</table>'
 							+ '<hr></div>';
 					jc.setContentAppend(con);
+					/*
+					 * 
+					 */
+					/*
+					 * 
+					 */
+
 				},
 				buttons : {
 					'导出' : {

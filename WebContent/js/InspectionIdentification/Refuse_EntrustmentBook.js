@@ -51,6 +51,12 @@ function Refuse_EntrustmentBook(obj) {
 					/*
 					 * 
 					 */
+					/*
+					 * 
+					 */
+					/*
+					 * 
+					 */
 				},
 				buttons : {
 					'确认' : {

@@ -41,6 +41,12 @@ function Preview_NotAcceptanceEntrustmentInform(obj) {
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_not_acceptance_entrustment_inform.not_acceptance_entrustment_inform_approval_time
 									.substring(8, 11) + '日</h3>' + '<hr></div>';
 					jc.setContentAppend(con);
+					/*
+					 * 
+					 */
+					/*
+					 * 
+					 */
 				},
 				buttons : {
 					'导出' : {

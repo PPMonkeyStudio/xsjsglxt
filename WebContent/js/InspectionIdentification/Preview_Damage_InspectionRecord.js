@@ -93,6 +93,12 @@ function Preview_Damage_InspectionRecord(obj) {
 							+ '</table>'
 							+ '<hr>' + '</div>';
 					jc.setContentAppend(con);
+					/*
+					 * 
+					 */
+					/*
+					 * 
+					 */
 				},
 				buttons : {
 					'导出' : {

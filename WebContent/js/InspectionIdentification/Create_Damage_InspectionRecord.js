@@ -121,12 +121,18 @@ function Create_Damage_InspectionRecord(obj) {
 					/*
 					 * 
 					 */
-
 				},
 				buttons : {
 					'记录' : {
 						btnClass : 'btn-blue',
 						action : function() {
+							/*
+							 * 
+							 */
+							jc.showLoading(false);
+							/*
+							 * 
+							 */
 							var xhr = false;
 							xhr = new XMLHttpRequest();
 							xhr.onreadystatechange = function() {
@@ -140,9 +146,23 @@ function Create_Damage_InspectionRecord(obj) {
 											List_EntrustmentBook(1);
 										} else {
 											toastr.error("填写格式错误");
+											/*
+											 * 
+											 */
+											jc.hideLoading(true);
+											/*
+											 * 
+											 */
 										}
 									} else {
 										toastr.error(xhr.status);
+										/*
+										 * 
+										 */
+										jc.hideLoading(true);
+										/*
+										 * 
+										 */
 									}
 								}
 							}

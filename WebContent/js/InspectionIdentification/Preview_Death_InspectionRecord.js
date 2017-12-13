@@ -213,6 +213,12 @@ function Preview_Death_InspectionRecord(obj) {
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_autopsy_table_test_recorder_time
 									.substring(8, 11) + '日' + '</p>' + '</div>';
 					jc.setContentAppend(con);
+					/*
+					 * 
+					 */
+					/*
+					 * 
+					 */
 				},
 				buttons : {
 					'导出' : {

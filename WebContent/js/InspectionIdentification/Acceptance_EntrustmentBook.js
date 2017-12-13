@@ -130,7 +130,6 @@ function Acceptance_EntrustmentBook(obj) {
 					/*
 					 * 
 					 */
-
 				},
 				buttons : {
 					'确认受理' : {
