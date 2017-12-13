@@ -119,7 +119,7 @@ function Preview_EntrustmentBook(obj) {
 							+ '</span></td></tr>'
 							+ '</tbody>'
 							+ '</table>'
-							+ '<br>' + '<hr></div>';
+							+ '<hr></div>';
 					jc.setContentAppend(con);
 				},
 				buttons : {

@@ -2,12 +2,10 @@ function Update_EntrustmentBook(obj) {
 	var json_list = EntrustmentBook_json;
 	var jc = $
 			.confirm({
-				theme : 'Modern',
 				title : '痕迹检验鉴定委托书（修改）',
 				content : '',
 				type : 'blue',
 				columnClass : 'col-md-12',
-				theme : 'modern',
 				onOpenBefore : function() {
 				},
 				onContentReady : function() {
@@ -125,7 +123,7 @@ function Update_EntrustmentBook(obj) {
 					case '萍乡市公安司法鉴定中心': {
 						update_check_entrustment_book_entrustment_unit_name.innerHTML = '<option value="萍乡市公安司法鉴定中心" selected="selected">萍乡市公安司法鉴定中心</option>'
 								+ '<option value="萍乡市公安局物证鉴定所">萍乡市公安局物证鉴定所</option>'
-								+ '<option value="萍乡市安源公安司法鉴定中心">萍乡市安源公安司法鉴定中心</option>'
+								+ '<option value="萍乡市安源区公安司法鉴定中心">萍乡市安源区公安司法鉴定中心</option>'
 								+ '<option value="江西省公安厅物证鉴定中心">江西省公安厅物证鉴定中心</option>'
 								+ '<option value="公安部物证鉴定中心">公安部物证鉴定中心</option>';
 						break;
@@ -133,15 +131,15 @@ function Update_EntrustmentBook(obj) {
 					case '萍乡市公安局物证鉴定所': {
 						update_check_entrustment_book_entrustment_unit_name.innerHTML = '<option value="萍乡市公安司法鉴定中心">萍乡市公安司法鉴定中心</option>'
 								+ '<option value="萍乡市公安局物证鉴定所"  selected="selected">萍乡市公安局物证鉴定所</option>'
-								+ '<option value="萍乡市安源公安司法鉴定中心">萍乡市安源公安司法鉴定中心</option>'
+								+ '<option value="萍乡市安源区公安司法鉴定中心">萍乡市安源区公安司法鉴定中心</option>'
 								+ '<option value="江西省公安厅物证鉴定中心">江西省公安厅物证鉴定中心</option>'
 								+ '<option value="公安部物证鉴定中心">公安部物证鉴定中心</option>';
 						break;
 					}
-					case '萍乡市安源公安司法鉴定中心': {
+					case '萍乡市安源区公安司法鉴定中心': {
 						update_check_entrustment_book_entrustment_unit_name.innerHTML = '<option value="萍乡市公安司法鉴定中心">萍乡市公安司法鉴定中心</option>'
 								+ '<option value="萍乡市公安局物证鉴定所">萍乡市公安局物证鉴定所</option>'
-								+ '<option value="萍乡市安源公安司法鉴定中心" selected="selected">萍乡市安源公安司法鉴定中心</option>'
+								+ '<option value="萍乡市安源区公安司法鉴定中心" selected="selected">萍乡市安源区公安司法鉴定中心</option>'
 								+ '<option value="江西省公安厅物证鉴定中心">江西省公安厅物证鉴定中心</option>'
 								+ '<option value="公安部物证鉴定中心">公安部物证鉴定中心</option>';
 						break;
@@ -149,7 +147,7 @@ function Update_EntrustmentBook(obj) {
 					case '江西省公安厅物证鉴定中心': {
 						update_check_entrustment_book_entrustment_unit_name.innerHTML = '<option value="萍乡市公安司法鉴定中心">萍乡市公安司法鉴定中心</option>'
 								+ '<option value="萍乡市公安局物证鉴定所">萍乡市公安局物证鉴定所</option>'
-								+ '<option value="萍乡市安源公安司法鉴定中心">萍乡市安源公安司法鉴定中心</option>'
+								+ '<option value="萍乡市安源区公安司法鉴定中心">萍乡市安源区公安司法鉴定中心</option>'
 								+ '<option value="江西省公安厅物证鉴定中心" selected="selected">江西省公安厅物证鉴定中心</option>'
 								+ '<option value="公安部物证鉴定中心">公安部物证鉴定中心</option>';
 						break;
@@ -157,7 +155,7 @@ function Update_EntrustmentBook(obj) {
 					case '公安部物证鉴定中心': {
 						update_check_entrustment_book_entrustment_unit_name.innerHTML = '<option value="萍乡市公安司法鉴定中心">萍乡市公安司法鉴定中心</option>'
 								+ '<option value="萍乡市公安局物证鉴定所">萍乡市公安局物证鉴定所</option>'
-								+ '<option value="萍乡市安源公安司法鉴定中心">萍乡市安源公安司法鉴定中心</option>'
+								+ '<option value="萍乡市安源区公安司法鉴定中心">萍乡市安源区公安司法鉴定中心</option>'
 								+ '<option value="江西省公安厅物证鉴定中心">江西省公安厅物证鉴定中心</option>'
 								+ '<option value="公安部物证鉴定中心"  selected="selected">公安部物证鉴定中心</option>';
 						break;
@@ -211,179 +209,7 @@ function updateTranceCheckBook(jc, obj) {
 	 * 
 	 */
 	var formData = new FormData();
-	/*
-	 * ID
-	 */
-	formData
-			.append(
-					"tranceCheckBook.xsjsglxt_check_entrustment_book_id",
-					document
-							.getElementById("update_xsjsglxt_check_entrustment_book_id").value);
-	/*
-	 * 
-	 */
 
-	/*
-	 * 负责人
-	 */
-	var update_check_entrustment_book_responsible_person = document
-			.getElementById("update_check_entrustment_book_responsible_person");
-	if (update_check_entrustment_book_responsible_person.value == '') {
-		toastr.error("负责人不可为空");
-		return;
-	}
-	formData.append(
-			"tranceCheckBook.check_entrustment_book_responsible_person",
-			update_check_entrustment_book_responsible_person.value);
-	/*
-	 * 委托单位
-	 */
-	var update_check_entrustment_book_entrustment_unit = document
-			.getElementById("update_check_entrustment_book_entrustment_unit");
-	if (update_check_entrustment_book_entrustment_unit.value == '') {
-		toastr.error("委托单位不可为空");
-		return;
-	}
-	formData.append("tranceCheckBook.check_entrustment_book_entrustment_unit",
-			update_check_entrustment_book_entrustment_unit.value);
-	/*
-	 * 委托时间
-	 */
-	var update_check_entrustment_book_inspect_time = document
-			.getElementById("update_check_entrustment_book_inspect_time");
-	formData.append("tranceCheckBook.check_entrustment_book_inspect_time",
-			update_check_entrustment_book_inspect_time.value);
-	/*
-	 * 送检人
-	 */
-	var update_check_entrustment_book_inspectors1_name = document
-			.getElementById("update_check_entrustment_book_inspectors1_name");
-	formData.append("tranceCheckBook.check_entrustment_book_inspectors1_name",
-			update_check_entrustment_book_inspectors1_name.value);
-	var update_check_entrustment_book_inspectors2_name = document
-			.getElementById("update_check_entrustment_book_inspectors2_name");
-	formData.append("tranceCheckBook.check_entrustment_book_inspectors2_name",
-			update_check_entrustment_book_inspectors2_name.value);
-	var update_check_entrustment_book_inspectors1_duty = document
-			.getElementById("update_check_entrustment_book_inspectors1_duty");
-	formData.append("tranceCheckBook.check_entrustment_book_inspectors1_duty",
-			update_check_entrustment_book_inspectors1_duty.value);
-	var update_check_entrustment_book_inspectors2_duty = document
-			.getElementById("update_check_entrustment_book_inspectors2_duty");
-	formData.append("tranceCheckBook.check_entrustment_book_inspectors2_duty",
-			update_check_entrustment_book_inspectors2_duty.value);
-	var update_check_entrustment_book_inspectors1_jobcard_number = document
-			.getElementById("update_check_entrustment_book_inspectors1_jobcard_number");
-	formData
-			.append(
-					"tranceCheckBook.check_entrustment_book_inspectors1_jobcard_number",
-					update_check_entrustment_book_inspectors1_jobcard_number.value);
-	var update_check_entrustment_book_inspectors2_jobcard_number = document
-			.getElementById("update_check_entrustment_book_inspectors2_jobcard_number");
-	formData
-			.append(
-					"tranceCheckBook.check_entrustment_book_inspectors2_jobcard_number",
-					update_check_entrustment_book_inspectors2_jobcard_number.value);
-	/*
-	 * 被鉴定人
-	 */
-	formData.append(
-			"tranceCheckBook.check_entrustment_book_entrustmentor_name", "无");
-	formData.append("tranceCheckBook.check_entrustment_book_entrustmentor_sex",
-			"无");
-	formData.append(
-			"tranceCheckBook.check_entrustment_book_entrustmentor_phone", "无");
-	formData.append(
-			"tranceCheckBook.check_entrustment_book_entrustmentor_unit", "无");
-	formData
-			.append(
-					"tranceCheckBook.check_entrustment_book_entrustmentor_address",
-					"无");
-	/*
-	 * 通讯地址
-	 */
-	var update_check_entrustment_book_communication_address = document
-			.getElementById("update_check_entrustment_book_communication_address");
-	formData.append(
-			"tranceCheckBook.check_entrustment_book_communication_address",
-			update_check_entrustment_book_communication_address.value);
-	/*
-	 * 邮政编码
-	 */
-	var update_check_entrustment_book_zip_code = document
-			.getElementById("update_check_entrustment_book_zip_code");
-	formData.append("tranceCheckBook.check_entrustment_book_zip_code",
-			update_check_entrustment_book_zip_code.value);
-	/*
-	 * 联系电话
-	 */
-	var update_check_entrustment_book_phone = document
-			.getElementById("update_check_entrustment_book_phone");
-	formData.append("tranceCheckBook.check_entrustment_book_phone",
-			update_check_entrustment_book_phone.value);
-	/*
-	 * 传真号码
-	 */
-	var update_check_entrustment_book_fax_num = document
-			.getElementById("update_check_entrustment_book_fax_num");
-	formData.append("tranceCheckBook.check_entrustment_book_fax_num",
-			update_check_entrustment_book_fax_num.value);
-	/*
-	 * 被委托鉴定机构名称
-	 */
-	var update_check_entrustment_book_entrustment_unit_name = document
-			.getElementById("update_check_entrustment_book_entrustment_unit_name");
-	formData.append(
-			"tranceCheckBook.check_entrustment_book_entrustment_unit_name",
-			update_check_entrustment_book_entrustment_unit_name.value);
-	/*
-	 * 案（事）件名称
-	 */
-	var update_check_entrustment_book_case_name = document
-			.getElementById("update_check_entrustment_book_case_name");
-	formData.append("tranceCheckBook.check_entrustment_book_case_name",
-			update_check_entrustment_book_case_name.value);
-	/*
-	 * 案件编号
-	 */
-	var update_check_entrustment_book_case_num = document
-			.getElementById("update_check_entrustment_book_case_num");
-	formData.append("tranceCheckBook.check_entrustment_book_case_num",
-			update_check_entrustment_book_case_num.value);
-	/*
-	 * 简要案情
-	 */
-	var update_check_entrustment_book_simple_case_situation = document
-			.getElementById("update_check_entrustment_book_simple_case_situation");
-	formData.append(
-			"tranceCheckBook.check_entrustment_book_simple_case_situation",
-			update_check_entrustment_book_simple_case_situation.value);
-	/*
-	 * 原鉴定情况
-	 */
-	var update_check_entrustment_book_old_entrustment_situation = document
-			.getElementById("update_check_entrustment_book_old_entrustment_situation");
-	formData.append(
-			"tranceCheckBook.check_entrustment_book_old_entrustment_situation",
-			update_check_entrustment_book_old_entrustment_situation.value);
-	/*
-	 * 送检的检材和样本等情况（包括名称、数量、性状、包装，检材提取部位和方法等）
-	 */
-	var update_check_entrustment_book_sample_situation = document
-			.getElementById("update_check_entrustment_book_sample_situation");
-	formData.append("tranceCheckBook.check_entrustment_book_sample_situation",
-			update_check_entrustment_book_sample_situation.value);
-	/*
-	 * 鉴定要求
-	 */
-	var update_check_entrustment_book_entrustment_request = document
-			.getElementById("update_check_entrustment_book_entrustment_request");
-	formData.append(
-			"tranceCheckBook.check_entrustment_book_entrustment_request",
-			update_check_entrustment_book_entrustment_request.value);
-	/*
-	 * 
-	 */
 	/*
 	 * 
 	 */
