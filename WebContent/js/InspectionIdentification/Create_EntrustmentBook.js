@@ -94,7 +94,7 @@ function Create_EntrustmentBook(type) {
 						+ '<option value="毒物检验鉴定">毒物检验鉴定</option>'
 						+ '<option value="失踪人口查询">失踪人口查询</option>'
 						+ '<option value="其他">其他</option>'
-						+ '</select><input class="form-control" name="tranceCheckBook.check_entrustment_book_entrustment_request_qt"  style="margin:10px 0 0 0;"/></td></tr>'
+						+ '</select><input class="form-control" id="check_entrustment_book_entrustment_request_qt"  style="margin:10px 0 0 0;"/></td></tr>'
 						+ '</tbody>' + '</table>' + '</form>' + '<hr>',
 
 				onOpenBefore : function() {
@@ -185,10 +185,6 @@ function Create_EntrustmentBook(type) {
 							var formData = new FormData(document
 									.getElementById("form_EntrustmentBook"));
 							/*
-							 * 
-							 */
-
-							/*
 							 * 鉴定要求
 							 */
 							if (document
@@ -197,7 +193,7 @@ function Create_EntrustmentBook(type) {
 										.set(
 												"tranceCheckBook.check_entrustment_book_entrustment_request",
 												document
-														.getElementsByName("tranceCheckBook.check_entrustment_book_entrustment_request_qt")[0]);
+														.getElementById("check_entrustment_book_entrustment_request_qt").value);
 							}
 							/*
 							 * 
@@ -213,7 +209,6 @@ function Create_EntrustmentBook(type) {
 												"tranceCheckBook.check_entrustment_book_type",
 												'法医');
 							}
-
 							/*
 							 * 
 							 */

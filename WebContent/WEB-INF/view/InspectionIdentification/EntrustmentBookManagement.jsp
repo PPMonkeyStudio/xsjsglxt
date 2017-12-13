@@ -31,6 +31,20 @@
 			</div>
 			<!--  -->
 			<div class="panel-body">
+				<div style="height: 34px; margin: 0 0 20px 0;">
+
+					<input id="" class="form-control mydate" placeholder="XXXX-XX-XX"
+						style="width: 150px; float: right; margin: 0 0 0 20px; text-align: center;"
+						oninput="" type="text">
+					<%--  --%>
+					<span style="float: right; margin: 0 0 0 20px; line-height: 34px;">至</span>
+					<!--  -->
+					<input id="" class="form-control mydate" placeholder="XXXX-XX-XX"
+						style="width: 150px; float: right; text-align: center;" oninput=""
+						type="text">
+					<%--  --%>
+					<span style="float: right; margin: 0 0 0 20px; line-height: 34px;">按日期筛选：</span>
+				</div>
 				<div style="height: 34px;">
 					<div style="width: 500px; float: left;">
 						<button class="btn btn-default"
@@ -50,7 +64,8 @@
 						</span>
 					</div>
 				</div>
-				<table id="table_EntrustmentBook" class="table table-hover"
+				<table id="table_EntrustmentBook"
+					class="table table-hover table-bordered"
 					style="text-align: center; margin: 20px 0;">
 					<tbody>
 						<tr>
@@ -98,9 +113,9 @@
 									<option value="已鉴定">已鉴定</option>
 							</select></th>
 							<th>操作</th>
-							<th><label class="fancy-checkbox"> <input
-									id="checkbox_all_select" type="checkbox" onclick="all_select()">
-									<span>全选</span>
+							<th style="width: 100px;"><label class="fancy-checkbox">
+									<input id="checkbox_all_select" type="checkbox"
+									onclick="all_select()"> <span>全选</span>
 							</label></th>
 						</tr>
 					</tbody>
@@ -194,4 +209,16 @@ li a {
 	cursor: pointer;
 }
 </style>
+<script type="text/javascript">
+	$.datetimepicker.setLocale('ch');
+	$('.mydate').datetimepicker({
+		yearStart : 1990, // 设置最小年份
+		yearEnd : 2050, // 设置最大年份
+		yearOffset : 0, // 年偏差
+		timepicker : false, // 关闭时间选项
+		format : 'Y-m-d', // 格式化日期年-月-日
+		minDate : '1990/01/01', // 设置最小日期
+		maxDate : '2030/01/01', // 设置最大日期
+	});
+</script>
 </html>
