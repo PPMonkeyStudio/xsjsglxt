@@ -11,6 +11,9 @@ function Create_EntrustmentBook(type) {
 	var jc = $
 			.confirm({
 				title : '',
+				type : 'blue',
+				theme : 'modern',
+				columnClass : 'col-md-12',
 				content : '<hr>'
 						+ '<h3>委托人声明</h3>'
 						+ '<h4>本人忠于事实真相，送检的检材/样本/材料真实。如有虚假，愿意承担相关法律责任.</h4>'
@@ -92,16 +95,9 @@ function Create_EntrustmentBook(type) {
 						+ '<option value="失踪人口查询">失踪人口查询</option>'
 						+ '<option value="其他">其他</option>'
 						+ '</select><input class="form-control" name="tranceCheckBook.check_entrustment_book_entrustment_request_qt"  style="margin:10px 0 0 0;"/></td></tr>'
-						+ '</tbody>' + '</table>' + '</form>' + '<br>' + '<hr>',
-				type : 'blue',
-				theme : 'modern',
-				columnClass : 'col-md-12',
+						+ '</tbody>' + '</table>' + '</form>' + '<hr>',
+
 				onOpenBefore : function() {
-				},
-				onContentReady : function() {
-					/*
-					 * 判断类别
-					 */
 					if (type == '痕迹') {
 						var div_ForensicCheckEntrustmentBook = document
 								.getElementById("div_ForensicCheckEntrustmentBook");
@@ -110,8 +106,13 @@ function Create_EntrustmentBook(type) {
 						jc.setTitle("痕迹检验鉴定委托书");
 					} else {
 						jc.setTitle("法医检验鉴定委托书");
-
 					}
+				},
+				onContentReady : function() {
+					/*
+					 * 判断类别
+					 */
+
 					/*
 					 * 
 					 */
