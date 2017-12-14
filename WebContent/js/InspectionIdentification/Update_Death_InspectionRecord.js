@@ -44,7 +44,6 @@ function Update_Death_InspectionRecord(obj) {
 							+ '<td><select class="form-control" name="deathInspectionRecord.death_inspection_record_death_sex" >'
 							+ (json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_death_sex == '男' ? '<option value="男" selected="selected">男</option><option value="女">女</option>'
 									: '<option value="男">男</option><option value="女" selected="selected">女</option>')
-
 							+ '</select></td>'
 							+ '</tr>'
 							+ '<tr>'
@@ -327,6 +326,7 @@ function Update_Death_InspectionRecord(obj) {
 									formData.append("death", null);
 									formData.append("positionFile", "2");
 								}
+								//
 								if (create_death_inspection_record_autopsy_table_test_picture2.files[0] != null) {
 									formData
 											.append(

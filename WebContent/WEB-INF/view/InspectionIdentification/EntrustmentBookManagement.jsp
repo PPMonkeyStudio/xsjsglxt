@@ -205,6 +205,8 @@
 	src="<%=basePath%>js/InspectionIdentification/Update_InspectionRecord.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/InspectionIdentification/Update_Death_InspectionRecord.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/InspectionIdentification/Update_Damage_InspectionRecord.js"></script>
 <!---------------------------------------------------------------------------------------->
 <link rel="stylesheet" href="<%=basePath%>css/square/blue.css" />
 <script type="text/javascript" src="<%=basePath%>js/icheck.js"></script>

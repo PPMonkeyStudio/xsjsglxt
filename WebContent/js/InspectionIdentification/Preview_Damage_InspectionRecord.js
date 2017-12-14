@@ -71,27 +71,33 @@ function Preview_Damage_InspectionRecord(obj) {
 							+ '</td>'
 							+ '</tr>'
 							+ '<tr>'
-							+ '<td>损伤检验图 ：</td><td colspan="5">'
+							+ '<td style="width:200px;">尸表检验图：</td>'
+							+ '<td colspan="5">'
+							+ '<p>'
 							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDeathPicture?imgName='
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.xsjsglxt_damage_inspection_record_id
 							+ '_'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.damage_inspection_record_picture1
-							+ '"  style="width:100%; margin:20px 0;" />'
+							+ '" onclick="()" style="width:300px; margin:20px auto;"  />'
+							+ '</p>'
+							+ '<p>'
 							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDeathPicture?imgName='
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.xsjsglxt_damage_inspection_record_id
 							+ '_'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.damage_inspection_record_picture2
-							+ '"  style="width:100%; margin:20px 0;" />'
+							+ '" onclick="()" style="width:300px; margin:20px auto;"  />'
+							+ '</p>'
+							+ '<p>'
 							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDeathPicture?imgName='
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.xsjsglxt_damage_inspection_record_id
 							+ '_'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.damage_inspection_record_picture3
-							+ '"  style="width:100%; margin:20px 0;" />'
+							+ '" onclick="()" style="width:300px; margin:20px auto;"  />'
+							+ '</p>'
 							+ '</td>'
 							+ '</tr>'
 							+ '</tbody>'
-							+ '</table>'
-							+ '<hr>' + '</div>';
+							+ '</table>' + '<hr>' + '</div>';
 					jc.setContentAppend(con);
 					/*
 					 * 
@@ -110,7 +116,7 @@ function Preview_Damage_InspectionRecord(obj) {
 					'修改' : {
 						btnClass : 'btn-orange',
 						action : function() {
-							return false;
+							Update_Damage_InspectionRecord(obj);
 						}
 					},
 					'返回' : function() {
