@@ -69,7 +69,8 @@ function Update_NotAcceptanceEntrustmentInform(obj) {
 							return false;
 						}
 					},
-					'放弃' : function() {
+					'返回' : function() {
+						Preview_NotAcceptanceEntrustmentInform(obj);
 					}
 				}
 			});

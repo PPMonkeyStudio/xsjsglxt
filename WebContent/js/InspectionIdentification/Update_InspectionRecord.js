@@ -271,7 +271,8 @@ function Update_InspectionRecord(obj) {
 							return false;
 						}
 					},
-					'放弃' : function() {
+					'返回' : function() {
+						Preview_InspectionRecord(obj);
 					}
 				}
 			});

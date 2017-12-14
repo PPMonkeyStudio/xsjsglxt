@@ -249,7 +249,6 @@ function Update_EntrustmentBook(obj) {
 						},
 					},
 					'返回' : function() {
-						jc.close();
 						Preview_EntrustmentBook(obj);
 					}
 				}
