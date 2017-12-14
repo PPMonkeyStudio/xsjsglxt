@@ -138,7 +138,7 @@ public class testCheck {
 	@Test
 	public void testExport() {
 		try {
-			inspectionIdentificationService.exportTranceCheckBook("14a289b8-7856-40da-a787-f27277573422");
+			inspectionIdentificationService.exportTranceCheckBook("2277ce49-9b79-4e1a-a869-ce92cb180101");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -148,7 +148,27 @@ public class testCheck {
 	@Test
 	public void testEEE() {
 		try {
-			inspectionIdentificationService.exportIdentifiederCaseConfirmBook("58a6031e-501b-4c7f-8272-1bf609ddaf5a");
+			inspectionIdentificationService.exportIdentifiederCaseConfirmBook("becfcdb5-042a-4dff-9bcf-674f704baf25");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	// 导出受理回执
+	@Test
+	public void testEdEE() {
+		try {
+			inspectionIdentificationService.exportAcceptanceReturnReceipt("becfcdb5-042a-4dff-9bcf-674f704baf25");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	// 5501c173-06e2-4971-b743-23a19aadd2b9
+	@Test
+	public void testdddEE() {
+		try {
+			inspectionIdentificationService.exportNotAcceptanceIdentifieder("5501c173-06e2-4971-b743-23a19aadd2b9");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

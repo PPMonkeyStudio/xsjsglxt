@@ -593,11 +593,26 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		if (xsjsglxt_appraisal_letter == null)
 			return 3;
 		appraisalLetter.setAppraisal_letter_belong_entrustment_book(xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book());
+		appraisalLetter.setAppraisal_letter_num(xsjsglxt_appraisal_letter.getAppraisal_letter_num());
+		appraisalLetter.setAppraisal_letter_type(xsjsglxt_appraisal_letter.getAppraisal_letter_type());
 		appraisalLetter.setAppraisal_letter_gmt_create(xsjsglxt_appraisal_letter.getAppraisal_letter_gmt_create());
 		appraisalLetter.setAppraisal_letter_gmt_modified(TeamUtil.getStringSecond());
 		return inspectionIdentificationDao.saveObject(appraisalLetter);
 	}
 
+	// 获取导出确认书的编号
+	@Override
+	public String exportIdentifiederCaseConfirmBookName(String id) {
+
+		xsjsglxt_identifieder_case_confirm_book xsjsglxt_identifieder_case_confirm_book = new xsjsglxt_identifieder_case_confirm_book();
+		xsjsglxt_identifieder_case_confirm_book = inspectionIdentificationDao.getIdentifiederCaseConfirmBookByOwnId(id);
+		if (xsjsglxt_identifieder_case_confirm_book != null && xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_num() != null) {
+			return xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_num();
+		}
+		return null;
+	}
+
+	// 获取导出的委托书的编号
 	@Override
 	public String exportTraceCheckBookName(String id) {
 		xsjsglxt_check_entrustment_book xsjsglxt_check_entrustment_book = new xsjsglxt_check_entrustment_book();
@@ -612,44 +627,158 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	@Override
 	public File exportTranceCheckBook(String id) throws Exception {
 		Map<String, Object> params = new HashMap<String, Object>();
+		/*
+		 * 获取路径
+		 */
+		String lj = "";
+		try {
+			Properties props = new Properties();
+			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
+			lj = props.getProperty("lj");
+		} catch (Exception e) {
+			System.out.println("获取初始路径失败");
+			e.printStackTrace();
+		}
 		params.putAll(mapTranceCheckBook(id));
 		XwpfTUtil xwpfTUtil = new XwpfTUtil();
 		XWPFDocument doc;
-		String fileNameInResource = ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt.docx");
+		// String fileNameInResource =
+		// ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt_entrustment_book.docx");
 		InputStream is;
-		is = new FileInputStream(fileNameInResource);
+		String f = "F:\\xsjsglxt_entrustment_book.docx";
+		// is = new FileInputStream(fileNameInResource);
+		is = new FileInputStream(f);
 		doc = new XWPFDocument(is);
 		xwpfTUtil.replaceInPara(doc, params);
 		xwpfTUtil.replaceInTable(doc, params);
-		OutputStream os = new FileOutputStream(ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt.docx"));
+		OutputStream os = new FileOutputStream(lj + "kokokoko.docx");
 		doc.write(os);
 		xwpfTUtil.close(os);
 		xwpfTUtil.close(is);
 		os.flush();
 		os.close();
-		return new File(ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt.docx"));
+		return new File(lj + "kokokoko.docx");
 	}
 
 	// 导出确认书
 	@Override
 	public File exportIdentifiederCaseConfirmBook(String id) throws Exception {
 		Map<String, Object> params = new HashMap<String, Object>();
+		/*
+		 * 获取路径
+		 */
+		String lj = "";
+		try {
+			Properties props = new Properties();
+			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
+			lj = props.getProperty("lj");
+		} catch (Exception e) {
+			System.out.println("获取初始路径失败");
+			e.printStackTrace();
+		}
 		params.putAll(mapIdentifiederCaseConfirmBook(id));
 		XwpfTUtil xwpfTUtil = new XwpfTUtil();
 		XWPFDocument doc;
-		String fileNameInResource = ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt.docx");
+		String fileNameInResource = ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt_confirm_book.docx");
 		InputStream is;
 		is = new FileInputStream(fileNameInResource);
 		doc = new XWPFDocument(is);
 		xwpfTUtil.replaceInPara(doc, params);
 		xwpfTUtil.replaceInTable(doc, params);
-		OutputStream os = new FileOutputStream(ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt.docx"));
+		OutputStream os = new FileOutputStream(lj + "kokokoko.docx");
 		doc.write(os);
 		xwpfTUtil.close(os);
 		xwpfTUtil.close(is);
 		os.flush();
 		os.close();
-		return new File(ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt.docx"));
+		return new File(lj + "kokokoko.docx");
+	}
+
+	// 导出受理回执表
+	@Override
+	public File exportAcceptanceReturnReceipt(String id) throws Exception {
+		Map<String, Object> params = new HashMap<String, Object>();
+		/*
+		 * 获取路径
+		 */
+		String lj = "";
+		try {
+			Properties props = new Properties();
+			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
+			lj = props.getProperty("lj");
+		} catch (Exception e) {
+			System.out.println("获取初始路径失败");
+			e.printStackTrace();
+		}
+		params.putAll(mapAcceptanceIdentifieder(id));
+		XwpfTUtil xwpfTUtil = new XwpfTUtil();
+		XWPFDocument doc;
+		String fileNameInResource = ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt_entrustment_book.docx");
+		InputStream is;
+		is = new FileInputStream(fileNameInResource);
+		doc = new XWPFDocument(is);
+		xwpfTUtil.replaceInPara(doc, params);
+		xwpfTUtil.replaceInTable(doc, params);
+		OutputStream os = new FileOutputStream(lj + "kokokoko.docx");
+		doc.write(os);
+		xwpfTUtil.close(os);
+		xwpfTUtil.close(is);
+		os.flush();
+		os.close();
+		return new File(lj + "kokokoko.docx");
+
+	}
+
+	// 导出不受理告知
+	public File exportNotAcceptanceIdentifieder(String id) throws Exception {
+		Map<String, Object> params = new HashMap<String, Object>();
+		/*
+		 * 获取路径
+		 */
+		String lj = "";
+		try {
+			Properties props = new Properties();
+			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
+			lj = props.getProperty("lj");
+		} catch (Exception e) {
+			System.out.println("获取初始路径失败");
+			e.printStackTrace();
+		}
+		params.putAll(mapNotAcceptanceIdentifieder(id));
+		XwpfTUtil xwpfTUtil = new XwpfTUtil();
+		XWPFDocument doc;
+		String fileNameInResource = ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt_entrustment_book.docx");
+		InputStream is;
+		is = new FileInputStream(fileNameInResource);
+		doc = new XWPFDocument(is);
+		xwpfTUtil.replaceInPara(doc, params);
+		xwpfTUtil.replaceInTable(doc, params);
+		OutputStream os = new FileOutputStream(lj + "kokokoko.docx");
+		doc.write(os);
+		xwpfTUtil.close(os);
+		xwpfTUtil.close(is);
+		os.flush();
+		os.close();
+		return new File(lj + "kokokoko.docx");
+	}
+
+	// 导出不受理回执的编号
+	@Override
+	public String exportNotAccetpBookName(String id) {
+		xsjsglxt_check_entrustment_book xsjsglxt_check_entrustment_book = new xsjsglxt_check_entrustment_book();
+		xsjsglxt_not_acceptance_entrustment_inform xsjsglxt_not_acceptance_entrustment_inform = new xsjsglxt_not_acceptance_entrustment_inform();
+		xsjsglxt_not_acceptance_entrustment_inform = inspectionIdentificationDao.getNotAcceptanceEntrustmentInformByOwnId(id);
+		if (xsjsglxt_not_acceptance_entrustment_inform != null) {
+			if (xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_belong_entrustment_book() != null
+					&& xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_belong_entrustment_book().trim().length() > 0) {
+				xsjsglxt_check_entrustment_book = inspectionIdentificationDao
+						.getCheckEntrustmentBookById(xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_belong_entrustment_book().trim());
+				if (xsjsglxt_check_entrustment_book != null) {
+					return xsjsglxt_check_entrustment_book.getXsjsglxt_check_entrustment_book_id();
+				}
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -659,6 +788,209 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	 * 
 	 * 
 	 */
+	// 不受理委托鉴定告知书
+	public Map<String, Object> mapNotAcceptanceIdentifieder(String id) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		// 主要获取委托书、以及不受理委托鉴定告知
+		xsjsglxt_check_entrustment_book xsjsglxt_check_entrustment_book = new xsjsglxt_check_entrustment_book();
+		xsjsglxt_not_acceptance_entrustment_inform xsjsglxt_not_acceptance_entrustment_inform = new xsjsglxt_not_acceptance_entrustment_inform();
+		// 获取不受理委托鉴定告知
+		xsjsglxt_not_acceptance_entrustment_inform = inspectionIdentificationDao.getNotAcceptanceEntrustmentInformByOwnId(id);
+		if (xsjsglxt_not_acceptance_entrustment_inform != null) {
+			if (xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_belong_entrustment_book() != null
+					&& xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_belong_entrustment_book().trim().length() > 0) {
+				xsjsglxt_check_entrustment_book = inspectionIdentificationDao
+						.getCheckEntrustmentBookById(xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_belong_entrustment_book().trim());
+				// 我们先将委托书表中的拥有的数据替换进去
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim().length() > 0) {
+					params.put("${n1}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
+				} else {
+					params.put("${n1}", "");
+				}
+				// 送检人
+				String temp1 = "";
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name().trim().length() > 0) {
+					temp1 = temp1 + xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name().trim();
+				}
+				String temp2 = "";
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name().trim().length() > 0) {
+					temp2 = temp2 + xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name().trim();
+				}
+				params.put("${n2}", temp1 + "  " + temp2);
+				// 送检人编号
+				String tmp1 = "";
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_jobcard_number() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_jobcard_number().trim().length() > 0) {
+					tmp1 = tmp1 + xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_jobcard_number().trim();
+				}
+				String tmp2 = "";
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_jobcard_number() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_jobcard_number().trim().length() > 0) {
+					tmp2 = tmp2 + xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_jobcard_number().trim();
+				}
+				params.put("${n3}", "工作证：" + tmp1 + "  " + tmp2);
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim().length() > 0) {
+					params.put("${n4}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim());
+				} else {
+					params.put("${n4}", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num().trim().length() > 0) {
+					params.put("${n5}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num().trim());
+				} else {
+					params.put("${n5}", "");
+				}
+				//
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim().length() > 0) {
+					params.put("${n14}", (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4));
+					params.put("${n15}", (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4));
+				} else {
+					params.put("${n14}", "");
+					params.put("${n15}", "");
+				}
+			}
+			if (xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_reason() != null
+					&& xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_reason().trim().length() > 0) {
+				params.put("${n6}", xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_reason().trim() + "，故不予受理。");
+			} else {
+				params.put("${n6}", "");
+			}
+			if (xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_inputhuman_name() != null
+					&& xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_inputhuman_name().trim().length() > 0) {
+				params.put("${n7}", xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_inputhuman_name().trim());
+			} else {
+				params.put("${n7}", "");
+			}
+			if (xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_approvalhuman_name() != null
+					&& xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_approvalhuman_name().trim().length() > 0) {
+				params.put("${n8}", xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_approvalhuman_name().trim());
+			} else {
+				params.put("${n8}", "");
+			}
+			if (xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_approval_time() != null
+					&& xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_approval_time().trim().length() > 0) {
+				params.put("${n9}", xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_approval_time().trim());
+			} else {
+				params.put("${n9}", "");
+			}
+			if (xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_reason() != null
+					&& xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_reason().trim().length() > 0) {
+				params.put("${n12}", xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_reason().trim());
+			} else {
+				params.put("${n12}", "");
+			}
+		}
+		return params;
+	}
+
+	// 受 理 鉴 定 回 执
+	public Map<String, Object> mapAcceptanceIdentifieder(String id) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		// 主要获取的是委托书表、确认书表
+		xsjsglxt_check_entrustment_book xsjsglxt_check_entrustment_book = new xsjsglxt_check_entrustment_book();
+		xsjsglxt_identifieder_case_confirm_book xsjsglxt_identifieder_case_confirm_book = new xsjsglxt_identifieder_case_confirm_book();
+		// 获取确认书
+		xsjsglxt_identifieder_case_confirm_book = inspectionIdentificationDao.getIdentifiederCaseConfirmBookByOwnId(id);
+		if (xsjsglxt_identifieder_case_confirm_book != null) {
+			if (xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_belong_entrustment_book() != null
+					&& xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_belong_entrustment_book().trim().length() > 0) {
+				xsjsglxt_check_entrustment_book = inspectionIdentificationDao
+						.getCheckEntrustmentBookById(xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_belong_entrustment_book().trim());
+				// 将属于委托书表中的数据替换进去
+				// 第一个：委托日期
+				// 因为再存储的时候,日期的格式一定一致,所以不会出现错误
+				// 1.将日期转换成 年、月、日
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim().length() > 0) {
+					params.put("${a1}", TeamUtil.timeToYear(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim()));
+				} else {
+					params.put("${a1}", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim().length() > 0) {
+					params.put("${a2}", TeamUtil.timeToMonth(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim()));
+				} else {
+					params.put("${a2}", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim().length() > 0) {
+					params.put("${a3}", TeamUtil.timeToDay(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim()));
+				} else {
+					params.put("${a3}", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim().length() > 0) {
+					params.put("${a4}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
+				} else {
+					params.put("${a4}", "");
+				}
+				String temp1 = "";
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name().trim().length() > 0) {
+					temp1 = temp1 + xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name().trim();
+				}
+				String temp2 = "";
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name().trim().length() > 0) {
+					temp2 = temp2 + xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name().trim();
+				}
+				params.put("${a5}", temp1 + "  " + temp2);
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim().length() > 0) {
+					params.put("${a6}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim());
+					params.put("${a7}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim());
+				} else {
+					params.put("${a6}", "");
+					params.put("${a7}", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim().length() > 0) {
+					params.put("${a8}", (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4));
+					params.put("${a9}", (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4));
+				} else {
+					params.put("${a8}", "");
+					params.put("${a9}", "");
+				}
+			}
+			if (xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_num() != null
+					&& xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_num().trim().length() > 0) {
+				params.put("${a10}", (xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_num().trim()).substring(0, 4));
+				params.put("${a11}", (xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_num().trim()).substring(4));
+			} else {
+				params.put("${a10}", "");
+				params.put("${a11}", "");
+			}
+			if (xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_major() != null
+					&& xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_major().trim().length() > 0) {
+				params.put("${a12}", xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_major().trim());
+			} else {
+				params.put("${a12}", "");
+			}
+			if (xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_human_name() != null
+					&& xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_human_name().trim().length() > 0) {
+				params.put("${a13}", xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_human_name().trim());
+			} else {
+				params.put("${a13}", "");
+			}
+			// 这个领取日期似乎不是那么好确定
+			if (xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_receive_data() != null
+					&& xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_receive_data().trim().length() > 0) {
+				params.put("${a14}", TeamUtil.timeToYear(xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_receive_data().trim()));
+				params.put("${a15}", TeamUtil.timeToMonth(xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_receive_data().trim()));
+				params.put("${a16}", TeamUtil.timeToDay(xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_receive_data().trim()));
+			} else {
+				params.put("${a14}", "");
+				params.put("${a15}", "");
+				params.put("${a16}", "");
+			}
+		}
+		return params;
+	}
 
 	// 鉴定确认书
 	public Map<String, Object> mapIdentifiederCaseConfirmBook(String id) {
