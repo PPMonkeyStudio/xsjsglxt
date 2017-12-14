@@ -268,16 +268,73 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 
 	/**
 	 * 保存损伤检验记录表
+	 * 
+	 * @throws IOException
 	 */
 	@Override
-	public int saveDamageInspectionRecord(xsjsglxt_damage_inspection_record damageInspectionRecord) {
-
+	public int saveDamageInspectionRecord(xsjsglxt_damage_inspection_record damageInspectionRecord, File[] file, String[] fileName, String[] positionFile) throws IOException {
 		int i = 2;
+		int x = -1;
+
+		System.out.println("length:" + positionFile.length);
+
+		/*
+		 * 获取路径
+		 */
+		String lj = "";
+		try {
+			Properties props = new Properties();
+			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
+			lj = props.getProperty("lj");
+			// lj=F:\\
+		} catch (Exception e) {
+			System.out.println("获取初始路径失败");
+			e.printStackTrace();
+		}
+		String path = lj + "xsjsglxt/damage/";
+		// 将文件以及文件名格式化
+		for (String string : fileName) {
+			System.out.println("string:" + string);
+		}
+		System.out.println("-------------------");
+		System.out.println("name:" + fileName);
+		file = file(file, positionFile, "damage");
+		fileName = fileName(fileName, positionFile, "damage");
 		if (!("申请已受理".equals(entrustmentBookState(damageInspectionRecord.getDamage_inspection_record_belong_entrustment_book().trim())))) {
 			return 3;
 		}
-		// 填写损伤检验记录表
+		//
 		damageInspectionRecord.setXsjsglxt_damage_inspection_record_id(TeamUtil.getUuid());
+		// 上传图片
+		for (int k = 0; k < file.length; k++) {
+			path = lj + "xsjsglxt/damage/";
+			if (file[k] != null) {
+				path = path + damageInspectionRecord.getXsjsglxt_damage_inspection_record_id() + "_" + fileName[k];
+				File newFile = new File(path);
+				FileUtils.copyFile(file[k], newFile);
+			}
+		}
+		// 设置其他字段名
+		for (int j = 0; j < file.length; j++) {
+			x = -1;
+			if (file[j] != null) {
+				x = j;
+			}
+			switch (x) {
+			case 0:
+				damageInspectionRecord.setDamage_inspection_record_picture1(fileName[x]);
+				break;
+			case 1:
+				damageInspectionRecord.setDamage_inspection_record_picture2(fileName[x]);
+				break;
+			case 2:
+				damageInspectionRecord.setDamage_inspection_record_picture3(fileName[x]);
+				break;
+			default:
+				break;
+			}
+		}
+		// 填写损伤检验记录表
 		damageInspectionRecord.setDamage_inspection_record_gmt_create(TeamUtil.getStringSecond());
 		damageInspectionRecord.setDamage_inspection_record_gmt_modified(damageInspectionRecord.getDamage_inspection_record_gmt_create());
 		i = inspectionIdentificationDao.saveObject(damageInspectionRecord);
@@ -308,16 +365,17 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			Properties props = new Properties();
 			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
 			lj = props.getProperty("lj");
+			// lj=F:\\
 		} catch (Exception e) {
 			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 
-		String path = lj + "xsjsglxt/";
+		String path = lj + "xsjsglxt/death/";
 
 		// 将文件以及文件名格式化
-		file = file(file, positionFile);
-		fileName = fileName(fileName, positionFile);
+		file = file(file, positionFile, "death");
+		fileName = fileName(fileName, positionFile, "death");
 		/**
 		 * 这里是否需要我来进行判断
 		 */
@@ -327,7 +385,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		deathInspectionRecord.setXsjsglxt_death_inspection_record_id(TeamUtil.getUuid());
 		// 上传图片
 		for (int k = 0; k < file.length; k++) {
-			path = lj + "xsjsglxt/";
+			path = lj + "xsjsglxt/death/";
 			if (file[k] != null) {
 				path = path + deathInspectionRecord.getXsjsglxt_death_inspection_record_id() + "_" + fileName[k];
 				File newFile = new File(path);
@@ -492,9 +550,11 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	public int updateDeathInspectionRecord(xsjsglxt_death_inspection_record deathInspectionRecord, File[] updateDeathFile, String[] updateDeathFileName, String[] positionFile)
 			throws IOException {
 		// 将文件以及文件名格式化
-		updateDeathFile = file(updateDeathFile, positionFile);
-		updateDeathFileName = fileName(updateDeathFileName, positionFile);
-		int i = 1;
+		updateDeathFile = file(updateDeathFile, positionFile, "death");
+		updateDeathFileName = fileName(updateDeathFileName, positionFile, "death");
+		for (String string : updateDeathFileName) {
+			System.out.println("name:" + string);
+		}
 		xsjsglxt_death_inspection_record death_inspection_record = new xsjsglxt_death_inspection_record();
 		death_inspection_record = inspectionIdentificationDao.getDeathInspectionRecordOwnId(deathInspectionRecord.getXsjsglxt_death_inspection_record_id());
 		if (death_inspection_record == null)
@@ -505,52 +565,46 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			if (updateDeathFile[k] != null) {
 				switch (k) {
 				case 0:
-					i = uploadDeath("尸表检验图1", updateDeathFile[k], death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture1(), death_inspection_record,
+					death_inspection_record = uploadDeath("尸表检验图1", updateDeathFile[k], death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture1(),
+							death_inspection_record,
 							updateDeathFileName[k]);
-					System.out.println("尸表检验图1:" + i);
 					break;
 				case 1:
-					i = uploadDeath("尸表检验图2", updateDeathFile[k], death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture2(), death_inspection_record,
+					death_inspection_record = uploadDeath("尸表检验图2", updateDeathFile[k], death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture2(),
+							death_inspection_record,
 							updateDeathFileName[k]);
-					System.out.println("尸表检验图2:" + i);
 					break;
 				case 2:
-					i = uploadDeath("尸表检验图3", updateDeathFile[k], death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture3(), death_inspection_record,
+					death_inspection_record = uploadDeath("尸表检验图3", updateDeathFile[k], death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture3(),
+							death_inspection_record,
 							updateDeathFileName[k]);
-					System.out.println("尸表检验图3:" + i);
 					break;
 				case 3:
-					i = uploadDeath("解剖检验图1", updateDeathFile[k], death_inspection_record.getDeath_inspection_record_anatomy_picture1(), death_inspection_record,
+					death_inspection_record = uploadDeath("解剖检验图1", updateDeathFile[k], death_inspection_record.getDeath_inspection_record_anatomy_picture1(),
+							death_inspection_record,
 							updateDeathFileName[k]);
-					System.out.println("解剖检验图1:" + i);
 					break;
 				case 4:
-					i = uploadDeath("解剖检验图2", updateDeathFile[k], death_inspection_record.getDeath_inspection_record_anatomy_picture2(), death_inspection_record,
+					death_inspection_record = uploadDeath("解剖检验图2", updateDeathFile[k], death_inspection_record.getDeath_inspection_record_anatomy_picture2(),
+							death_inspection_record,
 							updateDeathFileName[k]);
-					System.out.println("解剖检验图2:" + i);
 					break;
 				case 5:
-					i = uploadDeath("解剖检验图3", updateDeathFile[k], death_inspection_record.getDeath_inspection_record_anatomy_picture3(), death_inspection_record,
+					death_inspection_record = uploadDeath("解剖检验图3", updateDeathFile[k], death_inspection_record.getDeath_inspection_record_anatomy_picture3(),
+							death_inspection_record,
 							updateDeathFileName[k]);
-					System.out.println("解剖检验图3:" + i);
 					break;
 				default:
 					break;
 				}
 			}
 		}
-		deathInspectionRecord.setDeath_inspection_record_anatomy_picture1(
-				death_inspection_record.getDeath_inspection_record_anatomy_picture1());
-		deathInspectionRecord.setDeath_inspection_record_anatomy_picture2(
-				death_inspection_record.getDeath_inspection_record_anatomy_picture2());
-		deathInspectionRecord.setDeath_inspection_record_anatomy_picture3(
-				death_inspection_record.getDeath_inspection_record_anatomy_picture3());
-		deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture1(
-				death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture1());
-		deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture2(
-				death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture2());
-		deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture3(
-				death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture3());
+		deathInspectionRecord.setDeath_inspection_record_anatomy_picture1(death_inspection_record.getDeath_inspection_record_anatomy_picture1());
+		deathInspectionRecord.setDeath_inspection_record_anatomy_picture2(death_inspection_record.getDeath_inspection_record_anatomy_picture2());
+		deathInspectionRecord.setDeath_inspection_record_anatomy_picture3(death_inspection_record.getDeath_inspection_record_anatomy_picture3());
+		deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture1(death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture1());
+		deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture2(death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture2());
+		deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture3(death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture3());
 		deathInspectionRecord.setDeath_inspection_record_gmt_create(death_inspection_record.getDeath_inspection_record_gmt_create());
 		deathInspectionRecord.setDeath_inspection_record_gmt_modified(TeamUtil.getStringSecond());
 		return inspectionIdentificationDao.saveObject(deathInspectionRecord);
@@ -558,12 +612,38 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 
 	// 更改损伤检验记录表
 	@Override
-	public int updateDamageInspectionRecord(xsjsglxt_damage_inspection_record damageInspectionRecord) {
+	public int updateDamageInspectionRecord(xsjsglxt_damage_inspection_record damageInspectionRecord, File[] updateDamageFile, String[] updateDamageFileName,
+			String[] positionFile) throws IOException {
+		// 将文件以及文件名格式化
+		updateDamageFile = file(updateDamageFile, positionFile, "death");
+		updateDamageFileName = fileName(updateDamageFileName, positionFile, "death");
 		xsjsglxt_damage_inspection_record xsjsglxt_damage_inspection_record = new xsjsglxt_damage_inspection_record();
 		xsjsglxt_damage_inspection_record = inspectionIdentificationDao.getDamageInspectionRecordByOwnId(damageInspectionRecord.getXsjsglxt_damage_inspection_record_id());
 		if (xsjsglxt_damage_inspection_record == null)
 			return 3;
 		damageInspectionRecord.setDamage_inspection_record_belong_entrustment_book(xsjsglxt_damage_inspection_record.getDamage_inspection_record_belong_entrustment_book());
+		// 更改图片记录
+
+		for (int k = 0; k < updateDamageFile.length; k++) {
+			if (updateDamageFile[k] != null) {
+				switch (k) {
+				case 0:
+					xsjsglxt_damage_inspection_record = uploadDamage("损伤检验图1", updateDamageFile[k], xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture1(),
+							xsjsglxt_damage_inspection_record, updateDamageFileName[k]);
+					break;
+				case 1:
+					xsjsglxt_damage_inspection_record = uploadDamage("损伤检验图2", updateDamageFile[k], xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture2(),
+							xsjsglxt_damage_inspection_record, updateDamageFileName[k]);
+					break;
+				case 2:
+					xsjsglxt_damage_inspection_record = uploadDamage("损伤检验图3", updateDamageFile[k], xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture3(),
+							xsjsglxt_damage_inspection_record, updateDamageFileName[k]);
+					break;
+				default:
+					break;
+				}
+			}
+		}
 		damageInspectionRecord.setDamage_inspection_record_picture1(xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture1());
 		damageInspectionRecord.setDamage_inspection_record_picture2(xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture2());
 		damageInspectionRecord.setDamage_inspection_record_picture3(xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture3());
@@ -642,12 +722,9 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		params.putAll(mapTranceCheckBook(id));
 		XwpfTUtil xwpfTUtil = new XwpfTUtil();
 		XWPFDocument doc;
-		// String fileNameInResource =
-		// ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt_entrustment_book.docx");
+		String fileNameInResource = ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt_entrustment_book.docx");
 		InputStream is;
-		String f = "F:\\xsjsglxt_entrustment_book.docx";
-		// is = new FileInputStream(fileNameInResource);
-		is = new FileInputStream(f);
+		is = new FileInputStream(fileNameInResource);
 		doc = new XWPFDocument(is);
 		xwpfTUtil.replaceInPara(doc, params);
 		xwpfTUtil.replaceInTable(doc, params);
@@ -788,6 +865,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	 * 
 	 * 
 	 */
+
 	// 不受理委托鉴定告知书
 	public Map<String, Object> mapNotAcceptanceIdentifieder(String id) {
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -1395,11 +1473,9 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		return null;
 	}
 
-	// 上传尸体检验记录表图片
-	// oldFileName需要供给
-	// uploadName 需要供给
-	public int uploadDeath(String uploadName, File file, String oldFileName, xsjsglxt_death_inspection_record deathInspectionRecord, String newFileName) throws IOException {
-
+	// 上传损伤检验记录照片
+	public xsjsglxt_damage_inspection_record uploadDamage(String uploadName, File file, String oldFileName, xsjsglxt_damage_inspection_record damageInspectionRecord,
+			String newFileName) throws IOException {
 		/*
 		 * 获取路径
 		 */
@@ -1412,15 +1488,88 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
-		String path = lj + "xsjsglxt/";
+		String path = lj + "xsjsglxt/damage/";
 		// 如果新文件为空
 		if (file == null) {
 			// 判断旧文件是否处于空的状态
 			// 这里的旧文件是指在数据库中自己查出来的原文件名
-			if ("".equals(oldFileName) || !(oldFileName.trim().length() > 0)) {
-				// 旧文件如果为空,则不用进行任何操作
-				return 1;
+			if (oldFileName != null && oldFileName.trim().length() > 0) {
+				// 如果旧文件存在,则进行操作
+				// 删除旧文件
+				path = path + damageInspectionRecord.getXsjsglxt_damage_inspection_record_id() + "_" + oldFileName;
+				File deleteFile = new File(path);
+				deleteFile.delete();
+				switch (uploadName) {
+				case "损伤检验图1":
+					damageInspectionRecord.setDamage_inspection_record_picture1("");
+					break;
+				case "损伤检验图2":
+					damageInspectionRecord.setDamage_inspection_record_picture2("");
+					break;
+				case "损伤检验图3":
+					damageInspectionRecord.setDamage_inspection_record_picture3("");
+					break;
+				}
+				return damageInspectionRecord;
 			} else {
+				// 旧文件如果为空,则不用进行任何操作
+				return damageInspectionRecord;
+			}
+		} else {
+			// 如果新文件存在
+			// 判断旧文件是否存在
+			if (oldFileName != null && oldFileName.trim().length() > 0) {
+				// 如果旧文件存在
+				// 删除旧文件
+				path = path + damageInspectionRecord.getXsjsglxt_damage_inspection_record_id() + "_" + oldFileName;
+				File deleteFile = new File(path);
+				deleteFile.delete();
+			}
+			// 直接进行上传以及存入
+			// 上传文件
+			path = lj + "xsjsglxt/damage/";
+			path = path + damageInspectionRecord.getXsjsglxt_damage_inspection_record_id() + "_" + newFileName;
+			File newFile = new File(path);
+			FileUtils.copyFile(file, newFile);
+			// 改变字段名
+			switch (uploadName) {
+			case "损伤检验图1":
+				damageInspectionRecord.setDamage_inspection_record_picture1(newFileName);
+				break;
+			case "损伤检验图2":
+				damageInspectionRecord.setDamage_inspection_record_picture2(newFileName);
+				break;
+			case "损伤检验图3":
+				damageInspectionRecord.setDamage_inspection_record_picture3(newFileName);
+				break;
+			}
+			return damageInspectionRecord;
+		}
+	}
+
+	// 上传尸体检验记录表图片
+	// oldFileName需要供给
+	// uploadName 需要供给
+	public xsjsglxt_death_inspection_record uploadDeath(String uploadName, File file, String oldFileName, xsjsglxt_death_inspection_record deathInspectionRecord,
+			String newFileName) throws IOException {
+		/*
+		 * 获取路径
+		 */
+		String lj = "";
+		try {
+			Properties props = new Properties();
+			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
+			lj = props.getProperty("lj");
+		} catch (Exception e) {
+			System.out.println("获取初始路径失败");
+			e.printStackTrace();
+		}
+		String path = lj + "xsjsglxt/death/";
+		// 如果新文件为空
+		if (file == null) {
+			// 判断旧文件是否处于空的状态
+			// 这里的旧文件是指在数据库中自己查出来的原文件名
+			if (oldFileName != null && oldFileName.trim().length() > 0) {
 				// 如果旧文件存在,则进行操作
 				// 删除旧文件
 				path = path + deathInspectionRecord.getXsjsglxt_death_inspection_record_id() + "_" + oldFileName;
@@ -1446,13 +1595,15 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 					deathInspectionRecord.setDeath_inspection_record_anatomy_picture3("");
 					break;
 				}
-				deathInspectionRecord.setDeath_inspection_record_gmt_modified(TeamUtil.getStringSecond());
-				return inspectionIdentificationDao.saveObject(deathInspectionRecord);
+				return deathInspectionRecord;
+			} else {
+				// 旧文件如果为空,则不用进行任何操作
+				return deathInspectionRecord;
 			}
 		} else {
 			// 如果新文件存在
 			// 判断旧文件是否存在
-			if (!("".equals(oldFileName) || !(oldFileName.trim().length() > 0))) {
+			if (oldFileName != null && oldFileName.trim().length() > 0) {
 				// 如果旧文件存在
 				// 删除旧文件
 				path = path + deathInspectionRecord.getXsjsglxt_death_inspection_record_id() + "_" + oldFileName;
@@ -1461,6 +1612,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			}
 			// 直接进行上传以及存入
 			// 上传文件
+			path = lj + "xsjsglxt/death/";
 			path = path + deathInspectionRecord.getXsjsglxt_death_inspection_record_id() + "_" + newFileName;
 			File newFile = new File(path);
 			FileUtils.copyFile(file, newFile);
@@ -1485,8 +1637,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				deathInspectionRecord.setDeath_inspection_record_anatomy_picture3(newFileName);
 				break;
 			}
-			deathInspectionRecord.setDeath_inspection_record_gmt_modified(TeamUtil.getStringSecond());
-			return inspectionIdentificationDao.saveObject(deathInspectionRecord);
+			return deathInspectionRecord;
 		}
 	}
 
@@ -1499,8 +1650,14 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	 * @D p = {"1","2","1","2","1","2"} 表示位置：1，3，5 为空.1 表示存在文件
 	 * @return
 	 */
-	public File[] file(File[] oldFile, String[] p) {
-		File[] file = new File[6];
+	public File[] file(File[] oldFile, String[] p, String type) {
+		int h = 0;
+		if ("death".equals(type)) {
+			h = 6;
+		} else {
+			h = 3;
+		}
+		File[] file = new File[h];
 		for (int i = 0, k = 0; i < p.length; i++) {
 			if ("1".equals(p[i])) {
 				file[i] = oldFile[k];
@@ -1519,8 +1676,14 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	 * @param p
 	 * @return
 	 */
-	public String[] fileName(String[] oldFileName, String[] p) {
-		String[] fileName = new String[6];
+	public String[] fileName(String[] oldFileName, String[] p, String type) {
+		int h = 0;
+		if ("death".equals(type)) {
+			h = 6;
+		} else {
+			h = 3;
+		}
+		String[] fileName = new String[h];
 		for (int i = 0, k = 0; i < p.length; i++) {
 			if ("1".equals(p[i])) {
 				fileName[i] = oldFileName[k];
