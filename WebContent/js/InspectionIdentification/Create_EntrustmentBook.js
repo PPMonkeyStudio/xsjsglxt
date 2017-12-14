@@ -1,18 +1,25 @@
 document.getElementById("button_Create_TranceCheckEntrustmentBook").onclick = function() {
-	Create_TranceCheckEntrustmentBook();
+	Create_EntrustmentBook("痕迹");
+}
+document.getElementById("button_Create_ForensicCheckEntrustmentBook").onclick = function() {
+	Create_EntrustmentBook("法医");
 }
 /*
  * 创建痕迹检验委托书
  */
-function Create_TranceCheckEntrustmentBook() {
+function Create_EntrustmentBook(type) {
 	var jc = $
 			.confirm({
-				title : '痕迹检验鉴定委托书',
+				title : '',
+				type : 'blue',
+				theme : 'modern',
+				columnClass : 'col-md-12',
 				content : '<hr>'
 						+ '<h3>委托人声明</h3>'
 						+ '<h4>本人忠于事实真相，送检的检材/样本/材料真实。如有虚假，愿意承担相关法律责任.</h4>'
 						+ '<hr style="margin:30px 0;">'
-						+ '<form id="form_TranceCheckEntrustmentBook"><table  class="table table-bordered" style="text-align: center;">'
+						+ '<form id="form_EntrustmentBook">'
+						+ '<table  class="table table-bordered" style="text-align: center;">'
 						+ '<tbody>'
 						+ '<tr>'
 						+ '<td><span style="color:#D9534F;">*</span> 负责人：</td><td><input  name="tranceCheckBook.check_entrustment_book_responsible_person" class="form-control"  /></td>'
@@ -23,8 +30,8 @@ function Create_TranceCheckEntrustmentBook() {
 						+ '<table  class="table table-bordered" style="text-align: center;">'
 						+ '<tbody>'
 						+ '<tr><td>送检人</td><td><span style="color:#D9534F;">*</span> 姓名</td><td><span style="color:#D9534F;">*</span> 职务</td><td><span style="color:#D9534F;">*</span> 证件名称及号码</td></tr>'
-						+ '<tr><td>送检人一：</td><td><input name="tranceCheckBook.check_entrustment_book_inspectors1_name"  class="form-control" /></td><td><input name="tranceCheckBook.check_entrustment_book_inspectors1_duty"   class="form-control" /></td><td><input name="check_entrustment_book_inspectors1_jobcard_number"   class="form-control" /></td></tr>'
-						+ '<tr><td>送检人二：</td><td><input name="tranceCheckBook.check_entrustment_book_inspectors2_name"   class="form-control" /></td><td><input name="tranceCheckBook.check_entrustment_book_inspectors2_duty"   class="form-control" /></td><td><input name="check_entrustment_book_inspectors2_jobcard_number"   class="form-control" /></td></tr>'
+						+ '<tr><td>送检人一：</td><td><input name="tranceCheckBook.check_entrustment_book_inspectors1_name"  class="form-control" /></td><td><input name="tranceCheckBook.check_entrustment_book_inspectors1_duty"   class="form-control" /></td><td><input name="tranceCheckBook.check_entrustment_book_inspectors1_jobcard_number"   class="form-control" /></td></tr>'
+						+ '<tr><td>送检人二：</td><td><input name="tranceCheckBook.check_entrustment_book_inspectors2_name"   class="form-control" /></td><td><input name="tranceCheckBook.check_entrustment_book_inspectors2_duty"   class="form-control" /></td><td><input name="tranceCheckBook.check_entrustment_book_inspectors2_jobcard_number"   class="form-control" /></td></tr>'
 						+ '</tbody>'
 						+ '</table>'
 						+ '<table  class="table table-bordered" style="text-align: center;">'
@@ -33,6 +40,19 @@ function Create_TranceCheckEntrustmentBook() {
 						+ '<tr><td><span style="color:#D9534F;">*</span> 联系电话：</td><td><input class="form-control" name="tranceCheckBook.check_entrustment_book_phone" /></td><td><span style="color:#D9534F;">*</span> 传真号码：</td><td><input class="form-control" name="tranceCheckBook.check_entrustment_book_fax_num" /></td></tr>'
 						+ '</tbody>'
 						+ '</table>'
+						+ '<div id="div_ForensicCheckEntrustmentBook">'
+						+ '<h4>被鉴定人的情况：</h4>'
+						+ '<table  class="table table-bordered" style="text-align: center;">'
+						+ '<tbody>'
+						+ '<tr><td><span style="color:#D9534F;">*</span> 姓名：</td><td><input class="form-control" name="tranceCheckBook.check_entrustment_book_entrustmentor_name" /></td><td>性别：</td><td><select class="form-control" name="tranceCheckBook.check_entrustment_book_entrustmentor_sex" >'
+						+ '<option value="男">男</option>'
+						+ '<option value="女">女</option>'
+						+ '</select></td></tr>'
+						+ '<tr><td>单位：</td><td><input class="form-control" name="tranceCheckBook.check_entrustment_book_entrustmentor_unit" /></td><td><span style="color:#D9534F;">*</span> 电话：</td><td><input class="form-control" name="tranceCheckBook.check_entrustment_book_entrustmentor_phone" /></td></tr>'
+						+ '<tr><td>住址：</td><td><input class="form-control" name="tranceCheckBook.check_entrustment_book_entrustmentor_address" /></td><td>年龄：</td><td><input class="form-control" name="tranceCheckBook.check_entrustment_book_entrustmentor_age" /></td></tr>'
+						+ '</tbody>'
+						+ '</table>'
+						+ '</div>'
 						+ '<table  class="table table-bordered" style="text-align: center;">'
 						+ '<tbody>'
 						+ '<tr><td><span style="color:#D9534F;">*</span> 被委托鉴定机构名称：</td>'
@@ -74,14 +94,28 @@ function Create_TranceCheckEntrustmentBook() {
 						+ '<option value="毒物检验鉴定">毒物检验鉴定</option>'
 						+ '<option value="失踪人口查询">失踪人口查询</option>'
 						+ '<option value="其他">其他</option>'
-						+ '</select><input class="form-control" name="tranceCheckBook.check_entrustment_book_entrustment_request_qt"  style="margin:10px 0 0 0;"/></td></tr>'
-						+ '</tbody>' + '</table></form>' + '<br>' + '<hr>',
-				type : 'blue',
-				theme : 'modern',
-				columnClass : 'col-md-12',
+						+ '</select><input class="form-control" id="check_entrustment_book_entrustment_request_qt"  style="margin:10px 0 0 0;"/></td></tr>'
+						+ '</tbody>' + '</table>' + '</form>' + '<hr>',
+
 				onOpenBefore : function() {
+					if (type == '痕迹') {
+						var div_ForensicCheckEntrustmentBook = document
+								.getElementById("div_ForensicCheckEntrustmentBook");
+						div_ForensicCheckEntrustmentBook.parentNode
+								.removeChild(div_ForensicCheckEntrustmentBook);
+						jc.setTitle("痕迹检验鉴定委托书");
+					} else {
+						jc.setTitle("法医检验鉴定委托书");
+					}
 				},
 				onContentReady : function() {
+					/*
+					 * 判断类别
+					 */
+
+					/*
+					 * 
+					 */
 					var date = new Date();
 					document
 							.getElementsByName("tranceCheckBook.check_entrustment_book_inspect_time")[0].value = date
@@ -105,6 +139,13 @@ function Create_TranceCheckEntrustmentBook() {
 					'确认委托' : {
 						btnClass : 'btn-blue',
 						action : function() {
+							/*
+							 * 
+							 */
+							jc.showLoading(false);
+							/*
+							 * 
+							 */
 							var xhr = false;
 							xhr = new XMLHttpRequest();
 							xhr.onreadystatechange = function() {
@@ -118,22 +159,31 @@ function Create_TranceCheckEntrustmentBook() {
 											List_EntrustmentBook(1);
 										} else {
 											toastr.error("填写格式错误");
+											/*
+											 * 
+											 */
+											jc.hideLoading(true);
+											/*
+											 * 
+											 */
 										}
 									} else {
 										toastr.error(xhr.status);
+										/*
+										 * 
+										 */
+										jc.hideLoading(true);
+										/*
+										 * 
+										 */
 									}
 								}
 							}
 							/*
 							 * 
 							 */
-							var formData = new FormData(
-									document
-											.getElementById("form_TranceCheckEntrustmentBook"));
-							/*
-							 * 
-							 */
-
+							var formData = new FormData(document
+									.getElementById("form_EntrustmentBook"));
 							/*
 							 * 鉴定要求
 							 */
@@ -143,15 +193,22 @@ function Create_TranceCheckEntrustmentBook() {
 										.set(
 												"tranceCheckBook.check_entrustment_book_entrustment_request",
 												document
-														.getElementsByName("tranceCheckBook.check_entrustment_book_entrustment_request_qt")[0]);
+														.getElementById("check_entrustment_book_entrustment_request_qt").value);
 							}
 							/*
 							 * 
 							 */
-							formData
-									.append(
-											"tranceCheckBook.check_entrustment_book_type",
-											'痕迹');
+							if (type == '痕迹') {
+								formData
+										.append(
+												"tranceCheckBook.check_entrustment_book_type",
+												'痕迹');
+							} else {
+								formData
+										.append(
+												"tranceCheckBook.check_entrustment_book_type",
+												'法医');
+							}
 							/*
 							 * 
 							 */

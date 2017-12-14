@@ -2,13 +2,11 @@ function Preview_AppraisalLetter(obj) {
 	var json_list = EntrustmentBook_json;
 	var jc = $
 			.confirm({
-				theme : 'Modern',
 				icon : 'fa fa-file-text-o',
 				title : '鉴定书',
 				content : '',
 				type : 'green',
 				columnClass : 'col-md-12',
-				theme : 'modern',
 				onOpenBefore : function() {
 				},
 				onContentReady : function() {
@@ -19,10 +17,10 @@ function Preview_AppraisalLetter(obj) {
 					}
 					var con = '<div style="margin:0 20px 0 0;"><hr>'
 							+ '<h3  style="text-align: right;">编号：【'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_acceptance_num
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.appraisal_letter_num
 									.substring(0, 4)
 							+ '】第'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_acceptance_num
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.appraisal_letter_num
 									.substring(4)
 							+ '号</h3>'
 							+ '<h3  style="text-align: left;">'
@@ -76,7 +74,13 @@ function Preview_AppraisalLetter(obj) {
 											"&nbsp;")
 							+ '</p>'
 							+ '</h3>'
-							+ '<hr></div>';
+							+ '<br>'
+							+ '<h3  style="text-align: right;">'
+							+ '<p>鉴定人：法医师 龙建平</p>'
+							+ '<p>法医师 龙建平</p>'
+							+ '<p>授权签字人 ：副主任法医师 刘蓉</p>'
+							+ '<p>2017年05月21日</p>'
+							+ '</h3>' + '<hr></div>';
 					jc.setContentAppend(con);
 				},
 				buttons : {
@@ -89,7 +93,7 @@ function Preview_AppraisalLetter(obj) {
 					'修改' : {
 						btnClass : 'btn-orange',
 						action : function() {
-							return false;
+							Update_AppraisalLetter(obj);
 						}
 					},
 					'返回' : function() {

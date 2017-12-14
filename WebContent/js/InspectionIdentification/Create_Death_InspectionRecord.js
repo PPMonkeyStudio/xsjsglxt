@@ -3,6 +3,11 @@
  */
 function Create_Death_InspectionRecord(obj) {
 	var json_list = EntrustmentBook_json;
+	for (var num = 0; num < json_list.listEntrustmentBookManagementDTO.length; num++) {
+		if (obj.id == json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id) {
+			break;
+		}
+	}
 	var jc = $
 			.confirm({
 				icon : 'fa fa-pencil-square-o',
@@ -21,7 +26,9 @@ function Create_Death_InspectionRecord(obj) {
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>死者姓名：</td>'
-						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_death_name"  /></td>'
+						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_death_name"  value="'
+						+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_name
+						+ '"/></td>'
 						+ '<td>性别：</td>'
 						+ '<td><select class="form-control" name="deathInspectionRecord.death_inspection_record_death_sex" >'
 						+ '<option value="男">男</option>'
@@ -38,7 +45,9 @@ function Create_Death_InspectionRecord(obj) {
 						+ '<td>服务处所：</td>'
 						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_unit_service"  /></td>'
 						+ '<td>住址：</td>'
-						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_address"  /></td>'
+						+ '<td><input  class="form-control" name="deathInspectionRecord.death_inspection_record_address" value="'
+						+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_address
+						+ '" /></td>'
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>检验人：</td>'
@@ -351,12 +360,18 @@ function Create_Death_InspectionRecord(obj) {
 					/*
 					 * 
 					 */
-
 				},
 				buttons : {
 					'记录' : {
 						btnClass : 'btn-blue',
 						action : function() {
+							/*
+							 * 
+							 */
+							jc.showLoading(false);
+							/*
+							 * 
+							 */
 							addDeathInspectionRecord(jc);
 						}
 					},
@@ -380,9 +395,23 @@ function addDeathInspectionRecord(jc) {
 					List_EntrustmentBook(1);
 				} else {
 					toastr.error("填写格式错误");
+					/*
+					 * 
+					 */
+					jc.hideLoading(true);
+					/*
+					 * 
+					 */
 				}
 			} else {
 				toastr.error(xhr.status);
+				/*
+				 * 
+				 */
+				jc.hideLoading(true);
+				/*
+				 * 
+				 */
 			}
 		}
 	}
@@ -400,41 +429,6 @@ function addDeathInspectionRecord(jc) {
 			.getElementById("create_death_inspection_record_autopsy_table_test_picture2");
 	var create_death_inspection_record_autopsy_table_test_picture3 = document
 			.getElementById("create_death_inspection_record_autopsy_table_test_picture3");
-
-	if (create_death_inspection_record_autopsy_table_test_picture1.files[0] != null) {
-		formData
-				.append(
-						"death",
-						create_death_inspection_record_autopsy_table_test_picture1.files[0]);
-	} else {
-		formData.append("death", null);
-	}
-	if (create_death_inspection_record_autopsy_table_test_picture2.files[0] != null) {
-		formData
-				.append(
-						"death",
-						create_death_inspection_record_autopsy_table_test_picture2.files[0]);
-	} else {
-		formData.append("death", null);
-	}
-	//
-	if (create_death_inspection_record_autopsy_table_test_picture3.files[0] != null) {
-		formData
-				.append(
-						"death",
-						create_death_inspection_record_autopsy_table_test_picture3.files[0]);
-	} else {
-		formData.append("death", null);
-	}
-
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
 	var create_death_inspection_record_anatomy_picture1 = document
 			.getElementById("create_death_inspection_record_anatomy_picture1");
 	var create_death_inspection_record_anatomy_picture2 = document
@@ -442,26 +436,75 @@ function addDeathInspectionRecord(jc) {
 	var create_death_inspection_record_anatomy_picture3 = document
 			.getElementById("create_death_inspection_record_anatomy_picture3");
 
-	if (create_death_inspection_record_anatomy_picture1.files[0] != null) {
-		formData.append("death",
-				create_death_inspection_record_anatomy_picture1.files[0]);
+	if (create_death_inspection_record_autopsy_table_test_picture1.files[0] == null
+			&& create_death_inspection_record_autopsy_table_test_picture2.files[0] == null
+			&& create_death_inspection_record_autopsy_table_test_picture3.files[0] == null
+			&& create_death_inspection_record_anatomy_picture1.files[0] == null
+			&& create_death_inspection_record_anatomy_picture2.files[0] == null
+			&& create_death_inspection_record_anatomy_picture3.files[0] == null) {
 	} else {
-		formData.append("death", null);
+		if (create_death_inspection_record_autopsy_table_test_picture1.files[0] != null) {
+			formData
+					.append(
+							"death",
+							create_death_inspection_record_autopsy_table_test_picture1.files[0]);
+			formData.append("positionFile", "1");
+		} else {
+			formData.append("death", null);
+			formData.append("positionFile", "2");
+		}
+		if (create_death_inspection_record_autopsy_table_test_picture2.files[0] != null) {
+			formData
+					.append(
+							"death",
+							create_death_inspection_record_autopsy_table_test_picture2.files[0]);
+			formData.append("positionFile", "1");
+		} else {
+			formData.append("death", null);
+			formData.append("positionFile", "2");
+		}
+		//
+		if (create_death_inspection_record_autopsy_table_test_picture3.files[0] != null) {
+			formData
+					.append(
+							"death",
+							create_death_inspection_record_autopsy_table_test_picture3.files[0]);
+			formData.append("positionFile", "1");
+		} else {
+			formData.append("death", null);
+			formData.append("positionFile", "2");
+		}
+
+		//
+
+		if (create_death_inspection_record_anatomy_picture1.files[0] != null) {
+			formData.append("death",
+					create_death_inspection_record_anatomy_picture1.files[0]);
+			formData.append("positionFile", "1");
+		} else {
+			formData.append("death", null);
+			formData.append("positionFile", "2");
+		}
+		//
+		if (create_death_inspection_record_anatomy_picture2.files[0] != null) {
+			formData.append("death",
+					create_death_inspection_record_anatomy_picture2.files[0]);
+			formData.append("positionFile", "1");
+		} else {
+			formData.append("death", null);
+			formData.append("positionFile", "2");
+		}
+		//
+		if (create_death_inspection_record_anatomy_picture3.files[0] != null) {
+			formData.append("death",
+					create_death_inspection_record_anatomy_picture3.files[0]);
+			formData.append("positionFile", "1");
+		} else {
+			formData.append("death", null);
+			formData.append("positionFile", "2");
+		}
 	}
-	//
-	if (create_death_inspection_record_anatomy_picture2.files[0] != null) {
-		formData.append("death",
-				create_death_inspection_record_anatomy_picture2.files[0]);
-	} else {
-		formData.append("death", null);
-	}
-	//
-	if (create_death_inspection_record_anatomy_picture3.files[0] != null) {
-		formData.append("death",
-				create_death_inspection_record_anatomy_picture3.files[0]);
-	} else {
-		formData.append("death", null);
-	}
+
 	/*
 	 * 
 	 */
