@@ -11,6 +11,7 @@ import com.xsjsglxt.dao.Case.BreakecaseDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecase;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone;
+import com.xsjsglxt.domain.DO.xsjsglxt_picture;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
 import com.xsjsglxt.domain.VO.Case.page_list_BreakecaseInformationVO;
 
@@ -225,5 +226,66 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		xsjsglxt_breakecase   breakecase = (xsjsglxt_breakecase) query.uniqueResult();
 
 		return breakecase;
+	}
+
+	@Override
+	public void updateCase(xsjsglxt_case case1) {
+		// TODO Auto-generated method stub
+		try {
+			getSession().saveOrUpdate(case1);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public xsjsglxt_breakecase getByID(String xsjsglxt_case_id) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_breakecase breakecase where breakecase.breakecase_case='" + xsjsglxt_case_id + "'";
+
+		Query query = session.createQuery(hql);
+
+		xsjsglxt_breakecase	breakecase = (xsjsglxt_breakecase) query.uniqueResult();
+
+		return breakecase;
+	}
+
+	@Override
+	public void updateBreakcase(xsjsglxt_breakecase breakecase) {
+		// TODO Auto-generated method stub
+		try {
+			getSession().saveOrUpdate(breakecase);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public xsjsglxt_snece getByCID(String xsjsglxt_case_id) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_snece snece where snece.snece_case='" + xsjsglxt_case_id + "'";
+
+		Query query = session.createQuery(hql);
+
+		xsjsglxt_snece	snece = (xsjsglxt_snece) query.uniqueResult();
+
+		return snece;
+	}
+
+	@Override
+	public void updateSence(xsjsglxt_snece sence) {
+		// TODO Auto-generated method stub
+		try {
+			getSession().saveOrUpdate(sence);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

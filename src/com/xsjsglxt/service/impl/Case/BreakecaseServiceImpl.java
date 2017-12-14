@@ -98,4 +98,33 @@ public BreakecaseInformationDTO BreakecaseInformationOne(xsjsglxt_case case1) {
 	return breakecaseInformationDTO;
 }
 
+@Override
+public void updateCase(xsjsglxt_case case1) {
+	// TODO Auto-generated method stub
+	case1.setCase_gmt_modified(TeamUtil.getStringSecond());
+	breakecaseDao.updateCase(case1);
+}
+
+@Override
+public void updateBreakcase(xsjsglxt_breakecase breakecase, String xsjsglxt_case_id) {
+	// TODO Auto-generated method stub
+	xsjsglxt_breakecase  oldbreakecase=breakecaseDao.getByID(xsjsglxt_case_id);
+	breakecase.setXsjsglxt_breakecase_id(oldbreakecase.getXsjsglxt_breakecase_id());
+	breakecase.setBreakecase_case(oldbreakecase.getBreakecase_case());
+	breakecase.setBreakecase_gmt_create(oldbreakecase.getBreakecase_gmt_create());
+	breakecase.setBreakecase_gmt_modified(TeamUtil.getStringSecond());
+	breakecaseDao.updateBreakcase(breakecase);
+}
+
+@Override
+public void updateSence(xsjsglxt_snece sence, String xsjsglxt_case_id) {
+	// TODO Auto-generated method stub
+	xsjsglxt_snece oldsence=breakecaseDao.getByCID(xsjsglxt_case_id);
+	sence.setXsjsglxt_snece_id(oldsence.getXsjsglxt_snece_id());
+	sence.setSnece_case(oldsence.getSnece_case());
+	sence.setSnece_gmt_create(oldsence.getSnece_gmt_create());
+	sence.setSnece_gmt_modified(TeamUtil.getStringSecond());
+	breakecaseDao.updateSence(sence);
+}
+
 }

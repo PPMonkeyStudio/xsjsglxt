@@ -87,5 +87,17 @@ public void ListHandleInformationByPageAndSearch() throws IOException{
 	public void setHttp_request(HttpServletRequest http_request) {
 		this.http_request = http_request;
 	}
+	public xsjsglxt_handle getHandle() {
+		return handle;
+	}
+	public void setHandle(xsjsglxt_handle handle) {
+		this.handle = handle;
+	}
+	public page_list_HandleInformationVO getPage_list_HandleInformation() {
+		return page_list_HandleInformation;
+	}
+	public void setPage_list_HandleInformation(page_list_HandleInformationVO page_list_HandleInformation) {
+		this.page_list_HandleInformation = page_list_HandleInformation;
+	}
 
 }

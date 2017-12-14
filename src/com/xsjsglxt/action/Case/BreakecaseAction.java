@@ -13,6 +13,7 @@ import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecase;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
+import com.xsjsglxt.domain.DO.xsjsglxt_snece;
 import com.xsjsglxt.domain.DTO.Case.BreakecaseInformationDTO;
 import com.xsjsglxt.domain.VO.Case.page_list_BreakecaseInformationVO;
 import com.xsjsglxt.service.Case.BreakecaseService;
@@ -21,6 +22,7 @@ public class BreakecaseAction extends ActionSupport implements ServletResponseAw
 	private  BreakecaseService breakecaseService;
 	private xsjsglxt_breakecase breakecase ;
 	private xsjsglxt_case case1;
+	private xsjsglxt_snece sence;
 	private HttpServletResponse http_response;
 
 	private HttpServletRequest http_request;
@@ -83,7 +85,19 @@ public class BreakecaseAction extends ActionSupport implements ServletResponseAw
 
 		http_response.getWriter().write(gson.toJson(breakecaseInformationDTO));
 	}
-	
+	/*
+	 *修改信息 
+	 */
+	public void updateBreakcase() throws IOException{
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
+		Gson gson = gsonBuilder.create();
+		breakecaseService.updateCase(case1);
+		breakecaseService.updateBreakcase(breakecase,case1.getXsjsglxt_case_id());
+		breakecaseService.updateSence(sence,case1.getXsjsglxt_case_id());
+		http_response.setContentType("text/html;charset=utf-8");
+		http_response.getWriter().write(gson.toJson("success"));
+	}
 	@Override
 	public void setServletRequest(HttpServletRequest arg0) {
 		// TODO Auto-generated method stub
@@ -118,6 +132,46 @@ public class BreakecaseAction extends ActionSupport implements ServletResponseAw
 
 	public void setHttp_request(HttpServletRequest http_request) {
 		this.http_request = http_request;
+	}
+
+	public xsjsglxt_breakecase getBreakecase() {
+		return breakecase;
+	}
+
+	public void setBreakecase(xsjsglxt_breakecase breakecase) {
+		this.breakecase = breakecase;
+	}
+
+	public xsjsglxt_case getCase1() {
+		return case1;
+	}
+
+	public void setCase1(xsjsglxt_case case1) {
+		this.case1 = case1;
+	}
+
+	public xsjsglxt_snece getSence() {
+		return sence;
+	}
+
+	public void setSence(xsjsglxt_snece sence) {
+		this.sence = sence;
+	}
+
+	public BreakecaseInformationDTO getBreakecaseInformationDTO() {
+		return breakecaseInformationDTO;
+	}
+
+	public void setBreakecaseInformationDTO(BreakecaseInformationDTO breakecaseInformationDTO) {
+		this.breakecaseInformationDTO = breakecaseInformationDTO;
+	}
+
+	public page_list_BreakecaseInformationVO getPage_list_BreakecaseInformation() {
+		return page_list_BreakecaseInformation;
+	}
+
+	public void setPage_list_BreakecaseInformation(page_list_BreakecaseInformationVO page_list_BreakecaseInformation) {
+		this.page_list_BreakecaseInformation = page_list_BreakecaseInformation;
 	}
 
 }
