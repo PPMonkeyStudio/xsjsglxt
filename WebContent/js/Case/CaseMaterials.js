@@ -118,7 +118,6 @@ function lost_chose(opt_obj) {
 var ViewSingleMessage = function() {
 	var str = '';
 	var but_obj = $(this);
-	//console.log($(this).attr('id'));
 	switch ($(this).attr('id')) {
 	//--------丢失物品
 	case 'lost_view':
@@ -130,7 +129,7 @@ var ViewSingleMessage = function() {
 		$.post('/xsjsglxt/case/Lost_LostInformationOne', {
 			"lost.xsjsglxt_lost_id" : but_obj.siblings().val()
 		}, function(xhr_data) {
-			str += '<table  align="center" class="table table-hover"><tbody><tr>';
+			str += '<table align="center" class="table table-hover"><tbody><tr>';
 			str += '<td>所属案件</td><td><input style="witdh:70%;" class="form-control" name="" type="text" value="' + xhr_data.case1.case_name + '" /></td>';
 			str += '</tr>';
 			str += '<tr>';
@@ -140,7 +139,7 @@ var ViewSingleMessage = function() {
 			str += '<td>备注</td><td><input style="witdh:70%;" class="form-control" name="" type="text" value="' + xhr_data.lost.lost_remarks + '"  /></td>';
 			str += '</tr></tbody></table>';
 			$('#lost .panel-body').append(str);
-			$('.btn-operation').text('确认修改').click(modification('/xsjsglxt/case/Lost_ListLostInformationByPageAndSearch', ''));
+			$('.btn-operation').text('确认修改').click(modification('/xsjsglxt/case/Lost_updateLost', $('form').serialize()));
 
 			$('#lost').modal('show');
 		}, 'json');

@@ -167,7 +167,9 @@
 					<h4 class="modal-title" id="modal-title"></h4>
 				</div>
 				<div class="modal-body">
-					<div class="panel-body"></div>
+					<form action="">
+						<div class="panel-body"></div>
+					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary btn-operation"></button>
