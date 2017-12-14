@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.Case.ImageDao;
+import com.xsjsglxt.domain.DO.xsjsglxt_briefdetails;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_image;
 import com.xsjsglxt.domain.DO.xsjsglxt_picture;
@@ -239,5 +240,42 @@ public class ImageDaoImpl implements ImageDao {
 		xsjsglxt_case	case1 = (xsjsglxt_case) query.uniqueResult();
 
 		return case1;
+	}
+
+	@Override
+	public void updateImage(xsjsglxt_image image) {
+		// TODO Auto-generated method stub
+		try {
+			getSession().saveOrUpdate(image);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public xsjsglxt_picture getImageBypictureId(String xsjsglxt_image_id) {
+		// TODO Auto-generated method stub
+		
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_picture picture where picture.picture_image='" + xsjsglxt_image_id + "'";
+
+		Query query = session.createQuery(hql);
+
+		xsjsglxt_picture	picture = (xsjsglxt_picture) query.uniqueResult();
+
+		return picture;
+	}
+
+	@Override
+	public void updatePicture(xsjsglxt_picture picture) {
+		// TODO Auto-generated method stub
+		try {
+			getSession().saveOrUpdate(picture);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

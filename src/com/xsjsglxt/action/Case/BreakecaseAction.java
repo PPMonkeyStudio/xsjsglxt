@@ -36,8 +36,6 @@ public class BreakecaseAction extends ActionSupport implements ServletResponseAw
 		return "page_BreakCaseList";
 	}
 	
-	
-	
 	/*
 	 * 保存破案信息
 	 */

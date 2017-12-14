@@ -143,4 +143,23 @@ public ImageInformationDTO ImageInformationOne(xsjsglxt_picture picture) {
 
 }
 
+@Override
+public void updateImage(xsjsglxt_image image) {
+	// TODO Auto-generated method stub
+	image.setImage_gmt_modified(TeamUtil.getStringSecond());
+	imageDao.updateImage(image);
+}
+
+@Override
+public void updatePicture(xsjsglxt_picture picture, String xsjsglxt_image_id) {
+	// TODO Auto-generated method stub
+	xsjsglxt_picture oldpicture=imageDao.getImageBypictureId(xsjsglxt_image_id);
+	picture.setXsjsglxt_picture_id(oldpicture.getXsjsglxt_picture_id());
+	picture.setPicture_case(oldpicture.getPicture_case());
+	picture.setPicture_gmt_create(oldpicture.getPicture_gmt_create());
+	picture.setPicture_image(oldpicture.getPicture_image());
+	picture.setPicture_gmt_modified(TeamUtil.getStringSecond());
+	imageDao.updatePicture(picture);
+}
+
 }

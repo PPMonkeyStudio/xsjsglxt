@@ -31,4 +31,10 @@ public xsjsglxt_image getImageBypictureId(xsjsglxt_picture picture);
 
 public xsjsglxt_case getCaseBypictureId(xsjsglxt_picture picture);
 
+public void updateImage(xsjsglxt_image image);
+
+public xsjsglxt_picture getImageBypictureId(String xsjsglxt_image_id);
+
+public void updatePicture(xsjsglxt_picture picture);
+
 }
