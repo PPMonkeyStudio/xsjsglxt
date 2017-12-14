@@ -315,6 +315,12 @@ function Update_Death_InspectionRecord(obj) {
 									&& create_death_inspection_record_anatomy_picture1.files[0] == null
 									&& create_death_inspection_record_anatomy_picture2.files[0] == null
 									&& create_death_inspection_record_anatomy_picture3.files[0] == null) {
+								formData.append("positionFile", "2");
+								formData.append("positionFile", "2");
+								formData.append("positionFile", "2");
+								formData.append("positionFile", "2");
+								formData.append("positionFile", "2");
+								formData.append("positionFile", "2");
 							} else {
 								if (create_death_inspection_record_autopsy_table_test_picture1.files[0] != null) {
 									formData

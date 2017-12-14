@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.apache.struts2.ServletActionContext;
+
 public class ImgAction {
 	private String imgName;
 	private InputStream inputStream;
@@ -25,17 +27,17 @@ public class ImgAction {
 			e.printStackTrace();
 		}
 		String path = "";
-		if (imgName.equals("") || imgName == null) {
-			path = "/xsjsglxt/img/default.png";
+		if (("_undefined").equals(imgName.substring(imgName.indexOf("_"))) || imgName == null) {
+			path = ServletActionContext.getServletContext().getRealPath("/img/default.png");
 		} else {
-			path = lj + "xsjsglxt/" + imgName;
+			path = lj + "xsjsglxt/death/" + imgName;
 		}
 		File file = new File(path);
 		try {
 			inputStream = new FileInputStream(file);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			file = new File("/xsjsglxt/img/notfound.png");
+			file = new File(ServletActionContext.getServletContext().getRealPath("/img/notfound.png"));
 			try {
 				inputStream = new FileInputStream(file);
 			} catch (FileNotFoundException e1) {

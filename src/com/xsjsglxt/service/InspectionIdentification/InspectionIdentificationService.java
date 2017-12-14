@@ -29,13 +29,13 @@ public interface InspectionIdentificationService {
 
 	public int saveDeathInspectionRecord(xsjsglxt_death_inspection_record deathInspectionRecord, File[] file, String[] fileName, String[] positionFile) throws IOException;
 
-	public int saveDamageInspectionRecord(xsjsglxt_damage_inspection_record damageInspectionRecord);
+	public int saveDamageInspectionRecord(xsjsglxt_damage_inspection_record damageInspectionRecord, File[] file, String[] fileName, String[] positionFile) throws IOException;
 
 	public int saveAppraisalLetter(xsjsglxt_appraisal_letter appraisalLetter);
 
 	public int updateTranceCheckBook(xsjsglxt_check_entrustment_book tranceCheckBook);
 
-	public int updateDamageInspectionRecord(xsjsglxt_damage_inspection_record damageInspectionRecord);
+	public int updateDamageInspectionRecord(xsjsglxt_damage_inspection_record damageInspectionRecord, File[] updateDamageFile, String[] updateDamageFileName, String[] positionFile) throws IOException;
 
 	public int updateIdentifiederCaseConfirmBook(xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook);
 

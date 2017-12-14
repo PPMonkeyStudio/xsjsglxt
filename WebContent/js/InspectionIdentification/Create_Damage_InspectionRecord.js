@@ -182,7 +182,9 @@ function Create_Damage_InspectionRecord(obj) {
 									.getElementById("create_damage_inspection_record_picture2");
 							var create_damage_inspection_record_picture3 = document
 									.getElementById("create_damage_inspection_record_picture3");
-
+							formData.append("positionFile", "2");
+							formData.append("positionFile", "2");
+							formData.append("positionFile", "2");
 							if (create_damage_inspection_record_picture1.files[0] != null) {
 								formData
 										.append(

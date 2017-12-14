@@ -406,7 +406,7 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 	public xsjsglxt_death_inspection_record getDeathInspectionRecordOwnId(String xsjsglxt_death_inspection_record_id) {
 		xsjsglxt_death_inspection_record xsjsglxt_death_inspection_record = new xsjsglxt_death_inspection_record();
 		Session session = getSession();
-		String hql = "from xsjsglxt_death_inspection_record where xsjsglxt_inspection_record_id='"
+		String hql = "from xsjsglxt_death_inspection_record where xsjsglxt_death_inspection_record_id='"
 				+ xsjsglxt_death_inspection_record_id + "'";
 		Query query = session.createQuery(hql);
 		xsjsglxt_death_inspection_record = (xsjsglxt_death_inspection_record) query.uniqueResult();

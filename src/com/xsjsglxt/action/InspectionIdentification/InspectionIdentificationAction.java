@@ -67,6 +67,13 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	// 2 ： 无
 	private String[] positionFile;
 
+	//
+	private File[] damage;
+	//
+	private String[] damageFileName;
+	//
+	private String[] damageContentType;
+
 	/**
 	 * 
 	 * 
@@ -157,8 +164,6 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void addDeathInspectionRecord() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			System.out.println("ggg");
-			System.out.println("fff:" + deathFileName.length);
 			response.getWriter().write("" + inspectionIdentificationService
 					.saveDeathInspectionRecord(deathInspectionRecord, death, deathFileName, positionFile));
 		} catch (IOException e) {
@@ -171,9 +176,8 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void addDamageInspectionRecord() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			System.out.println("lplp:" + damageInspectionRecord.getDamage_inspection_record_belong_entrustment_book());
 			response.getWriter()
-					.write("" + inspectionIdentificationService.saveDamageInspectionRecord(damageInspectionRecord));
+					.write("" + inspectionIdentificationService.saveDamageInspectionRecord(damageInspectionRecord,damage,damageFileName,positionFile));
 		} catch (IOException e) {
 			System.out.println("填写损伤检验记录表报错");
 			e.printStackTrace();
@@ -255,7 +259,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 			response.setContentType("text/html;charset=utf-8");
 			System.out.println("lplp:" + damageInspectionRecord.getDamage_inspection_record_belong_entrustment_book());
 			response.getWriter()
-					.write("" + inspectionIdentificationService.updateDamageInspectionRecord(damageInspectionRecord));
+					.write("" + inspectionIdentificationService.updateDamageInspectionRecord(damageInspectionRecord,damage,damageFileName,positionFile));
 		} catch (IOException e) {
 			System.out.println("更改损伤检验记录表报错");
 			e.printStackTrace();
@@ -499,6 +503,30 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 
 	public void setPositionFile(String[] positionFile) {
 		this.positionFile = positionFile;
+	}
+
+	public File[] getDamage() {
+		return damage;
+	}
+
+	public String[] getDamageFileName() {
+		return damageFileName;
+	}
+
+	public String[] getDamageContentType() {
+		return damageContentType;
+	}
+
+	public void setDamage(File[] damage) {
+		this.damage = damage;
+	}
+
+	public void setDamageFileName(String[] damageFileName) {
+		this.damageFileName = damageFileName;
+	}
+
+	public void setDamageContentType(String[] damageContentType) {
+		this.damageContentType = damageContentType;
 	}
 
 }
