@@ -80,5 +80,13 @@ public xsjsglxt_resevidence getResevidenceByCaseId(xsjsglxt_case case1);
 public xsjsglxt_lost_computer getLost_computerByCaseId(xsjsglxt_case case1);
 
 public xsjsglxt_picture getPicturtByCaseId(xsjsglxt_case case1);
+/*
+ * 修改信息
+ */
+public void updateSence(xsjsglxt_snece sence);
+public void updateCase(xsjsglxt_case case1);
+public void updateBriefdetails(xsjsglxt_briefdetails briefdetails);
+public xsjsglxt_snece getSenceById(String case1);
+public xsjsglxt_briefdetails getBriefdetailsById(String case1);
 
 }

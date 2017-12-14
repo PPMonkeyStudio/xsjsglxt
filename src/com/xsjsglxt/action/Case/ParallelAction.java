@@ -83,7 +83,7 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 	}
 	/*
 	 * 获得串并编号
-	 * 
+	 *
 	 */
 	public void getParallelNum() throws IOException {
 		GsonBuilder gsonBuilder = new GsonBuilder();
@@ -93,7 +93,17 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 		http_response.setContentType("text/html;charset=utf-8");
 		http_response.getWriter().write(gson.toJson(ParallelNum));
 	}   
-	
+	/*
+	 *修改串并案件的信息 
+	 */
+	public void updateParallel() throws IOException{
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
+		Gson gson = gsonBuilder.create();
+		parallelService.updateParallel(parallel);
+		http_response.setContentType("text/html;charset=utf-8");
+		http_response.getWriter().write(gson.toJson("success"));
+	}
 	@Override
 	public void setServletResponse(HttpServletResponse arg0) {
 		// TODO Auto-generated method stub

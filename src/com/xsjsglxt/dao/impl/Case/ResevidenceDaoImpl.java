@@ -111,13 +111,13 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 	public xsjsglxt_case getCaseByxsjsglxt_resevidence_id(xsjsglxt_resevidence resevidence) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
-		String hql = "from xsjsglxt_case Case where Case.xsjsglxt_case_id='" + resevidence.getResevidence_case() + "'";
+		String hql = "from xsjsglxt_case case1 where case1.xsjsglxt_case_id='" + resevidence.getResevidence_case() + "'";
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_case Case = (xsjsglxt_case) query.uniqueResult();
+		xsjsglxt_case case1 = (xsjsglxt_case) query.uniqueResult();
 
-		return Case;
+		return case1;
 	}
 
 	@Override
@@ -246,5 +246,16 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 		Query query = session.createQuery(hql);
 		query.executeUpdate();
        return true;
+	}
+
+	@Override
+	public void updateResevidenceIn(xsjsglxt_resevidence resevidence) {
+		// TODO Auto-generated method stub
+		try {
+			getSession().saveOrUpdate(resevidence);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

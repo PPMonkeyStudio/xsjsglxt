@@ -26,7 +26,9 @@ public ResevidenceDao getResevidenceDao() {
 public void setResevidenceDao(ResevidenceDao resevidenceDao) {
 	this.resevidenceDao = resevidenceDao;
 }
-
+/*
+ *ä¿å­˜ç‰©è¯åŸºæœ¬ä¿¡æ¯ 
+ */
 @Override
 public void saveResevidence(xsjsglxt_resevidence resevidence) {
 	// TODO Auto-generated method stub
@@ -35,7 +37,9 @@ public void saveResevidence(xsjsglxt_resevidence resevidence) {
 	resevidence.setResevidence_gmt_modified(resevidence.getResevidence_gmt_create());
 	resevidenceDao.save(resevidence);
 }
-
+/*
+ *ç‰©è¯çš„åˆ—è¡¨ä¿¡æ¯ 
+ */
 @Override
 public page_list_ResevidenceInformationVO VO_Resevidenceformation_By_PageAndSearch(
 		page_list_ResevidenceInformationVO page_list_ResevidenceInformation) {
@@ -47,7 +51,7 @@ public page_list_ResevidenceInformationVO VO_Resevidenceformation_By_PageAndSear
 	xsjsglxt_case case1;
 	xsjsglxt_snece snece;
 	xsjsglxt_circulation circulation;
-	// »ñÈ¡É¸Ñ¡ºóËùÓĞµÄ¼ÇÂ¼
+	// ç¬¦åˆç­›é€‰æ¡ä»¶çš„ç‰©è¯è®°å½•æ•°
 	int i = resevidenceDao.getCountResevidenceInformationByPage(page_list_ResevidenceInformation);
 	page_list_ResevidenceInformation.setTotalRecords(i);
 	page_list_ResevidenceInformation.setTotalPages(((i - 1) / page_list_ResevidenceInformation.getPageSize()) + 1);
@@ -61,7 +65,7 @@ public page_list_ResevidenceInformationVO VO_Resevidenceformation_By_PageAndSear
 	} else {
 		page_list_ResevidenceInformation.setHaveNextPage(true);
 	}
-	// ¸ù¾İÉ¸Ñ¡Ìõ¼ş»ñÈ¡listÊı¾İ
+	// ç¬¦åˆç­›é€‰æ¡ä»¶çš„ç‰©è¯çš„è®°å½•
 	resevidenceList = resevidenceDao.getListResevidenceInformatioByPage(page_list_ResevidenceInformation);
 	for (xsjsglxt_resevidence resevidence : resevidenceList) {
 		//1
@@ -92,8 +96,7 @@ public ResevidenceInformationDTO ResevidenceInformationOne(xsjsglxt_resevidence 
 	return resevidenceInformationDTO;
 }
 /*
- * (non-Javadoc)±£´æÎïÖ¤Á÷×ªĞÅÏ¢
- * @see com.xsjsglxt.service.Case.ResevidenceService#saveCirculation(com.xsjsglxt.domain.DO.xsjsglxt_circulation)
+ *ä¿å­˜ç‰©è¯æµè½¬ä¿¡æ¯ 
  */
 @Override
 public void saveCirculation(xsjsglxt_circulation circulation) {
@@ -104,8 +107,7 @@ public void saveCirculation(xsjsglxt_circulation circulation) {
 	resevidenceDao.saveCirculation(circulation);
 }
 /*
- * (non-Javadoc)É¾³ıÎïÖ¤
- * @see com.xsjsglxt.service.Case.ResevidenceService#removeResevidenceInformationList(java.util.List)
+ * åˆ é™¤ç‰©è¯ä¿¡æ¯
  */
 
 @Override
@@ -114,11 +116,20 @@ public boolean removeResevidenceInformationList(List<String> useResevidenceInfor
 	boolean flag = false;
 	for (String Resevidence_id : useResevidenceInformationNumList) {
 		xsjsglxt_resevidence resevidence = resevidenceDao.getByResevidenceNum(Resevidence_id);
-		flag = resevidenceDao.deleteResevidenceById(resevidence.getXsjsglxt_resevidence_id());// ÎïÖ¤
-		flag = resevidenceDao.deleteCirculationById(resevidence.getXsjsglxt_resevidence_id());// ÎïÖ¤Á÷×ªĞÅÏ¢
+		flag = resevidenceDao.deleteResevidenceById(resevidence.getXsjsglxt_resevidence_id());// ï¿½ï¿½Ö¤
+		flag = resevidenceDao.deleteCirculationById(resevidence.getXsjsglxt_resevidence_id());// ï¿½ï¿½Ö¤ï¿½ï¿½×ªï¿½ï¿½Ï¢
 		
 	}
 	return flag;
+}
+/*
+ * ä¿®æ”¹ç‰©è¯ä¿¡æ¯
+ */
+@Override
+public void updateResevidenceIn(xsjsglxt_resevidence resevidence) {
+	// TODO Auto-generated method stub
+	resevidence.setResevidence_gmt_modified(TeamUtil.getStringSecond());
+	resevidenceDao.updateResevidenceIn(resevidence);
 }
 
 

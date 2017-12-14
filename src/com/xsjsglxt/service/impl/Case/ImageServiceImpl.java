@@ -2,11 +2,23 @@ package com.xsjsglxt.service.impl.Case;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.xsjsglxt.dao.Case.ImageDao;
+import com.xsjsglxt.domain.DO.xsjsglxt_briefdetails;
+import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_image;
+import com.xsjsglxt.domain.DO.xsjsglxt_lost;
+import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
+import com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone;
 import com.xsjsglxt.domain.DO.xsjsglxt_picture;
+import com.xsjsglxt.domain.DO.xsjsglxt_resevidence;
+import com.xsjsglxt.domain.DO.xsjsglxt_snece;
+import com.xsjsglxt.domain.DTO.Case.SenceInformationDTO;
+import com.xsjsglxt.domain.DTO.Case.ImageInformationDTO;
+import com.xsjsglxt.domain.VO.Case.page_list_imageInformationVO;
 import com.xsjsglxt.service.Case.ImageService;
 
 import util.TeamUtil;
@@ -68,6 +80,67 @@ public String getMaxPicture_identifier() {
 	String Picture_identifier ="Z" + time + num ;
 	//System.out.println("SenceInformationInquestIdSenceInformationInquestIdSenceInformationInquestId"+SenceInformationInquestId);
 	return Picture_identifier;
+}
+
+@Override
+public page_list_imageInformationVO VO_ImageInformation_By_PageAndSearch(
+		page_list_imageInformationVO page_list_imageInformation) {
+	// TODO Auto-generated method stub
+	List<ImageInformationDTO> imageInformationDTOList = new ArrayList<ImageInformationDTO>();
+	List<xsjsglxt_picture> listPicture = new ArrayList<xsjsglxt_picture>();
+	ImageInformationDTO imageInformationDTO;
+
+	xsjsglxt_image image;
+	xsjsglxt_case case1;
+	
+//筛选条件的记录数
+	int i = imageDao.getCountImageInformationByPage(page_list_imageInformation);
+
+	page_list_imageInformation.setTotalRecords(i);
+	page_list_imageInformation.setTotalPages(((i - 1) / page_list_imageInformation.getPageSize()) + 1);
+	if (page_list_imageInformation.getPageIndex() <= 1) {
+		page_list_imageInformation.setHavePrePage(false);
+	} else {
+		page_list_imageInformation.setHavePrePage(true);
+	}
+	if (page_list_imageInformation.getPageIndex() >= page_list_imageInformation.getTotalPages()) {
+		page_list_imageInformation.setHaveNextPage(false);
+	} else {
+		page_list_imageInformation.setHaveNextPage(true);
+	}
+
+	// 记录
+	listPicture = imageDao.getListImageInformatioByPage(page_list_imageInformation);
+	
+	for (xsjsglxt_picture picture : listPicture) {
+		
+		image = imageDao.get_image_Byxsjsglxt_picture_id(picture);// 1
+		
+
+		case1 = imageDao.get_case1_Byxsjsglxt_picture_id(picture);// 2
+
+		
+		imageInformationDTO = new ImageInformationDTO(case1,image,picture );
+
+		imageInformationDTOList.add(imageInformationDTO);
+	}
+	page_list_imageInformation.setImageInformationDTOList(imageInformationDTOList);
+	
+	return page_list_imageInformation;
+}
+
+@Override
+public ImageInformationDTO ImageInformationOne(xsjsglxt_picture picture) {
+	// TODO Auto-generated method stu
+	picture=imageDao.getpictureById(picture);
+	
+	xsjsglxt_image image=imageDao.getImageBypictureId(picture);
+	
+	xsjsglxt_case case1 =  imageDao.getCaseBypictureId(picture);
+
+	ImageInformationDTO imageInformationDTO =new ImageInformationDTO(case1,image,picture);
+	return imageInformationDTO;
+
 }
 
 }

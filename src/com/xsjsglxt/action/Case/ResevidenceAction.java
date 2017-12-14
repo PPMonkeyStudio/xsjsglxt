@@ -95,6 +95,21 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 			http_response.getWriter().write("error");
 		}
 	}
+	/*
+	 *修改物证信息 
+	 */
+	public void updateResevidenceInformation() throws IOException{
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();//格式化json数据
+		Gson gson = gsonBuilder.create();
+		resevidenceService.updateResevidenceIn(resevidence);
+		
+		http_response.setContentType("text/html;charset=utf-8");
+
+		http_response.getWriter().write(gson.toJson("success"));
+		
+	}
+	
 	@Override
 	public void setServletResponse(HttpServletResponse arg0) {
 		// TODO Auto-generated method stub

@@ -155,4 +155,15 @@ public class LostMobilephoneDaoImpl implements LostMobilephoneDao {
 
 		return lost_mobilephone;
 	}
+
+	@Override
+	public void updateParallel(xsjsglxt_lost_mobilephone lost_mobilephone) {
+		// TODO Auto-generated method stub
+		try {
+			getSession().saveOrUpdate(lost_mobilephone);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

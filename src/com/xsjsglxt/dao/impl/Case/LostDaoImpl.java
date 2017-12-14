@@ -126,5 +126,16 @@ public class LostDaoImpl implements LostDao {
 
 		return lost;
 	}
+
+	@Override
+	public void updateLost(xsjsglxt_lost lost) {
+		// TODO Auto-generated method stub
+		try {
+			getSession().saveOrUpdate(lost);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
 
