@@ -44,42 +44,68 @@ function Preview_InspectionRecord(obj) {
 							+ '<tbody>'
 							+ '<tr><td style="width:200px;">案（事）件简要情况</td><td  style="text-align: left !important;">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_simple_case_situation
+									.replace(/\n/g, "<br>").replace(/ /g,
+											"&nbsp;")
+							+ '</td>'
 							+ '</tr>'
-							+ '<tr><td >检材情况</td><td>'
+							+ '<tr><td >检材情况</td><td style="text-align: left !important;>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_check_material_situation
+									.replace(/\n/g, "<br>").replace(/ /g,
+											"&nbsp;")
+							+ '</td>'
 							+ '</tr>'
-							+ '<tr><td >样本情况</td><td>'
+							+ '<tr><td >样本情况</td><td style="text-align: left !important;>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_sample_situation
+									.replace(/\n/g, "<br>").replace(/ /g,
+											"&nbsp;")
+							+ '</td>'
 							+ '</tr>'
 							+ '<tr><td>鉴定要求</td><td>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request
+							+ '</td>'
 							+ '</tr>'
 							+ '<tr><td>检验设备</td><td>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_equipment
+							+ '</td>'
 							+ '</tr>'
 							+ '<tr><td>检验方法</td><td>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_method
+							+ '</td>'
 							+ '</tr>'
 							+ '<tr><td>检验时间</td><td>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_start_time
 							+ ' 至 '
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_stop_time
+							+ '</td>'
 							+ '</tr>'
 							+ '<tr><td>检验地点</td><td>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_location
+							+ '</td>'
 							+ '</tr>'
 							+ '<tr><td>检验人</td><td>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_people
+							+ '</td>'
 							+ '</tr>'
 							+ '<tr><td>检验过程</td><td style="text-align: left !important;">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_process
+									.replace(/\n/g, "<br>").replace(/ /g,
+											"&nbsp;")
+							+ '</td>'
+
 							+ '</tr>'
-							+ '<tr><td>检验意见</td><td>'
+							+ '<tr><td>检验意见</td><td style="text-align: left !important;>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_option
+									.replace(/\n/g, "<br>").replace(/ /g,
+											"&nbsp;")
+							+ '</td>'
 							+ '</tr>'
 							+ '<tr><td>备注</td><td style="text-align: left !important;">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_mark
-							+ '</tr>' + '</tbody>' + '</table>' + '<hr></div>';
+									.replace(/\n/g, "<br>").replace(/ /g,
+											"&nbsp;")
+							+ '</td>'
+							+ '</tr>'
+							+ '</tbody>' + '</table>' + '<hr></div>';
 					jc.setContentAppend(con);
 					/*
 					 * 

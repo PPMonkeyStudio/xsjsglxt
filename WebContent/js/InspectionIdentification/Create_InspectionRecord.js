@@ -29,7 +29,8 @@ function Create_InspectionRecord(obj) {
 			.confirm({
 				icon : 'fa fa-pencil-square-o',
 				title : '记录检验过程',
-				content : '<form id="form_InspectionRecord"><input value="'
+				content : '<form id="form_InspectionRecord">'
+						+ '<input value="'
 						+ obj.id
 						+ '"  class="form-control" name="inspectionRecord.inspection_belong_entrustment_book" style="display:none;"/>'
 						+ '<hr>'

@@ -65,7 +65,7 @@
 					</div>
 				</div>
 				<table id="table_EntrustmentBook"
-					class="table table-hover table-bordered"
+					class="table table-hover "
 					style="text-align: center; margin: 20px 0;">
 					<tbody>
 						<tr>
