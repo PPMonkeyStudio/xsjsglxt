@@ -27,4 +27,6 @@ public boolean removeResevidenceInformationList(List<String> useResevidenceInfor
  * 修改物证信息
  */
 public void updateResevidenceIn(xsjsglxt_resevidence resevidence);
+
+
 }

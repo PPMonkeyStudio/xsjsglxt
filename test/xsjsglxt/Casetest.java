@@ -1,5 +1,8 @@
 package xsjsglxt;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.hibernate.SessionFactory;
@@ -9,118 +12,81 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.xsjsglxt.dao.Case.SenceDao;
+import com.xsjsglxt.domain.DO.xsjsglxt_briefdetails;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_parallel;
+import com.xsjsglxt.domain.DO.xsjsglxt_staff;
 import com.xsjsglxt.domain.VO.Case.page_list_CasematerialVO;
 import com.xsjsglxt.domain.VO.Case.page_list_senceInformationVO;
+import com.xsjsglxt.domain.VO.Team.page_list_staffInformationVO;
 import com.xsjsglxt.service.Case.ImageService;
 import com.xsjsglxt.service.Case.LostService;
 import com.xsjsglxt.service.Case.ParallelService;
 import com.xsjsglxt.service.Case.SenceService;
+import com.xsjsglxt.service.Team.StaffService;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext*.xml" })
 public class Casetest {
 	@Resource
 	private SenceService senceService;
-
+	private	xsjsglxt_briefdetails briefdetails;
 	
+	public xsjsglxt_briefdetails getBriefdetails() {
+		return briefdetails;
+	}
+	public void setBriefdetails(xsjsglxt_briefdetails briefdetails) {
+		this.briefdetails = briefdetails;
+	}
 	public void setSenceService(SenceService senceService) {
 		this.senceService = senceService;
 	}
 	@Test
-	public void tes(){
-		page_list_senceInformationVO page_list_senceInformation=new page_list_senceInformationVO();
-		
-		senceService.VO_SneceInformation_By_PageAndSearch(page_list_senceInformation);
-	}
-@Resource
-private SenceDao senceDao;
-
 	
-	public void setSenceDao(SenceDao senceDao) {
-	this.senceDao = senceDao;
-}
-	@Resource
-	private SessionFactory sessionFactory;
-	
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-	@Test
 	public void test(){
-//		xsjsglxt_case Case=new xsjsglxt_case();
-//		Case.setCase_address("sdsvda");
-//		senceService.save(Case);
-//		System.out.println(senceService);
-	}
-	@Test
-	public void test1(){
-//		System.out.println(senceService.getMaxSenceInquestId());
-	}
-	@Test
-	public void test2(){
-//		page_list_senceInformationVO page_list_senceInformation=new page_list_senceInformationVO();
-//		page_list_senceInformation.setCase_totalCategory("FHJVF");
-//	int i=	senceDao.getCountSenceInformationByPage(page_list_senceInformation);
-//	System.out.println(i);
-	}
-	@Test
-	public void test3(){
-		System.out.println(senceService.getMaxSenceInquestId());
-	}
-	@Test
-	public void tesrr(){
-//		page_list_senceInformationVO page_list_senceInformation=new page_list_senceInformationVO();
-//		//page_list_senceInformation.setCase_classify("类别");
-//		page_list_senceInformation.setStart_time("2017-11-20");
-//		page_list_senceInformation.setStop_time("2017-11-30");
-//		
-//		//page_list_senceInformation.setSnece_inquestPerson("����ƽ");
-//		//System.out.println(senceDao.getCountSenceInformationByPage(page_list_senceInformation));
-//		senceService.VO_SneceInformation_By_PageAndSearch(page_list_senceInformation);
-//	  System.out.println(page_list_senceInformation.getTotalRecords());
-	  
-	
-	}
-	@Resource
-	private ParallelService parallelService;
-
-
-	public void setParallelService(ParallelService parallelService) {
-		this.parallelService = parallelService;
-	}
-	@Test
-	public void save(){
-//	    String caeNumList="1,2,3,4,5,6,7";
-//	    xsjsglxt_parallel parallel=new xsjsglxt_parallel();
-//	    parallel.setParallel_accordingAddress("fggn");
-//		parallelService.saveParallel(caeNumList, parallel);
+	xsjsglxt_case case1 = null;
+	case1.setCase_address("江西");
+		senceService.save(case1);
 		
 	}
 	@Resource
-	private LostService lostService;
-
-
-	public void setLostService(LostService lostService) {
-		this.lostService = lostService;
+	private StaffService staffService;
+	
+	public void setStaffService(StaffService staffService) {
+		this.staffService = staffService;
 	}
 	@Test
 	public void t(){
-//		page_list_CasematerialVO page_list_Casematerial=new page_list_CasematerialVO();
-//	page_list_Casematerial.setLost_name("1");
-//		
-//		lostService.VO_Lostformation_By_PageAndSearch(page_list_Casematerial);
-	}
-	@Resource
-	private ImageService imageService;
-
-
-	public void setImageService(ImageService imageService) {
-		this.imageService = imageService;
+		page_list_staffInformationVO page_list_staffInformation= new page_list_staffInformationVO();
+		page_list_staffInformation.setStaff_name("历史");
+		staffService.VO_StaffInformation_By_PageAndSearch(page_list_staffInformation);
 	}
 	@Test
-	public void s(){
-		imageService.getMaxImage_number();
-		imageService.getMaxPicture_identifier();
+	public void d(){
+		xsjsglxt_staff staff=new xsjsglxt_staff();
+		//staff.setXsjsglxt_staff_id("f943814d-7cee-4062-bde0-f3c5bebbae6a");
+		staff.setStaff_address("jianxi");
+		staff.setStaff_thePoliceTime("2017/12/12");
+		staffService.saveStaff(staff);
+	}
+	@Test
+	public void i(){
+		xsjsglxt_staff staff=new xsjsglxt_staff();
+		staff.setXsjsglxt_staff_id("7fddb8c7-aabc-4f96-a219-861031d18a12");
+	staff=	staffService.StaffInformationOne(staff);
+		System.out.println("kkk"+staff);
+	}
+	@Test
+	public void v(){
+		xsjsglxt_staff staff=new xsjsglxt_staff();
+		staff.setXsjsglxt_staff_id("7fddb8c7-aabc-4f96-a219-861031d18a13");
+		staff.setStaff_age("2");
+		staffService.updateStaffInformation(staff);
+	}
+	@Test
+	public void o(){
+		List<String> useStaffInformationNumList=new ArrayList<String>();
+		xsjsglxt_staff staff=new xsjsglxt_staff();
+		useStaffInformationNumList.add("7fddb8c7-aabc-4f96-a219-861031d18a13");
+		staffService.remove_StaffInformationList(useStaffInformationNumList);
 	}
 }

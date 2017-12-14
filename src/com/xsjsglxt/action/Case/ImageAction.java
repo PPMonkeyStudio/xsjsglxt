@@ -1,6 +1,7 @@
 package com.xsjsglxt.action.Case;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +26,8 @@ private xsjsglxt_image image;
 private HttpServletRequest http_request;	
 private xsjsglxt_picture picture;
 private xsjsglxt_case case1;
+private List<String> usePictureInformationNumList;
+private List<String> useImageInformationNumList;
 private ImageInformationDTO imageInformationDTO;
 private page_list_imageInformationVO page_list_imageInformation;
 /*
@@ -83,6 +86,62 @@ public void getPicture_identifier() throws IOException {
 	String Picture_identifier = imageService.getMaxPicture_identifier();
 	http_response.setContentType("text/html;charset=utf-8");
 	http_response.getWriter().write(gson.toJson(Picture_identifier));
+}
+/*
+ * 修改信息
+ */
+public void updateImage() throws IOException{
+	GsonBuilder gsonBuilder = new GsonBuilder();
+	gsonBuilder.setPrettyPrinting();// 格式化json数据
+	Gson gson = gsonBuilder.create();
+	imageService.updateImage(image);
+	imageService.updatePicture(picture,image.getXsjsglxt_image_id());
+	http_response.setContentType("text/html;charset=utf-8");
+	http_response.getWriter().write(gson.toJson("success"));
+}
+/*
+ * 删除照片
+ */
+public void remove_PictureInformationList(){
+
+	if(	imageService.remove_PictureInformationList( usePictureInformationNumList)){
+		http_response.setContentType("text/html;charset=utf-8");
+		try {
+			http_response.getWriter().write("success");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}}else{
+			http_response.setContentType("text/html;charset=utf-8");
+			try {
+				http_response.getWriter().write("error");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+}
+/*
+ * 删除光盘
+ */
+public void remove_ImageInformationList(){
+
+	if(	imageService.remove_ImageInformationList( useImageInformationNumList)){
+		http_response.setContentType("text/html;charset=utf-8");
+		try {
+			http_response.getWriter().write("success");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}}else{
+			http_response.setContentType("text/html;charset=utf-8");
+			try {
+				http_response.getWriter().write("error");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 }
 	public ImageService getImageService() {
 	return imageService;
@@ -174,6 +233,18 @@ public void ImageInformationOne() throws IOException {
 	}
 	public void setCase1(xsjsglxt_case case1) {
 		this.case1 = case1;
+	}
+	public List<String> getUsePictureInformationNumList() {
+		return usePictureInformationNumList;
+	}
+	public void setUsePictureInformationNumList(List<String> usePictureInformationNumList) {
+		this.usePictureInformationNumList = usePictureInformationNumList;
+	}
+	public List<String> getUseImageInformationNumList() {
+		return useImageInformationNumList;
+	}
+	public void setUseImageInformationNumList(List<String> useImageInformationNumList) {
+		this.useImageInformationNumList = useImageInformationNumList;
 	}
 
 }

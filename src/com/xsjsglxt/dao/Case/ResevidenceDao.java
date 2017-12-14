@@ -43,4 +43,6 @@ public boolean deleteCirculationById(String xsjsglxt_resevidence_id);
  */
 public void updateResevidenceIn(xsjsglxt_resevidence resevidence);
 
+
+
 }

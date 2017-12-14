@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.xsjsglxt.dao.Case.LostDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
+import com.xsjsglxt.domain.DO.xsjsglxt_handle;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
 import com.xsjsglxt.domain.DTO.Case.LostInformationDTO;
@@ -96,6 +97,18 @@ public void updateLost(xsjsglxt_lost lost) {
 	lost.setLost_gmt_modified(TeamUtil.getStringSecond());
 	lostDao.updateLost(lost);
 	
+}
+
+@Override
+public boolean remove_LostInformationList(List<String> useLostInformationNumList) {
+	// TODO Auto-generated method stub
+	boolean flag = false;
+	for (String lost_id : useLostInformationNumList) {
+		xsjsglxt_lost xsjsglxt_lost = lostDao.getLostByNum(lost_id);
+		flag = lostDao.deleteLostById(xsjsglxt_lost.getXsjsglxt_lost_id());// ����
+		
+	}
+	return flag;
 }
 
 }

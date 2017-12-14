@@ -1,6 +1,7 @@
  package com.xsjsglxt.action.Case;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +26,7 @@ public class LostMobilephoneAction extends ActionSupport implements ServletReque
 	
 	private xsjsglxt_case case1;
 	private xsjsglxt_lost_mobilephone lost_mobilephone;
+	private List<String> useLost_mobilephoneInformationNumList;
 	private HttpServletResponse http_response;
 
 	private HttpServletRequest http_request;	
@@ -86,6 +88,28 @@ public class LostMobilephoneAction extends ActionSupport implements ServletReque
 			http_response.setContentType("text/html;charset=utf-8");
 			http_response.getWriter().write(gson.toJson("success"));
 		}
+		/*
+		 *删除信息 
+		 */
+		public void remove_Lost_mobilephoneInformationList(){
+
+			if(	lostMobilephoneService.remove_Lost_mobilephoneInformationList( useLost_mobilephoneInformationNumList)){
+				http_response.setContentType("text/html;charset=utf-8");
+				try {
+					http_response.getWriter().write("success");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}}else{
+					http_response.setContentType("text/html;charset=utf-8");
+					try {
+						http_response.getWriter().write("error");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+		}
 	public LostMobilephoneService getLostMobilephoneService() {
 		return lostMobilephoneService;
 	}
@@ -141,6 +165,12 @@ public class LostMobilephoneAction extends ActionSupport implements ServletReque
 	}
 	public void setLostMobilephoneInformationDTO(LostMobilephoneInformationDTO lostMobilephoneInformationDTO) {
 		this.lostMobilephoneInformationDTO = lostMobilephoneInformationDTO;
+	}
+	public List<String> getUseLost_mobilephoneInformationNumList() {
+		return useLost_mobilephoneInformationNumList;
+	}
+	public void setUseLost_mobilephoneInformationNumList(List<String> useLost_mobilephoneInformationNumList) {
+		this.useLost_mobilephoneInformationNumList = useLost_mobilephoneInformationNumList;
 	}
 
 }

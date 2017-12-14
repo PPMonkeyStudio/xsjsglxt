@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.Case.LostComputerDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
+import com.xsjsglxt.domain.DO.xsjsglxt_lost;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
@@ -164,5 +165,26 @@ public class LostComputerDaoImpl implements LostComputerDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public xsjsglxt_lost_computer getLostByNum(String lost_computer_id) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		xsjsglxt_lost_computer Lost_computerInformation = null;
+		String hql = "from xsjsglxt_lost_computer lost_computer where lost_computer.xsjsglxt_lost_computer_id='" + lost_computer_id + "'";
+		Query query = session.createQuery(hql);
+		Lost_computerInformation = (xsjsglxt_lost_computer) query.uniqueResult();
+       return Lost_computerInformation;
+	}
+
+	@Override
+	public boolean deleteLost_computerById(String xsjsglxt_lost_computer_id) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		String hql = "delete from xsjsglxt_lost_computer where xsjsglxt_lost_computer_id='" + xsjsglxt_lost_computer_id + "'";
+		Query query = session.createQuery(hql);
+		query.executeUpdate();
+       return true;
 	}
 }

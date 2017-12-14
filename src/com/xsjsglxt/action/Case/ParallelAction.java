@@ -29,7 +29,7 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 	private xsjsglxt_parallel parallel;
 
 	private page_list_parallelInformationVO page_list_parallelInformation;
-
+	private List<String> useParallelInformationNumList;
 	private String caeNumList;
 	
 	private ParallelInformationDTO parallelInformationDTO;
@@ -103,6 +103,28 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 		parallelService.updateParallel(parallel);
 		http_response.setContentType("text/html;charset=utf-8");
 		http_response.getWriter().write(gson.toJson("success"));
+	}
+	/*
+	 *删除信息 
+	 */
+	public void remove_ParallelInformationList(){
+
+		if(	parallelService.remove_ParallelInformationList( useParallelInformationNumList)){
+			http_response.setContentType("text/html;charset=utf-8");
+			try {
+				http_response.getWriter().write("success");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}}else{
+				http_response.setContentType("text/html;charset=utf-8");
+				try {
+					http_response.getWriter().write("error");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 	}
 	@Override
 	public void setServletResponse(HttpServletResponse arg0) {
@@ -184,6 +206,14 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 
 	public void setParallelInformationDTO(ParallelInformationDTO parallelInformationDTO) {
 		this.parallelInformationDTO = parallelInformationDTO;
+	}
+
+	public List<String> getUseParallelInformationNumList() {
+		return useParallelInformationNumList;
+	}
+
+	public void setUseParallelInformationNumList(List<String> useParallelInformationNumList) {
+		this.useParallelInformationNumList = useParallelInformationNumList;
 	}
 
 }

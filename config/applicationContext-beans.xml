@@ -11,4 +11,6 @@
 	<import resource="spring/Lost.xml"/>
 	<import resource="spring/Image.xml"/>
 	<import resource="spring/Breakecase.xml"/>
+	<import resource="spring/Staff.xml"/>
+	<import resource="spring/Handle.xml"/>
 </beans>

@@ -26,4 +26,8 @@ public xsjsglxt_lost_computer getLostComputerById(xsjsglxt_lost_computer lost_co
  */
 public void updateLostComputer(xsjsglxt_lost_computer lost_computer);
 
+public com.xsjsglxt.domain.DO.xsjsglxt_lost_computer getLostByNum(String lost_computer_id);
+
+public boolean deleteLost_computerById(String xsjsglxt_lost_computer_id);
+
 }

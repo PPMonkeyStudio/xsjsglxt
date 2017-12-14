@@ -26,4 +26,8 @@ public xsjsglxt_lost_mobilephone getLostMobiephoneById(xsjsglxt_lost_mobilephone
  */
 public void updateParallel(xsjsglxt_lost_mobilephone lost_mobilephone);
 
+public com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone getLost_mobilephoneByNum(String lost_mobilephone_id);
+
+public boolean deleteLost_mobilephoneById(String xsjsglxt_lost_mobilephone_id);
+
 }

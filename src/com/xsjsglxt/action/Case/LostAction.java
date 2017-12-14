@@ -1,6 +1,7 @@
 package com.xsjsglxt.action.Case;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +22,7 @@ public class LostAction extends ActionSupport implements ServletRequestAware, Se
 private LostService lostService;
 private xsjsglxt_case case1;
 private xsjsglxt_lost lost;
+private List<String> useLostInformationNumList;
 private HttpServletResponse http_response;
 
 private HttpServletRequest http_request;	
@@ -85,7 +87,28 @@ public void updateLost() throws IOException{
 	http_response.getWriter().write(gson.toJson("success"));
 	
 }
+/*
+ *删除信息 
+ */
+public void remove_LostInformationList(){
 
+	if(	lostService.remove_LostInformationList( useLostInformationNumList)){
+		http_response.setContentType("text/html;charset=utf-8");
+		try {
+			http_response.getWriter().write("success");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}}else{
+			http_response.setContentType("text/html;charset=utf-8");
+			try {
+				http_response.getWriter().write("error");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+}
 public LostService getLostService() {
 	return lostService;
 }
@@ -141,6 +164,12 @@ public void setLostService(LostService lostService) {
 	}
 	public void setLostInformationDTO(LostInformationDTO lostInformationDTO) {
 		this.lostInformationDTO = lostInformationDTO;
+	}
+	public List<String> getUseLostInformationNumList() {
+		return useLostInformationNumList;
+	}
+	public void setUseLostInformationNumList(List<String> useLostInformationNumList) {
+		this.useLostInformationNumList = useLostInformationNumList;
 	}
 
 }

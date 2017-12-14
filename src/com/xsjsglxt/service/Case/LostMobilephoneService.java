@@ -1,5 +1,7 @@
 package com.xsjsglxt.service.Case;
 
+import java.util.List;
+
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone;
 import com.xsjsglxt.domain.DTO.Case.LostMobilephoneInformationDTO;
 import com.xsjsglxt.domain.VO.Case.page_list_CasematerialVO;
@@ -16,5 +18,7 @@ public LostMobilephoneInformationDTO LostMobiephoneInformationOne(xsjsglxt_lost_
  * 修改损失手机信息
  */
 public void updateParallel(xsjsglxt_lost_mobilephone lost_mobilephone);
+
+public boolean remove_Lost_mobilephoneInformationList(List<String> useLost_mobilephoneInformationNumList);
 
 }

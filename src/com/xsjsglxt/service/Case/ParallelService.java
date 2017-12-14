@@ -30,4 +30,5 @@ public void saveParallel(String caeNumList, xsjsglxt_parallel parallel);
  * 修改串并案件的信息
  */
 public void updateParallel(xsjsglxt_parallel parallel);
+public boolean remove_ParallelInformationList(List<String> useParallelInformationNumList);
 }

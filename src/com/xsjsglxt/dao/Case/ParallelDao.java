@@ -62,6 +62,14 @@ public void updateParallel(xsjsglxt_parallel parallel);
 
 
 
+public com.xsjsglxt.domain.DO.xsjsglxt_parallel getParallelByNum(String parallel_id);
+
+
+
+public boolean deleteParallelById(String xsjsglxt_parallel_id);
+
+
+
 
 
 

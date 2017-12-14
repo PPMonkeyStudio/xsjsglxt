@@ -166,4 +166,25 @@ public class LostMobilephoneDaoImpl implements LostMobilephoneDao {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public xsjsglxt_lost_mobilephone getLost_mobilephoneByNum(String lost_mobilephone_id) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		xsjsglxt_lost_mobilephone Lost_mobilephoneInformation = null;
+		String hql = "from xsjsglxt_lost_mobilephone lost_mobilephone where lost_mobilephone.xsjsglxt_lost_mobilephone_id='" + lost_mobilephone_id + "'";
+		Query query = session.createQuery(hql);
+		Lost_mobilephoneInformation = (xsjsglxt_lost_mobilephone) query.uniqueResult();
+       return Lost_mobilephoneInformation;
+	}
+
+	@Override
+	public boolean deleteLost_mobilephoneById(String xsjsglxt_lost_mobilephone_id) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		String hql = "delete from xsjsglxt_lost_mobilephone where xsjsglxt_lost_mobilephone_id='" + xsjsglxt_lost_mobilephone_id + "'";
+		Query query = session.createQuery(hql);
+		query.executeUpdate();
+       return true;
+	}
 }

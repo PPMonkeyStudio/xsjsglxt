@@ -1,6 +1,5 @@
-/applicationContext-beans.xml
-/applicationContext.xml
 /com/
+<<<<<<< HEAD
 /db.properties
 /hibernate.cfg.xml
 /log4j.properties
@@ -9,3 +8,5 @@
 /struts2/
 /util/
 /xsjsglxt/
+=======
+>>>>>>> origin/LWK

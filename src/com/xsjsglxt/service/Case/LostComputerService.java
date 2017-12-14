@@ -1,5 +1,7 @@
 package com.xsjsglxt.service.Case;
 
+import java.util.List;
+
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
 import com.xsjsglxt.domain.DTO.Case.LostComputerInformationDTO;
 import com.xsjsglxt.domain.VO.Case.page_list_CasematerialVO;
@@ -17,5 +19,7 @@ public LostComputerInformationDTO LostComputerInformationOne(xsjsglxt_lost_compu
  * 修改损失电脑信息
  */
 public void updateLostComputer(xsjsglxt_lost_computer lost_computer);
+
+public boolean remove_Lost_computerInformationList(List<String> useLost_computerInformationNumList);
 
 }
