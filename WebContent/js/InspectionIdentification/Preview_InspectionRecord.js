@@ -98,7 +98,8 @@ function Preview_InspectionRecord(obj) {
 					'修改' : {
 						btnClass : 'btn-orange',
 						action : function() {
-							return false;
+							jc.close();
+							update_InspectionRecord(obj);
 						}
 					},
 					'返回' : function() {

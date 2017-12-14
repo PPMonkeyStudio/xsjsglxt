@@ -200,6 +200,10 @@
 	src="<%=basePath%>js/InspectionIdentification/Update_EntrustmentBook.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/InspectionIdentification/Update_ConfirmBook.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/InspectionIdentification/Update_NotAcceptanceEntrustmentInform.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/InspectionIdentification/update_InspectionRecord.js"></script>
 <!---------------------------------------------------------------------------------------->
 <link rel="stylesheet" href="<%=basePath%>css/square/blue.css" />
 <script type="text/javascript" src="<%=basePath%>js/icheck.js"></script>

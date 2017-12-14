@@ -19,7 +19,7 @@ function Remove_EntrustmentBook() {
 									if (xhr.status == 200) {
 										if (xhr.responseText == "1") {
 											toastr.success("删除成功");
-											List_EntrustmentBook(1);
+											List_EntrustmentBook(EntrustmentBook_json.pageIndex);
 										}
 									} else {
 										toastr.error(xhr.status);

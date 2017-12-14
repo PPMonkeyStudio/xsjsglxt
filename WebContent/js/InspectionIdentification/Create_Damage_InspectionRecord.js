@@ -12,7 +12,8 @@ function Create_Damage_InspectionRecord(obj) {
 			.confirm({
 				icon : 'fa fa-pencil-square-o',
 				title : '记录损伤检验过程',
-				content : '<form id="form_Damage_InspectionRecord"><input value="'
+				content : '<form id="form_Damage_InspectionRecord">'
+						+ '<input value="'
 						+ obj.id
 						+ '"  class="form-control" name="damageInspectionRecord.damage_inspection_record_belong_entrustment_book"  style="display:none;"/>'
 						+ '<hr>'

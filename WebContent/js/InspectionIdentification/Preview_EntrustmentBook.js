@@ -4,7 +4,6 @@ function Preview_EntrustmentBook(obj) {
 			.confirm({
 				icon : 'fa fa-file-text-o',
 				title : '鉴定委托书',
-				theme : 'Modern',
 				content : '',
 				type : 'green',
 				columnClass : 'col-md-12',

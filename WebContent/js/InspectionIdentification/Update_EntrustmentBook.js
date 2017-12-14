@@ -266,7 +266,7 @@ function updateTranceCheckBook(jc, obj) {
 				if (xhr.responseText == 1) {
 					toastr.success("修改成功");
 					jc.close();
-					List_EntrustmentBook(1);
+					List_EntrustmentBook(EntrustmentBook_json.pageIndex);
 					Preview_EntrustmentBook(obj);
 				} else {
 					toastr.error("填写格式错误");

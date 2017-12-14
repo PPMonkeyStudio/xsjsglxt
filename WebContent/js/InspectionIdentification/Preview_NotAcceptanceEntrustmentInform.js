@@ -2,8 +2,7 @@ function Preview_NotAcceptanceEntrustmentInform(obj) {
 	var json_list = EntrustmentBook_json;
 	var jc = $
 			.confirm({
-				icon : 'fa fa-file-text-o',
-				title : '<p>萍乡市安源区公安司法鉴定中心</p><p>不受理委托告知书</p>',
+				title : '',
 				content : '',
 				type : 'red',
 				columnClass : 'col-md-8 col-md-offset-2',
@@ -17,21 +16,54 @@ function Preview_NotAcceptanceEntrustmentInform(obj) {
 					}
 					var con = '<div style="margin:0 20px 0 0;">'
 							+ '<hr>'
-							+ '<h3  style="text-align: right;">编号：['
+							+ '<h3  style="text-align: center;">不受理委托鉴定告知书（存根）</h3>'
+							+ '<h4  style="text-align: right;">['
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num
 									.substring(0, 4)
 							+ ']第'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num
 									.substring(4)
-							+ '号</h3>'
-							+ '<h3 style="text-align: left;text-indent:2em;">'
-							+ '<p>'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_not_acceptance_entrustment_inform.not_acceptance_entrustment_inform_reason
-							+ '现决定对你单位有关<b>'
+							+ '号</h4>'
+							+ '<table  class="table table-bordered" style="text-align: center;">'
+							+ '<tbody>'
+							+ '<tr>'
+							+ '<td style="width:100px;">委托单位：</td><td colspan="5">'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_unit
+							+ '</td>'
+							+ '</tr>'
+							+ '<tr>'
+							+ '<td>送检人：</td><td colspan="2">'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspectors1_name
+							+ '、'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspectors2_name
+							+ '</td>'
+							+ '<td  style="width:100px;">证件名称及号码：</td><td colspan="2">'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspectors1_jobcard_number
+							+ '、'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspectors2_jobcard_number
+							+ '</td>'
+							+ '</tr>'
+							+ '<tr>'
+							+ '<td>案（事）件名称：</td><td colspan="2">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_case_name
-							+ '</b>的鉴定委托不予受理。</p><p>特此告知。</p>'
-							+ '</h3>'
-							+ '<h3 style="text-align: right;">'
+							+ '</td>'
+							+ '<td>案件编号：</td><td colspan="2">'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_case_num
+							+ '</td>'
+							+ '</tr>'
+							+ '<tr>'
+							+ '<td>不予受理理由：</td><td colspan="5">'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_not_acceptance_entrustment_inform.not_acceptance_entrustment_inform_reason
+							+ '故不予受理</td>'
+							+ '</tr>'
+							+ '<tr>'
+							+ '<td>填表人：</td><td>'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_not_acceptance_entrustment_inform.not_acceptance_entrustment_inform_inputhuman_name
+							+ '</td>'
+							+ '<td style="width:100px;">批准人：</td><td>'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_not_acceptance_entrustment_inform.not_acceptance_entrustment_inform_approvalhuman_name
+							+ '</td>'
+							+ '<td style="width:100px;">批准时间：</td><td>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_not_acceptance_entrustment_inform.not_acceptance_entrustment_inform_approval_time
 									.substring(0, 4)
 							+ '年'
@@ -39,7 +71,37 @@ function Preview_NotAcceptanceEntrustmentInform(obj) {
 									.substring(5, 7)
 							+ '月'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_not_acceptance_entrustment_inform.not_acceptance_entrustment_inform_approval_time
-									.substring(8, 11) + '日</h3>' + '<hr></div>';
+									.substring(8, 10)
+							+ '日'
+							+ '</td>'
+							+ '</tr>'
+							+ '</tbody>'
+							+ '</table>'
+							+ '<h4  style="text-align: center;">---------------------------------------骑缝章---------------------------------------</h4>'
+							+ '<h3  style="text-align: center;">萍乡市安源区公安司法鉴定中心<br>不受理委托鉴定告知书</h3>'
+							+ '<h4  style="text-align: right;">['
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num
+									.substring(0, 4)
+							+ ']第'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num
+									.substring(4)
+							+ '号</h4>'
+							+ '<h4 style="text-align: left;text-indent:2em;">'
+							+ '<p>'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_not_acceptance_entrustment_inform.not_acceptance_entrustment_inform_reason
+							+ '现决定对你单位有关<b>'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_case_name
+							+ '</b>的鉴定委托不予受理。</p><p>特此告知。</p>'
+							+ '</h4>'
+							+ '<h4 style="text-align: right;">（鉴定单位公章）<br>'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_not_acceptance_entrustment_inform.not_acceptance_entrustment_inform_approval_time
+									.substring(0, 4)
+							+ '年'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_not_acceptance_entrustment_inform.not_acceptance_entrustment_inform_approval_time
+									.substring(5, 7)
+							+ '月'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_not_acceptance_entrustment_inform.not_acceptance_entrustment_inform_approval_time
+									.substring(8, 11) + '日</h4>' + '<hr></div>';
 					jc.setContentAppend(con);
 					/*
 					 * 
@@ -52,8 +114,14 @@ function Preview_NotAcceptanceEntrustmentInform(obj) {
 					'导出' : {
 						btnClass : 'btn-red',
 						action : function() {
-
 							return false;
+						}
+					},
+					'修改' : {
+						btnClass : 'btn-orange',
+						action : function() {
+							jc.close();
+							Update_NotAcceptanceEntrustmentInform(obj);
 						}
 					},
 					'返回' : function() {
