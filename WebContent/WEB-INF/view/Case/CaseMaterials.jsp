@@ -25,11 +25,11 @@
 </head>
 <style type="text/css">
 .table-condensed thead tr>th {
-	text-align: left;
+	text-align: center;
 }
 
-.table-condensed tbody>tr>td {
-	font-size: 15px;
+.table-condensed tbody tr>td {
+	text-align: center;
 }
 </style>
 <body>
@@ -54,7 +54,7 @@
 					style="width: 120px; margin-left:6px; display:none;"
 					class="form-control" onchange="lost_chose(this)">
 					<option value="">请选择</option>
-					<option value="lost">物品</option>
+					<option value="lost_information">物品</option>
 					<option value="lost_computer">电脑</option>
 					<option value="lost_mobilephone">手机</option>
 				</select>
@@ -116,13 +116,13 @@
 							<td></td>
 						</tr>
 					</thead> -->
-					<thead id="lost" style="display: none;">
+					<thead id="lost_information" style="display: none;">
 						<tr>
 							<th>序号</th>
 							<th>名称</th>
 							<th>所属案件</th>
 							<th>备注</th>
-							<th>操作</th>
+							<th style="witdh:auto;!important">操作</th>
 						</tr>
 					</thead>
 					<thead id="lost_mobilephone" style="display: none;">
@@ -148,11 +148,35 @@
 						</tr>
 					</thead>
 					<tbody>
-
 					</tbody>
 				</table>
 			</div>
 		</div>
+	</div>
+	<!---------------------------------------------------------------------------------------------------->
+	<!---------------------------------------------------------------------------------------------------->
+	<!---------------------------------------------------------------------------------------------------->
+	<!-- 添加光盘照片-模态框（Modal） -->
+	<div class="modal fade" id="lost" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="modal-title"></h4>
+				</div>
+				<div class="modal-body">
+					<div class="panel-body"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary add_picture">添加照片</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
 	</div>
 	<!---------------------------------------------------------------------------------------------------->
 	<!------------------------------------------------------------------------------------------------->
