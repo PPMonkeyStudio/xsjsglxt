@@ -1,4 +1,4 @@
-function update_InspectionRecord(obj) {
+function Update_InspectionRecord(obj) {
 	var json_list = EntrustmentBook_json;
 	var jc = $
 			.confirm({

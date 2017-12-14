@@ -125,7 +125,7 @@ function Preview_InspectionRecord(obj) {
 						btnClass : 'btn-orange',
 						action : function() {
 							jc.close();
-							update_InspectionRecord(obj);
+							Update_InspectionRecord(obj);
 						}
 					},
 					'返回' : function() {

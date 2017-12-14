@@ -202,7 +202,7 @@
 <script type="text/javascript"
 	src="<%=basePath%>js/InspectionIdentification/Update_NotAcceptanceEntrustmentInform.js"></script>
 <script type="text/javascript"
-	src="<%=basePath%>js/InspectionIdentification/update_InspectionRecord.js"></script>
+	src="<%=basePath%>js/InspectionIdentification/Update_InspectionRecord.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/InspectionIdentification/Update_Death_InspectionRecord.js"></script>
 <!---------------------------------------------------------------------------------------->
