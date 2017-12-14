@@ -130,22 +130,42 @@ var ViewSingleMessage = function() {
 		$.post('/xsjsglxt/case/Lost_LostInformationOne', {
 			"lost.xsjsglxt_lost_id" : but_obj.siblings().val()
 		}, function(xhr_data) {
-			str += '<table  align="center" class="table table-hover table-condensed"><tbody><tr>';
-			str += '<td>所属案件<input style="witdh:70%;" class="form-control" name="" type="text" value="' + xhr_data.case1.case_name + '" /></td>';
+			str += '<table  align="center" class="table table-hover"><tbody><tr>';
+			str += '<td>所属案件</td><td><input style="witdh:70%;" class="form-control" name="" type="text" value="' + xhr_data.case1.case_name + '" /></td>';
 			str += '</tr>';
 			str += '<tr>';
-			str += '<td>名称<input style="witdh:70%;" class="form-control" name="" type="text" value="' + xhr_data.lost.lost_name + '"  /></td>';
+			str += '<td>名称</td><td><input style="witdh:70%;" class="form-control" name="" type="text" value="' + xhr_data.lost.lost_name + '"  /></td>';
 			str += '</tr>';
 			str += '<tr>';
-			str += '<td>备注<input style="witdh:70%;" class="form-control" name="" type="text" value="' + xhr_data.lost.lost_remarks + '"  /></td>';
+			str += '<td>备注</td><td><input style="witdh:70%;" class="form-control" name="" type="text" value="' + xhr_data.lost.lost_remarks + '"  /></td>';
 			str += '</tr></tbody></table>';
 			$('#lost .panel-body').append(str);
+			$('.btn-operation').text('确认修改').click(modification('/xsjsglxt/case/Lost_ListLostInformationByPageAndSearch', ''));
+
 			$('#lost').modal('show');
 		}, 'json');
 
 		break;
 	case 'lost_delete':
-		$('#lost').modal('show');
+		$.confirm({
+			title : '确定删除?',
+			smoothContent : false,
+			content : false,
+			autoClose : 'cancelAction|10000',
+			buttons : {
+				deleteUser : {
+					btnClass : 'btn-danger',
+					text : '确认',
+					action : function() {
+						loadCaseDetail_case_change(url, case1_id);
+					}
+				},
+				cancelAction : {
+					btnClass : 'btn-blue',
+					text : '取消',
+				}
+			}
+		});
 		break;
 	//=--------丢失电脑
 	case 'lost_computer_modification':
@@ -164,4 +184,32 @@ var ViewSingleMessage = function() {
 	default:
 		break;
 	}
+}
+
+//修改信息
+function modification(url, data) {
+	$.confirm({
+		title : '确定修改?',
+		smoothContent : false,
+		content : false,
+		autoClose : 'cancelAction|10000',
+		buttons : {
+			deleteUser : {
+				btnClass : 'btn-danger',
+				text : '确认',
+				action : function() {
+					$.post(url, data, function(xhr_data) {
+						if (xhr_data == "success") {
+							toastr.success("修改成功!");
+						}
+					}, 'json');
+				}
+			},
+			cancelAction : {
+				btnClass : 'btn-blue',
+				text : '取消',
+			}
+		}
+	});
+
 }

@@ -170,7 +170,7 @@
 					<div class="panel-body"></div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary add_picture">添加照片</button>
+					<button type="button" class="btn btn-primary btn-operation"></button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 				</div>
 			</div>
