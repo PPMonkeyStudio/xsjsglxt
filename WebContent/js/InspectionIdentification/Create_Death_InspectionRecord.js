@@ -429,47 +429,6 @@ function addDeathInspectionRecord(jc) {
 			.getElementById("create_death_inspection_record_autopsy_table_test_picture2");
 	var create_death_inspection_record_autopsy_table_test_picture3 = document
 			.getElementById("create_death_inspection_record_autopsy_table_test_picture3");
-
-	if (create_death_inspection_record_autopsy_table_test_picture1.files[0] != null) {
-		formData
-				.append(
-						"death",
-						create_death_inspection_record_autopsy_table_test_picture1.files[0]);
-		formData.append("positionFile", "1");
-	} else {
-		formData.append("death", null);
-		formData.append("positionFile", "2");
-	}
-	if (create_death_inspection_record_autopsy_table_test_picture2.files[0] != null) {
-		formData
-				.append(
-						"death",
-						create_death_inspection_record_autopsy_table_test_picture2.files[0]);
-		formData.append("positionFile", "1");
-	} else {
-		formData.append("death", null);
-		formData.append("positionFile", "2");
-	}
-	//
-	if (create_death_inspection_record_autopsy_table_test_picture3.files[0] != null) {
-		formData
-				.append(
-						"death",
-						create_death_inspection_record_autopsy_table_test_picture3.files[0]);
-		formData.append("positionFile", "1");
-	} else {
-		formData.append("death", null);
-		formData.append("positionFile", "2");
-	}
-
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
 	var create_death_inspection_record_anatomy_picture1 = document
 			.getElementById("create_death_inspection_record_anatomy_picture1");
 	var create_death_inspection_record_anatomy_picture2 = document
@@ -477,32 +436,75 @@ function addDeathInspectionRecord(jc) {
 	var create_death_inspection_record_anatomy_picture3 = document
 			.getElementById("create_death_inspection_record_anatomy_picture3");
 
-	if (create_death_inspection_record_anatomy_picture1.files[0] != null) {
-		formData.append("death",
-				create_death_inspection_record_anatomy_picture1.files[0]);
-		formData.append("positionFile", "1");
+	if (create_death_inspection_record_autopsy_table_test_picture1.files[0] == null
+			&& create_death_inspection_record_autopsy_table_test_picture2.files[0] == null
+			&& create_death_inspection_record_autopsy_table_test_picture3.files[0] == null
+			&& create_death_inspection_record_anatomy_picture1.files[0] == null
+			&& create_death_inspection_record_anatomy_picture2.files[0] == null
+			&& create_death_inspection_record_anatomy_picture3.files[0] == null) {
 	} else {
-		formData.append("death", null);
-		formData.append("positionFile", "2");
+		if (create_death_inspection_record_autopsy_table_test_picture1.files[0] != null) {
+			formData
+					.append(
+							"death",
+							create_death_inspection_record_autopsy_table_test_picture1.files[0]);
+			formData.append("positionFile", "1");
+		} else {
+			formData.append("death", null);
+			formData.append("positionFile", "2");
+		}
+		if (create_death_inspection_record_autopsy_table_test_picture2.files[0] != null) {
+			formData
+					.append(
+							"death",
+							create_death_inspection_record_autopsy_table_test_picture2.files[0]);
+			formData.append("positionFile", "1");
+		} else {
+			formData.append("death", null);
+			formData.append("positionFile", "2");
+		}
+		//
+		if (create_death_inspection_record_autopsy_table_test_picture3.files[0] != null) {
+			formData
+					.append(
+							"death",
+							create_death_inspection_record_autopsy_table_test_picture3.files[0]);
+			formData.append("positionFile", "1");
+		} else {
+			formData.append("death", null);
+			formData.append("positionFile", "2");
+		}
+
+		//
+
+		if (create_death_inspection_record_anatomy_picture1.files[0] != null) {
+			formData.append("death",
+					create_death_inspection_record_anatomy_picture1.files[0]);
+			formData.append("positionFile", "1");
+		} else {
+			formData.append("death", null);
+			formData.append("positionFile", "2");
+		}
+		//
+		if (create_death_inspection_record_anatomy_picture2.files[0] != null) {
+			formData.append("death",
+					create_death_inspection_record_anatomy_picture2.files[0]);
+			formData.append("positionFile", "1");
+		} else {
+			formData.append("death", null);
+			formData.append("positionFile", "2");
+		}
+		//
+		if (create_death_inspection_record_anatomy_picture3.files[0] != null) {
+			formData.append("death",
+					create_death_inspection_record_anatomy_picture3.files[0]);
+			formData.append("positionFile", "1");
+		} else {
+			formData.append("death", null);
+			formData.append("positionFile", "2");
+		}
 	}
-	//
-	if (create_death_inspection_record_anatomy_picture2.files[0] != null) {
-		formData.append("death",
-				create_death_inspection_record_anatomy_picture2.files[0]);
-		formData.append("positionFile", "1");
-	} else {
-		formData.append("death", null);
-		formData.append("positionFile", "2");
-	}
-	//
-	if (create_death_inspection_record_anatomy_picture3.files[0] != null) {
-		formData.append("death",
-				create_death_inspection_record_anatomy_picture3.files[0]);
-		formData.append("positionFile", "1");
-	} else {
-		formData.append("death", null);
-		formData.append("positionFile", "2");
-	}
+
 	/*
 	 * 
 	 */
