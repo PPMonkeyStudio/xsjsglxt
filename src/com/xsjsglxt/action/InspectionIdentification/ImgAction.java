@@ -48,6 +48,42 @@ public class ImgAction {
 		return "getImg";
 	}
 
+	// 获取尸体检验记录中的表
+	public String getDamagePicture() {
+		/*
+		 * 获取路径
+		 */
+		String lj = "";
+		try {
+			Properties props = new Properties();
+			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
+			lj = props.getProperty("lj");
+		} catch (Exception e) {
+			System.out.println("获取初始路径失败");
+			e.printStackTrace();
+		}
+		String path = "";
+		if (("_undefined").equals(imgName.substring(imgName.indexOf("_"))) || imgName == null) {
+			path = ServletActionContext.getServletContext().getRealPath("/img/default.png");
+		} else {
+			path = lj + "xsjsglxt/damage/" + imgName;
+		}
+		File file = new File(path);
+		try {
+			inputStream = new FileInputStream(file);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			file = new File(ServletActionContext.getServletContext().getRealPath("/img/notfound.png"));
+			try {
+				inputStream = new FileInputStream(file);
+			} catch (FileNotFoundException e1) {
+				System.out.println("cuo");
+				e1.printStackTrace();
+			}
+		}
+		return "getImg";
+	}
+
 	public String getImgName() {
 		return imgName;
 	}
