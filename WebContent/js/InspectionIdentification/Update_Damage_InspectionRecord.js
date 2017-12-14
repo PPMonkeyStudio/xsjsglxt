@@ -226,7 +226,7 @@ function Update_Damage_InspectionRecord(obj) {
 							xhr
 									.open(
 											"POST",
-											"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_uodateDamageInspectionRecord");
+											"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_updateDamageInspectionRecord");
 							xhr.send(formData);
 							return false;
 						}

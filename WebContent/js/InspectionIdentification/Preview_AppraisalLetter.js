@@ -93,7 +93,7 @@ function Preview_AppraisalLetter(obj) {
 					'修改' : {
 						btnClass : 'btn-orange',
 						action : function() {
-							return false;
+							Update_AppraisalLetter(obj);
 						}
 					},
 					'返回' : function() {
