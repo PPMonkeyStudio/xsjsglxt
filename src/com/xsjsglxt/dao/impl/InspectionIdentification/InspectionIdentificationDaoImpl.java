@@ -102,9 +102,6 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 				+ "' and check_entrustment_book_inspect_time<='" + stopTime
 				+ "' order by check_entrustment_book_inspect_time,check_entrustment_book_num desc";
 		Query query = getSession().createQuery(hql);
-
-		System.out.println(hql);
-
 		i = (Long) query.uniqueResult();
 		getSession().clear();
 		return i.intValue();

@@ -286,8 +286,54 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		return "exportTranceCheckBook";
 	}
 
-	//
+	// 导出确认书
+	public String exportConfirmBook() throws Exception {
+		File exportConfirmBookFile = inspectionIdentificationService.exportIdentifiederCaseConfirmBook(identifiederCaseConfirmBook.getXsjsglxt_identifieder_case_confirm_book_id());
+		fileName = inspectionIdentificationService.exportIdentifiederCaseConfirmBookName(identifiederCaseConfirmBook.getXsjsglxt_identifieder_case_confirm_book_id());
+		if (fileName != null) {
+			fileName = new String(("检验事项确认书：" + fileName + ".docx").getBytes("GBK"), "ISO-8859-1");
+		} else {
+			fileName = new String(("鉴定事项确认书：" + ".docx").getBytes("GBK"), "ISO-8859-1");
+		}
+		inputStream = new FileInputStream(exportConfirmBookFile);
+		exportConfirmBookFile.delete();
+		return "exportConfirmBook";
+	}
 
+	// 导出受理回执
+	// 接收：确认书ID
+	public String exportAcceptanceReturnReceipt() throws Exception {
+		File exportAcceptanceReturnReceiptFile = inspectionIdentificationService
+				.exportAcceptanceReturnReceipt(identifiederCaseConfirmBook.getXsjsglxt_identifieder_case_confirm_book_id());
+		fileName = inspectionIdentificationService.exportIdentifiederCaseConfirmBookName(identifiederCaseConfirmBook.getXsjsglxt_identifieder_case_confirm_book_id());
+		if (fileName != null) {
+			fileName = new String(("受理回执单：" + fileName + ".docx").getBytes("GBK"), "ISO-8859-1");
+		} else {
+			fileName = new String(("受理回执单：" + ".docx").getBytes("GBK"), "ISO-8859-1");
+		}
+		inputStream = new FileInputStream(exportAcceptanceReturnReceiptFile);
+		exportAcceptanceReturnReceiptFile.delete();
+		return "exportAcceptanceReturnReceipt";
+	}
+
+	//
+	public String exportNotAcceptanceIdentifieder() throws Exception {
+
+		File exportNotAcceptanceIdentifiederFile = inspectionIdentificationService
+				.exportNotAcceptanceIdentifieder(notAcceptanceEntrustmentInform.getXsjsglxt_not_acceptance_entrustment_inform_id());
+		// 获取委托书编号
+		fileName = inspectionIdentificationService.exportNotAccetpBookName(notAcceptanceEntrustmentInform.getXsjsglxt_not_acceptance_entrustment_inform_id());
+		if (fileName != null) {
+			fileName = new String(("不受理受理回执单：" + fileName + ".docx").getBytes("GBK"), "ISO-8859-1");
+		} else {
+			fileName = new String(("不受理回执单：" + ".docx").getBytes("GBK"), "ISO-8859-1");
+		}
+		inputStream = new FileInputStream(exportNotAcceptanceIdentifiederFile);
+		exportNotAcceptanceIdentifiederFile.delete();
+		return "exportNotAcceptanceIdentifieder";
+	}
+
+	//
 	/**
 	 * 
 	 * 
