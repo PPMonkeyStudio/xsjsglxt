@@ -27,7 +27,7 @@ public class ImgAction {
 			e.printStackTrace();
 		}
 		String path = "";
-		if (("_undefined").equals(imgName.substring(imgName.indexOf("_"))) || imgName == null) {
+		if (("_undefined").equals(imgName.substring(imgName.indexOf("_"))) || ("_").equals(imgName.substring(imgName.indexOf("_"))) || imgName == null) {
 			path = ServletActionContext.getServletContext().getRealPath("/img/default.png");
 		} else {
 			path = lj + "xsjsglxt/death/" + imgName;
@@ -48,7 +48,7 @@ public class ImgAction {
 		return "getImg";
 	}
 
-	// 获取尸体检验记录中的表
+	// 获取损伤检验记录中的表
 	public String getDamagePicture() {
 		/*
 		 * 获取路径
@@ -63,7 +63,7 @@ public class ImgAction {
 			e.printStackTrace();
 		}
 		String path = "";
-		if (("_undefined").equals(imgName.substring(imgName.indexOf("_"))) || imgName == null) {
+		if (("_undefined").equals(imgName.substring(imgName.indexOf("_"))) || ("_").equals(imgName.substring(imgName.indexOf("_"))) || imgName == null) {
 			path = ServletActionContext.getServletContext().getRealPath("/img/default.png");
 		} else {
 			path = lj + "xsjsglxt/damage/" + imgName;

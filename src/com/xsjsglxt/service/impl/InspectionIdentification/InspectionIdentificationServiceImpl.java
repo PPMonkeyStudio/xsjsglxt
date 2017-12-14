@@ -544,6 +544,9 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		// 将文件以及文件名格式化
 		updateDeathFile = file(updateDeathFile, positionFile, "death");
 		updateDeathFileName = fileName(updateDeathFileName, positionFile, "death");
+		for (String string : updateDeathFileName) {
+			System.out.println("name:" + string);
+		}
 		xsjsglxt_death_inspection_record death_inspection_record = new xsjsglxt_death_inspection_record();
 		death_inspection_record = inspectionIdentificationDao.getDeathInspectionRecordOwnId(deathInspectionRecord.getXsjsglxt_death_inspection_record_id());
 		if (death_inspection_record == null)
@@ -588,18 +591,12 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				}
 			}
 		}
-		deathInspectionRecord.setDeath_inspection_record_anatomy_picture1(
-				death_inspection_record.getDeath_inspection_record_anatomy_picture1());
-		deathInspectionRecord.setDeath_inspection_record_anatomy_picture2(
-				death_inspection_record.getDeath_inspection_record_anatomy_picture2());
-		deathInspectionRecord.setDeath_inspection_record_anatomy_picture3(
-				death_inspection_record.getDeath_inspection_record_anatomy_picture3());
-		deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture1(
-				death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture1());
-		deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture2(
-				death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture2());
-		deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture3(
-				death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture3());
+		deathInspectionRecord.setDeath_inspection_record_anatomy_picture1(death_inspection_record.getDeath_inspection_record_anatomy_picture1());
+		deathInspectionRecord.setDeath_inspection_record_anatomy_picture2(death_inspection_record.getDeath_inspection_record_anatomy_picture2());
+		deathInspectionRecord.setDeath_inspection_record_anatomy_picture3(death_inspection_record.getDeath_inspection_record_anatomy_picture3());
+		deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture1(death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture1());
+		deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture2(death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture2());
+		deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture3(death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture3());
 		deathInspectionRecord.setDeath_inspection_record_gmt_create(death_inspection_record.getDeath_inspection_record_gmt_create());
 		deathInspectionRecord.setDeath_inspection_record_gmt_modified(TeamUtil.getStringSecond());
 		return inspectionIdentificationDao.saveObject(deathInspectionRecord);
