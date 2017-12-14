@@ -1,6 +1,7 @@
 package com.xsjsglxt.action.Case;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +19,7 @@ import com.xsjsglxt.service.Case.HandleService;
 public class HandleAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
 private HandleService handleService;
 private xsjsglxt_handle handle;
+private List<String> useHandleInformationNumList;
 private HttpServletResponse http_response;
 private HttpServletRequest http_request;	
 private page_list_HandleInformationVO page_list_HandleInformation;
@@ -51,6 +53,56 @@ public void ListHandleInformationByPageAndSearch() throws IOException{
 	http_response.setContentType("text/html;charset=utf-8");
 
 	http_response.getWriter().write(gson.toJson(page_list_HandleInformation));
+}
+/*
+ *详细信息 
+ */
+public void HandleInformationOne() throws IOException {
+	GsonBuilder gsonBuilder = new GsonBuilder();
+	gsonBuilder.setPrettyPrinting();//格式化json数据
+	Gson gson = gsonBuilder.create();
+	handle = handleService.HandleInformationOne(handle);
+	http_response.setContentType("text/html;charset=utf-8");
+
+	http_response.getWriter().write(gson.toJson(handle));
+}
+/*
+ * 修改信息
+ */
+public void updateHandleInformation() throws IOException{
+	try {
+		
+		handleService.updateHandleInformation(handle);
+		http_response.setContentType("text/html;charset=utf-8");
+		http_response.getWriter().write("success");
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		http_response.setContentType("text/html;charset=utf-8");
+		http_response.getWriter().write("error");
+	}
+}
+/*
+ *删除信息 
+ */
+public void remove_HandleInformationList(){
+
+	if(	handleService.remove_HandleInformationList( useHandleInformationNumList)){
+		http_response.setContentType("text/html;charset=utf-8");
+		try {
+			http_response.getWriter().write("success");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}}else{
+			http_response.setContentType("text/html;charset=utf-8");
+			try {
+				http_response.getWriter().write("error");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 }
 	@Override
 	public void setServletResponse(HttpServletResponse arg0) {
@@ -98,6 +150,12 @@ public void ListHandleInformationByPageAndSearch() throws IOException{
 	}
 	public void setPage_list_HandleInformation(page_list_HandleInformationVO page_list_HandleInformation) {
 		this.page_list_HandleInformation = page_list_HandleInformation;
+	}
+	public List<String> getUseHandleInformationNumList() {
+		return useHandleInformationNumList;
+	}
+	public void setUseHandleInformationNumList(List<String> useHandleInformationNumList) {
+		this.useHandleInformationNumList = useHandleInformationNumList;
 	}
 
 }

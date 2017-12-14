@@ -62,4 +62,29 @@ public page_list_HandleInformationVO VO_HandleInformation_By_PageAndSearch(
 	return page_list_HandleInformation;
 }
 
+@Override
+public xsjsglxt_handle HandleInformationOne(xsjsglxt_handle handle) {
+	// TODO Auto-generated method stub
+	return handleDao.HandleInformationOne(handle);
+}
+
+@Override
+public void updateHandleInformation(xsjsglxt_handle handle) {
+	// TODO Auto-generated method stub
+	handle.setHandle_gmt_modified(TeamUtil.getStringSecond());
+	handleDao.updateHandleInformation(handle);
+}
+
+@Override
+public boolean remove_HandleInformationList(List<String> useHandleInformationNumList) {
+	// TODO Auto-generated method stub
+	boolean flag = false;
+	for (String handle_id : useHandleInformationNumList) {
+		xsjsglxt_handle xsjsglxt_handle = handleDao.getHandleByNum(handle_id);
+		flag = handleDao.deleteHandleById(xsjsglxt_handle.getXsjsglxt_handle_id());// ����
+		
+	}
+	return flag;
+}
+
 }
