@@ -63,6 +63,8 @@ function Preview_Damage_InspectionRecord(obj) {
 							+ '<tr>'
 							+ '<td>检验所见：</td><td colspan="5">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.damage_inspection_record_inspection
+									.replace(/\n/g, "<br>").replace(/ /g,
+											"&nbsp;")
 							+ '</td>'
 							+ '</tr>'
 							+ '<tr>'
