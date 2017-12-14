@@ -275,6 +275,9 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	public int saveDamageInspectionRecord(xsjsglxt_damage_inspection_record damageInspectionRecord, File[] file, String[] fileName, String[] positionFile) throws IOException {
 		int i = 2;
 		int x = -1;
+
+		System.out.println("length:" + positionFile.length);
+
 		/*
 		 * 获取路径
 		 */
@@ -290,6 +293,11 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		}
 		String path = lj + "xsjsglxt/damage/";
 		// 将文件以及文件名格式化
+		for (String string : fileName) {
+			System.out.println("string:" + string);
+		}
+		System.out.println("-------------------");
+		System.out.println("name:" + fileName);
 		file = file(file, positionFile, "damage");
 		fileName = fileName(fileName, positionFile, "damage");
 		if (!("申请已受理".equals(entrustmentBookState(damageInspectionRecord.getDamage_inspection_record_belong_entrustment_book().trim())))) {
@@ -857,6 +865,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	 * 
 	 * 
 	 */
+
 	// 不受理委托鉴定告知书
 	public Map<String, Object> mapNotAcceptanceIdentifieder(String id) {
 		Map<String, Object> params = new HashMap<String, Object>();

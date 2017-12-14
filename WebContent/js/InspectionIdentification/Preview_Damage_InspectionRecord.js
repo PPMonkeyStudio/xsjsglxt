@@ -76,21 +76,21 @@ function Preview_Damage_InspectionRecord(obj) {
 							+ '<td style="width:200px;">尸表检验图：</td>'
 							+ '<td colspan="5">'
 							+ '<p>'
-							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDeathPicture?imgName='
+							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDamagePicture?imgName='
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.xsjsglxt_damage_inspection_record_id
 							+ '_'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.damage_inspection_record_picture1
 							+ '" onclick="()" style="width:300px; margin:20px auto;"  />'
 							+ '</p>'
 							+ '<p>'
-							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDeathPicture?imgName='
+							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDamagePicture?imgName='
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.xsjsglxt_damage_inspection_record_id
 							+ '_'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.damage_inspection_record_picture2
 							+ '" onclick="()" style="width:300px; margin:20px auto;"  />'
 							+ '</p>'
 							+ '<p>'
-							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDeathPicture?imgName='
+							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDamagePicture?imgName='
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.xsjsglxt_damage_inspection_record_id
 							+ '_'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.damage_inspection_record_picture3
