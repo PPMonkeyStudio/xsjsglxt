@@ -37,4 +37,12 @@ public xsjsglxt_picture getImageBypictureId(String xsjsglxt_image_id);
 
 public void updatePicture(xsjsglxt_picture picture);
 
+public com.xsjsglxt.domain.DO.xsjsglxt_picture getPictureByNum(String picture_id);
+
+public boolean deletePictureById(String xsjsglxt_picture_id);
+
+public com.xsjsglxt.domain.DO.xsjsglxt_image getImageByNum(String iamge_id);
+
+public boolean deleteImageById(String xsjsglxt_image_id);
+
 }

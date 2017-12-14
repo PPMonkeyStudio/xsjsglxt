@@ -1,6 +1,7 @@
 package com.xsjsglxt.action.Case;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,6 +31,8 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 	private xsjsglxt_case case1;
 	
 	private xsjsglxt_circulation circulation;
+	
+	private List<String> useResevidenceInformationNumList;
 	
 	private ResevidenceInformationDTO resevidenceInformationDTO;
 	
@@ -109,7 +112,28 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 		http_response.getWriter().write(gson.toJson("success"));
 		
 	}
-	
+	/*
+	 *删除信息 
+	 */
+	public void remove_ResevidenceInformationList(){
+
+		if(	resevidenceService.removeResevidenceInformationList( useResevidenceInformationNumList)){
+			http_response.setContentType("text/html;charset=utf-8");
+			try {
+				http_response.getWriter().write("success");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}}else{
+				http_response.setContentType("text/html;charset=utf-8");
+				try {
+					http_response.getWriter().write("error");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+	}
 	@Override
 	public void setServletResponse(HttpServletResponse arg0) {
 		// TODO Auto-generated method stub
@@ -184,6 +208,14 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 
 	public void setPage_list_ResevidenceInformation(page_list_ResevidenceInformationVO page_list_ResevidenceInformation) {
 		this.page_list_ResevidenceInformation = page_list_ResevidenceInformation;
+	}
+
+	public List<String> getUseResevidenceInformationNumList() {
+		return useResevidenceInformationNumList;
+	}
+
+	public void setUseResevidenceInformationNumList(List<String> useResevidenceInformationNumList) {
+		this.useResevidenceInformationNumList = useResevidenceInformationNumList;
 	}
 
 }

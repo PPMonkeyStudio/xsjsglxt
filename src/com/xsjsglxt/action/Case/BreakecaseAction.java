@@ -1,6 +1,7 @@
 package com.xsjsglxt.action.Case;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +24,7 @@ public class BreakecaseAction extends ActionSupport implements ServletResponseAw
 	private xsjsglxt_breakecase breakecase ;
 	private xsjsglxt_case case1;
 	private xsjsglxt_snece sence;
+	private List<String> useBreakecaseInformationNumList;
 	private HttpServletResponse http_response;
 
 	private HttpServletRequest http_request;
@@ -98,6 +100,28 @@ public class BreakecaseAction extends ActionSupport implements ServletResponseAw
 		http_response.setContentType("text/html;charset=utf-8");
 		http_response.getWriter().write(gson.toJson("success"));
 	}
+	/*
+	 *删除信息 
+	 */
+	public void remove_BreakecaseInformationList(){
+
+		if(	breakecaseService.remove_BreakecaseInformationList( useBreakecaseInformationNumList)){
+			http_response.setContentType("text/html;charset=utf-8");
+			try {
+				http_response.getWriter().write("success");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}}else{
+				http_response.setContentType("text/html;charset=utf-8");
+				try {
+					http_response.getWriter().write("error");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+	}
 	@Override
 	public void setServletRequest(HttpServletRequest arg0) {
 		// TODO Auto-generated method stub
@@ -172,6 +196,14 @@ public class BreakecaseAction extends ActionSupport implements ServletResponseAw
 
 	public void setPage_list_BreakecaseInformation(page_list_BreakecaseInformationVO page_list_BreakecaseInformation) {
 		this.page_list_BreakecaseInformation = page_list_BreakecaseInformation;
+	}
+
+	public List<String> getUseBreakecaseInformationNumList() {
+		return useBreakecaseInformationNumList;
+	}
+
+	public void setUseBreakecaseInformationNumList(List<String> useBreakecaseInformationNumList) {
+		this.useBreakecaseInformationNumList = useBreakecaseInformationNumList;
 	}
 
 }

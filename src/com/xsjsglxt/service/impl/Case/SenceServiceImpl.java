@@ -203,6 +203,10 @@ public class SenceServiceImpl implements SenceService {
 			flag = senceDao.deleteLostById(xsjsglxt_case.getXsjsglxt_case_id());// ��ʧ��Ʒ
 			flag = senceDao.deletePictureById(xsjsglxt_case.getXsjsglxt_case_id());// ��Ƭ
 			flag = senceDao.deleteSenceById(xsjsglxt_case.getXsjsglxt_case_id());// ��̽�ֳ�
+			xsjsglxt_resevidence resevidence = senceDao.getResevidenceById(xsjsglxt_case.getXsjsglxt_case_id());
+			flag=senceDao.deleteCirculationById(resevidence.getXsjsglxt_resevidence_id());
+			flag=senceDao.deleteResevidenceById(xsjsglxt_case.getXsjsglxt_case_id());
+			flag=senceDao.deleteBreakecaseById(xsjsglxt_case.getXsjsglxt_case_id());
 		}
 		return flag;
 	}

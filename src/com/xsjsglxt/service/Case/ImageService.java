@@ -1,5 +1,7 @@
 package com.xsjsglxt.service.Case;
 
+import java.util.List;
+
 import com.xsjsglxt.domain.DO.xsjsglxt_image;
 import com.xsjsglxt.domain.DO.xsjsglxt_picture;
 import com.xsjsglxt.domain.DTO.Case.ImageInformationDTO;
@@ -23,5 +25,9 @@ public ImageInformationDTO ImageInformationOne(xsjsglxt_picture picture);
 public void updateImage(xsjsglxt_image image);
 
 public void updatePicture(xsjsglxt_picture picture, String xsjsglxt_image_id);
+
+public boolean remove_PictureInformationList(List<String> usePictureInformationNumList);
+
+public boolean remove_ImageInformationList(List<String> useImageInformationNumList);
 
 }

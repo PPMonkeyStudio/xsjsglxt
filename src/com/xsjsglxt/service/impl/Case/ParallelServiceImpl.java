@@ -137,6 +137,17 @@ public class ParallelServiceImpl implements ParallelService {
 		parallel.setParallel_gmt_modified(TeamUtil.getStringSecond());
 		parallelDao.updateParallel(parallel);
 	}
+	@Override
+	public boolean remove_ParallelInformationList(List<String> useParallelInformationNumList) {
+		// TODO Auto-generated method stub
+		boolean flag = false;
+		for (String parallel_id : useParallelInformationNumList) {
+			xsjsglxt_parallel xsjsglxt_parallel = parallelDao.getParallelByNum(parallel_id);
+			flag = parallelDao.deleteParallelById(xsjsglxt_parallel.getXsjsglxt_parallel_id());// ����
+			
+		}
+		return flag;
+	}
 
 
 	

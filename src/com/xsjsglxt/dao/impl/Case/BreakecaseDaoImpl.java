@@ -288,4 +288,25 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public xsjsglxt_breakecase getBreakecaseByNum(String breakecase_id) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		xsjsglxt_breakecase BreakecaseInformation = null;
+		String hql = "from xsjsglxt_breakecase breakecase where breakecase.xsjsglxt_breakecase_id='" + breakecase_id + "'";
+		Query query = session.createQuery(hql);
+		BreakecaseInformation = (xsjsglxt_breakecase) query.uniqueResult();
+       return BreakecaseInformation;
+	}
+
+	@Override
+	public boolean deleteBreakecaseById(String xsjsglxt_breakecase_id) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		String hql = "delete from xsjsglxt_breakecase where xsjsglxt_breakecase_id='" + xsjsglxt_breakecase_id + "'";
+		Query query = session.createQuery(hql);
+		query.executeUpdate();
+       return true;
+	}
 }

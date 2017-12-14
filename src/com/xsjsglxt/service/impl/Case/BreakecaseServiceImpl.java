@@ -127,4 +127,16 @@ public void updateSence(xsjsglxt_snece sence, String xsjsglxt_case_id) {
 	breakecaseDao.updateSence(sence);
 }
 
+@Override
+public boolean remove_BreakecaseInformationList(List<String> useBreakecaseInformationNumList) {
+	// TODO Auto-generated method stub
+	boolean flag = false;
+	for (String breakecase_id : useBreakecaseInformationNumList) {
+		xsjsglxt_breakecase xsjsglxt_breakecase = breakecaseDao.getBreakecaseByNum(breakecase_id);
+		flag = breakecaseDao.deleteBreakecaseById(xsjsglxt_breakecase.getXsjsglxt_breakecase_id());// ����
+		
+	}
+	return flag;
+}
+
 }

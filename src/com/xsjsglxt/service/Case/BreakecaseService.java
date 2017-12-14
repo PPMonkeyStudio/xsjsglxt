@@ -1,5 +1,7 @@
 package com.xsjsglxt.service.Case;
 
+import java.util.List;
+
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecase;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
@@ -20,5 +22,7 @@ public void updateCase(xsjsglxt_case case1);
 public void updateBreakcase(xsjsglxt_breakecase breakecase, String xsjsglxt_case_id);
 
 public void updateSence(xsjsglxt_snece sence, String xsjsglxt_case_id);
+
+public boolean remove_BreakecaseInformationList(List<String> useBreakecaseInformationNumList);
 
 }

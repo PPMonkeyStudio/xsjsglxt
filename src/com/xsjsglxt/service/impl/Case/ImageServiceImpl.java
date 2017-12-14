@@ -162,4 +162,28 @@ public void updatePicture(xsjsglxt_picture picture, String xsjsglxt_image_id) {
 	imageDao.updatePicture(picture);
 }
 
+@Override
+public boolean remove_PictureInformationList(List<String> usePictureInformationNumList) {
+	// TODO Auto-generated method stub
+	boolean flag = false;
+	for (String picture_id : usePictureInformationNumList) {
+		xsjsglxt_picture xsjsglxt_picture = imageDao.getPictureByNum(picture_id);
+		flag = imageDao.deletePictureById(xsjsglxt_picture.getXsjsglxt_picture_id());// ����
+		
+	}
+	return flag;
+}
+
+@Override
+public boolean remove_ImageInformationList(List<String> useImageInformationNumList) {
+	// TODO Auto-generated method stub
+	boolean flag = false;
+	for (String iamge_id : useImageInformationNumList) {
+		xsjsglxt_image xsjsglxt_image = imageDao.getImageByNum(iamge_id);
+		flag = imageDao.deleteImageById(xsjsglxt_image.getXsjsglxt_image_id());// ����
+		
+	}
+	return flag;
+}
+
 }
