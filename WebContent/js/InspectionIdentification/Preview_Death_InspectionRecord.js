@@ -139,24 +139,60 @@ function Preview_Death_InspectionRecord(obj) {
 									.replace(/\n/g, "<br>").replace(/ /g,
 											"&nbsp;")
 							+ '</p>'
-							+ '<p>尸表检验图：</p>'
+							+ '<table  class="table table-bordered" style="text-align: center;">'
+							+ '<tbody>'
+							+ '<tr>'
+							+ '<td style="width:200px;">尸表检验图：</td>'
+							+ '<td>'
 							+ '<p>'
 							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDeathPicture?imgName='
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.xsjsglxt_death_inspection_record_id
 							+ '_'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_autopsy_table_test_picture1
-							+ '" onclick="()" style="width:100%; margin:20px 0;" />'
+							+ '" onclick="()" style="width:300px; margin:20px auto;"  />'
+							+ '</p>'
+							+ '<p>'
 							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDeathPicture?imgName='
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.xsjsglxt_death_inspection_record_id
 							+ '_'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_autopsy_table_test_picture2
-							+ '" onclick="()" style="width:100%; margin:20px 0;" />'
+							+ '" onclick="()" style="width:300px; margin:20px auto;"  />'
+							+ '</p>'
+							+ '<p>'
 							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDeathPicture?imgName='
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.xsjsglxt_death_inspection_record_id
 							+ '_'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_autopsy_table_test_picture3
-							+ '" onclick="()" style="width:100%; margin:20px 0;" />'
+							+ '" onclick="()" style="width:300px; margin:20px auto;"  />'
 							+ '</p>'
+							+ '</td>'
+							+ '</tr>'
+							+ '<tr>'
+							+ '<td>解剖检验图：</td>'
+							+ '<td>'
+							+ '<p>'
+							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDeathPicture?imgName='
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.xsjsglxt_death_inspection_record_id
+							+ '_'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_anatomy_picture1
+							+ '"  style="width:300px; margin:20px auto;" />'
+							+ '</p>'
+							+ '<p>'
+							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDeathPicture?imgName='
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.xsjsglxt_death_inspection_record_id
+							+ '_'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_anatomy_picture2
+							+ '"  style="width:300px; margin:20px auto;"  />'
+							+ '</p>'
+							+ '<p>'
+							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDeathPicture?imgName='
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.xsjsglxt_death_inspection_record_id
+							+ '_'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_anatomy_picture3
+							+ '"  style="width:300px; margin:20px auto;"  />'
+							+ '</p>'
+							+ '</td>'
+							+ '</tr>'
 							+ '<p>解剖时间：'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_anatomic_time
 									.substring(0, 4)
@@ -175,24 +211,6 @@ function Preview_Death_InspectionRecord(obj) {
 							+ '分'
 							+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;解剖地点：'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_anatomic_place
-							+ '</p>'
-							+ '<p>解剖检验图：</p>'
-							+ '<p>'
-							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDeathPicture?imgName='
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.xsjsglxt_death_inspection_record_id
-							+ '_'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_anatomy_picture1
-							+ '"  style="width:100%; margin:20px 0;" />'
-							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDeathPicture?imgName='
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.xsjsglxt_death_inspection_record_id
-							+ '_'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_anatomy_picture2
-							+ '"  style="width:100%; margin:20px 0;" />'
-							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDeathPicture?imgName='
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.xsjsglxt_death_inspection_record_id
-							+ '_'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_anatomy_picture3
-							+ '"  style="width:100%; margin:20px 0;" />'
 							+ '</p>'
 							+ '<p>尸体检验拍照人：'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_autopsy_table_test_photographer
@@ -230,7 +248,8 @@ function Preview_Death_InspectionRecord(obj) {
 					'修改' : {
 						btnClass : 'btn-orange',
 						action : function() {
-							return false;
+							jc.close();
+							Update_Death_InspectionRecord(obj);
 						}
 					},
 					'返回' : function() {
