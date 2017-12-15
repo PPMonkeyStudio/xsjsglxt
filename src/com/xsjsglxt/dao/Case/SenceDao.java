@@ -92,5 +92,6 @@ public xsjsglxt_resevidence getResevidenceById(String xsjsglxt_case_id);
 public boolean deleteCirculationById(String xsjsglxt_resevidence_id);
 public boolean deleteResevidenceById(String xsjsglxt_case_id);
 public boolean deleteBreakecaseById(String xsjsglxt_case_id);
+public List<xsjsglxt_case> AllCase();
 
 }

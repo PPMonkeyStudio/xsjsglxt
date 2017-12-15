@@ -51,5 +51,6 @@ public SenceInformationDTO SecneInformationOne(xsjsglxt_case case1);
 public void updateSence(xsjsglxt_snece sence, String case1);
 public void updateCase(xsjsglxt_case case1);
 public void updateBriefdetails(xsjsglxt_briefdetails briefdetails,String case1);
+public List<xsjsglxt_case> AllCase();
 
 }

@@ -665,5 +665,18 @@ public class SenceDaoImpl implements SenceDao {
 		query.executeUpdate();
        return true;
 	}
+
+	@Override
+	public List<xsjsglxt_case> AllCase() {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+	
+		String hql="from xsjsglxt_case";
+		Query query = session.createQuery(hql);
+
+		List<xsjsglxt_case> AllcaseList = query.list();
+	
+		return AllcaseList;
+	}
 	
 }
