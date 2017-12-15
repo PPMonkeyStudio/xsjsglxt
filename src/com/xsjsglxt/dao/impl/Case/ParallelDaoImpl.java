@@ -1,4 +1,3 @@
-
 package com.xsjsglxt.dao.impl.Case;
 
 import java.util.ArrayList;
@@ -268,6 +267,3 @@ public class ParallelDaoImpl implements ParallelDao {
        return true;
 	}
 }
-
-
-

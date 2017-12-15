@@ -18,6 +18,7 @@
 </head>
 <body>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
+
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
@@ -27,146 +28,146 @@
 			<div class="panel-heading">
 				<h3 class="panel-title">案件详情信息</h3>
 			</div>
-			<button
-				onclick="javascript:history.go(-1)" type="button"
+			<button onclick="javascript:history.go(-1)" type="button"
 				class="btn btn-default button button_return">
 				<i class="fa fa-reply"></i> 返回列表
 			</button>
-			<button  type="button"
-				class="btn btn-default button button_change" onclick="case_change()">
-				<i class="fa fa-pencil" ></i> 修改案件
+			<button type="button" class="btn btn-default button button_change"
+				onclick="case_change()">
+				<i class="fa fa-pencil"></i> 修改案件
 			</button>
-			<button  type="button"
-				class="btn btn-default button button_del" onclick="case_del()">
+			<button type="button" class="btn btn-default button button_del"
+				onclick="case_del()">
 				<i class="fa fa-times"></i> 删除案件
 			</button>
 			<div class="panel-body">
-			<form id="caseDetails">
-				<table>
-					<tr>
-						<td>勘探编号</td>
-						<td><input style="font-size: 12px;"
-							name="sence.snece_inquestId" class="form-control" type="text"></td>
-						<td style="padding-left:5px;">勘探系统编号</td>
-						<td><input name="sence.snece_inquestSystemId"
-							class="form-control" type="text"></td>
-						<td>案件分类</td>
-						<td><input name="case1.case_classify" class=" form-control">
-					</tr>
-					<tr>
-						<td>接警时间</td>
-						<td><input name="case1.case_receivingAlarmDate"
-							class="form-control" style="margin-top: 6px;" type="text"></td>
-						<td>危害程度</td>
-						<td><input name="case1.case_extentOfInjury"
-							class="form-control" style="margin-top: 6px;"></td>
-						<td>是否立案</td>
-						<td><label style="float: left;" class="fancy-radio">
-								<input name="register" onclick="buildCase_chose(this)"
-								type="radio" value="1"> <span><i></i>是</span>
-						</label><label style="float: left; margin-left: 10px;" class="fancy-radio">
-								<input name="register" onclick="buildCase_chose(this)"
-								type="radio" value="2"> <span><i></i>否</span>
-						</label> <input type="hidden" name="Csae.case_register"></td>
-					</tr>
-					<tr>
-						<td>案发地点</td>
-						<td colspan="3"><input name="case1.case_address"
-							style="margin-top: 6px;" class="case_place form-control"
-							type="text" value="萍乡市安源区"></td>
+				<form id="caseDetails">
+					<table>
+						<tr>
+							<td>勘探编号</td>
+							<td><input style="font-size: 12px;"
+								name="sence.snece_inquestId" class="form-control" type="text"></td>
+							<td style="padding-left:5px;">勘探系统编号</td>
+							<td><input name="sence.snece_inquestSystemId"
+								class="form-control" type="text"></td>
+							<td>案件分类</td>
+							<td><input name="case1.case_classify" class=" form-control">
+						</tr>
+						<tr>
+							<td>接警时间</td>
+							<td><input name="case1.case_receivingAlarmDate"
+								class="form-control" style="margin-top: 6px;" type="text"></td>
+							<td>危害程度</td>
+							<td><input name="case1.case_extentOfInjury"
+								class="form-control" style="margin-top: 6px;"></td>
+							<td>是否立案</td>
+							<td><label style="float: left;" class="fancy-radio">
+									<input name="register" onclick="buildCase_chose(this)"
+									type="radio" value="1"> <span><i></i>是</span>
+							</label><label style="float: left; margin-left: 10px;"
+								class="fancy-radio"> <input name="register"
+									onclick="buildCase_chose(this)" type="radio" value="2">
+									<span><i></i>否</span>
+							</label> <input type="hidden" name="Csae.case_register"></td>
+						</tr>
+						<tr>
+							<td>案发地点</td>
+							<td colspan="3"><input name="case1.case_address"
+								style="margin-top: 6px;" class="case_place form-control"
+								type="text" value="萍乡市安源区"></td>
 
-						<td rowspan="2">案件类别</td>
-						<td rowspan="2"><input name="case1.case_totalCategory"
-							name="case_class1" class="main_case form-control"> <input
-							name="case1.case_sonCategory" style="margin-top: 6px;"
-							class="other_case form-control"></td>
-					</tr>
-					<tr>
-						<td>案发名称</td>
-						<td colspan="3"><input name="case1.case_name"
-							style="margin-top: 6px;" class="case_name form-control"
-							type="text"></td>
-					</tr>
-				</table>
-				<hr>
-				<table>
-					<tr>
-						<td width="85">移动基站</td>
-						<td><input name="sence.snece_mobileStation" placeholder="基站号"
-							class="form-control" type="text"> <input
-							name="sence.snece_mobileVillage" placeholder="小区号"
-							style="margin-top: 6px;" class="form-control" type="text"></td>
-						<td width="85">联通基站</td>
-						<td><input name="sence.snece_unicomSwitchboard"
-							placeholder="交换机" class="form-control" type="text"> <input
-							name="sence.snece_unicomVillage" placeholder="小区号"
-							style="margin-top: 6px;" class="form-control" type="text"></td>
-						<td width="85">电信基站</td>
-						<td><input name="sence.snece_telecomStation"
-							placeholder="基站号" width="40%;" class="form-control" type="text"></td>
-					</tr>
-				</table>
-				<hr>
-				<table>
-					<tr>
-						<td style="height: 74;">报案人基本情况</td>
-						<td colspan="5"><input style=" width: 24%;float:left; "
-							name="case1.case_reporterName" class="form-control" type="text"
-							placeholder="姓名"> <input
-							style="width: 24%; float:left;margin-left: 6px;"
-							name="case1.case_reporterSex" class="form-control" type="text"
-							placeholder="年龄 "> <input
-							style="width: 24%; float:left; margin-left: 6px;"
-							name="case1.case_reporterJobUnit" class="form-control"
-							type="text" placeholder="工作单位 "> <input
-							style="width: 25%; margin-left: 6px; float: left;"
-							name="case1.case_reporterPhone" class="form-control" type="text"
-							placeholder="联系电话 "> <input
-							style="margin-top: 6px;float: right;"
-							name="case1.case_reporterAddress" class="form-control"
-							type="text" placeholder="家庭住址 "></td>
-					</tr>
-					<tr>
-						<td>简要案情</td>
-						<td colspan="5"><textarea style="margin-top: 6px;"
-								name="briefdetails.briefdetails_details" class="form-control"
-								rows="4"></textarea></td>
-					</tr>
-					<tr>
-						<td height="39px;">天气情况</td>
-						<td><input name="sence.snece_weather"
-							style="width:60px; float:left; margin-top: 6px;"
-							class=" form-control" id="weather" name="weather">
-							<p style="float:left; margin-top: 6px;">温度</p> <input
-							name="sence.snece_weatherTemperature"
-							style="width: 50px; float:left; margin-top: 6px;"
-							class="form-control" type="text">°C</td>
-						<td width="85">作案时段</td>
-						<td><input name="case1.case_makeTime" class=" form-control">
-						</td>
-						<td>发案辖区</td>
-						<td><input name="case1.case_jurisdiction"
-							class=" form-control"></td>
-					</tr>
+							<td rowspan="2">案件类别</td>
+							<td rowspan="2"><input name="case1.case_totalCategory"
+								name="case_class1" class="main_case form-control"> <input
+								name="case1.case_sonCategory" style="margin-top: 6px;"
+								class="other_case form-control"></td>
+						</tr>
+						<tr>
+							<td>案发名称</td>
+							<td colspan="3"><input name="case1.case_name"
+								style="margin-top: 6px;" class="case_name form-control"
+								type="text"></td>
+						</tr>
+					</table>
+					<hr>
+					<table>
+						<tr>
+							<td width="85">移动基站</td>
+							<td><input name="sence.snece_mobileStation"
+								placeholder="基站号" class="form-control" type="text"> <input
+								name="sence.snece_mobileVillage" placeholder="小区号"
+								style="margin-top: 6px;" class="form-control" type="text"></td>
+							<td width="85">联通基站</td>
+							<td><input name="sence.snece_unicomSwitchboard"
+								placeholder="交换机" class="form-control" type="text"> <input
+								name="sence.snece_unicomVillage" placeholder="小区号"
+								style="margin-top: 6px;" class="form-control" type="text"></td>
+							<td width="85">电信基站</td>
+							<td><input name="sence.snece_telecomStation"
+								placeholder="基站号" width="40%;" class="form-control" type="text"></td>
+						</tr>
+					</table>
+					<hr>
+					<table>
+						<tr>
+							<td style="height: 74;">报案人基本情况</td>
+							<td colspan="5"><input style=" width: 24%;float:left; "
+								name="case1.case_reporterName" class="form-control" type="text"
+								placeholder="姓名"> <input
+								style="width: 24%; float:left;margin-left: 6px;"
+								name="case1.case_reporterSex" class="form-control" type="text"
+								placeholder="年龄 "> <input
+								style="width: 24%; float:left; margin-left: 6px;"
+								name="case1.case_reporterJobUnit" class="form-control"
+								type="text" placeholder="工作单位 "> <input
+								style="width: 25%; margin-left: 6px; float: left;"
+								name="case1.case_reporterPhone" class="form-control" type="text"
+								placeholder="联系电话 "> <input
+								style="margin-top: 6px;float: right;"
+								name="case1.case_reporterAddress" class="form-control"
+								type="text" placeholder="家庭住址 "></td>
+						</tr>
+						<tr>
+							<td>简要案情</td>
+							<td colspan="5"><textarea style="margin-top: 6px;"
+									name="briefdetails.briefdetails_details" class="form-control"
+									rows="4"></textarea></td>
+						</tr>
+						<tr>
+							<td height="39px;">天气情况</td>
+							<td><input name="sence.snece_weather"
+								style="width:60px; float:left; margin-top: 6px;"
+								class=" form-control" id="weather" name="weather">
+								<p style="float:left; margin-top: 6px;">温度</p> <input
+								name="sence.snece_weatherTemperature"
+								style="width: 50px; float:left; margin-top: 6px;"
+								class="form-control" type="text">°C</td>
+							<td width="85">作案时段</td>
+							<td><input name="case1.case_makeTime" class=" form-control">
+							</td>
+							<td>发案辖区</td>
+							<td><input name="case1.case_jurisdiction"
+								class=" form-control"></td>
+						</tr>
 
-					<tr style="margin-top: -6px;">
-						<td height="78px;">作案手段</td>
-						<td><input name="case1.case_makeMeans"
-							class=" crime_means form-control"> <input
-							style="margin-top: 6px;" name="case1.case_concreteMakeMeans"
-							class=" specific_means form-control"></td>
-						<td>选择处所</td>
-						<td><input name="case1.case_residence"
-							onchange="setSectionmAddress(this.inputedIndex)"
-							class=" widel_space form-control"> <input
-							name="case1.case_concreteResidence" style="margin-top: 6px;"
-							class=" specific_space form-control"></td>
-						<td width="85">进出口</td>
-						<td><input name="case1.case_exit" class=" form-control">
-						</td>
-					</tr>
-					<tr>
-						<!-- <td>物证编号</td>
+						<tr style="margin-top: -6px;">
+							<td height="78px;">作案手段</td>
+							<td><input name="case1.case_makeMeans"
+								class=" crime_means form-control"> <input
+								style="margin-top: 6px;" name="case1.case_concreteMakeMeans"
+								class=" specific_means form-control"></td>
+							<td>选择处所</td>
+							<td><input name="case1.case_residence"
+								onchange="setSectionmAddress(this.inputedIndex)"
+								class=" widel_space form-control"> <input
+								name="case1.case_concreteResidence" style="margin-top: 6px;"
+								class=" specific_space form-control"></td>
+							<td width="85">进出口</td>
+							<td><input name="case1.case_exit" class=" form-control">
+							</td>
+						</tr>
+						<tr>
+							<!-- <td>物证编号</td>
 							<td><input
 								name="sneceInformation.snece_information_physicalEvidenceId"
 								style="margin-top: 4px;" class="form-control" type="text"></td>
@@ -191,81 +192,81 @@
 									<option value="其他">其他</option>
 									<option value="无">无</option>
 							</input></td> -->
-					</tr>
-				</table>
-				<hr>
-				<table>
-					<tr>
-						<td>作案过程</td>
-						<td colspan="5"><textarea name="case1.case_process"
-								class="form-control" rows="4"></textarea></td>
-					</tr>
-					<tr>
-						<td colspan="6"><label style="margin-left: 30%;"
-							class="fancy-checkbox"><input
-								onclick="sence_checkbox(this)" name="sence.snece_photographed"
-								type="checkbox"> <span>已拍照</span> </label> <label
-							class="fancy-checkbox"><input
-								onclick="sence_checkbox(this)" name="sence.snece_entered"
-								type="checkbox"> <span>已录入</span> </label> <label
-							class="fancy-checkbox"><input
-								onclick="sence_checkbox(this)" name="sence.snece_areadymade"
-								type="checkbox"> <span>已制作</span> </label> <label
-							class="fancy-checkbox"><input
-								onclick="sence_checkbox(this)" name="sence.snece_parsed"
-								type="checkbox"> <span>已分析</span> </label> <label
-							class="fancy-checkbox"><input
-								onclick="sence_checkbox(this)" name="sence.snece_archived"
-								type="checkbox"> <span>已存档</span> </label> <label
-							class="fancy-checkbox"> <input
-								onclick="sence_checkbox(this)" name="sence.snece_identified"
-								type="checkbox"> <span>已认定</span>
-						</label></td>
-					</tr>
-					<tr>
-						<td>勘验人员</td>
-						<td colspan="5"><input name="sence.snece_inquestPerson"
-							id="exploration_personnel"
-							class="inputpicker show-tick form-control dropup" multiple
-							data-live-search="true" data-dropup-auto="false" title="请选择">
-						</td>
-					</tr>
-					<tr>
-						<td>填表人员</td>
-						<td><input name="sence.snece_fillPerson"
-							style="margin-top: 6px;" class="form-control" type="text"></td>
-						<td>填表单位</td>
-						<td><input name="sence.snece_fillUnit"
-							style="margin-top: 6px;" class="form-control" type="text"></td>
-						<td>填表时间</td>
-						<td><input name="sence.snece_fillTime"
-							style="margin-top: 6px;" class="form_time form-control"
-							type="text"></td>
-					</tr>
-				</table>
-				<table>
-					<tr>
-						<td align="right">
-							<!-- 按钮触发模态框 -->
-							<button style="margin-top: 6px;" type="button"
-								class="btn btn-default" data-toggle="modal"
-								data-target="#LossOfGoods">
-								<i class="fa fa-plus-square"></i> 添加损失物品
-							</button>
-							<button style="margin-top: 6px;" type="button"
-								class="btn btn-default" data-toggle="modal"
-								data-target="#picture">
-								<i class="fa fa-plus-square"></i> 添加照片
-							</button>
-							<button style="margin-top: 6px;" type="button"
-								class="btn btn-default" data-toggle="modal"
-								data-target="#evidence">
-								<i class="fa fa-plus-square"></i> 添加物证
-							</button>
-						</td>
-					</tr>
-				</table>
-			</form>
+						</tr>
+					</table>
+					<hr>
+					<table>
+						<tr>
+							<td>作案过程</td>
+							<td colspan="5"><textarea name="case1.case_process"
+									class="form-control" rows="4"></textarea></td>
+						</tr>
+						<tr>
+							<td colspan="6"><label style="margin-left: 30%;"
+								class="fancy-checkbox"><input
+									onclick="sence_checkbox(this)" name="sence.snece_photographed"
+									type="checkbox"> <span>已拍照</span> </label> <label
+								class="fancy-checkbox"><input
+									onclick="sence_checkbox(this)" name="sence.snece_entered"
+									type="checkbox"> <span>已录入</span> </label> <label
+								class="fancy-checkbox"><input
+									onclick="sence_checkbox(this)" name="sence.snece_areadymade"
+									type="checkbox"> <span>已制作</span> </label> <label
+								class="fancy-checkbox"><input
+									onclick="sence_checkbox(this)" name="sence.snece_parsed"
+									type="checkbox"> <span>已分析</span> </label> <label
+								class="fancy-checkbox"><input
+									onclick="sence_checkbox(this)" name="sence.snece_archived"
+									type="checkbox"> <span>已存档</span> </label> <label
+								class="fancy-checkbox"> <input
+									onclick="sence_checkbox(this)" name="sence.snece_identified"
+									type="checkbox"> <span>已认定</span>
+							</label></td>
+						</tr>
+						<tr>
+							<td>勘验人员</td>
+							<td colspan="5"><input name="sence.snece_inquestPerson"
+								id="exploration_personnel"
+								class="inputpicker show-tick form-control dropup" multiple
+								data-live-search="true" data-dropup-auto="false" title="请选择">
+							</td>
+						</tr>
+						<tr>
+							<td>填表人员</td>
+							<td><input name="sence.snece_fillPerson"
+								style="margin-top: 6px;" class="form-control" type="text"></td>
+							<td>填表单位</td>
+							<td><input name="sence.snece_fillUnit"
+								style="margin-top: 6px;" class="form-control" type="text"></td>
+							<td>填表时间</td>
+							<td><input name="sence.snece_fillTime"
+								style="margin-top: 6px;" class="form_time form-control"
+								type="text"></td>
+						</tr>
+					</table>
+					<table>
+						<tr>
+							<td align="right">
+								<!-- 按钮触发模态框 -->
+								<button style="margin-top: 6px;" type="button"
+									class="btn btn-default" data-toggle="modal"
+									data-target="#LossOfGoods">
+									<i class="fa fa-plus-square"></i> 添加损失物品
+								</button>
+								<button style="margin-top: 6px;" type="button"
+									class="btn btn-default" data-toggle="modal"
+									data-target="#picture">
+									<i class="fa fa-plus-square"></i> 添加照片
+								</button>
+								<button style="margin-top: 6px;" type="button"
+									class="btn btn-default" data-toggle="modal"
+									data-target="#evidence">
+									<i class="fa fa-plus-square"></i> 添加物证
+								</button>
+							</td>
+						</tr>
+					</table>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -529,6 +530,7 @@
 
 
 </body>
-<script type="text/javascript" src="<%=basePath%>js/Case/CaseDetails_js.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/Case/CaseDetails_js.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/Case/CaseDetails.js"></script>
 </html>
