@@ -31,6 +31,10 @@
 .table-condensed tbody tr>td {
 	text-align: center;
 }
+
+.table-condensed tbody tr>td>div {
+	width: 100% !important;
+}
 </style>
 <body>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
@@ -54,9 +58,9 @@
 					style="width: 120px; margin-left:6px; display:none;"
 					class="form-control" onchange="lost_chose(this)">
 					<option value="">请选择</option>
-					<option value="lost_information">物品</option>
-					<option value="lost_computer">电脑</option>
-					<option value="lost_mobilephone">手机</option>
+					<option value="Lost">物品</option>
+					<option value="LostComputer">电脑</option>
+					<option value="LostMobiephone">手机</option>
 				</select>
 			</div>
 			<div class="panel-body">
@@ -116,7 +120,7 @@
 							<td></td>
 						</tr>
 					</thead> -->
-					<thead id="lost_information" style="display: none;">
+					<thead id="Lost" style="display: none;">
 						<tr>
 							<th>序号</th>
 							<th>名称</th>
@@ -125,7 +129,7 @@
 							<th style="witdh:auto;!important">操作</th>
 						</tr>
 					</thead>
-					<thead id="lost_mobilephone" style="display: none;">
+					<thead id="LostMobiephone" style="display: none;">
 						<tr>
 							<th>序号</th>
 							<th>所属案件</th>
@@ -136,7 +140,7 @@
 							<th>操作</th>
 						</tr>
 					</thead>
-					<thead id="lost_computer" style="display: none;">
+					<thead id="LostComputer" style="display: none;">
 						<tr>
 							<th>序号</th>
 							<th>所属案件</th>
@@ -172,7 +176,7 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary btn-operation"></button>
+					<button type="button" class="btn btn-primary btn_operation">模态框</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 				</div>
 			</div>
