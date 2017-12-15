@@ -275,5 +275,11 @@ public class SenceServiceImpl implements SenceService {
     	senceDao.updateBriefdetails(briefdetails);
 	}
 
+	@Override
+	public List<xsjsglxt_case> AllCase() {
+		// TODO Auto-generated method stub
+		return senceDao.AllCase() ;
+	}
+
 
 }

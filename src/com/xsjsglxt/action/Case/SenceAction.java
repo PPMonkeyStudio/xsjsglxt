@@ -1,6 +1,7 @@
 package com.xsjsglxt.action.Case;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -216,6 +217,19 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 							}
 		}
 	
+	}
+	/*
+	 * 所有案件
+	 */
+	public void AllCase() throws IOException{
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();//格式化json数据
+		Gson gson = gsonBuilder.create();
+		List<xsjsglxt_case> Allcase=new ArrayList<xsjsglxt_case>();
+		Allcase=senceService.AllCase();
+		http_response.setContentType("text/html;charset=utf-8");
+
+		http_response.getWriter().write(gson.toJson(Allcase));
 	}
 	public SenceService getSenceService() {
 		return senceService;
