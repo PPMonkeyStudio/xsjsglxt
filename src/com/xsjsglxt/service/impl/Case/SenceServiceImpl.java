@@ -168,20 +168,19 @@ public class SenceServiceImpl implements SenceService {
 			briefdetails = senceDao.get_briefdetails_Byxsjsglxt_case_id(case1);// 1
 			
 
-			lost_computer = senceDao.get_lost_computer_Byxsjsglxt_case_id(case1);// 2
+//			lost_computer = senceDao.get_lost_computer_Byxsjsglxt_case_id(case1);// 2
+//
+//			lost_mobilephone = senceDao.get_lost_mobilephone_Byxsjsglxt_case_id(case1);// 3
 
-			lost_mobilephone = senceDao.get_lost_mobilephone_Byxsjsglxt_case_id(case1);// 3
-
-			lost = senceDao.get_lost_Byxsjsglxt_case_id(case1);// 4
+			//lost = senceDao.get_lost_Byxsjsglxt_case_id(case1);// 4
 
 			picture = senceDao.get_picture_Byxsjsglxt_case_id(case1);// 5
 			sence = senceDao.get_sence_Byxsjsglxt_case_id(case1);// 6
 			sence.setSnece_inquestId(sence.getSnece_inquestId().substring(10));
 			System.out.println("getSnece_inquestId:"+sence.getSnece_inquestId());
 			resevidence = senceDao.get_resevidence_Byxsjsglxt_case_id(case1);
-			senceInformationDTO = new SenceInformationDTO(briefdetails, case1, lost_computer, lost_mobilephone, lost,
-					picture, sence, resevidence);
-
+			senceInformationDTO = new SenceInformationDTO(briefdetails, case1, picture, sence, resevidence);
+			
 			SenceInformationDTOList.add(senceInformationDTO);
 		}
 		page_list_senceInformation.setSenceInformationDTOList(SenceInformationDTOList);
@@ -234,12 +233,12 @@ public class SenceServiceImpl implements SenceService {
 		xsjsglxt_snece	sence=senceDao.getSeceByCaseId(case1);
 		 case1 =  senceDao.getCaseByCaseId(case1);
 		xsjsglxt_briefdetails briefdetails=senceDao.getBriefdetailsByCaseID(case1);
-		xsjsglxt_lost lost = senceDao.getLostByCaseID(case1);
-		xsjsglxt_lost_mobilephone lost_mobilephone =senceDao.getLost_mobilephoneByCaseId(case1);
-		xsjsglxt_lost_computer lost_computer=senceDao.getLost_computerByCaseId(case1);
+		//xsjsglxt_lost lost = senceDao.getLostByCaseID(case1);
+		//xsjsglxt_lost_mobilephone lost_mobilephone =senceDao.getLost_mobilephoneByCaseId(case1);
+		//xsjsglxt_lost_computer lost_computer=senceDao.getLost_computerByCaseId(case1);
 		xsjsglxt_resevidence resevidence =senceDao.getResevidenceByCaseId(case1);
 		xsjsglxt_picture picture=senceDao.getPicturtByCaseId(case1);
-		SenceInformationDTO senceInformationDTO =new SenceInformationDTO(briefdetails, case1, lost_computer, lost_mobilephone, lost,
+		SenceInformationDTO senceInformationDTO =new SenceInformationDTO(briefdetails, case1,
 				picture, sence, resevidence);
 		return senceInformationDTO;
 	}
