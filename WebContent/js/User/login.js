@@ -9,6 +9,7 @@ function login() {
 	formData.append("user_username", user_username);
 	formData.append("user_password", user_password);
 	xmlHttp.send(formData);
+<<<<<<< HEAD
 	xmlHttp.onreadystatechange = function() {
 		if (isBack()) {
 			var result = xmlHttp.responseText;
@@ -24,6 +25,24 @@ function login() {
 				window.location = "/xsjsglxt/user/User_index";
 			}
 		}
+=======
+	xmlHttp.onreadystatechange = function()
+	{
+			if(isBack())
+				{
+					var result = xmlHttp.responseText;
+					switch (result) {
+					case "UserNoExist":
+						toastr.error("用户名不存在！");
+						break;
+					case "passwordError":
+						toastr.error("密码错误！若忘记密码请联系管理员更改");
+					    break;
+					case "loginSuccess":
+						window.location="/xsjsglxt/user/User_index";
+					}
+				}
+>>>>>>> SY
 	}
 }
 

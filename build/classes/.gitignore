@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /applicationContext-beans.xml
 /applicationContext.xml
 /com/
@@ -10,3 +11,7 @@
 /struts2/
 /util/
 /xsjsglxt/
+=======
+/com/
+/struts2/
+>>>>>>> SY

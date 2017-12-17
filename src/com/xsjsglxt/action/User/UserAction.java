@@ -56,17 +56,29 @@ public class UserAction extends ActionSupport {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = response.getWriter();
 		if (!userService.judgeUserByUsername(user_username)) {
+<<<<<<< HEAD
 			pw.write("�û���������");
+=======
+			pw.write("UserNoExist");
+>>>>>>> SY
 		} else {
 			xsjsglxt_user xu = userService.getUserByUsername(user_username);
 			String password = md5.GetMD5Code(user_password);
 
 			if (xu.getUser_password().equals(password)) {
+<<<<<<< HEAD
 				pw.write("��¼�ɹ�");
 				ActionContext.getContext().getSession().put("user_id", xu.getUser_id());
 				ActionContext.getContext().getSession().put("user_name", xu.getUser_name());
 			} else {
 				pw.write("�������");
+=======
+				pw.write("loginSuccess");
+				ActionContext.getContext().getSession().put("user_id", xu.getUser_id());
+				ActionContext.getContext().getSession().put("user_name", xu.getUser_name());
+			} else {
+				pw.write("passwordError");
+>>>>>>> SY
 
 			}
 		}
@@ -90,12 +102,21 @@ public class UserAction extends ActionSupport {
 			xsjsglxt_user xu = userService.getUserById(user_id);
 			if (xu.getUser_password().equals(md5.GetMD5Code(oldPassword))) {
 				userService.updatePassword(user_id, md5.GetMD5Code(newPassword));
+<<<<<<< HEAD
 				pw.write("�޸ĳɹ�");
 			} else {
 				pw.write("ԭʼ�������");
 			}
 		} else {
 			pw.write("�޸�ʧ�������µ�½");
+=======
+				pw.write("updateSuccess");
+			} else {
+				pw.write("oldPasswordError");
+			}
+		} else {
+			pw.write("updateFail");
+>>>>>>> SY
 		}
 	}
 
