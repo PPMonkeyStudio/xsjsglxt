@@ -29,6 +29,10 @@ public class UserAction extends ActionSupport {
 	 * 
 	 */
 
+	public String skipToUser() {
+		return "skipToUser";
+	}
+
 	public void judgePower() throws IOException, NoSuchMethodException, SecurityException, IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException {
 		HttpServletResponse response = ServletActionContext.getResponse();

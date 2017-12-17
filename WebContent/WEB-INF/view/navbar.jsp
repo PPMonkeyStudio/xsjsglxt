@@ -108,8 +108,8 @@
 						<li class="teacher_control"><a href="#">检验统计</a></li>
 					</ul></li>
 				<!--  -->
-				<li class="dropdown" style="float: left;"><a href="#"
-					class="dropdown-toggle" data-toggle="dropdown"> <span>用户</span>
+				<li class="dropdown" style="float: left;"><a href="<%=basePath %>user/User_skipToUser"
+					> <span>用户</span>
 				</a></li>
 				<!--  -->
 			</ul>

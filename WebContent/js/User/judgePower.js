@@ -17,12 +17,12 @@ function deleteByPower(userBlock,useClassName,managerClassName)
 				var result = xmlHttp.responseText;
 				switch (result) {
 				case "jurisdiction_none":
-					$(".useClassName").remove();
-					$(".managerClassName").remove();
+					$("."+useClassName).remove();
+					$("."+managerClassName).remove();
 					break;
 
 				case "jurisdiction_use":
-					$(".useClassName").remove();
+					$("."+useClassName).remove();
 					break;
 					
 				case "jurisdiction_admin":

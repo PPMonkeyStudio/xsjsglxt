@@ -13,6 +13,9 @@
 			<result name="logoutSuccess">
 			    /login.jsp
 			</result>
+			<result name="skipToUser">
+			    /WEB-INF/view/User/UserManagerIndex.jsp
+			</result>
 		</action>
 	</package>
 </struts>
