@@ -182,4 +182,23 @@ public class testCheck {
 			e.printStackTrace();
 		}
 	}
+
+	@Test
+	public void testddssdEE() {
+		try {
+			inspectionIdentificationService.exportDeathInspectionRecord("232041a6-7f5e-48c2-b75f-2b13bd86983c");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void testddsdsdEE() {
+		try {
+			inspectionIdentificationService.exportDamageInspectionRecord("52a2849f-3eed-4edd-9c12-503da4dfa96d");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }

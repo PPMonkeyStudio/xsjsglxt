@@ -35,7 +35,8 @@ public interface InspectionIdentificationService {
 
 	public int updateTranceCheckBook(xsjsglxt_check_entrustment_book tranceCheckBook);
 
-	public int updateDamageInspectionRecord(xsjsglxt_damage_inspection_record damageInspectionRecord, File[] updateDamageFile, String[] updateDamageFileName, String[] positionFile) throws IOException;
+	public int updateDamageInspectionRecord(xsjsglxt_damage_inspection_record damageInspectionRecord, File[] updateDamageFile, String[] updateDamageFileName, String[] positionFile)
+			throws IOException;
 
 	public int updateIdentifiederCaseConfirmBook(xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook);
 
@@ -65,6 +66,18 @@ public interface InspectionIdentificationService {
 
 	public File exportInspectionRecord(String id) throws Exception;
 
+	public File exportDeathInspectionRecord(String id) throws Exception;
+
+	public File exportDamageInspectionRecord(String id) throws Exception;
+
+	public File exportAppraisalLetter(String id) throws Exception;
+
+	public String exportAppraisalLetterName(String xsjsglxt_appraisal_letter_id);
+
 	public String exportInspectionRecordName(String xsjsglxt_inspection_record_id);
-	
+
+	public String exportDeathInspectionRecordName(String xsjsglxt_death_inspection_record_id);
+
+	public String exportDamageInspectionRecordName(String xsjsglxt_damage_inspection_record_id);
+
 }
