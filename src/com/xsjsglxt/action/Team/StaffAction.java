@@ -23,7 +23,7 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 
 	private StaffService staffService;
 	private xsjsglxt_staff staff;
-	private List<String> useStaffInformationNumList;
+	private String useStaffInformationNumList;
 	private HttpServletResponse http_response;
 
 	private HttpServletRequest http_request;
@@ -211,11 +211,24 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 	public void setPage_list_staffInformation(page_list_staffInformationVO page_list_staffInformation) {
 		this.page_list_staffInformation = page_list_staffInformation;
 	}
-	public List<String> getUseStaffInformationNumList() {
+	public String getUseStaffInformationNumList() {
 		return useStaffInformationNumList;
 	}
-	public void setUseStaffInformationNumList(List<String> useStaffInformationNumList) {
+	public void setUseStaffInformationNumList(String useStaffInformationNumList) {
 		this.useStaffInformationNumList = useStaffInformationNumList;
 	}
+	public File getStaff_photo() {
+		return staff_photo;
+	}
+	public void setStaff_photo(File staff_photo) {
+		this.staff_photo = staff_photo;
+	}
+	public String getStaff_photoFileName() {
+		return staff_photoFileName;
+	}
+	public void setStaff_photoFileName(String staff_photoFileName) {
+		this.staff_photoFileName = staff_photoFileName;
+	}
+	
 
 }

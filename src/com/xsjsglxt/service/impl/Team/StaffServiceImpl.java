@@ -85,10 +85,12 @@ public void updateStaffInformation(xsjsglxt_staff staff) {
 }
 
 @Override
-public boolean remove_StaffInformationList(List<String> useStaffInformationNumList) {
+public boolean remove_StaffInformationList(String useStaffInformationNumList) {
 	// TODO Auto-generated method stub
 	boolean flag = false;
-	for (String staff_id : useStaffInformationNumList) {
+	String sourceStr = useStaffInformationNumList;
+	String[] sourceStrArray = sourceStr.split(",");
+	for (String staff_id : sourceStrArray) {
 		xsjsglxt_staff xsjsglxt_staff = staffDao.getStaffByNum(staff_id);
 		flag = staffDao.deleteStaffById(xsjsglxt_staff.getXsjsglxt_staff_id());// ����
 	    flag=removeStaffImgByNewsID(xsjsglxt_staff);
