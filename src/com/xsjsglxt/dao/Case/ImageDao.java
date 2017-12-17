@@ -45,4 +45,6 @@ public com.xsjsglxt.domain.DO.xsjsglxt_image getImageByNum(String iamge_id);
 
 public boolean deleteImageById(String xsjsglxt_image_id);
 
+public List<xsjsglxt_image> getAllImage();
+
 }

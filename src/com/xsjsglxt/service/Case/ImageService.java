@@ -24,7 +24,7 @@ public ImageInformationDTO ImageInformationOne(xsjsglxt_picture picture);
 
 public void updateImage(xsjsglxt_image image);
 
-public void updatePicture(xsjsglxt_picture picture, String xsjsglxt_image_id);
+public void updatePicture(xsjsglxt_picture picture);
 
 public boolean remove_PictureInformationList(List<String> usePictureInformationNumList);
 

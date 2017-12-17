@@ -321,4 +321,15 @@ public class ImageDaoImpl implements ImageDao {
 		query.executeUpdate();
        return true;
 	}
+
+	@Override
+	public List<xsjsglxt_image> getAllImage() {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		List<xsjsglxt_image> ImageInformationList=new ArrayList<xsjsglxt_image>();
+		String hql = "from xsjsglxt_image ";
+		Query query = session.createQuery(hql);
+		ImageInformationList =  query.list();
+       return ImageInformationList;
+	}
 }

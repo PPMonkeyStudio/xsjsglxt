@@ -137,8 +137,13 @@ public ImageInformationDTO ImageInformationOne(xsjsglxt_picture picture) {
 	xsjsglxt_image image=imageDao.getImageBypictureId(picture);
 	
 	xsjsglxt_case case1 =  imageDao.getCaseBypictureId(picture);
+	
+	List<xsjsglxt_image> imageList=new ArrayList<xsjsglxt_image>();
+	
+	imageList=imageDao.getAllImage();
 
 	ImageInformationDTO imageInformationDTO =new ImageInformationDTO(case1,image,picture);
+	imageInformationDTO.setIamgeList(imageList);
 	return imageInformationDTO;
 
 }
@@ -151,13 +156,13 @@ public void updateImage(xsjsglxt_image image) {
 }
 
 @Override
-public void updatePicture(xsjsglxt_picture picture, String xsjsglxt_image_id) {
+public void updatePicture(xsjsglxt_picture picture) {
 	// TODO Auto-generated method stub
-	xsjsglxt_picture oldpicture=imageDao.getImageBypictureId(xsjsglxt_image_id);
-	picture.setXsjsglxt_picture_id(oldpicture.getXsjsglxt_picture_id());
-	picture.setPicture_case(oldpicture.getPicture_case());
-	picture.setPicture_gmt_create(oldpicture.getPicture_gmt_create());
-	picture.setPicture_image(oldpicture.getPicture_image());
+	//xsjsglxt_picture oldpicture=imageDao.getImageBypictureId(xsjsglxt_image_id);
+	//picture.setXsjsglxt_picture_id(oldpicture.getXsjsglxt_picture_id());
+	//picture.setPicture_case(oldpicture.getPicture_case());
+	//picture.setPicture_gmt_create(oldpicture.getPicture_gmt_create());
+	//picture.setPicture_image(oldpicture.getPicture_image());
 	picture.setPicture_gmt_modified(TeamUtil.getStringSecond());
 	imageDao.updatePicture(picture);
 }
