@@ -1,135 +1,145 @@
-var person_management_data={
-		"page_list_staffInformation.pageIndex":"1",
-		"staff.staff_name":"",
-		"staff.staff_sex":"",
-		"staff.staff_age":"",
-		"staff.staff_nation":"",
-		"staff.staff_nativePlace":"",
-		"staff.staff_birthday":"",
-		"staff.staff_idNumber":"",
-		"staff.staff_address":"",
-		"staff.staff_MaxEducationalBackground":"",
-		"staff.staff_politicalStatus":"",
-		"staff.staff_joinPartyTime":"",
-		"staff.staff_joinWorkTime":"",
-		"staff.staff_alarm":"",
-		"staff.staff_thePoliceTime":"",
-		"staff.staff_isItFormal":"",
-		"staff.staff_phone":"",
-		"staff.staff_throughThePolice":"",
-		"staff.staff_homephone":"",
-		"staff.staff_QQ":"",
-		"staff.staff_weixin":"",
-		"staff.staff_outEmail":"",
-		"staff.staff_inEmail":"",
-		"staff.staff_photo":"",
-		"staff.staff_contactsName":"",
-		"staff.staff_contactsPhone":"",
-		"staff.staff_contactsRelationship":"",
-		"staff.staff_contactsWeiXin":"",
-		"staff.staff_contactsWorkSpace":"",
-		"staff.staff_contactsPosition":"",
-		"staff.staff_contactsRemark":"",
-		"staff.staff_gmt_create":"",
-		"staff.staff_gmt_modified":"",
-};
-//当前页面分页信息
-var page_infomantion = {
-	pageIndex : 1,
-	totalRecords : 1,
-	pageSize : 20,
-	totalPages : 1,
-	HavePrePage : false,
-	HaveNextPage : false,
-}
-window.onload=function(){
-	console.log("a");
-	get_staffPageListAndSearch();
-
-}
-function formatParams(data) {
-    var arr = new FormData();
-    for (var name in data) {
-    	arr.append(encodeURIComponent(name),encodeURIComponent(data[name]));
-    }
-    return arr;
-}
-function get_staffPageListAndSearch(){
-	console.log("b");
-	var url="/xsjsglxt/team/Staff_ListStaffInformationByPageAndSearch";
-	get_staffPageListAndSearch_Ajax(url);
-}
-
-function get_staffPageListAndSearch_Ajax(url){
-	console.log("c");
-	if (window.XMLHttpRequest)
-	{
+//显示数据
+function get_staffDetails(){
+	console.log("b1");
+	var staff_id=document.getElementById("staff_id").value;
+	var url="/xsjsglxt/team/Staff_StaffInformationOne?staff.xsjsglxt_staff_id="+staff_id;
+	get_staffDetails_Ajax(url);
+} 
+function get_staffDetails_Ajax(url){
+	console.log("c1");
+	if (window.XMLHttpRequest){
 		//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
 		xmlhttp=new XMLHttpRequest();
 	}
-	else
-	{
+	else{
 		// IE6, IE5 浏览器执行代码
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 	}
-	xmlhttp.onreadystatechange=function()
-	{
-		console.log("d");
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
-		{   
-			//显示staff信息列表
-			var staff_table_info=document.querySelector(".staff_table_info>tbody");
-			staff_table_info.innerHTML="";
-			//得到后台的json集合
-			var staff_list_object=xmlhttp.responseText;
-			staff_list_page=JSON.parse(staff_list_object);
-			staff_list_object=JSON.parse(staff_list_object).listStaff;
-		 	var str="";
-		 	//遍历json集合
-		 	for(var i=0;i<staff_list_object.length;i++){
-		 		//创建tr
-		 		//var staff_list_tr=document.createElement("tr");
-		 		//staff_list_tr.innerHTML="";
-		 		//得到每条数据
-		 		var object=staff_list_object[i];
-		 		console.log(staff_list_object);
-		 	    //得到各条数据的某个信息
-		 		str+="<tr>"
-		 		str+='<td style="text-align:center;"><input type="checkbox" style="margin-top: 10px;"/></td>';
-		 		str+='<td style="text-align:center;">'+object.staff_name+'</td>';
-		 		str+='<td style="text-align:center;">'+object.staff_sex+'</td>';
-		 		str+='<td style="text-align:center;">'+object.staff_idNumber+'</td>';
-		 		str+='<td style="text-align:center;">'+object.staff_politicalStatus+'</td>';
-		 		str+='<td style="text-align:center;">'+object.staff_joinPartyTime+'</td>';
-		 		str+='<td style="text-align:center;">'+object.staff_alarm+'</td>';
-		 		str+='<td style="text-align:center;">'+object.staff_isItFormal+'</td>';
-		 		str+='<td style="text-align:center;">'+object.staff_gmt_create+'</td>';
-		 		str+='<td style="text-align:center;">'+object.staff_gmt_modified+'</td>';
-		 		str+="</tr>";
-		 		//把td加入tr
-		 		//staff_list_tr.innerHTML=str;
-		 		//把tr加入tbody
-		 		staff_table_info.innerHTML=str;
-		 	}
-		 	//分页信息存入page_infomantion中
-			page_infomantion.pageIndex = staff_list_page.pageIndex; //当前页数
-			page_infomantion.totalRecords =staff_list_page.totalRecords; //总页数
-			page_infomantion.pageSize = staff_list_page.pageSize; //每页记录数
-			page_infomantion.totalPages = staff_list_page.totalPages; //总记录数
-			page_infomantion.HavePrePage = staff_list_page.HavePrePage; //是否有上一页
-			page_infomantion.HaveNextPage = staff_list_page.HaveNextPage; //是否有下一页
-//		 	获取分页器的页面信息
-		 	var page_info=document.querySelector(".page-infomation");
-		 	page_info.innerHTML="共"+page_infomantion.totalPages+"条记录&nbsp;&nbsp;当前"+page_infomantion.pageIndex+"/"+page_infomantion.totalRecords+"页";
-		 	
-		}
+	xmlhttp.onreadystatechange=function(){
+		console.log("d1");
+		if (xmlhttp.readyState==4 && xmlhttp.status==200){
+			var staff_info=xmlhttp.responseText;
+			staff_info=JSON.parse(staff_info);
+			console.log(staff_info);
+//			var staffDetails_input=document.getElementById("staffDetails").getElementsByTagName("input");
+//		    for(var key in staff_info){
+//		    	document.getElementsByTagName("input").name="listStaff."+key;
+//		    		
+//		    }
+
+			//获取单选框元素
+			//性别
+			var staff_sex=document.getElementsByName("sex_content");
+			var sex_man=staff_sex[0];
+			var sex_woman=staff_sex[1];
+			//是否正式
+			var staff_format=document.getElementsByName("format_content");
+			var isFormat=staff_format[0];
+			var isNotFormat=staff_format[1];
+			//获取textarea（备注）
+			var staff_contactsRemark=document.getElementById("staff_contactsRemark");
+			
+			// 遍历并插入input的value
+			$.each(staff_info,function(key,value){
+				//如果是性别
+				if(key=="staff_sex"){
+					if(value=="男"){
+						sex_man.checked=true;
+					}
+					else{
+						sex_woman.checked=true;
+					}
+				}
+				//如果是是否正式
+				else if(key=="staff_isItFormal"){
+					if(value=="1"){
+						isFormat.checked=true;
+					}
+					else{
+						isNotFormat.checked=true;
+					}
+				}
+				else if(key=="staff_contactsRemark"){
+					staff_contactsRemark.innerHTML=value;
+					
+				}
+				$('input[name="staff.'+key+'"]').val(value);
+			});
+	    }
 	}
 	xmlhttp.open("POST",url,true);
-	xmlhttp.send(formatParams(person_management_data));
+	xmlhttp.send();
 }
 
+//改变性别方法
+function changeSex_man(even){
+	var sex=document.getElementById("sex");
+	sex.value=even.value;
+	return sex.value;
+}
+function changeSex_woman(even){
+	var sex=document.getElementById("sex");
+	sex.value=even.value;
+	return sex.value;
+}
 
+//改变是否正式
+function isFormat(even){
+	var format=document.getElementById("format");
+	format.value=even.value;
+	return fomat.value;
+}
+function isNotFormat(even){
+	var format=document.getElementById("format");
+	format.value=even.value;
+	return fomat.value;
+}
 
-
-
-
+//staffDetail.jsp中的修改人员
+function staff_change(){
+	var url="/xsjsglxt/team/Staff_updateStaffInformation";
+	$.confirm({
+	    title: '删除!',
+	    content: '确定删除么!',
+		buttons : {
+			
+			取消 : function() {
+				// here the button key 'hey' will be used as the text.
+			},
+			确定: {
+				action : function() {
+					var staff_id=document.getElementById("staff_id").value;
+					loadstaffDetail_staff_change(url,staff_id);
+				}
+			}
+		}
+	});
+	
+}
+function loadstaffDetail_staff_change(url,staff_id){
+	console.log("b2");
+	if(window.XMLHttpRequest){
+		xmlhttp=new XMLHttpRequest();
+	}
+	else {
+		xmlhttp=new ActiveXOBject("Microsoft.XMLHTTP"); 
+	}
+	var staffDetails=document.getElementById("staffDetails");
+	var formData=new FormData(staffDetails);
+	formData.append("staff.xsjsglxt_staff_id",staff_id);
+	
+	xmlhttp.onreadystatechange=function(){
+		console.log("c2");
+		if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+			console.log(xmlhttp.responseText);
+			var result = xmlhttp.responseText;
+			if (result == 'success') {
+				toastr.success('编辑成功！');
+			} else {
+				toastr.error('编辑失败！');
+			}
+		}
+	};
+	xmlhttp.open("post",url,true);
+	xmlhttp.send(formData);
+}

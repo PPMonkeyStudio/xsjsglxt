@@ -11,6 +11,7 @@ import org.apache.struts2.interceptor.ServletResponseAware;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_staff;
 import com.xsjsglxt.domain.VO.Team.page_list_staffInformationVO;
@@ -34,13 +35,15 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 	/*
 	 * 跳转详情页
 	 */
-	public String page_staffList1(){
-		return "page_staffDetaiils";
+	public String page_staffDetail(){
+		ActionContext.getContext().getValueStack().set("staff_id", http_request.getParameter("staff_id_transfer"));
+		return "page_staffDetails";
 	}
 	/*
 	 * 跳转创建页
 	 */
-	public String page_staffList2(){
+	public String page_newStaff(){
+		System.out.println("第2步");
 		return "page_newStaff";
 	}
 	/*
