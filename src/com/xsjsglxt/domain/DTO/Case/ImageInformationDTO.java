@@ -1,5 +1,7 @@
 package com.xsjsglxt.domain.DTO.Case;
 
+import java.util.List;
+
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_image;
 import com.xsjsglxt.domain.DO.xsjsglxt_picture;
@@ -8,6 +10,7 @@ public class ImageInformationDTO {
 private xsjsglxt_case case1;
 private xsjsglxt_image image;
 private xsjsglxt_picture picture;
+private List<xsjsglxt_image> iamgeList;
 public xsjsglxt_case getCase1() {
 	return case1;
 }
@@ -25,6 +28,13 @@ public xsjsglxt_picture getPicture() {
 }
 public void setPicture(xsjsglxt_picture picture) {
 	this.picture = picture;
+}
+
+public List<xsjsglxt_image> getIamgeList() {
+	return iamgeList;
+}
+public void setIamgeList(List<xsjsglxt_image> iamgeList) {
+	this.iamgeList = iamgeList;
 }
 public ImageInformationDTO(xsjsglxt_case case1, xsjsglxt_image image, xsjsglxt_picture picture) {
 

@@ -88,14 +88,25 @@ public void getPicture_identifier() throws IOException {
 	http_response.getWriter().write(gson.toJson(Picture_identifier));
 }
 /*
- * 修改信息
+ * 修改光盘信息
  */
 public void updateImage() throws IOException{
 	GsonBuilder gsonBuilder = new GsonBuilder();
 	gsonBuilder.setPrettyPrinting();// 格式化json数据
 	Gson gson = gsonBuilder.create();
 	imageService.updateImage(image);
-	imageService.updatePicture(picture,image.getXsjsglxt_image_id());
+	//imageService.updatePicture(picture,image.getXsjsglxt_image_id());
+	http_response.setContentType("text/html;charset=utf-8");
+	http_response.getWriter().write(gson.toJson("success"));
+}
+/*
+ *修改照片信息 
+ */
+public void updatePicture() throws IOException{
+	GsonBuilder gsonBuilder = new GsonBuilder();
+	gsonBuilder.setPrettyPrinting();// 格式化json数据
+	Gson gson = gsonBuilder.create();
+	imageService.updatePicture(picture);
 	http_response.setContentType("text/html;charset=utf-8");
 	http_response.getWriter().write(gson.toJson("success"));
 }
