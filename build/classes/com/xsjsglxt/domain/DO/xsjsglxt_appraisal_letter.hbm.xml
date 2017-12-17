@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-12-10 16:04:58 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter" table="XSJSGLXT_APPRAISAL_LETTER">
+        <id name="xsjsglxt_appraisal_letter_id" type="java.lang.String">
+            <column name="XSJSGLXT_APPRAISAL_LETTER_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="appraisal_letter_belong_entrustment_book" type="java.lang.String">
+            <column name="APPRAISAL_LETTER_BELONG_ENTRUSTMENT_BOOK" />
+        </property>
+        <property name="appraisal_letter_inspection" type="java.lang.String">
+            <column name="APPRAISAL_LETTER_INSPECTION" />
+        </property>
+        <property name="appraisal_letter_argumentation" type="java.lang.String">
+            <column name="APPRAISAL_LETTER_ARGUMENTATION" />
+        </property>
+        <property name="appraisal_letter_expert_opinion" type="java.lang.String">
+            <column name="APPRAISAL_LETTER_EXPERT_OPINION" />
+        </property>
+        <property name="appraisal_letter_gmt_create" type="java.lang.String">
+            <column name="APPRAISAL_LETTER_GMT_CREATE" />
+        </property>
+        <property name="appraisal_letter_gmt_modified" type="java.lang.String">
+            <column name="APPRAISAL_LETTER_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>
