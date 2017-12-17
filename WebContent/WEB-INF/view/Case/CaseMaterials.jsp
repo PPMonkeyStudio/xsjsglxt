@@ -61,7 +61,7 @@
 					<option value="">请选择</option>
 					<option value="Lost">物品</option>
 					<option value="LostComputer">电脑</option>
-					<option value="LostMobiephone">手机</option>
+					<option value="LostMobilephone">手机</option>
 				</select>
 			</div>
 			<div class="panel-body">
@@ -69,12 +69,12 @@
 					class="table table-hover table-condensed evidence_table_info">
 					<thead style="">
 						<tr>
-							<td>序号</td>
-							<td><input class="form-control" placeholder="物证名称"></td>
-							<td>提取日期</td>
-							<td><input class="form-control Search_extractPerson"
-								placeholder="提取人"></td>
-							<td><select class="form-control">
+							<th>序号</th>
+							<th><input class="form-control" placeholder="物证名称"></th>
+							<th>提取日期</th>
+							<th><input class="form-control Search_extractPerson"
+								placeholder="提取人"></th>
+							<th><select class="form-control">
 									<option value="">全</option>
 									<option>已检验</option>
 									<option>正在委托检验</option>
@@ -84,8 +84,8 @@
 									<option>正在自检</option>
 									<option>正在送检</option>
 									<option>未检验</option>
-							</select></td>
-							<td>操作</td>
+							</select></th>
+							<th>操作</th>
 							<%-- <td><strong>管理</strong></td> --%>
 						</tr>
 					</thead>
@@ -98,12 +98,12 @@
 					class="table table-hover table-condensed picture_table_info">
 					<thead>
 						<tr>
-							<td>序号</td>
-							<td>所属影像光盘</td>
-							<td>所属案件</td>
-							<td>照片编号</td>
-							<td>备注</td>
-							<td>操作</td>
+							<th>序号</th>
+							<th>所属影像光盘</th>
+							<th>所属案件</th>
+							<th>照片编号</th>
+							<th>备注</th>
+							<th>操作</th>
 						</tr>
 					</thead>
 					<tbody></tbody>
@@ -112,9 +112,10 @@
 					class="table table-hover table-condensed image_table_info">
 					<thead>
 						<tr>
-							<td>序号</td>
-							<td>备注</td>
-							<td>操作</td>
+							<th>序号</th>
+							<th>影像光盘编号</th>
+							<th>备注</th>
+							<th>操作</th>
 						</tr>
 					</thead>
 					<tbody></tbody>
@@ -135,7 +136,7 @@
 							<th style="witdh:auto;!important">操作</th>
 						</tr>
 					</thead>
-					<thead id="LostMobiephone" style="display: none;">
+					<thead id="LostMobilephone" style="display: none;">
 						<tr>
 							<th>序号</th>
 							<th>所属案件</th>
@@ -210,6 +211,33 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary evidence_operation">确认修改</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+	<!---------------------------------------------------------------------------------------------------->
+	<!------------------------------------------------------------------------------------------------->
+	<!---------------------------------------------------------------------------------------------------->
+	<!-- 图片信息-模态框（Modal） -->
+	<div class="modal fade" id="image" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="modal-title"></h4>
+				</div>
+				<div class="modal-body">
+					<form action="">
+						<div style="width: 80%;margin: auto;" class="panel-body"></div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary image_operation">确认修改</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 				</div>
 			</div>

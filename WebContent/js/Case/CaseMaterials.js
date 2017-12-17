@@ -14,7 +14,7 @@ $(function() {
 	})
 	$('#evidence').on('hide.bs.modal', function() {
 		setTimeout(function() {
-			$('#evidence tbody').empty();
+			$('#evidence .panel-body').empty();
 		}, 200)
 	})
 	//搜索框change事件
@@ -60,10 +60,56 @@ function material(object) {
 		//$('.panel-body evidence_table_info tbody').html();
 		}, 'json');
 	} else if (material_type == "picture_table_info") {
-		$.post('/xsjsglxt/case/Image_ListImageInformationByPageAndSearch', query_data, function() {}, 'json');
+		$.post('/xsjsglxt/case/Image_ListImageInformationByPageAndSearch', query_data, function(xhr_data) {
+			var picture_arr = xhr_data.ImageInformationDTOList;
+			var str = '';
+			for (var i = 0; i < picture_arr.length; i++) {
+				str += '<tr>';
+				str += '<tr>';
+				str += '<td>' + (i + 1) + '</td>';
+				str += '<td>' + picture_arr[i].image.image_number + '</td>';
+				str += '<td>' + picture_arr[i].case1.case_name + '</td>';
+				str += '<td>' + picture_arr[i].picture.picture_identifier + '</td>';
+				str += '<td>' + picture_arr[i].picture.picture_remarks + '</td>';
+				str += '<td>'
+					+ '<input type="hidden"  value="' + picture_arr[i].picture.xsjsglxt_picture_id + '" />'
+					+ '<button type="button" style="margin-left:6px;" class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 修改</button>'
+					+ '<button type="button" style="margin-left:6px;" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除</button>'
+					+ '</td>';
+				str += '</tr>'
+			}
+			//str表格信息添加到表格中
+			$('.picture_table_info tbody').html(str);
+			//按钮给与点击事件
+			$('.btn-xs').click(picture_Details);
+			//$('.panel-body evidence_table_info tbody').html();
+
+		}, 'json');
 
 	} else if (material_type == "image_table_info") {
-		$.post('/xsjsglxt/case/Image_ListImageInformationByPageAndSearch', query_data, function() {}, 'json');
+		$.post('/xsjsglxt/case/Image_ListImageInformationByPageAndSearch', query_data, function(xhr_data) {
+			var image_arr = xhr_data.ImageInformationDTOList;
+			var str = '';
+			for (var i = 0; i < image_arr.length; i++) {
+				str += '<tr>';
+				str += '<tr>';
+				str += '<td>' + (i + 1) + '</td>';
+				str += '<td>' + image_arr[i].image.image_number + '</td>';
+				str += '<td>' + image_arr[i].image.image_remarks + '</td>';
+				str += '<td>'
+					+ '<input type="hidden"  value="' + image_arr[i].image.xsjsglxt_image_id + '" />'
+					+ '<button type="button" style="margin-left:6px;" class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 修改</button>'
+					+ '<button type="button" style="margin-left:6px;" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除</button>'
+					+ '</td>';
+				str += '</tr>'
+			}
+			//str表格信息添加到表格中
+			$('.image_table_info tbody').html(str);
+			//按钮给与点击事件
+			$('.btn-xs').click(image_Details);
+		//按钮给与点击事件
+		//$('.btn-xs').click(Evidence_modification);
+		}, 'json');
 	} else if (material_type == "Goods_table_info") {
 		$('#goods_chose').show();
 	}
@@ -196,7 +242,7 @@ var ViewSingleMessage = function() {
 		$.post('/xsjsglxt/case/LostMobilephone_LostMobiephoneInformationOne', {
 			"lost_mobilephone.xsjsglxt_lost_mobilephone_id" : lost_id
 		}, function(xhr_data) {
-			lost_Computer_Details(xhr_data);
+			Lost_Mobilephone_Details(xhr_data);
 		}, 'json');
 		break;
 	case 'lost_mobilephone_delete':
@@ -332,106 +378,79 @@ function Lost_Mobilephone_Details(xhr_data) {
 	}, 'json');
 }
 
-//丢失物品(物品,电脑,手机)确定修改信息
-var Lost_modification = function() {
-	var url = $(this).val();
-	$.confirm({
-		title : '确定修改?',
-		smoothContent : false,
-		content : false,
-		autoClose : 'cancelAction|10000',
-		buttons : {
-			deleteUser : {
-				btnClass : 'btn-danger',
-				text : '确认',
-				action : function() {
-					$.post('/xsjsglxt/case/Lost' + url, $('form').serialize(), function(xhr_data) {
-						if (xhr_data == "success") {
-							$('#lost').modal('hide');
-							//获取对应option中的value值
-							var value = url.substr(url.indexOf('Lost'));
-							console.log(value);
-							//修改后进行一次查询
-							lost_chose($('option[value="' + value + '"]'));
-							toastr.success("修改成功!");
-						}
-					}, 'json');
-				}
-			},
-			cancelAction : {
-				btnClass : 'btn-blue',
-				text : '取消',
-			}
-		}
-	});
-}
-
-
 //物证修改信息
 var Evidence_modification = function() {
-	$.post('/xsjsglxt/case/Resevidence_ResevidenceInformationOne', {
-		"resevidence.xsjsglxt_resevidence_id" : $(this).siblings('input').val(),
-	}, function(xhr_data) {
-		var str = '';
-		$.post('/xsjsglxt/case/Case_AllCase', function(Case_data) {
-			str = '<table border="0px;" align="center" class="table table-hover table-condensed"><tbody><tr>';
-			str += '<td>所属案件</td><td>';
-			str += '<select style="witdh:100%;" class="selectpicker" data-live-search="true" name="resevidence.resevidence_case">';
-			//所有案件循环
-			for (var len = 0; len < Case_data.length; len++) {
-				str += '<option ';
-				if (xhr_data.case1.case_name == Case_data[len].case_name) {
-					str += 'selected ';
+	var Evidence_id = $(this).siblings('input').val();
+	if ($(this).text().trim() == "修改") {
+		$.post('/xsjsglxt/case/Resevidence_ResevidenceInformationOne', {
+			"resevidence.xsjsglxt_resevidence_id" : Evidence_id
+		}, function(xhr_data) {
+			var str = '';
+			$.post('/xsjsglxt/case/Case_AllCase', function(Case_data) {
+				str = '<table border="0px;" align="center" class="table table-hover table-condensed"><tbody><tr>';
+				str += '<td>所属案件</td><td>';
+				str += '<select style="witdh:100%;" class="selectpicker" data-live-search="true" name="resevidence.resevidence_case">';
+				//所有案件循环
+				for (var len = 0; len < Case_data.length; len++) {
+					str += '<option ';
+					if (xhr_data.case1.case_name == Case_data[len].case_name) {
+						str += 'selected ';
+					}
+					str += ' value="' + Case_data[len].xsjsglxt_case_id + '">' + Case_data[len].case_name + '</option>';
 				}
-				str += ' value="' + Case_data[len].xsjsglxt_case_id + '">' + Case_data[len].case_name + '</option>';
-			}
-			str += '</select></td>';
-			//str += '</tr>';
-			//str += '<tr>';
-			str += '<td>物证名称</td><td><input style="witdh:70%;" class="form-control" name="resevidence.resevidence_name" type="text" value="' + xhr_data.resevidence.resevidence_name + '"  /></td>';
-			str += '</tr>';
-			str += '<tr>';
-			str += '<td>提取单位</td><td><input style="witdh:70%;" class="form-control" name="resevidence.resevidence_extractUnit" type="text" value="' + xhr_data.resevidence.resevidence_extractUnit + '"  /></td>';
-			//str += '</tr>';
-			//str += '<tr>';
-			str += '<td>物证类型</td><td><input style="witdh:70%;" class="form-control" name="resevidence.resevidence_type" type="text" value="' + xhr_data.resevidence.resevidence_type + '"  /></td>';
-			str += '</tr>';
-			str += '<tr>';
-			str += '<td>提取部位</td><td><input style="witdh:70%;" class="form-control" name="resevidence.resevidence_extractPart" type="text" value="' + xhr_data.resevidence.resevidence_extractPart + '"  /></td>';
-			//str += '</tr>';
-			//str += '<tr>';
-			str += '<td>提取方法</td><td><input style="witdh:70%;" class="form-control" name="resevidence.resevidence_extractMethod" type="text" value="' + xhr_data.resevidence.resevidence_extractMethod + '"  /></td>';
-			str += '</tr>';
-			str += '<tr>';
-			str += '<td>提取数量</td><td><input style="witdh:70%;" class="form-control" name="resevidence.resevidence_extractNumber" type="text" value="' + xhr_data.resevidence.resevidence_extractNumber + '"  /></td>';
-			//str += '</tr>';
-			//str += '<tr>';
-			str += '<td>提取人</td><td><input style="witdh:70%;" class="form-control" name="resevidence.resevidence_extractPerson" type="text" value="' + xhr_data.resevidence.resevidence_extractPerson + '"  /></td>';
-			str += '</tr>';
-			str += '<tr>';
-			str += '<td>提取日期</td><td><input style="witdh:70%;" class="form-control" name="resevidence.resevidence_extractTime" type="text" value="' + xhr_data.resevidence.resevidence_extractTime + '"  /></td>';
-			//str += '</tr>';
-			//str += '<tr>';
-			str += '<td>检验状态</td><td><input style="witdh:70%;" class="form-control" name="resevidence.resevidence_teststate" type="text" value="' + xhr_data.resevidence.resevidence_teststate + '"  /></td>';
-			str += '</tr>';
-			str += '<tr>';
-			str += '<td>备注</td><td colspan="3"><textarea style="witdh:70%;" class="form-control" name="resevidence.resevidence_remarks">' + xhr_data.resevidence.resevidence_remarks + '</textarea>'
-			str += '<input name="resevidence.xsjsglxt_resevidence_id" type="hidden" value="' + xhr_data.resevidence.xsjsglxt_resevidence_id + '" />';
-			str += '</td>';
-			str += '</tr></tbody></table>';
-			$('#evidence .panel-body').html(str);
-			//刷新select选择框
-			$('.selectpicker').selectpicker('refresh');
-			//确认修改添加点击事件
-			$('.evidence_operation').click(evidence_modifi);
-			$('#evidence').modal('show');
+				str += '</select></td>';
+				//str += '</tr>';
+				//str += '<tr>';
+				str += '<td>物证名称</td><td><input style="witdh:70%;" class="form-control" name="resevidence.resevidence_name" type="text" value="' + xhr_data.resevidence.resevidence_name + '"  /></td>';
+				str += '</tr>';
+				str += '<tr>';
+				str += '<td>提取单位</td><td><input style="witdh:70%;" class="form-control" name="resevidence.resevidence_extractUnit" type="text" value="' + xhr_data.resevidence.resevidence_extractUnit + '"  /></td>';
+				//str += '</tr>';
+				//str += '<tr>';
+				str += '<td>物证类型</td><td><input style="witdh:70%;" class="form-control" name="resevidence.resevidence_type" type="text" value="' + xhr_data.resevidence.resevidence_type + '"  /></td>';
+				str += '</tr>';
+				str += '<tr>';
+				str += '<td>提取部位</td><td><input style="witdh:70%;" class="form-control" name="resevidence.resevidence_extractPart" type="text" value="' + xhr_data.resevidence.resevidence_extractPart + '"  /></td>';
+				//str += '</tr>';
+				//str += '<tr>';
+				str += '<td>提取方法</td><td><input style="witdh:70%;" class="form-control" name="resevidence.resevidence_extractMethod" type="text" value="' + xhr_data.resevidence.resevidence_extractMethod + '"  /></td>';
+				str += '</tr>';
+				str += '<tr>';
+				str += '<td>提取数量</td><td><input style="witdh:70%;" class="form-control" name="resevidence.resevidence_extractNumber" type="text" value="' + xhr_data.resevidence.resevidence_extractNumber + '"  /></td>';
+				//str += '</tr>';
+				//str += '<tr>';
+				str += '<td>提取人</td><td><input style="witdh:70%;" class="form-control" name="resevidence.resevidence_extractPerson" type="text" value="' + xhr_data.resevidence.resevidence_extractPerson + '"  /></td>';
+				str += '</tr>';
+				str += '<tr>';
+				str += '<td>提取日期</td><td><input style="witdh:70%;" class="form-control" name="resevidence.resevidence_extractTime" type="text" value="' + xhr_data.resevidence.resevidence_extractTime + '"  /></td>';
+				//str += '</tr>';
+				//str += '<tr>';
+				str += '<td>检验状态</td><td><input style="witdh:70%;" class="form-control" name="resevidence.resevidence_teststate" type="text" value="' + xhr_data.resevidence.resevidence_teststate + '"  /></td>';
+				str += '</tr>';
+				str += '<tr>';
+				str += '<td>备注</td><td colspan="3"><textarea style="witdh:70%;" class="form-control" name="resevidence.resevidence_remarks">' + xhr_data.resevidence.resevidence_remarks + '</textarea>'
+				str += '<input name="resevidence.xsjsglxt_resevidence_id" type="hidden" value="' + xhr_data.resevidence.xsjsglxt_resevidence_id + '" />';
+				str += '</td>';
+				str += '</tr></tbody></table>';
+				$('#evidence .panel-body').html(str);
+				//刷新select选择框
+				$('.selectpicker').selectpicker('refresh');
+				//确认修改添加点击事件
+				$('.evidence_operation').click(evidence_modification);
+				$('#evidence').modal('show');
+			}, 'json');
 		}, 'json');
-	}, 'json');
+	} else if ($(this).text().trim() == "删除") {
+		var formData = new FormData();
+		formData.append("useResevidenceInformationNumList", Evidence_id);
+		deleteData('/xsjsglxt/case/Resevidence_remove_ResevidenceInformationList', 'evidence_table_info', formData);
+	}
+
 /*var url = $(this).val();
 */
 }
 //物证修改确定
-var evidence_modifi = function() {
+var evidence_modification = function() {
 	$.confirm({
 		title : '确定修改?',
 		smoothContent : false,
@@ -461,8 +480,60 @@ var evidence_modifi = function() {
 	})
 }
 
-//物证的修改确认事件
-var evidence_sure = function() {
+//查看照片详情事件
+var picture_Details = function() {
+	var picture_id = $(this).siblings('input').val();
+	if ($(this).text().trim() == "修改") {
+		$.post('/xsjsglxt/case/Image_ImageInformationOne', {
+			"picture.xsjsglxt_picture_id" : picture_id
+		}, function(xhr_data) {
+			var str = '';
+			str += '<table align="center" class="table table-hover table-condensed"><tbody><tr>';
+			$.post('/xsjsglxt/case/Case_AllCase', function(Case_data) {
+				str += '<td>所属影像光盘</td><td>' + xhr_data.image.image_number + '</td>';
+				str += '</tr>';
+				str += '<tr>';
+				str += '<td>所属案件</td><td>';
+				str += '<select style="witdh:100%;" class="selectpicker" data-live-search="true" name="picture.picture_case">';
+				//所有案件循环
+				for (var len = 0; len < Case_data.length; len++) {
+					console.log(Case_data[len].case_name);
+					str += '<option ';
+					if (xhr_data.case1.case_name == Case_data[len].case_name) {
+						str += 'selected ';
+					}
+					str += ' value="' + Case_data[len].xsjsglxt_case_id + '">' + Case_data[len].case_name + '</option>';
+				}
+				str += '</select></td>';
+				str += '</tr>';
+				str += '<tr>';
+				str += '<td>照片编号</td><td><input style="witdh:70%;" class="form-control" name="picture.picture_identifier" type="text" value="' + xhr_data.picture.picture_identifier + '"  /></td>';
+				str += '</tr>';
+				str += '<tr>';
+				str += '<td>备注</td><td><textarea style="witdh:70%;" class="form-control" name="picture.picture_remarks">' + xhr_data.picture.picture_remarks + '</textarea>'
+				str += '<input name="picture.xsjsglxt_picture_id" type="hidden" value="' + xhr_data.picture.xsjsglxt_picture_id + '" />';
+				str += '</td>';
+				str += '</tr></tbody></table>';
+				//信息添加到模态框
+				$('#image .panel-body').html(str);
+				//刷新select选择框
+				$('.selectpicker').selectpicker('refresh');
+				//显示模态框
+				$('#image').modal('show');
+				//模态框按钮设置点击事件
+				$('.image_operation').click(picture_modification);
+			}, 'json');
+		}, 'json');
+	} else if ($(this).text().trim() == "删除") {
+		var formData = new FormData();
+		formData.append("usePictureInformationNumList", picture_id);
+		deleteData('/xsjsglxt/case/Image_remove_PictureInformationList', 'picture_table_info', formData);
+	}
+
+}
+
+//照片的修改确认事件
+var picture_modification = function() {
 	$.confirm({
 		title : '确定修改?',
 		smoothContent : false,
@@ -473,12 +544,76 @@ var evidence_sure = function() {
 				btnClass : 'btn-danger',
 				text : '确认',
 				action : function() {
-					$.post('/xsjsglxt/case/Lost' + url, $('form').serialize(), function(xhr_data) {
+					$.post('/xsjsglxt/case/Image_updateImage', $('#image form').serialize(), function(xhr_data) {
+						if (xhr_data == "success") {
+							$('#lost').modal('hide');
+							//修改后进行一次查询
+							material($('option[value="picture_table_info"]'));
+							toastr.success("修改成功!");
+						}
+					}, 'json');
+				}
+			},
+			cancelAction : {
+				btnClass : 'btn-blue',
+				text : '取消',
+			}
+		}
+	});
+}
+
+
+
+//查看照片详情事件
+var image_Details = function() {
+	var image_id = $(this).siblings('input').val();
+	if ($(this).text().trim() == "修改") {
+		$.post('/xsjsglxt/case/Image_ImageInformationOne', {
+			"picture.xsjsglxt_picture_id" : image_id
+		}, function(xhr_data) {
+			var str = '';
+			str += '<table align="center" class="table table-hover table-condensed"><tbody><tr>';
+			str += '<td>影像光盘编号</td><td><input style="witdh:70%;" class="form-control" name="image.image_number" type="text" value="' + xhr_data.image.image_number + '"  /></td>';
+			str += '</tr>';
+			str += '<tr>';
+			str += '<td>备注</td><td><textarea style="witdh:70%;" class="form-control" name="image.image_remarks">' + xhr_data.image.image_remarks + '</textarea>'
+			str += '<input name="image.xsjsglxt_image_id" type="hidden" value="' + xhr_data.image.xsjsglxt_image_id + '" />';
+			str += '</td>';
+			str += '</tr></tbody></table>';
+			//信息添加到模态框
+			$('#image .panel-body').html(str);
+			//刷新select选择框
+			$('.selectpicker').selectpicker('refresh');
+			//显示模态框
+			$('#image').modal('show');
+			//模态框按钮设置点击事件
+			$('.image_operation').click();
+		}, 'json');
+	} else if ($(this).text().trim() == "删除") {
+		var formData = new FormData();
+		formData.append("useImageInformationNumList", image_id);
+		deleteData('/xsjsglxt/case/Image_remove_ImageInformationList', 'image_table_info', formData);
+	}
+}
+
+//丢失物品(物品,电脑,手机)确定修改信息
+var Lost_modification = function() {
+	var url = $(this).val();
+	$.confirm({
+		title : '确定修改?',
+		smoothContent : false,
+		content : false,
+		autoClose : 'cancelAction|10000',
+		buttons : {
+			deleteUser : {
+				btnClass : 'btn-danger',
+				text : '确认',
+				action : function() {
+					$.post('/xsjsglxt/case/Lost' + url, $('.Goods_table_info form').serialize(), function(xhr_data) {
 						if (xhr_data == "success") {
 							$('#lost').modal('hide');
 							//获取对应option中的value值
 							var value = url.substr(url.indexOf('Lost'));
-							console.log(value);
 							//修改后进行一次查询
 							lost_chose($('option[value="' + value + '"]'));
 							toastr.success("修改成功!");
@@ -495,7 +630,7 @@ var evidence_sure = function() {
 }
 
 
-//删除信息
+//丢失物品删除信息
 //URL为访问路径，value为确定option对象让丢失物中电脑，手机，物品中执行点击事件，做更改后的再次查询，FormData为传输数据
 function deleteData(url, value, formData) {
 	//'/xsjsglxt/case/Lost_remove_LostInformationList'
@@ -520,7 +655,6 @@ function deleteData(url, value, formData) {
 							if (data == "success") {
 								toastr.success("删除成功！");
 								//获取对应option中的value值
-								console.log($('option[value="' + value + '"]'));
 								lost_chose($('option[value="' + value + '"]'));
 							} else {
 								toastr.error("删除失败！");
