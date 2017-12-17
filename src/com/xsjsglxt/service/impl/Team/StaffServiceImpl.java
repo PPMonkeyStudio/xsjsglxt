@@ -1,5 +1,6 @@
 package com.xsjsglxt.service.impl.Team;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,9 +91,26 @@ public boolean remove_StaffInformationList(List<String> useStaffInformationNumLi
 	for (String staff_id : useStaffInformationNumList) {
 		xsjsglxt_staff xsjsglxt_staff = staffDao.getStaffByNum(staff_id);
 		flag = staffDao.deleteStaffById(xsjsglxt_staff.getXsjsglxt_staff_id());// ����
-		
+	    flag=removeStaffImgByNewsID(xsjsglxt_staff);
 	}
 	return flag;
 }
+
+private boolean removeStaffImgByNewsID(xsjsglxt_staff xsjsglxt_staff) {
+	// TODO Auto-generated method stub
+	if (xsjsglxt_staff.getStaff_photo().equals("default.jpg")) {
+
+	} else {
+		System.out.println("删除照片：" + xsjsglxt_staff.getStaff_photo());
+		File Img = new File("C://xxyjsjgcxy_img/snews_news/bimg/" + xsjsglxt_staff.getStaff_photo());
+		Img.delete();
+	
+		return true;
+	}
+	
+	return false;
+}
+
+
 
 }

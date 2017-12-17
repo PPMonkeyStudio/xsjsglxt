@@ -1,11 +1,14 @@
 package com.xsjsglxt.action.Team;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
@@ -25,6 +28,10 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 
 	private HttpServletRequest http_request;
 	private page_list_staffInformationVO  page_list_staffInformation;
+	
+	
+	private File staff_photo;
+	private String staff_photoFileName;
 	/*
 	 * 跳转列表页
 	 */
@@ -49,7 +56,24 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 	 */
 	public void saveStaff() throws IOException{
 		try {
-			
+			if (staff_photo != null) {
+				if (staff_photo.length() <= 50 * 1024 * 1024) {
+					String filePath;
+					String fileName = UUID.randomUUID().toString()
+							+ staff_photoFileName.substring(staff_photoFileName.lastIndexOf("."));
+					filePath = "C://xxyjsjgcxy_img/snews_news/bimg/" + fileName;
+					staff.setStaff_photo(fileName);
+					
+					File newFile = new File(filePath);
+					try {
+						FileUtils.copyFile(staff_photo, newFile);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			} else {
+				staff.setStaff_photo("default.jpg");
+			}
 			staffService.saveStaff(staff);
 			http_response.setContentType("text/html;charset=utf-8");
 			http_response.getWriter().write("success");
@@ -92,7 +116,28 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 	 */
 	public void updateStaffInformation() throws IOException{
 		try {
-			
+			xsjsglxt_staff  oldStaffList=staffService.StaffInformationOne(staff);
+			if (staff_photo != null) {
+				if (staff_photo.length() <= 50 * 1024 * 1024) {
+					if (!oldStaffList.getStaff_photo().equals("default.jpg")) {
+						File oldimg = new File("C://xxyjsjgcxy_img/snews_news/bimg/"
+								+ oldStaffList.getStaff_photo());
+						oldimg.delete();
+					}
+					String filePath;
+					String fileName = UUID.randomUUID().toString()
+							+ staff_photoFileName.substring(staff_photoFileName.lastIndexOf("."));
+					filePath = "C://xxyjsjgcxy_img/snews_news/bimg/" + fileName;
+					//oldStaffList.setStaff_photo(fileName);
+					staff.setStaff_photo(fileName);
+					File newFile = new File(filePath);
+					try {
+						FileUtils.copyFile(staff_photo, newFile);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
 			staffService.updateStaffInformation(staff);
 			http_response.setContentType("text/html;charset=utf-8");
 			http_response.getWriter().write("success");
