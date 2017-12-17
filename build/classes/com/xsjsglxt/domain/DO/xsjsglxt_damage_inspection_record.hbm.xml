@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2017-12-10 16:04:58 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2017-12-13 16:08:18 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="com.xsjsglxt.domain.DO.xsjsglxt_damage_inspection_record" table="XSJSGLXT_DAMAGE_INSPECTION_RECORD">
         <id name="xsjsglxt_damage_inspection_record_id" type="java.lang.String">
