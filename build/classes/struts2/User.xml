@@ -10,6 +10,9 @@
 			</result>
 			<result name="navbar">/WEB-INF/view/navbar.jsp
 			</result>
+			<result name="logoutSuccess">
+			    /login.jsp
+			</result>
 		</action>
 	</package>
 </struts>
