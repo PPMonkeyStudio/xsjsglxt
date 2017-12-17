@@ -26,13 +26,13 @@ function updatePw()
 			if(isBack())
 				{
 					var result = xmlHttp.responseText;
-					if(result=="原始密码错误")
+					if(result=="oldPasswordError")
 						{
 							toastr.error("原始密码错误！");
 							$("#passwordLoadingDiv").hide();
 							$("#passwordContent").show();
 						}
-					else if(result=="修改失败请重新登陆")
+					else if(result=="updateFail")
 						{
 							toastr.error("修改失败请重新登陆！");
 							$("#passwordLoadingDiv").hide();

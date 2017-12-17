@@ -25,7 +25,7 @@ public class UserDaoImpl implements UserDao {
 		// TODO Auto-generated method stub
 		String query = "%" + queryString + "%";
 		String hql = "select count(*) from xsjsglxt_user where (user_name like '" + query + "' or user_units like '"
-				+ query + "' or user_number like '" + query + "')";
+				+ query + "' or user_number like '" + query + "' or user_username like '" + query + "')";
 		System.out.println(hql);
 		int count = ((Number) getSession().createQuery(hql).uniqueResult()).intValue();
 		return count;
@@ -36,7 +36,8 @@ public class UserDaoImpl implements UserDao {
 		// TODO Auto-generated method stub
 		String query = "%" + queryString + "%";
 		String hql = "from xsjsglxt_user where (user_name like '" + query + "' or user_units like '" + query
-				+ "' or user_number like '" + query + "') order by user_gmt_create desc";
+				+ "' or user_number like '" + query + "' or user_username like '" + query
+				+ "') order by user_gmt_create desc";
 		List<xsjsglxt_user> list = getSession().createQuery(hql).setFirstResult((currPage - 1) * 10).setMaxResults(10)
 				.list();
 		System.out.println("得到十条用户信息:" + list.size());

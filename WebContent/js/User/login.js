@@ -17,13 +17,13 @@ function login()
 				{
 					var result = xmlHttp.responseText;
 					switch (result) {
-					case "用户名不存在":
+					case "UserNoExist":
 						toastr.error("用户名不存在！");
 						break;
-					case "密码错误":
+					case "passwordError":
 						toastr.error("密码错误！若忘记密码请联系管理员更改");
 					    break;
-					case "登录成功":
+					case "loginSuccess":
 						window.location="/xsjsglxt/user/User_index";
 					}
 				}

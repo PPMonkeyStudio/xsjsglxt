@@ -56,19 +56,17 @@ public class UserAction extends ActionSupport {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = response.getWriter();
 		if (!userService.judgeUserByUsername(user_username)) {
-			pw.write("用户名不存在");
+			pw.write("UserNoExist");
 		} else {
 			xsjsglxt_user xu = userService.getUserByUsername(user_username);
 			String password = md5.GetMD5Code(user_password);
 
 			if (xu.getUser_password().equals(password)) {
-				pw.write("登录成功");
+				pw.write("loginSuccess");
 				ActionContext.getContext().getSession().put("user_id", xu.getUser_id());
 				ActionContext.getContext().getSession().put("user_name", xu.getUser_name());
 			} else {
-				System.out.println("真实密码：" + xu.getUser_password());
-				System.out.println("输入密码：" + password);
-				pw.write("密码错误");
+				pw.write("passwordError");
 
 			}
 		}
@@ -92,12 +90,12 @@ public class UserAction extends ActionSupport {
 			xsjsglxt_user xu = userService.getUserById(user_id);
 			if (xu.getUser_password().equals(md5.GetMD5Code(oldPassword))) {
 				userService.updatePassword(user_id, md5.GetMD5Code(newPassword));
-				pw.write("修改成功");
+				pw.write("updateSuccess");
 			} else {
-				pw.write("原始密码错误");
+				pw.write("oldPasswordError");
 			}
 		} else {
-			pw.write("修改失败请重新登陆");
+			pw.write("updateFail");
 		}
 	}
 
