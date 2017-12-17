@@ -104,7 +104,7 @@ private boolean removeStaffImgByNewsID(xsjsglxt_staff xsjsglxt_staff) {
 
 	} else {
 		System.out.println("删除照片：" + xsjsglxt_staff.getStaff_photo());
-		File Img = new File("C://xxyjsjgcxy_img/snews_news/bimg/" + xsjsglxt_staff.getStaff_photo());
+		File Img = new File("C://xsjsglxt_img/bimg/" + xsjsglxt_staff.getStaff_photo());
 		Img.delete();
 	
 		return true;

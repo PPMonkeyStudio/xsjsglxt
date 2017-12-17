@@ -61,7 +61,7 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 					String filePath;
 					String fileName = UUID.randomUUID().toString()
 							+ staff_photoFileName.substring(staff_photoFileName.lastIndexOf("."));
-					filePath = "C://xxyjsjgcxy_img/snews_news/bimg/" + fileName;
+					filePath = "C://xsjsglxt_img/bimg/" + fileName;
 					staff.setStaff_photo(fileName);
 					
 					File newFile = new File(filePath);
@@ -120,14 +120,14 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 			if (staff_photo != null) {
 				if (staff_photo.length() <= 50 * 1024 * 1024) {
 					if (!oldStaffList.getStaff_photo().equals("default.jpg")) {
-						File oldimg = new File("C://xxyjsjgcxy_img/snews_news/bimg/"
+						File oldimg = new File("C://xsjsglxt_img/bimg/"
 								+ oldStaffList.getStaff_photo());
 						oldimg.delete();
 					}
 					String filePath;
 					String fileName = UUID.randomUUID().toString()
 							+ staff_photoFileName.substring(staff_photoFileName.lastIndexOf("."));
-					filePath = "C://xxyjsjgcxy_img/snews_news/bimg/" + fileName;
+					filePath = "C://xsjsglxt_img/bimg/" + fileName;
 					//oldStaffList.setStaff_photo(fileName);
 					staff.setStaff_photo(fileName);
 					File newFile = new File(filePath);
