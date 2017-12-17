@@ -25,4 +25,8 @@ public xsjsglxt_lost getLostById(xsjsglxt_lost lost);
  */
 public void updateLost(xsjsglxt_lost lost);
 
+public com.xsjsglxt.domain.DO.xsjsglxt_lost getLostByNum(String lost_id);
+
+public boolean deleteLostById(String xsjsglxt_lost_id);
+
 }

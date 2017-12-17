@@ -621,5 +621,62 @@ public class SenceDaoImpl implements SenceDao {
 
 		return briefdetails;
 	}
+
+	@Override
+	public xsjsglxt_resevidence getResevidenceById(String xsjsglxt_case_id) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_resevidence resevidence where resevidence.resevidence_case='" + xsjsglxt_case_id + "'";
+
+		Query query = session.createQuery(hql);
+
+		xsjsglxt_resevidence	resevidence = (xsjsglxt_resevidence) query.uniqueResult();
+
+		return resevidence;
+	}
+
+	@Override
+	public boolean deleteCirculationById(String xsjsglxt_resevidence_id) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		String hql = "delete from xsjsglxt_circulation where circulation_resevidence='" + xsjsglxt_resevidence_id + "'";
+		Query query = session.createQuery(hql);
+		query.executeUpdate();
+       return true;
+	}
+
+	@Override
+	public boolean deleteResevidenceById(String xsjsglxt_case_id) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		String hql = "delete from xsjsglxt_resevidence where resevidence_case='" + xsjsglxt_case_id + "'";
+		Query query = session.createQuery(hql);
+		query.executeUpdate();
+       return true;
+	}
+
+	@Override
+	public boolean deleteBreakecaseById(String xsjsglxt_case_id) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		String hql = "delete from xsjsglxt_breakecase where breakecase_case='" + xsjsglxt_case_id + "'";
+		Query query = session.createQuery(hql);
+		query.executeUpdate();
+       return true;
+	}
+
+	@Override
+	public List<xsjsglxt_case> AllCase() {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+	
+		String hql="from xsjsglxt_case";
+		Query query = session.createQuery(hql);
+
+		List<xsjsglxt_case> AllcaseList = query.list();
+	
+		return AllcaseList;
+	}
 	
 }

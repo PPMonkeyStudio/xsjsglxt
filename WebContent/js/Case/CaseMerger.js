@@ -136,6 +136,17 @@ $(function() {
 		//成功提示
 		toastr.success('清除查询信息成功');
 	});
+
+
+	//当点击新建串并时，将获取到的串并编号放入串并编号input中
+	$('button[data-target="#newCaseMerger"]').click(function() {
+		$.post('/xsjsglxt/case/Parallel_getParallelNum', function(xhr_data) {
+			if (xhr_data.length > 0) {
+				$('input[name="parallel.parallel_num"]').val(xhr_data);
+			} else toastr.error('串并编号获取失败！');
+		}, 'json');
+	});
+	//新建案件串并模态框按钮点击事件
 	$('.finish_merger').click(function() {
 		var $areaId = $("input[type='checkbox']:checked").map(function() {
 			return $(this).attr('id');

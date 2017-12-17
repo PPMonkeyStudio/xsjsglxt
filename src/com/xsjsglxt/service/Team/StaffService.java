@@ -17,6 +17,6 @@ public page_list_staffInformationVO VO_StaffInformation_By_PageAndSearch(
 		page_list_staffInformationVO page_list_staffInformation);
 public xsjsglxt_staff StaffInformationOne(xsjsglxt_staff staff);
 public void updateStaffInformation(xsjsglxt_staff staff);
-public boolean remove_StaffInformationList(List<String> useStaffInformationNumList);
+public boolean remove_StaffInformationList(String useStaffInformationNumList);
 
 }

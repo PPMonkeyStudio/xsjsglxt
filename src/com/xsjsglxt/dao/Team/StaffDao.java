@@ -21,4 +21,6 @@ public com.xsjsglxt.domain.DO.xsjsglxt_staff getStaffByNum(String staff_id);
 
 public boolean deleteStaffById(String xsjsglxt_staff_id);
 
+
+
 }

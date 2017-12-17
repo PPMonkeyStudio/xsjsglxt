@@ -128,6 +128,12 @@ a {
 						<table width="60%" cellspacing="0" cellpadding="2" align="center">
 							<tbody>
 								<tr>
+									<td><div align="center">串并编号:</div></td>
+									<td><input name="parallel.parallel_num"
+										style="margin-top: 6px;" class="form-control" maxlength="50"
+										type="text"></td>
+								</tr>
+								<tr>
 									<td><div align="center">串并名称:</div></td>
 									<td><input name="parallel.parallel_casename"
 										style="margin-top: 6px;" class="form-control" maxlength="50"

@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.xsjsglxt.dao.Case.LostComputerDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
+import com.xsjsglxt.domain.DO.xsjsglxt_lost;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
@@ -104,6 +105,18 @@ public void updateLostComputer(xsjsglxt_lost_computer lost_computer) {
 	// TODO Auto-generated method stub
 	lost_computer.setLost_computer_gmt_modified(TeamUtil.getStringSecond());
 	lostComputerDao.updateLostComputer(lost_computer);
+}
+
+@Override
+public boolean remove_Lost_computerInformationList(List<String> useLost_computerInformationNumList) {
+	// TODO Auto-generated method stub
+	boolean flag = false;
+	for (String lost_computer_id : useLost_computerInformationNumList) {
+		xsjsglxt_lost_computer xsjsglxt_lost_computer = lostComputerDao.getLostByNum(lost_computer_id);
+		flag = lostComputerDao.deleteLost_computerById(xsjsglxt_lost_computer.getXsjsglxt_lost_computer_id());// ����
+		
+	}
+	return flag;
 }
 
 

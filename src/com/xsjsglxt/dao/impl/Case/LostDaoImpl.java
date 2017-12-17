@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.Case.LostDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
+import com.xsjsglxt.domain.DO.xsjsglxt_handle;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
 import com.xsjsglxt.domain.VO.Case.page_list_CasematerialVO;
@@ -136,6 +137,27 @@ public class LostDaoImpl implements LostDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public xsjsglxt_lost getLostByNum(String lost_id) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		xsjsglxt_lost LostInformation = null;
+		String hql = "from xsjsglxt_lost lost where lost.xsjsglxt_lost_id='" + lost_id + "'";
+		Query query = session.createQuery(hql);
+		LostInformation = (xsjsglxt_lost) query.uniqueResult();
+       return LostInformation;
+	}
+
+	@Override
+	public boolean deleteLostById(String xsjsglxt_lost_id) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		String hql = "delete from xsjsglxt_lost where xsjsglxt_lost_id='" + xsjsglxt_lost_id + "'";
+		Query query = session.createQuery(hql);
+		query.executeUpdate();
+       return true;
 	}
 }
 

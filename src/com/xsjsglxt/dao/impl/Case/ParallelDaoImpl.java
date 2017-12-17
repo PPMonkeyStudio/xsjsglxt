@@ -1,4 +1,3 @@
-
 package com.xsjsglxt.dao.impl.Case;
 
 import java.util.ArrayList;
@@ -12,6 +11,7 @@ import com.xsjsglxt.dao.Case.ParallelDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_briefdetails;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost;
+import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
 import com.xsjsglxt.domain.DO.xsjsglxt_parallel;
 import com.xsjsglxt.domain.DO.xsjsglxt_resevidence;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
@@ -245,7 +245,25 @@ public class ParallelDaoImpl implements ParallelDao {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public xsjsglxt_parallel getParallelByNum(String parallel_id) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		xsjsglxt_parallel ParallelInformation = null;
+		String hql = "from xsjsglxt_parallel parallel where parallel.xsjsglxt_parallel_id='" + parallel_id + "'";
+		Query query = session.createQuery(hql);
+		ParallelInformation = (xsjsglxt_parallel) query.uniqueResult();
+       return ParallelInformation;
+	}
+
+	@Override
+	public boolean deleteParallelById(String xsjsglxt_parallel_id) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		String hql = "delete from xsjsglxt_parallel where xsjsglxt_parallel_id='" + xsjsglxt_parallel_id + "'";
+		Query query = session.createQuery(hql);
+		query.executeUpdate();
+       return true;
+	}
 }
-
-
-

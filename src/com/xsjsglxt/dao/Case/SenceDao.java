@@ -88,5 +88,10 @@ public void updateCase(xsjsglxt_case case1);
 public void updateBriefdetails(xsjsglxt_briefdetails briefdetails);
 public xsjsglxt_snece getSenceById(String case1);
 public xsjsglxt_briefdetails getBriefdetailsById(String case1);
+public xsjsglxt_resevidence getResevidenceById(String xsjsglxt_case_id);
+public boolean deleteCirculationById(String xsjsglxt_resevidence_id);
+public boolean deleteResevidenceById(String xsjsglxt_case_id);
+public boolean deleteBreakecaseById(String xsjsglxt_case_id);
+public List<xsjsglxt_case> AllCase();
 
 }

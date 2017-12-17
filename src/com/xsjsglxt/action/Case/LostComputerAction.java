@@ -1,6 +1,7 @@
 package com.xsjsglxt.action.Case;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +23,7 @@ public class LostComputerAction extends ActionSupport implements ServletRequestA
  private LostComputerService lostComputerService;
 	private xsjsglxt_case case1;
 	private xsjsglxt_lost_computer lost_computer;
+	private List<String> useLost_computerInformationNumList;
 	private HttpServletResponse http_response;
 
 	private HttpServletRequest http_request; 	
@@ -93,6 +95,28 @@ public class LostComputerAction extends ActionSupport implements ServletRequestA
 		http_response.getWriter().write(gson.toJson("success"));
 		
 	}
+	/*
+	 *删除信息 
+	 */
+	public void remove_Lost_computerInformationList(){
+
+		if(	lostComputerService.remove_Lost_computerInformationList( useLost_computerInformationNumList)){
+			http_response.setContentType("text/html;charset=utf-8");
+			try {
+				http_response.getWriter().write("success");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}}else{
+				http_response.setContentType("text/html;charset=utf-8");
+				try {
+					http_response.getWriter().write("error");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+	}
 public void setLostComputerService(LostComputerService lostComputerService) {
 	this.lostComputerService = lostComputerService;
 }
@@ -144,6 +168,12 @@ public void setLostComputerService(LostComputerService lostComputerService) {
 	}
 	public void setLostComputerInformationDTO(LostComputerInformationDTO lostComputerInformationDTO) {
 		this.lostComputerInformationDTO = lostComputerInformationDTO;
+	}
+	public List<String> getUseLost_computerInformationNumList() {
+		return useLost_computerInformationNumList;
+	}
+	public void setUseLost_computerInformationNumList(List<String> useLost_computerInformationNumList) {
+		this.useLost_computerInformationNumList = useLost_computerInformationNumList;
 	}
 
 }

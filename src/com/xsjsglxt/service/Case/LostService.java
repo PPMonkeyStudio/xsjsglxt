@@ -1,5 +1,7 @@
 package com.xsjsglxt.service.Case;
 
+import java.util.List;
+
 import com.xsjsglxt.domain.DO.xsjsglxt_lost;
 import com.xsjsglxt.domain.DTO.Case.LostInformationDTO;
 import com.xsjsglxt.domain.VO.Case.page_list_CasematerialVO;
@@ -17,5 +19,7 @@ public LostInformationDTO LostInformationOne(xsjsglxt_lost lost);
  * 修改损失物信息
  */
 public void updateLost(xsjsglxt_lost lost);
+
+public boolean remove_LostInformationList(List<String> useLostInformationNumList);
 
 }

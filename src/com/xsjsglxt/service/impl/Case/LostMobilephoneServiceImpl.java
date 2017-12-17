@@ -110,4 +110,16 @@ public void updateParallel(xsjsglxt_lost_mobilephone lost_mobilephone) {
 	lostMobilephoneDao.updateParallel(lost_mobilephone);
 }
 
+@Override
+public boolean remove_Lost_mobilephoneInformationList(List<String> useLost_mobilephoneInformationNumList) {
+	// TODO Auto-generated method stub
+	boolean flag = false;
+	for (String lost_mobilephone_id : useLost_mobilephoneInformationNumList) {
+		xsjsglxt_lost_mobilephone xsjsglxt_lost_mobilephone = lostMobilephoneDao.getLost_mobilephoneByNum(lost_mobilephone_id);
+		flag = lostMobilephoneDao.deleteLost_mobilephoneById(xsjsglxt_lost_mobilephone.getXsjsglxt_lost_mobilephone_id());// ����
+		
+	}
+	return flag;
+}
+
 }
