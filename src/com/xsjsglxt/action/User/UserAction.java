@@ -56,19 +56,17 @@ public class UserAction extends ActionSupport {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = response.getWriter();
 		if (!userService.judgeUserByUsername(user_username)) {
-			pw.write("ÓÃ»§Ãû²»´æÔÚ");
+			pw.write("ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		} else {
 			xsjsglxt_user xu = userService.getUserByUsername(user_username);
 			String password = md5.GetMD5Code(user_password);
 
 			if (xu.getUser_password().equals(password)) {
-				pw.write("µÇÂ¼³É¹¦");
+				pw.write("ï¿½ï¿½Â¼ï¿½É¹ï¿½");
 				ActionContext.getContext().getSession().put("user_id", xu.getUser_id());
 				ActionContext.getContext().getSession().put("user_name", xu.getUser_name());
 			} else {
-				System.out.println("ÕæÊµÃÜÂë£º" + xu.getUser_password());
-				System.out.println("ÊäÈëÃÜÂë£º" + password);
-				pw.write("ÃÜÂë´íÎó");
+				pw.write("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 
 			}
 		}
@@ -92,12 +90,12 @@ public class UserAction extends ActionSupport {
 			xsjsglxt_user xu = userService.getUserById(user_id);
 			if (xu.getUser_password().equals(md5.GetMD5Code(oldPassword))) {
 				userService.updatePassword(user_id, md5.GetMD5Code(newPassword));
-				pw.write("ÐÞ¸Ä³É¹¦");
+				pw.write("ï¿½Þ¸Ä³É¹ï¿½");
 			} else {
-				pw.write("Ô­Ê¼ÃÜÂë´íÎó");
+				pw.write("Ô­Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			}
 		} else {
-			pw.write("ÐÞ¸ÄÊ§°ÜÇëÖØÐÂµÇÂ½");
+			pw.write("ï¿½Þ¸ï¿½Ê§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½Â½");
 		}
 	}
 
@@ -110,14 +108,14 @@ public class UserAction extends ActionSupport {
 	}
 
 	/**
-	 * °´Ìõ¼þ·ÖÒ³»ñÈ¡ÓÃ»§
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½È¡ï¿½Ã»ï¿½
+	 * 
 	 * @param queryString
-	 * 		  ²éÑ¯Ìõ¼þ
-	 * @param currPage 
-	 * 		 µ±Ç°Ò³Êý	
-	 * @return 
-	 * 		 void
-	 * @throws IOException 
+	 *            ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
+	 * @param currPage
+	 *            ï¿½ï¿½Ç°Ò³ï¿½ï¿½
+	 * @return void
+	 * @throws IOException
 	 */
 
 	public void getUser() throws IOException {
@@ -134,11 +132,10 @@ public class UserAction extends ActionSupport {
 	}
 
 	/**
-	 * ÐÂÔöÓÃ»§
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
 	 * 
-	 * @return 
-	 *       void
-	 * @throws IOException 
+	 * @return void
+	 * @throws IOException
 	 */
 
 	public void addUser() throws IOException {
@@ -160,13 +157,13 @@ public class UserAction extends ActionSupport {
 		xu.setUser_technology_manager_power(user_technology_manager_power);
 		xu.setUser_units(user_units);
 		xu.setUser_user_manager_power(user_user_manager_power);
-		// ÅÐ¶ÏÓÃ»§ÃûÊÇ·ñÎ¨Ò»
+		// ï¿½Ð¶ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Î¨Ò»
 		if (userService.judgeUserByUsername(user_username)) {
-			pw.write("ÓÃ»§ÃûÒÑ¾­´æÔÚ");
+			pw.write("ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½");
 		} else {
 			xu.setUser_username(user_username);
 			userService.addUser(xu);
-			pw.write("ÐÂÔöÓÃ»§³É¹¦");
+			pw.write("ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½É¹ï¿½");
 		}
 
 		pw.flush();
@@ -174,13 +171,11 @@ public class UserAction extends ActionSupport {
 	}
 
 	/**
-	 * Í¨¹ýÓÃ»§id»ñµÃÓÃ»§
+	 * Í¨ï¿½ï¿½ï¿½Ã»ï¿½idï¿½ï¿½ï¿½ï¿½Ã»ï¿½
 	 * 
-	 * @param
-	 * 		user_id
-	 * @return 
-	 * 		 void 
-	 * @throws IOException 
+	 * @param user_id
+	 * @return void
+	 * @throws IOException
 	 * 
 	 */
 
@@ -197,8 +192,7 @@ public class UserAction extends ActionSupport {
 	}
 
 	/**
-	 * @return 
-	 * 		void
+	 * @return void
 	 */
 
 	public void updateUser() {
@@ -227,12 +221,10 @@ public class UserAction extends ActionSupport {
 	}
 
 	/**
-	 * @param
-	 * 		user_id
+	 * @param user_id
 	 * 
-	 * @return
-	 *    	void
-	 * @throws IOException 
+	 * @return void
+	 * @throws IOException
 	 */
 
 	public void deleteUser() throws IOException {
@@ -240,12 +232,12 @@ public class UserAction extends ActionSupport {
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = response.getWriter();
-		pw.write("É¾³ý³É¹¦");
+		pw.write("É¾ï¿½ï¿½ï¿½É¹ï¿½");
 		pw.flush();
 		pw.close();
 	}
 
-	// --------------------------------------------------------ÇëÇó²ÎÊý--------------------------------------------------------------
+	// --------------------------------------------------------ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½--------------------------------------------------------------
 	/*
 	 *
 	 * 
