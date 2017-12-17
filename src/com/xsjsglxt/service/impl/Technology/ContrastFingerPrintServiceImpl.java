@@ -1,13 +1,22 @@
 package com.xsjsglxt.service.impl.Technology;
 
+import java.util.Arrays;
 import java.util.List;
+
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.xsjsglxt.dao.Technology.ContrastFingerPrintDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_contrast_fingerprint;
 import com.xsjsglxt.domain.DO.xsjsglxt_dna;
+import com.xsjsglxt.domain.DO.xsjsglxt_equipment;
+import com.xsjsglxt.domain.DO.xsjsglxt_fingerprint;
 import com.xsjsglxt.domain.VO.Technology.ContrastFingerPrintVO;
 import com.xsjsglxt.domain.VO.Technology.DNAVO;
 import com.xsjsglxt.service.Technology.ContrastFingerPrintService;
+
+import util.ExcelHead;
+import util.ExportExcelCollection;
+import util.MapUtil;
 
 import util.TeamUtil;
 
@@ -104,5 +113,56 @@ public class ContrastFingerPrintServiceImpl implements ContrastFingerPrintServic
 		vo.setList_xsjsglxt_contrast_fingerprint(list);
 		return vo;
 	}
+
+	@Override
+	public XSSFWorkbook getExcel(String query_name, String tableName, String query_id) {
+		// TODO Auto-generated method stub
+		int index = 0;
+		String[] exportid_arr = query_id.split(",");
+		for (String str : exportid_arr) {
+			exportid_arr[index] = "'" + str + "'";
+			index++;
+		}
+		List<Object> list_all = contrastFingerPrintDao.export_getAInfomationByTableId(tableName, getTableInfoIdName(tableName),
+				Arrays.toString(exportid_arr).replaceAll("[\\[\\]]", ""));
+		/**
+		 * 1.query_num：传入所需要查询的字段
+		 * 2.ExcelHead.getExcelHeadArray(tableName)：依据tablename传入表格头信息
+		 * 3.MapUtil.java2Map(list_all):将list_all中的对象全部用MapUtil封装到List<Map<String,String>>中
+		 * 返回一个execl表
+		 */
+		XSSFWorkbook workbook = ExportExcelCollection.exportExcel(query_name, ExcelHead.getExcelHeadArray(tableName),
+				MapUtil.java2Map(list_all, query_name));
+		return workbook;
+	}
+
+	private String getTableInfoIdName(String tableName) {
+		Class cla = null;
+		if (("xsjsglxt_contrast_fingerprint").equals(tableName)) {
+			cla = xsjsglxt_contrast_fingerprint.class;
+		}
+		if (("xsjsglxt_dna").equals(tableName)) {
+			cla = xsjsglxt_dna.class;
+		}
+		if (("xsjsglxt_equipment").equals(tableName)) {
+			cla = xsjsglxt_equipment.class;
+		}
+		if (("xsjsglxt_fingerprint").equals(tableName)) {
+			cla = xsjsglxt_fingerprint.class;
+		}
+		
+		return cla.getDeclaredFields()[0].getName();
+	}
+
+	@Override
+	public boolean addinfo(List<Object> list) {
+		// TODO Auto-generated method stub
+	boolean	flag=false;
+		for(Object obj : list){
+			flag=contrastFingerPrintDao.addinfo(obj);
+		}
+		return flag;
+	}
+
 
 }

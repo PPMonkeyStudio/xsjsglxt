@@ -1,5 +1,6 @@
 package com.xsjsglxt.dao.impl.Technology;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -121,6 +122,30 @@ public class ContrastFingerPrintDaoImpl implements ContrastFingerPrintDao {
 		List<xsjsglxt_contrast_fingerprint> list = query.list();
 		session.clear();
 		return list;
+	}
+
+	@Override
+	public List<Object> export_getAInfomationByTableId(String tableName, String tableInfoIdName, String replaceAll) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		String hql="from  "+tableName+" where  "+tableInfoIdName+" in ("+replaceAll+")";
+		Query query = session.createQuery(hql);
+		List<Object> list=new ArrayList<Object>();
+		list=query.list();
+		return list;
+	}
+
+	@Override
+	public boolean addinfo(Object list) {
+		// TODO Auto-generated method stub
+		try {
+			getSession().saveOrUpdate(list);
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }

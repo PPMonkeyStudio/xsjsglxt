@@ -19,4 +19,8 @@ public interface ContrastFingerPrintDao {
 
 	List<xsjsglxt_contrast_fingerprint> list_xsjsglxt_contrast(ContrastFingerPrintVO contrastFingerPrintVO);
 
+	List<Object> export_getAInfomationByTableId(String tableName, String tableInfoIdName, String replaceAll);
+
+public	boolean addinfo(Object obj);
+
 }
