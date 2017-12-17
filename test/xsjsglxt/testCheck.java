@@ -164,7 +164,7 @@ public class testCheck {
 		}
 	}
 
-	// 5501c173-06e2-4971-b743-23a19aadd2b9
+	// ee36054b-aa21-45a8-85ab-408c806d196b
 	@Test
 	public void testdddEE() {
 		try {
@@ -174,4 +174,12 @@ public class testCheck {
 		}
 	}
 
+	@Test
+	public void testddsdEE() {
+		try {
+			inspectionIdentificationService.exportInspectionRecord("ee36054b-aa21-45a8-85ab-408c806d196b");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

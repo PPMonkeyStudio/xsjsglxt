@@ -344,6 +344,22 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	}
 
 	//
+	public String exportInspectionRecord() throws Exception {
+		File exportInspectionRecordFile = inspectionIdentificationService.exportInspectionRecord(inspectionRecord.getXsjsglxt_inspection_record_id());
+		// 获取委托书编号
+		fileName = inspectionIdentificationService.exportInspectionRecordName(
+				inspectionRecord.getXsjsglxt_inspection_record_id());
+		if (fileName != null) {
+			fileName = new String(("痕迹检验记录：" + fileName + ".docx").getBytes("GBK"), "ISO-8859-1");
+		} else {
+			fileName = new String(("痕迹检验记录：" + ".docx").getBytes("GBK"), "ISO-8859-1");
+		}
+		inputStream = new FileInputStream(exportInspectionRecordFile);
+		exportInspectionRecordFile.delete();
+		return "export";
+	}
+
+	//
 	/**
 	 * 
 	 * 

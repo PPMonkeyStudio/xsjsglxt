@@ -63,4 +63,8 @@ public interface InspectionIdentificationService {
 
 	public File exportNotAcceptanceIdentifieder(String id) throws Exception;
 
+	public File exportInspectionRecord(String id) throws Exception;
+
+	public String exportInspectionRecordName(String xsjsglxt_inspection_record_id);
+	
 }
