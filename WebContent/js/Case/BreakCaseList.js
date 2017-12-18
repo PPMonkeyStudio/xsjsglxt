@@ -20,6 +20,9 @@ var page_infomantion = {
 }
 
 $(function() {
+
+	get_ListBreakecaseInformationByPageAndSearch(query_data);
+
 	$('.to_quert').click(function() {
 		var arr = $('#query_infomantion_inmodal').serializeArray();
 		$.each(arr, function(key, value) {
@@ -42,7 +45,60 @@ $(function() {
 		//成功提示
 		toastr.success('清除查询信息成功');
 	});
-	get_ListBreakecaseInformationByPageAndSearch(query_data);
+
+
+	$('#breakCase_input').on('show.bs.modal', function() {
+		setTimeout(function() {
+			$.post('/xsjsglxt/case/Case_AllCase', function(Case_data) {
+				var option = '';
+				for (var len = 0; len < Case_data.length; len++) {
+					option += '<option value="' + Case_data[len].xsjsglxt_case_id + '">' + Case_data[len].case_name + '</option>';
+				}
+				$('#breakCase_input .selectpicker').html(option).selectpicker('refresh');
+				//除去加载提示
+				$('#breakCase_input .load_remind').remove();
+			}, 'json');
+		}, 2000)
+	})
+	//破案确认添加按钮事件
+	$('.input_sure').click(function() {
+		$.confirm({
+			title : '确定添加?',
+			smoothContent : false,
+			content : false,
+			autoClose : 'cancelAction|10000',
+			buttons : {
+				deleteUser : {
+					btnClass : 'btn-danger',
+					text : '确认',
+					action : function() {
+						$.ajax({
+							url : '/xsjsglxt/case/BreakCase_saveBreakecase',
+							type : 'post',
+							data : $('#breakCase_input form').serialize(),
+							processData : false,
+							contentType : false,
+							dataType : 'json',
+							success : function(data) {
+								if (data == "success") {
+									toastr.success("修改成功！");
+									//获取对应option中的value值
+									get_ListBreakecaseInformationByPageAndSearch(query_data);
+								} else {
+									toastr.error("修改失败！");
+								}
+							}
+						});
+					}
+				},
+				cancelAction : {
+					btnClass : 'btn-blue',
+					text : '取消',
+				}
+			}
+		});
+	});
+
 })
 
 function get_ListBreakecaseInformationByPageAndSearch(data) {
@@ -94,7 +150,6 @@ function get_ListBreakecaseInformationByPageAndSearch(data) {
 var modifi_delete = function() {
 	var type = $(this).text().trim();
 	var id = $(this).siblings('input').val();
-	console.log(type, id);
 	if (type == "修改") {
 		$.post('/xsjsglxt/case/BreakCase_BreakecaseInformationOne', {
 			"case1.xsjsglxt_case_id" : id
@@ -130,15 +185,15 @@ var modifi_delete = function() {
 			str += '<td>带破案件</td><td><input style="witdh:70%;" class="form-control" name="breakecase.breakecase_waitbreakecase" type="text" value="' + xhr_data.breakecase.breakecase_waitbreakecase + '"  /></td>';
 			str += '</tr>';
 			str += '<tr>';
-			str += '<td>备注</td><td  colspan="3"><textarea style="witdh:70%;" class="form-control" name="breakecase.breakecase_remarks">' + xhr_data.breakecase.breakecase_remarks + '</textarea>';
+			str += '<td>备注</td><td  colspan="3"><textarea placeholder="请填写" style="witdh:70%;" class="form-control" name="breakecase.breakecase_remarks">' + xhr_data.breakecase.breakecase_remarks + '</textarea>';
 			//添加存丢失物的id隐藏域(上一兄元素为备注文本域)
 			str += '<input name="breakecase.xsjsglxt_breakecase_id" type="hidden" value="' + xhr_data.breakecase.xsjsglxt_breakecase_id + '" />';
 			str += '</td>';
 			str += '</tr></tbody></table>';
 			//str加载到模态框中
-			$('#breakCaseinput .panel-body').html(str);
+			$('#breakCase_modification .panel-body').html(str);
 			//模态框显示
-			$('#breakCaseinput').modal('show');
+			$('#breakCase_modification').modal('show');
 			$.post('/xsjsglxt/case/Case_AllCase', function(Case_data) {
 				//所有案件循环
 				var option = '';
@@ -149,15 +204,13 @@ var modifi_delete = function() {
 					}
 					option += ' value="' + Case_data[len].xsjsglxt_case_id + '">' + Case_data[len].case_name + '</option>';
 				}
-				$('.selectpicker').html(option).selectpicker('refresh');
+				$('#breakCase_modification .selectpicker').html(option).selectpicker('refresh');
 				//除去加载提示
-				$('.load_remind').remove();
+				$('#breakCase_modification .load_remind').remove();
 			}, 'json');
-			//确认按钮添加事件
+			//确认修改按钮添加事件
 			$('.breakCase_operation').click(breakecase_modification);
 		}, 'json');
-
-
 	} else if (type == "删除") {
 		var formData = new FormData();
 		formData.append('useBreakecaseInformationNumList', id);
@@ -215,7 +268,7 @@ var breakecase_modification = function() {
 					$.ajax({
 						url : '/xsjsglxt/case/BreakCase_updateBreakcase',
 						type : 'post',
-						data : $('#breakCaseinput form').serialize(),
+						data : $('#breakCase_modification form').serialize(),
 						processData : false,
 						contentType : false,
 						dataType : 'json',
