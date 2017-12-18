@@ -19,6 +19,10 @@ import org.apache.struts2.ServletActionContext;
 
 import com.deepoove.poi.XWPFTemplate;
 import com.deepoove.poi.data.PictureRenderData;
+import com.deepoove.poi.data.RenderData;
+import com.deepoove.poi.data.TableRenderData;
+import com.deepoove.poi.data.TextRenderData;
+import com.deepoove.poi.util.BytePictureUtils;
 import com.xsjsglxt.dao.InspectionIdentification.InspectionIdentificationDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter;
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
@@ -995,7 +999,9 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			e.printStackTrace();
 		}
 		params.putAll(mapDeathInspectionRecord(id));
-		String fileNameInResource = ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt_death_inspection_record.docx");
+		// String fileNameInResource =
+		// ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt_death_inspection_record.docx");
+		String fileNameInResource = "F:/xsjsglxt_death_inspection_record.docx";
 		XWPFTemplate template = XWPFTemplate.compile(fileNameInResource);
 		template.render(params);
 		FileOutputStream out;
@@ -1249,7 +1255,18 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	// 损伤检验记录
 	public Map<String, Object> mapDamageInspectionRecord(String id) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		//
+		/*
+		 * 获取路径
+		 */
+		String lj = "";
+		try {
+			Properties props = new Properties();
+			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
+			lj = props.getProperty("lj");
+		} catch (Exception e) {
+			System.out.println("获取初始路径失败");
+			e.printStackTrace();
+		}
 		xsjsglxt_damage_inspection_record xsjsglxt_damage_inspection_record = new xsjsglxt_damage_inspection_record();
 		xsjsglxt_check_entrustment_book xsjsglxt_check_entrustment_book = new xsjsglxt_check_entrustment_book();
 		xsjsglxt_damage_inspection_record = inspectionIdentificationDao.getDamageInspectionRecordByOwnId(id);
@@ -1349,6 +1366,34 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			} else {
 				params.put("d14", "");
 			}
+			if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture1() != null
+					&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture1().trim().length() > 0) {
+				String fileName = lj + "/xsjsglxt/damage/";
+				fileName = fileName + xsjsglxt_damage_inspection_record.getXsjsglxt_damage_inspection_record_id() + "_"
+						+ xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture1().trim();
+				params.put("d15", new PictureRenderData(640, 550, ".png", BytePictureUtils.getLocalByteArray(new File(fileName))));
+			} else {
+				params.put("d15", "");
+			}
+			if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture2() != null
+					&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture2().trim().length() > 0) {
+				String fileName = lj + "/xsjsglxt/damage/";
+				fileName = fileName + xsjsglxt_damage_inspection_record.getXsjsglxt_damage_inspection_record_id() + "_"
+						+ xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture2().trim();
+				params.put("d16", new PictureRenderData(640, 550, ".png", BytePictureUtils.getLocalByteArray(new File(fileName))));
+			} else {
+				params.put("d16", "");
+			}
+			if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture3() != null
+					&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture3().trim().length() > 0) {
+				String fileName = lj + "/xsjsglxt/damage/";
+				fileName = fileName + xsjsglxt_damage_inspection_record.getXsjsglxt_damage_inspection_record_id() + "_"
+						+ xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture3().trim();
+				params.put("d17", new PictureRenderData(640, 550, ".png", BytePictureUtils.getLocalByteArray(new File(fileName))));
+			} else {
+				params.put("d17", "");
+			}
+
 		}
 		return params;
 	}
@@ -1356,9 +1401,21 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	// 死因检验记录
 	public Map<String, Object> mapDeathInspectionRecord(String id) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		//
+		/*
+		 * 获取路径
+		 */
+		String lj = "";
+		try {
+			Properties props = new Properties();
+			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
+			lj = props.getProperty("lj");
+		} catch (Exception e) {
+			System.out.println("获取初始路径失败");
+			e.printStackTrace();
+		}
 		xsjsglxt_death_inspection_record xsjsglxt_death_inspection_record = new xsjsglxt_death_inspection_record();
 		xsjsglxt_check_entrustment_book xsjsglxt_check_entrustment_book = new xsjsglxt_check_entrustment_book();
+		List<xsjsglxt_entrustment_sample> listEntrustmentSample = new ArrayList<xsjsglxt_entrustment_sample>();
 		xsjsglxt_death_inspection_record = inspectionIdentificationDao.getDeathInspectionRecordOwnId(id);
 		if (xsjsglxt_death_inspection_record != null) {
 			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_belong_entrustment_book() != null
@@ -1368,11 +1425,11 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				// 属于委托书中的内容
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim().length() > 0) {
-					params.put("t1", (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4));
-					params.put("t2", (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4));
+					params.put("t1", "[" + (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4) + "]");
+					params.put("t2", (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4) + "号");
 				} else {
-					params.put("t1", "");
-					params.put("t2", "");
+					params.put("t1", "[无]");
+					params.put("t2", "号");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim().length() > 0) {
@@ -1402,7 +1459,61 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				} else {
 					params.put("t20", "");
 				}
-
+				listEntrustmentSample = inspectionIdentificationDao
+						.getListEntrustmentSampleByEnId(xsjsglxt_death_inspection_record.getDeath_inspection_record_belong_entrustment_book().trim());
+				List<Object> tableContent = new ArrayList<Object>();
+				for (xsjsglxt_entrustment_sample xsjsglxt_entrustment_sample : listEntrustmentSample) {
+					String kk = "";
+					if (xsjsglxt_entrustment_sample.getEntrustment_sample_num() != null && xsjsglxt_entrustment_sample.getEntrustment_sample_num().trim().length() > 0) {
+						kk = kk + xsjsglxt_entrustment_sample.getEntrustment_sample_num() + ";";
+					} else {
+						kk = kk + "" + ";";
+					}
+					if (xsjsglxt_entrustment_sample.getEntrustment_sample_name() != null && xsjsglxt_entrustment_sample.getEntrustment_sample_name().trim().length() > 0) {
+						kk = kk + xsjsglxt_entrustment_sample.getEntrustment_sample_name() + ";";
+					} else {
+						kk = kk + "" + ";";
+					}
+					if (xsjsglxt_entrustment_sample.getEntrustment_sample_position() != null && xsjsglxt_entrustment_sample.getEntrustment_sample_position().trim().length() > 0) {
+						kk = kk + xsjsglxt_entrustment_sample.getEntrustment_sample_position() + ";";
+					} else {
+						kk = kk + "" + ";";
+					}
+					if (xsjsglxt_entrustment_sample.getEntrustment_sample_way() != null && xsjsglxt_entrustment_sample.getEntrustment_sample_way().trim().length() > 0) {
+						kk = kk + xsjsglxt_entrustment_sample.getEntrustment_sample_way() + ";";
+					} else {
+						kk = kk + "" + ";";
+					}
+					if (xsjsglxt_entrustment_sample.getEntrustment_sample_amount() != null && xsjsglxt_entrustment_sample.getEntrustment_sample_amount().trim().length() > 0) {
+						kk = kk + xsjsglxt_entrustment_sample.getEntrustment_sample_amount() + ";";
+					} else {
+						kk = kk + "" + ";";
+					}
+					if (xsjsglxt_entrustment_sample.getEntrustment_sample_packaging() != null
+							&& xsjsglxt_entrustment_sample.getEntrustment_sample_packaging().trim().length() > 0) {
+						kk = kk + xsjsglxt_entrustment_sample.getEntrustment_sample_packaging() + ";";
+					} else {
+						kk = kk + "" + ";";
+					}
+					if (xsjsglxt_entrustment_sample.getEntrustment_sample_use() != null && xsjsglxt_entrustment_sample.getEntrustment_sample_use().trim().length() > 0) {
+						kk = kk + xsjsglxt_entrustment_sample.getEntrustment_sample_use() + ";";
+					} else {
+						kk = kk + "" + ";";
+					}
+					tableContent.add(kk);
+				}
+				// com.deepoove.poi.data.style.Style
+				// 表头
+				List<RenderData> tableHead = new ArrayList<RenderData>();
+				tableHead.add(new TextRenderData("d0d0d0", "编号"));
+				tableHead.add(new TextRenderData("d0d0d0", "检材名称"));
+				tableHead.add(new TextRenderData("d0d0d0", "提取部位"));
+				tableHead.add(new TextRenderData("d0d0d0", "提取方法"));
+				tableHead.add(new TextRenderData("d0d0d0", "数量"));
+				tableHead.add(new TextRenderData("d0d0d0", "包装"));
+				tableHead.add(new TextRenderData("d0d0d0", "用途"));
+				TableRenderData tables = new TableRenderData(tableHead, tableContent, "re", 7000);
+				params.put("t42", tables);
 			}
 			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_undertake_personnel() != null
 					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_undertake_personnel().trim().length() > 0) {
@@ -1543,6 +1654,60 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				params.put("t28", "");
 			}
 
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture1() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture1().trim().length() > 0) {
+				String fileName = lj + "/xsjsglxt/death/";
+				fileName = fileName + xsjsglxt_death_inspection_record.getXsjsglxt_death_inspection_record_id() + "_"
+						+ xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture1().trim();
+				params.put("t29", new PictureRenderData(640, 550, ".png", BytePictureUtils.getLocalByteArray(new File(fileName))));
+			} else {
+				params.put("t29", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture2() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture2().trim().length() > 0) {
+				String fileName = lj + "/xsjsglxt/death/";
+				fileName = fileName + xsjsglxt_death_inspection_record.getXsjsglxt_death_inspection_record_id() + "_"
+						+ xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture2().trim();
+				params.put("t30", new PictureRenderData(640, 550, ".png", BytePictureUtils.getLocalByteArray(new File(fileName))));
+			} else {
+				params.put("t30", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture3() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture3().trim().length() > 0) {
+				String fileName = lj + "/xsjsglxt/death/";
+				fileName = fileName + xsjsglxt_death_inspection_record.getXsjsglxt_death_inspection_record_id() + "_"
+						+ xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture3().trim();
+				params.put("t31", new PictureRenderData(640, 550, ".png", BytePictureUtils.getLocalByteArray(new File(fileName))));
+			} else {
+				params.put("t31", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomy_picture1() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomy_picture1().trim().length() > 0) {
+				String fileName = lj + "/xsjsglxt/death/";
+				fileName = fileName + xsjsglxt_death_inspection_record.getXsjsglxt_death_inspection_record_id() + "_"
+						+ xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomy_picture1().trim();
+				params.put("t39", new PictureRenderData(640, 550, ".png", BytePictureUtils.getLocalByteArray(new File(fileName))));
+			} else {
+				params.put("t39", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomy_picture2() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomy_picture2().trim().length() > 0) {
+				String fileName = lj + "/xsjsglxt/death/";
+				fileName = fileName + xsjsglxt_death_inspection_record.getXsjsglxt_death_inspection_record_id() + "_"
+						+ xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomy_picture2().trim();
+				params.put("t40", new PictureRenderData(640, 550, ".png", BytePictureUtils.getLocalByteArray(new File(fileName))));
+			} else {
+				params.put("t40", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomy_picture3() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomy_picture3().trim().length() > 0) {
+				String fileName = lj + "/xsjsglxt/death/";
+				fileName = fileName + xsjsglxt_death_inspection_record.getXsjsglxt_death_inspection_record_id() + "_"
+						+ xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomy_picture3().trim();
+				params.put("t41", new PictureRenderData(640, 550, ".png", BytePictureUtils.getLocalByteArray(new File(fileName))));
+			} else {
+				params.put("t41", "");
+			}
 			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomic_time() != null
 					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomic_time().trim().length() > 0) {
 				params.put("t32", xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomic_time().trim());
