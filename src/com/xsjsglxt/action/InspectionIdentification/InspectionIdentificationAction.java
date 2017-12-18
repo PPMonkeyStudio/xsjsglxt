@@ -176,7 +176,6 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		System.out.println(entrustment_sample);
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			System.out.println(deathFileName.toString());
 			response.getWriter().write("" + inspectionIdentificationService.saveEntrustmentSample(entrustment_sample));
 		} catch (IOException e) {
 			System.out.println("填写尸体检验记录表报错");
