@@ -1,5 +1,10 @@
 function Preview_Death_InspectionRecord(obj) {
 	var json_list = EntrustmentBook_json;
+	for (var num = 0; num < json_list.listEntrustmentBookManagementDTO.length; num++) {
+		if (obj.id == json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id) {
+			break;
+		}
+	}
 	var jc = $
 			.confirm({
 				theme : 'Modern',
@@ -12,11 +17,7 @@ function Preview_Death_InspectionRecord(obj) {
 				onOpenBefore : function() {
 				},
 				onContentReady : function() {
-					for (var num = 0; num < json_list.listEntrustmentBookManagementDTO.length; num++) {
-						if (obj.id == json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id) {
-							break;
-						}
-					}
+
 					var con = '<hr>' + '<div style="text-align: left;">'
 							+ '<h4 style="text-align: center;">尸体检验记录</h4>'
 							+ '<p>委托单位：'
@@ -286,6 +287,7 @@ function Preview_Death_InspectionRecord(obj) {
 					'添加检材记录' : {
 						btnClass : 'btn-green',
 						action : function() {
+
 							var jc2 = $
 									.confirm({
 										title : '添加检材记录',
@@ -329,6 +331,9 @@ function Preview_Death_InspectionRecord(obj) {
 																if (xhr.responseText == 1) {
 																	toastr
 																			.success("操作成功");
+																	list_entrustment_sample(
+																			json_list,
+																			num);
 																} else {
 
 																}
@@ -365,6 +370,19 @@ function Preview_Death_InspectionRecord(obj) {
 }
 
 function list_entrustment_sample(json_list, num) {
+	alert(num);
+	/*
+	 * 
+	 * 清空原表数据
+	 * 
+	 */
+	var new_tr_list = document
+			.getElementsByClassName("new_tr_entrustment_sample");
+	var long = new_tr_list.length;
+	for (var num = 0; num < long; num++) {
+		new_tr_list[0].parentNode.removeChild(new_tr_list[0]);
+	}
+
 	var table_entrustment_sample = document
 			.getElementById("table_entrustment_sample");
 	var new_tr = null;
@@ -373,7 +391,7 @@ function list_entrustment_sample(json_list, num) {
 		for (var num2 = 0; num2 < json_list.listEntrustmentBookManagementDTO[num].listEntrustmentSample.length; num2++) {
 			new_tr = document.createElement("tr");
 			table_entrustment_sample.firstElementChild.appendChild(new_tr);
-			new_tr.className = "new_tr";
+			new_tr.className = "new_tr_entrustment_sample";
 			/*
 			 * 
 			 */
