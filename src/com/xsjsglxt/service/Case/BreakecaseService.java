@@ -15,7 +15,7 @@ public	void saveBreakecase(xsjsglxt_breakecase breakecase);
 public page_list_BreakecaseInformationVO VO_BreakecaseInformation_By_PageAndSearch(
 		page_list_BreakecaseInformationVO page_list_BreakecaseInformation);
 
-public BreakecaseInformationDTO BreakecaseInformationOne(xsjsglxt_case case1);
+
 
 public void updateCase(xsjsglxt_case case1);
 
@@ -26,5 +26,7 @@ public void updateSence(xsjsglxt_snece sence, String xsjsglxt_case_id);
 public boolean remove_BreakecaseInformationList(List<String> useBreakecaseInformationNumList);
 
 public void updateBreakcase(xsjsglxt_breakecase breakecase);
+
+public BreakecaseInformationDTO BreakecaseInformationOne(xsjsglxt_breakecase breakecase);
 
 }

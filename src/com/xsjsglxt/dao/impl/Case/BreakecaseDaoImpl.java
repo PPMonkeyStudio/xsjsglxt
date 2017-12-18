@@ -196,15 +196,15 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 	}
 
 	@Override
-	public xsjsglxt_case getCaseById(xsjsglxt_case case1) {
+	public xsjsglxt_case getCaseById(xsjsglxt_breakecase breakecase) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
-		String hql = "from xsjsglxt_case case1 where case1.xsjsglxt_case_id='" + case1.getXsjsglxt_case_id() + "'";
+		String hql = "from xsjsglxt_case case1 where case1.xsjsglxt_case_id='" + breakecase.getBreakecase_case()+ "'";
 
 		Query query = session.createQuery(hql);
 
-		case1 = (xsjsglxt_case) query.uniqueResult();
+		xsjsglxt_case	case1 = (xsjsglxt_case) query.uniqueResult();
 
 		return case1;
 	}
@@ -224,16 +224,16 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 	}
 
 	@Override
-	public xsjsglxt_breakecase getBreakecaseById(xsjsglxt_case case1) {
+	public xsjsglxt_breakecase getBreakecaseById(xsjsglxt_breakecase breakecase) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
-		String hql = "from xsjsglxt_breakecase breakecase where breakecase.breakecase_case='"
-				+ case1.getXsjsglxt_case_id() + "'";
+		String hql = "from xsjsglxt_breakecase breakecase where breakecase.xsjsglxt_breakecase_id='"
+				+ breakecase.getXsjsglxt_breakecase_id() + "'";
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_breakecase breakecase = (xsjsglxt_breakecase) query.uniqueResult();
+		 breakecase = (xsjsglxt_breakecase) query.uniqueResult();
 
 		return breakecase;
 	}
