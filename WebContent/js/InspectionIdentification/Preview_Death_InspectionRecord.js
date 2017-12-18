@@ -239,7 +239,7 @@ function Preview_Death_InspectionRecord(obj) {
 							+ '<h4>'
 							+ '检材提取及处置'
 							+ '</h4>'
-							+ '<table  class="table table-bordered" style="text-align: center;">'
+							+ '<table class="table table-bordered" style="text-align: center;" id="table_entrustment_sample">'
 							+ '<tbody>'
 							+ '<tr><td>编号</td><td>检材名称</td><td>提取部位</td><td>提取方法</td><td>数量</td><td>包装</td><td>用途</td><td>全选</td></tr>'
 							+ '</tbody>' + '</table>';
@@ -247,26 +247,26 @@ function Preview_Death_InspectionRecord(obj) {
 					/*
 					 * 
 					 */
-					var xhr = false;
-					xhr = new XMLHttpRequest();
-					xhr.onreadystatechange = function() {
-						var message;
-						if (xhr.readyState == 4) {
-							if (xhr.status == 200) {
-								if (xhr.responseText == 1) {
-								} else {
-
-								}
-							} else {
-								toastr.error(xhr.status);
-							}
+					var table_entrustment_sample = document
+							.getElementById("table_entrustment_sample");
+					var new_tr = null;
+					var new_td = null;
+					if (json_list.listEntrustmentBookManagementDTO[num].listEntrustmentSample != null) {
+						for (var num2 = 0; num2 < json_list.listEntrustmentBookManagementDTO[num].listEntrustmentSample.length; num2++) {
+							new_tr = document.createElement("tr");
+							table_entrustment_sample.firstElementChild
+									.appendChild(new_tr);
+							new_tr.className = "new_tr";
+							/*
+							 * 
+							 */
+							new_td = document.createElement("td");
+							new_tr.appendChild(new_td);
+							new_td.innerHTML = json_list.listEntrustmentBookManagementDTO[num].listEntrustmentSample[num2].entrustment_sample_name;
 						}
+					} else {
+						alert("listEntrustmentSample为空");
 					}
-					/*
-					 * 
-					 */
-					var formData = new FormData();
-
 					/*
 					 * 
 					 */
