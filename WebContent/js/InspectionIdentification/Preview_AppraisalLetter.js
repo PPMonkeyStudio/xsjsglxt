@@ -47,9 +47,13 @@ function Preview_AppraisalLetter(obj) {
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request
 							+ '</p>'
 							+ '<p>（七）检验开始日期：	</p>'
-							+ '<p>（八）检验地点：'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_location
-							+ '</p>'
+							+ (json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request == '损伤鉴定' ? ''
+									: (json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request == '死因鉴定' ? '<p>（八）检验地点：'
+											+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_inspect_place
+											+ '</p>'
+											: '<p>（八）检验地点：'
+													+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_location
+													+ '</p>'))
 							+ '</h3>'
 							+ '<br>'
 							+ '<h3  style="text-align: left;">'
