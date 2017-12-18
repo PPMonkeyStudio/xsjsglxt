@@ -290,6 +290,65 @@ function Preview_Death_InspectionRecord(obj) {
 							Update_Death_InspectionRecord(obj);
 						}
 					},
+					'添加检材记录' : {
+						btnClass : 'btn-green',
+						action : function() {
+							var jc2 = $
+									.confirm({
+										title : '添加检材记录',
+										content : '<form id="form_entrustment_sample">'
+												+ '<input value="'
+												+ obj.id
+												+ '"  class="form-control" name="entrustment_sample_belong_entrustment_book" style="display:none;"/>'
+												+ '<hr>'
+												+ '<table  class="table table-bordered" style="text-align: center;">'
+												+ '<tbody>'
+												+ '<tr><td>检材名称：</td>'
+												+ '<td><input  class="form-control" name="entrustment_sample_name"  /></td></tr>'
+												+ '<tr><td>提取部位：</td>'
+												+ '<td><input  class="form-control" name="entrustment_sample_position"  /></td></tr>'
+												+ '<tr><td>提取方法：</td>'
+												+ '<td><input  class="form-control" name="entrustment_sample_way"  /></td></tr>'
+												+ '<tr><td>数量：</td>'
+												+ '<td><input  class="form-control" name="entrustment_sample_amount"  /></td></tr>'
+												+ '<tr><td>包装：</td>'
+												+ '<td><input  class="form-control" name="entrustment_sample_packaging"  /></td></tr>'
+												+ '<tr><td>用途：</td>'
+												+ '<td><input  class="form-control" name="entrustment_sample_use"  /></td></tr>'
+												+ '</tbody>'
+												+ '</table>'
+												+ '</form>',
+										columnClass : 'col-md-8 col-md-offset-2',
+										onOpenBefore : function() {
+										},
+										onContentReady : function() {
+										},
+										buttons : {
+											'确认' : {
+												btnClass : 'btn-green',
+												action : function() {
+													/*
+													 * 
+													 */
+													var formData = new FormData(
+															document
+																	.getElementById("form_entrustment_sample"));
+													xhr
+															.open("POST",
+																	"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_addInspectionRecord");
+													xhr.send(formData);
+													/*
+													 * 
+													 */
+												}
+											},
+											'放弃' : function() {
+											}
+										}
+									});
+							return false;
+						}
+					},
 					'返回' : function() {
 					}
 				}
