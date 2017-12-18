@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-12-13 15:02:05 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_user" table="XSJSGLXT_USER">
+        <id name="user_id" type="java.lang.String">
+            <column name="USER_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="user_username" type="java.lang.String">
+            <column name="USER_USERNAME" />
+        </property>
+        <property name="user_password" type="java.lang.String">
+            <column name="USER_PASSWORD" />
+        </property>
+        <property name="user_name" type="java.lang.String">
+            <column name="USER_NAME" />
+        </property>
+        <property name="user_number" type="java.lang.String">
+            <column name="USER_NUMBER" />
+        </property>
+        <property name="user_units" type="java.lang.String">
+            <column name="USER_UNITS" />
+        </property>
+        <property name="user_case_technology_power" type="java.lang.String">
+            <column name="USER_CASE_TECHNOLOGY_POWER" />
+        </property>
+        <property name="user_case_query_power" type="java.lang.String">
+            <column name="USER_CASE_QUERY_POWER" />
+        </property>
+        <property name="user_check_power" type="java.lang.String">
+            <column name="USER_CHECK_POWER" />
+        </property>
+        <property name="user_army_manager_power" type="java.lang.String">
+            <column name="USER_ARMY_MANAGER_POWER" />
+        </property>
+        <property name="user_technology_manager_power" type="java.lang.String">
+            <column name="USER_TECHNOLOGY_MANAGER_POWER" />
+        </property>
+        <property name="user_statistics_power" type="java.lang.String">
+            <column name="USER_STATISTICS_POWER" />
+        </property>
+        <property name="user_user_manager_power" type="java.lang.String">
+            <column name="USER_USER_MANAGER_POWER" />
+        </property>
+        <property name="user_gmt_create" type="java.lang.String">
+            <column name="USER_GMT_CREATE" />
+        </property>
+        <property name="user_gmt_modified" type="java.lang.String">
+            <column name="USER_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>

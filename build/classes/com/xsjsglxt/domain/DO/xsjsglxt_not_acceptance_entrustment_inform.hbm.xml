@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-12-13 16:08:18 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform" table="XSJSGLXT_NOT_ACCEPTANCE_ENTRUSTMENT_INFORM">
+        <id name="xsjsglxt_not_acceptance_entrustment_inform_id" type="java.lang.String">
+            <column name="XSJSGLXT_NOT_ACCEPTANCE_ENTRUSTMENT_INFORM_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="not_acceptance_entrustment_inform_belong_entrustment_book" type="java.lang.String">
+            <column name="NOT_ACCEPTANCE_ENTRUSTMENT_INFORM_BELONG_ENTRUSTMENT_BOOK" />
+        </property>
+        <property name="not_acceptance_entrustment_inform_reason" type="java.lang.String">
+            <column name="NOT_ACCEPTANCE_ENTRUSTMENT_INFORM_REASON" />
+        </property>
+        <property name="not_acceptance_entrustment_inform_inputhuman_name" type="java.lang.String">
+            <column name="NOT_ACCEPTANCE_ENTRUSTMENT_INFORM_INPUTHUMAN_NAME" />
+        </property>
+        <property name="not_acceptance_entrustment_inform_approvalhuman_name" type="java.lang.String">
+            <column name="NOT_ACCEPTANCE_ENTRUSTMENT_INFORM_APPROVALHUMAN_NAME" />
+        </property>
+        <property name="not_acceptance_entrustment_inform_approval_time" type="java.lang.String">
+            <column name="NOT_ACCEPTANCE_ENTRUSTMENT_INFORM_APPROVAL_TIME" />
+        </property>
+        <property name="not_acceptance_entrustment_inform_gmt_create" type="java.lang.String">
+            <column name="NOT_ACCEPTANCE_ENTRUSTMENT_INFORM_GMT_CREATE" />
+        </property>
+        <property name="not_acceptance_entrustment_inform_gmt_modified" type="java.lang.String">
+            <column name="NOT_ACCEPTANCE_ENTRUSTMENT_INFORM_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>

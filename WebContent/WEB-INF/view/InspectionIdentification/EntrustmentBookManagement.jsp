@@ -27,7 +27,7 @@
 		<div class="panel" style="width: 95%; margin: 20px auto;">
 			<!--  -->
 			<div class="panel-heading">
-				<h3 class="panel-title">委托书管理</h3>
+				<h3 class="panel-title useClass" >委托书管理</h3>
 			</div>
 			<!--  -->
 			<div class="panel-body">
@@ -51,7 +51,7 @@
 							id="button_Create_TranceCheckEntrustmentBook">
 							<i class="fa fa-pencil-square-o"></i> 痕迹检验委托鉴定
 						</button>
-						<button class="btn btn-default"
+						<button class="btn btn-default "
 							id="button_Create_ForensicCheckEntrustmentBook">
 							<i class="fa fa-pencil-square-o"></i> 法医检验委托鉴定
 						</button>

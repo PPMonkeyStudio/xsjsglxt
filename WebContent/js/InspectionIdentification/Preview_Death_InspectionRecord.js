@@ -1,3 +1,4 @@
+
 function Preview_Death_InspectionRecord(obj) {
 	var json_list = EntrustmentBook_json;
 	var jc = $.confirm({
@@ -182,4 +183,5 @@ function Preview_Death_InspectionRecord(obj) {
 			}
 		}
 	});
+
 }
