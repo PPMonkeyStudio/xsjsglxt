@@ -173,11 +173,11 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 
 	// 填写检材 表
 	public void addEntrustmentSample() {
+		System.out.println(entrustment_sample);
 		try {
 			response.setContentType("text/html;charset=utf-8");
 			System.out.println(deathFileName.toString());
-			response.getWriter().write("" + inspectionIdentificationService
-					.saveEntrustmentSample(entrustment_sample));
+			response.getWriter().write("" + inspectionIdentificationService.saveEntrustmentSample(entrustment_sample));
 		} catch (IOException e) {
 			System.out.println("填写尸体检验记录表报错");
 			e.printStackTrace();
@@ -189,8 +189,8 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		try {
 			response.setContentType("text/html;charset=utf-8");
 			System.out.println("ff");
-			response.getWriter()
-					.write("" + inspectionIdentificationService.saveDamageInspectionRecord(damageInspectionRecord, death, deathFileName, positionFile));
+			response.getWriter().write("" + inspectionIdentificationService
+					.saveDamageInspectionRecord(damageInspectionRecord, death, deathFileName, positionFile));
 		} catch (IOException e) {
 			System.out.println("填写损伤检验记录表报错");
 			e.printStackTrace();
@@ -212,9 +212,8 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void deleteEntrustmentSample() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			response.getWriter().write("" +
-					inspectionIdentificationService.deleteEntrustmentSample(
-							listEntrustmentSample));
+			response.getWriter()
+					.write("" + inspectionIdentificationService.deleteEntrustmentSample(listEntrustmentSample));
 		} catch (IOException e) {
 			System.out.println("删除检材表报错");
 			e.printStackTrace();
@@ -284,8 +283,8 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		try {
 			response.setContentType("text/html;charset=utf-8");
 			System.out.println("lplp:" + damageInspectionRecord.getDamage_inspection_record_belong_entrustment_book());
-			response.getWriter()
-					.write("" + inspectionIdentificationService.updateDamageInspectionRecord(damageInspectionRecord, death, deathFileName, positionFile));
+			response.getWriter().write("" + inspectionIdentificationService
+					.updateDamageInspectionRecord(damageInspectionRecord, death, deathFileName, positionFile));
 		} catch (IOException e) {
 			System.out.println("更改损伤检验记录表报错");
 			e.printStackTrace();
@@ -369,10 +368,11 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 
 	//
 	public String exportInspectionRecord() throws Exception {
-		File exportInspectionRecordFile = inspectionIdentificationService.exportInspectionRecord(inspectionRecord.getXsjsglxt_inspection_record_id());
+		File exportInspectionRecordFile = inspectionIdentificationService
+				.exportInspectionRecord(inspectionRecord.getXsjsglxt_inspection_record_id());
 		// 获取委托书编号
-		fileName = inspectionIdentificationService.exportInspectionRecordName(
-				inspectionRecord.getXsjsglxt_inspection_record_id());
+		fileName = inspectionIdentificationService
+				.exportInspectionRecordName(inspectionRecord.getXsjsglxt_inspection_record_id());
 		if (fileName != null) {
 			fileName = new String(("痕迹检验记录：" + fileName + ".docx").getBytes("GBK"), "ISO-8859-1");
 		} else {
@@ -385,8 +385,10 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 
 	//
 	public String exportDeathInspectionRecord() throws Exception {
-		File exportDeathInspectionRecordFile = inspectionIdentificationService.exportDeathInspectionRecord(deathInspectionRecord.getXsjsglxt_death_inspection_record_id());
-		fileName = inspectionIdentificationService.exportDeathInspectionRecordName(deathInspectionRecord.getXsjsglxt_death_inspection_record_id());
+		File exportDeathInspectionRecordFile = inspectionIdentificationService
+				.exportDeathInspectionRecord(deathInspectionRecord.getXsjsglxt_death_inspection_record_id());
+		fileName = inspectionIdentificationService
+				.exportDeathInspectionRecordName(deathInspectionRecord.getXsjsglxt_death_inspection_record_id());
 		if (fileName != null) {
 			fileName = new String(("死因检验记录：" + fileName + ".docx").getBytes("GBK"), "ISO-8859-1");
 		} else {
@@ -399,8 +401,10 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 
 	//
 	public String exportDamageInspectionRecord() throws Exception {
-		File exportDamageInspectionRecordFile = inspectionIdentificationService.exportDamageInspectionRecord(damageInspectionRecord.getXsjsglxt_damage_inspection_record_id());
-		fileName = inspectionIdentificationService.exportDamageInspectionRecordName(damageInspectionRecord.getXsjsglxt_damage_inspection_record_id());
+		File exportDamageInspectionRecordFile = inspectionIdentificationService
+				.exportDamageInspectionRecord(damageInspectionRecord.getXsjsglxt_damage_inspection_record_id());
+		fileName = inspectionIdentificationService
+				.exportDamageInspectionRecordName(damageInspectionRecord.getXsjsglxt_damage_inspection_record_id());
 		if (fileName != null) {
 			fileName = new String(("损伤检验记录：" + fileName + ".docx").getBytes("GBK"), "ISO-8859-1");
 		} else {
@@ -413,8 +417,10 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 
 	//
 	public String exportAppraisalLetter() throws Exception {
-		File exportAppraisalLetterFile = inspectionIdentificationService.exportAppraisalLetter(appraisalLetter.getXsjsglxt_appraisal_letter_id());
-		fileName = inspectionIdentificationService.exportAppraisalLetterName(appraisalLetter.getXsjsglxt_appraisal_letter_id());
+		File exportAppraisalLetterFile = inspectionIdentificationService
+				.exportAppraisalLetter(appraisalLetter.getXsjsglxt_appraisal_letter_id());
+		fileName = inspectionIdentificationService
+				.exportAppraisalLetterName(appraisalLetter.getXsjsglxt_appraisal_letter_id());
 		if (fileName != null) {
 			fileName = new String(("鉴定书：" + fileName + ".docx").getBytes("GBK"), "ISO-8859-1");
 		} else {

@@ -266,12 +266,7 @@ function Preview_Death_InspectionRecord(obj) {
 					 * 
 					 */
 					var formData = new FormData();
-					formData.append("inspectionRecord.inspection_equipment",
-							create_inspection_equipment_qt.value);
-					xhr
-							.open("POST",
-									"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_");
-					xhr.send(formData);
+
 					/*
 					 * 
 					 */
@@ -288,6 +283,7 @@ function Preview_Death_InspectionRecord(obj) {
 						action : function() {
 							jc.close();
 							Update_Death_InspectionRecord(obj);
+							return false;
 						}
 					},
 					'添加检材记录' : {
@@ -299,22 +295,22 @@ function Preview_Death_InspectionRecord(obj) {
 										content : '<form id="form_entrustment_sample">'
 												+ '<input value="'
 												+ obj.id
-												+ '"  class="form-control" name="entrustment_sample_belong_entrustment_book" style="display:none;"/>'
+												+ '"  class="form-control" name="entrustment_sample.entrustment_sample_belong_entrustment_book" style="display:none;"/>'
 												+ '<hr>'
 												+ '<table  class="table table-bordered" style="text-align: center;">'
 												+ '<tbody>'
 												+ '<tr><td>检材名称：</td>'
-												+ '<td><input  class="form-control" name="entrustment_sample_name"  /></td></tr>'
+												+ '<td><input  class="form-control" name="entrustment_sample.entrustment_sample_name"  /></td></tr>'
 												+ '<tr><td>提取部位：</td>'
-												+ '<td><input  class="form-control" name="entrustment_sample_position"  /></td></tr>'
+												+ '<td><input  class="form-control" name="entrustment_sample.entrustment_sample_position"  /></td></tr>'
 												+ '<tr><td>提取方法：</td>'
-												+ '<td><input  class="form-control" name="entrustment_sample_way"  /></td></tr>'
+												+ '<td><input  class="form-control" name="entrustment_sample.entrustment_sample_way"  /></td></tr>'
 												+ '<tr><td>数量：</td>'
-												+ '<td><input  class="form-control" name="entrustment_sample_amount"  /></td></tr>'
+												+ '<td><input  class="form-control" name="entrustment_sample.entrustment_sample_amount"  /></td></tr>'
 												+ '<tr><td>包装：</td>'
-												+ '<td><input  class="form-control" name="entrustment_sample_packaging"  /></td></tr>'
+												+ '<td><input  class="form-control" name="entrustment_sample.entrustment_sample_packaging"  /></td></tr>'
 												+ '<tr><td>用途：</td>'
-												+ '<td><input  class="form-control" name="entrustment_sample_use"  /></td></tr>'
+												+ '<td><input  class="form-control" name="entrustment_sample.etrustment_sample_use"  /></td></tr>'
 												+ '</tbody>'
 												+ '</table>'
 												+ '</form>',
@@ -327,15 +323,30 @@ function Preview_Death_InspectionRecord(obj) {
 											'确认' : {
 												btnClass : 'btn-green',
 												action : function() {
-													/*
-													 * 
-													 */
+													var xhr = false;
+													xhr = new XMLHttpRequest();
+													xhr.onreadystatechange = function() {
+														var message;
+														if (xhr.readyState == 4) {
+															if (xhr.status == 200) {
+																if (xhr.responseText == 1) {
+																	toastr
+																			.success("操作成功");
+																} else {
+
+																}
+															} else {
+																toastr
+																		.error(xhr.status);
+															}
+														}
+													}
 													var formData = new FormData(
 															document
 																	.getElementById("form_entrustment_sample"));
 													xhr
 															.open("POST",
-																	"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_addInspectionRecord");
+																	"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_addEntrustmentSample");
 													xhr.send(formData);
 													/*
 													 * 
