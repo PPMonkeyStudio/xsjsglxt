@@ -21,7 +21,6 @@
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
 </head>
 <style type="text/css">
 .table-condensed thead tr>th {
@@ -34,6 +33,34 @@
 
 .table-condensed tbody tr>td>div {
 	width: 100% !important;
+}
+
+.jconfirm-content div table tbody tr td>input {
+	margin-top: 6px;
+	margin-left: -20px;
+}
+
+.jconfirm-content div table tbody tr td select {
+	margin-top: 6px;
+	margin-left: -20px;
+}
+
+.jconfirm-content div table {
+	width: 100%;
+}
+
+.jconfirm-content div table tbody tr td textarea {
+	margin-top: 6px;
+	margin-left: -20px;
+}
+
+.jconfirm-content div table tbody tr td select {
+	
+}
+
+.jconfirm-content table tbody tr td>div {
+	margin-left: -20px !important;
+	margin-top: 6px;
 }
 </style>
 <body>
@@ -48,7 +75,8 @@
 				<h3 class="panel-title">案件材料</h3>
 			</div>
 			<div class="operation" style="margin-bottom: 6px; ">
-				<select style="width:120px; margin-left:15px; float: left; "
+				<select id="type_chose"
+					style="width:120px; margin-left:15px; float: left;"
 					class="form-control" onchange="material(this)">
 					<option selected="selected" value="">请选择</option>
 					<option value="evidence_table_info">物证</option>
@@ -56,13 +84,17 @@
 					<option value="image_table_info">影像光盘</option>
 					<option value="Goods_table_info">遗失物品</option>
 				</select> <select id="goods_chose"
-					style="width: 120px; margin-left:6px; display:none;"
+					style="width: 120px; margin-left:6px; display:none; float: left;"
 					class="form-control" onchange="lost_chose(this)">
 					<option value="">请选择</option>
 					<option value="Lost">物品</option>
 					<option value="LostComputer">电脑</option>
 					<option value="LostMobilephone">手机</option>
 				</select>
+				<button style="margin-left: 6px; display:none;" type="button"
+					class="btn btn-default add_info">
+					<i class="fa fa-plus-square"></i> 添加信息
+				</button>
 			</div>
 			<div class="panel-body">
 				<table style="display: none;"
@@ -221,7 +253,7 @@
 	<!---------------------------------------------------------------------------------------------------->
 	<!------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
-	<!-- 图片信息-模态框（Modal） -->
+	<!-- 图片(影像光盘)信息-模态框（Modal） -->
 	<div class="modal fade" id="image" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">

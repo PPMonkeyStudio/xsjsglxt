@@ -24,7 +24,8 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
-	} 
+	}
+
 	public Session getSession() {
 
 		return this.sessionFactory.getCurrentSession();
@@ -35,11 +36,11 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		// TODO Auto-generated method stub
 		try {
 			getSession().save(breakecase);
-			
+
 		} catch (Error e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
 	}
 
 	@Override
@@ -47,19 +48,20 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 		Long i;
-		//String hql = "select count(*) from xsjsglxt_case,xsjsglxt_snece where xsjsglxt_case_id=snece_case";
+		// String hql = "select count(*) from xsjsglxt_case,xsjsglxt_snece where
+		// xsjsglxt_case_id=snece_case";
 		String hql = "select count(*) from xsjsglxt_case,xsjsglxt_snece,xsjsglxt_breakecase where 1=1 and snece_case= xsjsglxt_case_id and breakecase_case=xsjsglxt_case_id";
 		String startTime = "0000-00-00";
 		String stopTime = "9999-99-99";
-		  // 1
-		if (page_list_BreakecaseInformation.getSnece_inquestId()!= null
+		// 1
+		if (page_list_BreakecaseInformation.getSnece_inquestId() != null
 				&& page_list_BreakecaseInformation.getSnece_inquestId().trim().length() > 0) {
 			String snece_inquestId = "%" + page_list_BreakecaseInformation.getSnece_inquestId() + "%";
 			hql = hql + " and snece_inquestId like '" + snece_inquestId + "'";
-				
+
 		}
 		// 2
-		if (page_list_BreakecaseInformation.getCase_totalCategory()!= null
+		if (page_list_BreakecaseInformation.getCase_totalCategory() != null
 				&& page_list_BreakecaseInformation.getCase_totalCategory().trim().length() > 0) {
 			String case_totalCategory = "%" + page_list_BreakecaseInformation.getCase_totalCategory() + "%";
 			hql = hql + " and case_totalCategory like '" + case_totalCategory + "'";
@@ -67,7 +69,7 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		// 3
 		if (page_list_BreakecaseInformation.getCase_sonCategory() != null
 				&& page_list_BreakecaseInformation.getCase_sonCategory().trim().length() > 0) {
-			String case_sonCategory = "%" + page_list_BreakecaseInformation.getCase_sonCategory()+ "%";
+			String case_sonCategory = "%" + page_list_BreakecaseInformation.getCase_sonCategory() + "%";
 			hql = hql + " and case_sonCategory like '" + case_sonCategory + "'";
 		}
 		// 4
@@ -82,17 +84,19 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 			String breakecase_captureUnit = "%" + page_list_BreakecaseInformation.getBreakecase_captureUnit() + "%";
 			hql = hql + " and breakecase_captureUnit like '" + breakecase_captureUnit + "'";
 		}
-	
-		if (page_list_BreakecaseInformation.getStart_time() != null && page_list_BreakecaseInformation.getStart_time().trim().length() > 0) {
+
+		if (page_list_BreakecaseInformation.getStart_time() != null
+				&& page_list_BreakecaseInformation.getStart_time().trim().length() > 0) {
 			startTime = page_list_BreakecaseInformation.getStart_time();
 		}
-		if (page_list_BreakecaseInformation.getStop_time() != null && page_list_BreakecaseInformation.getStop_time().trim().length() > 0) {
+		if (page_list_BreakecaseInformation.getStop_time() != null
+				&& page_list_BreakecaseInformation.getStop_time().trim().length() > 0) {
 			stopTime = page_list_BreakecaseInformation.getStop_time();
 		}
-		hql = hql + " and case_receivingAlarmDate>='" + startTime + "' and case_receivingAlarmDate<='"
-				+ stopTime + "' order by case_receivingAlarmDate";
+		hql = hql + " and case_receivingAlarmDate>='" + startTime + "' and case_receivingAlarmDate<='" + stopTime
+				+ "' order by case_receivingAlarmDate";
 		System.out.println(hql);
-		Query query = session.createQuery(hql);	
+		Query query = session.createQuery(hql);
 		i = (Long) query.uniqueResult();
 		session.clear();
 		return i.intValue();
@@ -107,53 +111,55 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		String hql = "select breakecase  from xsjsglxt_case case1,xsjsglxt_snece sence,xsjsglxt_breakecase breakecase  where 1=1 and sence.snece_case=case1.xsjsglxt_case_id and breakecase.breakecase_case=case1.xsjsglxt_case_id";
 		String startTime = "0000-00-00";
 		String stopTime = "9999-99-99";
-		  // 1
-				if (page_list_BreakecaseInformation.getSnece_inquestId()!= null
-						&& page_list_BreakecaseInformation.getSnece_inquestId().trim().length() > 0) {
-					String snece_inquestId = "%" + page_list_BreakecaseInformation.getSnece_inquestId() + "%";
-					hql = hql + " and snece_inquestId like '" + snece_inquestId + "'";
-						
-				}
-				// 2
-				if (page_list_BreakecaseInformation.getCase_totalCategory()!= null
-						&& page_list_BreakecaseInformation.getCase_totalCategory().trim().length() > 0) {
-					String case_totalCategory = "%" + page_list_BreakecaseInformation.getCase_totalCategory() + "%";
-					hql = hql + " and case_totalCategory like '" + case_totalCategory + "'";
-				}
-				// 3
-				if (page_list_BreakecaseInformation.getCase_sonCategory() != null
-						&& page_list_BreakecaseInformation.getCase_sonCategory().trim().length() > 0) {
-					String case_sonCategory = "%" + page_list_BreakecaseInformation.getCase_sonCategory()+ "%";
-					hql = hql + " and case_sonCategory like '" + case_sonCategory + "'";
-				}
-				// 4
-				if (page_list_BreakecaseInformation.getBreakecase_suspectName() != null
-						&& page_list_BreakecaseInformation.getBreakecase_suspectName().trim().length() > 0) {
-					String breakecase_suspectName = "%" + page_list_BreakecaseInformation.getBreakecase_suspectName() + "%";
-					hql = hql + " and breakecase_suspectName like '" + breakecase_suspectName + "'";
-				}
-				// 5
-				if (page_list_BreakecaseInformation.getBreakecase_captureUnit() != null
-						&& page_list_BreakecaseInformation.getBreakecase_captureUnit().trim().length() > 0) {
-					String breakecase_captureUnit = "%" + page_list_BreakecaseInformation.getBreakecase_captureUnit() + "%";
-					hql = hql + " and breakecase_captureUnit like '" + breakecase_captureUnit + "'";
-				}
-			
-				if (page_list_BreakecaseInformation.getStart_time() != null && page_list_BreakecaseInformation.getStart_time().trim().length() > 0) {
-					startTime = page_list_BreakecaseInformation.getStart_time();
-				}
-				if (page_list_BreakecaseInformation.getStop_time() != null && page_list_BreakecaseInformation.getStop_time().trim().length() > 0) {
-					stopTime = page_list_BreakecaseInformation.getStop_time();
-				}
-				hql = hql + " and case_receivingAlarmDate>='" + startTime + "' and case_receivingAlarmDate<='"
-						+ stopTime + "' order by case_receivingAlarmDate";
-		Query query = session.createQuery(hql);	
+		// 1
+		if (page_list_BreakecaseInformation.getSnece_inquestId() != null
+				&& page_list_BreakecaseInformation.getSnece_inquestId().trim().length() > 0) {
+			String snece_inquestId = "%" + page_list_BreakecaseInformation.getSnece_inquestId() + "%";
+			hql = hql + " and snece_inquestId like '" + snece_inquestId + "'";
+
+		}
+		// 2
+		if (page_list_BreakecaseInformation.getCase_totalCategory() != null
+				&& page_list_BreakecaseInformation.getCase_totalCategory().trim().length() > 0) {
+			String case_totalCategory = "%" + page_list_BreakecaseInformation.getCase_totalCategory() + "%";
+			hql = hql + " and case_totalCategory like '" + case_totalCategory + "'";
+		}
+		// 3
+		if (page_list_BreakecaseInformation.getCase_sonCategory() != null
+				&& page_list_BreakecaseInformation.getCase_sonCategory().trim().length() > 0) {
+			String case_sonCategory = "%" + page_list_BreakecaseInformation.getCase_sonCategory() + "%";
+			hql = hql + " and case_sonCategory like '" + case_sonCategory + "'";
+		}
+		// 4
+		if (page_list_BreakecaseInformation.getBreakecase_suspectName() != null
+				&& page_list_BreakecaseInformation.getBreakecase_suspectName().trim().length() > 0) {
+			String breakecase_suspectName = "%" + page_list_BreakecaseInformation.getBreakecase_suspectName() + "%";
+			hql = hql + " and breakecase_suspectName like '" + breakecase_suspectName + "'";
+		}
+		// 5
+		if (page_list_BreakecaseInformation.getBreakecase_captureUnit() != null
+				&& page_list_BreakecaseInformation.getBreakecase_captureUnit().trim().length() > 0) {
+			String breakecase_captureUnit = "%" + page_list_BreakecaseInformation.getBreakecase_captureUnit() + "%";
+			hql = hql + " and breakecase_captureUnit like '" + breakecase_captureUnit + "'";
+		}
+
+		if (page_list_BreakecaseInformation.getStart_time() != null
+				&& page_list_BreakecaseInformation.getStart_time().trim().length() > 0) {
+			startTime = page_list_BreakecaseInformation.getStart_time();
+		}
+		if (page_list_BreakecaseInformation.getStop_time() != null
+				&& page_list_BreakecaseInformation.getStop_time().trim().length() > 0) {
+			stopTime = page_list_BreakecaseInformation.getStop_time();
+		}
+		hql = hql + " and case_receivingAlarmDate>='" + startTime + "' and case_receivingAlarmDate<='" + stopTime
+				+ "' order by case_receivingAlarmDate";
+		Query query = session.createQuery(hql);
 		query.setFirstResult(
 				(page_list_BreakecaseInformation.getPageIndex() - 1) * page_list_BreakecaseInformation.getPageSize());
 		query.setMaxResults(page_list_BreakecaseInformation.getPageSize());
 		listBreakecaseInformationByPage = query.list();
 		System.out.println(hql);
-	
+
 		session.clear();
 		return listBreakecaseInformationByPage;
 	}
@@ -169,9 +175,11 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 
 		xsjsglxt_case case1 = (xsjsglxt_case) query.uniqueResult();
 
+		session.clear();
 		return case1;
 	}
 
+	// substring(snece_inquestId,9)
 	@Override
 	public xsjsglxt_snece get_sence_Byxsjsglxt_case_id(xsjsglxt_case case1) {
 		// TODO Auto-generated method stub
@@ -181,8 +189,9 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_snece	sence = (xsjsglxt_snece) query.uniqueResult();
-
+		xsjsglxt_snece sence = (xsjsglxt_snece) query.uniqueResult();
+		
+		session.clear();
 		return sence;
 	}
 
@@ -195,7 +204,7 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 
 		Query query = session.createQuery(hql);
 
-     	case1 = (xsjsglxt_case) query.uniqueResult();
+		case1 = (xsjsglxt_case) query.uniqueResult();
 
 		return case1;
 	}
@@ -209,7 +218,7 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_snece 	sence = (xsjsglxt_snece) query.uniqueResult();
+		xsjsglxt_snece sence = (xsjsglxt_snece) query.uniqueResult();
 
 		return sence;
 	}
@@ -219,11 +228,12 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
-		String hql = "from xsjsglxt_breakecase breakecase where breakecase.breakecase_case='" + case1.getXsjsglxt_case_id() + "'";
+		String hql = "from xsjsglxt_breakecase breakecase where breakecase.breakecase_case='"
+				+ case1.getXsjsglxt_case_id() + "'";
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_breakecase   breakecase = (xsjsglxt_breakecase) query.uniqueResult();
+		xsjsglxt_breakecase breakecase = (xsjsglxt_breakecase) query.uniqueResult();
 
 		return breakecase;
 	}
@@ -248,7 +258,7 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_breakecase	breakecase = (xsjsglxt_breakecase) query.uniqueResult();
+		xsjsglxt_breakecase breakecase = (xsjsglxt_breakecase) query.uniqueResult();
 
 		return breakecase;
 	}
@@ -273,7 +283,7 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_snece	snece = (xsjsglxt_snece) query.uniqueResult();
+		xsjsglxt_snece snece = (xsjsglxt_snece) query.uniqueResult();
 
 		return snece;
 	}
@@ -294,10 +304,11 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 		xsjsglxt_breakecase BreakecaseInformation = null;
-		String hql = "from xsjsglxt_breakecase breakecase where breakecase.xsjsglxt_breakecase_id='" + breakecase_id + "'";
+		String hql = "from xsjsglxt_breakecase breakecase where breakecase.xsjsglxt_breakecase_id='" + breakecase_id
+				+ "'";
 		Query query = session.createQuery(hql);
 		BreakecaseInformation = (xsjsglxt_breakecase) query.uniqueResult();
-       return BreakecaseInformation;
+		return BreakecaseInformation;
 	}
 
 	@Override
@@ -307,6 +318,6 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		String hql = "delete from xsjsglxt_breakecase where xsjsglxt_breakecase_id='" + xsjsglxt_breakecase_id + "'";
 		Query query = session.createQuery(hql);
 		query.executeUpdate();
-       return true;
+		return true;
 	}
 }

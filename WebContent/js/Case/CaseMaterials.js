@@ -1,23 +1,63 @@
 var query_data = {
+	//物证分页信息
 	"page_list_ResevidenceInformation.pageIndex" : "1",
-	"page_list_Casematerial.pageIndex" : "1",
+	//照片。光盘分页信息
 	"page_list_imageInformation.pageIndex" : "1",
+	//丢失物品分页信息
+	"page_list_Casematerial.pageIndex" : "1",
 	"page_list_ResevidenceInformation.resevidence_extractPerson" : "",
 }
 
+//当前页面分页信息
+var page_infomantion = {
+	pageIndex : 1,
+	totalRecords : 1,
+	pageSize : 20,
+	totalPages : 1,
+	HavePrePage : false,
+	HaveNextPage : false,
+}
+//设置分页信息
+function setPageInfomation(data) {
+	page_infomantion.pageIndex = data.pageIndex; //当前页数
+	page_infomantion.totalRecords = data.totalRecords; //总页数
+	page_infomantion.pageSize = data.pageSize; //每页记录数
+	page_infomantion.totalPages = data.totalPages; //总记录数
+	page_infomantion.HavePrePage = data.HavePrePage; //是否有上一页
+	page_infomantion.HaveNextPage = data.HaveNextPage; //是否有下一页
+}
 
 $(function() {
-	$('#lost').on('hide.bs.modal', function() {
+	$('.modal').on('hide.bs.modal', function() {
+		var this_modal = $(this);
 		setTimeout(function() {
-			$('#lost .panel-body').empty();
+			this_modal.find('.panel-body').empty();
+		//$('#lost .panel-body').empty();
 		}, 200)
 	})
-	$('#evidence').on('hide.bs.modal', function() {
+
+	//confirm提示框的关闭图标
+	jconfirm.defaults = {
+		closeIcon : true,
+		closeIconClass : 'fa fa-close',
+	}
+
+	//添加信息按钮点击事件
+	$('.add_info').click(add_info);
+
+	/*$('#evidence').on('hide.bs.modal', function() {
 		setTimeout(function() {
 			$('#evidence .panel-body').empty();
 		}, 200)
 	})
-	//搜索框change事件
+	$('#image').on('hide.bs.modal', function() {
+		setTimeout(function() {
+			$('#image .panel-body').empty();
+		}, 200)
+	})*/
+
+
+	//物证的搜索框keyup(鼠标按键释放时触发)事件
 	$('.Search_extractPerson').keyup(function() {
 		query_data["page_list_ResevidenceInformation.resevidence_extractPerson"] = $(this).val();
 		material($('option[value="evidence_table_info"]'));
@@ -57,6 +97,10 @@ function material(object) {
 			$('.evidence_table_info tbody').html(str);
 			//按钮给与点击事件
 			$('.btn-xs').click(Evidence_modification);
+			//添加按钮设置id属性值
+			$('.add_info').show().val("evidence_table_info");
+			//设置分页信息
+			setPageInfomation(xhr_data);
 		//$('.panel-body evidence_table_info tbody').html();
 		}, 'json');
 	} else if (material_type == "picture_table_info") {
@@ -82,10 +126,12 @@ function material(object) {
 			$('.picture_table_info tbody').html(str);
 			//按钮给与点击事件
 			$('.btn-xs').click(picture_Details);
-			//$('.panel-body evidence_table_info tbody').html();
-
+			//添加按钮设置id属性值
+			$('.add_info').show().val("picture_table_info");
+			//设置分页信息
+			setPageInfomation(xhr_data);
+		//$('.panel-body evidence_table_info tbody').html();
 		}, 'json');
-
 	} else if (material_type == "image_table_info") {
 		$.post('/xsjsglxt/case/Image_ListImageInformationByPageAndSearch', query_data, function(xhr_data) {
 			var image_arr = xhr_data.ImageInformationDTOList;
@@ -107,11 +153,17 @@ function material(object) {
 			$('.image_table_info tbody').html(str);
 			//按钮给与点击事件
 			$('.btn-xs').click(image_Details);
+			//添加按钮设置id属性值
+			$('.add_info').show().val("image_table_info");
+			//设置分页信息
+			setPageInfomation(xhr_data);
 		//按钮给与点击事件
 		//$('.btn-xs').click(Evidence_modification);
 		}, 'json');
 	} else if (material_type == "Goods_table_info") {
 		$('#goods_chose').show();
+	} else if (material_type == "") {
+		$('.add_info').hide();
 	}
 }
 
@@ -145,9 +197,13 @@ function lost_chose(opt_obj) {
 				str += '</tr>'
 			}
 			//将str加入到表格中
-			$('.Goods_table_info tbody').append(str);
+			$('.Goods_table_info tbody').html(str);
 			//赋予button点击事件
 			$('button.btn-xs').click(ViewSingleMessage);
+			//添加按钮设置id属性值
+			$('.add_info').show().val("Lost");
+			//设置分页信息
+			setPageInfomation(xhr_data);
 		}, 'json');
 
 	} else if ($(opt_obj).val() == "LostComputer") {
@@ -169,9 +225,13 @@ function lost_chose(opt_obj) {
 				str += '</tr>'
 			}
 			//将str加入到表格中
-			$('.Goods_table_info tbody').append(str);
+			$('.Goods_table_info tbody').html(str);
 			//赋予button点击事件
 			$('button.btn-xs').click(ViewSingleMessage);
+			//添加按钮设置id属性值
+			$('.add_info').show().val("LostComputer");
+			//设置分页信息
+			setPageInfomation(xhr_data);
 		}, 'json');
 
 	} else if ($(opt_obj).val() == "LostMobilephone") {
@@ -193,9 +253,13 @@ function lost_chose(opt_obj) {
 				str += '</tr>'
 			}
 			//将str加入到表格中
-			$('.Goods_table_info tbody').append(str);
+			$('.Goods_table_info tbody').html(str);
 			//赋予button点击事件
 			$('button.btn-xs').click(ViewSingleMessage);
+			//添加按钮设置id属性值
+			$('.add_info').show().val("LostMobilephone");
+			//设置分页信息
+			setPageInfomation(xhr_data);
 		}, 'json');
 	} else {
 		return;
@@ -490,7 +554,19 @@ var picture_Details = function() {
 			var str = '';
 			str += '<table align="center" class="table table-hover table-condensed"><tbody><tr>';
 			$.post('/xsjsglxt/case/Case_AllCase', function(Case_data) {
-				str += '<td>所属影像光盘</td><td>' + xhr_data.image.image_number + '</td>';
+
+				str += '<td>所属影像光盘</td><td>';
+				str += '<select style="witdh:100%;" class="selectpicker" data-live-search="true" name="picture.picture_image">';
+				//所有影像光盘循环
+				for (var len = 0; len < xhr_data.iamgeList.length; len++) {
+					str += '<option ';
+					if (xhr_data.image.xsjsglxt_image_id == xhr_data.iamgeList[len].xsjsglxt_image_id) {
+						str += 'selected ';
+					}
+					str += ' value="' + xhr_data.iamgeList[len].xsjsglxt_image_id + '">' + xhr_data.iamgeList[len].image_number + '</option>';
+				}
+				str += '</select></td>';
+				//str += '<td>所属影像光盘</td><td>' + xhr_data.image.image_number + '</td>';
 				str += '</tr>';
 				str += '<tr>';
 				str += '<td>所属案件</td><td>';
@@ -544,9 +620,9 @@ var picture_modification = function() {
 				btnClass : 'btn-danger',
 				text : '确认',
 				action : function() {
-					$.post('/xsjsglxt/case/Image_updateImage', $('#image form').serialize(), function(xhr_data) {
+					$.post('/xsjsglxt/case/Image_updatePicture', $('#image form').serialize(), function(xhr_data) {
 						if (xhr_data == "success") {
-							$('#lost').modal('hide');
+							$('#image').modal('hide');
 							//修改后进行一次查询
 							material($('option[value="picture_table_info"]'));
 							toastr.success("修改成功!");
@@ -564,7 +640,7 @@ var picture_modification = function() {
 
 
 
-//查看照片详情事件
+//查看影像光盘详情事件
 var image_Details = function() {
 	var image_id = $(this).siblings('input').val();
 	if ($(this).text().trim() == "修改") {
@@ -587,13 +663,43 @@ var image_Details = function() {
 			//显示模态框
 			$('#image').modal('show');
 			//模态框按钮设置点击事件
-			$('.image_operation').click();
+			$('.image_operation').click(image_modification);
 		}, 'json');
 	} else if ($(this).text().trim() == "删除") {
 		var formData = new FormData();
 		formData.append("useImageInformationNumList", image_id);
 		deleteData('/xsjsglxt/case/Image_remove_ImageInformationList', 'image_table_info', formData);
 	}
+}
+
+//影像光盘的修改确认事件
+var image_modification = function() {
+	$.confirm({
+		title : '确定修改?',
+		smoothContent : false,
+		content : false,
+		autoClose : 'cancelAction|10000',
+		buttons : {
+			deleteUser : {
+				btnClass : 'btn-danger',
+				text : '确认',
+				action : function() {
+					$.post('/xsjsglxt/case/Image_updateImage', $('#image form').serialize(), function(xhr_data) {
+						if (xhr_data == "success") {
+							$('#image').modal('hide');
+							//修改后进行一次查询
+							material($('option[value="image_table_info"]'));
+							toastr.success("修改成功!");
+						}
+					}, 'json');
+				}
+			},
+			cancelAction : {
+				btnClass : 'btn-blue',
+				text : '取消',
+			}
+		}
+	});
 }
 
 //丢失物品(物品,电脑,手机)确定修改信息
@@ -669,4 +775,480 @@ function deleteData(url, value, formData) {
 			}
 		}
 	});
+}
+
+//添加信息
+var add_info = function() {
+	var but_val = $(this).val().trim();
+	switch (but_val) {
+	case "evidence_table_info":
+		var str = '<form>'
+			+ '<table>'
+			+ '<tbody>'
+			+ '<tr>'
+			+ '<td>所属案件<i class="fa fa-spinner fa-pulse fa-fw load_remind"></i></td><td>'
+			+ '<select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="resevidence.resevidence_case">'
+			+ '</select></td>'
+			+ '</tr>'
+			+ '<tr>'
+			+ '<td>物证名称:</td>'
+			+ '<td><input name="resevidence.resevidence_name" class="form-control" type="text"></td>'
+			+ '<td>检验状态</td>'
+			+ '<td><select name="resevidence.resevidence_teststate" class="form-control">'
+			+ '<option value="" selected="">请选择检验状态</option>'
+			+ '<option>未检验</option>'
+			+ '<option>正在委托检验</option>'
+			+ '<option>送检不受理</option>'
+			+ '<option>送检已受理</option>'
+			+ '<option>已送检</option>'
+			+ '<option>正在自检</option>'
+			+ '<option>正在送检</option>'
+			+ '<option>未检验</option>'
+			+ '</select></td>'
+			+ '</tr>'
+			+ '<tr>'
+			+ '<td>提取部位:</td>'
+			+ '<td><input name="resevidence.resevidence_extractPart" class="form-control" type="text"></td>'
+			+ '<td>提取方法:</td>'
+			+ '<td><select name="resevidence.resevidence_extractMethod" class="form-control">'
+			+ '<option value="" selected="">请输入提取方法</option>'
+			+ '<option value="粉末显现">粉末显现</option>'
+			+ '<option value="茚三酮熏显">茚三酮熏显</option>'
+			+ '<option value="502熏显">502熏显</option>'
+			+ '<option value="实物提取">实物提取</option>'
+			+ '<option value="照相提取">照相提取</option>'
+			+ '<option value="静电吸附">静电吸附</option>'
+			+ '<option value="纱布转移">纱布转移</option>'
+			+ '<option value="其他">其他</option>'
+			+ '</select></td>'
+			+ '</tr>'
+			+ '<tr>'
+			+ '<td>提取数量:</td>'
+			+ '<td><input name="resevidence.resevidence_extractNumber" class="form-control" type="text"></td>'
+			+ '<td>提取人:</td>'
+			+ '<td><input name="resevidence.resevidence_extractPerson" class="form-control" type="text"></td>'
+			+ '</tr>'
+			+ '<tr>'
+			+ '<td>物证类型：</td>'
+			+ '<td><select name="resevidence.resevidence_type" class="form-control">'
+			+ '<option value="" selected>请选择物证类型</option>'
+			+ '<option value="手印痕迹">手印痕迹</option>'
+			+ '<option value="足迹痕迹">足迹痕迹</option>'
+			+ '<option value="工具痕迹">工具痕迹</option>'
+			+ '<option value="生物物证">生物物证</option>'
+			+ '<option value="理化物证">理化物证</option>'
+			+ '<option value="其他">其他</option>'
+			+ '</select></td>'
+			+ '<td>提取日期:</td>'
+			+ '<td><input name="resevidence.resevidence_extractTime" class="form-control" type="text"></td>'
+			+ '</tr>'
+			+ '<tr>'
+			+ '<td>提取单位:</td>'
+			+ '<td colspan="3"><input name="resevidence.resevidence_extractUnit" class="form-control" value="安源分局刑事科学技术室" type="text"></td>'
+			+ '</tr>'
+			+ '<tr>'
+			+ '<td>备注:</td>'
+			+ '<td colspan="3"><textarea name="resevidence.resevidence_remarks" class="form-control" placeholder="请填写" rows="2"></textarea></td>'
+			+ '</tr>'
+			+ '</tbody>'
+			+ '</table>'
+			+ '</form>';
+		add_default_confirm('物证信息添加', str, '/xsjsglxt/case/Resevidence_saveResevidence', 'evidence_table_info');
+		$.post('/xsjsglxt/case/Case_AllCase', function(Case_data) {
+			var sel = '';
+			for (var len = 0; len < Case_data.length; len++) {
+				sel += '<option value="' + Case_data[len].xsjsglxt_case_id + '">' + Case_data[len].case_name + '</option>';
+			}
+			$('.selectpicker').html(sel);
+			//刷新选择框
+			$('.selectpicker').selectpicker('refresh');
+			//移除加载提示
+			$('.load_remind').remove();
+		}, 'json')
+		break;
+	case 'picture_table_info':
+		var str = '<form>'
+			+ '<table>'
+			+ '<tbody>'
+			+ '<tr>'
+			+ '<td>所属影像光盘<i class="fa fa-spinner fa-pulse fa-fw load_remind1"></i></td><td>'
+			+ '<select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="picture.picture_image">'
+			+ '</select></td>'
+			+ '</tr>'
+			+ '<tr>'
+			+ '<td>所属案件<i class="fa fa-spinner fa-pulse fa-fw load_remind2"></i></td><td>'
+			+ '<select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="picture.picture_case">'
+			+ '</select></td>'
+			+ '</tr>'
+			+ '<tr>'
+			+ '<td>照片编号</td>'
+			+ '<td><input name="picture.picture_identifier" class="form-control" type="text"></td>'
+			+ '</tr>'
+			+ '<tr>'
+			+ '<td>备注:</td>'
+			+ '<td colspan="3"><textarea name="picture.picture_remarks" class="form-control" placeholder="请填写"></textarea></td>'
+			+ '</tr>'
+			+ '</tbody>'
+			+ '</table>'
+			+ '</form>';
+		add_default_confirm('照片信息添加', str, '/xsjsglxt/case/Image_savePicture', 'picture_table_info');
+
+		$.post('/xsjsglxt/case/Image_ImageInformationOne', {
+			"picture.xsjsglxt_picture_id" : "1",
+		}, function(image_data) {
+			var sel2 = '';
+			for (var len = 0; len < image_data.iamgeList.length; len++) {
+				sel2 += '<option value="' + image_data.iamgeList[len].xsjsglxt_image_id + '">' + image_data.iamgeList[len].image_number + '</option>';
+			}
+			$('select[name="picture.picture_image"]').html(sel2);
+			//移除加载提示
+			$('.load_remind1').remove();
+		}, 'json')
+		$.post('/xsjsglxt/case/Case_AllCase', function(Case_data) {
+			var sel = '';
+			for (var len = 0; len < Case_data.length; len++) {
+				sel += '<option value="' + Case_data[len].xsjsglxt_case_id + '">' + Case_data[len].case_name + '</option>';
+			}
+			$('select[name="picture.picture_case"]').html(sel);
+			//刷新选择框
+			$('.selectpicker').selectpicker('refresh');
+			//移除加载提示
+			$('.load_remind2').remove();
+		}, 'json')
+		break;
+	case 'image_table_info':
+		var str = '<form>'
+			+ '<table>'
+			+ '<tbody>'
+			+ '<tr>'
+			+ '<td>影像光盘编号</td>'
+			+ '<td><input name="image.image_number" class="form-control" type="text"></td>'
+			+ '</tr>'
+			+ '<tr>'
+			+ '<td>备注:</td>'
+			+ '<td colspan="3"><textarea name="image.image_remarks" class="form-control" placeholder="请填写"></textarea></td>'
+			+ '</tr>'
+			+ '</tbody>'
+			+ '</table>'
+			+ '</form>';
+		add_default_confirm('影像光盘信息添加', str, '/xsjsglxt/case/Image_saveCD', 'image_table_info');
+		break;
+	case 'Lost':
+		var str = '<form>'
+			+ '<table>'
+			+ '<tbody>'
+			+ '<tr>'
+			+ '<td>所属案件<i class="fa fa-spinner fa-pulse fa-fw load_remind"></i></td><td>'
+			+ '<select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="lost.lost_case">'
+			+ '</select></td>'
+			+ '</tr>'
+			+ '<tr>'
+			+ '<td>名称</td>'
+			+ '<td colspan="3"><input name="lost.lost_name" class="form-control" type="text"></td>'
+			+ '</tr>'
+			+ '<tr>'
+			+ '<td>备注:</td>'
+			+ '<td colspan="3"><textarea name="lost.lost_remarks" class="form-control" placeholder="请填写" rows="2"></textarea></td>'
+			+ '</tr>'
+			+ '</tbody>'
+			+ '</table>'
+			+ '</form>';
+		add_default_confirm('丢失物品信息添加', str, '/xsjsglxt/case/Lost_saveLost', 'Lost');
+		$.post('/xsjsglxt/case/Case_AllCase', function(Case_data) {
+			var sel = '';
+			for (var len = 0; len < Case_data.length; len++) {
+				sel += '<option value="' + Case_data[len].xsjsglxt_case_id + '">' + Case_data[len].case_name + '</option>';
+			}
+			$('.selectpicker').html(sel);
+			//刷新选择框
+			$('.selectpicker').selectpicker('refresh');
+			//移除加载提示
+			$('.load_remind').remove();
+		}, 'json')
+		break;
+	case 'LostComputer':
+		var str = '<form>'
+			+ '<table>'
+			+ '<tbody>'
+			+ '<tr>'
+			+ '<td>所属案件<i class="fa fa-spinner fa-pulse fa-fw load_remind"></i></td><td>'
+			+ '<select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="lost_computer.lost_computer_case">'
+			+ '</select></td>'
+			+ '</tr>'
+			+ '<tr>'
+			+ '<td>电脑品牌</td>'
+			+ '<td><input name="lost_computer.lost_computer_brand" class="form-control" type="text"></td>'
+			+ '</tr>'
+			+ '<tr>'
+			+ '<td>上网账号</td>'
+			+ '<td><input name="lost_computer.lost_computer_internetAccount" class="form-control" type="text"></td>'
+			+ '</tr>'
+			+ '<tr>'
+			+ '<td>MAC地址</td>'
+			+ '<td><input name="lost_computer.lost_computer_MAC" class="form-control" type="text"></td>'
+			+ '</tr>'
+			+ '<tr>'
+			+ '<td>备注:</td>'
+			+ '<td colspan="3"><textarea name="lost_computer.lost_computer_remarks" class="form-control" placeholder="请填写"></textarea></td>'
+			+ '</tr>'
+			+ '</tbody>'
+			+ '</table>'
+			+ '</form>';
+		add_default_confirm('丢失电脑信息添加', str, '/xsjsglxt/case/LostComputer_saveLostComputer', 'LostComputer');
+		$.post('/xsjsglxt/case/Case_AllCase', function(Case_data) {
+			var sel = '';
+			for (var len = 0; len < Case_data.length; len++) {
+				sel += '<option value="' + Case_data[len].xsjsglxt_case_id + '">' + Case_data[len].case_name + '</option>';
+			}
+			$('.selectpicker').html(sel);
+			//刷新选择框
+			$('.selectpicker').selectpicker('refresh');
+			//移除加载提示
+			$('.load_remind').remove();
+		}, 'json')
+		break;
+	case 'LostMobilephone':
+		var str = '<form>'
+			+ '<table>'
+			+ '<tbody>'
+			+ '<tr>'
+			+ '<td>所属案件<i class="fa fa-spinner fa-pulse fa-fw load_remind"></i></td><td>'
+			+ '<select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="lost_mobilephone.lost_mobilephone_case">'
+			+ '</select></td>'
+			+ '</tr>'
+			+ '<tr>'
+			+ '<td>手机号码</td>'
+			+ '<td><input name="lost_mobilephone.lost_mobilephone_phone" class="form-control" type="text"></td>'
+			+ '</tr>'
+			+ '<tr>'
+			+ '<td>手机串号</td>'
+			+ '<td><input name="lost_mobilephone.lost_mobilephone_IMEI" class="form-control" type="text"></td>'
+			+ '</tr>'
+			+ '<tr>'
+			+ '<td>手机特征</td>'
+			+ '<td><input name="lost_mobilephone.lost_mobilephone_feature" class="form-control" type="text"></td>'
+			+ '</tr>'
+			+ '<tr>'
+			+ '<td>备注:</td>'
+			+ '<td colspan="3"><textarea name="lost_mobilephone.lost_mobilephone_remarks" class="form-control" placeholder="请填写"></textarea></td>'
+			+ '</tr>'
+			+ '</tbody>'
+			+ '</table>'
+			+ '</form>';
+		add_default_confirm('丢失手机信息添加', str, '/xsjsglxt/case/LostMobilephone_saveLostMobilephone', 'LostMobilephone');
+		$.post('/xsjsglxt/case/Case_AllCase', function(Case_data) {
+			var sel = '';
+			for (var len = 0; len < Case_data.length; len++) {
+				sel += '<option value="' + Case_data[len].xsjsglxt_case_id + '">' + Case_data[len].case_name + '</option>';
+			}
+			$('.selectpicker').html(sel);
+			//刷新选择框
+			$('.selectpicker').selectpicker('refresh');
+			//移除加载提示
+			$('.load_remind').remove();
+		}, 'json')
+		break;
+	default:
+		break;
+	}
+}
+
+
+function add_default_confirm(title, content, url, value) {
+	var jc = $.confirm({
+		title : title,
+		smoothContent : false,
+		content : content,
+		columnClass : 'col-xs-offset-2 col-sm-8',
+		//autoClose : 'cancelAction|10000',
+		buttons : {
+			deleteUser : {
+				btnClass : 'btn-info',
+				text : '确认添加',
+				action : function() {
+					$.post(url, $('.jconfirm-content form').serialize(), function(xhr_data) {
+						if (xhr_data == "success") {
+							toastr.success("添加成功！");
+							//获取对应option中的value值
+							if (value.indexOf('Lost') > -1) {
+								lost_chose($('option[value="' + value + '"]'));
+							} else {
+								material($('option[value="' + value + '"]'));
+							}
+						} else {
+							toastr.error("添加失败！");
+						}
+					}, 'json');
+				}
+			},
+			cancelAction : {
+				btnClass : 'btn-default',
+				text : '取消',
+			}
+		}
+	});
+}
+
+
+//分页方法-------=========---------==============-------==========------------=========-------=
+//首页
+function firstPage() {
+	if (page_infomantion.pageIndex == 1) {
+		toastr.error('已经是第一页!');
+		return;
+	}
+	switch ($('#type_chose').val()) {
+	case "evidence_table_info":
+		query_data["page_list_ResevidenceInformation.pageIndex"] = 1;
+		material($('option[value="evidence_table_info"]'));
+		break;
+	case "picture_table_info":
+		query_data["page_list_imageInformation.pageIndex"] = 1;
+		material($('option[value="picture_table_info"]'));
+		break;
+	case "image_table_info":
+		query_data["page_list_imageInformation.pageIndex"] = 1;
+		material($('option[value="image_table_info"]'));
+		break;
+	case "Goods_table_info":
+		switch ($('#goods_chose').val) {
+		case 'Lost':
+			query_data["page_list_Casematerial.pageIndex"] = 1;
+			lost_chose($('option[value="Lost"]'))
+			break;
+		case 'LostComputer':
+			query_data["page_list_Casematerial.pageIndex"] = 1;
+			lost_chose($('option[value="LostComputer"]'))
+			break;
+		case 'LostMobilephone':
+			query_data["page_list_Casematerial.pageIndex"] = 1;
+			lost_chose($('option[value="LostComputer"]'))
+			break;
+		default:
+			break;
+		}
+		break;
+	default:
+		break;
+	}
+}
+//上一页
+function prePage() {
+	if (page_infomantion.pageIndex - 1 <= 1) {
+		toastr.error('已经是第一页!');
+		return;
+	}
+	switch ($('#type_chose').val()) {
+	case "evidence_table_info":
+		query_data["page_list_ResevidenceInformation.pageIndex"] = page_infomantion.pageIndex - 1;
+		material($('option[value="evidence_table_info"]'));
+		break;
+	case "picture_table_info":
+		query_data["page_list_imageInformation.pageIndex"] = page_infomantion.pageIndex - 1;
+		material($('option[value="picture_table_info"]'));
+		break;
+	case "image_table_info":
+		query_data["page_list_imageInformation.pageIndex"] = page_infomantion.pageIndex - 1;
+		material($('option[value="image_table_info"]'));
+		break;
+	case "Goods_table_info":
+		switch ($('#goods_chose').val) {
+		case 'Lost':
+			query_data["page_list_Casematerial.pageIndex"] = page_infomantion.pageIndex - 1;
+			lost_chose($('option[value="Lost"]'))
+			break;
+		case 'LostComputer':
+			query_data["page_list_Casematerial.pageIndex"] = page_infomantion.pageIndex - 1;
+			lost_chose($('option[value="LostComputer"]'))
+			break;
+		case 'LostMobilephone':
+			query_data["page_list_Casematerial.pageIndex"] = page_infomantion.pageIndex - 1;
+			lost_chose($('option[value="LostComputer"]'))
+			break;
+		default:
+			break;
+		}
+		break;
+	default:
+		break;
+	}
+}
+//下一页
+function nextPage() {
+	if (page_infomantion.pageIndex + 1 >= page_infomantion.totalPages) {
+		toastr.error('已经是最后一页!');
+		return;
+	}
+	switch ($('#type_chose').val()) {
+	case "evidence_table_info":
+		query_data["page_list_ResevidenceInformation.pageIndex"] = page_infomantion.pageIndex + 1;
+		material($('option[value="evidence_table_info"]'));
+		break;
+	case "picture_table_info":
+		query_data["page_list_imageInformation.pageIndex"] = page_infomantion.pageIndex + 1;
+		material($('option[value="picture_table_info"]'));
+		break;
+	case "image_table_info":
+		query_data["page_list_imageInformation.pageIndex"] = page_infomantion.pageIndex + 1;
+		material($('option[value="image_table_info"]'));
+		break;
+	case "Goods_table_info":
+		switch ($('#goods_chose').val) {
+		case 'Lost':
+			query_data["page_list_Casematerial.pageIndex"] = page_infomantion.pageIndex + 1;
+			lost_chose($('option[value="Lost"]'))
+			break;
+		case 'LostComputer':
+			query_data["page_list_Casematerial.pageIndex"] = page_infomantion.pageIndex + 1;
+			lost_chose($('option[value="LostComputer"]'))
+			break;
+		case 'LostMobilephone':
+			query_data["page_list_Casematerial.pageIndex"] = page_infomantion.pageIndex + 1;
+			lost_chose($('option[value="LostComputer"]'))
+			break;
+		default:
+			break;
+		}
+		break;
+	default:
+		break;
+	}
+}
+//尾页
+function lastPage() {
+	if (page_infomantion.pageIndex == page_infomantion.totalPages) {
+		toastr.error('已经是最后一页!');
+		return;
+	}
+	switch ($('#type_chose').val()) {
+	case "evidence_table_info":
+		query_data["page_list_ResevidenceInformation.pageIndex"] = page_infomantion.totalPages;
+		material($('option[value="evidence_table_info"]'));
+		break;
+	case "picture_table_info":
+		query_data["page_list_imageInformation.pageIndex"] = page_infomantion.totalPages;
+		material($('option[value="picture_table_info"]'));
+		break;
+	case "image_table_info":
+		query_data["page_list_imageInformation.pageIndex"] = page_infomantion.totalPages;
+		material($('option[value="image_table_info"]'));
+		break;
+	case "Goods_table_info":
+		switch ($('#goods_chose').val) {
+		case 'Lost':			query_data["page_list_Casematerial.pageIndex"] = page_infomantion.totalPages;
+			lost_chose($('option[value="Lost"]'))
+			break;
+		case 'LostComputer':			query_data["page_list_Casematerial.pageIndex"] = page_infomantion.totalPages;
+			lost_chose($('option[value="LostComputer"]'))
+			break;
+		case 'LostMobilephone':			query_data["page_list_Casematerial.pageIndex"] = page_infomantion.totalPages;
+			lost_chose($('option[value="LostComputer"]'))
+			break;
+		default:
+			break;
+		}
+		break;
+	default:
+		break;
+	}
 }
