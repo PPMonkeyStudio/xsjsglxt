@@ -119,10 +119,10 @@ function List_EntrustmentBook(pageIndex) {
 								+ '<li><a onclick="Preview_EntrustmentBook(this)" id="'
 								+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
 								+ '"><i class="fa fa-file-text-o"></i> 查看鉴定委托书</a></li>'
-								+ '<li><a onclick="Acceptance_EntrustmentBook(this)" id="'
+								+ '<li class="managerPower"><a onclick="Acceptance_EntrustmentBook(this)" id="'
 								+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
 								+ '"><i class="fa fa-legal"></i> 受理</a></li>'
-								+ '<li><a onclick="Refuse_EntrustmentBook(this)" id="'
+								+ '<li class="managerPower"><a onclick="Refuse_EntrustmentBook(this)" id="'
 								+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
 								+ '"><i class="fa fa-recycle"></i> 不受理</a></li>'
 								+ '</ul></div>';
@@ -140,7 +140,7 @@ function List_EntrustmentBook(pageIndex) {
 								+ '<li><a onclick="Preview_AcceptanceEntrustmentInform(this)" id="'
 								+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
 								+ '"><i class="fa fa-file-text-o"></i> 查看受理鉴定回执</a></li>'
-								+ '<li><a onclick="Create_InspectionRecord(this)" id="'
+								+ '<li  class="managerPower"><a onclick="Create_InspectionRecord(this)" id="'
 								+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
 								+ '"><i class="fa fa-pencil-square-o"></i> 记录检验过程</a></li>'
 								+ '</ul></div>';
@@ -173,7 +173,7 @@ function List_EntrustmentBook(pageIndex) {
 								+ '<li><a onclick="Preview_InspectionRecord(this)" id="'
 								+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
 								+ '"><i class="fa fa-file-text-o"></i> 查看检验记录</a></li>'
-								+ '<li><a onclick="Create_AppraisalLetter(this)" id="'
+								+ '<li class="managerPower"><a onclick="Create_AppraisalLetter(this)" id="'
 								+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
 								+ '"><i class="fa fa-pencil-square-o"></i> 出具鉴定文书</a></li>'
 								+ '</ul></div>';
@@ -228,6 +228,7 @@ function List_EntrustmentBook(pageIndex) {
 				/*
 				 * 角色控制
 				 */
+				deleteByPower('user_check_power', 'usePower', 'managerPower');
 			} else {
 				toastr.error(xhr.status);
 			}

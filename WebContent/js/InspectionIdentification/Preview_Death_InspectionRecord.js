@@ -7,7 +7,7 @@ function Preview_Death_InspectionRecord(obj) {
 				title : '法医学尸体检验记录',
 				content : '',
 				type : 'green',
-				columnClass : 'col-md-10 col-md-offset-2',
+				columnClass : 'col-md-12',
 				theme : 'modern',
 				onOpenBefore : function() {
 				},
@@ -193,6 +193,8 @@ function Preview_Death_InspectionRecord(obj) {
 							+ '</p>'
 							+ '</td>'
 							+ '</tr>'
+							+ '</tbody>'
+							+ '</table>'
 							+ '<p>解剖时间：'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_anatomic_time
 									.substring(0, 4)
@@ -229,11 +231,47 @@ function Preview_Death_InspectionRecord(obj) {
 									.substring(5, 7)
 							+ '月'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_autopsy_table_test_recorder_time
-									.substring(8, 11) + '日' + '</p>' + '</div>';
+									.substring(8, 11)
+							+ '日'
+							+ '</p>'
+							+ '</div>'
+							+ '<br>'
+							+ '<h4>'
+							+ '检材提取及处置'
+							+ '</h4>'
+							+ '<table  class="table table-bordered" style="text-align: center;">'
+							+ '<tbody>'
+							+ '<tr><td>编号</td><td>检材名称</td><td>提取部位</td><td>提取方法</td><td>数量</td><td>包装</td><td>用途</td><td>全选</td></tr>'
+							+ '</tbody>' + '</table>';
 					jc.setContentAppend(con);
 					/*
 					 * 
 					 */
+					var xhr = false;
+					xhr = new XMLHttpRequest();
+					xhr.onreadystatechange = function() {
+						var message;
+						if (xhr.readyState == 4) {
+							if (xhr.status == 200) {
+								if (xhr.responseText == 1) {
+								} else {
+
+								}
+							} else {
+								toastr.error(xhr.status);
+							}
+						}
+					}
+					/*
+					 * 
+					 */
+					var formData = new FormData();
+					formData.append("inspectionRecord.inspection_equipment",
+							create_inspection_equipment_qt.value);
+					xhr
+							.open("POST",
+									"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_");
+					xhr.send(formData);
 					/*
 					 * 
 					 */

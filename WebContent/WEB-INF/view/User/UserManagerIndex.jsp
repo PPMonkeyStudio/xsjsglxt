@@ -70,18 +70,11 @@
 						<button onclick="skipToArbitrarilyPage()" class="btn btn-default" style="height:30px; margin-bottom: 10px;">跳转</button>
 					</span>
 				</div>
-				
-				
-				
-				
 			</div>
 			<!---------------------------------------------------------------------------------------------------->
 			<!---------------------------------------------------------------------------------------------------->
 		</div>
-		
-		
 		<!-----------------------------------------------------------------新增模态框---------------------------------------------------  -->
-			
 			<div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
