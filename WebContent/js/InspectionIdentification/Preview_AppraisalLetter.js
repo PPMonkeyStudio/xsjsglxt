@@ -15,7 +15,6 @@ function Preview_AppraisalLetter(obj) {
 				onOpenBefore : function() {
 				},
 				onContentReady : function() {
-
 					var con = '<div style="margin:0 20px 0 0;"><hr>'
 							+ '<h3  style="text-align: right;">编号：【'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.appraisal_letter_num
@@ -88,6 +87,8 @@ function Preview_AppraisalLetter(obj) {
 					'导出' : {
 						btnClass : 'btn-green',
 						action : function() {
+							window.location = '/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_exportAppraisalLetter?appraisalLetter.xsjsglxt_appraisal_letter_id='
+								+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.xsjsglxt_appraisal_letter_id;
 							return false;
 						}
 					},

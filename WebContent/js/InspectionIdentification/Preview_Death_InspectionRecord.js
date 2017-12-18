@@ -273,6 +273,8 @@ function Preview_Death_InspectionRecord(obj) {
 					'导出' : {
 						btnClass : 'btn-green',
 						action : function() {
+							window.location = '/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_exportDeathInspectionRecord?deathInspectionRecord.xsjsglxt_death_inspection_record_id='
+								+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.xsjsglxt_death_inspection_record_id;
 							return false;
 						}
 					},

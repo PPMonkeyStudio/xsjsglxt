@@ -15,15 +15,10 @@ function Preview_NotAcceptanceEntrustmentInform(obj) {
 				},
 				onContentReady : function() {
 
-					var con = '<div style="margin:0 20px 0 0;">'
-							+ '<hr>'
-							+ '<h3  style="text-align: center;">不受理委托鉴定告知书（存根）</h3>'
-							+ '<h4  style="text-align: right;">['
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num
-									.substring(0, 4)
+					var con = '<div style="margin:0 20px 0 0;">' + '<hr>' + '<h3  style="text-align: center;">不受理委托鉴定告知书（存根）</h3>' + '<h4  style="text-align: right;">['
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num.substring(0, 4)
 							+ ']第'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num
-									.substring(4)
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num.substring(4)
 							+ '号</h4>'
 							+ '<table  class="table table-bordered" style="text-align: center;">'
 							+ '<tbody>'
@@ -65,14 +60,14 @@ function Preview_NotAcceptanceEntrustmentInform(obj) {
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_not_acceptance_entrustment_inform.not_acceptance_entrustment_inform_approvalhuman_name
 							+ '</td>'
 							+ '<td style="width:100px;">批准时间：</td><td>'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_not_acceptance_entrustment_inform.not_acceptance_entrustment_inform_approval_time
-									.substring(0, 4)
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_not_acceptance_entrustment_inform.not_acceptance_entrustment_inform_approval_time.substring(
+									0, 4)
 							+ '年'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_not_acceptance_entrustment_inform.not_acceptance_entrustment_inform_approval_time
-									.substring(5, 7)
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_not_acceptance_entrustment_inform.not_acceptance_entrustment_inform_approval_time.substring(
+									5, 7)
 							+ '月'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_not_acceptance_entrustment_inform.not_acceptance_entrustment_inform_approval_time
-									.substring(8, 10)
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_not_acceptance_entrustment_inform.not_acceptance_entrustment_inform_approval_time.substring(
+									8, 10)
 							+ '日'
 							+ '</td>'
 							+ '</tr>'
@@ -81,11 +76,9 @@ function Preview_NotAcceptanceEntrustmentInform(obj) {
 							+ '<h4  style="text-align: center;">---------------------------------------骑缝章---------------------------------------</h4>'
 							+ '<h3  style="text-align: center;">萍乡市安源区公安司法鉴定中心<br>不受理委托鉴定告知书</h3>'
 							+ '<h4  style="text-align: right;">['
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num
-									.substring(0, 4)
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num.substring(0, 4)
 							+ ']第'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num
-									.substring(4)
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num.substring(4)
 							+ '号</h4>'
 							+ '<h4 style="text-align: left;text-indent:2em;">'
 							+ '<p>'
@@ -95,14 +88,14 @@ function Preview_NotAcceptanceEntrustmentInform(obj) {
 							+ '</b>的鉴定委托不予受理。</p><p>特此告知。</p>'
 							+ '</h4>'
 							+ '<h4 style="text-align: right;">（鉴定单位公章）<br>'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_not_acceptance_entrustment_inform.not_acceptance_entrustment_inform_approval_time
-									.substring(0, 4)
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_not_acceptance_entrustment_inform.not_acceptance_entrustment_inform_approval_time.substring(
+									0, 4)
 							+ '年'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_not_acceptance_entrustment_inform.not_acceptance_entrustment_inform_approval_time
-									.substring(5, 7)
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_not_acceptance_entrustment_inform.not_acceptance_entrustment_inform_approval_time.substring(
+									5, 7)
 							+ '月'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_not_acceptance_entrustment_inform.not_acceptance_entrustment_inform_approval_time
-									.substring(8, 11) + '日</h4>' + '<hr></div>';
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_not_acceptance_entrustment_inform.not_acceptance_entrustment_inform_approval_time.substring(
+									8, 11) + '日</h4>' + '<hr></div>';
 					jc.setContentAppend(con);
 					/*
 					 * 
@@ -115,6 +108,8 @@ function Preview_NotAcceptanceEntrustmentInform(obj) {
 					'导出' : {
 						btnClass : 'btn-red',
 						action : function() {
+							window.location = '/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_exportNotAcceptanceIdentifieder?notAcceptanceEntrustmentInform.xsjsglxt_not_acceptance_entrustment_inform_id='
+									+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_not_acceptance_entrustment_inform.xsjsglxt_not_acceptance_entrustment_inform_id;
 							return false;
 						}
 					},
