@@ -267,7 +267,7 @@ function Preview_Death_InspectionRecord(obj) {
 					/*
 					 * 
 					 */
-					list_entrustment_sample(json_list, num);
+					list_entrustment_sample(obj);
 					/*
 					 * 
 					 */
@@ -336,9 +336,7 @@ function Preview_Death_InspectionRecord(obj) {
 																	toastr
 																			.success("操作成功");
 																	List_EntrustmentBook(EntrustmentBook_json.pageIndex);
-																	list_entrustment_sample(
-																			EntrustmentBook_json,
-																			num);
+																	list_entrustment_sample(obj);
 																} else {
 
 																}
@@ -374,7 +372,13 @@ function Preview_Death_InspectionRecord(obj) {
 
 }
 
-function list_entrustment_sample(json_list, num) {
+function list_entrustment_sample(obj) {
+	var json_list = EntrustmentBook_json;
+	for (var num = 0; num < json_list.listEntrustmentBookManagementDTO.length; num++) {
+		if (obj.id == json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id) {
+			break;
+		}
+	}
 	/*
 	 * 
 	 * 清空原表数据
@@ -477,7 +481,7 @@ function deleteEntrustmentSample(obj) {
 										if (xhr.responseText == "1") {
 											toastr.success("删除成功");
 											List_EntrustmentBook(EntrustmentBook_json.pageIndex);
-											Preview_Death_InspectionRecord(obj);
+											list_entrustment_sample(obj);
 										}
 									} else {
 										toastr.error(xhr.status);
@@ -497,7 +501,7 @@ function deleteEntrustmentSample(obj) {
 							xhr
 									.open(
 											"POST",
-											"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_deleteListCheckEntrustmentBook");
+											"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_deleteEntrustmentSample");
 							xhr.send(formData);
 						}
 					},
