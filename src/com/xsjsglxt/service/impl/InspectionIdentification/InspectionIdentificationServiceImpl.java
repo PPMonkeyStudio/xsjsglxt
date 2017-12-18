@@ -1162,7 +1162,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			if (xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book() != null
 					&& xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim().length() > 0) {
 				xsjsglxt_identifieder_case_confirm_book = inspectionIdentificationDao
-						.getIdentifiederCaseConfirmBookByOwnId(xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim());
+						.getIdentifiederCaseConfirmBookById(xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim());
 				// 确认书
 				if (xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_inspection_date() != null
 						&& xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_inspection_date().trim().length() > 0) {
