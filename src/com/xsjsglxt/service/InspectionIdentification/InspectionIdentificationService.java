@@ -8,6 +8,7 @@ import com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter;
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
 import com.xsjsglxt.domain.DO.xsjsglxt_damage_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_death_inspection_record;
+import com.xsjsglxt.domain.DO.xsjsglxt_entrustment_sample;
 import com.xsjsglxt.domain.DO.xsjsglxt_identifieder_case_confirm_book;
 import com.xsjsglxt.domain.DO.xsjsglxt_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform;
@@ -79,5 +80,9 @@ public interface InspectionIdentificationService {
 	public String exportDeathInspectionRecordName(String xsjsglxt_death_inspection_record_id);
 
 	public String exportDamageInspectionRecordName(String xsjsglxt_damage_inspection_record_id);
+
+	public int saveEntrustmentSample(xsjsglxt_entrustment_sample entrustment_sample);
+
+	public int deleteEntrustmentSample(List<String> listEntrustmentSample);
 
 }

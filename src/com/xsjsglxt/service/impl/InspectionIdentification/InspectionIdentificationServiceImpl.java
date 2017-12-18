@@ -24,6 +24,7 @@ import com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter;
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
 import com.xsjsglxt.domain.DO.xsjsglxt_damage_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_death_inspection_record;
+import com.xsjsglxt.domain.DO.xsjsglxt_entrustment_sample;
 import com.xsjsglxt.domain.DO.xsjsglxt_identifieder_case_confirm_book;
 import com.xsjsglxt.domain.DO.xsjsglxt_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform;
@@ -61,6 +62,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	public EntrustmentBookManagementVO getListCheckEntrustmentBook(EntrustmentBookManagementVO checkEntrustmentBookVO) {
 		EntrustmentBookManagementDTO entrustmentBookManagementDTO = new EntrustmentBookManagementDTO();
 		List<EntrustmentBookManagementDTO> listEntrustmentBookManagementDTO = new ArrayList<EntrustmentBookManagementDTO>();
+		List<xsjsglxt_entrustment_sample> listEntrustmentSample = new ArrayList<xsjsglxt_entrustment_sample>();
 		xsjsglxt_appraisal_letter appraisalLetter = new xsjsglxt_appraisal_letter();
 		xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook = new xsjsglxt_identifieder_case_confirm_book();
 		xsjsglxt_inspection_record inspectionRecord = new xsjsglxt_inspection_record();
@@ -86,6 +88,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		listCheckEntrustmentBook = inspectionIdentificationDao
 				.getListCheckEntrustmentBookByPage(checkEntrustmentBookVO);
 		for (xsjsglxt_check_entrustment_book xsjsglxt_check_entrustment_book : listCheckEntrustmentBook) {
+			listEntrustmentSample = new ArrayList<xsjsglxt_entrustment_sample>();
 			appraisalLetter = new xsjsglxt_appraisal_letter();
 			inspectionRecord = new xsjsglxt_inspection_record();
 			entrustmentBookManagementDTO = new EntrustmentBookManagementDTO();
@@ -128,9 +131,31 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			if (appraisalLetter != null) {
 				entrustmentBookManagementDTO.setXsjsglxt_appraisal_letter(appraisalLetter);
 			}
+			// 根据委托书Id获取检材List
+			listEntrustmentSample = inspectionIdentificationDao.getListEntrustmentSampleByEnId(xsjsglxt_check_entrustment_book.getXsjsglxt_check_entrustment_book_id());
+			if (listEntrustmentSample.size() > 0) {
+				entrustmentBookManagementDTO.setListEntrustmentSample(listEntrustmentSample);
+			}
 		}
 		checkEntrustmentBookVO.setListEntrustmentBookManagementDTO(listEntrustmentBookManagementDTO);
 		return checkEntrustmentBookVO;
+	}
+
+	// 批量删除检材表
+	@Override
+	public int deleteEntrustmentSample(List<String> listEntrustmentSample) {
+		int i = 0;
+		xsjsglxt_entrustment_sample xsjsglxt_entrustment_sample = new xsjsglxt_entrustment_sample();
+		for (String id : listEntrustmentSample) {
+			xsjsglxt_entrustment_sample = inspectionIdentificationDao.getEentrustment_sample(id);
+			if (xsjsglxt_entrustment_sample != null) {
+				i = inspectionIdentificationDao.deleteCheckEntrustmentByOwnId(xsjsglxt_entrustment_sample.getXsjsglxt_entrustment_sample_id());
+			}
+			if (i == 2) {
+				return 2;
+			}
+		}
+		return 1;
 	}
 
 	// 批量删除委托书ID
@@ -189,16 +214,22 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 
 			// 删除鉴定文书
 			xsjsglxt_appraisal_letter = inspectionIdentificationDao.getAppraisalLetterById(checkEntrustmentBookId);
-			if (xsjsglxt_inspection_record != null) {
+			if (xsjsglxt_appraisal_letter != null) {
 				i = inspectionIdentificationDao.deleteAppraisalLetter(xsjsglxt_appraisal_letter.getXsjsglxt_appraisal_letter_id());
 				if (i == 2)
 					return -1;
+			}
+			// 根据委托书Id删除鉴定文书
+			i = inspectionIdentificationDao.deleteEntrustmentSampleByBookId(checkEntrustmentBookId);
+			if (i == 2) {
+				return -1;
 			}
 			// 删除委托书
 			i = inspectionIdentificationDao.deleteCheckEntrustmentBookById(checkEntrustmentBookId);
 			if (i == 2) {
 				return -1;
 			}
+
 		}
 		return i;
 	}
@@ -433,6 +464,19 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		// 更改委托书状态
 		i = updateEntrustmentBookState(deathInspectionRecord.getDeath_inspection_record_belong_entrustment_book().trim(), "已记录");
 		return i;
+	}
+
+	// 检材
+	@Override
+	public int saveEntrustmentSample(xsjsglxt_entrustment_sample entrustment_sample) {
+		entrustment_sample.setXsjsglxt_entrustment_sample_id(TeamUtil.getUuid());
+		entrustment_sample.setEntrustment_sample_gmt_create(TeamUtil.getStringSecond());
+		entrustment_sample.setEntrustment_sample_gmt_modified(entrustment_sample.getEntrustment_sample_gmt_create());
+		// 编号
+		// 获取属于该委托书的最大编号
+		int num = inspectionIdentificationDao.getMaxEntrustmentSample(entrustment_sample.getEntrustment_sample_belong_entrustment_book());
+		entrustment_sample.setEntrustment_sample_num(num + 1 + "");
+		return inspectionIdentificationDao.saveObject(entrustment_sample);
 	}
 
 	// 填写痕迹检验记录表
@@ -1498,6 +1542,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			} else {
 				params.put("t28", "");
 			}
+
 			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomic_time() != null
 					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomic_time().trim().length() > 0) {
 				params.put("t32", xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomic_time().trim());

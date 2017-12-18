@@ -1,6 +1,5 @@
 package xsjsglxt;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter;
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
+import com.xsjsglxt.domain.DO.xsjsglxt_entrustment_sample;
 import com.xsjsglxt.domain.DO.xsjsglxt_identifieder_case_confirm_book;
 import com.xsjsglxt.domain.DO.xsjsglxt_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform;
@@ -44,16 +44,16 @@ public class testCheck {
 	@Test
 	public void listShow() {
 		EntrustmentBookManagementVO checkEntrustmentBookVO = new EntrustmentBookManagementVO();
-		checkEntrustmentBookVO.setEntrustmentRequire("2");
 		checkEntrustmentBookVO = inspectionIdentificationService.getListCheckEntrustmentBook(checkEntrustmentBookVO);
 		System.out.println(checkEntrustmentBookVO.getListEntrustmentBookManagementDTO());
+		System.out.println(checkEntrustmentBookVO.getTotalRecords());
 	}
 
 	// 测试批量删除
 	@Test
 	public void deleteTest() {
 		List<String> listtt = new ArrayList<>();
-		listtt.add("35615e16-e38a-4eda-9446-9a9b2f3d0e3d");
+		listtt.add("1fea3836-5853-4fa7-b6f5-c13f400ef64b");
 		int i = inspectionIdentificationService.deleteListCheckEntrustmentBook(listtt);
 		System.out.println(i);
 	}
@@ -84,6 +84,14 @@ public class testCheck {
 		xsjsglxt_inspection_record inspection_record = new xsjsglxt_inspection_record();
 		inspection_record.setInspection_belong_entrustment_book("35615e16-e38a-4eda-9446-9a9b2f3d0e3d");
 		System.out.println(inspectionIdentificationService.saveInspectionRecord(inspection_record));
+	}
+
+	// 填写检材
+	@Test
+	public void addfdf() {
+		xsjsglxt_entrustment_sample xsjsglxt_entrustment_sample = new xsjsglxt_entrustment_sample();
+		xsjsglxt_entrustment_sample.setEntrustment_sample_belong_entrustment_book("1fea3836-5853-4fa7-b6f5-c13f400ef64b");
+		System.out.println(inspectionIdentificationService.saveEntrustmentSample(xsjsglxt_entrustment_sample));
 	}
 
 	// 填写鉴定书

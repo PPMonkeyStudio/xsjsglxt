@@ -19,6 +19,7 @@ import com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter;
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
 import com.xsjsglxt.domain.DO.xsjsglxt_damage_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_death_inspection_record;
+import com.xsjsglxt.domain.DO.xsjsglxt_entrustment_sample;
 import com.xsjsglxt.domain.DO.xsjsglxt_identifieder_case_confirm_book;
 import com.xsjsglxt.domain.DO.xsjsglxt_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform;
@@ -40,10 +41,14 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	private EntrustmentBookManagementVO entrustmentBookManagementVO;
 	// 批量的委托书ID
 	private List<String> listCheckEntrustmentBookId;
+	// 批量的检材
+	private List<String> listEntrustmentSample;
 	// 鉴定事项确认书
 	private xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook;
 	// 尸体检验记录表
 	private xsjsglxt_death_inspection_record deathInspectionRecord;
+	// 检材表
+	private xsjsglxt_entrustment_sample entrustment_sample;
 	// 损伤检验记录表
 	private xsjsglxt_damage_inspection_record damageInspectionRecord;
 	// 不受理委托鉴定告知
@@ -66,13 +71,6 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	// 1: 有
 	// 2 ： 无
 	private String[] positionFile;
-
-	//
-	// private File[] damage;
-	//
-	// private String[] damageFileName;
-	//
-	// private String[] damageContentType;
 
 	/**
 	 * 
@@ -173,6 +171,19 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		}
 	}
 
+	// 填写检材 表
+	public void addEntrustmentSample() {
+		try {
+			response.setContentType("text/html;charset=utf-8");
+			System.out.println(deathFileName.toString());
+			response.getWriter().write("" + inspectionIdentificationService
+					.saveEntrustmentSample(entrustment_sample));
+		} catch (IOException e) {
+			System.out.println("填写尸体检验记录表报错");
+			e.printStackTrace();
+		}
+	}
+
 	// 填写损伤检验记录表
 	public void addDamageInspectionRecord() {
 		try {
@@ -193,6 +204,19 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 			response.getWriter().write("" + inspectionIdentificationService.saveAppraisalLetter(appraisalLetter));
 		} catch (IOException e) {
 			System.out.println("填写鉴定文书表报错");
+			e.printStackTrace();
+		}
+	}
+
+	// 单独删除检材
+	public void deleteEntrustmentSample() {
+		try {
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter().write("" +
+					inspectionIdentificationService.deleteEntrustmentSample(
+							listEntrustmentSample));
+		} catch (IOException e) {
+			System.out.println("删除检材表报错");
 			e.printStackTrace();
 		}
 	}
@@ -415,6 +439,14 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 
 	}
 
+	public xsjsglxt_entrustment_sample getEntrustment_sample() {
+		return entrustment_sample;
+	}
+
+	public void setEntrustment_sample(xsjsglxt_entrustment_sample entrustment_sample) {
+		this.entrustment_sample = entrustment_sample;
+	}
+
 	public xsjsglxt_appraisal_letter getAppraisalLetter() {
 		return appraisalLetter;
 	}
@@ -563,6 +595,14 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 
 	public void setPositionFile(String[] positionFile) {
 		this.positionFile = positionFile;
+	}
+
+	public List<String> getListEntrustmentSample() {
+		return listEntrustmentSample;
+	}
+
+	public void setListEntrustmentSample(List<String> listEntrustmentSample) {
+		this.listEntrustmentSample = listEntrustmentSample;
 	}
 
 }
