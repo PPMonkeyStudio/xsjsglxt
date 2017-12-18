@@ -5,6 +5,7 @@ function Preview_Death_InspectionRecord(obj) {
 			break;
 		}
 	}
+
 	var jc = $
 			.confirm({
 				theme : 'Modern',
@@ -257,7 +258,9 @@ function Preview_Death_InspectionRecord(obj) {
 							+ '</tbody>'
 							+ '</table>'
 							+ '<div style="height: 34px; margin: 0 0 20px 0;">'
-							+ '<button class="btn btn-danger" onclick="deleteEntrustmentSample()" style="float: right; margin: 0 10px;">'
+							+ '<button id="'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
+							+ '" class="btn btn-danger" onclick="deleteEntrustmentSample(this)" style="float: right; margin: 0 10px;">'
 							+ '<i class="fa fa-trash-o"></i> 删除检材'
 							+ '</button>' + '</div>';
 					jc.setContentAppend(con);
@@ -322,6 +325,7 @@ function Preview_Death_InspectionRecord(obj) {
 											'确认' : {
 												btnClass : 'btn-green',
 												action : function() {
+
 													var xhr = false;
 													xhr = new XMLHttpRequest();
 													xhr.onreadystatechange = function() {
@@ -331,8 +335,9 @@ function Preview_Death_InspectionRecord(obj) {
 																if (xhr.responseText == 1) {
 																	toastr
 																			.success("操作成功");
+																	List_EntrustmentBook(EntrustmentBook_json.pageIndex);
 																	list_entrustment_sample(
-																			json_list,
+																			EntrustmentBook_json,
 																			num);
 																} else {
 
@@ -370,7 +375,6 @@ function Preview_Death_InspectionRecord(obj) {
 }
 
 function list_entrustment_sample(json_list, num) {
-	alert(num);
 	/*
 	 * 
 	 * 清空原表数据
@@ -379,7 +383,7 @@ function list_entrustment_sample(json_list, num) {
 	var new_tr_list = document
 			.getElementsByClassName("new_tr_entrustment_sample");
 	var long = new_tr_list.length;
-	for (var num = 0; num < long; num++) {
+	for (var i = 0; i < long; i++) {
 		new_tr_list[0].parentNode.removeChild(new_tr_list[0]);
 	}
 
@@ -451,13 +455,13 @@ function list_entrustment_sample(json_list, num) {
 
 }
 
-function deleteEntrustmentSample() {
+function deleteEntrustmentSample(obj) {
 	var js = $
 			.confirm({
 				theme : 'Modern',
 				icon : 'fa fa-exclamation-triangle',
-				title : '警告！删除委托书',
-				content : '此操作将删除所选的所有委托书数据，并且将对应的其他检验数据一并删除',
+				title : '警告！删除检材记录',
+				content : '此操作将删除所选的所有检材记录数据',
 				type : 'red',
 				autoClose : '取消|5000',// 自动关闭
 				buttons : {
@@ -473,6 +477,7 @@ function deleteEntrustmentSample() {
 										if (xhr.responseText == "1") {
 											toastr.success("删除成功");
 											List_EntrustmentBook(EntrustmentBook_json.pageIndex);
+											Preview_Death_InspectionRecord(obj);
 										}
 									} else {
 										toastr.error(xhr.status);
@@ -485,8 +490,7 @@ function deleteEntrustmentSample() {
 							var formData = new FormData();
 							for (var num = 0; num < checkbox_select.length; num++) {
 								if (checkbox_select[num].checked) {
-									formData.append(
-											"listCheckEntrustmentBookId",
+									formData.append("listEntrustmentSample",
 											checkbox_select[num].id);
 								}
 							}

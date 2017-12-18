@@ -206,6 +206,8 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 
 	// 单独删除检材
 	public void deleteEntrustmentSample() {
+		System.out.println("sdsdsddsds");
+		System.out.println(listEntrustmentSample);
 		try {
 			response.setContentType("text/html;charset=utf-8");
 			response.getWriter()
