@@ -162,7 +162,6 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void addDeathInspectionRecord() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			System.out.println(deathFileName.toString());
 			response.getWriter().write("" + inspectionIdentificationService
 					.saveDeathInspectionRecord(deathInspectionRecord, death, deathFileName, positionFile));
 		} catch (IOException e) {
@@ -171,9 +170,8 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		}
 	}
 
-	// 填写检材 表
+	// 填写检材表
 	public void addEntrustmentSample() {
-		System.out.println(entrustment_sample);
 		try {
 			response.setContentType("text/html;charset=utf-8");
 			response.getWriter().write("" + inspectionIdentificationService.saveEntrustmentSample(entrustment_sample));
@@ -187,7 +185,6 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void addDamageInspectionRecord() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			System.out.println("ff");
 			response.getWriter().write("" + inspectionIdentificationService
 					.saveDamageInspectionRecord(damageInspectionRecord, death, deathFileName, positionFile));
 		} catch (IOException e) {
