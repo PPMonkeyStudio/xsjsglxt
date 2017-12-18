@@ -1,5 +1,9 @@
 package com.xsjsglxt.dao.Case;
 
+<<<<<<< HEAD
+public interface HandleDao {
+
+=======
 import java.util.List;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_handle;
@@ -21,6 +25,10 @@ public com.xsjsglxt.domain.DO.xsjsglxt_handle getHandleByNum(String handle_id);
 
 public boolean deleteHandleById(String xsjsglxt_handle_id);
 
+<<<<<<< HEAD
 public int getMaxId();
 
+=======
+>>>>>>> LWK
+>>>>>>> origin/SLL
 }

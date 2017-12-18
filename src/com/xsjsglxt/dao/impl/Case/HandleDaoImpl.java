@@ -1,17 +1,23 @@
 package com.xsjsglxt.dao.impl.Case;
 
+<<<<<<< HEAD
+=======
 import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
+>>>>>>> LWK
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.Case.HandleDao;
+<<<<<<< HEAD
+=======
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_handle;
 import com.xsjsglxt.domain.DO.xsjsglxt_staff;
 import com.xsjsglxt.domain.VO.Case.page_list_HandleInformationVO;
+>>>>>>> LWK
 
 public class HandleDaoImpl implements HandleDao {
 	private SessionFactory sessionFactory;
@@ -26,6 +32,8 @@ public class HandleDaoImpl implements HandleDao {
 
 		return this.sessionFactory.getCurrentSession();
 	}
+<<<<<<< HEAD
+=======
 
 	@Override
 	public void saveHandle(xsjsglxt_handle handle) {
@@ -309,6 +317,7 @@ public class HandleDaoImpl implements HandleDao {
 		query.executeUpdate();
        return true;
 	}
+<<<<<<< HEAD
 
 	@Override
 	public int getMaxId() {
@@ -322,4 +331,7 @@ public class HandleDaoImpl implements HandleDao {
 		return i.intValue();
 		
 	}
+=======
+>>>>>>> LWK
+>>>>>>> origin/SLL
 }

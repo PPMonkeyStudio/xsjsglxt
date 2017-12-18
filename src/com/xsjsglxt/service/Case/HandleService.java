@@ -1,5 +1,8 @@
 package com.xsjsglxt.service.Case;
 
+<<<<<<< HEAD
+public interface HandleService {
+=======
 import java.util.List;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_handle;
@@ -18,6 +21,10 @@ public page_list_HandleInformationVO VO_HandleInformation_By_PageAndSearch(
 public xsjsglxt_handle HandleInformationOne(xsjsglxt_handle handle);
 public void updateHandleInformation(xsjsglxt_handle handle);
 public boolean remove_HandleInformationList(List<String> useHandleInformationNumList);
+<<<<<<< HEAD
 public int getMaxId();
+=======
+>>>>>>> LWK
+>>>>>>> origin/SLL
 
 }

@@ -17,6 +17,8 @@ private String handle_prosecuteTime;//起诉时间
 private String handle_checkbackTime;//退查时间
 private String handle_pbatTime;//取保候审时间
 private String handle_lhusTime;//监视居住时间
+<<<<<<< HEAD
+=======
 private String handle_detentionDay;//拘留时间
 private String handle_FinancialName;// 财物名称
 private String handle_handTime;//上交时间
@@ -231,5 +233,6 @@ public String getHandle_gmt_modified() {
 public void setHandle_gmt_modified(String handle_gmt_modified) {
 	this.handle_gmt_modified = handle_gmt_modified;
 }
+>>>>>>> LWK
 
 }
