@@ -164,11 +164,38 @@ public class testCheck {
 		}
 	}
 
-	// 5501c173-06e2-4971-b743-23a19aadd2b9
+	// ee36054b-aa21-45a8-85ab-408c806d196b
 	@Test
 	public void testdddEE() {
 		try {
 			inspectionIdentificationService.exportNotAcceptanceIdentifieder("5501c173-06e2-4971-b743-23a19aadd2b9");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void testddsdEE() {
+		try {
+			inspectionIdentificationService.exportInspectionRecord("ee36054b-aa21-45a8-85ab-408c806d196b");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void testddssdEE() {
+		try {
+			inspectionIdentificationService.exportDeathInspectionRecord("232041a6-7f5e-48c2-b75f-2b13bd86983c");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void testddsdsdEE() {
+		try {
+			inspectionIdentificationService.exportDamageInspectionRecord("52a2849f-3eed-4edd-9c12-503da4dfa96d");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

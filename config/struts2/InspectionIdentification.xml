@@ -42,6 +42,14 @@
 				</param>
 				<param name="bufferSize">1024</param>
 			</result>
+			<result name="export" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">
+					filename=${fileName}
+				</param>
+				<param name="bufferSize">1024</param>
+			</result>
 		</action>
 		<action name="img_*"
 			class="com.xsjsglxt.action.InspectionIdentification.ImgAction"

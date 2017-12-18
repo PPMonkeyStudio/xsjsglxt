@@ -2,6 +2,7 @@ package com.xsjsglxt.service.impl.InspectionIdentification;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,6 +17,8 @@ import org.apache.commons.io.FileUtils;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.struts2.ServletActionContext;
 
+import com.deepoove.poi.XWPFTemplate;
+import com.deepoove.poi.data.PictureRenderData;
 import com.xsjsglxt.dao.InspectionIdentification.InspectionIdentificationDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter;
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
@@ -858,6 +861,213 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		return null;
 	}
 
+	// 导出痕迹检验记录
+	@Override
+	public File exportInspectionRecord(String id) throws Exception {
+		Map<String, Object> params = new HashMap<String, Object>();
+		/*
+		 * 获取路径
+		 */
+		String lj = "";
+		try {
+			Properties props = new Properties();
+			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
+			lj = props.getProperty("lj");
+		} catch (Exception e) {
+			System.out.println("获取初始路径失败");
+			e.printStackTrace();
+		}
+		params.putAll(mapInspectionRecord(id));
+		XwpfTUtil xwpfTUtil = new XwpfTUtil();
+		XWPFDocument doc;
+		String fileNameInResource = ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt_inspection_record.docx");
+		InputStream is;
+		is = new FileInputStream(fileNameInResource);
+		doc = new XWPFDocument(is);
+		xwpfTUtil.replaceInPara(doc, params);
+		xwpfTUtil.replaceInTable(doc, params);
+		OutputStream os = new FileOutputStream(lj + "kokokoko.docx");
+		doc.write(os);
+		xwpfTUtil.close(os);
+		xwpfTUtil.close(is);
+		os.flush();
+		os.close();
+		return new File(lj + "kokokoko.docx");
+	}
+
+	// 痕迹检验记录名称
+	@Override
+	public String exportInspectionRecordName(String xsjsglxt_inspection_record_id) {
+		xsjsglxt_check_entrustment_book xsjsglxt_check_entrustment_book = new xsjsglxt_check_entrustment_book();
+		xsjsglxt_inspection_record xsjsglxt_inspection_record = new xsjsglxt_inspection_record();
+		xsjsglxt_inspection_record = inspectionIdentificationDao.getInspectionRecordByOwnId(xsjsglxt_inspection_record_id);
+		if (xsjsglxt_inspection_record != null) {
+			if (xsjsglxt_inspection_record.getInspection_belong_entrustment_book() != null
+					&& xsjsglxt_inspection_record.getInspection_belong_entrustment_book().trim().length() > 0) {
+				xsjsglxt_check_entrustment_book = inspectionIdentificationDao
+						.getCheckEntrustmentBookById(xsjsglxt_inspection_record.getInspection_belong_entrustment_book().trim());
+				if (xsjsglxt_check_entrustment_book != null) {
+					return xsjsglxt_check_entrustment_book.getXsjsglxt_check_entrustment_book_id();
+				}
+			}
+		}
+
+		return null;
+	}
+
+	// 死因检验记录名称
+	@Override
+	public String exportDeathInspectionRecordName(String xsjsglxt_death_inspection_record_id) {
+		xsjsglxt_check_entrustment_book xsjsglxt_check_entrustment_book = new xsjsglxt_check_entrustment_book();
+		xsjsglxt_death_inspection_record xsjsglxt_death_inspection_record = new xsjsglxt_death_inspection_record();
+		xsjsglxt_death_inspection_record = inspectionIdentificationDao.getDeathInspectionRecordOwnId(xsjsglxt_death_inspection_record_id);
+		if (xsjsglxt_death_inspection_record != null) {
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_belong_entrustment_book() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_belong_entrustment_book().trim().length() > 0) {
+				xsjsglxt_check_entrustment_book = inspectionIdentificationDao
+						.getCheckEntrustmentBookById(xsjsglxt_death_inspection_record.getDeath_inspection_record_belong_entrustment_book().trim());
+				if (xsjsglxt_check_entrustment_book != null) {
+					return xsjsglxt_check_entrustment_book.getXsjsglxt_check_entrustment_book_id();
+				}
+			}
+		}
+		return null;
+	}
+
+	// 导出死因检验记录
+	@Override
+	public File exportDeathInspectionRecord(String id) throws Exception {
+		Map<String, Object> params = new HashMap<String, Object>();
+		/*
+		 * 获取路径
+		 */
+		String lj = "";
+		try {
+			Properties props = new Properties();
+			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
+			lj = props.getProperty("lj");
+		} catch (Exception e) {
+			System.out.println("获取初始路径失败");
+			e.printStackTrace();
+		}
+		params.putAll(mapDeathInspectionRecord(id));
+		String fileNameInResource = ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt_death_inspection_record.docx");
+		XWPFTemplate template = XWPFTemplate.compile(fileNameInResource);
+		template.render(params);
+		FileOutputStream out;
+		try {
+			out = new FileOutputStream(lj + "kokokoko.docx");
+			template.write(out);
+			out.flush();
+			out.close();
+			template.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return new File(lj + "kokokoko.docx");
+	}
+
+	// 导出损伤检验记录名称
+	@Override
+	public String exportDamageInspectionRecordName(String xsjsglxt_damage_inspection_record_id) {
+		xsjsglxt_check_entrustment_book xsjsglxt_check_entrustment_book = new xsjsglxt_check_entrustment_book();
+		xsjsglxt_damage_inspection_record xsjsglxt_damage_inspection_record = new xsjsglxt_damage_inspection_record();
+		xsjsglxt_damage_inspection_record = inspectionIdentificationDao.getDamageInspectionRecordByOwnId(xsjsglxt_damage_inspection_record_id);
+		if (xsjsglxt_damage_inspection_record != null) {
+			if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_belong_entrustment_book() != null
+					&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_belong_entrustment_book().trim().length() > 0) {
+				xsjsglxt_check_entrustment_book = inspectionIdentificationDao
+						.getCheckEntrustmentBookById(xsjsglxt_damage_inspection_record.getDamage_inspection_record_belong_entrustment_book().trim());
+				if (xsjsglxt_check_entrustment_book != null) {
+					return xsjsglxt_check_entrustment_book.getXsjsglxt_check_entrustment_book_id();
+				}
+			}
+		}
+		return null;
+	}
+
+	// 导出损伤检验记录表
+	@Override
+	public File exportDamageInspectionRecord(String id) throws Exception {
+		Map<String, Object> params = new HashMap<String, Object>();
+		/*
+		 * 获取路径
+		 */
+		String lj = "";
+		try {
+			Properties props = new Properties();
+			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
+			lj = props.getProperty("lj");
+		} catch (Exception e) {
+			System.out.println("获取初始路径失败");
+			e.printStackTrace();
+		}
+		params.putAll(mapDamageInspectionRecord(id));
+		String fileNameInResource = ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt_damage_inspection_record.docx");
+		XWPFTemplate template = XWPFTemplate.compile(fileNameInResource);
+		template.render(params);
+		FileOutputStream out;
+		try {
+			out = new FileOutputStream(lj + "kokokoko.docx");
+			template.write(out);
+			out.flush();
+			out.close();
+			template.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return new File(lj + "kokokoko.docx");
+	}
+
+	// 导出鉴定书
+	@Override
+	public File exportAppraisalLetter(String id) throws Exception {
+		Map<String, Object> params = new HashMap<String, Object>();
+		/*
+		 * 获取路径
+		 */
+		String lj = "";
+		try {
+			Properties props = new Properties();
+			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
+			lj = props.getProperty("lj");
+		} catch (Exception e) {
+			System.out.println("获取初始路径失败");
+			e.printStackTrace();
+		}
+		params.putAll(mapAppraisalLetter(id));
+		String fileNameInResource = ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt_appraisal_letter.docx");
+		XWPFTemplate template = XWPFTemplate.compile(fileNameInResource);
+		template.render(params);
+		FileOutputStream out;
+		try {
+			out = new FileOutputStream(lj + "kokokoko.docx");
+			template.write(out);
+			out.flush();
+			out.close();
+			template.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return new File(lj + "kokokoko.docx");
+	}
+
+	@Override
+	public String exportAppraisalLetterName(String xsjsglxt_appraisal_letter_id) {
+		xsjsglxt_appraisal_letter xsjsglxt_appraisal_letter = new xsjsglxt_appraisal_letter();
+		xsjsglxt_appraisal_letter = inspectionIdentificationDao.getAppraisalLetterByOwnId(xsjsglxt_appraisal_letter_id);
+		if (xsjsglxt_appraisal_letter != null) {
+			return xsjsglxt_appraisal_letter.getAppraisal_letter_num();
+		}
+		return null;
+	}
+
 	/**
 	 *
 	 * 
@@ -865,6 +1075,574 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	 * 
 	 * 
 	 */
+	// 鉴定文书记录
+	public Map<String, Object> mapAppraisalLetter(String id) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		// 委托书表_委托单位_送检人
+		// 确认书表_送检日期
+		// 鉴定书表_
+		xsjsglxt_check_entrustment_book xsjsglxt_check_entrustment_book = new xsjsglxt_check_entrustment_book();
+		xsjsglxt_appraisal_letter xsjsglxt_appraisal_letter = new xsjsglxt_appraisal_letter();
+		xsjsglxt_identifieder_case_confirm_book xsjsglxt_identifieder_case_confirm_book = new xsjsglxt_identifieder_case_confirm_book();
+		//
+		xsjsglxt_appraisal_letter = inspectionIdentificationDao.getAppraisalLetterByOwnId(id);
+		if (xsjsglxt_appraisal_letter != null) {
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim().length() > 0) {
+				xsjsglxt_check_entrustment_book = inspectionIdentificationDao
+						.getCheckEntrustmentBookById(xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim());
+				// 委托书
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim().length() > 0) {
+					params.put("j3", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
+				} else {
+					params.put("j3", "");
+				}
+				// 送检人
+				String man = "";
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name().trim().length() > 0) {
+					man = man + xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name().trim() + "   ";
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name().trim().length() > 0) {
+					man = man + xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name().trim();
+				}
+				params.put("j4", man);
+
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim().length() > 0) {
+				xsjsglxt_identifieder_case_confirm_book = inspectionIdentificationDao
+						.getIdentifiederCaseConfirmBookByOwnId(xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim());
+				// 确认书
+				if (xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_inspection_date() != null
+						&& xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_inspection_date().trim().length() > 0) {
+					String time = TeamUtil.timeToYear(xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_inspection_date().trim()) + " 年 ";
+					time = time + TeamUtil.timeToMonth(xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_inspection_date().trim()) + " 月 ";
+					time = time + TeamUtil.timeToDay(xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_inspection_date().trim()) + " 日 ";
+					params.put("j5", time);
+				} else {
+					params.put("j5", "");
+				}
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_num() != null && xsjsglxt_appraisal_letter.getAppraisal_letter_num().trim().length() > 0) {
+				params.put("j1", "[" + (xsjsglxt_appraisal_letter.getAppraisal_letter_num().trim()).substring(0, 4) + "]");
+				params.put("j2", (xsjsglxt_appraisal_letter.getAppraisal_letter_num().trim()).substring(4));
+			} else {
+				params.put("j1", "");
+				params.put("j2", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_simple_case_situation() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_simple_case_situation().trim().length() > 0) {
+				params.put("j6", xsjsglxt_appraisal_letter.getAppraisal_letter_simple_case_situation().trim());
+			} else {
+				params.put("j6", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation() != null && xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation().trim().length() > 0) {
+				params.put("j7", xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation().trim());
+			} else {
+				params.put("j7", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_inspection() != null && xsjsglxt_appraisal_letter.getAppraisal_letter_inspection().trim().length() > 0) {
+				params.put("j8", xsjsglxt_appraisal_letter.getAppraisal_letter_inspection().trim());
+			} else {
+				params.put("j8", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_argumentation() != null && xsjsglxt_appraisal_letter.getAppraisal_letter_argumentation().trim().length() > 0) {
+				params.put("j9", xsjsglxt_appraisal_letter.getAppraisal_letter_argumentation().trim());
+			} else {
+				params.put("j9", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_expert_opinion() != null && xsjsglxt_appraisal_letter.getAppraisal_letter_expert_opinion().trim().length() > 0) {
+				params.put("j10", xsjsglxt_appraisal_letter.getAppraisal_letter_expert_opinion().trim());
+			} else {
+				params.put("j10", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_man1_duty() != null && xsjsglxt_appraisal_letter.getAppraisal_letter_man1_duty().trim().length() > 0) {
+				params.put("j11", xsjsglxt_appraisal_letter.getAppraisal_letter_man1_duty().trim());
+			} else {
+				params.put("j11", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_man2_duty() != null && xsjsglxt_appraisal_letter.getAppraisal_letter_man2_duty().trim().length() > 0) {
+				params.put("j13", xsjsglxt_appraisal_letter.getAppraisal_letter_man2_duty().trim());
+			} else {
+				params.put("j13", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_man1_name() != null && xsjsglxt_appraisal_letter.getAppraisal_letter_man1_name().trim().length() > 0) {
+				params.put("j12", xsjsglxt_appraisal_letter.getAppraisal_letter_man1_name().trim());
+			} else {
+				params.put("j12", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_man2_name() != null && xsjsglxt_appraisal_letter.getAppraisal_letter_man2_name().trim().length() > 0) {
+				params.put("j14", xsjsglxt_appraisal_letter.getAppraisal_letter_man2_name().trim());
+			} else {
+				params.put("j14", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_authorization_duty() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_authorization_duty().trim().length() > 0) {
+				params.put("j15", xsjsglxt_appraisal_letter.getAppraisal_letter_authorization_duty().trim());
+			} else {
+				params.put("j15", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_authorization_name() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_authorization_name().trim().length() > 0) {
+				params.put("j16", xsjsglxt_appraisal_letter.getAppraisal_letter_authorization_name().trim());
+			} else {
+				params.put("j16", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_date() != null && xsjsglxt_appraisal_letter.getAppraisal_letter_date().trim().length() > 0) {
+				params.put("j17", xsjsglxt_appraisal_letter.getAppraisal_letter_date().trim());
+			} else {
+				params.put("j17", "");
+			}
+
+		}
+		return params;
+
+	}
+
+	// 损伤检验记录
+	public Map<String, Object> mapDamageInspectionRecord(String id) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		//
+		xsjsglxt_damage_inspection_record xsjsglxt_damage_inspection_record = new xsjsglxt_damage_inspection_record();
+		xsjsglxt_check_entrustment_book xsjsglxt_check_entrustment_book = new xsjsglxt_check_entrustment_book();
+		xsjsglxt_damage_inspection_record = inspectionIdentificationDao.getDamageInspectionRecordByOwnId(id);
+		if (xsjsglxt_damage_inspection_record != null) {
+			if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_belong_entrustment_book() != null
+					&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_belong_entrustment_book().trim().length() > 0) {
+				xsjsglxt_check_entrustment_book = inspectionIdentificationDao
+						.getCheckEntrustmentBookById(xsjsglxt_damage_inspection_record.getDamage_inspection_record_belong_entrustment_book().trim());
+				// 委托书的内容
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim().length() > 0) {
+					params.put("d1", "[" + (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4) + "]");
+					params.put("d2", (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4));
+				} else {
+					params.put("d1", "");
+					params.put("d2", "");
+				}
+			}
+			if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_name() != null
+					&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_name().trim().length() > 0) {
+				params.put("d3", xsjsglxt_damage_inspection_record.getDamage_inspection_record_name().trim());
+			} else {
+				params.put("d3", "");
+			}
+			if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_sex() != null
+					&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_sex().trim().length() > 0) {
+				params.put("d4", xsjsglxt_damage_inspection_record.getDamage_inspection_record_sex().trim());
+			} else {
+				params.put("d4", "");
+			}
+			if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_birth_date() != null
+					&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_birth_date().trim().length() > 0) {
+				String time = TeamUtil.timeToYear(xsjsglxt_damage_inspection_record.getDamage_inspection_record_birth_date().trim()) + " 年 ";
+				time = time + TeamUtil.timeToMonth(xsjsglxt_damage_inspection_record.getDamage_inspection_record_birth_date().trim()) + " 月 ";
+				time = time + TeamUtil.timeToDay(xsjsglxt_damage_inspection_record.getDamage_inspection_record_birth_date().trim()) + " 日 ";
+				params.put("d5", time);
+			} else {
+				params.put("d5", "");
+			}
+			if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_occupation() != null
+					&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_occupation().trim().length() > 0) {
+				params.put("d6", xsjsglxt_damage_inspection_record.getDamage_inspection_record_occupation().trim());
+			} else {
+				params.put("d6", "");
+			}
+			if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_unit_service() != null
+					&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_unit_service().trim().length() > 0) {
+				params.put("d7", xsjsglxt_damage_inspection_record.getDamage_inspection_record_unit_service().trim());
+			} else {
+				params.put("d7", "");
+			}
+			if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_idcard() != null
+					&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_idcard().trim().length() > 0) {
+				params.put("d8", xsjsglxt_damage_inspection_record.getDamage_inspection_record_idcard().trim());
+			} else {
+				params.put("d8", "");
+			}
+			if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_adress() != null
+					&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_adress().trim().length() > 0) {
+				params.put("d9", xsjsglxt_damage_inspection_record.getDamage_inspection_record_adress().trim());
+			} else {
+				params.put("d9", "");
+			}
+			if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_damage_time() != null
+					&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_damage_time().trim().length() > 0) {
+				String time = TeamUtil.timeToYear(xsjsglxt_damage_inspection_record.getDamage_inspection_record_damage_time().trim()) + " 年 ";
+				time = time + TeamUtil.timeToMonth(xsjsglxt_damage_inspection_record.getDamage_inspection_record_damage_time().trim()) + " 月 ";
+				time = time + TeamUtil.timeToDay(xsjsglxt_damage_inspection_record.getDamage_inspection_record_damage_time().trim()) + " 日 ";
+				params.put("d10", time);
+			} else {
+				params.put("d10", "");
+			}
+			if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_time() != null
+					&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_time().trim().length() > 0) {
+				String time = TeamUtil.timeToYear(xsjsglxt_damage_inspection_record.getDamage_inspection_record_time().trim()) + " 年 ";
+				time = time + TeamUtil.timeToMonth(xsjsglxt_damage_inspection_record.getDamage_inspection_record_time().trim()) + " 月 ";
+				time = time + TeamUtil.timeToDay(xsjsglxt_damage_inspection_record.getDamage_inspection_record_time().trim()) + " 日  ";
+				params.put("d11", time);
+			} else {
+				params.put("d11", "");
+			}
+			if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_phone() != null
+					&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_phone().trim().length() > 0) {
+				params.put("d12", xsjsglxt_damage_inspection_record.getDamage_inspection_record_phone().trim());
+			} else {
+				params.put("d12", "");
+			}
+			if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_inspection() != null
+					&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_inspection().trim().length() > 0) {
+				params.put("d13", xsjsglxt_damage_inspection_record.getDamage_inspection_record_inspection().trim().length());
+			} else {
+				params.put("d13", "");
+			}
+			if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_inspection_man() != null
+					&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_inspection_man().trim().length() > 0) {
+				params.put("d14", xsjsglxt_damage_inspection_record.getDamage_inspection_record_inspection_man().trim());
+			} else {
+				params.put("d14", "");
+			}
+		}
+		return params;
+	}
+
+	// 死因检验记录
+	public Map<String, Object> mapDeathInspectionRecord(String id) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		//
+		xsjsglxt_death_inspection_record xsjsglxt_death_inspection_record = new xsjsglxt_death_inspection_record();
+		xsjsglxt_check_entrustment_book xsjsglxt_check_entrustment_book = new xsjsglxt_check_entrustment_book();
+		xsjsglxt_death_inspection_record = inspectionIdentificationDao.getDeathInspectionRecordOwnId(id);
+		if (xsjsglxt_death_inspection_record != null) {
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_belong_entrustment_book() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_belong_entrustment_book().trim().length() > 0) {
+				xsjsglxt_check_entrustment_book = inspectionIdentificationDao
+						.getCheckEntrustmentBookById(xsjsglxt_death_inspection_record.getDeath_inspection_record_belong_entrustment_book().trim());
+				// 属于委托书中的内容
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim().length() > 0) {
+					params.put("t1", (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4));
+					params.put("t2", (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4));
+				} else {
+					params.put("t1", "");
+					params.put("t2", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim().length() > 0) {
+					params.put("t3", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim());
+				} else {
+					params.put("t3", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim().length() > 0) {
+					params.put("t4", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
+				} else {
+					params.put("t4", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim().length() > 0) {
+					String time = TeamUtil.timeToYear(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim()) + " 年 ";
+					time = time + TeamUtil.timeToMonth(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim()) + " 月 ";
+					time = time + TeamUtil.timeToDay(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim()) + " 日 ";
+					params.put("t7", time);
+
+				} else {
+					params.put("t7", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation().trim().length() > 0) {
+					params.put("t20", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation().trim());
+				} else {
+					params.put("t20", "");
+				}
+
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_undertake_personnel() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_undertake_personnel().trim().length() > 0) {
+				params.put("t5", xsjsglxt_death_inspection_record.getDeath_inspection_record_undertake_personnel().trim());
+			} else {
+				params.put("t5", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_phone() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_phone().trim().length() > 0) {
+				params.put("t6", xsjsglxt_death_inspection_record.getDeath_inspection_record_phone().trim());
+			} else {
+				params.put("t6", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_death_name() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_death_name().trim().length() > 0) {
+				params.put("t8", xsjsglxt_death_inspection_record.getDeath_inspection_record_death_name().trim());
+			} else {
+				params.put("t8", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_death_sex() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_death_sex().trim().length() > 0) {
+				params.put("t9", xsjsglxt_death_inspection_record.getDeath_inspection_record_death_sex().trim());
+			} else {
+				params.put("t9", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_death_birth_date() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_death_birth_date().trim().length() > 0) {
+				params.put("t10", xsjsglxt_death_inspection_record.getDeath_inspection_record_death_birth_date().trim());
+			} else {
+				params.put("t10", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_private_capital() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_private_capital().trim().length() > 0) {
+				params.put("t11", xsjsglxt_death_inspection_record.getDeath_inspection_record_private_capital().trim());
+			} else {
+				params.put("t11", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_unit_service() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_unit_service().trim().length() > 0) {
+				params.put("t12", xsjsglxt_death_inspection_record.getDeath_inspection_record_unit_service().trim());
+			} else {
+				params.put("t12", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_address() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_address().trim().length() > 0) {
+				params.put("t13", xsjsglxt_death_inspection_record.getDeath_inspection_record_address().trim());
+			} else {
+				params.put("t13", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_inspector() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_inspector().trim().length() > 0) {
+				params.put("t14", xsjsglxt_death_inspection_record.getDeath_inspection_record_inspector().trim());
+			} else {
+				params.put("t14", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_inspect_time() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_inspect_time().trim().length() > 0) {
+				String time = TeamUtil.timeToYear(xsjsglxt_death_inspection_record.getDeath_inspection_record_inspect_time().trim()) + " 年 ";
+				time = time + TeamUtil.timeToMonth(xsjsglxt_death_inspection_record.getDeath_inspection_record_inspect_time().trim()) + " 月 ";
+				time = time + TeamUtil.timeToDay(xsjsglxt_death_inspection_record.getDeath_inspection_record_inspect_time().trim()) + " 日 ";
+				params.put("t15", time);
+			} else {
+				params.put("t15", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_inspect_stop_time() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_inspect_stop_time().trim().length() > 0) {
+				String time = TeamUtil.timeToYear(xsjsglxt_death_inspection_record.getDeath_inspection_record_inspect_stop_time().trim()) + " 年 ";
+				time = time + TeamUtil.timeToMonth(xsjsglxt_death_inspection_record.getDeath_inspection_record_inspect_stop_time().trim()) + " 月 ";
+				time = time + TeamUtil.timeToDay(xsjsglxt_death_inspection_record.getDeath_inspection_record_inspect_stop_time().trim()) + " 日 ";
+				params.put("t16", time);
+			} else {
+				params.put("t16", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_inspect_place() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_inspect_place().trim().length() > 0) {
+				params.put("t17", xsjsglxt_death_inspection_record.getDeath_inspection_record_inspect_place().trim());
+			} else {
+				params.put("t17", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_inspect_ambient_temperature() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_inspect_ambient_temperature().trim().length() > 0) {
+				params.put("t18", xsjsglxt_death_inspection_record.getDeath_inspection_record_inspect_ambient_temperature().trim());
+			} else {
+				params.put("t18", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_ambient_humidity() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_ambient_humidity().trim().length() > 0) {
+				params.put("t19", xsjsglxt_death_inspection_record.getDeath_inspection_record_ambient_humidity().trim());
+			} else {
+				params.put("t19", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_site_profile() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_site_profile().trim().length() > 0) {
+				params.put("t21", xsjsglxt_death_inspection_record.getDeath_inspection_record_site_profile().trim());
+			} else {
+				params.put("t21", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_death_clothing() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_death_clothing().trim().length() > 0) {
+				params.put("t22", xsjsglxt_death_inspection_record.getDeath_inspection_record_death_clothing().trim());
+			} else {
+				params.put("t22", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_handover_of_goods() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_handover_of_goods().trim().length() > 0) {
+				params.put("t23", xsjsglxt_death_inspection_record.getDeath_inspection_record_handover_of_goods().trim());
+			} else {
+				params.put("t23", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_receiver_goods() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_receiver_goods().trim().length() > 0) {
+				params.put("t24", xsjsglxt_death_inspection_record.getDeath_inspection_record_receiver_goods().trim());
+			} else {
+				params.put("t24", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_mark() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_mark().trim().length() > 0) {
+				params.put("t25", xsjsglxt_death_inspection_record.getDeath_inspection_record_mark().trim());
+			} else {
+				params.put("t25", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_surface_table_test() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_surface_table_test().trim().length() > 0) {
+				params.put("t26", xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_surface_table_test().trim());
+			} else {
+				params.put("t26", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_recorder() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_recorder().trim().length() > 0) {
+				params.put("t27", xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_recorder().trim());
+			} else {
+				params.put("t27", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_recorder_time() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_recorder().trim().length() > 0) {
+				params.put("t28", xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_recorder().trim());
+			} else {
+				params.put("t28", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomic_time() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomic_time().trim().length() > 0) {
+				params.put("t32", xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomic_time().trim());
+			} else {
+				params.put("t32", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomic_place() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomic_place().trim().length() > 0) {
+				params.put("t33", xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomic_place().trim());
+			} else {
+				params.put("t33", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomic_test() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomic_test().trim().length() > 0) {
+				params.put("t34", xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomic_test().trim());
+			} else {
+				params.put("t34", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_photographer() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_photographer().trim().length() > 0) {
+				params.put("t35", xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_photographer().trim());
+			} else {
+				params.put("t35", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_video() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_video().trim().length() > 0) {
+				params.put("t36", xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_video().trim());
+			} else {
+				params.put("t36", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_recorder() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_recorder().trim().length() > 0) {
+				params.put("t37", xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_recorder().trim());
+			} else {
+				params.put("t37", "");
+			}
+			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_recorder_time() != null
+					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_recorder_time().trim().length() > 0) {
+				params.put("t38", xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_recorder_time().trim());
+			} else {
+				params.put("t38", "");
+			}
+		}
+		return params;
+	}
+
+	// 痕迹检验记录
+	public Map<String, Object> mapInspectionRecord(String id) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		// 主要获取委托书、以及痕迹检验记录
+		xsjsglxt_check_entrustment_book xsjsglxt_check_entrustment_book = new xsjsglxt_check_entrustment_book();
+		xsjsglxt_inspection_record xsjsglxt_inspection_record = new xsjsglxt_inspection_record();
+		// 获取痕迹检验记录表
+		xsjsglxt_inspection_record = inspectionIdentificationDao.getInspectionRecordByOwnId(id);
+		if (xsjsglxt_inspection_record != null) {
+			if (xsjsglxt_inspection_record.getInspection_belong_entrustment_book() != null
+					&& xsjsglxt_inspection_record.getInspection_belong_entrustment_book().trim().length() > 0) {
+				xsjsglxt_check_entrustment_book = inspectionIdentificationDao
+						.getCheckEntrustmentBookById(xsjsglxt_inspection_record.getInspection_belong_entrustment_book().trim());
+				// 我们先将委托书表中的数据添加进去
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim().length() > 0) {
+					params.put("${h1}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim() + "记录");
+					params.put("${h5}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim());
+				} else {
+					params.put("${h1}", "");
+					params.put("${h5}", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation().trim().length() > 0) {
+					params.put("${h2}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation().trim());
+				} else {
+					params.put("${h2}", "");
+				}
+			}
+			if (xsjsglxt_inspection_record.getInspection_check_material_situation() != null
+					&& xsjsglxt_inspection_record.getInspection_check_material_situation().trim().length() > 0) {
+				params.put("${h3}", xsjsglxt_inspection_record.getInspection_check_material_situation().trim());
+			} else {
+				params.put("${h3}", "");
+			}
+			if (xsjsglxt_inspection_record.getInspection_sample_situation() != null && xsjsglxt_inspection_record.getInspection_sample_situation().trim().length() > 0) {
+				params.put("${h4}", xsjsglxt_inspection_record.getInspection_sample_situation().trim());
+			} else {
+				params.put("${h4}", "");
+			}
+			if (xsjsglxt_inspection_record.getInspection_equipment() != null && xsjsglxt_inspection_record.getInspection_equipment().trim().length() > 0) {
+				params.put("${h6}", xsjsglxt_inspection_record.getInspection_equipment().trim());
+			} else {
+				params.put("${h6}", "");
+			}
+			if (xsjsglxt_inspection_record.getInspection_method() != null && xsjsglxt_inspection_record.getInspection_method().trim().length() > 0) {
+				params.put("${h7}", xsjsglxt_inspection_record.getInspection_method().trim());
+			} else {
+				params.put("${h7}", "");
+			}
+			if (xsjsglxt_inspection_record.getInspection_location() != null && xsjsglxt_inspection_record.getInspection_location().trim().length() > 0) {
+				params.put("${h14}", xsjsglxt_inspection_record.getInspection_location().trim());
+			} else {
+				params.put("${h14}", "");
+			}
+			if (xsjsglxt_inspection_record.getInspection_people() != null && xsjsglxt_inspection_record.getInspection_people().trim().length() > 0) {
+				params.put("${h15}", xsjsglxt_inspection_record.getInspection_people().trim());
+			} else {
+				params.put("${h15}", "");
+			}
+			if (xsjsglxt_inspection_record.getInspection_process() != null && xsjsglxt_inspection_record.getInspection_process().trim().length() > 0) {
+				params.put("${h16}", xsjsglxt_inspection_record.getInspection_process().trim());
+			} else {
+				params.put("${h16}", "");
+			}
+			if (xsjsglxt_inspection_record.getInspection_option() != null && xsjsglxt_inspection_record.getInspection_option().trim().length() > 0) {
+				params.put("${h17}", xsjsglxt_inspection_record.getInspection_option().trim());
+			} else {
+				params.put("${h17}", "");
+			}
+			if (xsjsglxt_inspection_record.getInspection_mark() != null && xsjsglxt_inspection_record.getInspection_mark().trim().length() > 0) {
+				params.put("${h18}", xsjsglxt_inspection_record.getInspection_mark().trim());
+			} else {
+				params.put("${h18}", "");
+			}
+
+			// 检验开始时间
+			if (xsjsglxt_inspection_record.getInspection_start_time() != null && xsjsglxt_inspection_record.getInspection_start_time().trim().length() > 0) {
+				params.put("${h8}", TeamUtil.timeToYear(xsjsglxt_inspection_record.getInspection_start_time().trim()));
+				params.put("${h9}", TeamUtil.timeToMonth(xsjsglxt_inspection_record.getInspection_start_time().trim()));
+				params.put("${h10}", TeamUtil.timeToDay(xsjsglxt_inspection_record.getInspection_start_time().trim()));
+			} else {
+				params.put("${h8}", "");
+				params.put("${h9}", "");
+				params.put("${h10}", "");
+			}
+			// 检验结束时间
+			if (xsjsglxt_inspection_record.getInspection_stop_time() != null && xsjsglxt_inspection_record.getInspection_stop_time().trim().length() > 0) {
+				params.put("${h11}", TeamUtil.timeToYear(xsjsglxt_inspection_record.getInspection_stop_time().trim()));
+				params.put("${h12}", TeamUtil.timeToMonth(xsjsglxt_inspection_record.getInspection_stop_time().trim()));
+				params.put("${h13}", TeamUtil.timeToDay(xsjsglxt_inspection_record.getInspection_stop_time().trim()));
+			} else {
+				params.put("${h11}", "");
+				params.put("${h12}", "");
+				params.put("${h13}", "");
+			}
+		}
+		return params;
+	}
 
 	// 不受理委托鉴定告知书
 	public Map<String, Object> mapNotAcceptanceIdentifieder(String id) {
