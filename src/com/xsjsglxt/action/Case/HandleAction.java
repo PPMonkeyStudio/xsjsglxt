@@ -1,35 +1,28 @@
 package com.xsjsglxt.action.Case;
 
-<<<<<<< HEAD
-=======
+
 import java.io.IOException;
 import java.util.List;
 
->>>>>>> LWK
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
-<<<<<<< HEAD
-import com.opensymphony.xwork2.ActionSupport;
-=======
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_handle;
 import com.xsjsglxt.domain.VO.Case.page_list_HandleInformationVO;
->>>>>>> LWK
+
 import com.xsjsglxt.service.Case.HandleService;
 
 public class HandleAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
 private HandleService handleService;
-<<<<<<< HEAD
-private HttpServletResponse http_response;
-private HttpServletRequest http_request;	
 
-=======
 private xsjsglxt_handle handle;
 private List<String> useHandleInformationNumList;
 private HttpServletResponse http_response;
@@ -127,7 +120,7 @@ public void remove_HandleInformationList(){
 			}
 		}
 }
->>>>>>> LWK
+
 	@Override
 	public void setServletResponse(HttpServletResponse arg0) {
 		// TODO Auto-generated method stub
@@ -163,8 +156,7 @@ public void remove_HandleInformationList(){
 	public void setHttp_request(HttpServletRequest http_request) {
 		this.http_request = http_request;
 	}
-<<<<<<< HEAD
-=======
+
 	public xsjsglxt_handle getHandle() {
 		return handle;
 	}
@@ -183,6 +175,6 @@ public void remove_HandleInformationList(){
 	public void setUseHandleInformationNumList(List<String> useHandleInformationNumList) {
 		this.useHandleInformationNumList = useHandleInformationNumList;
 	}
->>>>>>> LWK
+
 
 }
