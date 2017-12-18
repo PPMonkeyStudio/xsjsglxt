@@ -1,5 +1,8 @@
 package util;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,11 +12,34 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.junit.Test;
 
 public class TeamUtil {
 
 	static SimpleDateFormat formatter;
+
+	// 将图片转换成base64
+	/**
+	 * 27 * 将图片转换成Base64编码 28 * @param imgFile 待处理图片 29 * @return 30
+	 */
+
+	public static String getImgStr(String imgFile) {
+		// 将图片文件转化为字节数组字符串，并对其进行Base64编码处理
+
+		InputStream in = null;
+		byte[] data = null;
+		// 读取图片字节数组
+		try {
+			in = new FileInputStream(imgFile);
+			data = new byte[in.available()];
+			in.read(data);
+			in.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return new String(Base64.encodeBase64(data));
+	}
 
 	// 一段yyyy-MM-dd HH:mm:ss字符串分成年月日三段
 	// 2017-11-09 15:08:50

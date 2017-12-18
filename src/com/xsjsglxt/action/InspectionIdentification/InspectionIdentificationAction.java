@@ -344,6 +344,64 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	}
 
 	//
+	public String exportInspectionRecord() throws Exception {
+		File exportInspectionRecordFile = inspectionIdentificationService.exportInspectionRecord(inspectionRecord.getXsjsglxt_inspection_record_id());
+		// 获取委托书编号
+		fileName = inspectionIdentificationService.exportInspectionRecordName(
+				inspectionRecord.getXsjsglxt_inspection_record_id());
+		if (fileName != null) {
+			fileName = new String(("痕迹检验记录：" + fileName + ".docx").getBytes("GBK"), "ISO-8859-1");
+		} else {
+			fileName = new String(("痕迹检验记录：" + ".docx").getBytes("GBK"), "ISO-8859-1");
+		}
+		inputStream = new FileInputStream(exportInspectionRecordFile);
+		exportInspectionRecordFile.delete();
+		return "export";
+	}
+
+	//
+	public String exportDeathInspectionRecord() throws Exception {
+		File exportDeathInspectionRecordFile = inspectionIdentificationService.exportDeathInspectionRecord(deathInspectionRecord.getXsjsglxt_death_inspection_record_id());
+		fileName = inspectionIdentificationService.exportDeathInspectionRecordName(deathInspectionRecord.getXsjsglxt_death_inspection_record_id());
+		if (fileName != null) {
+			fileName = new String(("死因检验记录：" + fileName + ".docx").getBytes("GBK"), "ISO-8859-1");
+		} else {
+			fileName = new String(("死因检验记录：" + ".docx").getBytes("GBK"), "ISO-8859-1");
+		}
+		inputStream = new FileInputStream(exportDeathInspectionRecordFile);
+		exportDeathInspectionRecordFile.delete();
+		return "export";
+	}
+
+	//
+	public String exportDamageInspectionRecord() throws Exception {
+		File exportDamageInspectionRecordFile = inspectionIdentificationService.exportDamageInspectionRecord(damageInspectionRecord.getXsjsglxt_damage_inspection_record_id());
+		fileName = inspectionIdentificationService.exportDamageInspectionRecordName(damageInspectionRecord.getXsjsglxt_damage_inspection_record_id());
+		if (fileName != null) {
+			fileName = new String(("损伤检验记录：" + fileName + ".docx").getBytes("GBK"), "ISO-8859-1");
+		} else {
+			fileName = new String(("损伤检验记录：" + ".docx").getBytes("GBK"), "ISO-8859-1");
+		}
+		inputStream = new FileInputStream(exportDamageInspectionRecordFile);
+		exportDamageInspectionRecordFile.delete();
+		return "export";
+	}
+
+	//
+	public String exportAppraisalLetter() throws Exception {
+		File exportAppraisalLetterFile = inspectionIdentificationService.exportAppraisalLetter(appraisalLetter.getXsjsglxt_appraisal_letter_id());
+		fileName = inspectionIdentificationService.exportAppraisalLetterName(appraisalLetter.getXsjsglxt_appraisal_letter_id());
+		if (fileName != null) {
+			fileName = new String(("鉴定书：" + fileName + ".docx").getBytes("GBK"), "ISO-8859-1");
+		} else {
+			fileName = new String(("鉴定书：" + ".docx").getBytes("GBK"), "ISO-8859-1");
+		}
+		inputStream = new FileInputStream(exportAppraisalLetterFile);
+		exportAppraisalLetterFile.delete();
+		return "export";
+	}
+
+	//
 	/**
 	 * 
 	 * 
