@@ -1,5 +1,10 @@
 function Preview_AppraisalLetter(obj) {
 	var json_list = EntrustmentBook_json;
+	for (var num = 0; num < json_list.listEntrustmentBookManagementDTO.length; num++) {
+		if (obj.id == json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id) {
+			break;
+		}
+	}
 	var jc = $
 			.confirm({
 				icon : 'fa fa-file-text-o',
@@ -10,11 +15,7 @@ function Preview_AppraisalLetter(obj) {
 				onOpenBefore : function() {
 				},
 				onContentReady : function() {
-					for (var num = 0; num < json_list.listEntrustmentBookManagementDTO.length; num++) {
-						if (obj.id == json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id) {
-							break;
-						}
-					}
+
 					var con = '<div style="margin:0 20px 0 0;"><hr>'
 							+ '<h3  style="text-align: right;">编号：【'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.appraisal_letter_num
