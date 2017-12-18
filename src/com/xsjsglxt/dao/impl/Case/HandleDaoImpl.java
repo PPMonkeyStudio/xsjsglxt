@@ -309,4 +309,17 @@ public class HandleDaoImpl implements HandleDao {
 		query.executeUpdate();
        return true;
 	}
+
+	@Override
+	public int getMaxId() {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		Long i;
+		String hql = "select count(*) from xsjsglxt_handle  where 1=1 ";
+		Query query = session.createQuery(hql);	
+		i = (Long) query.uniqueResult();
+		session.clear();
+		return i.intValue();
+		
+	}
 }

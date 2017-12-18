@@ -48,7 +48,7 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 	/*
 	 * 跳转创建页
 	 */
-	public String page_staffList2(){
+	public String page_newStaff(){
 		return "page_newStaff";
 	}
 	/*

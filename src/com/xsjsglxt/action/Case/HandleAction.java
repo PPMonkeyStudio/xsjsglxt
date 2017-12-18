@@ -40,6 +40,17 @@ public void saveHandle() throws IOException{
 	}
 }
 /*
+ * 得到序号
+ */
+public void xuhao() throws IOException{
+	GsonBuilder gsonBuilder = new GsonBuilder();
+	gsonBuilder.setPrettyPrinting();// 格式化json数据
+	Gson gson = gsonBuilder.create();
+	int Id = handleService.getMaxId();
+	http_response.setContentType("text/html;charset=utf-8");
+	http_response.getWriter().write(gson.toJson(Id));
+}
+/*
  * 列表信息
  */
 public void ListHandleInformationByPageAndSearch() throws IOException{

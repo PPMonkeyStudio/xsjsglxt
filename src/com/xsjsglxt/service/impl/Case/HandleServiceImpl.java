@@ -87,4 +87,11 @@ public boolean remove_HandleInformationList(List<String> useHandleInformationNum
 	return flag;
 }
 
+@Override
+public int getMaxId() {
+	// TODO Auto-generated method stub
+	int i=handleDao.getMaxId();
+	return (i+1);
+}
+
 }

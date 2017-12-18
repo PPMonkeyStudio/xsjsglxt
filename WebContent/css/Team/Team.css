@@ -1,0 +1,108 @@
+@CHARSET "UTF-8";
+html,
+body,
+ul,
+li,
+div,
+h3,
+a,
+span,
+input,
+button,
+p,
+label,
+details,
+figure,
+figcaption,
+article,
+table,tr,th,td {
+	margin: 0px ;
+	padding: 0px;
+	overflow: initial;
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+a:hover{
+	cursor:pointer;
+}
+/*staffList table.css start  */
+.staff_title{
+	text-indent:30px;
+}
+#Check-btn{
+	margin-bottom: 6px;
+}
+.staff_info_label {
+	width: 80px;
+}
+
+.staff_info_input {
+	width: 200px;
+	height: 30px;
+}
+
+.page-infomation {
+	font: 14px/15px "微软雅黑";
+	color: #676a6dcc;
+}
+.page-infomation{
+	display:inline-block;
+	text-indent: 30px;
+	
+}
+.page_info{
+	font-size: 15px;
+	display: inline-block;
+	float: right;
+}
+/*staffList table.css end  */
+/*staffDetail table.css  */
+#star-time{
+	background: url(../img/calender.jpg) 160px 2px no-repeat;
+}
+.photo{
+	width: 120px;
+height: 150px;
+border: 1px solid #dbd9d9;
+}
+.staff_body {
+	float: right;
+	width:90%;
+}
+/*功能按钮  */
+.button_return{
+	position: absolute;
+	top: 70px;
+	left: 25px;
+}
+.button_change{
+	position: absolute;
+	top:120px;
+	left: 25px;
+}
+#staffDetails label {
+	width:70px;
+	margin-bottom:0px !important;
+	font:14px/40px "微软雅黑";
+}
+/*长标签  */
+/* #staffDetails table tr td .staff_detail_label_long{
+	width:130px;
+} */
+#staffDetails table tr td input[type="text"] {
+	margin:0 !important;
+	width: 230px;
+}
+#staffDetails table tr{
+	/* display:inline-block; */
+	margin-bottom:5px;
+	height:42px;
+}
+#staffDetails table tr td{
+	vertical-align:middle;
+	width:70px;
+}
+/*标题分割线  */
+.staff_info_title{
+	border-bottom:1px solid #eee;
+}

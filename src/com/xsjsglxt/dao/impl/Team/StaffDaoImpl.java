@@ -34,6 +34,7 @@ public class StaffDaoImpl implements StaffDao {
 		// TODO Auto-generated method stub
 		try {
 			getSession().saveOrUpdate(staff);
+			System.out.println("doala");
 			return true;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

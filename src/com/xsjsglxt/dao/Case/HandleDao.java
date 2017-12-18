@@ -21,4 +21,6 @@ public com.xsjsglxt.domain.DO.xsjsglxt_handle getHandleByNum(String handle_id);
 
 public boolean deleteHandleById(String xsjsglxt_handle_id);
 
+public int getMaxId();
+
 }

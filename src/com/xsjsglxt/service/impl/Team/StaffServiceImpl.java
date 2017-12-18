@@ -30,7 +30,9 @@ public void setStaffDao(StaffDao staffDao) {
 public boolean saveStaff(xsjsglxt_staff staff) {
 	// TODO Auto-generated method stub
 	staff.setXsjsglxt_staff_id(TeamUtil.getUuid());
+	System.out.println("id"+staff.getXsjsglxt_staff_id());
 	staff.setStaff_gmt_create(TeamUtil.getStringSecond());
+	System.out.println("创建时间"+staff.getStaff_gmt_create());
 	staff.setStaff_gmt_modified(staff.getStaff_gmt_create());
 	if(staffDao.saveStaff(staff)){
 		return true;
@@ -93,7 +95,7 @@ public boolean remove_StaffInformationList(String useStaffInformationNumList) {
 	for (String staff_id : sourceStrArray) {
 		xsjsglxt_staff xsjsglxt_staff = staffDao.getStaffByNum(staff_id);
 		flag = staffDao.deleteStaffById(xsjsglxt_staff.getXsjsglxt_staff_id());// ����
-	    flag=removeStaffImgByNewsID(xsjsglxt_staff);
+	  // flag=removeStaffImgByNewsID(xsjsglxt_staff);
 	}
 	return flag;
 }
