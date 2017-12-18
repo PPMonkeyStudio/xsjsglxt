@@ -1,10 +1,5 @@
 package com.xsjsglxt.service.impl.Case;
 
-<<<<<<< HEAD
-import com.xsjsglxt.dao.Case.HandleDao;
-import com.xsjsglxt.service.Case.HandleService;
-
-=======
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +11,6 @@ import com.xsjsglxt.service.Case.HandleService;
 
 import util.TeamUtil;
 
->>>>>>> LWK
 public class HandleServiceImpl implements HandleService {
 private HandleDao handleDao;
 
@@ -28,8 +22,6 @@ public void setHandleDao(HandleDao handleDao) {
 	this.handleDao = handleDao;
 }
 
-<<<<<<< HEAD
-=======
 @Override
 public void saveHandle(xsjsglxt_handle handle) {
 	// TODO Auto-generated method stub
@@ -95,5 +87,4 @@ public boolean remove_HandleInformationList(List<String> useHandleInformationNum
 	return flag;
 }
 
->>>>>>> LWK
 }

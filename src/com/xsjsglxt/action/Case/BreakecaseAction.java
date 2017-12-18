@@ -94,9 +94,9 @@ public class BreakecaseAction extends ActionSupport implements ServletResponseAw
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
-		breakecaseService.updateCase(case1);
-		breakecaseService.updateBreakcase(breakecase,case1.getXsjsglxt_case_id());
-		breakecaseService.updateSence(sence,case1.getXsjsglxt_case_id());
+		//breakecaseService.updateCase(case1);
+		breakecaseService.updateBreakcase(breakecase);
+		//breakecaseService.updateSence(sence,case1.getXsjsglxt_case_id());
 		http_response.setContentType("text/html;charset=utf-8");
 		http_response.getWriter().write(gson.toJson("success"));
 	}

@@ -80,7 +80,7 @@ border: 1px solid #dbd9d9;
 	top:120px;
 	left: 25px;
 }
-#staffDetails label {
+#staffDetails label{
 	width:70px;
 	margin-bottom:0px !important;
 	font:14px/40px "微软雅黑";
@@ -92,6 +92,12 @@ border: 1px solid #dbd9d9;
 #staffDetails table tr td input[type="text"] {
 	margin:0 !important;
 	width: 230px;
+	height:34px;
+}
+#staffDetails select{
+	margin:0 !important;
+	width: 230px;
+	height:34px;
 }
 #staffDetails table tr{
 	/* display:inline-block; */

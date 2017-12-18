@@ -36,7 +36,7 @@
 			</button>
 			<button type="button" class="btn btn-default button button_change"
 				onclick="staff_change()">
-				<i class="fa fa-pencil" onclick=get_staffDetails()></i>完成编辑
+				<i class="fa fa-pencil"></i>完成编辑
 			</button>
 			<div class="panel-body staff_body">
 				<form id="staffDetails">
@@ -59,13 +59,14 @@
 								type="text"></td>
 						</tr>
 						<tr>
-							<td><label  >人员ID</label></td>
-							<td><input style="font-size: 12px;"
-								name="staff.staff_alarm" class="form-control" type="text"></td>
 							<td><label  >身份证号</label></td>
 							<td><input name="staff.staff_idNumber"
 								class="form-control" type="text"></td>
-							<td><label  >性别</label></td>
+							
+                             <td><label  >年龄</label></td>
+							<td><input style="font-size: 12px;"
+								name="staff.staff_age" class="form-control" type="text"></td>
+                            <td><label  >性别</label></td>
 							<td>
 							  <label style="float: left;" class="fancy-radio">
 									<input name="sex_content" onclick=changeSex_man(this) type="radio"
@@ -82,38 +83,46 @@
 							    <input type="hidden" name="staff.staff_sex" id="sex">
 							 </td>
 
-
-
 						</tr>
 						<tr>
-							<td><label  >年龄</label></td>
-							<td><input style="font-size: 12px;"
-								name="staff.staff_age" class="form-control" type="text"></td>
+							
 							<td><label  >民族</label></td>
 							<td><input name="staff.staff_nation"
 								class="form-control" type="text"></td>
 							<td><label  >籍贯</label></td>
 							<td><input name="staff.staff_nativePlace"
 								class="form-control" type="text"></td>
-
+                            <td><label  >生日</label></td>
+							<td><input style="font-size: 12px;"
+								name="staff.staff_birthday" class="form-control" type="text"></td>
 						</tr>
 
 						<tr>
-							<td><label  >生日</label></td>
-							<td><input style="font-size: 12px;"
-								name="staff.staff_birthday" class="form-control" type="text"></td>
+							
 							<td><label  >最高学历</label></td>
-							<td><input style="font-size: 12px;"
-								name="staff.staff_MaxEducationalBackground"
-								class="form-control" type="text"></td>
+							<td>
+								<select class="form-control"  name="staff.staff_MaxEducationalBackground">
+									<option></option>
+									<option>小学</option>
+									<option>初中</option>
+									<option>高中</option>
+									<option>大学</option>
+									<option>硕士</option>
+									<option>博士</option>
+							</select></td>
 							<td><label  >政治面貌</label></td>
-							<td><input name="staff.staff_politicalStatus"
-								class="form-control" type="text"></td>
+							<td><select class="form-control"  name="staff.staff_politicalStatus">
+									<option></option>
+									<option>群众</option>
+									<option>入党积极分子</option>
+									<option>预备党员</option>
+									<option>党员</option>
+							</select></td>
 
 						</tr>
 						<tr>
 							<td><label  >入党时间</label></td>
-							<td><input name="staff.staff_joinPartyTime"
+							<td><input  name="staff.staff_joinPartyTime"
 								class="form-control" type="text"></td>
 							<td><label c>工作时间</label></td>
 							<td><input 
@@ -173,47 +182,40 @@
 						<tr style="height:30px"></tr>
 						<tr>
 							<td colspan="6" class="staff_info_title">家庭信息</td>
+							
 						</tr>
 						<tr style="height:20px;"></tr>
-						<tr>
-							<td><label  >家庭住址</label></td>
-							<td><input name="staff.staff_address"
-								class="form-control" type="text"></td>
-							<td><label class="staff_detail_label_long">姓名</label></td>
-							<td><input name="staff.staff_contactsName"
-								class="form-control" style="margin-top: 6px;" type="text" placeholder="家庭联系人姓名"></td>
-
-						</tr>
-						<tr>
-							<td><label class="staff_detail_label_long">电话</label></td>
-							<td><input name="staff.staff_contactsPhone" type="text"
-								class="form-control" style="margin-top: 6px;" placeholder="家庭联系人电话"></td>
-							<td><label class="staff_detail_label_long">关系</label></td>
-							<td><input name="staff.staff_contactsRelationship" type="text"
-								class="form-control" style="margin-top: 6px;" placeholder="与家庭联系人的关系"></td>
-						</tr>
-
-						<tr>
-							<td><label class="staff_detail_label_long">微信号</label></td>
-							<td><input name="staff.staff_contactsWeiXin"
-								class="form-control" style="margin-top: 6px;" type="text" placeholder="家庭联系人微信号"></td>
-							<td><label class="staff_detail_label_long">工作单位</label></td>
-							<td><input name="staff.staff_contactsWorkSpace" type="text"
-								class="form-control" style="margin-top: 6px;" placeholder="家庭联系人工作单位"></td>
-							
-
-						</tr>
 						<tr>
 						<td><label class="staff_detail_label_long">职位</label></td>
 							<td><input name="staff.staff_contactsPosition" type="text"
 								class="form-control" style="margin-top: 6px;" placeholder="家庭联系人职位"></td>
-							<td><label  >创建时间</label></td>
-							<td><input name="staff.staff_gmt_create"
-								class="form-control" id="star-time" style="margin-top: 6px;" type="text"></td>
-							<td><label  >修改时间</label></td>
-							<td><input name="staff.staff_gmt_modified" type="text"
-								class="form-control" style="margin-top: 6px;"></td>
-								
+							
+							<td><label class="staff_detail_label_long">姓名</label></td>
+							<td><input name="staff.staff_contactsName"
+								class="form-control" style="margin-top: 6px;" type="text" placeholder="家庭联系人姓名"></td>
+                            <td><label class="staff_detail_label_long">电话</label></td>
+							<td><input name="staff.staff_contactsPhone" type="text"
+								class="form-control" style="margin-top: 6px;" placeholder="家庭联系人电话"></td>
+						</tr>
+						<tr>
+							<td><label class="staff_detail_label_long">微信号</label></td>
+							<td><input name="staff.staff_contactsWeiXin"
+								class="form-control" style="margin-top: 6px;" type="text" placeholder="家庭联系人微信号"></td>
+							<td><label class="staff_detail_label_long">关系</label></td>
+							<td><input name="staff.staff_contactsRelationship" type="text"
+								class="form-control" style="margin-top: 6px;" placeholder="与家庭联系人的关系"></td>
+						<td><label class="staff_detail_label_long">工作单位</label></td>
+							<td><input name="staff.staff_contactsWorkSpace" type="text"
+								class="form-control" style="margin-top: 6px;" placeholder="家庭联系人工作单位"></td>
+						</tr>
+
+						<tr>
+							<td><label  >家庭住址</label></td>
+							<td colspan="5"><input name="staff.staff_address"
+								class="form-control" type="text"  style="width: 957px"></td>
+							
+							
+
 						</tr>
 						<tr style="height:140px;" >
 							<td><label >备注</label></td>
@@ -226,40 +228,31 @@
 			</div>
 		</div>
 	</div>
-	<input type="hidden" id="staff_id"
-		value="<s:property value="staff_id"/>">
-	<!---------------------------------------------------------------------------------------------------->
-	<!---------------------------------------------------------------------------------------------------->
-	<!---------------------------------------------------------------------------------------------------->
-	<!-- 添加物证-模态框（Modal） -->
-
-	<!-- /.modal -->
-
-	<!---------------------------------------------------------------------------------------------------->
-	<!---------------------------------------------------------------------------------------------------->
-	<!---------------------------------------------------------------------------------------------------->
-	<!-- 添加丢失物品-模态框（Modal） -->
-
-	<!-- /.modal -->
-
-	<!---------------------------------------------------------------------------------------------------->
-	<!---------------------------------------------------------------------------------------------------->
-	<!---------------------------------------------------------------------------------------------------->
-	<!-- 添加光盘照片-模态框（Modal） -->
-	<!-- /.modal -->
 
 <script type="text/javascript"
-	src="<%=basePath%>js/Team/staffDetails.js"></script>
-<script>
-$('#star-time').datetimepicker({
-	language: 'zh-CN', //显示中文
-	format: 'yyyy-mm-dd', //显示格式
-	minView: "month", //设置只显示到月份
-	initialDate: new Date(), //初始化当前日期
-	autoclose: true, //选中自动关闭
-	todayBtn: true //显示今日按钮
-})
+	src="<%=basePath%>js/Team/newStaff.js"></script>
+<script type="text/javascript">
+	$.datetimepicker.setLocale('ch');
+	$('.mydate').datetimepicker({
+		yearStart : 1990, // 设置最小年份
+		yearEnd : 2050, // 设置最大年份
+		yearOffset : 0, // 年偏差
+		timepicker : false, // 关闭时间选项
+		format : 'Y-m-d', // 格式化日期年-月-日
+		minDate : '1990/01/01', // 设置最小日期
+		maxDate : '2030/01/01', // 设置最大日期
+	});
+	$('.mydate_minute').datetimepicker({
+		yearStart : 1990, // 设置最小年份
+		yearEnd : 2050, // 设置最大年份
+		yearOffset : 0, // 年偏差
+		timepicker : true, // 关闭时间选项
+		format : 'Y-m-d H:i', // 格式化日期年-月-日
+		minDate : '1990/01/01', // 设置最小日期
+		maxDate : '2030/01/01', // 设置最大日期
+	});
 </script>
+
 </body>
 
 </html>
