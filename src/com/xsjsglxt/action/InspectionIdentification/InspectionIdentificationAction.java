@@ -19,6 +19,7 @@ import com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter;
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
 import com.xsjsglxt.domain.DO.xsjsglxt_damage_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_death_inspection_record;
+import com.xsjsglxt.domain.DO.xsjsglxt_entrustment_sample;
 import com.xsjsglxt.domain.DO.xsjsglxt_identifieder_case_confirm_book;
 import com.xsjsglxt.domain.DO.xsjsglxt_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform;
@@ -40,10 +41,14 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	private EntrustmentBookManagementVO entrustmentBookManagementVO;
 	// 批量的委托书ID
 	private List<String> listCheckEntrustmentBookId;
+	// 批量的检材
+	private List<String> listEntrustmentSample;
 	// 鉴定事项确认书
 	private xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook;
 	// 尸体检验记录表
 	private xsjsglxt_death_inspection_record deathInspectionRecord;
+	// 检材表
+	private xsjsglxt_entrustment_sample entrustment_sample;
 	// 损伤检验记录表
 	private xsjsglxt_damage_inspection_record damageInspectionRecord;
 	// 不受理委托鉴定告知
@@ -63,6 +68,8 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	// 文件类型
 	private String[] deathContentType;
 	// 判断文件顺序
+	// 1: 有
+	// 2 ： 无
 	private String[] positionFile;
 
 	/**
@@ -155,9 +162,22 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void addDeathInspectionRecord() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			System.out.println("ggg");
-			System.out.println("fff:" + deathFileName.length);
-			response.getWriter().write("" + inspectionIdentificationService.saveDeathInspectionRecord(deathInspectionRecord, death, deathFileName, positionFile));
+			System.out.println(deathFileName.toString());
+			response.getWriter().write("" + inspectionIdentificationService
+					.saveDeathInspectionRecord(deathInspectionRecord, death, deathFileName, positionFile));
+		} catch (IOException e) {
+			System.out.println("填写尸体检验记录表报错");
+			e.printStackTrace();
+		}
+	}
+
+	// 填写检材 表
+	public void addEntrustmentSample() {
+		System.out.println(entrustment_sample);
+		try {
+			response.setContentType("text/html;charset=utf-8");
+			System.out.println(deathFileName.toString());
+			response.getWriter().write("" + inspectionIdentificationService.saveEntrustmentSample(entrustment_sample));
 		} catch (IOException e) {
 			System.out.println("填写尸体检验记录表报错");
 			e.printStackTrace();
@@ -168,9 +188,9 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void addDamageInspectionRecord() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			System.out.println("lplp:" + damageInspectionRecord.getDamage_inspection_record_belong_entrustment_book());
-			response.getWriter()
-					.write("" + inspectionIdentificationService.saveDamageInspectionRecord(damageInspectionRecord));
+			System.out.println("ff");
+			response.getWriter().write("" + inspectionIdentificationService
+					.saveDamageInspectionRecord(damageInspectionRecord, death, deathFileName, positionFile));
 		} catch (IOException e) {
 			System.out.println("填写损伤检验记录表报错");
 			e.printStackTrace();
@@ -184,6 +204,18 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 			response.getWriter().write("" + inspectionIdentificationService.saveAppraisalLetter(appraisalLetter));
 		} catch (IOException e) {
 			System.out.println("填写鉴定文书表报错");
+			e.printStackTrace();
+		}
+	}
+
+	// 单独删除检材
+	public void deleteEntrustmentSample() {
+		try {
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter()
+					.write("" + inspectionIdentificationService.deleteEntrustmentSample(listEntrustmentSample));
+		} catch (IOException e) {
+			System.out.println("删除检材表报错");
 			e.printStackTrace();
 		}
 	}
@@ -238,7 +270,8 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void updateDeathInspectionRecord() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			response.getWriter().write("" + inspectionIdentificationService.updateDeathInspectionRecord(deathInspectionRecord, death, deathFileName, positionFile));
+			response.getWriter().write("" + inspectionIdentificationService
+					.updateDeathInspectionRecord(deathInspectionRecord, death, deathFileName, positionFile));
 		} catch (IOException e) {
 			System.out.println("更改尸体检验记录表报错");
 			e.printStackTrace();
@@ -246,12 +279,12 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	}
 
 	// 更改损伤检验记录表
-	public void uodateDamageInspectionRecord() {
+	public void updateDamageInspectionRecord() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
 			System.out.println("lplp:" + damageInspectionRecord.getDamage_inspection_record_belong_entrustment_book());
-			response.getWriter()
-					.write("" + inspectionIdentificationService.updateDamageInspectionRecord(damageInspectionRecord));
+			response.getWriter().write("" + inspectionIdentificationService
+					.updateDamageInspectionRecord(damageInspectionRecord, death, deathFileName, positionFile));
 		} catch (IOException e) {
 			System.out.println("更改损伤检验记录表报错");
 			e.printStackTrace();
@@ -269,6 +302,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		}
 	}
 
+	// 导出检验委托书
 	public String exportTranceCheckBook() throws Exception {
 		File exportTranceCheckBookFile = inspectionIdentificationService
 				.exportTranceCheckBook(tranceCheckBook.getXsjsglxt_check_entrustment_book_id());
@@ -281,6 +315,123 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		return "exportTranceCheckBook";
 	}
 
+	// 导出确认书
+	public String exportConfirmBook() throws Exception {
+		File exportConfirmBookFile = inspectionIdentificationService.exportIdentifiederCaseConfirmBook(
+				identifiederCaseConfirmBook.getXsjsglxt_identifieder_case_confirm_book_id());
+		fileName = inspectionIdentificationService.exportIdentifiederCaseConfirmBookName(
+				identifiederCaseConfirmBook.getXsjsglxt_identifieder_case_confirm_book_id());
+		if (fileName != null) {
+			fileName = new String(("检验事项确认书：" + fileName + ".docx").getBytes("GBK"), "ISO-8859-1");
+		} else {
+			fileName = new String(("鉴定事项确认书：" + ".docx").getBytes("GBK"), "ISO-8859-1");
+		}
+		inputStream = new FileInputStream(exportConfirmBookFile);
+		exportConfirmBookFile.delete();
+		return "exportConfirmBook";
+	}
+
+	// 导出受理回执
+	// 接收：确认书ID
+	public String exportAcceptanceReturnReceipt() throws Exception {
+		File exportAcceptanceReturnReceiptFile = inspectionIdentificationService.exportAcceptanceReturnReceipt(
+				identifiederCaseConfirmBook.getXsjsglxt_identifieder_case_confirm_book_id());
+		fileName = inspectionIdentificationService.exportIdentifiederCaseConfirmBookName(
+				identifiederCaseConfirmBook.getXsjsglxt_identifieder_case_confirm_book_id());
+		if (fileName != null) {
+			fileName = new String(("受理回执单：" + fileName + ".docx").getBytes("GBK"), "ISO-8859-1");
+		} else {
+			fileName = new String(("受理回执单：" + ".docx").getBytes("GBK"), "ISO-8859-1");
+		}
+		inputStream = new FileInputStream(exportAcceptanceReturnReceiptFile);
+		exportAcceptanceReturnReceiptFile.delete();
+		return "exportAcceptanceReturnReceipt";
+	}
+
+	//
+	public String exportNotAcceptanceIdentifieder() throws Exception {
+
+		File exportNotAcceptanceIdentifiederFile = inspectionIdentificationService.exportNotAcceptanceIdentifieder(
+				notAcceptanceEntrustmentInform.getXsjsglxt_not_acceptance_entrustment_inform_id());
+		// 获取委托书编号
+		fileName = inspectionIdentificationService.exportNotAccetpBookName(
+				notAcceptanceEntrustmentInform.getXsjsglxt_not_acceptance_entrustment_inform_id());
+		if (fileName != null) {
+			fileName = new String(("不受理受理回执单：" + fileName + ".docx").getBytes("GBK"), "ISO-8859-1");
+		} else {
+			fileName = new String(("不受理回执单：" + ".docx").getBytes("GBK"), "ISO-8859-1");
+		}
+		inputStream = new FileInputStream(exportNotAcceptanceIdentifiederFile);
+		exportNotAcceptanceIdentifiederFile.delete();
+		return "exportNotAcceptanceIdentifieder";
+	}
+
+	//
+	public String exportInspectionRecord() throws Exception {
+		File exportInspectionRecordFile = inspectionIdentificationService
+				.exportInspectionRecord(inspectionRecord.getXsjsglxt_inspection_record_id());
+		// 获取委托书编号
+		fileName = inspectionIdentificationService
+				.exportInspectionRecordName(inspectionRecord.getXsjsglxt_inspection_record_id());
+		if (fileName != null) {
+			fileName = new String(("痕迹检验记录：" + fileName + ".docx").getBytes("GBK"), "ISO-8859-1");
+		} else {
+			fileName = new String(("痕迹检验记录：" + ".docx").getBytes("GBK"), "ISO-8859-1");
+		}
+		inputStream = new FileInputStream(exportInspectionRecordFile);
+		exportInspectionRecordFile.delete();
+		return "export";
+	}
+
+	//
+	public String exportDeathInspectionRecord() throws Exception {
+		File exportDeathInspectionRecordFile = inspectionIdentificationService
+				.exportDeathInspectionRecord(deathInspectionRecord.getXsjsglxt_death_inspection_record_id());
+		fileName = inspectionIdentificationService
+				.exportDeathInspectionRecordName(deathInspectionRecord.getXsjsglxt_death_inspection_record_id());
+		if (fileName != null) {
+			fileName = new String(("死因检验记录：" + fileName + ".docx").getBytes("GBK"), "ISO-8859-1");
+		} else {
+			fileName = new String(("死因检验记录：" + ".docx").getBytes("GBK"), "ISO-8859-1");
+		}
+		inputStream = new FileInputStream(exportDeathInspectionRecordFile);
+		exportDeathInspectionRecordFile.delete();
+		return "export";
+	}
+
+	//
+	public String exportDamageInspectionRecord() throws Exception {
+		File exportDamageInspectionRecordFile = inspectionIdentificationService
+				.exportDamageInspectionRecord(damageInspectionRecord.getXsjsglxt_damage_inspection_record_id());
+		fileName = inspectionIdentificationService
+				.exportDamageInspectionRecordName(damageInspectionRecord.getXsjsglxt_damage_inspection_record_id());
+		if (fileName != null) {
+			fileName = new String(("损伤检验记录：" + fileName + ".docx").getBytes("GBK"), "ISO-8859-1");
+		} else {
+			fileName = new String(("损伤检验记录：" + ".docx").getBytes("GBK"), "ISO-8859-1");
+		}
+		inputStream = new FileInputStream(exportDamageInspectionRecordFile);
+		exportDamageInspectionRecordFile.delete();
+		return "export";
+	}
+
+	//
+	public String exportAppraisalLetter() throws Exception {
+		File exportAppraisalLetterFile = inspectionIdentificationService
+				.exportAppraisalLetter(appraisalLetter.getXsjsglxt_appraisal_letter_id());
+		fileName = inspectionIdentificationService
+				.exportAppraisalLetterName(appraisalLetter.getXsjsglxt_appraisal_letter_id());
+		if (fileName != null) {
+			fileName = new String(("鉴定书：" + fileName + ".docx").getBytes("GBK"), "ISO-8859-1");
+		} else {
+			fileName = new String(("鉴定书：" + ".docx").getBytes("GBK"), "ISO-8859-1");
+		}
+		inputStream = new FileInputStream(exportAppraisalLetterFile);
+		exportAppraisalLetterFile.delete();
+		return "export";
+	}
+
+	//
 	/**
 	 * 
 	 * 
@@ -292,6 +443,14 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void setServletRequest(HttpServletRequest request) {
 		this.request = request;
 
+	}
+
+	public xsjsglxt_entrustment_sample getEntrustment_sample() {
+		return entrustment_sample;
+	}
+
+	public void setEntrustment_sample(xsjsglxt_entrustment_sample entrustment_sample) {
+		this.entrustment_sample = entrustment_sample;
 	}
 
 	public xsjsglxt_appraisal_letter getAppraisalLetter() {
@@ -442,6 +601,14 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 
 	public void setPositionFile(String[] positionFile) {
 		this.positionFile = positionFile;
+	}
+
+	public List<String> getListEntrustmentSample() {
+		return listEntrustmentSample;
+	}
+
+	public void setListEntrustmentSample(List<String> listEntrustmentSample) {
+		this.listEntrustmentSample = listEntrustmentSample;
 	}
 
 }

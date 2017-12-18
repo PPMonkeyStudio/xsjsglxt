@@ -1,6 +1,5 @@
 package xsjsglxt;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter;
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
+import com.xsjsglxt.domain.DO.xsjsglxt_entrustment_sample;
 import com.xsjsglxt.domain.DO.xsjsglxt_identifieder_case_confirm_book;
 import com.xsjsglxt.domain.DO.xsjsglxt_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform;
@@ -44,16 +44,16 @@ public class testCheck {
 	@Test
 	public void listShow() {
 		EntrustmentBookManagementVO checkEntrustmentBookVO = new EntrustmentBookManagementVO();
-		checkEntrustmentBookVO.setEntrustmentRequire("2");
 		checkEntrustmentBookVO = inspectionIdentificationService.getListCheckEntrustmentBook(checkEntrustmentBookVO);
 		System.out.println(checkEntrustmentBookVO.getListEntrustmentBookManagementDTO());
+		System.out.println(checkEntrustmentBookVO.getTotalRecords());
 	}
 
 	// 测试批量删除
 	@Test
 	public void deleteTest() {
 		List<String> listtt = new ArrayList<>();
-		listtt.add("35615e16-e38a-4eda-9446-9a9b2f3d0e3d");
+		listtt.add("1fea3836-5853-4fa7-b6f5-c13f400ef64b");
 		int i = inspectionIdentificationService.deleteListCheckEntrustmentBook(listtt);
 		System.out.println(i);
 	}
@@ -84,6 +84,14 @@ public class testCheck {
 		xsjsglxt_inspection_record inspection_record = new xsjsglxt_inspection_record();
 		inspection_record.setInspection_belong_entrustment_book("35615e16-e38a-4eda-9446-9a9b2f3d0e3d");
 		System.out.println(inspectionIdentificationService.saveInspectionRecord(inspection_record));
+	}
+
+	// 填写检材
+	@Test
+	public void addfdf() {
+		xsjsglxt_entrustment_sample xsjsglxt_entrustment_sample = new xsjsglxt_entrustment_sample();
+		xsjsglxt_entrustment_sample.setEntrustment_sample_belong_entrustment_book("1fea3836-5853-4fa7-b6f5-c13f400ef64b");
+		System.out.println(inspectionIdentificationService.saveEntrustmentSample(xsjsglxt_entrustment_sample));
 	}
 
 	// 填写鉴定书
@@ -138,7 +146,7 @@ public class testCheck {
 	@Test
 	public void testExport() {
 		try {
-			inspectionIdentificationService.exportTranceCheckBook("14a289b8-7856-40da-a787-f27277573422");
+			inspectionIdentificationService.exportTranceCheckBook("2277ce49-9b79-4e1a-a869-ce92cb180101");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -148,7 +156,54 @@ public class testCheck {
 	@Test
 	public void testEEE() {
 		try {
-			inspectionIdentificationService.exportIdentifiederCaseConfirmBook("58a6031e-501b-4c7f-8272-1bf609ddaf5a");
+			inspectionIdentificationService.exportIdentifiederCaseConfirmBook("becfcdb5-042a-4dff-9bcf-674f704baf25");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	// 导出受理回执
+	@Test
+	public void testEdEE() {
+		try {
+			inspectionIdentificationService.exportAcceptanceReturnReceipt("becfcdb5-042a-4dff-9bcf-674f704baf25");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	// ee36054b-aa21-45a8-85ab-408c806d196b
+	@Test
+	public void testdddEE() {
+		try {
+			inspectionIdentificationService.exportNotAcceptanceIdentifieder("5501c173-06e2-4971-b743-23a19aadd2b9");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void testddsdEE() {
+		try {
+			inspectionIdentificationService.exportInspectionRecord("ee36054b-aa21-45a8-85ab-408c806d196b");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void testddssdEE() {
+		try {
+			inspectionIdentificationService.exportDeathInspectionRecord("2869b796-e10d-47b4-be2d-4f1db2a023d4");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void testddsdsdEE() {
+		try {
+			inspectionIdentificationService.exportDamageInspectionRecord("52a2849f-3eed-4edd-9c12-503da4dfa96d");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -1,9 +1,12 @@
 package com.xsjsglxt.domain.DTO.InspectionIdentification;
 
+import java.util.List;
+
 import com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter;
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
 import com.xsjsglxt.domain.DO.xsjsglxt_damage_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_death_inspection_record;
+import com.xsjsglxt.domain.DO.xsjsglxt_entrustment_sample;
 import com.xsjsglxt.domain.DO.xsjsglxt_identifieder_case_confirm_book;
 import com.xsjsglxt.domain.DO.xsjsglxt_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform;
@@ -18,12 +21,24 @@ public class EntrustmentBookManagementDTO {
 	private xsjsglxt_death_inspection_record xsjsglxt_death_inspection_record;
 	private xsjsglxt_damage_inspection_record xsjsglxt_damage_inspection_record;
 
+	// 检材情况
+	private List<xsjsglxt_entrustment_sample> listEntrustmentSample;
+
 	@Override
 	public String toString() {
 		return "EntrustmentBookManagementDTO [xsjsglxt_check_entrustment_book=" + xsjsglxt_check_entrustment_book + ", xsjsglxt_identifieder_case_confirm_book="
 				+ xsjsglxt_identifieder_case_confirm_book + ", xsjsglxt_not_acceptance_entrustment_inform=" + xsjsglxt_not_acceptance_entrustment_inform
 				+ ", xsjsglxt_inspection_record=" + xsjsglxt_inspection_record + ", xsjsglxt_appraisal_letter=" + xsjsglxt_appraisal_letter + ", xsjsglxt_death_inspection_record="
-				+ xsjsglxt_death_inspection_record + ", xsjsglxt_damage_inspection_record=" + xsjsglxt_damage_inspection_record + "]";
+				+ xsjsglxt_death_inspection_record + ", xsjsglxt_damage_inspection_record=" + xsjsglxt_damage_inspection_record + ", listEntrustmentSample=" + listEntrustmentSample
+				+ "]";
+	}
+
+	public List<xsjsglxt_entrustment_sample> getListEntrustmentSample() {
+		return listEntrustmentSample;
+	}
+
+	public void setListEntrustmentSample(List<xsjsglxt_entrustment_sample> listEntrustmentSample) {
+		this.listEntrustmentSample = listEntrustmentSample;
 	}
 
 	public xsjsglxt_check_entrustment_book getXsjsglxt_check_entrustment_book() {

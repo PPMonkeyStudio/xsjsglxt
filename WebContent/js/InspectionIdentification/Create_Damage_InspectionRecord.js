@@ -3,11 +3,16 @@
  */
 function Create_Damage_InspectionRecord(obj) {
 	var json_list = EntrustmentBook_json;
+	for (var num = 0; num < json_list.listEntrustmentBookManagementDTO.length; num++) {
+		if (obj.id == json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id) {
+			break;
+		}
+	}
 	var jc = $
 			.confirm({
 				icon : 'fa fa-pencil-square-o',
 				title : '记录损伤检验过程',
-				content : '<form id="form_Damage_InspectionRecord"><input value="'
+				content : '<form id="form_Damage_InspectionRecord">' + '<input value="'
 						+ obj.id
 						+ '"  class="form-control" name="damageInspectionRecord.damage_inspection_record_belong_entrustment_book"  style="display:none;"/>'
 						+ '<hr>'
@@ -15,7 +20,9 @@ function Create_Damage_InspectionRecord(obj) {
 						+ '<tbody>'
 						+ '<tr>'
 						+ '<td>姓名：</td>'
-						+ '<td><input  class="form-control"  name="damageInspectionRecord.damage_inspection_record_name"/></td>'
+						+ '<td><input  class="form-control"  name="damageInspectionRecord.damage_inspection_record_name" value="'
+						+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_name
+						+ '"/></td>'
 						+ '<td>性别：</td>'
 						+ '<td><select class="form-control" name="damageInspectionRecord.damage_inspection_record_sex">'
 						+ '<option value="男">男</option>'
@@ -42,29 +49,21 @@ function Create_Damage_InspectionRecord(obj) {
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>住址：</td>'
-						+ '<td><input  class="form-control" name="damageInspectionRecord.damage_inspection_record_adress" /></td>'
+						+ '<td><input  class="form-control" name="damageInspectionRecord.damage_inspection_record_adress" value="'
+						+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_address
+						+ '"/></td>'
 						+ '<td>联系方式：</td>'
-						+ '<td><input  class="form-control" name="damageInspectionRecord.damage_inspection_record_phone" /></td>'
+						+ '<td><input  class="form-control" name="damageInspectionRecord.damage_inspection_record_phone" value="'
+						+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_phone
+						+ '"/></td>'
 						+ '</tr>'
 						+ '<tr>'
 						+ '<td>检验所见：</td>'
 						+ '<td colspan="3"><textarea class="form-control" style="resize: none;height:100px;" name="damageInspectionRecord.damage_inspection_record_inspection" ></textarea></td>'
-						+ '</tr>'
-						+ '<tr>'
-						+ '<td>检查人：</td>'
-						+ '<td ><input class="form-control"  name="damageInspectionRecord.damage_inspection_record_inspection_man" /></td>'
-						+ '</tr>'
-						+ '<tr>'
-						+ '<td>损伤检验图：</td>'
-						+ '<td>'
-						+ '<input type="file"   id="create_damage_inspection_record_picture1"   />'
-						+ '<input type="file"   id="create_damage_inspection_record_picture2"   />'
-						+ '<input type="file"   id="create_damage_inspection_record_picture3"   />'
-						+ '</td>'
-						+ '</tr>'
-						+ '</tbody>'
-						+ '</table></form>'
-						+ '<hr>',
+						+ '</tr>' + '<tr>' + '<td>检查人：</td>' + '<td ><input class="form-control"  name="damageInspectionRecord.damage_inspection_record_inspection_man" /></td>'
+						+ '</tr>' + '<tr>' + '<td>损伤检验图：</td>' + '<td>' + '<input type="file"   id="create_damage_inspection_record_picture1"   />'
+						+ '<input type="file"   id="create_damage_inspection_record_picture2"   />' + '<input type="file"   id="create_damage_inspection_record_picture3"   />'
+						+ '</td>' + '</tr>' + '</tbody>' + '</table></form>' + '<hr>',
 				type : 'blue',
 				columnClass : 'col-md-12',
 				onOpenBefore : function() {
@@ -80,19 +79,9 @@ function Create_Damage_InspectionRecord(obj) {
 					 * 
 					 */
 					var date = new Date();
-					document
-							.getElementsByName("damageInspectionRecord.damage_inspection_record_damage_time")[0].value = date
-							.getFullYear()
-							+ '-'
-							+ (parseInt(date.getMonth()) + 1)
-							+ '-'
-							+ date.getDate();
-					document
-							.getElementsByName("damageInspectionRecord.damage_inspection_record_time")[0].value = date
-							.getFullYear()
-							+ '-'
-							+ (parseInt(date.getMonth()) + 1)
-							+ '-'
+					document.getElementsByName("damageInspectionRecord.damage_inspection_record_damage_time")[0].value = date.getFullYear() + '-' + (parseInt(date.getMonth()) + 1)
+							+ '-' + date.getDate();
+					document.getElementsByName("damageInspectionRecord.damage_inspection_record_time")[0].value = date.getFullYear() + '-' + (parseInt(date.getMonth()) + 1) + '-'
 							+ date.getDate();
 					/*
 					 * 
@@ -110,12 +99,18 @@ function Create_Damage_InspectionRecord(obj) {
 					/*
 					 * 
 					 */
-
 				},
 				buttons : {
 					'记录' : {
 						btnClass : 'btn-blue',
 						action : function() {
+							/*
+							 * 
+							 */
+							jc.showLoading(false);
+							/*
+							 * 
+							 */
 							var xhr = false;
 							xhr = new XMLHttpRequest();
 							xhr.onreadystatechange = function() {
@@ -129,64 +124,70 @@ function Create_Damage_InspectionRecord(obj) {
 											List_EntrustmentBook(1);
 										} else {
 											toastr.error("填写格式错误");
+											/*
+											 * 
+											 */
+											jc.hideLoading(true);
+											/*
+											 * 
+											 */
 										}
 									} else {
 										toastr.error(xhr.status);
+										/*
+										 * 
+										 */
+										jc.hideLoading(true);
+										/*
+										 * 
+										 */
 									}
 								}
 							}
 							/*
 							 * 
 							 */
-							// var formData = new FormData(
-							// document
-							// .getElementById("form_Damage_InspectionRecord"));
-							var formData = new FormData(
-									document
-											.getElementById("form_Damage_InspectionRecord"));
+							var formData = new FormData(document.getElementById("form_Damage_InspectionRecord"));
 							/*
 							 * 图片
 							 */
-							var create_damage_inspection_record_picture1 = document
-									.getElementById("create_damage_inspection_record_picture1");
-							var create_damage_inspection_record_picture2 = document
-									.getElementById("create_damage_inspection_record_picture2");
-							var create_damage_inspection_record_picture3 = document
-									.getElementById("create_damage_inspection_record_picture3");
 
-							if (create_damage_inspection_record_picture1.files[0] != null) {
-								formData
-										.append(
-												"deathFile",
-												create_damage_inspection_record_picture1.files[0]);
+							var create_damage_inspection_record_picture1 = document.getElementById("create_damage_inspection_record_picture1");
+							var create_damage_inspection_record_picture2 = document.getElementById("create_damage_inspection_record_picture2");
+							var create_damage_inspection_record_picture3 = document.getElementById("create_damage_inspection_record_picture3");
+
+							if (create_damage_inspection_record_picture1.files[0] == null && create_damage_inspection_record_picture2.files[0] == null
+									&& create_damage_inspection_record_picture3.files[0] == null) {
+								formData.append("positionFile", "2");
+								formData.append("positionFile", "2");
+								formData.append("positionFile", "2");
 							} else {
-								formData.append("deathFile", null);
+								if (create_damage_inspection_record_picture1.files[0] != null) {
+									formData.append("death", create_damage_inspection_record_picture1.files[0]);
+									formData.append("positionFile", "1");
+								} else {
+									formData.append("positionFile", "2");
+								}
+								//
+								if (create_damage_inspection_record_picture2.files[0] != null) {
+									formData.append("death", create_damage_inspection_record_picture2.files[0]);
+									formData.append("positionFile", "1");
+								} else {
+									formData.append("positionFile", "2");
+								}
+								//
+								if (create_damage_inspection_record_picture3.files[0] != null) {
+									formData.append("death", create_damage_inspection_record_picture3.files[0]);
+									formData.append("positionFile", "1");
+								} else {
+									formData.append("positionFile", "2");
+								}
 							}
-							//
-							if (create_damage_inspection_record_picture2.files[0] != null) {
-								formData
-										.append(
-												"deathFile",
-												create_damage_inspection_record_picture2.files[0]);
-							} else {
-								formData.append("deathFile", null);
-							}
-							//
-							if (create_damage_inspection_record_picture3.files[0] != null) {
-								formData
-										.append(
-												"deathFile",
-												create_damage_inspection_record_picture3.files[0]);
-							} else {
-								formData.append("deathFile", null);
-							}
+
 							/*
 							 * 
 							 */
-							xhr
-									.open(
-											"POST",
-											"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_addDamageInspectionRecord");
+							xhr.open("POST", "/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_addDamageInspectionRecord");
 							xhr.send(formData);
 						}
 					},

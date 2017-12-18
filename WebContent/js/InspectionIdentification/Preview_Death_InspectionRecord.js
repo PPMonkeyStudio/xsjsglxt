@@ -7,7 +7,7 @@ function Preview_Death_InspectionRecord(obj) {
 				title : '法医学尸体检验记录',
 				content : '',
 				type : 'green',
-				columnClass : 'col-md-10 col-md-offset-2',
+				columnClass : 'col-md-12',
 				theme : 'modern',
 				onOpenBefore : function() {
 				},
@@ -139,12 +139,62 @@ function Preview_Death_InspectionRecord(obj) {
 									.replace(/\n/g, "<br>").replace(/ /g,
 											"&nbsp;")
 							+ '</p>'
-							+ '<p>尸表检验图：</p>'
+							+ '<table  class="table table-bordered" style="text-align: center;">'
+							+ '<tbody>'
+							+ '<tr>'
+							+ '<td style="width:200px;">尸表检验图：</td>'
+							+ '<td>'
 							+ '<p>'
-							+ '<img id="img1" src="#" onclick="()" style="height: 200px; width: 200px; margin:0 20px 0 0;" />'
-							+ '<img id="img1" src="#" onclick="()" style="height: 200px; width: 200px; margin:0 20px 0 0;" />'
-							+ '<img id="img1" src="#" onclick="()" style="height: 200px; width: 200px; " />'
+							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDeathPicture?imgName='
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.xsjsglxt_death_inspection_record_id
+							+ '_'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_autopsy_table_test_picture1
+							+ '" onclick="()" style="width:300px; margin:20px auto;"  />'
 							+ '</p>'
+							+ '<p>'
+							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDeathPicture?imgName='
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.xsjsglxt_death_inspection_record_id
+							+ '_'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_autopsy_table_test_picture2
+							+ '" onclick="()" style="width:300px; margin:20px auto;"  />'
+							+ '</p>'
+							+ '<p>'
+							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDeathPicture?imgName='
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.xsjsglxt_death_inspection_record_id
+							+ '_'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_autopsy_table_test_picture3
+							+ '" onclick="()" style="width:300px; margin:20px auto;"  />'
+							+ '</p>'
+							+ '</td>'
+							+ '</tr>'
+							+ '<tr>'
+							+ '<td>解剖检验图：</td>'
+							+ '<td>'
+							+ '<p>'
+							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDeathPicture?imgName='
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.xsjsglxt_death_inspection_record_id
+							+ '_'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_anatomy_picture1
+							+ '"  style="width:300px; margin:20px auto;" />'
+							+ '</p>'
+							+ '<p>'
+							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDeathPicture?imgName='
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.xsjsglxt_death_inspection_record_id
+							+ '_'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_anatomy_picture2
+							+ '"  style="width:300px; margin:20px auto;"  />'
+							+ '</p>'
+							+ '<p>'
+							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDeathPicture?imgName='
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.xsjsglxt_death_inspection_record_id
+							+ '_'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_anatomy_picture3
+							+ '"  style="width:300px; margin:20px auto;"  />'
+							+ '</p>'
+							+ '</td>'
+							+ '</tr>'
+							+ '</tbody>'
+							+ '</table>'
 							+ '<p>解剖时间：'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_anatomic_time
 									.substring(0, 4)
@@ -164,12 +214,6 @@ function Preview_Death_InspectionRecord(obj) {
 							+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;解剖地点：'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_anatomic_place
 							+ '</p>'
-							+ '<p>解剖检验图：</p>'
-							+ '<p>'
-							+ '<img id="img1" src="#" onclick="()" style="height: 200px; width: 200px; margin:0 20px 0 0;" />'
-							+ '<img id="img1" src="#" onclick="()" style="height: 200px; width: 200px; margin:0 20px 0 0;" />'
-							+ '<img id="img1" src="#" onclick="()" style="height: 200px; width: 200px; " />'
-							+ '</p>'
 							+ '<p>尸体检验拍照人：'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_autopsy_table_test_photographer
 							+ '</p>'
@@ -187,8 +231,45 @@ function Preview_Death_InspectionRecord(obj) {
 									.substring(5, 7)
 							+ '月'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_autopsy_table_test_recorder_time
-									.substring(8, 11) + '日' + '</p>' + '</div>';
+									.substring(8, 11)
+							+ '日'
+							+ '</p>'
+							+ '</div>'
+							+ '<br>'
+							+ '<h4>'
+							+ '检材提取及处置'
+							+ '</h4>'
+							+ '<table  class="table table-bordered" style="text-align: center;">'
+							+ '<tbody>'
+							+ '<tr><td>编号</td><td>检材名称</td><td>提取部位</td><td>提取方法</td><td>数量</td><td>包装</td><td>用途</td><td>全选</td></tr>'
+							+ '</tbody>' + '</table>';
 					jc.setContentAppend(con);
+					/*
+					 * 
+					 */
+					var xhr = false;
+					xhr = new XMLHttpRequest();
+					xhr.onreadystatechange = function() {
+						var message;
+						if (xhr.readyState == 4) {
+							if (xhr.status == 200) {
+								if (xhr.responseText == 1) {
+								} else {
+
+								}
+							} else {
+								toastr.error(xhr.status);
+							}
+						}
+					}
+					/*
+					 * 
+					 */
+					var formData = new FormData();
+
+					/*
+					 * 
+					 */
 				},
 				buttons : {
 					'导出' : {
@@ -200,6 +281,82 @@ function Preview_Death_InspectionRecord(obj) {
 					'修改' : {
 						btnClass : 'btn-orange',
 						action : function() {
+							jc.close();
+							Update_Death_InspectionRecord(obj);
+							return false;
+						}
+					},
+					'添加检材记录' : {
+						btnClass : 'btn-green',
+						action : function() {
+							var jc2 = $
+									.confirm({
+										title : '添加检材记录',
+										content : '<form id="form_entrustment_sample">'
+												+ '<input value="'
+												+ obj.id
+												+ '"  class="form-control" name="entrustment_sample.entrustment_sample_belong_entrustment_book" style="display:none;"/>'
+												+ '<hr>'
+												+ '<table  class="table table-bordered" style="text-align: center;">'
+												+ '<tbody>'
+												+ '<tr><td>检材名称：</td>'
+												+ '<td><input  class="form-control" name="entrustment_sample.entrustment_sample_name"  /></td></tr>'
+												+ '<tr><td>提取部位：</td>'
+												+ '<td><input  class="form-control" name="entrustment_sample.entrustment_sample_position"  /></td></tr>'
+												+ '<tr><td>提取方法：</td>'
+												+ '<td><input  class="form-control" name="entrustment_sample.entrustment_sample_way"  /></td></tr>'
+												+ '<tr><td>数量：</td>'
+												+ '<td><input  class="form-control" name="entrustment_sample.entrustment_sample_amount"  /></td></tr>'
+												+ '<tr><td>包装：</td>'
+												+ '<td><input  class="form-control" name="entrustment_sample.entrustment_sample_packaging"  /></td></tr>'
+												+ '<tr><td>用途：</td>'
+												+ '<td><input  class="form-control" name="entrustment_sample.etrustment_sample_use"  /></td></tr>'
+												+ '</tbody>'
+												+ '</table>'
+												+ '</form>',
+										columnClass : 'col-md-8 col-md-offset-2',
+										onOpenBefore : function() {
+										},
+										onContentReady : function() {
+										},
+										buttons : {
+											'确认' : {
+												btnClass : 'btn-green',
+												action : function() {
+													var xhr = false;
+													xhr = new XMLHttpRequest();
+													xhr.onreadystatechange = function() {
+														var message;
+														if (xhr.readyState == 4) {
+															if (xhr.status == 200) {
+																if (xhr.responseText == 1) {
+																	toastr
+																			.success("操作成功");
+																} else {
+
+																}
+															} else {
+																toastr
+																		.error(xhr.status);
+															}
+														}
+													}
+													var formData = new FormData(
+															document
+																	.getElementById("form_entrustment_sample"));
+													xhr
+															.open("POST",
+																	"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_addEntrustmentSample");
+													xhr.send(formData);
+													/*
+													 * 
+													 */
+												}
+											},
+											'放弃' : function() {
+											}
+										}
+									});
 							return false;
 						}
 					},
@@ -207,4 +364,5 @@ function Preview_Death_InspectionRecord(obj) {
 					}
 				}
 			});
+
 }

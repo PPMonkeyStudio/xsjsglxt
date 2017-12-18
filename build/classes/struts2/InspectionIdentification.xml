@@ -18,6 +18,57 @@
 				</param>
 				<param name="bufferSize">1024</param>
 			</result>
+			<result name="exportConfirmBook" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">
+					filename=${fileName}
+				</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="exportAcceptanceReturnReceipt" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">
+					filename=${fileName}
+				</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="exportNotAcceptanceIdentifieder" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">
+					filename=${fileName}
+				</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="export" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">
+					filename=${fileName}
+				</param>
+				<param name="bufferSize">1024</param>
+			</result>
 		</action>
+		<action name="img_*"
+			class="com.xsjsglxt.action.InspectionIdentification.ImgAction"
+			method="{1}">
+			<result name="getImg" type="stream">
+				<!-- 指定下载文件的类型 -->
+				<param name="contentType">image/*</param>
+				<!-- 返回流 inputName为action中的流变量名称 -->
+				<param name="inputName">inputStream</param>
+				<!-- attachment 这个参数可以设置成下载时是否出现个下载提示框，或者直接打开的。 -->
+				<!-- fileName指定生成的文件名字(适合动态生成文件名，比如做报表时，一般都要说是几月的统计数据之类)为action中变量 -->
+				<param name="contentDisposition">
+					filename=${fileImgName}
+				</param>
+				<!-- 指定下载文件时的缓冲大小 -->
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+
 	</package>
 </struts>

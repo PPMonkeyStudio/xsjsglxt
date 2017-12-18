@@ -56,6 +56,7 @@ public class UserAction extends ActionSupport {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = response.getWriter();
 		if (!userService.judgeUserByUsername(user_username)) {
+
 			pw.write("UserNoExist");
 		} else {
 			xsjsglxt_user xu = userService.getUserByUsername(user_username);
@@ -65,6 +66,7 @@ public class UserAction extends ActionSupport {
 				pw.write("loginSuccess");
 				ActionContext.getContext().getSession().put("user_id", xu.getUser_id());
 				ActionContext.getContext().getSession().put("user_name", xu.getUser_name());
+
 			} else {
 				pw.write("passwordError");
 
@@ -94,7 +96,9 @@ public class UserAction extends ActionSupport {
 			} else {
 				pw.write("oldPasswordError");
 			}
-		} else {
+		} else
+
+		{
 			pw.write("updateFail");
 		}
 	}
@@ -108,14 +112,14 @@ public class UserAction extends ActionSupport {
 	}
 
 	/**
-	 * °´Ìõ¼þ·ÖÒ³»ñÈ¡ÓÃ»§
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½È¡ï¿½Ã»ï¿½
+	 * 
 	 * @param queryString
-	 * 		  ²éÑ¯Ìõ¼þ
-	 * @param currPage 
-	 * 		 µ±Ç°Ò³Êý	
-	 * @return 
-	 * 		 void
-	 * @throws IOException 
+	 *            ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
+	 * @param currPage
+	 *            ï¿½ï¿½Ç°Ò³ï¿½ï¿½
+	 * @return void
+	 * @throws IOException
 	 */
 
 	public void getUser() throws IOException {
@@ -132,11 +136,10 @@ public class UserAction extends ActionSupport {
 	}
 
 	/**
-	 * ÐÂÔöÓÃ»§
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
 	 * 
-	 * @return 
-	 *       void
-	 * @throws IOException 
+	 * @return void
+	 * @throws IOException
 	 */
 
 	public void addUser() throws IOException {
@@ -158,13 +161,13 @@ public class UserAction extends ActionSupport {
 		xu.setUser_technology_manager_power(user_technology_manager_power);
 		xu.setUser_units(user_units);
 		xu.setUser_user_manager_power(user_user_manager_power);
-		// ÅÐ¶ÏÓÃ»§ÃûÊÇ·ñÎ¨Ò»
+		// ï¿½Ð¶ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Î¨Ò»
 		if (userService.judgeUserByUsername(user_username)) {
-			pw.write("ÓÃ»§ÃûÒÑ¾­´æÔÚ");
+			pw.write("ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½");
 		} else {
 			xu.setUser_username(user_username);
 			userService.addUser(xu);
-			pw.write("ÐÂÔöÓÃ»§³É¹¦");
+			pw.write("ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½É¹ï¿½");
 		}
 
 		pw.flush();
@@ -172,13 +175,11 @@ public class UserAction extends ActionSupport {
 	}
 
 	/**
-	 * Í¨¹ýÓÃ»§id»ñµÃÓÃ»§
+	 * Í¨ï¿½ï¿½ï¿½Ã»ï¿½idï¿½ï¿½ï¿½ï¿½Ã»ï¿½
 	 * 
-	 * @param
-	 * 		user_id
-	 * @return 
-	 * 		 void 
-	 * @throws IOException 
+	 * @param user_id
+	 * @return void
+	 * @throws IOException
 	 * 
 	 */
 
@@ -195,8 +196,7 @@ public class UserAction extends ActionSupport {
 	}
 
 	/**
-	 * @return 
-	 * 		void
+	 * @return void
 	 */
 
 	public void updateUser() {
@@ -225,12 +225,10 @@ public class UserAction extends ActionSupport {
 	}
 
 	/**
-	 * @param
-	 * 		user_id
+	 * @param user_id
 	 * 
-	 * @return
-	 *    	void
-	 * @throws IOException 
+	 * @return void
+	 * @throws IOException
 	 */
 
 	public void deleteUser() throws IOException {
@@ -238,12 +236,12 @@ public class UserAction extends ActionSupport {
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = response.getWriter();
-		pw.write("É¾³ý³É¹¦");
+		pw.write("É¾ï¿½ï¿½ï¿½É¹ï¿½");
 		pw.flush();
 		pw.close();
 	}
 
-	// --------------------------------------------------------ÇëÇó²ÎÊý--------------------------------------------------------------
+	// --------------------------------------------------------ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½--------------------------------------------------------------
 	/*
 	 *
 	 * 

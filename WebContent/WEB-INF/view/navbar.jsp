@@ -75,7 +75,8 @@
 					</ul></li>
 				<!--  -->
 				<li class="dropdown" style="float: left;"><a
-					href="<%=basePath%>inspectionIdentific/EntrustmentBookManagement_EntrustmentBookManagement"> <span>检验鉴定</span>
+					href="<%=basePath%>inspectionIdentific/EntrustmentBookManagement_EntrustmentBookManagement">
+						<span>检验鉴定</span>
 				</a></li>
 				<!--  -->
 				<li class="dropdown" style="float: left;"><a href="#"
@@ -194,7 +195,8 @@ td .label {
 	line-height: 33px !important;
 }
 
-table {
+table select {
+	text-align: center !important;
 }
 
 table select {
@@ -202,5 +204,6 @@ table select {
 }
 </style>
 <script>
+	
 </script>
 </html>

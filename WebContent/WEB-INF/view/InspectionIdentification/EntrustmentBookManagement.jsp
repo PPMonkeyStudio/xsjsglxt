@@ -27,17 +27,31 @@
 		<div class="panel" style="width: 95%; margin: 20px auto;">
 			<!--  -->
 			<div class="panel-heading">
-				<h3 class="panel-title">委托书管理</h3>
+				<h3 class="panel-title useClass" >委托书管理</h3>
 			</div>
 			<!--  -->
 			<div class="panel-body">
+				<div style="height: 34px; margin: 0 0 20px 0;">
+
+					<input id="" class="form-control mydate" placeholder="XXXX-XX-XX"
+						style="width: 150px; float: right; margin: 0 0 0 20px; text-align: center;"
+						oninput="" type="text">
+					<%--  --%>
+					<span style="float: right; margin: 0 0 0 20px; line-height: 34px;">至</span>
+					<!--  -->
+					<input id="" class="form-control mydate" placeholder="XXXX-XX-XX"
+						style="width: 150px; float: right; text-align: center;" oninput=""
+						type="text">
+					<%--  --%>
+					<span style="float: right; margin: 0 0 0 20px; line-height: 34px;">按日期筛选：</span>
+				</div>
 				<div style="height: 34px;">
 					<div style="width: 500px; float: left;">
 						<button class="btn btn-default"
 							id="button_Create_TranceCheckEntrustmentBook">
 							<i class="fa fa-pencil-square-o"></i> 痕迹检验委托鉴定
 						</button>
-						<button class="btn btn-default"
+						<button class="btn btn-default "
 							id="button_Create_ForensicCheckEntrustmentBook">
 							<i class="fa fa-pencil-square-o"></i> 法医检验委托鉴定
 						</button>
@@ -50,7 +64,7 @@
 						</span>
 					</div>
 				</div>
-				<table id="table_EntrustmentBook" class="table table-hover"
+				<table id="table_EntrustmentBook" class="table table-hover "
 					style="text-align: center; margin: 20px 0;">
 					<tbody>
 						<tr>
@@ -98,9 +112,9 @@
 									<option value="已鉴定">已鉴定</option>
 							</select></th>
 							<th>操作</th>
-							<th><label class="fancy-checkbox"> <input
-									id="checkbox_all_select" type="checkbox" onclick="all_select()">
-									<span>全选</span>
+							<th style="width: 100px;"><label class="fancy-checkbox">
+									<input id="checkbox_all_select" type="checkbox"
+									onclick="all_select()"> <span>全选</span>
 							</label></th>
 						</tr>
 					</tbody>
@@ -148,9 +162,7 @@
 	List_EntrustmentBook(1);
 </script>
 <script type="text/javascript"
-	src="<%=basePath%>js/InspectionIdentification/Create_TranceCheckEntrustmentBook.js"></script>
-<script type="text/javascript"
-	src="<%=basePath%>js/InspectionIdentification/Create_ForensicCheckEntrustmentBook.js"></script>
+	src="<%=basePath%>js/InspectionIdentification/Create_EntrustmentBook.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/InspectionIdentification/Remove_EntrustmentBook.js"></script>
 <script type="text/javascript"
@@ -187,6 +199,16 @@
 	src="<%=basePath%>js/InspectionIdentification/Update_EntrustmentBook.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/InspectionIdentification/Update_ConfirmBook.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/InspectionIdentification/Update_NotAcceptanceEntrustmentInform.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/InspectionIdentification/Update_InspectionRecord.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/InspectionIdentification/Update_Death_InspectionRecord.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/InspectionIdentification/Update_Damage_InspectionRecord.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/InspectionIdentification/Update_AppraisalLetter.js"></script>
 <!---------------------------------------------------------------------------------------->
 <link rel="stylesheet" href="<%=basePath%>css/square/blue.css" />
 <script type="text/javascript" src="<%=basePath%>js/icheck.js"></script>
@@ -196,4 +218,25 @@ li a {
 	cursor: pointer;
 }
 </style>
+<script type="text/javascript">
+	$.datetimepicker.setLocale('ch');
+	$('.mydate').datetimepicker({
+		yearStart : 1990, // 设置最小年份
+		yearEnd : 2050, // 设置最大年份
+		yearOffset : 0, // 年偏差
+		timepicker : false, // 关闭时间选项
+		format : 'Y-m-d', // 格式化日期年-月-日
+		minDate : '1990/01/01', // 设置最小日期
+		maxDate : '2030/01/01', // 设置最大日期
+	});
+	$('.mydate_minute').datetimepicker({
+		yearStart : 1990, // 设置最小年份
+		yearEnd : 2050, // 设置最大年份
+		yearOffset : 0, // 年偏差
+		timepicker : true, // 关闭时间选项
+		format : 'Y-m-d H:i', // 格式化日期年-月-日
+		minDate : '1990/01/01', // 设置最小日期
+		maxDate : '2030/01/01', // 设置最大日期
+	});
+</script>
 </html>

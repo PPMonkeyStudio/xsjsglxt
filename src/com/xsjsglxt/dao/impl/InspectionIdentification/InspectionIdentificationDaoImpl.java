@@ -13,6 +13,7 @@ import com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter;
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
 import com.xsjsglxt.domain.DO.xsjsglxt_damage_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_death_inspection_record;
+import com.xsjsglxt.domain.DO.xsjsglxt_entrustment_sample;
 import com.xsjsglxt.domain.DO.xsjsglxt_identifieder_case_confirm_book;
 import com.xsjsglxt.domain.DO.xsjsglxt_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform;
@@ -40,6 +41,23 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 			e.printStackTrace();
 		}
 		getSession().flush();
+		return i;
+	}
+
+	@Override
+	public int getMaxEntrustmentSample(String entrustment_sample_belong_entrustment_book) {
+		int i = 0;
+		String ji = "";
+		String hql = "select entrustment_sample_num from xsjsglxt_entrustment_sample where entrustment_sample_belong_entrustment_book='"
+				+ entrustment_sample_belong_entrustment_book + "' order by --entrustment_sample_num desc limit 1";
+		Query query = getSession().createSQLQuery(hql);
+		ji = (String) query.uniqueResult();
+		if (ji == null || ji.trim().length() <= 0) {
+			getSession().clear();
+			return 0;
+		}
+		i = Integer.parseInt(ji);
+		getSession().clear();
 		return i;
 	}
 
@@ -102,9 +120,6 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 				+ "' and check_entrustment_book_inspect_time<='" + stopTime
 				+ "' order by check_entrustment_book_inspect_time,check_entrustment_book_num desc";
 		Query query = getSession().createQuery(hql);
-
-		System.out.println(hql);
-
 		i = (Long) query.uniqueResult();
 		getSession().clear();
 		return i.intValue();
@@ -409,7 +424,7 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 	public xsjsglxt_death_inspection_record getDeathInspectionRecordOwnId(String xsjsglxt_death_inspection_record_id) {
 		xsjsglxt_death_inspection_record xsjsglxt_death_inspection_record = new xsjsglxt_death_inspection_record();
 		Session session = getSession();
-		String hql = "from xsjsglxt_death_inspection_record where xsjsglxt_inspection_record_id='"
+		String hql = "from xsjsglxt_death_inspection_record where xsjsglxt_death_inspection_record_id='"
 				+ xsjsglxt_death_inspection_record_id + "'";
 		Query query = session.createQuery(hql);
 		xsjsglxt_death_inspection_record = (xsjsglxt_death_inspection_record) query.uniqueResult();
@@ -457,6 +472,74 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		}
 		i = Integer.parseInt(ji);
 		getSession().clear();
+		return i;
+	}
+
+	@Override
+	public int getMaxLetterNum(String currentYear, String type) {
+		int i = 0;
+		String ji = "";
+		String hql = "select substring(appraisal_letter_num,5) from xsjsglxt_appraisal_letter where substring(appraisal_letter_num,1,4)='"
+				+ currentYear + "' and appraisal_letter_type = '" + type + "' order by substring(appraisal_letter_num,5) desc limit 1";
+		Query query = getSession().createSQLQuery(hql);
+		ji = (String) query.uniqueResult();
+		if (ji == null || ji.trim().length() <= 0) {
+			getSession().clear();
+			return 0;
+		}
+		i = Integer.parseInt(ji);
+		getSession().clear();
+		return i;
+	}
+
+	@Override
+	public List<xsjsglxt_entrustment_sample> getListEntrustmentSampleByEnId(String xsjsglxt_check_entrustment_book_id) {
+		List<xsjsglxt_entrustment_sample> listSample = new ArrayList<xsjsglxt_entrustment_sample>();
+		String hql = "from xsjsglxt_entrustment_sample where entrustment_sample_belong_entrustment_book = '" + xsjsglxt_check_entrustment_book_id + "'";
+		Query query = getSession().createQuery(hql);
+		listSample = query.list();
+		return listSample;
+	}
+
+	@Override
+	public int deleteEntrustmentSampleByBookId(String checkEntrustmentBookId) {
+		int i = 1;
+		String hql = "delete from xsjsglxt_entrustment_sample where entrustment_sample_belong_entrustment_book='"
+				+ checkEntrustmentBookId + "'";
+		try {
+			Query query = getSession().createQuery(hql);
+			query.executeUpdate();
+		} catch (HibernateException e) {
+			i = 2;
+			e.printStackTrace();
+		}
+		return i;
+	}
+
+	@Override
+	public xsjsglxt_entrustment_sample getEentrustment_sample(String id) {
+		xsjsglxt_entrustment_sample xsjsglxt_entrustment_sample = new xsjsglxt_entrustment_sample();
+		Session session = getSession();
+		String hql = "from xsjsglxt_entrustment_sample where xsjsglxt_entrustment_sample_id='"
+				+ id + "'";
+		Query query = session.createQuery(hql);
+		xsjsglxt_entrustment_sample = (xsjsglxt_entrustment_sample) query.uniqueResult();
+		session.clear();
+		return xsjsglxt_entrustment_sample;
+	}
+
+	@Override
+	public int deleteCheckEntrustmentByOwnId(String xsjsglxt_entrustment_sample_id) {
+		int i = 1;
+		String hql = "delete from xsjsglxt_entrustment_sample where xsjsglxt_entrustment_sample_id='"
+				+ xsjsglxt_entrustment_sample_id + "'";
+		try {
+			Query query = getSession().createQuery(hql);
+			query.executeUpdate();
+		} catch (HibernateException e) {
+			i = 2;
+			e.printStackTrace();
+		}
 		return i;
 	}
 
