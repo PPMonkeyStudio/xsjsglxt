@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-12-18 10:42:43 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_entrustment_sample" table="XSJSGLXT_ENTRUSTMENT_SAMPLE">
+        <id name="xsjsglxt_entrustment_sample_id" type="java.lang.String">
+            <column name="XSJSGLXT_ENTRUSTMENT_SAMPLE_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="entrustment_sample_belong_entrustment_book" type="java.lang.String">
+            <column name="ENTRUSTMENT_SAMPLE_BELONG_ENTRUSTMENT_BOOK" />
+        </property>
+        <property name="entrustment_sample_num" type="java.lang.String">
+            <column name="ENTRUSTMENT_SAMPLE_NUM" />
+        </property>
+        <property name="entrustment_sample_name" type="java.lang.String">
+            <column name="ENTRUSTMENT_SAMPLE_NAME" />
+        </property>
+        <property name="entrustment_sample_position" type="java.lang.String">
+            <column name="ENTRUSTMENT_SAMPLE_POSITION" />
+        </property>
+        <property name="entrustment_sample_way" type="java.lang.String">
+            <column name="ENTRUSTMENT_SAMPLE_WAY" />
+        </property>
+        <property name="entrustment_sample_amount" type="java.lang.String">
+            <column name="ENTRUSTMENT_SAMPLE_AMOUNT" />
+        </property>
+        <property name="entrustment_sample_packaging" type="java.lang.String">
+            <column name="ENTRUSTMENT_SAMPLE_PACKAGING" />
+        </property>
+        <property name="entrustment_sample_use" type="java.lang.String">
+            <column name="ENTRUSTMENT_SAMPLE_USE" />
+        </property>
+        <property name="entrustment_sample_gmt_create" type="java.lang.String">
+            <column name="ENTRUSTMENT_SAMPLE_GMT_CREATE" />
+        </property>
+        <property name="entrustment_sample_gmt_modified" type="java.lang.String">
+            <column name="ENTRUSTMENT_SAMPLE_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>
