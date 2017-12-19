@@ -21,6 +21,7 @@ public void updateHandleInformation(xsjsglxt_handle handle);
 public boolean remove_HandleInformationList(List<String> useHandleInformationNumList);
 
 public int getMaxId();
+public List<xsjsglxt_handle> allPoliceInHandlingCases();
 
 
 }
