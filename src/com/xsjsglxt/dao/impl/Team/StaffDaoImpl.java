@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/SLL
 package com.xsjsglxt.dao.impl.Team;
 
 import java.util.ArrayList;
@@ -35,7 +38,10 @@ public class StaffDaoImpl implements StaffDao {
 		// TODO Auto-generated method stub
 		try {
 			getSession().saveOrUpdate(staff);
+<<<<<<< HEAD
 			System.out.println("doala");
+=======
+>>>>>>> origin/SLL
 			return true;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -185,4 +191,7 @@ public class StaffDaoImpl implements StaffDao {
 
 	
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/SLL
