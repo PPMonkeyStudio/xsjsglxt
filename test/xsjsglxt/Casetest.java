@@ -27,5 +27,17 @@ import com.xsjsglxt.service.Team.StaffService;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext*.xml" })
 public class Casetest {
+@Resource
+private StaffService staffService;
 
+public void setStaffService(StaffService staffService) {
+	this.staffService = staffService;
+}
+@Test
+public void s(){
+	xsjsglxt_staff staff=new xsjsglxt_staff();
+	staff.setStaff_age("18");
+	staffService.saveStaff(staff);
+	
+}
 }

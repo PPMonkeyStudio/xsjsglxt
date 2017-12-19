@@ -19,7 +19,9 @@ a:hover {
 #Check-btn {
 	margin-bottom: 6px;
 }
-
+.page-footer{
+	text-align:center;
+}
 .staff_info_label {
 	width: 80px;
 }
@@ -33,17 +35,11 @@ a:hover {
 	font: 14px/15px "微软雅黑";
 	color: #676a6dcc;
 }
-
-.page-infomation {
-	display: inline-block;
-	text-indent: 30px;
-}
-
 .page_info {
 	font-size: 15px;
 	display: inline-block;
-	float: right;
 }
+
 .page-go{
 	width:35px;
 	

@@ -56,7 +56,7 @@
 							<td><label>照片</label></td>
 							<td rowspan="3">
 						    	<a href="javascript:;" class="a-upload">
-						    	 <input type="file" class="photo" name="staff.staff_photo" />
+						    	 <input type="text" class="photo" name="staff.staff_photo" />
 							    </a>
 							 </td>
 
@@ -229,27 +229,8 @@
 
 	<script type="text/javascript"
 		src="<%=basePath%>js/Team/staffDetails.js"></script>
-	<script type="text/javascript">
-	$.datetimepicker.setLocale('ch');
-	$('.mydate').datetimepicker({
-		yearStart : 1990, // 设置最小年份
-		yearEnd : 2050, // 设置最大年份
-		yearOffset : 0, // 年偏差
-		timepicker : false, // 关闭时间选项
-		format : 'Y-m-d', // 格式化日期年-月-日
-		minDate : '1990/01/01', // 设置最小日期
-		maxDate : '2030/01/01', // 设置最大日期
-	});
-	$('.mydate_minute').datetimepicker({
-		yearStart : 1990, // 设置最小年份
-		yearEnd : 2050, // 设置最大年份
-		yearOffset : 0, // 年偏差
-		timepicker : true, // 关闭时间选项
-		format : 'Y-m-d H:i', // 格式化日期年-月-日
-		minDate : '1990/01/01', // 设置最小日期
-		maxDate : '2030/01/01', // 设置最大日期
-	});
-</script>
+	
+
 
 </body>
 </html>
