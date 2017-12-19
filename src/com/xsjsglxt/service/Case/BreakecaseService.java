@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/SLL
 package com.xsjsglxt.service.Case;
 
 import java.util.List;
@@ -19,11 +16,9 @@ public	void saveBreakecase(xsjsglxt_breakecase breakecase);
 public page_list_BreakecaseInformationVO VO_BreakecaseInformation_By_PageAndSearch(
 		page_list_BreakecaseInformationVO page_list_BreakecaseInformation);
 
-<<<<<<< HEAD
 
-=======
-public BreakecaseInformationDTO BreakecaseInformationOne(xsjsglxt_case case1);
->>>>>>> origin/SLL
+
+
 
 public void updateCase(xsjsglxt_case case1);
 
@@ -35,12 +30,9 @@ public boolean remove_BreakecaseInformationList(List<String> useBreakecaseInform
 
 public void updateBreakcase(xsjsglxt_breakecase breakecase);
 
-<<<<<<< HEAD
+
 public BreakecaseInformationDTO BreakecaseInformationOne(xsjsglxt_breakecase breakecase);
 
 }
 
 
-=======
-}
->>>>>>> origin/SLL

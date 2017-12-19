@@ -234,7 +234,4 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 	
 
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/SLL

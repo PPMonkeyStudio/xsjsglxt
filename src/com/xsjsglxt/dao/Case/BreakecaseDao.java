@@ -20,19 +20,13 @@ public xsjsglxt_case get_case_ByBreakecaseId(xsjsglxt_breakecase breakecase);
 
 public xsjsglxt_snece get_sence_Byxsjsglxt_case_id(xsjsglxt_case case1);
 
-<<<<<<< HEAD
+
 public xsjsglxt_case getCaseById(xsjsglxt_breakecase breakecase);
 
 public xsjsglxt_snece getSenceByID(xsjsglxt_case case1);
 
 public xsjsglxt_breakecase getBreakecaseById(xsjsglxt_breakecase breakecase);
-=======
-public xsjsglxt_case getCaseById(xsjsglxt_case case1);
 
-public xsjsglxt_snece getSenceByID(xsjsglxt_case case1);
-
-public xsjsglxt_breakecase getBreakecaseById(xsjsglxt_case case1);
->>>>>>> origin/SLL
 
 public void updateCase(xsjsglxt_case case1);
 
@@ -49,7 +43,4 @@ public com.xsjsglxt.domain.DO.xsjsglxt_breakecase getBreakecaseByNum(String brea
 public boolean deleteBreakecaseById(String xsjsglxt_breakecase_id);
 
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/SLL
