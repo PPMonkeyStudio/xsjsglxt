@@ -17,14 +17,9 @@ private xsjsglxt_case case1;
 //private xsjsglxt_lost lost;
 private xsjsglxt_picture picture ;
 private xsjsglxt_snece sence;
-private xsjsglxt_resevidence resevidence;
+//private xsjsglxt_resevidence resevidence;
 
-public xsjsglxt_resevidence getResevidence() {
-	return resevidence;
-}
-public void setResevidence(xsjsglxt_resevidence resevidence) {
-	this.resevidence = resevidence;
-}
+
 public xsjsglxt_briefdetails getBriefdetails() {
 	return briefdetails;
 }
@@ -68,26 +63,18 @@ public xsjsglxt_snece getSence() {
 public void setSence(xsjsglxt_snece sence) {
 	this.sence = sence;
 }
-
-
-
-
 public SenceInformationDTO(xsjsglxt_briefdetails briefdetails, xsjsglxt_case case1, xsjsglxt_picture picture,
-		xsjsglxt_snece sence, xsjsglxt_resevidence resevidence) {
-	
+		xsjsglxt_snece sence) {
+
 	this.briefdetails = briefdetails;
 	this.case1 = case1;
 	this.picture = picture;
 	this.sence = sence;
-	this.resevidence = resevidence;
 }
 @Override
 public String toString() {
 	return "SenceInformationDTO [briefdetails=" + briefdetails + ", case1=" + case1 + ", picture=" + picture
-			+ ", sence=" + sence + ", resevidence=" + resevidence + "]";
+			+ ", sence=" + sence + "]";
 }
-
-
-
 
 }

@@ -1,4 +1,3 @@
-
 package com.xsjsglxt.service.impl.Case;
 
 
@@ -102,6 +101,14 @@ public int getMaxId() {
 	return (i+1);
 }
 
+@Override
+public List<xsjsglxt_handle> allPoliceInHandlingCases() {
+	// TODO Auto-generated method stub
+	
+	return handleDao.allPoliceInHandlingCases();
+}
+
 
 }
+
 
