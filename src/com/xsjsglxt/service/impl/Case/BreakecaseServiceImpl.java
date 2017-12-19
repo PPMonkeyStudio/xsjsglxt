@@ -89,11 +89,14 @@ public page_list_BreakecaseInformationVO VO_BreakecaseInformation_By_PageAndSear
 }
 
 @Override
-public BreakecaseInformationDTO BreakecaseInformationOne(xsjsglxt_case case1) {
+
+public BreakecaseInformationDTO BreakecaseInformationOne(xsjsglxt_breakecase breakecase) {
 	// TODO Auto-generated method stub
-	case1=breakecaseDao.getCaseById(case1);
+	 breakecase=breakecaseDao.getBreakecaseById(breakecase);
+	 xsjsglxt_case 	case1=breakecaseDao.getCaseById(breakecase);
 	xsjsglxt_snece sence=breakecaseDao.getSenceByID(case1);
-	xsjsglxt_breakecase breakecase=breakecaseDao.getBreakecaseById(case1);
+	
+
 	BreakecaseInformationDTO breakecaseInformationDTO= new BreakecaseInformationDTO(breakecase,sence,case1);
 	return breakecaseInformationDTO;
 }

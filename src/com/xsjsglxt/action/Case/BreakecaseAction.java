@@ -83,7 +83,9 @@ public class BreakecaseAction extends ActionSupport implements ServletResponseAw
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
-		breakecaseInformationDTO = breakecaseService.BreakecaseInformationOne(case1);
+
+		breakecaseInformationDTO = breakecaseService.BreakecaseInformationOne(breakecase);
+
 		http_response.setContentType("text/html;charset=utf-8");
 
 		http_response.getWriter().write(gson.toJson(breakecaseInformationDTO));
@@ -212,3 +214,4 @@ public class BreakecaseAction extends ActionSupport implements ServletResponseAw
 	}
 
 }
+

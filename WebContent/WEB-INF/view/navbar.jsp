@@ -138,9 +138,7 @@
 		</div>
 		</nav>
 </body>
-<script type="text/javascript">
-	getUserSessionForAjax();
-</script>
+
 <style>
 td {
 	line-height: 33px !important;

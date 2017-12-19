@@ -1,5 +1,6 @@
 package com.xsjsglxt.service.Case;
 
+
 import java.util.List;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_handle;
@@ -19,4 +20,10 @@ public xsjsglxt_handle HandleInformationOne(xsjsglxt_handle handle);
 public void updateHandleInformation(xsjsglxt_handle handle);
 public boolean remove_HandleInformationList(List<String> useHandleInformationNumList);
 
+public int getMaxId();
+public List<xsjsglxt_handle> allPoliceInHandlingCases();
+
+
 }
+
+

@@ -1,17 +1,21 @@
 package com.xsjsglxt.dao.impl.Case;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.Case.HandleDao;
+
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_handle;
 import com.xsjsglxt.domain.DO.xsjsglxt_staff;
 import com.xsjsglxt.domain.VO.Case.page_list_HandleInformationVO;
+
 
 public class HandleDaoImpl implements HandleDao {
 	private SessionFactory sessionFactory;
@@ -26,6 +30,7 @@ public class HandleDaoImpl implements HandleDao {
 
 		return this.sessionFactory.getCurrentSession();
 	}
+
 
 	@Override
 	public void saveHandle(xsjsglxt_handle handle) {
@@ -309,4 +314,33 @@ public class HandleDaoImpl implements HandleDao {
 		query.executeUpdate();
        return true;
 	}
+
+
+	@Override
+	public int getMaxId() {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		Long i;
+		String hql = "select count(*) from xsjsglxt_handle  where 1=1 ";
+		Query query = session.createQuery(hql);	
+		i = (Long) query.uniqueResult();
+		session.clear();
+		return i.intValue();
+		
+	}
+
+	@Override
+	public List<xsjsglxt_handle> allPoliceInHandlingCases() {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		String hql="from xsjsglxt_handle";
+		Query query = session.createQuery(hql);
+
+		List<xsjsglxt_handle> AllPoliceInHandlingCasesList = query.list();
+		
+		return AllPoliceInHandlingCasesList;
+	}
+
 }
+
+
