@@ -1,4 +1,3 @@
-
 package com.xsjsglxt.dao.Case;
 
 
@@ -33,4 +32,5 @@ public List<xsjsglxt_handle> allPoliceInHandlingCases();
 
 
 }
+
 

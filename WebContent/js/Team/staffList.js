@@ -66,11 +66,9 @@ function get_staffPageListAndSearch_Ajax(url) {
 						+ object.xsjsglxt_staff_id + '"/></td>';
 				// a链接是调用action的page_staffDetail方法把object.xsjsglxt_staff_id传入staff_id_transfer,在action里把staff_id_transfer存入staff_id，之后跳转到staffDetails.jsp后，该页面得到staff_id(跳转到各自id的Detail页)
 				str += '<td style="text-align:center;"><a href="/xsjsglxt/team/Staff_page_staffDetail?staff_id_transfer='
-						+ object.xsjsglxt_staff_id
-						+ '">'
-						+ object.xsjsglxt_staff_id + '</a></td>';
-				str += '<td style="text-align:center;">' + object.staff_name
-						+ '</td>';
+					+ object.xsjsglxt_staff_id
+					+ '">' + object.staff_name
+						+ '</a></td>';
 				str += '<td style="text-align:center;">' + object.staff_sex
 						+ '</td>';
 				str += '<td style="text-align:center;">'
@@ -162,7 +160,7 @@ function firstPage() {
 		return;
 	}
 	person_management_data['page_list_staffInformation.pageIndex'] = 1;
-	get_staffPageListAndSearch(person_management_data);
+	get_staffPageListAndSearch();
 }
 
 // 上一页
@@ -172,7 +170,7 @@ function prePage() {
 		return;
 	}
 	person_management_data['page_list_staffInformation.pageIndex'] = page_infomantion.pageIndex - 1;
-	get_staffPageListAndSearch(person_management_data);
+	get_staffPageListAndSearch();
 }
 // 下一页
 function nextPage() {
@@ -181,7 +179,7 @@ function nextPage() {
 		return;
 	}
 	person_management_data['page_list_staffInformation.pageIndex'] = page_infomantion.pageIndex + 1;
-	get_staffPageListAndSearch(person_management_data);
+	get_staffPageListAndSearch();
 }
 // 尾页
 function lastPage() {
@@ -189,9 +187,14 @@ function lastPage() {
 		toastr.error('已经是最后一页了');
 	}
 	person_management_data['page_list_staffInformation.pageIndex'] = staff_list_page.totalPages;
-	get_staffPageListAndSearch(person_management_data);
+	get_staffPageListAndSearch();
 }
-
+//页面跳转
+function page_go(){
+	var page_go=document.querySelector(".page-go").value;
+	person_management_data['page_list_staffInformation.pageIndex']=page_go;
+	get_staffPageListAndSearch();
+}
 // 全选
 function allCheck() {
 	console.log("lala");

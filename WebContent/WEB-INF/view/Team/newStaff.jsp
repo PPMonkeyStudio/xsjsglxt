@@ -36,7 +36,7 @@
 			</button>
 			<button type="button" class="btn btn-default button button_change"
 				onclick="staff_change()">
-				<i class="fa fa-pencil"></i>完成编辑
+				<i class="fa fa-pencil"></i> 完成编辑
 			</button>
 			<div class="panel-body staff_body">
 				<form id="staffDetails">
@@ -55,8 +55,11 @@
 								class="form-control" type="text"></td>
 
 							<td><label>照片</label></td>
-							<td><input name="staff.staff_photo" class="form-control"
-								type="text"></td>
+							<td rowspan="3">
+						    	<a href="javascript:;" class="a-upload">
+						    	 <input type="file" class="photo" name="staff.staff_photo" />
+							    </a>
+							 </td>
 						</tr>
 						<tr>
 							<td><label  >身份证号</label></td>
@@ -66,22 +69,7 @@
                              <td><label  >年龄</label></td>
 							<td><input style="font-size: 12px;"
 								name="staff.staff_age" class="form-control" type="text"></td>
-                            <td><label  >性别</label></td>
-							<td>
-							  <label style="float: left;" class="fancy-radio">
-									<input name="sex_content" onclick=changeSex_man(this) type="radio"
-									value="1">
-									 <span>
-									 <i></i>男
-									 </span>
-							  </label>
-							   <label style="float: left; margin-left: 10px;"
-								class="fancy-radio"> <input name="sex_content" onclick=changeSex_woman(this)
-									 type="radio" value="2">
-									<span><i></i>女</span>
-							   </label> 
-							    <input type="hidden" name="staff.staff_sex" id="sex">
-							 </td>
+                           
 
 						</tr>
 						<tr>
@@ -118,7 +106,22 @@
 									<option>预备党员</option>
 									<option>党员</option>
 							</select></td>
-
+                             <td><label  >性别</label></td>
+							<td>
+							  <label style="float: left;" class="fancy-radio">
+									<input name="sex_content" onclick=changeSex_man(this) type="radio"
+									value="1">
+									 <span>
+									 <i></i>男
+									 </span>
+							  </label>
+							   <label style="float: left; margin-left: 10px;"
+								class="fancy-radio"> <input name="sex_content" onclick=changeSex_woman(this)
+									 type="radio" value="2">
+									<span><i></i>女</span>
+							   </label> 
+							    <input type="hidden" name="staff.staff_sex" id="sex">
+							 </td>
 						</tr>
 						<tr>
 							<td><label  >入党时间</label></td>

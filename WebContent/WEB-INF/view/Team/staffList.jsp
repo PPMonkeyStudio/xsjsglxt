@@ -58,7 +58,7 @@
 									<tr>
 										<th><input type="checkbox" id="Check-btn"
 											onclick="allCheck()" /></th>
-										<th>id</th>
+
 										<th>姓名</th>
 										<th>性别</th>
 										<th>身份证号</th>
@@ -72,14 +72,17 @@
 								</tbody>
 							</table>
 							<div class="page-footer">
-								<p class='page-infomation'></p>
+								
 								<div class="page_info">&nbsp;&nbsp;&nbsp;&nbsp;
 									<a onclick="firstPage()"><i class="fa fa-angle-double-left">首页</i></a>&nbsp;&nbsp;&nbsp;&nbsp;
 									<a onclick="prePage()"><i class="fa fa-angle-left"></i>上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
 									<a onclick="nextPage()">下一页<i class="fa fa-angle-right"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
 									<a onclick="lastPage()">尾页<i
-										class="fa fa-angle-double-right"></i></a>
-							</div>
+										class="fa fa-angle-double-right"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="text" class="page-go"/>&nbsp;&nbsp;&nbsp;&nbsp;
+									<a onclick="">GO</a>
+							    </div>
+							    <p class='page-infomation'></p>
 						</div>
 					</div>
 					<!-- END TABLE HOVER -->
@@ -146,6 +149,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 	<!--新建查询模态框 end  -->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
@@ -155,6 +159,5 @@
 
 	<script type="text/javascript" src="<%=basePath%>js/Team/staffList.js"></script>
 </body>
-
 
 </html>
