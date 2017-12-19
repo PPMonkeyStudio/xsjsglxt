@@ -54,18 +54,21 @@
 								type="text"></td>
 
 							<td><label>照片</label></td>
-							<td rowspan="3"><input type="file" class="photo" name="staff.staff_photo"/></td>
-							
+							<td rowspan="3">
+						    	<a href="javascript:;" class="a-upload">
+						    	 <input type="file" class="photo" name="staff.staff_photo" />
+							    </a>
+							 </td>
+
 						</tr>
 						<tr>
-						<td><label  >人员ID</label></td>
-							<td><input style="font-size: 12px;"
-								name="staff.staff_alarm" class="form-control" type="text"></td>
-							<td><label  >身份证号</label></td>
+							<td><label>人员ID</label></td>
+							<td><input style="font-size: 12px;" name="staff.staff_alarm"
+								class="form-control" type="text"></td>
 							<td><label>身份证号</label></td>
 							<td><input name="staff.staff_idNumber" class="form-control"
 								type="text"></td>
-                            
+
 						</tr>
 						<tr>
 							<td><label>年龄</label></td>
@@ -74,11 +77,11 @@
 							<td><label>民族</label></td>
 							<td><input name="staff.staff_nation" class="form-control"
 								type="text"></td>
-                          
+
 						</tr>
 
 						<tr>
-							  <td><label>生日</label></td>
+							<td><label>生日</label></td>
 							<td><input style="font-size: 12px;"
 								name="staff.staff_birthday" class="form-control" type="text"></td>
 							<td><label>最高学历</label></td>
@@ -222,11 +225,11 @@
 			</div>
 		</div>
 	</div>
-	<input type="hidden" id="staff_id"/>
+	<input type="hidden" id="staff_id" />
 
 	<script type="text/javascript"
 		src="<%=basePath%>js/Team/staffDetails.js"></script>
-<script type="text/javascript">
+	<script type="text/javascript">
 	$.datetimepicker.setLocale('ch');
 	$('.mydate').datetimepicker({
 		yearStart : 1990, // 设置最小年份
@@ -247,6 +250,6 @@
 		maxDate : '2030/01/01', // 设置最大日期
 	});
 </script>
-		
+
 </body>
 </html>

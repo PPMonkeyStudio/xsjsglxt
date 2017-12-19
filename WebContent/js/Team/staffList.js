@@ -162,7 +162,7 @@ function firstPage() {
 		return;
 	}
 	person_management_data['page_list_staffInformation.pageIndex'] = 1;
-	get_staffPageListAndSearch(person_management_data);
+	get_staffPageListAndSearch();
 }
 
 // 上一页
@@ -172,7 +172,7 @@ function prePage() {
 		return;
 	}
 	person_management_data['page_list_staffInformation.pageIndex'] = page_infomantion.pageIndex - 1;
-	get_staffPageListAndSearch(person_management_data);
+	get_staffPageListAndSearch();
 }
 // 下一页
 function nextPage() {
@@ -181,7 +181,7 @@ function nextPage() {
 		return;
 	}
 	person_management_data['page_list_staffInformation.pageIndex'] = page_infomantion.pageIndex + 1;
-	get_staffPageListAndSearch(person_management_data);
+	get_staffPageListAndSearch();
 }
 // 尾页
 function lastPage() {
@@ -189,9 +189,14 @@ function lastPage() {
 		toastr.error('已经是最后一页了');
 	}
 	person_management_data['page_list_staffInformation.pageIndex'] = staff_list_page.totalPages;
-	get_staffPageListAndSearch(person_management_data);
+	get_staffPageListAndSearch();
 }
-
+//页面跳转
+function page_go(){
+	var page_go=document.querySelector(".page-go").value;
+	person_management_data['page_list_staffInformation.pageIndex']=page_go;
+	get_staffPageListAndSearch();
+}
 // 全选
 function allCheck() {
 	console.log("lala");
