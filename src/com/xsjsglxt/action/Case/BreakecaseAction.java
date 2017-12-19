@@ -20,32 +20,32 @@ import com.xsjsglxt.domain.VO.Case.page_list_BreakecaseInformationVO;
 import com.xsjsglxt.service.Case.BreakecaseService;
 
 public class BreakecaseAction extends ActionSupport implements ServletResponseAware, ServletRequestAware {
-	private  BreakecaseService breakecaseService;
-	private xsjsglxt_breakecase breakecase ;
+	private BreakecaseService breakecaseService;
+	private xsjsglxt_breakecase breakecase;
 	private xsjsglxt_case case1;
 	private xsjsglxt_snece sence;
 	private List<String> useBreakecaseInformationNumList;
 	private HttpServletResponse http_response;
 
 	private HttpServletRequest http_request;
-	
-   
+
 	private BreakecaseInformationDTO breakecaseInformationDTO;
-	
+
 	private page_list_BreakecaseInformationVO page_list_BreakecaseInformation;
+
 	/*
-	 *跳转刑事破案列表 
+	 * 跳转刑事破案列表
 	 */
-	public String page_BreakCaseList(){
+	public String page_BreakCaseList() {
 		return "page_BreakCaseList";
 	}
-	
+
 	/*
 	 * 保存破案信息
 	 */
-	public void saveBreakecase() throws IOException{
+	public void saveBreakecase() throws IOException {
 		try {
-			breakecase.setBreakecase_case(case1.getXsjsglxt_case_id());
+			// breakecase.setBreakecase_case(case1.getXsjsglxt_case_id());
 			breakecaseService.saveBreakecase(breakecase);
 			http_response.setContentType("text/html;charset=utf-8");
 			http_response.getWriter().write("success");
@@ -56,8 +56,9 @@ public class BreakecaseAction extends ActionSupport implements ServletResponseAw
 			http_response.getWriter().write("error");
 		}
 	}
+
 	/*
-	 *列表信息 
+	 * 列表信息
 	 */
 	public void ListBreakecaseInformationByPageAndSearch() throws IOException {
 
@@ -65,8 +66,8 @@ public class BreakecaseAction extends ActionSupport implements ServletResponseAw
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
 
-	
-		page_list_BreakecaseInformation = breakecaseService.VO_BreakecaseInformation_By_PageAndSearch(page_list_BreakecaseInformation);
+		page_list_BreakecaseInformation = breakecaseService
+				.VO_BreakecaseInformation_By_PageAndSearch(page_list_BreakecaseInformation);
 
 		http_response.setContentType("text/html;charset=utf-8");
 
@@ -80,48 +81,52 @@ public class BreakecaseAction extends ActionSupport implements ServletResponseAw
 	 */
 	public void BreakecaseInformationOne() throws IOException {
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();//格式化json数据
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
 		breakecaseInformationDTO = breakecaseService.BreakecaseInformationOne(case1);
 		http_response.setContentType("text/html;charset=utf-8");
 
 		http_response.getWriter().write(gson.toJson(breakecaseInformationDTO));
 	}
+
 	/*
-	 *修改信息 
+	 * 修改信息
 	 */
-	public void updateBreakcase() throws IOException{
+	public void updateBreakcase() throws IOException {
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
-		//breakecaseService.updateCase(case1);
+		// breakecaseService.updateCase(case1);
 		breakecaseService.updateBreakcase(breakecase);
-		//breakecaseService.updateSence(sence,case1.getXsjsglxt_case_id());
+		// breakecaseService.updateSence(sence,case1.getXsjsglxt_case_id());
 		http_response.setContentType("text/html;charset=utf-8");
 		http_response.getWriter().write(gson.toJson("success"));
 	}
-	/*
-	 *删除信息 
-	 */
-	public void remove_BreakecaseInformationList(){
 
-		if(	breakecaseService.remove_BreakecaseInformationList( useBreakecaseInformationNumList)){
+	/*
+	 * 删除信息
+	 */
+	public void remove_BreakecaseInformationList() {
+
+		if (breakecaseService.remove_BreakecaseInformationList(useBreakecaseInformationNumList)) {
 			http_response.setContentType("text/html;charset=utf-8");
 			try {
 				http_response.getWriter().write("success");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}}else{
-				http_response.setContentType("text/html;charset=utf-8");
-				try {
-					http_response.getWriter().write("error");
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 			}
+		} else {
+			http_response.setContentType("text/html;charset=utf-8");
+			try {
+				http_response.getWriter().write("error");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
+
 	@Override
 	public void setServletRequest(HttpServletRequest arg0) {
 		// TODO Auto-generated method stub

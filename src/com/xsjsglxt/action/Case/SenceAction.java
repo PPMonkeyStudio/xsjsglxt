@@ -26,7 +26,6 @@ import com.xsjsglxt.domain.DTO.Case.SenceInformationDTO;
 import com.xsjsglxt.domain.VO.Case.page_list_senceInformationVO;
 import com.xsjsglxt.service.Case.SenceService;
 
-
 public class SenceAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
 	private SenceService senceService;
 	private xsjsglxt_snece sence;
@@ -66,8 +65,6 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 		return "page_CaseMergerList";
 	}
 
-
-
 	/*
 	 * 跳转现场录入页面
 	 */
@@ -76,18 +73,18 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	}
 
 	/*
-
+	 * 
 	 * ��ת�ֳ�¼��ҳ��
-
+	 * 
 	 */
 	public String page_CaseMaterials() {
 		return "page_CaseMaterials";
 	}
 
 	/*
-
+	 * 
 	 * ��ת��������ҳ��
-
+	 * 
 	 */
 	public String page_CaseDetails() {
 		ActionContext.getContext().getValueStack().set("id", http_request.getParameter("id"));
@@ -95,9 +92,18 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	}
 
 	/*
+	 * 
+	 * ��ת��������ҳ��
+	 * 
+	 */
+	public String page_Handle() {
+		return "page_Handle";
+	}
 
+	/*
+	 * 
 	 * 保存信息
-
+	 * 
 	 */
 	public void saveSenceInformation() {
 
@@ -105,7 +111,7 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 			GsonBuilder gsonBuilder = new GsonBuilder();
 			gsonBuilder.setPrettyPrinting();// 格式化json数据
 			Gson gson = gsonBuilder.create();
-			
+
 			senceService.save(case1);
 
 			sence.setSnece_case(case1.getXsjsglxt_case_id());
@@ -162,7 +168,6 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
 
-	
 		page_list_senceInformation = senceService.VO_SneceInformation_By_PageAndSearch(page_list_senceInformation);
 
 		http_response.setContentType("text/html;charset=utf-8");
@@ -176,61 +181,65 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	 */
 	public void SecneInformationOne() throws IOException {
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();//格式化json数据
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
 		senceInformationDTO = senceService.SecneInformationOne(case1);
 		http_response.setContentType("text/html;charset=utf-8");
 
 		http_response.getWriter().write(gson.toJson(senceInformationDTO));
 	}
-/*
- *修改信息 
- */
-	public void updateSenceInformation() throws IOException{
+
+	/*
+	 * 修改信息
+	 */
+	public void updateSenceInformation() throws IOException {
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();//格式化json数据
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
 		senceService.updateCase(case1);
-    
-		senceService.updateSence(sence,case1.getXsjsglxt_case_id());
-	
-		senceService.updateBriefdetails(briefdetails,case1.getXsjsglxt_case_id());
+
+		senceService.updateSence(sence, case1.getXsjsglxt_case_id());
+
+		senceService.updateBriefdetails(briefdetails, case1.getXsjsglxt_case_id());
 		http_response.setContentType("text/html;charset=utf-8");
 
 		http_response.getWriter().write(gson.toJson("success"));
-		
+
 	}
+
 	/*
 	 * 删除信息
 	 */
-	public void remove_SenceInformationList(){
+	public void remove_SenceInformationList() {
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();//格式化json数据
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
-		if(	senceService.remove_SenceInformationList( useSenceInformationNumList)){
+		if (senceService.remove_SenceInformationList(useSenceInformationNumList)) {
 			http_response.setContentType("text/html;charset=utf-8");
 			try {
 				http_response.getWriter().write(gson.toJson("success"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-							}
+			}
 		}
-	
+
 	}
+
 	/*
 	 * 所有案件
 	 */
-	public void AllCase() throws IOException{
+	public void AllCase() throws IOException {
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();//格式化json数据
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
-		List<xsjsglxt_case> Allcase=new ArrayList<xsjsglxt_case>();
-		Allcase=senceService.AllCase();
+		List<xsjsglxt_case> Allcase = new ArrayList<xsjsglxt_case>();
+		Allcase = senceService.AllCase();
 		http_response.setContentType("text/html;charset=utf-8");
 
 		http_response.getWriter().write(gson.toJson(Allcase));
 	}
+
 	public SenceService getSenceService() {
 		return senceService;
 	}

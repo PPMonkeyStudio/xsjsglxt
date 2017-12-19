@@ -72,23 +72,15 @@ $(function() {
 					btnClass : 'btn-danger',
 					text : '确认',
 					action : function() {
-						$.ajax({
-							url : '/xsjsglxt/case/BreakCase_saveBreakecase',
-							type : 'post',
-							data : $('#breakCase_input form').serialize(),
-							processData : false,
-							contentType : false,
-							dataType : 'json',
-							success : function(data) {
-								if (data == "success") {
-									toastr.success("修改成功！");
-									//获取对应option中的value值
-									get_ListBreakecaseInformationByPageAndSearch(query_data);
-								} else {
-									toastr.error("修改失败！");
-								}
+						$.post('/xsjsglxt/case/BreakCase_saveBreakecase', $('#breakCase_input form').serialize(), function(xhr_data, text) {
+							if (text == "success") {
+								toastr.success("修改成功！");
+								//获取对应option中的value值
+								get_ListBreakecaseInformationByPageAndSearch(query_data);
+							} else {
+								toastr.error("修改失败！");
 							}
-						});
+						}, 'json');
 					}
 				},
 				cancelAction : {
@@ -116,7 +108,7 @@ function get_ListBreakecaseInformationByPageAndSearch(data) {
 			str += '<td>' + data_list[len].breakecase.breakecase_waitbreakecase + '</td>';
 			str += '<td>' + data_list[len].breakecase.breakecase_suspectName + '</td>';
 			str += '<td>'
-				+ '<input type="hidden"  value="' + data_list[len].case1.xsjsglxt_case_id + '" />'
+				+ '<input type="hidden"  value="' + data_list[len].breakecase.xsjsglxt_breakecase_id + '" />'
 				+ '<button type="button" style="margin-left:6px;" class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 修改</button>'
 				+ '<button type="button" style="margin-left:6px;" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除</button>'
 				+ '</td>';
@@ -213,7 +205,7 @@ var modifi_delete = function() {
 		}, 'json');
 	} else if (type == "删除") {
 		var formData = new FormData();
-		formData.append('useBreakecaseInformationNumList', id);
+		formData.append("useBreakecaseInformationNumList", id);
 		$.confirm({
 			title : '确定删除?',
 			smoothContent : false,
@@ -230,9 +222,9 @@ var modifi_delete = function() {
 							data : formData,
 							processData : false,
 							contentType : false,
-							dataType : 'json',
-							success : function(data) {
-								if (data == "success") {
+							dataType : 'text',
+							success : function(data, text) {
+								if (text == "success") {
 									toastr.success("删除成功！");
 									//获取对应option中的value值
 									get_ListBreakecaseInformationByPageAndSearch(query_data);
@@ -265,23 +257,15 @@ var breakecase_modification = function() {
 				btnClass : 'btn-danger',
 				text : '确认',
 				action : function() {
-					$.ajax({
-						url : '/xsjsglxt/case/BreakCase_updateBreakcase',
-						type : 'post',
-						data : $('#breakCase_modification form').serialize(),
-						processData : false,
-						contentType : false,
-						dataType : 'json',
-						success : function(data) {
-							if (data == "success") {
-								toastr.success("修改成功！");
-								//获取对应option中的value值
-								get_ListBreakecaseInformationByPageAndSearch(query_data);
-							} else {
-								toastr.error("修改失败！");
-							}
+					$.post('/xsjsglxt/case/BreakCase_updateBreakcase', $('#breakCase_modification form').serialize(), function(xhr_data, text) {
+						if (text == "success") {
+							toastr.success("修改成功！");
+							//获取对应option中的value值
+							get_ListBreakecaseInformationByPageAndSearch(query_data);
+						} else {
+							toastr.error("修改失败！");
 						}
-					});
+					}, 'text');
 				}
 			},
 			cancelAction : {
