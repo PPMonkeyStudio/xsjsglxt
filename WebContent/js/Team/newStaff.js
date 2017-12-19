@@ -1,7 +1,6 @@
-
 //newStaff新建人员
 function staff_change(){
-	var url="/xsjsglxt/team/Staff_updateStaffInformation";
+	var url="/xsjsglxt/team/Staff_saveStaff";
 	$.confirm({
 	    title: '编辑!',
 	    content: '确定编辑么!',

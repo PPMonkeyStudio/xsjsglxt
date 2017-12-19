@@ -45,7 +45,7 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 	 */
 	public String page_staffDetail(){
 		ActionContext.getContext().getValueStack().set("staff_id", http_request.getParameter("staff_id_transfer"));
-		return "page_staffDetaiils";
+		return "page_staffDetails";
 	}
 	/*
 	 * 跳转创建页

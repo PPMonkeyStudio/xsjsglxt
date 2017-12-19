@@ -1,36 +1,26 @@
 @CHARSET "UTF-8";
-html,
-body,
-ul,
-li,
-div,
-h3,
-a,
-span,
-input,
-button,
-p,
-label,
-details,
-figure,
-figcaption,
-article,
-table,tr,th,td {
-	margin: 0px ;
+
+html, body, ul, li, div, h3, a, span, input, button, p, label, details,
+	figure, figcaption, article, table, tr, th, td {
+	margin: 0px;
 	padding: 0px;
 	overflow: initial;
 	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
-a:hover{
-	cursor:pointer;
+a:hover {
+	cursor: pointer;
 }
 /*staffList table.css start  */
-.staff_title{
-	text-indent:30px;
+.staff_title {
+	text-indent: 30px;
 }
-#Check-btn{
+
+#Check-btn {
 	margin-bottom: 6px;
+}
+.page-footer{
+	text-align:center;
 }
 .staff_info_label {
 	width: 80px;
@@ -45,70 +35,96 @@ a:hover{
 	font: 14px/15px "微软雅黑";
 	color: #676a6dcc;
 }
-.page-infomation{
-	display:inline-block;
-	text-indent: 30px;
-	
-}
-.page_info{
+.page_info {
 	font-size: 15px;
 	display: inline-block;
-	float: right;
+}
+
+.page-go{
+	width:35px;
+	
 }
 /*staffList table.css end  */
 /*staffDetail table.css  */
-#star-time{
+#star-time {
 	background: url(../img/calender.jpg) 160px 2px no-repeat;
 }
-.photo{
+
+.photo {
 	width: 120px;
-height: 150px;
-border: 1px solid #dbd9d9;
+	height: 150px;
+	border: 1px solid #dbd9d9;
 }
+
 .staff_body {
 	float: right;
-	width:90%;
+	width: 90%;
 }
 /*功能按钮  */
-.button_return{
+.button_return {
 	position: absolute;
 	top: 70px;
 	left: 25px;
 }
-.button_change{
+
+.button_change {
 	position: absolute;
-	top:120px;
+	top: 120px;
 	left: 25px;
 }
-#staffDetails label{
-	width:70px;
-	margin-bottom:0px !important;
-	font:14px/40px "微软雅黑";
+
+#staffDetails label {
+	width: 70px;
+	margin-bottom: 0px !important;
+	font: 14px/40px "微软雅黑";
 }
 /*长标签  */
 /* #staffDetails table tr td .staff_detail_label_long{
 	width:130px;
 } */
 #staffDetails table tr td input[type="text"] {
-	margin:0 !important;
+	margin: 0 !important;
 	width: 230px;
-	height:34px;
+	height: 34px;
 }
-#staffDetails select{
-	margin:0 !important;
+
+#staffDetails select {
+	margin: 0 !important;
 	width: 230px;
-	height:34px;
+	height: 34px;
 }
-#staffDetails table tr{
+
+#staffDetails table tr {
 	/* display:inline-block; */
-	margin-bottom:5px;
-	height:42px;
+	margin-bottom: 5px;
+	height: 42px;
 }
-#staffDetails table tr td{
-	vertical-align:middle;
-	width:70px;
+
+#staffDetails table tr td {
+	vertical-align: middle;
+	width: 70px;
+}
+
+.a-upload {
+	width: 120px;
+	height: 150px;
+	border: 1px solid #dbd9d9;
+	cursor: pointer;
+	overflow: hidden;
+	display: inline-block;
+	*display: inline;
+	*zoom: 1
+}
+
+.a-upload  input {
+	font-size: 100px;
+	right: 0;
+	top: 0;
+	opacity: 0;
+	filter: alpha(opacity = 0);
+	cursor: pointer
 }
 /*标题分割线  */
-.staff_info_title{
-	border-bottom:1px solid #eee;
+.staff_info_title {
+	border-bottom: 1px solid #eee;
 }
