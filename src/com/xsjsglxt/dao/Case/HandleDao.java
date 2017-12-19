@@ -29,6 +29,8 @@ public boolean deleteHandleById(String xsjsglxt_handle_id);
 
 public int getMaxId();
 
+public List<xsjsglxt_handle> allPoliceInHandlingCases();
+
 
 }
 

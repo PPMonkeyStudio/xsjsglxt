@@ -329,5 +329,17 @@ public class HandleDaoImpl implements HandleDao {
 		
 	}
 
+	@Override
+	public List<xsjsglxt_handle> allPoliceInHandlingCases() {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		String hql="from xsjsglxt_handle";
+		Query query = session.createQuery(hql);
+
+		List<xsjsglxt_handle> AllPoliceInHandlingCasesList = query.list();
+		
+		return AllPoliceInHandlingCasesList;
+	}
+
 }
 
