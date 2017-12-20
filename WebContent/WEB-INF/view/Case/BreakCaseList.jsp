@@ -57,10 +57,15 @@
 						data-target="#newQuery">
 						<i class="fa fa-plus-square"></i> 刑事破案查询
 					</button>
+<<<<<<< HEAD
 
 					<button data-toggle="modal" data-target="#breakCase_input"
 						style="margin-left: 15px;" type="button" class="btn btn-default">
 
+=======
+					<button data-toggle="modal" data-target="#breakCase_input"
+						style="margin-left: 15px;" type="button" class="btn btn-default">
+>>>>>>> origin/HY
 						<i class="fa fa-plus-square"></i> 添加刑事破案
 					</button>
 				</div>
@@ -183,7 +188,7 @@
 									<td>接警时间</td>
 									<td><input
 										name="page_list_BreakecaseInformation.start_time"
-										style="float: left;" type="text" class="form-control"
+										style="float: left;" type="text" class="form-control mydate"
 										placeholder="起始日期"><input
 										name="page_list_BreakecaseInformation.stop_time"
 										style=" float: right;" type="text" class="form-control"
@@ -207,10 +212,15 @@
 	<!------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!-- 破案信息-模态框（Modal） -->
+<<<<<<< HEAD
 
 	<div class="modal fade" id="breakCase_modification" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
+=======
+	<div class="modal fade" id="breakCase_modification" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+>>>>>>> origin/HY
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -233,7 +243,10 @@
 		<!-- /.modal -->
 	</div>
 	<!---------------------------------------------------------------------------------------------------->
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/HY
 	<!------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!-- 破案信息-模态框（Modal） -->
@@ -272,7 +285,8 @@
 										<td><input style="witdh:70%;" class="form-control"
 											name="breakecase.breakecase_suspectSex" type="text"></td>
 										<td>出生日期</td>
-										<td><input style="witdh:70%;" class="form-control"
+										<td><input style="witdh:70%;"
+											class="form-control mydate_minute"
 											name="breakecase.breakecase_suspectBirthday" type="text"></td>
 									</tr>
 									<tr>
@@ -320,7 +334,10 @@
 		<!-- /.modal -->
 	</div>
 	<!---------------------------------------------------------------------------------------------------->
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/HY
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
@@ -328,7 +345,32 @@
 	<script type="text/javascript" src="<%=basePath%>js/Case/SneceInput.js"></script>
 	<script type="text/javascript"
 		src="<%=basePath%>js/Case/BreakCaseList.js"></script>
+	<script type="text/javascript">
+		$.datetimepicker.setLocale('ch');
+		$('.mydate').datetimepicker({
+			yearStart : 1990, // 设置最小年份
+			yearEnd : 2050, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : false, // 关闭时间选项
+			format : 'Y-m-d', // 格式化日期年-月-日
+			minDate : '1990/01/01', // 设置最小日期
+			maxDate : '2030/01/01', // 设置最大日期
+		});
+		$('.mydate_minute').datetimepicker({
+			yearStart : 1990, // 设置最小年份
+			yearEnd : 2050, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : true, // 关闭时间选项
+			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			minDate : '1990/01/01', // 设置最小日期
+			maxDate : '2030/01/01', // 设置最大日期
+		});
+	</script>
 </body>
+<<<<<<< HEAD
 
 </html>
 
+=======
+</html>
+>>>>>>> origin/HY

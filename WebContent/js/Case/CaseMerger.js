@@ -151,7 +151,6 @@ $(function() {
 		var $areaId = $("input[type='checkbox']:checked").map(function() {
 			return $(this).attr('id');
 		}).get().join(",");
-		alert($('#merger_info').serialize() + '&CaeNumList=' + $areaId);
 		$.post('/xsjsglxt/case/Parallel_saveparallel', $('#merger_info').serialize() + '&caeNumList=' + $areaId, function(xhr_data) {
 			if (xhr_data == 'success') {
 				toastr.success('创建成功!');

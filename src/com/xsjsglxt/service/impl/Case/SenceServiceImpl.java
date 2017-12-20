@@ -174,12 +174,12 @@ public class SenceServiceImpl implements SenceService {
 
 			//lost = senceDao.get_lost_Byxsjsglxt_case_id(case1);// 4
 
-			picture = senceDao.get_picture_Byxsjsglxt_case_id(case1);// 5
+			//picture = senceDao.get_picture_Byxsjsglxt_case_id(case1);// 5
 			sence = senceDao.get_sence_Byxsjsglxt_case_id(case1);// 6
 			sence.setSnece_inquestId(sence.getSnece_inquestId().substring(10));
 			System.out.println("getSnece_inquestId:"+sence.getSnece_inquestId());
 			//resevidence = senceDao.get_resevidence_Byxsjsglxt_case_id(case1);
-			senceInformationDTO = new SenceInformationDTO(briefdetails, case1, picture, sence);
+			senceInformationDTO = new SenceInformationDTO(briefdetails, case1, null, sence);
 			
 			SenceInformationDTOList.add(senceInformationDTO);
 		}
