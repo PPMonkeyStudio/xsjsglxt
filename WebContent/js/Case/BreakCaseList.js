@@ -22,11 +22,7 @@ var page_infomantion = {
 $(function() {
 
 	get_ListBreakecaseInformationByPageAndSearch(query_data);
-<<<<<<< HEAD
 	
-=======
-
->>>>>>> origin/HY
 	$('.to_quert').click(function() {
 		var arr = $('#query_infomantion_inmodal').serializeArray();
 		$.each(arr, function(key, value) {
