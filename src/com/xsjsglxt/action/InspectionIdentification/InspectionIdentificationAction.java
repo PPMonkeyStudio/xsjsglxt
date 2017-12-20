@@ -162,6 +162,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void addDeathInspectionRecord() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
+			System.out.println(deathFileName.toString());
 			response.getWriter().write("" + inspectionIdentificationService
 					.saveDeathInspectionRecord(deathInspectionRecord, death, deathFileName, positionFile));
 		} catch (IOException e) {
@@ -170,10 +171,12 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		}
 	}
 
-	// 填写检材表
+	// 填写检材 表
 	public void addEntrustmentSample() {
+		System.out.println(entrustment_sample);
 		try {
 			response.setContentType("text/html;charset=utf-8");
+			System.out.println(deathFileName.toString());
 			response.getWriter().write("" + inspectionIdentificationService.saveEntrustmentSample(entrustment_sample));
 		} catch (IOException e) {
 			System.out.println("填写尸体检验记录表报错");
@@ -185,6 +188,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void addDamageInspectionRecord() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
+			System.out.println("ff");
 			response.getWriter().write("" + inspectionIdentificationService
 					.saveDamageInspectionRecord(damageInspectionRecord, death, deathFileName, positionFile));
 		} catch (IOException e) {
@@ -206,8 +210,6 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 
 	// 单独删除检材
 	public void deleteEntrustmentSample() {
-		System.out.println("sdsdsddsds");
-		System.out.println(listEntrustmentSample);
 		try {
 			response.setContentType("text/html;charset=utf-8");
 			response.getWriter()
@@ -415,8 +417,6 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 
 	//
 	public String exportAppraisalLetter() throws Exception {
-		System.out.println("ll");
-		System.out.println("appraisalLetter:" + appraisalLetter);
 		File exportAppraisalLetterFile = inspectionIdentificationService
 				.exportAppraisalLetter(appraisalLetter.getXsjsglxt_appraisal_letter_id());
 		fileName = inspectionIdentificationService
