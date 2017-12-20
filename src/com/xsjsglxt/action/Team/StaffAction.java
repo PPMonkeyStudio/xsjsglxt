@@ -65,7 +65,7 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 							+ staff_photoFileName.substring(staff_photoFileName.lastIndexOf("."));
 					filePath = "C://xsjsglxt_img/bimg/" + fileName;
 					staff.setStaff_photo(fileName);
-					
+					System.out.println("照片"+staff.getStaff_photo());
 					File newFile = new File(filePath);
 					try {
 						FileUtils.copyFile(staff_photo, newFile);
