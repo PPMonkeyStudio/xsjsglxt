@@ -182,6 +182,9 @@ function Create_EntrustmentBook(type) {
 							/*
 							 * 
 							 */
+							/*
+							 * 
+							 */
 							var formData = new FormData(document
 									.getElementById("form_EntrustmentBook"));
 							/*
@@ -203,6 +206,36 @@ function Create_EntrustmentBook(type) {
 										.append(
 												"tranceCheckBook.check_entrustment_book_type",
 												'痕迹');
+								/*
+								 * 
+								 */
+								formData
+										.append(
+												"tranceCheckBook.check_entrustment_book_entrustmentor_name",
+												'/');
+								formData
+										.append(
+												"tranceCheckBook.check_entrustment_book_entrustmentor_sex",
+												'/');
+								formData
+										.append(
+												"tranceCheckBook.check_entrustment_book_entrustmentor_phone",
+												'/');
+								formData
+										.append(
+												"tranceCheckBook.check_entrustment_book_entrustmentor_age",
+												'/');
+								formData
+										.append(
+												"tranceCheckBook.check_entrustment_book_entrustmentor_unit",
+												'/');
+								formData
+										.append(
+												"tranceCheckBook.check_entrustment_book_entrustmentor_address",
+												'/');
+								/*
+								 * 
+								 */
 							} else {
 								formData
 										.append(
