@@ -14,6 +14,12 @@
 
 <!---------------------------------------------------------------------------------------------------->
 <title>痕迹检验委托管理</title>
+<script type="text/javascript">
+window.onload = function()
+{
+	deleteByPower("user_check_power", "usePower", "managerPower");
+}
+</script>
 </head>
 <body>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
@@ -126,7 +132,7 @@
 				</div>
 
 				<div style="height: 34px; margin: 0 0 20px 0;">
-					<button class="btn btn-danger" onclick="Remove_EntrustmentBook()"
+					<button class="btn btn-danger managerPower" onclick="Remove_EntrustmentBook()"
 						style="float: right; margin: 0 10px;">
 						<i class="fa fa-trash-o"></i> 删除委托
 					</button>
