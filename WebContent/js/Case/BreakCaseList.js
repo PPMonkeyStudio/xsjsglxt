@@ -47,17 +47,15 @@ $(function() {
 	});
 
 	$('#breakCase_input').on('show.bs.modal', function() {
-		setTimeout(function() {
-			$.post('/xsjsglxt/case/Case_AllCase', function(Case_data) {
-				var option = '';
-				for (var len = 0; len < Case_data.length; len++) {
-					option += '<option value="' + Case_data[len].xsjsglxt_case_id + '">' + Case_data[len].case_name + '</option>';
-				}
-				$('#breakCase_input .selectpicker').html(option).selectpicker('refresh');
-				//除去加载提示
-				$('#breakCase_input .load_remind').remove();
-			}, 'json');
-		}, 2000)
+		$.post('/xsjsglxt/case/Case_AllCase', function(Case_data) {
+			var option = '';
+			for (var len = 0; len < Case_data.length; len++) {
+				option += '<option value="' + Case_data[len].xsjsglxt_case_id + '">' + Case_data[len].case_name + '</option>';
+			}
+			$('#breakCase_input .selectpicker').html(option).selectpicker('refresh');
+			//除去加载提示
+			$('#breakCase_input .load_remind').remove();
+		}, 'json');
 	})
 	//破案确认添加按钮事件
 	$('.input_sure').click(function() {
