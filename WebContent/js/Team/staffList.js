@@ -112,10 +112,11 @@ function get_staffPageListAndSearch_Ajax(url) {
 }
 // 格式化输到后台的数据放法
 function formatParams(data) {
-    console.log("aa");	
+    console.log("aa");
 	var arr = new FormData();
 	for ( var name in data) {
-		arr.append(encodeURIComponent(name), encodeURIComponent(data[name]));
+		console.log(name+":"+data[name]);
+		arr.append(name, data[name]);
 	}
 	return arr;
 }
@@ -127,6 +128,8 @@ function iquery() {
 		 console.log(iquery_form[i].name);
 		 console.log(iquery_form[i].value);
 		person_management_data[iquery_form[i].name] = iquery_form[i].value;
+		console.log(person_management_data[iquery_form[i].name]);
+		
 	}
 	get_staffPageListAndSearch();
 
@@ -150,7 +153,7 @@ function clear_iquery(){
 		iquery_select[k].value="";
 	}
 	get_staffPageListAndSearch(person_management_data);
-	toastr.error("清除查询");
+	toastr.info("清除查询");
 	
 }
 // 首页
@@ -224,6 +227,7 @@ function staff_del() {
 			确定: {
 				action : function() {
 					loadstaffDetail_staff_del(url);
+					//get_staffPageListAndSearch();
 				}
 			}
 		}
@@ -258,6 +262,7 @@ function loadstaffDetail_staff_del(url) {
 	formData.append("useStaffInformationNumList", staff_idsArr);
 	xmlhttp.onreadystatechange = function() {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			alert("22");
 			var result = xmlhttp.responseText;
 			if (result == 'success') {
 				toastr.success('删除成功！');
