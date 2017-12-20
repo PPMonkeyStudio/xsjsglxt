@@ -42,7 +42,7 @@ a:hover {
 
 .page-go{
 	width:35px;
-	
+	text-indent:10px;
 }
 /*staffList table.css end  */
 /*staffDetail table.css  */
@@ -104,26 +104,23 @@ a:hover {
 	vertical-align: middle;
 	width: 70px;
 }
-
-.a-upload {
+/*newStaff.css  */
+.photo-show{
 	width: 120px;
 	height: 150px;
 	border: 1px solid #dbd9d9;
 	cursor: pointer;
 	overflow: hidden;
-	display: inline-block;
+	display:block;
 	*display: inline;
 	*zoom: 1
 }
-
-.a-upload  input {
-	font-size: 100px;
-	right: 0;
-	top: 0;
-	opacity: 0;
-	filter: alpha(opacity = 0);
-	cursor: pointer
-}
+.photo-file{
+	display:none !important;
+	 opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer;
+} 
 /*标题分割线  */
 .staff_info_title {
 	border-bottom: 1px solid #eee;

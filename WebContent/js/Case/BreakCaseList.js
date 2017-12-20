@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var query_data = {
 	"page_list_BreakecaseInformation.pageIndex" : "1",
 	"page_list_BreakecaseInformation.snece_inquestId" : "",
@@ -283,7 +282,7 @@ function lastPage() {
 function toPage(object) {
 	query_data['page_list_senceInformation.pageIndex'] = $(object).val();
 	get_ListBreakecaseInformationByPageAndSearch(query_data);
-=======
+
 var query_data = {
 	"page_list_BreakecaseInformation.pageIndex" : "1",
 	"page_list_BreakecaseInformation.snece_inquestId" : "",
@@ -410,5 +409,5 @@ function lastPage() {
 function toPage(object) {
 	query_data['page_list_senceInformation.pageIndex'] = $(object).val();
 	get_ListSneceInformationByPageAndSearch(query_data);
->>>>>>> origin/SLL
+}
 }

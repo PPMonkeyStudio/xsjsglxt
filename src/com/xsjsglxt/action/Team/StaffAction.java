@@ -90,6 +90,7 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 	 *列表信息 
 	 */
 	public void ListStaffInformationByPageAndSearch() throws IOException{
+		System.out.println(page_list_staffInformation.getStaff_name());
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
@@ -155,7 +156,7 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 	 */
 	public void remove_StaffInformationList(){
 	
-		if(	staffService.remove_StaffInformationList( useStaffInformationNumList)){
+		if(	staffService.remove_StaffInformationList(useStaffInformationNumList)){
 			http_response.setContentType("text/html;charset=utf-8");
 			try {
 				http_response.getWriter().write("success");

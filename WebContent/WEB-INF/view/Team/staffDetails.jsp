@@ -55,8 +55,8 @@
 
 							<td><label>照片</label></td>
 							<td rowspan="3">
-						    	<a href="javascript:;" class="a-upload">
-						    	 <input type="text" class="photo" name="staff.staff_photo" />
+						    	<a href="javascript:;" class="photo-show"  name="staff.staff_photo">
+						    	
 							    </a>
 							 </td>
 
@@ -114,9 +114,7 @@
 							<td><label>入警时间</label></td>
 							<td><input name="staff.staff_thePoliceTime"
 								class="form-control" type="text"></td>
-							<td>到</td>
-							<td><input name="staff.staff_thePoliceTime"
-								class="form-control" type="text"></td>
+							
 							<td><label>是否正式</label></td>
 							<td><label style="float: left;" class="fancy-radio">
 									<input name="format_content" onclick=isFormat(this)
@@ -129,7 +127,7 @@
 						<tr>
 							<td><label>籍贯</label></td>
 							<td><input name="staff.staff_nativePlace"
-								class="form-control" type="text"></td>
+								class="form-control" type="text" ></td>
 						</tr>
 						<tr style="height: 30px"></tr>
 						<tr>
@@ -225,7 +223,7 @@
 			</div>
 		</div>
 	</div>
-	<input type="hidden" id="staff_id" />
+	<input type="hidden" id="staff_id" value="<s:property value="staff_id"/>"/>
 
 	<script type="text/javascript"
 		src="<%=basePath%>js/Team/staffDetails.js"></script>

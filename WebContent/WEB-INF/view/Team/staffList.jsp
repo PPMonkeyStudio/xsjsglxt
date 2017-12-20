@@ -80,7 +80,7 @@
 									<a onclick="lastPage()">尾页<i
 										class="fa fa-angle-double-right"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
 									<input type="text" class="page-go"/>&nbsp;&nbsp;&nbsp;&nbsp;
-									<a onclick="">GO</a>
+									<a onclick="page_go()">GO</a>
 							    </div>
 							    <p class='page-infomation'></p>
 						</div>
@@ -104,7 +104,7 @@
 					<h4 class="modal-title" id="myModalLabel">查询条件</h4>
 				</div>
 				<div class="modal-body">
-					<form action="" id="iquery_form">
+					<form action="" id="iquery_form"  accept-charset="utf-8">
 						<table>
 							<tbody>
 								<tr>
@@ -132,9 +132,7 @@
 								<tr>
 									<td><label class="staff_info_label">入警时间</label> <input
 										name="page_list_staffInformation.start_time" type="text"
-										class="staff_info_input" />&nbsp;&nbsp;到 <input
-										name="page_list_staffInformation.stop_time" type="text"
-										class="staff_info_input" /></td>
+										class="staff_info_input" />
 								</tr>
 							</tbody>
 						</table>
