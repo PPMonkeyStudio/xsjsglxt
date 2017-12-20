@@ -91,7 +91,7 @@ public void updateStaffInformation(xsjsglxt_staff staff) {
 @Override
 public boolean remove_StaffInformationList(String useStaffInformationNumList) {
 	// TODO Auto-generated method stub
-	boolean flag = false;
+	boolean flag=false;
 	String sourceStr = useStaffInformationNumList;
 	String[] sourceStrArray = sourceStr.split(",");
 	for (String staff_id : sourceStrArray) {
@@ -116,7 +116,7 @@ private boolean removeStaffImgByNewsID(xsjsglxt_staff xsjsglxt_staff) {
 		return true;
 	}
 	
-	return false;
+	return false; 
 }
 
 
