@@ -57,8 +57,15 @@
 						data-target="#newQuery">
 						<i class="fa fa-plus-square"></i> 刑事破案查询
 					</button>
+<<<<<<< HEAD
 					<button data-toggle="modal" data-target="#breakCase_input"
 						style="margin-left: 15px;" type="button" class="btn btn-default">
+=======
+
+					<button data-toggle="modal" data-target="#breakCase_input"
+						style="margin-left: 15px;" type="button" class="btn btn-default">
+
+>>>>>>> origin/LWK
 						<i class="fa fa-plus-square"></i> 添加刑事破案
 					</button>
 				</div>
@@ -205,8 +212,15 @@
 	<!------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!-- 破案信息-模态框（Modal） -->
+<<<<<<< HEAD
 	<div class="modal fade" id="breakCase_modification" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+=======
+
+	<div class="modal fade" id="breakCase_modification" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+>>>>>>> origin/LWK
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -229,6 +243,10 @@
 		<!-- /.modal -->
 	</div>
 	<!---------------------------------------------------------------------------------------------------->
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/LWK
 	<!------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!-- 破案信息-模态框（Modal） -->
@@ -316,6 +334,10 @@
 		<!-- /.modal -->
 	</div>
 	<!---------------------------------------------------------------------------------------------------->
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/LWK
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
@@ -345,4 +367,10 @@
 		});
 	</script>
 </body>
+<<<<<<< HEAD
 </html>
+=======
+
+</html>
+
+>>>>>>> origin/LWK

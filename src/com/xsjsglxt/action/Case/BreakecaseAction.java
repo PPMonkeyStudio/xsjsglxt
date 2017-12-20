@@ -213,4 +213,10 @@ public class BreakecaseAction extends ActionSupport implements ServletResponseAw
 		this.useBreakecaseInformationNumList = useBreakecaseInformationNumList;
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+
+
+>>>>>>> origin/LWK
