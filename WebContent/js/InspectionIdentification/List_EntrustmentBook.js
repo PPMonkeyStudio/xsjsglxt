@@ -289,7 +289,19 @@ function List_EntrustmentBook(pageIndex) {
 		formData.append("entrustmentBookManagementVO.entrustmentRequire",
 				document.getElementById("select_entrustmentRequire").value);
 	}
-
+	/*
+	 * 筛选：开始时间
+	 */
+	var start_time = document.getElementById("select_start_time").value;
+	if (start_time == undefined || start_time == null || start_time == "") {
+	} else {
+		formData.append("entrustmentBookManagementVO.start_time", start_time);
+	}
+	var stop_time = document.getElementById("select_stop_time").value;
+	if (stop_time == undefined || stop_time == null || stop_time == "") {
+	} else {
+		formData.append("entrustmentBookManagementVO.stop_time", stop_time);
+	}
 	/*
 	 * 
 	 */
