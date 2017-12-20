@@ -45,7 +45,7 @@ public page_list_HandleInformationVO VO_HandleInformation_By_PageAndSearch(
 	//BreakecaseInformationDTO breakecaseInformationDTO;
 
 	int i = handleDao.getCountHandleInformationByPage(page_list_HandleInformation);
-
+System.out.println("总记录"+i);
 	page_list_HandleInformation.setTotalRecords(i);
 	page_list_HandleInformation.setTotalPages(((i - 1) / page_list_HandleInformation.getPageSize()) + 1);
 	if (page_list_HandleInformation.getPageIndex() <= 1) {

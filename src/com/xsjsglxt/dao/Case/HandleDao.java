@@ -1,9 +1,6 @@
 package com.xsjsglxt.dao.Case;
 
 
-
-
-
 import java.util.List;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_handle;
@@ -32,5 +29,6 @@ public List<xsjsglxt_handle> allPoliceInHandlingCases();
 
 
 }
+
 
 

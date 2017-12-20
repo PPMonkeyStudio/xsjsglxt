@@ -100,7 +100,7 @@ public class HandleDaoImpl implements HandleDao {
 			handle_StartTimeaOfDetention_stop_time = page_list_HandleInformation.getHandle_StartTimeaOfDetention_stop_time();
 		}
 		hql = hql + " and handle_StartTimeaOfDetention>='" + handle_StartTimeaOfDetention_start_time + "' and handle_StartTimeaOfDetention<='"
-				+ handle_StartTimeaOfDetention_stop_time + "'order by handle_gnt_create ";
+				+ handle_StartTimeaOfDetention_stop_time + "'";
 		//逮捕时间
 		if (page_list_HandleInformation.getHandle_arrestTime_start_time() != null && page_list_HandleInformation.getHandle_arrestTime_start_time().trim().length() > 0) {
 			handle_arrestTime_start_time = page_list_HandleInformation.getHandle_arrestTime_start_time();
@@ -109,7 +109,7 @@ public class HandleDaoImpl implements HandleDao {
 			handle_arrestTime_stop_time = page_list_HandleInformation.getHandle_arrestTime_stop_time();
 		}
 		hql = hql + " and handle_arrestTime>='" + handle_arrestTime_start_time + "' and handle_arrestTime<='"
-				+ handle_arrestTime_stop_time + "'order by handle_gnt_create ";
+				+ handle_arrestTime_stop_time + "'";
 		//起诉时间
 		if (page_list_HandleInformation.getHandle_prosecuteTime_start_time() != null && page_list_HandleInformation.getHandle_prosecuteTime_start_time().trim().length() > 0) {
 			handle_prosecuteTime_start_time = page_list_HandleInformation.getHandle_prosecuteTime_start_time();
@@ -118,7 +118,7 @@ public class HandleDaoImpl implements HandleDao {
 			handle_prosecuteTime_stop_time = page_list_HandleInformation.getHandle_prosecuteTime_stop_time();
 		}
 		hql = hql + " and handle_prosecuteTime>='" + handle_prosecuteTime_start_time + "' and handle_prosecuteTime<='"
-				+ handle_prosecuteTime_stop_time + "'order by handle_gnt_create ";
+				+ handle_prosecuteTime_stop_time + "'";
 		//退查时间
 		if (page_list_HandleInformation.getHandle_checkbackTime_start_time() != null && page_list_HandleInformation.getHandle_checkbackTime_start_time().trim().length() > 0) {
 			handle_checkbackTime_start_time = page_list_HandleInformation.getHandle_checkbackTime_start_time();
@@ -127,7 +127,7 @@ public class HandleDaoImpl implements HandleDao {
 			handle_checkbackTime_stop_time = page_list_HandleInformation.getHandle_checkbackTime_stop_time();
 		}
 		hql = hql + " and handle_checkbackTime>='" + handle_checkbackTime_start_time + "' and handle_checkbackTime<='"
-				+ handle_checkbackTime_stop_time + "'order by handle_gnt_create ";
+				+ handle_checkbackTime_stop_time + "'";
 		//取保候审时间
 		if (page_list_HandleInformation.getHandle_pbatTime_start_time() != null && page_list_HandleInformation.getHandle_pbatTime_start_time().trim().length() > 0) {
 			handle_pbatTime_start_time = page_list_HandleInformation.getHandle_pbatTime_start_time();
@@ -136,7 +136,7 @@ public class HandleDaoImpl implements HandleDao {
 			handle_pbatTime_stop_time = page_list_HandleInformation.getHandle_pbatTime_stop_time();
 		}
 		hql = hql + " and handle_pbatTime>='" + handle_pbatTime_start_time + "' and handle_pbatTime<='"
-				+ handle_pbatTime_stop_time + "'order by handle_gnt_create ";
+				+ handle_pbatTime_stop_time + "'";
 		//监视居住时间
 		if (page_list_HandleInformation.getHandle_lhusTime_start_time() != null && page_list_HandleInformation.getHandle_lhusTime_start_time().trim().length() > 0) {
 			handle_lhusTime_start_time = page_list_HandleInformation.getHandle_lhusTime_start_time();
@@ -212,7 +212,7 @@ public class HandleDaoImpl implements HandleDao {
 					handle_StartTimeaOfDetention_stop_time = page_list_HandleInformation.getHandle_StartTimeaOfDetention_stop_time();
 				}
 				hql = hql + " and handle_StartTimeaOfDetention>='" + handle_StartTimeaOfDetention_start_time + "' and handle_StartTimeaOfDetention<='"
-						+ handle_StartTimeaOfDetention_stop_time + "'order by handle_gnt_create ";
+						+ handle_StartTimeaOfDetention_stop_time + "'";
 				//逮捕时间
 				if (page_list_HandleInformation.getHandle_arrestTime_start_time() != null && page_list_HandleInformation.getHandle_arrestTime_start_time().trim().length() > 0) {
 					handle_arrestTime_start_time = page_list_HandleInformation.getHandle_arrestTime_start_time();
@@ -221,7 +221,7 @@ public class HandleDaoImpl implements HandleDao {
 					handle_arrestTime_stop_time = page_list_HandleInformation.getHandle_arrestTime_stop_time();
 				}
 				hql = hql + " and handle_arrestTime>='" + handle_arrestTime_start_time + "' and handle_arrestTime<='"
-						+ handle_arrestTime_stop_time + "'order by handle_gnt_create ";
+						+ handle_arrestTime_stop_time + "'";
 				//起诉时间
 				if (page_list_HandleInformation.getHandle_prosecuteTime_start_time() != null && page_list_HandleInformation.getHandle_prosecuteTime_start_time().trim().length() > 0) {
 					handle_prosecuteTime_start_time = page_list_HandleInformation.getHandle_prosecuteTime_start_time();
@@ -230,7 +230,7 @@ public class HandleDaoImpl implements HandleDao {
 					handle_prosecuteTime_stop_time = page_list_HandleInformation.getHandle_prosecuteTime_stop_time();
 				}
 				hql = hql + " and handle_prosecuteTime>='" + handle_prosecuteTime_start_time + "' and handle_prosecuteTime<='"
-						+ handle_prosecuteTime_stop_time + "'order by handle_gnt_create ";
+						+ handle_prosecuteTime_stop_time + "'";
 				//退查时间
 				if (page_list_HandleInformation.getHandle_checkbackTime_start_time() != null && page_list_HandleInformation.getHandle_checkbackTime_start_time().trim().length() > 0) {
 					handle_checkbackTime_start_time = page_list_HandleInformation.getHandle_checkbackTime_start_time();
@@ -239,7 +239,7 @@ public class HandleDaoImpl implements HandleDao {
 					handle_checkbackTime_stop_time = page_list_HandleInformation.getHandle_checkbackTime_stop_time();
 				}
 				hql = hql + " and handle_checkbackTime>='" + handle_checkbackTime_start_time + "' and handle_checkbackTime<='"
-						+ handle_checkbackTime_stop_time + "'order by handle_gnt_create ";
+						+ handle_checkbackTime_stop_time + "'";
 				//取保候审时间
 				if (page_list_HandleInformation.getHandle_pbatTime_start_time() != null && page_list_HandleInformation.getHandle_pbatTime_start_time().trim().length() > 0) {
 					handle_pbatTime_start_time = page_list_HandleInformation.getHandle_pbatTime_start_time();
@@ -248,7 +248,7 @@ public class HandleDaoImpl implements HandleDao {
 					handle_pbatTime_stop_time = page_list_HandleInformation.getHandle_pbatTime_stop_time();
 				}
 				hql = hql + " and handle_pbatTime>='" + handle_pbatTime_start_time + "' and handle_pbatTime<='"
-						+ handle_pbatTime_stop_time + "'order by handle_gnt_create ";
+						+ handle_pbatTime_stop_time + "'";
 				//监视居住时间
 				if (page_list_HandleInformation.getHandle_lhusTime_start_time() != null && page_list_HandleInformation.getHandle_lhusTime_start_time().trim().length() > 0) {
 					handle_lhusTime_start_time = page_list_HandleInformation.getHandle_lhusTime_start_time();

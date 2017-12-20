@@ -57,8 +57,14 @@
 						data-target="#newQuery">
 						<i class="fa fa-plus-square"></i> 刑事破案查询
 					</button>
+<<<<<<< HEAD
 					<button data-toggle="modal" data-target="#breakCase_input"
 						style="margin-left: 15px;" type="button" class="btn btn-default">
+=======
+					<button style="margin-left: 15px;" type="button"
+						class="btn btn-default"
+						onclick="javascript:location.href='/xsjsglxt/case/BreakCase_page_BreakCaseinput'">
+>>>>>>> origin/LWK
 						<i class="fa fa-plus-square"></i> 添加刑事破案
 					</button>
 				</div>
@@ -181,7 +187,11 @@
 									<td>接警时间</td>
 									<td><input
 										name="page_list_BreakecaseInformation.start_time"
+<<<<<<< HEAD
 										style="float: left;" type="text" class="form-control mydate"
+=======
+										style="float: left;" type="text" class="form-control"
+>>>>>>> origin/LWK
 										placeholder="起始日期"><input
 										name="page_list_BreakecaseInformation.stop_time"
 										style=" float: right;" type="text" class="form-control"
@@ -205,8 +215,13 @@
 	<!------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!-- 破案信息-模态框（Modal） -->
+<<<<<<< HEAD
 	<div class="modal fade" id="breakCase_modification" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+=======
+	<div class="modal fade" id="breakCaseinput" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+>>>>>>> origin/LWK
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -229,6 +244,7 @@
 		<!-- /.modal -->
 	</div>
 	<!---------------------------------------------------------------------------------------------------->
+<<<<<<< HEAD
 	<!------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!-- 破案信息-模态框（Modal） -->
@@ -315,6 +331,8 @@
 		<!-- /.modal -->
 	</div>
 	<!---------------------------------------------------------------------------------------------------->
+=======
+>>>>>>> origin/LWK
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
@@ -322,6 +340,7 @@
 	<script type="text/javascript" src="<%=basePath%>js/Case/SneceInput.js"></script>
 	<script type="text/javascript"
 		src="<%=basePath%>js/Case/BreakCaseList.js"></script>
+<<<<<<< HEAD
 	<script type="text/javascript">
 		$.datetimepicker.setLocale('ch');
 		$('.mydate').datetimepicker({
@@ -345,3 +364,8 @@
 	</script>
 </body>
 </html>
+=======
+</body>
+</html>
+
+>>>>>>> origin/LWK
