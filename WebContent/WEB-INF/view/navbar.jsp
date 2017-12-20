@@ -61,7 +61,7 @@
 						<li><a href="<%=basePath%>case/Case_page_SiteManagement">现场管理</a></li>
 						<li><a href="<%=basePath%>case/Case_page_CaseMergerList">案件串并</a></li>
 						<li><a href="<%=basePath%>case/Case_page_CaseMaterials">案件材料</a></li>
-						<li><a href="#">办案管理</a></li>
+						<li><a href="<%=basePath%>case/Case_page_Handle">办案管理</a></li>
 						<li><a href="<%=basePath%>case/BreakCase_page_BreakCaseList">刑事破案</a></li>
 					</ul></li>
 				<!--  -->
@@ -81,7 +81,8 @@
 				</a>
 					<ul class="dropdown-menu">
 						<li class="teacher_control"><a href="#">值班管理</a></li>
-						<li class="teacher_control"><a href="<%=basePath%>team/Staff_page_staffList">人员管理</a></li>
+						<li class="teacher_control"><a
+							href="<%=basePath%>team/Staff_page_staffList">人员管理</a></li>
 					</ul></li>
 				<!--  -->
 				<!--  -->

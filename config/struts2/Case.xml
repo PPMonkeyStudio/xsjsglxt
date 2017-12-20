@@ -12,6 +12,7 @@
 			<result name="page_CaseDetails">/WEB-INF/view/Case/CaseDetails.jsp</result>
 			<result name="page_CaseMerger">/WEB-INF/view/Case/CaseMerger.jsp</result>
 			<result name="page_CaseMaterials">/WEB-INF/view/Case/CaseMaterials.jsp</result>
+			<result name="page_Handle">/WEB-INF/view/Case/HandleList.jsp</result>
 		</action>
 		<action name="Resevidence_*" class="com.xsjsglxt.action.Case.ResevidenceAction"
 			method="{1}">
@@ -34,6 +35,9 @@
 		<action name="BreakCase_*" class="com.xsjsglxt.action.Case.BreakecaseAction"
 			method="{1}">
 			<result name="page_BreakCaseList">/WEB-INF/view/Case/BreakCaseList.jsp</result>
+		</action>
+		<action name="Handle_*" class="com.xsjsglxt.action.Case.HandleAction"
+			method="{1}">
 		</action>
 	</package>
 </struts>

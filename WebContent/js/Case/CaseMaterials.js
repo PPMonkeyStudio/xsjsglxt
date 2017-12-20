@@ -162,7 +162,6 @@ function material(object) {
 		}, 'json');
 	} else if (material_type == "Goods_table_info") {
 		$('#goods_chose').show();
-	} else if (material_type == "") {
 		$('.add_info').hide();
 	}
 }
@@ -262,6 +261,7 @@ function lost_chose(opt_obj) {
 			setPageInfomation(xhr_data);
 		}, 'json');
 	} else {
+		$('.add_info').hide();
 		return;
 	}
 }
