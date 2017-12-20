@@ -841,7 +841,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		params.putAll(mapAcceptanceIdentifieder(id));
 		XwpfTUtil xwpfTUtil = new XwpfTUtil();
 		XWPFDocument doc;
-		String fileNameInResource = ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt_entrustment_book.docx");
+		String fileNameInResource = ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt_acceptance_return_receipt.docx");
 		InputStream is;
 		is = new FileInputStream(fileNameInResource);
 		doc = new XWPFDocument(is);
@@ -875,7 +875,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		params.putAll(mapNotAcceptanceIdentifieder(id));
 		XwpfTUtil xwpfTUtil = new XwpfTUtil();
 		XWPFDocument doc;
-		String fileNameInResource = ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt_entrustment_book.docx");
+		String fileNameInResource = ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt_not_acceptance_return_receipt.docx");
 		InputStream is;
 		is = new FileInputStream(fileNameInResource);
 		doc = new XWPFDocument(is);
@@ -902,7 +902,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				xsjsglxt_check_entrustment_book = inspectionIdentificationDao
 						.getCheckEntrustmentBookById(xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_belong_entrustment_book().trim());
 				if (xsjsglxt_check_entrustment_book != null) {
-					return xsjsglxt_check_entrustment_book.getXsjsglxt_check_entrustment_book_id();
+					return xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num();
 				}
 			}
 		}
@@ -955,7 +955,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				xsjsglxt_check_entrustment_book = inspectionIdentificationDao
 						.getCheckEntrustmentBookById(xsjsglxt_inspection_record.getInspection_belong_entrustment_book().trim());
 				if (xsjsglxt_check_entrustment_book != null) {
-					return xsjsglxt_check_entrustment_book.getXsjsglxt_check_entrustment_book_id();
+					return xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num();
 				}
 			}
 		}
@@ -975,7 +975,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				xsjsglxt_check_entrustment_book = inspectionIdentificationDao
 						.getCheckEntrustmentBookById(xsjsglxt_death_inspection_record.getDeath_inspection_record_belong_entrustment_book().trim());
 				if (xsjsglxt_check_entrustment_book != null) {
-					return xsjsglxt_check_entrustment_book.getXsjsglxt_check_entrustment_book_id();
+					return xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num();
 				}
 			}
 		}
@@ -999,9 +999,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			e.printStackTrace();
 		}
 		params.putAll(mapDeathInspectionRecord(id));
-		// String fileNameInResource =
-		// ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt_death_inspection_record.docx");
-		String fileNameInResource = "F:/xsjsglxt_death_inspection_record.docx";
+		String fileNameInResource = ServletActionContext.getServletContext().getRealPath("/DocTem/xsjsglxt_death_inspection_record.docx");
 		XWPFTemplate template = XWPFTemplate.compile(fileNameInResource);
 		template.render(params);
 		FileOutputStream out;
@@ -1031,7 +1029,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				xsjsglxt_check_entrustment_book = inspectionIdentificationDao
 						.getCheckEntrustmentBookById(xsjsglxt_damage_inspection_record.getDamage_inspection_record_belong_entrustment_book().trim());
 				if (xsjsglxt_check_entrustment_book != null) {
-					return xsjsglxt_check_entrustment_book.getXsjsglxt_check_entrustment_book_id();
+					return xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num();
 				}
 			}
 		}
@@ -1164,7 +1162,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			if (xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book() != null
 					&& xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim().length() > 0) {
 				xsjsglxt_identifieder_case_confirm_book = inspectionIdentificationDao
-						.getIdentifiederCaseConfirmBookByOwnId(xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim());
+						.getIdentifiederCaseConfirmBookById(xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim());
 				// 确认书
 				if (xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_inspection_date() != null
 						&& xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_inspection_date().trim().length() > 0) {

@@ -415,6 +415,8 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 
 	//
 	public String exportAppraisalLetter() throws Exception {
+		System.out.println("ll");
+		System.out.println("appraisalLetter:" + appraisalLetter);
 		File exportAppraisalLetterFile = inspectionIdentificationService
 				.exportAppraisalLetter(appraisalLetter.getXsjsglxt_appraisal_letter_id());
 		fileName = inspectionIdentificationService
