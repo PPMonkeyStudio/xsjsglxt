@@ -80,7 +80,11 @@
 									<a onclick="lastPage()">尾页<i
 										class="fa fa-angle-double-right"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
 									<input type="text" class="page-go"/>&nbsp;&nbsp;&nbsp;&nbsp;
+<<<<<<< HEAD
 									<a onclick="page_go()">GO</a>
+=======
+									<a onclick="">GO</a>
+>>>>>>> LWK
 							    </div>
 							    <p class='page-infomation'></p>
 						</div>
@@ -104,7 +108,11 @@
 					<h4 class="modal-title" id="myModalLabel">查询条件</h4>
 				</div>
 				<div class="modal-body">
+<<<<<<< HEAD
 					<form action="" id="iquery_form"  accept-charset="utf-8">
+=======
+					<form action="" id="iquery_form">
+>>>>>>> LWK
 						<table>
 							<tbody>
 								<tr>
@@ -132,7 +140,13 @@
 								<tr>
 									<td><label class="staff_info_label">入警时间</label> <input
 										name="page_list_staffInformation.start_time" type="text"
+<<<<<<< HEAD
 										class="staff_info_input" />
+=======
+										class="staff_info_input" />&nbsp;&nbsp;到 <input
+										name="page_list_staffInformation.stop_time" type="text"
+										class="staff_info_input" /></td>
+>>>>>>> LWK
 								</tr>
 							</tbody>
 						</table>
@@ -156,6 +170,11 @@
 	<!-- SneceInput.js仅作为在查询模态框中（案件类别，选择处所，作案手段）的自动匹配子项使用 -->
 
 	<script type="text/javascript" src="<%=basePath%>js/Team/staffList.js"></script>
+<<<<<<< HEAD
 </body>
 
+=======
+</body>
+
+>>>>>>> LWK
 </html>

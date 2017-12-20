@@ -80,17 +80,17 @@ public class SenceServiceImpl implements SenceService {
 
 		xsjsglxt_briefdetails briefdetails;//
 
-		xsjsglxt_lost_computer lost_computer;//
+		//xsjsglxt_lost_computer lost_computer;//
 
-		xsjsglxt_lost_mobilephone lost_mobilephone;//
+		//xsjsglxt_lost_mobilephone lost_mobilephone;//
 
-		xsjsglxt_lost lost;//
+		//xsjsglxt_lost lost;//
 
 		xsjsglxt_picture picture;//
 
 		xsjsglxt_snece sence;//
 
-		xsjsglxt_resevidence resevidence;//
+		//xsjsglxt_resevidence resevidence;//
 		// ��ȡɸѡ�����еļ�¼
 		int i = senceDao.getCountSenceInformationByPage(page_list_senceInformation);
 	//	System.out.println(i);
@@ -174,12 +174,12 @@ public class SenceServiceImpl implements SenceService {
 
 			//lost = senceDao.get_lost_Byxsjsglxt_case_id(case1);// 4
 
-			picture = senceDao.get_picture_Byxsjsglxt_case_id(case1);// 5
+			//picture = senceDao.get_picture_Byxsjsglxt_case_id(case1);// 5
 			sence = senceDao.get_sence_Byxsjsglxt_case_id(case1);// 6
 			sence.setSnece_inquestId(sence.getSnece_inquestId().substring(10));
 			System.out.println("getSnece_inquestId:"+sence.getSnece_inquestId());
-			resevidence = senceDao.get_resevidence_Byxsjsglxt_case_id(case1);
-			senceInformationDTO = new SenceInformationDTO(briefdetails, case1, picture, sence, resevidence);
+			//resevidence = senceDao.get_resevidence_Byxsjsglxt_case_id(case1);
+			senceInformationDTO = new SenceInformationDTO(briefdetails, case1, null, sence);
 			
 			SenceInformationDTOList.add(senceInformationDTO);
 		}
@@ -236,10 +236,10 @@ public class SenceServiceImpl implements SenceService {
 		//xsjsglxt_lost lost = senceDao.getLostByCaseID(case1);
 		//xsjsglxt_lost_mobilephone lost_mobilephone =senceDao.getLost_mobilephoneByCaseId(case1);
 		//xsjsglxt_lost_computer lost_computer=senceDao.getLost_computerByCaseId(case1);
-		xsjsglxt_resevidence resevidence =senceDao.getResevidenceByCaseId(case1);
+		//xsjsglxt_resevidence resevidence =senceDao.getResevidenceByCaseId(case1);
 		xsjsglxt_picture picture=senceDao.getPicturtByCaseId(case1);
 		SenceInformationDTO senceInformationDTO =new SenceInformationDTO(briefdetails, case1,
-				picture, sence, resevidence);
+				picture, sence);
 		return senceInformationDTO;
 	}
 

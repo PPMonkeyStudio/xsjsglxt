@@ -31,6 +31,10 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 	private page_list_staffInformationVO  page_list_staffInformation;
 	
 	
+<<<<<<< HEAD
+=======
+	
+>>>>>>> LWK
 	private File staff_photo;
 	private String staff_photoFileName;
 	/*
@@ -65,7 +69,11 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 							+ staff_photoFileName.substring(staff_photoFileName.lastIndexOf("."));
 					filePath = "C://xsjsglxt_img/bimg/" + fileName;
 					staff.setStaff_photo(fileName);
+<<<<<<< HEAD
 					
+=======
+					System.out.println("照片"+staff.getStaff_photo());
+>>>>>>> LWK
 					File newFile = new File(filePath);
 					try {
 						FileUtils.copyFile(staff_photo, newFile);
@@ -90,7 +98,10 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 	 *列表信息 
 	 */
 	public void ListStaffInformationByPageAndSearch() throws IOException{
+<<<<<<< HEAD
 		System.out.println(page_list_staffInformation.getStaff_name());
+=======
+>>>>>>> LWK
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
@@ -156,7 +167,11 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 	 */
 	public void remove_StaffInformationList(){
 	
+<<<<<<< HEAD
 		if(	staffService.remove_StaffInformationList(useStaffInformationNumList)){
+=======
+		if(	staffService.remove_StaffInformationList( useStaffInformationNumList)){
+>>>>>>> LWK
 			http_response.setContentType("text/html;charset=utf-8");
 			try {
 				http_response.getWriter().write("success");

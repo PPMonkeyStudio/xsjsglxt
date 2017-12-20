@@ -1,8 +1,10 @@
 
+
 package com.xsjsglxt.action.Case;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -121,7 +123,19 @@ public void remove_HandleInformationList(){
 			}
 		}
 }
+/*
+ *所有的中队长、办案民警 
+ */
+public void allPoliceInHandlingCases() throws IOException{
+	GsonBuilder gsonBuilder = new GsonBuilder();
+	gsonBuilder.setPrettyPrinting();//格式化json数据
+	Gson gson = gsonBuilder.create();
+	List<xsjsglxt_handle> handleList=new ArrayList<xsjsglxt_handle>();
+	handleList = handleService.allPoliceInHandlingCases();
+	http_response.setContentType("text/html;charset=utf-8");
 
+	http_response.getWriter().write(gson.toJson(handleList));
+}
 	@Override
 	public void setServletResponse(HttpServletResponse arg0) {
 		// TODO Auto-generated method stub
@@ -179,3 +193,5 @@ public void remove_HandleInformationList(){
 
 
 }
+
+

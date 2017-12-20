@@ -21,7 +21,8 @@
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-<link rel="stylesheet" type="text/css" href="<%=basePath %>Case.css"/>
+<link rel="stylesheet" type="text/css"
+	href="<%=basePath%>css/Case/Case.css" />
 </head>
 
 <body>
@@ -40,14 +41,13 @@
 					<button style="margin-left: 15px;" type="button"
 						class="btn btn-default" data-toggle="modal"
 						data-target="#newQuery">
-						<i class="fa fa-plus-square"></i> 新建查询
+						<i class="fa fa-plus-square"></i> 案件查询
 					</button>
 					<button style="margin-left: 15px;" type="button"
 						class="btn btn-default"
 						onclick="javascript:location.href='/xsjsglxt/case/Case_page_Sneceinput'">
 						<i class="fa fa-plus-square"></i> 新建案件
 					</button>
-					
 				</div>
 				<div class="col-md-12">
 					<!-- TABLE HOVER -->
@@ -114,7 +114,7 @@
 						<table style="width: 100%;" class="Query_table">
 							<tbody>
 								<tr>
-									<td>案件类别</td>
+									<td width="70px">案件类别</td>
 									<td><select
 										name="page_list_senceInformation.case_totalCategory"
 										onchange="setSectionCase(this.selectedIndex)"
@@ -137,7 +137,7 @@
 										class="other_case form-control">
 											<option selected value="">请选择案件子类别</option>
 									</select></td>
-									<td style="padding-left: 10px;">案件分类</td>
+									<td style="padding-left: 10px; width: 70px;">案件分类</td>
 									<td><select
 										name="page_list_senceInformation.case_classify"
 										class=" form-control">
@@ -146,7 +146,7 @@
 											<option value="刑事案件">刑事案件</option>
 											<option value="非正常死亡">非正常死亡</option>
 									</select></td>
-									<td>作案时段</td>
+									<td width="70px">作案时段</td>
 									<td><select
 										name="page_list_senceInformation.case_makeTime"
 										class="form-control">
@@ -217,12 +217,11 @@
 											<option value="">具体手段</option>
 									</select></td>
 									<td style="padding-left: 10px;">接警时间</td>
-									<td colspan="3"><input
-										name="page_list_senceInformation.start_time"
-										style="float: left;" type="text" class="form-control"
+									<td><input name="page_list_senceInformation.start_time"
+										style="float: left;" type="text" class="form-control mydate"
 										placeholder="起始日期"><input
 										name="page_list_senceInformation.stop_time"
-										style=" float: right;" type="text" class="form-control"
+										style=" float: right;" type="text" class="form-control mydate"
 										placeholder="结束日期"></td>
 								</tr>
 							</tbody>
@@ -247,5 +246,26 @@
 	<script type="text/javascript" src="<%=basePath%>js/Case/SneceInput.js"></script>
 	<script type="text/javascript"
 		src="<%=basePath%>js/Case/sitemanagement.js"></script>
+	<script type="text/javascript">
+		$.datetimepicker.setLocale('ch');
+		$('.mydate').datetimepicker({
+			yearStart : 1990, // 设置最小年份
+			yearEnd : 2050, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : false, // 关闭时间选项
+			format : 'Y-m-d', // 格式化日期年-月-日
+			minDate : '1990/01/01', // 设置最小日期
+			maxDate : '2030/01/01', // 设置最大日期
+		});
+		$('.mydate_minute').datetimepicker({
+			yearStart : 1990, // 设置最小年份
+			yearEnd : 2050, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : true, // 关闭时间选项
+			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			minDate : '1990/01/01', // 设置最小日期
+			maxDate : '2030/01/01', // 设置最大日期
+		});
+	</script>
 </body>
 </html>
