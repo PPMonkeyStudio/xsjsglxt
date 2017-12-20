@@ -11,6 +11,15 @@ window.onload = function() {
 }
 
 function addUser() {
+	for(var i=0;i<document.addUserForm.elements.length-1;i++)
+    {
+     if(document.addUserForm.elements[i].value=="")
+     {
+       toastr.error("当前表单不能有空项");
+       document.form1.elements[i].focus();
+       return false;
+     }
+    }
 	$("#addContent").addClass("hideDiv");
 	$("#addLoadingDiv").removeClass("hideDiv");
 	xmlHttp.open("POST", "/xsjsglxt/user/User_addUser", true);
