@@ -58,13 +58,24 @@
 						<i class="fa fa-plus-square"></i> 刑事破案查询
 					</button>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 					<button data-toggle="modal" data-target="#breakCase_input"
 						style="margin-left: 15px;" type="button" class="btn btn-default">
+=======
+					<button data-toggle="modal" data-target="#breakCase_input"
+						style="margin-left: 15px;" type="button" class="btn btn-default">
+=======
+>>>>>>> origin/HY
 
 =======
 					<button data-toggle="modal" data-target="#breakCase_input"
 						style="margin-left: 15px;" type="button" class="btn btn-default">
+<<<<<<< HEAD
+>>>>>>> origin/HY
+=======
+
+>>>>>>> origin/LWK
 >>>>>>> origin/HY
 						<i class="fa fa-plus-square"></i> 添加刑事破案
 					</button>
@@ -213,13 +224,24 @@
 	<!---------------------------------------------------------------------------------------------------->
 	<!-- 破案信息-模态框（Modal） -->
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	<div class="modal fade" id="breakCase_modification" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+=======
+	<div class="modal fade" id="breakCase_modification" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+=======
+>>>>>>> origin/HY
 
 =======
 	<div class="modal fade" id="breakCase_modification" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<<<<<<< HEAD
+>>>>>>> origin/HY
+=======
+
+>>>>>>> origin/LWK
 >>>>>>> origin/HY
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
@@ -244,8 +266,14 @@
 	</div>
 	<!---------------------------------------------------------------------------------------------------->
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+>>>>>>> origin/HY
+=======
+=======
+
+>>>>>>> origin/LWK
 >>>>>>> origin/HY
 	<!------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
@@ -335,8 +363,14 @@
 	</div>
 	<!---------------------------------------------------------------------------------------------------->
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+>>>>>>> origin/HY
+=======
+=======
+
+>>>>>>> origin/LWK
 >>>>>>> origin/HY
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
@@ -368,9 +402,18 @@
 	</script>
 </body>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 </html>
 
 =======
 </html>
+>>>>>>> origin/HY
+=======
+</html>
+=======
+
+</html>
+
+>>>>>>> origin/LWK
 >>>>>>> origin/HY
