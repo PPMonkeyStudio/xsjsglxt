@@ -60,12 +60,12 @@ a {
 				</button>
 				<button style="margin-left: 15px;" type="button"
 					class="btn btn-default" data-toggle="modal" data-target="#newQuery">
-					<i class="fa fa-plus-square"></i> 新建案件查询
+					<i class="fa fa-plus-square"></i> 案件查询
 				</button>
 				<button style="margin-left: 15px;" type="button"
 					class="btn btn-default" data-toggle="modal"
 					data-target="#newCaseMerger">
-					<i class="fa fa-plus-square"></i> 确定案件串并
+					<i class="fa fa-plus-square"></i> 确认案件串并
 				</button>
 			</div>
 			<div class="panel-body">
@@ -287,7 +287,7 @@ a {
 								<tr>
 									<td nowrap="nowrap" align="right"><div align="center">串并时间:</div></td>
 									<td><input name="parallel.parallel_date"
-										style="margin-top: 6px;" class="form-control"
+										style="margin-top: 6px;" class="form-control mydate"
 										value="2017/11/29" type="text"></td>
 								</tr>
 							</tbody>
@@ -426,10 +426,10 @@ a {
 									<td style="padding-left: 10px;">接警时间</td>
 									<td colspan="3"><input
 										name="page_list_senceInformation.start_time"
-										style="float: left;" type="text" class="form-control"
+										style="float: left;" type="text" class="form-control mydate"
 										placeholder="起始日期"><input
 										name="page_list_senceInformation.stop_time"
-										style=" float: right;" type="text" class="form-control"
+										style=" float: right;" type="text" class="form-control mydate"
 										placeholder="结束日期"></td>
 								</tr>
 							</tbody>
@@ -450,4 +450,25 @@ a {
 <!-- SneceInput.js仅作为在查询模态框中（案件类别，选择处所，作案手段）的自动匹配子项使用 -->
 <script type="text/javascript" src="<%=basePath%>js/Case/SneceInput.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/Case/CaseMerger.js"></script>
+<script type="text/javascript">
+	$.datetimepicker.setLocale('ch');
+	$('.mydate').datetimepicker({
+		yearStart : 1990, // 设置最小年份
+		yearEnd : 2050, // 设置最大年份
+		yearOffset : 0, // 年偏差
+		timepicker : false, // 关闭时间选项
+		format : 'Y-m-d', // 格式化日期年-月-日
+		minDate : '1990/01/01', // 设置最小日期
+		maxDate : '2030/01/01', // 设置最大日期
+	});
+	$('.mydate_minute').datetimepicker({
+		yearStart : 1990, // 设置最小年份
+		yearEnd : 2050, // 设置最大年份
+		yearOffset : 0, // 年偏差
+		timepicker : true, // 关闭时间选项
+		format : 'Y-m-d H:i', // 格式化日期年-月-日
+		minDate : '1990/01/01', // 设置最小日期
+		maxDate : '2030/01/01', // 设置最大日期
+	});
+</script>
 </html>

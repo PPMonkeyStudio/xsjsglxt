@@ -102,7 +102,9 @@
 					<thead style="">
 						<tr>
 							<th>序号</th>
-							<th><input class="form-control" placeholder="物证名称"></th>
+							<th>
+								<!-- <input class="form-control" placeholder="物证名称"> -->物证名称
+							</th>
 							<th>提取日期</th>
 							<th><input class="form-control Search_extractPerson"
 								placeholder="提取人"></th>
@@ -279,5 +281,26 @@
 	</div>
 	<script type="text/javascript"
 		src="<%=basePath%>js/Case/CaseMaterials.js"></script>
+	<script type="text/javascript">
+		$.datetimepicker.setLocale('ch');
+		$('.mydate').datetimepicker({
+			yearStart : 1990, // 设置最小年份
+			yearEnd : 2050, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : false, // 关闭时间选项
+			format : 'Y-m-d', // 格式化日期年-月-日
+			minDate : '1990/01/01', // 设置最小日期
+			maxDate : '2030/01/01', // 设置最大日期
+		});
+		$('.mydate_minute').datetimepicker({
+			yearStart : 1990, // 设置最小年份
+			yearEnd : 2050, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : true, // 关闭时间选项
+			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			minDate : '1990/01/01', // 设置最小日期
+			maxDate : '2030/01/01', // 设置最大日期
+		});
+	</script>
 </body>
 </html>

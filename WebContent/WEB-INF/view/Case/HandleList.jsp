@@ -166,7 +166,7 @@
 										</label> <input type="hidden"
 											name="handle.handle_administrativeAttachment"></td>
 										<td>拘留起始时间</td>
-										<td><input class="form-control"
+										<td><input class="form-control mydate"
 											name="handle.handle_StartTimeaOfDetention" type="text" /></td>
 										<td>拘留天数</td>
 										<td><select class="form-control"
@@ -188,7 +188,7 @@
 										</label> <input type="hidden"
 											name="handle.handle_administrativeAttachment"></td>
 										<td>逮捕时间</td>
-										<td><input class="form-control"
+										<td><input class="form-control mydate"
 											name="handle.handle_arrestTime" type="text" /></td>
 									</tr>
 									<tr>
@@ -201,7 +201,7 @@
 												onclick="chose(this)" type="radio" value="否"> <span><i></i>否</span>
 										</label> <input type="hidden" name="handle.handle_prosecute"></td>
 										<td>起诉时间</td>
-										<td><input class="form-control"
+										<td><input class="form-control mydate"
 											name="handle.handle_prosecuteTime" type="text" /></td>
 									</tr>
 									<tr>
@@ -214,7 +214,7 @@
 												onclick="chose(this)" type="radio" value="否"> <span><i></i>否</span>
 										</label> <input type="hidden" name="handle.handle_checkback"></td>
 										<td>退查时间</td>
-										<td><input class="form-control"
+										<td><input class="form-control mydate"
 											name="handle.handle_checkbackTime" type="text" /></td>
 									</tr>
 									<tr>
@@ -227,7 +227,7 @@
 												onclick="chose(this)" type="radio" value="否"> <span><i></i>否</span>
 										</label> <input type="hidden" name="handle.handle_pbat"></td>
 										<td>取保候审时间</td>
-										<td><input class="form-control"
+										<td><input class="form-control mydate"
 											name="handle.handle_pbatTime" type="text" /></td>
 									</tr>
 									<tr>
@@ -240,7 +240,7 @@
 												onclick="chose(this)" type="radio" value="否"> <span><i></i>否</span>
 										</label> <input type="hidden" name="handle.handle_lhus"></td>
 										<td>监视居住时间</td>
-										<td><input class="form-control"
+										<td><input class="form-control mydate"
 											name="handle.handle_lhusTime" type="text" /></td>
 									</tr>
 									<tr>
@@ -251,10 +251,10 @@
 										<td><input class="form-control"
 											name="handle.handle_FinancialName" type="text" /></td>
 										<td>上交时间</td>
-										<td><input class="form-control"
+										<td><input class="form-control mydate"
 											name="handle.handle_handTime" type="text" /></td>
 										<td>处理时间</td>
-										<td><input class="form-control"
+										<td><input class="form-control mydate"
 											name="handle.handle_handleTime" type="text" /></td>
 									</tr>
 									<tr>
@@ -290,5 +290,26 @@
 		<!-- /.modal -->
 	</div>
 	<script type="text/javascript" src="<%=basePath%>js/Case/HandleList.js"></script>
+	<script type="text/javascript">
+		$.datetimepicker.setLocale('ch');
+		$('.mydate').datetimepicker({
+			yearStart : 1990, // 设置最小年份
+			yearEnd : 2050, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : false, // 关闭时间选项
+			format : 'Y-m-d', // 格式化日期年-月-日
+			minDate : '1990/01/01', // 设置最小日期
+			maxDate : '2030/01/01', // 设置最大日期
+		});
+		$('.mydate_minute').datetimepicker({
+			yearStart : 1990, // 设置最小年份
+			yearEnd : 2050, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : true, // 关闭时间选项
+			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			minDate : '1990/01/01', // 设置最小日期
+			maxDate : '2030/01/01', // 设置最大日期
+		});
+	</script>
 </body>
 </html>

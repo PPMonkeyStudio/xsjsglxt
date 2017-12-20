@@ -43,7 +43,7 @@ $(function() {
 function get_ListHandleInformationByPageAndSearch(data) {
 	//$.post('/xsjsglxt/case/Handle_ListHandleInformationByPageAndSearch', data, function(xhr_data) {
 	var str = '';
-	for (var len = 0; len < 7; len++) {
+	/*for (var len = 0; len < 7; len++) {
 		//var data_list = xhr.SenceInformationDTOList[len];
 		str += '<tr>';
 		str += '<td>' + len + '</td>';
@@ -63,7 +63,7 @@ function get_ListHandleInformationByPageAndSearch(data) {
 		str += '<td>' + len + '</td>';
 		str += '<td>' + len + '</td>';
 		str += '</tr>';
-	}
+	}*/
 	$('.Handle_table_info tbody').html(str);
 //}, 'json')
 }

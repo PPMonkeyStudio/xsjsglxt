@@ -240,7 +240,7 @@
 								style="margin-top: 6px;" class="form-control" type="text"></td>
 							<td>填表时间</td>
 							<td><input name="sence.snece_fillTime"
-								style="margin-top: 6px;" class="form_time form-control"
+								style="margin-top: 6px;" class="form_time form-control mydate"
 								type="text"></td>
 						</tr>
 					</table>
@@ -292,7 +292,7 @@
 									<tr>
 										<td>案发时间:</td>
 										<td><input name="case_receivingAlarmDate"
-											class="form-control" value="1900-1-10" maxlength="19"
+											class="form-control mydate" value="1900-1-10" maxlength="19"
 											type="text"></td>
 										<td>物证名称:</td>
 										<td><input name="resevidence.resevidence_name"
@@ -352,8 +352,7 @@
 										</select></td>
 										<td>提取日期:</td>
 										<td><input name="resevidence.resevidence_extractTime"
-											class="form-control" value="" size="30" maxlength="19"
-											type="text"></td>
+											class="form-control mydate" type="text"></td>
 									</tr>
 									<tr>
 										<td>提取单位:</td>
@@ -531,4 +530,25 @@
 <script type="text/javascript"
 	src="<%=basePath%>js/Case/CaseDetails_js.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/Case/CaseDetails.js"></script>
+<script type="text/javascript">
+	$.datetimepicker.setLocale('ch');
+	$('.mydate').datetimepicker({
+		yearStart : 1990, // 设置最小年份
+		yearEnd : 2050, // 设置最大年份
+		yearOffset : 0, // 年偏差
+		timepicker : false, // 关闭时间选项
+		format : 'Y-m-d', // 格式化日期年-月-日
+		minDate : '1990/01/01', // 设置最小日期
+		maxDate : '2030/01/01', // 设置最大日期
+	});
+	$('.mydate_minute').datetimepicker({
+		yearStart : 1990, // 设置最小年份
+		yearEnd : 2050, // 设置最大年份
+		yearOffset : 0, // 年偏差
+		timepicker : true, // 关闭时间选项
+		format : 'Y-m-d H:i', // 格式化日期年-月-日
+		minDate : '1990/01/01', // 设置最小日期
+		maxDate : '2030/01/01', // 设置最大日期
+	});
+</script>
 </html>

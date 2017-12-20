@@ -63,7 +63,7 @@
 						<tr>
 							<td>接警时间</td>
 							<td><input name="case1.case_receivingAlarmDate"
-								class="form-control" style="margin-top: 6px;" type="text"></td>
+								class="form-control mydate" style="margin-top: 6px;" type="text"></td>
 							<td>危害程度</td>
 							<td><select name="case1.case_extentOfInjury"
 								class="form-control" style="margin-top: 6px;">
@@ -288,7 +288,7 @@
 					<hr>
 					<table>
 						<tr>
-							<td>作案过程</td>
+							<td width="16%">作案过程</td>
 							<td colspan="5"><textarea name="case1.case_process"
 									class="form-control" rows="4"></textarea></td>
 						</tr>
@@ -337,7 +337,7 @@
 							</select></td>
 						</tr>
 						<tr>
-							<td>填表人员</td>
+							<!-- <td>填表人员</td>
 							<td><input name="sence.snece_fillPerson"
 								style="margin-top: 6px;" class="form-control" type="text"></td>
 							<td>填表单位</td>
@@ -345,19 +345,19 @@
 								style="margin-top: 6px;" class="form-control" type="text"></td>
 							<td>填表时间</td>
 							<td><input name="sence.snece_fillTime"
-								style="margin-top: 6px;" class="form_time form-control"
-								type="text"></td>
+								style="margin-top: 6px;" class="form_time form-control mydate"
+								type="text"></td> -->
 						</tr>
 					</table>
 				</form>
 				<table>
 					<tr>
-						<td align="right">
+						<!-- <td align="right">
 							<button style="margin-top: 6px; margin-right: 10px;"
 								type="button" class="btn btn-default sneceInformation_finish">
 								<i class="fa fa-check-circle"></i> 删除
 							</button>
-						</td>
+						</td> -->
 						<td align="right">
 							<button style="margin-top: 6px; margin-right: 10px;"
 								type="button" class="btn btn-default sneceInformation_finish">
@@ -375,5 +375,26 @@
 	<script type="text/javascript" src="<%=basePath%>js/Case/SneceInput.js"></script>
 	<script type="text/javascript"
 		src="<%=basePath%>js/Case/sence_checkbox.js"></script>
+	<script type="text/javascript">
+		$.datetimepicker.setLocale('ch');
+		$('.mydate').datetimepicker({
+			yearStart : 1990, // 设置最小年份
+			yearEnd : 2050, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : false, // 关闭时间选项
+			format : 'Y-m-d', // 格式化日期年-月-日
+			minDate : '1990/01/01', // 设置最小日期
+			maxDate : '2030/01/01', // 设置最大日期
+		});
+		$('.mydate_minute').datetimepicker({
+			yearStart : 1990, // 设置最小年份
+			yearEnd : 2050, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : true, // 关闭时间选项
+			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			minDate : '1990/01/01', // 设置最小日期
+			maxDate : '2030/01/01', // 设置最大日期
+		});
+	</script>
 </body>
 </html>
