@@ -31,6 +31,7 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 	private page_list_staffInformationVO  page_list_staffInformation;
 	
 	
+	
 	private File staff_photo;
 	private String staff_photoFileName;
 	/*
