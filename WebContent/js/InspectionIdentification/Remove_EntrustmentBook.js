@@ -41,7 +41,7 @@ function Remove_EntrustmentBook() {
 									.open(
 											"POST",
 											"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_deleteListCheckEntrustmentBook");
-							xhr.send(null);
+							xhr.send(formData);
 						}
 					},
 					取消 : function() {

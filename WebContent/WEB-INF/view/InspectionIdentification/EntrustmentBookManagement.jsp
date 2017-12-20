@@ -86,15 +86,15 @@
 									<option value="2">其他鉴定要求</option>
 							</select></th>
 							<th>委托单位</th>
-							<th><select class="form-control" id="select_unitName"
-								style="width: auto;" onchange="List_EntrustmentBook(1)">
-									<option value="-1">被委托鉴定机构（全部）</option>
-									<option value="萍乡市公安司法鉴定中心">萍乡市公安司法鉴定中心</option>
-									<option value="萍乡市公安局物证鉴定所">萍乡市公安局物证鉴定所</option>
-									<option value="萍乡市安源公安司法鉴定中心">萍乡市安源区公安司法鉴定中心</option>
-									<option value="江西省公安厅物证鉴定中心">江西省公安厅物证鉴定中心</option>
-									<option value="公安部物证鉴定中心">公安部物证鉴定中心</option>
-							</select></th>
+<%-- 							<th><select class="form-control" id="select_unitName" --%>
+<%-- 								style="width: auto;" onchange="List_EntrustmentBook(1)"> --%>
+<!-- 									<option value="-1">被委托鉴定机构（全部）</option> -->
+<!-- 									<option value="萍乡市公安司法鉴定中心">萍乡市公安司法鉴定中心</option> -->
+<!-- 									<option value="萍乡市公安局物证鉴定所">萍乡市公安局物证鉴定所</option> -->
+<!-- 									<option value="萍乡市安源公安司法鉴定中心">萍乡市安源区公安司法鉴定中心</option> -->
+<!-- 									<option value="江西省公安厅物证鉴定中心">江西省公安厅物证鉴定中心</option> -->
+<!-- 									<option value="公安部物证鉴定中心">公安部物证鉴定中心</option> -->
+<%-- 							</select></th> --%>
 							<th>委托日期</th>
 							<th><select class="form-control" id="select_type"
 								style="width: auto;" onchange="List_EntrustmentBook(1)">
