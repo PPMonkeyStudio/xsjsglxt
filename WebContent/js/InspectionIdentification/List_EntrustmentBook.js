@@ -64,9 +64,10 @@ function List_EntrustmentBook(pageIndex) {
 					/*
 					 * 被委托鉴定机构名称
 					 */
-					new_td = document.createElement("td");
-					new_tr.appendChild(new_td);
-					new_td.innerHTML = EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_unit_name;
+					// new_td = document.createElement("td");
+					// new_tr.appendChild(new_td);
+					// new_td.innerHTML =
+					// EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_unit_name;
 					/*
 					 * 委托日期
 					 */
@@ -259,11 +260,11 @@ function List_EntrustmentBook(pageIndex) {
 	/*
 	 * 筛选：被委托鉴定机构
 	 */
-	if (document.getElementById("select_unitName").value == "-1") {
-	} else {
-		formData.append("entrustmentBookManagementVO.unitName", document
-				.getElementById("select_unitName").value);
-	}
+	// if (document.getElementById("select_unitName").value == "-1") {
+	// } else {
+	// formData.append("entrustmentBookManagementVO.unitName", document
+	// .getElementById("select_unitName").value);
+	// }
 	/*
 	 * 筛选：类型
 	 */
@@ -288,7 +289,19 @@ function List_EntrustmentBook(pageIndex) {
 		formData.append("entrustmentBookManagementVO.entrustmentRequire",
 				document.getElementById("select_entrustmentRequire").value);
 	}
-
+	/*
+	 * 筛选：开始时间
+	 */
+	var start_time = document.getElementById("select_start_time").value;
+	if (start_time == undefined || start_time == null || start_time == "") {
+	} else {
+		formData.append("entrustmentBookManagementVO.start_time", start_time);
+	}
+	var stop_time = document.getElementById("select_stop_time").value;
+	if (stop_time == undefined || stop_time == null || stop_time == "") {
+	} else {
+		formData.append("entrustmentBookManagementVO.stop_time", stop_time);
+	}
 	/*
 	 * 
 	 */

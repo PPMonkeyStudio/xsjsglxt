@@ -27,21 +27,23 @@
 		<div class="panel" style="width: 95%; margin: 20px auto;">
 			<!--  -->
 			<div class="panel-heading">
-				<h3 class="panel-title useClass" >委托书管理</h3>
+				<h3 class="panel-title useClass">委托书管理</h3>
 			</div>
 			<!--  -->
 			<div class="panel-body">
 				<div style="height: 34px; margin: 0 0 20px 0;">
 
-					<input id="" class="form-control mydate" placeholder="XXXX-XX-XX"
+					<input id="select_stop_time" class="form-control mydate"
+						placeholder="XXXX-XX-XX"
 						style="width: 150px; float: right; margin: 0 0 0 20px; text-align: center;"
-						oninput="" type="text">
+						 type="text">
 					<%--  --%>
 					<span style="float: right; margin: 0 0 0 20px; line-height: 34px;">至</span>
 					<!--  -->
-					<input id="" class="form-control mydate" placeholder="XXXX-XX-XX"
-						style="width: 150px; float: right; text-align: center;" oninput=""
-						type="text">
+					<input id="select_start_time" class="form-control mydate"
+						placeholder="XXXX-XX-XX"
+						style="width: 150px; float: right; text-align: center;"
+						 type="text">
 					<%--  --%>
 					<span style="float: right; margin: 0 0 0 20px; line-height: 34px;">按日期筛选：</span>
 				</div>
@@ -60,7 +62,7 @@
 					<div class="input-group" style="width: 300px; float: right;">
 						<input id="input_search" class="form-control"
 							oninput="List_EntrustmentBook(1)" type="text"> <span
-							class="input-group-addon"> <i class="fa fa-search"></i>
+							class="input-group-addon" onclick="List_EntrustmentBook(1)"> <i class="fa fa-search"></i>
 						</span>
 					</div>
 				</div>
@@ -86,15 +88,15 @@
 									<option value="2">其他鉴定要求</option>
 							</select></th>
 							<th>委托单位</th>
-							<th><select class="form-control" id="select_unitName"
-								style="width: auto;" onchange="List_EntrustmentBook(1)">
-									<option value="-1">被委托鉴定机构（全部）</option>
-									<option value="萍乡市公安司法鉴定中心">萍乡市公安司法鉴定中心</option>
-									<option value="萍乡市公安局物证鉴定所">萍乡市公安局物证鉴定所</option>
-									<option value="萍乡市安源公安司法鉴定中心">萍乡市安源区公安司法鉴定中心</option>
-									<option value="江西省公安厅物证鉴定中心">江西省公安厅物证鉴定中心</option>
-									<option value="公安部物证鉴定中心">公安部物证鉴定中心</option>
-							</select></th>
+							<%-- 							<th><select class="form-control" id="select_unitName" --%>
+							<%-- 								style="width: auto;" onchange="List_EntrustmentBook(1)"> --%>
+							<!-- 									<option value="-1">被委托鉴定机构（全部）</option> -->
+							<!-- 									<option value="萍乡市公安司法鉴定中心">萍乡市公安司法鉴定中心</option> -->
+							<!-- 									<option value="萍乡市公安局物证鉴定所">萍乡市公安局物证鉴定所</option> -->
+							<!-- 									<option value="萍乡市安源公安司法鉴定中心">萍乡市安源区公安司法鉴定中心</option> -->
+							<!-- 									<option value="江西省公安厅物证鉴定中心">江西省公安厅物证鉴定中心</option> -->
+							<!-- 									<option value="公安部物证鉴定中心">公安部物证鉴定中心</option> -->
+							<%-- 							</select></th> --%>
 							<th>委托日期</th>
 							<th><select class="form-control" id="select_type"
 								style="width: auto;" onchange="List_EntrustmentBook(1)">

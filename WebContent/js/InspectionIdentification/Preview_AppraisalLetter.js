@@ -1,5 +1,10 @@
 function Preview_AppraisalLetter(obj) {
 	var json_list = EntrustmentBook_json;
+	for (var num = 0; num < json_list.listEntrustmentBookManagementDTO.length; num++) {
+		if (obj.id == json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id) {
+			break;
+		}
+	}
 	var jc = $
 			.confirm({
 				icon : 'fa fa-file-text-o',
@@ -10,11 +15,7 @@ function Preview_AppraisalLetter(obj) {
 				onOpenBefore : function() {
 				},
 				onContentReady : function() {
-					for (var num = 0; num < json_list.listEntrustmentBookManagementDTO.length; num++) {
-						if (obj.id == json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id) {
-							break;
-						}
-					}
+
 					var con = '<div style="margin:0 20px 0 0;"><hr>'
 							+ '<h3  style="text-align: right;">编号：【'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.appraisal_letter_num
@@ -46,9 +47,13 @@ function Preview_AppraisalLetter(obj) {
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request
 							+ '</p>'
 							+ '<p>（七）检验开始日期：	</p>'
-							+ '<p>（八）检验地点：'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_location
-							+ '</p>'
+							+ (json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request == '损伤鉴定' ? ''
+									: (json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request == '死因鉴定' ? '<p>（八）检验地点：'
+											+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_inspect_place
+											+ '</p>'
+											: '<p>（八）检验地点：'
+													+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_location
+													+ '</p>'))
 							+ '</h3>'
 							+ '<br>'
 							+ '<h3  style="text-align: left;">'
@@ -87,6 +92,8 @@ function Preview_AppraisalLetter(obj) {
 					'导出' : {
 						btnClass : 'btn-green',
 						action : function() {
+							window.location = '/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_exportAppraisalLetter?appraisalLetter.xsjsglxt_appraisal_letter_id='
+									+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.xsjsglxt_appraisal_letter_id;
 							return false;
 						}
 					},
