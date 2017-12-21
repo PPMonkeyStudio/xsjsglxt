@@ -140,7 +140,7 @@ function Preview_EntrustmentBook(obj) {
 						}
 					},
 					'修改' : {
-						btnClass : 'btn-orange',
+						btnClass : 'btn-orange managerPower',
 						action : function() {
 							jc.close();
 							Update_EntrustmentBook(obj);
@@ -150,4 +150,5 @@ function Preview_EntrustmentBook(obj) {
 					}
 				}
 			});
+	deleteByPower("user_check_power", "usePower", "managerPower");
 }
