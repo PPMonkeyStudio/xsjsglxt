@@ -25,7 +25,8 @@ function deleteByPower(userBlock, useClassName, managerClassName) {
 
 				break;
 			case "exception":
-				toastr.error("出现异常请重新登陆");
+				alert("登录异常请重新登录");
+				window.location="/xsjsglxt/login.jsp";
 				break;
 			}
 		}

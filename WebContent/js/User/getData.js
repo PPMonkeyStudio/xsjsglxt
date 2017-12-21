@@ -144,10 +144,10 @@ function loadUserBack() {
 					+ "<td>"
 					+ "<button onclick='deleteUser(this)' value='"
 					+ result.list[i].user_id
-					+ "' class='btn btn-danger'>删除</button>"
+					+ "' class='btn btn-danger managerPower'>删除</button>"
 					+ "<button onclick='getUserById(this)' value='"
 					+ result.list[i].user_id
-					+ "' data-toggle='modal' data-target='#updateUser' style='margin-left: 5px;' class='btn btn-primary'>修改</button>"
+					+ "' data-toggle='modal' data-target='#updateUser' style='margin-left: 5px;' class='btn btn-primary managerPower'>修改</button>"
 					+ "</td></tr>";
 		}
 		hideQueryString.value = result.queryString;
@@ -156,6 +156,7 @@ function loadUserBack() {
 		currPage.innerHTML = result.currPage;
 		totalPage.innerHTML = result.totalPage;
 		skipPage.value = result.currPage;
+		deleteByPower("user_user_power", "usePower", "managerPower");
 		$("#loadingDiv").addClass("hideDiv");
 		$("#tableDiv").removeClass("hideDiv");
 	}
