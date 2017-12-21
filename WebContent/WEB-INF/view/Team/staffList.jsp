@@ -81,9 +81,7 @@
 									<a onclick="lastPage()">尾页<i
 										class="fa fa-angle-double-right"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
 									<input type="text" class="page-go" />&nbsp;&nbsp;&nbsp;&nbsp;
-									<<<<<<< HEAD <a onclick="page_go()">GO</a> ======= <a
-										onclick="">GO</a> >>>>>>> LWK
-								</div>
+									 <a onclick="page_go()">GO</a>								</div>
 								<p class='page-infomation'></p>
 							</div>
 						</div>
