@@ -52,7 +52,7 @@ function get_staffDetails_Ajax(url){
 				}
 				//如果是是否正式
 				else if(key=="staff_isItFormal"){
-					if(value=="1"){
+					if(value=="是"){
 						isFormat.checked=true;
 					}
 					else{
@@ -99,8 +99,8 @@ function isNotFormat(even){
 function staff_change(){
 	var url="/xsjsglxt/team/Staff_updateStaffInformation";
 	$.confirm({
-	    title: '编辑!',
-	    content: '确定编辑么!',
+	    title: '修改!',
+	    content: '确定修改么!',
 		buttons : {
 			
 			取消 : function() {
@@ -114,7 +114,6 @@ function staff_change(){
 			}
 		}
 	});
-	
 }
 function loadstaffDetail_staff_change(url,staff_id){
 	console.log("b2");

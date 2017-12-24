@@ -82,7 +82,7 @@ public class StaffDaoImpl implements StaffDao {
 			stopTime = page_list_staffInformation.getStop_time();
 		}
 		hql = hql + " and staff_thePoliceTime>='" + startTime + "' and staff_thePoliceTime<='"
-				+ stopTime + "' order by staff_thePoliceTime";
+				+ stopTime + "' order by staff_gmt_modified";
 		System.out.println(hql);
 		Query query = session.createQuery(hql);	
 		i = (Long) query.uniqueResult();
@@ -126,7 +126,7 @@ public class StaffDaoImpl implements StaffDao {
 					stopTime = page_list_staffInformation.getStop_time();
 				}
 				hql = hql + " and staff_thePoliceTime>='" + startTime + "' and staff_thePoliceTime<='"
-						+ stopTime + "' order by staff_thePoliceTime";
+						+ stopTime + "' order by staff_gmt_modified";
 		Query query = session.createQuery(hql);	
 		query.setFirstResult(
 				(page_list_staffInformation.getPageIndex() - 1) * page_list_staffInformation.getPageSize());

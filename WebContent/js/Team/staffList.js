@@ -24,13 +24,13 @@ window.onload = function() {
 
 }
 
-function get_staffPageListAndSearch() {
+function get_staffPageListAndSearch(iquery_data) {
 	console.log("b");
 	var url = "/xsjsglxt/team/Staff_ListStaffInformationByPageAndSearch";
-	get_staffPageListAndSearch_Ajax(url);
+	get_staffPageListAndSearch_Ajax(url,iquery_data);
 }
 
-function get_staffPageListAndSearch_Ajax(url) {
+function get_staffPageListAndSearch_Ajax(url,iquery_data) {
 	console.log("c");
 	if (window.XMLHttpRequest) {
 		// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
@@ -44,8 +44,7 @@ function get_staffPageListAndSearch_Ajax(url) {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			console.log("d");
 			// 显示staff信息列表
-			var staff_table_info = document
-					.querySelector(".staff_table_info>tbody");
+			var staff_table_info = document.querySelector(".staff_table_info>tbody");
 			staff_table_info.innerHTML = "";
 			// 得到后台的json集合
 			var staff_list_object = xmlhttp.responseText;
@@ -54,9 +53,6 @@ function get_staffPageListAndSearch_Ajax(url) {
 			var str = "";
 			// 遍历json集合
 			for (var i = 0; i < staff_list_object.length; i++) {
-				// 创建tr
-				// var staff_list_tr=document.createElement("tr");
-				// staff_list_tr.innerHTML="";
 				// 得到每条数据
 				var object = staff_list_object[i];
 				// 得到各条数据的某个信息
@@ -87,17 +83,11 @@ function get_staffPageListAndSearch_Ajax(url) {
 			}
 			// 分页信息存入page_infomantion中
 			page_infomantion.pageIndex = staff_list_page.pageIndex; // 当前页数
-			console.log(page_infomantion.pageIndex);
 			page_infomantion.totalRecords = staff_list_page.totalRecords; // 总记录数
-			console.log(page_infomantion.totalRecords);
 			page_infomantion.pageSize = staff_list_page.pageSize; // 每页记录数
-			console.log(page_infomantion.pageSize );
 			page_infomantion.totalPages = staff_list_page.totalPages; // 总页数
-			console.log(page_infomantion.totalPages );
 			page_infomantion.HavePrePage = staff_list_page.HavePrePage; // 是否有上一页
-			console.log(page_infomantion.HavePrePage);
 			page_infomantion.HaveNextPage = staff_list_page.HaveNextPage; // 是否有下一页
-			console.log(page_infomantion.HaveNextPage);
 			// 获取分页器的页面信息
 			var page_info = document.querySelector(".page-infomation");
 			page_info.innerHTML = "共" + page_infomantion.totalRecords
@@ -112,10 +102,11 @@ function get_staffPageListAndSearch_Ajax(url) {
 }
 // 格式化输到后台的数据放法
 function formatParams(data) {
-    console.log("aa");	
+    console.log("aa");
 	var arr = new FormData();
 	for ( var name in data) {
-		arr.append(encodeURIComponent(name), encodeURIComponent(data[name]));
+		console.log(name+":"+data[name]);
+		arr.append(name, data[name]);
 	}
 	return arr;
 }
@@ -124,11 +115,14 @@ function iquery() {
 	var iquery_form = document.getElementById("iquery_form");
 	// 把查询的条件存入person_management_data
 	for (var i = 0; i < iquery_form.length; i++) {
-		 console.log(iquery_form[i].name);
-		 console.log(iquery_form[i].value);
+		 //console.log(iquery_form[i].name);
+		 //console.log(iquery_form[i].value);
 		person_management_data[iquery_form[i].name] = iquery_form[i].value;
+		//console.log(person_management_data[iquery_form[i].name]);
+		
 	}
-	get_staffPageListAndSearch();
+	var iquery_data=new FormData(iquery_form);
+	get_staffPageListAndSearch(iquery_data);
 
 }
 //清空查询
@@ -150,7 +144,7 @@ function clear_iquery(){
 		iquery_select[k].value="";
 	}
 	get_staffPageListAndSearch(person_management_data);
-	toastr.error("清除查询");
+	toastr.info("清除查询");
 	
 }
 // 首页
@@ -224,6 +218,7 @@ function staff_del() {
 			确定: {
 				action : function() {
 					loadstaffDetail_staff_del(url);
+					
 				}
 			}
 		}
@@ -261,6 +256,7 @@ function loadstaffDetail_staff_del(url) {
 			var result = xmlhttp.responseText;
 			if (result == 'success') {
 				toastr.success('删除成功！');
+				get_staffPageListAndSearch();
 			} else {
 				toastr.error('删除失败！');
 			}

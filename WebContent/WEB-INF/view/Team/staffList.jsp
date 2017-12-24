@@ -72,84 +72,88 @@
 								</tbody>
 							</table>
 							<div class="page-footer">
-								
-								<div class="page_info">&nbsp;&nbsp;&nbsp;&nbsp;
-									<a onclick="firstPage()"><i class="fa fa-angle-double-left">首页</i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+
+								<div class="page_info">
+									&nbsp;&nbsp;&nbsp;&nbsp; <a onclick="firstPage()"><i
+										class="fa fa-angle-double-left">首页</i></a>&nbsp;&nbsp;&nbsp;&nbsp;
 									<a onclick="prePage()"><i class="fa fa-angle-left"></i>上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
 									<a onclick="nextPage()">下一页<i class="fa fa-angle-right"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
 									<a onclick="lastPage()">尾页<i
 										class="fa fa-angle-double-right"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-									<input type="text" class="page-go"/>&nbsp;&nbsp;&nbsp;&nbsp;
-									<a onclick="">GO</a>
-							    </div>
-							    <p class='page-infomation'></p>
+									<input type="text" class="page-go" />&nbsp;&nbsp;&nbsp;&nbsp;
+									 <a onclick="page_go()">GO</a>								</div>
+								<p class='page-infomation'></p>
+							</div>
 						</div>
+						<!-- END TABLE HOVER -->
 					</div>
-					<!-- END TABLE HOVER -->
-				</div>
 
-			</div>
-		</div>
-	</div>
-	<!--新建查询模态框 start  -->
-	<div class="modal fade" id="iqueryModal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">查询条件</h4>
-				</div>
-				<div class="modal-body">
-					<form action="" id="iquery_form">
-						<table>
-							<tbody>
-								<tr>
-									<td><label class="staff_info_label">姓名</label> <input
-										type="text" class="staff_info_input"
-										name="page_list_staffInformation.staff_name" /></td>
-								</tr>
-								<tr>
-									<td><label class="staff_info_label">性别</label> <select
-										name="page_list_staffInformation.staff_sex"
-										class="staff_info_input">
-											<option>男</option>
-											<option>女</option>
-									</select></td>
-								</tr>
-								<tr>
-									<td><label class="staff_info_label">政治面貌</label> <select
-										name="page_list_staffInformation.staff_politicalStatus"
-										class="staff_info_input">
-											<option>党员</option>
-											<option>团员</option>
-											<option>群众</option>
-									</select></td>
-								</tr>
-								<tr>
-									<td><label class="staff_info_label">入警时间</label> <input
-										name="page_list_staffInformation.start_time" type="text"
-										class="staff_info_input" />&nbsp;&nbsp;到 <input
-										name="page_list_staffInformation.stop_time" type="text"
-										class="staff_info_input" /></td>
-								</tr>
-							</tbody>
-						</table>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default "
-						onclick="clear_iquery()" data-dismiss="modal">清空</button>
-					<button type="button" class="btn btn-primary" onclick="iquery()"
-						data-dismiss='modal'>查询</button>
 				</div>
 			</div>
 		</div>
+		<!--新建查询模态框 start  -->
+		<div class="modal fade" id="iqueryModal" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">查询条件</h4>
+					</div>
+					<div class="modal-body">
+					
+						<form action="" id="iquery_form" accept-charset="utf-8">
+							
+								<table>
+									<tbody>
+										<tr>
+											<td><label class="staff_info_label">姓名</label> <input
+												type="text" class="staff_info_input"
+												name="page_list_staffInformation.staff_name" /></td>
+										</tr>
+										<tr>
+											<td><label class="staff_info_label">性别</label> <select
+												name="page_list_staffInformation.staff_sex"
+												class="staff_info_input">
+													<option>男</option>
+													<option>女</option>
+											</select></td>
+										</tr>
+										<tr>
+											<td><label class="staff_info_label">政治面貌</label> <select
+												name="page_list_staffInformation.staff_politicalStatus"
+												class="staff_info_input">
+													<option>党员</option>
+													<option>团员</option>
+													<option>群众</option>
+											</select></td>
+										</tr>
+										<tr>
+											<td><label class="staff_info_label">入警时间</label> <input
+												name="page_list_staffInformation.start_time" type="text"
+												class="staff_info_input start_time" />&nbsp;&nbsp;到&nbsp;&nbsp;<input
+												name="page_list_staffInformation.stop_time" type="text"
+												class="staff_info_input stop_time" /></td>
+												
+
+										</tr>
+									</tbody>
+								</table>
+							</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default "
+							onclick="clear_iquery()" data-dismiss="modal">清空</button>
+						<button type="button" class="btn btn-primary" onclick="iquery()"
+							data-dismiss='modal'>查询</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-</div>
 	<!--新建查询模态框 end  -->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
@@ -158,6 +162,29 @@
 	<!-- SneceInput.js仅作为在查询模态框中（案件类别，选择处所，作案手段）的自动匹配子项使用 -->
 
 	<script type="text/javascript" src="<%=basePath%>js/Team/staffList.js"></script>
+	<script type="text/javascript">
+	$.datetimepicker.setLocale('ch');
+	$('.start_time').datetimepicker({
+		yearStart : 1990, // 设置最小年份
+		yearEnd : 2050, // 设置最大年份
+		yearOffset : 0, // 年偏差
+		timepicker : false, // 关闭时间选项
+		format : 'Y-m-d', // 格式化日期年-月-日
+		minDate : '1990/01/01', // 设置最小日期
+		maxDate : '2030/01/01', // 设置最大日期
+	});
+	$('.stop_time').datetimepicker({
+		yearStart : 1990, // 设置最小年份
+		yearEnd : 2050, // 设置最大年份
+		yearOffset : 0, // 年偏差
+		timepicker : true, // 关闭时间选项
+		format : 'Y-m-d H:i', // 格式化日期年-月-日
+		minDate : '1990/01/01', // 设置最小日期
+		maxDate : '2030/01/01', // 设置最大日期
+	});
+	
+</script>
 </body>
+
 
 </html>

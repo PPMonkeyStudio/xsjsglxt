@@ -116,10 +116,11 @@ private boolean removeStaffImgByNewsID(xsjsglxt_staff xsjsglxt_staff) {
 		return true;
 	}
 	
-	return false;
+	return true;
 }
 
 
 
 }
+
 

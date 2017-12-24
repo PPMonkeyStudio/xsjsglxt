@@ -36,10 +36,10 @@
 			</button>
 			<button type="button" class="btn btn-default button button_change"
 				onclick="staff_change()">
-				<i class="fa fa-pencil"></i> 完成编辑
+				<i class="fa fa-pencil"></i> 新建人员
 			</button>
 			<div class="panel-body staff_body">
-				<form id="staffDetails">
+				<form id="staffDetails"  enctype="multipart/form-data"  accept-charset="utf-8">
 					<table>
 						<tr>
 							<td colspan="6" class="staff_info_title">基本信息</td>
@@ -55,10 +55,11 @@
 								class="form-control" type="text"></td>
 
 							<td><label>照片</label></td>
-							<td rowspan="3">
-						    	<a href="javascript:;" class="a-upload">
-						    	 <input type="file" class="photo" name="staff.staff_photo" />
-							    </a>
+							<td rowspan="4">
+							   <a class="photo-show"></a>
+							   <a class="a-upload" onclick="photo_click()">上传照片</a>
+							   <input type="file"  class="photo-file" name="staff_photo" multiple="multiple" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" />
+							         
 							 </td>
 						</tr>
 						<tr>
@@ -80,9 +81,7 @@
 							<td><label  >籍贯</label></td>
 							<td><input name="staff.staff_nativePlace"
 								class="form-control" type="text"></td>
-                            <td><label  >生日</label></td>
-							<td><input style="font-size: 12px;"
-								name="staff.staff_birthday" class="form-control" type="text"></td>
+                            
 						</tr>
 
 						<tr>
@@ -106,51 +105,52 @@
 									<option>预备党员</option>
 									<option>党员</option>
 							</select></td>
-                             <td><label  >性别</label></td>
+                            
+						</tr>
+						<tr>
+							<td><label>入党时间</label></td>
+							<td><input  name="staff.staff_joinPartyTime"
+								class="form-control staff_joinPartyTime" type="text"></td>
+							<td><label>工作时间</label></td>
+							<td><input 
+								name="staff.staff_joinWorkTime" class="form-control staff_joinWorkTime"
+								type="text" placeholder="参加工作时间"></td>
+                              <td><label>性别</label></td>
 							<td>
 							  <label style="float: left;" class="fancy-radio">
 									<input name="sex_content" onclick=changeSex_man(this) type="radio"
-									value="1">
+									value="男">
 									 <span>
 									 <i></i>男
 									 </span>
 							  </label>
 							   <label style="float: left; margin-left: 10px;"
 								class="fancy-radio"> <input name="sex_content" onclick=changeSex_woman(this)
-									 type="radio" value="2">
+									 type="radio" value="女">
 									<span><i></i>女</span>
 							   </label> 
 							    <input type="hidden" name="staff.staff_sex" id="sex">
 							 </td>
-						</tr>
-						<tr>
-							<td><label  >入党时间</label></td>
-							<td><input  name="staff.staff_joinPartyTime"
-								class="form-control" type="text"></td>
-							<td><label c>工作时间</label></td>
-							<td><input 
-								name="staff.staff_joinWorkTime" class="form-control"
-								type="text" placeholder="参加工作时间"></td>
-
 
 						</tr>
 						<tr>
 							<td><label  >入警时间</label></td>
 							<td><input name="staff.staff_thePoliceTime"
-								class="form-control" type="text"></td>
-							<td>到</td>
-							<td><input name="staff.staff_thePoliceTime"
-								class="form-control" type="text"></td>
+								class="form-control staff_thePoliceTime" type="text"></td>
+								<td><label  >生日</label></td>
+							<td><input style="font-size: 12px;"
+								name="staff.staff_birthday" class="form-control staff_birthday" type="text"></td>
 							<td><label  >是否正式</label></td>
 							<td><label style="float: left;" class="fancy-radio">
-									<input name="format_content" onclick=isFormat(this) type="radio"
-									value="1"> <span><i></i>是</span>
+									<input name="format_content" onclick="isFormat(this)" type="radio"
+									value="是"> <span><i></i>是</span>
 							</label> <label style="float: left; margin-left: 10px;"
-								class="fancy-radio"> <input name="format_content" onclick=isNotFormat(this)
-									 type="radio" value="2">
+								class="fancy-radio"> <input name="format_content" onclick="isNotFormat(this)"
+									 type="radio" value="否">
 									<span><i></i>否</span>
 							</label>
 							<input type="hidden" name="staff.staff_isItFormal" id="format"/></td>
+							
 						</tr>
 						<tr style="height: 30px"></tr>
 						<tr>
@@ -172,10 +172,10 @@
 							<td><label  >QQ号</label></td>
 							<td><input name="staff.staff_QQ" class="form-control"
 								style="margin-top: 6px;" type="text"></td>
-							<td><label  >微信</label></td>
+							<td><label>微信</label></td>
 							<td ><input name="staff.staff_weixin"
 								class="form-control" style="margin-top: 6px;"></td>
-							<td ><label  >电子邮箱</label></td>
+							<td ><label>电子邮箱</label></td>
 							<td><input  name="staff.staff_outEmail"
 								class="form-control" style="margin-top: 6px;" placeholder="外网电子邮箱">
 								<input name="staff.staff_inEmail"
@@ -236,7 +236,7 @@
 	src="<%=basePath%>js/Team/newStaff.js"></script>
 <script type="text/javascript">
 	$.datetimepicker.setLocale('ch');
-	$('.mydate').datetimepicker({
+	$('.staff_joinPartyTime').datetimepicker({
 		yearStart : 1990, // 设置最小年份
 		yearEnd : 2050, // 设置最大年份
 		yearOffset : 0, // 年偏差
@@ -245,7 +245,25 @@
 		minDate : '1990/01/01', // 设置最小日期
 		maxDate : '2030/01/01', // 设置最大日期
 	});
-	$('.mydate_minute').datetimepicker({
+	$('.staff_joinWorkTime').datetimepicker({
+		yearStart : 1990, // 设置最小年份
+		yearEnd : 2050, // 设置最大年份
+		yearOffset : 0, // 年偏差
+		timepicker : true, // 关闭时间选项
+		format : 'Y-m-d H:i', // 格式化日期年-月-日
+		minDate : '1990/01/01', // 设置最小日期
+		maxDate : '2030/01/01', // 设置最大日期
+	});
+	$('.staff_thePoliceTime').datetimepicker({
+		yearStart : 1990, // 设置最小年份
+		yearEnd : 2050, // 设置最大年份
+		yearOffset : 0, // 年偏差
+		timepicker : true, // 关闭时间选项
+		format : 'Y-m-d H:i', // 格式化日期年-月-日
+		minDate : '1990/01/01', // 设置最小日期
+		maxDate : '2030/01/01', // 设置最大日期
+	});
+	$('.staff_birthday').datetimepicker({
 		yearStart : 1990, // 设置最小年份
 		yearEnd : 2050, // 设置最大年份
 		yearOffset : 0, // 年偏差
