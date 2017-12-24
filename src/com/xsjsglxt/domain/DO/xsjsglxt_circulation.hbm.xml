@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-12-19 8:29:39 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_circulation" table="XSJSGLXT_CIRCULATION">
+        <id name="xsjsglxt_circulation_id" type="java.lang.String">
+            <column name="XSJSGLXT_CIRCULATION_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="circulation_resevidence" type="java.lang.String">
+            <column name="CIRCULATION_RESEVIDENCE" />
+        </property>
+        <property name="circulation_situation" type="java.lang.String">
+            <column name="CIRCULATION_SITUATION" />
+        </property>
+        <property name="circulation_position" type="java.lang.String">
+            <column name="CIRCULATION_POSITION" />
+        </property>
+        <property name="circulation_date" type="java.lang.String">
+            <column name="CIRCULATION_DATE" />
+        </property>
+        <property name="circulation_transferperson" type="java.lang.String">
+            <column name="CIRCULATION_TRANSFERPERSON" />
+        </property>
+        <property name="circulation_recipient" type="java.lang.String">
+            <column name="CIRCULATION_RECIPIENT" />
+        </property>
+        <property name="circulation_gmt_create" type="java.lang.String">
+            <column name="CIRCULATION_GMT_CREATE" />
+        </property>
+        <property name="circulation_gmt_modified" type="java.lang.String">
+            <column name="CIRCULATION_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>

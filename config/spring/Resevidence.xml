@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="resevidenceAction" class="com.xsjsglxt.action.Case.ResevidenceAction"
+		scope="prototype">
+		<property name="resevidenceService" ref="resevidenceService"></property>
+	</bean>
+
+	<bean id="resevidenceService" class="com.xsjsglxt.service.impl.Case.ResevidenceServiceImpl">
+		<property name="resevidenceDao" ref="resevidenceDao"></property>
+	</bean>
+
+	<bean id="resevidenceDao" class="com.xsjsglxt.dao.impl.Case.ResevidenceDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+
+</beans>

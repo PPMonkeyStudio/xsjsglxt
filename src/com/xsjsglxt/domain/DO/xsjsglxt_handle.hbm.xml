@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-12-19 8:29:39 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_handle" table="XSJSGLXT_HANDLE">
+        <id name="xsjsglxt_handle_id" type="java.lang.String">
+            <column name="XSJSGLXT_HANDLE_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="handle_orderNumber" type="java.lang.String">
+            <column name="HANDLE_ORDERNUMBER" />
+        </property>
+        <property name="handle_administrativeCase" type="java.lang.String">
+            <column name="HANDLE_ADMINISTRATIVECASE" />
+        </property>
+        <property name="handle_suspectName" type="java.lang.String">
+            <column name="HANDLE_SUSPECTNAME" />
+        </property>
+        <property name="handle_administrativeAttachment" type="java.lang.String">
+            <column name="HANDLE_ADMINISTRATIVEATTACHMENT" />
+        </property>
+        <property name="handle_arrest" type="java.lang.String">
+            <column name="HANDLE_ARREST" />
+        </property>
+        <property name="handle_prosecute" type="java.lang.String">
+            <column name="HANDLE_PROSECUTE" />
+        </property>
+        <property name="handle_checkback" type="java.lang.String">
+            <column name="HANDLE_CHECKBACK" />
+        </property>
+        <property name="handle_pbat" type="java.lang.String">
+            <column name="HANDLE_PBAT" />
+        </property>
+        <property name="handle_lhus" type="java.lang.String">
+            <column name="HANDLE_LHUS" />
+        </property>
+        <property name="handle_StartTimeaOfDetention" type="java.lang.String">
+            <column name="HANDLE_STARTTIMEAOFDETENTION" />
+        </property>
+        <property name="handle_arrestTime" type="java.lang.String">
+            <column name="HANDLE_ARRESTTIME" />
+        </property>
+        <property name="handle_prosecuteTime" type="java.lang.String">
+            <column name="HANDLE_PROSECUTETIME" />
+        </property>
+        <property name="handle_checkbackTime" type="java.lang.String">
+            <column name="HANDLE_CHECKBACKTIME" />
+        </property>
+        <property name="handle_pbatTime" type="java.lang.String">
+            <column name="HANDLE_PBATTIME" />
+        </property>
+        <property name="handle_lhusTime" type="java.lang.String">
+            <column name="HANDLE_LHUSTIME" />
+        </property>
+        <property name="handle_detentionDay" type="java.lang.String">
+            <column name="HANDLE_DETENTIONDAY" />
+        </property>
+        <property name="handle_FinancialName" type="java.lang.String">
+            <column name="HANDLE_FINANCIALNAME" />
+        </property>
+        <property name="handle_handTime" type="java.lang.String">
+            <column name="HANDLE_HANDTIME" />
+        </property>
+        <property name="handle_handleTime" type="java.lang.String">
+            <column name="HANDLE_HANDLETIME" />
+        </property>
+        <property name="handle_processMode" type="java.lang.String">
+            <column name="HANDLE_PROCESSMODE" />
+        </property>
+        <property name="handle_squadronleader" type="java.lang.String">
+            <column name="HANDLE_SQUADRONLEADER" />
+        </property>
+        <property name="handle_PoliceInHandlingCases" type="java.lang.String">
+            <column name="HANDLE_POLICEINHANDLINGCASES" />
+        </property>
+        <property name="handle_gnt_create" type="java.lang.String">
+            <column name="HANDLE_GNT_CREATE" />
+        </property>
+        <property name="handle_gmt_modified" type="java.lang.String">
+            <column name="HANDLE_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>
