@@ -150,5 +150,5 @@ function Preview_EntrustmentBook(obj) {
 					}
 				}
 			});
-	deleteByPower("user_check_power", "usePower", "managerPower");
+//	deleteByPower("user_check_power", "usePower", "managerPower");
 }
