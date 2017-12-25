@@ -32,14 +32,6 @@ $(function() {
 			timeout : 3000,
 			data : $('#sneceInformation').serialize(),
 			dataType : "text",
-<<<<<<< HEAD
-			success : function(xhr_data) {
-				if (xhr_data.length>6) {
-				toastr.success("录入成功！");
-				location.href = '/xsjsglxt/case/Case_page_CaseDetails?id='+xhr_data.replaceAll("\"","");
-				} else {
-					toastr.error("录入失败！");
-=======
 			success : function(xhr_data, text_data) {
 				var reg = /^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$/;
 				var r = xhr_data.match(reg);
@@ -48,7 +40,6 @@ $(function() {
 				} else {
 					toastr.success("录入成功！");
 					location.href = '/xsjsglxt/case/Case_page_CaseDetails?id=' + xhr_data;
->>>>>>> HY
 				}
 			}
 		});
