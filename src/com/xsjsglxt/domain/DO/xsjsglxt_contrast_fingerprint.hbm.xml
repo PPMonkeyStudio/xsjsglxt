@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-11-30 23:27:23 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_contrast_fingerprint" table="XSJSGLXT_CONTRAST_FINGERPRINT">
+        <id name="contrast_fingerprint_id" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="contrast_fingerprint_time" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_TIME" />
+        </property>
+        <property name="contrast_fingerprint_way" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_WAY" />
+        </property>
+        <property name="contrast_fingerprint_locale_fingerprint_number" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_LOCALE_FINGERPRINT_NUMBER" />
+        </property>
+        <property name="contrast_fingerprint_press_fingerprint_number" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_PRESS_FINGERPRINT_NUMBER" />
+        </property>
+        <property name="contrast_fingerprint_case_type" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_CASE_TYPE" />
+        </property>
+        <property name="contrast_fingerprint_case_territorial" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_CASE_TERRITORIAL" />
+        </property>
+        <property name="contrast_fingerprint_level" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_LEVEL" />
+        </property>
+        <property name="contrast_fingerprint_case_note" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_CASE_NOTE" />
+        </property>
+        <property name="contrast_fingerprint_suspecter_name" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_SUSPECTER_NAME" />
+        </property>
+        <property name="contrast_fingerprint_suspecter_sex" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_SUSPECTER_SEX" />
+        </property>
+        <property name="contrast_fingerprint_suspecter_birthday" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_SUSPECTER_BIRTHDAY" />
+        </property>
+        <property name="contrast_fingerprint_suspecter_domicile" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_SUSPECTER_DOMICILE" />
+        </property>
+        <property name="contrast_fingerprint_suspecter_identity" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_SUSPECTER_IDENTITY" />
+        </property>
+        <property name="contrast_fingerprint_present_address" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_PRESENT_ADDRESS" />
+        </property>
+        <property name="contrast_fingerprint_suspecter_arrested" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_SUSPECTER_ARRESTED" />
+        </property>
+        <property name="contrast_fingerprint_press_department" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_PRESS_DEPARTMENT" />
+        </property>
+        <property name="contrast_fingerprint_extract_department" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_EXTRACT_DEPARTMENT" />
+        </property>
+        <property name="contrast_fingerprint_presser" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_PRESSER" />
+        </property>
+        <property name="contrast_fingerprint_press_time" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_PRESS_TIME" />
+        </property>
+        <property name="contrast_fingerprint_extracter" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_EXTRACTER" />
+        </property>
+        <property name="contrast_fingerprint_fingerposition" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_FINGERPOSITION" />
+        </property>
+        <property name="contrast_fingerprint_contrast_organization" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_CONTRAST_ORGANIZATION" />
+        </property>
+        <property name="contrast_fingerprint_contraster" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_CONTRASTER" />
+        </property>
+        <property name="contrast_fingerprint_reviewer" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_REVIEWER" />
+        </property>
+        <property name="contrast_fingerprint_arrested_organization" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_ARRESTED_ORGANIZATION" />
+        </property>
+        <property name="contrast_fingerprint_arrested_time" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_ARRESTED_TIME" />
+        </property>
+        <property name="contrast_fingerprint_contract_number" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_CONTRACT_NUMBER" />
+        </property>
+        <property name="contrast_fingerprint_remark" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_REMARK" />
+        </property>
+        <property name="contrast_fingerprint_gmt_create" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_GMT_CREATE" />
+        </property>
+        <property name="contrast_fingerprint_gmt_modified" type="java.lang.String">
+            <column name="CONTRAST_FINGERPRINT_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-11-25 15:43:35 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_fingerprint" table="XSJSGLXT_FINGERPRINT">
+        <id name="xsjsglxt_fingerprint_id" type="java.lang.String">
+            <column name="XSJSGLXT_FINGERPRINT_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="fingerprint_num" type="java.lang.String">
+            <column name="FINGERPRINT_NUM" />
+        </property>
+        <property name="fingerprint_name" type="java.lang.String">
+            <column name="FINGERPRINT_NAME" />
+        </property>
+        <property name="fingerprint_sex" type="java.lang.String">
+            <column name="FINGERPRINT_SEX" />
+        </property>
+        <property name="fingerprint_birthday" type="java.lang.String">
+            <column name="FINGERPRINT_BIRTHDAY" />
+        </property>
+        <property name="fingerprint_identity" type="java.lang.String">
+            <column name="FINGERPRINT_IDENTITY" />
+        </property>
+        <property name="fingerprint_address" type="java.lang.String">
+            <column name="FINGERPRINT_ADDRESS" />
+        </property>
+        <property name="fingerprint_illegal_fact" type="java.lang.String">
+            <column name="FINGERPRINT_ILLEGAL_FACT" />
+        </property>
+        <property name="fingerprint_record_organization" type="java.lang.String">
+            <column name="FINGERPRINT_RECORD_ORGANIZATION" />
+        </property>
+        <property name="fingerprint_organizer" type="java.lang.String">
+            <column name="FINGERPRINT_ORGANIZER" />
+        </property>
+        <property name="fingerprint_record_time" type="java.lang.String">
+            <column name="FINGERPRINT_RECORD_TIME" />
+        </property>
+        <property name="fingerprint_submit_time" type="java.lang.String">
+            <column name="FINGERPRINT_SUBMIT_TIME" />
+        </property>
+        <property name="fingerprint_remark" type="java.lang.String">
+            <column name="FINGERPRINT_REMARK" />
+        </property>
+        <property name="fingerprint_gmt_create" type="java.lang.String">
+            <column name="FINGERPRINT_GMT_CREATE" />
+        </property>
+        <property name="fingerprint_gmt_modified" type="java.lang.String">
+            <column name="FINGERPRINT_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>
