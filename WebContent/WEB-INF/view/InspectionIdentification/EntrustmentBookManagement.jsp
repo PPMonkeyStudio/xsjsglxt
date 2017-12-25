@@ -14,12 +14,12 @@
 
 <!---------------------------------------------------------------------------------------------------->
 <title>痕迹检验委托管理</title>
-<script type="text/javascript">
+<%-- <script type="text/javascript">
 window.onload = function()
 {
 	deleteByPower("user_check_power", "usePower", "managerPower");
 }
-</script>
+</script> --%>
 </head>
 <body>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />

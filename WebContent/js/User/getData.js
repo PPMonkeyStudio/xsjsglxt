@@ -10,6 +10,11 @@ window.onload = function() {
 	xmlHttp.onreadystatechange = loadUserBack;
 }
 
+function cleanInput()
+{
+	$("#addUserForm input").val("");
+}
+
 function addUser() {
 	for(var i=0;i<document.addUserForm.elements.length-1;i++)
     {

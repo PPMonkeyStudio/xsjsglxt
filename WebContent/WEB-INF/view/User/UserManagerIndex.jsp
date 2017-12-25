@@ -32,7 +32,7 @@
 			<div class="panel" style="width: 95%; margin: 20px auto;">
 				<div id="" style="height: 80px; padding: 20px;">
 					<div class="managerClass" style="float:right; margin-left: 10px;">
-    				  <button data-toggle="modal" data-target="#addUser" class="btn btn-success"><span style="width" class="glyphicon glyphicon-plus"></span>新增用户</button>
+    				  <button onclick="cleanInput" data-toggle="modal" data-target="#addUser" class="btn btn-success"><span style="width" class="glyphicon glyphicon-plus"></span>新增用户</button>
     				</div>  
 					<div class="input-group" style="float:right; width: 300px;">
 					      <input id="queryString" type="text" class="form-control" placeholder="请输入搜索内容">
