@@ -3,8 +3,8 @@
 function staff_change() {
 	var url = "/xsjsglxt/team/Staff_saveStaff";
 	$.confirm({
-		title : '编辑!',
-		content : '确定编辑么!',
+		title : '新建!',
+		content : '确定新建么!',
 		buttons : {
 
 			取消 : function() {
@@ -36,9 +36,9 @@ function loadstaffDetail_staff_change(url) {
 			console.log(xmlhttp.responseText);
 			var result = xmlhttp.responseText;
 			if (result == 'success') {
-				toastr.success('编辑成功！');
+				toastr.success('新建成功！');
 			} else {
-				toastr.error('编辑失败！');
+				toastr.error('新建失败！');
 			}
 		}
 	};
