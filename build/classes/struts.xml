@@ -7,11 +7,8 @@
 
 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
 	<constant name="struts.devMode" value="true" />
-<<<<<<< HEAD
 	<constant name="struts.multipart.maxSize" value="1073741824" /><!--1024*1024*1024 
 		一个G -->
-=======
->>>>>>> origin/GXR
 	<include file="struts2/*.xml"></include>
 
 </struts>

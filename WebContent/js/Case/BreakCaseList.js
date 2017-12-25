@@ -57,7 +57,6 @@ $(function() {
 		// 成功提示
 		toastr.success('清除查询信息成功');
 	});
-<<<<<<< HEAD
 
 	$('#breakCase_input').on('show.bs.modal', function() {
 		$.post('/xsjsglxt/case/Case_AllCase', function(Case_data) {
@@ -100,9 +99,6 @@ $(function() {
 			}
 		});
 	});
-=======
-	get_ListBreakecaseInformationByPageAndSearch(query_data);
->>>>>>> SLL
 })
 
 function get_ListBreakecaseInformationByPageAndSearch(data) {

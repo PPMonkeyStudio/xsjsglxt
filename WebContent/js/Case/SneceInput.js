@@ -33,11 +33,11 @@ $(function() {
 			data : $('#sneceInformation').serialize(),
 			dataType : "text",
 			success : function(xhr_data) {
-				if (xhr_data == 'success') {
-					toastr.success("录入成功！");
-				/*location.href = '/xsjsglxt/case/Case_page_CaseDetails?id='+;*/
+				if (xhr_data.length>6) {
+				toastr.success("录入成功！");
+				location.href = '/xsjsglxt/case/Case_page_CaseDetails?id='+xhr_data.replaceAll("\"","");
 				} else {
-					toastr.success("录入失败！");
+					toastr.error("录入失败！");
 				}
 			}
 		});

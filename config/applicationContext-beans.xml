@@ -3,7 +3,6 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	<import resource="spring/User.xml" />
-<<<<<<< HEAD
 	<import resource="spring/InspectionIdentification.xml" />
 	<import resource="spring/Sence.xml" />
 	<import resource="spring/Resevidence.xml"/>
@@ -15,7 +14,5 @@
 	<import resource="spring/Breakecase.xml"/>
 	<import resource="spring/Staff.xml"/>
 	<import resource="spring/Handle.xml"/>
-=======
 	<import resource="spring/Technology.xml"/>
->>>>>>> origin/GXR
 </beans>
