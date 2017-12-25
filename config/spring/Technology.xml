@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="dNAAction" class="com.xsjsglxt.action.Technology.DNAAction"
+		scope="prototype">
+		<property name="dNAService" ref="dNAService"></property>
+	</bean>
+
+	<bean id="dNAService"
+		class="com.xsjsglxt.service.impl.Technology.DNAServiceImpl">
+		<property name="dNADao" ref="dNADao"></property>
+	</bean>
+
+	<bean id="dNADao" class="com.xsjsglxt.dao.impl.Technology.DNADaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!--                                                                                                                                   -->
+	
+	<bean id="fingerPrintAction" class="com.xsjsglxt.action.Technology.FingerPrintAction"
+		scope="prototype">
+		<property name="fingerPrintService" ref="fingerPrintService"></property>
+	</bean>
+
+	<bean id="fingerPrintService"
+		class="com.xsjsglxt.service.impl.Technology.FingerPrintServiceImpl">
+		<property name="fingerPrintDao" ref="fingerPrintDao"></property>
+	</bean>
+
+	<bean id="fingerPrintDao" class="com.xsjsglxt.dao.impl.Technology.FingerPrintDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!--                                                                                                                                             -->
+
+	<bean id="equipmentAction" class="com.xsjsglxt.action.Technology.EquipmentAction"
+		scope="prototype">
+		<property name="equipmentService" ref="equipmentService"></property>
+	</bean>
+
+	<bean id="equipmentService"
+		class="com.xsjsglxt.service.impl.Technology.EquipmentServiceImpl">
+		<property name="equipmentDao" ref="equipmentDao"></property>
+	</bean>
+
+	<bean id="equipmentDao" class="com.xsjsglxt.dao.impl.Technology.EquipmentDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!--                                                                                                                                            -->
+	
+	<bean id="contrastFingerPrintAction" class="com.xsjsglxt.action.Technology.ContrastFingerPrintAction"
+		scope="prototype">
+		<property name="contrastFingerPrintService" ref="contrastFingerPrintService"></property>
+	</bean>
+
+	<bean id="contrastFingerPrintService"
+		class="com.xsjsglxt.service.impl.Technology.ContrastFingerPrintServiceImpl">
+		<property name="contrastFingerPrintDao" ref="contrastFingerPrintDao"></property>
+	</bean>
+
+	<bean id="contrastFingerPrintDao" class="com.xsjsglxt.dao.impl.Technology.ContrastFingerPrintDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+</beans>

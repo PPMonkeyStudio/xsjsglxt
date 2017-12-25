@@ -1,5 +1,11 @@
 function Preview_Death_InspectionRecord(obj) {
 	var json_list = EntrustmentBook_json;
+	for (var num = 0; num < json_list.listEntrustmentBookManagementDTO.length; num++) {
+		if (obj.id == json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id) {
+			break;
+		}
+	}
+
 	var jc = $
 			.confirm({
 				theme : 'Modern',
@@ -12,11 +18,7 @@ function Preview_Death_InspectionRecord(obj) {
 				onOpenBefore : function() {
 				},
 				onContentReady : function() {
-					for (var num = 0; num < json_list.listEntrustmentBookManagementDTO.length; num++) {
-						if (obj.id == json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id) {
-							break;
-						}
-					}
+
 					var con = '<hr>' + '<div style="text-align: left;">'
 							+ '<h4 style="text-align: center;">尸体检验记录</h4>'
 							+ '<p>委托单位：'
@@ -239,34 +241,33 @@ function Preview_Death_InspectionRecord(obj) {
 							+ '<h4>'
 							+ '检材提取及处置'
 							+ '</h4>'
-							+ '<table  class="table table-bordered" style="text-align: center;">'
+							+ '<table class="table table-bordered" style="text-align: center;" id="table_entrustment_sample">'
 							+ '<tbody>'
-							+ '<tr><td>编号</td><td>检材名称</td><td>提取部位</td><td>提取方法</td><td>数量</td><td>包装</td><td>用途</td><td>全选</td></tr>'
-							+ '</tbody>' + '</table>';
+							+ '<tr>'
+							+ '<td>编号</td>'
+							+ '<td>检材名称</td>'
+							+ '<td>提取部位</td>'
+							+ '<td>提取方法</td>'
+							+ '<td>数量</td>'
+							+ '<td>包装</td>'
+							+ '<td>用途</td>'
+							+ '<td style="width: 100px;">'
+							+ '<label class="fancy-checkbox"><input id="checkbox_all_selectEntrustmentSample" type="checkbox" onclick="class_select(\'checkbox_all_selectEntrustmentSample\',\'checkbox_selectEntrustmentSample\')"> <span>全选</span></label>'
+							+ '</td>'
+							+ '</tr>'
+							+ '</tbody>'
+							+ '</table>'
+							+ '<div style="height: 34px; margin: 0 0 20px 0;">'
+							+ '<button id="'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
+							+ '" class="btn btn-danger" onclick="deleteEntrustmentSample(this)" style="float: right; margin: 0 10px;">'
+							+ '<i class="fa fa-trash-o"></i> 删除检材'
+							+ '</button>' + '</div>';
 					jc.setContentAppend(con);
 					/*
 					 * 
 					 */
-					var xhr = false;
-					xhr = new XMLHttpRequest();
-					xhr.onreadystatechange = function() {
-						var message;
-						if (xhr.readyState == 4) {
-							if (xhr.status == 200) {
-								if (xhr.responseText == 1) {
-								} else {
-
-								}
-							} else {
-								toastr.error(xhr.status);
-							}
-						}
-					}
-					/*
-					 * 
-					 */
-					var formData = new FormData();
-
+					list_entrustment_sample(obj);
 					/*
 					 * 
 					 */
@@ -275,6 +276,8 @@ function Preview_Death_InspectionRecord(obj) {
 					'导出' : {
 						btnClass : 'btn-green',
 						action : function() {
+							window.location = '/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_exportDeathInspectionRecord?deathInspectionRecord.xsjsglxt_death_inspection_record_id='
+								+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.xsjsglxt_death_inspection_record_id;
 							return false;
 						}
 					},
@@ -289,6 +292,7 @@ function Preview_Death_InspectionRecord(obj) {
 					'添加检材记录' : {
 						btnClass : 'btn-green',
 						action : function() {
+
 							var jc2 = $
 									.confirm({
 										title : '添加检材记录',
@@ -310,7 +314,7 @@ function Preview_Death_InspectionRecord(obj) {
 												+ '<tr><td>包装：</td>'
 												+ '<td><input  class="form-control" name="entrustment_sample.entrustment_sample_packaging"  /></td></tr>'
 												+ '<tr><td>用途：</td>'
-												+ '<td><input  class="form-control" name="entrustment_sample.etrustment_sample_use"  /></td></tr>'
+												+ '<td><input  class="form-control" name="entrustment_sample.entrustment_sample_use"  /></td></tr>'
 												+ '</tbody>'
 												+ '</table>'
 												+ '</form>',
@@ -323,6 +327,7 @@ function Preview_Death_InspectionRecord(obj) {
 											'确认' : {
 												btnClass : 'btn-green',
 												action : function() {
+
 													var xhr = false;
 													xhr = new XMLHttpRequest();
 													xhr.onreadystatechange = function() {
@@ -332,6 +337,8 @@ function Preview_Death_InspectionRecord(obj) {
 																if (xhr.responseText == 1) {
 																	toastr
 																			.success("操作成功");
+																	List_EntrustmentBook(EntrustmentBook_json.pageIndex);
+																	list_entrustment_sample(obj);
 																} else {
 
 																}
@@ -365,4 +372,143 @@ function Preview_Death_InspectionRecord(obj) {
 				}
 			});
 
+}
+
+function list_entrustment_sample(obj) {
+	var json_list = EntrustmentBook_json;
+	for (var num = 0; num < json_list.listEntrustmentBookManagementDTO.length; num++) {
+		if (obj.id == json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id) {
+			break;
+		}
+	}
+	/*
+	 * 
+	 * 清空原表数据
+	 * 
+	 */
+	var new_tr_list = document
+			.getElementsByClassName("new_tr_entrustment_sample");
+	var long = new_tr_list.length;
+	for (var i = 0; i < long; i++) {
+		new_tr_list[0].parentNode.removeChild(new_tr_list[0]);
+	}
+
+	var table_entrustment_sample = document
+			.getElementById("table_entrustment_sample");
+	var new_tr = null;
+	var new_td = null;
+	if (json_list.listEntrustmentBookManagementDTO[num].listEntrustmentSample != null) {
+		for (var num2 = 0; num2 < json_list.listEntrustmentBookManagementDTO[num].listEntrustmentSample.length; num2++) {
+			new_tr = document.createElement("tr");
+			table_entrustment_sample.firstElementChild.appendChild(new_tr);
+			new_tr.className = "new_tr_entrustment_sample";
+			/*
+			 * 
+			 */
+			new_td = document.createElement("td");
+			new_tr.appendChild(new_td);
+			new_td.innerHTML = json_list.listEntrustmentBookManagementDTO[num].listEntrustmentSample[num2].entrustment_sample_num;
+			/*
+			 * 
+			 */
+			new_td = document.createElement("td");
+			new_tr.appendChild(new_td);
+			new_td.innerHTML = json_list.listEntrustmentBookManagementDTO[num].listEntrustmentSample[num2].entrustment_sample_name;
+			/*
+			 * 
+			 */
+			new_td = document.createElement("td");
+			new_tr.appendChild(new_td);
+			new_td.innerHTML = json_list.listEntrustmentBookManagementDTO[num].listEntrustmentSample[num2].entrustment_sample_position;
+			/*
+			 * 
+			 */
+			new_td = document.createElement("td");
+			new_tr.appendChild(new_td);
+			new_td.innerHTML = json_list.listEntrustmentBookManagementDTO[num].listEntrustmentSample[num2].entrustment_sample_way;
+			/*
+			 * 
+			 */
+			new_td = document.createElement("td");
+			new_tr.appendChild(new_td);
+			new_td.innerHTML = json_list.listEntrustmentBookManagementDTO[num].listEntrustmentSample[num2].entrustment_sample_amount;
+			/*
+			 * 
+			 */
+			new_td = document.createElement("td");
+			new_tr.appendChild(new_td);
+			new_td.innerHTML = json_list.listEntrustmentBookManagementDTO[num].listEntrustmentSample[num2].entrustment_sample_packaging;
+			/*
+			 * 
+			 */
+			new_td = document.createElement("td");
+			new_tr.appendChild(new_td);
+			new_td.innerHTML = json_list.listEntrustmentBookManagementDTO[num].listEntrustmentSample[num2].entrustment_sample_use;
+			/*
+			 * 
+			 */
+			new_td = document.createElement("td");
+			new_tr.appendChild(new_td);
+			new_td.innerHTML = '<label class="fancy-checkbox">'
+					+ '<input id="'
+					+ json_list.listEntrustmentBookManagementDTO[num].listEntrustmentSample[num2].xsjsglxt_entrustment_sample_id
+					+ '" type="checkbox" class="checkbox_selectEntrustmentSample">'
+					+ '<span></span></label>';
+
+		}
+		document.getElementById("checkbox_all_selectEntrustmentSample").checked = false;
+	}
+
+}
+
+function deleteEntrustmentSample(obj) {
+	var js = $
+			.confirm({
+				theme : 'Modern',
+				icon : 'fa fa-exclamation-triangle',
+				title : '警告！删除检材记录',
+				content : '此操作将删除所选的所有检材记录数据',
+				type : 'red',
+				autoClose : '取消|5000',// 自动关闭
+				buttons : {
+					删除 : {
+						btnClass : 'btn-red',
+						action : function() {
+							var xhr = false;
+							xhr = new XMLHttpRequest();
+							xhr.onreadystatechange = function() {
+								var message;
+								if (xhr.readyState == 4) {
+									if (xhr.status == 200) {
+										if (xhr.responseText == "1") {
+											toastr.success("删除成功");
+											List_EntrustmentBook(EntrustmentBook_json.pageIndex);
+											list_entrustment_sample(obj);
+										}
+									} else {
+										toastr.error(xhr.status);
+									}
+								}
+							}
+							var checkbox_select = document
+									.getElementsByClassName("checkbox_selectEntrustmentSample");
+							var ListDeleteStudentNum = null;
+							var formData = new FormData();
+							for (var num = 0; num < checkbox_select.length; num++) {
+								if (checkbox_select[num].checked) {
+									formData.append("listEntrustmentSample",
+											checkbox_select[num].id);
+								}
+							}
+							xhr
+									.open(
+											"POST",
+											"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_deleteEntrustmentSample");
+							xhr.send(formData);
+						}
+					},
+					取消 : function() {
+					}
+				}
+			});
 }
