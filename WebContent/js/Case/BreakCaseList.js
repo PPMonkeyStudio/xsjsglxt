@@ -46,6 +46,7 @@ $(function() {
 		toastr.success('清除查询信息成功');
 	});
 
+	//添加模态框出现时执行查询所有案件并添加进模态框中
 	$('#breakCase_input').on('show.bs.modal', function() {
 		$.post('/xsjsglxt/case/Case_AllCase', function(Case_data) {
 			var option = '';
@@ -56,6 +57,10 @@ $(function() {
 			//除去加载提示
 			$('#breakCase_input .load_remind').remove();
 		}, 'json');
+	})
+	//添加模态框影藏时清除内的数值
+	$('#breakCase_input').on('hide.bs.modal', function() {
+		$(this).find('input,textarea').val('');
 	})
 	//破案确认添加按钮事件
 	$('.input_sure').click(function() {
@@ -69,15 +74,19 @@ $(function() {
 					btnClass : 'btn-danger',
 					text : '确认',
 					action : function() {
-						$.post('/xsjsglxt/case/BreakCase_saveBreakecase', $('#breakCase_input form').serialize(), function(xhr_data, text) {
-							if (text == "success") {
-								toastr.success("修改成功！");
+						$.post('/xsjsglxt/case/BreakCase_saveBreakecase', $('#breakCase_input form').serialize(), function(xhr_data, text, xhr) {
+							console.log(text + "------------------" + xhr_data + "---------");
+							console.log(xhr);
+							if (xhr_data == "success") {
+								//影藏模态框
+								$('#breakCase_input').modal('hide');
+								toastr.success("添加成功！");
 								//获取对应option中的value值
 								get_ListBreakecaseInformationByPageAndSearch(query_data);
 							} else {
-								toastr.error("修改失败！");
+								toastr.error("添加失败！");
 							}
-						}, 'json');
+						}, 'text');
 					}
 				},
 				cancelAction : {
@@ -220,7 +229,7 @@ var modifi_delete = function() {
 							contentType : false,
 							dataType : 'text',
 							success : function(data, text) {
-								if (text == "success") {
+								if (data == "success") {
 									toastr.success("删除成功！");
 									//获取对应option中的value值
 									get_ListBreakecaseInformationByPageAndSearch(query_data);
