@@ -69,7 +69,6 @@ var modifi_delete = function() {
 		$.post('/xsjsglxt/case/Parallel_ParallelInformationOne', {
 			"parallel.xsjsglxt_parallel_id" : id
 		}, function(xhr_data) {
-
 			//模态框显示
 			$('#breakCase_modification').modal('show');
 			$.post('/xsjsglxt/case/Case_AllCase', function(Case_data) {
