@@ -1,5 +1,8 @@
 package util;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,26 +12,32 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 
 public class TeamUtil {
 
 	static SimpleDateFormat formatter;
 
-	// 5级评分制评分
-	public static String grade(int ggg) {
+	// 将图片转换成base64
+	/**
+	 * 27 * 将图片转换成Base64编码 28 * @param imgFile 待处理图片 29 * @return 30
+	 */
 
-		switch (ggg / 10) {
-		case 9:
-			return "优秀";
-		case 8:
-			return "中";
-		case 7:
-			return "良";
-		case 6:
-			return "及格";
-		default:
-			return "不及格";
+	public static String getImgStr(String imgFile) {
+		// 将图片文件转化为字节数组字符串，并对其进行Base64编码处理
+
+		InputStream in = null;
+		byte[] data = null;
+		// 读取图片字节数组
+		try {
+			in = new FileInputStream(imgFile);
+			data = new byte[in.available()];
+			in.read(data);
+			in.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+		return new String(Base64.encodeBase64(data));
 	}
 
 	// 一段yyyy-MM-dd HH:mm:ss字符串分成年月日三段
@@ -60,6 +69,20 @@ public class TeamUtil {
 		} catch (ParseException e) {
 			e.printStackTrace();
 			return "0000-00-00";
+		}
+
+	}
+
+	public static String yearAndMonth() {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMM");
+		Date secondDate = new Date();
+		String date = formatter.format(secondDate);
+		try {
+			secondDate = formatter.parse(date);
+			return date;
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return "0000-00";
 		}
 
 	}
@@ -169,6 +192,7 @@ public class TeamUtil {
 		return year;
 	}
 
+	// 获取当前年月
 	// 两个整数相除求百分数
 	public static String getPercent(int a, int b) {
 		if (a == 0 && b > 0) {
@@ -184,4 +208,10 @@ public class TeamUtil {
 		return "" + nt.format(percent);
 	}
 
+	public void tettt() {
+		int i = 9;
+		String k;
+		k = String.format("%04d", i, i + 1);
+		System.out.println(k);
+	}
 }

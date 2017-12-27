@@ -1,10 +1,6 @@
-/applicationContext-beans.xml
-/applicationContext.xml
 /com/
-/db.properties
-/hibernate.cfg.xml
-/log4j.properties
-/spring/
-/struts.xml
-/struts2/
+<<<<<<< HEAD
+=======
 /util/
+>>>>>>> ff3f5382d68a3468995d2b0b35d99d360750c4c2
+/xsjsglxt/

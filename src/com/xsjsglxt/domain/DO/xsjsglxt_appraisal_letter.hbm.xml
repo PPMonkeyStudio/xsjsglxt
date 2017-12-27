@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-12-13 16:08:18 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter" table="XSJSGLXT_APPRAISAL_LETTER">
+        <id name="xsjsglxt_appraisal_letter_id" type="java.lang.String">
+            <column name="XSJSGLXT_APPRAISAL_LETTER_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="appraisal_letter_belong_entrustment_book" type="java.lang.String">
+            <column name="APPRAISAL_LETTER_BELONG_ENTRUSTMENT_BOOK" />
+        </property>
+        <property name="appraisal_letter_num" type="java.lang.String">
+            <column name="APPRAISAL_LETTER_NUM" />
+        </property>
+        <property name="appraisal_letter_simple_case_situation" type="java.lang.String">
+            <column name="APPRAISAL_LETTER_SIMPLE_CASE_SITUATION" />
+        </property>
+        <property name="appraisal_letter_sample_situation" type="java.lang.String">
+            <column name="APPRAISAL_LETTER_SAMPLE_SITUATION" />
+        </property>
+        <property name="appraisal_letter_man1_duty" type="java.lang.String">
+            <column name="APPRAISAL_LETTER_MAN1_DUTY" />
+        </property>
+        <property name="appraisal_letter_man1_name" type="java.lang.String">
+            <column name="APPRAISAL_LETTER_MAN1_NAME" />
+        </property>
+        <property name="appraisal_letter_man2_duty" type="java.lang.String">
+            <column name="APPRAISAL_LETTER_MAN2_DUTY" />
+        </property>
+        <property name="appraisal_letter_man2_name" type="java.lang.String">
+            <column name="APPRAISAL_LETTER_MAN2_NAME" />
+        </property>
+        <property name="appraisal_letter_authorization_duty" type="java.lang.String">
+            <column name="APPRAISAL_LETTER_AUTHORIZATION_DUTY" />
+        </property>
+        <property name="appraisal_letter_authorization_name" type="java.lang.String">
+            <column name="APPRAISAL_LETTER_AUTHORIZATION_NAME" />
+        </property>
+        <property name="appraisal_letter_mark" type="java.lang.String">
+            <column name="APPRAISAL_LETTER_MARK" />
+        </property>
+        <property name="appraisal_letter_date" type="java.lang.String">
+            <column name="APPRAISAL_LETTER_DATE" />
+        </property>
+        <property name="appraisal_letter_inspection" type="java.lang.String">
+            <column name="APPRAISAL_LETTER_INSPECTION" />
+        </property>
+        <property name="appraisal_letter_argumentation" type="java.lang.String">
+            <column name="APPRAISAL_LETTER_ARGUMENTATION" />
+        </property>
+        <property name="appraisal_letter_expert_opinion" type="java.lang.String">
+            <column name="APPRAISAL_LETTER_EXPERT_OPINION" />
+        </property>
+        <property name="appraisal_letter_type" type="java.lang.String">
+            <column name="APPRAISAL_LETTER_TYPE" />
+        </property>
+        <property name="appraisal_letter_gmt_create" type="java.lang.String">
+            <column name="APPRAISAL_LETTER_GMT_CREATE" />
+        </property>
+        <property name="appraisal_letter_gmt_modified" type="java.lang.String">
+            <column name="APPRAISAL_LETTER_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>
