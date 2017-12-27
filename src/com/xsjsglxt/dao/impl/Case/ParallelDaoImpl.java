@@ -158,17 +158,17 @@ public class ParallelDaoImpl implements ParallelDao {
 	}
 
 	@Override
-	public xsjsglxt_case getcaseByparallelId(xsjsglxt_parallel parallel) {
+	public List<xsjsglxt_case> getcaseByparallelId(xsjsglxt_parallel parallel) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
 		String hql = "from xsjsglxt_case case1 where case1.case_parallel='" + parallel.getXsjsglxt_parallel_id() + "'";
 
 		Query query = session.createQuery(hql);
+        List<xsjsglxt_case> caseList=new ArrayList<xsjsglxt_case>();
+		caseList =  query.list();
 
-		xsjsglxt_case	 case1 = (xsjsglxt_case) query.uniqueResult();
-
-		return case1;
+		return caseList;
 	}
 
 	@Override

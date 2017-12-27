@@ -36,7 +36,7 @@ public xsjsglxt_parallel getparallelById(xsjsglxt_parallel parallel);
 
 
 
-public xsjsglxt_case getcaseByparallelId(xsjsglxt_parallel parallel);
+public List<xsjsglxt_case> getcaseByparallelId(xsjsglxt_parallel parallel);
 
 
 
