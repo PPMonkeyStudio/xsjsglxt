@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="handleAction" class="com.xsjsglxt.action.Case.HandleAction"
+		scope="prototype">
+		<property name="handleService" ref="handleService"></property>
+	</bean>
+
+	<bean id="handleService" class="com.xsjsglxt.service.impl.Case.HandleServiceImpl">
+		<property name="handleDao" ref="handleDao"></property>
+	</bean>
+
+	<bean id="handleDao" class="com.xsjsglxt.dao.impl.Case.HandleDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+
+</beans>

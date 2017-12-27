@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-11-25 15:43:35 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_dna" table="XSJSGLXT_DNA">
+        <id name="xsjsglxt_dna_id" type="java.lang.String">
+            <column name="XSJSGLXT_DNA_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="dna_num" type="java.lang.String">
+            <column name="DNA_NUM" />
+        </property>
+        <property name="dna_name" type="java.lang.String">
+            <column name="DNA_NAME" />
+        </property>
+        <property name="dna_sex" type="java.lang.String">
+            <column name="DNA_SEX" />
+        </property>
+        <property name="dna_birthday" type="java.lang.String">
+            <column name="DNA_BIRTHDAY" />
+        </property>
+        <property name="dna_identity" type="java.lang.String">
+            <column name="DNA_IDENTITY" />
+        </property>
+        <property name="dna_address" type="java.lang.String">
+            <column name="DNA_ADDRESS" />
+        </property>
+        <property name="dna_illegal_fact" type="java.lang.String">
+            <column name="DNA_ILLEGAL_FACT" />
+        </property>
+        <property name="dna_record_organization" type="java.lang.String">
+            <column name="DNA_RECORD_ORGANIZATION" />
+        </property>
+        <property name="dna_organizer" type="java.lang.String">
+            <column name="DNA_ORGANIZER" />
+        </property>
+        <property name="dna_record_time" type="java.lang.String">
+            <column name="DNA_RECORD_TIME" />
+        </property>
+        <property name="dna_submit_time" type="java.lang.String">
+            <column name="DNA_SUBMIT_TIME" />
+        </property>
+        <property name="dna_remark" type="java.lang.String">
+            <column name="DNA_REMARK" />
+        </property>
+        <property name="dna_gmt_create" type="java.lang.String">
+            <column name="DNA_GMT_CREATE" />
+        </property>
+        <property name="dna_gmt_modified" type="java.lang.String">
+            <column name="DNA_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>

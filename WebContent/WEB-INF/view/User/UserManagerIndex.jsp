@@ -31,8 +31,8 @@
 			<!---------------------------------------------------------------------------------------------------->
 			<div class="panel" style="width: 95%; margin: 20px auto;">
 				<div id="" style="height: 80px; padding: 20px;">
-					<div style="float:right; margin-left: 10px;">
-    				  <button data-toggle="modal" data-target="#addUser" class="btn btn-success"><span style="width" class="glyphicon glyphicon-plus"></span>新增用户</button>
+					<div class="managerClass" style="float:right; margin-left: 10px;">
+    				  <button onclick="cleanInput" data-toggle="modal" data-target="#addUser" class="btn btn-success"><span style="width" class="glyphicon glyphicon-plus"></span>新增用户</button>
     				</div>  
 					<div class="input-group" style="float:right; width: 300px;">
 					      <input id="queryString" type="text" class="form-control" placeholder="请输入搜索内容">
@@ -87,17 +87,17 @@
 						<img alt="" src="<%=basePath %>img/loading.gif">
 					</div>
 			      	 <div id="addContent">	
-			      		<form id="addUserForm">
+			      		<form id="addUserForm" name="addUserForm">
 				      		<label>账号：</label>
-				      		<input name="user_username" type="text" class="form-control" placeholder="请输入账号">
+				      		<input id="user_username" name="user_username" type="text" class="form-control" placeholder="请输入账号">
 				      		<label>密码：</label>
-				      		<input name="user_password" type="password" class="form-control" placeholder="请输入密码">
+				      		<input id="user_password" name="user_password" type="password" class="form-control" placeholder="请输入密码">
 				      		<label>姓名：</label>
-				      		<input name="user_name" type="text" class="form-control" placeholder="请输入用户姓名">
+				      		<input id="user_name" name="user_name" type="text" class="form-control" placeholder="请输入用户姓名">
 				      		<label>代码：</label>
-				      		<input name="user_number" type="text" class="form-control" placeholder="请输入用户代码">
+				      		<input id="user_number" name="user_number" type="text" class="form-control" placeholder="请输入用户代码">
 				      		<label>单位：</label>
-				      		<input name="user_units" type="text" class="form-control" placeholder="请输入用户单位">
+				      		<input id="user_units" name="user_units" type="text" class="form-control" placeholder="请输入用户单位">
 				      		<label>案件技术权限：</label>
 				      		<select name="user_case_technology_power" class="form-control">
 				      			<option value="jurisdiction_none">无权限</option>
