@@ -30,7 +30,7 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 	private HttpServletRequest http_request;
 	private page_list_staffInformationVO  page_list_staffInformation;
 	
-	
+    
 	private File staff_photo;
 	private String staff_photoFileName;
 	/*
@@ -65,7 +65,7 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 							+ staff_photoFileName.substring(staff_photoFileName.lastIndexOf("."));
 					filePath = "C://xsjsglxt_img/bimg/" + fileName;
 					staff.setStaff_photo(fileName);
-					System.out.println("照片"+staff.getStaff_photo());
+ 
 					File newFile = new File(filePath);
 					try {
 						FileUtils.copyFile(staff_photo, newFile);
@@ -90,6 +90,8 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 	 *列表信息 
 	 */
 	public void ListStaffInformationByPageAndSearch() throws IOException{
+
+ 
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
@@ -155,7 +157,9 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 	 */
 	public void remove_StaffInformationList(){
 	
-		if(	staffService.remove_StaffInformationList( useStaffInformationNumList)){
+
+		if(	staffService.remove_StaffInformationList(useStaffInformationNumList)){
+
 			http_response.setContentType("text/html;charset=utf-8");
 			try {
 				http_response.getWriter().write("success");

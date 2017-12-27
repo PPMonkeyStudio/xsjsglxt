@@ -27,12 +27,10 @@
 	margin-top: 6px;
 	width: 100% !important;
 }
-
 #newQuery table tbody tr td select {
 	margin-top: 6px;
 	width: 100% !important;
 }
-
 .breakcase_table_info tbody tr {
 	text-align: center;
 }
