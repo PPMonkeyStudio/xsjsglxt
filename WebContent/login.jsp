@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <%
 	String path = request.getContextPath();
@@ -17,9 +18,11 @@
 <link rel="stylesheet" href="<%=basePath%>css/bootstrap-select.min.css">
 <script type="text/javascript" src="<%=basePath%>js/bootstrap-select.js"></script>
 <!--------------------------------------------------------------------------------->
-<link rel="stylesheet" href="<%=basePath%>css/navbar/chartist-custom.css">
+<link rel="stylesheet"
+	href="<%=basePath%>css/navbar/chartist-custom.css">
 <link rel="stylesheet" href="<%=basePath%>css/navbar/main.css">
-<link rel="stylesheet" href="<%=basePath%>css/navbar/font-awesome.min.css">
+<link rel="stylesheet"
+	href="<%=basePath%>css/navbar/font-awesome.min.css">
 <link rel="stylesheet" href="<%=basePath%>css/navbar/style.css">
 <link rel="stylesheet" href="<%=basePath%>css/table.css">
 <!--------------------------------------------------------------------------------->
@@ -34,13 +37,17 @@
 <!--------------------------------------------------------------------------------->
 <title>刑事技术管理系统</title>
 </head>
-<body background="<%=basePath%>img/login.png">
-<input type="email" class="form-control" id="login_username"
-					 style="width: 298px; height:46px; margin-left: 659px; margin-top: 214px;">
-<input type="password" class="form-control" id="login_password"
-			         style="width: 298px; height:46px; margin-left: 659px; margin-top: 18px;">
-<button id="button_login" style="border: 0px; background-color:#0B1D29;margin-left:654px;margin-top: 31px; "
-				onclick="login()"><img src="<%=basePath%>img/login_button.png"></button>
+<body background="<%=basePath%>img/login.png"
+	style="background-position: center center; background-repeat: no-repeat;">
+	<input type="email" class="form-control" id="login_username"
+		style="width: 298px; height: 46px; margin-left: 936px; margin-top: 362px;">
+	<input type="password" class="form-control" id="login_password"  
+		style="width: 298px; height: 46px; margin-left: 936px; margin-top: 18px;"> 
+	<button id="button_login"
+		style="border: 0px; background-color: #0B1D29; margin-left: 928px; margin-top: 31px;"
+		onclick="login()"> 
+		<img src="<%=basePath%>img/login_button.png"> 
+	</button>
 	<%-- <div class="panel" style="width: 550px; margin: 100px auto;">
 		<div class="panel-heading">
 			<div>
