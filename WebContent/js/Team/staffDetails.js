@@ -99,8 +99,8 @@ function isNotFormat(even){
 function staff_change(){
 	var url="/xsjsglxt/team/Staff_updateStaffInformation";
 	$.confirm({
-	    title: '编辑!',
-	    content: '确定编辑么!',
+	    title: '修改!',
+	    content: '确定修改么!',
 		buttons : {
 			
 			取消 : function() {

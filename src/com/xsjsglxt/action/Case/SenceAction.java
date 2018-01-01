@@ -1,3 +1,4 @@
+
 package com.xsjsglxt.action.Case;
 
 import java.io.IOException;
@@ -14,7 +15,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import com.xsjsglxt.dao.Case.SenceDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_briefdetails;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost;
@@ -133,7 +133,6 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 			// senceService.save(picture);
 			http_response.setContentType("text/html;charset=utf-8");
 			http_response.getWriter().write(gson.toJson(case1.getXsjsglxt_case_id()));
-			System.out.println("ddoddododod"+case1.getXsjsglxt_case_id());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -356,5 +355,4 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	public void setUseSenceInformationNumList(List<String> useSenceInformationNumList) {
 		this.useSenceInformationNumList = useSenceInformationNumList;
 	}
-
 }

@@ -1,3 +1,4 @@
+
 var query_data = {
 	"page_list_BreakecaseInformation.pageIndex" : "1",
 	"page_list_BreakecaseInformation.snece_inquestId" : "",

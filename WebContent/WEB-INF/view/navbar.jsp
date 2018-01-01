@@ -37,13 +37,16 @@
 <script src="<%=basePath%>js/jquery.slimscroll.min.js"></script>
 <script src="<%=basePath%>js/klorofil-common.js"></script>
 <!--------------------------------------------------------------------------------->
-<!---页面公用------------------------------------------------------------------------------>
+<link rel="stylesheet" href="<%=basePath%>css/jquery.datetimepicker.css" />
+<script type="text/javascript"
+	src="<%=basePath%>js/jquery.datetimepicker.full.js"></script>
 <!--------------------------------------------------------------------------------->
+<script type="text/javascript"
+	src="<%=basePath%>js/User/Input_Select.js"></script>
 <!--------------------------------------------------------------------------------->
-<!-- -----------------------------heyi------------------------------------------ -->
-<script src="<%=basePath%>js/jquery.datetimepicker.full.js"></script>
-<link rel="stylesheet" href="<%=basePath%>css/jquery.datetimepicker.css">
-<!-- -----------------------------heyi------------------------------------------ -->
+<script type="text/javascript" src="<%=basePath %>js/User/updatePasswd.js"></script>
+<script type="text/javascript" src="<%=basePath %>js/User/judgePower.js"></script>
+<!--------------------------------------------------------------------------------->
 <title>Insert title here</title>
 </head>
 <body>
@@ -54,7 +57,7 @@
 		<div id="navbar-menu">
 			<ul class="nav navbar-nav navbar-left" style="margin: 0 0 0 20px">
 				<li class="dropdown" style="float: left;"><a
-					href="<%=basePath%>loginLogout/LoginLogoutManagement_index"> <span>首页</span>
+					href="<%=basePath%>user/User_index"> <span>首页</span>
 				</a></li>
 				<!--  -->
 				<li class="leader_control dropdown" style="float: left;"><a
@@ -69,15 +72,10 @@
 						<li><a href="<%=basePath%>case/BreakCase_page_BreakCaseList">刑事破案</a></li>
 					</ul></li>
 				<!--  -->
-				<li class="dropdown" style="float: left;"><a href="#"
-					class="dropdown-toggle" data-toggle="dropdown"> <span>检验鉴定</span>
-						<i class="icon-submenu lnr lnr-chevron-down"></i>
-				</a>
-					<ul class="dropdown-menu">
-						<li><a href="#">委托书管理</a></li>
-						<li><a href="#">检验记录</a></li>
-						<li><a href="#">检验结果</a></li>
-					</ul></li>
+				<li class="dropdown" style="float: left;"><a
+					href="<%=basePath%>inspectionIdentific/EntrustmentBookManagement_EntrustmentBookManagement">
+						<span>检验鉴定</span>
+				</a></li>
 				<!--  -->
 				<li class="dropdown" style="float: left;"><a href="#"
 					class="dropdown-toggle" data-toggle="dropdown"> <span>队伍</span>
@@ -95,10 +93,14 @@
 						<i class="icon-submenu lnr lnr-chevron-down"></i>
 				</a>
 					<ul class="dropdown-menu">
-						<li class="teacher_control"><a href="#">DNA</a></li>
-						<li class="teacher_control"><a href="#">指纹</a></li>
-						<li class="teacher_control"><a href="#">器材装备</a></li>
-						<li class="teacher_control"><a href="#">比中指纹</a></li>
+						<li class="teacher_control"><a
+							href="<%=basePath%>DNA/DNAManagement_DNAManagementPage">DNA</a></li>
+						<li class="teacher_control"><a
+							href="<%=basePath%>FingerPrint/FingerPrintManagement_FingerPrintManagementPage">指纹</a></li>
+						<li class="teacher_control"><a
+							href="<%=basePath%>Equipment/EquipmentManagement_EquipmentManagementPage">器材装备</a></li>
+						<li class="teacher_control"><a
+							href="<%=basePath%>ContrastFingerPrint/ContrastFingerPrintManagement_ContrastFingerPrintManagementPage">比中指纹</a></li>
 					</ul></li>
 				<!--  -->
 				<li class="dropdown" style="float: left;"><a href="#"
@@ -110,8 +112,8 @@
 						<li class="teacher_control"><a href="#">检验统计</a></li>
 					</ul></li>
 				<!--  -->
-				<li class="dropdown" style="float: left;"><a href="#"
-					class="dropdown-toggle" data-toggle="dropdown"> <span>用户</span>
+				<li class="dropdown" style="float: left;"><a href="<%=basePath %>user/User_skipToUser"
+					> <span>用户</span>
 				</a></li>
 				<!--  -->
 			</ul>
@@ -120,7 +122,7 @@
 				<!--  -->
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <i class="fa fa-user-circle"></i> <span
-						id="USER_NAME">龙建平</span> <i
+						id="USER_NAME"><%=request.getSession().getAttribute("user_name") %></span> <i
 						class="icon-submenu lnr lnr-chevron-down"></i>
 				</a>
 					<ul class="dropdown-menu">
@@ -130,10 +132,10 @@
 								<span>我的信息</span>
 							</a>
 						</li> --%>
-						<li><a href="#"> <i class="lnr lnr-lock"></i> <span>修改密码</span>
+						<li data-toggle="modal" data-target="#updatePassword"><a href="#"> <i class="lnr lnr-lock"></i> <span>修改密码</span>
 						</a></li>
 						<li><a
-							href="<%=basePath%>loginLogout/LoginLogoutManagement_logout">
+							href="<%=basePath%>user/User_logout">
 								<i class="lnr lnr-exit"></i> <span>退出登录</span>
 						</a></li>
 					</ul></li>
@@ -141,11 +143,47 @@
 			</ul>
 		</div>
 		</nav>
+		<!-------------------------------------------------修改密码---------------------------------------------------------------  -->
+			<div class="modal fade" id="updatePassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title">修改用户</h4>
+			      </div>
+			      <div class="modal-body">
+			      	 	<div id="passwordLoadingDiv" style="width: 319px; margin: 0 auto; display: none;">
+							<img alt="" src="<%=basePath %>img/loading.gif">
+						</div>
+			      		<div id="passwordContent">
+			      			<label>原始密码：</label>
+				      		<input id="oldPassword" type="password" class="form-control" placeholder="请输入旧密码">
+				      		<label>新密码：</label>
+				      		<input id="newPassword" type="password" class="form-control" placeholder="请输入新密码">
+				      		<label>再次输入：</label>
+				      		<input id="newPasswordAgain" type="password" class="form-control" placeholder="再次输入新密码">
+			      		</div>
+			      </div>
+			      <div class="modal-footer">
+			        <button onclick="showPwContent()" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+			        <button id="updatePwBtn" onclick="updatePw()" type="button" class="btn btn-primary">修改</button>
+			      </div>
+			    </div><!-- /.modal-content -->
+			  </div><!-- /.modal-dialog -->
+			</div>
 </body>
-
+<script type="text/javascript">
+	//getUserSessionForAjax();
+</script>
 <style>
 td {
 	line-height: 33px !important;
+	vertical-align: middle !important;
+}
+
+th {
+	line-height: 34px !important;
+	vertical-align: middle !important;
 }
 
 td i {
@@ -160,8 +198,12 @@ td .label {
 	line-height: 33px !important;
 }
 
-#wrapper nav>div>ul>li>a{
-	color: white;
+table select {
+	text-align: center !important;
+}
+
+table select {
+	margin: auto;
 }
 </style>
 <script>

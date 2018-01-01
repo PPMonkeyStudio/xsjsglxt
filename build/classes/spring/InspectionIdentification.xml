@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="inspectionIdentificationAction"
+		class="com.xsjsglxt.service.InspectionIdentification.InspectionIdentificationService"
+		scope="prototype">
+		<property name="inspectionIdentificationService" ref="inspectionIdentificationService"></property>
+	</bean>
+
+	<bean id="inspectionIdentificationService"
+		class="com.xsjsglxt.service.impl.InspectionIdentification.InspectionIdentificationServiceImpl">
+		<property name="inspectionIdentificationDao" ref="inspectionIdentificationDao"></property>
+	</bean>
+
+	<bean id="inspectionIdentificationDao"
+		class="com.xsjsglxt.dao.impl.InspectionIdentification.InspectionIdentificationDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+
+</beans>

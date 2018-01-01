@@ -1,3 +1,4 @@
+
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <%
@@ -134,7 +135,10 @@
 										<tr>
 											<td><label class="staff_info_label">入警时间</label> <input
 												name="page_list_staffInformation.start_time" type="text"
-												class="staff_info_input" /></td>
+												class="staff_info_input start_time" />&nbsp;&nbsp;到&nbsp;&nbsp;<input
+												name="page_list_staffInformation.stop_time" type="text"
+												class="staff_info_input stop_time" /></td>
+												
 
 										</tr>
 									</tbody>
@@ -159,6 +163,28 @@
 	<!-- SneceInput.js仅作为在查询模态框中（案件类别，选择处所，作案手段）的自动匹配子项使用 -->
 
 	<script type="text/javascript" src="<%=basePath%>js/Team/staffList.js"></script>
+	<script type="text/javascript">
+	$.datetimepicker.setLocale('ch');
+	$('.start_time').datetimepicker({
+		yearStart : 1990, // 设置最小年份
+		yearEnd : 2050, // 设置最大年份
+		yearOffset : 0, // 年偏差
+		timepicker : false, // 关闭时间选项
+		format : 'Y-m-d', // 格式化日期年-月-日
+		minDate : '1990/01/01', // 设置最小日期
+		maxDate : '2030/01/01', // 设置最大日期
+	});
+	$('.stop_time').datetimepicker({
+		yearStart : 1990, // 设置最小年份
+		yearEnd : 2050, // 设置最大年份
+		yearOffset : 0, // 年偏差
+		timepicker : true, // 关闭时间选项
+		format : 'Y-m-d H:i', // 格式化日期年-月-日
+		minDate : '1990/01/01', // 设置最小日期
+		maxDate : '2030/01/01', // 设置最大日期
+	});
+	
+</script>
 </body>
 
 

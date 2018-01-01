@@ -36,7 +36,7 @@
 			</button>
 			<button type="button" class="btn btn-default button button_change"
 				onclick="staff_change()">
-				<i class="fa fa-pencil"></i> 完成编辑
+				<i class="fa fa-pencil"></i> 新建人员
 			</button>
 			<div class="panel-body staff_body">
 				<form id="staffDetails"  enctype="multipart/form-data"  accept-charset="utf-8">
@@ -108,14 +108,14 @@
                             
 						</tr>
 						<tr>
-							<td><label  >入党时间</label></td>
+							<td><label>入党时间</label></td>
 							<td><input  name="staff.staff_joinPartyTime"
-								class="form-control" type="text"></td>
-							<td><label >工作时间</label></td>
+								class="form-control staff_joinPartyTime" type="text"></td>
+							<td><label>工作时间</label></td>
 							<td><input 
-								name="staff.staff_joinWorkTime" class="form-control"
+								name="staff.staff_joinWorkTime" class="form-control staff_joinWorkTime"
 								type="text" placeholder="参加工作时间"></td>
-                              <td><label  >性别</label></td>
+                              <td><label>性别</label></td>
 							<td>
 							  <label style="float: left;" class="fancy-radio">
 									<input name="sex_content" onclick=changeSex_man(this) type="radio"
@@ -136,10 +136,10 @@
 						<tr>
 							<td><label  >入警时间</label></td>
 							<td><input name="staff.staff_thePoliceTime"
-								class="form-control" type="text"></td>
+								class="form-control staff_thePoliceTime" type="text"></td>
 								<td><label  >生日</label></td>
 							<td><input style="font-size: 12px;"
-								name="staff.staff_birthday" class="form-control" type="text"></td>
+								name="staff.staff_birthday" class="form-control staff_birthday" type="text"></td>
 							<td><label  >是否正式</label></td>
 							<td><label style="float: left;" class="fancy-radio">
 									<input name="format_content" onclick="isFormat(this)" type="radio"
@@ -172,10 +172,10 @@
 							<td><label  >QQ号</label></td>
 							<td><input name="staff.staff_QQ" class="form-control"
 								style="margin-top: 6px;" type="text"></td>
-							<td><label  >微信</label></td>
+							<td><label>微信</label></td>
 							<td ><input name="staff.staff_weixin"
 								class="form-control" style="margin-top: 6px;"></td>
-							<td ><label  >电子邮箱</label></td>
+							<td ><label>电子邮箱</label></td>
 							<td><input  name="staff.staff_outEmail"
 								class="form-control" style="margin-top: 6px;" placeholder="外网电子邮箱">
 								<input name="staff.staff_inEmail"
@@ -236,7 +236,7 @@
 	src="<%=basePath%>js/Team/newStaff.js"></script>
 <script type="text/javascript">
 	$.datetimepicker.setLocale('ch');
-	$('.mydate').datetimepicker({
+	$('.staff_joinPartyTime').datetimepicker({
 		yearStart : 1990, // 设置最小年份
 		yearEnd : 2050, // 设置最大年份
 		yearOffset : 0, // 年偏差
@@ -245,7 +245,25 @@
 		minDate : '1990/01/01', // 设置最小日期
 		maxDate : '2030/01/01', // 设置最大日期
 	});
-	$('.mydate_minute').datetimepicker({
+	$('.staff_joinWorkTime').datetimepicker({
+		yearStart : 1990, // 设置最小年份
+		yearEnd : 2050, // 设置最大年份
+		yearOffset : 0, // 年偏差
+		timepicker : true, // 关闭时间选项
+		format : 'Y-m-d H:i', // 格式化日期年-月-日
+		minDate : '1990/01/01', // 设置最小日期
+		maxDate : '2030/01/01', // 设置最大日期
+	});
+	$('.staff_thePoliceTime').datetimepicker({
+		yearStart : 1990, // 设置最小年份
+		yearEnd : 2050, // 设置最大年份
+		yearOffset : 0, // 年偏差
+		timepicker : true, // 关闭时间选项
+		format : 'Y-m-d H:i', // 格式化日期年-月-日
+		minDate : '1990/01/01', // 设置最小日期
+		maxDate : '2030/01/01', // 设置最大日期
+	});
+	$('.staff_birthday').datetimepicker({
 		yearStart : 1990, // 设置最小年份
 		yearEnd : 2050, // 设置最大年份
 		yearOffset : 0, // 年偏差
@@ -257,5 +275,4 @@
 </script>
 
 </body>
-
 </html>
