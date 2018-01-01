@@ -1,5 +1,9 @@
 var query_data = {
 	"page_list_parallelInformation.pageIndex" : "1",
+	"page_list_parallelInformation.start_time" : "",
+	"page_list_parallelInformation.stop_time" : "",
+	"page_list_parallelInformation.parallel_casename" : "",
+	"page_list_parallelInformation.parallel_person" : "",
 };
 //当前页面分页信息
 var page_infomantion = {
@@ -13,6 +17,23 @@ var page_infomantion = {
 
 $(function() {
 	get_ListParallelInformationByPageAndSearch(query_data);
+
+
+	$('.to_quert').click(function() {
+		$('#newCaseMergerQuery form input').each(function() {
+			query_data[$(this).attr('name')] = $(this).val();
+		});
+		$('#newCaseMergerQuery').modal('hide');
+		get_ListParallelInformationByPageAndSearch(query_data);
+		toastr.success("查询成功！");
+	});
+
+	$('.empty_quert').click(function() {
+		$('#newCaseMergerQuery form input').each(function() {
+			$(this).val('');
+		});
+	});
+
 })
 
 function get_ListParallelInformationByPageAndSearch(data) {
@@ -48,7 +69,6 @@ var modifi_delete = function() {
 		$.post('/xsjsglxt/case/Parallel_ParallelInformationOne', {
 			"parallel.xsjsglxt_parallel_id" : id
 		}, function(xhr_data) {
-
 			//模态框显示
 			$('#breakCase_modification').modal('show');
 			$.post('/xsjsglxt/case/Case_AllCase', function(Case_data) {

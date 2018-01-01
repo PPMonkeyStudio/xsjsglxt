@@ -79,34 +79,40 @@
 							</tr>
 						</tbody>
 					</table>
-					<table>
-						<tbody>
-							<tr>
-								<td>串并时间</td>
-								<td><div align="left">
-										<input class="form-control mydate" type="text">
-									</div></td>
-								<td>至</td>
-								<td><div align="left">
-										<input class="form-control mydate" type="text">
-									</div></td>
-							</tr>
-							<tr>
-								<td>串并名称</td>
-								<td><div align="left">
-										<input class="form-control" name="cbmc" id="cbmc" value=""
-											size="30" type="text">
-									</div></td>
-								<td>串并人</td>
-								<td><div align="left">
-										<input class="form-control" value="" size="10" type="text">
-									</div></td>
-							</tr>
-						</tbody>
-					</table>
+					<form action="">
+						<table>
+							<tbody>
+								<tr>
+									<td>串并时间</td>
+									<td><div align="left">
+											<input class="form-control mydate" type="text"
+												name="page_list_parallelInformation.start_time">
+										</div></td>
+									<td>至</td>
+									<td><div align="left">
+											<input class="form-control mydate" type="text"
+												name="page_list_parallelInformation.stop_time">
+										</div></td>
+								</tr>
+								<tr>
+									<td>串并名称</td>
+									<td><div align="left">
+											<input class="form-control" name="" type="text"
+												name="page_list_parallelInformation.parallel_casename">
+										</div></td>
+									<td>串并人</td>
+									<td><div align="left">
+											<input class="form-control" type="text"
+												name="page_list_parallelInformation.parallel_person">
+										</div></td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary to_quert">查询</button>
+					<button type="button" class="btn btn-danger empty_quert">清除查询信息</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 				</div>
 			</div>
