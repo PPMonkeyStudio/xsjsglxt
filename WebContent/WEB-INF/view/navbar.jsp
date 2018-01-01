@@ -176,6 +176,9 @@
 	//getUserSessionForAjax();
 </script>
 <style>
+#wrapper nav>div>ul>li>a{
+	color: white;
+}
 td {
 	line-height: 33px !important;
 	vertical-align: middle !important;
