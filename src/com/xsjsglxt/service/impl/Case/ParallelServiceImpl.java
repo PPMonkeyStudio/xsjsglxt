@@ -108,12 +108,14 @@ public class ParallelServiceImpl implements ParallelService {
 	public ParallelInformationDTO ParallelInformationOne(xsjsglxt_parallel parallel) {
 		// TODO Auto-generated method stub
 		parallel = parallelDao.getparallelById(parallel);
-		xsjsglxt_case case1 = parallelDao.getcaseByparallelId(parallel);
-		xsjsglxt_snece snece = parallelDao.getsneceByCaseId(case1);
-		xsjsglxt_briefdetails briefdetails = parallelDao.getbriefdetailsByCaseId(case1);
-		xsjsglxt_resevidence resevidence = parallelDao.getresevidenceByCaseId(case1);
-		ParallelInformationDTO parallelInformationDTO = new ParallelInformationDTO(parallel, snece, case1, briefdetails,
-				resevidence);
+		List<xsjsglxt_case> caseList=new ArrayList<xsjsglxt_case>();
+		caseList = parallelDao.getcaseByparallelId(parallel);
+		
+//		xsjsglxt_snece snece = parallelDao.getsneceByCaseId(case1);
+//		xsjsglxt_briefdetails briefdetails = parallelDao.getbriefdetailsByCaseId(case1);
+//		xsjsglxt_resevidence resevidence = parallelDao.getresevidenceByCaseId(case1);
+		ParallelInformationDTO parallelInformationDTO = new ParallelInformationDTO(parallel, null, null, null,
+				null,caseList);
 		return parallelInformationDTO;
 	}
 

@@ -355,5 +355,4 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	public void setUseSenceInformationNumList(List<String> useSenceInformationNumList) {
 		this.useSenceInformationNumList = useSenceInformationNumList;
 	}
-
 }
