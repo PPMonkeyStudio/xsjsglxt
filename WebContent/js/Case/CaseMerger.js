@@ -144,7 +144,7 @@ $(function() {
 			if (xhr_data.length > 0) {
 				$('input[name="parallel.parallel_num"]').val(xhr_data);
 			} else toastr.error('串并编号获取失败！');
-		}, 'json');
+		}, 'text');
 	});
 	//新建案件串并模态框按钮点击事件
 	$('.finish_merger').click(function() {
@@ -154,8 +154,11 @@ $(function() {
 		$.post('/xsjsglxt/case/Parallel_saveparallel', $('#merger_info').serialize() + '&caeNumList=' + $areaId, function(xhr_data) {
 			if (xhr_data == 'success') {
 				toastr.success('创建成功!');
-			} else toastr.error('创建失败!');
-		}, 'json');
+				$('#newCaseMerger').modal('hide');
+			} else {
+				toastr.error('创建失败!');
+			}
+		}, 'text');
 	});
 	get_ListSneceInformationByPageAndSearch(query_data);
 

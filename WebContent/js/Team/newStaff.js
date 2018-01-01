@@ -128,4 +128,3 @@ function stopPropagation(e) {
 	else
 		e.cancelBubble = true;
 }
-

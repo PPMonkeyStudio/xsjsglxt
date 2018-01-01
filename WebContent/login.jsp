@@ -34,11 +34,17 @@
 <!--------------------------------------------------------------------------------->
 <title>刑事技术管理系统</title>
 </head>
-<body>
-	<div class="panel" style="width: 550px; margin: 100px auto;">
+<body background="<%=basePath%>img/login.png">
+<input type="email" class="form-control" id="login_username"
+					 style="width: 298px; height:46px; margin-left: 659px; margin-top: 214px;">
+<input type="password" class="form-control" id="login_password"
+			         style="width: 298px; height:46px; margin-left: 659px; margin-top: 18px;">
+<button id="button_login" style="border: 0px; background-color:#0B1D29;margin-left:654px;margin-top: 31px; "
+				onclick="login()"><img src="<%=basePath%>img/login_button.png"></button>
+	<%-- <div class="panel" style="width: 550px; margin: 100px auto;">
 		<div class="panel-heading">
 			<div>
-				<%-- <img src="<%=basePath%>img/logo.jpg" height="40px"> --%>
+				<img src="<%=basePath%>img/logo.jpg" height="40px">
 			</div>
 			<h2 style="text-align: center;">刑事技术管理系统</h2>
 		</div>
@@ -52,6 +58,6 @@
 			<br>
 			<button id="button_login" class="btn btn-primary  btn-block" onclick="login()">登录</button>
 		</div>
-	</div>
+	</div> --%>
 </body>
 </html>

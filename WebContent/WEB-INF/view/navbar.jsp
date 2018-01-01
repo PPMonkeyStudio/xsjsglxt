@@ -51,9 +51,9 @@
 </head>
 <body>
 	<div id="wrapper">
-		<nav class="navbar navbar-default navbar-fixed-top">
+		<nav class="navbar navbar-default navbar-fixed-top" style="background-color:rgb(41,22,111);">
 		<div
-			style="width: auto; float: left; line-height: 78px; margin: 0 0 0 30px; font-size: 30px;">刑事技术管理系统</div>
+			style="width: auto; float: left; line-height: 78px; margin: 0 0 0 30px; font-size: 30px; color: white;"><img alt="" src="<%=basePath%>img/hui.png">刑事技术管理系统</div>
 		<div id="navbar-menu">
 			<ul class="nav navbar-nav navbar-left" style="margin: 0 0 0 20px">
 				<li class="dropdown" style="float: left;"><a
@@ -176,6 +176,9 @@
 	//getUserSessionForAjax();
 </script>
 <style>
+#wrapper nav>div>ul>li>a{
+	color: white;
+}
 td {
 	line-height: 33px !important;
 	vertical-align: middle !important;
