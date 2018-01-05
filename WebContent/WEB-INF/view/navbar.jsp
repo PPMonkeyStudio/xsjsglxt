@@ -143,6 +143,8 @@
 			</ul>
 		</div>
 		</nav>
+		
+		
 		<!-------------------------------------------------修改密码---------------------------------------------------------------  -->
 			<div class="modal fade" id="updatePassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			  <div class="modal-dialog" role="document">
@@ -171,6 +173,8 @@
 			    </div><!-- /.modal-content -->
 			  </div><!-- /.modal-dialog -->
 			</div>
+			
+			<!-- -------------------------------------------------修改密码成功--------------------------------------------------------------- -->
 </body>
 <script type="text/javascript">
 	//getUserSessionForAjax();
