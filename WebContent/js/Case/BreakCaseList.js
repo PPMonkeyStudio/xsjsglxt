@@ -21,6 +21,20 @@ var page_infomantion = {
 }
 
 $(function() {
+	$('#breakCase_input').on('show.bs.modal', function() {
+		var this_modal = $(this);
+		$.post('/xsjsglxt/case/Case_AllCase', function(Case_data) {
+			//所有案件循环
+			var option = '';
+			for (var len = 0; len < Case_data.length; len++) {
+				option += '<option value="' + Case_data[len].xsjsglxt_case_id + '">' + Case_data[len].case_name + '</option>';
+			}
+			this_modal.find('.selectpicker').html(option).selectpicker('refresh');
+			//除去加载提示
+			this_modal.find('.load_remind').remove();
+		}, 'json');
+
+	})
 	$('.to_quert').click(function() {
 		var arr = $('#query_infomantion_inmodal').serializeArray();
 		$.each(arr, function(key, value) {
@@ -42,6 +56,14 @@ $(function() {
 		$('#newQuery').modal('hide');*/
 		//成功提示
 		toastr.success('清除查询信息成功');
+	});
+	$('.input_sure').click(function() {
+		$.post('/xsjsglxt/case/BreakCase_saveBreakecase', $('#breakCase_input form').serialize(), function(xhr) {
+			if (xhr == 'success') {
+				toastr.success('添加成功!');
+				$('#breakCase_input').find('input,select,textarea').val('');
+			}
+		}, 'text')
 	});
 	get_ListBreakecaseInformationByPageAndSearch(query_data);
 })

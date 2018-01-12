@@ -44,7 +44,8 @@ function get_ListParallelInformationByPageAndSearch(data) {
 			var data_list = xhr_data.parallelList[len];
 			str += '<tr>';
 			str += '<td>' + (len + 1) + '</td>';
-			str += '<td><a href="/xsjsglxt/case/?id=' + data_list.parallel_num + '">' + data_list.parallel_num + '</a></td>';
+			str += '<td>' + data_list.parallel_num + '</td>';
+			//str += '<td><a href="/xsjsglxt/case/?id=' + data_list.parallel_num + '">' + data_list.parallel_num + '</a></td>';
 			/*str += '<td>' + data_list.parallel_num + '</td>';*/
 			str += '<td>' + data_list.parallel_casename + '</td>';
 			str += '<td>' + data_list.parallel_date + '</td>';

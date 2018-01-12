@@ -1,7 +1,7 @@
 //CaseDetail.jsp中的删除案件
 function case_del() {
 	var url = "/xsjsglxt/case/Case_remove_SenceInformationList";
-	var case1_id = document.getElementById("case1_id");
+	var case1_id = document.getElementById("case1_id").value;
 	loadCaseDetail_case_del(url, case1_id);
 }
 function loadCaseDetail_case_del(url, case1_id) {
