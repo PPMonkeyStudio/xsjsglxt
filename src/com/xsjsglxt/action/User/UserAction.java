@@ -163,11 +163,11 @@ public class UserAction extends ActionSupport {
 		xu.setUser_user_manager_power(user_user_manager_power);
 		// �ж��û����Ƿ�Ψһ
 		if (userService.judgeUserByUsername(user_username)) {
-			pw.write("�û����Ѿ�����");
+			pw.write("用户名已经存在");
 		} else {
 			xu.setUser_username(user_username);
 			userService.addUser(xu);
-			pw.write("�����û��ɹ�");
+			pw.write("添加成功");
 		}
 
 		pw.flush();
@@ -236,7 +236,7 @@ public class UserAction extends ActionSupport {
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = response.getWriter();
-		pw.write("ɾ���ɹ�");
+		pw.write("删除成功");
 		pw.flush();
 		pw.close();
 	}
