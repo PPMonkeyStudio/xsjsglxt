@@ -10,6 +10,8 @@ $(function() {
 				} else {
 					$('input[type="radio"]').eq(1).attr("checked", "checked");
 				}
+			} else if (k == "case_process") {
+				$('textarea[name="case1.' + k + '"]').val(v);
 			} else
 				$('input[name="case1.' + k + '"]').val(v);
 		});
@@ -23,6 +25,13 @@ $(function() {
 			} else
 				obj.val(v);
 
+		});
+		var briefdetails = xhr_data.briefdetails;
+		$.each(briefdetails, function(k, v) {
+			var obj = $('textarea[name="sence.' + k + '"]');
+			if (k == "briefdetails_details") {
+				$('textarea[name="briefdetails.' + k + '"]').val(v);
+			}
 		});
 	}, 'json');
 

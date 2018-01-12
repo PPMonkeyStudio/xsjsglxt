@@ -70,7 +70,7 @@ var modifi_delete = function() {
 			"parallel.xsjsglxt_parallel_id" : id
 		}, function(xhr_data) {
 			//模态框显示
-			$('#breakCase_modification').modal('show');
+			$('#CaseMerger_modification').modal('show');
 			$.post('/xsjsglxt/case/Case_AllCase', function(Case_data) {
 				//所有案件循环
 				var option = '';
