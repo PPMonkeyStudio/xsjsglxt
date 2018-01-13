@@ -68,7 +68,6 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 					filePath = "C://xsjsglxt_img/bimg/" + fileName;
 					staff.setStaff_photo(fileName);
 
-<<<<<<< HEAD
 					File newFile = new File(filePath);
 					try {
 						FileUtils.copyFile(staff_photo, newFile);
@@ -162,9 +161,6 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 	public void remove_StaffInformationList() {
 
 		if (staffService.remove_StaffInformationList(useStaffInformationNumList)) {
-=======
-		if(	staffService.remove_StaffInformationList(useStaffInformationNumList)){
->>>>>>> HY
 
 			http_response.setContentType("text/html;charset=utf-8");
 			try {
@@ -173,7 +169,7 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-<<<<<<< HEAD
+
 		} else {
 			http_response.setContentType("text/html;charset=utf-8");
 			try {
@@ -185,9 +181,6 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 		}
 	}
 
-=======
-	}
->>>>>>> HY
 	@Override
 	public void setServletResponse(HttpServletResponse arg0) {
 		// TODO Auto-generated method stub
@@ -199,7 +192,6 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 		// TODO Auto-generated method stub
 		this.http_request = arg0;
 	}
-<<<<<<< HEAD
 
 	public StaffService getStaffService() {
 		return staffService;
@@ -266,57 +258,3 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 	}
 
 }
-=======
-	public StaffService getStaffService() {
-		return staffService;
-	}
-	public void setStaffService(StaffService staffService) {
-		this.staffService = staffService;
-	}
-	public HttpServletResponse getHttp_response() {
-		return http_response;
-	}
-	public void setHttp_response(HttpServletResponse http_response) {
-		this.http_response = http_response;
-	}
-	public HttpServletRequest getHttp_request() {
-		return http_request;
-	}
-	public void setHttp_request(HttpServletRequest http_request) {
-		this.http_request = http_request;
-	}
-	public xsjsglxt_staff getStaff() {
-		return staff;
-	}
-	public void setStaff(xsjsglxt_staff staff) {
-		this.staff = staff;
-	}
-	public page_list_staffInformationVO getPage_list_staffInformation() {
-		return page_list_staffInformation;
-	}
-	public void setPage_list_staffInformation(page_list_staffInformationVO page_list_staffInformation) {
-		this.page_list_staffInformation = page_list_staffInformation;
-	}
-	public String getUseStaffInformationNumList() {
-		return useStaffInformationNumList;
-	}
-	public void setUseStaffInformationNumList(String useStaffInformationNumList) {
-		this.useStaffInformationNumList = useStaffInformationNumList;
-	}
-	public File getStaff_photo() {
-		return staff_photo;
-	}
-	public void setStaff_photo(File staff_photo) {
-		this.staff_photo = staff_photo;
-	}
-	public String getStaff_photoFileName() {
-		return staff_photoFileName;
-	}
-	public void setStaff_photoFileName(String staff_photoFileName) {
-		this.staff_photoFileName = staff_photoFileName;
-	}
-	
-
-}
-
->>>>>>> HY
