@@ -5,9 +5,10 @@ html, body,div,p,img,span,a,label,input{
 }
 .bg{
 	width:100%;
-	height:660px;
+	height:800px;
 	position: relative;
-	background: url(../img/login_bg.jpg) no-repeat center;
+	background: url(../img/login_bg.jpg)  no-repeat center;
+	background-size: 100% 100%;
 }
 .bg_center{
 	text-align:right;
