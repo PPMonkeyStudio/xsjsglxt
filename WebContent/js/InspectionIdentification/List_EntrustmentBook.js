@@ -42,7 +42,11 @@ function List_EntrustmentBook(pageIndex) {
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
-					new_td.innerHTML = EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num;
+					new_td.innerHTML = '<a class="btn-link" onclick="Preview_EntrustmentBook(this)" id="'
+							+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
+							+ '">'
+							+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num
+							+ '</a>';
 					/*
 					 * 案（事）件名称
 					 */
