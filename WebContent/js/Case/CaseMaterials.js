@@ -163,6 +163,9 @@ function material(object) {
 	} else if (material_type == "Goods_table_info") {
 		$('#goods_chose').show();
 		$('.add_info').hide();
+	} else {
+		$('#goods_chose').hide();
+		$('.add_info').hide();
 	}
 }
 

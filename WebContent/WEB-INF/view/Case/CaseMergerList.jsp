@@ -13,15 +13,17 @@
 <link rel="stylesheet" href="<%=basePath%>css/Case/Case.css">
 <!---------------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------------->
-<title>首页</title>
+<title>案件串并</title>
 </head>
 
 <body>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
+	
+	<jsp:include page="/technologyManager.jsp" flush="true"></jsp:include>	
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
-	<div style="margin: 80px 0 0 0; float: left; width: 100%;">
+	<div style="float: left; width: 100%;">
 		<div class="panel" style="width: 95%; margin: 20px auto;">
 			<!--  -->
 			<div class="panel-heading">
@@ -121,7 +123,7 @@
 		<!-- /.modal -->
 	</div>
 	<!-- 案件串并修改-模态框（Modal） -->
-	<div class="modal fade" id="CaseMerger_modifi" tabindex="-1"
+	<div class="modal fade" id="CaseMerger_modification" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
@@ -134,6 +136,13 @@
 					<form id="merger_info" action="">
 						<table width="60%" cellspacing="0" cellpadding="2" align="center">
 							<tbody>
+								<tr>
+									<td><div align="center">包含案件</div></td>
+									<td><input name="parallel.parallel_num"
+										style="margin-top: 6px;" class="form-control" maxlength="50"
+										type="text"></td>
+								</tr>
+
 								<tr>
 									<td><div align="center">串并编号:</div></td>
 									<td><input name="parallel.parallel_num"

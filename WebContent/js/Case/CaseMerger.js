@@ -24,7 +24,6 @@ var page_infomantion = {
 
 function get_ListSneceInformationByPageAndSearch(data) {
 	$.post('/xsjsglxt/case/Case_ListSneceInformationByPageAndSearch', data, function(xhr) {
-		$('.case_table_info tbody').empty();
 		var str = '';
 		for (var len = 0; len < xhr.SenceInformationDTOList.length; len++) {
 			var data_list = xhr.SenceInformationDTOList[len];
@@ -38,7 +37,7 @@ function get_ListSneceInformationByPageAndSearch(data) {
 			str += '<td>' + data_list.sence.snece_inquestPerson + '</td>';
 			str += '</tr>';
 		}
-		$('.case_table_info tbody').append(str);
+		$('.case_table_info tbody').html(str);
 		//分页信息存入page_infomantion中
 		page_infomantion.pageIndex = xhr.pageIndex; //当前页数
 		page_infomantion.totalRecords = xhr.totalRecords; //总页数
@@ -116,6 +115,8 @@ function buildCase_chose(obj) {
 }
 
 $(function() {
+	get_ListSneceInformationByPageAndSearch(query_data);
+
 	$('.to_quert').click(function() {
 		var arr = $('#query_infomantion_inmodal').serializeArray();
 		$.each(arr, function(key, value) {
@@ -144,7 +145,7 @@ $(function() {
 			if (xhr_data.length > 0) {
 				$('input[name="parallel.parallel_num"]').val(xhr_data);
 			} else toastr.error('串并编号获取失败！');
-		}, 'text');
+		}, 'json');
 	});
 	//新建案件串并模态框按钮点击事件
 	$('.finish_merger').click(function() {
@@ -160,20 +161,12 @@ $(function() {
 			}
 		}, 'text');
 	});
-	get_ListSneceInformationByPageAndSearch(query_data);
 
-
-	/*$('.case_table_info tbody').children('tr').each(function() {
-		$(this).click(function() {
-			alert(';');
-			var inp_obj = $(this).children('td:first-child').children('input');
-			if (inp_obj.attr('checked') == 'checked') {
-				inp_obj.attr('checked', '');
-			} else inp_obj.attr('checked', 'checked');
-		});
-	});*/
-
-
-
-
+	//隐藏模态框时时候清空信息
+	$('.modal').on('hide.bs.modal', function() {
+		var this_modal = $(this);
+		setTimeout(function() {
+			this_modal.find('.modal-body input,select,textarea').val("");
+		}, 200)
+	})
 })

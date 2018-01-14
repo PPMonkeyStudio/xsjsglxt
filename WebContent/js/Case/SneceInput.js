@@ -31,12 +31,12 @@ $(function() {
 			type : "post",
 			timeout : 3000,
 			data : $('#sneceInformation').serialize(),
-			dataType : "text",
-			success : function(xhr_data, text_data) {
+			dataType : "json",
+			success : function(xhr_data) {
 				var reg = /^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$/;
 				var r = xhr_data.match(reg);
 				if (r == null) {
-					toastr.success("录入失败！");
+					toastr.error("录入失败！");
 				} else {
 					toastr.success("录入成功！");
 					location.href = '/xsjsglxt/case/Case_page_CaseDetails?id=' + xhr_data;

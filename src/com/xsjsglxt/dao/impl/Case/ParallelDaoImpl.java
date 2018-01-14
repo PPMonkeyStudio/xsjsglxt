@@ -220,8 +220,8 @@ public class ParallelDaoImpl implements ParallelDao {
 	
 		String year =TeamUtil.getCurrentYear();
 		String li="";
-	
-		String hql = "select substring(parallel_num,-1,4) from xsjsglxt_parallel where substring(parallel_num,1,8)='"+year+"' order by substring(parallel_num,-1,4) desc limit 1";
+		String hql = "select right(parallel_num,4) from xsjsglxt_parallel ORDER BY right(parallel_num,4) desc limit 1";
+		//String hql = "select substring(parallel_num,-1,4) from xsjsglxt_parallel where substring(parallel_num,1,8)='"+year+"' order by substring(parallel_num,-1,4) desc limit 1";
 		System.out.println(hql);
 		Query query = getSession().createSQLQuery(hql);
 		li=(String) query.uniqueResult();
@@ -231,6 +231,7 @@ public class ParallelDaoImpl implements ParallelDao {
 		}
 		i=Integer.parseInt(li);
 		getSession().clear();
+		System.out.println("数量"+i);
 		return i;
 		
 	}

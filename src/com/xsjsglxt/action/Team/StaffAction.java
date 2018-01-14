@@ -169,6 +169,7 @@ public class StaffAction extends ActionSupport implements ServletRequestAware, S
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
 		} else {
 			http_response.setContentType("text/html;charset=utf-8");
 			try {
