@@ -103,10 +103,9 @@
 				<!--  -->
 				<li class="dropdown"><a href="#"
 					class="dropdown-toggle icon-menu" data-toggle="dropdown"> <i
-						class="lnr lnr-alarm"></i> <span class="badge bg-danger"
-						id="num_Navbar_Notice">2</span>
+						class="lnr lnr-alarm"></i> <span class="badge bg-danger">2</span>
 				</a>
-					<ul class="dropdown-menu notifications" id="ul_Navbar_Notice">
+					<ul class="dropdown-menu notifications">
 						<li><a href="#" class="notification-item"><span
 								class="dot bg-success"></span>都是法师打发斯蒂芬</a></li>
 						<li><a href="#" class="notification-item"><span
