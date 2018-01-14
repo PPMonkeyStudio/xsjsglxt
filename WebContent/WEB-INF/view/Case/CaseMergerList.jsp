@@ -18,10 +18,12 @@
 
 <body>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
+	
+	<jsp:include page="/technologyManager.jsp" flush="true"></jsp:include>	
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
-	<div style="margin: 80px 0 0 0; float: left; width: 100%;">
+	<div style="float: left; width: 100%;">
 		<div class="panel" style="width: 95%; margin: 20px auto;">
 			<!--  -->
 			<div class="panel-heading">

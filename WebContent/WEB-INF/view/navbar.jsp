@@ -53,64 +53,38 @@
 	<div id="wrapper">
 		<nav class="navbar navbar-default navbar-fixed-top" style="background-color:rgb(41,22,111);">
 		<div
-			style="width: auto; float: left; line-height: 78px; margin: 0 0 0 30px; font-size: 30px; color: white;"><img alt="" src="<%=basePath%>img/hui.png">刑事技术管理系统</div>
+			style="width: auto; float: left; line-height: 78px; margin: 0 0 0 30px; font-size: 30px; color: white;"><img alt="" src="<%=basePath%>img/hui.png">安源刑侦工作信息管理系统</div>
 		<div id="navbar-menu">
 			<ul class="nav navbar-nav navbar-left" style="margin: 0 0 0 20px">
 				<li class="dropdown" style="float: left;"><a
-					href="<%=basePath%>user/User_index"> <span>首页</span>
+					href="<%=basePath%>user/User_index"><span>首页</span>
 				</a></li>
 				<!--  -->
 				<li class="leader_control dropdown" style="float: left;"><a
-					href="#" class="dropdown-toggle" data-toggle="dropdown"> <span>案件</span>
+					href="#" class="dropdown-toggle" data-toggle="dropdown"> <span>刑事技术管理</span>
 						<i class="icon-submenu lnr lnr-chevron-down"></i>
 				</a>
 					<ul class="dropdown-menu">
 						<li><a href="<%=basePath%>case/Case_page_SiteManagement">现场管理</a></li>
-						<li><a href="<%=basePath%>case/Case_page_CaseMergerList">案件串并</a></li>
-						<li><a href="<%=basePath%>case/Case_page_CaseMaterials">案件材料</a></li>
-						<li><a href="<%=basePath%>case/Case_page_Handle">办案管理</a></li>
-						<li><a href="<%=basePath%>case/BreakCase_page_BreakCaseList">刑事破案</a></li>
+						<li><a href="<%=basePath%>inspectionIdentific/EntrustmentBookManagement_EntrustmentBookManagement"><span>检验鉴定</span></a></li>
+						<li><a href="<%=basePath%>case/Case_page_CaseMergerList">技术管理</a></li>
 					</ul></li>
 				<!--  -->
-				<li class="dropdown" style="float: left;"><a
-					href="<%=basePath%>inspectionIdentific/EntrustmentBookManagement_EntrustmentBookManagement">
-						<span>检验鉴定</span>
-				</a></li>
 				<!--  -->
 				<li class="dropdown" style="float: left;"><a href="#"
 					class="dropdown-toggle" data-toggle="dropdown"> <span>队伍</span>
 						<i class="icon-submenu lnr lnr-chevron-down"></i>
 				</a>
 					<ul class="dropdown-menu">
-						<li class="teacher_control"><a href="#">值班管理</a></li>
-						<li class="teacher_control"><a
-							href="<%=basePath%>team/Staff_page_staffList">人员管理</a></li>
+						<li style="float: left;"><a href="<%=basePath%>team/Staff_page_staffList">人员</a></li>
+						<li class="teacher_control"><a>值班管理</a></li>
+						<li class="teacher_control"><a>会议记录</a></li>
+						<li class="teacher_control"><a>大事记</a></li>
 					</ul></li>
 				<!--  -->
+				<li class="dropdown" style="float: left;"><a href="<%=basePath%>case/Case_page_Handle"> <span>刑侦管理系统</span>
+				</a></li>
 				<!--  -->
-				<li class="dropdown" style="float: left;"><a href="#"
-					class="dropdown-toggle" data-toggle="dropdown"> <span>技术</span>
-						<i class="icon-submenu lnr lnr-chevron-down"></i>
-				</a>
-					<ul class="dropdown-menu">
-						<li class="teacher_control"><a
-							href="<%=basePath%>DNA/DNAManagement_DNAManagementPage">DNA</a></li>
-						<li class="teacher_control"><a
-							href="<%=basePath%>FingerPrint/FingerPrintManagement_FingerPrintManagementPage">指纹</a></li>
-						<li class="teacher_control"><a
-							href="<%=basePath%>Equipment/EquipmentManagement_EquipmentManagementPage">器材装备</a></li>
-						<li class="teacher_control"><a
-							href="<%=basePath%>ContrastFingerPrint/ContrastFingerPrintManagement_ContrastFingerPrintManagementPage">比中指纹</a></li>
-					</ul></li>
-				<!--  -->
-				<li class="dropdown" style="float: left;"><a href="#"
-					class="dropdown-toggle" data-toggle="dropdown"> <span>统计</span>
-						<i class="icon-submenu lnr lnr-chevron-down"></i>
-				</a>
-					<ul class="dropdown-menu">
-						<li class="teacher_control"><a href="#">办案统计</a></li>
-						<li class="teacher_control"><a href="#">检验统计</a></li>
-					</ul></li>
 				<!--  -->
 				<li class="dropdown" style="float: left;"><a href="<%=basePath %>user/User_skipToUser"
 					> <span>用户</span>
@@ -126,12 +100,6 @@
 						class="icon-submenu lnr lnr-chevron-down"></i>
 				</a>
 					<ul class="dropdown-menu">
-						<%-- <li>
-							<a href="#">
-								<i class="lnr lnr-user"></i>
-								<span>我的信息</span>
-							</a>
-						</li> --%>
 						<li data-toggle="modal" data-target="#updatePassword"><a href="#"> <i class="lnr lnr-lock"></i> <span>修改密码</span>
 						</a></li>
 						<li><a

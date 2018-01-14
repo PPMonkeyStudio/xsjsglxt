@@ -11,7 +11,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>My JSP 'BreakCase.jsp' starting page</title>
+<title>刑事破案</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -39,10 +39,12 @@
 
 <body>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
+	
+	<jsp:include page="/technologyManager.jsp" flush="true"></jsp:include>	
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
-	<div style="margin: 80px 0 0 0; float: left; width: 100%;">
+	<div style="float: left; width: 100%;">
 		<div class="panel" style="width: 95%; margin: 20px auto;">
 			<!--  -->
 			<div class="panel-heading">
