@@ -193,14 +193,16 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	 * 修改信息
 	 */
 	public void updateSenceInformation() throws IOException {
+		System.out.println("开始");
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
-		senceService.updateCase(case1);
+		
 
 		senceService.updateSence(sence, case1.getXsjsglxt_case_id());
-
+		
 		senceService.updateBriefdetails(briefdetails, case1.getXsjsglxt_case_id());
+		senceService.updateCase(case1);
 		http_response.setContentType("text/html;charset=utf-8");
 
 		http_response.getWriter().write(gson.toJson("success"));
