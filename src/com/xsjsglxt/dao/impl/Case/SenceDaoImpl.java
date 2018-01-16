@@ -11,8 +11,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.Case.SenceDao;
+import com.xsjsglxt.domain.DO.xsjsglxt_breakecase;
 import com.xsjsglxt.domain.DO.xsjsglxt_briefdetails;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
+import com.xsjsglxt.domain.DO.xsjsglxt_circulation;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone;
@@ -677,6 +679,35 @@ public class SenceDaoImpl implements SenceDao {
 		List<xsjsglxt_case> AllcaseList = query.list();
 	
 		return AllcaseList;
+	}
+
+	@Override
+	public xsjsglxt_circulation get_circulation_Byresevidenceid(xsjsglxt_resevidence resevidence) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_circulation circulation where circulation.circulation_resevidence='" + resevidence.getXsjsglxt_resevidence_id()+ "'";
+
+		Query query = session.createQuery(hql);
+
+		xsjsglxt_circulation circulation = (xsjsglxt_circulation) query.uniqueResult();
+
+		return circulation;
+	
+	}
+
+	@Override
+	public xsjsglxt_breakecase get_breakecase_Byxsjsglxt_case_id(xsjsglxt_case xsjsglxt_case) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_breakecase breakecase where breakecase.breakecase_case='" + xsjsglxt_case.getXsjsglxt_case_id()+ "'";
+
+		Query query = session.createQuery(hql);
+
+		xsjsglxt_breakecase breakecase = (xsjsglxt_breakecase) query.uniqueResult();
+
+		return breakecase;
 	}
 	
 }

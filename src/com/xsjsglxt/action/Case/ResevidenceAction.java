@@ -45,6 +45,7 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 	public void saveResevidence() throws IOException{
 		try {
 			resevidence.setResevidence_case(case1.getXsjsglxt_case_id());
+			System.out.println("asuf"+resevidence.getResevidence_case());
 			resevidenceService.saveResevidence(resevidence);
 			http_response.setContentType("text/html;charset=utf-8");
 			http_response.getWriter().write("success");
