@@ -21,6 +21,7 @@ var page_infomantion = {
 }
 
 $(function() {
+	//刑事破案添加模态框事件
 	$('#breakCase_input').on('show.bs.modal', function() {
 		var this_modal = $(this);
 		$.post('/xsjsglxt/case/Case_AllCase', function(Case_data) {
@@ -61,6 +62,7 @@ $(function() {
 		$.post('/xsjsglxt/case/BreakCase_saveBreakecase', $('#breakCase_input form').serialize(), function(xhr) {
 			if (xhr == 'success') {
 				toastr.success('添加成功!');
+				get_ListBreakecaseInformationByPageAndSearch(query_data);
 				$('#breakCase_input').find('input,select,textarea').val('');
 			}
 		}, 'text')
@@ -200,7 +202,7 @@ var modifi_delete = function() {
 							data : formData,
 							processData : false,
 							contentType : false,
-							dataType : 'json',
+							dataType : 'text',
 							success : function(data) {
 								if (data == "success") {
 									toastr.success("删除成功！");

@@ -504,12 +504,26 @@
 								<tbody>
 									<tr>
 										<td><div style="padding-top:6px; float: left;width: 15%;">光盘编号</div>
-											<input class="form-control" type="text" style="width: 85%;"></td>
+											<input name="picture.picture_image" class="form-control"
+											type="text" style="width: 85%;"></td>
+									</tr>
+									<tr>
+										<td><div style="padding-top:6px; float: left;width: 15%;">所属案件</div>
+											<div style="width: 85%; float: right; margin-top: 6px;">
+												<select style="witdh:100%;"
+													class="form-control selectpicker" data-live-search="true"
+													name="case1.xsjsglxt_case_id"></select>
+											</div></td>
+									</tr>
+									<tr>
+										<td><div style="padding-top:6px; float: left;width: 15%;">光盘编号</div>
+											<input name="picture.picture_identifier" class="form-control"
+											type="text" style="width: 85%;"></td>
 									</tr>
 									<tr>
 										<td><div style=" padding-top:6px;float: left;width: 15%;">备注</div>
-											<textarea style="margin-top: 6px;width: 85%;" name=""
-												class="form-control" rows="2"></textarea></td>
+											<textarea style="margin-top: 6px;width: 85%;"
+												name="picture.picture_remarks" class="form-control" rows="2"></textarea></td>
 									</tr>
 								</tbody>
 							</table>
@@ -517,7 +531,6 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">提交</button>
 					<button type="button" class="btn btn-primary add_picture">添加照片</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 				</div>
