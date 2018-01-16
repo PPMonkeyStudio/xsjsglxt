@@ -185,7 +185,6 @@
 						<tr style="height:30px"></tr>
 						<tr>
 							<td colspan="6" class="staff_info_title">家庭信息</td>
-							
 						</tr>
 						<tr style="height:20px;"></tr>
 						<tr>
