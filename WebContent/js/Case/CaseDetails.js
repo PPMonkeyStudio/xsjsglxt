@@ -74,6 +74,7 @@ $(function() {
 			}
 		}, 'text');
 	});
+	
 	//添加照片信息
 	$('.add_picture').click(function() {
 		$.post('/xsjsglxt/case/Image_updatePicture', $('#add_picture').serialize() + '&case1.xsjsglxt_case_id=' + $('#case1_id').val(), function(xhr_data) {
