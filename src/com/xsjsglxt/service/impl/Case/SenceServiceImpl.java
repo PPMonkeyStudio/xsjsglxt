@@ -7,8 +7,10 @@ import java.util.Date;
 import java.util.List;
 
 import com.xsjsglxt.dao.Case.SenceDao;
+import com.xsjsglxt.domain.DO.xsjsglxt_breakecase;
 import com.xsjsglxt.domain.DO.xsjsglxt_briefdetails;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
+import com.xsjsglxt.domain.DO.xsjsglxt_circulation;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone;
@@ -22,6 +24,7 @@ import com.xsjsglxt.service.Case.SenceService;
 import util.TeamUtil;
 
 public class SenceServiceImpl implements SenceService {
+	
 	private SenceDao senceDao;
     
 	public SenceDao getSenceDao() {
@@ -193,19 +196,45 @@ public class SenceServiceImpl implements SenceService {
 	public boolean remove_SenceInformationList(List<String> useSenceInformationNumList) {
 		// TODO Auto-generated method stub
 		boolean flag = false;
+//		private	xsjsglxt_lost_mobilephone lost_mobilephone;
+//		private	xsjsglxt_lost_computer lost_computer;
+//		private	xsjsglxt_lost lost;
+//		private	xsjsglxt_picture picture;
+//		private	xsjsglxt_circulation circulation;
+//		private	xsjsglxt_breakecase breakecase;
 		for (String Case_id : useSenceInformationNumList) {
 			xsjsglxt_case xsjsglxt_case = senceDao.getCaseByNum(Case_id);
-			flag = senceDao.deleteCaseById(xsjsglxt_case.getXsjsglxt_case_id());// ����
-			flag = senceDao.deleteBriefdetailsById(xsjsglxt_case.getXsjsglxt_case_id());// ��Ҫ����
-			flag = senceDao.deleteLost_computerById(xsjsglxt_case.getXsjsglxt_case_id());// ��ʧ����
-			flag = senceDao.deleteLost_mobilephoneById(xsjsglxt_case.getXsjsglxt_case_id());// ��ʧ�ֻ�
-			flag = senceDao.deleteLostById(xsjsglxt_case.getXsjsglxt_case_id());// ��ʧ��Ʒ
-			flag = senceDao.deletePictureById(xsjsglxt_case.getXsjsglxt_case_id());// ��Ƭ
-			flag = senceDao.deleteSenceById(xsjsglxt_case.getXsjsglxt_case_id());// ��̽�ֳ�
+			xsjsglxt_lost_computer	lost_computer=senceDao.get_lost_computer_Byxsjsglxt_case_id(xsjsglxt_case);
+			xsjsglxt_lost_mobilephone	lost_mobilephone=senceDao.get_lost_mobilephone_Byxsjsglxt_case_id(xsjsglxt_case);
+			xsjsglxt_lost	lost=senceDao.get_lost_Byxsjsglxt_case_id(xsjsglxt_case);
+			xsjsglxt_picture	picture=senceDao.get_picture_Byxsjsglxt_case_id(xsjsglxt_case);
 			xsjsglxt_resevidence resevidence = senceDao.getResevidenceById(xsjsglxt_case.getXsjsglxt_case_id());
-			flag=senceDao.deleteCirculationById(resevidence.getXsjsglxt_resevidence_id());
+		
+			xsjsglxt_breakecase	breakecase=senceDao.get_breakecase_Byxsjsglxt_case_id(xsjsglxt_case);
+			
+			if(lost_computer==null){}else{
+				flag = senceDao.deleteLost_computerById(xsjsglxt_case.getXsjsglxt_case_id());}
+			
+			if(lost_mobilephone==null){}else
+			{flag = senceDao.deleteLost_mobilephoneById(xsjsglxt_case.getXsjsglxt_case_id());}
+			
+			if(lost==null){}else
+			{flag = senceDao.deleteLostById(xsjsglxt_case.getXsjsglxt_case_id());}
+			
+     		if(picture==null){}else
+     		{flag = senceDao.deletePictureById(xsjsglxt_case.getXsjsglxt_case_id());}
+     			if(breakecase==null){}else
+     			{	flag=senceDao.deleteBreakecaseById(xsjsglxt_case.getXsjsglxt_case_id());}
+     			
+		if(resevidence==null){}else{
+			xsjsglxt_circulation	circulation=senceDao.get_circulation_Byresevidenceid(resevidence);
+			if(circulation==null){}else{flag=senceDao.deleteCirculationById(resevidence.getXsjsglxt_resevidence_id());}
 			flag=senceDao.deleteResevidenceById(xsjsglxt_case.getXsjsglxt_case_id());
-			flag=senceDao.deleteBreakecaseById(xsjsglxt_case.getXsjsglxt_case_id());
+			}
+				
+			flag = senceDao.deleteBriefdetailsById(xsjsglxt_case.getXsjsglxt_case_id());// ��Ҫ����
+			flag = senceDao.deleteSenceById(xsjsglxt_case.getXsjsglxt_case_id());// ��̽�ֳ�
+		flag = senceDao.deleteCaseById(xsjsglxt_case.getXsjsglxt_case_id());// ����
 		}
 		return flag;
 	}
@@ -279,6 +308,7 @@ public class SenceServiceImpl implements SenceService {
 		// TODO Auto-generated method stub
 		return senceDao.AllCase() ;
 	}
+
 
 
 }

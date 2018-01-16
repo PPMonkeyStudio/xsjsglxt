@@ -24,6 +24,7 @@ function httpbackCase_del() {
 
 		if (result == 'success') {
 			toastr.success('删除成功！');
+			location.href = '/xsjsglxt/case/Case_page_SiteManagement'
 		} else {
 			toastr.error('删除失败！');
 		}

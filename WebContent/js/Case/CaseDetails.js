@@ -68,12 +68,38 @@ $(function() {
 		$.post('/xsjsglxt/case/Resevidence_saveResevidence', $('#lost_evidence').serialize() + '&case1.xsjsglxt_case_id=' + $('#case1_id').val(), function(xhr_data) {
 			if (xhr_data == 'success') {
 				toastr.success('添加成功！');
-				$('#Lost_Goods table tbody').find('input,textarea').val("");
+				$('#lost_evidence table tbody').find('input,textarea').val("");
 			} else {
 				toastr.error('添加失败！');
 			}
 		}, 'text');
 	});
+
+
+	//添加照片信息
+	$('.add_picture').click(function() {
+		$.post('/xsjsglxt/case/Image_updatePicture', $('#add_picture').serialize(), function(xhr_data) {
+			if (xhr_data == 'success') {
+				toastr.success('添加成功！');
+				$('#add_picture table tbody').find('input,textarea').val("");
+			} else {
+				toastr.error('添加失败！');
+			}
+		}, 'json');
+	});
+	$('#picture').on('show.bs.modal', function() {
+		$.post('/xsjsglxt/case/Case_AllCase', function(Case_data) {
+			//所有案件循环
+			var option = '';
+			for (var len = 0; len < Case_data.length; len++) {
+				option += '<option value="' + Case_data[len].xsjsglxt_case_id + '">' + Case_data[len].case_name + '</option>';
+			}
+			$('#picture').find('select[name="case1.xsjsglxt_case_id"]').html(option).selectpicker('refresh');
+		//除去加载提示
+		//$('.load_remind').remove();
+		}, 'json');
+	})
+
 })
 
 function ChangeItemType(option_obj) {
