@@ -249,7 +249,7 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
-		String hql = "from xsjsglxt_breakecase breakecase where breakecase.xsjsglxt_breakecase_id='"
+		String hql = "from xsjsglxt_breakecase breakecase where breakecase.breakecase_case='"
 				+ breakecase.getXsjsglxt_breakecase_id() + "'";
 
 		Query query = session.createQuery(hql);
