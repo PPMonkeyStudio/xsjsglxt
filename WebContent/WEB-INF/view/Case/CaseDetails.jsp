@@ -504,7 +504,7 @@
 								<tbody>
 									<tr>
 										<td><div style="padding-top:6px; float: left;width: 15%;">光盘编号</div>
-											<input name="picture.picture_image" class="form-control"
+											<input name="image.xsjsglxt_image_id" class="form-control"
 											type="text" style="width: 85%;"></td>
 									</tr>
 									<tr>
@@ -516,7 +516,7 @@
 											</div></td>
 									</tr>
 									<tr>
-										<td><div style="padding-top:6px; float: left;width: 15%;">光盘编号</div>
+										<td><div style="padding-top:6px; float: left;width: 15%;">照片编号</div>
 											<input name="picture.picture_identifier" class="form-control"
 											type="text" style="width: 85%;"></td>
 									</tr>

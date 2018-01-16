@@ -161,9 +161,9 @@ var modifi_delete = function() {
 			str += '</td>';
 			str += '</tr></tbody></table>';
 			//str加载到模态框中
-			$('#breakCaseinput .panel-body').html(str);
+			$('#breakCase_modification .panel-body').html(str);
 			//模态框显示
-			$('#breakCaseinput').modal('show');
+			$('#breakCase_modification').modal('show');
 			$.post('/xsjsglxt/case/Case_AllCase', function(Case_data) {
 				//所有案件循环
 				var option = '';
@@ -237,23 +237,33 @@ var breakecase_modification = function() {
 				btnClass : 'btn-danger',
 				text : '确认',
 				action : function() {
-					$.ajax({
-						url : '/xsjsglxt/case/BreakCase_updateBreakcase',
-						type : 'post',
-						data : $('#breakCaseinput form').serialize(),
-						processData : false,
-						contentType : false,
-						dataType : 'json',
-						success : function(data) {
-							if (data == "success") {
-								toastr.success("修改成功！");
-								//获取对应option中的value值
-								get_ListBreakecaseInformationByPageAndSearch(query_data);
-							} else {
-								toastr.error("修改失败！");
-							}
+					$.post('/xsjsglxt/case/BreakCase_updateBreakcase', $('#breakCase_modification form').serialize(), function(data) {
+						if (data == "success") {
+							toastr.success("修改成功！");
+							//获取对应option中的value值
+							get_ListBreakecaseInformationByPageAndSearch(query_data);
+						} else {
+							toastr.error("修改失败！");
 						}
-					});
+					}, 'json')
+
+				/*$.ajax({
+					url : '/xsjsglxt/case/BreakCase_updateBreakcase',
+					type : 'post',
+					data : $('#breakCase_modification form').serialize(),
+					processData : false,
+					contentType : false,
+					dataType : 'json',
+					success : function(data) {
+						if (data == "success") {
+							toastr.success("修改成功！");
+							//获取对应option中的value值
+							get_ListBreakecaseInformationByPageAndSearch(query_data);
+						} else {
+							toastr.error("修改失败！");
+						}
+					}
+				});*/
 				}
 			},
 			cancelAction : {
