@@ -499,20 +499,21 @@
 				</div>
 				<div class="modal-body">
 					<div class="panel-body">
-						<table align="center">
-							<tbody>
-								<tr>
-									<td><div style="padding-top:6px; float: left;width: 15%;">光盘编号</div>
-										<input class="form-control" type="text" style="width: 85%;"></td>
-								</tr>
-								<tr>
-									<td><div style=" padding-top:6px;float: left;width: 15%;">备注</div>
-										<textarea style="margin-top: 6px;width: 85%;" name=""
-											class="form-control" rows="2"></textarea></td>
-								</tr>
-							</tbody>
-						</table>
-
+						<form id="add_picture">
+							<table align="center">
+								<tbody>
+									<tr>
+										<td><div style="padding-top:6px; float: left;width: 15%;">光盘编号</div>
+											<input class="form-control" type="text" style="width: 85%;"></td>
+									</tr>
+									<tr>
+										<td><div style=" padding-top:6px;float: left;width: 15%;">备注</div>
+											<textarea style="margin-top: 6px;width: 85%;" name=""
+												class="form-control" rows="2"></textarea></td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
 					</div>
 				</div>
 				<div class="modal-footer">

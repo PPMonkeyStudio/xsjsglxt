@@ -9,7 +9,6 @@ var query_data = {
 	"page_list_BreakecaseInformation.breakecase_captureUnit" : "",
 	"page_list_BreakecaseInformation.start_time" : "",
 	"page_list_BreakecaseInformation.stop_time" : "",
-	
 };
 //当前页面分页信息
 var page_infomantion = {
@@ -121,7 +120,7 @@ var modifi_delete = function() {
 	console.log(type, id);
 	if (type == "修改") {
 		$.post('/xsjsglxt/case/BreakCase_BreakecaseInformationOne', {
-			"case1.xsjsglxt_case_id" : id
+			"breakecase.xsjsglxt_breakecase_id" : id
 		}, function(xhr_data) {
 			var str = '';
 			str += '<table align="center" class="table table-hover table-condensed"><tbody><tr>';

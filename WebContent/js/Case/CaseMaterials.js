@@ -705,7 +705,7 @@ var image_modification = function() {
 	});
 }
 
-//丢失物品(物品,电脑,手机)确定修改信息
+//丢失物品(物品,电脑,手机)确定==修改==信息
 var Lost_modification = function() {
 	var url = $(this).val();
 	$.confirm({
@@ -739,7 +739,7 @@ var Lost_modification = function() {
 }
 
 
-//丢失物品删除信息
+//丢失物品==删除==信息
 //URL为访问路径，value为确定option对象让丢失物中电脑，手机，物品中执行点击事件，做更改后的再次查询，FormData为传输数据
 function deleteData(url, value, formData) {
 	//'/xsjsglxt/case/Lost_remove_LostInformationList'
@@ -764,7 +764,11 @@ function deleteData(url, value, formData) {
 							if (data == "success") {
 								toastr.success("删除成功！");
 								//获取对应option中的value值
-								lost_chose($('option[value="' + value + '"]'));
+								if (value == 'evidence_table_info' || value == 'picture_table_info' || value == 'image_table_info') {
+									material($('option[value="' + value + '"]'));
+								} else {
+									lost_chose($('option[value="' + value + '"]'));
+								}
 							} else {
 								toastr.error("删除失败！");
 							}
@@ -790,7 +794,8 @@ var add_info = function() {
 			+ '<tbody>'
 			+ '<tr>'
 			+ '<td>所属案件<i class="fa fa-spinner fa-pulse fa-fw load_remind"></i></td><td>'
-			+ '<select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="resevidence.resevidence_case">'
+			//+ '<select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="resevidence.resevidence_case">'
+			+ '<select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="case1.xsjsglxt_case_id">'
 			+ '</select></td>'
 			+ '</tr>'
 			+ '<tr>'
@@ -880,7 +885,8 @@ var add_info = function() {
 			+ '</tr>'
 			+ '<tr>'
 			+ '<td>所属案件<i class="fa fa-spinner fa-pulse fa-fw load_remind2"></i></td><td>'
-			+ '<select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="picture.picture_case">'
+			//+ '<select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="picture.picture_case">'
+			+ '<select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="case1.xsjsglxt_case_id">'
 			+ '</select></td>'
 			+ '</tr>'
 			+ '<tr>'
@@ -942,7 +948,8 @@ var add_info = function() {
 			+ '<tbody>'
 			+ '<tr>'
 			+ '<td>所属案件<i class="fa fa-spinner fa-pulse fa-fw load_remind"></i></td><td>'
-			+ '<select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="lost.lost_case">'
+			//+ '<select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="lost.lost_case">'
+			+ '<select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="case1.xsjsglxt_case_id">'
 			+ '</select></td>'
 			+ '</tr>'
 			+ '<tr>'
@@ -975,7 +982,8 @@ var add_info = function() {
 			+ '<tbody>'
 			+ '<tr>'
 			+ '<td>所属案件<i class="fa fa-spinner fa-pulse fa-fw load_remind"></i></td><td>'
-			+ '<select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="lost_computer.lost_computer_case">'
+			//+ '<select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="lost_computer.lost_computer_case">'
+			+ '<select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="case1.xsjsglxt_case_id">'
 			+ '</select></td>'
 			+ '</tr>'
 			+ '<tr>'
@@ -1016,7 +1024,8 @@ var add_info = function() {
 			+ '<tbody>'
 			+ '<tr>'
 			+ '<td>所属案件<i class="fa fa-spinner fa-pulse fa-fw load_remind"></i></td><td>'
-			+ '<select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="lost_mobilephone.lost_mobilephone_case">'
+			//+ '<select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="lost_mobilephone.lost_mobilephone_case">'
+			+ '<select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="case1.xsjsglxt_case_id">'
 			+ '</select></td>'
 			+ '</tr>'
 			+ '<tr>'
@@ -1081,7 +1090,7 @@ function add_default_confirm(title, content, url, value) {
 						} else {
 							toastr.error("添加失败！");
 						}
-					}, 'json');
+					}, 'text');
 				}
 			},
 			cancelAction : {

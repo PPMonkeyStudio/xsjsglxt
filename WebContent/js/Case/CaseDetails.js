@@ -68,12 +68,24 @@ $(function() {
 		$.post('/xsjsglxt/case/Resevidence_saveResevidence', $('#lost_evidence').serialize() + '&case1.xsjsglxt_case_id=' + $('#case1_id').val(), function(xhr_data) {
 			if (xhr_data == 'success') {
 				toastr.success('添加成功！');
-				$('#Lost_Goods table tbody').find('input,textarea').val("");
+				$('#lost_evidence table tbody').find('input,textarea').val("");
 			} else {
 				toastr.error('添加失败！');
 			}
 		}, 'text');
 	});
+	//添加照片信息
+	$('.add_picture').click(function() {
+		$.post('/xsjsglxt/case/Image_updatePicture', $('#add_picture').serialize() + '&case1.xsjsglxt_case_id=' + $('#case1_id').val(), function(xhr_data) {
+			if (xhr_data == 'success') {
+				toastr.success('添加成功！');
+				$('#add_picture table tbody').find('input,textarea').val("");
+			} else {
+				toastr.error('添加失败！');
+			}
+		}, 'text');
+	});
+
 })
 
 function ChangeItemType(option_obj) {
