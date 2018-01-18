@@ -3,16 +3,29 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+
+	<!-- action配置 -->
 	<bean id="userAction" class="com.xsjsglxt.action.User.UserAction"
 		scope="prototype">
 		<property name="userService" ref="userService"></property>
 	</bean>
-
+	<bean id="meetingAction" class="com.xsjsglxt.action.User.MeetingAction"
+		scope="prototype">
+		<property name="meetingServcie" ref="meetingService"></property>
+	</bean>
+	
+	<!-- service配置 -->
 	<bean id="userService" class="com.xsjsglxt.service.impl.User.UserServiceImpl">
 		<property name="userDao" ref="userDao"></property>
 	</bean>
-
+	<bean id="meetingService" class="com.xsjsglxt.service.impl.User.MeetingServiceImpl">
+		<property name="meetingDao" ref="meetingDao"></property>
+	</bean>
+	<!-- dao配置 -->
 	<bean id="userDao" class="com.xsjsglxt.dao.impl.User.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="meetingDao" class="com.xsjsglxt.dao.impl.User.MeetingDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 

@@ -17,5 +17,9 @@
 			    /WEB-INF/view/User/UserManagerIndex.jsp
 			</result>
 		</action>
+		
+		<action name="Meeting_*" class="com.xsjsglxt.action.User.MeetingAction" method="{1}">
+			
+		</action>
 	</package>
 </struts>
