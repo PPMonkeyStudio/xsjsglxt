@@ -1,5 +1,7 @@
 package com.xsjsglxt.dao.impl.User;
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -106,9 +108,25 @@ public class MeetingDaoImpl implements MeetingDao {
 
 	// 通过筛选获得所有会议记录书
 	@Override
-	public meetingSearchDTO ListMeetRecordsBySearch(meetingByPageAndSerarchVO meetVO) {
+	public List<meetingSearchDTO> ListMeetRecordsBySearch(meetingByPageAndSerarchVO meetVO) {
 		// TODO Auto-generated method stub
-		return null;
+
+		String queryContent = "%" + meetVO.getQueryCondition() + "%";
+		String hql = " select new com.xsjsglxt.domain.DTO.UsermeetingSearchDTO(meet.meeting_id,replace(meet.meeting_title,'"
+				+ meetVO.getQueryCondition() + "','<span color=\"red\">" + meetVO.getQueryCondition()
+				+ "</span>') as meeting_title,meet.meeting_start_time,meet.meeting_end_time,replace(meet.meeting_place,'"
+				+ meetVO.getQueryCondition() + "','<span color=\"red\">" + meetVO.getQueryCondition()
+				+ "</span>') as meeting_place,replace(meet.meeting_compere,'" + meetVO.getQueryCondition()
+				+ "','<span color=\"red\">" + meetVO.getQueryCondition()
+				+ "</span>') as meeting_compere) from xsjsglxt_meeting meet where meet.meeting_title like '"
+				+ queryContent + "' and meet.meeting_place like '" + queryContent + "' and meet.meeting_compere like '"
+				+ queryContent + "' order by meet.meeting_start_time " + meetVO.getStartTimeSort();
+		System.out.println(hql);
+		Session session = this.getSession();
+		Query query = session.createQuery(hql);
+		List<meetingSearchDTO> list = query.list();
+		System.out.println("总数为：" + list.size());
+		return list;
 	}
 
 }
