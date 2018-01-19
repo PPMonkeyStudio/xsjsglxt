@@ -34,14 +34,14 @@ public class MeetingDaoImpl implements MeetingDao {
 
 		try {
 			Session session = this.getSession();
-			session.saveOrUpdate(meet);
-			session.clear();
+			session.save(meet);
+			// 事务未提交不能清除session
 		} catch (Exception e) {
 			// TODO: handle exception
 			return "saveFail";
 		}
 
-		return "savueSuccess";
+		return "saveSuccess";
 	}
 
 	// 修改会议记录书
@@ -52,7 +52,6 @@ public class MeetingDaoImpl implements MeetingDao {
 		try {
 			Session session = this.getSession();
 			session.saveOrUpdate(meet);
-			session.clear();
 		} catch (Exception e) {
 			// TODO: handle exception
 			return "updateFail";

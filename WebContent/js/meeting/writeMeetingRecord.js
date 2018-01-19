@@ -4,7 +4,7 @@ var createConfirm = function()
 	    columnClass: "col-md-12",
 	    type : 'green',
 		title:"填写会议记录书",
-		content:"<div id='ConfirmTableDiv'><form id='meetRecords'><table class='table table-bordered' style='text-align: center;'>" +
+		content:"<div id='ConfirmTableDiv'><form id='meetRecords' name='meetRecords'><table class='table table-bordered' style='text-align: center;'>" +
 				"<tr><td>会议类型：</td><td>" +
 				"<select class='form-control' name='meet.meeting_title'><option value='大队例会'>大队例会</option>" +
 				"<option value='支委会'>支委会</option><option value='党课'>党课</option>" +
@@ -25,7 +25,26 @@ var createConfirm = function()
 				btnClass:"btn-blue",
 				action:function()
 				{
-					return false;
+					var formData = new FormData(document.getElementById("meetRecords"));
+					for(var i=0;i<document.meetRecords.elements.length-1;i++)
+				    {
+				     if(document.meetRecords.elements[i].value=="")
+				     {
+				       toastr.error("当前表单不能有空项");
+				       document.meetRecords.elements[i].focus();
+				       return false;
+				     }
+				    }
+					$.ajax({
+						url: "/xsjsglxt/user/Meeting_saveMeetRecord",
+						 type: "POST",
+						 data: formData,
+						 processData: false,
+						 contentType: false,
+						 success:function(data){
+							 toastr.success(data);
+						 }
+					});
 				}
 			},
 			close:{
