@@ -19,7 +19,7 @@
 		</action>
 		
 		<action name="Meeting_*" class="com.xsjsglxt.action.User.MeetingAction" method="{1}">
-			
+			<result name="intoMeeting">/WEB-INF/view/User/MeetRecords.jsp</result>
 		</action>
 	</package>
 </struts>
