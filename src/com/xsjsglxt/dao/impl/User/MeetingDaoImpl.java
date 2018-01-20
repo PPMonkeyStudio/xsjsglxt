@@ -60,20 +60,16 @@ public class MeetingDaoImpl implements MeetingDao {
 		return "updateSuccess";
 	}
 
-	// 批量删除会议记录书
+	// 删除会议记录书
 
 	@Override
-	public String deleteMeetingRecords(String[] meeting_ids) {
+	public String deleteMeetingRecords(String meeting_id) {
 		// TODO Auto-generated method stub
 		Session session = this.getSession();
 		try {
-
-			for (int i = 0; i < meeting_ids.length; i++) {
-				String hql = "delete xsjsglxt_meeting where meeting_id = '" + meeting_ids[i] + "'";
-				Query query = session.createQuery(hql);
-				query.executeUpdate();
-			}
-			session.clear();
+			String hql = "delete from xsjsglxt_meeting where meeting_id = '" + meeting_id + "'";
+			Query query = session.createQuery(hql);
+			query.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
 			return "deleteFail";

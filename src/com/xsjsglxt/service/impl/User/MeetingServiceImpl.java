@@ -39,4 +39,11 @@ public class MeetingServiceImpl implements MeetingService {
 		meetVO.setMeetDTO(meetingDao.ListMeetRecordsBySearch(meetVO));
 		return meetVO;
 	}
+
+	@Override
+	public String deleteMeetingRecord(String meeting_id) {
+		// TODO Auto-generated method stub
+		String result = meetingDao.deleteMeetingRecords(meeting_id);
+		return result;
+	}
 }

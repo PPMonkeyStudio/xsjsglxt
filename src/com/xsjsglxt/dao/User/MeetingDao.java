@@ -11,7 +11,7 @@ public interface MeetingDao {
 
 	public String updateMeetingRecords(xsjsglxt_meeting meet);
 
-	public String deleteMeetingRecords(String[] meeting_ids);
+	public String deleteMeetingRecords(String meeting_id);
 
 	public xsjsglxt_meeting getMeetingRecordsById(String meeting_id);
 

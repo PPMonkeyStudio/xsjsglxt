@@ -18,6 +18,7 @@ public class MeetingAction extends ActionSupport {
 	private xsjsglxt_meeting meet;
 	private HttpServletResponse response;
 	private meetingByPageAndSerarchVO meetVO;
+	private String meeting_id;
 
 	public String skipToMeetRecords() {
 		return "intoMeeting";
@@ -31,6 +32,8 @@ public class MeetingAction extends ActionSupport {
 		try {
 			writer = response.getWriter();
 			writer.write(result);
+			writer.flush();
+			writer.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,12 +51,33 @@ public class MeetingAction extends ActionSupport {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter write = response.getWriter();
 		write.write(result);
+		write.flush();
+		write.close();
+	}
+
+	public void deleteMeetingRecord() throws IOException {
+		System.out.println(meeting_id);
+		String result = meetingService.deleteMeetingRecord(meeting_id);
+		response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter write = response.getWriter();
+		write.write(result);
+		write.flush();
+		write.close();
 	}
 
 	// -----------------------------------------------------------setter/getter方法----------------------------------------------//
 
 	public MeetingService getMeetingService() {
 		return meetingService;
+	}
+
+	public String getMeeting_id() {
+		return meeting_id;
+	}
+
+	public void setMeeting_id(String meeting_id) {
+		this.meeting_id = meeting_id;
 	}
 
 	public meetingByPageAndSerarchVO getMeetVO() {

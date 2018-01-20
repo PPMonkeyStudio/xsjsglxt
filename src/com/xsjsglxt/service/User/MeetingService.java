@@ -9,4 +9,6 @@ public interface MeetingService {
 
 	meetingByPageAndSerarchVO getMeetingByPageAndList(meetingByPageAndSerarchVO meetVO);
 
+	String deleteMeetingRecord(String meeting_id);
+
 }
