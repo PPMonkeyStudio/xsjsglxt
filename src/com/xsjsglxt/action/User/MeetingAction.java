@@ -39,6 +39,7 @@ public class MeetingAction extends ActionSupport {
 	}
 
 	public void showMeetingByPageAndList() throws IOException {
+		System.out.println(meetVO.getStartTimeSort());
 		response = ServletActionContext.getResponse();
 		meetingByPageAndSerarchVO meetVOReturn = meetingService.getMeetingByPageAndList(meetVO);
 		Gson gson = new Gson();

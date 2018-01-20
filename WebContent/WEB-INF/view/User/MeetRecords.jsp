@@ -10,6 +10,11 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<style type="text/css">
+.pageOperation{
+	cursor: pointer;
+}
+</style>
 <title>会议记录</title>
 <!-- -----------------模态框js文件引入--------------------------------  -->
 <script type="text/javascript" src="<%=basePath %>js/meeting/writeMeetingRecord.js"></script>
@@ -34,7 +39,7 @@
 				<table class="table table-bordered" style="text-align: center;"">
 					<thead>
 						<tr style="background-color: #696969; color: white;">
-							<td><select class="form-control">
+							<td><select class="form-control" id="queryTitle" onchange="changeQueryTitle(this)">
 								<option value=" ">所有</option>
 								<option value="大队例会">大队例会</option>
 								<option value="支委会">支委会</option>
@@ -46,7 +51,7 @@
 							</select></td>
 							<td>会议地点</td>
 							<td>会议主持人</td>
-							<td><select class="form-control">
+							<td><select class="form-control" id="querySort" onchange="changTimeSort()">
 								<option value="desc">会议开始时间（降序）</option>
 								<option value="asc">会议开始时间（升序）</option>
 							</select> </td>
@@ -68,7 +73,7 @@
 				<span onclick="skipToNextPage()" id="nextPage" class="pageOperation">下一页</span>
 				<span onclick="skipToLastPage()" id="lastPage" class="pageOperation">末页</span>
 				<span>
-					<input  id="skipPage" type="text" style="text-align: center; width: 60px; height: 30px;" class="queryInput">
+					<input  id="skipPage" class="form-control" type="text" style="display:inline-block; text-align: center; width: 60px; height: 30px;" class="queryInput">
 					<button onclick="skipToArbitrarilyPage()" class="btn btn-default" style="height:30px;">跳转</button>
 				</span>
 			</div>
