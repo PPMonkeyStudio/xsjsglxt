@@ -13,7 +13,7 @@
 <title>会议记录</title>
 <!-- -----------------模态框js文件引入--------------------------------  -->
 <script type="text/javascript" src="<%=basePath %>js/meeting/writeMeetingRecord.js"></script>
-
+<script type="text/javascript" src="<%=basePath %>js/meeting/showMeetRecods.js"></script>
 </head>
 <body>
 	<!-----------------------------------------引入导航条 ------------------------------------------------------>
@@ -23,6 +23,11 @@
 		<div class="panel" style="width: 95%; margin: 20px auto;">
 			<div class="headDiv" style="height: 60px; padding-top:10px;">
 				<button class="btn btn-default" onclick="createConfirm()"><i class="fa fa-pencil-square-o"></i>填写会议记录表</button>
+				<div style="display:inline-block; margin-right: 20px; float: right;">
+				<label>时间筛选</label>
+				<input class="form-control startTime"  type= "text" id="query_start_time_start" style="width: 150px; display: inline-block;">至
+				<input class="form-control startTime"  type= "text" style="width: 150px; display: inline-block;" id="query_start_time_end">
+				</div>
 			</div>
 		
 			<div class="tableDiv">
@@ -30,7 +35,7 @@
 					<thead>
 						<tr style="background-color: #696969; color: white;">
 							<td><select class="form-control">
-								<option value="">所有</option>
+								<option value=" ">所有</option>
 								<option value="大队例会">大队例会</option>
 								<option value="支委会">支委会</option>
 								<option value="党课">党课</option>
@@ -64,13 +69,24 @@
 				<span onclick="skipToLastPage()" id="lastPage" class="pageOperation">末页</span>
 				<span>
 					<input  id="skipPage" type="text" style="text-align: center; width: 60px; height: 30px;" class="queryInput">
-					<button onclick="skipToArbitrarilyPage()" class="btn btn-default" style="height:30px; margin-bottom: 10px;">跳转</button>
+					<button onclick="skipToArbitrarilyPage()" class="btn btn-default" style="height:30px;">跳转</button>
 				</span>
 			</div>
 		
 		</div>
 	</div>
-	
+	<script type="text/javascript">
+	$.datetimepicker.setLocale('ch');
+	$('.startTime').datetimepicker({
+		yearStart : 1990, // 设置最小年份
+		yearEnd : 2050, // 设置最大年份
+		yearOffset : 0, // 年偏差
+		timepicker : false, // 关闭时间选项
+		format : 'Y-m-d H:i', // 格式化日期年-月-日
+		minDate : '1900/01/01 00:00', // 设置最小日期
+		maxDate : '2030/01/01 00:00', // 设置最大日期
+	});
+	</script>
 	
 </body>
 </html>
