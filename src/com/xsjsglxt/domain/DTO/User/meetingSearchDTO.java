@@ -8,6 +8,21 @@ public class meetingSearchDTO {
 	private String meeting_place;
 	private String meeting_compere;
 
+	public meetingSearchDTO(String meeting_id, String meeting_title, String meeting_start_time, String meeting_end_time,
+			String meeting_place, String meeting_compere) {
+		// TODO Auto-generated constructor stub
+		this.meeting_id = meeting_id;
+		this.meeting_title = meeting_title;
+		this.meeting_start_time = meeting_start_time;
+		this.meeting_end_time = meeting_end_time;
+		this.meeting_place = meeting_place;
+		this.meeting_compere = meeting_compere;
+	}
+
+	public meetingSearchDTO() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getMeeting_id() {
 		return meeting_id;
 	}
@@ -56,4 +71,10 @@ public class meetingSearchDTO {
 		this.meeting_compere = meeting_compere;
 	}
 
+	@Override
+	public String toString() {
+		return "meetingSearchDTO [meeting_id=" + meeting_id + ", meeting_title=" + meeting_title
+				+ ", meeting_start_time=" + meeting_start_time + ", meeting_end_time=" + meeting_end_time
+				+ ", meeting_place=" + meeting_place + ", meeting_compere=" + meeting_compere + "]";
+	}
 }

@@ -96,12 +96,18 @@ public class MeetingDaoImpl implements MeetingDao {
 	@Override
 	public int getCountMeetRecordsBySearch(meetingByPageAndSerarchVO meetVO) {
 		// TODO Auto-generated method stub
-		String queryContent = "%" + meetVO.getQueryCondition() + "%";
-
-		String hql = "select count(*) from xsjsglxt_meeting meet where meet.meeting_title like'" + queryContent
-				+ "' and meet.meeting_place like '" + queryContent + "' and meet.meeting_compere like '" + queryContent
-				+ "'";
+		String hql = "select count(*) from xsjsglxt_meeting meet where 1=1";
+		if (meetVO.getQuery_start_time_start() != null && meetVO.getQuery_start_time_start().trim().length() > 0) {
+			hql = hql + " and meet.meeting_start_time >= '" + meetVO.getQuery_start_time_start() + "'";
+		}
+		if (meetVO.getQueryTitle() != null && meetVO.getQueryTitle().trim().length() > 0) {
+			hql = hql + " and meet.meeting_title = '" + meetVO.getQueryTitle() + "'";
+		}
+		if (meetVO.getQuery_start_time_end() != null && meetVO.getQuery_start_time_end().trim().length() > 0) {
+			hql = hql + " and meet.meeting_start_time <= '" + meetVO.getQuery_start_time_end() + "'";
+		}
 		long count = (long) this.getSession().createQuery(hql).uniqueResult();
+		this.getSession().clear();
 		return (int) count;
 	}
 
@@ -110,21 +116,24 @@ public class MeetingDaoImpl implements MeetingDao {
 	public List<meetingSearchDTO> ListMeetRecordsBySearch(meetingByPageAndSerarchVO meetVO) {
 		// TODO Auto-generated method stub
 
-		String queryContent = "%" + meetVO.getQueryCondition() + "%";
-		String hql = " select new com.xsjsglxt.domain.DTO.UsermeetingSearchDTO(meet.meeting_id,replace(meet.meeting_title,'"
-				+ meetVO.getQueryCondition() + "','<span color=\"red\">" + meetVO.getQueryCondition()
-				+ "</span>') as meeting_title,meet.meeting_start_time,meet.meeting_end_time,replace(meet.meeting_place,'"
-				+ meetVO.getQueryCondition() + "','<span color=\"red\">" + meetVO.getQueryCondition()
-				+ "</span>') as meeting_place,replace(meet.meeting_compere,'" + meetVO.getQueryCondition()
-				+ "','<span color=\"red\">" + meetVO.getQueryCondition()
-				+ "</span>') as meeting_compere) from xsjsglxt_meeting meet where meet.meeting_title like '"
-				+ queryContent + "' and meet.meeting_place like '" + queryContent + "' and meet.meeting_compere like '"
-				+ queryContent + "' order by meet.meeting_start_time " + meetVO.getStartTimeSort();
-		System.out.println(hql);
+		String hql = "select count(*) from xsjsglxt_meeting meet where 1=1";
+		if (meetVO.getQuery_start_time_start() != null && meetVO.getQuery_start_time_start().trim().length() > 0) {
+			hql = hql + " and meet.meeting_start_time >= '" + meetVO.getQuery_start_time_start() + "'";
+		}
+		if (meetVO.getQueryTitle() != null && meetVO.getQueryTitle().trim().length() > 0) {
+			hql = hql + " and meet.meeting_title = '" + meetVO.getQueryTitle() + "'";
+		}
+		if (meetVO.getQuery_start_time_end() != null && meetVO.getQuery_start_time_end().trim().length() > 0) {
+			hql = hql + " and meet.meeting_start_time <= '" + meetVO.getQuery_start_time_end() + "'";
+		}
+		if (true) {
+			hql = hql + " order by meeting_start_time " + meetVO.getStartTimeSort();
+		}
 		Session session = this.getSession();
-		Query query = session.createQuery(hql);
+		Query query = session.createQuery(hql).setFirstResult((meetVO.getCurrPage() - 1) * meetVO.getPageSize())
+				.setMaxResults(meetVO.getPageSize());
 		List<meetingSearchDTO> list = query.list();
-		System.out.println("总数为：" + list.size());
+		session.clear();
 		return list;
 	}
 

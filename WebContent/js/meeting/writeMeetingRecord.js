@@ -3,7 +3,7 @@ var createConfirm = function()
 	var jc = $.confirm({
 	    columnClass: "col-md-12",
 	    type : 'green',
-		title:"填写会议记录书",
+		title:"<i class='fa fa-pencil-square-o'></i>填写会议记录书", 
 		content:"<div id='ConfirmTableDiv'><form id='meetRecords' name='meetRecords'><table class='table table-bordered' style='text-align: center;'>" +
 				"<tr><td>会议类型：</td><td>" +
 				"<select class='form-control' name='meet.meeting_title'><option value='大队例会'>大队例会</option>" +
