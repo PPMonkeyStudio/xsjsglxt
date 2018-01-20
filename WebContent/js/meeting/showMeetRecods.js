@@ -28,45 +28,32 @@ var setQuery = function (queryTitle,startTimeSort,query_start_time_start,query_s
 }
 
 window.onload=function(){
-		var meetVOPostTemp={
-				"meetVO.queryTitle":meetVO.queryTitle,
-				"meetVO.startTimeSort":meetVO.startTimeSort,
-				"meetVO.query_start_time_start":meetVO.query_start_time_start,
-				"meetVO.query_start_time_end":meetVO.query_start_time_end,
-				"meetVO.pageCount":meetVO.pageCount,
-				"meetVO.currPage":meetVO.currPage,
-				"meetVO.pageSize":meetVO.pageSize,
-				"meetVO.totalCount":meetVO.totalCount
-		}
-		$.ajax({
-		url:"/xsjsglxt/user/Meeting_showMeetingByPageAndList",
-		type:"POST",		
-		data: meetVOPostTemp,
-		success:function(data){
-			var jsonData = JSON.parse(data);
-			setPage(jsonData.pageCount, jsonData.currPage, jsonData.pageSize, jsonData.totalCount);
-			$("#currPage").html(jsonData.currPage);
-			$("#totalPage").html(jsonData.pageCount);
-			$("#query_start_time_start").val(meetVO.query_start_time_start);
-			$("#query_start_time_end").val(meetVO.query_start_time_end);
-			$("#queryTitle").val(meetVO.queryTitle);
-			$("#querySort").val(meetVO.startTimeSort);
-			var tableContent="";
-			for(var i=0;i<jsonData.meetDTO.length;i++)
-				{
-				tableContent=tableContent+"<tr>" +
-						"<td>"+jsonData.meetDTO[i].meeting_title+"</td>" +
-						"<td>"+jsonData.meetDTO[i].meeting_place+"</td>" +
-						"<td>"+jsonData.meetDTO[i].meeting_compere+"</td>" +
-						"<td>"+jsonData.meetDTO[i].meeting_start_time+"</td>" +
-						"<td>"+jsonData.meetDTO[i].meeting_end_time+"</td>" +
-						"<td><button class='btn btn-primary' value='"+jsonData.meetDTO[i].meeting_id+"'>修改</button>" +
-						"<button class='btn btn-danger' value='"+jsonData.meetDTO[i].meeting_id+"'>删除</button></td>" +
-						"</tr>"
-				}
-			$("#showList").html(tableContent);
-		}
-	});
+	loadData();
+}
+
+var loadData = function()
+{
+	$("#query_start_time_start").val("");
+	$("#query_start_time_end").val("");
+	var meetVOPostTemp={
+			"meetVO.queryTitle":meetVO.queryTitle,
+			"meetVO.startTimeSort":meetVO.startTimeSort,
+			"meetVO.query_start_time_start":meetVO.query_start_time_start,
+			"meetVO.query_start_time_end":meetVO.query_start_time_end,
+			"meetVO.pageCount":meetVO.pageCount,
+			"meetVO.currPage":meetVO.currPage,
+			"meetVO.pageSize":meetVO.pageSize,
+			"meetVO.totalCount":meetVO.totalCount
+	}
+	$.ajax({
+	url:"/xsjsglxt/user/Meeting_showMeetingByPageAndList",
+	type:"POST",		
+	data: meetVOPostTemp,
+	success:function(data){
+		var jsonData = JSON.parse(data);
+		ajaxSetTable(jsonData);
+	}
+});	
 }
 
 var ajaxSetTable = function(jsonData)
@@ -83,8 +70,11 @@ var ajaxSetTable = function(jsonData)
 				"<td>"+jsonData.meetDTO[i].meeting_compere+"</td>" +
 				"<td>"+jsonData.meetDTO[i].meeting_start_time+"</td>" +
 				"<td>"+jsonData.meetDTO[i].meeting_end_time+"</td>" +
-				"<td><button class='btn btn-primary' value='"+jsonData.meetDTO[i].meeting_id+"'>修改</button>" +
-				"<button class='btn btn-danger' value='"+jsonData.meetDTO[i].meeting_id+"'>删除</button></td>" +
+				"<td><div class='dropdown'><i class='dropdown-toggle fa fa-angle-double-down pageOperation'  data-toggle='dropdown' aria-hidden='true' aria-haspopup=true' aria-expanded='false'></i>" +
+						"<ul class='dropdown-menu' aria-labelledby='dLabe' style='text-align:center; min-width: 100px;'>" +
+						"<li value='"+jsonData.meetDTO[i].meeting_id+"'  class='pageOperation'><a>修改</a></li>" +
+						"<li value='"+jsonData.meetDTO[i].meeting_id+"' onclick='deleteMeetingRecords(this)'  class='pageOperation'><a>删除</a></li>" +
+						"</ul></div></td>" +
 				"</tr>"
 		}
 	$("#showList").html(tableContent);	
@@ -270,6 +260,38 @@ var changeQueryTitle = function(dom)
 var changTimeSort = function()
 {
 	meetVO.startTimeSort = $("#querySort").val();
+	meetVO.currPage = 1;
+	var meetVOPostTemp={
+			"meetVO.queryTitle":meetVO.queryTitle,
+			"meetVO.startTimeSort":meetVO.startTimeSort,
+			"meetVO.query_start_time_start":meetVO.query_start_time_start,
+			"meetVO.query_start_time_end":meetVO.query_start_time_end,
+			"meetVO.pageCount":meetVO.pageCount,
+			"meetVO.currPage":meetVO.currPage,
+			"meetVO.pageSize":meetVO.pageSize,
+			"meetVO.totalCount":meetVO.totalCount
+	}
+	$.ajax({
+		url:"/xsjsglxt/user/Meeting_showMeetingByPageAndList",
+		type:"POST",		
+		data: meetVOPostTemp,
+		success:function(data){
+			var jsonData = JSON.parse(data);
+			ajaxSetTable(jsonData);
+		}
+	});
+}
+
+var changeStartTime = function(dom)
+{
+	if(dom.id=="query_start_time_start")
+		{
+			meetVO.query_start_time_start=dom.value;
+		}
+	else
+		{
+			meetVO.query_start_time_end =dom.value;
+		}
 	meetVO.currPage = 1;
 	var meetVOPostTemp={
 			"meetVO.queryTitle":meetVO.queryTitle,

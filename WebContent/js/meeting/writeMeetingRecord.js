@@ -21,7 +21,7 @@ var createConfirm = function()
 				"<table></form></div>",
 		buttons:{
 			save:{
-				text:"保存",
+				text:"<i class='fa fa-upload' aria-hidden='true'></i>保存",
 				btnClass:"btn-blue",
 				action:function()
 				{
@@ -48,7 +48,7 @@ var createConfirm = function()
 				}
 			},
 			close:{
-				text:"关闭",
+				text:"<i class='fa fa-times' aria-hidden='true'></i>关闭",
 				btnClass:"btn-red",
 				action:function()
 				{

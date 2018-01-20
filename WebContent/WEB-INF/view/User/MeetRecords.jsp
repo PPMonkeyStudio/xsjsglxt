@@ -19,19 +19,20 @@
 <!-- -----------------模态框js文件引入--------------------------------  -->
 <script type="text/javascript" src="<%=basePath %>js/meeting/writeMeetingRecord.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/meeting/showMeetRecods.js"></script>
+<script type="text/javascript" src="<%=basePath %>js/meeting/managerMeetingRecord.js"></script>
 </head>
 <body>
 	<!-----------------------------------------引入导航条 ------------------------------------------------------>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
 	<!-----------------------------------------主面板---------------------------------------------------------  -->
 	<div style="margin: 80px 0 0 0; float: left; width: 100%;">
-		<div class="panel" style="width: 95%; margin: 20px auto;">
+		<div class="panel" style="width: 95%; margin: 20px auto; padding-left:20px; padding-right:20px;">
 			<div class="headDiv" style="height: 60px; padding-top:10px;">
 				<button class="btn btn-default" onclick="createConfirm()"><i class="fa fa-pencil-square-o"></i>填写会议记录表</button>
-				<div style="display:inline-block; margin-right: 20px; float: right;">
+				<div style="display:inline-block; float: right;">
 				<label>时间筛选</label>
-				<input class="form-control startTime"  type= "text" id="query_start_time_start" style="width: 150px; display: inline-block;">至
-				<input class="form-control startTime"  type= "text" style="width: 150px; display: inline-block;" id="query_start_time_end">
+				<input class="form-control startTime"  onchange="changeStartTime(this)" type= "text" id="query_start_time_start" style="width: 150px; display: inline-block;">至
+				<input class="form-control startTime"  onchange="changeStartTime(this)" type= "text" style="width: 150px; display: inline-block;" id="query_start_time_end">
 				</div>
 			</div>
 		
