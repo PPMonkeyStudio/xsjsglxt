@@ -37,7 +37,7 @@
 			</div>
 		
 			<div class="tableDiv">
-				<table class="table table-bordered" style="text-align: center;"">
+				<table class="table table-bordered" style="text-align: center;">
 					<thead>
 						<tr style="background-color: #696969; color: white;">
 							<td><select class="form-control" id="queryTitle" onchange="changeQueryTitle(this)">
