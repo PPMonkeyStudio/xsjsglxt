@@ -6,6 +6,7 @@ import com.xsjsglxt.service.User.MemorabiliaService;
 public class MemorabiliaAction extends ActionSupport {
 	private MemorabiliaService memorabiliaService;
 
+	// ----------------------------------------------getter/setter------------------------------------------------------
 	public MemorabiliaService getMemorabiliaService() {
 		return memorabiliaService;
 	}

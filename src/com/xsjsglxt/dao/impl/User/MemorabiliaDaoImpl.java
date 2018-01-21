@@ -14,4 +14,5 @@ public class MemorabiliaDaoImpl implements MemorabiliaDao {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
+
 }
