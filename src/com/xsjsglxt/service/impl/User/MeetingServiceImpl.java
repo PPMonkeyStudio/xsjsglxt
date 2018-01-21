@@ -52,4 +52,10 @@ public class MeetingServiceImpl implements MeetingService {
 		// TODO Auto-generated method stub
 		return meetingDao.getMeetingRecordsById(meeting_id);
 	}
+
+	@Override
+	public String updateMeetingRecord(xsjsglxt_meeting meet) {
+		// TODO Auto-generated method stub
+		return meetingDao.updateMeetingRecords(meet);
+	}
 }

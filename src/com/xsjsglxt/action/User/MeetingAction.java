@@ -13,6 +13,8 @@ import com.xsjsglxt.domain.DO.xsjsglxt_meeting;
 import com.xsjsglxt.domain.VO.User.meetingByPageAndSerarchVO;
 import com.xsjsglxt.service.User.MeetingService;
 
+import util.TeamUtil;
+
 public class MeetingAction extends ActionSupport {
 	private MeetingService meetingService;
 	private xsjsglxt_meeting meet;
@@ -70,6 +72,19 @@ public class MeetingAction extends ActionSupport {
 		xsjsglxt_meeting meet = meetingService.getMeetingById(meeting_id);
 		Gson gson = new Gson();
 		String result = gson.toJson(meet);
+		response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter write = response.getWriter();
+		write.write(result);
+		write.flush();
+		write.close();
+	}
+
+	public void updateMeetingRecord() throws IOException {
+		xsjsglxt_meeting meetOld = meetingService.getMeetingById(meet.getMeeting_id());
+		meet.setMeeting_gmt_create(meetOld.getMeeting_gmt_create());
+		meet.setMeeting_gmt_modified(TeamUtil.getStringSecond());
+		String result = meetingService.updateMeetingRecord(meet);
 		response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter write = response.getWriter();

@@ -90,8 +90,44 @@ var updateMeetingRecords=function(dom)
 				btnClass:"btn-blue",
 				action:function()
 					{
-						
-						return false;
+						var formData = new FormData(document.getElementById("UpdateMeetRecords"));
+						formData.append("meet.meeting_id",dom.id);
+						$.ajax({
+							 url:"/xsjsglxt/user/Meeting_updateMeetingRecord",
+							 type:"POST",
+							 data: formData,
+							 processData: false,
+							 contentType: false,
+							 success:function(data){
+								 if(data=="updateSuccess")
+									 {
+									 	toastr.success("修改成功！");
+										var meetVOPostTemp={
+												"meetVO.queryTitle":meetVO.queryTitle,
+												"meetVO.startTimeSort":meetVO.startTimeSort,
+												"meetVO.query_start_time_start":meetVO.query_start_time_start,
+												"meetVO.query_start_time_end":meetVO.query_start_time_end,
+												"meetVO.pageCount":meetVO.pageCount,
+												"meetVO.currPage":meetVO.currPage,
+												"meetVO.pageSize":meetVO.pageSize,
+												"meetVO.totalCount":meetVO.totalCount
+										}
+										$.ajax({
+										url:"/xsjsglxt/user/Meeting_showMeetingByPageAndList",
+										type:"POST",		
+										data: meetVOPostTemp,
+										success:function(data){
+											var jsonData = JSON.parse(data);
+											ajaxSetTable(jsonData);
+										}
+									});	
+									 }
+								 else
+									 {
+									 	alert(data);
+									 }
+							 }
+						})
 					}
 			},
 			closeMeet:{

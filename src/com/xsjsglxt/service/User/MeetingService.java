@@ -13,4 +13,6 @@ public interface MeetingService {
 
 	xsjsglxt_meeting getMeetingById(String meeting_id);
 
+	String updateMeetingRecord(xsjsglxt_meeting meet);
+
 }
