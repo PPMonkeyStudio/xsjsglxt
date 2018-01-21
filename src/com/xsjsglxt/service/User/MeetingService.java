@@ -11,4 +11,6 @@ public interface MeetingService {
 
 	String deleteMeetingRecord(String meeting_id);
 
+	xsjsglxt_meeting getMeetingById(String meeting_id);
+
 }

@@ -46,4 +46,10 @@ public class MeetingServiceImpl implements MeetingService {
 		String result = meetingDao.deleteMeetingRecords(meeting_id);
 		return result;
 	}
+
+	@Override
+	public xsjsglxt_meeting getMeetingById(String meeting_id) {
+		// TODO Auto-generated method stub
+		return meetingDao.getMeetingRecordsById(meeting_id);
+	}
 }

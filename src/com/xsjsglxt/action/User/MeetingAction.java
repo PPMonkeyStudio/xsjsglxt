@@ -66,6 +66,18 @@ public class MeetingAction extends ActionSupport {
 		write.close();
 	}
 
+	public void getMeetingById() throws IOException {
+		xsjsglxt_meeting meet = meetingService.getMeetingById(meeting_id);
+		Gson gson = new Gson();
+		String result = gson.toJson(meet);
+		response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter write = response.getWriter();
+		write.write(result);
+		write.flush();
+		write.close();
+	}
+
 	// -----------------------------------------------------------setter/getter方法----------------------------------------------//
 
 	public MeetingService getMeetingService() {

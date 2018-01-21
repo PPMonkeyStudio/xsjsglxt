@@ -82,7 +82,6 @@ public class MeetingDaoImpl implements MeetingDao {
 	@Override
 	public xsjsglxt_meeting getMeetingRecordsById(String meeting_id) {
 		// TODO Auto-generated method stub
-		meeting_id = "1";
 		Session session = this.getSession();
 		xsjsglxt_meeting meet = (xsjsglxt_meeting) session.get(xsjsglxt_meeting.class, meeting_id);
 		return meet;
