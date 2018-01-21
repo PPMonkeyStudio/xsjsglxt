@@ -13,6 +13,9 @@
 		scope="prototype">
 		<property name="meetingServcie" ref="meetingService"></property>
 	</bean>
+	<bean id="memorabiliaAction" class="com.xsjsglxt.action.User.MemorabiliaAction" scope="prototype">
+		<property name="memorabiliaService" ref="memorabiliaService"></property>
+	</bean>
 	
 	<!-- service配置 -->
 	<bean id="userService" class="com.xsjsglxt.service.impl.User.UserServiceImpl">
@@ -21,6 +24,9 @@
 	<bean id="meetingService" class="com.xsjsglxt.service.impl.User.MeetingServiceImpl">
 		<property name="meetingDao" ref="meetingDao"></property>
 	</bean>
+	<bean id="memorabiliaService" class="com.xsjsglxt.service.impl.User.MemorabiliaServiceImpl">
+		<property name="memorabiliaDao" ref="memorabiliaDao"></property>
+	</bean>
 	<!-- dao配置 -->
 	<bean id="userDao" class="com.xsjsglxt.dao.impl.User.UserDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
@@ -28,6 +34,8 @@
 	<bean id="meetingDao" class="com.xsjsglxt.dao.impl.User.MeetingDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-
+	<bean id="memorabiliaDao" class="com.xsjsglxt.dao.impl.User.MemorabiliaDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 
 </beans>
