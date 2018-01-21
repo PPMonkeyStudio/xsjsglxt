@@ -29,6 +29,7 @@ var deleteMeetingRecords = function(dom)
 								{
 									toastr.error("删除失败");
 								}
+							showLoading();
 							var meetVOPostTemp={
 									"meetVO.queryTitle":meetVO.queryTitle,
 									"meetVO.startTimeSort":meetVO.startTimeSort,
@@ -69,7 +70,8 @@ var updateMeetingRecords=function(dom)
 	    columnClass: "col-md-12",
 	    type : 'green',
 		title:"<i class='fa fa-pencil-square-o'></i>填写会议记录书", 
-		content:"<div id='ConfirmTableDiv'><form id='UpdateMeetRecords' name='UpdateMeetRecords'><table class='table table-bordered' style='text-align: center;'>" +
+		content:"<div id='addLoadingLayer' class='hideDiv' style='margin: 0 auto; width: 45px;'><i class='fa fa-spinner fa-spin fa-3x fa-fw'></i></div>" +
+				"<div id='ConfirmTableDiv'><form id='UpdateMeetRecords' name='UpdateMeetRecords'><table class='table table-bordered' style='text-align: center;'>" +
 				"<tr><td>会议类型：</td><td>" +
 				"<select class='form-control' id='meeting_titleU' name='meet.meeting_title'><option value='大队例会'>大队例会</option>" +
 				"<option value='支委会'>支委会</option><option value='党课'>党课</option>" +
@@ -89,7 +91,9 @@ var updateMeetingRecords=function(dom)
 				text:"修改",
 				btnClass:"btn-blue",
 				action:function()
-					{
+					{					
+					$("#ConfirmTableDiv").hide();
+					$("#addLoadingLayer").show();
 						var formData = new FormData(document.getElementById("UpdateMeetRecords"));
 						formData.append("meet.meeting_id",dom.id);
 						$.ajax({
@@ -102,6 +106,9 @@ var updateMeetingRecords=function(dom)
 								 if(data=="updateSuccess")
 									 {
 									 	toastr.success("修改成功！");
+										$("#addLoadingLayer").hide();
+										$("#ConfirmTableDiv").show();
+									 	showLoading();
 										var meetVOPostTemp={
 												"meetVO.queryTitle":meetVO.queryTitle,
 												"meetVO.startTimeSort":meetVO.startTimeSort,
@@ -124,10 +131,12 @@ var updateMeetingRecords=function(dom)
 									 }
 								 else
 									 {
-									 	alert(data);
+									 toastr.error("修改失败！");
 									 }
+					
 							 }
-						})
+							});
+						 return false;
 					}
 			},
 			closeMeet:{

@@ -33,6 +33,7 @@ window.onload=function(){
 
 var loadData = function()
 {
+	
 	$("#query_start_time_start").val("");
 	$("#query_start_time_end").val("");
 	var meetVOPostTemp={
@@ -58,6 +59,7 @@ var loadData = function()
 
 var ajaxSetTable = function(jsonData)
 {
+	
 	setPage(jsonData.pageCount, jsonData.currPage, jsonData.pageSize, jsonData.totalCount);
 	$("#currPage").html(jsonData.currPage);
 	$("#totalPage").html(jsonData.pageCount);
@@ -78,9 +80,20 @@ var ajaxSetTable = function(jsonData)
 						"</ul></div></td>" +
 				"</tr>"
 		}
-	$("#showList").html(tableContent);	
+	$("#showList").html(tableContent);
+	hideLoading();
 }
 
+var showLoading = function()
+{
+	$("#contentDiv").hide();
+	$("#loadingLayer").show();
+}
+var hideLoading = function()
+{
+	$("#loadingLayer").hide();
+	$("#contentDiv").show();
+}
 var skipToIndexPage  = function()
 {
 	if(meetVO.currPage ==1)
@@ -89,6 +102,7 @@ var skipToIndexPage  = function()
 		}
 	else
 		{
+			showLoading();
 			meetVO.currPage=1;
 			var meetVOPostTemp={
 					"meetVO.queryTitle":meetVO.queryTitle,
@@ -120,6 +134,7 @@ var skipToPrimaryPage =function(){
 		}
 	else
 		{
+			showLoading();
 			meetVO.currPage=++meetVO.currPage;
 			var meetVOPostTemp={
 					"meetVO.queryTitle":meetVO.queryTitle,
@@ -151,6 +166,7 @@ var skipToNextPage = function()
 		}
 	else
 		{
+			showLoading();
 			meetVO.currPage=--meetVO.currPage;
 			var meetVOPostTemp={
 					"meetVO.queryTitle":meetVO.queryTitle,
@@ -181,6 +197,7 @@ var skipToLastPage = function()
 	}
 else
 	{
+		showLoading();
 		meetVO.currPage=meetVO.pageCount;
 		var meetVOPostTemp={
 				"meetVO.queryTitle":meetVO.queryTitle,
@@ -211,6 +228,7 @@ var skipToArbitrarilyPage = function()
 	} 
 	else
 		{
+			showLoading();	
 			meetVO.currPage=$("#skipPage").val();
 			var meetVOPostTemp={
 					"meetVO.queryTitle":meetVO.queryTitle,
@@ -235,6 +253,7 @@ var skipToArbitrarilyPage = function()
 }
 var changeQueryTitle = function(dom)
 {
+	showLoading();
 	meetVO.queryTitle=$("#queryTitle").val();
 	meetVO.currPage = 1;
 	var meetVOPostTemp={
@@ -260,6 +279,7 @@ var changeQueryTitle = function(dom)
 
 var changTimeSort = function()
 {
+	showLoading();
 	meetVO.startTimeSort = $("#querySort").val();
 	meetVO.currPage = 1;
 	var meetVOPostTemp={
@@ -285,6 +305,7 @@ var changTimeSort = function()
 
 var changeStartTime = function(dom)
 {
+	showLoading();
 	if(dom.id=="query_start_time_start")
 		{
 			meetVO.query_start_time_start=dom.value;

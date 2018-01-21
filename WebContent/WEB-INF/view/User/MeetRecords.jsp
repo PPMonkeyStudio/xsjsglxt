@@ -14,6 +14,12 @@
 .pageOperation{
 	cursor: pointer;
 }
+.hideDiv{
+	display: none;	
+}
+.showDiv{
+
+}
 </style>
 <title>会议记录</title>
 <!-- -----------------模态框js文件引入--------------------------------  -->
@@ -35,8 +41,8 @@
 				<input class="form-control startTime"  onchange="changeStartTime(this)" type= "text" style="width: 150px; display: inline-block;" id="query_start_time_end">
 				</div>
 			</div>
-		
-			<div class="tableDiv">
+			<div id="loadingLayer"  style="margin: 0 auto; width: 45px;"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></div>
+			<div class="tableDiv hideDiv" id="contentDiv">
 				<table class="table table-bordered" style="text-align: center;">
 					<thead>
 						<tr style="background-color: #696969; color: white;">
@@ -61,7 +67,7 @@
 						</tr>
 					</thead>
 					<tbody id="showList">
-					
+						
 					</tbody>
 				</table>
 			</div>
