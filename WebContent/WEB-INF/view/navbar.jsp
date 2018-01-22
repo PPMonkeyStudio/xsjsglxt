@@ -34,6 +34,7 @@
 <script src="<%=basePath%>js/jquery-confirm.js"></script>
 <!--------------------------------------------------------------------------------->
 <script src="<%=basePath%>js/jquery.bootstrap.wizard.js"></script>
+<script src="<%=basePath%>js/vue.js"></script>
 <script src="<%=basePath%>js/jquery.slimscroll.min.js"></script>
 <script src="<%=basePath%>js/klorofil-common.js"></script>
 <!--------------------------------------------------------------------------------->
