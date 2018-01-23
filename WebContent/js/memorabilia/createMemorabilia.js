@@ -8,7 +8,7 @@ var createConfirm = function()
 		columnClass: "col-md-12",
 		title:'<i class="fa fa-pencil-square-o"></i>填写大事记',
 		type:'green',
-		content:"<form id='memorabilia'><table class='table table-bordered' style='text-align: center;'>" +
+		content:"<form id='memorabiliaForm' name='memorabiliaForm'><table class='table table-bordered' style='text-align: center;'>" +
 				"<tr><td>大事记标题：</td><td><input name='memorabilia.memorabilia_title' class='form-control' type='text'></td>" +
 				"<td>时间：</td><td><input name='memorabilia.memorabilia_time' class='form-control timeDate' type='text'></td></tr>" +
 				"<tr><td>参与人员：</td><td colspan='3'><input name='memorabilia.memorabilia_join_human' class='form-control' type='text'></td></tr>" +
@@ -20,7 +20,34 @@ var createConfirm = function()
 				btnClass:'btn-blue',
 				action:function()
 				{
-					
+					for(var i=0;i<document.memorabiliaForm.elements.length-1;i++)
+				    {
+				     if(document.memorabiliaForm.elements[i].value=="")
+				     {
+				       toastr.error("当前表单不能有空项");
+				       document.memorabiliaForm.elements[i].focus();
+				       return false;
+				     }
+				    }
+					var formData = new FormData(document.getElementById("memorabiliaForm"));
+					$.ajax({
+						url:"/xsjsglxt/user/Memorabilia_saveMemorabilia",
+						 type: "POST",
+						 data: formData,
+						 processData: false,
+						 contentType: false,
+						 success:function(data){
+							 if(data=="saveSuccess")
+								 {
+								 toastr.success("保存成功！");
+								 }
+							 else
+								 {
+								 toastr.error("保存失败！");
+								 }
+							
+						 }
+					});
 				}
 			},
 			close:{

@@ -4,6 +4,8 @@ import com.xsjsglxt.dao.User.MemorabiliaDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_memorabilia;
 import com.xsjsglxt.service.User.MemorabiliaService;
 
+import util.TeamUtil;
+
 public class MemorabiliaServiceImpl implements MemorabiliaService {
 	private MemorabiliaDao memorabiliaDao;
 
@@ -18,7 +20,9 @@ public class MemorabiliaServiceImpl implements MemorabiliaService {
 	@Override
 	public String saveMemorabilia(xsjsglxt_memorabilia memorabilia) {
 		// TODO Auto-generated method stub
-
+		memorabilia.setMemorabilia_id(TeamUtil.getUuid());
+		memorabilia.setMemorabilia_gmt_create(TeamUtil.getStringSecond());
+		memorabilia.setMemorabilia_gmt_modified(TeamUtil.getStringSecond());
 		return memorabiliaDao.saveMemorablilia(memorabilia);
 	}
 
