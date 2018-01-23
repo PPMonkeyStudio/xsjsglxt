@@ -21,5 +21,8 @@
 		<action name="Meeting_*" class="com.xsjsglxt.action.User.MeetingAction" method="{1}">
 			<result name="intoMeeting">/WEB-INF/view/User/MeetRecords.jsp</result>
 		</action>
+		<action name="Memorabilia_*" class="com.xsjsglxt.action.User.MemorabiliaAction" method="{1}">
+			<result name="skipSuccess">/WEB-INF/view/User/Memorabilia.jsp</result>
+		</action>
 	</package>
 </struts>

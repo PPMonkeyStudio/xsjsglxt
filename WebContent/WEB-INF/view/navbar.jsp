@@ -85,7 +85,7 @@
 							href="<%=basePath%>team/Staff_page_staffList">人员</a></li>
 						<li class="teacher_control"><a>值班管理</a></li>
 						<li class="teacher_control"><a href="<%=basePath%>user/Meeting_skipToMeetRecords">会议记录</a></li>
-						<li class="teacher_control"><a>大事记</a></li>
+						<li class="teacher_control"><a href="<%=basePath%>user/Memorabilia_skipToMemorabilia">大事记</a></li>
 					</ul></li>
 				<!--  -->
 				<li class="dropdown" style="float: left;"><a
