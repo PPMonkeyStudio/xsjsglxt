@@ -16,6 +16,18 @@ var allInformation ="";
 
 window.onload= function()
 {
+	
+	$.datetimepicker.setLocale('ch');
+	$('.startTimeDate').datetimepicker({
+		yearStart : 1990, // 设置最小年份
+		yearEnd : 2050, // 设置最大年份
+		yearOffset : 0, // 年偏差
+		timepicker : false, // 关闭时间选项
+		format : 'Y-m-d', // 格式化日期年-月-日
+		minDate : '1900/01/01', // 设置最小日期
+		maxDate : '2030/01/01', // 设置最大日期
+	});
+	
 	 allInformation= new Vue({
 		el:'#allInformation',
 		data:{
@@ -25,6 +37,33 @@ window.onload= function()
 		}
 	});
 	loadData();
+}
+
+
+var changeSort = function(dom)
+{
+	memorabilia.querySort = dom.value;
+	loadData();
+}
+
+var changeSearchContent=function(dom)
+{
+	memorabilia.searchContent = dom.value;
+	loadData();
+}
+
+var changeTime = function(dom)
+{
+	if(dom.id=="timeStart")
+		{
+			memorabilia.create_time_start =dom.value;
+		}
+	else
+		{
+		memorabilia.create_time_end = dom.value;
+		}
+	loadData();
+		
 }
 
 var loadData = function()

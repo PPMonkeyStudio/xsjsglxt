@@ -130,13 +130,13 @@ public class MemorabiliaDaoImpl implements MemorabiliaDao {
 						&& memorabiliaListDTO.getMemorabilia_title().trim().length() > 0) {
 					memorabiliaListDTO.setMemorabilia_join_human(
 							memorabiliaListDTO.getMemorabilia_join_human().replaceAll(memorabiliaVO.getSearchContent(),
-									"<span color='red'>" + memorabiliaVO.getSearchContent() + "</span>"));
+									"<span style=\"color: red;\">" + memorabiliaVO.getSearchContent() + "</span>"));
 				}
 				if (memorabiliaListDTO.getMemorabilia_join_human() != null
 						&& memorabiliaListDTO.getMemorabilia_join_human().trim().length() > 0) {
 					memorabiliaListDTO.setMemorabilia_title(
 							memorabiliaListDTO.getMemorabilia_title().replaceAll(memorabiliaVO.getSearchContent(),
-									"<span color='red'>" + memorabiliaVO.getSearchContent() + "</span>"));
+									"<span style=\"color: red;\">" + memorabiliaVO.getSearchContent() + "</span>"));
 				}
 			}
 		}

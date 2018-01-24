@@ -26,10 +26,20 @@
 	<!-----------------------------------------主面板---------------------------------------------------------  -->
 	<div style="margin: 80px 0 0 0; float: left; width: 100%;" id="allInformation">
 		<div class="panel" style="width: 95%; margin: 20px auto; padding-left:20px; padding-right:20px;">
-			<div class="headDiv">
+			<div class="headDiv" style="padding-top: 10px;">
 				<button class="btn btn-default" onclick="createConfirm()"><i class="fa fa-pencil-square-o"></i>填写大事记</button>
+				
 				<div id="query" style="float: right;">
-					
+					<label>时间筛选</label>
+					<input class="form-control startTimeDate" type= "text" id="timeStart" style="width: 150px; display: inline-block;">
+					<label>至</label>
+					<input class="form-control startTimeDate"  type= "text" style="width: 150px; display: inline-block;" id="timeEnd">
+					<div class="input-group" style="margin-top: 10px;">				
+				      <input type="text" class="form-control" oninput="changeSearchContent(this)" placeholder="请输入搜索内容">
+				      <span class="input-group-btn">
+				        <button class="btn btn-default" type="button">search</button>
+				      </span>
+  				  </div>
 				</div>
 			</div>
 			
@@ -39,7 +49,7 @@
 						<tr style="background-color: #696969; color: white;">
 							<td>大事记名称</td>
 							<td>大事记参与人员</td>
-							<td><select class="form-control">
+							<td><select class="form-control" onclick="changeSort(this)">
 								<option value="desc">大事记发生时间（降序）</option>
 								<option value="asc">大事记发生时间（升序）</option>
 							</select> </td>
@@ -48,8 +58,8 @@
 					</thead>
 					<tbody>
 						<tr v-for="memorabilia in memorabiliaList">
-							<td>{{ memorabilia.memorabilia_title }}</td>
-							<td>{{ memorabilia.memorabilia_join_human }}</td>
+							<td><span v-html="memorabilia.memorabilia_title"></span></td>
+							<td><span v-html="memorabilia.memorabilia_join_human"></span></td>
 							<td>{{ memorabilia.memorabilia_time }}</td>
 							<td><div class='dropdown'><i class='dropdown-toggle fa fa-angle-double-down pageOperation'  data-toggle='dropdown' aria-hidden='true' aria-haspopup=true' aria-expanded='false'></i>
 								<ul class='dropdown-menu' aria-labelledby='dLabe' style='text-align:center; min-width: 100px;'>
@@ -80,18 +90,8 @@
 		
 		</div>
 	</div>
-	<script type="text/javascript">
-	$.datetimepicker.setLocale('ch');
-	$('.startTime').datetimepicker({
-		yearStart : 1990, // 设置最小年份
-		yearEnd : 2050, // 设置最大年份
-		yearOffset : 0, // 年偏差
-		timepicker : false, // 关闭时间选项
-		format : 'Y-m-d H:i', // 格式化日期年-月-日
-		minDate : '1900/01/01 00:00', // 设置最小日期
-		maxDate : '2030/01/01 00:00', // 设置最大日期
-	});
-	</script>
-	
 </body>
+	<script type="text/javascript">
+
+	</script>
 </html>
