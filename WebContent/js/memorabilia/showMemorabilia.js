@@ -16,6 +16,9 @@ var allInformation ="";
 
 window.onload= function()
 {
+	$('#timeStart').val("");
+	$('#timeEnd').val("");
+	$('#searchInput').val("");
 	 allInformation= new Vue({
 		el:'#allInformation',
 		data:{
@@ -54,6 +57,55 @@ var changeTime = function(dom)
 		
 }
 
+var skipToIndexPage =function()
+{
+	if(memorabilia.currPage==1)
+		{
+			toastr.error("已经是首页");
+		}
+	else
+		{
+			memorabilia.currPage=1;
+			loadData();
+		}
+}
+var skipToPrimaryPage = function()
+{
+	if(memorabilia.currPage==1)
+		{
+			toastr.error('已经是第一页');
+		}
+	else
+		{
+			memorabilia.currPage--;
+			loadData();
+		}
+}
+var skipToNextPage = function()
+{
+	if(memorabilia.currPage==memorabilia.pageCount)
+		{
+			toastr.error('已经是最后一页');
+		}
+	else
+		{
+			memorabilia.currPage++;
+			loadData();
+		}
+}
+var skipToLastPage = function()
+{
+	if(memorabilia.currPage==memorabilia.pageCount)
+		{
+			toastr.error('已经是末页');
+		}
+	else
+		{
+			memorabilia.currPage = memorabilia.pageCount;
+			loadData();
+		}
+}
+
 var loadData = function()
 {
 	var memorabiliaVOTemp ={
@@ -78,6 +130,10 @@ var loadData = function()
 			allInformation.currPage=jsonData.currPage;
 			allInformation.pageCount=jsonData.pageCount;
 			allInformation.memorabiliaList=jsonData.memorabiliaListDTO;
+			memorabilia.currPage = jsonData.currPage;
+			memorabilia.pageCount = jsonData.pageCount;
+			memorabilia.pageSize = jsonData.pageSize;
+			memorabilia.totalCount = jsonData.totalCount;
 		}
 	});
 }

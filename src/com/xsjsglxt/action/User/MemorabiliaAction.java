@@ -57,8 +57,14 @@ public class MemorabiliaAction extends ActionSupport {
 		response.getWriter().close();
 	}
 
-	public void getMemorabiliaById() {
+	public void getMemorabiliaById() throws IOException {
 		xsjsglxt_memorabilia memorabilia = memorabiliaService.getMemorabiliaById(memorabilia_id);
+		Gson gson = new Gson();
+		String result = gson.toJson(memorabilia);
+		response.setContentType("text/html;charset=utf-8");
+		response.getWriter().write(result);
+		response.getWriter().flush();
+		response.getWriter().close();
 	}
 
 	// ----------------------------------------------getter/setter------------------------------------------------------

@@ -90,10 +90,10 @@ public class MemorabiliaDaoImpl implements MemorabiliaDao {
 					+ "%' and memorabilia_join_human like '%" + memorabiliaVO.getSearchContent() + "%'";
 		}
 		if (memorabiliaVO.getCreate_time_start() != null && memorabiliaVO.getCreate_time_start().trim().length() > 0) {
-			hql = hql + " and memorabilia_time >= " + memorabiliaVO.getCreate_time_start();
+			hql = hql + " and memorabilia_time >= '" + memorabiliaVO.getCreate_time_start() + "'";
 		}
 		if (memorabiliaVO.getCreate_time_end() != null && memorabiliaVO.getCreate_time_end().trim().length() > 0) {
-			hql = hql + " and memorabilia_time <= " + memorabiliaVO.getCreate_time_end();
+			hql = hql + " and memorabilia_time <= '" + memorabiliaVO.getCreate_time_end() + "'";
 		}
 
 		Session session = this.getSession();
@@ -112,10 +112,10 @@ public class MemorabiliaDaoImpl implements MemorabiliaDao {
 					+ "%' and memorabilia_join_human like '%" + memorabiliaVO.getSearchContent() + "%'";
 		}
 		if (memorabiliaVO.getCreate_time_start() != null && memorabiliaVO.getCreate_time_start().trim().length() > 0) {
-			hql = hql + " and memorabilia_time >= " + memorabiliaVO.getCreate_time_start();
+			hql = hql + " and memorabilia_time >= '" + memorabiliaVO.getCreate_time_start() + "'";
 		}
 		if (memorabiliaVO.getCreate_time_end() != null && memorabiliaVO.getCreate_time_end().trim().length() > 0) {
-			hql = hql + " and memorabilia_time <= " + memorabiliaVO.getCreate_time_end();
+			hql = hql + " and memorabilia_time <= '" + memorabiliaVO.getCreate_time_end() + "'";
 		}
 		hql = hql + " order by memorabilia_time " + memorabiliaVO.getQuerySort();
 		System.out.println(hql);

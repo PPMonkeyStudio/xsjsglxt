@@ -19,6 +19,7 @@
 <!-- -----------------模态框js文件引入--------------------------------  -->
 <script type="text/javascript" src="<%=basePath %>js/memorabilia/createMemorabilia.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/memorabilia/showMemorabilia.js"></script> 
+<script type="text/javascript" src="<%=basePath %>js/memorabilia/managerMemorabilia.js"></script> 
 </head>
 <body>
 	<!-----------------------------------------引入导航条 ------------------------------------------------------>
@@ -30,14 +31,14 @@
 				<button class="btn btn-default" onclick="createConfirm()"><i class="fa fa-pencil-square-o"></i>填写大事记</button>
 				<div id="query" style="float: right;">
 				<label>时间筛选</label>
-				<input class="form-control startTime" type= "text" id="query_start_time_start" style="width: 150px; display: inline-block;">至
-				<input class="form-control startTime" type= "text" style="width: 150px; display: inline-block;" id="query_start_time_end">
+				<input class="form-control startTime" onchange="changeTime(this)" type= "text" id="timeStart" style="width: 150px; display: inline-block;">至
+				<input class="form-control startTime" onchange="changeTime(this)" type= "text" style="width: 150px; display: inline-block;" id="timeEnd">
 				<label>查询</label>
-				<input type="text" class="form-control" style="width: 250px; display: inline-block;" oninput="changeSearchContent(this)" placeholder="请输入搜索内容">
+				<input type="text" id="searchInput" class="form-control" style="width: 250px; display: inline-block;" oninput="changeSearchContent(this)" placeholder="请输入搜索内容">
 				</div>
 			</div>
 			
-			<div id="allInformation">
+			<div id="allInformation" style="margin-top: 10px;">
 				<table class="table table-bordered" style="text-align: center;">
 					<thead>
 						<tr style="background-color: #696969; color: white;">
@@ -78,11 +79,6 @@
 					</span>
 				</div>
 			</div>
-			
-			
-			
-
-		
 		</div>
 	</div>
 	<script type="text/javascript">
