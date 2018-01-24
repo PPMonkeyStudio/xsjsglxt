@@ -14,6 +14,9 @@
 	.pageOperation{
 		cursor: pointer;
 	}
+	.hideDiv{
+		display: none;
+	}
 </style>
 <title>大事记</title>
 <!-- -----------------模态框js文件引入--------------------------------  -->
@@ -37,8 +40,8 @@
 				<input type="text" id="searchInput" class="form-control" style="width: 250px; display: inline-block;" oninput="changeSearchContent(this)" placeholder="请输入搜索内容">
 				</div>
 			</div>
-			
-			<div id="allInformation" style="margin-top: 10px;">
+			<div id="loadingLayer"  style="margin: 0 auto; width: 45px;"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></div>
+			<div id="allInformation" class="hideDiv" style="margin-top: 10px;">
 				<table class="table table-bordered" style="text-align: center;">
 					<thead>
 						<tr style="background-color: #696969; color: white;">

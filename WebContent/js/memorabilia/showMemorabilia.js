@@ -108,6 +108,8 @@ var skipToLastPage = function()
 
 var loadData = function()
 {
+	$("#allInformation").hide();
+	$("#loadingLayer").show();
 	var memorabiliaVOTemp ={
 			"memorabiliaVO.searchContent":memorabilia.searchContent,
 			"memorabiliaVO.create_time_start":memorabilia.create_time_start,
@@ -134,6 +136,9 @@ var loadData = function()
 			memorabilia.pageCount = jsonData.pageCount;
 			memorabilia.pageSize = jsonData.pageSize;
 			memorabilia.totalCount = jsonData.totalCount;
+			$("#loadingLayer").hide();
+			$("#allInformation").show();
 		}
 	});
+
 }

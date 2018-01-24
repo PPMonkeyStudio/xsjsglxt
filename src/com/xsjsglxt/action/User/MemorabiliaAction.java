@@ -52,7 +52,7 @@ public class MemorabiliaAction extends ActionSupport {
 		response.getWriter().close();
 	}
 
-	public void getMemorabiliaList() throws IOException {
+	public void getMemorabiliaList() throws IOException, InterruptedException {
 		memorabiliaByPageAndSearchVO memorabiliaVO = memorabiliaService.getMemorabiliaByList(this.memorabiliaVO);
 		Gson gson = new Gson();
 		String result = gson.toJson(memorabiliaVO);

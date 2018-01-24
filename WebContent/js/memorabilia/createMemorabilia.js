@@ -8,18 +8,21 @@ var createConfirm = function()
 		columnClass: "col-md-12",
 		title:'<i class="fa fa-pencil-square-o"></i>填写大事记',
 		type:'green',
-		content:"<form id='memorabiliaForm' name='memorabiliaForm'><table class='table table-bordered' style='text-align: center;'>" +
+		content:"<div id='addLoadingLayer' class='hideDiv' style='margin: 0 auto; width: 45px;'><i class='fa fa-spinner fa-spin fa-3x fa-fw'></i></div>" +
+				"<div id='confirmDiv'><form id='memorabiliaForm' name='memorabiliaForm'><table class='table table-bordered' style='text-align: center;'>" +
 				"<tr><td>大事记标题：</td><td><input name='memorabilia.memorabilia_title' class='form-control' type='text'></td>" +
 				"<td>时间：</td><td><input name='memorabilia.memorabilia_time' class='form-control timeDate' type='text'></td></tr>" +
 				"<tr><td>参与人员：</td><td colspan='3'><input name='memorabilia.memorabilia_join_human' class='form-control' type='text'></td></tr>" +
 				"<tr><td>大事记内容：</td><td colspan='3'><textarea rows='10' class='form-control' name='memorabilia.memorabilia_content'></textarea></td><tr>" +
-				"</table></form>",
+				"</table></form></div>",
 		buttons:{
 			save:{
 				text:'<i class="fa fa-upload" aria-hidden="true"></i>保存',
 				btnClass:'btn-blue',
 				action:function()
 				{
+					$("#confirmDiv").hide();
+					$("#addLoadingLayer").show();
 					for(var i=0;i<document.memorabiliaForm.elements.length-1;i++)
 				    {
 				     if(document.memorabiliaForm.elements[i].value=="")
