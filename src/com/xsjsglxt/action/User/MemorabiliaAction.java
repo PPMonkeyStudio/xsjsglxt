@@ -12,6 +12,8 @@ import com.xsjsglxt.domain.DO.xsjsglxt_memorabilia;
 import com.xsjsglxt.domain.VO.User.memorabiliaByPageAndSearchVO;
 import com.xsjsglxt.service.User.MemorabiliaService;
 
+import util.TeamUtil;
+
 public class MemorabiliaAction extends ActionSupport {
 	private MemorabiliaService memorabiliaService;
 	private String memorabilia_id;
@@ -32,6 +34,9 @@ public class MemorabiliaAction extends ActionSupport {
 	}
 
 	public void updateMemorabilia() throws IOException {
+		memorabilia.setMemorabilia_gmt_create(
+				memorabiliaService.getMemorabiliaById(memorabilia.getMemorabilia_id()).getMemorabilia_gmt_create());
+		memorabilia.setMemorabilia_gmt_modified(TeamUtil.getStringSecond());
 		String result = memorabiliaService.updateMemorabilia(memorabilia);
 		response.setContentType("text/html;charset=utf-8");
 		response.getWriter().write(result);

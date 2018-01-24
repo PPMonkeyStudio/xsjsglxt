@@ -62,7 +62,7 @@ public class MemorabiliaDaoImpl implements MemorabiliaDao {
 
 		Session session = this.getSession();
 
-		return (xsjsglxt_memorabilia) session.load(xsjsglxt_memorabilia.class, memorabilia_id);
+		return (xsjsglxt_memorabilia) session.get(xsjsglxt_memorabilia.class, memorabilia_id);
 	}
 
 	@Override
@@ -118,7 +118,6 @@ public class MemorabiliaDaoImpl implements MemorabiliaDao {
 			hql = hql + " and memorabilia_time <= '" + memorabiliaVO.getCreate_time_end() + "'";
 		}
 		hql = hql + " order by memorabilia_time " + memorabiliaVO.getQuerySort();
-		System.out.println(hql);
 		Session session = this.getSession();
 		Query query = session.createQuery(hql)
 				.setFirstResult((memorabiliaVO.getCurrPage() - 1) * memorabiliaVO.getPageSize())

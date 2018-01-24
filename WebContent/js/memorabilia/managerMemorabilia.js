@@ -69,7 +69,7 @@ var updateMeetingRecords = function(dom)
 				"<tr><td>大事记标题：</td><td><input name='memorabilia.memorabilia_title' value='"+jsonData.memorabilia_title+"' class='form-control' type='text'></td>" +
 				"<td>时间：</td><td><input name='memorabilia.memorabilia_time' value='"+jsonData.memorabilia_time+"' class='form-control timeDate' type='text'></td></tr>" +
 				"<tr><td>参与人员：</td><td colspan='3'><input name='memorabilia.memorabilia_join_human' value='"+jsonData.memorabilia_join_human+"' class='form-control' type='text'></td></tr>" +
-				"<tr><td>大事记内容：</td><td colspan='3'><textarea rows='10' class='form-control' value='"+jsonData.memorabilia_content+"' name='memorabilia.memorabilia_content'></textarea></td><tr>" +
+				"<tr><td>大事记内容：</td><td colspan='3'><textarea rows='10' class='form-control' name='memorabilia.memorabilia_content'>"+jsonData.memorabilia_content+"</textarea></td><tr>" +
 				"</table></form>",
 				buttons:{
 					update:{
@@ -77,7 +77,37 @@ var updateMeetingRecords = function(dom)
 						btnClass:"btn-blue",
 						action:function()
 						{
-							
+							for(var i=0;i<document.UpdateMemorabiliaForm.elements.length-1;i++)
+						    {
+						     if(document.UpdateMemorabiliaForm.elements[i].value=="")
+						     {
+						       toastr.error("当前表单不能有空项");
+						       document.UpdateMemorabiliaForm.elements[i].focus();
+						       return false;
+						     }
+						    }
+							var formData = new FormData(document.getElementById('UpdateMemorabiliaForm'));
+							formData.append("memorabilia.memorabilia_id",dom.id);
+							$.ajax({
+								url:'/xsjsglxt/user/Memorabilia_updateMemorabilia',
+								type:'POST',
+								processData: false,
+								contentType: false,
+								data:formData,
+								success:function(data)
+								{
+									if(data=="updateSuccess")
+										{
+											toastr.success("修改成功");
+											memorabilia.currPage = 1;
+											loadData();
+										}
+									else
+										{
+											toastr.error("修改失败");
+										}
+								}
+							});
 						}
 					},
 					close:{
