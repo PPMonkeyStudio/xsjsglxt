@@ -48,6 +48,7 @@ var createConfirm = function()
 							
 						 }
 					});
+					loadData();
 				}
 			},
 			close:{

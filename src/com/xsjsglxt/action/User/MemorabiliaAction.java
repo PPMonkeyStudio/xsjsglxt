@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_memorabilia;
 import com.xsjsglxt.domain.VO.User.memorabiliaByPageAndSearchVO;
@@ -40,6 +41,16 @@ public class MemorabiliaAction extends ActionSupport {
 
 	public void deleteMemorabilia() throws IOException {
 		String result = memorabiliaService.delteMemorabilia(memorabilia_id);
+		response.setContentType("text/html;charset=utf-8");
+		response.getWriter().write(result);
+		response.getWriter().flush();
+		response.getWriter().close();
+	}
+
+	public void getMemorabiliaList() throws IOException {
+		memorabiliaByPageAndSearchVO memorabiliaVO = memorabiliaService.getMemorabiliaByList(this.memorabiliaVO);
+		Gson gson = new Gson();
+		String result = gson.toJson(memorabiliaVO);
 		response.setContentType("text/html;charset=utf-8");
 		response.getWriter().write(result);
 		response.getWriter().flush();
