@@ -74,7 +74,7 @@ var ajaxSetTable = function(jsonData)
 				"<td>"+jsonData.meetDTO[i].meeting_end_time+"</td>" +
 				"<td><div class='dropdown'><i class='dropdown-toggle fa fa-angle-double-down pageOperation'  data-toggle='dropdown' aria-hidden='true' aria-haspopup=true' aria-expanded='false'></i>" +
 						"<ul class='dropdown-menu' aria-labelledby='dLabe' style='text-align:center; min-width: 100px;'>" +
-						"<li id='"+jsonData.meetDTO[i].meeting_id+"' class='pageOperation'><a>导出</a></li>" +
+						"<li id='"+jsonData.meetDTO[i].meeting_id+"' onclick='exportMeetingRecord(this)' class='pageOperation'><a>导出</a></li>" +
 						"<li id='"+jsonData.meetDTO[i].meeting_id+"'  onclick='updateMeetingRecords(this)' class='pageOperation'><a>修改</a></li>" +
 						"<li id='"+jsonData.meetDTO[i].meeting_id+"' onclick='deleteMeetingRecords(this)'  class='pageOperation'><a>删除</a></li>" +
 						"</ul></div></td>" +

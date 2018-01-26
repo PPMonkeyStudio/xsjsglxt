@@ -25,13 +25,18 @@
 <script type="text/javascript" src="<%=basePath %>js/memorabilia/managerMemorabilia.js"></script> 
 </head>
 <body>
+<%-- 	<div id="hideLayer" style="margin: 0 auto; background-color: white; position: fixed; width: 100%; height: 2000px; z-index: 99999999999999999999999999999999999999999;">
+		<div style="width: 80px;height: 79px; margin: 0 auto; margin-top: 200px;"><img alt="" src="<%=basePath %>img/hui.png">
+			<span style="color: black;">权限加载中</span>
+		</div>
+	</div> --%>
 	<!-----------------------------------------引入导航条 ------------------------------------------------------>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
 	<!-----------------------------------------主面板---------------------------------------------------------  -->
 	<div style="margin: 80px 0 0 0; float: left; width: 100%;">
 		<div class="panel" style="width: 95%; margin: 20px auto; padding-left:20px; padding-right:20px;">
 			<div class="headDiv" style="padding-top: 10px;">
-				<button class="btn btn-default" onclick="createConfirm()"><i class="fa fa-pencil-square-o"></i>填写大事记</button>
+				<button class="btn btn-default managerRole" onclick="createConfirm()"><i class="fa fa-pencil-square-o"></i>填写大事记</button>
 				<div id="query" style="float: right;">
 				<label>时间筛选</label>
 				<input class="form-control startTime" onchange="changeTime(this)" type= "text" id="timeStart" style="width: 150px; display: inline-block;">至
@@ -61,9 +66,9 @@
 							<td>{{ memorabilia.memorabilia_time }}</td>
 							<td><div class='dropdown'><i class='dropdown-toggle fa fa-angle-double-down pageOperation'  data-toggle='dropdown' aria-hidden='true' aria-haspopup=true' aria-expanded='false'></i>
 								<ul class='dropdown-menu' aria-labelledby='dLabe' style='text-align:center; min-width: 100px;'>
-								<li :id='memorabilia.memorabilia_id' class='pageOperation'><a>导出</a></li>
-								<li :id='memorabilia.memorabilia_id'  onclick='updateMeetingRecords(this)' class='pageOperation'><a>修改</a></li>
-								<li :id='memorabilia.memorabilia_id' onclick='deleteMeetingRecords(this)'  class='pageOperation'><a>删除</a></li>
+								<li :id='memorabilia.memorabilia_id' onclick='exportMemorabiliaWord(this)' class='pageOperation'><a>导出</a></li>
+								<li class="managerRole pageOperation" :id='memorabilia.memorabilia_id'  onclick='updateMeetingRecords(this)'><a>修改</a></li>
+								<li class="managerRole pageOperation" :id='memorabilia.memorabilia_id' onclick='deleteMeetingRecords(this)'><a>删除</a></li>
 								</ul></div>	
 							</td>
 						</tr>

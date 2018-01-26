@@ -123,3 +123,7 @@ var updateMeetingRecords = function(dom)
 		}
 	});
 }
+var exportMemorabiliaWord = function(dom)
+{
+	window.location="/xsjsglxt/user/Memorabilia_exportMemorabiliaWord?memorabilia_id="+dom.id;
+}

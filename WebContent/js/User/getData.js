@@ -161,9 +161,9 @@ function loadUserBack() {
 		currPage.innerHTML = result.currPage;
 		totalPage.innerHTML = result.totalPage;
 		skipPage.value = result.currPage;
-//		deleteByPower("user_user_power", "usePower", "managerPower");
 		$("#loadingDiv").addClass("hideDiv");
 		$("#tableDiv").removeClass("hideDiv");
+		deleteByPower('user_user_manager_power','userRole','managerRole');
 	}
 }
 

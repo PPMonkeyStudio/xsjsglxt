@@ -138,6 +138,7 @@ var loadData = function()
 			memorabilia.totalCount = jsonData.totalCount;
 			$("#loadingLayer").hide();
 			$("#allInformation").show();
+			deleteByPower('user_army_manager_power','userRole','managerRole');
 		}
 	});
 

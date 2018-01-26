@@ -1,6 +1,9 @@
 package com.xsjsglxt.action.User;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,6 +15,9 @@ import com.xsjsglxt.domain.DO.xsjsglxt_memorabilia;
 import com.xsjsglxt.domain.VO.User.memorabiliaByPageAndSearchVO;
 import com.xsjsglxt.service.User.MemorabiliaService;
 
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 import util.TeamUtil;
 
 public class MemorabiliaAction extends ActionSupport {
@@ -70,6 +76,28 @@ public class MemorabiliaAction extends ActionSupport {
 		response.getWriter().write(result);
 		response.getWriter().flush();
 		response.getWriter().close();
+	}
+
+	public void exportMemorabiliaWord() throws IOException, TemplateException {
+		xsjsglxt_memorabilia memorabilia = memorabiliaService.getMemorabiliaById(memorabilia_id);
+		String filename = memorabilia.getMemorabilia_title();
+		Map<String, String> mapData = new HashMap<String, String>();
+		mapData.put("year", memorabilia.getMemorabilia_time().substring(0, 4));
+		mapData.put("title", memorabilia.getMemorabilia_title());
+		mapData.put("human", memorabilia.getMemorabilia_join_human());
+		mapData.put("content", memorabilia.getMemorabilia_content());
+		mapData.put("time", memorabilia.getMemorabilia_time());
+		Configuration configuration = new Configuration();
+		configuration.setDefaultEncoding("utf-8");
+		configuration.setClassForTemplateLoading(this.getClass(), "");
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/msword");
+		response.addHeader("Content-Disposition", "attachment;filename=\"" + filename + ".doc\"");
+		PrintWriter pw = response.getWriter();
+		Template t = configuration.getTemplate("memorabilia.ftl", "utf-8");
+		t.process(mapData, pw);
+		pw.flush();
+		pw.close();
 	}
 
 	// ----------------------------------------------getter/setter------------------------------------------------------

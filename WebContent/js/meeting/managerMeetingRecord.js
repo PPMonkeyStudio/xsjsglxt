@@ -172,3 +172,7 @@ var updateMeetingRecords=function(dom)
 		}
 	});
 }
+var exportMeetingRecord = function(dom)
+{
+	window.location="/xsjsglxt/user/Meeting_exportMeetingRecord?meeting_id="+dom.id;
+}
