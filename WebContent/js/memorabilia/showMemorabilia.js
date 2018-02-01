@@ -53,7 +53,7 @@ var changeTime = function(dom)
 		}
 	else
 		{
-		memorabilia.create_time_end = dom.value;
+			memorabilia.create_time_end = dom.value;
 		}
 	loadData();
 		
