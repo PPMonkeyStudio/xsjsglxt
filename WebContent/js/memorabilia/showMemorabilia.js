@@ -19,7 +19,7 @@ window.onload= function()
 	$('#timeStart').val("");
 	$('#timeEnd').val("");
 	$('#searchInput').val("");
-	 allInformation= new Vue({
+	allInformation= new Vue({
 		el:'#allInformation',
 		data:{
 			currPage:'',
@@ -34,12 +34,14 @@ window.onload= function()
 var changeSort = function(dom)
 {
 	memorabilia.querySort = dom.value;
+	memorabilia.currPage=1;
 	loadData();
 }
 
 var changeSearchContent=function(dom)
 {
 	memorabilia.searchContent = dom.value;
+	memorabilia.currPage=1;
 	loadData();
 }
 
