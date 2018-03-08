@@ -52,7 +52,7 @@
 						<tr style="background-color: #696969; color: white;">
 							<td>大事记名称</td>
 							<td>大事记参与人员</td>
-							<td><select class="form-control" onclick="changeSort(this)">
+							<td><select class="form-control" onchange="changeSort(this)">
 								<option value="desc">大事记发生时间（降序）</option>
 								<option value="asc">大事记发生时间（升序）</option>
 							</select> </td>
