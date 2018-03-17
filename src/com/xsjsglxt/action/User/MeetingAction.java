@@ -54,6 +54,7 @@ public class MeetingAction extends ActionSupport {
 		meetingByPageAndSerarchVO meetVOReturn = meetingService.getMeetingByPageAndList(meetVO);
 		Gson gson = new Gson();
 		String result = gson.toJson(meetVOReturn);
+		System.out.println(result + "打印数据");
 		System.out.println(result);
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter write = response.getWriter();
