@@ -43,6 +43,7 @@ var createConfirm = function()
 							 if(data=="saveSuccess")
 								 {
 								 toastr.success("保存成功！");
+								 loadData();
 								 }
 							 else
 								 {

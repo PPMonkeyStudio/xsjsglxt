@@ -80,7 +80,6 @@ public class MemorabiliaAction extends ActionSupport {
 
 	public void exportMemorabiliaWord() throws IOException, TemplateException {
 		xsjsglxt_memorabilia memorabilia = memorabiliaService.getMemorabiliaById(memorabilia_id);
-		String filename = memorabilia.getMemorabilia_title();
 		Map<String, String> mapData = new HashMap<String, String>();
 		mapData.put("year", memorabilia.getMemorabilia_time().substring(0, 4));
 		mapData.put("title", memorabilia.getMemorabilia_title());
@@ -92,7 +91,9 @@ public class MemorabiliaAction extends ActionSupport {
 		configuration.setClassForTemplateLoading(this.getClass(), "");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/msword");
-		response.addHeader("Content-Disposition", "attachment;filename=\"" + filename + ".doc\"");
+		String filename = memorabilia.getMemorabilia_title();
+		response.addHeader("Content-Disposition",
+				"attachment;filename=\"" + new String(filename.getBytes(), "ISO-8859-1") + ".doc\"");
 		PrintWriter pw = response.getWriter();
 		Template t = configuration.getTemplate("memorabilia.ftl", "utf-8");
 		t.process(mapData, pw);

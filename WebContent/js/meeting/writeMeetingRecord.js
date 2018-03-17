@@ -53,7 +53,26 @@ var createConfirm = function()
 								 {
 								 toastr.error("保存失败！");
 								 }
-							
+							 showLoading();
+								var meetVOPostTemp={
+										"meetVO.queryTitle":meetVO.queryTitle,
+										"meetVO.startTimeSort":meetVO.startTimeSort,
+										"meetVO.query_start_time_start":meetVO.query_start_time_start,
+										"meetVO.query_start_time_end":meetVO.query_start_time_end,
+										"meetVO.pageCount":meetVO.pageCount,
+										"meetVO.currPage":meetVO.currPage,
+										"meetVO.pageSize":meetVO.pageSize,
+										"meetVO.totalCount":meetVO.totalCount
+								}
+								$.ajax({
+									url:"/xsjsglxt/user/Meeting_showMeetingByPageAndList",
+									type:"POST",		
+									data: meetVOPostTemp,
+									success:function(data){
+										var jsonData = JSON.parse(data);
+										ajaxSetTable(jsonData);
+									}
+								});
 						 }
 					});
 				}

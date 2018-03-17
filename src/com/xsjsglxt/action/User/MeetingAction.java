@@ -119,7 +119,8 @@ public class MeetingAction extends ActionSupport {
 		response.setCharacterEncoding("utf-8");
 		// 设置响应的编码方式(以utf-8的方式将字符编码成字节)
 		response.setContentType("application/msword");
-		response.addHeader("Content-Disposition", "attachment;filename=\"" + filename + ".doc\"");
+		response.addHeader("Content-Disposition",
+				"attachment;filename=\"" + new String(filename.getBytes(), "ISO-8859-1") + ".doc\"");
 		PrintWriter pw = response.getWriter();
 		Template t = configuration.getTemplate("meetingRecord.ftl", "utf-8");
 		t.process(mapData, pw);
