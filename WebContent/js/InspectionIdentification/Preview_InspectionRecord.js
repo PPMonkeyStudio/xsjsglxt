@@ -111,7 +111,7 @@ function Preview_InspectionRecord(obj) {
 						}
 					},
 					'修改' : {
-						btnClass : 'btn-orange',
+						btnClass : 'btn-orange managerPower',
 						action : function() {
 							jc.close();
 							Update_InspectionRecord(obj);

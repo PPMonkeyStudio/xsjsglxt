@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <%
 	String path = request.getContextPath();
@@ -17,11 +18,14 @@
 <link rel="stylesheet" href="<%=basePath%>css/bootstrap-select.min.css">
 <script type="text/javascript" src="<%=basePath%>js/bootstrap-select.js"></script>
 <!--------------------------------------------------------------------------------->
-<link rel="stylesheet" href="<%=basePath%>css/navbar/chartist-custom.css">
+<link rel="stylesheet"
+	href="<%=basePath%>css/navbar/chartist-custom.css">
 <link rel="stylesheet" href="<%=basePath%>css/navbar/main.css">
-<link rel="stylesheet" href="<%=basePath%>css/navbar/font-awesome.min.css">
+<link rel="stylesheet"
+	href="<%=basePath%>css/navbar/font-awesome.min.css">
 <link rel="stylesheet" href="<%=basePath%>css/navbar/style.css">
 <link rel="stylesheet" href="<%=basePath%>css/table.css">
+<link rel="stylesheet" href="<%=basePath%>css/login.css">
 <!--------------------------------------------------------------------------------->
 <link rel="stylesheet" href="<%=basePath%>css/toastr.css" />
 <script type="text/javascript" src="<%=basePath%>js/toastr.js"></script>
@@ -35,23 +39,17 @@
 <title>刑事技术管理系统</title>
 </head>
 <body>
-	<div class="panel" style="width: 550px; margin: 100px auto;">
-		<div class="panel-heading">
-			<div>
-				<%-- <img src="<%=basePath%>img/logo.jpg" height="40px"> --%>
+	
+	<div class="bg">
+			<div class="bg_center">
+				<p>刑事技术管理系统</p>
+				<div class="input_box"><label>帐户</label><input type="text" id="login_username"/></div>
+				<div class="input_box"><label>密码</label><input type="password" id="login_password"/></div>
+				<div class="button_box">
+					<div>重置信息</div>
+					<div onclick="login()">确认登录</div>
+				</div>
 			</div>
-			<h2 style="text-align: center;">刑事技术管理系统</h2>
-		</div>
-		<div class="panel-body" style="margin: 0 0 20px 0;">
-			<div class="form-group">
-				<input type="email" class="form-control" id="login_username" placeholder="用户名">
-			</div>
-			<div class="form-group">
-				<input type="password" class="form-control" id="login_password" placeholder="密码">
-			</div>
-			<br>
-			<button id="button_login" class="btn btn-primary  btn-block" onclick="login()">登录</button>
-		</div>
 	</div>
 </body>
 </html>

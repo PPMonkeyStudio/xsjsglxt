@@ -13,7 +13,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.tomcat.util.codec.binary.Base64;
-import org.junit.Test;
 
 public class TeamUtil {
 
@@ -70,6 +69,20 @@ public class TeamUtil {
 		} catch (ParseException e) {
 			e.printStackTrace();
 			return "0000-00-00";
+		}
+
+	}
+
+	public static String yearAndMonth() {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMM");
+		Date secondDate = new Date();
+		String date = formatter.format(secondDate);
+		try {
+			secondDate = formatter.parse(date);
+			return date;
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return "0000-00";
 		}
 
 	}
@@ -179,6 +192,7 @@ public class TeamUtil {
 		return year;
 	}
 
+	// 获取当前年月
 	// 两个整数相除求百分数
 	public static String getPercent(int a, int b) {
 		if (a == 0 && b > 0) {
@@ -194,7 +208,6 @@ public class TeamUtil {
 		return "" + nt.format(percent);
 	}
 
-	@Test
 	public void tettt() {
 		int i = 9;
 		String k;

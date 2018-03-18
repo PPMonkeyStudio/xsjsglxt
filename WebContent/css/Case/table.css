@@ -1,0 +1,35 @@
+.panel-body table {
+	width: 70%;
+	margin: auto;
+}
+
+.panel-body table tbody tr {
+	margin-top: 10px;
+}
+
+.panel-body table tbody tr td:nth-child(even) {
+	padding-right: 10px;
+	width: 180px;
+}
+
+.panel-body table tbody tr td:nth-child(odd) {
+	padding-left: 10px;
+	/* width: 100px; */
+}
+
+.fancy-checkbox {
+	margin-left: 10px;
+	float: left;
+}
+
+.modal-body div table tbody tr td input, select, textarea {
+	margin-top: 6px;
+}
+
+.modal-body div table tbody tr td select {
+	margin-top: 6px;
+}
+
+.modal-body div table tbody tr td textarea {
+	margin-top: 6px;
+}

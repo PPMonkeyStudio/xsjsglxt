@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="lostMobilephoneAction" class="com.xsjsglxt.action.Case.LostMobilephoneAction"
+		scope="prototype">
+		<property name="lostMobilephoneService" ref="lostMobilephoneService"></property>
+	</bean>
+
+	<bean id="lostMobilephoneService" class="com.xsjsglxt.service.impl.Case.LostMobilephoneServiceImpl">
+		<property name="lostMobilephoneDao" ref="lostMobilephoneDao"></property>
+	</bean>
+
+	<bean id="lostMobilephoneDao" class="com.xsjsglxt.dao.impl.Case.LostMobilephoneDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+
+</beans>

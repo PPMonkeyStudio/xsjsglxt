@@ -1,0 +1,52 @@
+@CHARSET "UTF-8";
+/* CaseDetail.css start*/
+.button {
+	margin-left: 20px;
+	float: left;
+	position: absolute;
+}
+
+.button_return {
+	margin-top: 6px;
+}
+
+.button_change {
+	margin-top: 80px;
+}
+
+.button_del {
+	margin-top: 120px;
+}
+/* CaseDetail.css end*/
+/* sitemanagement.css start */
+a {
+	cursor: pointer;
+}
+
+.table-condensed thead tr>th {
+	text-align: center;
+}
+
+.table-condensed tbody>tr>td {
+	text-align: center;
+	font-size: 15px;
+}
+
+#newQuery table input {
+	width: 50%;
+}
+
+#newQuery table tbody tr td:nth-child(2) select {
+	margin-top: 6px;
+	width: 50%;
+	float: left;
+}
+
+#newQuery table selcet[id="exploration_personnel"] {
+	width: 100%;
+}
+
+.check_del {
+	margrin: 10px;
+}
+/* sitemanagement.css end */

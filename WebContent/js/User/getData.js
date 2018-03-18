@@ -10,7 +10,21 @@ window.onload = function() {
 	xmlHttp.onreadystatechange = loadUserBack;
 }
 
+function cleanInput()
+{
+	$("#addUserForm input").val("");
+}
+
 function addUser() {
+	for(var i=0;i<document.addUserForm.elements.length-1;i++)
+    {
+     if(document.addUserForm.elements[i].value=="")
+     {
+       toastr.error("当前表单不能有空项");
+       document.form1.elements[i].focus();
+       return false;
+     }
+    }
 	$("#addContent").addClass("hideDiv");
 	$("#addLoadingDiv").removeClass("hideDiv");
 	xmlHttp.open("POST", "/xsjsglxt/user/User_addUser", true);
@@ -135,10 +149,10 @@ function loadUserBack() {
 					+ "<td>"
 					+ "<button onclick='deleteUser(this)' value='"
 					+ result.list[i].user_id
-					+ "' class='btn btn-danger'>删除</button>"
+					+ "' class='btn btn-danger managerPower'>删除</button>"
 					+ "<button onclick='getUserById(this)' value='"
 					+ result.list[i].user_id
-					+ "' data-toggle='modal' data-target='#updateUser' style='margin-left: 5px;' class='btn btn-primary'>修改</button>"
+					+ "' data-toggle='modal' data-target='#updateUser' style='margin-left: 5px;' class='btn btn-primary managerPower'>修改</button>"
 					+ "</td></tr>";
 		}
 		hideQueryString.value = result.queryString;
@@ -149,6 +163,7 @@ function loadUserBack() {
 		skipPage.value = result.currPage;
 		$("#loadingDiv").addClass("hideDiv");
 		$("#tableDiv").removeClass("hideDiv");
+		deleteByPower('user_user_manager_power','userRole','managerRole');
 	}
 }
 

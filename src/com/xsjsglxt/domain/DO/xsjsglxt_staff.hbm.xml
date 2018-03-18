@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-12-19 8:29:39 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_staff" table="XSJSGLXT_STAFF">
+        <id name="xsjsglxt_staff_id" type="java.lang.String">
+            <column name="XSJSGLXT_STAFF_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="staff_name" type="java.lang.String">
+            <column name="STAFF_NAME" />
+        </property>
+        <property name="staff_sex" type="java.lang.String">
+            <column name="STAFF_SEX" />
+        </property>
+        <property name="staff_age" type="java.lang.String">
+            <column name="STAFF_AGE" />
+        </property>
+        <property name="staff_nation" type="java.lang.String">
+            <column name="STAFF_NATION" />
+        </property>
+        <property name="staff_nativePlace" type="java.lang.String">
+            <column name="STAFF_NATIVEPLACE" />
+        </property>
+        <property name="staff_birthday" type="java.lang.String">
+            <column name="STAFF_BIRTHDAY" />
+        </property>
+        <property name="staff_idNumber" type="java.lang.String">
+            <column name="STAFF_IDNUMBER" />
+        </property>
+        <property name="staff_address" type="java.lang.String">
+            <column name="STAFF_ADDRESS" />
+        </property>
+        <property name="staff_MaxEducationalBackground" type="java.lang.String">
+            <column name="STAFF_MAXEDUCATIONALBACKGROUND" />
+        </property>
+        <property name="staff_politicalStatus" type="java.lang.String">
+            <column name="STAFF_POLITICALSTATUS" />
+        </property>
+        <property name="staff_joinPartyTime" type="java.lang.String">
+            <column name="STAFF_JOINPARTYTIME" />
+        </property>
+        <property name="staff_joinWorkTime" type="java.lang.String">
+            <column name="STAFF_JOINWORKTIME" />
+        </property>
+        <property name="staff_alarm" type="java.lang.String">
+            <column name="STAFF_ALARM" />
+        </property>
+        <property name="staff_thePoliceTime" type="java.lang.String">
+            <column name="STAFF_THEPOLICETIME" />
+        </property>
+        <property name="staff_isItFormal" type="java.lang.String">
+            <column name="STAFF_ISITFORMAL" />
+        </property>
+        <property name="staff_phone" type="java.lang.String">
+            <column name="STAFF_PHONE" />
+        </property>
+        <property name="staff_throughThePolice" type="java.lang.String">
+            <column name="STAFF_THROUGHTHEPOLICE" />
+        </property>
+        <property name="staff_homephone" type="java.lang.String">
+            <column name="STAFF_HOMEPHONE" />
+        </property>
+        <property name="staff_QQ" type="java.lang.String">
+            <column name="STAFF_QQ" />
+        </property>
+        <property name="staff_weixin" type="java.lang.String">
+            <column name="STAFF_WEIXIN" />
+        </property>
+        <property name="staff_outEmail" type="java.lang.String">
+            <column name="STAFF_OUTEMAIL" />
+        </property>
+        <property name="staff_inEmail" type="java.lang.String">
+            <column name="STAFF_INEMAIL" />
+        </property>
+        <property name="staff_photo" type="java.lang.String">
+            <column name="STAFF_PHOTO" />
+        </property>
+        <property name="staff_contactsName" type="java.lang.String">
+            <column name="STAFF_CONTACTSNAME" />
+        </property>
+        <property name="staff_contactsPhone" type="java.lang.String">
+            <column name="STAFF_CONTACTSPHONE" />
+        </property>
+        <property name="staff_contactsRelationship" type="java.lang.String">
+            <column name="STAFF_CONTACTSRELATIONSHIP" />
+        </property>
+        <property name="staff_contactsWeiXin" type="java.lang.String">
+            <column name="STAFF_CONTACTSWEIXIN" />
+        </property>
+        <property name="staff_contactsWorkSpace" type="java.lang.String">
+            <column name="STAFF_CONTACTSWORKSPACE" />
+        </property>
+        <property name="staff_contactsPosition" type="java.lang.String">
+            <column name="STAFF_CONTACTSPOSITION" />
+        </property>
+        <property name="staff_contactsRemark" type="java.lang.String">
+            <column name="STAFF_CONTACTSREMARK" />
+        </property>
+        <property name="staff_gmt_create" type="java.lang.String">
+            <column name="STAFF_GMT_CREATE" />
+        </property>
+        <property name="staff_gmt_modified" type="java.lang.String">
+            <column name="STAFF_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>
