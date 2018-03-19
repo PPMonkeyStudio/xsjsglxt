@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-3-19 16:09:45 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_staffWork" table="XSJSGLXT_STAFFWORK">
+        <id name="xsjsglxt_staffWork_id" type="java.lang.String">
+            <column name="XSJSGLXT_STAFFWORK_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="staffWork_staff" type="java.lang.String">
+            <column name="STAFFWORK_STAFF" />
+        </property>
+        <property name="staffWork_address" type="java.lang.String">
+            <column name="STAFFWORK_ADDRESS" />
+        </property>
+        <property name="staffWork_duty" type="java.lang.String">
+            <column name="STAFFWORK_DUTY" />
+        </property>
+        <property name="staffWork_startTime" type="java.lang.String">
+            <column name="STAFFWORK_STARTTIME" />
+        </property>
+        <property name="staffWork_stopTime" type="java.lang.String">
+            <column name="STAFFWORK_STOPTIME" />
+        </property>
+        <property name="staffWork_remarks" type="java.lang.String">
+            <column name="STAFFWORK_REMARKS" />
+        </property>
+        <property name="staffWork_gmt_create" type="java.lang.String">
+            <column name="STAFFWORK_GMT_CREATE" />
+        </property>
+        <property name="staffWork_gmt_modified" type="java.lang.String">
+            <column name="STAFFWORK_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>

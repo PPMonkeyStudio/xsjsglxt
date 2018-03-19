@@ -17,5 +17,4 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 
-
 </beans>

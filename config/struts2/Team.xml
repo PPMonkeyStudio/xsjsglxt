@@ -6,12 +6,9 @@
 	<package name="Team" namespace="/team" extends="struts-default">
 		<action name="Staff_*" class="com.xsjsglxt.action.Team.StaffAction"
 			method="{1}">
-			<result name="page_staffList">/WEB-INF/view/Team/staffList.jsp</result>
-
-			<result name="page_staffDetails">/WEB-INF/view/Team/staffDetails.jsp</result>
-		
-			<result name="page_newStaff">/WEB-INF/view/Team/newStaff.jsp</result>
-
+			<result name="StaffIndex">
+			    	/WEB-INF/view/Team/staffList.jsp
+			</result>
 		</action>
 	</package>
 </struts>
