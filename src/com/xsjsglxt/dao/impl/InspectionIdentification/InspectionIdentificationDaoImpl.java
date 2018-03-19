@@ -90,13 +90,22 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 			hql = hql + " and check_entrustment_book_num like '" + search
 					+ "' or check_entrustment_book_case_name like '" + search + "'";
 		}
-		if (checkEntrustmentBookVO.getEntrustmentRequire() != null && checkEntrustmentBookVO.getEntrustmentRequire().trim().length() > 0
+		if (checkEntrustmentBookVO.getEntrustmentRequire() != null
+				&& checkEntrustmentBookVO.getEntrustmentRequire().trim().length() > 0
 				&& !(("-1").equals(checkEntrustmentBookVO.getEntrustmentRequire().trim()))) {
 			if (checkEntrustmentBookVO.getEntrustmentRequire().equals("2")) {
-				hql = hql + " and check_entrustment_book_entrustment_request not in ('指纹检验鉴定','足迹检验鉴定','整体分离检验鉴定','车辆痕迹检验鉴定','死因鉴定','损伤鉴定','理化检验鉴定','毒物检验鉴定','失踪人口查询')";
+				hql = hql
+						+ " and check_entrustment_book_entrustment_request not in ('指纹检验鉴定','足迹检验鉴定','整体分离检验鉴定','车辆痕迹检验鉴定','死因鉴定','损伤鉴定','理化检验鉴定','毒物检验鉴定','失踪人口查询')";
 			} else {
-				hql = hql + " and check_entrustment_book_entrustment_request = '" + checkEntrustmentBookVO.getEntrustmentRequire() + "'";
+				hql = hql + " and check_entrustment_book_entrustment_request = '"
+						+ checkEntrustmentBookVO.getEntrustmentRequire() + "'";
 			}
+		}
+		if (checkEntrustmentBookVO.getEntrustmentUnit() != null
+				&& checkEntrustmentBookVO.getEntrustmentUnit().trim().length() > 0
+				&& (("-1").equals(checkEntrustmentBookVO.getEntrustmentUnit().trim()))) {
+			hql = hql + " and check_entrustment_book_entrustment_unit='"
+					+ checkEntrustmentBookVO.getEntrustmentUnit().trim() + "'";
 		}
 		if (checkEntrustmentBookVO.getState() != null && checkEntrustmentBookVO.getState().trim().length() > 0) {
 			hql = hql + " and check_entrustment_book_state='" + checkEntrustmentBookVO.getState().trim() + "'";
@@ -138,8 +147,16 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 			hql = hql + " and check_entrustment_book_num like '" + search
 					+ "' or check_entrustment_book_case_name like '" + search + "'";
 		}
-		if (checkEntrustmentBookVO.getEntrustmentRequire() != null && checkEntrustmentBookVO.getEntrustmentRequire().trim().length() > 0) {
-			hql = hql + " and check_entrustment_book_entrustment_request = '" + checkEntrustmentBookVO.getEntrustmentRequire() + "'";
+		if (checkEntrustmentBookVO.getEntrustmentRequire() != null
+				&& checkEntrustmentBookVO.getEntrustmentRequire().trim().length() > 0) {
+			hql = hql + " and check_entrustment_book_entrustment_request = '"
+					+ checkEntrustmentBookVO.getEntrustmentRequire() + "'";
+		}
+		if (checkEntrustmentBookVO.getEntrustmentUnit() != null
+				&& checkEntrustmentBookVO.getEntrustmentUnit().trim().length() > 0
+				&& (("-1").equals(checkEntrustmentBookVO.getEntrustmentUnit().trim()))) {
+			hql = hql + " and check_entrustment_book_entrustment_unit='"
+					+ checkEntrustmentBookVO.getEntrustmentUnit().trim() + "'";
 		}
 		if (checkEntrustmentBookVO.getState() != null && checkEntrustmentBookVO.getState().trim().length() > 0) {
 			hql = hql + " and check_entrustment_book_state='" + checkEntrustmentBookVO.getState().trim() + "'";
@@ -385,7 +402,8 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 	}
 
 	@Override
-	public xsjsglxt_identifieder_case_confirm_book getIdentifiederCaseConfirmBookByOwnId(String xsjsglxt_identifieder_case_confirm_book_id) {
+	public xsjsglxt_identifieder_case_confirm_book getIdentifiederCaseConfirmBookByOwnId(
+			String xsjsglxt_identifieder_case_confirm_book_id) {
 		xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook = new xsjsglxt_identifieder_case_confirm_book();
 		Session session = getSession();
 		String hql = "from xsjsglxt_identifieder_case_confirm_book where xsjsglxt_identifieder_case_confirm_book_id='"
@@ -397,7 +415,8 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 	}
 
 	@Override
-	public xsjsglxt_not_acceptance_entrustment_inform getNotAcceptanceEntrustmentInformByOwnId(String xsjsglxt_not_acceptance_entrustment_inform_id) {
+	public xsjsglxt_not_acceptance_entrustment_inform getNotAcceptanceEntrustmentInformByOwnId(
+			String xsjsglxt_not_acceptance_entrustment_inform_id) {
 		xsjsglxt_not_acceptance_entrustment_inform notAcceptanceEntrustmentInform = new xsjsglxt_not_acceptance_entrustment_inform();
 		Session session = getSession();
 		String hql = "from xsjsglxt_not_acceptance_entrustment_inform where xsjsglxt_not_acceptance_entrustment_inform_id='"
@@ -434,7 +453,8 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 
 	// 获取损伤记录表
 	@Override
-	public xsjsglxt_damage_inspection_record getDamageInspectionRecordByOwnId(String xsjsglxt_damage_inspection_record_id) {
+	public xsjsglxt_damage_inspection_record getDamageInspectionRecordByOwnId(
+			String xsjsglxt_damage_inspection_record_id) {
 		xsjsglxt_damage_inspection_record xsjsglxt_damage_inspection_record = new xsjsglxt_damage_inspection_record();
 		Session session = getSession();
 		String hql = "from xsjsglxt_damage_inspection_record where xsjsglxt_damage_inspection_record_id='"
@@ -480,7 +500,8 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		int i = 0;
 		String ji = "";
 		String hql = "select substring(appraisal_letter_num,5) from xsjsglxt_appraisal_letter where substring(appraisal_letter_num,1,4)='"
-				+ currentYear + "' and appraisal_letter_type = '" + type + "' order by substring(appraisal_letter_num,5) desc limit 1";
+				+ currentYear + "' and appraisal_letter_type = '" + type
+				+ "' order by substring(appraisal_letter_num,5) desc limit 1";
 		Query query = getSession().createSQLQuery(hql);
 		ji = (String) query.uniqueResult();
 		if (ji == null || ji.trim().length() <= 0) {
@@ -495,7 +516,8 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 	@Override
 	public List<xsjsglxt_entrustment_sample> getListEntrustmentSampleByEnId(String xsjsglxt_check_entrustment_book_id) {
 		List<xsjsglxt_entrustment_sample> listSample = new ArrayList<xsjsglxt_entrustment_sample>();
-		String hql = "from xsjsglxt_entrustment_sample where entrustment_sample_belong_entrustment_book = '" + xsjsglxt_check_entrustment_book_id + "'";
+		String hql = "from xsjsglxt_entrustment_sample where entrustment_sample_belong_entrustment_book = '"
+				+ xsjsglxt_check_entrustment_book_id + "'";
 		Query query = getSession().createQuery(hql);
 		listSample = query.list();
 		return listSample;
@@ -520,8 +542,7 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 	public xsjsglxt_entrustment_sample getEentrustment_sample(String id) {
 		xsjsglxt_entrustment_sample xsjsglxt_entrustment_sample = new xsjsglxt_entrustment_sample();
 		Session session = getSession();
-		String hql = "from xsjsglxt_entrustment_sample where xsjsglxt_entrustment_sample_id='"
-				+ id + "'";
+		String hql = "from xsjsglxt_entrustment_sample where xsjsglxt_entrustment_sample_id='" + id + "'";
 		Query query = session.createQuery(hql);
 		xsjsglxt_entrustment_sample = (xsjsglxt_entrustment_sample) query.uniqueResult();
 		session.clear();
