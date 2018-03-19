@@ -1,5 +1,7 @@
 package com.xsjsglxt.dao.Team;
 
-public interface StaffDao {
+import com.xsjsglxt.domain.DO.xsjsglxt_staff;
 
+public interface StaffDao {
+	String savePoliceman(xsjsglxt_staff policeman);
 }
