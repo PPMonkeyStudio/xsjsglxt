@@ -47,13 +47,21 @@ public class StaffAction extends ActionSupport {
 			// 重新构造文件名
 			String newFileName = TeamUtil.getUuid();
 			String newFilePath = realPath + "/" + newFileName + fileType;
-			try {
-				// 拷贝文件到服务器目录
-				FileUtil.copyFile(staff_image, new File(newFilePath));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			// 拷贝文件到服务器目录
+			Thread thread = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					try {
+						FileUtil.copyFile(staff_image, new File(newFilePath));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
+			thread.start();
 			policeman.setStaff_photo(newFileName + fileType);
 		}
 		String result = staffService.saveStaff(policeman);
