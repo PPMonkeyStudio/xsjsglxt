@@ -38,13 +38,9 @@ function loadstaffDetail_staff_change(url) {
 	xmlhttp.onreadystatechange = function() {
 		console.log("c2");
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			console.log(xmlhttp.responseText);
-			var result = xmlhttp.responseText;
-			if (result == 'success') {
-				toastr.success('新建成功！');
-			} else {
-				toastr.error('新建失败！');
-			}
+			console.log(xmlhtdtp.responseText);
+			var id = xmlhttp.responseText;
+			
 		}
 	};
 	xmlhttp.open("post", url, true);
