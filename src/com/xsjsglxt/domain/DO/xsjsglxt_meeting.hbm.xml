@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-1-18 11:49:55 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_meeting" table="XSJSGLXT_MEETING">
+        <id name="meeting_id" type="java.lang.String">
+            <column name="MEETING_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="meeting_title" type="java.lang.String">
+            <column name="MEETING_TITLE" />
+        </property>
+        <property name="meeting_start_time" type="java.lang.String">
+            <column name="MEETING_START_TIME" />
+        </property>
+        <property name="meeting_end_time" type="java.lang.String">
+            <column name="MEETING_END_TIME" />
+        </property>
+        <property name="meeting_place" type="java.lang.String">
+            <column name="MEETING_PLACE" />
+        </property>
+        <property name="meeting_compere" type="java.lang.String">
+            <column name="MEETING_COMPERE" />
+        </property>
+        <property name="meeting_record_human" type="java.lang.String">
+            <column name="MEETING_RECORD_HUMAN" />
+        </property>
+        <property name="meeting_join_human" type="java.lang.String">
+            <column name="MEETING_JOIN_HUMAN" />
+        </property>
+        <property name="meeting_leave_human" type="java.lang.String">
+            <column name="MEETING_LEAVE_HUMAN" />
+        </property>
+        <property name="meeting_content" type="java.lang.String">
+            <column name="MEETING_CONTENT" />
+        </property>
+        <property name="meeting_gmt_create" type="java.lang.String">
+            <column name="MEETING_GMT_CREATE" />
+        </property>
+        <property name="meeting_gmt_modified" type="java.lang.String">
+            <column name="MEETING_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>

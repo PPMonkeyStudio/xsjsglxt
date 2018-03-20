@@ -11,7 +11,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>My JSP 'SiteManagement.jsp' starting page</title>
+<title>案件管理</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">

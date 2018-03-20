@@ -2,8 +2,10 @@ package com.xsjsglxt.dao.Case;
 
 import java.util.List;
 
+import com.xsjsglxt.domain.DO.xsjsglxt_breakecase;
 import com.xsjsglxt.domain.DO.xsjsglxt_briefdetails;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
+import com.xsjsglxt.domain.DO.xsjsglxt_circulation;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone;
@@ -93,5 +95,7 @@ public boolean deleteCirculationById(String xsjsglxt_resevidence_id);
 public boolean deleteResevidenceById(String xsjsglxt_case_id);
 public boolean deleteBreakecaseById(String xsjsglxt_case_id);
 public List<xsjsglxt_case> AllCase();
+public xsjsglxt_circulation get_circulation_Byresevidenceid(xsjsglxt_resevidence resevidence);
+public xsjsglxt_breakecase get_breakecase_Byxsjsglxt_case_id(xsjsglxt_case xsjsglxt_case);
 
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-1-21 18:40:20 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_memorabilia" table="XSJSGLXT_MEMORABILIA">
+        <id name="memorabilia_id" type="java.lang.String">
+            <column name="MEMORABILIA_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="memorabilia_title" type="java.lang.String">
+            <column name="MEMORABILIA_TITLE" />
+        </property>
+        <property name="memorabilia_time" type="java.lang.String">
+            <column name="MEMORABILIA_TIME" />
+        </property>
+        <property name="memorabilia_join_human" type="java.lang.String">
+            <column name="MEMORABILIA_JOIN_HUMAN" />
+        </property>
+        <property name="memorabilia_content" type="java.lang.String">
+            <column name="MEMORABILIA_CONTENT" />
+        </property>
+        <property name="memorabilia_gmt_create" type="java.lang.String">
+            <column name="MEMORABILIA_GMT_CREATE" />
+        </property>
+        <property name="memorabilia_gmt_modified" type="java.lang.String">
+            <column name="MEMORABILIA_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -2,258 +2,125 @@ package com.xsjsglxt.action.Team;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
+import java.io.PrintWriter;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
+import org.apache.struts2.ServletActionContext;
+import org.aspectj.util.FileUtil;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_staff;
-import com.xsjsglxt.domain.VO.Team.page_list_staffInformationVO;
 import com.xsjsglxt.service.Team.StaffService;
 
-public class StaffAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
+import util.TeamUtil;
+
+/*
+ * @author 孙毅
+ * @description 基本信息action
+ */
+public class StaffAction extends ActionSupport {
 
 	private StaffService staffService;
-	private xsjsglxt_staff staff;
-	private String useStaffInformationNumList;
-	private HttpServletResponse http_response;
+	private xsjsglxt_staff policeman;
+	private File staff_image;
+	private String staff_imageContentType;
+	private String staff_imageFileName;
 
-	private HttpServletRequest http_request;
-	private page_list_staffInformationVO page_list_staffInformation;
-
-	private File staff_photo;
-	private String staff_photoFileName;
-
-	/*
-	 * 跳转列表页
-	 */
+	// -----------------------------------进入人员管理---------------------------------------
 	public String page_staffList() {
-		System.out.println("第一步");
-		return "page_staffList";
+		return "StaffIndex";
 	}
 
-	/*
-	 * 跳转详情页
-	 */
-	public String page_staffDetail() {
-		ActionContext.getContext().getValueStack().set("staff_id", http_request.getParameter("staff_id_transfer"));
-		return "page_staffDetails";
-	}
+	// -----------------------------------添加警员基本信息------------------------------------
 
-	/*
-	 * 跳转创建页
-	 */
-	public String page_newStaff() {
-		return "page_newStaff";
-	}
+	public void saveStaff() {
+		// 上传头像
+		if (staff_imageFileName != null && staff_imageFileName.trim().length() > 0) {
+			String realPath = ServletActionContext.getServletContext().getRealPath("/upload/staffImage");
+			// 判断文件夹是否存在
+			File fileHome = new File(realPath);
+			if (!fileHome.exists())
+				fileHome.mkdirs();
+			// 截取文件名获得文件类型
+			String fileType = staff_imageFileName.substring(staff_imageFileName.lastIndexOf("."));
+			// 重新构造文件名
+			String newFileName = TeamUtil.getUuid();
+			String newFilePath = realPath + "/" + newFileName + fileType;
+			// 拷贝文件到服务器目录
+			Thread thread = new Thread(new Runnable() {
 
-	/*
-	 * 保存人员信息
-	 */
-	public void saveStaff() throws IOException {
-		try {
-			if (staff_photo != null) {
-				if (staff_photo.length() <= 50 * 1024 * 1024) {
-					String filePath;
-					String fileName = UUID.randomUUID().toString()
-							+ staff_photoFileName.substring(staff_photoFileName.lastIndexOf("."));
-					filePath = "C://xsjsglxt_img/bimg/" + fileName;
-					staff.setStaff_photo(fileName);
-
-					File newFile = new File(filePath);
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
 					try {
-						FileUtils.copyFile(staff_photo, newFile);
+						FileUtil.copyFile(staff_image, new File(newFilePath));
 					} catch (IOException e) {
+						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
-			} else {
-				staff.setStaff_photo("default.jpg");
-			}
-			staffService.saveStaff(staff);
-			http_response.setContentType("text/html;charset=utf-8");
-			http_response.getWriter().write("success");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			http_response.setContentType("text/html;charset=utf-8");
-			http_response.getWriter().write("error");
+			});
+			thread.start();
+			policeman.setStaff_photo(newFileName + fileType);
 		}
-	}
-
-	/*
-	 * 列表信息
-	 */
-	public void ListStaffInformationByPageAndSearch() throws IOException {
-
-		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// 格式化json数据
-		Gson gson = gsonBuilder.create();
-
-		page_list_staffInformation = staffService.VO_StaffInformation_By_PageAndSearch(page_list_staffInformation);
-
-		http_response.setContentType("text/html;charset=utf-8");
-
-		http_response.getWriter().write(gson.toJson(page_list_staffInformation));
-	}
-
-	/*
-	 * 详细信息
-	 */
-	public void StaffInformationOne() throws IOException {
-		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// 格式化json数据
-		Gson gson = gsonBuilder.create();
-		staff = staffService.StaffInformationOne(staff);
-		http_response.setContentType("text/html;charset=utf-8");
-
-		http_response.getWriter().write(gson.toJson(staff));
-	}
-
-	/*
-	 * 修改信息
-	 */
-	public void updateStaffInformation() throws IOException {
+		String result = staffService.saveStaff(policeman);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		System.out.println("开始保存");
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter pw;
 		try {
-			xsjsglxt_staff oldStaffList = staffService.StaffInformationOne(staff);
-			if (staff_photo != null) {
-				if (staff_photo.length() <= 50 * 1024 * 1024) {
-					if (!oldStaffList.getStaff_photo().equals("default.jpg")) {
-						File oldimg = new File("C://xsjsglxt_img/bimg/" + oldStaffList.getStaff_photo());
-						oldimg.delete();
-					}
-					String filePath;
-					String fileName = UUID.randomUUID().toString()
-							+ staff_photoFileName.substring(staff_photoFileName.lastIndexOf("."));
-					filePath = "C://xsjsglxt_img/bimg/" + fileName;
-					// oldStaffList.setStaff_photo(fileName);
-					staff.setStaff_photo(fileName);
-					File newFile = new File(filePath);
-					try {
-						FileUtils.copyFile(staff_photo, newFile);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-			staffService.updateStaffInformation(staff);
-			http_response.setContentType("text/html;charset=utf-8");
-			http_response.getWriter().write("success");
+			pw = response.getWriter();
+			pw.write(policeman.getXsjsglxt_staff_id());
+			pw.flush();
+			pw.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			http_response.setContentType("text/html;charset=utf-8");
-			http_response.getWriter().write("error");
 		}
+
 	}
 
-	/*
-	 * 删除信息
-	 */
-	public void remove_StaffInformationList() {
+	// ------------------------------------删除警员信息-------------------------------------
 
-		if (staffService.remove_StaffInformationList(useStaffInformationNumList)) {
-
-			http_response.setContentType("text/html;charset=utf-8");
-			try {
-				http_response.getWriter().write("success");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else {
-			http_response.setContentType("text/html;charset=utf-8");
-			try {
-				http_response.getWriter().write("error");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
-
-	@Override
-	public void setServletResponse(HttpServletResponse arg0) {
-		// TODO Auto-generated method stub
-		this.http_response = arg0;
-	}
-
-	@Override
-	public void setServletRequest(HttpServletRequest arg0) {
-		// TODO Auto-generated method stub
-		this.http_request = arg0;
-	}
-
+	// ------------------------------------setter/getter-----------------------------------
 	public StaffService getStaffService() {
 		return staffService;
+	}
+
+	public xsjsglxt_staff getPoliceman() {
+		return policeman;
+	}
+
+	public void setPoliceman(xsjsglxt_staff policeman) {
+		this.policeman = policeman;
 	}
 
 	public void setStaffService(StaffService staffService) {
 		this.staffService = staffService;
 	}
 
-	public HttpServletResponse getHttp_response() {
-		return http_response;
+	public File getStaff_image() {
+		return staff_image;
 	}
 
-	public void setHttp_response(HttpServletResponse http_response) {
-		this.http_response = http_response;
+	public void setStaff_image(File staff_image) {
+		this.staff_image = staff_image;
 	}
 
-	public HttpServletRequest getHttp_request() {
-		return http_request;
+	public String getStaff_imageContentType() {
+		return staff_imageContentType;
 	}
 
-	public void setHttp_request(HttpServletRequest http_request) {
-		this.http_request = http_request;
+	public void setStaff_imageContentType(String staff_imageContentType) {
+		this.staff_imageContentType = staff_imageContentType;
 	}
 
-	public xsjsglxt_staff getStaff() {
-		return staff;
+	public String getStaff_imageFileName() {
+		return staff_imageFileName;
 	}
 
-	public void setStaff(xsjsglxt_staff staff) {
-		this.staff = staff;
+	public void setStaff_imageFileName(String staff_imageFileName) {
+		this.staff_imageFileName = staff_imageFileName;
 	}
-
-	public page_list_staffInformationVO getPage_list_staffInformation() {
-		return page_list_staffInformation;
-	}
-
-	public void setPage_list_staffInformation(page_list_staffInformationVO page_list_staffInformation) {
-		this.page_list_staffInformation = page_list_staffInformation;
-	}
-
-	public String getUseStaffInformationNumList() {
-		return useStaffInformationNumList;
-	}
-
-	public void setUseStaffInformationNumList(String useStaffInformationNumList) {
-		this.useStaffInformationNumList = useStaffInformationNumList;
-	}
-
-	public File getStaff_photo() {
-		return staff_photo;
-	}
-
-	public void setStaff_photo(File staff_photo) {
-		this.staff_photo = staff_photo;
-	}
-
-	public String getStaff_photoFileName() {
-		return staff_photoFileName;
-	}
-
-	public void setStaff_photoFileName(String staff_photoFileName) {
-		this.staff_photoFileName = staff_photoFileName;
-	}
-
 }

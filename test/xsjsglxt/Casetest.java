@@ -8,6 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.xsjsglxt.domain.VO.Case.page_list_HandleInformationVO;
+import com.xsjsglxt.service.Case.BreakecaseService;
 import com.xsjsglxt.service.Case.HandleService;
 import com.xsjsglxt.service.Case.SenceService;
 
@@ -16,6 +17,8 @@ import com.xsjsglxt.service.Case.SenceService;
 public class Casetest {
 @Resource
 private HandleService handleService;
+@Resource
+private BreakecaseService breakecaseService;
 
 
 public void setHandleService(HandleService handleService) {

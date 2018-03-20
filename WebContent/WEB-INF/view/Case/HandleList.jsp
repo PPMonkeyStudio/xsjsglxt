@@ -11,7 +11,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>My JSP 'HandleList.jsp' starting page</title>
+<title>办案管理</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -280,13 +280,15 @@
 									</tr>
 									<tr>
 										<td>中队长</td>
-										<td colspan="2"><select
-											name="handle.handle_squadronleader"
-											class="form-control selectpicker"></select></td>
+										<td colspan="2"><input class="form-control"
+											name="page_list_HandleInformation.handle_squadronleader"
+											type="text"> <%-- <select name="handle.handle_squadronleader"
+											class="form-control selectpicker"></select> --%></td>
 										<td>办案民警</td>
-										<td colspan="2"><select
-											name="handle.handle_PoliceInHandlingCases"
-											class="form-control selectpicker"></select></td>
+										<td colspan="2"><input class="form-control"
+											name="page_list_HandleInformation.handle_PoliceInHandlingCases"
+											type="text"> <%-- <select name="handle.handle_PoliceInHandlingCases"
+											class="form-control selectpicker"></select> --%></td>
 									</tr>
 								</tbody>
 							</table>

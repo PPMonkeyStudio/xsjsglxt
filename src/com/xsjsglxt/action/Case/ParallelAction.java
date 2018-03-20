@@ -90,6 +90,7 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
 		String ParallelNum = parallelService.getMaxParallelNum();
+		System.out.println("串并号"+ParallelNum);
 		http_response.setContentType("text/html;charset=utf-8");
 		http_response.getWriter().write(gson.toJson(ParallelNum));
 	}   
