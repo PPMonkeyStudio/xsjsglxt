@@ -10,6 +10,9 @@
     		<result name="StaffIndex">
 			    	/WEB-INF/view/Team/staffList.jsp
 			</result>
+			<result name="NewStaff">
+			    	/WEB-INF/view/Team/newStaff.jsp
+			</result>
 		</action>
 		<action name="StaffFamily_*" class="com.xsjsglxt.action.Team.StaffFamilyAction"
 			method="{1}">
