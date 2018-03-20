@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_staffFamily;
 import com.xsjsglxt.service.Team.StaffFamilyService;
@@ -97,10 +96,12 @@ public class StaffFamilyAction extends ActionSupport {
 	// 获得家庭成员信息通过家庭成员信息id
 	public void getFamilyByFamilyId() {
 		xsjsglxt_staffFamily newFamily = staffFamilyService.getFamilyByFamilyId(family.getXsjsglxt_staffFamily_id());
-		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();
-		Gson gson = gsonBuilder.create();
+		// GsonBuilder gsonBuilder = new GsonBuilder();
+		// gsonBuilder.setPrettyPrinting();
+		// Gson gson = gsonBuilder.create();
+		Gson gson = new Gson();
 		String result = gson.toJson(newFamily);
+		System.out.println(result);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;cherset=utf-8");
 		PrintWriter pw;
