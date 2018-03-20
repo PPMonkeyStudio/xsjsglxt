@@ -26,11 +26,14 @@ public class StaffFurloughDaoImpl implements StaffFurloughDao {
 	}
 
 	@Override
-	public String saveFurlough(xsjsglxt_staffFurlough furlough) {
+	public String saveFurlough(List<xsjsglxt_staffFurlough> furloughs) {
 		// TODO Auto-generated method stub
 
 		Session session = this.getSession();
-		session.save(furlough);
+		for (xsjsglxt_staffFurlough xsjsglxt_staffFurlough : furloughs) {
+			session.save(xsjsglxt_staffFurlough);
+		}
+
 		return "saveSuccess";
 	}
 
@@ -69,6 +72,14 @@ public class StaffFurloughDaoImpl implements StaffFurloughDao {
 		String hql = "from xsjsglxt_staffFurlough where staffFurlough_staff ='" + staffFurlough_staff + "'";
 		Query query = session.createQuery(hql);
 		return query.list();
+	}
+
+	@Override
+	public String updateFurlough(xsjsglxt_staffFurlough furlough) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		session.saveOrUpdate(furlough);
+		return "updateSuccess";
 	}
 
 }

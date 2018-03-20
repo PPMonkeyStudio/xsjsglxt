@@ -21,10 +21,11 @@ import com.xsjsglxt.service.Team.StaffFurloughService;
 public class StaffFurloughAction extends ActionSupport {
 	private StaffFurloughService staffFurloughService;
 	private xsjsglxt_staffFurlough furlough;
+	private List<xsjsglxt_staffFurlough> furloughs;
 
 	// 增加休假信息
 	public void saveFurlough() {
-		String result = staffFurloughService.saveFurlough(furlough);
+		String result = staffFurloughService.saveFurlough(furloughs);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		try {
@@ -128,5 +129,13 @@ public class StaffFurloughAction extends ActionSupport {
 
 	public void setStaffFurloughService(StaffFurloughService staffFurloughService) {
 		this.staffFurloughService = staffFurloughService;
+	}
+
+	public List<xsjsglxt_staffFurlough> getFurloughs() {
+		return furloughs;
+	}
+
+	public void setFurloughs(List<xsjsglxt_staffFurlough> furloughs) {
+		this.furloughs = furloughs;
 	}
 }

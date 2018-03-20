@@ -21,13 +21,15 @@ public class StaffFamilyServiceImpl implements StaffFamilyService {
 
 	// saveFamily
 	@Override
-	public String saveFamily(xsjsglxt_staffFamily family) {
+	public String saveFamily(List<xsjsglxt_staffFamily> familys) {
 		// TODO Auto-generated method stub
 
-		family.setXsjsglxt_staffFamily_id(TeamUtil.getUuid());
-		family.setStaffFamily_gmt_create(TeamUtil.getStringSecond());
-		family.setStaffFamily_gmt_modified(TeamUtil.getStringSecond());
-		String result = staffFamilyDao.saveFamily(family);
+		for (xsjsglxt_staffFamily xsjsglxt_staffFamily : familys) {
+			xsjsglxt_staffFamily.setXsjsglxt_staffFamily_id(TeamUtil.getUuid());
+			xsjsglxt_staffFamily.setStaffFamily_gmt_create(TeamUtil.getStringSecond());
+			xsjsglxt_staffFamily.setStaffFamily_gmt_modified(TeamUtil.getStringSecond());
+		}
+		String result = staffFamilyDao.saveFamily(familys);
 		return result;
 	}
 

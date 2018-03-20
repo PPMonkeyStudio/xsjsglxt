@@ -6,7 +6,7 @@ import com.xsjsglxt.domain.DO.xsjsglxt_staffFurlough;
 
 public interface StaffFurloughService {
 
-	String saveFurlough(xsjsglxt_staffFurlough furlough);
+	String saveFurlough(List<xsjsglxt_staffFurlough> furlough);
 
 	String deleteFurloughByFurloughId(xsjsglxt_staffFurlough furlough);
 

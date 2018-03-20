@@ -20,11 +20,13 @@ public class StaffFurloughServiceImpl implements StaffFurloughService {
 	}
 
 	@Override
-	public String saveFurlough(xsjsglxt_staffFurlough furlough) {
+	public String saveFurlough(List<xsjsglxt_staffFurlough> furlough) {
 		// TODO Auto-generated method stub
-		furlough.setXsjsglxt_staffFurlough_id(TeamUtil.getUuid());
-		furlough.setStaffFurlough_gmt_create(TeamUtil.getStringSecond());
-		furlough.setStaffFurlough_gmt_modified(TeamUtil.getStringSecond());
+		for (xsjsglxt_staffFurlough xsjsglxt_staffFurlough : furlough) {
+			xsjsglxt_staffFurlough.setXsjsglxt_staffFurlough_id(TeamUtil.getUuid());
+			xsjsglxt_staffFurlough.setStaffFurlough_gmt_create(TeamUtil.getStringSecond());
+			xsjsglxt_staffFurlough.setStaffFurlough_gmt_modified(TeamUtil.getStringSecond());
+		}
 		String result = staffFurloughDao.saveFurlough(furlough);
 		return result;
 	}
@@ -62,8 +64,10 @@ public class StaffFurloughServiceImpl implements StaffFurloughService {
 		// TODO Auto-generated method stub
 		xsjsglxt_staffFurlough oldFurlough = staffFurloughDao
 				.getFurloughByFurloughId(furlough.getXsjsglxt_staffFurlough_id());
-		furlough.setStaffFurlough_staff(furlough.getStaffFurlough_staff());
+		furlough.setStaffFurlough_staff(oldFurlough.getStaffFurlough_staff());
+		furlough.setStaffFurlough_gmt_create(oldFurlough.getStaffFurlough_gmt_create());
 		furlough.setStaffFurlough_gmt_modified(TeamUtil.getStringSecond());
+		String result = staffFurloughDao.updateFurlough(furlough);
 		return "updateSuccess";
 	}
 }
