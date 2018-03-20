@@ -32,6 +32,10 @@ public class StaffAction extends ActionSupport {
 		return "StaffIndex";
 	}
 
+	public String page_newStaff() {
+		return "NewStaff";
+	}
+
 	// -----------------------------------添加警员基本信息------------------------------------
 
 	public void saveStaff() {
