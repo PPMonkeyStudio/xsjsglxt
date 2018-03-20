@@ -44,6 +44,10 @@ a:hover {
 	width:35px;
 	text-indent:10px;
 }
+.person_radio{
+	float:left;
+	width:50px;
+}
 /*staffList table.css end  */
 /*staffDetail table.css  */
 #star-time {
@@ -125,3 +129,31 @@ a:hover {
 .staff_info_title {
 	border-bottom: 1px solid #eee;
 }
+/* 长表格样式start */
+.long_tableBox{
+	margin-top:100px;
+}
+.longBoxs table{
+	width:100%;
+	 margin: 0px;
+}
+.studyExperience_table td{
+	text-align:center;
+	border-right:1px solid #dddddd;
+	border-bottom:1px solid #dddddd;
+}
+/*学习经历模态框start  */
+.study_indication{
+	width:;
+}
+#studyExp_form tr{
+	margin-top:10px;
+}
+#studyExp_form input{
+	width: 480px;
+    height: 30px;
+    border: 1px solid #ccc;
+}
+/*学习经历模态框end  */
+
+/* 长表格样式end */

@@ -1,4 +1,9 @@
-
+var newStudyExp={
+		"study_startTime":"",
+		"study_endTime":"",
+		"study_indication":"",
+	    "study_supperment":"",
+};
 //newStaff新建人员
 function staff_change() {
 	var url = "/xsjsglxt/team/Staff_saveStaff";
@@ -116,6 +121,287 @@ function photo_preview() {
 	console.log(fileName);
 	photo_file.value=fileName;*/
 	return true;
+}
+//添加学习经历
+function add_studyExperience(){
+	console.log("add_studyExperience start");
+	//把表格的数据存到json中
+	var study_startTime = document.querySelector(".study_startTime").value;
+	var study_endTime = document.querySelector(".study_endTime").value;
+	var study_indication = document.querySelector(".study_indication").value;
+	var study_supperment = document.querySelector(".study_supperment").value;
+	newStudyExp['study_startTime']=study_startTime;
+	newStudyExp['study_endTime']=study_endTime;
+	newStudyExp['study_indication']=study_indication;
+	newStudyExp['study_supperment']=study_supperment;
+	console.log(newStudyExp['study_startTime']);
+	//动态创建表格
+	var studyExperience_table=document.getElementById("studyExperience_table");
+	studyExperience_table.setAttribute("class","studyExperience_table");
+	
+	var study_tr=document.createElement("tr");
+	var study_startTime=document.createElement("td");
+	study_startTime.innerHTML=newStudyExp['study_startTime'];
+	console.log(study_startTime.innerHTML);
+	var study_endTime=document.createElement("td");
+	study_endTime.innerHTML=newStudyExp['study_endTime'];
+	
+	var study_indication=document.createElement("td");
+	study_indication.innerHTML=newStudyExp['study_indication'];
+	
+	var study_supperment=document.createElement("td");
+	study_supperment.innerHTML=newStudyExp['study_supperment'];
+	
+	study_tr.appendChild(study_startTime);
+	study_tr.appendChild(study_endTime);
+	study_tr.appendChild(study_indication);
+	study_tr.appendChild(study_supperment);
+	studyExperience_table.append(study_tr);
+}
+function add_workExperience(){
+	console.log("add_studyExperience start");
+	//把表格的数据存到json中
+	var study_startTime = document.querySelector(".study_startTime").value;
+	var study_endTime = document.querySelector(".study_endTime").value;
+	var study_indication = document.querySelector(".study_indication").value;
+	var study_supperment = document.querySelector(".study_supperment").value;
+	newStudyExp['study_startTime']=study_startTime;
+	newStudyExp['study_endTime']=study_endTime;
+	newStudyExp['study_indication']=study_indication;
+	newStudyExp['study_supperment']=study_supperment;
+	console.log(newStudyExp['study_startTime']);
+	//动态创建表格
+	var studyExperience_table=document.getElementById("studyExperience_table");
+	studyExperience_table.setAttribute("class","studyExperience_table");
+	
+	var study_tr=document.createElement("tr");
+	var study_startTime=document.createElement("td");
+	study_startTime.innerHTML=newStudyExp['study_startTime'];
+	console.log(study_startTime.innerHTML);
+	var study_endTime=document.createElement("td");
+	study_endTime.innerHTML=newStudyExp['study_endTime'];
+	
+	var study_indication=document.createElement("td");
+	study_indication.innerHTML=newStudyExp['study_indication'];
+	
+	var study_supperment=document.createElement("td");
+	study_supperment.innerHTML=newStudyExp['study_supperment'];
+	
+	study_tr.appendChild(study_startTime);
+	study_tr.appendChild(study_endTime);
+	study_tr.appendChild(study_indication);
+	study_tr.appendChild(study_supperment);
+	studyExperience_table.append(study_tr);
+}
+function add_workExperience(){
+	console.log("add_studyExperience start");
+	//把表格的数据存到json中
+	var study_startTime = document.querySelector(".study_startTime").value;
+	var study_endTime = document.querySelector(".study_endTime").value;
+	var study_indication = document.querySelector(".study_indication").value;
+	var study_supperment = document.querySelector(".study_supperment").value;
+	newStudyExp['study_startTime']=study_startTime;
+	newStudyExp['study_endTime']=study_endTime;
+	newStudyExp['study_indication']=study_indication;
+	newStudyExp['study_supperment']=study_supperment;
+	console.log(newStudyExp['study_startTime']);
+	//动态创建表格
+	var studyExperience_table=document.getElementById("studyExperience_table");
+	studyExperience_table.setAttribute("class","studyExperience_table");
+	
+	var study_tr=document.createElement("tr");
+	var study_startTime=document.createElement("td");
+	study_startTime.innerHTML=newStudyExp['study_startTime'];
+	console.log(study_startTime.innerHTML);
+	var study_endTime=document.createElement("td");
+	study_endTime.innerHTML=newStudyExp['study_endTime'];
+	
+	var study_indication=document.createElement("td");
+	study_indication.innerHTML=newStudyExp['study_indication'];
+	
+	var study_supperment=document.createElement("td");
+	study_supperment.innerHTML=newStudyExp['study_supperment'];
+	
+	study_tr.appendChild(study_startTime);
+	study_tr.appendChild(study_endTime);
+	study_tr.appendChild(study_indication);
+	study_tr.appendChild(study_supperment);
+	studyExperience_table.append(study_tr);
+}
+function add_family(){
+	console.log("add_studyExperience start");
+	//把表格的数据存到json中
+	var study_startTime = document.querySelector(".study_startTime").value;
+	var study_endTime = document.querySelector(".study_endTime").value;
+	var study_indication = document.querySelector(".study_indication").value;
+	var study_supperment = document.querySelector(".study_supperment").value;
+	newStudyExp['study_startTime']=study_startTime;
+	newStudyExp['study_endTime']=study_endTime;
+	newStudyExp['study_indication']=study_indication;
+	newStudyExp['study_supperment']=study_supperment;
+	console.log(newStudyExp['study_startTime']);
+	//动态创建表格
+	var studyExperience_table=document.getElementById("studyExperience_table");
+	studyExperience_table.setAttribute("class","studyExperience_table");
+	
+	var study_tr=document.createElement("tr");
+	var study_startTime=document.createElement("td");
+	study_startTime.innerHTML=newStudyExp['study_startTime'];
+	console.log(study_startTime.innerHTML);
+	var study_endTime=document.createElement("td");
+	study_endTime.innerHTML=newStudyExp['study_endTime'];
+	
+	var study_indication=document.createElement("td");
+	study_indication.innerHTML=newStudyExp['study_indication'];
+	
+	var study_supperment=document.createElement("td");
+	study_supperment.innerHTML=newStudyExp['study_supperment'];
+	
+	study_tr.appendChild(study_startTime);
+	study_tr.appendChild(study_endTime);
+	study_tr.appendChild(study_indication);
+	study_tr.appendChild(study_supperment);
+	studyExperience_table.append(study_tr);
+}
+function add_policeChange(){
+	console.log("add_studyExperience start");
+	//把表格的数据存到json中
+	var study_startTime = document.querySelector(".study_startTime").value;
+	var study_endTime = document.querySelector(".study_endTime").value;
+	var study_indication = document.querySelector(".study_indication").value;
+	var study_supperment = document.querySelector(".study_supperment").value;
+	newStudyExp['study_startTime']=study_startTime;
+	newStudyExp['study_endTime']=study_endTime;
+	newStudyExp['study_indication']=study_indication;
+	newStudyExp['study_supperment']=study_supperment;
+	console.log(newStudyExp['study_startTime']);
+	//动态创建表格
+	var studyExperience_table=document.getElementById("studyExperience_table");
+	studyExperience_table.setAttribute("class","studyExperience_table");
+	
+	var study_tr=document.createElement("tr");
+	var study_startTime=document.createElement("td");
+	study_startTime.innerHTML=newStudyExp['study_startTime'];
+	console.log(study_startTime.innerHTML);
+	var study_endTime=document.createElement("td");
+	study_endTime.innerHTML=newStudyExp['study_endTime'];
+	
+	var study_indication=document.createElement("td");
+	study_indication.innerHTML=newStudyExp['study_indication'];
+	
+	var study_supperment=document.createElement("td");
+	study_supperment.innerHTML=newStudyExp['study_supperment'];
+	
+	study_tr.appendChild(study_startTime);
+	study_tr.appendChild(study_endTime);
+	study_tr.appendChild(study_indication);
+	study_tr.appendChild(study_supperment);
+	studyExperience_table.append(study_tr);
+}
+function add_prized(){
+	console.log("add_studyExperience start");
+	//把表格的数据存到json中
+	var study_startTime = document.querySelector(".study_startTime").value;
+	var study_endTime = document.querySelector(".study_endTime").value;
+	var study_indication = document.querySelector(".study_indication").value;
+	var study_supperment = document.querySelector(".study_supperment").value;
+	newStudyExp['study_startTime']=study_startTime;
+	newStudyExp['study_endTime']=study_endTime;
+	newStudyExp['study_indication']=study_indication;
+	newStudyExp['study_supperment']=study_supperment;
+	console.log(newStudyExp['study_startTime']);
+	//动态创建表格
+	var studyExperience_table=document.getElementById("studyExperience_table");
+	studyExperience_table.setAttribute("class","studyExperience_table");
+	
+	var study_tr=document.createElement("tr");
+	var study_startTime=document.createElement("td");
+	study_startTime.innerHTML=newStudyExp['study_startTime'];
+	console.log(study_startTime.innerHTML);
+	var study_endTime=document.createElement("td");
+	study_endTime.innerHTML=newStudyExp['study_endTime'];
+	
+	var study_indication=document.createElement("td");
+	study_indication.innerHTML=newStudyExp['study_indication'];
+	
+	var study_supperment=document.createElement("td");
+	study_supperment.innerHTML=newStudyExp['study_supperment'];
+	
+	study_tr.appendChild(study_startTime);
+	study_tr.appendChild(study_endTime);
+	study_tr.appendChild(study_indication);
+	study_tr.appendChild(study_supperment);
+	studyExperience_table.append(study_tr);
+}
+function add_AgainstPrinciple(){
+	console.log("add_studyExperience start");
+	//把表格的数据存到json中
+	var study_startTime = document.querySelector(".study_startTime").value;
+	var study_endTime = document.querySelector(".study_endTime").value;
+	var study_indication = document.querySelector(".study_indication").value;
+	var study_supperment = document.querySelector(".study_supperment").value;
+	newStudyExp['study_startTime']=study_startTime;
+	newStudyExp['study_endTime']=study_endTime;
+	newStudyExp['study_indication']=study_indication;
+	newStudyExp['study_supperment']=study_supperment;
+	console.log(newStudyExp['study_startTime']);
+	//动态创建表格
+	var studyExperience_table=document.getElementById("studyExperience_table");
+	studyExperience_table.setAttribute("class","studyExperience_table");
+	
+	var study_tr=document.createElement("tr");
+	var study_startTime=document.createElement("td");
+	study_startTime.innerHTML=newStudyExp['study_startTime'];
+	console.log(study_startTime.innerHTML);
+	var study_endTime=document.createElement("td");
+	study_endTime.innerHTML=newStudyExp['study_endTime'];
+	
+	var study_indication=document.createElement("td");
+	study_indication.innerHTML=newStudyExp['study_indication'];
+	
+	var study_supperment=document.createElement("td");
+	study_supperment.innerHTML=newStudyExp['study_supperment'];
+	
+	study_tr.appendChild(study_startTime);
+	study_tr.appendChild(study_endTime);
+	study_tr.appendChild(study_indication);
+	study_tr.appendChild(study_supperment);
+	studyExperience_table.append(study_tr);
+}
+function add_Vocation(){
+	console.log("add_studyExperience start");
+	//把表格的数据存到json中
+	var study_startTime = document.querySelector(".study_startTime").value;
+	var study_endTime = document.querySelector(".study_endTime").value;
+	var study_indication = document.querySelector(".study_indication").value;
+	var study_supperment = document.querySelector(".study_supperment").value;
+	newStudyExp['study_startTime']=study_startTime;
+	newStudyExp['study_endTime']=study_endTime;
+	newStudyExp['study_indication']=study_indication;
+	newStudyExp['study_supperment']=study_supperment;
+	console.log(newStudyExp['study_startTime']);
+	//动态创建表格
+	var studyExperience_table=document.getElementById("studyExperience_table");
+	studyExperience_table.setAttribute("class","studyExperience_table");
+	
+	var study_tr=document.createElement("tr");
+	var study_startTime=document.createElement("td");
+	study_startTime.innerHTML=newStudyExp['study_startTime'];
+	console.log(study_startTime.innerHTML);
+	var study_endTime=document.createElement("td");
+	study_endTime.innerHTML=newStudyExp['study_endTime'];
+	
+	var study_indication=document.createElement("td");
+	study_indication.innerHTML=newStudyExp['study_indication'];
+	
+	var study_supperment=document.createElement("td");
+	study_supperment.innerHTML=newStudyExp['study_supperment'];
+	
+	study_tr.appendChild(study_startTime);
+	study_tr.appendChild(study_endTime);
+	study_tr.appendChild(study_indication);
+	study_tr.appendChild(study_supperment);
+	studyExperience_table.append(study_tr);
 }
 if(window.File && window.FileList && window.FileReader && window.Blob) {
 	document.querySelector(".photo-file").addEventListener('change', photo_preview, false);
