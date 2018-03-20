@@ -17,7 +17,7 @@ import util.TeamUtil;
 
 /*
  * @author 孙毅
- * @description 警员管理Action
+ * @description 基本信息action
  */
 public class StaffAction extends ActionSupport {
 
@@ -63,7 +63,7 @@ public class StaffAction extends ActionSupport {
 		PrintWriter pw;
 		try {
 			pw = response.getWriter();
-			pw.write(result);
+			pw.write(policeman.getXsjsglxt_staff_id());
 			pw.flush();
 			pw.close();
 		} catch (IOException e) {
