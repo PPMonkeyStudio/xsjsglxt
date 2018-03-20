@@ -1,5 +1,7 @@
 package com.xsjsglxt.service.impl.Team;
 
+import java.util.List;
+
 import com.xsjsglxt.dao.Team.StaffFurloughDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_staffFurlough;
 import com.xsjsglxt.service.Team.StaffFurloughService;
@@ -46,5 +48,22 @@ public class StaffFurloughServiceImpl implements StaffFurloughService {
 		// TODO Auto-generated method stub
 		xsjsglxt_staffFurlough furlough = staffFurloughDao.getFurloughByFurloughId(xsjsglxt_staffFurlough_id);
 		return furlough;
+	}
+
+	@Override
+	public List<xsjsglxt_staffFurlough> getFurloughByStaffId(String staffFurlough_staff) {
+		// TODO Auto-generated method stub
+		List<xsjsglxt_staffFurlough> furloughs = staffFurloughDao.getFurloughByStaffId(staffFurlough_staff);
+		return furloughs;
+	}
+
+	@Override
+	public String updateFurlough(xsjsglxt_staffFurlough furlough) {
+		// TODO Auto-generated method stub
+		xsjsglxt_staffFurlough oldFurlough = staffFurloughDao
+				.getFurloughByFurloughId(furlough.getXsjsglxt_staffFurlough_id());
+		furlough.setStaffFurlough_staff(furlough.getStaffFurlough_staff());
+		furlough.setStaffFurlough_gmt_modified(TeamUtil.getStringSecond());
+		return "updateSuccess";
 	}
 }
