@@ -112,6 +112,17 @@ public class StaffFurloughAction extends ActionSupport {
 
 	public void updateFurlough() {
 		String result = staffFurloughService.updateFurlough(furlough);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(result);
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	// --------------setter/getter------------------------------------
