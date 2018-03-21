@@ -23,7 +23,7 @@ public class StaffWorkAction extends ActionSupport {
 	private List<xsjsglxt_staffWork> works;
 
 	// -----------------------------保存工作信息----------------------------------------
-	public void saveRewards() {
+	public void saveWorks() {
 		String result = staffWorkService.saveWorks(works);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
@@ -39,7 +39,7 @@ public class StaffWorkAction extends ActionSupport {
 	}
 
 	// ---------------------------------删除单个工作信息--------------------------
-	public void deleteReward() {
+	public void deleteWork() {
 		String result = staffWorkService.deleteWork(work.getXsjsglxt_staffWork_id());
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
@@ -55,7 +55,7 @@ public class StaffWorkAction extends ActionSupport {
 	}
 
 	// ---------------------------------删除多个工作信息--------------------------
-	public void deleteRewards() {
+	public void deleteWorks() {
 		String result = staffWorkService.deleteWorks(work.getStaffWork_staff());
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
@@ -71,7 +71,7 @@ public class StaffWorkAction extends ActionSupport {
 	}
 
 	// ---------------------------------修改工作信息----------------------------------
-	public void updateReward() {
+	public void updateRewardWork() {
 		String result = staffWorkService.upadteWork(work);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
@@ -87,7 +87,7 @@ public class StaffWorkAction extends ActionSupport {
 	}
 
 	// ------------------------------获得单个工作信息---------------------------------
-	public void getRewardByRewardId() {
+	public void getWorkByWorkId() {
 		xsjsglxt_staffWork oldWork = staffWorkService.getWork(work.getXsjsglxt_staffWork_id());
 		Gson gson = new Gson();
 		String result = gson.toJson(oldWork);
@@ -105,7 +105,7 @@ public class StaffWorkAction extends ActionSupport {
 	}
 
 	// ------------------------------获得多个工作信息---------------------------------
-	public void getRewardByStaffId() {
+	public void getWorkByStaffId() {
 		List<xsjsglxt_staffWork> Works = staffWorkService.getWorks(work.getStaffWork_staff());
 		Gson gson = new Gson();
 		String result = gson.toJson(works);

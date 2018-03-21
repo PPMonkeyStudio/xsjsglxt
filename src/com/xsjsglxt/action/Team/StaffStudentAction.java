@@ -23,7 +23,7 @@ public class StaffStudentAction extends ActionSupport {
 	private List<xsjsglxt_staffStudent> students;
 
 	// -----------------------------保存学习信息----------------------------------------
-	public void saveRewards() {
+	public void saveStudents() {
 		String result = staffStudentService.saveStudents(students);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
@@ -39,7 +39,7 @@ public class StaffStudentAction extends ActionSupport {
 	}
 
 	// ---------------------------------删除单个学习信息--------------------------
-	public void deleteReward() {
+	public void deleteStudent() {
 		String result = staffStudentService.deleteStudent(student.getXsjsglxt_staffStudent_id());
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
@@ -55,7 +55,7 @@ public class StaffStudentAction extends ActionSupport {
 	}
 
 	// ---------------------------------删除多个学习信息--------------------------
-	public void deleteRewards() {
+	public void deleteStudents() {
 		String result = staffStudentService.deleteStudents(student.getStaffStudent_staff());
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
@@ -71,7 +71,7 @@ public class StaffStudentAction extends ActionSupport {
 	}
 
 	// ---------------------------------修改学习信息----------------------------------
-	public void updateReward() {
+	public void updateStudent() {
 		String result = staffStudentService.upadteStudent(student);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
@@ -87,7 +87,7 @@ public class StaffStudentAction extends ActionSupport {
 	}
 
 	// ------------------------------获得单个学习信息---------------------------------
-	public void getRewardByRewardId() {
+	public void getStudentByStudentId() {
 		xsjsglxt_staffStudent oldStudent = staffStudentService.getStudent(student.getXsjsglxt_staffStudent_id());
 		Gson gson = new Gson();
 		String result = gson.toJson(oldStudent);
@@ -105,7 +105,7 @@ public class StaffStudentAction extends ActionSupport {
 	}
 
 	// ------------------------------获得多个学习信息---------------------------------
-	public void getRewardByStaffId() {
+	public void getStudentByStaffId() {
 		List<xsjsglxt_staffStudent> students = staffStudentService.getStudents(student.getStaffStudent_staff());
 		Gson gson = new Gson();
 		String result = gson.toJson(students);
