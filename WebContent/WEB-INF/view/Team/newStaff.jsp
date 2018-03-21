@@ -48,11 +48,11 @@
 						<tr style="height: 20px"></tr>
 						<tr>
 							<td><label>姓名</label></td>
-							<td><input name="policemen.staff_name" class="form-control"
+							<td><input name="policeman.staff_name" class="form-control"
 								type="text"></td>
 
 							<td><label>警号</label></td>
-							<td><input name="policemen.staff_alarm" class="form-control"
+							<td><input name="policeman.staff_alarm" class="form-control"
 								type="text"></td>
 
 							<td><label>照片</label></td>
@@ -66,22 +66,22 @@
 						</tr>
 						<tr>
 							<td><label>身份证号</label></td>
-							<td><input name="policemen.staff_idNumber"
+							<td><input name="policeman.staff_idNumber"
 								class="form-control" type="text"></td>
 
 							<td><label>年龄</label></td>
 							<td><input style="font-size: 12px;"
-								name="policemen.staff_age" class="form-control" type="text"></td>
+								name="policeman.staff_age" class="form-control" type="text"></td>
 
 
 						</tr>
 						<tr>
 
 							<td><label>民族</label></td>
-							<td><input name="policemen.staff_nation"
+							<td><input name="policeman.staff_nation"
 								class="form-control" type="text"></td>
 							<td><label>籍贯</label></td>
-							<td><input name="policemen.staff_nativePlace"
+							<td><input name="policeman.staff_nativePlace"
 								class="form-control" type="text"></td>
 
 						</tr>
@@ -90,7 +90,7 @@
 
 							<td><label>最高学历</label></td>
 							<td><select class="form-control"
-								name="policemen.staff_MaxEducationalBackground">
+								name="policeman.staff_MaxEducationalBackground">
 									<option></option>
 									<option>小学</option>
 									<option>初中</option>
@@ -101,7 +101,7 @@
 							</select></td>
 							<td><label>政治面貌</label></td>
 							<td><select class="form-control"
-								name="policemen.staff_politicalStatus">
+								name="policeman.staff_politicalStatus">
 									<option></option>
 									<option>群众</option>
 									<option>入党积极分子</option>
@@ -112,10 +112,10 @@
 						</tr>
 						<tr>
 							<td><label>入党时间</label></td>
-							<td><input name="policemen.staff_joinPartyTime"
+							<td><input name="policeman.staff_joinPartyTime"
 								class="form-control staff_joinPartyTime" type="text"></td>
 							<td><label>工作时间</label></td>
-							<td><input name="policemen.staff_joinWorkTime"
+							<td><input name="policeman.staff_joinWorkTime"
 								class="form-control staff_joinWorkTime" type="text"
 								placeholder="参加工作时间"></td>
 							<td><label>性别</label></td>
@@ -127,16 +127,16 @@
 							</label> <label style="float: left; width: 50px; margin-left: 10px;"
 								class="fancy-radio "> <input name="sex_content"
 									onclick=changeSex_woman(this) type="radio" value="女"> <span><i></i>女</span>
-							</label> <input type="hidden" name="policemen.staff_sex" id="sex"></td>
+							</label> <input type="hidden" name="policeman.staff_sex" id="sex"></td>
 
 						</tr>
 						<tr>
 							<td><label>入警时间</label></td>
-							<td><input name="policemen.staff_thePoliceTime"
+							<td><input name="policeman.staff_thePoliceTime"
 								class="form-control staff_thePoliceTime" type="text"></td>
 							<td><label>生日</label></td>
 							<td><input style="font-size: 12px;"
-								name="policemen.staff_birthday"
+								name="policeman.staff_birthday"
 								class="form-control staff_birthday" type="text"></td>
 							<td><label>是否正式</label></td>
 							<td><label style="float: left; width: 50px;"
@@ -145,13 +145,13 @@
 							</label> <label style="float: left; margin-left: 10px; width: 50px;"
 								class="fancy-radio "> <input name="format_content"
 									onclick="isNotFormat(this)" type="radio" value="否"> <span><i></i>否</span>
-							</label> <input type="hidden" name="policemen.staff_isItFormal"
+							</label> <input type="hidden" name="policeman.staff_isItFormal"
 								id="format" /></td>
 
 						</tr>
 						<tr>
 							<td><label>职务</label></td>
-							<td><select class="form-control" name="policemen.staff_duty">
+							<td><select class="form-control" name="policeman.staff_duty">
 									<option>大队长</option>
 									<option>教导员</option>
 									<option>副大队长</option>
@@ -169,27 +169,27 @@
 						<tr style="height: 20px;"></tr>
 						<tr>
 							<td><label>手机号</label></td>
-							<td><input name="policemen.staff_phone" class="form-control"
+							<td><input name="policeman.staff_phone" class="form-control"
 								style="margin-top: 6px;" type="text"></td>
 							<td><label>警务通号</label></td>
-							<td><input name="policemen.staff_throughThePolice"
+							<td><input name="policeman.staff_throughThePolice"
 								class="form-control" style="margin-top: 6px;"></td>
 							<td><label>家庭电话</label></td>
-							<td><input name="policemen.staff_homephone"
+							<td><input name="policeman.staff_homephone"
 								class="form-control" style="margin-top: 6px;"></td>
 						</tr>
 						<tr>
 							<td><label>QQ号</label></td>
-							<td><input name="policemen.staff_QQ" class="form-control"
+							<td><input name="policeman.staff_QQ" class="form-control"
 								style="margin-top: 6px;" type="text"></td>
 							<td><label>微信</label></td>
-							<td><input name="policemen.staff_weixin"
+							<td><input name="policeman.staff_weixin"
 								class="form-control" style="margin-top: 6px;"></td>
 							<td><label>电子邮箱</label></td>
-							<td><input name="policemen.staff_outEmail"
+							<td><input name="policeman.staff_outEmail"
 								class="form-control" style="margin-top: 6px;"
 								placeholder="外网电子邮箱"> <input
-								name="policemen.staff_inEmail" class="form-control"
+								name="policeman.staff_inEmail" class="form-control"
 								style="margin-top: 6px;" placeholder="内网电子邮箱"></td>
 
 						</tr>
@@ -204,7 +204,7 @@
 							onclick="">
 							<i class="fa fa-plus-square"></i> 添加
 						</button>
-						<form>
+						<form id="study_exp">
 							<table id="studyExperience_table">
 								<tr class="long_table">
 									<th>学习地点</th>
@@ -222,7 +222,7 @@
 							onclick="">
 							<i class="fa fa-plus-square"></i> 添加
 						</button>
-						<form>
+						<form id="work_exp">
 							<table id="wordExperience_table">
 								<tr class="long_table">
 									<th>工作地点</th>
@@ -242,7 +242,6 @@
 							onclick="">
 							<i class="fa fa-plus-square"></i> 添加
 						</button>
-						<form>
 							<table id="family_table">
 								<tr class="long_table">
 									<th>关系</th>
@@ -256,7 +255,6 @@
 									<th>备注</th>
 								</tr>
 							</table>
-						</form>
 					</div>
 					<div class="long_tableBox">
 						<span class="staff_info_title">刑警大队调动情况</span>
@@ -265,7 +263,7 @@
 							data-target="#addPoliceChange_Modal" onclick="">
 							<i class="fa fa-plus-square"></i> 添加
 						</button>
-						<form>
+						<form id="police_move">
 							<table id="policeChange_table">
 								<tr class="long_table">
 									<th>调入时间</th>
@@ -283,7 +281,7 @@
 							onclick="">
 							<i class="fa fa-plus-square"></i> 添加
 						</button>
-						<form>
+						<form id="staffReward">
 							<table id="prized_table">
 								<tr class="long_table">
 									<th>表彰情况</th>
@@ -300,7 +298,7 @@
 							data-target="#addAgainstPrinciple_Modal" onclick="">
 							<i class="fa fa-plus-square"></i> 添加
 						</button>
-						<form>
+						<form id="againstPrinciple">
 							<table id="againstPrinciple_table">
 								<tr class="long_table">
 									<th>违纪情况</th>
@@ -317,7 +315,7 @@
 							onclick="">
 							<i class="fa fa-plus-square"></i> 添加
 						</button>
-						<form>
+						<form id="Punishment">
 							<table id="punish_table">
 								<tr class="long_table">
 									<th>处分情况</th>
@@ -334,7 +332,7 @@
 							data-target="#addVocation_Modal" onclick="">
 							<i class="fa fa-plus-square"></i> 添加
 						</button>
-						<form>
+						<form id="Furlough">
 							<table id="vocation_table">
 								<tr class="long_table">
 									<th>休假事由</th>
@@ -373,7 +371,7 @@
 								<tr>
 									<td><label class="staff_info_label">学习地点</label></td>
 									<td><input style="font-size: 12px;"
-										class="study_indication" name="policemen.staff_birthday"
+										class="study_indication" name="policeman.staff_birthday"
 										type="text"></td>
 								</tr>
 								<tr>
@@ -392,7 +390,7 @@
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="study_supperment"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											name="policemen.staff_contactsRemark" rows="3" cols="66"></textarea>
+											name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
 									</td>
 
 
@@ -426,37 +424,36 @@
 				</div>
 				<div class="modal-body">
 
-					<form action="" id="studyExp_form" accept-charset="utf-8">
-
+					<form action="" id="addWork_form" accept-charset="utf-8">
 						<table>
 							<tbody>
 								<tr>
-									<td><label class="staff_info_label">工作地点</label></td>
+									<td><label>工作地点</label></td>
 									<td><input style="font-size: 12px;"
-										name="policemen.staff_birthday" type="text"></td>
+										 class="staffWork_address" name="policeman.staff_birthday" type="text"></td>
 								</tr>
 								<tr>
-									<td><label class="staff_info_label">职务</label></td>
+									<td><label >职务</label></td>
 									<td><input style="font-size: 12px;"
-										name="policemen.staff_birthday" type="text"></td>
+										name="policeman.staff_birthday" class="staffWork_duty" type="text"></td>
 								</tr>
 								<tr>
-									<td><label class="staff_info_label">起始时间</label></td>
+									<td><label >起始时间</label></td>
 									<td><input style="font-size: 12px;"
-										class="study_startTime"></td>
+										class="staffWork_startTime"></td>
 								</tr>
 								<tr>
-									<td><label class="staff_info_label">结束时间</label></td>
-									<td><input type="text" class="study_endTime"
+									<td><label>结束时间</label></td>
+									<td><input type="text"  class="staffWork_stopTime"
 										name="page_list_staffInformation.staff_name" /></td>
 								</tr>
 
 								<tr>
-									<td><label class="staff_info_label">备注</label></td>
+									<td><label>备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
-											class="study_supperment"
+											 class="staffWork_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											name="policemen.staff_contactsRemark" rows="3" cols="66"></textarea>
+											name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
 									</td>
 
 
@@ -490,57 +487,56 @@
 				</div>
 				<div class="modal-body">
 
-					<form action="" id="studyExp_form" accept-charset="utf-8">
+					<form action="" id="addFamily_form" accept-charset="utf-8">
 
 						<table>
 							<tbody>
 								<tr>
 									<td><label class="staff_info_label">关系</label></td>
 									<td><input style="font-size: 12px;"
-										name="policemen.staff_birthday" type="text"></td>
+									class="staffFamily_contactsRelationship"	name="policeman.staff_birthday" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">姓名</label></td>
 									<td><input style="font-size: 12px;"
-										name="policemen.staff_birthday" type="text"></td>
+									class="staffFamily_name"	name="policeman.staff_birthday" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">身份证号</label></td>
 									<td><input style="font-size: 12px;"
-										name="policemen.staff_birthday" type="text"></td>
+									class="staffFamily_IDcard"	name="policeman.staff_birthday" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">生日</label></td>
 									<td><input style="font-size: 12px;"
-										name="policemen.staff_birthday" class=" study_startTime"
+									class="staffFamily_birthday"	name="policeman.staff_birthday" class=" study_startTime"
 										type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">手机号</label></td>
 									<td><input style="font-size: 12px;"
-										name="policemen.staff_birthday" type="text"></td>
+									class="staffFamily_tel"	name="policeman.staff_birthday" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">微信号</label></td>
 									<td><input style="font-size: 12px;"
-										name="policemen.staff_birthday" type="text"></td>
+									class="staffFamily_WeiXin"	name="policeman.staff_birthday" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">工作单位</label></td>
 									<td><input style="font-size: 12px;"
-										name="policemen.staff_birthday" type="text"></td>
+									class="staffFamily_workSpace"	name="policeman.staff_birthday" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">职位</label></td>
 									<td><input style="font-size: 12px;"
-										name="policemen.staff_birthday" type="text"></td>
+									class="staffFamily_duty"	name="policeman.staff_birthday" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
-											class="study_supperment"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											name="policemen.staff_contactsRemark" rows="3" cols="66"></textarea>
+										class="staffFamily_remarks"	name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
 									</td>
 
 
@@ -574,25 +570,25 @@
 				</div>
 				<div class="modal-body">
 
-					<form action="" id="studyExp_form" accept-charset="utf-8">
+					<form action="" id="addPoliceChange_form" accept-charset="utf-8">
 
 						<table>
 							<tbody>
 								<tr>
 									<td><label class="staff_info_label">调入时间</label></td>
 									<td><input style="font-size: 12px;"
-										name="policemen.staff_birthday" class=" study_startTime"
+										name="policeman.staff_birthday" class=" staffMove_inTime"
 										type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">调出时间</label></td>
 									<td><input style="font-size: 12px;"
-										name="policemen.staff_birthday" class=" study_startTime"
+										name="policeman.staff_birthday" class=" staffMove_outTime"
 										type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">是否在岗</label></td>
-									<td><select>
+									<td><select class="staffMove_guard">
 											<option>是</option>
 											<option>否</option>
 									</select></td>
@@ -600,9 +596,9 @@
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
-											class="study_supperment"
+											class="staffMove_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											name="policemen.staff_contactsRemark" rows="3" cols="66"></textarea>
+											name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
 									</td>
 
 
@@ -636,26 +632,26 @@
 				</div>
 				<div class="modal-body">
 
-					<form action="" id="studyExp_form" accept-charset="utf-8">
+					<form action="" id="addPrized_form" accept-charset="utf-8">
 
 						<table>
 							<tbody>
 								<tr>
 									<td><label class="staff_info_label">表彰情况</label></td>
 									<td><input style="font-size: 12px;"
-										name="policemen.staff_birthday" type="text"></td>
+									class="staffReward_situation"	name="policeman.staff_birthday" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">表彰时间</label></td>
-									<td><input style="font-size: 12px;" class="study_endTime"></td>
+									<td><input style="font-size: 12px;" class="staffReward_Time"></td>
 								</tr>
 
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
-											class="study_supperment"
+											class="staffReward_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											name="policemen.staff_contactsRemark" rows="3" cols="66"></textarea>
+											name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
 									</td>
 
 
@@ -689,26 +685,26 @@
 				</div>
 				<div class="modal-body">
 
-					<form action="" id="studyExp_form" accept-charset="utf-8">
+					<form action="" id="addAgainstPrinciple_form" accept-charset="utf-8">
 
 						<table>
 							<tbody>
 								<tr>
 									<td><label class="staff_info_label">违纪情况</label></td>
 									<td><input style="font-size: 12px;"
-										name="policemen.staff_birthday" type="text"></td>
+									class="staffPrinciple_situation"	name="policeman.staff_birthday" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">违纪时间</label></td>
-									<td><input style="font-size: 12px;" class="study_endTime"></td>
+									<td><input style="font-size: 12px;" class="staffPrinciple_Time"></td>
 								</tr>
 
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
-											class="study_supperment"
+											class="staffPrinciple_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											name="policemen.staff_contactsRemark" rows="3" cols="66"></textarea>
+											name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
 									</td>
 
 
@@ -742,27 +738,27 @@
 				</div>
 				<div class="modal-body">
 
-					<form action="" id="studyExp_form" accept-charset="utf-8">
+					<form action="" id="addPunish_form" accept-charset="utf-8">
 
 						<table>
 							<tbody>
 								<tr>
 									<td><label class="staff_info_label">处分情况</label></td>
 									<td><input style="font-size: 12px;"
-										name="policemen.staff_birthday" type="text"></td>
+									class="staffPunishment_situation"	name="policeman.staff_birthday" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">处分时间</label></td>
-									<td><input style="font-size: 12px;" class="study_endTime"></td>
+									<td><input style="font-size: 12px;" class="staffPunishment_Time"></td>
 								</tr>
 
 
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
-											class="study_supperment"
+											class="staffPunishment_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											name="policemen.staff_contactsRemark" rows="3" cols="66"></textarea>
+											name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
 									</td>
 
 
@@ -796,42 +792,42 @@
 				</div>
 				<div class="modal-body">
 
-					<form action="" id="studyExp_form" accept-charset="utf-8">
+					<form action="" id="addVocation_form" accept-charset="utf-8">
 
 						<table>
 							<tbody>
 								<tr>
 									<td><label class="staff_info_label">休假事由</label></td>
 									<td><input style="font-size: 12px;"
-										name="policemen.staff_birthday" type="text"></td>
+									class="staffFurlough_mainContent"	name="policeman.staff_birthday" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">起始时间</label></td>
-									<td><input style="font-size: 12px;" class="study_endTime"></td>
+									<td><input style="font-size: 12px;" class="staffFurlough_startTime"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">天数</label></td>
 									<td><input type="text"
-										name="page_list_staffInformation.staff_name" /></td>
+									class="staffFurlough_days"	name="page_list_staffInformation.staff_name" /></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">是否销假</label></td>
-									<td><select>
+									<td><select class="staffFurlough_whetherStop">
 											<option>是</option>
 											<option>否</option>
 									</select></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">销假时间</label></td>
-									<td><input type="text" class="study_endTime"
+									<td><input type="text" class="staffFurlough_stopTime"
 										name="page_list_staffInformation.staff_name" /></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
-											class="study_supperment"
+											class="staffFurlough_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											name="policemen.staff_contactsRemark" rows="3" cols="66"></textarea>
+											name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
 									</td>
 
 
@@ -901,6 +897,78 @@
 			maxDate : '2030/01/01', // 设置最大日期
 		});
 		$('.study_endTime').datetimepicker({
+			yearStart : 1990, // 设置最小年份
+			yearEnd : 2050, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : true, // 关闭时间选项
+			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			minDate : '1990/01/01', // 设置最小日期
+			maxDate : '2030/01/01', // 设置最大日期
+		});
+		$('.staffFamily_birthday').datetimepicker({
+			yearStart : 1990, // 设置最小年份
+			yearEnd : 2050, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : true, // 关闭时间选项
+			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			minDate : '1990/01/01', // 设置最小日期
+			maxDate : '2030/01/01', // 设置最大日期
+		});
+		$('.staffWork_startTime').datetimepicker({
+			yearStart : 1990, // 设置最小年份
+			yearEnd : 2050, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : true, // 关闭时间选项
+			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			minDate : '1990/01/01', // 设置最小日期
+			maxDate : '2030/01/01', // 设置最大日期
+		});
+		$('.staffWork_stopTime').datetimepicker({
+			yearStart : 1990, // 设置最小年份
+			yearEnd : 2050, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : true, // 关闭时间选项
+			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			minDate : '1990/01/01', // 设置最小日期
+			maxDate : '2030/01/01', // 设置最大日期
+		});
+		$('.staffMove_inTime').datetimepicker({
+			yearStart : 1990, // 设置最小年份
+			yearEnd : 2050, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : true, // 关闭时间选项
+			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			minDate : '1990/01/01', // 设置最小日期
+			maxDate : '2030/01/01', // 设置最大日期
+		});
+		$('.staffMove_outTime').datetimepicker({
+			yearStart : 1990, // 设置最小年份
+			yearEnd : 2050, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : true, // 关闭时间选项
+			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			minDate : '1990/01/01', // 设置最小日期
+			maxDate : '2030/01/01', // 设置最大日期
+		});
+		$('.staffReward_Time').datetimepicker({
+			yearStart : 1990, // 设置最小年份
+			yearEnd : 2050, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : true, // 关闭时间选项
+			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			minDate : '1990/01/01', // 设置最小日期
+			maxDate : '2030/01/01', // 设置最大日期
+		});
+		$('.staffPrinciple_Time').datetimepicker({
+			yearStart : 1990, // 设置最小年份
+			yearEnd : 2050, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : true, // 关闭时间选项
+			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			minDate : '1990/01/01', // 设置最小日期
+			maxDate : '2030/01/01', // 设置最大日期
+		});
+		$('.staffFurlough_stopTime').datetimepicker({
 			yearStart : 1990, // 设置最小年份
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
