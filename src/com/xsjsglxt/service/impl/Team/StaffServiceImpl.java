@@ -27,4 +27,25 @@ public class StaffServiceImpl implements StaffService {
 		return result;
 	}
 
+	@Override
+	public String deletePoliceman(xsjsglxt_staff policeman) {
+		// TODO Auto-generated method stub
+		String result = staffDao.deletePoliceman(policeman);
+		return result;
+	}
+
+	@Override
+	public String updatePoliceman(xsjsglxt_staff policeman) {
+		// TODO Auto-generated method stub
+		policeman.setStaff_gmt_modified(TeamUtil.getStringSecond());
+		String result = staffDao.updatePoliceman(policeman);
+		return result;
+	}
+
+	@Override
+	public xsjsglxt_staff getPolicemanByStaffId(String xsjsglxt_staff_id) {
+		// TODO Auto-generated method stub
+		return staffDao.getPolicemanByStaffId(xsjsglxt_staff_id);
+	}
+
 }
