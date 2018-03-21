@@ -6,8 +6,6 @@ import com.xsjsglxt.domain.DO.xsjsglxt_staffFamily;
 
 public interface StaffFamilyDao {
 
-	String saveFamily(xsjsglxt_staffFamily family);
-
 	String deleteFamilyByFamilyId(xsjsglxt_staffFamily family);
 
 	String deleteFamilyByStaffId(xsjsglxt_staffFamily family);
@@ -17,5 +15,7 @@ public interface StaffFamilyDao {
 	String updateFamilyByFamilyId(xsjsglxt_staffFamily family);
 
 	List<xsjsglxt_staffFamily> getFamilyByStaffId(String staffFamily_staff);
+
+	String saveFamily(List<xsjsglxt_staffFamily> familys);
 
 }

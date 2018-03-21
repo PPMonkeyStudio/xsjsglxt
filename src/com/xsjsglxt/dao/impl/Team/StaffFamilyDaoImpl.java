@@ -26,10 +26,12 @@ public class StaffFamilyDaoImpl implements StaffFamilyDao {
 	}
 
 	@Override
-	public String saveFamily(xsjsglxt_staffFamily family) {
+	public String saveFamily(List<xsjsglxt_staffFamily> family) {
 		// TODO Auto-generated method stub
 		Session session = this.getSession();
-		session.save(family);
+		for (xsjsglxt_staffFamily xsjsglxt_staffFamily : family) {
+			session.save(xsjsglxt_staffFamily);
+		}
 		return "saveSuccess";
 	}
 

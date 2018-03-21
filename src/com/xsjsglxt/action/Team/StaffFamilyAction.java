@@ -20,11 +20,12 @@ import com.xsjsglxt.service.Team.StaffFamilyService;
 public class StaffFamilyAction extends ActionSupport {
 	private StaffFamilyService staffFamilyService;
 	private xsjsglxt_staffFamily family;
-
+	private List<xsjsglxt_staffFamily> familys;
 	// 添加家庭成员
 
 	public void saveFamily() {
-		String result = staffFamilyService.saveFamily(family);
+		System.out.println(familys.get(0).getStaffFamily_staff());
+		String result = staffFamilyService.saveFamily(familys);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter pw;
@@ -139,6 +140,14 @@ public class StaffFamilyAction extends ActionSupport {
 
 	public StaffFamilyService getStaffFamilyService() {
 		return staffFamilyService;
+	}
+
+	public List<xsjsglxt_staffFamily> getFamilys() {
+		return familys;
+	}
+
+	public void setFamilys(List<xsjsglxt_staffFamily> familys) {
+		this.familys = familys;
 	}
 
 	public xsjsglxt_staffFamily getFamily() {

@@ -2,6 +2,7 @@ package com.xsjsglxt.action.Team;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,10 +21,11 @@ import com.xsjsglxt.service.Team.StaffFurloughService;
 public class StaffFurloughAction extends ActionSupport {
 	private StaffFurloughService staffFurloughService;
 	private xsjsglxt_staffFurlough furlough;
+	private List<xsjsglxt_staffFurlough> furloughs;
 
 	// 增加休假信息
 	public void saveFurlough() {
-		String result = staffFurloughService.saveFurlough(furlough);
+		String result = staffFurloughService.saveFurlough(furloughs);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		try {
@@ -73,7 +75,6 @@ public class StaffFurloughAction extends ActionSupport {
 	public void getFurloughByFurloughId() {
 		xsjsglxt_staffFurlough newFurlough = staffFurloughService
 				.getFurloughByFurloughId(furlough.getXsjsglxt_staffFurlough_id());
-		System.out.println(newFurlough.toString());
 		Gson gson = new Gson();
 		String result = gson.toJson(newFurlough);
 		HttpServletResponse response = ServletActionContext.getResponse();
@@ -89,7 +90,40 @@ public class StaffFurloughAction extends ActionSupport {
 		}
 	}
 
+	public void getFurloughByStaffId() {
+		List<xsjsglxt_staffFurlough> furloughList = staffFurloughService
+				.getFurloughByStaffId(furlough.getStaffFurlough_staff());
+		Gson gson = new Gson();
+		String result = gson.toJson(furloughList);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(result);
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	// 修改休假信息
+
+	public void updateFurlough() {
+		String result = staffFurloughService.updateFurlough(furlough);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(result);
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	// --------------setter/getter------------------------------------
 	public StaffFurloughService getStaffFurloughService() {
@@ -106,5 +140,13 @@ public class StaffFurloughAction extends ActionSupport {
 
 	public void setStaffFurloughService(StaffFurloughService staffFurloughService) {
 		this.staffFurloughService = staffFurloughService;
+	}
+
+	public List<xsjsglxt_staffFurlough> getFurloughs() {
+		return furloughs;
+	}
+
+	public void setFurloughs(List<xsjsglxt_staffFurlough> furloughs) {
+		this.furloughs = furloughs;
 	}
 }
