@@ -63,7 +63,14 @@ function loadstaffDetail_staff_change(url) {
 			console.log(xmlhttp.responseText);
 			var id = xmlhttp.responseText;
 			// 得到
+			studyExp_ajax(url,id);
+			workExp_ajax(id);
 			family_ajax(id);
+			/*	policeChange_ajax(id);
+			prized_ajax(id);
+			against_ajax(id);
+			punishment_ajax(id);
+			furlough_ajax(id);*/
 		}
 	};
 	xmlhttp.open("post", url, true);
@@ -71,57 +78,299 @@ function loadstaffDetail_staff_change(url) {
 	xmlhttp.send(formData);
 }
 
-function family_ajax(id) {
+function studyExp_ajax(url,id){
 	console.log("b3");
 	if (window.XMLHttpRequest) {
 		xmlhttp = new XMLHttpRequest();
 	} else {
 		xmlhttp = new ActiveXOBject("Microsoft.XMLHTTP");
 	}
-	var formdata = new FormData();
-	var family = document.getElementById("family_table");
-	var familyTr = family.getElementsByTagName("tr");
-	for (var i = 1; i < familyTr.length; i++) {
-		formdata.append("students.study_startTime",familyTr.getElementById("students.study_startTime").innerHTML);
-		formdata.append("students.study_endTime",familyTr.getElementById("students.study_endTime").innerHTML);
-		formData.append("staffFamily_staff", id);
+	
+	var formdata=new FormData();
+	//得到每行
+	var s_tr = document.getElementById("studyExperience_table").getElementsByTagName("tr");
+	
+	for(var i=1;i<s_tr.length;i++){
+		//得到每列
+		var s_td=s_tr[i].getElementsByTagName("td");
+		for(var j=0;j<s_td.length;j++){
+			//得到每列的class名
+			var s_tdName=s_td[j].getAttribute("name");
+			console.log("列名"+s_tdName);
+			//将每列的名和值放到formdata中
+			formdata.append(s_tdName,s_td[j].innerHTML);
+		}
+	
+		//将id放到每行中
+		formdata.append("students.staffStudent_staff", id);
 	}
-	formData.append("staffFamily_staff", id);
 	xmlhttp.onreadystatechange = function() {
 		console.log("c3");
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			console.log("family"+xmlhttp.responseText);
-			studyExp_ajax(id);
+			//console.log("studyExp_ajax"+xmlhttp.responseText);
 		}
 
 	};
-	xmlhttp.open("post", url, true);
+	xmlhttp.open("post","/xsjsglxt/team/StaffStudent_saveStudents", true);
 	// xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
-	xmlhttp.send(formData);
+	xmlhttp.send(formdata);
 }
-function studyExp_ajax(id){
+
+function workExp_ajax(id) {
 	console.log("b4");
 	if (window.XMLHttpRequest) {
 		xmlhttp = new XMLHttpRequest();
 	} else {
 		xmlhttp = new ActiveXOBject("Microsoft.XMLHTTP");
 	}
-	var police_move = document.getElementById("police_move");
-	var formData = new FormData(family);
-	formData.append("staffFamily_staff", id);
+	
+	var formdata=new FormData();
+	//得到每行
+	var w_tr = document.getElementById("wordExperience_table").getElementsByTagName("tr");
+	
+	for(var i=1;i<w_tr.length;i++){
+		//得到每列
+		var w_td=w_tr[i].getElementsByTagName("td");
+		for(var j=0;j<w_td.length;j++){
+			//得到每列的class名
+			console.log(w_td[j].innnerHTML);
+			var w_tdName=w_td[j].getAttribute("name");
+			console.log("列名"+w_tdName);
+			//将每列的名和值放到formdata中
+			formdata.append(w_tdName,w_td[j].innerHTML);
+			//将id放到每行中
+		
+		}
+		formdata.append("works.staffWork_staff", id);
+	}
 	xmlhttp.onreadystatechange = function() {
 		console.log("c4");
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			console.log("police_move"+xmlhttp.responseText);
-			studyExp_ajax(id);
+			//console.log("workExp_ajax"+xmlhttp.responseText);
+			//workExp_ajax(id);
 		}
 
 	};
-	xmlhttp.open("post", url, true);
+	xmlhttp.open("post","/xsjsglxt/team/StaffWork_saveWorks", true);
 	// xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
-	xmlhttp.send(formData);
+	xmlhttp.send(formdata);
 }
+function family_ajax(id) {
+	console.log("b5");
+	if (window.XMLHttpRequest) {
+		xmlhttp = new XMLHttpRequest();
+	} else {
+		xmlhttp = new ActiveXOBject("Microsoft.XMLHTTP");
+	}
+	var formdata = new FormData();
+	var family_table = document.getElementById("family_table");
+	var familyTr = family_table.getElementsByTagName("tr");
+	for(var i=1;i<familyTr.length;i++){
+		//得到每列
+		var f_td=familyTr[i].getElementsByTagName("td");
+		for(var j=0;j<f_td.length;j++){
+			//得到每列的class名
+			var f_tdName=f_td[j].getAttribute("name");
+			console.log("列名"+f_tdName);
+			//将每列的名和值放到formdata中
+			formdata.append(f_tdName,f_td[j].innerHTML);
+		}
+	
+		//将id放到每行中
+		formdata.append("familys.staffFamily_staff", id);
+	}
+	xmlhttp.onreadystatechange = function() {
+		console.log("c5");
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			//console.log("family_ajax"+xmlhttp.responseText);
+			
+		}
 
+	};
+	xmlhttp.open("post","/xsjsglxt/team/StaffFamily_saveFamilys", true);
+	// xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
+	xmlhttp.send(formdata);
+}
+function policeChange_ajax(id) {
+	console.log("b6");
+	if (window.XMLHttpRequest) {
+		xmlhttp = new XMLHttpRequest();
+	} else {
+		xmlhttp = new ActiveXOBject("Microsoft.XMLHTTP");
+	}
+	var formdata = new FormData();
+	var policeChange_table = document.getElementById("policeChange_table");
+	var policeTr = policeChange_table.getElementsByTagName("tr");
+	for(var i=1;i<policeTr.length;i++){
+		//得到每列
+		var p_td=policeTr[i].getElementsByTagName("td");
+		for(var j=0;j<p_td.length;j++){
+			//得到每列的class名
+			var p_tdName=p_td[j].getAttribute("name");
+			console.log("列名"+p_tdName);
+			//将每列的名和值放到formdata中
+			formdata.append(p_tdName,p_td[j].innerHTML);
+		}
+	
+		//将id放到每行中
+		formdata.append("moves.staffMove_staff", id);
+	}
+	xmlhttp.onreadystatechange = function() {
+		console.log("c6");
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			//console.log("policeChange_ajax"+xmlhttp.responseText);
+			//workExp_ajax(id);
+		}
+
+	};
+	xmlhttp.open("post","/xsjsglxt/team/StaffMove_saveMoves", true);
+	// xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
+	xmlhttp.send(formdata);
+}
+function prized_ajax(id) {
+	console.log("b7");
+	if (window.XMLHttpRequest) {
+		xmlhttp = new XMLHttpRequest();
+	} else {
+		xmlhttp = new ActiveXOBject("Microsoft.XMLHTTP");
+	}
+	var formdata = new FormData();
+	var prized_table = document.getElementById("prized_table");
+	var prizedTr = prized_table.getElementsByTagName("tr");
+	for(var i=1;i<prizedTr.length;i++){
+		//得到每列
+		var p_td=prizedTr[i].getElementsByTagName("td");
+		for(var j=0;j<p_td.length;j++){
+			//得到每列的class名
+			var p_tdName=p_td[j].getAttribute("name");
+			console.log("列名"+p_tdName);
+			//将每列的名和值放到formdata中
+			formdata.append(p_tdName,p_td[j].innerHTML);
+		}
+	
+		//将id放到每行中
+		formdata.append("rewards.staffReward_staff", id);
+	}
+	xmlhttp.onreadystatechange = function() {
+		console.log("c7");
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			//console.log("prized_ajax"+xmlhttp.responseText);
+			//workExp_ajax(id);
+		}
+
+	};
+	xmlhttp.open("post","/xsjsglxt/team/StaffReward_saveRewards", true);
+	// xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
+	xmlhttp.send(formdata);
+}
+function against_ajax(id) {
+	console.log("b8");
+	if (window.XMLHttpRequest) {
+		xmlhttp = new XMLHttpRequest();
+	} else {
+		xmlhttp = new ActiveXOBject("Microsoft.XMLHTTP");
+	}
+	var formdata = new FormData();
+	var againstPrinciple_table = document.getElementById("againstPrinciple_table");
+	var againstPrincipleTr = againstPrinciple_table.getElementsByTagName("tr");
+	for(var i=1;i<againstPrincipleTr.length;i++){
+		//得到每列
+		var a_td=againstPrincipleTr[i].getElementsByTagName("td");
+		for(var j=0;j<a_td.length;j++){
+			//得到每列的class名
+			var a_tdName=a_td[j].getAttribute("name");
+			console.log("列名"+p_tdName);
+			//将每列的名和值放到formdata中
+			formdata.append(a_tdName,a_td[j].innerHTML);
+		}
+	
+		//将id放到每行中
+		formdata.append("principles.staffPrinciple_staff", id);
+	}
+	xmlhttp.onreadystatechange = function() {
+		console.log("c8");
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			//console.log("against_ajax"+xmlhttp.responseText);
+			//workExp_ajax(id);
+		}
+
+	};
+	xmlhttp.open("post","/xsjsglxt/team/StaffPrinciple_savePrinciples", true);
+	// xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
+	xmlhttp.send(formdata);
+}
+function punishment_ajax(id) {
+	console.log("b9");
+	if (window.XMLHttpRequest) {
+		xmlhttp = new XMLHttpRequest();
+	} else {
+		xmlhttp = new ActiveXOBject("Microsoft.XMLHTTP");
+	}
+	var formdata = new FormData();
+	var punish_table = document.getElementById("punish_table");
+	var punishTr = punish_table.getElementsByTagName("tr");
+	for(var i=1;i<punishTr.length;i++){
+		//得到每列
+		var p_td=punishTr[i].getElementsByTagName("td");
+		for(var j=0;j<p_td.length;j++){
+			//得到每列的class名
+			var p_tdName=p_td[j].getAttribute("name");
+			console.log("列名"+p_tdName);
+			//将每列的名和值放到formdata中
+			formdata.append(p_tdName,p_td[j].innerHTML);
+		}
+	
+		//将id放到每行中
+		formdata.append("punishments.staffPunishment_staff", id);
+	}
+	xmlhttp.onreadystatechange = function() {
+		console.log("c9");
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			//console.log("punishment_ajax"+xmlhttp.responseText);
+			//workExp_ajax(id);
+		}
+
+	};
+	xmlhttp.open("post","/xsjsglxt/team/StaffPunishment_savePunishments", true);
+	// xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
+	xmlhttp.send(formdata);
+}
+function furlough_ajax(id) {
+	console.log("b10");
+	if (window.XMLHttpRequest) {
+		xmlhttp = new XMLHttpRequest();
+	} else {
+		xmlhttp = new ActiveXOBject("Microsoft.XMLHTTP");
+	}
+	var formdata = new FormData();
+	var vocation_table = document.getElementById("vocation_table");
+	var vacationTr = vocation_table.getElementsByTagName("tr");
+	for(var i=1;i<vacationTr.length;i++){
+		//得到每列
+		var v_td=vacationTr[i].getElementsByTagName("td");
+		for(var j=0;j<v_td.length;j++){
+			//得到每列的class名
+			var v_tdName=v_td[j].getAttribute("name");
+			console.log("列名"+v_tdName);
+			//将每列的名和值放到formdata中
+			formdata.append(v_tdName,v_td[j].innerHTML);
+		}
+	
+		//将id放到每行中
+		formdata.append("furloughs.staffFurlough_staff", id);
+	}
+	xmlhttp.onreadystatechange = function() {
+		console.log("c10");
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			//console.log("vacation_ajax"+xmlhttp.responseText);
+			//workExp_ajax(id);
+		}
+
+	};
+	xmlhttp.open("post","/xsjsglxt/team/StaffFurlough_saveFurloughs", true);
+	// xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
+	xmlhttp.send(formdata);
+}
 // 改变性别方法
 function changeSex_man(even) {
 	var sex = document.getElementById("sex");
@@ -192,46 +441,53 @@ function photo_preview() {
 	return true;
 }
 // 添加学习经历
+var i=0;
 function add_studyExperience() {
 	console.log("add_studyExperience start");
 	// 把表格的数据存到json中
-	var study_startTime = document.querySelector(".study_startTime").value;
-	var study_endTime = document.querySelector(".study_endTime").value;
-	var study_indication = document.querySelector(".study_indication").value;
-	var study_supperment = document.querySelector(".study_supperment").value;
-	newStudyExp['study_startTime'] = study_startTime;
-	newStudyExp['study_endTime'] = study_endTime;
-	newStudyExp['study_indication'] = study_indication;
-	newStudyExp['study_supperment'] = study_supperment;
-	console.log(newStudyExp['study_startTime']);
+	var staffStudent_address = document.querySelector(".staffStudent_address").value;
+	var staffStudent_startTime = document.querySelector(".staffStudent_startTime").value;
+	var staffStudent_stopTime = document.querySelector(".staffStudent_stopTime").value;
+	var staffStudent_remarks = document.querySelector(".staffStudent_remarks").value;
+	newStudyExp['staffStudent_address'] = staffStudent_address;
+	newStudyExp['staffStudent_startTime'] = staffStudent_startTime;
+	newStudyExp['staffStudent_stopTime'] = staffStudent_stopTime;
+	newStudyExp['staffStudent_remarks'] = staffStudent_remarks;
+	console.log(newStudyExp['staffStudent_remarks']);
 	// 动态创建表格
 	var studyExperience_table = document
 			.getElementById("studyExperience_table");
 	studyExperience_table.setAttribute("class", "long_table");
 
 	var study_tr = document.createElement("tr");
-	var study_startTime = document.createElement("td");
-	study_startTime.innerHTML = newStudyExp['study_startTime'];
-	study_startTime.setAttribute("name","students.study_startTime");
-	console.log(study_startTime.innerHTML);
-	var study_endTime = document.createElement("td");
-	study_endTime.innerHTML = newStudyExp['study_endTime'];
-	study_endTime.setAttribute("name","students.study_endTime");
 	
-	var study_indication = document.createElement("td");
-	study_indication.innerHTML = newStudyExp['study_indication'];
-	study_indication.setAttribute("name","students.study_indication");
+	var staffStudent_address = document.createElement("td");
+	staffStudent_address.innerHTML = newStudyExp['staffStudent_address'];
+	staffStudent_address.setAttribute("name","students["+i+"].staffStudent_address");
+	console.log(staffStudent_address.innerHTML);
 	
-	var study_supperment = document.createElement("td");
-	study_supperment.innerHTML = newStudyExp['study_supperment'];
-	study_supperment.setAttribute("name","students.study_supperment");
+	var staffStudent_startTime = document.createElement("td");
+	staffStudent_startTime.innerHTML = newStudyExp['staffStudent_startTime'];
+	staffStudent_startTime.setAttribute("name","students["+i+"].staffStudent_startTime");
 	
-	study_tr.appendChild(study_startTime);
-	study_tr.appendChild(study_endTime);
-	study_tr.appendChild(study_indication);
-	study_tr.appendChild(study_supperment);
+	var staffStudent_stopTime = document.createElement("td");
+	staffStudent_stopTime.innerHTML = newStudyExp['staffStudent_stopTime'];
+	staffStudent_stopTime.setAttribute("name","students["+i+"].staffStudent_stopTime");
+	
+	var staffStudent_remarks = document.createElement("td");
+	staffStudent_remarks.innerHTML = newStudyExp['staffStudent_remarks'];
+	staffStudent_remarks.setAttribute("name","students["+i+"].staffStudent_remarks");
+	
+	study_tr.appendChild(staffStudent_address);
+	study_tr.appendChild(staffStudent_startTime);
+	study_tr.appendChild(staffStudent_stopTime);
+	study_tr.appendChild(staffStudent_remarks);
 	studyExperience_table.append(study_tr);
+	//得到一行数据i++
+	i++;
 }
+
+var i=0;
 function add_workExperience() {
 	console.log("add_workExperience start");
 	// 把表格的数据存到json中
@@ -257,25 +513,25 @@ function add_workExperience() {
 	
 	var staffWork_address = document.createElement("td");
 	staffWork_address.innerHTML = newStudyExp['staffWork_address'];
-	staffWork_address.setAttribute("name","works.staffWork_address");
+	staffWork_address.setAttribute("name","works["+i+"].staffWork_address");
 	console.log(staffWork_address.innerHTML);
 	
 	var staffWork_duty = document.createElement("td");
 	staffWork_duty.innerHTML = newStudyExp['staffWork_duty'];
-	staffWork_duty.setAttribute("name","works.staffWork_duty");
+	staffWork_duty.setAttribute("name","works["+i+"].staffWork_duty");
 	console.log(staffWork_duty.innerHTML);
 	
 	var staffWork_startTime = document.createElement("td");
 	staffWork_startTime.innerHTML = newStudyExp['staffWork_startTime'];
-	staffWork_startTime.setAttribute("name","works.staffWork_startTime");
+	staffWork_startTime.setAttribute("name","works["+i+"].staffWork_startTime");
 	
 	var staffWork_stopTime = document.createElement("td");
 	staffWork_stopTime.innerHTML = newStudyExp['staffWork_stopTime'];
-	staffWork_stopTime.setAttribute("name","works.staffWork_stopTime");
+	staffWork_stopTime.setAttribute("name","works["+i+"].staffWork_stopTime");
 	
 	var staffWork_remarks = document.createElement("td");
 	staffWork_remarks.innerHTML = newStudyExp['staffWork_remarks'];
-	staffWork_remarks.setAttribute("name","works.staffWork_remarks");
+	staffWork_remarks.setAttribute("name","works["+i+"].staffWork_remarks");
 	
 	work_tr.appendChild(staffWork_address);
 	work_tr.appendChild(staffWork_duty);
@@ -283,7 +539,9 @@ function add_workExperience() {
 	work_tr.appendChild(staffWork_stopTime);
 	work_tr.appendChild(staffWork_remarks);
 	wordExperience_table.append(work_tr);
+	i++;
 }
+var i=0;
 function add_family() {
 	console.log("add_family start");
 	// 把表格的数据存到json中
@@ -306,7 +564,7 @@ function add_family() {
 	newStudyExp['staffFamily_workSpace'] = staffFamily_workSpace;
 	newStudyExp['staffFamily_duty'] = staffFamily_duty;
 	newStudyExp['staffFamily_remarks'] = staffFamily_remarks;
-	console.log(newStudyExp['study_startTime']);
+	console.log(newStudyExp['staffFamily_remarks']);
 	// 动态创建表格
 	var family_table = document
 			.getElementById("family_table");
@@ -315,40 +573,40 @@ function add_family() {
 	var family_tr = document.createElement("tr");
 	var staffFamily_contactsRelationship = document.createElement("td");
 	staffFamily_contactsRelationship.innerHTML = newStudyExp['staffFamily_contactsRelationship'];
-	staffFamily_contactsRelationship.setAttribute("name","students.staffFamily_contactsRelationship");
+	staffFamily_contactsRelationship.setAttribute("name","familys["+i+"].staffFamily_contactsRelationship");
 	console.log(staffFamily_contactsRelationship.innerHTML);
 	
 	var staffFamily_name = document.createElement("td");
 	staffFamily_name.innerHTML = newStudyExp['staffFamily_name'];
-	staffFamily_name.setAttribute("name","familys.staffFamily_name");
+	staffFamily_name.setAttribute("name","familys["+i+"].staffFamily_name");
 	
 	var staffFamily_IDcard = document.createElement("td");
 	staffFamily_IDcard.innerHTML = newStudyExp['staffFamily_IDcard'];
-	staffFamily_IDcard.setAttribute("name","familys.staffFamily_IDcard");
+	staffFamily_IDcard.setAttribute("name","familys["+i+"].staffFamily_IDcard");
 	
 	var staffFamily_birthday = document.createElement("td");
 	staffFamily_birthday.innerHTML = newStudyExp['staffFamily_birthday'];
-	staffFamily_birthday.setAttribute("name","familys.staffFamily_birthday");
+	staffFamily_birthday.setAttribute("name","familys["+i+"].staffFamily_birthday");
 	
 	var staffFamily_tel = document.createElement("td");
 	staffFamily_tel.innerHTML = newStudyExp['staffFamily_tel'];
-	staffFamily_tel.setAttribute("name","familys.staffFamily_tel");
+	staffFamily_tel.setAttribute("name","familys["+i+"].staffFamily_tel");
 	
 	var staffFamily_WeiXin = document.createElement("td");
 	staffFamily_WeiXin.innerHTML = newStudyExp['staffFamily_WeiXin'];
-	staffFamily_WeiXin.setAttribute("name","familys.staffFamily_WeiXin");
+	staffFamily_WeiXin.setAttribute("name","familys["+i+"].staffFamily_WeiXin");
 	
 	var staffFamily_workSpace = document.createElement("td");
 	staffFamily_workSpace.innerHTML = newStudyExp['staffFamily_workSpace'];
-	staffFamily_workSpace.setAttribute("name","familys.staffFamily_workSpace");
+	staffFamily_workSpace.setAttribute("name","familys["+i+"].staffFamily_workSpace");
 	
 	var staffFamily_duty = document.createElement("td");
 	staffFamily_duty.innerHTML = newStudyExp['staffFamily_duty'];
-	staffFamily_duty.setAttribute("name","familys.staffFamily_duty");
+	staffFamily_duty.setAttribute("name","familys["+i+"].staffFamily_duty");
 	
 	var staffFamily_remarks = document.createElement("td");
 	staffFamily_remarks.innerHTML = newStudyExp['staffFamily_remarks'];
-	staffFamily_remarks.setAttribute("name","familys.staffFamily_remarks");
+	staffFamily_remarks.setAttribute("name","familys["+i+"].staffFamily_remarks");
 	
 	family_tr.appendChild(staffFamily_contactsRelationship);
 	family_tr.appendChild(staffFamily_name);
@@ -360,7 +618,9 @@ function add_family() {
 	family_tr.appendChild(staffFamily_duty);
 	family_tr.appendChild(staffFamily_remarks);
 	family_table.append(family_tr);
+	i++;
 }
+var i=0;
 function add_policeChange() {
 	console.log("add_policeChange start");
 	// 把表格的数据存到json中
@@ -381,27 +641,29 @@ function add_policeChange() {
 	var policemanChange_tr = document.createElement("tr");
 	var staffMove_inTime = document.createElement("td");
 	staffMove_inTime.innerHTML = newStudyExp['staffMove_inTime'];
-	staffMove_inTime.setAttribute("name","moves.staffMove_inTime");
+	staffMove_inTime.setAttribute("name","moves["+i+"].staffMove_inTime");
 	console.log(staffMove_inTime.innerHTML);
 	
 	var staffMove_outTime = document.createElement("td");
 	staffMove_outTime.innerHTML = newStudyExp['staffMove_outTime'];
-	staffMove_outTime.setAttribute("name","moves.staffMove_outTime");
+	staffMove_outTime.setAttribute("name","moves["+i+"].staffMove_outTime");
 	
 	var staffMove_guard = document.createElement("td");
 	staffMove_guard.innerHTML = newStudyExp['staffMove_guard'];
-	staffMove_guard.setAttribute("name","moves.staffMove_guard");
+	staffMove_guard.setAttribute("name","moves["+i+"].staffMove_guard");
 	
 	var staffMove_remarks = document.createElement("td");
 	staffMove_remarks.innerHTML = newStudyExp['staffMove_remarks'];
-	staffMove_remarks.setAttribute("name","moves.staffMove_remarks");
+	staffMove_remarks.setAttribute("name","moves["+i+"].staffMove_remarks");
 	
 	policemanChange_tr.appendChild(staffMove_inTime);
 	policemanChange_tr.appendChild(staffMove_outTime);
 	policemanChange_tr.appendChild(staffMove_guard);
 	policemanChange_tr.appendChild(staffMove_remarks);
 	policeChange_table.append(policemanChange_tr);
+	i++;
 }
+var i=0;
 function add_prized() {
 	console.log("add_prized start");
 	// 把表格的数据存到json中
@@ -422,21 +684,22 @@ function add_prized() {
 	
 	var staffReward_situation = document.createElement("td");
 	staffReward_situation.innerHTML = newStudyExp['staffReward_situation'];
-	staffReward_situation.setAttribute("name","rewards.staffReward_situation");
+	staffReward_situation.setAttribute("name","rewards["+i+"].staffReward_situation");
 	console.log(staffReward_situation.innerHTML);
 	
 	var staffReward_Time = document.createElement("td");
 	staffReward_Time.innerHTML = newStudyExp['staffReward_Time'];
-	staffReward_Time.setAttribute("name","rewards.staffReward_Time");
+	staffReward_Time.setAttribute("name","rewards["+i+"].staffReward_Time");
 	
 	var staffReward_remarks = document.createElement("td");
 	staffReward_remarks.innerHTML = newStudyExp['staffReward_remarks'];
-	staffReward_remarks.setAttribute("name","rewards.staffReward_remarks");
+	staffReward_remarks.setAttribute("name","rewards["+i+"].staffReward_remarks");
 	
 	prized_tr.appendChild(staffReward_situation);
 	prized_tr.appendChild(staffReward_Time);
 	prized_tr.appendChild(staffReward_remarks);
 	prized_table.append(prized_tr);
+	i++;
 }
 function add_AgainstPrinciple() {
 	console.log("add_AgainstPrinciple start");
@@ -457,23 +720,25 @@ function add_AgainstPrinciple() {
 	var againstPrinciple_tr = document.createElement("tr");
 	var staffPrinciple_situation = document.createElement("td");
 	staffPrinciple_situation.innerHTML = newStudyExp['staffPrinciple_situation'];
-	staffPrinciple_situation.setAttribute("name","principles.staffPrinciple_situation");
+	staffPrinciple_situation.setAttribute("name","principles["+i+"].staffPrinciple_situation");
 	console.log(staffPrinciple_situation.innerHTML);
 	
 	var staffPrinciple_Time = document.createElement("td");
 	staffPrinciple_Time.innerHTML = newStudyExp['staffPrinciple_Time'];
-	staffPrinciple_Time.setAttribute("name","principles.staffPrinciple_Time");
+	staffPrinciple_Time.setAttribute("name","principles["+i+"].staffPrinciple_Time");
 	
 	var staffPrinciple_remarks = document.createElement("td");
 	staffPrinciple_remarks.innerHTML = newStudyExp['staffPrinciple_remarks'];
-	staffPrinciple_remarks.setAttribute("name","principles.staffPrinciple_remarks");
+	staffPrinciple_remarks.setAttribute("name","principles["+i+"].staffPrinciple_remarks");
 
 	
 	againstPrinciple_tr.appendChild(staffPrinciple_situation);
 	againstPrinciple_tr.appendChild(staffPrinciple_Time);
 	againstPrinciple_tr.appendChild(staffPrinciple_remarks);
 	againstPrinciple_table.append(againstPrinciple_tr);
+	i++;
 }
+var i=0;
 function add_Punish() {
 	console.log("add_Punish start");
 	// 把表格的数据存到json中
@@ -493,24 +758,26 @@ function add_Punish() {
 	var punishment_tr = document.createElement("tr");
 	var staffPunishment_situation = document.createElement("td");
 	staffPunishment_situation.innerHTML = newStudyExp['staffPunishment_situation'];
-	staffPunishment_situation.setAttribute("name","punishments.staffPunishment_situation");
+	staffPunishment_situation.setAttribute("name","punishments["+i+"].staffPunishment_situation");
 	console.log(staffPunishment_situation.innerHTML);
 	
 	var staffPunishment_Time = document.createElement("td");
 	staffPunishment_Time.innerHTML = newStudyExp['staffPunishment_Time'];
-	staffPunishment_Time.setAttribute("name","punishments.staffPunishment_Time");
+	staffPunishment_Time.setAttribute("name","punishments["+i+"].staffPunishment_Time");
 
 	
 	var staffPunishment_remarks = document.createElement("td");
 	staffPunishment_remarks.innerHTML = newStudyExp['staffPunishment_remarks'];
-	staffPunishment_remarks.setAttribute("name","punishments.staffPunishment_remarks");
+	staffPunishment_remarks.setAttribute("name","punishments["+i+"].staffPunishment_remarks");
 
 	
 	punishment_tr.appendChild(staffPunishment_situation);
 	punishment_tr.appendChild(staffPunishment_Time);
 	punishment_tr.appendChild(staffPunishment_Time);
 	punish_table.append(punishment_tr);
+	i++;
 }
+var i=0;
 function add_Vocation() {
 	console.log("add_Vocation start");
 	// 把表格的数据存到json中
@@ -535,32 +802,32 @@ function add_Vocation() {
 	var vocation_tr = document.createElement("tr");
 	var staffFurlough_mainContent = document.createElement("td");
 	staffFurlough_mainContent.innerHTML = newStudyExp['staffFurlough_mainContent'];
-	staffFurlough_mainContent.setAttribute("name","furloughs.staffFurlough_mainContent");
+	staffFurlough_mainContent.setAttribute("name","furloughs["+i+"].staffFurlough_mainContent");
 	console.log(staffFurlough_mainContent.innerHTML);
 	
 	var staffFurlough_startTime = document.createElement("td");
 	staffFurlough_startTime.innerHTML = newStudyExp['staffFurlough_startTime'];
-	staffFurlough_startTime.setAttribute("name","furloughs.staffFurlough_startTime");
+	staffFurlough_startTime.setAttribute("name","furloughs["+i+"].staffFurlough_startTime");
 
 	
 	var staffFurlough_days = document.createElement("td");
 	staffFurlough_days.innerHTML = newStudyExp['staffFurlough_days'];
-	staffFurlough_days.setAttribute("name","furloughs.staffFurlough_days");
+	staffFurlough_days.setAttribute("name","furloughs["+i+"].staffFurlough_days");
 
 	
 	var staffFurlough_whetherStop = document.createElement("td");
 	staffFurlough_whetherStop.innerHTML = newStudyExp['staffFurlough_whetherStop'];
-	staffFurlough_whetherStop.setAttribute("name","furloughs.staffFurlough_whetherStop");
+	staffFurlough_whetherStop.setAttribute("name","furloughs["+i+"].staffFurlough_whetherStop");
 
 	
 	var staffFurlough_stopTime = document.createElement("td");
 	staffFurlough_stopTime.innerHTML = newStudyExp['staffFurlough_stopTime'];
-	staffFurlough_stopTime.setAttribute("name","furloughs.staffFurlough_stopTime");
+	staffFurlough_stopTime.setAttribute("name","furloughs["+i+"].staffFurlough_stopTime");
 
 	
 	var staffFurlough_remarks = document.createElement("td");
 	staffFurlough_remarks.innerHTML = newStudyExp['staffFurlough_remarks'];
-	staffFurlough_remarks.setAttribute("name","furloughs.staffFurlough_remarks");
+	staffFurlough_remarks.setAttribute("name","furloughs["+i+"].staffFurlough_remarks");
 
 	
 	vocation_tr.appendChild(staffFurlough_mainContent);
@@ -570,6 +837,7 @@ function add_Vocation() {
 	vocation_tr.appendChild(staffFurlough_stopTime);
 	vocation_tr.appendChild(staffFurlough_remarks);
 	vocation_table.append(vocation_tr);
+	i++;
 }
 if (window.File && window.FileList && window.FileReader && window.Blob) {
 	document.querySelector(".photo-file").addEventListener('change',

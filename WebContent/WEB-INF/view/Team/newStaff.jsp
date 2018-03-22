@@ -48,7 +48,7 @@
 						<tr style="height: 20px"></tr>
 						<tr>
 							<td><label>姓名</label></td>
-							<td><input name="policeman.staff_name" class="form-control"
+							<td><input name="policeman.xsjsglxt_name" class="form-control"
 								type="text"></td>
 
 							<td><label>警号</label></td>
@@ -71,17 +71,17 @@
 
 							<td><label>年龄</label></td>
 							<td><input style="font-size: 12px;"
-								name="policeman.staff_age" class="form-control" type="text"></td>
+								name="policeman.xsjsglxt_age" class="form-control" type="text"></td>
 
 
 						</tr>
 						<tr>
 
 							<td><label>民族</label></td>
-							<td><input name="policeman.staff_nation"
+							<td><input name="policeman.xsjsglxt_nation"
 								class="form-control" type="text"></td>
 							<td><label>籍贯</label></td>
-							<td><input name="policeman.staff_nativePlace"
+							<td><input name="policeman.xsjsglxt_nativePlace"
 								class="form-control" type="text"></td>
 
 						</tr>
@@ -127,7 +127,7 @@
 							</label> <label style="float: left; width: 50px; margin-left: 10px;"
 								class="fancy-radio "> <input name="sex_content"
 									onclick=changeSex_woman(this) type="radio" value="女"> <span><i></i>女</span>
-							</label> <input type="hidden" name="policeman.staff_sex" id="sex"></td>
+							</label> <input type="hidden" name="policeman.xsjsglxt_sex" id="sex"></td>
 
 						</tr>
 						<tr>
@@ -205,7 +205,7 @@
 							<i class="fa fa-plus-square"></i> 添加
 						</button>
 						<form id="study_exp">
-							<table id="studyExperience_table">
+							<table id="studyExperience_table" class="ssssss">
 								<tr class="long_table">
 									<th>学习地点</th>
 									<th>起始时间</th>
@@ -371,24 +371,24 @@
 								<tr>
 									<td><label class="staff_info_label">学习地点</label></td>
 									<td><input style="font-size: 12px;"
-										class="study_indication" name="policeman.staff_birthday"
+										class="staffStudent_address" name="policeman.staff_birthday"
 										type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">起始时间</label></td>
 									<td><input style="font-size: 12px;"
-										class=" study_startTime"></td>
+										class=" staffStudent_startTime"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">结束时间</label></td>
-									<td><input type="text" class="study_endTime"
+									<td><input type="text" class="staffStudent_stopTime"
 										name="page_list_staffInformation.staff_name" /></td>
 								</tr>
 
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
-									<td colspan="6"><textarea id="staff_contactsRemark"
-											class="study_supperment"
+									<td colspan="6"><textarea id="staffStudent_remarks"
+											class="staffStudent_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
 									</td>
