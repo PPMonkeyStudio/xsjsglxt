@@ -24,7 +24,7 @@ public class StaffRewardServiceImpl implements StaffRewardService {
 	public String saveRewards(List<xsjsglxt_staffReward> rewards) {
 		// TODO Auto-generated method stub
 		for (xsjsglxt_staffReward xsjsglxt_staffReward : rewards) {
-			xsjsglxt_staffReward.setStaffReward_gmt_create(TeamUtil.getUuid());
+			xsjsglxt_staffReward.setStaffReward_gmt_create(TeamUtil.getStringSecond());
 			xsjsglxt_staffReward.setStaffReward_gmt_modified(TeamUtil.getStringSecond());
 			xsjsglxt_staffReward.setXsjsglxt_staffReward_id(TeamUtil.getUuid());
 		}
