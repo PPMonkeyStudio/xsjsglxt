@@ -23,7 +23,7 @@ public class StaffPunishmentAction extends ActionSupport {
 	private List<xsjsglxt_staffPunishment> punishments;
 
 	// ----------------------保存处分信息-------------------------
-	public void savePunishment() {
+	public void savePunishments() {
 		String result = staffPunishmentService.savePunishment(punishments);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");

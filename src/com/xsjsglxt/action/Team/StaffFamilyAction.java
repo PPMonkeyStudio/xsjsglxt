@@ -23,7 +23,7 @@ public class StaffFamilyAction extends ActionSupport {
 	private List<xsjsglxt_staffFamily> familys;
 	// 添加家庭成员
 
-	public void saveFamily() {
+	public void saveFamilys() {
 		System.out.println(familys.get(0).getStaffFamily_staff());
 		String result = staffFamilyService.saveFamily(familys);
 		HttpServletResponse response = ServletActionContext.getResponse();
