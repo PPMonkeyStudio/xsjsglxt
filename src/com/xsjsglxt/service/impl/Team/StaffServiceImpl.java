@@ -1,7 +1,11 @@
 package com.xsjsglxt.service.impl.Team;
 
+import java.util.List;
+
 import com.xsjsglxt.dao.Team.StaffDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_staff;
+import com.xsjsglxt.domain.DTO.Team.policemanListDTO;
+import com.xsjsglxt.domain.VO.Team.policemanListVO;
 import com.xsjsglxt.service.Team.StaffService;
 
 import util.TeamUtil;
@@ -46,6 +50,15 @@ public class StaffServiceImpl implements StaffService {
 	public xsjsglxt_staff getPolicemanByStaffId(String xsjsglxt_staff_id) {
 		// TODO Auto-generated method stub
 		return staffDao.getPolicemanByStaffId(xsjsglxt_staff_id);
+	}
+
+	@Override
+	public void getPolicemansByPage(policemanListVO policemanVO) {
+		// TODO Auto-generated method stub
+		int count = staffDao.getPolicemanCount(policemanVO);
+		policemanVO.setTotalPage((int) Math.ceil((double) count / (double) policemanVO.getPageCount()));
+		List<policemanListDTO> policemans = staffDao.getPolicemansByPage(policemanVO);
+		policemanVO.setPolicemans(policemans);
 	}
 
 }

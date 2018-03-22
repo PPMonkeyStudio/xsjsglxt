@@ -24,7 +24,7 @@ public class StaffFurloughAction extends ActionSupport {
 	private List<xsjsglxt_staffFurlough> furloughs;
 
 	// 增加休假信息
-	public void saveFurlough() {
+	public void saveFurloughs() {
 		String result = staffFurloughService.saveFurlough(furloughs);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");

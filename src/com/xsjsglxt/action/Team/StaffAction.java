@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
 import org.aspectj.util.FileUtil;
 
+import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_staff;
+import com.xsjsglxt.domain.VO.Team.policemanListVO;
 import com.xsjsglxt.service.Team.StaffService;
 
 import util.TeamUtil;
@@ -30,6 +32,7 @@ public class StaffAction extends ActionSupport {
 	private File staff_image;
 	private String staff_imageContentType;
 	private String staff_imageFileName;
+	private policemanListVO policemanVO;
 
 	// -----------------------------------进入人员管理---------------------------------------
 	public String page_staffList() {
@@ -164,6 +167,43 @@ public class StaffAction extends ActionSupport {
 			e.printStackTrace();
 		}
 	}
+	// ----------------------------------------获得一个警员基本信息----------------------------
+
+	public void getPolicemanByStaffId() {
+		xsjsglxt_staff staff = staffService.getPolicemanByStaffId(policeman.getXsjsglxt_staff_id());
+		Gson gson = new Gson();
+		String result = gson.toJson(staff);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(result);
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	// ----------------------------------------获得多个警员信息(查询/分页)----------------------
+	public void getPolicemansByPage() {
+		staffService.getPolicemansByPage(policemanVO);
+		Gson gson = new Gson();
+		String result = gson.toJson(policemanVO);
+		System.out.println(result);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(result);
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	// ---------------------------------------下载头像--------------------------------------
 	public void downloadPhoto() {
@@ -206,8 +246,17 @@ public class StaffAction extends ActionSupport {
 	}
 
 	// ------------------------------------setter/getter-----------------------------------
+
 	public StaffService getStaffService() {
 		return staffService;
+	}
+
+	public policemanListVO getPolicemanVO() {
+		return policemanVO;
+	}
+
+	public void setPolicemanVO(policemanListVO policemanVO) {
+		this.policemanVO = policemanVO;
 	}
 
 	public xsjsglxt_staff getPoliceman() {

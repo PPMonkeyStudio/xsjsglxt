@@ -23,7 +23,7 @@ public class StaffMoveAction extends ActionSupport {
 	private List<xsjsglxt_staffMove> moves;
 
 	// -----------------------保存调动情况-------------------------------
-	public void saveMove() {
+	public void saveMoves() {
 		String result = staffMoveService.saveMove(moves);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
