@@ -107,8 +107,13 @@ public class StaffStudentAction extends ActionSupport {
 	// ------------------------------获得多个学习信息---------------------------------
 	public void getStudentByStaffId() {
 		List<xsjsglxt_staffStudent> students = staffStudentService.getStudents(student.getStaffStudent_staff());
-		Gson gson = new Gson();
-		String result = gson.toJson(students);
+		String result;
+		if (students.size() <= 0) {
+			result = "studentIsNull";
+		} else {
+			Gson gson = new Gson();
+			result = gson.toJson(students);
+		}
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		try {
