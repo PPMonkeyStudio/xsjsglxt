@@ -113,8 +113,13 @@ public class StaffMoveAction extends ActionSupport {
 	// --------------------------获取多个调动情况--------------------------------
 	public void getMoveByStaffId() {
 		List<xsjsglxt_staffMove> xsjsglxt_staffMoves = staffMoveService.getMoveByStaffId(move.getStaffMove_staff());
-		Gson gson = new Gson();
-		String result = gson.toJson(xsjsglxt_staffMoves);
+		String result;
+		if (xsjsglxt_staffMoves.size() <= 0) {
+			result = "moveIsNull";
+		} else {
+			Gson gson = new Gson();
+			result = gson.toJson(xsjsglxt_staffMoves);
+		}
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter pw;

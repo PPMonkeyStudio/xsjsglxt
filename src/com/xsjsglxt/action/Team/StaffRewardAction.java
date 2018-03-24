@@ -107,8 +107,13 @@ public class StaffRewardAction extends ActionSupport {
 	// ------------------------------获得多个奖励信息---------------------------------
 	public void getRewardByStaffId() {
 		List<xsjsglxt_staffReward> rewards = staffRewardService.getRewards(reward.getStaffReward_staff());
-		Gson gson = new Gson();
-		String result = gson.toJson(rewards);
+		String result;
+		if (rewards.size() <= 0) {
+			result = "rewardsIsNull";
+		} else {
+			Gson gson = new Gson();
+			result = gson.toJson(rewards);
+		}
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		try {
