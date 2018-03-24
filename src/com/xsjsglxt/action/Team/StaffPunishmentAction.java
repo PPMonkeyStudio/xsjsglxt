@@ -110,8 +110,13 @@ public class StaffPunishmentAction extends ActionSupport {
 	public void getPunishmentByStaffId() {
 		List<xsjsglxt_staffPunishment> punishments = staffPunishmentService
 				.getPunishments(punishment.getStaffPunishment_staff());
-		Gson gson = new Gson();
-		String result = gson.toJson(punishments);
+		String result;
+		if (punishments.size() <= 0) {
+			result = "punishmentIsNull";
+		} else {
+			Gson gson = new Gson();
+			result = gson.toJson(punishments);
+		}
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		try {

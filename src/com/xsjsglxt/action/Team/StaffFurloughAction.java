@@ -93,8 +93,13 @@ public class StaffFurloughAction extends ActionSupport {
 	public void getFurloughByStaffId() {
 		List<xsjsglxt_staffFurlough> furloughList = staffFurloughService
 				.getFurloughByStaffId(furlough.getStaffFurlough_staff());
-		Gson gson = new Gson();
-		String result = gson.toJson(furloughList);
+		String result;
+		if (furloughList.size() <= 0) {
+			result = "furloughIsNull";
+		} else {
+			Gson gson = new Gson();
+			result = gson.toJson(furloughList);
+		}
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		try {

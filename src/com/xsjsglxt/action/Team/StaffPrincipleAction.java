@@ -110,8 +110,13 @@ public class StaffPrincipleAction extends ActionSupport {
 	public void getPrincipleByStaffId() {
 		List<xsjsglxt_staffPrinciple> principles = staffPrincipleService
 				.getPrinciples(principle.getStaffPrinciple_staff());
-		Gson gson = new Gson();
-		String result = gson.toJson(principles);
+		String result;
+		if (principles.size() <= 0) {
+			result = "principleIsNull";
+		} else {
+			Gson gson = new Gson();
+			result = gson.toJson(principles);
+		}
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		try {

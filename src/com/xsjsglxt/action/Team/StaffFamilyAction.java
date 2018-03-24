@@ -119,20 +119,33 @@ public class StaffFamilyAction extends ActionSupport {
 
 	// 获得所有家庭成员信息
 	public void getFamilyByStaffId() {
-		List<xsjsglxt_staffFamily> familyList = staffFamilyService.getFamilyByStaffId(family.getStaffFamily_staff());
-		Gson gson = new Gson();
-		String result = gson.toJson(familyList);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;cherset=utf-8");
-		PrintWriter pw;
-		try {
-			pw = response.getWriter();
-			pw.write(result);
-			pw.flush();
-			pw.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		List<xsjsglxt_staffFamily> familyList = staffFamilyService.getFamilyByStaffId(family.getStaffFamily_staff());
+		if (familyList.size() < 1) {
+			PrintWriter pw;
+			try {
+				pw = response.getWriter();
+				pw.write("familyIsNull");
+				pw.flush();
+				pw.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			Gson gson = new Gson();
+			String result = gson.toJson(familyList);
+			PrintWriter pw;
+			try {
+				pw = response.getWriter();
+				pw.write(result);
+				pw.flush();
+				pw.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 

@@ -107,8 +107,13 @@ public class StaffWorkAction extends ActionSupport {
 	// ------------------------------获得多个工作信息---------------------------------
 	public void getWorkByStaffId() {
 		List<xsjsglxt_staffWork> Works = staffWorkService.getWorks(work.getStaffWork_staff());
-		Gson gson = new Gson();
-		String result = gson.toJson(works);
+		String result;
+		if (Works.size() <= 0) {
+			result = "worksIsNull";
+		} else {
+			Gson gson = new Gson();
+			result = gson.toJson(works);
+		}
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		try {
