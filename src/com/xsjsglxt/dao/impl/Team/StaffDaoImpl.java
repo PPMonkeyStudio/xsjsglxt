@@ -68,10 +68,10 @@ public class StaffDaoImpl implements StaffDao {
 		String hql = "select count(*) from xsjsglxt_staff where 1=1";
 		if (policemanVO.getPolicemanName() != null && policemanVO.getPolicemanName().trim().length() > 0) {
 			String name = "%" + policemanVO.getPolicemanName() + "%";
-			hql = hql + " and staff_name like '" + name + "'";
+			hql = hql + " and xsjsglxt_name like '" + name + "'";
 		}
 		if (policemanVO.getPolicemanSex() != null && policemanVO.getPolicemanSex().trim().length() > 0) {
-			hql = hql + " and staff_sex='" + policemanVO.getPolicemanSex() + "'";
+			hql = hql + " and xsjsglxt_sex='" + policemanVO.getPolicemanSex() + "'";
 		}
 		if (policemanVO.getPoliticalStatus() != null && policemanVO.getPoliticalStatus().trim().length() > 0) {
 			hql = hql + " and staff_politicalStatus='" + policemanVO.getPoliticalStatus() + "'";
@@ -90,10 +90,10 @@ public class StaffDaoImpl implements StaffDao {
 				+ "x.xsjsglxt_sex as xsjsglxt_sex,x.xsjsglxt_age as xsjsglxt_age,x.staff_politicalStatus as staff_politicalStatus,x.staff_thePoliceTime as staff_thePoliceTime) from xsjsglxt_staff x where 1=1 ";
 		if (policemanVO.getPolicemanName() != null && policemanVO.getPolicemanName().trim().length() > 0) {
 			String name = "%" + policemanVO.getPolicemanName() + "%";
-			hql = hql + " and staff_name like '" + name + "'";
+			hql = hql + " and xsjsglxt_name like '" + name + "'";
 		}
 		if (policemanVO.getPolicemanSex() != null && policemanVO.getPolicemanSex().trim().length() > 0) {
-			hql = hql + " and staff_sex='" + policemanVO.getPolicemanSex() + "'";
+			hql = hql + " and xsjsglxt_sex='" + policemanVO.getPolicemanSex() + "'";
 		}
 		if (policemanVO.getPoliticalStatus() != null && policemanVO.getPoliticalStatus().trim().length() > 0) {
 			hql = hql + " and staff_politicalStatus='" + policemanVO.getPoliticalStatus() + "'";
@@ -103,6 +103,15 @@ public class StaffDaoImpl implements StaffDao {
 		List<policemanListDTO> policemans = session.createQuery(hql)
 				.setFirstResult((policemanVO.getCurrPage() - 1) * policemanVO.getPageCount())
 				.setMaxResults(policemanVO.getPageCount()).list();
+		session.clear();
+		for (policemanListDTO policemanListDTO : policemans) {
+			if (policemanListDTO.getXsjsglxt_name() != null
+					&& policemanListDTO.getXsjsglxt_name().trim().length() > 0) {
+				policemanListDTO
+						.setXsjsglxt_name(policemanListDTO.getXsjsglxt_name().replaceAll(policemanVO.getPolicemanName(),
+								"<span style='color:red;'>" + policemanVO.getPolicemanName() + "</span>"));
+			}
+		}
 		return policemans;
 	}
 

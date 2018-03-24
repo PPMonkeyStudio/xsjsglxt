@@ -57,6 +57,7 @@ public class StaffServiceImpl implements StaffService {
 		// TODO Auto-generated method stub
 		int count = staffDao.getPolicemanCount(policemanVO);
 		policemanVO.setTotalPage((int) Math.ceil((double) count / (double) policemanVO.getPageCount()));
+		policemanVO.setTotalCount(count);
 		List<policemanListDTO> policemans = staffDao.getPolicemansByPage(policemanVO);
 		policemanVO.setPolicemans(policemans);
 	}
