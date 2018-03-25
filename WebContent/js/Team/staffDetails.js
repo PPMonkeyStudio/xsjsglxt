@@ -1,11 +1,13 @@
 //显示数据
 window.onload=function(){
 	var url = window.location.href;
+   var staff_id=  url.substring(url.indexOf("=")+1);
+   console.log(staff_id);
+   get_staffDetails(staff_id);
 }
-function get_staffDetails() {
+function get_staffDetails(staff_id) {
 	console.log("b1");
-	var staff_id = document.getElementById("staff_id").value;
-	var url = "/xsjsglxt/team/Staff_StaffInformationOne?staff.xsjsglxt_staff_id="
+	var url = "/xsjsglxt/team/Staff_getPolicemanByStaffId?policeman.xsjsglxt_staff_id="
 			+ staff_id;
 	get_staffDetails_Ajax(url);
 }
@@ -25,13 +27,6 @@ function get_staffDetails_Ajax(url) {
 			var staff_info = xmlhttp.responseText;
 			staff_info = JSON.parse(staff_info);
 			console.log(staff_info);
-// var
-// staffDetails_input=document.getElementById("staffDetails").getElementsByTagName("input");
-// for(var key in staff_info){
-// document.getElementsByTagName("input").name="listStaff."+key;
-//		    		
-// }
-
 			// 获取单选框元素
 			// 性别
 			var staff_sex=document.getElementsByName("sex_content");
