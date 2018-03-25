@@ -1,4 +1,7 @@
 //显示数据
+window.onload=function(){
+	var url = window.location.href;
+}
 function get_staffDetails() {
 	console.log("b1");
 	var staff_id = document.getElementById("staff_id").value;
@@ -8,18 +11,11 @@ function get_staffDetails() {
 }
 function get_staffDetails_Ajax(url) {
 	console.log("c1");
-<<<<<<< HEAD
 	if (window.XMLHttpRequest){
 		// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
 		xmlhttp=new XMLHttpRequest();
 	}
 	else{
-=======
-	if (window.XMLHttpRequest) {
-		// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
-		xmlhttp = new XMLHttpRequest();
-	} else {
->>>>>>> origin/SY
 		// IE6, IE5 浏览器执行代码
 		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 	}
@@ -29,7 +25,6 @@ function get_staffDetails_Ajax(url) {
 			var staff_info = xmlhttp.responseText;
 			staff_info = JSON.parse(staff_info);
 			console.log(staff_info);
-<<<<<<< HEAD
 // var
 // staffDetails_input=document.getElementById("staffDetails").getElementsByTagName("input");
 // for(var key in staff_info){
@@ -65,44 +60,6 @@ function get_staffDetails_Ajax(url) {
 					}
 					else{
 						isNotFormat.checked=true;
-=======
-			// var
-			// staffDetails_input=document.getElementById("staffDetails").getElementsByTagName("input");
-			// for(var key in staff_info){
-			// document.getElementsByTagName("input").name="listStaff."+key;
-			//		    		
-			// }
-
-			// 获取单选框元素
-			// 性别
-			var staff_sex = document.getElementsByName("sex_content");
-			var sex_man = staff_sex[0];
-			var sex_woman = staff_sex[1];
-			// 是否正式
-			var staff_format = document.getElementsByName("format_content");
-			var isFormat = staff_format[0];
-			var isNotFormat = staff_format[1];
-			// 获取textarea（备注）
-			var staff_contactsRemark = document
-					.getElementById("staff_contactsRemark");
-
-			// 遍历并插入input的value
-			$.each(staff_info, function(key, value) {
-				// 如果是性别
-				if (key == "staff_sex") {
-					if (value == "男") {
-						sex_man.checked = true;
-					} else {
-						sex_woman.checked = true;
-					}
-				}
-				// 如果是是否正式
-				else if (key == "staff_isItFormal") {
-					if (value == "是") {
-						isFormat.checked = true;
-					} else {
-						isNotFormat.checked = true;
->>>>>>> origin/SY
 					}
 				} else if (key == "staff_contactsRemark") {
 					staff_contactsRemark.innerHTML = value;
@@ -110,17 +67,12 @@ function get_staffDetails_Ajax(url) {
 				}
 				$('input[name="staff.' + key + '"]').val(value);
 			});
-<<<<<<< HEAD
 			show_studyAjax();
 	    }
-=======
-		}
->>>>>>> origin/SY
 	}
 	xmlhttp.open("POST", url, true);
 	xmlhttp.send();
 }
-<<<<<<< HEAD
 function show_studyAjax(){
 	if (window.XMLHttpRequest){
 		// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
@@ -144,18 +96,11 @@ function show_studyAjax(){
 				$('input[name="staff.'+key+'"]').val(staff_info[i][key]);
 			}
 		}
-}
+}}}
 // 改变性别方法
 function changeSex_man(even){
 	var sex=document.getElementById("sex");
 	sex.value=even.value;
-=======
-
-// 改变性别方法
-function changeSex_man(even) {
-	var sex = document.getElementById("sex");
-	sex.value = even.value;
->>>>>>> origin/SY
 	return sex.value;
 }
 function changeSex_woman(even) {
@@ -164,16 +109,10 @@ function changeSex_woman(even) {
 	return sex.value;
 }
 
-// 改变是否正式
-<<<<<<< HEAD
+//改变是否正式
 function isFormat(even){
 	var format=document.getElementById("format");
 	format.value=even.value;
-=======
-function isFormat(even) {
-	var format = document.getElementById("format");
-	format.value = even.value;
->>>>>>> origin/SY
 	return fomat.value;
 }
 function isNotFormat(even) {
@@ -182,14 +121,9 @@ function isNotFormat(even) {
 	return fomat.value;
 }
 
-// staffDetail.jsp中的修改人员
-<<<<<<< HEAD
+//staffDetail.jsp中的修改人员
 function staff_change(){
 	var url="/xsjsglxt/team/Staff_updateStaffInformation";
-=======
-function staff_change() {
-	var url = "/xsjsglxt/team/Staff_updateStaffInformation";
->>>>>>> origin/SY
 	$.confirm({
 		title : '修改!',
 		content : '确定修改么!',
