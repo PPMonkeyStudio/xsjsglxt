@@ -209,6 +209,14 @@ var loadData = function() {
 			allPageVue.totalPage = result.totalPage;
 			allPageVue.pageCount = result.pageCount;
 			allPageVue.totalCount = result.totalCount;
+			queryConditionTemp.currPage = result.currPage;
+			queryConditionTemp.totalPage = result.totalPage;
+			queryConditionTemp.pageCount = result.pageCount;
+			queryConditionTemp.totalCount = result.totalCount;
+			queryConditionTemp.inPoliceTimeSort = result.inPoliceTimeSort;
+			queryConditionTemp.policemanName = result.policemanName;
+			queryConditionTemp.policemanSex = result.policemanSex;
+			queryConditionTemp.politicalStatus = result.politicalStatus;
 			$('#loadingLayer').hide();
 			$('#mainPanel').show();
 		}
