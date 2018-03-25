@@ -7,7 +7,20 @@ html, body, ul, li, div, h3, a, span, input, button, p, label, details,
 	overflow: initial;
 	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 }
-
+ 
+.longBoxs table{
+	table-layout:fixed;只有定义了表格的布局算法为fixed，下面td的定义才能起作用。
+} 
+.longBoxs td{
+	overflow:hidden;
+	border-top:0px;
+	height:30px;
+    width:100%; 
+    word-break:keep-all;不换行
+    white-space:nowrap;不换行
+    overflow:hidden;内容超出宽度时隐藏超出部分的内容
+    text-overflow:ellipsis;当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。
+} 
 a:hover {
 	cursor: pointer;
 }
@@ -19,9 +32,11 @@ a:hover {
 #Check-btn {
 	margin-bottom: 6px;
 }
-.page-footer{
-	text-align:center;
+
+.page-footer {
+	text-align: center;
 }
+
 .staff_info_label {
 	width: 80px;
 }
@@ -35,18 +50,20 @@ a:hover {
 	font: 14px/15px "微软雅黑";
 	color: #676a6dcc;
 }
+
 .page_info {
 	font-size: 15px;
 	display: inline-block;
 }
 
-.page-go{
-	width:35px;
-	text-indent:10px;
+.page-go {
+	width: 35px;
+	text-indent: 10px;
 }
-.person_radio{
-	float:left;
-	width:50px;
+
+.person_radio {
+	float: left;
+	width: 50px;
 }
 /*staffList table.css end  */
 /*staffDetail table.css  */
@@ -109,50 +126,62 @@ a:hover {
 	width: 70px;
 }
 /*newStaff.css  */
-.photo-show{
+.photo-show {
 	width: 120px;
 	height: 150px;
 	border: 1px solid #dbd9d9;
 	cursor: pointer;
 	overflow: hidden;
-	display:block;
+	display: block;
 	*display: inline;
 	*zoom: 1
 }
-.photo-file{
-	display:none !important;
-	 opacity: 0;
-    filter: alpha(opacity=0);
-    cursor: pointer;
-} 
+
+.photo-file {
+	display: none !important;
+	opacity: 0;
+	filter: alpha(opacity = 0);
+	cursor: pointer;
+}
 /*标题分割线  */
 .staff_info_title {
 	border-bottom: 1px solid #eee;
 }
 /* 长表格样式start */
-.long_tableBox{
-	margin-top:100px;
+.long_tableBox {
+	margin-top: 100px;
 }
-.longBoxs table{
-	width:100%;
-	 margin: 0px;
+/*表格加上滚动条 start  */
+.long_tb{
+	width:1000px;
+	height:200px;
+	overflow-x:scroll;
+	overflow-y:scroll;
 }
-.long_table td{
-	text-align:center;
-	border-right:1px solid #dddddd;
-	border-bottom:1px solid #dddddd;
+.longBoxs table {
+	width:101%;
+	margin: 0px;
+}
+/*表格加上滚动条 end  */
+.long_table td {
+	text-align: center;
+	border-right: 1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
 }
 /*学习经历模态框start  */
-.study_indication{
+.study_indication {
 	width:;
 }
-#studyExp_form tr{
-	margin-top:10px;
+/*,   */
+#studyExp_form tr {
+	margin-top: 10px;
 }
-#studyExp_form input{
+
+.modal input {
 	width: 480px;
-    height: 30px;
-    border: 1px solid #ccc;
+	height: 30px;
+	border: 1px solid #ccc;
+	text-indent: 10px;
 }
 /*学习经历模态框end  */
 

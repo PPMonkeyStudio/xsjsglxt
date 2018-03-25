@@ -271,7 +271,7 @@ function against_ajax(id) {
 		xmlhttp = new ActiveXOBject("Microsoft.XMLHTTP");
 	}
 	var formdata = new FormData();
-	var againstPrinciple_table = document.getElementById("againstPrinciple_table");
+	var againstPrinciple_table = document.getElementById("againstPrinciple_table").getElementsByTagName("tbody");
 	var againstPrincipleTr = againstPrinciple_table.getElementsByTagName("tr");
 	for(var i=1;i<againstPrincipleTr.length;i++){
 		//得到每列
@@ -457,6 +457,7 @@ function add_studyExperience() {
 	// 动态创建表格
 	var studyExperience_table = document
 			.getElementById("studyExperience_table");
+
 	studyExperience_table.setAttribute("class", "long_table");
 
 	var study_tr = document.createElement("tr");
@@ -478,11 +479,29 @@ function add_studyExperience() {
 	staffStudent_remarks.innerHTML = newStudyExp['staffStudent_remarks'];
 	staffStudent_remarks.setAttribute("name","students["+i+"].staffStudent_remarks");
 	
+	//增加删除按钮的列
+	var reviseTd =document.createElement("td");
+	//增加删除按钮及样式
+	var delete_button=document.createElement("button");
+	delete_button.className='btn btn-default btn-xs';
+	delete_button.setAttribute("type","button");
+	delete_button.addEventListener('click', function(){
+        this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+    }, false);
+	delete_button.style['margin-left']="10px";
+	//添加按钮里的图标
+	var delete_icon=document.createElement("i");
+	delete_icon.className="fa fa-plus-square";
+	delete_button.append(delete_icon);
+	
+	reviseTd.append(delete_button);
+	
 	study_tr.appendChild(staffStudent_address);
 	study_tr.appendChild(staffStudent_startTime);
 	study_tr.appendChild(staffStudent_stopTime);
 	study_tr.appendChild(staffStudent_remarks);
-	studyExperience_table.append(study_tr);
+	study_tr.appendChild(reviseTd);
+	studyExperience_table.children[0].append(study_tr);
 	//得到一行数据i++
 	i++;
 }
@@ -533,12 +552,29 @@ function add_workExperience() {
 	staffWork_remarks.innerHTML = newStudyExp['staffWork_remarks'];
 	staffWork_remarks.setAttribute("name","works["+w+"].staffWork_remarks");
 	
+	//增加删除按钮的列
+	var reviseTd =document.createElement("td");
+	//增加删除按钮及样式
+	var delete_button=document.createElement("button");
+	delete_button.className='btn btn-default btn-xs';
+	delete_button.setAttribute("type","button");
+	delete_button.addEventListener('click', function(){
+        this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+    }, false);
+	delete_button.style['margin-left']="10px";
+	//添加按钮里的图标
+	var delete_icon=document.createElement("i");
+	delete_icon.className="fa fa-plus-square";
+	delete_button.append(delete_icon);
+	reviseTd.append(delete_button);
+	
 	work_tr.appendChild(staffWork_address);
 	work_tr.appendChild(staffWork_duty);
 	work_tr.appendChild(staffWork_startTime);
 	work_tr.appendChild(staffWork_stopTime);
 	work_tr.appendChild(staffWork_remarks);
-	wordExperience_table.append(work_tr);
+	work_tr.appendChild(reviseTd);
+	wordExperience_table.children[0].append(work_tr);
 	w++;
 }
 var f=0;
@@ -607,6 +643,23 @@ function add_family() {
 	var staffFamily_remarks = document.createElement("td");
 	staffFamily_remarks.innerHTML = newStudyExp['staffFamily_remarks'];
 	staffFamily_remarks.setAttribute("name","familys["+f+"].staffFamily_remarks");
+	staffFamily_remarks.setAttribute("colspan","2");
+	
+	//增加删除按钮的列
+	var reviseTd =document.createElement("td");
+	//增加删除按钮及样式
+	var delete_button=document.createElement("button");
+	delete_button.className='btn btn-default btn-xs';
+	delete_button.setAttribute("type","button");
+	delete_button.addEventListener('click', function(){
+        this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+    }, false);
+	delete_button.style['margin-left']="10px";
+	//添加按钮里的图标
+	var delete_icon=document.createElement("i");
+	delete_icon.className="fa fa-plus-square";
+	delete_button.append(delete_icon);
+	reviseTd.append(delete_button);
 	
 	family_tr.appendChild(staffFamily_contactsRelationship);
 	family_tr.appendChild(staffFamily_name);
@@ -617,7 +670,8 @@ function add_family() {
 	family_tr.appendChild(staffFamily_workSpace);
 	family_tr.appendChild(staffFamily_duty);
 	family_tr.appendChild(staffFamily_remarks);
-	family_table.append(family_tr);
+	family_tr.appendChild(reviseTd);
+	family_table.children[0].append(family_tr);
 	f++;
 }
 var p=0;
@@ -656,11 +710,28 @@ function add_policeChange() {
 	staffMove_remarks.innerHTML = newStudyExp['staffMove_remarks'];
 	staffMove_remarks.setAttribute("name","moves["+p+"].staffMove_remarks");
 	
+	//增加删除按钮的列
+	var reviseTd =document.createElement("td");
+	//增加删除按钮及样式
+	var delete_button=document.createElement("button");
+	delete_button.className='btn btn-default btn-xs';
+	delete_button.setAttribute("type","button");
+	delete_button.addEventListener('click', function(){
+        this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+    }, false);
+	delete_button.style['margin-left']="10px";
+	//添加按钮里的图标
+	var delete_icon=document.createElement("i");
+	delete_icon.className="fa fa-plus-square";
+	delete_button.append(delete_icon);
+	reviseTd.append(delete_button);
+	
 	policemanChange_tr.appendChild(staffMove_inTime);
 	policemanChange_tr.appendChild(staffMove_outTime);
 	policemanChange_tr.appendChild(staffMove_guard);
 	policemanChange_tr.appendChild(staffMove_remarks);
-	policeChange_table.append(policemanChange_tr);
+	policemanChange_tr.appendChild(reviseTd);
+	policeChange_table.children[0].append(policemanChange_tr);
 	p++;
 }
 var pr=0;
@@ -695,10 +766,27 @@ function add_prized() {
 	staffReward_remarks.innerHTML = newStudyExp['staffReward_remarks'];
 	staffReward_remarks.setAttribute("name","rewards["+pr+"].staffReward_remarks");
 	
+	//增加删除按钮的列
+	var reviseTd =document.createElement("td");
+	//增加删除按钮及样式
+	var delete_button=document.createElement("button");
+	delete_button.className='btn btn-default btn-xs';
+	delete_button.setAttribute("type","button");
+	delete_button.addEventListener('click', function(){
+        this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+    }, false);
+	delete_button.style['margin-left']="10px";
+	//添加按钮里的图标
+	var delete_icon=document.createElement("i");
+	delete_icon.className="fa fa-plus-square";
+	delete_button.append(delete_icon);
+	reviseTd.append(delete_button);
+	
 	prized_tr.appendChild(staffReward_situation);
 	prized_tr.appendChild(staffReward_Time);
 	prized_tr.appendChild(staffReward_remarks);
-	prized_table.append(prized_tr);
+	prized_tr.appendChild(reviseTd);
+	prized_table.children[0].append(prized_tr);
 	pr++;
 }
 var a=0;
@@ -732,11 +820,27 @@ function add_AgainstPrinciple() {
 	staffPrinciple_remarks.innerHTML = newStudyExp['staffPrinciple_remarks'];
 	staffPrinciple_remarks.setAttribute("name","principles["+a+"].staffPrinciple_remarks");
 
+	//增加删除按钮的列
+	var reviseTd =document.createElement("td");
+	//增加删除按钮及样式
+	var delete_button=document.createElement("button");
+	delete_button.className='btn btn-default btn-xs';
+	delete_button.setAttribute("type","button");
+	delete_button.addEventListener('click', function(){
+        this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+    }, false);
+	delete_button.style['margin-left']="10px";
+	//添加按钮里的图标
+	var delete_icon=document.createElement("i");
+	delete_icon.className="fa fa-plus-square";
+	delete_button.append(delete_icon);
+	reviseTd.append(delete_button);
 	
 	againstPrinciple_tr.appendChild(staffPrinciple_situation);
 	againstPrinciple_tr.appendChild(staffPrinciple_Time);
 	againstPrinciple_tr.appendChild(staffPrinciple_remarks);
-	againstPrinciple_table.append(againstPrinciple_tr);
+	againstPrinciple_tr.appendChild(reviseTd);
+	againstPrinciple_table.children[0].append(againstPrinciple_tr);
 	a++;
 }
 var pu=0;
@@ -771,11 +875,27 @@ function add_Punish() {
 	staffPunishment_remarks.innerHTML = newStudyExp['staffPunishment_remarks'];
 	staffPunishment_remarks.setAttribute("name","punishments["+pu+"].staffPunishment_remarks");
 
+	//增加删除按钮的列
+	var reviseTd =document.createElement("td");
+	//增加删除按钮及样式
+	var delete_button=document.createElement("button");
+	delete_button.className='btn btn-default btn-xs';
+	delete_button.setAttribute("type","button");
+	delete_button.addEventListener('click', function(){
+        this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+    }, false);
+	delete_button.style['margin-left']="10px";
+	//添加按钮里的图标
+	var delete_icon=document.createElement("i");
+	delete_icon.className="fa fa-plus-square";
+	delete_button.append(delete_icon);
+	reviseTd.append(delete_button);
 	
 	punishment_tr.appendChild(staffPunishment_situation);
 	punishment_tr.appendChild(staffPunishment_Time);
-	punishment_tr.appendChild(staffPunishment_Time);
-	punish_table.append(punishment_tr);
+	punishment_tr.appendChild(staffPunishment_remarks);
+	punishment_tr.appendChild(reviseTd);
+	punish_table.children[0].append(punishment_tr);
 	pu++;
 }
 var v=0;
@@ -830,6 +950,21 @@ function add_Vocation() {
 	staffFurlough_remarks.innerHTML = newStudyExp['staffFurlough_remarks'];
 	staffFurlough_remarks.setAttribute("name","furloughs["+v+"].staffFurlough_remarks");
 
+	//增加删除按钮的列
+	var reviseTd =document.createElement("td");
+	//增加删除按钮及样式
+	var delete_button=document.createElement("button");
+	delete_button.className='btn btn-default btn-xs';
+	delete_button.setAttribute("type","button");
+	delete_button.addEventListener('click', function(){
+        this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+    }, false);
+	delete_button.style['margin-left']="10px";
+	//添加按钮里的图标
+	var delete_icon=document.createElement("i");
+	delete_icon.className="fa fa-plus-square";
+	delete_button.append(delete_icon);
+	reviseTd.append(delete_button);
 	
 	vocation_tr.appendChild(staffFurlough_mainContent);
 	vocation_tr.appendChild(staffFurlough_startTime);
@@ -837,9 +972,19 @@ function add_Vocation() {
 	vocation_tr.appendChild(staffFurlough_whetherStop);
 	vocation_tr.appendChild(staffFurlough_stopTime);
 	vocation_tr.appendChild(staffFurlough_remarks);
-	vocation_table.append(vocation_tr);
+	vocation_tr.appendChild(reviseTd);
+	vocation_table.children[0].append(vocation_tr);
 	v++;
 }
+
+
+//长表格每行的删除
+function delete_long(){
+	console.log("删除方法执行");
+	var this_tbody=this.parentNode.parentNode.parentNode;
+	this_tbody.removeChild(this.parentNode.parentNode);
+}
+
 if (window.File && window.FileList && window.FileReader && window.Blob) {
 	document.querySelector(".photo-file").addEventListener('change',
 			photo_preview, false);

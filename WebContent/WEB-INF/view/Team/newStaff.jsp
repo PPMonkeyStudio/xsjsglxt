@@ -48,8 +48,8 @@
 						<tr style="height: 20px"></tr>
 						<tr>
 							<td><label>姓名</label></td>
-							<td><input name="policeman.xsjsglxt_name" class="form-control"
-								type="text"></td>
+							<td><input name="policeman.xsjsglxt_name"
+								class="form-control" type="text"></td>
 
 							<td><label>警号</label></td>
 							<td><input name="policeman.staff_alarm" class="form-control"
@@ -204,15 +204,22 @@
 							onclick="">
 							<i class="fa fa-plus-square"></i> 添加
 						</button>
+
 						<form id="study_exp">
-							<table id="studyExperience_table" class="ssssss">
-								<tr class="long_table">
-									<th>学习地点</th>
-									<th>起始时间</th>
-									<th>结束时间</th>
-									<th>备注</th>
-								</tr>
-							</table>
+							<div class="long_tb">
+								<table id="studyExperience_table" class="table">
+									<tbody>
+										<tr class="long_table">
+											<th>学习地点</th>
+											<th>起始时间</th>
+											<th>结束时间</th>
+											<th>备注</th>
+											<th>操作</th>
+										</tr>
+										
+									</tbody>
+								</table>
+							</div>
 						</form>
 					</div>
 					<div class="long_tableBox">
@@ -223,16 +230,20 @@
 							<i class="fa fa-plus-square"></i> 添加
 						</button>
 						<form id="work_exp">
-							<table id="wordExperience_table">
-								<tr class="long_table">
-									<th>工作地点</th>
-									<th>职务</th>
-									<th>起始时间</th>
-									<th>结束时间</th>
-									<th>备注</th>
-								</tr>
-							</table>
-
+							<div class="long_tb">
+								<table id="wordExperience_table" class="table">
+									<tbody>
+										<tr class="long_table">
+											<th>工作地点</th>
+											<th>职务</th>
+											<th>起始时间</th>
+											<th>结束时间</th>
+											<th>备注</th>
+											<th>操作</th>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</form>
 					</div>
 					<div class="long_tableBox">
@@ -242,20 +253,28 @@
 							onclick="">
 							<i class="fa fa-plus-square"></i> 添加
 						</button>
-							<table id="family_table">
-								<tr class="long_table">
-									<th>关系</th>
-									<th>姓名</th>
-									<th>身份证号</th>
-									<th>生日</th>
-									<th>手机号</th>
-									<th>微信号</th>
-									<th>工作单位</th>
-									<th>职位</th>
-									<th>备注</th>
-								</tr>
+						<div class="long_tb">
+							<table id="family_table" style="width:150%;">
+
+								<tbody>
+									<tr class="long_table">
+										<th>关系</th>
+										<th>姓名</th>
+										<th>身份证号</th>
+										<th>生日</th>
+										<th>手机号</th>
+										<th>微信号</th>
+										<th>工作单位</th>
+										<th>职位</th>
+										<th colspan="2">备注</th>
+										<th>操作</th>
+									</tr>
+								</tbody>
+
 							</table>
+						</div>
 					</div>
+
 					<div class="long_tableBox">
 						<span class="staff_info_title">刑警大队调动情况</span>
 						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
@@ -264,14 +283,19 @@
 							<i class="fa fa-plus-square"></i> 添加
 						</button>
 						<form id="police_move">
-							<table id="policeChange_table">
-								<tr class="long_table">
-									<th>调入时间</th>
-									<th>调出时间</th>
-									<th>是否在岗</th>
-									<th>备注</th>
-								</tr>
-							</table>
+							<div class="long_tb">
+								<table id="policeChange_table">
+									<tbody>
+										<tr class="long_table">
+											<th>调入时间</th>
+											<th>调出时间</th>
+											<th>是否在岗</th>
+											<th>备注</th>
+											<th>操作</th>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</form>
 					</div>
 					<div class="long_tableBox">
@@ -282,13 +306,18 @@
 							<i class="fa fa-plus-square"></i> 添加
 						</button>
 						<form id="staffReward">
-							<table id="prized_table">
-								<tr class="long_table">
-									<th>表彰情况</th>
-									<th>表彰时间</th>
-									<th>备注</th>
-								</tr>
-							</table>
+							<div class="long_tb">
+								<table id="prized_table">
+									<tbody>
+										<tr class="long_table">
+											<th>表彰情况</th>
+											<th>表彰时间</th>
+											<th>备注</th>
+											<th>操作</th>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</form>
 					</div>
 					<div class="long_tableBox">
@@ -299,13 +328,18 @@
 							<i class="fa fa-plus-square"></i> 添加
 						</button>
 						<form id="againstPrinciple">
-							<table id="againstPrinciple_table">
-								<tr class="long_table">
-									<th>违纪情况</th>
-									<th>违纪时间</th>
-									<th>备注</th>
-								</tr>
-							</table>
+							<div class="long_tb">
+								<table id="againstPrinciple_table">
+									<tbody>
+										<tr class="long_table">
+											<th>违纪情况</th>
+											<th>违纪时间</th>
+											<th>备注</th>
+											<th>操作</th>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</form>
 					</div>
 					<div class="long_tableBox">
@@ -316,13 +350,18 @@
 							<i class="fa fa-plus-square"></i> 添加
 						</button>
 						<form id="Punishment">
-							<table id="punish_table">
-								<tr class="long_table">
-									<th>处分情况</th>
-									<th>处分时间</th>
-									<th>备注</th>
-								</tr>
-							</table>
+							<div class="long_tb">
+								<table id="punish_table">
+									<tbody>
+										<tr class="long_table">
+											<th>处分情况</th>
+											<th>处分时间</th>
+											<th>备注</th>
+											<th>操作</th>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</form>
 					</div>
 					<div class="long_tableBox">
@@ -333,16 +372,21 @@
 							<i class="fa fa-plus-square"></i> 添加
 						</button>
 						<form id="Furlough">
-							<table id="vocation_table">
-								<tr class="long_table">
-									<th>休假事由</th>
-									<th>起始时间时间</th>
-									<th>天数</th>
-									<th>是否销假</th>
-									<th>销假时间</th>
-									<th>备注</th>
-								</tr>
-							</table>
+							<div class="long_tb">
+								<table id="vocation_table">
+									<tbody>
+										<tr class="long_table">
+											<th>休假事由</th>
+											<th>起始时间时间</th>
+											<th>天数</th>
+											<th>是否销假</th>
+											<th>销假时间</th>
+											<th>备注</th>
+											<th>操作</th>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</form>
 					</div>
 				</div>
@@ -410,6 +454,8 @@
 	</div>
 	</div>
 	<!--新建添加学习经历模态框 end  -->
+	s
+
 	<!--新建添加工作经历模态框 start  -->
 	<div class="modal fade" id="addWork_Modal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
@@ -430,28 +476,30 @@
 								<tr>
 									<td><label>工作地点</label></td>
 									<td><input style="font-size: 12px;"
-										 class="staffWork_address" name="policeman.staff_birthday" type="text"></td>
+										class="staffWork_address" name="policeman.staff_birthday"
+										type="text"></td>
 								</tr>
 								<tr>
-									<td><label >职务</label></td>
+									<td><label>职务</label></td>
 									<td><input style="font-size: 12px;"
-										name="policeman.staff_birthday" class="staffWork_duty" type="text"></td>
+										name="policeman.staff_birthday" class="staffWork_duty"
+										type="text"></td>
 								</tr>
 								<tr>
-									<td><label >起始时间</label></td>
+									<td><label>起始时间</label></td>
 									<td><input style="font-size: 12px;"
 										class="staffWork_startTime"></td>
 								</tr>
 								<tr>
 									<td><label>结束时间</label></td>
-									<td><input type="text"  class="staffWork_stopTime"
+									<td><input type="text" class="staffWork_stopTime"
 										name="page_list_staffInformation.staff_name" /></td>
 								</tr>
 
 								<tr>
 									<td><label>备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
-											 class="staffWork_remarks"
+											class="staffWork_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
 									</td>
@@ -494,49 +542,57 @@
 								<tr>
 									<td><label class="staff_info_label">关系</label></td>
 									<td><input style="font-size: 12px;"
-									class="staffFamily_contactsRelationship"	name="policeman.staff_birthday" type="text"></td>
+										class="staffFamily_contactsRelationship"
+										name="policeman.staff_birthday" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">姓名</label></td>
 									<td><input style="font-size: 12px;"
-									class="staffFamily_name"	name="policeman.staff_birthday" type="text"></td>
+										class="staffFamily_name" name="policeman.staff_birthday"
+										type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">身份证号</label></td>
 									<td><input style="font-size: 12px;"
-									class="staffFamily_IDcard"	name="policeman.staff_birthday" type="text"></td>
+										class="staffFamily_IDcard" name="policeman.staff_birthday"
+										type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">生日</label></td>
 									<td><input style="font-size: 12px;"
-									class="staffFamily_birthday"	name="policeman.staff_birthday" class=" study_startTime"
-										type="text"></td>
+										class="staffFamily_birthday" name="policeman.staff_birthday"
+										class=" study_startTime" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">手机号</label></td>
 									<td><input style="font-size: 12px;"
-									class="staffFamily_tel"	name="policeman.staff_birthday" type="text"></td>
+										class="staffFamily_tel" name="policeman.staff_birthday"
+										type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">微信号</label></td>
 									<td><input style="font-size: 12px;"
-									class="staffFamily_WeiXin"	name="policeman.staff_birthday" type="text"></td>
+										class="staffFamily_WeiXin" name="policeman.staff_birthday"
+										type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">工作单位</label></td>
 									<td><input style="font-size: 12px;"
-									class="staffFamily_workSpace"	name="policeman.staff_birthday" type="text"></td>
+										class="staffFamily_workSpace" name="policeman.staff_birthday"
+										type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">职位</label></td>
 									<td><input style="font-size: 12px;"
-									class="staffFamily_duty"	name="policeman.staff_birthday" type="text"></td>
+										class="staffFamily_duty" name="policeman.staff_birthday"
+										type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-										class="staffFamily_remarks"	name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
+											class="staffFamily_remarks"
+											name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
 									</td>
 
 
@@ -639,11 +695,13 @@
 								<tr>
 									<td><label class="staff_info_label">表彰情况</label></td>
 									<td><input style="font-size: 12px;"
-									class="staffReward_situation"	name="policeman.staff_birthday" type="text"></td>
+										class="staffReward_situation" name="policeman.staff_birthday"
+										type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">表彰时间</label></td>
-									<td><input style="font-size: 12px;" class="staffReward_Time"></td>
+									<td><input style="font-size: 12px;"
+										class="staffReward_Time"></td>
 								</tr>
 
 								<tr>
@@ -685,18 +743,21 @@
 				</div>
 				<div class="modal-body">
 
-					<form action="" id="addAgainstPrinciple_form" accept-charset="utf-8">
+					<form action="" id="addAgainstPrinciple_form"
+						accept-charset="utf-8">
 
 						<table>
 							<tbody>
 								<tr>
 									<td><label class="staff_info_label">违纪情况</label></td>
 									<td><input style="font-size: 12px;"
-									class="staffPrinciple_situation"	name="policeman.staff_birthday" type="text"></td>
+										class="staffPrinciple_situation"
+										name="policeman.staff_birthday" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">违纪时间</label></td>
-									<td><input style="font-size: 12px;" class="staffPrinciple_Time"></td>
+									<td><input style="font-size: 12px;"
+										class="staffPrinciple_Time"></td>
 								</tr>
 
 								<tr>
@@ -745,11 +806,13 @@
 								<tr>
 									<td><label class="staff_info_label">处分情况</label></td>
 									<td><input style="font-size: 12px;"
-									class="staffPunishment_situation"	name="policeman.staff_birthday" type="text"></td>
+										class="staffPunishment_situation"
+										name="policeman.staff_birthday" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">处分时间</label></td>
-									<td><input style="font-size: 12px;" class="staffPunishment_Time"></td>
+									<td><input style="font-size: 12px;"
+										class="staffPunishment_Time"></td>
 								</tr>
 
 
@@ -799,16 +862,18 @@
 								<tr>
 									<td><label class="staff_info_label">休假事由</label></td>
 									<td><input style="font-size: 12px;"
-									class="staffFurlough_mainContent"	name="policeman.staff_birthday" type="text"></td>
+										class="staffFurlough_mainContent"
+										name="policeman.staff_birthday" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">起始时间</label></td>
-									<td><input style="font-size: 12px;" class="staffFurlough_startTime"></td>
+									<td><input style="font-size: 12px;"
+										class="staffFurlough_startTime"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">天数</label></td>
-									<td><input type="text"
-									class="staffFurlough_days"	name="page_list_staffInformation.staff_name" /></td>
+									<td><input type="text" class="staffFurlough_days"
+										name="page_list_staffInformation.staff_name" /></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">是否销假</label></td>
@@ -986,7 +1051,7 @@
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
-		
+
 		$('.staffFurlough_stopTime').datetimepicker({
 			yearStart : 1990, // 设置最小年份
 			yearEnd : 2050, // 设置最大年份
