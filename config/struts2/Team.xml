@@ -13,6 +13,9 @@
 			<result name="NewStaff">
 			    	/WEB-INF/view/Team/newStaff.jsp
 			</result>
+			<result name="staffDetails">
+					/WEB-INF/view/Team/staffDetails.jsp
+			</result>
 		</action>
 		<action name="StaffFamily_*" class="com.xsjsglxt.action.Team.StaffFamilyAction"
 			method="{1}">

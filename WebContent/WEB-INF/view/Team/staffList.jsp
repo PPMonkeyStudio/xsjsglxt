@@ -73,12 +73,12 @@
 								</thead>
 								<tbody>
 									<tr v-for="policeman in policemans" style="text-align: center;">
-										<td><a :id="policeman.xsjsglxt_staff_id" onclick=""><span v-html="policeman.xsjsglxt_name"></span></a></td>
+										<td><a :id="policeman.xsjsglxt_staff_id" onclick="skipToDetails(this)"><span v-html="policeman.xsjsglxt_name"></span></a></td>
 										<td>{{ policeman.xsjsglxt_sex }}</td>
 										<td>{{ policeman.xsjsglxt_age }}</td>
 										<td>{{ policeman.staff_politicalStatus }}</td>
 										<td>{{ policeman.staff_thePoliceTime }}</td>
-										<td><button :id="policeman.xsjsglxt_staff_id" class="btn btn-danger">删除</button></td>
+										<td><button  onclick="createConfirm(this)" :id="policeman.xsjsglxt_staff_id" class="btn btn-danger">删除</button></td>
 									</tr>
 								</tbody>
 							</table>
@@ -86,12 +86,12 @@
 								<div class="page_info">
 									&nbsp;&nbsp;&nbsp;&nbsp; <a onclick="firstPage()"><i
 										class="fa fa-angle-double-left">首页</i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-									<a onclick=""><i class="fa fa-angle-left"></i>上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
-									<a onclick="">下一页<i class="fa fa-angle-right"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-									<a onclick="">尾页<i
+									<a onclick="prePage()"><i class="fa fa-angle-left"></i>上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+									<a onclick="nextPage()">下一页<i class="fa fa-angle-right"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+									<a onclick="endPage()">尾页<i
 										class="fa fa-angle-double-right"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-									<input type="text" class="page-go" />&nbsp;&nbsp;&nbsp;&nbsp;
-									 <a onclick="">GO</a></div>
+									<input type="text" class="page-go" id="jumpInput"/>&nbsp;&nbsp;&nbsp;&nbsp;
+									 <a onclick="jumpPage()">GO</a></div>
 								<div style="width: 100px;height: 100px; margin: 0 auto;">
 									<span>当前第{{ currPage }}页</span><br>
 									<span>共{{ totalPage }}页</span><br>
