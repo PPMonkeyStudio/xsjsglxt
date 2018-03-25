@@ -55,7 +55,7 @@ var prePage = function() {
 	if (queryConditionTemp.currPage <= 1) {
 		toastr.error("没有上一页了哦");
 	} else {
-		queryConditionTemp.currPage = ++queryConditionTemp.currPage;
+		queryConditionTemp.currPage = --queryConditionTemp.currPage;
 		loadData();
 	}
 }
@@ -64,7 +64,7 @@ var nextPage = function() {
 	if (queryConditionTemp.currPage >= queryConditionTemp.totalPage) {
 		toastr.error("没有下一页了哦");
 	} else {
-		queryConditionTemp.currPage = --queryConditionTemp.currPage;
+		queryConditionTemp.currPage = ++queryConditionTemp.currPage;
 		loadData();
 	}
 }
