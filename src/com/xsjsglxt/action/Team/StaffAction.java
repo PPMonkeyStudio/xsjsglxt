@@ -34,6 +34,8 @@ public class StaffAction extends ActionSupport {
 	private String staff_imageFileName;
 	private policemanListVO policemanVO;
 
+	private String xsjsglxt_staff_id;
+
 	// -----------------------------------进入人员管理---------------------------------------
 	public String page_staffList() {
 		return "StaffIndex";
@@ -41,6 +43,10 @@ public class StaffAction extends ActionSupport {
 
 	public String page_newStaff() {
 		return "NewStaff";
+	}
+
+	public String page_staffDetails() {
+		return "staffDetails";
 	}
 
 	// -----------------------------------添加警员基本信息------------------------------------
@@ -96,12 +102,13 @@ public class StaffAction extends ActionSupport {
 
 		// 删除警员的照片
 		xsjsglxt_staff oldPoliceman = staffService.getPolicemanByStaffId(policeman.getXsjsglxt_staff_id());
-		String realPath = ServletActionContext.getServletContext().getRealPath("/upload/staffImage");
-		File oldPhoto = new File(realPath + "/" + oldPoliceman.getStaff_photo());
-		if (oldPhoto.exists()) {
-			oldPhoto.delete();
+		if (oldPoliceman.getStaff_photo() != null && oldPoliceman.getStaff_photo().trim().length() > 0) {
+			String realPath = ServletActionContext.getServletContext().getRealPath("/upload/staffImage");
+			File oldPhoto = new File(realPath + "/" + oldPoliceman.getStaff_photo());
+			if (oldPhoto.exists()) {
+				oldPhoto.delete();
+			}
 		}
-
 		String result = staffService.deletePoliceman(policeman);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
@@ -249,6 +256,14 @@ public class StaffAction extends ActionSupport {
 
 	public StaffService getStaffService() {
 		return staffService;
+	}
+
+	public String getXsjsglxt_staff_id() {
+		return xsjsglxt_staff_id;
+	}
+
+	public void setXsjsglxt_staff_id(String xsjsglxt_staff_id) {
+		this.xsjsglxt_staff_id = xsjsglxt_staff_id;
 	}
 
 	public policemanListVO getPolicemanVO() {
