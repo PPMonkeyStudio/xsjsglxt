@@ -46,7 +46,7 @@
 				<form id="sneceInformation" action="">
 					<table>
 						<tr>
-							<td>勘探编号</td>
+							<td>勘验编号</td>
 							<td><input style="font-size: 12px;"
 								name="sence.snece_inquestId" class="form-control" type="text"></td>
 							<td style="padding-left:5px;">勘探系统编号</td>
