@@ -18,4 +18,6 @@ public interface StaffDao {
 	int getPolicemanCount(policemanListVO policemanVO);
 
 	List<policemanListDTO> getPolicemansByPage(policemanListVO policemanVO);
+
+	public void getConnect();
 }

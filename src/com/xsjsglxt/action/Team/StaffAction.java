@@ -51,6 +51,10 @@ public class StaffAction extends ActionSupport {
 
 	// -----------------------------------添加警员基本信息------------------------------------
 
+	public void getConnect() {
+		staffService.getConnect();
+	}
+
 	public void saveStaff() {
 		// 上传头像
 		if (staff_imageFileName != null && staff_imageFileName.trim().length() > 0) {
