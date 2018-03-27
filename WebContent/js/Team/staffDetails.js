@@ -59,8 +59,8 @@ function get_staffDetails_Ajax(url, staff_id) {
 			$('#staff_MaxEducationalBackground').val(
 					staff_info.staff_MaxEducationalBackground);
 			$('#staff_politicalStatus').val(staff_info.staff_politicalStatus);
-
-			// $('.photo-show').create().attr("src","/xsjsglxt/team/Staff_downloadPhoto?staff_imageFileName="+staff_info.staff_photo);
+			document.getElementById("photo-show").innerHTML="<img src='/xsjsglxt/team/Staff_downloadPhoto?staff_imageFileName="+staff_info.staff_photo+"' />";
+			
 			show_studyAjax(staff_id);
 			show_workAjax(staff_id);
 			show_familyAjax(staff_id);
