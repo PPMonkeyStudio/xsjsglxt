@@ -28,7 +28,7 @@
 			style="width: 95%; margin: 20px auto; overflow: inherit; position: relative;">
 			<!--  -->
 			<div class="panel-heading">
-				<h3 class="panel-title">新建人员</h3>
+				<h3 class="panel-title">人员详情</h3>
 			</div>
 			<button onclick="javascript:history.go(-1)" type="button"
 				class="btn btn-default button button_return ">
@@ -36,7 +36,7 @@
 			</button>
 			<button type="button" class="btn btn-default button button_change"
 				onclick="staff_change()">
-				<i class="fa fa-pencil"></i> 新建人员
+				<i class="fa fa-pencil"></i> 修改人员
 			</button>
 			<div class="panel-body staff_body">
 				<form id="staffDetails" enctype="multipart/form-data"
@@ -56,7 +56,7 @@
 								type="text"></td>
 
 							<td><label>照片</label></td>
-							<td rowspan="4"><a class="photo-show"></a> <a
+							<td rowspan="4"><a class="photo-show" id="photo-show"></a> <a
 								class="a-upload" onclick="photo_click()">上传照片</a> <input
 								type="file" class="photo-file" name="staff_image"
 								multiple="multiple"
@@ -72,8 +72,6 @@
 							<td><label>年龄</label></td>
 							<td><input style="font-size: 12px;"
 								name="policeman.xsjsglxt_age" class="form-control" type="text"></td>
-
-
 						</tr>
 						<tr>
 
@@ -89,7 +87,7 @@
 						<tr>
 
 							<td><label>最高学历</label></td>
-							<td><select class="form-control"
+							<td><select class="form-control" id="staff_MaxEducationalBackground"
 								name="policeman.staff_MaxEducationalBackground">
 									<option></option>
 									<option>小学</option>
@@ -100,7 +98,7 @@
 									<option>博士</option>
 							</select></td>
 							<td><label>政治面貌</label></td>
-							<td><select class="form-control"
+							<td><select class="form-control" id="staff_politicalStatus"
 								name="policeman.staff_politicalStatus">
 									<option></option>
 									<option>群众</option>
@@ -135,7 +133,7 @@
 							<td><input name="policeman.staff_thePoliceTime"
 								class="form-control staff_thePoliceTime" type="text"></td>
 							<td><label>生日</label></td>
-							<td><input style="font-size: 12px;"
+							<td><input 
 								name="policeman.staff_birthday"
 								class="form-control staff_birthday" type="text"></td>
 							<td><label>是否正式</label></td>
@@ -151,7 +149,7 @@
 						</tr>
 						<tr>
 							<td><label>职务</label></td>
-							<td><select class="form-control" name="policeman.staff_duty">
+							<td><select id="staff_duty" class="form-control" name="policeman.staff_duty">
 									<option>大队长</option>
 									<option>教导员</option>
 									<option>副大队长</option>
@@ -207,7 +205,7 @@
 
 						<form id="study_exp">
 							<div class="long_tb">
-								<table id="studyExperience_table" class="table">
+								<table id="studyExperience_table" >
 									<tbody>
 										<tr class="long_table">
 											<th>学习地点</th>
@@ -231,7 +229,7 @@
 						</button>
 						<form id="work_exp">
 							<div class="long_tb">
-								<table id="wordExperience_table" class="table">
+								<table id="wordExperience_table" >
 									<tbody>
 										<tr class="long_table">
 											<th>工作地点</th>
@@ -447,7 +445,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_studyExperience()" data-dismiss='modal'>新建</button>
+						onclick="relive_study()" data-dismiss='modal'>新建</button>
 				</div>
 			</div>
 		</div>
@@ -514,7 +512,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_workExperience()" data-dismiss='modal'>新建</button>
+						onclick="relive_work()" data-dismiss='modal'>新建</button>
 				</div>
 			</div>
 		</div>
@@ -605,7 +603,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_family()" data-dismiss='modal'>新建</button>
+						onclick="relive_family()" data-dismiss='modal'>新建</button>
 				</div>
 			</div>
 		</div>
@@ -667,7 +665,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_policeChange()" data-dismiss='modal'>新建</button>
+						onclick="relive_move()" data-dismiss='modal'>新建</button>
 				</div>
 			</div>
 		</div>
@@ -722,7 +720,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_prized()" data-dismiss='modal'>新建</button>
+						onclick="relive_reward()" data-dismiss='modal'>新建</button>
 				</div>
 			</div>
 		</div>
@@ -778,7 +776,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_AgainstPrinciple()" data-dismiss='modal'>新建</button>
+						onclick="relive_against()" data-dismiss='modal'>新建</button>
 				</div>
 			</div>
 		</div>
@@ -834,7 +832,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_Punish()" data-dismiss='modal'>新建</button>
+						onclick="relive_punishment()" data-dismiss='modal'>新建</button>
 				</div>
 			</div>
 		</div>
@@ -905,7 +903,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_Vocation()" data-dismiss='modal'>新建</button>
+						onclick="relive_furlough()" data-dismiss='modal'>新建</button>
 				</div>
 			</div>
 		</div>
@@ -913,7 +911,7 @@
 	</div>
 	<!--新建添加休假模态框 end  -->
 
-	<script type="text/javascript" src="<%=basePath%>js/Team/newStaff.js"></script>
+	<script type="text/javascript" src="<%=basePath%>js/Team/staffDetails.js"></script>
 	<script type="text/javascript">
 		$.datetimepicker.setLocale('ch');
 		$('.staff_joinPartyTime').datetimepicker({
@@ -930,7 +928,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
@@ -939,7 +937,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d ', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
@@ -948,7 +946,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d ', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
@@ -957,7 +955,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d ', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
@@ -966,7 +964,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d ', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
@@ -975,7 +973,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d ', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
@@ -984,7 +982,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d ', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
@@ -993,7 +991,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d ', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
@@ -1002,7 +1000,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d ', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
@@ -1011,7 +1009,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d ', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
@@ -1020,7 +1018,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d ', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
@@ -1029,7 +1027,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d ', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
@@ -1038,7 +1036,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
@@ -1047,17 +1045,16 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d ', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
-
 		$('.staffFurlough_stopTime').datetimepicker({
 			yearStart : 1990, // 设置最小年份
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d ', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});

@@ -1,5 +1,9 @@
 package com.xsjsglxt.action.Team;
 
+import java.awt.Image;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -8,6 +12,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
@@ -75,11 +80,31 @@ public class StaffAction extends ActionSupport {
 				public void run() {
 					// TODO Auto-generated method stub
 					try {
-						FileUtil.copyFile(staff_image, new File(newFilePath));
+						double sx = 0.0;
+						double sy = 0.0;
+						String temp = TeamUtil.getUuid();
+						// 将上传的文件拷到临时文件
+						FileUtil.copyFile(staff_image, new File(realPath + temp + fileType));
+						// 开启一个图片流，以读取临时图片的信息
+						BufferedImage bi = ImageIO.read(new File(realPath + temp + fileType));
+						// 获得缩放比例
+						sx = 120.0 / bi.getWidth();
+						sy = 150.0 / bi.getHeight();
+						// 创建一个缩放工具类
+						AffineTransformOp op = new AffineTransformOp(AffineTransform.getScaleInstance(sx, sy), null);
+						// 将图片进行缩放并赋值给image
+						Image zoomIamge = op.filter(bi, null);
+						// 将缩放之后的图片重新存入到文件夹中
+						ImageIO.write((BufferedImage) zoomIamge, fileType.substring(fileType.indexOf(".") + 1),
+								new File(newFilePath));
+						// 将临时文件删除
+						if (new File(realPath + temp + fileType).exists())
+							new File(realPath + temp + fileType).delete();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+
 				}
 			});
 			thread.start();
@@ -149,14 +174,27 @@ public class StaffAction extends ActionSupport {
 
 				@Override
 				public void run() {
-					// TODO Auto-generated method stub
+					// TODO Auto-generated method stub try {
+					// 拷贝文件
 					try {
-						// 拷贝文件
-						FileUtil.copyFile(staff_image, new File(realPath + "/" + photoName + photoType));
+						double sx = 0.0;
+						double sy = 0.0;
+						String temp = TeamUtil.getUuid();
+						FileUtil.copyFile(staff_image, new File(realPath + temp + photoType));
+						BufferedImage bi = ImageIO.read(new File(realPath + temp + photoType));
+						sx = 120.0 / bi.getWidth();
+						sy = 150.0 / bi.getHeight();
+						AffineTransformOp op = new AffineTransformOp(AffineTransform.getScaleInstance(sx, sy), null);
+						Image zoomIamge = op.filter(bi, null);
+						ImageIO.write((BufferedImage) zoomIamge, photoType.substring(photoType.indexOf(".") + 1),
+								new File(realPath + photoName + photoType));
+						if (new File(realPath + temp + photoType).exists())
+							new File(realPath + temp + photoType).delete();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+
 				}
 			});
 			thread.start();
@@ -228,24 +266,25 @@ public class StaffAction extends ActionSupport {
 				OutputStream os = response.getOutputStream();
 
 				File file = new File(filePath);
-				byte[] buffer = new byte[1024];
-				int length = 1024;
-				FileInputStream fins;
-				try {
-					fins = new FileInputStream(file);
+				if (file.exists()) {
+					byte[] buffer = new byte[1024];
+					int length = 1024;
+					FileInputStream fins;
 					try {
-						while (fins.read(buffer, 0, length) != -1) {
-							os.write(buffer);
+						fins = new FileInputStream(file);
+						try {
+							while (fins.read(buffer, 0, length) != -1) {
+								os.write(buffer);
+							}
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
 						}
-					} catch (IOException e) {
+					} catch (FileNotFoundException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
-
 			} catch (UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
