@@ -27,7 +27,7 @@ public xsjsglxt_case get_case1_Byxsjsglxt_picture_id(xsjsglxt_picture picture);
 
 public xsjsglxt_picture getpictureById(xsjsglxt_picture picture);
 
-public xsjsglxt_image getImageBypictureId(xsjsglxt_picture picture);
+public xsjsglxt_image getImageBypictureId(xsjsglxt_image image);
 
 public xsjsglxt_case getCaseBypictureId(xsjsglxt_picture picture);
 

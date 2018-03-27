@@ -133,17 +133,17 @@ function material(object) {
 		//$('.panel-body evidence_table_info tbody').html();
 		}, 'json');
 	} else if (material_type == "image_table_info") {
-		$.post('/xsjsglxt/case/Image_ListImageInformationByPageAndSearch', query_data, function(xhr_data) {
-			var image_arr = xhr_data.ImageInformationDTOList;
+		$.post('/xsjsglxt/case/Image_getAllImageInformation', query_data, function(xhr_data) {
+			var image_arr = xhr_data;
 			var str = '';
 			for (var i = 0; i < image_arr.length; i++) {
 				str += '<tr>';
 				str += '<tr>';
 				str += '<td>' + (i + 1) + '</td>';
-				str += '<td>' + image_arr[i].image.image_number + '</td>';
-				str += '<td>' + image_arr[i].image.image_remarks + '</td>';
+				str += '<td>' + image_arr[i].image_number + '</td>';
+				str += '<td>' + image_arr[i].image_remarks + '</td>';
 				str += '<td>'
-					+ '<input type="hidden"  value="' + image_arr[i].image.xsjsglxt_image_id + '" />'
+					+ '<input type="hidden"  value="' + image_arr[i].xsjsglxt_image_id + '" />'
 					+ '<button type="button" style="margin-left:6px;" class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 修改</button>'
 					+ '<button type="button" style="margin-left:6px;" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除</button>'
 					+ '</td>';
@@ -648,11 +648,11 @@ var image_Details = function() {
 	var image_id = $(this).siblings('input').val();
 	if ($(this).text().trim() == "修改") {
 		$.post('/xsjsglxt/case/Image_ImageInformationOne', {
-			"picture.xsjsglxt_picture_id" : image_id
+			"image.xsjsglxt_image_id" : image_id
 		}, function(xhr_data) {
 			var str = '';
 			str += '<table align="center" class="table table-hover table-condensed"><tbody><tr>';
-			str += '<td>影像光盘编号</td><td><input style="witdh:70%;" class="form-control" name="image.image_number" type="text" value="' + xhr_data.image.image_number + '"  /></td>';
+			str += '<td>影像光盘编号</td><td><input disabled="disabled" style="witdh:70%;" class="form-control" name="image.image_number" type="text" value="' + xhr_data.image.image_number + '"  /></td>';
 			str += '</tr>';
 			str += '<tr>';
 			str += '<td>备注</td><td><textarea style="witdh:70%;" class="form-control" name="image.image_remarks">' + xhr_data.image.image_remarks + '</textarea>'
