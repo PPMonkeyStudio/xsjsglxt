@@ -918,7 +918,7 @@ var add_info = function() {
 			for (var len = 0; len < Case_data.length; len++) {
 				sel += '<option value="' + Case_data[len].xsjsglxt_case_id + '">' + Case_data[len].case_name + '</option>';
 			}
-			$('select[name="picture.picture_case"]').html(sel);
+			$('select[name="case1.xsjsglxt_case_id"]').html(sel);
 			//刷新选择框
 			$('.selectpicker').selectpicker('refresh');
 			//移除加载提示

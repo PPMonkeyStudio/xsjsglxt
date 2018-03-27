@@ -119,7 +119,7 @@
 										name="page_list_senceInformation.case_totalCategory"
 										onchange="setSectionCase(this.selectedIndex)"
 										class="main_case form-control"><option
-												selected="selected" value="">请选择案件总类别</option>
+												selected="selected" value="">案件总类别</option>
 											<option value="盗窃案">盗窃案</option>
 											<option value="抢劫案">抢劫案</option>
 											<option value="抢夺案">抢夺案</option>
@@ -135,7 +135,7 @@
 											<option value="其它">其它</option></select> <select
 										name="page_list_senceInformation.case_sonCategory"
 										class="other_case form-control">
-											<option selected value="">请选择案件子类别</option>
+											<option selected value="">案件子类别</option>
 									</select></td>
 									<td style="padding-left: 10px; width: 70px;">案件分类</td>
 									<td><select
@@ -216,13 +216,21 @@
 										class=" specific_means form-control">
 											<option value="">具体手段</option>
 									</select></td>
-									<td style="padding-left: 10px;">接警时间</td>
+									<td style="padding-left: 10px;">勘验时间</td>
 									<td><input name="page_list_senceInformation.start_time"
 										style="float: left;" type="text" class="form-control mydate"
 										placeholder="起始日期"><input
 										name="page_list_senceInformation.stop_time"
 										style=" float: right;" type="text" class="form-control mydate"
 										placeholder="结束日期"></td>
+								</tr>
+								<tr>
+									<td style="padding-left: 10px;">报案人</td>
+									<td><input name="page_list_senceInformation.case_reporterName"
+										style="float: left;" type="text" class="form-control"></td>
+									<td style="padding-left: 10px;">案发地点</td>
+									<td><input name="page_list_senceInformation.case_address"
+										style="float: left;" type="text" class="form-control"></td>
 								</tr>
 							</tbody>
 						</table>

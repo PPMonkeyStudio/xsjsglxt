@@ -17,4 +17,5 @@ public interface StaffService {
 
 	void getPolicemansByPage(policemanListVO policemanVO);
 
+	void getConnect();
 }

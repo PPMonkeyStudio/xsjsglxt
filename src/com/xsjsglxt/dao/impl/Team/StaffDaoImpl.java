@@ -3,6 +3,7 @@ package com.xsjsglxt.dao.impl.Team;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -115,4 +116,14 @@ public class StaffDaoImpl implements StaffDao {
 		return policemans;
 	}
 
+	public void getConnect() {
+		String hql = "select * from xsjsglxt_staff as s left join xsjsglxt_staffFamily as f on s.xsjsglxt_staff_id=f.staffFamily_staff";
+		Session session = this.getSession();
+		Query query = session.createSQLQuery(hql);
+		List<Object[]> list = query.list();
+		Object[] object = list.get(0);
+		System.out.println(object[0]);
+		// xsjsglxt_staff policeman = (xsjsglxt_staff) object[0];
+		// System.out.println(policeman.getXsjsglxt_staff_id());
+	}
 }

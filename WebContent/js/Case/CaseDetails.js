@@ -78,7 +78,7 @@ $(function() {
 
 	//添加照片信息
 	$('.add_picture').click(function() {
-		$.post('/xsjsglxt/case/Image_updatePicture', $('#add_picture').serialize(), function(xhr_data) {
+		$.post('/xsjsglxt/case/Image_updatePicture', $('#add_picture').serialize() + '&case1.xsjsglxt_case_id=' + $('#case1_id').val(), function(xhr_data) {
 			if (xhr_data == 'success') {
 				toastr.success('添加成功！');
 				$('#add_picture table tbody').find('input,textarea').val("");
