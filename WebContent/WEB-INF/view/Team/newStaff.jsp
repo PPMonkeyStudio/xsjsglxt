@@ -56,7 +56,7 @@
 								type="text"></td>
 
 							<td><label>照片</label></td>
-							<td rowspan="4"><a class="photo-show"></a> <a
+							<td rowspan="4"><a  class="photo-show"></a> <a
 								class="a-upload" onclick="photo_click()">上传照片</a> <input
 								type="file" class="photo-file" name="staff_image"
 								multiple="multiple"
@@ -135,7 +135,7 @@
 							<td><input name="policeman.staff_thePoliceTime"
 								class="form-control staff_thePoliceTime" type="text"></td>
 							<td><label>生日</label></td>
-							<td><input style="font-size: 12px;"
+							<td><input 
 								name="policeman.staff_birthday"
 								class="form-control staff_birthday" type="text"></td>
 							<td><label>是否正式</label></td>
@@ -930,7 +930,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
@@ -939,7 +939,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d ', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
@@ -948,7 +948,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d ', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
@@ -957,7 +957,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d ', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
@@ -966,7 +966,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d ', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
@@ -975,7 +975,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d ', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
@@ -984,7 +984,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d ', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
@@ -993,7 +993,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d ', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
@@ -1002,7 +1002,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d ', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
@@ -1011,7 +1011,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d ', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
@@ -1020,7 +1020,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d ', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
@@ -1029,7 +1029,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d ', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
@@ -1038,7 +1038,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
@@ -1047,7 +1047,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d ', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
@@ -1057,7 +1057,7 @@
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d ', // 格式化日期年-月-日
 			minDate : '1990/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
