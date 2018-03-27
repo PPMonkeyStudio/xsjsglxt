@@ -112,7 +112,7 @@ public class StaffWorkAction extends ActionSupport {
 			result = "worksIsNull";
 		} else {
 			Gson gson = new Gson();
-			result = gson.toJson(works);
+			result = gson.toJson(Works);
 		}
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");

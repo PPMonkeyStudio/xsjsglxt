@@ -41,6 +41,7 @@ function staff_change() {
 				action : function() {
 
 					loadstaffDetail_staff_change(url);
+					toastr.error("新建成功！");
 				}
 			}
 		}
@@ -94,7 +95,7 @@ function studyExp_ajax(url,id){
 		//得到每列
 		var s_td=s_tr[i].getElementsByTagName("td");
 		for(var j=0;j<s_td.length;j++){
-			//得到每列的class名
+			//得到每列的name名
 			var s_tdName=s_td[j].getAttribute("name");
 			console.log("列名"+s_tdName);
 			//将每列的名和值放到formdata中
@@ -271,7 +272,7 @@ function against_ajax(id) {
 		xmlhttp = new ActiveXOBject("Microsoft.XMLHTTP");
 	}
 	var formdata = new FormData();
-	var againstPrinciple_table = document.getElementById("againstPrinciple_table").getElementsByTagName("tbody");
+	var againstPrinciple_table = document.getElementById("againstPrinciple_table");
 	var againstPrincipleTr = againstPrinciple_table.getElementsByTagName("tr");
 	for(var i=1;i<againstPrincipleTr.length;i++){
 		//得到每列
@@ -387,12 +388,12 @@ function changeSex_woman(even) {
 function isFormat(even) {
 	var format = document.getElementById("format");
 	format.value = even.value;
-	return fomat.value;
+	return format.value;
 }
 function isNotFormat(even) {
 	var format = document.getElementById("format");
 	format.value = even.value;
-	return fomat.value;
+	return format.value;
 }
 // 实现点击file
 function photo_click() {
@@ -977,13 +978,6 @@ function add_Vocation() {
 	v++;
 }
 
-
-//长表格每行的删除
-function delete_long(){
-	console.log("删除方法执行");
-	var this_tbody=this.parentNode.parentNode.parentNode;
-	this_tbody.removeChild(this.parentNode.parentNode);
-}
 
 if (window.File && window.FileList && window.FileReader && window.Blob) {
 	document.querySelector(".photo-file").addEventListener('change',
