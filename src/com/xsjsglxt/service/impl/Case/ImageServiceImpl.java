@@ -122,7 +122,7 @@ public class ImageServiceImpl implements ImageService {
 			}
 
 			imageInformationDTO = new ImageInformationDTO(case1, image, picture);
-			
+
 			imageInformationDTOList.add(imageInformationDTO);
 		}
 		page_list_imageInformation.setImageInformationDTOList(imageInformationDTOList);
@@ -131,12 +131,27 @@ public class ImageServiceImpl implements ImageService {
 	}
 
 	@Override
-	public ImageInformationDTO ImageInformationOne(xsjsglxt_image image) {
+	public ImageInformationDTO ImageInformationOne(xsjsglxt_image image, xsjsglxt_picture picture) {
 		// TODO Auto-generated method stu
 		// picture = imageDao.getpictureById(picture);
-		xsjsglxt_image image1 = imageDao.getImageBypictureId(image);
+		xsjsglxt_image image1 = null;
+		if (image != null) {
+			image1 = imageDao.getImageByImageId(image);
+		}
+
 		xsjsglxt_case case1 = null;
-		xsjsglxt_picture picture = null;
+
+		xsjsglxt_picture picture1 = null;
+		// 照片大可能包含有光盘和案件
+		if (picture != null) {
+			picture1 = imageDao.getpictureById(picture);
+			if (!"".equals(picture1.getPicture_image()) && picture1.getPicture_image() != null) {
+				image1 = imageDao.get_image_Byxsjsglxt_picture_id(picture1);
+			}
+			if (!"".equals(picture1.getPicture_case()) && picture1.getPicture_case() != null) {
+				case1 = imageDao.get_case1_Byxsjsglxt_picture_id(picture1);
+			}
+		}
 		/*
 		 * if (picture != null) { if (null != picture.getPicture_image() &&
 		 * !"".equals(picture.getPicture_image())) { image =
@@ -144,14 +159,14 @@ public class ImageServiceImpl implements ImageService {
 		 * 
 		 * if (null != picture.getPicture_case() &&
 		 * !"".equals(picture.getPicture_case())) { case1 =
-		 * imageDao.getCaseBypictureId(picture); } } List<xsjsglxt_image>
-		 * imageList = new ArrayList<xsjsglxt_image>();
-		 * 
-		 * imageList = imageDao.getAllImage();
+		 * imageDao.getCaseBypictureId(picture); } }
 		 */
+		List<xsjsglxt_image> imageList = new ArrayList<xsjsglxt_image>();
 
-		ImageInformationDTO imageInformationDTO = new ImageInformationDTO(case1, image1, picture);
-		// imageInformationDTO.setIamgeList(imageList);
+		imageList = imageDao.getAllImage();
+
+		ImageInformationDTO imageInformationDTO = new ImageInformationDTO(case1, image1, picture1);
+		imageInformationDTO.setIamgeList(imageList);
 		return imageInformationDTO;
 
 	}
@@ -203,6 +218,12 @@ public class ImageServiceImpl implements ImageService {
 	@Override
 	public List<xsjsglxt_image> ListAllImageInformation() {
 		return imageDao.getAllImage();
+	}
+
+	@Override
+	public xsjsglxt_picture getPictureOne(xsjsglxt_picture picture) {
+		// TODO Auto-generated method stub
+		return imageDao.getpictureById(picture);
 	}
 
 }

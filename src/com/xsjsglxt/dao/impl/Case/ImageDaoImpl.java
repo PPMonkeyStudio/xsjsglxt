@@ -221,7 +221,7 @@ public class ImageDaoImpl implements ImageDao {
 	}
 
 	@Override
-	public xsjsglxt_image getImageBypictureId(xsjsglxt_image image) {
+	public xsjsglxt_image getImageByImageId(xsjsglxt_image image) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 

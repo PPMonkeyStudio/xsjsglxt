@@ -9,27 +9,29 @@ import com.xsjsglxt.domain.VO.Case.page_list_imageInformationVO;
 
 public interface ImageService {
 
-public	void saveCD(xsjsglxt_image image);
+	public void saveCD(xsjsglxt_image image);
 
-public void savePicture(xsjsglxt_picture picture);
+	public void savePicture(xsjsglxt_picture picture);
 
-public String getMaxImage_number();
+	public String getMaxImage_number();
 
-public String getMaxPicture_identifier();
+	public String getMaxPicture_identifier();
 
-public page_list_imageInformationVO VO_ImageInformation_By_PageAndSearch(
-		page_list_imageInformationVO page_list_imageInformation);//列表
+	public page_list_imageInformationVO VO_ImageInformation_By_PageAndSearch(
+			page_list_imageInformationVO page_list_imageInformation);// 列表
 
-public ImageInformationDTO ImageInformationOne(xsjsglxt_image image);
+	public ImageInformationDTO ImageInformationOne(xsjsglxt_image image, xsjsglxt_picture picture);
 
-public void updateImage(xsjsglxt_image image);
+	public void updateImage(xsjsglxt_image image);
 
-public void updatePicture(xsjsglxt_picture picture);
+	public void updatePicture(xsjsglxt_picture picture);
 
-public boolean remove_PictureInformationList(List<String> usePictureInformationNumList);
+	public boolean remove_PictureInformationList(List<String> usePictureInformationNumList);
 
-public boolean remove_ImageInformationList(List<String> useImageInformationNumList);
+	public boolean remove_ImageInformationList(List<String> useImageInformationNumList);
 
-public List<xsjsglxt_image> ListAllImageInformation();
+	public List<xsjsglxt_image> ListAllImageInformation();
+
+	public xsjsglxt_picture getPictureOne(xsjsglxt_picture picture);
 
 }

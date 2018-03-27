@@ -66,6 +66,23 @@ public class ImageAction extends ActionSupport implements ServletRequestAware, S
 		}
 	}
 
+	/**
+	 * 获取单个照片信息
+	 */
+	public void getPictureOne() {
+		try {
+			GsonBuilder gsonBuilder = new GsonBuilder();
+			gsonBuilder.setPrettyPrinting();// 格式化json数据
+			Gson gson = gsonBuilder.create();
+			xsjsglxt_picture pictureOne = imageService.getPictureOne(picture);
+			http_response.setContentType("text/html;charset=utf-8");
+			http_response.getWriter().write(gson.toJson(pictureOne));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	/*
 	 * 光盘编号
 	 */
@@ -230,7 +247,7 @@ public class ImageAction extends ActionSupport implements ServletRequestAware, S
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
-		imageInformationDTO = imageService.ImageInformationOne(image);
+		imageInformationDTO = imageService.ImageInformationOne(image,picture);
 		http_response.setContentType("text/html;charset=utf-8");
 
 		http_response.getWriter().write(gson.toJson(imageInformationDTO));
