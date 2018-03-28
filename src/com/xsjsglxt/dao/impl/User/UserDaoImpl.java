@@ -40,7 +40,6 @@ public class UserDaoImpl implements UserDao {
 				+ "') order by user_gmt_create desc";
 		List<xsjsglxt_user> list = getSession().createQuery(hql).setFirstResult((currPage - 1) * 10).setMaxResults(10)
 				.list();
-		System.out.println("µ√µΩ ÆÃı”√ªß–≈œ¢:" + list.size());
 		return list;
 	}
 
@@ -78,9 +77,9 @@ public class UserDaoImpl implements UserDao {
 		Query query = getSession().createQuery(hql);
 		List<xsjsglxt_user> list = query.list();
 		if (list.size() <= 0) {
-			return false; // ”√ªß√˚≤ª¥Ê‘⁄
+			return false; // ÔøΩ√ªÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ
 		} else {
-			return true; // ”√ªß√˚¥Ê‘⁄
+			return true; // ÔøΩ√ªÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ
 		}
 
 	}

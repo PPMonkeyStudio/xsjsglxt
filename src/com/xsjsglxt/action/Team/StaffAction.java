@@ -1,260 +1,312 @@
 package com.xsjsglxt.action.Team;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.UUID;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
+import org.apache.struts2.ServletActionContext;
+import org.aspectj.util.FileUtil;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_staff;
-import com.xsjsglxt.domain.VO.Team.page_list_staffInformationVO;
+import com.xsjsglxt.domain.VO.Team.policemanListVO;
 import com.xsjsglxt.service.Team.StaffService;
 
-public class StaffAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
+import util.TeamUtil;
+
+/*
+ * @author 孙毅
+ * @description 基本信息action
+ */
+public class StaffAction extends ActionSupport {
 
 	private StaffService staffService;
-	private xsjsglxt_staff staff;
-	private String useStaffInformationNumList;
-	private HttpServletResponse http_response;
+	private xsjsglxt_staff policeman;
+	private File staff_image;
+	private String staff_imageContentType;
+	private String staff_imageFileName;
+	private policemanListVO policemanVO;
 
-	private HttpServletRequest http_request;
-	private page_list_staffInformationVO page_list_staffInformation;
+	private String xsjsglxt_staff_id;
 
-	private File staff_photo;
-	private String staff_photoFileName;
-
-	/*
-	 * 跳转列表页
-	 */
+	// -----------------------------------进入人员管理---------------------------------------
 	public String page_staffList() {
-		System.out.println("第一步");
-		return "page_staffList";
+		return "StaffIndex";
 	}
 
-	/*
-	 * 跳转详情页
-	 */
-	public String page_staffDetail() {
-		ActionContext.getContext().getValueStack().set("staff_id", http_request.getParameter("staff_id_transfer"));
-		return "page_staffDetails";
-	}
-
-	/*
-	 * 跳转创建页
-	 */
 	public String page_newStaff() {
-		return "page_newStaff";
+		return "NewStaff";
 	}
 
-	/*
-	 * 保存人员信息
-	 */
-	public void saveStaff() throws IOException {
-		try {
-			if (staff_photo != null) {
-				if (staff_photo.length() <= 50 * 1024 * 1024) {
-					String filePath;
-					String fileName = UUID.randomUUID().toString()
-							+ staff_photoFileName.substring(staff_photoFileName.lastIndexOf("."));
-					filePath = "C://xsjsglxt_img/bimg/" + fileName;
-					staff.setStaff_photo(fileName);
+	public String page_staffDetails() {
+		return "staffDetails";
+	}
 
-					File newFile = new File(filePath);
+	// -----------------------------------添加警员基本信息------------------------------------
+
+	public void saveStaff() {
+		// 上传头像
+		if (staff_imageFileName != null && staff_imageFileName.trim().length() > 0) {
+			String realPath = ServletActionContext.getServletContext().getRealPath("/upload/staffImage");
+			// 判断文件夹是否存在
+			File fileHome = new File(realPath);
+			if (!fileHome.exists())
+				fileHome.mkdirs();
+			// 截取文件名获得文件类型
+			String fileType = staff_imageFileName.substring(staff_imageFileName.lastIndexOf("."));
+			// 重新构造文件名
+			String newFileName = TeamUtil.getUuid();
+			String newFilePath = realPath + "/" + newFileName + fileType;
+			// 拷贝文件到服务器目录
+			Thread thread = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
 					try {
-						FileUtils.copyFile(staff_photo, newFile);
+						FileUtil.copyFile(staff_image, new File(newFilePath));
 					} catch (IOException e) {
+						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
-			} else {
-				staff.setStaff_photo("default.jpg");
-			}
-			staffService.saveStaff(staff);
-			http_response.setContentType("text/html;charset=utf-8");
-			http_response.getWriter().write("success");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			http_response.setContentType("text/html;charset=utf-8");
-			http_response.getWriter().write("error");
+			});
+			thread.start();
+			policeman.setStaff_photo(newFileName + fileType);
 		}
-	}
-
-	/*
-	 * 列表信息
-	 */
-	public void ListStaffInformationByPageAndSearch() throws IOException {
-
-		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// 格式化json数据
-		Gson gson = gsonBuilder.create();
-
-		page_list_staffInformation = staffService.VO_StaffInformation_By_PageAndSearch(page_list_staffInformation);
-
-		http_response.setContentType("text/html;charset=utf-8");
-
-		http_response.getWriter().write(gson.toJson(page_list_staffInformation));
-	}
-
-	/*
-	 * 详细信息
-	 */
-	public void StaffInformationOne() throws IOException {
-		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// 格式化json数据
-		Gson gson = gsonBuilder.create();
-		staff = staffService.StaffInformationOne(staff);
-		http_response.setContentType("text/html;charset=utf-8");
-
-		http_response.getWriter().write(gson.toJson(staff));
-	}
-
-	/*
-	 * 修改信息
-	 */
-	public void updateStaffInformation() throws IOException {
+		String result = staffService.saveStaff(policeman);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter pw;
 		try {
-			xsjsglxt_staff oldStaffList = staffService.StaffInformationOne(staff);
-			if (staff_photo != null) {
-				if (staff_photo.length() <= 50 * 1024 * 1024) {
-					if (!oldStaffList.getStaff_photo().equals("default.jpg")) {
-						File oldimg = new File("C://xsjsglxt_img/bimg/" + oldStaffList.getStaff_photo());
-						oldimg.delete();
-					}
-					String filePath;
-					String fileName = UUID.randomUUID().toString()
-							+ staff_photoFileName.substring(staff_photoFileName.lastIndexOf("."));
-					filePath = "C://xsjsglxt_img/bimg/" + fileName;
-					// oldStaffList.setStaff_photo(fileName);
-					staff.setStaff_photo(fileName);
-					File newFile = new File(filePath);
-					try {
-						FileUtils.copyFile(staff_photo, newFile);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-			staffService.updateStaffInformation(staff);
-			http_response.setContentType("text/html;charset=utf-8");
-			http_response.getWriter().write("success");
+			pw = response.getWriter();
+			pw.write(policeman.getXsjsglxt_staff_id());
+			pw.flush();
+			pw.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			http_response.setContentType("text/html;charset=utf-8");
-			http_response.getWriter().write("error");
+		}
+
+	}
+
+	// ------------------------------------删除警员信息-------------------------------------
+	public void deletePoliceman() {
+
+		// 删除警员的照片
+		xsjsglxt_staff oldPoliceman = staffService.getPolicemanByStaffId(policeman.getXsjsglxt_staff_id());
+		if (oldPoliceman.getStaff_photo() != null && oldPoliceman.getStaff_photo().trim().length() > 0) {
+			String realPath = ServletActionContext.getServletContext().getRealPath("/upload/staffImage");
+			File oldPhoto = new File(realPath + "/" + oldPoliceman.getStaff_photo());
+			if (oldPhoto.exists()) {
+				oldPhoto.delete();
+			}
+		}
+		String result = staffService.deletePoliceman(policeman);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(result);
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
-	/*
-	 * 删除信息
-	 */
-	public void remove_StaffInformationList() {
+	// ------------------------------------修改警员信息-------------------------------------
+	public void updatePoliceman() {
+		// 判断是否修改了照片
+		xsjsglxt_staff oldPoliceman = staffService.getPolicemanByStaffId(policeman.getXsjsglxt_staff_id());
+		if (staff_imageFileName != null && staff_imageFileName.trim().length() > 0) {
+			// 获得数据库中原有的信息，并删除原有照片
+			String realPath = ServletActionContext.getServletContext().getRealPath("/upload/staffImage");
+			File oldPhoto = new File(realPath + "/" + oldPoliceman.getStaff_photo());
+			if (oldPhoto.exists())
+				oldPhoto.delete();
+			// 获得服务器中的文件仓储位置，并判断是否存在
+			File photoFactory = new File(realPath);
+			if (!photoFactory.exists())
+				photoFactory.mkdirs();
+			// 获取修改后的文件的文件类型
+			String photoType = staff_imageFileName.substring(staff_imageFileName.lastIndexOf("."));
+			// 构建新文件名
+			String photoName = TeamUtil.getUuid();
+			Thread thread = new Thread(new Runnable() {
 
-		if (staffService.remove_StaffInformationList(useStaffInformationNumList)) {
-
-			http_response.setContentType("text/html;charset=utf-8");
-			try {
-				http_response.getWriter().write("success");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					try {
+						// 拷贝文件
+						FileUtil.copyFile(staff_image, new File(realPath + "/" + photoName + photoType));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
+			thread.start();
+			policeman.setStaff_photo(photoName + photoType);
 		} else {
-			http_response.setContentType("text/html;charset=utf-8");
-			try {
-				http_response.getWriter().write("error");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			policeman.setStaff_photo(oldPoliceman.getStaff_photo());
+		}
+		policeman.setStaff_gmt_create(oldPoliceman.getStaff_gmt_create());
+		String result = staffService.updatePoliceman(policeman);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(result);
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	// ----------------------------------------获得一个警员基本信息----------------------------
+
+	public void getPolicemanByStaffId() {
+		xsjsglxt_staff staff = staffService.getPolicemanByStaffId(policeman.getXsjsglxt_staff_id());
+		Gson gson = new Gson();
+		String result = gson.toJson(staff);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(result);
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
-	@Override
-	public void setServletResponse(HttpServletResponse arg0) {
-		// TODO Auto-generated method stub
-		this.http_response = arg0;
+	// ----------------------------------------获得多个警员信息(查询/分页)----------------------
+	public void getPolicemansByPage() {
+		staffService.getPolicemansByPage(policemanVO);
+		Gson gson = new Gson();
+		String result = gson.toJson(policemanVO);
+		System.out.println(result);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(result);
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	@Override
-	public void setServletRequest(HttpServletRequest arg0) {
-		// TODO Auto-generated method stub
-		this.http_request = arg0;
+	// ---------------------------------------下载头像--------------------------------------
+	public void downloadPhoto() {
+		HttpServletResponse response = ServletActionContext.getResponse();
+		try {
+			response.addHeader("Content-Disposition",
+					"attachment; filename=\"" + new String(staff_imageFileName.getBytes(), "ISO-8859-1") + "\"");
+			String filePath = ServletActionContext.getServletContext()
+					.getRealPath("/upload/staffImage/" + staff_imageFileName);
+			try {
+				OutputStream os = response.getOutputStream();
+
+				File file = new File(filePath);
+				byte[] buffer = new byte[1024];
+				int length = 1024;
+				FileInputStream fins;
+				try {
+					fins = new FileInputStream(file);
+					try {
+						while (fins.read(buffer, 0, length) != -1) {
+							os.write(buffer);
+						}
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
+
+	// ------------------------------------setter/getter-----------------------------------
 
 	public StaffService getStaffService() {
 		return staffService;
+	}
+
+	public String getXsjsglxt_staff_id() {
+		return xsjsglxt_staff_id;
+	}
+
+	public void setXsjsglxt_staff_id(String xsjsglxt_staff_id) {
+		this.xsjsglxt_staff_id = xsjsglxt_staff_id;
+	}
+
+	public policemanListVO getPolicemanVO() {
+		return policemanVO;
+	}
+
+	public void setPolicemanVO(policemanListVO policemanVO) {
+		this.policemanVO = policemanVO;
+	}
+
+	public xsjsglxt_staff getPoliceman() {
+		return policeman;
+	}
+
+	public void setPoliceman(xsjsglxt_staff policeman) {
+		this.policeman = policeman;
 	}
 
 	public void setStaffService(StaffService staffService) {
 		this.staffService = staffService;
 	}
 
-	public HttpServletResponse getHttp_response() {
-		return http_response;
+	public File getStaff_image() {
+		return staff_image;
 	}
 
-	public void setHttp_response(HttpServletResponse http_response) {
-		this.http_response = http_response;
+	public void setStaff_image(File staff_image) {
+		this.staff_image = staff_image;
 	}
 
-	public HttpServletRequest getHttp_request() {
-		return http_request;
+	public String getStaff_imageContentType() {
+		return staff_imageContentType;
 	}
 
-	public void setHttp_request(HttpServletRequest http_request) {
-		this.http_request = http_request;
+	public void setStaff_imageContentType(String staff_imageContentType) {
+		this.staff_imageContentType = staff_imageContentType;
 	}
 
-	public xsjsglxt_staff getStaff() {
-		return staff;
+	public String getStaff_imageFileName() {
+		return staff_imageFileName;
 	}
 
-	public void setStaff(xsjsglxt_staff staff) {
-		this.staff = staff;
+	public void setStaff_imageFileName(String staff_imageFileName) {
+		this.staff_imageFileName = staff_imageFileName;
 	}
-
-	public page_list_staffInformationVO getPage_list_staffInformation() {
-		return page_list_staffInformation;
-	}
-
-	public void setPage_list_staffInformation(page_list_staffInformationVO page_list_staffInformation) {
-		this.page_list_staffInformation = page_list_staffInformation;
-	}
-
-	public String getUseStaffInformationNumList() {
-		return useStaffInformationNumList;
-	}
-
-	public void setUseStaffInformationNumList(String useStaffInformationNumList) {
-		this.useStaffInformationNumList = useStaffInformationNumList;
-	}
-
-	public File getStaff_photo() {
-		return staff_photo;
-	}
-
-	public void setStaff_photo(File staff_photo) {
-		this.staff_photo = staff_photo;
-	}
-
-	public String getStaff_photoFileName() {
-		return staff_photoFileName;
-	}
-
-	public void setStaff_photoFileName(String staff_photoFileName) {
-		this.staff_photoFileName = staff_photoFileName;
-	}
-
 }
