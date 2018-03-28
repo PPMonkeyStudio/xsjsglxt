@@ -1,6 +1,7 @@
+
 window.onload = function() {
 	var url = window.location.href;
-	var staff_id = url.substring(url.indexOf("=") + 1);
+	staff_id = url.substring(url.indexOf("=") + 1);
 	console.log(staff_id);
 	get_staffDetails(staff_id);
 }
@@ -58,8 +59,6 @@ function get_staffDetails_Ajax(url, staff_id) {
 			$('#staff_MaxEducationalBackground').val(
 					staff_info.staff_MaxEducationalBackground);
 			$('#staff_politicalStatus').val(staff_info.staff_politicalStatus);
-			document.getElementById("photo-show").innerHTML = "<img src='/xsjsglxt/team/Staff_downloadPhoto?staff_imageFileName="
-					+ staff_info.staff_photo + "' />";
 
 			show_studyAjax(staff_id);
 			show_workAjax(staff_id);
@@ -102,9 +101,8 @@ function show_studyAjax(staff_id) {
 						+ '</td>';
 				str1 += '<td>' + staff_study[len].staffStudent_stopTime
 						+ '</td>';
-				str1 += '<td> <button class="btn btn-default btn-xs delete_button"  type="button" style="margin-left: 10px;"><i class="fa fa-plus-square"></i></button></td>';
+				str1 += '<td> <button class="btn btn-default btn-xs" type="button" ><i class="fa fa-plus-square"></i></button></td>';
 				str1 += '</tr>';
-
 			}
 			$('#studyExperience_table tbody tr').after(str1);
 
@@ -138,8 +136,9 @@ function show_workAjax(staff_id) {
 				str2 += '<td>' + staff_work[len].staffWork_startTime + '</td>';
 				str2 += '<td>' + staff_work[len].staffWork_stopTime + '</td>';
 				str2 += '<td>' + staff_work[len].staffWork_remarks + '</td>';
-				str2 += '<td> <button class="btn btn-default btn-xs" type="button" style="margin-left: 10px;"><i class="fa fa-plus-square"></i></button></td>';
+				str2 += '<td> <button class="btn btn-default btn-xs" type="button"><i class="fa fa-plus-square"></i></button></td>';
 				str2 += '</tr>';
+
 			}
 			$('#wordExperience_table tbody tr').after(str2);
 
@@ -182,7 +181,7 @@ function show_familyAjax(staff_id) {
 				str3 += '<td>' + staff_family[len].staffFamily_duty + '</td>';
 				str3 += '<td colspan="2">'
 						+ staff_family[len].staffFamily_remarks + '</td>';
-				str3 += '<td> <button class="btn btn-default btn-xs" type="button" style="margin-left: 10px;"><i class="fa fa-plus-square"></i></button></td>';
+				str3 += '<td> <button class="btn btn-default btn-xs" type="button" ><i class="fa fa-plus-square"></i></button></td>';
 				str3 += '</tr>';
 			}
 			$('#family_table tbody tr').after(str3);
@@ -217,7 +216,7 @@ function show_moveAjax(staff_id) {
 				str4 += '<td>' + staff_move[len].staffMove_outTime + '</td>';
 				str4 += '<td>' + staff_move[len].staffMove_guard + '</td>';
 				str4 += '<td>' + staff_move[len].staffMove_remarks + '</td>';
-				str4 += '<td> <button class="btn btn-default btn-xs" type="button" style="margin-left: 10px;"><i class="fa fa-plus-square"></i></button></td>';
+				str4 += '<td> <button class="btn btn-default btn-xs" type="button"><i class="fa fa-plus-square"></i></button></td>';
 				str4 += '</tr>';
 			}
 			$('#policeChange_table tbody tr').after(str4);
@@ -252,7 +251,7 @@ function show_rewardAjax(staff_id) {
 				str5 += '<td>' + staff_reward[len].staffReward_Time + '</td>';
 				str5 += '<td>' + staff_reward[len].staffReward_remarks
 						+ '</td>';
-				str5 += '<td> <button class="btn btn-default btn-xs" type="button" style="margin-left: 10px;"><i class="fa fa-plus-square"></i></button></td>';
+				str5 += '<td> <button class="btn btn-default btn-xs" type="button" ><i class="fa fa-plus-square"></i></button></td>';
 				str5 += '</tr>';
 			}
 			$('#prized_table tbody tr').after(str5);
@@ -288,7 +287,7 @@ function show_againstAjax(staff_id) {
 						+ '</td>';
 				str6 += '<td>' + staff_against[len].staffPrinciple_remarks
 						+ '</td>';
-				str6 += '<td> <button class="btn btn-default btn-xs" type="button" style="margin-left: 10px;"><i class="fa fa-plus-square"></i></button></td>';
+				str6 += '<td> <button class="btn btn-default btn-xs" type="button" ><i class="fa fa-plus-square"></i></button></td>';
 				str6 += '</tr>';
 			}
 			$('#againstPrinciple_table tbody tr').after(str6);
@@ -328,13 +327,14 @@ function show_punishmentAjax(staff_id) {
 						+ '</td>';
 				str7 += '<td>' + staff_punishment[len].staffPunishment_remarks
 						+ '</td>';
-				str7 += '<td> <button class="btn btn-default btn-xs" type="button" style="margin-left: 10px;"><i class="fa fa-plus-square"></i></button></td>';
+				str7 += '<td> <button class="btn btn-default btn-xs" type="button" ><i class="fa fa-plus-square"></i></button></td>';
 				str7 += '</tr>';
 			}
 			$('#punish_table tbody tr').after(str7);
 
 		}
 	}
+
 	xmlhttp_punishment
 			.open(
 					"POST",
@@ -370,7 +370,7 @@ function show_furloughAjax(staff_id) {
 						+ '</td>';
 				str8 += '<td>' + staff_furlough[len].staffFurlough_remarks
 						+ '</td>';
-				str8 += '<td> <button class="btn btn-default btn-xs" type="button" style="margin-left: 10px;"><i class="fa fa-plus-square"></i></button></td>';
+				str8 += '<td> <button class="btn btn-default btn-xs" type="button" ><i class="fa fa-plus-square"></i></button></td>';
 				str8 += '</tr>';
 			}
 			$('#vocation_table tbody tr').after(str8);
@@ -410,7 +410,7 @@ function isNotFormat(even) {
 
 // staffDetail.jsp中的修改人员
 function staff_change() {
-	var url = "/xsjsglxt/team/Staff_updateStaffInformation";
+	var url = "/xsjsglxt/team/Staff_saveStudents";
 	$.confirm({
 		title : '修改!',
 		content : '确定修改么!',
@@ -474,113 +474,163 @@ function loadstaffDetail_staff_change(url, staff_id) {
 	xmlhttp.send(formData);
 }
 // 长表格学习经历添加
-var relive_study = function(event) {
-	// 此处调用九个接口
-	// 删除警员基本信息
+function relive_study() {
+	//加到表格中
+	add_studyExperience();
+	console.log("学习经历添加");
+	console.log(staff_id);
+	//添加一条数据
+	var staffStudent_address_val=$(".staffStudent_address").val();
+	var staffStudent_startTime_val=$(".staffStudent_startTime").val();
+	var staffStudent_stopTime_val=$(".staffStudent_stopTime").val();
+	var staffStudent_remarks_val=$(".staffStudent_remarks").val();
 	$.ajax({
-		url : '/xsjsglxt/team/Staff_deletePoliceman',
-		type : 'POST',
-		data : {
-			'policeman.xsjsglxt_staff_id' : event.id
-		}
-	});
-}
-// 长表格工作经历添加
-var relive_work = function(event) {
-	// 此处调用九个接口
-	// 删除警员基本信息
-	$.ajax({
-		url : '/xsjsglxt/team/Staff_deletePoliceman',
-		type : 'POST',
-		data : {
-			'policeman.xsjsglxt_staff_id' : event.id
-		}
-	});
-}
-// 长表格家庭添加
-var relive_family = function(event) {
-	// 此处调用九个接口
-	// 删除警员基本信息
-	$.ajax({
-		url : '/xsjsglxt/team/Staff_deletePoliceman',
-		type : 'POST',
-		data : {
-			'policeman.xsjsglxt_staff_id' : event.id
-		}
-	});
-}
-// 长表格刑警调动弄个添加
-var relive_move = function(event) {
-	// 此处调用九个接口
-	// 删除警员基本信息
-	$.ajax({
-		url : '/xsjsglxt/team/Staff_deletePoliceman',
-		type : 'POST',
-		data : {
-			'policeman.xsjsglxt_staff_id' : event.id
-		}
-	});
-}
-// 长表格立功添加
-var relive_reward = function(event) {
-	// 此处调用九个接口
-	// 删除警员基本信息
-	$.ajax({
-		url : '/xsjsglxt/team/Staff_deletePoliceman',
-		type : 'POST',
-		data : {
-			'policeman.xsjsglxt_staff_id' : event.id
-		}
-	});
-}
-// 长表格违纪
-var relive_against = function(event) {
-	// 此处调用九个接口
-	// 删除警员基本信息
-	$.ajax({
-		type : "POST",
-		url : "test.json",
-		data : {
-			staffStudent_address : $(".staffStudent_address").val(),
-			staffStudent_startTime : $(".staffStudent_startTime").val(),
-			staffStudent_stopTime : $(".staffStudent_stopTime").val(),
-			staffStudent_remarks : $(".staffStudent_remarks").val(),
-		},
-		dataType : "json",
-		success : function(data) {
-			$('#resText').empty(); // 清空resText里面的所有内容
-			var html = '';
-			$.each(data, function(commentIndex, comment) {
-				html += '<div class="comment"><h6>' + comment['username']
-						+ ':</h6><p class="para"' + comment['content']
-						+ '</p></div>';
+				type : "POST",
+				url : "/xsjsglxt/team/StaffStudent_saveStudent?student.staffStudent_staff="
+						+ staff_id,
+				data :{
+					"students[0].staffStudent_address":staffStudent_address_val,
+					"students[0].staffStudent_startTime":staffStudent_startTime_val,
+					"students[0].staffStudent_stopTime":staffStudent_stopTime_val,
+					"students[0].staffStudent_remarks":staffStudent_remarks_val,
+				},
+				dataType : "json",
+				success : function(data) {
+					console.log("添加完成");
+				}
 			});
-			$('#resText').html(html);
-		}
-	});
+}
+// 学习经历删除
+/*
+ * function delete_study(staff_id) { // 此处调用九个接口 // 删除警员基本信息
+ * console.log("学习经历删除"); $.ajax({ url : '/xsjsglxt/team/Staff_deleteStudent',
+ * type : 'POST', data : { 'policeman.xsjsglxt_staff_id' : staff_id },
+ * success:function(result){ console.log(result); if(result=="deleteSuccess"){
+ * toastr.error("删除成功！"); }else{ toastr.error("删除失败！"); } } }); }
+ */
+function delete_study(even) {
+	console.log(even.id);
+	var relive_study = function(event) {
+		// 此处调用九个接口
+		// 删除警员基本信息
+		$.ajax({
+			url : '/xsjsglxt/team/Staff_deletePoliceman',
+			type : 'POST',
+			data : {
+				'policeman.xsjsglxt_staff_id' : event.id
+			}
+		});
 
-}
-// 长表格处分添加
-var relive_punishment = function(event) {
-	// 此处调用九个接口
-	// 删除警员基本信息
-	$.ajax({
-		url : '/xsjsglxt/team/Staff_deletePoliceman',
-		type : 'POST',
-		data : {
-			'policeman.xsjsglxt_staff_id' : event.id
-		}
-	});
-}
-// 长表格休假添加
-var relive_furlough = function(event) {
-	// 此处调用九个接口
-	// 删除警员基本信息
-	$.ajax({
-		url : '/xsjsglxt/team/Staff_deletePoliceman',
-		type : 'POST',
-		data : {
-			'policeman.xsjsglxt_staff_id' : event.id
-		}
-	});
+	}
+	// 长表格工作经历添加
+	var relive_work = function(event) {
+		// 此处调用九个接口
+		// 删除警员基本信息
+		$.ajax({
+			url : '/xsjsglxt/team/Staff_deletePoliceman',
+			type : 'POST',
+			data : {
+				'policeman.xsjsglxt_staff_id' : event.id
+			}
+		});
+	}
+	// 长表格家庭添加
+	var relive_family = function(event) {
+		// 此处调用九个接口
+		// 删除警员基本信息
+		$.ajax({
+			url : '/xsjsglxt/team/Staff_saveWorks',
+			type : 'POST',
+			data : {
+				'policeman.xsjsglxt_staff_id' : event.id
+			}
+		});
+	}
+	// 长表格刑警调动弄个添加
+	var relive_move = function(event) {
+		// 此处调用九个接口
+		// 删除警员基本信息
+		$.ajax({
+			url : '/xsjsglxt/team/Staff_deletePoliceman',
+			type : 'POST',
+			data : {
+				'policeman.xsjsglxt_staff_id' : event.id
+			}
+		});
+	}
+	// 长表格立功添加
+	var relive_reward = function(event) {
+		// 此处调用九个接口
+		// 删除警员基本信息
+		$.ajax({
+			url : '/xsjsglxt/team/Staff_deletePoliceman',
+			type : 'POST',
+			data : {
+				'policeman.xsjsglxt_staff_id' : event.id
+			}
+		});
+	}
+	// 长表格违纪
+	var relive_against = function(event) {
+		// 此处调用九个接口
+		// 删除警员基本信息
+		$.ajax({
+			type : "POST",
+			url : "test.json",
+			data : {
+				staffStudent_address : $(".staffStudent_address").val(),
+				staffStudent_startTime : $(".staffStudent_startTime").val(),
+				staffStudent_stopTime : $(".staffStudent_stopTime").val(),
+				staffStudent_remarks : $(".staffStudent_remarks").val(),
+			},
+			dataType : "json",
+			success : function(data) {
+				$('#resText').empty(); // 清空resText里面的所有内容
+				var html = '';
+				$.each(data, function(commentIndex, comment) {
+					html += '<div class="comment"><h6>' + comment['username']
+
+					+ ':</h6><p class="para"' + comment['content']
+							+ '</p></div>';
+
+					+':</h6><p class="para"' + comment['content']
+							+ '</p></div>';
+
+				});
+				$('#resText').html(html);
+			}
+		});
+
+	}
+	// 长表格处分添加
+	var relive_punishment = function(event) {
+		// 此处调用九个接口
+		// 删除警员基本信息
+		$.ajax({
+			url : '/xsjsglxt/team/Staff_deletePoliceman',
+			type : 'POST',
+			data : {
+				'policeman.xsjsglxt_staff_id' : event.id
+			}
+		});
+	}
+	// 长表格休假添加
+	var relive_furlough = function(event) {
+		// 此处调用九个接口
+		// 删除警员基本信息
+		$.ajax({
+			url : '/xsjsglxt/team/Staff_deletePoliceman',
+			type : 'POST',
+			data : {
+				'policeman.xsjsglxt_staff_id' : event.id
+			}
+		});
+
+	}
+	// 每行删除
+	function delete_longTable(this_button) {
+		this_button.parentNode.parentNode.parentNode
+				.removeChild(this_button.parentNode.parentNode);
+	}
+
 }

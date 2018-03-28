@@ -133,7 +133,7 @@ function workExp_ajax(id) {
 		var w_td=w_tr[i].getElementsByTagName("td");
 		for(var j=0;j<w_td.length;j++){
 			//得到每列的class名
-			console.log(w_td[j].innnerHTML);
+			console.log(w_td[j].innerHTML);
 			var w_tdName=w_td[j].getAttribute("name");
 			console.log("列名"+w_tdName);
 			//将每列的名和值放到formdata中
@@ -271,7 +271,7 @@ function against_ajax(id) {
 		xmlhttp = new ActiveXOBject("Microsoft.XMLHTTP");
 	}
 	var formdata = new FormData();
-	var againstPrinciple_table = document.getElementById("againstPrinciple_table").getElementsByTagName("tbody");
+	var againstPrinciple_table = document.getElementById("againstPrinciple_table");
 	var againstPrincipleTr = againstPrinciple_table.getElementsByTagName("tr");
 	for(var i=1;i<againstPrincipleTr.length;i++){
 		//得到每列
@@ -387,12 +387,12 @@ function changeSex_woman(even) {
 function isFormat(even) {
 	var format = document.getElementById("format");
 	format.value = even.value;
-	return fomat.value;
+	return format.value;
 }
 function isNotFormat(even) {
 	var format = document.getElementById("format");
 	format.value = even.value;
-	return fomat.value;
+	return format.value;
 }
 // 实现点击file
 function photo_click() {

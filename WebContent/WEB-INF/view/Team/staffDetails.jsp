@@ -912,6 +912,10 @@
 	<!--新建添加休假模态框 end  -->
 
 	<script type="text/javascript" src="<%=basePath%>js/Team/staffDetails.js"></script>
+<<<<<<< HEAD
+	<script type="text/javascript" src="<%=basePath%>js/Team/newStaff.js"></script>
+=======
+>>>>>>> SY
 	<script type="text/javascript">
 		$.datetimepicker.setLocale('ch');
 		$('.staff_joinPartyTime').datetimepicker({
