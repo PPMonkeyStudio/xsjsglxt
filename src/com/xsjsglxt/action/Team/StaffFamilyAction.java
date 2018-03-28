@@ -24,7 +24,6 @@ public class StaffFamilyAction extends ActionSupport {
 	// 添加家庭成员
 
 	public void saveFamilys() {
-		System.out.println("姓名：" + familys.get(1).getStaffFamily_name());
 		String result = staffFamilyService.saveFamily(familys);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
