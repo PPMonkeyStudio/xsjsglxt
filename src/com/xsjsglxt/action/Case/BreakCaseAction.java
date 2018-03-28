@@ -14,13 +14,14 @@ import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakcase;
 import com.xsjsglxt.domain.DO.xsjsglxt_briefdetails;
-import com.xsjsglxt.domain.DO.xsjsglxt_case;
-import com.xsjsglxt.domain.DO.xsjsglxt_snece;
-import com.xsjsglxt.domain.DTO.Case.BreakecaseInformationDTO;
 import com.xsjsglxt.domain.VO.Case.page_list_BreakecaseInformationVO;
 import com.xsjsglxt.service.Case.BreakCaseService;
 
 public class BreakCaseAction extends ActionSupport implements ServletResponseAware, ServletRequestAware {
+	
+	public String page_BreakCaseList() {
+		return "page_BreakCaseList";
+	}
 	
 	/*
 	 * 保存破案信息
