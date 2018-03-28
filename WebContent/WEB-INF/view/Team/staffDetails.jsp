@@ -56,7 +56,7 @@
 								type="text"></td>
 
 							<td><label>照片</label></td>
-							<td rowspan="4"><a class="photo-show"></a> <a
+							<td rowspan="4"><a class="photo-show" id="photo-show"></a> <a
 								class="a-upload" onclick="photo_click()">上传照片</a> <input
 								type="file" class="photo-file" name="staff_image"
 								multiple="multiple"
@@ -914,6 +914,7 @@
 	<!--新建添加休假模态框 end  -->
 
 	<script type="text/javascript" src="<%=basePath%>js/Team/staffDetails.js"></script>
+	<script type="text/javascript" src="<%=basePath%>js/Team/newStaff.js"></script>
 	<script type="text/javascript">
 		$.datetimepicker.setLocale('ch');
 		$('.staff_joinPartyTime').datetimepicker({

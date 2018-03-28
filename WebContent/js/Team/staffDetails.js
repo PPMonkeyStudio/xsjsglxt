@@ -102,9 +102,9 @@ function show_studyAjax(staff_id) {
 						+ '</td>';
 				str1 += '<td>' + staff_study[len].staffStudent_stopTime
 						+ '</td>';
-				str1 += '<td> <button class="btn btn-default btn-xs delete_button"  type="button" style="margin-left: 10px;"><i class="fa fa-plus-square"></i></button></td>';
+				str1 += '<td> <button class="btn btn-default btn-xs delete_button" onclick="delete_study('+staff_id+')"  type="button" style="margin-left: 10px;"><i class="fa fa-plus-square"></i></button></td>';
 				str1 += '</tr>';
-
+				/*"delete_study('+staff_id+')"*/
 			}
 			$('#studyExperience_table tbody tr').after(str1);
 
@@ -474,16 +474,42 @@ function loadstaffDetail_staff_change(url, staff_id) {
 	xmlhttp.send(formData);
 }
 // 长表格学习经历添加
-var relive_study = function(event) {
-	// 此处调用九个接口
-	// 删除警员基本信息
+var relive_study = function(event,staff_id) {
+	var data = $("#study_exp").serialize();  
 	$.ajax({
-		url : '/xsjsglxt/team/Staff_deletePoliceman',
-		type : 'POST',
-		data : {
-			'policeman.xsjsglxt_staff_id' : event.id
+		type : "POST",
+		url : "/xsjsglxt/team/StaffStudent_saveStudent?student.staffStudent_staff="+staff_id,
+		data : data,
+		dataType : "json",
+		success : function(data) {
+			add_studyExperience();
+			console.log("添加完成");
 		}
 	});
+}
+//学习经历删除
+/*function delete_study(staff_id) {
+	// 此处调用九个接口
+	// 删除警员基本信息
+	console.log("学习经历删除");
+	$.ajax({
+		url : '/xsjsglxt/team/Staff_deleteStudent',
+		type : 'POST',
+		data : {
+			'policeman.xsjsglxt_staff_id' : staff_id
+		},
+	    success:function(result){
+	    	console.log(result);
+            if(result=="deleteSuccess"){
+            	toastr.error("删除成功！");
+            }else{
+            	toastr.error("删除失败！");
+            }
+	    }
+	});
+}*/
+function delete_study(even){
+	console.log(even.id);
 }
 // 长表格工作经历添加
 var relive_work = function(event) {
@@ -583,4 +609,8 @@ var relive_furlough = function(event) {
 			'policeman.xsjsglxt_staff_id' : event.id
 		}
 	});
+}
+//每行删除
+function  delete_longTable(this_button){
+	this_button.parentNode.parentNode.parentNode.removeChild(this_button.parentNode.parentNode);
 }

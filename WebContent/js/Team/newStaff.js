@@ -442,8 +442,9 @@ function photo_preview() {
 	return true;
 }
 // 添加学习经历
-var i=0;
+
 function add_studyExperience() {
+	var i=0;
 	console.log("add_studyExperience start");
 	// 把表格的数据存到json中
 	var staffStudent_address = document.querySelector(".staffStudent_address").value;
