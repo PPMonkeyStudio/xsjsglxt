@@ -26,12 +26,14 @@ public class BreakCaseServiceImpl implements BreakCaseService {
 		details.setBriefdetails_details(briefDetails.getBriefdetails_details());//简要案情内容
 		details.setBriefdetails_gmt_create(TeamUtil.getStringSecond());
 		details.setBriefdetails_details_modified(TeamUtil.getStringSecond());
+System.out.println(details.toString());
 		breakCaseDao.saveBriefDetails(details);
 		//存入破案表
 		breakCase.setXsjsglxt_breakcase_id(TeamUtil.getUuid());
 		breakCase.setBreakcase_case_note(briefdetails_id);//简要案情表id
 		breakCase.setBreakcase_gmt_create(TeamUtil.getStringSecond());
 		breakCase.setBreakcase_gmt_modified(TeamUtil.getStringSecond());
+System.out.println(breakCase.toString());
 		breakCaseDao.saveBreakecase(breakCase);
 	}
 

@@ -21,7 +21,6 @@ public class BreakCaseDaoImpl implements BreakCaseDao {
 		try {
 			Session session = getSession();
 			session.save(breakCase);
-			session.clear();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -71,7 +70,7 @@ public class BreakCaseDaoImpl implements BreakCaseDao {
 		try {
 			Session session = getSession();
 			session.save(details);
-			session.clear();
+//			session.clear();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -114,16 +113,13 @@ public class BreakCaseDaoImpl implements BreakCaseDao {
 		String startTime = "0000-00-00";
 		String stopTime = "9999-99-99";
 		// 1
-System.out.println(page_list_BreakecaseInformation);
 		if (page_list_BreakecaseInformation.getSnece_inquestId() != null
 				&& page_list_BreakecaseInformation.getSnece_inquestId().trim().length() > 0) {
 			String snece_inquestId = "%" + page_list_BreakecaseInformation.getSnece_inquestId() + "%";
 			hql = hql + " and snece_inquestId like '" + snece_inquestId + "'";
-
 		}
 		// 2
 		if (page_list_BreakecaseInformation.getCase_totalCategory() != null
-
 				&& page_list_BreakecaseInformation.getCase_totalCategory().trim().length() > 0) {
 			String case_totalCategory = "%" + page_list_BreakecaseInformation.getCase_totalCategory() + "%";
 			hql = hql + " and case_totalCategory like '" + case_totalCategory + "'";
@@ -131,9 +127,7 @@ System.out.println(page_list_BreakecaseInformation);
 		// 3
 		if (page_list_BreakecaseInformation.getCase_sonCategory() != null
 				&& page_list_BreakecaseInformation.getCase_sonCategory().trim().length() > 0) {
-
 			String case_sonCategory = "%" + page_list_BreakecaseInformation.getCase_sonCategory() + "%";
-
 			hql = hql + " and case_sonCategory like '" + case_sonCategory + "'";
 		}
 		// 4
@@ -148,8 +142,6 @@ System.out.println(page_list_BreakecaseInformation);
 			String breakecase_captureUnit = "%" + page_list_BreakecaseInformation.getBreakecase_captureUnit() + "%";
 			hql = hql + " and breakecase_captureUnit like '" + breakecase_captureUnit + "'";
 		}
-
-
 		if (page_list_BreakecaseInformation.getStart_time() != null
 				&& page_list_BreakecaseInformation.getStart_time().trim().length() > 0) {
 			startTime = page_list_BreakecaseInformation.getStart_time();
@@ -160,12 +152,9 @@ System.out.println(page_list_BreakecaseInformation);
 		}
 		hql = hql + " and case_receivingAlarmDate>='" + startTime + "' and case_receivingAlarmDate<='" + stopTime
 				+ "' order by case_receivingAlarmDate";
-		System.out.println(hql);
 		Query query = session.createQuery(hql);
-
 		i = (Long) query.uniqueResult();
 		session.clear();
-System.out.println(i.intValue());
 		return i.intValue();
 	}
 
@@ -206,7 +195,6 @@ System.out.println(i.intValue());
 			String breakecase_captureUnit = "%" + page_list_BreakecaseInformation.getBreakecase_captureUnit() + "%";
 			hql = hql + " and breakecase_captureUnit like '" + breakecase_captureUnit + "'";
 		}
-
 		if (page_list_BreakecaseInformation.getStart_time() != null
 				&& page_list_BreakecaseInformation.getStart_time().trim().length() > 0) {
 			startTime = page_list_BreakecaseInformation.getStart_time();
@@ -218,7 +206,6 @@ System.out.println(i.intValue());
 		hql = hql + " and case_receivingAlarmDate>='" + startTime + "' and case_receivingAlarmDate<='" + stopTime
 				+ "' order by case_receivingAlarmDate";
 		Query query = session.createQuery(hql);
-
 		query.setFirstResult(
 				(page_list_BreakecaseInformation.getPageIndex() - 1) * page_list_BreakecaseInformation.getPageSize());
 		query.setMaxResults(page_list_BreakecaseInformation.getPageSize());
