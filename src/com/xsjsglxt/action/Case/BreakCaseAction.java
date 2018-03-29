@@ -14,6 +14,7 @@ import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakcase;
 import com.xsjsglxt.domain.DO.xsjsglxt_briefdetails;
+import com.xsjsglxt.domain.DTO.Case.BreakecaseInformationDTO;
 import com.xsjsglxt.domain.VO.Case.page_list_BreakecaseInformationVO;
 import com.xsjsglxt.service.Case.BreakCaseService;
 
@@ -126,7 +127,25 @@ public class BreakCaseAction extends ActionSupport implements ServletResponseAwa
 	private String breakcase_case_id;//所属案件的id
 	private String xsjsglxt_breakcase_id;//破案id
 	private String breakcase_case;//简要案情id
+	public page_list_BreakecaseInformationVO getPage_infomantion() {
+		return page_infomantion;
+	}
+
+	public void setPage_infomantion(page_list_BreakecaseInformationVO page_infomantion) {
+		this.page_infomantion = page_infomantion;
+	}
+
+	private BreakecaseInformationDTO breakecaseInformationDTO;
+	private page_list_BreakecaseInformationVO page_infomantion;
 	
+	public BreakecaseInformationDTO getBreakecaseInformationDTO() {
+		return breakecaseInformationDTO;
+	}
+
+	public void setBreakecaseInformationDTO(BreakecaseInformationDTO breakecaseInformationDTO) {
+		this.breakecaseInformationDTO = breakecaseInformationDTO;
+	}
+
 	public HttpServletRequest getHttp_request() {
 		return http_request;
 	}
