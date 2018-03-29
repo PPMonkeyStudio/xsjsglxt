@@ -296,7 +296,7 @@
 
 										<td>出生日期</td>
 										<td><input style="witdh: 70%;"
-											class="form-control mydate_minute"
+											class="form-control mydate"
 											name="breakCase.breakcase_suspecter_birthday" type="text"></td>
 
 
@@ -335,7 +335,7 @@
 										<td>简要案情</td>
 										<td colspan="3"><textarea style="witdh: 70%;"
 												placeholder="请填写" class="form-control"
-												name="breakCase.breakcase_case_note"></textarea></td>
+												name="briefDetails.briefdetails_details"></textarea></td>
 									</tr>
 									<!-- 合并比中指纹  -->
 									<tr>
@@ -348,7 +348,7 @@
 									</tr>
 									<tr>
 										<td>比对时间</td>
-										<td><input style="witdh: 70%;" class="form-control"
+										<td><input style="witdh: 70%;" class="form-control mydate"
 											name="breakCase.breakcase_contrast_time" type="text"></td>
 										<td>比对方式</td>
 										<td><select style="witdh: 100%;" class="form-control"
@@ -382,7 +382,7 @@
 									</tr>
 									<tr>
 										<td>按印时间</td>
-										<td><input style="witdh: 70%;" class="form-control"
+										<td><input style="witdh: 70%;" class="form-control mydate"
 											name="breakCase.breakcase_contrast_press_time" type="text"></td>
 										<td>指位</td>
 										<td><input style="witdh: 70%;" class="form-control"
@@ -394,7 +394,7 @@
 										<td><input style="witdh: 70%;" class="form-control"
 											name="breakCase.breakcase_contrast_reviewer" type="text"></td>
 										<td>抓获时间</td>
-										<td><input style="witdh: 70%;" class="form-control"
+										<td><input style="witdh: 70%;" class="form-control mydate"
 											name="breakCase.breakcase_arrested_time" type="text"></td>
 									</tr>
 									<tr>
