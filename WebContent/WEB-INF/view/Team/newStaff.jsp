@@ -426,7 +426,7 @@
 								<tr>
 									<td><label class="staff_info_label">结束时间</label></td>
 									<td><input type="text" class="staffStudent_stopTime"
-										name="page_list_staffInformation.staff_name" /></td>
+									 /></td>
 								</tr>
 
 								<tr>
@@ -434,7 +434,7 @@
 									<td colspan="6"><textarea id="staffStudent_remarks"
 											class="staffStudent_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
+											rows="3" cols="66"></textarea>
 									</td>
 
 

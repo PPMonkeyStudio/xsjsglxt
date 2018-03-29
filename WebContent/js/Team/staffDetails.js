@@ -101,7 +101,8 @@ function show_studyAjax(staff_id) {
 						+ '</td>';
 				str1 += '<td>' + staff_study[len].staffStudent_stopTime
 						+ '</td>';
-				str1 += '<td> <button class="btn btn-default btn-xs" type="button" ><i class="fa fa-plus-square"></i></button></td>';
+				str1 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#reliveStudy_Modal" onclick="show_study(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_study(this)" type="button" ><i class="fa fa-trash"></i></button></td>';
+			
 				str1 += '</tr>';
 			}
 			$('#studyExperience_table tbody tr').after(str1);
@@ -131,7 +132,6 @@ function show_workAjax(staff_id) {
 			var str2 = '';
 			for (var len = 0; len < staff_work.length; len++) {
 				str2 += '<tr>';
-				str2 += '<td>' + staff_work[len].staffWork_address + '</td>';
 				str2 += '<td>' + staff_work[len].staffWork_address + '</td>';
 				str2 += '<td>' + staff_work[len].staffWork_startTime + '</td>';
 				str2 += '<td>' + staff_work[len].staffWork_stopTime + '</td>';
@@ -473,13 +473,13 @@ function loadstaffDetail_staff_change(url, staff_id) {
 	xmlhttp.open("post", url, true);
 	xmlhttp.send(formData);
 }
-// 长表格学习经历添加
-function relive_study() {
-	//加到表格中
+// 长表格学习经历添加一条
+function add_oneStudy() {
+	// 加到表格中
 	add_studyExperience();
 	console.log("学习经历添加");
 	console.log(staff_id);
-	//添加一条数据
+	// 添加一条数据
 	var staffStudent_address_val=$(".staffStudent_address").val();
 	var staffStudent_startTime_val=$(".staffStudent_startTime").val();
 	var staffStudent_stopTime_val=$(".staffStudent_stopTime").val();
@@ -500,28 +500,66 @@ function relive_study() {
 				}
 			});
 }
-// 学习经历删除
-/*
- * function delete_study(staff_id) { // 此处调用九个接口 // 删除警员基本信息
- * console.log("学习经历删除"); $.ajax({ url : '/xsjsglxt/team/Staff_deleteStudent',
- * type : 'POST', data : { 'policeman.xsjsglxt_staff_id' : staff_id },
- * success:function(result){ console.log(result); if(result=="deleteSuccess"){
- * toastr.error("删除成功！"); }else{ toastr.error("删除失败！"); } } }); }
- */
-function delete_study(even) {
-	console.log(even.id);
-	var relive_study = function(event) {
-		// 此处调用九个接口
-		// 删除警员基本信息
+//删除学习经历一条
+function delete_study(delete_button) {
+	//把td送页面上删除
+	  delete_longTable(delete_button);
+		//把这行td的数据数据库中删除
 		$.ajax({
-			url : '/xsjsglxt/team/Staff_deletePoliceman',
+			url : '/xsjsglxt/team/StaffStudent_deleteStudent?works.staffWork_staff='+staff_id,
 			type : 'POST',
-			data : {
-				'policeman.xsjsglxt_staff_id' : event.id
-			}
+			data:{
+				
+			},
+			success:function(data){
+				console.log("删除单条"+data);
+			},
 		});
 
-	}
+}
+//显示当前学习经历在模态框中
+function show_study(relive_button) {
+	var this_tr=relive_button.parentNode.parentNode;
+	 document.querySelector(".staffStudent_addressRelive").value=this_tr.children[0].innerHTML;
+	 document.querySelector(".staffStudent_startTimeRelive").value=this_tr.children[1].innerHTML;
+	 document.querySelector(".staffStudent_stopTimeRelive").value=this_tr.children[2].innerHTML;
+	 document.querySelector(".staffStudent_remarksRelive").value=this_tr.children[3].innerHTML;
+}
+function relive_study(){
+	console.log("学习经历修改");
+	// 添加一条数据
+	var staffStudent_address_val=$(".staffStudent_address").val();
+	var staffStudent_startTime_val=$(".staffStudent_startTime").val();
+	var staffStudent_stopTime_val=$(".staffStudent_stopTime").val();
+	var staffStudent_remarks_val=$(".staffStudent_remarks").val();
+	$.ajax({
+				type : "POST",
+				url : "/xsjsglxt/team/StaffStudent_updateStudent?student.staffStudent_staff="
+						+ staff_id,
+				data :{
+					"students[0].staffStudent_address":staffStudent_address_val,
+					"students[0].staffStudent_startTime":staffStudent_startTime_val,
+					"students[0].staffStudent_stopTime":staffStudent_stopTime_val,
+					"students[0].staffStudent_remarks":staffStudent_remarks_val,
+				},
+				dataType : "json",
+				success : function(data) {
+					console.log("修改完成");
+				}
+			});
+}
+// 长表格家庭添加
+var relive_family = function(event) {
+	// 此处调用九个接口
+	// 删除警员基本信息
+	$.ajax({
+		url : '/xsjsglxt/team/Staff_saveWorks',
+		type : 'POST',
+		data : {
+			'policeman.xsjsglxt_staff_id' : event.id
+		}
+	});
+}
 	// 长表格工作经历添加
 	var relive_work = function(event) {
 		// 此处调用九个接口
@@ -633,4 +671,4 @@ function delete_study(even) {
 				.removeChild(this_button.parentNode.parentNode);
 	}
 
-}
+

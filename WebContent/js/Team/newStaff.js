@@ -488,7 +488,7 @@ function add_studyExperience() {
 	delete_button.addEventListener('click', function(){
         this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
     }, false);
-	delete_button.style['margin-left']="10px";
+	
 	//添加按钮里的图标
 	var delete_icon=document.createElement("i");
 	delete_icon.className="fa fa-plus-square";
