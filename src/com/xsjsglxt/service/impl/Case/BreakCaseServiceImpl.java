@@ -111,4 +111,9 @@ public class BreakCaseServiceImpl implements BreakCaseService {
 		return page_list_BreakecaseInformation;
 	}
 
+	@Override
+	public xsjsglxt_breakcase getBreakCaseInfo(xsjsglxt_breakcase breakCase) {
+		return breakCaseDao.getBreakCaseById(breakCase.getXsjsglxt_breakcase_id());
+	}
+
 }
