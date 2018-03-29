@@ -17,4 +17,6 @@ public interface BreakCaseService {
 	public page_list_BreakecaseInformationVO VO_BreakecaseInformation_By_PageAndSearch(
 			page_list_BreakecaseInformationVO page_list_BreakecaseInformation);
 
+	public xsjsglxt_breakcase getBreakCaseInfo(xsjsglxt_breakcase breakCase);
+
 }

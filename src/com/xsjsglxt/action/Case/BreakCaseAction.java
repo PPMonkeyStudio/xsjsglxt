@@ -46,7 +46,7 @@ public class BreakCaseAction extends ActionSupport implements ServletResponseAwa
 	public void removeBreakCaseInfo() throws IOException {
 		http_response.setContentType("text/html;charset=utf-8");
 		if (breakCaseService.removeBreakCaseInfo(breakCaseInIdList)) {
-			http_response.getWriter().write("success");
+			http_response.getWriter().write("success");	
 		} else {
 			http_response.getWriter().write("error");
 		}
@@ -65,7 +65,7 @@ public class BreakCaseAction extends ActionSupport implements ServletResponseAwa
 	}
 	
 	/*
-	 * 列表信息
+	 * 查询列表信息
 	 */
 	public void ListBreakCaseInformationByPageAndSearch() throws IOException {
 		GsonBuilder gsonBuilder = new GsonBuilder();
@@ -75,6 +75,20 @@ public class BreakCaseAction extends ActionSupport implements ServletResponseAwa
 																.VO_BreakecaseInformation_By_PageAndSearch(page_list_BreakecaseInformation);
 		http_response.setContentType("text/html;charset=utf-8");
 		http_response.getWriter().write(gson.toJson(page_list_BreakecaseInformation));
+	}
+	
+	/**
+	 * 查询单条记录
+	 * @throws IOException 
+	 */
+	public void getBreakCaseInfo() throws IOException {
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
+		Gson gson = gsonBuilder.create();
+		xsjsglxt_breakcase breakCaseInfo = breakCaseService
+																.getBreakCaseInfo(breakCase);
+		http_response.setContentType("text/html;charset=utf-8");
+		http_response.getWriter().write(gson.toJson(breakCaseInfo));
 	}
 
 	@Override
@@ -96,9 +110,6 @@ public class BreakCaseAction extends ActionSupport implements ServletResponseAwa
 		response = this.http_response;
 	}
 	
-	private BreakCaseService breakCaseService;
-	private xsjsglxt_breakcase breakCase;
-	private xsjsglxt_briefdetails briefDetails;
 	public xsjsglxt_briefdetails getBriefDetails() {
 		return briefDetails;
 	}
@@ -107,11 +118,24 @@ public class BreakCaseAction extends ActionSupport implements ServletResponseAwa
 		this.briefDetails = briefDetails;
 	}
 
+	private BreakCaseService breakCaseService;
+	private xsjsglxt_breakcase breakCase;
+	private xsjsglxt_briefdetails briefDetails;
 	private HttpServletResponse http_response;
+	private HttpServletRequest http_request;
 	private List<String> breakCaseInIdList;//破案信息id的集合
 	private String breakcase_case_id;//所属案件的id
 	private String xsjsglxt_breakcase_id;//破案id
 	private String breakcase_case;//简要案情id
+	
+	public HttpServletRequest getHttp_request() {
+		return http_request;
+	}
+
+	public void setHttp_request(HttpServletRequest http_request) {
+		this.http_request = http_request;
+	}
+
 	private page_list_BreakecaseInformationVO page_list_BreakecaseInformation;
 	
 	public page_list_BreakecaseInformationVO getPage_list_BreakecaseInformation() {

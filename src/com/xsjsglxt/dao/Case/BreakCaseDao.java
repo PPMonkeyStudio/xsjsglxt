@@ -36,5 +36,7 @@ public interface BreakCaseDao {
 
 	xsjsglxt_snece get_sence_Byxsjsglxt_case_id(xsjsglxt_case case1);
 
+//	xsjsglxt_breakcase getBreakCaseInfo(xsjsglxt_breakcase breakCase);
+
 
 }
