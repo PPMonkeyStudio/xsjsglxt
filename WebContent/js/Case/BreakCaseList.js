@@ -129,45 +129,138 @@ var modifi_delete = function() {
 	var id = $(this).siblings('input').val();
 	console.log(type, id);
 	if (type == "修改") {
-		$.post('/xsjsglxt/case/BreakCase_BreakecaseInformationOne', {
-			"breakecase.xsjsglxt_breakcase_id" : id
+		$.post('/xsjsglxt/case/BreakCase_getBreakCaseInfo', {
+			"breakCase.xsjsglxt_breakcase_id" : id
 		}, function(xhr_data) {
 			var str = '';
 			str += '<table align="center" class="table table-hover table-condensed"><tbody><tr>';
 			str += '<td>所属案件<i class="fa fa-spinner fa-pulse fa-fw load_remind"></td><td colspan="3">';
-			str += '<select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="breakecase.breakecase_case">';
+			str += '<select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="breakCase.breakcase_case">';
 			str += '</select></td>';
 			str += '</tr>';
+			
 			str += '<tr>';
 			str += '<td>案件类型</td><td>';
-			str += '<select style="witdh:100%;" class="form-control" data-live-search="true" name="breakecase.breakecase_type">';
-			str += '<option ' + (xhr_data.breakecase.breakecase_type == "新添案件" ? "selected" : "") + '>新添案件</option>';
-			str += '<option ' + (xhr_data.breakecase.breakecase_type == "已有案件" ? "selected" : "") + '>已有案件</option>';
+			str += '<select style="witdh:100%;" class="form-control" data-live-search="true" name="breakCase.breakcase_type">';
+			str += '<option ' + (xhr_data.breakCase.breakcase_type == "新添案件" ? "selected" : "") + '>新添案件</option>';
+			str += '<option ' + (xhr_data.breakCase.breakcase_type == "已有案件" ? "selected" : "") + '>已有案件</option>';
 			str += '</select></td>';
-			str += '<td>嫌疑人姓名</td><td><input style="witdh:70%;" class="form-control" name="breakecase.breakecase_suspectName" type="text" value="' + xhr_data.breakecase.breakecase_suspectName + '"  /></td>';
+			str += '<td>嫌疑人姓名</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_suspecter_name" type="text" value="' + xhr_data.breakCase.breakcase_suspecter_name + '"  /></td>';
 			str += '</tr>';
+			
+
 			str += '<tr>';
-			str += '<td>性别</td><td><input style="witdh:70%;" class="form-control" name="breakecase.breakecase_suspectSex" type="text" value="' + xhr_data.breakecase.breakecase_suspectSex + '"  /></td>';
-			str += '<td>出生日期</td><td><input style="witdh:70%;" class="form-control" name="breakecase.breakecase_suspectBirthday" type="text" value="' + xhr_data.breakecase.breakecase_suspectBirthday + '"  /></td>';
+			str += '<td>案件级别</td><td>';
+			str += '<select style="witdh:100%;" class="form-control" data-live-search="true" name="breakCase.breakcase_case_level">';
+			str += '<option ' + (xhr_data.breakCase.breakcase_case_level == "A级" ? "selected" : "") + '>A级</option>';
+			str += '<option ' + (xhr_data.breakCase.breakcase_case_level == "B级" ? "selected" : "") + '>B级</option>';
+			str += '<option ' + (xhr_data.breakCase.breakcase_case_level == "C级" ? "selected" : "") + '>C级</option>';
+			str += '</select></td>';
+			str += '<td>性别</td><td>';
+			str += '<select style="witdh:100%;" class="form-control" data-live-search="true" name="breakCase.breakcase_suspecter_sex">';
+			str += '<option ' + (xhr_data.breakCase.breakcase_suspecter_sex == "男" ? "selected" : "") + '>男</option>';
+			str += '<option ' + (xhr_data.breakCase.breakcase_suspecter_sex == "女" ? "selected" : "") + '>女</option>';
+			str += '</select></td>';
+			
+			
+			str += '<tr>';
+			str += '<td>案件属地</td><td>';
+			str += '<select style="witdh:100%;" class="form-control" data-live-search="true" name="breakCase.breakcase_case_territorial">';
+			str += '<option ' + (xhr_data.breakCase.breakcase_case_territorial== "本地" ? "selected" : "") + '>本地</option>';
+			str += '<option ' + (xhr_data.breakCase.breakcase_case_territorial == "外地" ? "selected" : "") + '>外地</option>';
+			str += '<option ' + (xhr_data.breakCase.breakcase_case_territorial == "公安部协查" ? "selected" : "") + '>公安部协查</option>';
+			str += '</select></td>';
+			str += '<td>身份证号码</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_suspecter_identity" type="text" value="' + xhr_data.breakCase.breakcase_suspecter_identity + '"  /></td>';
 			str += '</tr>';
+			
+			
+			
+			
 			str += '<tr>';
-			str += '<td>身份证号码</td><td><input style="witdh:70%;" class="form-control" name="breakecase.breakecase_suspectIDnum" type="text" value="' + xhr_data.breakecase.breakecase_suspectIDnum + '"  /></td>';
-			str += '<td>住址</td><td><input style="witdh:70%;" class="form-control" name="breakecase.breakecase_suspectAddress" type="text" value="' + xhr_data.breakecase.breakecase_suspectAddress + '"  /></td>';
+			str += '<td>破案依据</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_according" type="text" value="' + xhr_data.breakCase.breakcase_according + '"  /></td>';
+			str += '<td>出生日期</td><td><input style="witdh:70%;" class="form-control mydate" name="breakCase.breakcase_suspecter_birthday" type="text" value="' + xhr_data.breakCase.breakcase_suspecter_birthday + '"  /></td>';
 			str += '</tr>';
+			
+			
 			str += '<tr>';
-			str += '<td>破案依据</td><td><input style="witdh:70%;" class="form-control" name="breakecase.breakecase_according" type="text" value="' + xhr_data.breakecase.breakecase_according + '"  /></td>';
-			str += '<td>是否抓获</td><td><input style="witdh:70%;" class="form-control" name="breakecase.breakecase_capture" type="text" value="' + xhr_data.breakecase.breakecase_capture + '"  /></td>';
+			str += '<td>是否抓获</td><td>';
+			str += '<select style="witdh:100%;" class="form-control" data-live-search="true" name="breakCase.breakcase_arrested">';
+			str += '<option ' + (xhr_data.breakCase.breakcase_arrested== "是" ? "selected" : "") + '>是</option>';
+			str += '<option ' + (xhr_data.breakCase.breakcase_arrested == "否" ? "selected" : "") + '>否</option>';
+			str += '</select></td>';
+			str += '<td>户籍地</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_suspecter_domicile" type="text" value="' + xhr_data.breakCase.breakcase_suspecter_domicile + '"  /></td>';
 			str += '</tr>';
+			
+			
 			str += '<tr>';
-			str += '<td>抓获单位</td><td><input style="witdh:70%;" class="form-control" name="breakecase.breakecase_captureUnit" type="text" value="' + xhr_data.breakecase.breakecase_captureUnit + '"  /></td>';
-			str += '<td>带破案件</td><td><input style="witdh:70%;" class="form-control" name="breakecase.breakecase_waitbreakecase" type="text" value="' + xhr_data.breakecase.breakecase_waitbreakecase + '"  /></td>';
+			str += '<td>抓获单位</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_arrested_department" type="text" value="' + xhr_data.breakCase.breakcase_arrested_department + '"  /></td>';
+			str += '<td>现住址</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_present_address" type="text" value="' + xhr_data.breakCase.breakcase_present_address + '"  /></td>';
 			str += '</tr>';
+			
+			
+			
 			str += '<tr>';
-			str += '<td>备注</td><td  colspan="3"><textarea style="witdh:70%;" class="form-control" name="breakecase.breakecase_remarks">' + xhr_data.breakecase.breakecase_remarks + '</textarea>';
+			str += '<td>带破案件</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_waitbreakcase" type="text" value="' + xhr_data.breakCase.breakcase_waitbreakcase + '"  /></td>';
+			str += '<td>联系电话</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_phone" type="text" value="' + xhr_data.breakCase.breakcase_phone + '"  /></td>';
+			str += '</tr>';
+			
+			
+			str += '<tr>';
+			str += '<td>简要案情</td><td  colspan="3"><textarea style="witdh:70%;" class="form-control" name="briefDetails.briefdetails_details">' + xhr_data.briefDetails.briefdetails_details+ '</textarea>';
+			str += '</td>';
+			str += '</tr>';
+			
+			str += '<tr>';
+			str += '<td>现场指纹编号</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_locale_fingerprint_number" type="text" value="' + xhr_data.breakCase.breakcase_contrast_locale_fingerprint_number + '"  /></td>';
+			str += '<td>按印指纹编号</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_press_fingerprint_number" type="text" value="' + xhr_data.breakCase.breakcase_contrast_press_fingerprint_number + '"  /></td>';
+			str += '</tr>';
+			
+			
+			str += '<tr>';
+			str += '<td>比对时间</td><td><input style="witdh:70%;" class="form-control mydate" name="breakCase.breakcase_contrast_time" type="text" value="' + xhr_data.breakCase.breakcase_contrast_time + '"  /></td>';
+			str += '<td>比对方式</td><td>';
+			str += '<select style="witdh:100%;" class="form-control" data-live-search="true" name="breakCase.breakcase_contrast_way">';
+			str += '<option ' + (xhr_data.breakCase.breakcase_contrast_way== "正查" ? "selected" : "") + '>正查</option>';
+			str += '<option ' + (xhr_data.breakCase.breakcase_contrast_way == "倒查" ? "selected" : "") + '>倒查</option>';
+			str += '<option ' + (xhr_data.breakCase.breakcase_contrast_way == "人工" ? "selected" : "") + '>人工</option>';
+			str += '</select></td>';
+			str += '</tr>';
+			
+			
+			
+			str += '<tr>';
+			str += '<td>比对单位</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_department" type="text" value="' + xhr_data.breakCase.breakcase_contrast_department + '"  /></td>';
+			str += '<td>比对人</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_contraster" type="text" value="' + xhr_data.breakCase.breakcase_contrast_contraster + '"  /></td>';
+			str += '</tr>';
+			
+			str += '<tr>';
+			str += '<td>按印部门</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_press_department" type="text" value="' + xhr_data.breakCase.breakcase_contrast_press_department + '"  /></td>';
+			str += '<td>提取部门</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_extract_department" type="text" value="' + xhr_data.breakCase.breakcase_contrast_extract_department + '"  /></td>';
+			str += '</tr>';
+			
+			str += '<tr>';
+			str += '<td>按印人</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_presser" type="text" value="' + xhr_data.breakCase.breakcase_contrast_presser + '"  /></td>';
+			str += '<td>提取人</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_extracter" type="text" value="' + xhr_data.breakCase.breakcase_contrast_extracter + '"  /></td>';
+			str += '</tr>';
+			
+			str += '<tr>';
+			str += '<td>按印时间</td><td><input style="witdh:70%;" class="form-control mydate" name="breakCase.breakcase_contrast_press_time" type="text" value="' + xhr_data.breakCase.breakcase_contrast_press_time + '"  /></td>';
+			str += '<td>指位</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_fingerposition" type="text" value="' + xhr_data.breakCase.breakcase_contrast_fingerposition + '"  /></td>';
+			str += '</tr>';
+			
+			str += '<tr>';
+			str += '<td>复核人</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_reviewer" type="text" value="' + xhr_data.breakCase.breakcase_contrast_reviewer + '"  /></td>';
+			str += '<td>抓获时间</td><td><input style="witdh:70%;" class="form-control mydate" name="breakCase.breakcase_arrested_time" type="text" value="' + xhr_data.breakCase.breakcase_arrested_time + '"  /></td>';
+			str += '</tr>';
+			
+			str += '<tr>';
+			str += '<td>备注</td><td  colspan="3"><textarea style="witdh:70%;" class="form-control" name="breakCase.breakcase_remark">' + xhr_data.breakecase.breakecase_remarks + '</textarea>';
 			//添加存丢失物的id隐藏域(上一兄元素为备注文本域)
-			str += '<input name="breakecase.xsjsglxt_breakecase_id" type="hidden" value="' + xhr_data.breakecase.xsjsglxt_breakecase_id + '" />';
+			str += '<input name="breakecase.xsjsglxt_breakecase_id" type="hidden" value="' + xhr_data.breakCase.breakcase_remark + '" />';
 			str += '</td>';
 			str += '</tr></tbody></table>';
+			
+			
 			//str加载到模态框中
 			$('#breakCase_modification .panel-body').html(str);
 			//模态框显示
@@ -193,7 +286,7 @@ var modifi_delete = function() {
 
 	} else if (type == "删除") {
 		var formData = new FormData();
-		formData.append('useBreakecaseInformationNumList', id);
+		formData.append('breakCaseInIdList', id);
 		$.confirm({
 			title : '确定删除?',
 			smoothContent : false,
@@ -205,7 +298,7 @@ var modifi_delete = function() {
 					text : '确认',
 					action : function() {
 						$.ajax({
-							url : '/xsjsglxt/case/BreakCase_remove_BreakecaseInformationList',
+							url : '/xsjsglxt/case/BreakCase_removeBreakCaseInfo',
 							type : 'post',
 							data : formData,
 							processData : false,
