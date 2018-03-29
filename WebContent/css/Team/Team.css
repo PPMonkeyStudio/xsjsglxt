@@ -11,11 +11,15 @@ html, body, ul, li, div, h3, a, span, input, button, p, label, details,
 .longBoxs table{
 	table-layout:fixed;只有定义了表格的布局算法为fixed，下面td的定义才能起作用。
 } 
+.longBoxs tr:frist-child{
+	boreder-top:0px;
+}
 .longBoxs td{
 	overflow:hidden;
 	border-top:0px;
-	height:30px;
+	height:20px;
     width:100%; 
+    text-align:center;
     word-break:keep-all;不换行
     white-space:nowrap;不换行
     overflow:hidden;内容超出宽度时隐藏超出部分的内容
@@ -163,6 +167,9 @@ a:hover {
 	margin: 0px;
 }
 /*表格加上滚动条 end  */
+.long_table tr{
+	border-top:0px;
+}
 .long_table td {
 	text-align: center;
 	border-right: 1px solid #dddddd;

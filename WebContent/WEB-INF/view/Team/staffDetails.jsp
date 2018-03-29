@@ -413,7 +413,7 @@
 								<tr>
 									<td><label class="staff_info_label">学习地点</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffStudent_address" name="policeman.staff_birthday"
+										class="staffStudent_address" 
 										type="text"></td>
 								</tr>
 								<tr>
@@ -424,7 +424,7 @@
 								<tr>
 									<td><label class="staff_info_label">结束时间</label></td>
 									<td><input type="text" class="staffStudent_stopTime"
-										name="page_list_staffInformation.staff_name" /></td>
+										/></td>
 								</tr>
 
 								<tr>
@@ -432,7 +432,7 @@
 									<td colspan="6"><textarea id="staffStudent_remarks"
 											class="staffStudent_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
+											 rows="3" cols="66"></textarea>
 									</td>
 
 
@@ -445,14 +445,12 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="relive_study()" data-dismiss='modal'>新建</button>
+						onclick="add_oneStudy()" data-dismiss='modal'>新建</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	</div>
 	<!--新建添加学习经历模态框 end  -->
-	s
 
 	<!--新建添加工作经历模态框 start  -->
 	<div class="modal fade" id="addWork_Modal" tabindex="-1" role="dialog"
@@ -474,13 +472,13 @@
 								<tr>
 									<td><label>工作地点</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffWork_address" name="policeman.staff_birthday"
+										class="staffWork_address" 
 										type="text"></td>
 								</tr>
 								<tr>
 									<td><label>职务</label></td>
 									<td><input style="font-size: 12px;"
-										name="policeman.staff_birthday" class="staffWork_duty"
+										 class="staffWork_duty"
 										type="text"></td>
 								</tr>
 								<tr>
@@ -491,7 +489,7 @@
 								<tr>
 									<td><label>结束时间</label></td>
 									<td><input type="text" class="staffWork_stopTime"
-										name="page_list_staffInformation.staff_name" /></td>
+										 /></td>
 								</tr>
 
 								<tr>
@@ -499,7 +497,7 @@
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffWork_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
+											 rows="3" cols="66"></textarea>
 									</td>
 
 
@@ -517,7 +515,7 @@
 			</div>
 		</div>
 	</div>
-	</div>
+
 	<!--新建添加工作经历模态框 end  -->
 	<!--新建添加家庭情况模态框 start  -->
 	<div class="modal fade" id="addFamily_Modal" tabindex="-1"
@@ -541,48 +539,48 @@
 									<td><label class="staff_info_label">关系</label></td>
 									<td><input style="font-size: 12px;"
 										class="staffFamily_contactsRelationship"
-										name="policeman.staff_birthday" type="text"></td>
+										type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">姓名</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffFamily_name" name="policeman.staff_birthday"
+										class="staffFamily_name"
 										type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">身份证号</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffFamily_IDcard" name="policeman.staff_birthday"
+										class="staffFamily_IDcard"
 										type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">生日</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffFamily_birthday" name="policeman.staff_birthday"
+										class="staffFamily_birthday" 
 										class=" study_startTime" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">手机号</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffFamily_tel" name="policeman.staff_birthday"
+										class="staffFamily_tel" 
 										type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">微信号</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffFamily_WeiXin" name="policeman.staff_birthday"
+										class="staffFamily_WeiXin" 
 										type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">工作单位</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffFamily_workSpace" name="policeman.staff_birthday"
+										class="staffFamily_workSpace" 
 										type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">职位</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffFamily_duty" name="policeman.staff_birthday"
+										class="staffFamily_duty" 
 										type="text"></td>
 								</tr>
 								<tr>
@@ -590,7 +588,7 @@
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											class="staffFamily_remarks"
-											name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
+											rows="3" cols="66"></textarea>
 									</td>
 
 
@@ -608,7 +606,7 @@
 			</div>
 		</div>
 	</div>
-	</div>
+
 	<!--新建添加家庭情况模态框 end  -->
 	<!--新建添加刑警大队调动模态框 start  -->
 	<div class="modal fade" id="addPoliceChange_Modal" tabindex="-1"
@@ -631,13 +629,13 @@
 								<tr>
 									<td><label class="staff_info_label">调入时间</label></td>
 									<td><input style="font-size: 12px;"
-										name="policeman.staff_birthday" class=" staffMove_inTime"
+										class=" staffMove_inTime"
 										type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">调出时间</label></td>
 									<td><input style="font-size: 12px;"
-										name="policeman.staff_birthday" class=" staffMove_outTime"
+										class=" staffMove_outTime"
 										type="text"></td>
 								</tr>
 								<tr>
@@ -652,7 +650,7 @@
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffMove_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
+											 rows="3" cols="66"></textarea>
 									</td>
 
 
@@ -670,7 +668,7 @@
 			</div>
 		</div>
 	</div>
-	</div>
+
 	<!--新建添加刑警大队调动模态框 end  -->
 	<!--新建添加立功受奖模态框 start  -->
 	<div class="modal fade" id="addPrized_Modal" tabindex="-1"
@@ -693,7 +691,7 @@
 								<tr>
 									<td><label class="staff_info_label">表彰情况</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffReward_situation" name="policeman.staff_birthday"
+										class="staffReward_situation"
 										type="text"></td>
 								</tr>
 								<tr>
@@ -707,7 +705,7 @@
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffReward_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
+											 rows="3" cols="66"></textarea>
 									</td>
 
 
@@ -725,7 +723,7 @@
 			</div>
 		</div>
 	</div>
-	</div>
+
 	<!--新建添加立功受奖模态框 end  -->
 	<!--新建添加违纪模态框 start  -->
 	<div class="modal fade" id="addAgainstPrinciple_Modal" tabindex="-1"
@@ -750,7 +748,7 @@
 									<td><label class="staff_info_label">违纪情况</label></td>
 									<td><input style="font-size: 12px;"
 										class="staffPrinciple_situation"
-										name="policeman.staff_birthday" type="text"></td>
+										type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">违纪时间</label></td>
@@ -763,7 +761,7 @@
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffPrinciple_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
+											rows="3" cols="66"></textarea>
 									</td>
 
 
@@ -781,7 +779,7 @@
 			</div>
 		</div>
 	</div>
-	</div>
+
 	<!--新建添加违纪模态框 end  -->
 	<!--新建添加处分模态框 start  -->
 	<div class="modal fade" id="addPunish_Modal" tabindex="-1"
@@ -805,7 +803,7 @@
 									<td><label class="staff_info_label">处分情况</label></td>
 									<td><input style="font-size: 12px;"
 										class="staffPunishment_situation"
-										name="policeman.staff_birthday" type="text"></td>
+										type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">处分时间</label></td>
@@ -819,7 +817,7 @@
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffPunishment_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
+											 rows="3" cols="66"></textarea>
 									</td>
 
 
@@ -837,7 +835,7 @@
 			</div>
 		</div>
 	</div>
-	</div>
+
 	<!--新建添加处分模态框 end  -->
 	<!--新建添加休假模态框 start  -->
 	<div class="modal fade" id="addVocation_Modal" tabindex="-1"
@@ -861,7 +859,7 @@
 									<td><label class="staff_info_label">休假事由</label></td>
 									<td><input style="font-size: 12px;"
 										class="staffFurlough_mainContent"
-										name="policeman.staff_birthday" type="text"></td>
+										type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">起始时间</label></td>
@@ -871,7 +869,7 @@
 								<tr>
 									<td><label class="staff_info_label">天数</label></td>
 									<td><input type="text" class="staffFurlough_days"
-										name="page_list_staffInformation.staff_name" /></td>
+										/></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">是否销假</label></td>
@@ -883,14 +881,14 @@
 								<tr>
 									<td><label class="staff_info_label">销假时间</label></td>
 									<td><input type="text" class="staffFurlough_stopTime"
-										name="page_list_staffInformation.staff_name" /></td>
+										 /></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffFurlough_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
+											rows="3" cols="66"></textarea>
 									</td>
 
 
@@ -908,10 +906,69 @@
 			</div>
 		</div>
 	</div>
-	</div>
-	<!--新建添加休假模态框 end  -->
 
+	<!--新建添加休假模态框 end  -->
+	<!--新建添加学习经历模态框 start  -->
+	<div class="modal fade" id="reliveStudy_Modal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">修改学习经历</h4>
+				</div>
+				<div class="modal-body">
+
+					<form action="" id="studyExp_form" accept-charset="utf-8">
+
+						<table>
+							<tbody>
+								<tr>
+									<td><label class="staff_info_label">学习地点</label></td>
+									<td><input style="font-size: 12px;"
+										class="staffStudent_addressRelive" 
+										type="text"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">起始时间</label></td>
+									<td><input style="font-size: 12px;"
+										class=" staffStudent_startTimeRelive"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">结束时间</label></td>
+									<td><input type="text" class="staffStudent_stopTimeRelive"
+										/></td>
+								</tr>
+
+								<tr>
+									<td><label class="staff_info_label">备注</label></td>
+									<td colspan="6"><textarea id="staffStudent_remarks"
+											class="staffStudent_remarksRelive"
+											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											 rows="3" cols="66"></textarea>
+									</td>
+
+
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default "
+						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+					<button type="button" class="btn btn-primary"
+						onclick="relive_study()" data-dismiss='modal'>新建</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--新建添加学习经历模态框 end  -->
 	<script type="text/javascript" src="<%=basePath%>js/Team/staffDetails.js"></script>
+	<script type="text/javascript" src="<%=basePath%>js/Team/newStaff.js"></script>
 	<script type="text/javascript">
 		$.datetimepicker.setLocale('ch');
 		$('.staff_joinPartyTime').datetimepicker({
