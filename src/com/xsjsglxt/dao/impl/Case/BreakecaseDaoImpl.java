@@ -61,6 +61,7 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		// 1
 		if (page_list_BreakecaseInformation.getSnece_inquestId() != null
 				&& page_list_BreakecaseInformation.getSnece_inquestId().trim().length() > 0) {
+			
 			String snece_inquestId = "%" + page_list_BreakecaseInformation.getSnece_inquestId() + "%";
 			hql = hql + " and snece_inquestId like '" + snece_inquestId + "'";
 

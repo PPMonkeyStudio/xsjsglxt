@@ -1,11 +1,13 @@
 package com.xsjsglxt.domain.DTO.Case;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_breakcase;
+import com.xsjsglxt.domain.DO.xsjsglxt_breakecase;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
 
 public class BreakecaseInformationDTO {
 private xsjsglxt_breakcase breakcase;//破案表
+private xsjsglxt_breakecase breakecase;//旧破案表
 private xsjsglxt_snece sence;//现场勘验表
 private xsjsglxt_case case1;//案件表
 public xsjsglxt_snece getSence() {
@@ -24,6 +26,11 @@ public BreakecaseInformationDTO(xsjsglxt_breakcase breakcase, xsjsglxt_snece sen
 	this.breakcase = breakcase;
 	this.sence = sence;
 	this.case1 = case1;
+}
+public BreakecaseInformationDTO(xsjsglxt_breakecase breakecase, xsjsglxt_snece sence2, xsjsglxt_case case12) {
+	this.breakecase = breakecase;
+	this.sence = sence2;
+	this.case1 = case12;
 }
 public xsjsglxt_breakcase getBreakcase() {
 	return breakcase;

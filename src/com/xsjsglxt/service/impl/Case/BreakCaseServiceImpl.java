@@ -20,6 +20,7 @@ public class BreakCaseServiceImpl implements BreakCaseService {
 	public void saveBreakCaseInfo(xsjsglxt_breakcase breakCase, xsjsglxt_briefdetails briefDetails) {
 		//存入简要案情表
 		String briefdetails_id = TeamUtil.getUuid();
+		xsjsglxt_briefdetails details = new xsjsglxt_briefdetails();
 		details.setXsjsglxt_briefdetails_id(briefdetails_id);
 		details.setBriefdetails_case(breakCase.getBreakcase_case());//所属案件id
 		details.setBriefdetails_details(briefDetails.getBriefdetails_details());//简要案情内容
@@ -33,17 +34,8 @@ public class BreakCaseServiceImpl implements BreakCaseService {
 		breakCase.setBreakcase_gmt_modified(TeamUtil.getStringSecond());
 		breakCaseDao.saveBreakecase(breakCase);
 	}
-	
-	public xsjsglxt_briefdetails getDetails() {
-		return details;
-	}
-
-	public void setDetails(xsjsglxt_briefdetails details) {
-		this.details = details;
-	}
 
 	private BreakCaseDao breakCaseDao;
-	xsjsglxt_briefdetails details;
 
 	@Override
 	public boolean removeBreakCaseInfo(List<String> breakCaseInIdList) {

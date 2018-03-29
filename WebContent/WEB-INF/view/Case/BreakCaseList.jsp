@@ -335,7 +335,7 @@
 										<td>简要案情</td>
 										<td colspan="3"><textarea style="witdh: 70%;"
 												placeholder="请填写" class="form-control"
-												name="breakCase.breakcase_case_note"></textarea></td>
+												name="briefDetails.briefdetails_details"></textarea></td>
 									</tr>
 									<!-- 合并比中指纹  -->
 									<tr>

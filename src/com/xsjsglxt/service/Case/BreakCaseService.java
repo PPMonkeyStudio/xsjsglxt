@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_breakcase;
 import com.xsjsglxt.domain.DO.xsjsglxt_briefdetails;
+import com.xsjsglxt.domain.DTO.Case.BreakecaseInformationDTO;
 import com.xsjsglxt.domain.VO.Case.page_list_BreakecaseInformationVO;
 
 public interface BreakCaseService {
