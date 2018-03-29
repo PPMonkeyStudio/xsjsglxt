@@ -27,10 +27,12 @@
 	margin-top: 6px;
 	width: 100% !important;
 }
+
 #newQuery table tbody tr td select {
 	margin-top: 6px;
 	width: 100% !important;
 }
+
 .breakcase_table_info tbody tr {
 	text-align: center;
 }
@@ -39,8 +41,8 @@
 
 <body>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
-	
-	<jsp:include page="/technologyManager.jsp" flush="true"></jsp:include>	
+
+	<jsp:include page="/technologyManager.jsp" flush="true"></jsp:include>
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
@@ -83,6 +85,7 @@
 										<th>抓获单位</th>
 										<th>带破案件</th>
 										<th>嫌疑人姓名</th>
+										<th>现场指纹编号</th>
 										<th>操作</th>
 									</tr>
 								</thead>
@@ -184,7 +187,7 @@
 										style="float: left;" type="text" class="form-control mydate"
 										placeholder="起始日期"><input
 										name="page_list_BreakecaseInformation.stop_time"
-										style=" float: right;" type="text" class="form-control"
+										style="float: right;" type="text" class="form-control"
 										placeholder="结束日期"></td>
 								</tr>
 							</tbody>
@@ -204,7 +207,7 @@
 	<!---------------------------------------------------------------------------------------------------->
 	<!------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
-	<!-- 破案信息-模态框（Modal） -->
+	<!-- 破案信息-模态框（Modal）确认修改 -->
 	<div class="modal fade" id="breakCase_modification" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
@@ -216,7 +219,7 @@
 				</div>
 				<div class="modal-body">
 					<form action="">
-						<div style="width: 80%;margin: auto;" class="panel-body"></div>
+						<div style="width: 80%; margin: auto;" class="panel-body"></div>
 					</form>
 				</div>
 				<div class="modal-footer">
@@ -231,7 +234,7 @@
 	<!---------------------------------------------------------------------------------------------------->
 	<!------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
-	<!-- 破案信息-模态框（Modal） -->
+	<!-- 破案信息-模态框（Modal）添加 -->
 	<div class="modal fade" id="breakCase_input" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
@@ -243,63 +246,167 @@
 				</div>
 				<div class="modal-body">
 					<form action="">
-						<div style="width: 80%;margin: auto;" class="panel-body">
+						<div style="width: 80%; margin: auto;" class="panel-body">
 							<table class="table table-hover table-condensed" align="center">
 								<tbody>
 									<tr>
 										<td>所属案件<i class="fa fa-spinner fa-pulse load_remind"></td>
-										<td colspan="3"><select style="witdh:100%;"
+										<td colspan="3"><select style="witdh: 100%;"
 											class="form-control selectpicker" data-live-search="true"
-											name="breakecase.breakecase_case"
+											name="breakCase.breakcase_case"
 											title="Choose one of the following..."></select></td>
 									</tr>
 									<tr>
 										<td>案件类型</td>
-										<td><select style="witdh:100%;" class="form-control"
-											data-live-search="true" name="breakecase.breakecase_type"><option>新添案件</option>
+										<td><select style="witdh: 100%;" class="form-control"
+											data-live-search="true" name="breakCase.breakcase_type"><option>新添案件</option>
 												<option>已有案件</option></select></td>
 										<td>嫌疑人姓名</td>
-										<td><input style="witdh:70%;" class="form-control"
-											name="breakecase.breakecase_suspectName" type="text"></td>
+										<td><input style="witdh: 70%;" class="form-control"
+											name="breakCase.breakcase_suspecter_name" type="text"></td>
 									</tr>
 									<tr>
+										<td>案件级别</td>
+										<td><select style="witdh: 100%;" class="form-control"
+											data-live-search="true" name="breakCase.breakcase_case_level"><option>A级</option>
+												<option>B级</option>
+												<option>C级</option></select></td>
+
 										<td>性别</td>
-										<td><input style="witdh:70%;" class="form-control"
-											name="breakecase.breakecase_suspectSex" type="text"></td>
-										<td>出生日期</td>
-										<td><input style="witdh:70%;"
-											class="form-control mydate_minute"
-											name="breakecase.breakecase_suspectBirthday" type="text"></td>
+										<td><select style="witdh: 100%;" class="form-control"
+											data-live-search="true" name="breakCase.breakcase_suspecter_sex"><option>男</option>
+												<option>女</option></select></td>
+
 									</tr>
 									<tr>
+										<td>案件属地</td>
+										<td><select style="witdh: 100%;" class="form-control"
+											data-live-search="true" name="breakCase.breakcase_case_territorial"><option>本地</option>
+												<option>外地</option>
+												<option>公安部协查</option></select></td>
 										<td>身份证号码</td>
-										<td><input style="witdh:70%;" class="form-control"
-											name="breakecase.breakecase_suspectIDnum" type="text"></td>
-										<td>住址</td>
-										<td><input style="witdh:70%;" class="form-control"
-											name="breakecase.breakecase_suspectAddress" type="text"></td>
+										<td><input style="witdh: 70%;" class="form-control"
+											name="breakCase.breakcase_suspecter_identity" type="text"></td>
+
 									</tr>
 									<tr>
 										<td>破案依据</td>
-										<td><input style="witdh:70%;" class="form-control"
-											name="breakecase.breakecase_according" type="text"></td>
-										<td>是否抓获</td>
-										<td><input style="witdh:70%;" class="form-control"
-											name="breakecase.breakecase_capture" type="text"></td>
+										<td><input style="witdh: 70%;" class="form-control"
+											name="breakCase.breakcase_according" type="text"></td>
+
+										<td>出生日期</td>
+										<td><input style="witdh: 70%;"
+											class="form-control mydate_minute"
+											name="breakCase.breakcase_suspecter_birthday" type="text"></td>
+
+
+
 									</tr>
+									<tr>
+										<td>是否抓获</td>
+										<td><select style="witdh: 100%;" class="form-control"
+											data-live-search="true" name="breakCase.breakcase_arrested"><option>是</option>
+												<option>否</option>
+												</select>
+										</td>
+										<td>户籍地</td>
+										<td><input style="witdh: 70%;" class="form-control"
+											name="breakCase.breakcase_suspecter_domicile" type="text"></td>
+
+									</tr>
+
 									<tr>
 										<td>抓获单位</td>
-										<td><input style="witdh:70%;" class="form-control"
-											name="breakecase.breakecase_captureUnit" type="text"></td>
-										<td>带破案件</td>
-										<td><input style="witdh:70%;" class="form-control"
-											name="breakecase.breakecase_waitbreakecase" type="text"></td>
+										<td><input style="witdh: 70%;" class="form-control"
+											name="breakCase.breakcase_arrested_department" type="text"></td>
+										<td>现住址</td>
+										<td><input style="witdh: 70%;" class="form-control"
+											name="breakCase.breakcase_present_address" type="text"></td>
 									</tr>
 									<tr>
-										<td>备注</td>
-										<td colspan="3"><textarea style="witdh:70%;"
+										<td>带破案件</td>
+										<td><input style="witdh: 70%;" class="form-control"
+											name="breakCase.breakcase_waitbreakcase" type="text"></td>
+										<td>联系电话</td>
+										<td><input style="witdh: 70%;" class="form-control"
+											name="breakCase.breakcase_phone" type="text"></td>
+									</tr>
+									<tr>
+										<td>简要案情</td>
+										<td colspan="3"><textarea style="witdh: 70%;"
 												placeholder="请填写" class="form-control"
-												name="breakecase.breakecase_remarks"></textarea></td>
+												name="breakCase.breakcase_case_note"></textarea></td>
+									</tr>
+									<!-- 合并比中指纹  -->
+									<tr>
+										<td>现场指纹编号</td>
+										<td><input style="witdh: 70%;" class="form-control"
+											name="breakCase.breakcase_contrast_locale_fingerprint_number" type="text"></td>
+										<td>按印指纹编号</td>
+										<td><input style="witdh: 70%;" class="form-control"
+											name="breakCase.breakcase_contrast_press_fingerprint_number" type="text"></td>
+									</tr>
+									<tr>
+										<td>比对时间</td>
+										<td><input style="witdh: 70%;" class="form-control"
+											name="breakCase.breakcase_contrast_time" type="text"></td>
+										<td>比对方式</td>
+										<td><select style="witdh: 100%;" class="form-control"
+											data-live-search="true" name="breakCase.breakcase_contrast_way"><option>正查</option>
+												<option>倒查</option>
+												<option>人工</option></select></td>
+									</tr>
+									<tr>
+										<td>比对单位</td>
+										<td><input style="witdh: 70%;" class="form-control"
+											name="breakCase.breakcase_contrast_department" type="text"></td>
+										<td>比对人</td>
+										<td><input style="witdh: 70%;" class="form-control"
+											name="breakCase.breakcase_contrast_contraster" type="text"></td>
+									</tr>
+									<tr>
+										<td>按印部门</td>
+										<td><input style="witdh: 70%;" class="form-control"
+											name="breakCase.breakcase_contrast_press_department" type="text"></td>
+										<td>提取部门</td>
+										<td><input style="witdh: 70%;" class="form-control"
+											name="breakCase.breakcase_contrast_extract_department" type="text"></td>
+									</tr>
+									<tr>
+										<td>按印人</td>
+										<td><input style="witdh: 70%;" class="form-control"
+											name="breakCase.breakcase_contrast_presser" type="text"></td>
+										<td>提取人</td>
+										<td><input style="witdh: 70%;" class="form-control"
+											name="breakCase.breakcase_contrast_extracter" type="text"></td>
+									</tr>
+									<tr>
+										<td>按印时间</td>
+										<td><input style="witdh: 70%;" class="form-control"
+											name="breakCase.breakcase_contrast_press_time" type="text"></td>
+										<td>指位</td>
+										<td><input style="witdh: 70%;" class="form-control"
+											name="breakCase.breakcase_contrast_fingerposition" type="text"></td>
+									</tr>
+
+									<tr>
+										<td>复核人</td>
+										<td><input style="witdh: 70%;" class="form-control"
+											name="breakCase.breakcase_contrast_reviewer" type="text"></td>
+										<td>抓获时间</td>
+										<td><input style="witdh: 70%;" class="form-control"
+											name="breakCase.breakcase_arrested_time" type="text"></td>
+									</tr>
+									<tr>
+									</tr>
+
+
+
+									<tr>
+										<td>备注</td>
+										<td colspan="3"><textarea style="witdh: 70%;"
+												placeholder="请填写" class="form-control"
+												name="breakCase.breakcase_remark"></textarea></td>
 									</tr>
 								</tbody>
 							</table>

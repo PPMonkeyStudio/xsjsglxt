@@ -58,6 +58,8 @@ $(function() {
 		//成功提示
 		toastr.success('清除查询信息成功');
 	});
+/*--------------------------------------------------------*/
+//添加刑事破案
 	$('.input_sure').click(function() {
 		$.post('/xsjsglxt/case/BreakCase_saveBreakecase', $('#breakCase_input form').serialize(), function(xhr) {
 			if (xhr == 'success') {
@@ -67,23 +69,28 @@ $(function() {
 			}
 		}, 'text')
 	});
+//执行列表查询
 	get_ListBreakecaseInformationByPageAndSearch(query_data);
 })
-
+/*--------------------------------------------------------*/
+//列表查询
 function get_ListBreakecaseInformationByPageAndSearch(data) {
-	$.post('/xsjsglxt/case/BreakCase_ListBreakecaseInformationByPageAndSearch', data, function(xhr) {
+	$.post('/xsjsglxt/case/BreakCase_ListBreakCaseInformationByPageAndSearch', data, function(xhr) {
 		var data_list = xhr.BreakecaseInformationDTOList;
 		var str = '';
 		for (var len = 0; len < data_list.length; len++) {
 			str += '<tr>';
-			str += '<td>' + (len + 1) + '</td>';
+			str += '<td>' + (len + 1) + '</td>';//序号
+			//所属案件
 			str += '<td><a href="/xsjsglxt/case/Case_page_CaseDetails?id=' + data_list[len].case1.xsjsglxt_case_id + '">' + data_list[len].sence.snece_inquestId + '</a></td>';
-			str += '<td>' + data_list[len].breakecase.breakecase_type + '</td>';
-			str += '<td>' + data_list[len].breakecase.breakecase_according + '</td>';
-			str += '<td>' + data_list[len].breakecase.breakecase_capture + '</td>';
-			str += '<td>' + data_list[len].breakecase.breakecase_captureUnit + '</td>';
-			str += '<td>' + data_list[len].breakecase.breakecase_waitbreakecase + '</td>';
-			str += '<td>' + data_list[len].breakecase.breakecase_suspectName + '</td>';
+			str += '<td>' + data_list[len].breakCase.breakcase_type + '</td>';//案件类型
+			str += '<td>' + data_list[len].breakCase.breakcase_according + '</td>';//破案依据
+			str += '<td>' + data_list[len].breakCase.breakcase_arrested + '</td>';//是否抓获
+			str += '<td>' + data_list[len].breakCase.breakcase_arrested_department + '</td>';//抓获单位
+			str += '<td>' + data_list[len].breakCase.breakcase_waitbreakcase + '</td>';//带破案件
+			str += '<td>' + data_list[len].breakCase.breakcase_suspecter_name + '</td>';//嫌疑人姓名
+			str += '<td>' + data_list[len].breakCase.breakcase_contrast_locale_fingerprint_number + '</td>';//现场指纹编号
+			
 			str += '<td>'
 				+ '<input type="hidden"  value="' + data_list[len].case1.xsjsglxt_case_id + '" />'
 				+ '<button type="button" style="margin-left:6px;" class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 修改</button>'
@@ -91,6 +98,7 @@ function get_ListBreakecaseInformationByPageAndSearch(data) {
 				+ '</td>';
 			str += '</tr>';
 		}
+		console.log('0000:'+str);
 		//加载到表格中
 		$('.breakcase_table_info tbody').html(str); //操作点击事件
 		//设置点击事件
@@ -122,7 +130,7 @@ var modifi_delete = function() {
 	console.log(type, id);
 	if (type == "修改") {
 		$.post('/xsjsglxt/case/BreakCase_BreakecaseInformationOne', {
-			"breakecase.xsjsglxt_breakecase_id" : id
+			"breakecase.xsjsglxt_breakcase_id" : id
 		}, function(xhr_data) {
 			var str = '';
 			str += '<table align="center" class="table table-hover table-condensed"><tbody><tr>';
