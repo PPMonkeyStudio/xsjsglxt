@@ -93,8 +93,7 @@ public class BreakCaseAction extends ActionSupport implements ServletResponseAwa
 
 	@Override
 	public void setServletRequest(HttpServletRequest arg0) {
-		// TODO Auto-generated method stub
-		
+		this.http_request = arg0;
 	}
 
 	public String getBreakcase_case_id() {
@@ -106,8 +105,8 @@ public class BreakCaseAction extends ActionSupport implements ServletResponseAwa
 	}
 
 	@Override
-	public void setServletResponse(HttpServletResponse response) {
-		response = this.http_response;
+	public void setServletResponse(HttpServletResponse arg0) {
+		this.http_response = arg0;
 	}
 	
 	public xsjsglxt_briefdetails getBriefDetails() {
