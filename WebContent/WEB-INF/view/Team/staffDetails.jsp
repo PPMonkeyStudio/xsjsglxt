@@ -87,7 +87,8 @@
 						<tr>
 
 							<td><label>最高学历</label></td>
-							<td><select class="form-control" id="staff_MaxEducationalBackground"
+							<td><select class="form-control"
+								id="staff_MaxEducationalBackground"
 								name="policeman.staff_MaxEducationalBackground">
 									<option></option>
 									<option>小学</option>
@@ -133,8 +134,7 @@
 							<td><input name="policeman.staff_thePoliceTime"
 								class="form-control staff_thePoliceTime" type="text"></td>
 							<td><label>生日</label></td>
-							<td><input 
-								name="policeman.staff_birthday"
+							<td><input name="policeman.staff_birthday"
 								class="form-control staff_birthday" type="text"></td>
 							<td><label>是否正式</label></td>
 							<td><label style="float: left; width: 50px;"
@@ -149,7 +149,8 @@
 						</tr>
 						<tr>
 							<td><label>职务</label></td>
-							<td><select id="staff_duty" class="form-control" name="policeman.staff_duty">
+							<td><select id="staff_duty" class="form-control"
+								name="policeman.staff_duty">
 									<option>大队长</option>
 									<option>教导员</option>
 									<option>副大队长</option>
@@ -205,7 +206,7 @@
 
 						<form id="study_exp">
 							<div class="long_tb">
-								<table id="studyExperience_table" >
+								<table id="studyExperience_table">
 									<tbody>
 										<tr class="long_table">
 											<th>学习地点</th>
@@ -214,7 +215,7 @@
 											<th>备注</th>
 											<th>操作</th>
 										</tr>
-										
+
 									</tbody>
 								</table>
 							</div>
@@ -229,7 +230,7 @@
 						</button>
 						<form id="work_exp">
 							<div class="long_tb">
-								<table id="wordExperience_table" >
+								<table id="wordExperience_table">
 									<tbody>
 										<tr class="long_table">
 											<th>工作地点</th>
@@ -252,7 +253,7 @@
 							<i class="fa fa-plus-square"></i> 添加
 						</button>
 						<div class="long_tb">
-							<table id="family_table" style="width:150%;">
+							<table id="family_table" style="width: 150%;">
 
 								<tbody>
 									<tr class="long_table">
@@ -413,8 +414,7 @@
 								<tr>
 									<td><label class="staff_info_label">学习地点</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffStudent_address" 
-										type="text"></td>
+										class="staffStudent_address" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">起始时间</label></td>
@@ -423,8 +423,7 @@
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">结束时间</label></td>
-									<td><input type="text" class="staffStudent_stopTime"
-										/></td>
+									<td><input type="text" class="staffStudent_stopTime" /></td>
 								</tr>
 
 								<tr>
@@ -432,8 +431,7 @@
 									<td colspan="6"><textarea id="staffStudent_remarks"
 											class="staffStudent_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											 rows="3" cols="66"></textarea>
-									</td>
+											rows="3" cols="66"></textarea></td>
 
 
 								</tr>
@@ -472,13 +470,11 @@
 								<tr>
 									<td><label>工作地点</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffWork_address" 
-										type="text"></td>
+										class="staffWork_address" type="text"></td>
 								</tr>
 								<tr>
 									<td><label>职务</label></td>
-									<td><input style="font-size: 12px;"
-										 class="staffWork_duty"
+									<td><input style="font-size: 12px;" class="staffWork_duty"
 										type="text"></td>
 								</tr>
 								<tr>
@@ -488,8 +484,7 @@
 								</tr>
 								<tr>
 									<td><label>结束时间</label></td>
-									<td><input type="text" class="staffWork_stopTime"
-										 /></td>
+									<td><input type="text" class="staffWork_stopTime" /></td>
 								</tr>
 
 								<tr>
@@ -497,8 +492,7 @@
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffWork_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											 rows="3" cols="66"></textarea>
-									</td>
+											rows="3" cols="66"></textarea></td>
 
 
 								</tr>
@@ -510,7 +504,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="relive_work()" data-dismiss='modal'>新建</button>
+						onclick="add_oneWork()" data-dismiss='modal'>新建</button>
 				</div>
 			</div>
 		</div>
@@ -527,7 +521,7 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">添加家庭情况</h4>
+					<h4 class="modal-title" id="myModalLabel">新建家庭情况</h4>
 				</div>
 				<div class="modal-body">
 
@@ -538,58 +532,49 @@
 								<tr>
 									<td><label class="staff_info_label">关系</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffFamily_contactsRelationship"
-										type="text"></td>
+										class="staffFamily_contactsRelationship" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">姓名</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffFamily_name"
-										type="text"></td>
+										class="staffFamily_name" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">身份证号</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffFamily_IDcard"
-										type="text"></td>
+										class="staffFamily_IDcard" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">生日</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffFamily_birthday" 
-										class=" study_startTime" type="text"></td>
+										class="staffFamily_birthday" class=" study_startTime"
+										type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">手机号</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffFamily_tel" 
-										type="text"></td>
+										class="staffFamily_tel" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">微信号</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffFamily_WeiXin" 
-										type="text"></td>
+										class="staffFamily_WeiXin" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">工作单位</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffFamily_workSpace" 
-										type="text"></td>
+										class="staffFamily_workSpace" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">职位</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffFamily_duty" 
-										type="text"></td>
+										class="staffFamily_duty" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											class="staffFamily_remarks"
-											rows="3" cols="66"></textarea>
-									</td>
+											class="staffFamily_remarks" rows="3" cols="66"></textarea></td>
 
 
 								</tr>
@@ -601,7 +586,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="relive_family()" data-dismiss='modal'>新建</button>
+						onclick="add_oneFamily()" data-dismiss='modal'>新建</button>
 				</div>
 			</div>
 		</div>
@@ -629,14 +614,12 @@
 								<tr>
 									<td><label class="staff_info_label">调入时间</label></td>
 									<td><input style="font-size: 12px;"
-										class=" staffMove_inTime"
-										type="text"></td>
+										class=" staffMove_inTime" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">调出时间</label></td>
 									<td><input style="font-size: 12px;"
-										class=" staffMove_outTime"
-										type="text"></td>
+										class=" staffMove_outTime" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">是否在岗</label></td>
@@ -650,8 +633,7 @@
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffMove_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											 rows="3" cols="66"></textarea>
-									</td>
+											rows="3" cols="66"></textarea></td>
 
 
 								</tr>
@@ -663,7 +645,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="relive_move()" data-dismiss='modal'>新建</button>
+						onclick="add_oneMove()" data-dismiss='modal'>新建</button>
 				</div>
 			</div>
 		</div>
@@ -691,8 +673,7 @@
 								<tr>
 									<td><label class="staff_info_label">表彰情况</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffReward_situation"
-										type="text"></td>
+										class="staffReward_situation" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">表彰时间</label></td>
@@ -705,8 +686,7 @@
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffReward_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											 rows="3" cols="66"></textarea>
-									</td>
+											rows="3" cols="66"></textarea></td>
 
 
 								</tr>
@@ -718,7 +698,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="relive_reward()" data-dismiss='modal'>新建</button>
+						onclick="add_oneReward()" data-dismiss='modal'>新建</button>
 				</div>
 			</div>
 		</div>
@@ -747,8 +727,7 @@
 								<tr>
 									<td><label class="staff_info_label">违纪情况</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffPrinciple_situation"
-										type="text"></td>
+										class="staffPrinciple_situation" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">违纪时间</label></td>
@@ -761,8 +740,7 @@
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffPrinciple_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											rows="3" cols="66"></textarea>
-									</td>
+											rows="3" cols="66"></textarea></td>
 
 
 								</tr>
@@ -774,7 +752,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="relive_against()" data-dismiss='modal'>新建</button>
+						onclick="add_oneAgainst()" data-dismiss='modal'>新建</button>
 				</div>
 			</div>
 		</div>
@@ -802,8 +780,7 @@
 								<tr>
 									<td><label class="staff_info_label">处分情况</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffPunishment_situation"
-										type="text"></td>
+										class="staffPunishment_situation" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">处分时间</label></td>
@@ -817,8 +794,7 @@
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffPunishment_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											 rows="3" cols="66"></textarea>
-									</td>
+											rows="3" cols="66"></textarea></td>
 
 
 								</tr>
@@ -830,7 +806,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="relive_punishment()" data-dismiss='modal'>新建</button>
+						onclick="add_onePunishment()" data-dismiss='modal'>新建</button>
 				</div>
 			</div>
 		</div>
@@ -858,8 +834,7 @@
 								<tr>
 									<td><label class="staff_info_label">休假事由</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffFurlough_mainContent"
-										type="text"></td>
+										class="staffFurlough_mainContent" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">起始时间</label></td>
@@ -868,8 +843,7 @@
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">天数</label></td>
-									<td><input type="text" class="staffFurlough_days"
-										/></td>
+									<td><input type="text" class="staffFurlough_days" /></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">是否销假</label></td>
@@ -880,16 +854,14 @@
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">销假时间</label></td>
-									<td><input type="text" class="staffFurlough_stopTime"
-										 /></td>
+									<td><input type="text" class="staffFurlough_stopTime" /></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffFurlough_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											rows="3" cols="66"></textarea>
-									</td>
+											rows="3" cols="66"></textarea></td>
 
 
 								</tr>
@@ -901,16 +873,16 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="relive_furlough()" data-dismiss='modal'>新建</button>
+						onclick="add_oneForlough()" data-dismiss='modal'>新建</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<!--新建添加休假模态框 end  -->
-	<!--新建添加学习经历模态框 start  -->
-	<div class="modal fade" id="reliveStudy_Modal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel">
+	<!--修改学习经历模态框 start  -->
+	<div class="modal fade" id="reliveStudy_Modal" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -929,8 +901,7 @@
 								<tr>
 									<td><label class="staff_info_label">学习地点</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffStudent_addressRelive" 
-										type="text"></td>
+										class="staffStudent_addressRelive" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">起始时间</label></td>
@@ -939,8 +910,7 @@
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">结束时间</label></td>
-									<td><input type="text" class="staffStudent_stopTimeRelive"
-										/></td>
+									<td><input type="text" class="staffStudent_stopTimeRelive" /></td>
 								</tr>
 
 								<tr>
@@ -948,8 +918,7 @@
 									<td colspan="6"><textarea id="staffStudent_remarks"
 											class="staffStudent_remarksRelive"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											 rows="3" cols="66"></textarea>
-									</td>
+											rows="3" cols="66"></textarea></td>
 
 
 								</tr>
@@ -961,14 +930,452 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="relive_study()" data-dismiss='modal'>新建</button>
+						onclick="relive_study()" data-dismiss='modal'>修改</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!--新建添加学习经历模态框 end  -->
-	<script type="text/javascript" src="<%=basePath%>js/Team/staffDetails.js"></script>
+	<!--修改学习经历模态框 end  -->
+
+	<!--修改工作经历模态框 start  -->
+	<div class="modal fade" id="reliveWork_Modal" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">修改工作经历</h4>
+				</div>
+				<div class="modal-body">
+
+					<form action="" id="addWork_form" accept-charset="utf-8">
+						<table>
+							<tbody>
+								<tr>
+									<td><label>工作地点</label></td>
+									<td><input style="font-size: 12px;"
+										class="staffWork_addressRelive" type="text"></td>
+								</tr>
+								<tr>
+									<td><label>职务</label></td>
+									<td><input style="font-size: 12px;"
+										class="staffWork_dutyRelive" type="text"></td>
+								</tr>
+								<tr>
+									<td><label>起始时间</label></td>
+									<td><input style="font-size: 12px;"
+										class="staffWork_startTimeRelive"></td>
+								</tr>
+								<tr>
+									<td><label>结束时间</label></td>
+									<td><input type="text" class="staffWork_stopTimeRelive" /></td>
+								</tr>
+
+								<tr>
+									<td><label>备注</label></td>
+									<td colspan="6"><textarea id="staff_contactsRemark"
+											class="staffWork_remarkRelives"
+											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											rows="3" cols="66"></textarea></td>
+
+
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default "
+						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+					<button type="button" class="btn btn-primary"
+						onclick="relive_work()" data-dismiss='modal'>修改</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--修改工作经历模态框 end  -->
+	<!--修改家庭情况模态框 start  -->
+	<div class="modal fade" id="reliveFamily_Modal" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">修改家庭情况</h4>
+				</div>
+				<div class="modal-body">
+
+					<form action="" id="addFamily_form" accept-charset="utf-8">
+
+						<table>
+							<tbody>
+								<tr>
+									<td><label class="staff_info_label">关系</label></td>
+									<td><input style="font-size: 12px;"
+										class="staffFamily_contactsRelationshipRelive" type="text"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">姓名</label></td>
+									<td><input style="font-size: 12px;"
+										class="staffFamily_nameRelive" type="text"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">身份证号</label></td>
+									<td><input style="font-size: 12px;"
+										class="staffFamily_IDcardRelive" type="text"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">生日</label></td>
+									<td><input style="font-size: 12px;"
+										class="staffFamily_birthdayRelive" class=" study_startTime"
+										type="text"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">手机号</label></td>
+									<td><input style="font-size: 12px;"
+										class="staffFamily_telRelive" type="text"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">微信号</label></td>
+									<td><input style="font-size: 12px;"
+										class="staffFamily_WeiXinRelive" type="text"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">工作单位</label></td>
+									<td><input style="font-size: 12px;"
+										class="staffFamily_workSpaceRelive" type="text"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">职位</label></td>
+									<td><input style="font-size: 12px;"
+										class="staffFamily_dutyRelive" type="text"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">备注</label></td>
+									<td colspan="6"><textarea id="staff_contactsRemark"
+											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											class="staffFamily_remarksRelive" rows="3" cols="66"></textarea></td>
+
+
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default "
+						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+					<button type="button" class="btn btn-primary"
+						onclick="relive_family()" data-dismiss='modal'>修改</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--修改家庭情况模态框 end  -->
+	<!--修改刑警大队调动模态框 start  -->
+	<div class="modal fade" id="reliveMove_Modal" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">修改刑警大队调动</h4>
+				</div>
+				<div class="modal-body">
+
+					<form action="" id="addPoliceChange_form" accept-charset="utf-8">
+
+						<table>
+							<tbody>
+								<tr>
+									<td><label class="staff_info_label">调入时间</label></td>
+									<td><input style="font-size: 12px;"
+										class=" staffMove_inTimeRelive" type="text"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">调出时间</label></td>
+									<td><input style="font-size: 12px;"
+										class=" staffMove_outTimeRelive" type="text"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">是否在岗</label></td>
+									<td><select class="staffMove_guardRelive">
+											<option>是</option>
+											<option>否</option>
+									</select></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">备注</label></td>
+									<td colspan="6"><textarea id="staff_contactsRemark"
+											class="staffMove_remarksRelive"
+											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											rows="3" cols="66"></textarea></td>
+
+
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default "
+						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+					<button type="button" class="btn btn-primary"
+						onclick="relive_move()" data-dismiss='modal'>修改</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--修改刑警大队调动模态框 end  -->
+	<!--修改立功受奖模态框 start  -->
+	<div class="modal fade" id="reliveReward_Modal" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">修改立功受奖</h4>
+				</div>
+				<div class="modal-body">
+
+					<form action="" id="addPrized_form" accept-charset="utf-8">
+
+						<table>
+							<tbody>
+								<tr>
+									<td><label class="staff_info_label">表彰情况</label></td>
+									<td><input style="font-size: 12px;"
+										class="staffReward_situationRelive" type="text"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">表彰时间</label></td>
+									<td><input style="font-size: 12px;"
+										class="staffReward_TimeRelive"></td>
+								</tr>
+
+								<tr>
+									<td><label class="staff_info_label">备注</label></td>
+									<td colspan="6"><textarea id="staff_contactsRemark"
+											class="staffReward_remarksRelive"
+											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											rows="3" cols="66"></textarea></td>
+
+
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default "
+						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+					<button type="button" class="btn btn-primary"
+						onclick="relive_reward()" data-dismiss='modal'>修改</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--修改立功受奖模态框 end  -->
+	<!--修改违纪模态框 start  -->
+	<div class="modal fade" id="reliveAgainst_Modal" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">修改违纪</h4>
+				</div>
+				<div class="modal-body">
+
+					<form action="" id="addAgainstPrinciple_form"
+						accept-charset="utf-8">
+
+						<table>
+							<tbody>
+								<tr>
+									<td><label class="staff_info_label">违纪情况</label></td>
+									<td><input style="font-size: 12px;"
+										class="staffPrinciple_situationRelive" type="text"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">违纪时间</label></td>
+									<td><input style="font-size: 12px;"
+										class="staffPrinciple_TimeRelive"></td>
+								</tr>
+
+								<tr>
+									<td><label class="staff_info_label">备注</label></td>
+									<td colspan="6"><textarea id="staff_contactsRemark"
+											class="staffPrinciple_remarksRelive"
+											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											rows="3" cols="66"></textarea></td>
+
+
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default "
+						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+					<button type="button" class="btn btn-primary"
+						onclick="relive_against()" data-dismiss='modal'>修改</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--修改违纪模态框 end  -->
+	<!--修改处分模态框 start  -->
+	<div class="modal fade" id="relivePunishment_Modal" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">修改处分</h4>
+				</div>
+				<div class="modal-body">
+
+					<form action="" id="addPunish_form" accept-charset="utf-8">
+
+						<table>
+							<tbody>
+								<tr>
+									<td><label class="staff_info_label">处分情况</label></td>
+									<td><input style="font-size: 12px;"
+										class="staffPunishment_situationRelive" type="text"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">处分时间</label></td>
+									<td><input style="font-size: 12px;"
+										class="staffPunishment_TimeRelive"></td>
+								</tr>
+
+
+								<tr>
+									<td><label class="staff_info_label">备注</label></td>
+									<td colspan="6"><textarea id="staff_contactsRemark"
+											class="staffPunishment_remarksRemark"
+											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											rows="3" cols="66"></textarea></td>
+
+
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default "
+						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+					<button type="button" class="btn btn-primary"
+						onclick="relive_punishment()" data-dismiss='modal'>修改</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--修改处分模态框 end  -->
+	<!--修改休假模态框 start  -->
+	<div class="modal fade" id="reliveForlough_Modal" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">添加休假</h4>
+				</div>
+				<div class="modal-body">
+
+					<form action="" id="addVocation_form" accept-charset="utf-8">
+
+						<table>
+							<tbody>
+								<tr>
+									<td><label class="staff_info_label">休假事由</label></td>
+									<td><input style="font-size: 12px;"
+										class="staffFurlough_mainContentRelive" type="text"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">起始时间</label></td>
+									<td><input style="font-size: 12px;"
+										class="staffFurlough_startTimeRelive"></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">天数</label></td>
+									<td><input type="text" class="staffFurlough_daysRelive" /></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">是否销假</label></td>
+									<td><select class="staffFurlough_whetherStopRelive">
+											<option>是</option>
+											<option>否</option>
+									</select></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">销假时间</label></td>
+									<td><input type="text" class="staffFurlough_stopTimeRelive" /></td>
+								</tr>
+								<tr>
+									<td><label class="staff_info_label">备注</label></td>
+									<td colspan="6"><textarea id="staff_contactsRemark"
+											class="staffFurlough_remarksRemark"
+											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											rows="3" cols="66"></textarea></td>
+
+
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default "
+						onclick="clear_iquery()" data-dismiss="modal">清空</button>
+					<button type="button" class="btn btn-primary"
+						onclick="relive_furlough()" data-dismiss='modal'>新建</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--修改休假模态框 end  -->
+	<script type="text/javascript"
+		src="<%=basePath%>js/Team/staffDetails.js"></script>
 	<script type="text/javascript" src="<%=basePath%>js/Team/newStaff.js"></script>
+	<script type="text/javascript"
+		src="<%=basePath%>js/Team/addOne_longTable.js"></script>
+	<script type="text/javascript"
+		src="<%=basePath%>js/Team/relive_longTable.js"></script>
+	<script type="text/javascript"
+		src="<%=basePath%>js/Team/delete_longTable.js"></script>
 	<script type="text/javascript">
 		$.datetimepicker.setLocale('ch');
 		$('.staff_joinPartyTime').datetimepicker({
