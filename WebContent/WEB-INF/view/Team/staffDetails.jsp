@@ -908,7 +908,7 @@
 	</div>
 
 	<!--新建添加休假模态框 end  -->
-	<!--新建添加学习经历模态框 start  -->
+	<!--修改学习经历模态框 start  -->
 	<div class="modal fade" id="reliveStudy_Modal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
@@ -961,7 +961,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="relive_study()" data-dismiss='modal'>新建</button>
+						onclick="relive_study()" data-dismiss='modal'>修改</button>
 				</div>
 			</div>
 		</div>
@@ -969,6 +969,8 @@
 	<!--新建添加学习经历模态框 end  -->
 	<script type="text/javascript" src="<%=basePath%>js/Team/staffDetails.js"></script>
 	<script type="text/javascript" src="<%=basePath%>js/Team/newStaff.js"></script>
+	<script type="text/javascript" src="<%=basePath%>js/Team/longTable_relive.js"></script>
+	<script type="text/javascript" src="<%=basePath%>js/Team/longTable_delete.js"></script>
 	<script type="text/javascript">
 		$.datetimepicker.setLocale('ch');
 		$('.staff_joinPartyTime').datetimepicker({

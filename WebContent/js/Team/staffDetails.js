@@ -89,10 +89,13 @@ function show_studyAjax(staff_id) {
 			console.log("staff_study" + staff_study);
 			staff_study = JSON.parse(staff_study);
 			console.log(staff_study.length);
+			
 
 			var str1 = '';
 			for (var len = 0; len < staff_study.length; len++) {
+				var xsjsglxt_staffStudent_id=staff_study[len].xsjsglxt_staffStudent_id;
 				str1 += '<tr>';
+				str1 += '<input type="hidden" class="xsjsglxt_staffStudent_id" id="'+xsjsglxt_staffStudent_id+'">';
 				str1 += '<td>' + staff_study[len].staffStudent_address
 						+ '</td>';
 				str1 += '<td>' + staff_study[len].staffStudent_startTime
@@ -486,7 +489,7 @@ function add_oneStudy() {
 	var staffStudent_remarks_val=$(".staffStudent_remarks").val();
 	$.ajax({
 				type : "POST",
-				url : "/xsjsglxt/team/StaffStudent_saveStudent?student.staffStudent_staff="
+				url : "/xsjsglxt/team/StaffStudent_saveStudents?students.staffStudent_staff="
 						+ staff_id,
 				data :{
 					"students[0].staffStudent_address":staffStudent_address_val,
@@ -497,54 +500,6 @@ function add_oneStudy() {
 				dataType : "json",
 				success : function(data) {
 					console.log("添加完成");
-				}
-			});
-}
-//删除学习经历一条
-function delete_study(delete_button) {
-	//把td送页面上删除
-	  delete_longTable(delete_button);
-		//把这行td的数据数据库中删除
-		$.ajax({
-			url : '/xsjsglxt/team/StaffStudent_deleteStudent?works.staffWork_staff='+staff_id,
-			type : 'POST',
-			data:{
-				
-			},
-			success:function(data){
-				console.log("删除单条"+data);
-			},
-		});
-
-}
-//显示当前学习经历在模态框中
-function show_study(relive_button) {
-	var this_tr=relive_button.parentNode.parentNode;
-	 document.querySelector(".staffStudent_addressRelive").value=this_tr.children[0].innerHTML;
-	 document.querySelector(".staffStudent_startTimeRelive").value=this_tr.children[1].innerHTML;
-	 document.querySelector(".staffStudent_stopTimeRelive").value=this_tr.children[2].innerHTML;
-	 document.querySelector(".staffStudent_remarksRelive").value=this_tr.children[3].innerHTML;
-}
-function relive_study(){
-	console.log("学习经历修改");
-	// 添加一条数据
-	var staffStudent_address_val=$(".staffStudent_address").val();
-	var staffStudent_startTime_val=$(".staffStudent_startTime").val();
-	var staffStudent_stopTime_val=$(".staffStudent_stopTime").val();
-	var staffStudent_remarks_val=$(".staffStudent_remarks").val();
-	$.ajax({
-				type : "POST",
-				url : "/xsjsglxt/team/StaffStudent_updateStudent?student.staffStudent_staff="
-						+ staff_id,
-				data :{
-					"students[0].staffStudent_address":staffStudent_address_val,
-					"students[0].staffStudent_startTime":staffStudent_startTime_val,
-					"students[0].staffStudent_stopTime":staffStudent_stopTime_val,
-					"students[0].staffStudent_remarks":staffStudent_remarks_val,
-				},
-				dataType : "json",
-				success : function(data) {
-					console.log("修改完成");
 				}
 			});
 }
@@ -665,10 +620,6 @@ var relive_family = function(event) {
 		});
 
 	}
-	// 每行删除
-	function delete_longTable(this_button) {
-		this_button.parentNode.parentNode.parentNode
-				.removeChild(this_button.parentNode.parentNode);
-	}
+	
 
 
