@@ -75,7 +75,7 @@ function get_staffDetails_Ajax(url, staff_id) {
 }
 // 显示学习经历
 function show_studyAjax(staff_id) {
-	console.log("study");
+	console.log("study发生发生地方");
 	var xmlhttp_study;
 	if (window.XMLHttpRequest) {
 		xmlhttp_study = new XMLHttpRequest();
@@ -290,16 +290,15 @@ function show_againstAjax(staff_id) {
 	xmlhttp_against.onreadystatechange = function() {
 		if (xmlhttp_against.readyState == 4 && xmlhttp_against.status == 200) {
 			var staff_against = xmlhttp_against.responseText;
-			console.log(staff_against);
 			staff_against = JSON.parse(staff_against);
 			console.log(staff_against);
 
 			var str6 = '';
 			for (var len = 0; len < staff_against.length; len++) {
-				var xsjsglxt_staffAgainst_id = staff_against[len].xsjsglxt_staffAgainst_id;
+				var xsjsglxt_staffPrinciple_id = staff_against[len].xsjsglxt_staffPrinciple_id;
 				str6 += '<tr>';
-				str6 += '<input type="hidden" class="xsjsglxt_staffAgainst_id" id="'
-						+ xsjsglxt_staffAgainst_id + '">';
+				str6 += '<input type="hidden" class="xsjsglxt_staffPrinciple_id" id="'
+						+ xsjsglxt_staffPrinciple_id + '">';
 				
 				str6 += '<td>' + staff_against[len].staffPrinciple_situation
 						+ '</td>';
@@ -307,7 +306,7 @@ function show_againstAjax(staff_id) {
 						+ '</td>';
 				str6 += '<td>' + staff_against[len].staffPrinciple_remarks
 						+ '</td>';
-				str6 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#reliveAgainst_Modal" onclick="show_against(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_against(this)" type="button" ><i class="fa fa-trash"></i></button></td>';
+				str6 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#reliveAgainst_Modal" onclick="show_against(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_againsta(this)" type="button" ><i class="fa fa-trash"></i></button></td>';
 				str6 += '</tr>';
 			}
 			$('#againstPrinciple_table tbody tr').after(str6);
