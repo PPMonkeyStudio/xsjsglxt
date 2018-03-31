@@ -84,9 +84,9 @@ public class StaffAction extends ActionSupport {
 						double sy = 0.0;
 						String temp = TeamUtil.getUuid();
 						// 将上传的文件拷到临时文件
-						FileUtil.copyFile(staff_image, new File(realPath + temp + fileType));
+						FileUtil.copyFile(staff_image, new File(realPath + "/" + temp + fileType));
 						// 开启一个图片流，以读取临时图片的信息
-						BufferedImage bi = ImageIO.read(new File(realPath + temp + fileType));
+						BufferedImage bi = ImageIO.read(new File(realPath + "/" + temp + fileType));
 						// 获得缩放比例
 						sx = 120.0 / bi.getWidth();
 						sy = 150.0 / bi.getHeight();
@@ -98,8 +98,8 @@ public class StaffAction extends ActionSupport {
 						ImageIO.write((BufferedImage) zoomIamge, fileType.substring(fileType.indexOf(".") + 1),
 								new File(newFilePath));
 						// 将临时文件删除
-						if (new File(realPath + temp + fileType).exists())
-							new File(realPath + temp + fileType).delete();
+						if (new File(realPath + "/" + temp + fileType).exists())
+							new File(realPath + "/" + temp + fileType).delete();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -180,16 +180,16 @@ public class StaffAction extends ActionSupport {
 						double sx = 0.0;
 						double sy = 0.0;
 						String temp = TeamUtil.getUuid();
-						FileUtil.copyFile(staff_image, new File(realPath + temp + photoType));
-						BufferedImage bi = ImageIO.read(new File(realPath + temp + photoType));
+						FileUtil.copyFile(staff_image, new File(realPath + "/" + temp + photoType));
+						BufferedImage bi = ImageIO.read(new File(realPath + "/" + temp + photoType));
 						sx = 120.0 / bi.getWidth();
 						sy = 150.0 / bi.getHeight();
 						AffineTransformOp op = new AffineTransformOp(AffineTransform.getScaleInstance(sx, sy), null);
 						Image zoomIamge = op.filter(bi, null);
 						ImageIO.write((BufferedImage) zoomIamge, photoType.substring(photoType.indexOf(".") + 1),
-								new File(realPath + photoName + photoType));
-						if (new File(realPath + temp + photoType).exists())
-							new File(realPath + temp + photoType).delete();
+								new File(realPath + "/" + photoName + photoType));
+						if (new File(realPath + "/" + temp + photoType).exists())
+							new File(realPath + "/" + temp + photoType).delete();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

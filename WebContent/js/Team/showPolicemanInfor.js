@@ -91,6 +91,7 @@ var jumpPage = function() {
 var createConfirm = function(event) {
 	$.confirm({
 		title : '真的要删除吗？',
+		content : '',
 		type : 'red',
 		autoClose : 'closeAction|5000',
 		buttons : {
