@@ -1,4 +1,3 @@
-
 window.onload = function() {
 	var url = window.location.href;
 	staff_id = url.substring(url.indexOf("=") + 1);
@@ -59,6 +58,8 @@ function get_staffDetails_Ajax(url, staff_id) {
 			$('#staff_MaxEducationalBackground').val(
 					staff_info.staff_MaxEducationalBackground);
 			$('#staff_politicalStatus').val(staff_info.staff_politicalStatus);
+			document.getElementById("photo-show").innerHTML = "<img src='/xsjsglxt/team/Staff_downloadPhoto?staff_imageFileName="
+					+ staff_info.staff_photo + "' />";
 
 			show_studyAjax(staff_id);
 			show_workAjax(staff_id);
@@ -76,7 +77,7 @@ function get_staffDetails_Ajax(url, staff_id) {
 }
 // 显示学习经历
 function show_studyAjax(staff_id) {
-	console.log("study");
+	console.log("study发生发生地方");
 	var xmlhttp_study;
 	if (window.XMLHttpRequest) {
 		xmlhttp_study = new XMLHttpRequest();
@@ -92,7 +93,10 @@ function show_studyAjax(staff_id) {
 
 			var str1 = '';
 			for (var len = 0; len < staff_study.length; len++) {
+				var xsjsglxt_staffStudent_id = staff_study[len].xsjsglxt_staffStudent_id;
 				str1 += '<tr>';
+				str1 += '<input type="hidden" class="xsjsglxt_staffStudent_id" id="'
+						+ xsjsglxt_staffStudent_id + '">';
 				str1 += '<td>' + staff_study[len].staffStudent_address
 						+ '</td>';
 				str1 += '<td>' + staff_study[len].staffStudent_startTime
@@ -102,7 +106,7 @@ function show_studyAjax(staff_id) {
 				str1 += '<td>' + staff_study[len].staffStudent_stopTime
 						+ '</td>';
 				str1 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#reliveStudy_Modal" onclick="show_study(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_study(this)" type="button" ><i class="fa fa-trash"></i></button></td>';
-			
+
 				str1 += '</tr>';
 			}
 			$('#studyExperience_table tbody tr').after(str1);
@@ -131,12 +135,16 @@ function show_workAjax(staff_id) {
 
 			var str2 = '';
 			for (var len = 0; len < staff_work.length; len++) {
+				var xsjsglxt_staffWork_id = staff_work[len].xsjsglxt_staffWork_id;
 				str2 += '<tr>';
+				str2 += '<input type="hidden" class="xsjsglxt_staffWork_id" id="'
+						+ xsjsglxt_staffWork_id + '">';
 				str2 += '<td>' + staff_work[len].staffWork_address + '</td>';
 				str2 += '<td>' + staff_work[len].staffWork_startTime + '</td>';
+				str2 += '<td>' + staff_work[len].staffWork_duty + '</td>';
 				str2 += '<td>' + staff_work[len].staffWork_stopTime + '</td>';
 				str2 += '<td>' + staff_work[len].staffWork_remarks + '</td>';
-				str2 += '<td> <button class="btn btn-default btn-xs" type="button"><i class="fa fa-plus-square"></i></button></td>';
+				str2 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#reliveWork_Modal" onclick="show_work(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_work(this)" type="button" ><i class="fa fa-trash"></i></button></td>';
 				str2 += '</tr>';
 
 			}
@@ -166,7 +174,11 @@ function show_familyAjax(staff_id) {
 
 			var str3 = '';
 			for (var len = 0; len < staff_family.length; len++) {
+				var xsjsglxt_staffFamily_id = staff_family[len].xsjsglxt_staffFamily_id;
+
 				str3 += '<tr>';
+				str3 += '<input type="hidden" class="xsjsglxt_staffFamily_id" id="'
+						+ xsjsglxt_staffFamily_id + '">';
 				str3 += '<td>'
 						+ staff_family[len].staffFamily_contactsRelationship
 						+ '</td>';
@@ -181,7 +193,7 @@ function show_familyAjax(staff_id) {
 				str3 += '<td>' + staff_family[len].staffFamily_duty + '</td>';
 				str3 += '<td colspan="2">'
 						+ staff_family[len].staffFamily_remarks + '</td>';
-				str3 += '<td> <button class="btn btn-default btn-xs" type="button" ><i class="fa fa-plus-square"></i></button></td>';
+				str3 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#reliveFamily_Modal" onclick="show_family(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_family(this)" type="button" ><i class="fa fa-trash"></i></button></td>';
 				str3 += '</tr>';
 			}
 			$('#family_table tbody tr').after(str3);
@@ -211,12 +223,15 @@ function show_moveAjax(staff_id) {
 
 			var str4 = '';
 			for (var len = 0; len < staff_move.length; len++) {
+				var xsjsglxt_staffMove_id = staff_move[len].xsjsglxt_staffMove_id;
 				str4 += '<tr>';
+				str4 += '<input type="hidden" class="xsjsglxt_staffMove_id" id="'
+						+ xsjsglxt_staffMove_id + '">';
 				str4 += '<td>' + staff_move[len].staffMove_inTime + '</td>';
 				str4 += '<td>' + staff_move[len].staffMove_outTime + '</td>';
 				str4 += '<td>' + staff_move[len].staffMove_guard + '</td>';
 				str4 += '<td>' + staff_move[len].staffMove_remarks + '</td>';
-				str4 += '<td> <button class="btn btn-default btn-xs" type="button"><i class="fa fa-plus-square"></i></button></td>';
+				str4 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#reliveMove_Modal" onclick="show_move(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_move(this)" type="button" ><i class="fa fa-trash"></i></button></td>';
 				str4 += '</tr>';
 			}
 			$('#policeChange_table tbody tr').after(str4);
@@ -245,13 +260,16 @@ function show_rewardAjax(staff_id) {
 
 			var str5 = '';
 			for (var len = 0; len < staff_reward.length; len++) {
+				var xsjsglxt_staffReward_id = staff_reward[len].xsjsglxt_staffReward_id;
 				str5 += '<tr>';
+				str5 += '<input type="hidden" class="xsjsglxt_staffReward_id" id="'
+						+ xsjsglxt_staffReward_id + '">';
 				str5 += '<td>' + staff_reward[len].staffReward_situation
 						+ '</td>';
 				str5 += '<td>' + staff_reward[len].staffReward_Time + '</td>';
 				str5 += '<td>' + staff_reward[len].staffReward_remarks
 						+ '</td>';
-				str5 += '<td> <button class="btn btn-default btn-xs" type="button" ><i class="fa fa-plus-square"></i></button></td>';
+				str5 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#reliveReward_Modal" onclick="show_reward(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_reward(this)" type="button" ><i class="fa fa-trash"></i></button></td>';
 				str5 += '</tr>';
 			}
 			$('#prized_table tbody tr').after(str5);
@@ -274,20 +292,23 @@ function show_againstAjax(staff_id) {
 	xmlhttp_against.onreadystatechange = function() {
 		if (xmlhttp_against.readyState == 4 && xmlhttp_against.status == 200) {
 			var staff_against = xmlhttp_against.responseText;
-			console.log(staff_against);
 			staff_against = JSON.parse(staff_against);
 			console.log(staff_against);
 
 			var str6 = '';
 			for (var len = 0; len < staff_against.length; len++) {
+				var xsjsglxt_staffPrinciple_id = staff_against[len].xsjsglxt_staffPrinciple_id;
 				str6 += '<tr>';
+				str6 += '<input type="hidden" class="xsjsglxt_staffPrinciple_id" id="'
+						+ xsjsglxt_staffPrinciple_id + '">';
+
 				str6 += '<td>' + staff_against[len].staffPrinciple_situation
 						+ '</td>';
 				str6 += '<td>' + staff_against[len].staffPrinciple_Time
 						+ '</td>';
 				str6 += '<td>' + staff_against[len].staffPrinciple_remarks
 						+ '</td>';
-				str6 += '<td> <button class="btn btn-default btn-xs" type="button" ><i class="fa fa-plus-square"></i></button></td>';
+				str6 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#reliveAgainst_Modal" onclick="show_against(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_against(this)" type="button" ><i class="fa fa-trash"></i></button></td>';
 				str6 += '</tr>';
 			}
 			$('#againstPrinciple_table tbody tr').after(str6);
@@ -319,7 +340,10 @@ function show_punishmentAjax(staff_id) {
 
 			var str7 = '';
 			for (var len = 0; len < staff_punishment.length; len++) {
+				var xsjsglxt_staffPunishment_id = staff_punishment[len].xsjsglxt_staffPunishment_id;
 				str7 += '<tr>';
+				str7 += '<input type="hidden" class="xsjsglxt_staffPunishment_id" id="'
+						+ xsjsglxt_staffPunishment_id + '">';
 				str7 += '<td>'
 						+ staff_punishment[len].staffPunishment_situation
 						+ '</td>';
@@ -327,7 +351,7 @@ function show_punishmentAjax(staff_id) {
 						+ '</td>';
 				str7 += '<td>' + staff_punishment[len].staffPunishment_remarks
 						+ '</td>';
-				str7 += '<td> <button class="btn btn-default btn-xs" type="button" ><i class="fa fa-plus-square"></i></button></td>';
+				str7 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#relivePunishment_Modal" onclick="show_punishment(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_punishment(this)" type="button" ><i class="fa fa-trash"></i></button></td>';
 				str7 += '</tr>';
 			}
 			$('#punish_table tbody tr').after(str7);
@@ -357,7 +381,11 @@ function show_furloughAjax(staff_id) {
 
 			var str8 = '';
 			for (var len = 0; len < staff_furlough.length; len++) {
+				var xsjsglxt_staffFurlough_id = staff_furlough[len].xsjsglxt_staffFurlough_id;
 				str8 += '<tr>';
+				str8 += '<input type="hidden" class="xsjsglxt_staffFurlough_id" id="'
+						+ xsjsglxt_staffFurlough_id + '">';
+
 				str8 += '<td>' + staff_furlough[len].staffFurlough_mainContent
 						+ '</td>';
 				str8 += '<td>' + staff_furlough[len].staffFurlough_startTime
@@ -370,7 +398,7 @@ function show_furloughAjax(staff_id) {
 						+ '</td>';
 				str8 += '<td>' + staff_furlough[len].staffFurlough_remarks
 						+ '</td>';
-				str8 += '<td> <button class="btn btn-default btn-xs" type="button" ><i class="fa fa-plus-square"></i></button></td>';
+				str8 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#reliveFurlough_Modal" onclick="show_furlough(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_furlough(this)" type="button" ><i class="fa fa-trash"></i></button></td>';
 				str8 += '</tr>';
 			}
 			$('#vocation_table tbody tr').after(str8);
@@ -409,45 +437,25 @@ function isNotFormat(even) {
 }
 
 // staffDetail.jsp中的修改人员
-function staff_change() {
-	var url = "/xsjsglxt/team/Staff_saveStudents";
-	$.confirm({
-		title : '修改!',
-		content : '确定修改么!',
-		buttons : {
+function staff_relive() {
+	$
+			.confirm({
+				title : '修改!',
+				content : '确定修改么!',
+				buttons : {
 
-			取消 : function() {
-				// here the button key 'hey' will be used as the text.
-			},
-			确定 : {
-				action : function() {
-
-					/*
-					 * // 判断基本信息表单是否为空 var staff_details =
-					 * document.querySeletor(".staff_body").staffDetails; for
-					 * (var i =0; i < staff_details.elements.length - 1; i++) {
-					 * if(staff_details.elements[i].value == "") {
-					 * toastr.success('基本信息不能有空项哦！');
-					 * staff_details.elements[i].focus(); return false; } } //
-					 * 判断八个长表格表单是否为空 var staff_details =
-					 * document.querySeletorAll(".longBoxs"); for (var i = 0; i
-					 * <staff_details.length; i++) { var
-					 * long_formElement=staff_details[i].elements; for (var j
-					 * =0; j < long_formElement.length - 1; j++) {
-					 * if(long_formElement.value == "") {
-					 * toastr.success('基本信息不能有空项哦！');
-					 * staff_details.elements[j].focus(); return false; } } }
-					 */
-
-					var staff_id = document.getElementById("staff_id").value;
-					loadstaffDetail_staff_change(url, staff_id);
+					取消 : function() {
+					},
+					确定 : {
+						action : function() {
+							loadstaffDetail_staff_relive();
+						}
+					}
 				}
-			}
-		}
-	});
+			});
 }
 // 修改按钮
-function loadstaffDetail_staff_change(url, staff_id) {
+function loadstaffDetail_staff_relive() {
 	console.log("b2");
 	if (window.XMLHttpRequest) {
 		xmlhttp = new XMLHttpRequest();
@@ -456,219 +464,24 @@ function loadstaffDetail_staff_change(url, staff_id) {
 	}
 	var staffDetails = document.getElementById("staffDetails");
 	var formData = new FormData(staffDetails);
-	formData.append("staff.xsjsglxt_staff_id", staff_id);
-
 	xmlhttp.onreadystatechange = function() {
 		console.log("c2");
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			console.log(xmlhttp.responseText);
 			var result = xmlhttp.responseText;
-			if (result == 'success') {
+			if (result == 'updateSuccess') {
 				toastr.success('编辑成功！');
 			} else {
 				toastr.error('编辑失败！');
 			}
 		}
 	};
-	xmlhttp.open("post", url, true);
+	xmlhttp.open("post",
+			"/xsjsglxt/team/Staff_updatePoliceman?policeman.xsjsglxt_staff_id="
+					+ staff_id, true);
 	xmlhttp.send(formData);
 }
-// 长表格学习经历添加一条
-function add_oneStudy() {
-	// 加到表格中
-	add_studyExperience();
-	console.log("学习经历添加");
-	console.log(staff_id);
-	// 添加一条数据
-	var staffStudent_address_val=$(".staffStudent_address").val();
-	var staffStudent_startTime_val=$(".staffStudent_startTime").val();
-	var staffStudent_stopTime_val=$(".staffStudent_stopTime").val();
-	var staffStudent_remarks_val=$(".staffStudent_remarks").val();
-	$.ajax({
-				type : "POST",
-				url : "/xsjsglxt/team/StaffStudent_saveStudent?student.staffStudent_staff="
-						+ staff_id,
-				data :{
-					"students[0].staffStudent_address":staffStudent_address_val,
-					"students[0].staffStudent_startTime":staffStudent_startTime_val,
-					"students[0].staffStudent_stopTime":staffStudent_stopTime_val,
-					"students[0].staffStudent_remarks":staffStudent_remarks_val,
-				},
-				dataType : "json",
-				success : function(data) {
-					console.log("添加完成");
-				}
-			});
+// 每行删除
+function delete_longTable(this_button) {
+	this_button.parentNode.parentNode.parentNode
+			.removeChild(this_button.parentNode.parentNode);
 }
-//删除学习经历一条
-function delete_study(delete_button) {
-	//把td送页面上删除
-	  delete_longTable(delete_button);
-		//把这行td的数据数据库中删除
-		$.ajax({
-			url : '/xsjsglxt/team/StaffStudent_deleteStudent?works.staffWork_staff='+staff_id,
-			type : 'POST',
-			data:{
-				
-			},
-			success:function(data){
-				console.log("删除单条"+data);
-			},
-		});
-
-}
-//显示当前学习经历在模态框中
-function show_study(relive_button) {
-	var this_tr=relive_button.parentNode.parentNode;
-	 document.querySelector(".staffStudent_addressRelive").value=this_tr.children[0].innerHTML;
-	 document.querySelector(".staffStudent_startTimeRelive").value=this_tr.children[1].innerHTML;
-	 document.querySelector(".staffStudent_stopTimeRelive").value=this_tr.children[2].innerHTML;
-	 document.querySelector(".staffStudent_remarksRelive").value=this_tr.children[3].innerHTML;
-}
-function relive_study(){
-	console.log("学习经历修改");
-	// 添加一条数据
-	var staffStudent_address_val=$(".staffStudent_address").val();
-	var staffStudent_startTime_val=$(".staffStudent_startTime").val();
-	var staffStudent_stopTime_val=$(".staffStudent_stopTime").val();
-	var staffStudent_remarks_val=$(".staffStudent_remarks").val();
-	$.ajax({
-				type : "POST",
-				url : "/xsjsglxt/team/StaffStudent_updateStudent?student.staffStudent_staff="
-						+ staff_id,
-				data :{
-					"students[0].staffStudent_address":staffStudent_address_val,
-					"students[0].staffStudent_startTime":staffStudent_startTime_val,
-					"students[0].staffStudent_stopTime":staffStudent_stopTime_val,
-					"students[0].staffStudent_remarks":staffStudent_remarks_val,
-				},
-				dataType : "json",
-				success : function(data) {
-					console.log("修改完成");
-				}
-			});
-}
-// 长表格家庭添加
-var relive_family = function(event) {
-	// 此处调用九个接口
-	// 删除警员基本信息
-	$.ajax({
-		url : '/xsjsglxt/team/Staff_saveWorks',
-		type : 'POST',
-		data : {
-			'policeman.xsjsglxt_staff_id' : event.id
-		}
-	});
-}
-	// 长表格工作经历添加
-	var relive_work = function(event) {
-		// 此处调用九个接口
-		// 删除警员基本信息
-		$.ajax({
-			url : '/xsjsglxt/team/Staff_deletePoliceman',
-			type : 'POST',
-			data : {
-				'policeman.xsjsglxt_staff_id' : event.id
-			}
-		});
-	}
-	// 长表格家庭添加
-	var relive_family = function(event) {
-		// 此处调用九个接口
-		// 删除警员基本信息
-		$.ajax({
-			url : '/xsjsglxt/team/Staff_saveWorks',
-			type : 'POST',
-			data : {
-				'policeman.xsjsglxt_staff_id' : event.id
-			}
-		});
-	}
-	// 长表格刑警调动弄个添加
-	var relive_move = function(event) {
-		// 此处调用九个接口
-		// 删除警员基本信息
-		$.ajax({
-			url : '/xsjsglxt/team/Staff_deletePoliceman',
-			type : 'POST',
-			data : {
-				'policeman.xsjsglxt_staff_id' : event.id
-			}
-		});
-	}
-	// 长表格立功添加
-	var relive_reward = function(event) {
-		// 此处调用九个接口
-		// 删除警员基本信息
-		$.ajax({
-			url : '/xsjsglxt/team/Staff_deletePoliceman',
-			type : 'POST',
-			data : {
-				'policeman.xsjsglxt_staff_id' : event.id
-			}
-		});
-	}
-	// 长表格违纪
-	var relive_against = function(event) {
-		// 此处调用九个接口
-		// 删除警员基本信息
-		$.ajax({
-			type : "POST",
-			url : "test.json",
-			data : {
-				staffStudent_address : $(".staffStudent_address").val(),
-				staffStudent_startTime : $(".staffStudent_startTime").val(),
-				staffStudent_stopTime : $(".staffStudent_stopTime").val(),
-				staffStudent_remarks : $(".staffStudent_remarks").val(),
-			},
-			dataType : "json",
-			success : function(data) {
-				$('#resText').empty(); // 清空resText里面的所有内容
-				var html = '';
-				$.each(data, function(commentIndex, comment) {
-					html += '<div class="comment"><h6>' + comment['username']
-
-					+ ':</h6><p class="para"' + comment['content']
-							+ '</p></div>';
-
-					+':</h6><p class="para"' + comment['content']
-							+ '</p></div>';
-
-				});
-				$('#resText').html(html);
-			}
-		});
-
-	}
-	// 长表格处分添加
-	var relive_punishment = function(event) {
-		// 此处调用九个接口
-		// 删除警员基本信息
-		$.ajax({
-			url : '/xsjsglxt/team/Staff_deletePoliceman',
-			type : 'POST',
-			data : {
-				'policeman.xsjsglxt_staff_id' : event.id
-			}
-		});
-	}
-	// 长表格休假添加
-	var relive_furlough = function(event) {
-		// 此处调用九个接口
-		// 删除警员基本信息
-		$.ajax({
-			url : '/xsjsglxt/team/Staff_deletePoliceman',
-			type : 'POST',
-			data : {
-				'policeman.xsjsglxt_staff_id' : event.id
-			}
-		});
-
-	}
-	// 每行删除
-	function delete_longTable(this_button) {
-		this_button.parentNode.parentNode.parentNode
-				.removeChild(this_button.parentNode.parentNode);
-	}
-
-
