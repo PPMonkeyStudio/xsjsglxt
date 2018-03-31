@@ -39,7 +39,29 @@ function staff_change() {
 			},
 			确定 : {
 				action : function() {
-
+					// 判断基本信息表单是否为空 
+					var staff_details =document.getElementById("staffDetails");
+					for (var i = 0; i < staff_details.length; i++) {
+						if (staff_details.elements[i].value == "") {
+							toastr.error('基本信息不能有空项哦！');
+							console.log(staff_details.elements[i].name+"不能为空！");
+							staff_details.elements[i].focus();
+							return false;
+						}
+					} 
+					//判断八个长表格表单是否为空
+					var staff_details = document.querySeletorAll(".long_tableBox");
+					for (var i = 0; i < staff_details.length; i++) {
+						var long_formElement = staff_details[i];
+						for (var j = 0; j < long_formElement.length; j++) {
+							if (long_formElement.elements[j].value == "") {
+								toastr.error('长表格不能有空项哦！');
+								console.log(long_formElement.elements[i].name+"不能为空！");
+								staff_details.elements[j].focus();
+								return false;
+							}
+						}
+					}
 					loadstaffDetail_staff_change(url);
 				}
 			}
@@ -394,9 +416,17 @@ function isNotFormat(even) {
 	format.value = even.value;
 	return format.value;
 }
-// 实现点击file
+// 实现点击file新建页面的
 function photo_click() {
 	var photo_file = document.querySelector(".photo-file");
+	var photo_show=document.getElementById("photo-show");
+	photo_file.click();
+}
+//实现点击file修改页面的
+function relivePhoto_click() {
+	var photo_file = document.querySelector(".photo-file");
+	var photo_show=document.getElementById("photo-show");
+	photo_show.innerHTML="";
 	photo_file.click();
 }
 // 图片预览

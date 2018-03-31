@@ -35,7 +35,7 @@
 				<i class="fa fa-reply"></i> 返回列表
 			</button>
 			<button type="button" class="btn btn-default button button_change"
-				onclick="staff_change()">
+				onclick="staff_relive()">
 				<i class="fa fa-pencil"></i> 修改人员
 			</button>
 			<div class="panel-body staff_body">
@@ -57,7 +57,7 @@
 
 							<td><label>照片</label></td>
 							<td rowspan="4"><a class="photo-show" id="photo-show"></a> <a
-								class="a-upload" onclick="photo_click()">上传照片</a> <input
+								class="a-upload" onclick="relivePhoto_click()">上传照片</a> <input
 								type="file" class="photo-file" name="staff_image"
 								multiple="multiple"
 								accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" />
@@ -389,8 +389,13 @@
 						</form>
 					</div>
 				</div>
-
+				<button style="float: right; margin-right: 9%; margin-top: 30px;"
+					type="button" class="btn btn-default button"
+					onclick="staff_relive()">
+					<i class="fa fa-pencil"></i> 修改人员
+				</button>
 			</div>
+
 		</div>
 	</div>
 	<!--新建添加学习经历模态框 start  -->
@@ -873,7 +878,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_oneForlough()" data-dismiss='modal'>新建</button>
+						onclick="add_oneFurlough()" data-dismiss='modal'>新建</button>
 				</div>
 			</div>
 		</div>
@@ -1279,7 +1284,7 @@
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
-											class="staffPunishment_remarksRemark"
+											class="staffPunishment_remarksRelive"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="66"></textarea></td>
 
@@ -1301,7 +1306,7 @@
 
 	<!--修改处分模态框 end  -->
 	<!--修改休假模态框 start  -->
-	<div class="modal fade" id="reliveForlough_Modal" tabindex="-1"
+	<div class="modal fade" id="reliveFurlough_Modal" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -1341,12 +1346,13 @@
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">销假时间</label></td>
-									<td><input type="text" class="staffFurlough_stopTimeRelive" /></td>
+									<td><input type="text"
+										class="staffFurlough_stopTimeRelive" /></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
-											class="staffFurlough_remarksRemark"
+											class="staffFurlough_remarksRelive"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="66"></textarea></td>
 

@@ -58,6 +58,8 @@ function get_staffDetails_Ajax(url, staff_id) {
 			$('#staff_MaxEducationalBackground').val(
 					staff_info.staff_MaxEducationalBackground);
 			$('#staff_politicalStatus').val(staff_info.staff_politicalStatus);
+			document.getElementById("photo-show").innerHTML = "<img src='/xsjsglxt/team/Staff_downloadPhoto?staff_imageFileName="
+					+ staff_info.staff_photo + "' />";
 
 			show_studyAjax(staff_id);
 			show_workAjax(staff_id);
@@ -299,14 +301,14 @@ function show_againstAjax(staff_id) {
 				str6 += '<tr>';
 				str6 += '<input type="hidden" class="xsjsglxt_staffPrinciple_id" id="'
 						+ xsjsglxt_staffPrinciple_id + '">';
-				
+
 				str6 += '<td>' + staff_against[len].staffPrinciple_situation
 						+ '</td>';
 				str6 += '<td>' + staff_against[len].staffPrinciple_Time
 						+ '</td>';
 				str6 += '<td>' + staff_against[len].staffPrinciple_remarks
 						+ '</td>';
-				str6 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#reliveAgainst_Modal" onclick="show_against(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_againsta(this)" type="button" ><i class="fa fa-trash"></i></button></td>';
+				str6 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#reliveAgainst_Modal" onclick="show_against(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_against(this)" type="button" ><i class="fa fa-trash"></i></button></td>';
 				str6 += '</tr>';
 			}
 			$('#againstPrinciple_table tbody tr').after(str6);
@@ -338,7 +340,10 @@ function show_punishmentAjax(staff_id) {
 
 			var str7 = '';
 			for (var len = 0; len < staff_punishment.length; len++) {
+				var xsjsglxt_staffPunishment_id = staff_punishment[len].xsjsglxt_staffPunishment_id;
 				str7 += '<tr>';
+				str7 += '<input type="hidden" class="xsjsglxt_staffPunishment_id" id="'
+						+ xsjsglxt_staffPunishment_id + '">';
 				str7 += '<td>'
 						+ staff_punishment[len].staffPunishment_situation
 						+ '</td>';
@@ -346,7 +351,7 @@ function show_punishmentAjax(staff_id) {
 						+ '</td>';
 				str7 += '<td>' + staff_punishment[len].staffPunishment_remarks
 						+ '</td>';
-				str7 += '<td> <button class="btn btn-default btn-xs" type="button" ><i class="fa fa-plus-square"></i></button></td>';
+				str7 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#relivePunishment_Modal" onclick="show_punishment(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_punishment(this)" type="button" ><i class="fa fa-trash"></i></button></td>';
 				str7 += '</tr>';
 			}
 			$('#punish_table tbody tr').after(str7);
@@ -376,7 +381,11 @@ function show_furloughAjax(staff_id) {
 
 			var str8 = '';
 			for (var len = 0; len < staff_furlough.length; len++) {
+				var xsjsglxt_staffFurlough_id = staff_furlough[len].xsjsglxt_staffFurlough_id;
 				str8 += '<tr>';
+				str8 += '<input type="hidden" class="xsjsglxt_staffFurlough_id" id="'
+						+ xsjsglxt_staffFurlough_id + '">';
+
 				str8 += '<td>' + staff_furlough[len].staffFurlough_mainContent
 						+ '</td>';
 				str8 += '<td>' + staff_furlough[len].staffFurlough_startTime
@@ -389,7 +398,7 @@ function show_furloughAjax(staff_id) {
 						+ '</td>';
 				str8 += '<td>' + staff_furlough[len].staffFurlough_remarks
 						+ '</td>';
-				str8 += '<td> <button class="btn btn-default btn-xs" type="button" ><i class="fa fa-plus-square"></i></button></td>';
+				str8 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#reliveFurlough_Modal" onclick="show_furlough(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_furlough(this)" type="button" ><i class="fa fa-trash"></i></button></td>';
 				str8 += '</tr>';
 			}
 			$('#vocation_table tbody tr').after(str8);
@@ -428,45 +437,25 @@ function isNotFormat(even) {
 }
 
 // staffDetail.jsp中的修改人员
-function staff_change() {
-	var url = "/xsjsglxt/team/Staff_saveStudents";
-	$.confirm({
-		title : '修改!',
-		content : '确定修改么!',
-		buttons : {
+function staff_relive() {
+	$
+			.confirm({
+				title : '修改!',
+				content : '确定修改么!',
+				buttons : {
 
-			取消 : function() {
-				// here the button key 'hey' will be used as the text.
-			},
-			确定 : {
-				action : function() {
-
-					/*
-					 * // 判断基本信息表单是否为空 var staff_details =
-					 * document.querySeletor(".staff_body").staffDetails; for
-					 * (var i =0; i < staff_details.elements.length - 1; i++) {
-					 * if(staff_details.elements[i].value == "") {
-					 * toastr.success('基本信息不能有空项哦！');
-					 * staff_details.elements[i].focus(); return false; } } //
-					 * 判断八个长表格表单是否为空 var staff_details =
-					 * document.querySeletorAll(".longBoxs"); for (var i = 0; i
-					 * <staff_details.length; i++) { var
-					 * long_formElement=staff_details[i].elements; for (var j
-					 * =0; j < long_formElement.length - 1; j++) {
-					 * if(long_formElement.value == "") {
-					 * toastr.success('基本信息不能有空项哦！');
-					 * staff_details.elements[j].focus(); return false; } } }
-					 */
-
-					var staff_id = document.getElementById("staff_id").value;
-					loadstaffDetail_staff_change(url, staff_id);
+					取消 : function() {
+					},
+					确定 : {
+						action : function() {
+							loadstaffDetail_staff_relive();
+						}
+					}
 				}
-			}
-		}
-	});
+			});
 }
 // 修改按钮
-function loadstaffDetail_staff_change(url, staff_id) {
+function loadstaffDetail_staff_relive() {
 	console.log("b2");
 	if (window.XMLHttpRequest) {
 		xmlhttp = new XMLHttpRequest();
@@ -475,21 +464,20 @@ function loadstaffDetail_staff_change(url, staff_id) {
 	}
 	var staffDetails = document.getElementById("staffDetails");
 	var formData = new FormData(staffDetails);
-	formData.append("staff.xsjsglxt_staff_id", staff_id);
-
 	xmlhttp.onreadystatechange = function() {
 		console.log("c2");
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			console.log(xmlhttp.responseText);
 			var result = xmlhttp.responseText;
-			if (result == 'success') {
+			if (result == 'updateSuccess') {
 				toastr.success('编辑成功！');
 			} else {
 				toastr.error('编辑失败！');
 			}
 		}
 	};
-	xmlhttp.open("post", url, true);
+	xmlhttp.open("post",
+			"/xsjsglxt/team/Staff_updatePoliceman?policeman.xsjsglxt_staff_id="
+					+ staff_id, true);
 	xmlhttp.send(formData);
 }
 // 每行删除
