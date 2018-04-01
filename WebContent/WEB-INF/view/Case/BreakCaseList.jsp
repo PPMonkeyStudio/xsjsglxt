@@ -249,7 +249,7 @@
 						<div style="width: 80%; margin: auto;" class="panel-body">
 							<table class="table table-hover table-condensed" align="center">
 								<tbody>
-									<tr>
+									<tr id="breakcase_case">
 										<td>所属案件<i class="fa fa-spinner fa-pulse load_remind"></td>
 										<td colspan="3"><select style="witdh: 100%;"
 											class="form-control selectpicker" data-live-search="true"
@@ -259,7 +259,7 @@
 									<tr>
 										<td>案件类型</td>
 										<td><select style="witdh: 100%;" class="form-control"
-											data-live-search="true" name="breakCase.breakcase_type"><option>新添案件</option>
+											data-live-search="true" name="breakCase.breakcase_type" id="breakcase_type"><option>新添案件</option>
 												<option>已有案件</option></select></td>
 										<td>嫌疑人姓名</td>
 										<td><input style="witdh: 70%;" class="form-control"
@@ -331,12 +331,12 @@
 										<td><input style="witdh: 70%;" class="form-control"
 											name="breakCase.breakcase_phone" type="text"></td>
 									</tr>
-									<tr>
+									<!-- <tr>
 										<td>简要案情</td>
 										<td colspan="3"><textarea style="witdh: 70%;"
 												placeholder="请填写" class="form-control"
 												name="briefDetails.briefdetails_details"></textarea></td>
-									</tr>
+									</tr> -->
 									<!-- 合并比中指纹  -->
 									<tr>
 										<td>现场指纹编号</td>

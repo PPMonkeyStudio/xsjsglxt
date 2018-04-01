@@ -228,11 +228,11 @@ var modifi_delete = function() {
 			str += '</tr>';
 			
 			
-			str += '<tr>';
+			/*str += '<tr>';
 			str += '<td>简要案情</td><td colspan="3"><textarea  style="witdh:70%;display:none;" class="form-control" name="briefDetails.xsjsglxt_briefdetails_id"  >' + xhr_data.breakcase_case_note+ '</textarea>';
 			str +='<textarea style="witdh:70%;" class="form-control" name="briefDetails.briefdetails_details"></textarea>';
 			str += '</td>';
-			str += '</tr>';
+			str += '</tr>';*/
 			
 			str += '<tr>';
 			str += '<td>现场指纹编号</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_locale_fingerprint_number" type="text" value="' + xhr_data.breakcase_contrast_locale_fingerprint_number + '"  /></td>';
@@ -401,6 +401,11 @@ var breakecase_modification = function() {
 	});
 }
 
+$("#breakcase_type").change(function (){
+	if($("#breakcase_type").val()=="已有案件"){
+		$("#breakcase_case").css("display","block");
+	}
+	});
 
 
 //首页
