@@ -140,7 +140,7 @@ function get_ListBreakecaseInformationByPageAndSearch(data) {
 
 		//分页下的记录信息
 		var opt = '<option value=""></option>';
-		for (var index = xhr.pageIndex + 1; index <= xhr.totalPages; index++) {
+		for (var index =  1; index <= xhr.totalPages; index++) {
 			opt += '<option>' + index + '</option>';
 		}
 		$('.info').html('共 ' + xhr.totalRecords + '条信息 当前' + xhr.pageIndex + '/' + xhr.totalPages + '页 ' + xhr.pageSize + '条信息/页&nbsp&nbsp转到第'
