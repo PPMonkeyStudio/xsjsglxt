@@ -117,6 +117,7 @@ System.out.println(breakCase.toString());
 	public xsjsglxt_breakcase getBreakCaseInfo(xsjsglxt_breakcase breakCase) {
 		String xsjsglxt_breakcase_id = breakCase.getXsjsglxt_breakcase_id();
 		xsjsglxt_breakcase bc = breakCaseDao.getBreakCaseById(xsjsglxt_breakcase_id);
+		System.out.println("备注"+bc.getBreakcase_remark());
 		return bc;
 	}
 
