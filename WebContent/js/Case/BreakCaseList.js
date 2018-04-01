@@ -79,6 +79,10 @@ $(function() {
 //添加刑事破案
 	$('.input_sure').click(function() {
 		$.post('/xsjsglxt/case/BreakCase_saveBreakecase', $('#breakCase_input form').serialize(), function(xhr) {
+			if($("#breakcase_case").val()==""){
+				toastr.error('请选择所属案件!');
+				return false;
+			}
 			if (xhr == 'success') {
 				toastr.success('添加成功!');
 				get_ListBreakecaseInformationByPageAndSearch(query_data);
@@ -106,8 +110,8 @@ function get_ListBreakecaseInformationByPageAndSearch(data) {
 			str += '<td>' + data_list[len].breakCase.breakcase_arrested_department + '</td>';//抓获单位
 			str += '<td>' + data_list[len].breakCase.breakcase_waitbreakcase + '</td>';//带破案件
 			str += '<td>' + data_list[len].breakCase.breakcase_suspecter_name + '</td>';//嫌疑人姓名
-			str += '<td>' + data_list[len].breakCase.breakcase_contrast_locale_fingerprint_number + '</td>';//现场指纹编号
-			
+			/*str += '<td>' + data_list[len].breakCase.breakcase_contrast_locale_fingerprint_number + '</td>';//现场指纹编号
+*/			
 			str += '<td>'
 				+ '<input type="hidden" value="' + data_list[len].breakCase.xsjsglxt_breakcase_id + '" />'
 				+ '<button type="button" style="margin-left:6px;" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#breakCase_modification"><i class="fa fa-pencil-square-o" aria-hidden="true" ></i> 修改</button>'
@@ -158,7 +162,7 @@ var modifi_delete = function() {
 			var str = '';
 			str += '<table align="center" class="table table-hover table-condensed"><tbody><tr>';
 			str += '<td>所属案件<i class="fa fa-spinner fa-pulse fa-fw load_remind"></td><td colspan="3">';
-			str += '<select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="breakCase.breakcase_case">';
+			str += '<select  id="breakcase_case" style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="breakCase.breakcase_case">';
 			str += '</select></td>';
 			str += '</tr>';
 			
@@ -298,7 +302,7 @@ var modifi_delete = function() {
 				var option = '';
 				for (var len = 0; len < Case_data.length; len++) {
 					option += '<option ';
-					if (xhr_data.breakcase_case == Case_data[len].case_name) {
+					if (xhr_data.breakcase_case == Case_data[len].xsjsglxt_case_id) {
 						option += 'selected';
 					}
 					option += ' value="' + Case_data[len].xsjsglxt_case_id + '">' + Case_data[len].case_name + '</option>';
@@ -333,6 +337,7 @@ var modifi_delete = function() {
 							contentType : false,
 							dataType : 'text',
 							success : function(data) {
+								
 								if (data == "success") {
 									toastr.success("删除成功！");
 									//获取对应option中的value值
