@@ -19,8 +19,25 @@ var page_infomantion = {
 	HavePrePage : false,
 	HaveNextPage : false,
 }
-
+/*--------------------------------------------------------*/
+//判断身份证号是否正确，以及从身份证号中取出出生日期
+function BreakCaseListGetBirth(){
+	var breakcase_suspecter_identity=document.getElementById("breakcase_suspecter_identity");
+	var breakcase_suspecter_identityValue=breakcase_suspecter_identity.value.trim();
+	var breakcase_suspecter_birthday=document.getElementById("breakcase_suspecter_birthday");
+	var strRegExp=/(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+		if(strRegExp.test(breakcase_suspecter_identityValue)==true){
+			breakcase_suspecter_birthday.value=breakcase_suspecter_identityValue.substr(6,4)+"-"+breakcase_suspecter_identityValue.substr(10,2)+"-"+breakcase_suspecter_identityValue.substr(12,2);
+		} 
+		else{
+			toastr.error("身份证号输入不合法！");
+			return false;
+		} 
+	
+}
 $(function() {
+
+	/*--------------------------------------------------------*/	
 	//刑事破案添加模态框事件
 	$('#breakCase_input').on('show.bs.modal', function() {
 		var this_modal = $(this);
@@ -92,17 +109,23 @@ function get_ListBreakecaseInformationByPageAndSearch(data) {
 			str += '<td>' + data_list[len].breakCase.breakcase_contrast_locale_fingerprint_number + '</td>';//现场指纹编号
 			
 			str += '<td>'
-				+ '<input type="hidden"  value="' + data_list[len].case1.xsjsglxt_case_id + '" />'
-				+ '<button type="button" style="margin-left:6px;" class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 修改</button>'
+				+ '<input type="hidden" value="' + data_list[len].breakCase.xsjsglxt_breakcase_id + '" />'
+				+ '<button type="button" style="margin-left:6px;" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#breakCase_modification"><i class="fa fa-pencil-square-o" aria-hidden="true" ></i> 修改</button>'
 				+ '<button type="button" style="margin-left:6px;" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除</button>'
 				+ '</td>';
 			str += '</tr>';
 		}
-		console.log('0000:'+str);
+//		console.log('0000:'+str);
 		//加载到表格中
 		$('.breakcase_table_info tbody').html(str); //操作点击事件
+		
+//		-----------------------------------------------------
 		//设置点击事件
 		$('.btn-xs').click(modifi_delete);
+//		-----------------------------------------------------
+		
+		
+		
 		//分页信息存入page_infomantion中
 		page_infomantion.pageIndex = xhr.pageIndex; //当前页数
 		page_infomantion.totalRecords = xhr.totalRecords; //总页数
@@ -142,129 +165,131 @@ var modifi_delete = function() {
 			str += '<tr>';
 			str += '<td>案件类型</td><td>';
 			str += '<select style="witdh:100%;" class="form-control" data-live-search="true" name="breakCase.breakcase_type">';
-			str += '<option ' + (xhr_data.breakCase.breakcase_type == "新添案件" ? "selected" : "") + '>新添案件</option>';
-			str += '<option ' + (xhr_data.breakCase.breakcase_type == "已有案件" ? "selected" : "") + '>已有案件</option>';
+			str += '<option ' + (xhr_data.breakcase_type == "新添案件" ? "selected" : "") + '>新添案件</option>';
+			str += '<option ' + (xhr_data.breakcase_type == "已有案件" ? "selected" : "") + '>已有案件</option>';
 			str += '</select></td>';
-			str += '<td>嫌疑人姓名</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_suspecter_name" type="text" value="' + xhr_data.breakCase.breakcase_suspecter_name + '"  /></td>';
+			str += '<td>嫌疑人姓名</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_suspecter_name" type="text" value="' + xhr_data.breakcase_suspecter_name + '"  /></td>';
 			str += '</tr>';
 			
 
 			str += '<tr>';
 			str += '<td>案件级别</td><td>';
 			str += '<select style="witdh:100%;" class="form-control" data-live-search="true" name="breakCase.breakcase_case_level">';
-			str += '<option ' + (xhr_data.breakCase.breakcase_case_level == "A级" ? "selected" : "") + '>A级</option>';
-			str += '<option ' + (xhr_data.breakCase.breakcase_case_level == "B级" ? "selected" : "") + '>B级</option>';
-			str += '<option ' + (xhr_data.breakCase.breakcase_case_level == "C级" ? "selected" : "") + '>C级</option>';
+			str += '<option ' + (xhr_data.breakcase_case_level == "A级" ? "selected" : "") + '>A级</option>';
+			str += '<option ' + (xhr_data.breakcase_case_level == "B级" ? "selected" : "") + '>B级</option>';
+			str += '<option ' + (xhr_data.breakcase_case_level == "C级" ? "selected" : "") + '>C级</option>';
 			str += '</select></td>';
 			str += '<td>性别</td><td>';
 			str += '<select style="witdh:100%;" class="form-control" data-live-search="true" name="breakCase.breakcase_suspecter_sex">';
-			str += '<option ' + (xhr_data.breakCase.breakcase_suspecter_sex == "男" ? "selected" : "") + '>男</option>';
-			str += '<option ' + (xhr_data.breakCase.breakcase_suspecter_sex == "女" ? "selected" : "") + '>女</option>';
+			str += '<option ' + (xhr_data.breakcase_suspecter_sex == "男" ? "selected" : "") + '>男</option>';
+			str += '<option ' + (xhr_data.breakcase_suspecter_sex == "女" ? "selected" : "") + '>女</option>';
 			str += '</select></td>';
 			
 			
 			str += '<tr>';
 			str += '<td>案件属地</td><td>';
 			str += '<select style="witdh:100%;" class="form-control" data-live-search="true" name="breakCase.breakcase_case_territorial">';
-			str += '<option ' + (xhr_data.breakCase.breakcase_case_territorial== "本地" ? "selected" : "") + '>本地</option>';
-			str += '<option ' + (xhr_data.breakCase.breakcase_case_territorial == "外地" ? "selected" : "") + '>外地</option>';
-			str += '<option ' + (xhr_data.breakCase.breakcase_case_territorial == "公安部协查" ? "selected" : "") + '>公安部协查</option>';
+			str += '<option ' + (xhr_data.breakcase_case_territorial== "本地" ? "selected" : "") + '>本地</option>';
+			str += '<option ' + (xhr_data.breakcase_case_territorial == "外地" ? "selected" : "") + '>外地</option>';
+			str += '<option ' + (xhr_data.breakcase_case_territorial == "公安部协查" ? "selected" : "") + '>公安部协查</option>';
 			str += '</select></td>';
-			str += '<td>身份证号码</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_suspecter_identity" type="text" value="' + xhr_data.breakCase.breakcase_suspecter_identity + '"  /></td>';
+			str += '<td>身份证号码</td><td><input style="witdh: 70%;" class="form-control" name="breakCase.breakcase_suspecter_identity" id="breakcase_suspecter_identity" type="text" onblur="BreakCaseListGetBirth()" maxlength="18" value="' + xhr_data.breakcase_suspecter_identity + '"  /></td>';
 			str += '</tr>';
 			
 			
 			
 			
 			str += '<tr>';
-			str += '<td>破案依据</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_according" type="text" value="' + xhr_data.breakCase.breakcase_according + '"  /></td>';
-			str += '<td>出生日期</td><td><input style="witdh:70%;" class="form-control mydate" name="breakCase.breakcase_suspecter_birthday" type="text" value="' + xhr_data.breakCase.breakcase_suspecter_birthday + '"  /></td>';
+			str += '<td>破案依据</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_according" type="text" value="' + xhr_data.breakcase_according + '"  /></td>';
+			str += '<td>出生日期</td><td><input style="witdh:70%;" class="form-control mydate" name="breakCase.breakcase_suspecter_birthday" type="text" value="' + xhr_data.breakcase_suspecter_birthday + '"  /></td>';
 			str += '</tr>';
 			
 			
 			str += '<tr>';
 			str += '<td>是否抓获</td><td>';
 			str += '<select style="witdh:100%;" class="form-control" data-live-search="true" name="breakCase.breakcase_arrested">';
-			str += '<option ' + (xhr_data.breakCase.breakcase_arrested== "是" ? "selected" : "") + '>是</option>';
-			str += '<option ' + (xhr_data.breakCase.breakcase_arrested == "否" ? "selected" : "") + '>否</option>';
+			str += '<option ' + (xhr_data.breakcase_arrested== "是" ? "selected" : "") + '>是</option>';
+			str += '<option ' + (xhr_data.breakcase_arrested == "否" ? "selected" : "") + '>否</option>';
 			str += '</select></td>';
-			str += '<td>户籍地</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_suspecter_domicile" type="text" value="' + xhr_data.breakCase.breakcase_suspecter_domicile + '"  /></td>';
+			str += '<td>户籍地</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_suspecter_domicile" type="text" value="' + xhr_data.breakcase_suspecter_domicile + '"  /></td>';
 			str += '</tr>';
 			
 			
 			str += '<tr>';
-			str += '<td>抓获单位</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_arrested_department" type="text" value="' + xhr_data.breakCase.breakcase_arrested_department + '"  /></td>';
-			str += '<td>现住址</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_present_address" type="text" value="' + xhr_data.breakCase.breakcase_present_address + '"  /></td>';
+			str += '<td>抓获单位</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_arrested_department" type="text" value="' + xhr_data.breakcase_arrested_department + '"  /></td>';
+			str += '<td>现住址</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_present_address" type="text" value="' + xhr_data.breakcase_present_address + '"  /></td>';
 			str += '</tr>';
 			
 			
 			
 			str += '<tr>';
-			str += '<td>带破案件</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_waitbreakcase" type="text" value="' + xhr_data.breakCase.breakcase_waitbreakcase + '"  /></td>';
-			str += '<td>联系电话</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_phone" type="text" value="' + xhr_data.breakCase.breakcase_phone + '"  /></td>';
+			str += '<td>带破案件</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_waitbreakcase" type="text" value="' + xhr_data.breakcase_waitbreakcase + '"  /></td>';
+			str += '<td>联系电话</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_phone" type="text" value="' + xhr_data.breakcase_phone + '"  /></td>';
 			str += '</tr>';
 			
 			
 			str += '<tr>';
-			str += '<td>简要案情</td><td  colspan="3"><textarea style="witdh:70%;" class="form-control" name="briefDetails.briefdetails_details">' + xhr_data.briefDetails.briefdetails_details+ '</textarea>';
+			str += '<td>简要案情</td><td colspan="3"><textarea  style="witdh:70%;display:none;" class="form-control" name="briefDetails.xsjsglxt_briefdetails_id"  >' + xhr_data.breakcase_case_note+ '</textarea>';
+			str +='<textarea style="witdh:70%;" class="form-control" name="briefDetails.briefdetails_details"></textarea>';
 			str += '</td>';
 			str += '</tr>';
 			
 			str += '<tr>';
-			str += '<td>现场指纹编号</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_locale_fingerprint_number" type="text" value="' + xhr_data.breakCase.breakcase_contrast_locale_fingerprint_number + '"  /></td>';
-			str += '<td>按印指纹编号</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_press_fingerprint_number" type="text" value="' + xhr_data.breakCase.breakcase_contrast_press_fingerprint_number + '"  /></td>';
+			str += '<td>现场指纹编号</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_locale_fingerprint_number" type="text" value="' + xhr_data.breakcase_contrast_locale_fingerprint_number + '"  /></td>';
+			str += '<td>按印指纹编号</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_press_fingerprint_number" type="text" value="' + xhr_data.breakcase_contrast_press_fingerprint_number + '"  /></td>';
 			str += '</tr>';
 			
 			
 			str += '<tr>';
-			str += '<td>比对时间</td><td><input style="witdh:70%;" class="form-control mydate" name="breakCase.breakcase_contrast_time" type="text" value="' + xhr_data.breakCase.breakcase_contrast_time + '"  /></td>';
+			str += '<td>比对时间</td><td><input style="witdh:70%;" class="form-control mydate" name="breakCase.breakcase_contrast_time" type="text" value="' + xhr_data.breakcase_contrast_time + '"  /></td>';
 			str += '<td>比对方式</td><td>';
 			str += '<select style="witdh:100%;" class="form-control" data-live-search="true" name="breakCase.breakcase_contrast_way">';
-			str += '<option ' + (xhr_data.breakCase.breakcase_contrast_way== "正查" ? "selected" : "") + '>正查</option>';
-			str += '<option ' + (xhr_data.breakCase.breakcase_contrast_way == "倒查" ? "selected" : "") + '>倒查</option>';
-			str += '<option ' + (xhr_data.breakCase.breakcase_contrast_way == "人工" ? "selected" : "") + '>人工</option>';
+			str += '<option ' + (xhr_data.breakcase_contrast_way== "正查" ? "selected" : "") + '>正查</option>';
+			str += '<option ' + (xhr_data.breakcase_contrast_way == "倒查" ? "selected" : "") + '>倒查</option>';
+			str += '<option ' + (xhr_data.breakcase_contrast_way == "人工" ? "selected" : "") + '>人工</option>';
 			str += '</select></td>';
 			str += '</tr>';
 			
 			
 			
 			str += '<tr>';
-			str += '<td>比对单位</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_department" type="text" value="' + xhr_data.breakCase.breakcase_contrast_department + '"  /></td>';
-			str += '<td>比对人</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_contraster" type="text" value="' + xhr_data.breakCase.breakcase_contrast_contraster + '"  /></td>';
+			str += '<td>比对单位</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_department" type="text" value="' + xhr_data.breakcase_contrast_department + '"  /></td>';
+			str += '<td>比对人</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_contraster" type="text" value="' + xhr_data.breakcase_contrast_contraster + '"  /></td>';
 			str += '</tr>';
 			
 			str += '<tr>';
-			str += '<td>按印部门</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_press_department" type="text" value="' + xhr_data.breakCase.breakcase_contrast_press_department + '"  /></td>';
-			str += '<td>提取部门</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_extract_department" type="text" value="' + xhr_data.breakCase.breakcase_contrast_extract_department + '"  /></td>';
+			str += '<td>按印部门</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_press_department" type="text" value="' + xhr_data.breakcase_contrast_press_department + '"  /></td>';
+			str += '<td>提取部门</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_extract_department" type="text" value="' + xhr_data.breakcase_contrast_extract_department + '"  /></td>';
 			str += '</tr>';
 			
 			str += '<tr>';
-			str += '<td>按印人</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_presser" type="text" value="' + xhr_data.breakCase.breakcase_contrast_presser + '"  /></td>';
-			str += '<td>提取人</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_extracter" type="text" value="' + xhr_data.breakCase.breakcase_contrast_extracter + '"  /></td>';
+			str += '<td>按印人</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_presser" type="text" value="' + xhr_data.breakcase_contrast_presser + '"  /></td>';
+			str += '<td>提取人</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_extracter" type="text" value="' + xhr_data.breakcase_contrast_extracter + '"  /></td>';
 			str += '</tr>';
 			
 			str += '<tr>';
-			str += '<td>按印时间</td><td><input style="witdh:70%;" class="form-control mydate" name="breakCase.breakcase_contrast_press_time" type="text" value="' + xhr_data.breakCase.breakcase_contrast_press_time + '"  /></td>';
-			str += '<td>指位</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_fingerposition" type="text" value="' + xhr_data.breakCase.breakcase_contrast_fingerposition + '"  /></td>';
+			str += '<td>按印时间</td><td><input style="witdh:70%;" class="form-control mydate" name="breakCase.breakcase_contrast_press_time" type="text" value="' + xhr_data.breakcase_contrast_press_time + '"  /></td>';
+			str += '<td>指位</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_fingerposition" type="text" value="' + xhr_data.breakcase_contrast_fingerposition + '"  /></td>';
 			str += '</tr>';
 			
 			str += '<tr>';
-			str += '<td>复核人</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_reviewer" type="text" value="' + xhr_data.breakCase.breakcase_contrast_reviewer + '"  /></td>';
-			str += '<td>抓获时间</td><td><input style="witdh:70%;" class="form-control mydate" name="breakCase.breakcase_arrested_time" type="text" value="' + xhr_data.breakCase.breakcase_arrested_time + '"  /></td>';
+			str += '<td>复核人</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_contrast_reviewer" type="text" value="' + xhr_data.breakcase_contrast_reviewer + '"  /></td>';
+			str += '<td>抓获时间</td><td><input style="witdh:70%;" class="form-control mydate" name="breakCase.breakcase_arrested_time" type="text" value="' + xhr_data.breakcase_arrested_time + '"  /></td>';
 			str += '</tr>';
 			
 			str += '<tr>';
-			str += '<td>备注</td><td  colspan="3"><textarea style="witdh:70%;" class="form-control" name="breakCase.breakcase_remark">' + xhr_data.breakecase.breakecase_remarks + '</textarea>';
+			str += '<td>备注</td><td  colspan="3"><textarea style="witdh:70%;" class="form-control" name="breakCase.breakcase_remark">' + xhr_data.breakcase_remarks + '</textarea>';
 			//添加存丢失物的id隐藏域(上一兄元素为备注文本域)
-			str += '<input name="breakecase.xsjsglxt_breakecase_id" type="hidden" value="' + xhr_data.breakCase.breakcase_remark + '" />';
+			str += '<input name="breakCase.xsjsglxt_breakcase_id" type="hidden" value="' + xhr_data.xsjsglxt_breakcase_id + '" />';
 			str += '</td>';
 			str += '</tr></tbody></table>';
-			
 			
 			//str加载到模态框中
 			$('#breakCase_modification .panel-body').html(str);
 			//模态框显示
+			
 			$('#breakCase_modification').modal('show');
+			
 			$.post('/xsjsglxt/case/Case_AllCase', function(Case_data) {
 				//所有案件循环
 				var option = '';
@@ -280,6 +305,7 @@ var modifi_delete = function() {
 				$('.load_remind').remove();
 			}, 'json');
 			//确认按钮添加事件
+			
 			$('.breakCase_operation').click(breakecase_modification);
 		}, 'json');
 
@@ -374,7 +400,6 @@ var breakecase_modification = function() {
 		}
 	});
 }
-
 
 
 

@@ -254,7 +254,7 @@
 										<td colspan="3"><select style="witdh: 100%;"
 											class="form-control selectpicker" data-live-search="true"
 											name="breakCase.breakcase_case"
-											title="Choose one of the following..."></select></td>
+											title="请选择"></select></td>
 									</tr>
 									<tr>
 										<td>案件类型</td>
@@ -286,7 +286,7 @@
 												<option>公安部协查</option></select></td>
 										<td>身份证号码</td>
 										<td><input style="witdh: 70%;" class="form-control"
-											name="breakCase.breakcase_suspecter_identity" type="text"></td>
+											name="breakCase.breakcase_suspecter_identity" id="breakcase_suspecter_identity" type="text" onblur="BreakCaseListGetBirth()" maxlength="18"></td>
 
 									</tr>
 									<tr>
@@ -297,7 +297,7 @@
 										<td>出生日期</td>
 										<td><input style="witdh: 70%;"
 											class="form-control mydate"
-											name="breakCase.breakcase_suspecter_birthday" type="text"></td>
+											name="breakCase.breakcase_suspecter_birthday" id="breakcase_suspecter_birthday" type="text"></td>
 
 
 

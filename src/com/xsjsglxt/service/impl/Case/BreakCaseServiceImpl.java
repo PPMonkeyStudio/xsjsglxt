@@ -94,11 +94,11 @@ System.out.println(breakCase.toString());
 		}
 		// 符合条件的记录
 		listBreakcase = breakCaseDao.getListBreakecaseInformatioByPage(page_list_BreakecaseInformation);
-		for (xsjsglxt_breakcase breakecase : listBreakcase) {
-			case1=breakCaseDao.get_case_ByBreakecaseId(breakecase);
+		for (xsjsglxt_breakcase breakcase : listBreakcase) {
+			case1=breakCaseDao.get_case_ByBreakecaseId(breakcase);
 			sence = breakCaseDao.get_sence_Byxsjsglxt_case_id(case1);// 6
 			sence.setSnece_inquestId(sence.getSnece_inquestId().substring(10));
-			breakecaseInformationDTO = new BreakecaseInformationDTO(breakecase,sence,case1);
+			breakecaseInformationDTO = new BreakecaseInformationDTO(breakcase,sence,case1);
 			BreakecaseInformationDTOList.add(breakecaseInformationDTO);
 		}
 		page_list_BreakecaseInformation.setBreakecaseInformationDTOList(BreakecaseInformationDTOList);
@@ -107,7 +107,9 @@ System.out.println(breakCase.toString());
 
 	@Override
 	public xsjsglxt_breakcase getBreakCaseInfo(xsjsglxt_breakcase breakCase) {
-		return breakCaseDao.getBreakCaseById(breakCase.getXsjsglxt_breakcase_id());
+		String xsjsglxt_breakcase_id = breakCase.getXsjsglxt_breakcase_id();
+		xsjsglxt_breakcase bc = breakCaseDao.getBreakCaseById(xsjsglxt_breakcase_id);
+		return bc;
 	}
 
 }

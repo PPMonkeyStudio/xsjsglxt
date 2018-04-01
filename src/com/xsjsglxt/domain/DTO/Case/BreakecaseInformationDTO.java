@@ -6,7 +6,7 @@ import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
 
 public class BreakecaseInformationDTO {
-private xsjsglxt_breakcase breakcase;//破案表
+private xsjsglxt_breakcase breakCase;//破案表
 private xsjsglxt_breakecase breakecase;//旧破案表
 private xsjsglxt_snece sence;//现场勘验表
 private xsjsglxt_case case1;//案件表
@@ -22,8 +22,12 @@ public xsjsglxt_case getCase1() {
 public void setCase1(xsjsglxt_case case1) {
 	this.case1 = case1;
 }
-public BreakecaseInformationDTO(xsjsglxt_breakcase breakcase, xsjsglxt_snece sence, xsjsglxt_case case1) {
-	this.breakcase = breakcase;
+@Override
+public String toString() {
+	return "BreakecaseInformationDTO [breakCase=" + breakCase + ", sence=" + sence + ", case1=" + case1 + "]";
+}
+public BreakecaseInformationDTO(xsjsglxt_breakcase breakCase, xsjsglxt_snece sence, xsjsglxt_case case1) {
+	this.breakCase = breakCase;
 	this.sence = sence;
 	this.case1 = case1;
 }
@@ -32,15 +36,17 @@ public BreakecaseInformationDTO(xsjsglxt_breakecase breakecase, xsjsglxt_snece s
 	this.sence = sence2;
 	this.case1 = case12;
 }
-public xsjsglxt_breakcase getBreakcase() {
-	return breakcase;
+public xsjsglxt_breakcase getBreakCase() {
+	return breakCase;
 }
-public void setBreakcase(xsjsglxt_breakcase breakcase) {
-	this.breakcase = breakcase;
+public void setBreakCase(xsjsglxt_breakcase breakCase) {
+	this.breakCase = breakCase;
 }
-@Override
-public String toString() {
-	return "BreakecaseInformationDTO [breakcase=" + breakcase + ", sence=" + sence + ", case1=" + case1 + "]";
+public xsjsglxt_breakecase getBreakecase() {
+	return breakecase;
+}
+public void setBreakecase(xsjsglxt_breakecase breakecase) {
+	this.breakecase = breakecase;
 }
 
 }

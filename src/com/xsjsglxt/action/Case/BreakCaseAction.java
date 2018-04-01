@@ -86,9 +86,9 @@ public class BreakCaseAction extends ActionSupport implements ServletResponseAwa
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
-		xsjsglxt_breakcase breakCaseInfo = breakCaseService
-																.getBreakCaseInfo(breakCase);
+		xsjsglxt_breakcase breakCaseInfo = breakCaseService.getBreakCaseInfo(breakCase);
 		http_response.setContentType("text/html;charset=utf-8");
+System.out.println("breakCaseInfo:::::"+breakCaseInfo.toString());
 		http_response.getWriter().write(gson.toJson(breakCaseInfo));
 	}
 
