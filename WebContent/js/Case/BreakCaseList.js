@@ -79,6 +79,10 @@ $(function() {
 //添加刑事破案
 	$('.input_sure').click(function() {
 		$.post('/xsjsglxt/case/BreakCase_saveBreakecase', $('#breakCase_input form').serialize(), function(xhr) {
+			if($("#breakcase_case").val()==""){
+				toastr.error('请选择所属案件!');
+				return;
+			}
 			if (xhr == 'success') {
 				toastr.success('添加成功!');
 				get_ListBreakecaseInformationByPageAndSearch(query_data);
@@ -158,7 +162,7 @@ var modifi_delete = function() {
 			var str = '';
 			str += '<table align="center" class="table table-hover table-condensed"><tbody><tr>';
 			str += '<td>所属案件<i class="fa fa-spinner fa-pulse fa-fw load_remind"></td><td colspan="3">';
-			str += '<select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="breakCase.breakcase_case">';
+			str += '<select  id="breakcase_case" style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="breakCase.breakcase_case">';
 			str += '</select></td>';
 			str += '</tr>';
 			
@@ -331,6 +335,10 @@ var modifi_delete = function() {
 							contentType : false,
 							dataType : 'text',
 							success : function(data) {
+								if($("#breakcase_case").val()==""){
+									toastr.error('请选择所属案件!');
+									return;
+								}
 								if (data == "success") {
 									toastr.success("删除成功！");
 									//获取对应option中的value值

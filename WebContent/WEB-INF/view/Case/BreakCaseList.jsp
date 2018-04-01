@@ -249,11 +249,11 @@
 						<div style="width: 80%; margin: auto;" class="panel-body">
 							<table class="table table-hover table-condensed" align="center">
 								<tbody>
-									<tr id="breakcase_case">
+									<tr>
 										<td>所属案件<i class="fa fa-spinner fa-pulse load_remind"></td>
 										<td colspan="3"><select style="witdh: 100%;"
 											class="form-control selectpicker" data-live-search="true"
-											name="breakCase.breakcase_case"
+											name="breakCase.breakcase_case"  id="breakcase_case"
 											title="请选择"></select></td>
 									</tr>
 									<tr>
@@ -270,7 +270,7 @@
 									<tr>
 										<td>案件级别</td>
 										<td><select style="witdh: 100%;" class="form-control"
-											data-live-search="true" name="breakCase.breakcase_case_level"><option>A级</option>
+											data-live-search="true" name="breakCase.breakcase_case_level"><option checked="checked">A级</option>
 												<option>B级</option>
 												<option>C级</option></select></td>
 
