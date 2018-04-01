@@ -90,7 +90,10 @@ function show_studyAjax(staff_id) {
 			console.log("staff_study" + staff_study);
 			staff_study = JSON.parse(staff_study);
 			console.log(staff_study.length);
-
+			var table_elements=$("#studyExperience_table tbody");
+			for(var i=1;i<table_elements.length;i++){
+				table_elements.removeChild(table_elements.element[i]);
+			}
 			var str1 = '';
 			for (var len = 0; len < staff_study.length; len++) {
 				var xsjsglxt_staffStudent_id = staff_study[len].xsjsglxt_staffStudent_id;

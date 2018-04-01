@@ -57,7 +57,7 @@
 
 							<td><label>照片</label></td>
 							<td rowspan="4"><a class="photo-show" id="photo-show"></a> <a
-								class="a-upload" onclick="relivePhoto_click()">上传照片</a> <input
+								class="a-upload" onclick="relivePhoto_click()">修改照片</a> <input
 								type="file" class="photo-file" name="staff_image"
 								multiple="multiple"
 								accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" />

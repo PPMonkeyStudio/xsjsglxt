@@ -1,30 +1,4 @@
-var newStudyExp = {
-//	"study_startTime" : "",
-//	"study_endTime" : "",
-//	"study_indication" : "",
-//	"study_supperment" : "",
-//	"staffWork_address" : "",
-//	"staffWork_duty" : "",
-//	"staffWork_startTime" : "",
-//	"staffWork_stopTime" : "",
-//	"staffWork_remarks" : "",
-//	"staffFamily_contactsRelationship":"",
-//	"staffFamily_name":"",
-//	"staffFamily_IDcard":"",
-//	"staffFamily_birthday":"",
-//	"staffFamily_tel":"",
-//	"staffFamily_WeiXin":"",
-//	"staffFamily_workSpace":"",
-//	"staffFamily_duty":"",
-//	"staffFamily_remarks":"",
-//	"staffMove_inTime":"",
-//	"staffMove_outTime":"",
-//	"staffMove_guard":"",
-//	"staffMove_remarks":"",
-//    "staffReward_situation":"",
-//    "staffReward_Time":"",
-//    "staffReward_remarks":"",
-    
+var newStudyExp = { 
 };
 // newStaff新建人员
 function staff_change() {
@@ -49,7 +23,7 @@ function staff_change() {
 							return false;
 						}
 					} 
-					//判断八个长表格表单是否为空
+					/*//判断八个长表格表单是否为空
 					var staff_details = document.querySeletorAll(".long_tableBox");
 					for (var i = 0; i < staff_details.length; i++) {
 						var long_formElement = staff_details[i];
@@ -61,8 +35,9 @@ function staff_change() {
 								return false;
 							}
 						}
-					}
+					}*/
 					loadstaffDetail_staff_change(url);
+					
 				}
 			}
 		}
@@ -93,6 +68,20 @@ function loadstaffDetail_staff_change(url) {
 			against_ajax(id);
 			punishment_ajax(id);
 			furlough_ajax(id);
+
+			$.confirm({
+				title : '新建成功!',
+				content : '新建成功!',
+				buttons : {
+
+					返回列表 : function() {
+						window.location.href='http://localhost:8080/xsjsglxt/team/Staff_page_staffList';
+					},
+					再次新建 :function() {
+						window.location.href='http://localhost:8080/xsjsglxt/team/Staff_page_newStaff';
+					}
+				}
+			});
 		}
 	};
 	xmlhttp.open("post", url, true);
