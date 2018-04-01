@@ -170,6 +170,7 @@ public class BreakCaseDaoImpl implements BreakCaseDao {
 		Session session = getSession();
 		List<xsjsglxt_breakcase> listBreakecaseInformationByPage = new ArrayList<xsjsglxt_breakcase>();
 		String hql = "select breakcase from xsjsglxt_case case1,xsjsglxt_snece sence,xsjsglxt_breakcase breakcase  where 1=1 and ((sence.snece_case=case1.xsjsglxt_case_id) and (breakcase.breakcase_case=case1.xsjsglxt_case_id))";
+		
 		String startTime = "0000-00-00";
 		String stopTime = "9999-99-99";
 		// 1

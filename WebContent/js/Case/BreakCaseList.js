@@ -401,12 +401,12 @@ var breakecase_modification = function() {
 	});
 }
 
-$("#breakcase_type").change(function (){
+/*$("#breakcase_type").change(function (){
 	if($("#breakcase_type").val()=="已有案件"){
 		$("#breakcase_case").css("display","block");
 	}
 	});
-
+*/
 
 //首页
 function firstPage() {
