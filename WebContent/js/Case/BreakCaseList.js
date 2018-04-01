@@ -99,7 +99,7 @@ function get_ListBreakecaseInformationByPageAndSearch(data) {
 			str += '<tr>';
 			str += '<td>' + (len + 1) + '</td>';//序号
 			//所属案件
-			str += '<td><a href="/xsjsglxt/case/Case_page_CaseDetails?id=' + data_list[len].case1.xsjsglxt_case_id + '">' + data_list[len].sence.snece_inquestId + '</a></td>';
+			str += '<td><a href="/xsjsglxt/case/Case_page_CaseDetails?id=' + data_list[len].case1.xsjsglxt_case_id + '">' + data_list[len].case1.case_name + '</a></td>';
 			str += '<td>' + data_list[len].breakCase.breakcase_type + '</td>';//案件类型
 			str += '<td>' + data_list[len].breakCase.breakcase_according + '</td>';//破案依据
 			str += '<td>' + data_list[len].breakCase.breakcase_arrested + '</td>';//是否抓获
@@ -175,14 +175,14 @@ var modifi_delete = function() {
 
 			str += '<tr>';
 			str += '<td>案件级别</td><td>';
-			str += '<select style="witdh:100%;" class="form-control" data-live-search="true" name="breakCase.breakcase_case_level">';
-			str += '<option ' + (xhr_data.breakcase_case_level == "A级" ? "selected" : "") + '>A级</option>';
+			str += '<select style="witdh:100%;" class="form-control" data-live-search="true" name="breakCase.breakcase_case_level" >';
+			str += '<option  ' + (xhr_data.breakcase_case_level == "A级" ? "selected" : "" ) + ' >A级</option>';
 			str += '<option ' + (xhr_data.breakcase_case_level == "B级" ? "selected" : "") + '>B级</option>';
 			str += '<option ' + (xhr_data.breakcase_case_level == "C级" ? "selected" : "") + '>C级</option>';
 			str += '</select></td>';
 			str += '<td>性别</td><td>';
 			str += '<select style="witdh:100%;" class="form-control" data-live-search="true" name="breakCase.breakcase_suspecter_sex">';
-			str += '<option ' + (xhr_data.breakcase_suspecter_sex == "男" ? "selected" : "") + '>男</option>';
+			str += '<option ' + (xhr_data.breakcase_suspecter_sex == "男" ? "selected" : "" ) + '>男</option>';
 			str += '<option ' + (xhr_data.breakcase_suspecter_sex == "女" ? "selected" : "") + '>女</option>';
 			str += '</select></td>';
 			
