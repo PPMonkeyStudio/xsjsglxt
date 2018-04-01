@@ -451,7 +451,7 @@ function lastPage() {
 	}
 	query_data['page_list_senceInformation.pageIndex'] = page_infomantion.totalPages;
 	get_ListBreakecaseInformationByPageAndSearch(query_data);
-}
+}   
 //跳转到n页
 function toPage(object) {
 	query_data['page_list_senceInformation.pageIndex'] = $(object).val();
