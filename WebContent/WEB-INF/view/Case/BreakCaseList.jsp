@@ -36,6 +36,10 @@
 .breakcase_table_info tbody tr {
 	text-align: center;
 }
+tfoot tr td a:hover{
+cursor:pointer;
+
+}
 </style>
 </head>
 
@@ -69,8 +73,8 @@
 					<div class="panel">
 						<div class="panel-heading">
 							<h3 class="panel-title">破案列表</h3>
-							<p class="text-primary query_prompting_info">nothing to
-								query.</p>
+							<!-- <p class="text-primary query_prompting_info">nothing to
+								query.</p> -->
 						</div>
 						<div class="panel-body">
 							<table

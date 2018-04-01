@@ -335,10 +335,7 @@ var modifi_delete = function() {
 							contentType : false,
 							dataType : 'text',
 							success : function(data) {
-								if($("#breakcase_case").val()==""){
-									toastr.error('请选择所属案件!');
-									return;
-								}
+								
 								if (data == "success") {
 									toastr.success("删除成功！");
 									//获取对应option中的value值
@@ -430,6 +427,7 @@ function firstPage() {
 //上一页
 function prePage() {
 	if (page_infomantion.pageIndex - 1 <= 1) {
+
 		toastr.error('已经是第一页！');
 		return;
 	}
