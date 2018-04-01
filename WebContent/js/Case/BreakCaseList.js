@@ -163,11 +163,12 @@ var modifi_delete = function() {
 			str += '</tr>';
 			
 			str += '<tr>';
-			str += '<td>案件类型</td><td>';
+			str += '<td>案件类型</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_type" type="text" value="' + xhr_data.breakCase.breakcase_type + '"  /></td>';
+			/*str += '<td>案件类型</td><td>';
 			str += '<select style="witdh:100%;" class="form-control" data-live-search="true" name="breakCase.breakcase_type">';
 			str += '<option ' + (xhr_data.breakcase_type == "新添案件" ? "selected" : "") + '>新添案件</option>';
 			str += '<option ' + (xhr_data.breakcase_type == "已有案件" ? "selected" : "") + '>已有案件</option>';
-			str += '</select></td>';
+			str += '</select></td>';*/
 			str += '<td>嫌疑人姓名</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_suspecter_name" type="text" value="' + xhr_data.breakcase_suspecter_name + '"  /></td>';
 			str += '</tr>';
 			
@@ -295,7 +296,7 @@ var modifi_delete = function() {
 				var option = '';
 				for (var len = 0; len < Case_data.length; len++) {
 					option += '<option ';
-					if (xhr_data.case1.case_name == Case_data[len].case_name) {
+					if (xhr_data.breakcase_case == Case_data[len].case_name) {
 						option += 'selected';
 					}
 					option += ' value="' + Case_data[len].xsjsglxt_case_id + '">' + Case_data[len].case_name + '</option>';
@@ -305,8 +306,7 @@ var modifi_delete = function() {
 				$('.load_remind').remove();
 			}, 'json');
 			//确认按钮添加事件
-			
-			$('.breakCase_operation').click(breakecase_modification);
+			$('.breakCase_operation').unbind().click(breakecase_modification);
 		}, 'json');
 
 
@@ -403,7 +403,9 @@ var breakecase_modification = function() {
 
 /*$("#breakcase_type").change(function (){
 	if($("#breakcase_type").val()=="已有案件"){
-		$("#breakcase_case").css("display","block");
+		$("#breakcase_case").prop('disabled', false).selectpicker('refresh');
+	}else{
+		$("#breakcase_case").prop('disabled', true).selectpicker('refresh');
 	}
 	});
 */
