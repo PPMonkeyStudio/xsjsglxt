@@ -68,12 +68,12 @@ System.out.println(breakCase.toString());
 		//briefDetails.setBriefdetails_details_modified(TeamUtil.getStringSecond());
 		//breakCaseDao.updateBriefDetails(briefDetails);
 
-		String breakcase_id = breakCase.getXsjsglxt_breakcase_id();
-		System.out.println("78783578578几个"+breakcase_id);
-		xsjsglxt_breakcase old_breakCase = breakCaseDao.getBreakCaseById(breakcase_id);
+	//	String breakcase_id = breakCase.getXsjsglxt_breakcase_id();
+		//System.out.println("78783578578几个"+breakcase_id);
+		//xsjsglxt_breakcase old_breakCase = breakCaseDao.getBreakCaseById(breakcase_id);
 	
 		//breakCase.setBreakcase_gmt_create(old_breakCase.getBreakcase_gmt_create());
-		breakCase.setBreakcase_case(old_breakCase.getBreakcase_case());
+		//breakCase.setBreakcase_case(old_breakCase.getBreakcase_case());
 		breakCase.setBreakcase_gmt_create(TeamUtil.getStringSecond());
 		//breakCase.setBreakcase_case_note(briefDetails.getXsjsglxt_briefdetails_id());
 		breakCase.setBreakcase_gmt_modified(TeamUtil.getStringSecond());
