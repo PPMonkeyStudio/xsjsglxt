@@ -249,12 +249,12 @@
 						<div style="width: 80%; margin: auto;" class="panel-body">
 							<table class="table table-hover table-condensed" align="center">
 								<tbody>
-									<tr>
+									<tr id="breakcase_case">
 										<td>所属案件<i class="fa fa-spinner fa-pulse load_remind"></td>
-										<td colspan="3"><select  id="breakcase_case" style="witdh: 100%;"
+										<td colspan="3"><select style="witdh: 100%;"
 											class="form-control selectpicker" data-live-search="true"
 											name="breakCase.breakcase_case"
-											title="请选择" ></select></td>
+											title="请选择"></select></td>
 									</tr>
 									<tr>
 										<td>案件类型</td>
