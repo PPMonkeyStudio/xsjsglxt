@@ -335,7 +335,10 @@ var modifi_delete = function() {
 							contentType : false,
 							dataType : 'text',
 							success : function(data) {
-								
+								if($("#breakcase_case").val()==""){
+									toastr.error('请选择所属案件!');
+									return;
+								}
 								if (data == "success") {
 									toastr.success("删除成功！");
 									//获取对应option中的value值
@@ -427,7 +430,6 @@ function firstPage() {
 //上一页
 function prePage() {
 	if (page_infomantion.pageIndex - 1 <= 1) {
-
 		toastr.error('已经是第一页！');
 		return;
 	}
@@ -445,10 +447,7 @@ function nextPage() {
 }
 //尾页
 function lastPage() {
-	console.log("page_infomantion.pageIndex ："+page_infomantion.pageIndex );
-	console.log("page_infomantion.totalPages:"+page_infomantion.totalPages);
 	if (page_infomantion.pageIndex == page_infomantion.totalPages) {
-		
 		toastr.error('已经是最后一页！');
 		return;
 	}
