@@ -18,21 +18,21 @@ public class BreakCaseServiceImpl implements BreakCaseService {
 
 	@Override
 	public void saveBreakCaseInfo(xsjsglxt_breakcase breakCase, xsjsglxt_briefdetails briefDetails) {
-		//存入简要案情表
-		String briefdetails_id = TeamUtil.getUuid();
-		xsjsglxt_briefdetails details = new xsjsglxt_briefdetails();
-		details.setXsjsglxt_briefdetails_id(briefdetails_id);
-		details.setBriefdetails_case(breakCase.getBreakcase_case());//所属案件id
-		details.setBriefdetails_details(briefDetails.getBriefdetails_details());//简要案情内容
-		details.setBriefdetails_gmt_create(TeamUtil.getStringSecond());
-		details.setBriefdetails_details_modified(TeamUtil.getStringSecond());
-System.out.println(details.toString());
-		breakCaseDao.saveBriefDetails(details);
+//		//存入简要案情表
+//		String briefdetails_id = TeamUtil.getUuid();
+//		xsjsglxt_briefdetails details = new xsjsglxt_briefdetails();
+//		details.setXsjsglxt_briefdetails_id(briefdetails_id);
+//		details.setBriefdetails_case(breakCase.getBreakcase_case());//所属案件id
+//		details.setBriefdetails_details(briefDetails.getBriefdetails_details());//简要案情内容
+//		details.setBriefdetails_gmt_create(TeamUtil.getStringSecond());
+//		details.setBriefdetails_details_modified(TeamUtil.getStringSecond());
+//System.out.println(details.toString());
+//		breakCaseDao.saveBriefDetails(details);
 		//存入破案表
 		breakCase.setXsjsglxt_breakcase_id(TeamUtil.getUuid());
-		breakCase.setBreakcase_case_note(briefdetails_id);//简要案情表id
+		//breakCase.setBreakcase_case_note(briefdetails_id);//简要案情表id
 		breakCase.setBreakcase_gmt_create(TeamUtil.getStringSecond());
-		breakCase.setBreakcase_gmt_modified(TeamUtil.getStringSecond());
+		breakCase.setBreakcase_gmt_modified(breakCase.getBreakcase_gmt_create());
 System.out.println(breakCase.toString());
 		breakCaseDao.saveBreakecase(breakCase);
 	}
@@ -59,16 +59,24 @@ System.out.println(breakCase.toString());
 
 	@Override
 	public void updateBreakCase(xsjsglxt_breakcase breakCase, xsjsglxt_briefdetails briefDetails) {
-		String case_note_id = breakCase.getBreakcase_case_note();//简要案情表id
-		xsjsglxt_briefdetails old_details = breakCaseDao.getBriedDetailsById(case_note_id);
-		briefDetails.setBriefdetails_gmt_create(old_details.getBriefdetails_gmt_create());
-		briefDetails.setBriefdetails_case(breakCase.getBreakcase_case());
-		briefDetails.setBriefdetails_details_modified(TeamUtil.getStringSecond());
-		breakCaseDao.updateBriefDetails(briefDetails);
+		System.out.println("进来了");
+		//String case_note_id = breakCase.getBreakcase_case_note();//简要案情表id
+		
+		//xsjsglxt_briefdetails old_details = breakCaseDao.getBriedDetailsById(case_note_id);
+//		briefDetails.setBriefdetails_gmt_create(old_details.getBriefdetails_gmt_create());
+//		briefDetails.setBriefdetails_case(breakCase.getBreakcase_case());
+		//briefDetails.setBriefdetails_details_modified(TeamUtil.getStringSecond());
+		//breakCaseDao.updateBriefDetails(briefDetails);
 
-		String breakcase_id = breakCase.getXsjsglxt_breakcase_id();
-		xsjsglxt_breakcase old_breakCase = breakCaseDao.getBreakCaseById(breakcase_id);
-		breakCase.setBreakcase_gmt_create(old_breakCase.getBreakcase_gmt_create());
+	//	String breakcase_id = breakCase.getXsjsglxt_breakcase_id();
+		//System.out.println("78783578578几个"+breakcase_id);
+		//xsjsglxt_breakcase old_breakCase = breakCaseDao.getBreakCaseById(breakcase_id);
+	
+		//breakCase.setBreakcase_gmt_create(old_breakCase.getBreakcase_gmt_create());
+		//breakCase.setBreakcase_case(old_breakCase.getBreakcase_case());
+		breakCase.setBreakcase_gmt_create(TeamUtil.getStringSecond());
+		//breakCase.setBreakcase_case_note(briefDetails.getXsjsglxt_briefdetails_id());
+		breakCase.setBreakcase_gmt_modified(TeamUtil.getStringSecond());
 		breakCaseDao.updateBreakCase(breakCase);
 	}
 
