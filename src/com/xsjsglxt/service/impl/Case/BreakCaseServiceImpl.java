@@ -32,7 +32,7 @@ System.out.println(details.toString());
 		breakCase.setXsjsglxt_breakcase_id(TeamUtil.getUuid());
 		breakCase.setBreakcase_case_note(briefdetails_id);//简要案情表id
 		breakCase.setBreakcase_gmt_create(TeamUtil.getStringSecond());
-		breakCase.setBreakcase_gmt_modified(TeamUtil.getStringSecond());
+		breakCase.setBreakcase_gmt_modified(breakCase.getBreakcase_gmt_create());
 System.out.println(breakCase.toString());
 		breakCaseDao.saveBreakecase(breakCase);
 	}
@@ -59,16 +59,21 @@ System.out.println(breakCase.toString());
 
 	@Override
 	public void updateBreakCase(xsjsglxt_breakcase breakCase, xsjsglxt_briefdetails briefDetails) {
-		String case_note_id = breakCase.getBreakcase_case_note();//简要案情表id
-		xsjsglxt_briefdetails old_details = breakCaseDao.getBriedDetailsById(case_note_id);
-		briefDetails.setBriefdetails_gmt_create(old_details.getBriefdetails_gmt_create());
-		briefDetails.setBriefdetails_case(breakCase.getBreakcase_case());
+		System.out.println("进来了");
+		//String case_note_id = breakCase.getBreakcase_case_note();//简要案情表id
+		
+		//xsjsglxt_briefdetails old_details = breakCaseDao.getBriedDetailsById(case_note_id);
+//		briefDetails.setBriefdetails_gmt_create(old_details.getBriefdetails_gmt_create());
+//		briefDetails.setBriefdetails_case(breakCase.getBreakcase_case());
 		briefDetails.setBriefdetails_details_modified(TeamUtil.getStringSecond());
 		breakCaseDao.updateBriefDetails(briefDetails);
 
-		String breakcase_id = breakCase.getXsjsglxt_breakcase_id();
-		xsjsglxt_breakcase old_breakCase = breakCaseDao.getBreakCaseById(breakcase_id);
-		breakCase.setBreakcase_gmt_create(old_breakCase.getBreakcase_gmt_create());
+		//String breakcase_id = breakCase.getXsjsglxt_breakcase_id();
+		//xsjsglxt_breakcase old_breakCase = breakCaseDao.getBreakCaseById(breakcase_id);
+		//breakCase.setBreakcase_gmt_create(old_breakCase.getBreakcase_gmt_create());
+		breakCase.setBreakcase_gmt_create(TeamUtil.getStringSecond());
+		breakCase.setBreakcase_case_note(briefDetails.getXsjsglxt_briefdetails_id());
+		breakCase.setBreakcase_gmt_modified(TeamUtil.getStringSecond());
 		breakCaseDao.updateBreakCase(breakCase);
 	}
 
