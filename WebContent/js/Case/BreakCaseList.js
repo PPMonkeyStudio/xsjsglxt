@@ -162,6 +162,8 @@ var modifi_delete = function() {
 			str += '</select></td>';
 			str += '</tr>';
 			
+
+			
 			str += '<tr>';
 			/*str += '<td>案件类型</td><td>';
 			str += '<select style="witdh:100%;" class="form-control" data-live-search="true" name="breakCase.breakcase_type">';
