@@ -249,18 +249,20 @@
 						<div style="width: 80%; margin: auto;" class="panel-body">
 							<table class="table table-hover table-condensed" align="center">
 								<tbody>
-									<tr id="breakcase_case">
+									<tr>
 										<td>所属案件<i class="fa fa-spinner fa-pulse load_remind"></td>
-										<td colspan="3"><select style="witdh: 100%;"
+										<td colspan="3"><select  id="breakcase_case" style="witdh: 100%;"
 											class="form-control selectpicker" data-live-search="true"
 											name="breakCase.breakcase_case"
-											title="请选择"></select></td>
+											title="请选择" ></select></td>
 									</tr>
 									<tr>
 										<td>案件类型</td>
-										<td><select style="witdh: 100%;" class="form-control"
+										<td><input style="witdh: 70%;" class="form-control"
+											name="breakCase.breakcase_type" type="text"></td>
+										<%-- <td><select style="witdh: 100%;" class="form-control"
 											data-live-search="true" name="breakCase.breakcase_type" id="breakcase_type"><option>新添案件</option>
-												<option>已有案件</option></select></td>
+												<option>已有案件</option></select></td> --%>
 										<td>嫌疑人姓名</td>
 										<td><input style="witdh: 70%;" class="form-control"
 											name="breakCase.breakcase_suspecter_name" type="text"></td>
