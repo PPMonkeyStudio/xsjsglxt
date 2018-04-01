@@ -81,7 +81,7 @@ $(function() {
 		$.post('/xsjsglxt/case/BreakCase_saveBreakecase', $('#breakCase_input form').serialize(), function(xhr) {
 			if($("#breakcase_case").val()==""){
 				toastr.error('请选择所属案件!');
-				return;
+				return false;
 			}
 			if (xhr == 'success') {
 				toastr.success('添加成功!');
@@ -335,10 +335,7 @@ var modifi_delete = function() {
 							contentType : false,
 							dataType : 'text',
 							success : function(data) {
-								if($("#breakcase_case").val()==""){
-									toastr.error('请选择所属案件!');
-									return;
-								}
+								
 								if (data == "success") {
 									toastr.success("删除成功！");
 									//获取对应option中的value值
