@@ -445,13 +445,16 @@ function nextPage() {
 }
 //尾页
 function lastPage() {
+	console.log("page_infomantion.pageIndex ："+page_infomantion.pageIndex );
+	console.log("page_infomantion.totalPages:"+page_infomantion.totalPages);
 	if (page_infomantion.pageIndex == page_infomantion.totalPages) {
+		
 		toastr.error('已经是最后一页！');
 		return;
 	}
 	query_data['page_list_senceInformation.pageIndex'] = page_infomantion.totalPages;
 	get_ListBreakecaseInformationByPageAndSearch(query_data);
-}   
+}
 //跳转到n页
 function toPage(object) {
 	query_data['page_list_senceInformation.pageIndex'] = $(object).val();
