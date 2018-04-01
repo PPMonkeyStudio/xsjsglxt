@@ -300,7 +300,7 @@ var modifi_delete = function() {
 				var option = '';
 				for (var len = 0; len < Case_data.length; len++) {
 					option += '<option ';
-					if (xhr_data.breakcase_case == Case_data[len].case_name) {
+					if (xhr_data.breakcase_case == Case_data[len].xsjsglxt_case_id) {
 						option += 'selected';
 					}
 					option += ' value="' + Case_data[len].xsjsglxt_case_id + '">' + Case_data[len].case_name + '</option>';
