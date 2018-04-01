@@ -89,7 +89,7 @@ cursor:pointer;
 										<th>抓获单位</th>
 										<th>带破案件</th>
 										<th>嫌疑人姓名</th>
-										<th>现场指纹编号</th>
+										<!-- <th>现场指纹编号</th> -->
 										<th>操作</th>
 									</tr>
 								</thead>

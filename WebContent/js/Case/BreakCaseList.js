@@ -110,8 +110,8 @@ function get_ListBreakecaseInformationByPageAndSearch(data) {
 			str += '<td>' + data_list[len].breakCase.breakcase_arrested_department + '</td>';//抓获单位
 			str += '<td>' + data_list[len].breakCase.breakcase_waitbreakcase + '</td>';//带破案件
 			str += '<td>' + data_list[len].breakCase.breakcase_suspecter_name + '</td>';//嫌疑人姓名
-			str += '<td>' + data_list[len].breakCase.breakcase_contrast_locale_fingerprint_number + '</td>';//现场指纹编号
-			
+			/*str += '<td>' + data_list[len].breakCase.breakcase_contrast_locale_fingerprint_number + '</td>';//现场指纹编号
+*/			
 			str += '<td>'
 				+ '<input type="hidden" value="' + data_list[len].breakCase.xsjsglxt_breakcase_id + '" />'
 				+ '<button type="button" style="margin-left:6px;" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#breakCase_modification"><i class="fa fa-pencil-square-o" aria-hidden="true" ></i> 修改</button>'
