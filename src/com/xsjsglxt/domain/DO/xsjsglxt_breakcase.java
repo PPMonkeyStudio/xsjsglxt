@@ -64,6 +64,8 @@ public class xsjsglxt_breakcase {
 	private String breakcase_contrast_reviewer;
 	//联系电话
 	private String breakcase_phone;
+	
+	
 	public String getBreakcase_phone() {
 		return breakcase_phone;
 	}
@@ -319,13 +321,6 @@ public class xsjsglxt_breakcase {
 		this.breakcase_contrast_reviewer = breakcase_contrast_reviewer;
 	}
 
-	public String getBreakcase_remark() {
-		return breakcase_remark;
-	}
-
-	public void setBreakcase_remark(String breakcase_remark) {
-		this.breakcase_remark = breakcase_remark;
-	}
 
 	public String getBreakcase_gmt_create() {
 		return breakcase_gmt_create;
@@ -341,6 +336,14 @@ public class xsjsglxt_breakcase {
 
 	public void setBreakcase_gmt_modified(String breakcase_gmt_modified) {
 		this.breakcase_gmt_modified = breakcase_gmt_modified;
+	}
+
+	public String getBreakcase_remark() {
+		return breakcase_remark;
+	}
+
+	public void setBreakcase_remark(String breakcase_remark) {
+		this.breakcase_remark = breakcase_remark;
 	}
 
 	@Override
@@ -371,6 +374,7 @@ public class xsjsglxt_breakcase {
 				+ breakcase_gmt_modified + "]";
 	}
 
+	
 	
 	
 }
