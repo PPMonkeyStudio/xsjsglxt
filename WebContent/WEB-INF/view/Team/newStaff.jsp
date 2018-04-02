@@ -434,7 +434,7 @@
 									<td colspan="6"><textarea id="staffStudent_remarks"
 											class="staffStudent_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											rows="3" cols="66"></textarea>
+											rows="3" cols="62"></textarea>
 									</td>
 
 
@@ -501,7 +501,7 @@
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffWork_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
+											name="policeman.staff_contactsRemark" rows="3" cols="62"></textarea>
 									</td>
 
 
@@ -592,7 +592,7 @@
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											class="staffFamily_remarks"
-											name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
+											name="policeman.staff_contactsRemark" rows="3" cols="62"></textarea>
 									</td>
 
 
@@ -654,7 +654,7 @@
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffMove_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
+											name="policeman.staff_contactsRemark" rows="3" cols="62"></textarea>
 									</td>
 
 
@@ -709,7 +709,7 @@
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffReward_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
+											name="policeman.staff_contactsRemark" rows="3" cols="62"></textarea>
 									</td>
 
 
@@ -765,7 +765,7 @@
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffPrinciple_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
+											name="policeman.staff_contactsRemark" rows="3" cols="62"></textarea>
 									</td>
 
 
@@ -821,7 +821,7 @@
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffPunishment_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
+											name="policeman.staff_contactsRemark" rows="3" cols="62"></textarea>
 									</td>
 
 
@@ -892,7 +892,7 @@
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffFurlough_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											name="policeman.staff_contactsRemark" rows="3" cols="66"></textarea>
+											name="policeman.staff_contactsRemark" rows="3" cols="62"></textarea>
 									</td>
 
 

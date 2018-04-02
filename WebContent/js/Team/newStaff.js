@@ -1,30 +1,4 @@
-var newStudyExp = {
-//	"study_startTime" : "",
-//	"study_endTime" : "",
-//	"study_indication" : "",
-//	"study_supperment" : "",
-//	"staffWork_address" : "",
-//	"staffWork_duty" : "",
-//	"staffWork_startTime" : "",
-//	"staffWork_stopTime" : "",
-//	"staffWork_remarks" : "",
-//	"staffFamily_contactsRelationship":"",
-//	"staffFamily_name":"",
-//	"staffFamily_IDcard":"",
-//	"staffFamily_birthday":"",
-//	"staffFamily_tel":"",
-//	"staffFamily_WeiXin":"",
-//	"staffFamily_workSpace":"",
-//	"staffFamily_duty":"",
-//	"staffFamily_remarks":"",
-//	"staffMove_inTime":"",
-//	"staffMove_outTime":"",
-//	"staffMove_guard":"",
-//	"staffMove_remarks":"",
-//    "staffReward_situation":"",
-//    "staffReward_Time":"",
-//    "staffReward_remarks":"",
-    
+var newStudyExp = { 
 };
 // newStaff新建人员
 function staff_change() {
@@ -49,7 +23,7 @@ function staff_change() {
 							return false;
 						}
 					} 
-					//判断八个长表格表单是否为空
+					/*//判断八个长表格表单是否为空
 					var staff_details = document.querySeletorAll(".long_tableBox");
 					for (var i = 0; i < staff_details.length; i++) {
 						var long_formElement = staff_details[i];
@@ -61,8 +35,9 @@ function staff_change() {
 								return false;
 							}
 						}
-					}
+					}*/
 					loadstaffDetail_staff_change(url);
+					
 				}
 			}
 		}
@@ -93,6 +68,20 @@ function loadstaffDetail_staff_change(url) {
 			against_ajax(id);
 			punishment_ajax(id);
 			furlough_ajax(id);
+
+			$.confirm({
+				title : '新建成功!',
+				content : '新建成功!',
+				buttons : {
+
+					返回列表 : function() {
+						window.location.href='http://localhost:8080/xsjsglxt/team/Staff_page_staffList';
+					},
+					再次新建 :function() {
+						window.location.href='http://localhost:8080/xsjsglxt/team/Staff_page_newStaff';
+					}
+				}
+			});
 		}
 	};
 	xmlhttp.open("post", url, true);
@@ -117,6 +106,9 @@ function studyExp_ajax(url,id){
 		var s_td=s_tr[i].getElementsByTagName("td");
 		for(var j=0;j<s_td.length;j++){
 			//得到每列的class名
+			if(s_td[j].innerHTML==""){
+				s_td[j].innerHTML="d";
+			}
 			var s_tdName=s_td[j].getAttribute("name");
 			console.log("列名"+s_tdName);
 			//将每列的名和值放到formdata中
@@ -155,6 +147,9 @@ function workExp_ajax(id) {
 		var w_td=w_tr[i].getElementsByTagName("td");
 		for(var j=0;j<w_td.length;j++){
 			//得到每列的class名
+			if(w_td[j].value==""){
+				w_td[j].value=" ";
+			}
 			console.log(w_td[j].innerHTML);
 			var w_tdName=w_td[j].getAttribute("name");
 			console.log("列名"+w_tdName);
@@ -192,6 +187,9 @@ function family_ajax(id) {
 		var f_td=familyTr[i].getElementsByTagName("td");
 		for(var j=0;j<f_td.length;j++){
 			//得到每列的class名
+			if(f_td[j].value==""){
+				f_td[j].value=" ";
+			}
 			var f_tdName=f_td[j].getAttribute("name");
 			console.log("列名"+f_tdName);
 			//将每列的名和值放到formdata中
@@ -228,6 +226,9 @@ function policeChange_ajax(id) {
 		var p_td=policeTr[i].getElementsByTagName("td");
 		for(var j=0;j<p_td.length;j++){
 			//得到每列的class名
+			if(p_td[j].value==""){
+				p_td[j].value=" ";
+			}
 			var p_tdName=p_td[j].getAttribute("name");
 			console.log("列名"+p_tdName);
 			//将每列的名和值放到formdata中
@@ -264,6 +265,9 @@ function prized_ajax(id) {
 		var p_td=prizedTr[i].getElementsByTagName("td");
 		for(var j=0;j<p_td.length;j++){
 			//得到每列的class名
+			if(p_td[j].value==""){
+				p_td[j].value=" ";
+			}
 			var p_tdName=p_td[j].getAttribute("name");
 			console.log("列名"+p_tdName);
 			//将每列的名和值放到formdata中
@@ -300,6 +304,9 @@ function against_ajax(id) {
 		var a_td=againstPrincipleTr[i].getElementsByTagName("td");
 		for(var j=0;j<a_td.length;j++){
 			//得到每列的class名
+			if(a_td[j].value==""){
+				a_td[j].value=" ";
+			}
 			var a_tdName=a_td[j].getAttribute("name");
 			console.log("列名"+a_tdName);
 			//将每列的名和值放到formdata中
@@ -336,6 +343,9 @@ function punishment_ajax(id) {
 		var p_td=punishTr[i].getElementsByTagName("td");
 		for(var j=0;j<p_td.length;j++){
 			//得到每列的class名
+			if(p_td[j].value==""){
+				p_td[j].value=" ";
+			}
 			var p_tdName=p_td[j].getAttribute("name");
 			console.log("列名"+p_tdName);
 			//将每列的名和值放到formdata中
@@ -372,6 +382,9 @@ function furlough_ajax(id) {
 		var v_td=vacationTr[i].getElementsByTagName("td");
 		for(var j=0;j<v_td.length;j++){
 			//得到每列的class名
+			if(v_td[j].value==""){
+				v_td[j].value=" ";
+			}
 			var v_tdName=v_td[j].getAttribute("name");
 			console.log("列名"+v_tdName);
 			//将每列的名和值放到formdata中
