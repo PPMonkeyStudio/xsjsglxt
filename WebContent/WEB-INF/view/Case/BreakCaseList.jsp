@@ -12,7 +12,7 @@
 <base href="<%=basePath%>">
 
 <title>刑事破案</title>
- 
+
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
@@ -36,9 +36,9 @@
 .breakcase_table_info tbody tr {
 	text-align: center;
 }
-tfoot tr td a:hover{
-cursor:pointer;
 
+tfoot tr td a:hover {
+	cursor: pointer;
 }
 </style>
 </head>
@@ -257,7 +257,7 @@ cursor:pointer;
 										<td>所属案件<i class="fa fa-spinner fa-pulse load_remind"></td>
 										<td colspan="3"><select style="witdh: 100%;"
 											class="form-control selectpicker" data-live-search="true"
-											name="breakCase.breakcase_case"  id="breakcase_case"
+											name="breakCase.breakcase_case" id="breakcase_case"
 											title="请选择"></select></td>
 									</tr>
 									<tr>
@@ -274,25 +274,29 @@ cursor:pointer;
 									<tr>
 										<td>案件级别</td>
 										<td><select style="witdh: 100%;" class="form-control"
-											data-live-search="true" name="breakCase.breakcase_case_level"><option checked="checked">A级</option>
+											name="breakCase.breakcase_case_level">
+												<option>A级</option>
 												<option>B级</option>
-												<option>C级</option></select></td>
+												<option>C级</option>
+										</select></td>
 
 										<td>性别</td>
 										<td><select style="witdh: 100%;" class="form-control"
-											data-live-search="true" name="breakCase.breakcase_suspecter_sex"><option>男</option>
+											name="breakCase.breakcase_suspecter_sex"><option>男</option>
 												<option>女</option></select></td>
 
 									</tr>
 									<tr>
 										<td>案件属地</td>
 										<td><select style="witdh: 100%;" class="form-control"
-											data-live-search="true" name="breakCase.breakcase_case_territorial"><option>本地</option>
+											name="breakCase.breakcase_case_territorial"><option>本地</option>
 												<option>外地</option>
 												<option>公安部协查</option></select></td>
 										<td>身份证号码</td>
 										<td><input style="witdh: 70%;" class="form-control"
-											name="breakCase.breakcase_suspecter_identity" id="breakcase_suspecter_identity" type="text" onblur="BreakCaseListGetBirth()" maxlength="18"></td>
+											name="breakCase.breakcase_suspecter_identity"
+											id="breakcase_suspecter_identity" type="text"
+											onblur="BreakCaseListGetBirth()" maxlength="18"></td>
 
 									</tr>
 									<tr>
@@ -303,7 +307,8 @@ cursor:pointer;
 										<td>出生日期</td>
 										<td><input style="witdh: 70%;"
 											class="form-control mydate"
-											name="breakCase.breakcase_suspecter_birthday" id="breakcase_suspecter_birthday" type="text"></td>
+											name="breakCase.breakcase_suspecter_birthday"
+											id="breakcase_suspecter_birthday" type="text"></td>
 
 
 
@@ -313,8 +318,7 @@ cursor:pointer;
 										<td><select style="witdh: 100%;" class="form-control"
 											data-live-search="true" name="breakCase.breakcase_arrested"><option>是</option>
 												<option>否</option>
-												</select>
-										</td>
+										</select></td>
 										<td>户籍地</td>
 										<td><input style="witdh: 70%;" class="form-control"
 											name="breakCase.breakcase_suspecter_domicile" type="text"></td>
@@ -347,18 +351,22 @@ cursor:pointer;
 									<tr>
 										<td>现场指纹编号</td>
 										<td><input style="witdh: 70%;" class="form-control"
-											name="breakCase.breakcase_contrast_locale_fingerprint_number" type="text"></td>
+											name="breakCase.breakcase_contrast_locale_fingerprint_number"
+											type="text"></td>
 										<td>按印指纹编号</td>
 										<td><input style="witdh: 70%;" class="form-control"
-											name="breakCase.breakcase_contrast_press_fingerprint_number" type="text"></td>
+											name="breakCase.breakcase_contrast_press_fingerprint_number"
+											type="text"></td>
 									</tr>
 									<tr>
 										<td>比对时间</td>
-										<td><input style="witdh: 70%;" class="form-control mydate"
+										<td><input style="witdh: 70%;"
+											class="form-control mydate"
 											name="breakCase.breakcase_contrast_time" type="text"></td>
 										<td>比对方式</td>
 										<td><select style="witdh: 100%;" class="form-control"
-											data-live-search="true" name="breakCase.breakcase_contrast_way"><option>正查</option>
+											data-live-search="true"
+											name="breakCase.breakcase_contrast_way"><option>正查</option>
 												<option>倒查</option>
 												<option>人工</option></select></td>
 									</tr>
@@ -373,10 +381,12 @@ cursor:pointer;
 									<tr>
 										<td>按印部门</td>
 										<td><input style="witdh: 70%;" class="form-control"
-											name="breakCase.breakcase_contrast_press_department" type="text"></td>
+											name="breakCase.breakcase_contrast_press_department"
+											type="text"></td>
 										<td>提取部门</td>
 										<td><input style="witdh: 70%;" class="form-control"
-											name="breakCase.breakcase_contrast_extract_department" type="text"></td>
+											name="breakCase.breakcase_contrast_extract_department"
+											type="text"></td>
 									</tr>
 									<tr>
 										<td>按印人</td>
@@ -388,11 +398,13 @@ cursor:pointer;
 									</tr>
 									<tr>
 										<td>按印时间</td>
-										<td><input style="witdh: 70%;" class="form-control mydate"
+										<td><input style="witdh: 70%;"
+											class="form-control mydate"
 											name="breakCase.breakcase_contrast_press_time" type="text"></td>
 										<td>指位</td>
 										<td><input style="witdh: 70%;" class="form-control"
-											name="breakCase.breakcase_contrast_fingerposition" type="text"></td>
+											name="breakCase.breakcase_contrast_fingerposition"
+											type="text"></td>
 									</tr>
 
 									<tr>
@@ -400,7 +412,8 @@ cursor:pointer;
 										<td><input style="witdh: 70%;" class="form-control"
 											name="breakCase.breakcase_contrast_reviewer" type="text"></td>
 										<td>抓获时间</td>
-										<td><input style="witdh: 70%;" class="form-control mydate"
+										<td><input style="witdh: 70%;"
+											class="form-control mydate"
 											name="breakCase.breakcase_arrested_time" type="text"></td>
 									</tr>
 									<tr>
