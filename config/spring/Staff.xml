@@ -3,19 +3,104 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-
+	<!-- action -->
 	<bean id="staffAction" class="com.xsjsglxt.action.Team.StaffAction"
 		scope="prototype">
 		<property name="staffService" ref="staffService"></property>
 	</bean>
-
+	<bean id="staffFamilyAction" class="com.xsjsglxt.action.Team.StaffFamilyAction"
+	    scope="prototype">
+	    <property name="staffFamilyService" ref="staffFamilyService"></property>
+	</bean>
+	<bean id="staffFurloughAction" class="com.xsjsglxt.action.Team.StaffFurloughAction"
+	    scope="prototype">
+	    <property name="staffFurloughService" ref="staffFurloughService"></property>
+	</bean>
+	<bean id="staffMoveAction" class="com.xsjsglxt.action.Team.StaffMoveAction"
+	    scope="prototype">
+	    <property name="staffMoveService" ref="staffMoveService"></property>
+	</bean>
+	<bean id="staffPrincipleAction" class="com.xsjsglxt.action.Team.StaffPrincipleAction"
+	    scope="prototype">
+	    <property name="staffPrincipleService" ref="staffPrincipleService"></property>
+	</bean>
+	<bean id="staffPunishmentAction" class="com.xsjsglxt.action.Team.StaffPunishmentAction"
+	    scope="prototype">
+	    <property name="staffPunishmentService" ref="staffPunishmentService"></property>
+	</bean>
+	<bean id="staffRewardAction" class="com.xsjsglxt.action.Team.StaffRewardAction"
+	    scope="prototype">
+	    <property name="staffRewardService" ref="staffRewardService"></property>
+	</bean>
+	<bean id="staffStudentAction" class="com.xsjsglxt.action.Team.StaffStudentAction"
+	    scope="prototype">
+	    <property name="staffStudentService" ref="staffStudentService"></property>
+	</bean>
+	<bean id="staffWorkAction" class="com.xsjsglxt.action.Team.StaffWorkAction"
+	    scope="prototype">
+	    <property name="staffWorkService" ref="staffWorkService"></property>
+	</bean>
+	
+	
+	
+	
+	<!-- service -->
 	<bean id="staffService" class="com.xsjsglxt.service.impl.Team.StaffServiceImpl">
 		<property name="staffDao" ref="staffDao"></property>
 	</bean>
-
+	<bean id="staffFamilyService" class="com.xsjsglxt.service.impl.Team.StaffFamilyServiceImpl">
+		<property name="staffFamilyDao" ref="staffFamilyDao"></property>
+	</bean>
+	<bean id="staffFurloughService" class="com.xsjsglxt.service.impl.Team.StaffFurloughServiceImpl">
+		<property name="staffFurloughDao" ref="staffFurloughDao"></property>
+	</bean>
+	<bean id="staffMoveService" class="com.xsjsglxt.service.impl.Team.StaffMoveServiceImpl">
+		<property name="staffMoveDao" ref="staffMoveDao"></property>
+	</bean>
+	<bean id="staffPrincipleService" class="com.xsjsglxt.service.impl.Team.StaffPrincipleServiceImpl">
+		<property name="staffPrincipleDao" ref="staffPrincipleDao"></property>
+	</bean>
+	<bean id="staffPunishmentService" class="com.xsjsglxt.service.impl.Team.StaffPunishmentServiceImpl">
+		<property name="staffPunishmentDao" ref="staffPunishmentDao"></property>
+	</bean>
+	<bean id="staffRewardService" class="com.xsjsglxt.service.impl.Team.StaffRewardServiceImpl">
+		<property name="staffRewardDao" ref="staffRewardDao"></property>
+	</bean>
+	<bean id="staffStudentService" class="com.xsjsglxt.service.impl.Team.StaffStudentServiceImpl">
+		<property name="staffStudentDao" ref="staffStudentDao"></property>
+	</bean>
+	<bean id="staffWorkService" class="com.xsjsglxt.service.impl.Team.StaffWorkServiceImpl">
+		<property name="staffWorkDao" ref="staffWorkDao"></property>
+	</bean>
+	<!-- dao -->
+	
+	
 	<bean id="staffDao" class="com.xsjsglxt.dao.impl.Team.StaffDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-
+	<bean id="staffFamilyDao" class="com.xsjsglxt.dao.impl.Team.StaffFamilyDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="staffFurloughDao" class="com.xsjsglxt.dao.impl.Team.StaffFurloughDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="staffMoveDao" class="com.xsjsglxt.dao.impl.Team.StaffMoveDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="staffPrincipleDao" class="com.xsjsglxt.dao.impl.Team.StaffPrincipleDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="staffPunishmentDao" class="com.xsjsglxt.dao.impl.Team.StaffPunishmentDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="staffRewardDao" class="com.xsjsglxt.dao.impl.Team.StaffRewardDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="staffStudentDao" class="com.xsjsglxt.dao.impl.Team.StaffStudentDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="staffWorkDao" class="com.xsjsglxt.dao.impl.Team.StaffWorkDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 
 </beans>

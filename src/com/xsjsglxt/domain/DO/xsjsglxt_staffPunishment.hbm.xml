@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-3-19 16:27:11 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_staffPunishment" table="XSJSGLXT_STAFFPUNISHMENT">
+        <id name="xsjsglxt_staffPunishment_id" type="java.lang.String">
+            <column name="XSJSGLXT_STAFFPUNISHMENT_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="staffPunishment_staff" type="java.lang.String">
+            <column name="STAFFPUNISHMENT_STAFF" />
+        </property>
+        <property name="staffPunishment_situation" type="java.lang.String">
+            <column name="STAFFPUNISHMENT_SITUATION" />
+        </property>
+        <property name="staffPunishment_Time" type="java.lang.String">
+            <column name="STAFFPUNISHMENT_TIME" />
+        </property>
+        <property name="staffPunishment_remarks" type="java.lang.String">
+            <column name="STAFFPUNISHMENT_REMARKS" />
+        </property>
+        <property name="staffPunishment_gmt_create" type="java.lang.String">
+            <column name="STAFFPUNISHMENT_GMT_CREATE" />
+        </property>
+        <property name="staffPunishment_gmt_modified" type="java.lang.String">
+            <column name="STAFFPUNISHMENT_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>

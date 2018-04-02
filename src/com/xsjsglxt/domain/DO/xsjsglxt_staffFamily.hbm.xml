@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-3-19 16:17:22 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_staffFamily" table="XSJSGLXT_STAFFFAMILY">
+        <id name="xsjsglxt_staffFamily_id" type="java.lang.String">
+            <column name="XSJSGLXT_STAFFFAMILY_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="staffFamily_staff" type="java.lang.String">
+            <column name="STAFFFAMILY_STAFF" />
+        </property>
+        <property name="staffFamily_contactsRelationship" type="java.lang.String">
+            <column name="STAFFFAMILY_CONTACTSRELATIONSHIP" />
+        </property>
+        <property name="staffFamily_name" type="java.lang.String">
+            <column name="STAFFFAMILY_NAME" />
+        </property>
+        <property name="staffFamily_IDcard" type="java.lang.String">
+            <column name="STAFFFAMILY_IDCARD" />
+        </property>
+        <property name="staffFamily_birthday" type="java.lang.String">
+            <column name="STAFFFAMILY_BIRTHDAY" />
+        </property>
+        <property name="staffFamily_tel" type="java.lang.String">
+            <column name="STAFFFAMILY_TEL" />
+        </property>
+        <property name="staffFamily_WeiXin" type="java.lang.String">
+            <column name="STAFFFAMILY_WEIXIN" />
+        </property>
+        <property name="staffFamily_workSpace" type="java.lang.String">
+            <column name="STAFFFAMILY_WORKSPACE" />
+        </property>
+        <property name="staffFamily_duty" type="java.lang.String">
+            <column name="STAFFFAMILY_DUTY" />
+        </property>
+        <property name="staffFamily_remarks" type="java.lang.String">
+            <column name="STAFFFAMILY_REMARKS" />
+        </property>
+        <property name="staffFamily_gmt_create" type="java.lang.String">
+            <column name="STAFFFAMILY_GMT_CREATE" />
+        </property>
+        <property name="staffFamily_gmt_modified" type="java.lang.String">
+            <column name="STAFFFAMILY_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>

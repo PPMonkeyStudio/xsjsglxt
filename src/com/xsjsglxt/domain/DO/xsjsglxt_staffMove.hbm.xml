@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-3-19 16:19:21 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_staffMove" table="XSJSGLXT_STAFFMOVE">
+        <id name="xsjsglxt_staffMove_id" type="java.lang.String">
+            <column name="XSJSGLXT_STAFFMOVE_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="staffMove_staff" type="java.lang.String">
+            <column name="STAFFMOVE_STAFF" />
+        </property>
+        <property name="staffMove_inTime" type="java.lang.String">
+            <column name="STAFFMOVE_INTIME" />
+        </property>
+        <property name="staffMove_outTime" type="java.lang.String">
+            <column name="STAFFMOVE_OUTTIME" />
+        </property>
+        <property name="staffMove_guard" type="java.lang.String">
+            <column name="STAFFMOVE_GUARD" />
+        </property>
+        <property name="staffMove_remarks" type="java.lang.String">
+            <column name="STAFFMOVE_REMARKS" />
+        </property>
+        <property name="staffMove_gmt_create" type="java.lang.String">
+            <column name="STAFFMOVE_GMT_CREATE" />
+        </property>
+        <property name="staffMove_gmt_modified" type="java.lang.String">
+            <column name="STAFFMOVE_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>

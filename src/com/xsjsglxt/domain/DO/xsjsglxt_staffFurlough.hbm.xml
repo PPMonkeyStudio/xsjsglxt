@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-3-19 16:29:29 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_staffFurlough" table="XSJSGLXT_STAFFFURLOUGH">
+        <id name="xsjsglxt_staffFurlough_id" type="java.lang.String">
+            <column name="XSJSGLXT_STAFFFURLOUGH_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="staffFurlough_staff" type="java.lang.String">
+            <column name="STAFFFURLOUGH_STAFF" />
+        </property>
+        <property name="staffFurlough_mainContent" type="java.lang.String">
+            <column name="STAFFFURLOUGH_MAINCONTENT" />
+        </property>
+        <property name="staffFurlough_startTime" type="java.lang.String">
+            <column name="STAFFFURLOUGH_STARTTIME" />
+        </property>
+        <property name="staffFurlough_days" type="java.lang.String">
+            <column name="STAFFFURLOUGH_DAYS" />
+        </property>
+        <property name="staffFurlough_whetherStop" type="java.lang.String">
+            <column name="STAFFFURLOUGH_WHETHERSTOP" />
+        </property>
+        <property name="staffFurlough_stopTime" type="java.lang.String">
+            <column name="STAFFFURLOUGH_STOPTIME" />
+        </property>
+        <property name="staffFurlough_remarks" type="java.lang.String">
+            <column name="STAFFFURLOUGH_REMARKS" />
+        </property>
+        <property name="staffFurlough_gmt_create" type="java.lang.String">
+            <column name="STAFFFURLOUGH_GMT_CREATE" />
+        </property>
+        <property name="staffFurlough_gmt_modified" type="java.lang.String">
+            <column name="STAFFFURLOUGH_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>

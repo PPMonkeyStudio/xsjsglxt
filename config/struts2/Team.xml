@@ -3,16 +3,52 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
+
 	<package name="Team" namespace="/team" extends="struts-default">
 		<action name="Staff_*" class="com.xsjsglxt.action.Team.StaffAction"
 			method="{1}">
-			<result name="page_staffList">/WEB-INF/view/Team/staffList.jsp</result>
+    		<result name="StaffIndex">
+			    	/WEB-INF/view/Team/staffList.jsp
+			</result>
+			<result name="NewStaff">
+			    	/WEB-INF/view/Team/newStaff.jsp
+			</result>
+			<result name="staffDetails">
+					/WEB-INF/view/Team/staffDetails.jsp
+			</result>
+		</action>
+		<action name="StaffFamily_*" class="com.xsjsglxt.action.Team.StaffFamilyAction"
+			method="{1}">
 
-			<result name="page_staffDetails">/WEB-INF/view/Team/staffDetails.jsp</result>
-		
-			<result name="page_newStaff">/WEB-INF/view/Team/newStaff.jsp</result>
+		</action>		
+		<action name="StaffFurlough_*" class="com.xsjsglxt.action.Team.StaffFurloughAction"
+			method="{1}">
+
+		</action>		
+		<action name="StaffMove_*" class="com.xsjsglxt.action.Team.StaffMoveAction"
+			method="{1}">
+
+		</action>		
+		<action name="StaffPrinciple_*" class="com.xsjsglxt.action.Team.StaffPrincipleAction"
+			method="{1}">
 
 		</action>
+		<action name="StaffPunishment_*" class="com.xsjsglxt.action.Team.StaffPunishmentAction"
+			method="{1}">
+
+		</action>
+		<action name="StaffReward_*" class="com.xsjsglxt.action.Team.StaffRewardAction"
+			method="{1}">
+
+		</action>
+		<action name="StaffStudent_*" class="com.xsjsglxt.action.Team.StaffStudentAction"
+			method="{1}">
+
+		</action>
+		<action name="StaffWork_*" class="com.xsjsglxt.action.Team.StaffWorkAction"
+			method="{1}">
+
+		</action>		
 	</package>
 </struts>
 

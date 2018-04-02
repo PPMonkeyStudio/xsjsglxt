@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="breakCaseAction" class="com.xsjsglxt.action.Case.BreakCaseAction"
+		scope="prototype">
+		<property name="breakCaseService" ref="breakCaseService"></property>
+	</bean>
+
+	<bean id="breakCaseService" class="com.xsjsglxt.service.impl.Case.BreakCaseServiceImpl">
+		<property name="breakCaseDao" ref="breakCaseDao"></property>
+	</bean>
+
+	<bean id="breakCaseDao" class="com.xsjsglxt.dao.impl.Case.BreakCaseDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+
+</beans>
