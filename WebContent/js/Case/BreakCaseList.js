@@ -96,7 +96,6 @@ $(function() {
 		$('#newQuery select').val("");
 		// 输入框清除内容
 		$('$newQuery input').val("");
-		$('#newQuery .selectpicker').selectpicker('refresh');
 		/*//影藏模态框
 		$('#newQuery').modal('hide');*/
 		//成功提示
@@ -104,35 +103,22 @@ $(function() {
 	});
 	/*--------------------------------------------------------*/
 	// 添加刑事破案
-	$('.input_sure')
-		.click(
-			function() {
-				$
-					.post(
-						'/xsjsglxt/case/BreakCase_saveBreakecase',
-						$('#breakCase_input form').serialize(),
-						function(xhr) {
-							if ($("#breakcase_case").val() == "") {
-								toastr.error('请选择所属案件!');
-								return false;
-							} else if (xhr == 'success') {
-								toastr.success('添加成功!');
-								get_ListBreakecaseInformationByPageAndSearch(query_data);
-								$('#breakCase_input').find(
-									'input,textarea').val(
-									'');
-								$('#breakCase_input').find(
-									'select').find(
-									'option:first-child')
-									.attr("selected",
-										"selected");
-								;
-							} else {
-								toastr.error('添加失败!');
-								return false;
-							}
-						}, 'text')
-			});
+	$('.input_sure').click(function() {
+		$.post('/xsjsglxt/case/BreakCase_saveBreakecase', $('#breakCase_input form').serialize(), function(xhr) {
+			if ($("#breakcase_case").val() == "") {
+				toastr.error('请选择所属案件!');
+				return false;
+			} else if (xhr == 'success') {
+				toastr.success('添加成功!');
+				get_ListBreakecaseInformationByPageAndSearch(query_data);
+				$('#breakCase_input').find('input,textarea').val('');
+				$('#breakCase_input').find('select').find('option:first-child').attr("selected", "selected");
+			} else {
+				toastr.error('添加失败!');
+				return false;
+			}
+		}, 'text')
+	});
 	// 执行列表查询
 	get_ListBreakecaseInformationByPageAndSearch(query_data);
 })

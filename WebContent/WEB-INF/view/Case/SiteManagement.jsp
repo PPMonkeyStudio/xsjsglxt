@@ -72,7 +72,6 @@
 									</tr>
 								</thead>
 								<tbody>
-
 								</tbody>
 								<tfoot>
 									<tr>
@@ -226,7 +225,8 @@
 								</tr>
 								<tr>
 									<td style="padding-left: 10px;">报案人</td>
-									<td><input name="page_list_senceInformation.case_reporterName"
+									<td><input
+										name="page_list_senceInformation.case_reporterName"
 										style="float: left;" type="text" class="form-control"></td>
 									<td style="padding-left: 10px;">案发地点</td>
 									<td><input name="page_list_senceInformation.case_address"

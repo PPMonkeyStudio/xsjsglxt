@@ -71,7 +71,6 @@
 									<option>一般</option>
 									<option>重大</option>
 									<option>特大</option>
-									<option>特大</option>
 							</select></td>
 							<td>是否立案</td>
 							<td><label style="float: left;" class="fancy-radio">

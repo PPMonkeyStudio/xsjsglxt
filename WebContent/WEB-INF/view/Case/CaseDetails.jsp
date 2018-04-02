@@ -203,22 +203,22 @@
 						</tr>
 						<tr>
 							<td colspan="6"><label style="margin-left: 30%;"
-								class="fancy-checkbox"><input
+								class="fancy-checkbox"><input value="0"
 									onclick="sence_checkbox(this)" name="sence.snece_photographed"
 									type="checkbox"> <span>已拍照</span> </label> <label
-								class="fancy-checkbox"><input
+								class="fancy-checkbox"><input value="0"
 									onclick="sence_checkbox(this)" name="sence.snece_entered"
 									type="checkbox"> <span>已录入</span> </label> <label
-								class="fancy-checkbox"><input
+								class="fancy-checkbox"><input value="0"
 									onclick="sence_checkbox(this)" name="sence.snece_areadymade"
 									type="checkbox"> <span>已制作</span> </label> <label
-								class="fancy-checkbox"><input
+								class="fancy-checkbox"><input value="0"
 									onclick="sence_checkbox(this)" name="sence.snece_parsed"
 									type="checkbox"> <span>已分析</span> </label> <label
-								class="fancy-checkbox"><input
+								class="fancy-checkbox"><input value="0"
 									onclick="sence_checkbox(this)" name="sence.snece_archived"
 									type="checkbox"> <span>已存档</span> </label> <label
-								class="fancy-checkbox"> <input
+								class="fancy-checkbox"> <input value="0"
 									onclick="sence_checkbox(this)" name="sence.snece_identified"
 									type="checkbox"> <span>已认定</span>
 							</label></td>
