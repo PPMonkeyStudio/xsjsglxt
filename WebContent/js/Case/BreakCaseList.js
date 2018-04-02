@@ -10,21 +10,6 @@ var query_data = {
 	"page_list_BreakecaseInformation.stop_time" : "",
 };
 
-
-$(function(){
-	//清空模态框
-	$("div[id='breakCase_input']").on('hidden.bs.modal', function() {
-		$(this).find('input').each(function() {
-			$(this).val('');
-		});
-		$(this).find('select').each(function() {
-			$(this).find('option:first-child').attr("selected", "selected");
-		});
-		console.log("shuchu");
-	})
-})
-
-
 // 当前页面分页信息
 var page_infomantion = {
 	pageIndex : 1,
@@ -130,21 +115,27 @@ $(function() {
 											if ($("#breakcase_case").val() == "") {
 												toastr.error('请选择所属案件!');
 												return false;
-											}
-											if (xhr == 'success') {
+											} else if (xhr == 'success') {
 												toastr.success('添加成功!');
 												get_ListBreakecaseInformationByPageAndSearch(query_data);
-												$('#breakCase_input')
-														.find(
-																'input,select,textarea')
-														.val('');
+												$('#breakCase_input').find(
+														'input,textarea').val(
+														'');
+												$('#breakCase_input').find(
+														'select').find(
+														'option:first-child')
+														.attr("selected",
+																"selected");
+												;
+											}else{
+												toastr.error('添加失败!');
+												return false;
 											}
 										}, 'text')
 					});
 	// 执行列表查询
 	get_ListBreakecaseInformationByPageAndSearch(query_data);
 })
-
 
 /*--------------------------------------------------------*/
 // 列表查询
@@ -206,7 +197,6 @@ function get_ListBreakecaseInformationByPageAndSearch(data) {
 						$('.btn-xs').click(modifi_delete);
 						// -----------------------------------------------------
 
-
 						// 分页信息存入page_infomantion中
 						page_infomantion.pageIndex = xhr.pageIndex; // 当前页数
 						page_infomantion.totalRecords = xhr.totalRecords; // 总页数
@@ -217,7 +207,7 @@ function get_ListBreakecaseInformationByPageAndSearch(data) {
 
 						// 分页下的记录信息
 						var opt = '<option value=""></option>';
-						for (var index =  1; index <= xhr.totalPages; index++) {
+						for (var index = 1; index <= xhr.totalPages; index++) {
 							opt += '<option>' + index + '</option>';
 						}
 						$('.info').html(
@@ -292,7 +282,6 @@ var modifi_delete = function() {
 									+ (xhr_data.breakcase_suspecter_sex == "女" ? "selected"
 											: "") + '>女</option>';
 							str += '</select></td>';
-
 
 							str += '<tr>';
 							str += '<td>案件属地</td><td>';
@@ -572,9 +561,6 @@ var breakecase_modification = function() {
 				}
 			});
 }
-
-
-
 
 /*
  * $("#breakcase_type").change(function (){
