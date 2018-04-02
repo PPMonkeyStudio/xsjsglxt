@@ -149,6 +149,7 @@ $(function() {
 /*--------------------------------------------------------*/
 // 列表查询
 function get_ListBreakecaseInformationByPageAndSearch(data) {
+
 	$
 			.post(
 					'/xsjsglxt/case/BreakCase_ListBreakCaseInformationByPageAndSearch',
@@ -205,6 +206,7 @@ function get_ListBreakecaseInformationByPageAndSearch(data) {
 						$('.btn-xs').click(modifi_delete);
 						// -----------------------------------------------------
 
+
 						// 分页信息存入page_infomantion中
 						page_infomantion.pageIndex = xhr.pageIndex; // 当前页数
 						page_infomantion.totalRecords = xhr.totalRecords; // 总页数
@@ -215,7 +217,7 @@ function get_ListBreakecaseInformationByPageAndSearch(data) {
 
 						// 分页下的记录信息
 						var opt = '<option value=""></option>';
-						for (var index = xhr.pageIndex + 1; index <= xhr.totalPages; index++) {
+						for (var index =  1; index <= xhr.totalPages; index++) {
 							opt += '<option>' + index + '</option>';
 						}
 						$('.info').html(
@@ -235,6 +237,7 @@ var modifi_delete = function() {
 	var id = $(this).siblings('input').val();
 	console.log(type, id);
 	if (type == "修改") {
+
 		$
 				.post(
 						'/xsjsglxt/case/BreakCase_getBreakCaseInfo',
@@ -289,6 +292,7 @@ var modifi_delete = function() {
 									+ (xhr_data.breakcase_suspecter_sex == "女" ? "selected"
 											: "") + '>女</option>';
 							str += '</select></td>';
+
 
 							str += '<tr>';
 							str += '<td>案件属地</td><td>';
