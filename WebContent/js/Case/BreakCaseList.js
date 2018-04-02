@@ -305,7 +305,7 @@ var modifi_delete = function() {
 							str += '<td>破案依据</td><td><input style="witdh:70%;" class="form-control" name="breakCase.breakcase_according" type="text" value="'
 									+ xhr_data.breakcase_according
 									+ '"  /></td>';
-							str += '<td>出生日期</td><td><input style="witdh:70%;" class="form-control mydate" name="breakCase.breakcase_suspecter_birthday" type="text" value="'
+							str += '<td>出生日期</td><td><input style="witdh:70%;" class="form-control mydate" name="breakCase.breakcase_suspecter_birthday" id="breakcase_suspecter_birthday" type="text" value="'
 									+ xhr_data.breakcase_suspecter_birthday
 									+ '"  /></td>';
 							str += '</tr>';
