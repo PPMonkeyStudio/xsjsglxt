@@ -24,7 +24,6 @@ public class StaffFamilyAction extends ActionSupport {
 	// 添加家庭成员
 
 	public void saveFamilys() {
-		System.out.println(familys.get(0).getStaffFamily_staff());
 		String result = staffFamilyService.saveFamily(familys);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
@@ -104,7 +103,7 @@ public class StaffFamilyAction extends ActionSupport {
 		String result = gson.toJson(newFamily);
 		System.out.println(result);
 		HttpServletResponse response = ServletActionContext.getResponse();
-		response.setContentType("text/html;cherset=utf-8");
+		response.setContentType("text/html;charset=utf-8");
 		PrintWriter pw;
 		try {
 			pw = response.getWriter();
@@ -120,7 +119,7 @@ public class StaffFamilyAction extends ActionSupport {
 	// 获得所有家庭成员信息
 	public void getFamilyByStaffId() {
 		HttpServletResponse response = ServletActionContext.getResponse();
-		response.setContentType("text/html;cherset=utf-8");
+		response.setContentType("text/html;charset=utf-8");
 		List<xsjsglxt_staffFamily> familyList = staffFamilyService.getFamilyByStaffId(family.getStaffFamily_staff());
 		if (familyList.size() < 1) {
 			PrintWriter pw;

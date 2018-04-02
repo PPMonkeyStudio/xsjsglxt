@@ -9,7 +9,6 @@ import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.Case.BreakCaseDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakcase;
-import com.xsjsglxt.domain.DO.xsjsglxt_breakecase;
 import com.xsjsglxt.domain.DO.xsjsglxt_briefdetails;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
