@@ -53,6 +53,7 @@ $(function() {
 		$('#newQuery select').val("");
 		//输入框清除内容
 		$('$newQuery input').val("");
+		$('#newQuery .selectpicker').selectpicker('refresh');
 		/*//影藏模态框
 		$('#newQuery').modal('hide');*/
 		//成功提示
