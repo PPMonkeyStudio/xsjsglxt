@@ -87,6 +87,9 @@ function show_studyAjax(staff_id) {
 	xmlhttp_study.onreadystatechange = function() {
 		if (xmlhttp_study.readyState == 4 && xmlhttp_study.status == 200) {
 			var staff_study = xmlhttp_study.responseText;
+			if(staff_study=="studentIsNull"){
+				$('#studyExperience_table tbody').html("");
+			}else{
 			console.log("staff_study" + staff_study);
 			staff_study = JSON.parse(staff_study);
 			console.log(staff_study.length);
@@ -112,8 +115,8 @@ function show_studyAjax(staff_id) {
 
 				str1 += '</tr>';
 			}
-			$('#studyExperience_table tbody tr').after(str1);
-
+			$('#studyExperience_table tbody').html(str1);
+			}
 		}
 	}
 	xmlhttp_study.open("POST",
@@ -132,6 +135,9 @@ function show_workAjax(staff_id) {
 	xmlhttp_work.onreadystatechange = function() {
 		if (xmlhttp_work.readyState == 4 && xmlhttp_work.status == 200) {
 			var staff_work = xmlhttp_work.responseText;
+			if(staff_work=="worksIsNull"){
+				$('#wordExperience_table tbody').html("");
+			}else{
 			console.log(staff_work);
 			staff_work = JSON.parse(staff_work);
 			console.log(staff_work);
@@ -151,8 +157,8 @@ function show_workAjax(staff_id) {
 				str2 += '</tr>';
 
 			}
-			$('#wordExperience_table tbody tr').after(str2);
-
+			$('#wordExperience_table tbody').html(str2);
+			}
 		}
 	}
 	xmlhttp_work.open("POST",
@@ -171,6 +177,9 @@ function show_familyAjax(staff_id) {
 	xmlhttp_family.onreadystatechange = function() {
 		if (xmlhttp_family.readyState == 4 && xmlhttp_family.status == 200) {
 			var staff_family = xmlhttp_family.responseText;
+			if(staff_family=="familyIsNull"){
+				$('#family_table tbody').html("");
+			}else{
 			console.log(staff_family);
 			staff_family = JSON.parse(staff_family);
 			console.log(staff_family);
@@ -182,7 +191,7 @@ function show_familyAjax(staff_id) {
 				str3 += '<tr>';
 				str3 += '<input type="hidden" class="xsjsglxt_staffFamily_id" id="'
 						+ xsjsglxt_staffFamily_id + '">';
-				str3 += '<td>'
+				str3 += '<td >'
 						+ staff_family[len].staffFamily_contactsRelationship
 						+ '</td>';
 				str3 += '<td>' + staff_family[len].staffFamily_name + '</td>';
@@ -194,13 +203,13 @@ function show_familyAjax(staff_id) {
 				str3 += '<td>' + staff_family[len].staffFamily_workSpace
 						+ '</td>';
 				str3 += '<td>' + staff_family[len].staffFamily_duty + '</td>';
-				str3 += '<td colspan="2">'
+				str3 += '<td>'
 						+ staff_family[len].staffFamily_remarks + '</td>';
 				str3 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#reliveFamily_Modal" onclick="show_family(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_family(this)" type="button" ><i class="fa fa-trash"></i></button></td>';
 				str3 += '</tr>';
 			}
-			$('#family_table tbody tr').after(str3);
-
+			$('#family_table tbody').html(str3);
+			}
 		}
 	}
 	xmlhttp_family.open("POST",
@@ -220,6 +229,9 @@ function show_moveAjax(staff_id) {
 	xmlhttp_move.onreadystatechange = function() {
 		if (xmlhttp_move.readyState == 4 && xmlhttp_move.status == 200) {
 			var staff_move = xmlhttp_move.responseText;
+			if(staff_move=="moveIsNull"){
+				$('#policeChange_table tbody').html("");
+			}else{
 			console.log("staff_move" + staff_move);
 			staff_move = JSON.parse(staff_move);
 			console.log(staff_move.length);
@@ -227,6 +239,7 @@ function show_moveAjax(staff_id) {
 			var str4 = '';
 			for (var len = 0; len < staff_move.length; len++) {
 				var xsjsglxt_staffMove_id = staff_move[len].xsjsglxt_staffMove_id;
+				
 				str4 += '<tr>';
 				str4 += '<input type="hidden" class="xsjsglxt_staffMove_id" id="'
 						+ xsjsglxt_staffMove_id + '">';
@@ -237,8 +250,8 @@ function show_moveAjax(staff_id) {
 				str4 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#reliveMove_Modal" onclick="show_move(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_move(this)" type="button" ><i class="fa fa-trash"></i></button></td>';
 				str4 += '</tr>';
 			}
-			$('#policeChange_table tbody tr').after(str4);
-
+			$('#policeChange_table tbody').html(str4);
+			}
 		}
 	}
 	xmlhttp_move.open("POST",
@@ -257,6 +270,9 @@ function show_rewardAjax(staff_id) {
 	xmlhttp_reward.onreadystatechange = function() {
 		if (xmlhttp_reward.readyState == 4 && xmlhttp_reward.status == 200) {
 			var staff_reward = xmlhttp_reward.responseText;
+			if(staff_reward=="rewardsIsNull"){
+				$('#prized_table tbody').html("");
+			}else{
 			console.log(staff_reward);
 			staff_reward = JSON.parse(staff_reward);
 			console.log(staff_reward);
@@ -264,6 +280,7 @@ function show_rewardAjax(staff_id) {
 			var str5 = '';
 			for (var len = 0; len < staff_reward.length; len++) {
 				var xsjsglxt_staffReward_id = staff_reward[len].xsjsglxt_staffReward_id;
+				
 				str5 += '<tr>';
 				str5 += '<input type="hidden" class="xsjsglxt_staffReward_id" id="'
 						+ xsjsglxt_staffReward_id + '">';
@@ -275,8 +292,8 @@ function show_rewardAjax(staff_id) {
 				str5 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#reliveReward_Modal" onclick="show_reward(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_reward(this)" type="button" ><i class="fa fa-trash"></i></button></td>';
 				str5 += '</tr>';
 			}
-			$('#prized_table tbody tr').after(str5);
-
+			$('#prized_table tbody').html(str5);
+			}
 		}
 	}
 	xmlhttp_reward.open("POST",
@@ -295,12 +312,16 @@ function show_againstAjax(staff_id) {
 	xmlhttp_against.onreadystatechange = function() {
 		if (xmlhttp_against.readyState == 4 && xmlhttp_against.status == 200) {
 			var staff_against = xmlhttp_against.responseText;
+			if(staff_against=="principleIsNull"){
+				$('#againstPrinciple_table tbody').html("");
+			}else{
 			staff_against = JSON.parse(staff_against);
 			console.log(staff_against);
 
 			var str6 = '';
 			for (var len = 0; len < staff_against.length; len++) {
 				var xsjsglxt_staffPrinciple_id = staff_against[len].xsjsglxt_staffPrinciple_id;
+				
 				str6 += '<tr>';
 				str6 += '<input type="hidden" class="xsjsglxt_staffPrinciple_id" id="'
 						+ xsjsglxt_staffPrinciple_id + '">';
@@ -314,8 +335,8 @@ function show_againstAjax(staff_id) {
 				str6 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#reliveAgainst_Modal" onclick="show_against(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_against(this)" type="button" ><i class="fa fa-trash"></i></button></td>';
 				str6 += '</tr>';
 			}
-			$('#againstPrinciple_table tbody tr').after(str6);
-
+			$('#againstPrinciple_table tbody').html(str6);
+			}
 		}
 	}
 	xmlhttp_against
@@ -337,6 +358,9 @@ function show_punishmentAjax(staff_id) {
 		if (xmlhttp_punishment.readyState == 4
 				&& xmlhttp_punishment.status == 200) {
 			var staff_punishment = xmlhttp_punishment.responseText;
+			if(staff_punishment=="punishmentIsNull"){
+				$('#punish_table tbody').html("");
+			}else{
 			console.log(staff_punishment);
 			staff_punishment = JSON.parse(staff_punishment);
 			console.log(staff_punishment);
@@ -344,6 +368,7 @@ function show_punishmentAjax(staff_id) {
 			var str7 = '';
 			for (var len = 0; len < staff_punishment.length; len++) {
 				var xsjsglxt_staffPunishment_id = staff_punishment[len].xsjsglxt_staffPunishment_id;
+				
 				str7 += '<tr>';
 				str7 += '<input type="hidden" class="xsjsglxt_staffPunishment_id" id="'
 						+ xsjsglxt_staffPunishment_id + '">';
@@ -357,8 +382,8 @@ function show_punishmentAjax(staff_id) {
 				str7 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#relivePunishment_Modal" onclick="show_punishment(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_punishment(this)" type="button" ><i class="fa fa-trash"></i></button></td>';
 				str7 += '</tr>';
 			}
-			$('#punish_table tbody tr').after(str7);
-
+			$('#punish_table tbody').html(str7);
+			}
 		}
 	}
 
@@ -380,11 +405,15 @@ function show_furloughAjax(staff_id) {
 	xmlhttp_furlough.onreadystatechange = function() {
 		if (xmlhttp_furlough.readyState == 4 && xmlhttp_furlough.status == 200) {
 			var staff_furlough = xmlhttp_furlough.responseText;
+			if(staff_furlough=="furloughIsNull"){
+				$('#vocation_table tbody').html("");
+			}else{
 			staff_furlough = JSON.parse(staff_furlough);
 
 			var str8 = '';
 			for (var len = 0; len < staff_furlough.length; len++) {
 				var xsjsglxt_staffFurlough_id = staff_furlough[len].xsjsglxt_staffFurlough_id;
+				
 				str8 += '<tr>';
 				str8 += '<input type="hidden" class="xsjsglxt_staffFurlough_id" id="'
 						+ xsjsglxt_staffFurlough_id + '">';
@@ -404,8 +433,8 @@ function show_furloughAjax(staff_id) {
 				str8 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#reliveFurlough_Modal" onclick="show_furlough(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_furlough(this)" type="button" ><i class="fa fa-trash"></i></button></td>';
 				str8 += '</tr>';
 			}
-			$('#vocation_table tbody tr').after(str8);
-
+			$('#vocation_table tbody').html(str8);
+			}
 		}
 	}
 	xmlhttp_furlough
@@ -482,9 +511,4 @@ function loadstaffDetail_staff_relive() {
 			"/xsjsglxt/team/Staff_updatePoliceman?policeman.xsjsglxt_staff_id="
 					+ staff_id, true);
 	xmlhttp.send(formData);
-}
-// 每行删除
-function delete_longTable(this_button) {
-	this_button.parentNode.parentNode.parentNode
-			.removeChild(this_button.parentNode.parentNode);
 }
