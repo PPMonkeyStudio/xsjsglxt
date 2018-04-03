@@ -95,7 +95,7 @@ $(function() {
 		// 选择框清除内容
 		$('#newQuery select').val("");
 		// 输入框清除内容
-		$('$newQuery input').val("");
+		$('#newQuery input').val("");
 		/*
 		 * //影藏模态框 $('#newQuery').modal('hide');
 		 */
