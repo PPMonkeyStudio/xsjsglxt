@@ -37,62 +37,6 @@ var page_infomantion = {
 	HaveNextPage : false,
 }
 
-$(function() {
-	get_ListHandleInformationByPageAndSearch(query_data);
-
-	//Handle_delete删除办案管理事件
-	$('.Handle_delete').click(Handle_delete);
-
-	//办案添加
-	$('#Handle_input').on('show.bs.modal', function() {
-		$.post('/xsjsglxt/case/Handle_xuhao', function(json_data, text_data) {
-			$('input[name="handle.handle_orderNumber"]').val(json_data);
-		}, 'json');
-	})
-	$('.handle_input').click(handle_input);
-
-	//办案查询
-	$('.handle_query').click(handle_query);
-	//清空查询
-	$('.handle_empty').click(function() {
-		$('#Handle_query input,select').val("");
-	});
-})
-
-function get_ListHandleInformationByPageAndSearch(data) {
-	$.post('/xsjsglxt/case/Handle_ListHandleInformationByPageAndSearch', data, function(xhr_data) {
-		var Handle = xhr_data.listHandle;
-		var str = '';
-		for (var len = 0; len < Handle.length; len++) {
-			str += '<tr class="tr_select">';
-			str += '<td style="padding-left: 5px;"><input class="form-control" id="' + Handle[len].xsjsglxt_handle_id + '" type="checkbox"></td>'
-			str += '<td style="padding-left: 5px;">' + Handle[len].handle_orderNumber + '</td>';
-			str += '<td>' + Handle[len].handle_administrativeCase + '</td>';
-			str += '<td>' + Handle[len].handle_suspectName + '</td>';
-			str += '<td>' + Handle[len].handle_administrativeAttachment + '</td>';
-			str += '<td>' + Handle[len].handle_arrest + '</td>';
-			str += '<td>' + Handle[len].handle_prosecute + '</td>';
-			str += '<td>' + Handle[len].handle_checkback + '</td>';
-			str += '<td>' + Handle[len].handle_pbat + '</td>';
-			str += '<td>' + Handle[len].handle_lhus + '</td>';
-			str += '<td>' + Handle[len].handle_FinancialName + '</td>';
-			str += '<td>' + Handle[len].handle_handTime + '</td>';
-			str += '<td>' + Handle[len].handle_handleTime + '</td>';
-			str += '<td>' + Handle[len].handle_processMode + '</td>';
-			str += '<td>' + Handle[len].handle_squadronleader + '</td>';
-			str += '<td  style="padding-left: 5px;">' + Handle[len].handle_PoliceInHandlingCases + '</td>';
-			str += '</tr>';
-		}
-		$('.Handle_table_info tbody').html(str);
-		//tr绑定click事件
-		$('.tr_select').click(tr_select);
-	}, 'json')
-}
-
-//radio
-function chose(obj) {
-	$(obj).parent().siblings('input').val($(obj).val());
-}
 //tr_select
 var tr_select = function() {
 	var input = $(this).find('input[type="checkbox"]');
@@ -145,37 +89,6 @@ var Handle_delete = function() {
 }
 
 
-var handle_input = function() {
-	$.confirm({
-		title : '确定添加?',
-		smoothContent : false,
-		content : false,
-		autoClose : 'cancelAction|10000',
-		buttons : {
-			deleteUser : {
-				btnClass : 'btn-danger',
-				text : '确认',
-				action : function() {
-					$.post('/xsjsglxt/case/Handle_saveHandle', $('#Handle_input form').serialize(), function(json_data, text_data) {
-						$('#Handle_input').modal('hide');
-						if (text_data == "success") {
-							toastr.success("删除成功！");
-							//获取对应option中的value值
-							get_ListHandleInformationByPageAndSearch(query_data);
-						} else {
-							toastr.error("删除失败！");
-						}
-					}, 'json');
-				}
-			},
-			cancelAction : {
-				btnClass : 'btn-blue',
-				text : '取消',
-			}
-		}
-	});
-}
-
 //办案查询
 var handle_query = function() {
 	$.each($('#Handle_query form').serializeArray(), function(k, v) {
@@ -186,6 +99,79 @@ var handle_query = function() {
 	toastr.success('查询成功!');
 }
 
+$(function() {
+	get_ListHandleInformationByPageAndSearch(query_data);
+
+	//Handle_delete删除办案管理事件
+	$('.Handle_delete').click(Handle_delete);
+
+	//办案添加
+	$('#Handle_input').on('show.bs.modal', function() {
+		$.post('/xsjsglxt/case/Handle_xuhao', function(json_data, text_data) {
+			$('input[name="handle.handle_orderNumber"]').val(json_data);
+		}, 'json');
+	})
+	//清除内容
+	$(".modal").on('hidden.bs.modal', function() {
+		$(this).find('input[type!="radio"][type!="hidden"]').val('');
+		$(this).find('select').find('option:first-child').attr("selected", "selected");
+	})
+	$('.handle_input').click(function() {
+		$.post('/xsjsglxt/case/Handle_saveHandle', $('#Handle_input form').serialize(), function(xhr) {
+			$('#Handle_input').modal('hide');
+			if (xhr == "success") {
+				toastr.success("添加成功！");
+				//获取对应option中的value值
+				get_ListHandleInformationByPageAndSearch(query_data);
+			} else {
+				toastr.error("添加失败！");
+			}
+		}, 'text');
+	});
+
+	//办案查询
+	$('.handle_query').click(handle_query);
+	//清空查询
+	$('.handle_empty').click(function() {
+		$('#Handle_query input,select').val("");
+	});
+
+})
+
+function get_ListHandleInformationByPageAndSearch(data) {
+	$.post('/xsjsglxt/case/Handle_ListHandleInformationByPageAndSearch', data, function(xhr_data) {
+		var Handle = xhr_data.listHandle;
+		var str = '';
+		for (var len = 0; len < Handle.length; len++) {
+			str += '<tr class="tr_select">';
+			str += '<td style="padding-left: 5px;"><input class="form-control" id="' + Handle[len].xsjsglxt_handle_id + '" type="checkbox"></td>'
+			str += '<td style="padding-left: 5px;">' + Handle[len].handle_orderNumber + '</td>';
+			str += '<td>' + Handle[len].handle_administrativeCase + '</td>';
+			str += '<td>' + Handle[len].handle_suspectName + '</td>';
+			str += '<td>' + Handle[len].handle_administrativeAttachment + '</td>';
+			str += '<td>' + Handle[len].handle_arrest + '</td>';
+			str += '<td>' + Handle[len].handle_prosecute + '</td>';
+			str += '<td>' + Handle[len].handle_checkback + '</td>';
+			str += '<td>' + Handle[len].handle_pbat + '</td>';
+			str += '<td>' + Handle[len].handle_lhus + '</td>';
+			str += '<td>' + Handle[len].handle_FinancialName + '</td>';
+			str += '<td>' + Handle[len].handle_handTime + '</td>';
+			str += '<td>' + Handle[len].handle_handleTime + '</td>';
+			str += '<td>' + Handle[len].handle_processMode + '</td>';
+			str += '<td>' + Handle[len].handle_squadronleader + '</td>';
+			str += '<td  style="padding-left: 5px;">' + Handle[len].handle_PoliceInHandlingCases + '</td>';
+			str += '</tr>';
+		}
+		$('.Handle_table_info tbody').html(str);
+		//tr绑定click事件
+		$('.tr_select').click(tr_select);
+	}, 'json')
+}
+
+//radio
+function chose(obj) {
+	$(obj).parent().siblings('input').val($(obj).val());
+}
 
 //首页
 function firstPage() {

@@ -654,7 +654,7 @@ public class SenceDaoImpl implements SenceDao {
 	}
 
 	@Override
-	public xsjsglxt_resevidence getResevidenceById(String xsjsglxt_case_id) {
+	public List<xsjsglxt_resevidence> getResevidenceById(String xsjsglxt_case_id) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
@@ -663,7 +663,7 @@ public class SenceDaoImpl implements SenceDao {
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_resevidence resevidence = (xsjsglxt_resevidence) query.uniqueResult();
+		List<xsjsglxt_resevidence> resevidence = query.list();
 
 		return resevidence;
 	}

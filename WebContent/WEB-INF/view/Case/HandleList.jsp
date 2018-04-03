@@ -5,23 +5,16 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 <base href="<%=basePath%>">
-
 <title>办案管理</title>
-
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="tdis is my page">
-<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-
 </head>
 <style type="text/css">
 .Handle_table_info thead tr td {
@@ -158,7 +151,7 @@
 								<tbody>
 									<tr>
 										<td>序号</td>
-										<td><input class="form-control"
+										<td><input class="form-control" readonly="readonly"
 											name="handle.handle_orderNumber" type="text"></td>
 										<td>行政案件名称</td>
 										<td><input class="form-control"
@@ -281,13 +274,12 @@
 									<tr>
 										<td>中队长</td>
 										<td colspan="2"><input class="form-control"
-											name="page_list_HandleInformation.handle_squadronleader"
-											type="text"> <%-- <select name="handle.handle_squadronleader"
+											name="handle.handle_squadronleader" type="text"> <%-- <select name="handle.handle_squadronleader"
 											class="form-control selectpicker"></select> --%></td>
 										<td>办案民警</td>
 										<td colspan="2"><input class="form-control"
-											name="page_list_HandleInformation.handle_PoliceInHandlingCases"
-											type="text"> <%-- <select name="handle.handle_PoliceInHandlingCases"
+											name="handle.handle_PoliceInHandlingCases" type="text">
+											<%-- <select name="handle.handle_PoliceInHandlingCases"
 											class="form-control selectpicker"></select> --%></td>
 									</tr>
 								</tbody>
