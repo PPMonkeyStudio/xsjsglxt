@@ -394,7 +394,7 @@ var add_info = function() {
 			+ '</tr>'
 			+ '<tr>'
 			+ '<td>提取数量:</td>'
-			+ '<td><input name="resevidence.resevidence_extractNumber" class="form-control" type="text"></td>'
+			+ '<td><input name="resevidence.resevidence_extractNumber" class="form-control" type="text" placeholder="请输入数字"></td>'
 			+ '<td>提取人:</td>'
 			+ '<td><input name="resevidence.resevidence_extractPerson" class="form-control" type="text"></td>'
 			+ '</tr>'
@@ -410,7 +410,7 @@ var add_info = function() {
 			+ '<option value="其他">其他</option>'
 			+ '</select></td>'
 			+ '<td>提取日期:</td>'
-			+ '<td><input name="resevidence.resevidence_extractTime" class="form-control" type="text"></td>'
+			+ '<td><input name="resevidence.resevidence_extractTime" class="form-control mydate" type="text"></td>'
 			+ '</tr>'
 			+ '<tr>'
 			+ '<td>提取单位:</td>'
@@ -424,6 +424,7 @@ var add_info = function() {
 			+ '</table>'
 			+ '</form>';
 		add_default_confirm('物证信息添加', str, '/xsjsglxt/case/Resevidence_saveResevidence', 'evidence_table_info');
+
 		$.post('/xsjsglxt/case/Case_AllCase', function(Case_data) {
 			var sel = '';
 			for (var len = 0; len < Case_data.length; len++) {
@@ -432,6 +433,20 @@ var add_info = function() {
 			$('.selectpicker').html(sel);
 			//刷新选择框
 			$('.selectpicker').selectpicker('refresh');
+			$('input[name="resevidence.resevidence_extractNumber"]').keyup(function() {
+				$(this).val($(this).val().replace(/[^\d]/g, ''));
+			});
+
+			$('.mydate').datetimepicker({
+				yearStart : 1990, // 设置最小年份
+				yearEnd : 2050, // 设置最大年份
+				yearOffset : 0, // 年偏差
+				timepicker : false, // 关闭时间选项
+				format : 'Y-m-d', // 格式化日期年-月-日
+				minDate : '1990/01/01', // 设置最小日期
+				maxDate : '2030/01/01', // 设置最大日期
+			});
+
 			//移除加载提示
 			$('.load_remind').remove();
 		}, 'json')
