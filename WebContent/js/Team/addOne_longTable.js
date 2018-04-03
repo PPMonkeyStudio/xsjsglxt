@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-//长表格学习经历添加一条
+// 长表格学习经历添加一条
 function add_oneStudy() {
 	console.log("学习经历添加");
 	console.log(staff_id);
@@ -25,7 +25,7 @@ function add_oneStudy() {
 			});
 }
 
-//长表格工作经历添加一条
+// 长表格工作经历添加一条
 function add_oneWork() {
 	console.log("工作经历添加");
 	console.log(staff_id);
@@ -53,7 +53,7 @@ function add_oneWork() {
 			});
 }
 
-//长表格家庭添加一条
+// 长表格家庭添加一条
 function add_oneFamily() {
 	console.log("家庭添加");
 	console.log(staff_id);
@@ -88,7 +88,7 @@ function add_oneFamily() {
 				}
 			});
 }
-//长表格调动添加一条
+// 长表格调动添加一条
 function add_oneMove() {
 	console.log("调动添加");
 	console.log(staff_id);
@@ -114,7 +114,7 @@ function add_oneMove() {
 			});
 }
 
-//长表格受奖添加一条
+// 长表格受奖添加一条
 function add_oneReward() {
 	console.log("受奖添加");
 	console.log(staff_id);
@@ -138,7 +138,7 @@ function add_oneReward() {
 			});
 }
 
-//长表格违规添加一条
+// 长表格违规添加一条
 function add_oneAgainst() {
 	console.log("违规添加");
 	console.log(staff_id);
@@ -161,7 +161,7 @@ function add_oneAgainst() {
 				}
 			});
 }
-//长表格处分添加一条
+// 长表格处分添加一条
 function add_onePunishment() {
 	console.log("处分添加");
 	console.log(staff_id);
@@ -184,7 +184,7 @@ function add_onePunishment() {
 				}
 			});
 }
-//长表格休假添加一条
+// 长表格休假添加一条
 function add_oneFurlough() {
 	console.log("休假添加");
 	console.log(staff_id);
@@ -211,9 +211,9 @@ function add_oneFurlough() {
 					toastr.success('添加休假成功！');
 					show_furloughAjax(staff_id);
 				}
-			});
+			}	);
 =======
-//长表格学习经历添加一条
+// 长表格学习经历添加一条
 function add_oneStudy() {
 	console.log("学习经历添加");
 	console.log(staff_id);
@@ -239,7 +239,7 @@ function add_oneStudy() {
 			});
 }
 
-//长表格工作经历添加一条
+// 长表格工作经历添加一条
 function add_oneWork() {
 	console.log("工作经历添加");
 	console.log(staff_id);
@@ -267,7 +267,7 @@ function add_oneWork() {
 			});
 }
 
-//长表格家庭添加一条
+// 长表格家庭添加一条
 function add_oneFamily() {
 	console.log("家庭添加");
 	console.log(staff_id);
@@ -302,7 +302,7 @@ function add_oneFamily() {
 				}
 			});
 }
-//长表格调动添加一条
+// 长表格调动添加一条
 function add_oneMove() {
 	console.log("调动添加");
 	console.log(staff_id);
@@ -328,7 +328,7 @@ function add_oneMove() {
 			});
 }
 
-//长表格受奖添加一条
+// 长表格受奖添加一条
 function add_oneReward() {
 	console.log("受奖添加");
 	console.log(staff_id);
@@ -352,7 +352,7 @@ function add_oneReward() {
 			});
 }
 
-//长表格违规添加一条
+// 长表格违规添加一条
 function add_oneAgainst() {
 	console.log("违规添加");
 	console.log(staff_id);
@@ -375,7 +375,7 @@ function add_oneAgainst() {
 				}
 			});
 }
-//长表格处分添加一条
+// 长表格处分添加一条
 function add_onePunishment() {
 	console.log("处分添加");
 	console.log(staff_id);
@@ -398,7 +398,7 @@ function add_onePunishment() {
 				}
 			});
 }
-//长表格休假添加一条
+// 长表格休假添加一条
 function add_oneFurlough() {
 	console.log("休假添加");
 	console.log(staff_id);

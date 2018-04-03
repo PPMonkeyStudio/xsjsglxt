@@ -40,7 +40,7 @@
 			</div>
 			<div class="statisticsContent" id="statisticsContent" style="margin-top: 10px; font-style: 宋体;">
 				<div id="fieldStatistics">
-					<input id="queryPolicemanName" type="text" class="form-control" style="margin-bottom:10px; width: 250px; float: right;" oninput="" placeholder="请输入警员姓名">
+					<input id="queryPolicemanName" type="text" class="form-control" style="margin-bottom:10px; width: 250px; float: right;" oninput="loadPoliceman()" placeholder="请输入警员姓名">
 					<table class="table table-bordered" style="text-align: center;">
 						<thead>
 							<tr>
