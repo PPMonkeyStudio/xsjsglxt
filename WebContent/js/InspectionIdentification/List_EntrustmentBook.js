@@ -286,12 +286,12 @@ function List_EntrustmentBook(pageIndex) {
 				.getElementById("select_state").value);
 	}
 	/*
-	 * 筛选：鉴定要求
+	 * 筛选：委托单位
 	 */
-	if (document.getElementById("select_entrustmentRequire").value == "-1") {
+	if (document.getElementById("select_entrustmentUnit").value == "-1") {
 	} else {
-		formData.append("entrustmentBookManagementVO.entrustmentRequire",
-				document.getElementById("select_entrustmentRequire").value);
+		formData.append("entrustmentBookManagementVO.entrustmentUnit",
+				document.getElementById("select_entrustmentUnit").value);
 	}
 	/*
 	 * 筛选：开始时间

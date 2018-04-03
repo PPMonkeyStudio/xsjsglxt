@@ -103,7 +103,7 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		}
 		if (checkEntrustmentBookVO.getEntrustmentUnit() != null
 				&& checkEntrustmentBookVO.getEntrustmentUnit().trim().length() > 0
-				&& (("-1").equals(checkEntrustmentBookVO.getEntrustmentUnit().trim()))) {
+				&& !(("-1").equals(checkEntrustmentBookVO.getEntrustmentUnit().trim()))) {
 			hql = hql + " and check_entrustment_book_entrustment_unit='"
 					+ checkEntrustmentBookVO.getEntrustmentUnit().trim() + "'";
 		}
@@ -154,10 +154,11 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		}
 		if (checkEntrustmentBookVO.getEntrustmentUnit() != null
 				&& checkEntrustmentBookVO.getEntrustmentUnit().trim().length() > 0
-				&& (("-1").equals(checkEntrustmentBookVO.getEntrustmentUnit().trim()))) {
+				&& !(("-1").equals(checkEntrustmentBookVO.getEntrustmentUnit().trim()))) {
 			hql = hql + " and check_entrustment_book_entrustment_unit='"
 					+ checkEntrustmentBookVO.getEntrustmentUnit().trim() + "'";
 		}
+
 		if (checkEntrustmentBookVO.getState() != null && checkEntrustmentBookVO.getState().trim().length() > 0) {
 			hql = hql + " and check_entrustment_book_state='" + checkEntrustmentBookVO.getState().trim() + "'";
 		}
