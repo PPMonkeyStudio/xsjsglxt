@@ -284,7 +284,6 @@ tfoot tr td a:hover {
 										<td><select style="witdh: 100%;" class="form-control"
 											name="breakCase.breakcase_suspecter_sex"><option>男</option>
 												<option>女</option></select></td>
-
 									</tr>
 									<tr>
 										<td>案件属地</td>
@@ -297,21 +296,16 @@ tfoot tr td a:hover {
 											name="breakCase.breakcase_suspecter_identity"
 											id="breakcase_suspecter_identity" type="text"
 											onblur="BreakCaseListGetBirth()" maxlength="18"></td>
-
 									</tr>
 									<tr>
 										<td>破案依据</td>
 										<td><input style="witdh: 70%;" class="form-control"
 											name="breakCase.breakcase_according" type="text"></td>
-
 										<td>出生日期</td>
 										<td><input style="witdh: 70%;"
 											class="form-control mydate"
 											name="breakCase.breakcase_suspecter_birthday"
 											id="breakcase_suspecter_birthday" type="text"></td>
-
-
-
 									</tr>
 									<tr>
 										<td>是否抓获</td>

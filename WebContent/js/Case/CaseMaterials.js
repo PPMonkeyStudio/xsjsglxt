@@ -271,12 +271,13 @@ var Lost_modification = function() {
 				btnClass : 'btn-danger',
 				text : '确认',
 				action : function() {
-					$.post('/xsjsglxt/case/Lost' + url, $('.Goods_table_info form').serialize(), function(xhr_data) {
+					$.post('/xsjsglxt/case/Lost' + url, $('#lost form').serialize(), function(xhr_data) {
 						if (xhr_data == "success") {
 							$('#lost').modal('hide');
 							//获取对应option中的value值
 							var value = url.substr(url.indexOf('Lost'));
 							//修改后进行一次查询
+							console.log(value);
 							lost_chose($('option[value="' + value + '"]'));
 							toastr.success("修改成功!");
 						}
@@ -692,7 +693,6 @@ $(function() {
 	$('.Search_extractPerson').keyup(function() {
 		query_data["page_list_ResevidenceInformation.resevidence_extractPerson"] = $(this).val();
 		material($('option[value="evidence_table_info"]'));
-		toastr.success("查询成功!");
 	});
 })
 
@@ -927,7 +927,7 @@ function Lost_Details(xhr_data) {
 		str += '</td>';
 		str += '</tr></tbody></table>';
 		//将str加入到面板中
-		$('#lost .panel-body').append(str);
+		$('#lost .panel-body').html(str);
 		//刷新select选择框
 		$('.selectpicker').selectpicker('refresh');
 		$('#lost').modal('show');
@@ -999,16 +999,16 @@ function Lost_Mobilephone_Details(xhr_data) {
 		str += '</select></td>';
 		str += '</tr>';
 		str += '<tr>';
-		str += '<td>手机号码</td><td><input style="witdh:70%;" class="form-control" name="lost.lost_name" type="text" value="' + xhr_data.lost_mobilephone.lost_mobilephone_phone + '"  /></td>';
+		str += '<td>手机号码</td><td><input style="witdh:70%;" class="form-control" name="lost_mobilephone.lost_mobilephone_phone" type="text" value="' + xhr_data.lost_mobilephone.lost_mobilephone_phone + '"  /></td>';
 		str += '</tr>';
 		str += '<tr>';
-		str += '<td>手机串号</td><td><input style="witdh:70%;" class="form-control" name="lost.lost_name" type="text" value="' + xhr_data.lost_mobilephone.lost_mobilephone_IMEI + '"  /></td>';
+		str += '<td>手机串号</td><td><input style="witdh:70%;" class="form-control" name="lost_mobilephone.lost_mobilephone_IMEI" type="text" value="' + xhr_data.lost_mobilephone.lost_mobilephone_IMEI + '"  /></td>';
 		str += '</tr>';
 		str += '<tr>';
-		str += '<td>手机特征</td><td><input style="witdh:70%;" class="form-control" name="lost.lost_name" type="text" value="' + xhr_data.lost_mobilephone.lost_mobilephone_feature + '"  /></td>';
+		str += '<td>手机特征</td><td><input style="witdh:70%;" class="form-control" name="lost_mobilephone.lost_mobilephone_feature" type="text" value="' + xhr_data.lost_mobilephone.lost_mobilephone_feature + '"  /></td>';
 		str += '</tr>';
 		str += '<tr>';
-		str += '<td>备注</td><td><textarea style="witdh:70%;" class="form-control" name="lost_mobilephone.lost_remarks">' + xhr_data.lost_mobilephone.lost_mobilephone_remarks + '</textarea>';
+		str += '<td>备注</td><td><textarea style="witdh:70%;" class="form-control" name="lost_mobilephone.lost_mobilephone_remarks">' + xhr_data.lost_mobilephone.lost_mobilephone_remarks + '</textarea>';
 		//添加存丢失物的id隐藏域(上一兄元素为备注文本域)
 		str += '<input name="lost_mobilephone.xsjsglxt_lost_mobilephone_id" type="hidden" value="' + xhr_data.lost_mobilephone.xsjsglxt_lost_mobilephone_id + '" />';
 		str += '</td>';
@@ -1019,7 +1019,7 @@ function Lost_Mobilephone_Details(xhr_data) {
 		$('.selectpicker').selectpicker('refresh');
 		$('#lost').modal('show');
 		//点击时调用确定修改按钮
-		$('.btn_operation').val('Mobilephone_updateLost').unbind().click(Lost_modification);
+		$('.btn_operation').val('Mobilephone_updateLostMobilephone').unbind().click(Lost_modification);
 	}, 'json');
 }
 
