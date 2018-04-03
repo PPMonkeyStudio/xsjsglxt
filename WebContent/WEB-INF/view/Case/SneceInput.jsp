@@ -315,7 +315,9 @@
 						</tr>
 						<tr>
 							<td>勘验人员</td>
-							<td colspan="5"><select name="sence.snece_inquestPerson"
+							<td colspan="5"><input name="sence.snece_inquestPerson"
+								id="exploration_personnel" placeholder="请输入"
+								class="form-control"> <%-- <select name="sence.snece_inquestPerson"
 								id="exploration_personnel"
 								class="selectpicker show-tick form-control dropup" multiple
 								data-live-search="true" data-dropup-auto="false" title="请选择">
@@ -333,7 +335,7 @@
 									<option value="陈佐仁">陈佐仁</option>
 									<option value="李希">李希</option>
 									<option value="魏松林">魏松林</option>
-							</select></td>
+							</select> --%></td>
 						</tr>
 						<tr>
 							<!-- <td>填表人员</td>

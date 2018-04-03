@@ -134,7 +134,7 @@ $(function() {
 		$('.Query_table select').val("");
 		//输入框清除内容
 		$('.Query_table input').val("");
-		$('.selectpicker').selectpicker('val', '');
+		//$('.selectpicker').selectpicker('val', '');
 		//成功提示
 		toastr.success('清除查询信息成功');
 	});

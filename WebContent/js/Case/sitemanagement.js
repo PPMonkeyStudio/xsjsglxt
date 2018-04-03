@@ -40,7 +40,7 @@ $(function() {
 		$('.Query_table select').val("");
 		//输入框清除内容
 		$('.Query_table input').val("");
-		$('.selectpicker').selectpicker('val', '');
+		//$('.selectpicker').selectpicker('val', '');
 		/*//影藏模态框
 		$('#newQuery').modal('hide');*/
 		//成功提示
