@@ -28,7 +28,7 @@ public class StatisticsAction {
 	}
 
 	// ----------------------------------获得警员出警次数统计---------------------------------
-	public void policemanOutTime() throws IOException {
+	public void policemanOutTime() throws IOException, InterruptedException {
 		List<policemanOutTimesDTO> result = statisticsService.policemanOutTime(policemanName);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");

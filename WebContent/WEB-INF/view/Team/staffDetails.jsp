@@ -1430,7 +1430,7 @@
 			yearOffset : 0, // 年偏差
 			timepicker : false, // 关闭时间选项
 			format : 'Y-m-d', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
+			minDate : '1900/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
 		$('.staff_joinWorkTime').datetimepicker({
@@ -1439,16 +1439,16 @@
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
 			format : 'Y-m-d', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
+			minDate : '1900/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
 		$('.staff_thePoliceTime').datetimepicker({
-			yearStart : 1990, // 设置最小年份
+			yearStart : 1900, // 设置最小年份
 			yearEnd : 2050, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
 			format : 'Y-m-d ', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
+			minDate : '1900/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
 		$('.staff_birthday').datetimepicker({
