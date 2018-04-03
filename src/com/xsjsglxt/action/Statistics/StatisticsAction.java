@@ -29,8 +29,6 @@ public class StatisticsAction {
 
 	// ----------------------------------获得警员出警次数统计---------------------------------
 	public void policemanOutTime() throws IOException {
-		policemanName = new String(policemanName.getBytes("iso-8859-1"), "utf-8");
-		System.out.println(policemanName);
 		List<policemanOutTimesDTO> result = statisticsService.policemanOutTime(policemanName);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");

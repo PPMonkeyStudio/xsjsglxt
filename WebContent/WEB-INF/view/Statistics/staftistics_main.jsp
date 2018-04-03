@@ -19,6 +19,7 @@
 	}
 </style>
 <title>统计模块</title>
+<script type="text/javascript" src="<%=basePath %>js/Statistics/policemanOutTimes.js"></script>
 </head>
 <body>
 <%-- 	<div id="hideLayer" style="margin: 0 auto; background-color: white; position: fixed; width: 100%; height: 2000px; z-index: 99999999999999999999999999999999999999999;">
@@ -39,7 +40,7 @@
 			</div>
 			<div class="statisticsContent" id="statisticsContent" style="margin-top: 10px; font-style: 宋体;">
 				<div id="fieldStatistics">
-					<input type="text" class="form-control" style="margin-bottom:10px; width: 250px; float: right;" oninput="" placeholder="请输入警员姓名">
+					<input id="queryPolicemanName" type="text" class="form-control" style="margin-bottom:10px; width: 250px; float: right;" oninput="" placeholder="请输入警员姓名">
 					<table class="table table-bordered" style="text-align: center;">
 						<thead>
 							<tr>
@@ -48,9 +49,9 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr v-for="">
-								<td></td>
-								<td></td>
+							<tr v-for="policeman in policemanList">
+								<td>{{ policeman.policemanName }}</td>
+								<td>{{ policeman.outTimes }}</td>
 							</tr>
 						</tbody>
 					</tabe>
