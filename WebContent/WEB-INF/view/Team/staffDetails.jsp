@@ -274,7 +274,7 @@
 										<th>微信号</th>
 										<th>工作单位</th>
 										<th>职位</th>
-										<th>备注</th>
+					 					<th>备注</th>
 										<th>操作</th>
 									</tr>
 								</tbody>
