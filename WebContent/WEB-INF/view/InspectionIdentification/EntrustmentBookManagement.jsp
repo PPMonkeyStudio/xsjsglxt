@@ -82,6 +82,7 @@
 								id="select_entrustmentRequire" style="width: auto;"
 								onchange="List_EntrustmentBook(1)">
 									<option value="-1">鉴定要求（全部）</option>
+									<option value="DNA检验">DNA检验</option>
 									<option value="指纹检验鉴定">指纹检验鉴定</option>
 									<option value="足迹检验鉴定">足迹检验鉴定</option>
 									<option value="整体分离检验鉴定">整体分离检验鉴定</option>
@@ -93,7 +94,6 @@
 									<option value="失踪人口查询">失踪人口查询</option>
 									<option value="2">其他鉴定要求</option>
 							</select></th>
-							<!-- <th>委托单位</th> -->
 							<th><select class="form-control" id="select_entrustmentUnit"
 								style="width: auto;" onchange="List_EntrustmentBook(1)">
 									<option value="-1">委托单位（全部）</option>
