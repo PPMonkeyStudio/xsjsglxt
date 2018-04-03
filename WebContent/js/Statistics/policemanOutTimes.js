@@ -16,7 +16,8 @@ window.onload = function() {
 }
 
 var loadPoliceman = function() {
-	policemanOutTimesQuery.policemanName = $('#queryPolicemanName').value;
+	policemanOutTimesQuery.policemanName = $('#queryPolicemanName').val();
+	console.log(policemanOutTimesQuery.policemanName);
 	$.ajax({
 		url : "/xsjsglxt/statistics/Statistics_policemanOutTime",
 		type : "post",
