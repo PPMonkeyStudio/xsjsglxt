@@ -29,8 +29,8 @@ color: black;
 				<li style="float: left; margin-left: 30px;"><a href="<%=basePath%>DNA/DNAManagement_DNAManagementPage">DNA</a></li>
 				<li style="float: left; margin-left: 30px;"><a href="<%=basePath%>FingerPrint/FingerPrintManagement_FingerPrintManagementPage">指纹</a></li>
 				<li style="float: left; margin-left: 30px;"><a href="<%=basePath%>Equipment/EquipmentManagement_EquipmentManagementPage">器材装备</a></li>
-				<li style="float: left; margin-left: 30px;"><a>统计</a></li>
-			</ul>
+				<li style="float: left; margin-left: 30px;"><a href="<%=basePath%>statistics/Statistics_intoMain">统计</a></li>
+			</ul>	
 		</div>
 	</div>
 </body>

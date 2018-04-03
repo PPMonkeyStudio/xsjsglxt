@@ -16,4 +16,5 @@
 	<import resource="spring/Staff.xml"/>
 	<import resource="spring/Handle.xml"/>
 	<import resource="spring/Technology.xml"/>
+		<import resource="spring/statistics.xml"/>
 </beans>
