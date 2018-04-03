@@ -24,10 +24,10 @@ function relive_study(){
 					"student.staffStudent_stopTime":staffStudent_stopTime_val,
 					"student.staffStudent_remarks":staffStudent_remarks_val,
 				},
-				dataType : "json",
-				success : function(data) {
-					toastr.success('修改学习成功！');
-				}
+				success:function(data){
+					toastr.success('修改学习经历成功！');
+					show_studyAjax(staff_id);
+				},
 			});
 }
 
@@ -61,10 +61,10 @@ function relive_work(){
 					"work.staffWork_stopTime":staffWork_stopTime_val,
 					"work.staffWork_remarks":staffWork_remarks_val,
 				},
-				dataType : "json",
-				success : function(data) {
-					console.log("修改完成");
-				}
+				success:function(data){
+					toastr.success('修改经工作历成功！');
+					show_workAjax(staff_id);
+				},
 			});
 }
 
@@ -110,10 +110,10 @@ function relive_family(){
 					"family.staffFamily_duty":staffFamily_duty_val,
 					"family.staffFamily_remarks":staffFamily_remarks_val,
 				},
-				dataType : "json",
-				success : function(data) {
-					console.log("修改完成");
-				}
+				success:function(data){
+					toastr.success('修改家庭成功！');
+					show_familyAjax(staff_id);
+				},
 			});
 }
 
@@ -144,10 +144,10 @@ function relive_move(){
 					"move.staffMove_guard":staffMove_guard_val,
 					"move.staffMove_remarks":staffMove_remarks_val,
 				},
-				dataType : "json",
-				success : function(data) {
-					console.log("修改完成");
-				}
+				success:function(data){
+					toastr.success('修改调动成功！');
+					show_moveAjax(staff_id);
+				},
 			});
 }
 
@@ -175,10 +175,10 @@ function relive_reward(){
 					"reward.staffReward_Time":staffReward_Time_val,
 					"reward.staffReward_remarks":staffReward_remarks_val,
 				},
-				dataType : "json",
-				success : function(data) {
-					console.log("修改完成");
-				}
+				success:function(data){
+					toastr.success('修改受奖成功！');
+					show_rewardAjax(staff_id);
+				},
 			});
 }
 //显示当前违规在模态框中
@@ -205,10 +205,40 @@ function relive_against(){
 					"principle.staffPrinciple_Time":staffPrinciple_Time_val,
 					"principle.staffPrinciple_remarks":staffPrinciple_remarks_val,
 				},
-				dataType : "json",
-				success : function(data) {
-					console.log("违规完成");
-				}
+				success:function(data){
+					toastr.success('修改违纪成功！');
+					show_againstAjax(staff_id);
+				},
+			});
+}
+//显示当前处分在模态框中
+function show_punishment(relive_button) {
+	 var this_tr=relive_button.parentNode.parentNode;
+	 this_trId=this_tr.querySelector(".xsjsglxt_staffPunishment_id").getAttribute("id");
+	 console.log(this_tr.children[1].innerHTML);
+	 document.querySelector(".staffPunishment_situationRelive").value=this_tr.children[1].innerHTML;
+	 document.querySelector(".staffPunishment_Time").value=this_tr.children[2].innerHTML;
+	 document.querySelector(".staffPunishment_remarksRelive").value=this_tr.children[3].innerHTML;
+}
+//修改处分
+function relive_punishment(){
+	console.log("处分修改");
+	// 修改一条数据
+	var staffPunishment_situation_val=$(".staffPunishment_situationRelive").val();
+	var staffPunishment_Time_val=$(".staffPunishment_TimeRelive").val();
+	var staffPunishment_remarks_val=$(".staffPunishment_remarksRelive").val();
+	$.ajax({
+				type : "POST",
+				url : '/xsjsglxt/team/StaffPunishment_updatePunishment?punishment.xsjsglxt_staffPunishment_id='+this_trId,
+				data :{
+					"punishment.staffPunishment_situation":staffPunishment_situation_val,
+					"punishment.staffPunishment_Time":staffPunishment_Time_val,
+					"punishment.staffPunishment_remarks":staffPunishment_remarks_val,
+				},
+				success:function(data){
+					toastr.success('修改处分成功！');
+					show_punishmentAjax(staff_id);
+				},
 			});
 }
 //显示当前处分在模态框中
@@ -244,9 +274,9 @@ function relive_furlough(){
 					"furlough.staffFurlough_stopTime":staffFurlough_stopTime_val,
 					"furlough.staffFurlough_remarks":staffFurlough_remarks_val,
 				},
-				dataType : "json",
-				success : function(data) {
-					console.log("处分处分");
-				}
+				success:function(data){
+					toastr.success('修改休假成功！');
+					show_furloughAjax(staff_id);
+				},
 			});
 }

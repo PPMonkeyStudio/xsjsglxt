@@ -13,7 +13,6 @@
 <!---------------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------------->
 <title>人员详情信息</title>
-<link rel="stylesheet" href="<%=basePath%>css/Case/table.css">
 <link rel="stylesheet" href="<%=basePath%>css/Team/Team.css">
 
 </head>
@@ -206,7 +205,7 @@
 
 						<form id="study_exp">
 							<div class="long_tb">
-								<table id="studyExperience_table">
+								<table>
 									<tbody>
 										<tr class="long_table">
 											<th>学习地点</th>
@@ -218,6 +217,11 @@
 
 									</tbody>
 								</table>
+								<table id="studyExperience_table">
+									<tbody>
+									</tbody>
+								</table>
+								
 							</div>
 						</form>
 					</div>
@@ -230,7 +234,7 @@
 						</button>
 						<form id="work_exp">
 							<div class="long_tb">
-								<table id="wordExperience_table">
+								<table>
 									<tbody>
 										<tr class="long_table">
 											<th>工作地点</th>
@@ -240,6 +244,11 @@
 											<th>备注</th>
 											<th>操作</th>
 										</tr>
+									</tbody>
+								</table>
+								<table id="wordExperience_table">
+									<tbody>
+										
 									</tbody>
 								</table>
 							</div>
@@ -253,7 +262,7 @@
 							<i class="fa fa-plus-square"></i> 添加
 						</button>
 						<div class="long_tb">
-							<table id="family_table" style="width: 150%;">
+							<table style="width: 150%;">
 
 								<tbody>
 									<tr class="long_table">
@@ -265,9 +274,16 @@
 										<th>微信号</th>
 										<th>工作单位</th>
 										<th>职位</th>
-										<th colspan="2">备注</th>
+										<th>备注</th>
 										<th>操作</th>
 									</tr>
+								</tbody>
+
+							</table>
+							<table id="family_table" style="width: 150%;">
+
+								<tbody>
+									
 								</tbody>
 
 							</table>
@@ -283,7 +299,7 @@
 						</button>
 						<form id="police_move">
 							<div class="long_tb">
-								<table id="policeChange_table">
+								<table>
 									<tbody>
 										<tr class="long_table">
 											<th>调入时间</th>
@@ -292,6 +308,11 @@
 											<th>备注</th>
 											<th>操作</th>
 										</tr>
+									</tbody>
+								</table>
+								<table id="policeChange_table">
+									<tbody>
+										
 									</tbody>
 								</table>
 							</div>
@@ -306,7 +327,7 @@
 						</button>
 						<form id="staffReward">
 							<div class="long_tb">
-								<table id="prized_table">
+								<table>
 									<tbody>
 										<tr class="long_table">
 											<th>表彰情况</th>
@@ -314,6 +335,11 @@
 											<th>备注</th>
 											<th>操作</th>
 										</tr>
+									</tbody>
+								</table>
+								<table id="prized_table">
+									<tbody>
+										
 									</tbody>
 								</table>
 							</div>
@@ -328,7 +354,7 @@
 						</button>
 						<form id="againstPrinciple">
 							<div class="long_tb">
-								<table id="againstPrinciple_table">
+								<table>
 									<tbody>
 										<tr class="long_table">
 											<th>违纪情况</th>
@@ -336,6 +362,10 @@
 											<th>备注</th>
 											<th>操作</th>
 										</tr>
+									</tbody>
+									<table id="againstPrinciple_table">
+									<tbody>
+										
 									</tbody>
 								</table>
 							</div>
@@ -350,7 +380,7 @@
 						</button>
 						<form id="Punishment">
 							<div class="long_tb">
-								<table id="punish_table">
+								<table >
 									<tbody>
 										<tr class="long_table">
 											<th>处分情况</th>
@@ -358,6 +388,11 @@
 											<th>备注</th>
 											<th>操作</th>
 										</tr>
+									</tbody>
+								</table>
+								<table id="punish_table">
+									<tbody>
+										 
 									</tbody>
 								</table>
 							</div>
@@ -372,7 +407,7 @@
 						</button>
 						<form id="Furlough">
 							<div class="long_tb">
-								<table id="vocation_table">
+								<table >
 									<tbody>
 										<tr class="long_table">
 											<th>休假事由</th>
@@ -383,6 +418,11 @@
 											<th>备注</th>
 											<th>操作</th>
 										</tr>
+									</tbody>
+								</table>
+								<table id="vocation_table">
+									<tbody>
+										 
 									</tbody>
 								</table>
 							</div>
@@ -473,27 +513,27 @@
 						<table>
 							<tbody>
 								<tr>
-									<td><label>工作地点</label></td>
+									<td><label class="staff_info_label">工作地点</label></td>
 									<td><input style="font-size: 12px;"
 										class="staffWork_address" type="text"></td>
 								</tr>
 								<tr>
-									<td><label>职务</label></td>
+									<td><label class="staff_info_label">职务</label></td>
 									<td><input style="font-size: 12px;" class="staffWork_duty"
 										type="text"></td>
 								</tr>
 								<tr>
-									<td><label>起始时间</label></td>
+									<td><label class="staff_info_label">起始时间</label></td>
 									<td><input style="font-size: 12px;"
 										class="staffWork_startTime"></td>
 								</tr>
 								<tr>
-									<td><label>结束时间</label></td>
+									<td><label class="staff_info_label">结束时间</label></td>
 									<td><input type="text" class="staffWork_stopTime" /></td>
 								</tr>
 
 								<tr>
-									<td><label>备注</label></td>
+									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffWork_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
