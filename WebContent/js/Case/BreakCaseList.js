@@ -95,10 +95,18 @@ $(function() {
 		// 选择框清除内容
 		$('#newQuery select').val("");
 		// 输入框清除内容
+<<<<<<< HEAD
 		$('$newQuery input').val("");
 		/*//影藏模态框
 		$('#newQuery').modal('hide');*/
 		//成功提示
+=======
+		$('#newQuery input').val("");
+		/*
+		 * //影藏模态框 $('#newQuery').modal('hide');
+		 */
+		// 成功提示
+>>>>>>> xzt
 		toastr.success('清除查询信息成功');
 	});
 	/*--------------------------------------------------------*/
