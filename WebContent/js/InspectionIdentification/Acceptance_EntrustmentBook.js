@@ -73,20 +73,26 @@ function Acceptance_EntrustmentBook(obj) {
 					 * 初始化日期
 					 */
 					var date = new Date();
+					var month = (parseInt(date.getMonth()) + 1);
+					if (month < 10)
+						month = "0" + "" + month;
+					var day = date.getDate();
+					if (day < 10)
+						day = "0" + "" + day;
 					document
 							.getElementsByName("identifiederCaseConfirmBook.identifieder_case_confirm_book_acceptance_date")[0].value = date
 							.getFullYear()
 							+ '-'
-							+ (parseInt(date.getMonth()) + 1)
+							+ month
 							+ '-'
-							+ date.getDate() + '';
+							+ day + '';
 					document
 							.getElementsByName("identifiederCaseConfirmBook.identifieder_case_confirm_book_inspection_date")[0].value = date
 							.getFullYear()
 							+ '-'
-							+ (parseInt(date.getMonth()) + 1)
+							+ month
 							+ '-'
-							+ date.getDate() + '';
+							+ day + '';
 
 					/*
 					 * 

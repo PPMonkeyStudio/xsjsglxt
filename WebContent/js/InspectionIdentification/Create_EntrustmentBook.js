@@ -117,13 +117,16 @@ function Create_EntrustmentBook(type) {
 					 * 
 					 */
 					var date = new Date();
+					var month = (parseInt(date.getMonth()) + 1);
+					if (month < 10)
+						month = "0" + "" + month;
+					var day = date.getDate();
+					if (day < 10)
+						day = "0" + "" + day;
 					document
 							.getElementsByName("tranceCheckBook.check_entrustment_book_inspect_time")[0].value = date
 							.getFullYear()
-							+ '-'
-							+ (parseInt(date.getMonth()) + 1)
-							+ '-'
-							+ date.getDate();
+							+ '-' + month + '-' + day;
 					$.datetimepicker.setLocale('ch');
 					$('.mydate').datetimepicker({
 						yearStart : 1990, // 设置最小年份

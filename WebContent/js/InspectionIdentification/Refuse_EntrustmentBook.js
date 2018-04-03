@@ -32,13 +32,19 @@ function Refuse_EntrustmentBook(obj) {
 					 * 初始化日期
 					 */
 					var date = new Date();
+					var month = (parseInt(date.getMonth()) + 1);
+					if (month < 10)
+						month = "0" + "" + month;
+					var day = date.getDate();
+					if (day < 10)
+						day = "0" + "" + day;
 					document
 							.getElementsByName("notAcceptanceEntrustmentInform.not_acceptance_entrustment_inform_approval_time")[0].value = date
 							.getFullYear()
 							+ '-'
-							+ (parseInt(date.getMonth()) + 1)
+							+ month
 							+ '-'
-							+ date.getDate() + '';
+							+ day + '';
 					$.datetimepicker.setLocale('ch');
 					$('.mydate').datetimepicker({
 						yearStart : 1990, // 设置最小年份

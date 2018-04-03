@@ -15,10 +15,9 @@
 <!---------------------------------------------------------------------------------------------------->
 <title>痕迹检验委托管理</title>
 <script type="text/javascript">
-window.onload = function()
-{
-	deleteByPower("user_check_power", "usePower", "managerPower");
-}
+	window.onload = function() {
+		deleteByPower("user_check_power", "usePower", "managerPower");
+	}
 </script>
 </head>
 <body>
@@ -42,14 +41,14 @@ window.onload = function()
 					<input id="select_stop_time" class="form-control mydate"
 						placeholder="XXXX-XX-XX"
 						style="width: 150px; float: right; margin: 0 0 0 20px; text-align: center;"
-						 type="text">
+						type="text">
 					<%--  --%>
 					<span style="float: right; margin: 0 0 0 20px; line-height: 34px;">至</span>
 					<!--  -->
 					<input id="select_start_time" class="form-control mydate"
 						placeholder="XXXX-XX-XX"
 						style="width: 150px; float: right; text-align: center;"
-						 type="text">
+						type="text">
 					<%--  --%>
 					<span style="float: right; margin: 0 0 0 20px; line-height: 34px;">按日期筛选：</span>
 				</div>
@@ -68,7 +67,8 @@ window.onload = function()
 					<div class="input-group" style="width: 300px; float: right;">
 						<input id="input_search" class="form-control"
 							oninput="List_EntrustmentBook(1)" type="text"> <span
-							class="input-group-addon" onclick="List_EntrustmentBook(1)"> <i class="fa fa-search"></i>
+							class="input-group-addon" onclick="List_EntrustmentBook(1)">
+							<i class="fa fa-search"></i>
 						</span>
 					</div>
 				</div>
@@ -82,6 +82,7 @@ window.onload = function()
 								id="select_entrustmentRequire" style="width: auto;"
 								onchange="List_EntrustmentBook(1)">
 									<option value="-1">鉴定要求（全部）</option>
+									<option value="DNA检验">DNA检验</option>
 									<option value="指纹检验鉴定">指纹检验鉴定</option>
 									<option value="足迹检验鉴定">足迹检验鉴定</option>
 									<option value="整体分离检验鉴定">整体分离检验鉴定</option>
@@ -93,16 +94,22 @@ window.onload = function()
 									<option value="失踪人口查询">失踪人口查询</option>
 									<option value="2">其他鉴定要求</option>
 							</select></th>
-							<th>委托单位</th>
-							<%-- 							<th><select class="form-control" id="select_unitName" --%>
-							<%-- 								style="width: auto;" onchange="List_EntrustmentBook(1)"> --%>
-							<!-- 									<option value="-1">被委托鉴定机构（全部）</option> -->
-							<!-- 									<option value="萍乡市公安司法鉴定中心">萍乡市公安司法鉴定中心</option> -->
-							<!-- 									<option value="萍乡市公安局物证鉴定所">萍乡市公安局物证鉴定所</option> -->
-							<!-- 									<option value="萍乡市安源公安司法鉴定中心">萍乡市安源区公安司法鉴定中心</option> -->
-							<!-- 									<option value="江西省公安厅物证鉴定中心">江西省公安厅物证鉴定中心</option> -->
-							<!-- 									<option value="公安部物证鉴定中心">公安部物证鉴定中心</option> -->
-							<%-- 							</select></th> --%>
+							<th><select class="form-control" id="select_entrustmentUnit"
+								style="width: auto;" onchange="List_EntrustmentBook(1)">
+									<option value="-1">委托单位（全部）</option>
+									<option value="后埠派出所">后埠派出所</option>
+									<option value="凤凰派出所">凤凰派出所</option>
+									<option value="安源派出所">安源派出所</option>
+									<option value="城郊派出所">城郊派出所</option>
+									<option value="八一派出所">八一派出所</option>
+									<option value="东大派出所">东大派出所</option>
+									<option value="青山派出所">青山派出所</option>
+									<option value="丹江派出所">丹江派出所</option>
+									<option value="白源派出所">白源派出所</option>
+									<option value="高坑派出所">高坑派出所</option>
+									<option value="五陂下派出所">五陂下派出所</option>
+									<option value="其他">其他</option>
+							</select></th>
 							<th>委托日期</th>
 							<th><select class="form-control" id="select_type"
 								style="width: auto;" onchange="List_EntrustmentBook(1)">
@@ -132,7 +139,8 @@ window.onload = function()
 				</div>
 
 				<div style="height: 34px; margin: 0 0 20px 0;">
-					<button class="btn btn-danger managerPower" onclick="Remove_EntrustmentBook()"
+					<button class="btn btn-danger managerPower"
+						onclick="Remove_EntrustmentBook()"
 						style="float: right; margin: 0 10px;">
 						<i class="fa fa-trash-o"></i> 删除委托
 					</button>
