@@ -191,7 +191,7 @@ tfoot tr td a:hover {
 										style="float: left;" type="text" class="form-control mydate"
 										placeholder="起始日期"><input
 										name="page_list_BreakecaseInformation.stop_time"
-										style="float: right;" type="text" class="form-control"
+										style="float: right;" type="text" class="form-control mydate"
 										placeholder="结束日期"></td>
 								</tr>
 							</tbody>
