@@ -443,7 +443,7 @@ var modifi_delete = function() {
 							$.datetimepicker.setLocale('ch');
 							$('.mydate').datetimepicker({
 								yearStart : 1990, // 设置最小年份
-								yearEnd : 2050, // 设置最大年份
+								yearEnd : 2100, // 设置最大年份
 								yearOffset : 0, // 年偏差
 								timepicker : false, // 关闭时间选项
 								format : 'Y-m-d', // 格式化日期年-月-日
@@ -452,7 +452,7 @@ var modifi_delete = function() {
 							});
 							$('.mydate_minute').datetimepicker({
 								yearStart : 1990, // 设置最小年份
-								yearEnd : 2050, // 设置最大年份
+								yearEnd : 2100, // 设置最大年份
 								yearOffset : 0, // 年偏差
 								timepicker : true, // 关闭时间选项
 								format : 'Y-m-d H:i', // 格式化日期年-月-日
