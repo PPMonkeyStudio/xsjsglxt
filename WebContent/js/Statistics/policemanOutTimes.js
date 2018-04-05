@@ -1,8 +1,10 @@
 /**
  * 
  */
-var policemanOutTimesQuery = {
-	policemanName : ""
+var policemanOutTimesQueryTemp = {
+	policemanName : "",
+	outStartTime : '',
+	outEndTime : ''
 };
 var policemanOut;
 window.onload = function() {
@@ -18,7 +20,14 @@ window.onload = function() {
 var loadPoliceman = function() {
 	$('#fieldStatistics').hide();
 	$('#loadingLayer').show();
-	policemanOutTimesQuery.policemanName = $('#queryPolicemanName').val();
+	policemanOutTimesQueryTemp.policemanName = $('#queryPolicemanName').val();
+	policemanOutTimesQueryTemp.outStartTime = $('#timeStart').val();
+	policemanOutTimesQueryTemp.outEndTime = $('#timeEnd').val();
+	var policemanOutTimesQuery = {
+		"outTimeVO.timeStart" : policemanOutTimesQueryTemp.outStartTime,
+		"outTimeVO.timeEnd" : policemanOutTimesQueryTemp.outEndTime,
+		"outTimeVO.policemanName" : policemanOutTimesQueryTemp.policemanName
+	}
 	$.ajax({
 		url : "/xsjsglxt/statistics/Statistics_policemanOutTime",
 		type : "post",
@@ -28,12 +37,8 @@ var loadPoliceman = function() {
 				console.log(data);
 				var result = JSON.parse(data);
 				policemanOut.policemanList = result;
-				$('#queryPolicemanName').val(
-						policemanOutTimesQuery.policemanName);
 			} else {
 				policemanOut.policemanList = {};
-				$('#queryPolicemanName').val(
-						policemanOutTimesQuery.policemanName);
 			}
 			$('#loadingLayer').hide();
 			$('#fieldStatistics').show();

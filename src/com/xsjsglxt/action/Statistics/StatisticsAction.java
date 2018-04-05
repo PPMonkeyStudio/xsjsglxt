@@ -10,6 +10,7 @@ import org.apache.struts2.ServletActionContext;
 
 import com.google.gson.Gson;
 import com.xsjsglxt.domain.DTO.Statistics.policemanOutTimesDTO;
+import com.xsjsglxt.domain.VO.Statistics.OutTimeVO;
 import com.xsjsglxt.service.Statistics.StatisticsService;
 
 /**
@@ -21,6 +22,7 @@ import com.xsjsglxt.service.Statistics.StatisticsService;
 public class StatisticsAction {
 	private StatisticsService statisticsService;
 	private String policemanName;
+	private OutTimeVO outTimeVO;
 
 	// --------------------------------进入统计首页-----------------------------------------
 	public String intoMain() {
@@ -29,7 +31,8 @@ public class StatisticsAction {
 
 	// ----------------------------------获得警员出警次数统计---------------------------------
 	public void policemanOutTime() throws IOException, InterruptedException {
-		List<policemanOutTimesDTO> result = statisticsService.policemanOutTime(policemanName);
+		System.out.println(outTimeVO.getTimeStart() + outTimeVO.getTimeEnd());
+		List<policemanOutTimesDTO> result = statisticsService.policemanOutTime(outTimeVO);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		Gson gson = new Gson();
@@ -45,7 +48,20 @@ public class StatisticsAction {
 		}
 	}
 
+	// ------------------------------获得警员比对指纹次数--------------------------------------
+
+	public void policemanComparisonTime() {
+
+	}
 	// -----------------------setter/getter-------------------------------
+
+	public OutTimeVO getOutTimeVO() {
+		return outTimeVO;
+	}
+
+	public void setOutTimeVO(OutTimeVO outTimeVO) {
+		this.outTimeVO = outTimeVO;
+	}
 
 	public StatisticsService getStatisticsService() {
 		return statisticsService;

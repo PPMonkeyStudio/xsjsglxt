@@ -13,26 +13,35 @@
 <title>统计模块</title>
 <script type="text/javascript"
 	src="<%=basePath%>js/Statistics/policemanOutTimes.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/Statistics/btnControl.js"></script>
 </head>
 <body>
 	<!-----------------------------------------引入导航条 ------------------------------------------------------>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
 	<jsp:include page="/technologyManager.jsp" flush="true"></jsp:include>
 	<!-----------------------------------------主面板---------------------------------------------------------  -->
-	<div style="float: left; width: 100%;">
+	<div style="float: left; width: 100%;" id="allContent">
 		<div class="panel"
 			style="width: 95%; margin: 20px auto; padding-left: 20px; padding-right: 20px;">
 			<div class="statisticsNavbar" style="margin-top: 10px;">
-				<button class="btn btn-default" onclick="" style="">现场统计</button>
-				<button class="btn btn-default" onclick=""
-					style="margin-left: 30px;">比对指纹统计</button>
-				<button class="btn btn-default" onclick=""
-					style="margin-left: 30px;">辖区案件统计</button>
+				<button class="btn btn-default" id="goFieldPage"
+					onclick="changePage(this)" style="">现场统计</button>
+				<button class="btn btn-default" onclick="changePage(this)"
+					style="margin-left: 30px;" id="goComparisonPage">比对指纹统计</button>
+				<button class="btn btn-default" onclick="changePage(this)"
+					style="margin-left: 30px;" id="goCasePage">辖区案件统计</button>
 			</div>
-			<div class="statisticsContent" id="statisticsContent"
-				style="margin-top: 10px;">
+			<!-- --------------------------出警次数统计--------------------------------------------- -->
+			<div id="fieldPage" id="fieldPage" style="margin-top: 10px;">
+				<label>接警时间筛选：</label><input class="form-control startTime"
+					onchange="loadPoliceman()" type="text" id="timeStart"
+					style="width: 150px; display: inline-block;"><label>至</label>
+				<input class="form-control startTime" onchange="loadPoliceman()"
+					type="text" id="timeEnd"
+					style="width: 150px; display: inline-block;"> <label>姓名筛选：</label>
 				<input id="queryPolicemanName" type="text" class="form-control"
-					style="margin-bottom: 10px; width: 250px; float: right;"
+					style="margin-bottom: 10px; width: 250px; display: inline-block;"
 					oninput="loadPoliceman()" placeholder="请输入警员姓名">
 				<div id="loadingLayer" style="margin: 0 auto; width: 45px;">
 					<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
@@ -52,6 +61,29 @@
 							</tr>
 						</tbody>
 					</table>
+				</div>
+			</div>
+			<!-- ----------------------------比对指纹统计-------------------------------------- -->
+			<div id="comparisonTime" style="margin-top: 10px; display: none;">
+				<label>接警时间筛选：</label><input class="form-control startTime"
+					onchange="loadComparison()" type="text" id="timeStartComparison"
+					style="width: 150px; display: inline-block;"><label>至</label>
+				<input class="form-control startTime" onchange="loadComparison()"
+					type="text" id="timeEndComparison"
+					style="width: 150px; display: inline-block;"> <label>姓名筛选：</label>
+				<input id="queryPolicemanNameComparison" type="text"
+					class="form-control"
+					style="margin-bottom: 10px; width: 250px; display: inline-block;"
+					oninput="loadComparison()" placeholder="请输入警员姓名">
+				<div id="loadingLayerComparison"
+					style="margin: 0 auto; width: 45px;">
+					<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+				</div>
+			</div>
+			<!-- ----------------------------案件统计-------------------------------------- -->
+			<div id="caseTime" style="margin-top: 10px; display: none;">
+				<div id="loadingLayerCase" style="margin: 0 auto; width: 45px;">
+					<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
 				</div>
 			</div>
 		</div>

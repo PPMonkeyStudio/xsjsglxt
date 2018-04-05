@@ -1,5 +1,6 @@
 var xmlHttp;
-document.onkeydown = function keyLogin(event) {
+document.onkeydown = keyLogin;
+function keyLogin(event) {
 	if (event.keyCode == 13) {
 		login();
 	}

@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import com.xsjsglxt.dao.Statistics.StatisticsDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_staff;
 import com.xsjsglxt.domain.DTO.Statistics.policemanOutTimesDTO;
+import com.xsjsglxt.domain.VO.Statistics.OutTimeVO;
 
 public class StatisticsDaoImpl implements StatisticsDao {
 	private SessionFactory sessionFactory;
@@ -39,14 +40,23 @@ public class StatisticsDaoImpl implements StatisticsDao {
 	}
 
 	@Override
-	public List<policemanOutTimesDTO> getTimes(List<xsjsglxt_staff> policeman) {
+	public List<policemanOutTimesDTO> getTimes(List<xsjsglxt_staff> policeman, OutTimeVO outTimeVO) {
 		// TODO Auto-generated method stub
 		List<policemanOutTimesDTO> policemanDTO = new ArrayList<policemanOutTimesDTO>();
 		Session session = this.getSession();
 		String hql = null;
+		String queryCondition = "";
+		if (outTimeVO.getTimeStart() != null && !"".equals(outTimeVO.getTimeStart())) {
+			queryCondition = queryCondition + " and c.case_receivingAlarmDate>='" + outTimeVO.getTimeStart() + "'";
+		}
+		if (outTimeVO.getTimeEnd() != null && !"".equals(outTimeVO.getTimeEnd())) {
+			queryCondition = queryCondition + " and c.case_receivingAlarmDate<='" + outTimeVO.getTimeEnd() + "'";
+		}
 		for (xsjsglxt_staff xsjsglxt_staff : policeman) {
-			hql = "select count(*) from xsjsglxt_snece where snece_inquestPerson like '%"
+			hql = "select count(*) from xsjsglxt_snece as s , xsjsglxt_case as c where s.snece_case=c.xsjsglxt_case_id and s.snece_inquestPerson like '%"
 					+ xsjsglxt_staff.getXsjsglxt_name() + "%'";
+			hql = hql + queryCondition;
+			System.out.println(hql);
 			long count = (long) session.createQuery(hql).uniqueResult();
 			policemanOutTimesDTO p = new policemanOutTimesDTO();
 			p.setOutTimes(new Long(count).intValue());
