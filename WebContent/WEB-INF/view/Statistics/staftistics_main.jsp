@@ -109,8 +109,8 @@
 	<script type="text/javascript">
 		$.datetimepicker.setLocale('ch');
 		$('.startTime').datetimepicker({
-			yearStart : 1990, // 设置最小年份
-			yearEnd : 2050, // 设置最大年份
+			yearStart : 1900, // 设置最小年份
+			yearEnd : 2100, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : false, // 关闭时间选项
 			format : 'Y-m-d', // 格式化日期年-月-日
