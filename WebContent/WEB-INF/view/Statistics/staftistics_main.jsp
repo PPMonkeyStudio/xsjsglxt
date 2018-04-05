@@ -15,6 +15,8 @@
 	src="<%=basePath%>js/Statistics/policemanOutTimes.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/Statistics/btnControl.js"></script>
+	<script type="text/javascript"
+	src="<%=basePath%>js/Statistics/comparisonTimes.js"></script>
 </head>
 <body>
 	<!-----------------------------------------引入导航条 ------------------------------------------------------>
@@ -65,7 +67,7 @@
 			</div>
 			<!-- ----------------------------比对指纹统计-------------------------------------- -->
 			<div id="comparisonTime" style="margin-top: 10px; display: none;">
-				<label>接警时间筛选：</label><input class="form-control startTime"
+				<label>比对时间筛选：</label><input class="form-control startTime"
 					onchange="loadComparison()" type="text" id="timeStartComparison"
 					style="width: 150px; display: inline-block;"><label>至</label>
 				<input class="form-control startTime" onchange="loadComparison()"
@@ -78,6 +80,22 @@
 				<div id="loadingLayerComparison"
 					style="margin: 0 auto; width: 45px;">
 					<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+				</div>
+				<div id="comparisonContent" style="display: none;">
+					<table class="table table-bordered" style="text-align: center;">
+						<thead>
+							<tr>
+								<td>警员姓名</td>
+								<td>比对指纹次数</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="comparison in comparisonList">
+								<td>{{ comparison.policemanname }}</td>
+								<td>{{ comparison.comparisonTime }}</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 			<!-- ----------------------------案件统计-------------------------------------- -->

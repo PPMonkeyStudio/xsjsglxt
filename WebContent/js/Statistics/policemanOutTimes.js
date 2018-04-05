@@ -14,6 +14,12 @@ window.onload = function() {
 			'policemanList' : {}
 		}
 	});
+	comparisonTime = new Vue({
+		el : "#comparisonContent",
+		data : {
+			'comparisonList' : {}
+		}
+	});
 	loadPoliceman();
 }
 

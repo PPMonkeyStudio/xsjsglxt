@@ -4,19 +4,21 @@
 var changePage = function(event) {
 	switch (event.id) {
 	case "goFieldPage":
-		$('#comparisonTime').fadeOut();
-		$('#caseTime').fadeOut();
-		$('#fieldPage').fadeIn();
+		$('#comparisonTime').hide();
+		$('#caseTime').hide();
+		$('#fieldPage').show();
+		loadPoliceman();
 		break;
 	case "goComparisonPage":
-		$('#caseTime').fadeOut();
-		$('#fieldPage').fadeOut();
-		$('#comparisonTime').fadeIn();
+		$('#caseTime').hide();
+		$('#fieldPage').hide();
+		$('#comparisonTime').show();
+		loadComparison();
 		break;
 	case "goCasePage":
-		$('#fieldPage').fadeOut();
-		$('#comparisonTime').fadeOut();
-		$('#caseTime').fadeIn();
+		$('#fieldPage').hide();
+		$('#comparisonTime').hide();
+		$('#caseTime').show();
 		bread;
 	}
 }

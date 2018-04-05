@@ -8,7 +8,9 @@ import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.Statistics.StatisticsDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_staff;
+import com.xsjsglxt.domain.DTO.Statistics.ComparisonTimeDTO;
 import com.xsjsglxt.domain.DTO.Statistics.policemanOutTimesDTO;
+import com.xsjsglxt.domain.VO.Statistics.ComparisonTimeVO;
 import com.xsjsglxt.domain.VO.Statistics.OutTimeVO;
 
 public class StatisticsDaoImpl implements StatisticsDao {
@@ -64,5 +66,37 @@ public class StatisticsDaoImpl implements StatisticsDao {
 			policemanDTO.add(p);
 		}
 		return policemanDTO;
+	}
+
+	@Override
+	public List<ComparisonTimeDTO> getComparisonTime(List<xsjsglxt_staff> policeman,
+			ComparisonTimeVO comparisonTimeVO) {
+		// TODO Auto-generated method stub
+		List<ComparisonTimeDTO> comparistionTimeDTOList = new ArrayList<ComparisonTimeDTO>();
+		String hql = null;
+		String queryCondition = "";
+		if (comparisonTimeVO.getComparisonTimeStart() != null
+				&& comparisonTimeVO.getComparisonTimeStart().trim().length() > 0) {
+			queryCondition = queryCondition + " and breakcase_arrested_time >= '"
+					+ comparisonTimeVO.getComparisonTimeStart() + "'";
+		}
+		if (comparisonTimeVO.getComparisonTimeEnd() != null
+				&& comparisonTimeVO.getComparisonTimeEnd().trim().length() > 0) {
+			queryCondition = queryCondition + " and breakcase_arrested_time<='"
+					+ comparisonTimeVO.getComparisonTimeEnd() + "'";
+		}
+		ComparisonTimeDTO c = null;
+		Session session = this.getSession();
+		for (xsjsglxt_staff staff : policeman) {
+			hql = "select count(*) from xsjsglxt_breakcase where breakcase_contrast_contraster = '"
+					+ staff.getXsjsglxt_name() + "'";
+			hql = hql + queryCondition;
+			long count = (long) session.createQuery(hql).uniqueResult();
+			c = new ComparisonTimeDTO();
+			c.setComparisonTime((int) count);
+			c.setPolicemanname(staff.getXsjsglxt_name());
+			comparistionTimeDTOList.add(c);
+		}
+		return comparistionTimeDTOList;
 	}
 }
