@@ -409,8 +409,8 @@ var add_info = function() {
 			+ '<option value="理化物证">理化物证</option>'
 			+ '<option value="其他">其他</option>'
 			+ '</select></td>'
-			+ '<td>提取日期:</td>'
-			+ '<td><input name="resevidence.resevidence_extractTime" class="form-control mydate" type="text"></td>'
+			+ '<td><span style="color:#F00">*</span>提取日期:</td>'
+			+ '<td><input name="resevidence.resevidence_extractTime" class="form-control must mydate" type="text"></td>'
 			+ '</tr>'
 			+ '<tr>'
 			+ '<td>提取单位:</td>'
@@ -1098,6 +1098,10 @@ function add_default_confirm(title, content, url, value) {
 				btnClass : 'btn-info',
 				text : '确认添加',
 				action : function() {
+					if ($('.must').val() == "") {
+						toastr.error("日期不能为空！");
+						return false;
+					}
 					$.post(url, $('.jconfirm-content form').serialize(), function(xhr_data) {
 						if (xhr_data == "success") {
 							toastr.success("添加成功！");
