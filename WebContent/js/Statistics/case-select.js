@@ -9,7 +9,7 @@ var secondCase = [ '',
 		'' ];
 
 var changeSecondSelect = function(event) {
-	console.log("触发了方法");
+	loadCase();
 	var selectDiv = document.getElementById("caseSelect");
 	if (document.getElementById("secondCase") != null) {
 		selectDiv.removeChild(document.getElementById("secondCase"));
@@ -19,6 +19,7 @@ var changeSecondSelect = function(event) {
 		var caseSelect = document.createElement("select");
 		caseSelect.setAttribute("class", "form-control");
 		caseSelect.setAttribute("id", "secondCase");
+		caseSelect.setAttribute("onchange", "loadCase()");
 		caseSelect
 				.setAttribute("style", "width: 200px; display: inline-block;");
 		for (var int = 0; int < currCase.length; int++) {
@@ -36,5 +37,16 @@ var changeSecondSelect = function(event) {
 }
 
 var highLightShow = function(event) {
-	var 
+	document.getElementById("caseTBody").innerHTML = document
+			.getElementById("caseTBody").innerHTML.replace(
+			/(<span style="color:red;")/g, "<span");
+	var index = event.selectedIndex;
+	if (index > 0) {
+		var trs = document.getElementsByName("caseTr");
+		for (var int = 0; int < trs.length; int++) {
+			var trd = trs[int].getElementsByTagName("td");
+			trd[index].innerHTML = trd[index].innerHTML.replace("<span",
+					"<span style='color:red;'");
+		}
+	}
 }

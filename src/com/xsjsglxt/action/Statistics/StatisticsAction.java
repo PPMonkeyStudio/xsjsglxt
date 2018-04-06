@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
 
 import com.google.gson.Gson;
+import com.xsjsglxt.domain.DTO.Statistics.CaseTimeDTO;
 import com.xsjsglxt.domain.DTO.Statistics.ComparisonTimeDTO;
 import com.xsjsglxt.domain.DTO.Statistics.policemanOutTimesDTO;
+import com.xsjsglxt.domain.VO.Statistics.CaseTimeVO;
 import com.xsjsglxt.domain.VO.Statistics.ComparisonTimeVO;
 import com.xsjsglxt.domain.VO.Statistics.OutTimeVO;
 import com.xsjsglxt.service.Statistics.StatisticsService;
@@ -26,6 +28,7 @@ public class StatisticsAction {
 	private String policemanName;
 	private OutTimeVO outTimeVO;
 	private ComparisonTimeVO comparisonTimeVO;
+	private CaseTimeVO caseTimeVO;
 
 	// --------------------------------进入统计首页-----------------------------------------
 	public String intoMain() {
@@ -43,7 +46,7 @@ public class StatisticsAction {
 		response.setContentType("text/html;charset=utf-8");
 		Gson gson = new Gson();
 		PrintWriter pw = response.getWriter();
-		if (result != null && result.size() >= 0) {
+		if (result != null && result.size() > 0) {
 			pw.write(gson.toJson(result));
 			pw.flush();
 			pw.close();
@@ -66,7 +69,7 @@ public class StatisticsAction {
 		response.setContentType("text/html;charset=utf-8");
 		Gson gson = new Gson();
 		PrintWriter pw = response.getWriter();
-		if (result != null && result.size() >= 0) {
+		if (result != null && result.size() > 0) {
 			pw.write(gson.toJson(result));
 			pw.flush();
 			pw.close();
@@ -76,6 +79,26 @@ public class StatisticsAction {
 			pw.close();
 		}
 	}
+
+	// -----------------------------------获得案件发生次数--------------------------------------
+
+	public void caseTime() throws IOException {
+		List<CaseTimeDTO> result = statisticsService.caseTime(caseTimeVO);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		Gson gson = new Gson();
+		PrintWriter pw = response.getWriter();
+		if (result != null && result.size() > 0) {
+			pw.write(gson.toJson(result));
+			pw.flush();
+			pw.close();
+		} else {
+			pw.write("没有案件记录");
+			pw.flush();
+			pw.close();
+		}
+	}
+
 	// -----------------------setter/getter-------------------------------
 
 	public OutTimeVO getOutTimeVO() {
@@ -108,5 +131,13 @@ public class StatisticsAction {
 
 	public void setStatisticsService(StatisticsService statisticsService) {
 		this.statisticsService = statisticsService;
+	}
+
+	public CaseTimeVO getCaseTimeVO() {
+		return caseTimeVO;
+	}
+
+	public void setCaseTimeVO(CaseTimeVO caseTimeVO) {
+		this.caseTimeVO = caseTimeVO;
 	}
 }

@@ -7,6 +7,7 @@ var policemanOutTimesQueryTemp = {
 	outEndTime : ''
 };
 var policemanOut;
+var caseTime;
 window.onload = function() {
 	policemanOut = new Vue({
 		el : "#fieldStatistics",
@@ -18,6 +19,12 @@ window.onload = function() {
 		el : "#comparisonContent",
 		data : {
 			'comparisonList' : {}
+		}
+	});
+	caseTime = new Vue({
+		el : "#caseContent",
+		data : {
+			'caseList' : {}
 		}
 	});
 	loadPoliceman();

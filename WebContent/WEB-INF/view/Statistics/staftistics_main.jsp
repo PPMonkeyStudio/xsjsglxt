@@ -26,6 +26,8 @@ td {
 	src="<%=basePath%>js/Statistics/comparisonTimes.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/Statistics/case-select.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/Statistics/caseTime.js"></script>
 </head>
 <body>
 	<!-----------------------------------------引入导航条 ------------------------------------------------------>
@@ -113,7 +115,7 @@ td {
 					<select id='firstCase' class="form-control"
 						style="width: 200px; display: inline-block;"
 						onchange="changeSecondSelect(this)">
-						<option value="">请选择案件总类别</option>
+						<option value="所有案件">请选择案件总类别</option>
 						<option value="盗窃案">盗窃案</option>
 						<option value="抢劫案">抢劫案</option>
 						<option value="抢夺案">抢夺案</option>
@@ -124,8 +126,8 @@ td {
 						<option value="爆炸案">爆炸案</option>
 						<option value="放火案">放火案</option>
 						<option value="非法拘禁案">非法拘禁案</option>
-						<option value="非正常死亡案">非正常死亡案</option>
-						<option value="故意损坏公私财物案">故意损坏公私财物案</option>
+						<option value="非正常死亡案">非正常死亡</option>
+						<option value="故意损坏公私财物案">故意损坏公私财物</option>
 						<option value="其他">其他</option>
 					</select>
 				</div>
@@ -136,7 +138,8 @@ td {
 					type="text" id="timeEndCase"
 					style="width: 150px; display: inline-block;"> <label>高亮显示：</label>
 				<select id='policeStation' class="form-control"
-					style="width: 200px; display: inline-block;" onchange="highLightShow(this)">
+					style="width: 200px; display: inline-block;"
+					onchange="highLightShow(this)">
 					<option value="">请选择案发辖区</option>
 					<option value="东大派出所">东大派出所</option>
 					<option value="高坑派出所">高坑派出所</option>
@@ -152,12 +155,12 @@ td {
 					<option value="五陂下派出所">五陂下派出所</option>
 					<option value="其他">其他</option>
 				</select>
-				<div id="loadingLayerCase"
-					style="margin: 0 auto; width: 45px; display: none;">
+				<div id="loadingLayerCase" style="margin: 0 auto; width: 45px;">
 					<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
 				</div>
-				<div id="caseContent" style="margin-top: 10px;">
-					<table class="table table-bordered" style="text-align: center; font-size:10px;">
+				<div id="caseContent" style="margin-top: 10px;display:none;">
+					<table class="table table-bordered"
+						style="text-align: center; font-size: 10px;">
 						<thead>
 							<tr>
 								<td>案件类型</td>
@@ -176,22 +179,22 @@ td {
 								<td>其他</td>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td>故意损坏公私财物案其他</td>
-								<td>东大派出所</td>
-								<td>高坑派出所</td>
-								<td>青山派出所</td>
-								<td>安源派出所</td>
-								<td>八一派出所</td>
-								<td>白源派出所</td>
-								<td>城郊派出所</td>
-								<td>丹江派出所</td>
-								<td>凤凰派出所</td>
-								<td>后埠派出所</td>
-								<td>李子园派出所</td>
-								<td>五陂下派出所</td>
-								<td>其他</td>
+						<tbody id="caseTBody">
+							<tr name="caseTr" v-for="caseTime in caseList">
+								<td>{{ caseTime.caseCategory }}</td>
+								<td><span v-html="caseTime.dongDaTime"></span></td>
+								<td><span v-html="caseTime.gaoKangTime"></span></td>
+								<td><span v-html="caseTime.qingshanTime"></span></td>
+								<td><span v-html="caseTime.anyuanTime"></span></td>
+								<td><span v-html="caseTime.bayiTime"></span></td>
+								<td><span v-html="caseTime.baiyuanTime"></span></td>
+								<td><span v-html="caseTime.chengjiaoTime"></span></td>
+								<td><span v-html="caseTime.danjiangTime"></span></td>
+								<td><span v-html="caseTime.fenghuangTime"></span></td>
+								<td><span v-html="caseTime.houfuTime"></span></td>
+								<td><span v-html="caseTime.liziyuanTime"></span></td>
+								<td><span v-html="caseTime.wupoxiaTime"></span></td>
+								<td><span v-html="caseTime.qitaTime"></span></td>
 							</tr>
 						</tbody>
 					</table>

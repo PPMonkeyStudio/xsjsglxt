@@ -16,6 +16,23 @@ public class CaseTimeDTO {
 	private int wupoxiaTime;
 	private int qitaTime;
 
+	public CaseTimeDTO() { // TODO Auto-generated constructor stub
+		this.dongDaTime = 0;
+		this.gaoKangTime = 0;
+		this.qingshanTime = 0;
+		this.anyuanTime = 0;
+		this.bayiTime = 0;
+		this.baiyuanTime = 0;
+		this.chengjiaoTime = 0;
+		this.danjiangTime = 0;
+		this.fenghuangTime = 0;
+		this.liziyuanTime = 0;
+		this.wupoxiaTime = 0;
+		this.houfuTime = 0;
+		this.qitaTime = 0;
+
+	}
+
 	public String getCaseCategory() {
 		return caseCategory;
 	}

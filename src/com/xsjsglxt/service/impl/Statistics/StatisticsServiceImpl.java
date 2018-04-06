@@ -4,8 +4,10 @@ import java.util.List;
 
 import com.xsjsglxt.dao.Statistics.StatisticsDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_staff;
+import com.xsjsglxt.domain.DTO.Statistics.CaseTimeDTO;
 import com.xsjsglxt.domain.DTO.Statistics.ComparisonTimeDTO;
 import com.xsjsglxt.domain.DTO.Statistics.policemanOutTimesDTO;
+import com.xsjsglxt.domain.VO.Statistics.CaseTimeVO;
 import com.xsjsglxt.domain.VO.Statistics.ComparisonTimeVO;
 import com.xsjsglxt.domain.VO.Statistics.OutTimeVO;
 import com.xsjsglxt.service.Statistics.StatisticsService;
@@ -49,6 +51,13 @@ public class StatisticsServiceImpl implements StatisticsService {
 		} else {
 			return comparisonTimeDTOList;
 		}
+	}
+
+	@Override
+	public List<CaseTimeDTO> caseTime(CaseTimeVO caseTimeVO) {
+		// TODO Auto-generated method stub
+		List<CaseTimeDTO> caseTimeDTOList = statisticsDao.getCaseTime(caseTimeVO);
+		return caseTimeDTOList;
 	}
 
 }
