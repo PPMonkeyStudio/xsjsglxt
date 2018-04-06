@@ -10,13 +10,22 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<style>
+td {
+	white-space: nowrap;
+	overflow: hidden;
+	word-break: keep-all;
+}
+</style>
 <title>统计模块</title>
 <script type="text/javascript"
 	src="<%=basePath%>js/Statistics/policemanOutTimes.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/Statistics/btnControl.js"></script>
-	<script type="text/javascript"
+<script type="text/javascript"
 	src="<%=basePath%>js/Statistics/comparisonTimes.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/Statistics/case-select.js"></script>
 </head>
 <body>
 	<!-----------------------------------------引入导航条 ------------------------------------------------------>
@@ -100,8 +109,92 @@
 			</div>
 			<!-- ----------------------------案件统计-------------------------------------- -->
 			<div id="caseTime" style="margin-top: 10px; display: none;">
-				<div id="loadingLayerCase" style="margin: 0 auto; width: 45px;">
+				<div id="caseSelect" style="display: inline-block;">
+					<select id='firstCase' class="form-control"
+						style="width: 200px; display: inline-block;"
+						onchange="changeSecondSelect(this)">
+						<option value="">请选择案件总类别</option>
+						<option value="盗窃案">盗窃案</option>
+						<option value="抢劫案">抢劫案</option>
+						<option value="抢夺案">抢夺案</option>
+						<option value="强奸案">强奸案</option>
+						<option value="绑架案">绑架案</option>
+						<option value="杀人案">杀人案</option>
+						<option value="故意伤害案">故意伤害案</option>
+						<option value="爆炸案">爆炸案</option>
+						<option value="放火案">放火案</option>
+						<option value="非法拘禁案">非法拘禁案</option>
+						<option value="非正常死亡案">非正常死亡案</option>
+						<option value="故意损坏公私财物案">故意损坏公私财物案</option>
+						<option value="其他">其他</option>
+					</select>
+				</div>
+				<label>接警时间筛选：</label><input class="form-control startTime"
+					onchange="loadCase()" type="text" id="timeStartCase"
+					style="width: 150px; display: inline-block;"><label>至</label>
+				<input class="form-control startTime" onchange="loadCase()"
+					type="text" id="timeEndCase"
+					style="width: 150px; display: inline-block;"> <label>高亮显示：</label>
+				<select id='policeStation' class="form-control"
+					style="width: 200px; display: inline-block;" onchange="highLightShow(this)">
+					<option value="">请选择案发辖区</option>
+					<option value="东大派出所">东大派出所</option>
+					<option value="高坑派出所">高坑派出所</option>
+					<option value="青山派出所">青山派出所</option>
+					<option value="安源派出所">安源派出所</option>
+					<option value="八一派出所">八一派出所</option>
+					<option value="白源派出所">白源派出所</option>
+					<option value="城郊派出所">城郊派出所</option>
+					<option value="丹江派出所">丹江派出所</option>
+					<option value="凤凰派出所">凤凰派出所</option>
+					<option value="后埠派出所">后埠派出所</option>
+					<option value="李子园派出所">李子园派出所</option>
+					<option value="五陂下派出所">五陂下派出所</option>
+					<option value="其他">其他</option>
+				</select>
+				<div id="loadingLayerCase"
+					style="margin: 0 auto; width: 45px; display: none;">
 					<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+				</div>
+				<div id="caseContent" style="margin-top: 10px;">
+					<table class="table table-bordered" style="text-align: center; font-size:10px;">
+						<thead>
+							<tr>
+								<td>案件类型</td>
+								<td>东大派出所</td>
+								<td>高坑派出所</td>
+								<td>青山派出所</td>
+								<td>安源派出所</td>
+								<td>八一派出所</td>
+								<td>白源派出所</td>
+								<td>城郊派出所</td>
+								<td>丹江派出所</td>
+								<td>凤凰派出所</td>
+								<td>后埠派出所</td>
+								<td>李子园派出所</td>
+								<td>五陂下派出所</td>
+								<td>其他</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>故意损坏公私财物案其他</td>
+								<td>东大派出所</td>
+								<td>高坑派出所</td>
+								<td>青山派出所</td>
+								<td>安源派出所</td>
+								<td>八一派出所</td>
+								<td>白源派出所</td>
+								<td>城郊派出所</td>
+								<td>丹江派出所</td>
+								<td>凤凰派出所</td>
+								<td>后埠派出所</td>
+								<td>李子园派出所</td>
+								<td>五陂下派出所</td>
+								<td>其他</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>

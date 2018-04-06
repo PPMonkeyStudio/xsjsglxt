@@ -19,6 +19,6 @@ var changePage = function(event) {
 		$('#fieldPage').hide();
 		$('#comparisonTime').hide();
 		$('#caseTime').show();
-		bread;
+		break;
 	}
 }
