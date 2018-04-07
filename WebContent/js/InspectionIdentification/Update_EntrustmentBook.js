@@ -36,7 +36,6 @@ function Update_EntrustmentBook(obj) {
 							+ '" /></td>'
 							+ '<td><span style="color:#D9534F;">*</span> 委托单位：</td>'
 							+ '<td><select class="form-control" name="tranceCheckBook.check_entrustment_book_entrustment_unit">'
-							+ '<option value="-1">委托单位（全部）</option>'
 							+ '<option value="后埠派出所">后埠派出所</option>'
 							+ '<option value="凤凰派出所">凤凰派出所</option>'
 							+ '<option value="安源派出所">安源派出所</option>'
