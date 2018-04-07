@@ -49,7 +49,7 @@ function Update_EntrustmentBook(obj) {
 							+ '<option value="高坑派出所">高坑派出所</option>'
 							+ '<option value="五陂下派出所">五陂下派出所</option>'
 							+ '<option value="其他">其他</option>'
-							+ '</select> </td></tr>'
+							+ '</select></td></tr>'
 							+ '<td><span style="color:#D9534F;">*</span> 委托时间：</td><td><input name="tranceCheckBook.check_entrustment_book_inspect_time" class="form-control mydate"  value="'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspect_time
 							+ '"/></td></tr>'
