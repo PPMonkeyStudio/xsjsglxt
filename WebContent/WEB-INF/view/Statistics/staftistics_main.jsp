@@ -11,6 +11,9 @@
 			+ path + "/";
 %>
 <style>
+tr.trCover:HOVER{
+	background-color:  	#F5F5F5;
+}
 td {
 	white-space: nowrap;
 	overflow: hidden;
@@ -162,7 +165,7 @@ td {
 					<table class="table table-bordered"
 						style="text-align: center; font-size: 10px;">
 						<thead>
-							<tr>
+							<tr id="trHead">
 								<td>案件类型</td>
 								<td>东大派出所</td>
 								<td>高坑派出所</td>
@@ -180,7 +183,7 @@ td {
 							</tr>
 						</thead>
 						<tbody id="caseTBody">
-							<tr name="caseTr" v-for="caseTime in caseList">
+							<tr name="caseTr" class="trCover" v-for="caseTime in caseList">
 								<td>{{ caseTime.caseCategory }}</td>
 								<td><span v-html="caseTime.dongDaTime"></span></td>
 								<td><span v-html="caseTime.gaoKangTime"></span></td>
