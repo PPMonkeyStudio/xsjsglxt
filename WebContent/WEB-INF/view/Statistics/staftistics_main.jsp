@@ -163,7 +163,7 @@ td {
 				</div>
 				<div id="caseContent" style="margin-top: 10px;display:none;">
 					<table class="table table-bordered"
-						style="text-align: center; font-size: 10px;">
+						style="text-align: center; font-size: 10px;font-weight: bold">
 						<thead>
 							<tr id="trHead">
 								<td>案件类型</td>
