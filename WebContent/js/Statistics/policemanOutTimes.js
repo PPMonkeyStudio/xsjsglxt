@@ -31,6 +31,7 @@ window.onload = function() {
 }
 
 var loadPoliceman = function() {
+	cleanInput();
 	$('#fieldStatistics').hide();
 	$('#loadingLayer').show();
 	policemanOutTimesQueryTemp.policemanName = $('#queryPolicemanName').val();
@@ -57,4 +58,10 @@ var loadPoliceman = function() {
 			$('#fieldStatistics').show();
 		}
 	});
+}
+
+var cleanInput = function() {
+	$('input').val("");
+	$('#firstCase').val("所有案件");
+	$('#policeStation').val("");
 }
