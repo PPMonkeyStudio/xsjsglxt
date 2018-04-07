@@ -12,7 +12,8 @@ function Create_Damage_InspectionRecord(obj) {
 			.confirm({
 				icon : 'fa fa-pencil-square-o',
 				title : '记录损伤检验过程',
-				content : '<form id="form_Damage_InspectionRecord">' + '<input value="'
+				content : '<form id="form_Damage_InspectionRecord">'
+						+ '<input value="'
 						+ obj.id
 						+ '"  class="form-control" name="damageInspectionRecord.damage_inspection_record_belong_entrustment_book"  style="display:none;"/>'
 						+ '<hr>'
@@ -60,10 +61,22 @@ function Create_Damage_InspectionRecord(obj) {
 						+ '<tr>'
 						+ '<td>检验所见：</td>'
 						+ '<td colspan="3"><textarea class="form-control" style="resize: none;height:100px;" name="damageInspectionRecord.damage_inspection_record_inspection" ></textarea></td>'
-						+ '</tr>' + '<tr>' + '<td>检查人：</td>' + '<td ><input class="form-control"  name="damageInspectionRecord.damage_inspection_record_inspection_man" /></td>'
-						+ '</tr>' + '<tr>' + '<td>损伤检验图：</td>' + '<td>' + '<input type="file"   id="create_damage_inspection_record_picture1"   />'
-						+ '<input type="file"   id="create_damage_inspection_record_picture2"   />' + '<input type="file"   id="create_damage_inspection_record_picture3"   />'
-						+ '</td>' + '</tr>' + '</tbody>' + '</table></form>' + '<hr>',
+						+ '</tr>'
+						+ '<tr>'
+						+ '<td>检查人：</td>'
+						+ '<td ><input class="form-control"  name="damageInspectionRecord.damage_inspection_record_inspection_man" /></td>'
+						+ '</tr>'
+						+ '<tr>'
+						+ '<td>损伤检验图：</td>'
+						+ '<td>'
+						+ '<input type="file"   id="create_damage_inspection_record_picture1"   />'
+						+ '<input type="file"   id="create_damage_inspection_record_picture2"   />'
+						+ '<input type="file"   id="create_damage_inspection_record_picture3"   />'
+						+ '</td>'
+						+ '</tr>'
+						+ '</tbody>'
+						+ '</table></form>'
+						+ '<hr>',
 				type : 'blue',
 				columnClass : 'col-md-12',
 				onOpenBefore : function() {
@@ -79,10 +92,26 @@ function Create_Damage_InspectionRecord(obj) {
 					 * 
 					 */
 					var date = new Date();
-					document.getElementsByName("damageInspectionRecord.damage_inspection_record_damage_time")[0].value = date.getFullYear() + '-' + (parseInt(date.getMonth()) + 1)
-							+ '-' + date.getDate();
-					document.getElementsByName("damageInspectionRecord.damage_inspection_record_time")[0].value = date.getFullYear() + '-' + (parseInt(date.getMonth()) + 1) + '-'
-							+ date.getDate();
+					var month = (parseInt(date.getMonth()) + 1);
+					if (month < 10)
+						month = "0" + "" + month;
+					var day = date.getDate();
+					if (day < 10)
+						day = "0" + "" + day;
+					document
+							.getElementsByName("damageInspectionRecord.damage_inspection_record_damage_time")[0].value = date
+							.getFullYear()
+							+ '-'
+							+ month
+							+ '-'
+							+ day;
+					document
+							.getElementsByName("damageInspectionRecord.damage_inspection_record_time")[0].value = date
+							.getFullYear()
+							+ '-'
+							+ month
+							+ '-'
+							+ day;
 					/*
 					 * 
 					 */
@@ -147,37 +176,52 @@ function Create_Damage_InspectionRecord(obj) {
 							/*
 							 * 
 							 */
-							var formData = new FormData(document.getElementById("form_Damage_InspectionRecord"));
+							var formData = new FormData(
+									document
+											.getElementById("form_Damage_InspectionRecord"));
 							/*
 							 * 图片
 							 */
 
-							var create_damage_inspection_record_picture1 = document.getElementById("create_damage_inspection_record_picture1");
-							var create_damage_inspection_record_picture2 = document.getElementById("create_damage_inspection_record_picture2");
-							var create_damage_inspection_record_picture3 = document.getElementById("create_damage_inspection_record_picture3");
+							var create_damage_inspection_record_picture1 = document
+									.getElementById("create_damage_inspection_record_picture1");
+							var create_damage_inspection_record_picture2 = document
+									.getElementById("create_damage_inspection_record_picture2");
+							var create_damage_inspection_record_picture3 = document
+									.getElementById("create_damage_inspection_record_picture3");
 
-							if (create_damage_inspection_record_picture1.files[0] == null && create_damage_inspection_record_picture2.files[0] == null
+							if (create_damage_inspection_record_picture1.files[0] == null
+									&& create_damage_inspection_record_picture2.files[0] == null
 									&& create_damage_inspection_record_picture3.files[0] == null) {
 								formData.append("positionFile", "2");
 								formData.append("positionFile", "2");
 								formData.append("positionFile", "2");
 							} else {
 								if (create_damage_inspection_record_picture1.files[0] != null) {
-									formData.append("death", create_damage_inspection_record_picture1.files[0]);
+									formData
+											.append(
+													"death",
+													create_damage_inspection_record_picture1.files[0]);
 									formData.append("positionFile", "1");
 								} else {
 									formData.append("positionFile", "2");
 								}
 								//
 								if (create_damage_inspection_record_picture2.files[0] != null) {
-									formData.append("death", create_damage_inspection_record_picture2.files[0]);
+									formData
+											.append(
+													"death",
+													create_damage_inspection_record_picture2.files[0]);
 									formData.append("positionFile", "1");
 								} else {
 									formData.append("positionFile", "2");
 								}
 								//
 								if (create_damage_inspection_record_picture3.files[0] != null) {
-									formData.append("death", create_damage_inspection_record_picture3.files[0]);
+									formData
+											.append(
+													"death",
+													create_damage_inspection_record_picture3.files[0]);
 									formData.append("positionFile", "1");
 								} else {
 									formData.append("positionFile", "2");
@@ -187,7 +231,10 @@ function Create_Damage_InspectionRecord(obj) {
 							/*
 							 * 
 							 */
-							xhr.open("POST", "/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_addDamageInspectionRecord");
+							xhr
+									.open(
+											"POST",
+											"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_addDamageInspectionRecord");
 							xhr.send(formData);
 						}
 					},

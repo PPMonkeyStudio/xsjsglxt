@@ -5,23 +5,16 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 <base href="<%=basePath%>">
-
 <title>办案管理</title>
-
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="tdis is my page">
-<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-
 </head>
 <style type="text/css">
 .Handle_table_info thead tr td {
@@ -55,9 +48,10 @@
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
-	<div style="margin: 80px 0 0 0; float: left; widtd: 100%;">
-		<div class="panel"
-			style="widtd: 95%; margin: 20px auto; margin-left: 6%;">
+		<div style="margin: 80px 0 0 0; float: left; width: 100%;">
+			<!---------------------------------------------------------------------------------------------------->
+			<!---------------------------------------------------------------------------------------------------->
+			<div class="panel" style="width: 95%; margin: 20px auto;">
 			<!--  -->
 			<div class="panel-heading">
 				<h3 class="panel-title">办案管理</h3>
@@ -158,7 +152,7 @@
 								<tbody>
 									<tr>
 										<td>序号</td>
-										<td><input class="form-control"
+										<td><input class="form-control" readonly="readonly"
 											name="handle.handle_orderNumber" type="text"></td>
 										<td>行政案件名称</td>
 										<td><input class="form-control"
@@ -280,13 +274,14 @@
 									</tr>
 									<tr>
 										<td>中队长</td>
-										<td colspan="2"><select
-											name="handle.handle_squadronleader"
-											class="form-control selectpicker"></select></td>
+										<td colspan="2"><input class="form-control"
+											name="handle.handle_squadronleader" type="text"> <%-- <select name="handle.handle_squadronleader"
+											class="form-control selectpicker"></select> --%></td>
 										<td>办案民警</td>
-										<td colspan="2"><select
-											name="handle.handle_PoliceInHandlingCases"
-											class="form-control selectpicker"></select></td>
+										<td colspan="2"><input class="form-control"
+											name="handle.handle_PoliceInHandlingCases" type="text">
+											<%-- <select name="handle.handle_PoliceInHandlingCases"
+											class="form-control selectpicker"></select> --%></td>
 									</tr>
 								</tbody>
 							</table>

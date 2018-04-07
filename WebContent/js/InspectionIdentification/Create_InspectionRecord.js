@@ -217,20 +217,20 @@ function Create_InspectionRecord(obj) {
 					 * 
 					 */
 					var date = new Date();
+					var month = (parseInt(date.getMonth()) + 1);
+					if (month < 10)
+						month = "0" + "" + month;
+					var day = date.getDate();
+					if (day < 10)
+						day = "0" + "" + day;
 					document
 							.getElementsByName("inspectionRecord.inspection_start_time")[0].value = date
 							.getFullYear()
-							+ '-'
-							+ (parseInt(date.getMonth()) + 1)
-							+ '-'
-							+ date.getDate();
+							+ '-' + month + '-' + day;
 					document
 							.getElementsByName("inspectionRecord.inspection_stop_time")[0].value = date
 							.getFullYear()
-							+ '-'
-							+ (parseInt(date.getMonth()) + 1)
-							+ '-'
-							+ date.getDate();
+							+ '-' + month + '-' + day;
 					/*
 					 * 
 					 */

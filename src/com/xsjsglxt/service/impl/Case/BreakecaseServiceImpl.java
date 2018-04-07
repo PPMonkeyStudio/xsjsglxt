@@ -135,7 +135,9 @@ public boolean remove_BreakecaseInformationList(List<String> useBreakecaseInform
 	// TODO Auto-generated method stub
 	boolean flag = false;
 	for (String breakecase_id : useBreakecaseInformationNumList) {
+		System.out.println("iddd"+breakecase_id);
 		xsjsglxt_breakecase xsjsglxt_breakecase = breakecaseDao.getBreakecaseByNum(breakecase_id);
+	System.out.println("shhfhf"+xsjsglxt_breakecase.getXsjsglxt_breakecase_id());
 		flag = breakecaseDao.deleteBreakecaseById(xsjsglxt_breakecase.getXsjsglxt_breakecase_id());// ����
 		
 	}

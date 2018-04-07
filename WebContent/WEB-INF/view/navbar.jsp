@@ -34,6 +34,7 @@
 <script src="<%=basePath%>js/jquery-confirm.js"></script>
 <!--------------------------------------------------------------------------------->
 <script src="<%=basePath%>js/jquery.bootstrap.wizard.js"></script>
+<script src="<%=basePath%>js/vue.js"></script>
 <script src="<%=basePath%>js/jquery.slimscroll.min.js"></script>
 <script src="<%=basePath%>js/klorofil-common.js"></script>
 <!--------------------------------------------------------------------------------->
@@ -83,8 +84,8 @@
 						<li style="float: left;"><a
 							href="<%=basePath%>team/Staff_page_staffList">人员</a></li>
 						<li class="teacher_control"><a>值班管理</a></li>
-						<li class="teacher_control"><a>会议记录</a></li>
-						<li class="teacher_control"><a>大事记</a></li>
+						<li class="teacher_control"><a href="<%=basePath%>user/Meeting_skipToMeetRecords">会议记录</a></li>
+						<li class="teacher_control"><a href="<%=basePath%>user/Memorabilia_skipToMemorabilia">大事记</a></li>
 					</ul></li>
 				<!--  -->
 				<li class="dropdown" style="float: left;"><a
@@ -101,18 +102,6 @@
 			<ul class="nav navbar-nav navbar-right" style="margin: 0 0px 0 0">
 				<!--  -->
 				<!--  -->
-				<li class="dropdown"><a href="#"
-					class="dropdown-toggle icon-menu" data-toggle="dropdown"> <i
-						class="lnr lnr-alarm"></i> <span class="badge bg-danger">2</span>
-				</a>
-					<ul class="dropdown-menu notifications">
-						<li><a href="#" class="notification-item"><span
-								class="dot bg-success"></span>都是法师打发斯蒂芬</a></li>
-						<li><a href="#" class="notification-item"><span
-								class="dot bg-danger"></span>222</a></li>
-						<li><a href="#" class="notification-item"
-							style="text-align: center;">查看历史消息</a></li>
-					</ul></li>
 				<!--  -->
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <i class="fa fa-user-circle"></i> <span

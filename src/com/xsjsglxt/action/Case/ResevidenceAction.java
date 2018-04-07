@@ -20,60 +20,68 @@ import com.xsjsglxt.domain.VO.Case.page_list_ResevidenceInformationVO;
 import com.xsjsglxt.service.Case.ResevidenceService;
 
 public class ResevidenceAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
-   private ResevidenceService resevidenceService;
-   
+	private ResevidenceService resevidenceService;
+
 	private HttpServletResponse http_response;
 
-	private HttpServletRequest http_request;	
-	
+	private HttpServletRequest http_request;
+
 	private xsjsglxt_resevidence resevidence;
-	
+
 	private xsjsglxt_case case1;
-	
+
 	private xsjsglxt_circulation circulation;
-	
+
 	private List<String> useResevidenceInformationNumList;
-	
+
 	private ResevidenceInformationDTO resevidenceInformationDTO;
-	
-	private	page_list_ResevidenceInformationVO page_list_ResevidenceInformation;
-	
+
+	private page_list_ResevidenceInformationVO page_list_ResevidenceInformation;
+
 	/*
 	 * 保存物证
 	 * 
 	 */
-	public void saveResevidence() throws IOException{
+	public void saveResevidence() {
+		http_response.setContentType("text/html;charset=utf-8");
+		String result = null;
 		try {
 			resevidence.setResevidence_case(case1.getXsjsglxt_case_id());
+			System.out.println("asuf" + resevidence.getResevidence_case());
 			resevidenceService.saveResevidence(resevidence);
-			http_response.setContentType("text/html;charset=utf-8");
-			http_response.getWriter().write("success");
+			result = "success";
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			http_response.setContentType("text/html;charset=utf-8");
-			http_response.getWriter().write("error");
+			result = "error";
+		} finally {
+			try {
+				http_response.getWriter().write(result);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+
 	}
-	
+
 	/*
-	 *列表信息
+	 * 列表信息
 	 */
-	public void  ListResevidenceInformationByPageAndSearch() throws IOException{
+	public void ListResevidenceInformationByPageAndSearch() throws IOException {
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
 		page_list_ResevidenceInformation = resevidenceService
-					.VO_Resevidenceformation_By_PageAndSearch(page_list_ResevidenceInformation);
+				.VO_Resevidenceformation_By_PageAndSearch(page_list_ResevidenceInformation);
 
-				http_response.setContentType("text/html;charset=utf-8");
+		http_response.setContentType("text/html;charset=utf-8");
 
-				http_response.getWriter().write(gson.toJson(page_list_ResevidenceInformation));
+		http_response.getWriter().write(gson.toJson(page_list_ResevidenceInformation));
 	}
+
 	/*
-	 *详细信息
+	 * 详细信息
 	 */
-	public void ResevidenceInformationOne() throws IOException{
+	public void ResevidenceInformationOne() throws IOException {
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
@@ -82,10 +90,11 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 
 		http_response.getWriter().write(gson.toJson(resevidenceInformationDTO));
 	}
+
 	/*
-	 *保存流转信息
+	 * 保存流转信息
 	 */
-	public void saveCirculation() throws IOException{
+	public void saveCirculation() throws IOException {
 		try {
 			circulation.setCirculation_resevidence(resevidence.getXsjsglxt_resevidence_id());
 			resevidenceService.saveCirculation(circulation);
@@ -98,42 +107,46 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 			http_response.getWriter().write("error");
 		}
 	}
+
 	/*
-	 *修改物证信息 
+	 * 修改物证信息
 	 */
-	public void updateResevidenceInformation() throws IOException{
+	public void updateResevidenceInformation() throws IOException {
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();//格式化json数据
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
 		resevidenceService.updateResevidenceIn(resevidence);
-		
+
 		http_response.setContentType("text/html;charset=utf-8");
 
 		http_response.getWriter().write(gson.toJson("success"));
-		
-	}
-	/*
-	 *删除信息 
-	 */
-	public void remove_ResevidenceInformationList(){
 
-		if(	resevidenceService.removeResevidenceInformationList( useResevidenceInformationNumList)){
+	}
+
+	/*
+	 * 删除信息
+	 */
+	public void remove_ResevidenceInformationList() {
+
+		if (resevidenceService.removeResevidenceInformationList(useResevidenceInformationNumList)) {
 			http_response.setContentType("text/html;charset=utf-8");
 			try {
 				http_response.getWriter().write("success");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}}else{
-				http_response.setContentType("text/html;charset=utf-8");
-				try {
-					http_response.getWriter().write("error");
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 			}
+		} else {
+			http_response.setContentType("text/html;charset=utf-8");
+			try {
+				http_response.getWriter().write("error");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
+
 	@Override
 	public void setServletResponse(HttpServletResponse arg0) {
 		// TODO Auto-generated method stub
@@ -206,7 +219,8 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 		return page_list_ResevidenceInformation;
 	}
 
-	public void setPage_list_ResevidenceInformation(page_list_ResevidenceInformationVO page_list_ResevidenceInformation) {
+	public void setPage_list_ResevidenceInformation(
+			page_list_ResevidenceInformationVO page_list_ResevidenceInformation) {
 		this.page_list_ResevidenceInformation = page_list_ResevidenceInformation;
 	}
 

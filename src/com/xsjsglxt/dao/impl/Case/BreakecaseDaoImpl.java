@@ -61,6 +61,7 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		// 1
 		if (page_list_BreakecaseInformation.getSnece_inquestId() != null
 				&& page_list_BreakecaseInformation.getSnece_inquestId().trim().length() > 0) {
+			
 			String snece_inquestId = "%" + page_list_BreakecaseInformation.getSnece_inquestId() + "%";
 			hql = hql + " and snece_inquestId like '" + snece_inquestId + "'";
 
@@ -249,7 +250,7 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
-		String hql = "from xsjsglxt_breakecase breakecase where breakecase.xsjsglxt_breakecase_id='"
+		String hql = "from xsjsglxt_breakecase breakecase where breakecase.breakecase_case='"
 				+ breakecase.getXsjsglxt_breakecase_id() + "'";
 
 		Query query = session.createQuery(hql);
@@ -331,7 +332,7 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		Session session = getSession();
 		xsjsglxt_breakecase BreakecaseInformation = null;
 
-		String hql = "from xsjsglxt_breakecase breakecase where breakecase.xsjsglxt_breakecase_id='" + breakecase_id
+		String hql = "from xsjsglxt_breakecase breakecase where breakecase.breakecase_case='" + breakecase_id
 				+ "'";
 		Query query = session.createQuery(hql);
 		BreakecaseInformation = (xsjsglxt_breakecase) query.uniqueResult();

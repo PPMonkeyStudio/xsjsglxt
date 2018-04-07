@@ -40,6 +40,7 @@ $(function() {
 		$('.Query_table select').val("");
 		//输入框清除内容
 		$('.Query_table input').val("");
+		//$('.selectpicker').selectpicker('val', '');
 		/*//影藏模态框
 		$('#newQuery').modal('hide');*/
 		//成功提示
@@ -50,7 +51,6 @@ $(function() {
 
 function get_ListSneceInformationByPageAndSearch(data) {
 	$.post('/xsjsglxt/case/Case_ListSneceInformationByPageAndSearch', data, function(xhr) {
-		$('.case_table_info tbody').empty();
 		var str = '';
 		for (var len = 0; len < xhr.SenceInformationDTOList.length; len++) {
 			var data_list = xhr.SenceInformationDTOList[len];
@@ -65,7 +65,7 @@ function get_ListSneceInformationByPageAndSearch(data) {
 			str += '<td>' + data_list.sence.snece_inquestPerson + '</td>';
 			str += '</tr>';
 		}
-		$('.case_table_info tbody').append(str);
+		$('.case_table_info tbody').html(str);
 		//分页信息存入page_infomantion中
 		page_infomantion.pageIndex = xhr.pageIndex; //当前页数
 		page_infomantion.totalRecords = xhr.totalRecords; //总页数

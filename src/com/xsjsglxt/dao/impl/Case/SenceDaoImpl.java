@@ -11,8 +11,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.Case.SenceDao;
+import com.xsjsglxt.domain.DO.xsjsglxt_breakecase;
 import com.xsjsglxt.domain.DO.xsjsglxt_briefdetails;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
+import com.xsjsglxt.domain.DO.xsjsglxt_circulation;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone;
@@ -32,7 +34,8 @@ public class SenceDaoImpl implements SenceDao {
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
-	} 
+	}
+
 	public Session getSession() {
 
 		return this.sessionFactory.getCurrentSession();
@@ -43,7 +46,7 @@ public class SenceDaoImpl implements SenceDao {
 		// TODO Auto-generated method stub
 		try {
 			getSession().save(sence);
-			
+
 		} catch (Error e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -65,43 +68,41 @@ public class SenceDaoImpl implements SenceDao {
 	public void save(xsjsglxt_briefdetails briefdetails) {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
-				try {
-					getSession().save(briefdetails);
-					
-				} catch (Error e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-	}
+		try {
+			getSession().save(briefdetails);
 
-	
+		} catch (Error e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public int getMaxSenceInquestId() {
 		int i;
-		//201711
-		String yearAndMonth =TeamUtil.yearAndMonth();
-		String li="";
-		//List<xsjsglxt_snece> xsjsglxt_snece = new ArrayList<xsjsglxt_snece>();
-		//K3603020012017110001
+		// 201711
+		String yearAndMonth = TeamUtil.yearAndMonth();
+		String li = "";
+		// List<xsjsglxt_snece> xsjsglxt_snece = new
+		// ArrayList<xsjsglxt_snece>();
+		// K3603020012017110001
 		String hql = "select right(snece_inquestId,4) from xsjsglxt_snece ORDER BY right(snece_inquestId,4) desc limit 1";
-		
+
 		System.out.println(hql);
 		Query query = getSession().createSQLQuery(hql);
-		li=(String) query.uniqueResult();
-		if(li==null || li.trim().length()<=0){
+		li = (String) query.uniqueResult();
+		if (li == null || li.trim().length() <= 0) {
 			getSession().clear();
 			return 0;
 		}
-		i=Integer.parseInt(li);
+		i = Integer.parseInt(li);
 		getSession().clear();
 		return i;
-		//i = Integer.parseInt((String) query.uniqueResult());
-		//xsjsglxt_snece = query.list();
-		//i = Integer.parseInt((String) query.uniqueResult());
-   
+		// i = Integer.parseInt((String) query.uniqueResult());
+		// xsjsglxt_snece = query.list();
+		// i = Integer.parseInt((String) query.uniqueResult());
+
 		// i=xsjsglxt_snece.size();
-		
-		
+
 	}
 
 	@Override
@@ -109,16 +110,17 @@ public class SenceDaoImpl implements SenceDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 		Long i;
-		//String hql = "select count(*) from xsjsglxt_case,xsjsglxt_snece where xsjsglxt_case_id=snece_case";
+		// String hql = "select count(*) from xsjsglxt_case,xsjsglxt_snece where
+		// xsjsglxt_case_id=snece_case";
 		String hql = "select count(*) from xsjsglxt_case,xsjsglxt_snece  where 1=1 and snece_case= xsjsglxt_case_id";
 		String startTime = "0000-00-00";
 		String stopTime = "9999-99-99";
-		  // 1
+		// 1
 		if (page_list_senceInformation.getCase_totalCategory() != null
 				&& page_list_senceInformation.getCase_totalCategory().trim().length() > 0) {
 			String case_totalCategory = "%" + page_list_senceInformation.getCase_totalCategory() + "%";
 			hql = hql + " and case_totalCategory like '" + case_totalCategory + "'";
-				
+
 		}
 		// 2
 		if (page_list_senceInformation.getCase_sonCategory() != null
@@ -147,8 +149,8 @@ public class SenceDaoImpl implements SenceDao {
 		// 6
 		if (page_list_senceInformation.getSnece_inquestPerson() != null
 				&& page_list_senceInformation.getSnece_inquestPerson().trim().length() > 0) {
-			String person = "%" + page_list_senceInformation.getSnece_inquestPerson().trim()+ "%";
-			hql = hql + " and snece_inquestPerson like'" + person+ "'";
+			String person = "%" + page_list_senceInformation.getSnece_inquestPerson().trim() + "%";
+			hql = hql + " and snece_inquestPerson like'" + person + "'";
 		}
 		// 7
 		if (page_list_senceInformation.getCase_makeTime() != null
@@ -168,16 +170,29 @@ public class SenceDaoImpl implements SenceDao {
 			String case_concreteMakeMeans = "%" + page_list_senceInformation.getCase_concreteMakeMeans() + "%";
 			hql = hql + " and case_concreteMakeMeans like '" + case_concreteMakeMeans + "'";
 		}
-		if (page_list_senceInformation.getStart_time() != null && page_list_senceInformation.getStart_time().trim().length() > 0) {
+		if (page_list_senceInformation.getCase_reporterName() != null
+				&& page_list_senceInformation.getCase_reporterName().trim().length() > 0) {
+			String Case_reporterName = "%" + page_list_senceInformation.getCase_reporterName() + "%";
+			hql = hql + " and Case_reporterName like '" + Case_reporterName + "'";
+		}
+		if (page_list_senceInformation.getCase_address() != null
+				&& page_list_senceInformation.getCase_address().trim().length() > 0) {
+			String case_address = "%" + page_list_senceInformation.getCase_address() + "%";
+			hql = hql + " and case_address like '" + case_address + "'";
+		}
+
+		if (page_list_senceInformation.getStart_time() != null
+				&& page_list_senceInformation.getStart_time().trim().length() > 0) {
 			startTime = page_list_senceInformation.getStart_time();
 		}
-		if (page_list_senceInformation.getStop_time() != null && page_list_senceInformation.getStop_time().trim().length() > 0) {
+		if (page_list_senceInformation.getStop_time() != null
+				&& page_list_senceInformation.getStop_time().trim().length() > 0) {
 			stopTime = page_list_senceInformation.getStop_time();
 		}
-		hql = hql + " and case_receivingAlarmDate>='" + startTime + "' and case_receivingAlarmDate<='"
-				+ stopTime + "' order by case_receivingAlarmDate";
+		hql = hql + " and case_receivingAlarmDate>='" + startTime + "' and case_receivingAlarmDate<='" + stopTime
+				+ "' order by case_receivingAlarmDate";
 		System.out.println(hql);
-		Query query = session.createQuery(hql);	
+		Query query = session.createQuery(hql);
 		i = (Long) query.uniqueResult();
 		session.clear();
 		return i.intValue();
@@ -189,15 +204,15 @@ public class SenceDaoImpl implements SenceDao {
 		Session session = getSession();
 		List<xsjsglxt_case> listSenceInformationByPage = new ArrayList<xsjsglxt_case>();
 		String hql = "select case1  from xsjsglxt_case case1,xsjsglxt_snece sence where 1=1 and sence.snece_case=case1.xsjsglxt_case_id";
-		System.out.println("每条数据"+hql);
+		System.out.println("每条数据" + hql);
 		String startTime = "0000-00-00";
 		String stopTime = "9999-99-99";
-		  // 1
+		// 1
 		if (page_list_senceInformation.getCase_totalCategory() != null
 				&& page_list_senceInformation.getCase_totalCategory().trim().length() > 0) {
 			String case_totalCategory = "%" + page_list_senceInformation.getCase_totalCategory() + "%";
 			hql = hql + " and case_totalCategory like '" + case_totalCategory + "'";
-				
+
 		}
 		// 2
 		if (page_list_senceInformation.getCase_sonCategory() != null
@@ -226,8 +241,8 @@ public class SenceDaoImpl implements SenceDao {
 		// 6
 		if (page_list_senceInformation.getSnece_inquestPerson() != null
 				&& page_list_senceInformation.getSnece_inquestPerson().trim().length() > 0) {
-			String person ="%" + page_list_senceInformation.getSnece_inquestPerson().trim()+ "%";
-			hql = hql + " and snece_inquestPerson like '"+ person + "'";
+			String person = "%" + page_list_senceInformation.getSnece_inquestPerson().trim() + "%";
+			hql = hql + " and snece_inquestPerson like '" + person + "'";
 		}
 		// 7
 		if (page_list_senceInformation.getCase_makeTime() != null
@@ -247,24 +262,27 @@ public class SenceDaoImpl implements SenceDao {
 			String case_concreteMakeMeans = "%" + page_list_senceInformation.getCase_concreteMakeMeans() + "%";
 			hql = hql + " and case_concreteMakeMeans like '" + case_concreteMakeMeans + "'";
 		}
-		if (page_list_senceInformation.getStart_time() != null && page_list_senceInformation.getStart_time().trim().length() > 0) {
+		if (page_list_senceInformation.getStart_time() != null
+				&& page_list_senceInformation.getStart_time().trim().length() > 0) {
 			startTime = page_list_senceInformation.getStart_time();
 		}
-		if (page_list_senceInformation.getStop_time() != null && page_list_senceInformation.getStop_time().trim().length() > 0) {
+		if (page_list_senceInformation.getStop_time() != null
+				&& page_list_senceInformation.getStop_time().trim().length() > 0) {
 			stopTime = page_list_senceInformation.getStop_time();
 		}
-		hql = hql + " and case_receivingAlarmDate>='" + startTime + "' and case_receivingAlarmDate<='"
-				+ stopTime + "' order by case_receivingAlarmDate";
-		Query query = session.createQuery(hql);	
+		hql = hql + " and case_receivingAlarmDate>='" + startTime + "' and case_receivingAlarmDate<='" + stopTime
+				+ "' order by case_receivingAlarmDate";
+		Query query = session.createQuery(hql);
 		query.setFirstResult(
 				(page_list_senceInformation.getPageIndex() - 1) * page_list_senceInformation.getPageSize());
 		query.setMaxResults(page_list_senceInformation.getPageSize());
 		listSenceInformationByPage = query.list();
 		System.out.println(hql);
-	
+
 		session.clear();
 		return listSenceInformationByPage;
 	}
+
 	@Override
 	public xsjsglxt_snece getSeceByCaseId(xsjsglxt_case case1) {
 		// TODO Auto-generated method stub
@@ -288,16 +306,18 @@ public class SenceDaoImpl implements SenceDao {
 
 		Query query = session.createQuery(hql);
 
-		 case1 = (xsjsglxt_case) query.uniqueResult();
+		case1 = (xsjsglxt_case) query.uniqueResult();
 
 		return case1;
 	}
+
 	@Override
 	public xsjsglxt_briefdetails get_briefdetails_Byxsjsglxt_case_id(xsjsglxt_case case1) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
-		String hql = "from xsjsglxt_briefdetails briefdetails where briefdetails.briefdetails_case='" + case1.getXsjsglxt_case_id() + "'";
+		String hql = "from xsjsglxt_briefdetails briefdetails where briefdetails.briefdetails_case='"
+				+ case1.getXsjsglxt_case_id() + "'";
 
 		Query query = session.createQuery(hql);
 
@@ -311,7 +331,8 @@ public class SenceDaoImpl implements SenceDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
-		String hql = "from xsjsglxt_lost_computer lost_computer where lost_computer.lost_computer_case='" + case1.getXsjsglxt_case_id() + "'";
+		String hql = "from xsjsglxt_lost_computer lost_computer where lost_computer.lost_computer_case='"
+				+ case1.getXsjsglxt_case_id() + "'";
 
 		Query query = session.createQuery(hql);
 
@@ -325,7 +346,8 @@ public class SenceDaoImpl implements SenceDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
-		String hql = "from xsjsglxt_lost_mobilephone lost_mobilephone where lost_mobilephone.lost_mobilephone_case='" + case1.getXsjsglxt_case_id() + "'";
+		String hql = "from xsjsglxt_lost_mobilephone lost_mobilephone where lost_mobilephone.lost_mobilephone_case='"
+				+ case1.getXsjsglxt_case_id() + "'";
 
 		Query query = session.createQuery(hql);
 
@@ -377,7 +399,8 @@ public class SenceDaoImpl implements SenceDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
-		String hql = "from xsjsglxt_resevidence resevidence where resevidence.resevidence_case='" + case1.getXsjsglxt_case_id() + "'";
+		String hql = "from xsjsglxt_resevidence resevidence where resevidence.resevidence_case='"
+				+ case1.getXsjsglxt_case_id() + "'";
 
 		Query query = session.createQuery(hql);
 
@@ -385,10 +408,12 @@ public class SenceDaoImpl implements SenceDao {
 
 		return resevidence;
 	}
-/*
- * (non-Javadoc)ɾ������
- * @see com.xsjsglxt.dao.Case.SenceDao#getCaseByNum(java.lang.String)
- */
+
+	/*
+	 * (non-Javadoc)ɾ������
+	 * 
+	 * @see com.xsjsglxt.dao.Case.SenceDao#getCaseByNum(java.lang.String)
+	 */
 	@Override
 	public xsjsglxt_case getCaseByNum(String case_id) {
 		// TODO Auto-generated method stub
@@ -397,7 +422,7 @@ public class SenceDaoImpl implements SenceDao {
 		String hql = "from xsjsglxt_case case1 where case1.xsjsglxt_case_id='" + case_id + "'";
 		Query query = session.createQuery(hql);
 		CaseInformation = (xsjsglxt_case) query.uniqueResult();
-       return CaseInformation;
+		return CaseInformation;
 	}
 
 	@Override
@@ -407,7 +432,7 @@ public class SenceDaoImpl implements SenceDao {
 		String hql = "delete from xsjsglxt_briefdetails where briefdetails_case='" + xsjsglxt_case_id + "'";
 		Query query = session.createQuery(hql);
 		query.executeUpdate();
-       return true;
+		return true;
 	}
 
 	@Override
@@ -417,7 +442,7 @@ public class SenceDaoImpl implements SenceDao {
 		String hql = "delete from xsjsglxt_case where xsjsglxt_case_id='" + xsjsglxt_case_id + "'";
 		Query query = session.createQuery(hql);
 		query.executeUpdate();
-       return true;
+		return true;
 	}
 
 	@Override
@@ -427,7 +452,7 @@ public class SenceDaoImpl implements SenceDao {
 		String hql = "delete from xsjsglxt_lost_computer where lost_computer_case='" + xsjsglxt_case_id + "'";
 		Query query = session.createQuery(hql);
 		query.executeUpdate();
-       return true;
+		return true;
 	}
 
 	@Override
@@ -437,7 +462,7 @@ public class SenceDaoImpl implements SenceDao {
 		String hql = "delete from xsjsglxt_lost_mobilephone where lost_mobilephone_case='" + xsjsglxt_case_id + "'";
 		Query query = session.createQuery(hql);
 		query.executeUpdate();
-       return true;
+		return true;
 	}
 
 	@Override
@@ -447,7 +472,7 @@ public class SenceDaoImpl implements SenceDao {
 		String hql = "delete from xsjsglxt_lost where lost_case='" + xsjsglxt_case_id + "'";
 		Query query = session.createQuery(hql);
 		query.executeUpdate();
-       return true;
+		return true;
 	}
 
 	@Override
@@ -457,7 +482,7 @@ public class SenceDaoImpl implements SenceDao {
 		String hql = "delete from xsjsglxt_picture where picture_case='" + xsjsglxt_case_id + "'";
 		Query query = session.createQuery(hql);
 		query.executeUpdate();
-       return true;
+		return true;
 	}
 
 	@Override
@@ -467,24 +492,27 @@ public class SenceDaoImpl implements SenceDao {
 		String hql = "delete from xsjsglxt_snece where snece_case='" + xsjsglxt_case_id + "'";
 		Query query = session.createQuery(hql);
 		query.executeUpdate();
-       return true;
+		return true;
 	}
-/*
- * (non-Javadoc)��ϸ�ֳ���Ϣ
- * @see com.xsjsglxt.dao.Case.SenceDao#getSeceBySenceId(com.xsjsglxt.domain.DO.xsjsglxt_snece)
- */
-	
+	/*
+	 * (non-Javadoc)��ϸ�ֳ���Ϣ
+	 * 
+	 * @see
+	 * com.xsjsglxt.dao.Case.SenceDao#getSeceBySenceId(com.xsjsglxt.domain.DO.
+	 * xsjsglxt_snece)
+	 */
 
 	@Override
 	public xsjsglxt_briefdetails getBriefdetailsByCaseID(xsjsglxt_case case1) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
-		String hql = "from xsjsglxt_briefdetails briefdetails where briefdetails.briefdetails_case='" + case1.getXsjsglxt_case_id() + "'";
+		String hql = "from xsjsglxt_briefdetails briefdetails where briefdetails.briefdetails_case='"
+				+ case1.getXsjsglxt_case_id() + "'";
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_briefdetails	briefdetails = (xsjsglxt_briefdetails) query.uniqueResult();
+		xsjsglxt_briefdetails briefdetails = (xsjsglxt_briefdetails) query.uniqueResult();
 
 		return briefdetails;
 	}
@@ -498,7 +526,7 @@ public class SenceDaoImpl implements SenceDao {
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_lost	lost = (xsjsglxt_lost) query.uniqueResult();
+		xsjsglxt_lost lost = (xsjsglxt_lost) query.uniqueResult();
 
 		return lost;
 	}
@@ -508,11 +536,12 @@ public class SenceDaoImpl implements SenceDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
-		String hql = "from xsjsglxt_lost_mobilephone lost_mobilephone where lost_mobilephone.lost_mobilephone_case='" + case1.getXsjsglxt_case_id() + "'";
+		String hql = "from xsjsglxt_lost_mobilephone lost_mobilephone where lost_mobilephone.lost_mobilephone_case='"
+				+ case1.getXsjsglxt_case_id() + "'";
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_lost_mobilephone	lost_mobilephone = (xsjsglxt_lost_mobilephone) query.uniqueResult();
+		xsjsglxt_lost_mobilephone lost_mobilephone = (xsjsglxt_lost_mobilephone) query.uniqueResult();
 
 		return lost_mobilephone;
 	}
@@ -522,11 +551,12 @@ public class SenceDaoImpl implements SenceDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
-		String hql = "from xsjsglxt_resevidence resevidence where resevidence.resevidence_case='" + case1.getXsjsglxt_case_id() + "'";
+		String hql = "from xsjsglxt_resevidence resevidence where resevidence.resevidence_case='"
+				+ case1.getXsjsglxt_case_id() + "'";
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_resevidence	resevidence = (xsjsglxt_resevidence) query.uniqueResult();
+		xsjsglxt_resevidence resevidence = (xsjsglxt_resevidence) query.uniqueResult();
 
 		return resevidence;
 	}
@@ -536,11 +566,12 @@ public class SenceDaoImpl implements SenceDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
-		String hql = "from xsjsglxt_lost_computer lost_computer where lost_computer.lost_computer_case='" + case1.getXsjsglxt_case_id() + "'";
+		String hql = "from xsjsglxt_lost_computer lost_computer where lost_computer.lost_computer_case='"
+				+ case1.getXsjsglxt_case_id() + "'";
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_lost_computer	lost_computer = (xsjsglxt_lost_computer) query.uniqueResult();
+		xsjsglxt_lost_computer lost_computer = (xsjsglxt_lost_computer) query.uniqueResult();
 
 		return lost_computer;
 	}
@@ -554,7 +585,7 @@ public class SenceDaoImpl implements SenceDao {
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_picture	picture = (xsjsglxt_picture) query.uniqueResult();
+		xsjsglxt_picture picture = (xsjsglxt_picture) query.uniqueResult();
 
 		return picture;
 	}
@@ -603,7 +634,7 @@ public class SenceDaoImpl implements SenceDao {
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_snece	sence = (xsjsglxt_snece) query.uniqueResult();
+		xsjsglxt_snece sence = (xsjsglxt_snece) query.uniqueResult();
 
 		return sence;
 	}
@@ -617,21 +648,22 @@ public class SenceDaoImpl implements SenceDao {
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_briefdetails	briefdetails = (xsjsglxt_briefdetails) query.uniqueResult();
+		xsjsglxt_briefdetails briefdetails = (xsjsglxt_briefdetails) query.uniqueResult();
 
 		return briefdetails;
 	}
 
 	@Override
-	public xsjsglxt_resevidence getResevidenceById(String xsjsglxt_case_id) {
+	public List<xsjsglxt_resevidence> getResevidenceById(String xsjsglxt_case_id) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
-		String hql = "from xsjsglxt_resevidence resevidence where resevidence.resevidence_case='" + xsjsglxt_case_id + "'";
+		String hql = "from xsjsglxt_resevidence resevidence where resevidence.resevidence_case='" + xsjsglxt_case_id
+				+ "'";
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_resevidence	resevidence = (xsjsglxt_resevidence) query.uniqueResult();
+		List<xsjsglxt_resevidence> resevidence = query.list();
 
 		return resevidence;
 	}
@@ -643,7 +675,7 @@ public class SenceDaoImpl implements SenceDao {
 		String hql = "delete from xsjsglxt_circulation where circulation_resevidence='" + xsjsglxt_resevidence_id + "'";
 		Query query = session.createQuery(hql);
 		query.executeUpdate();
-       return true;
+		return true;
 	}
 
 	@Override
@@ -653,7 +685,7 @@ public class SenceDaoImpl implements SenceDao {
 		String hql = "delete from xsjsglxt_resevidence where resevidence_case='" + xsjsglxt_case_id + "'";
 		Query query = session.createQuery(hql);
 		query.executeUpdate();
-       return true;
+		return true;
 	}
 
 	@Override
@@ -663,20 +695,51 @@ public class SenceDaoImpl implements SenceDao {
 		String hql = "delete from xsjsglxt_breakecase where breakecase_case='" + xsjsglxt_case_id + "'";
 		Query query = session.createQuery(hql);
 		query.executeUpdate();
-       return true;
+		return true;
 	}
 
 	@Override
 	public List<xsjsglxt_case> AllCase() {
 		// TODO Auto-generated method stub
 		Session session = getSession();
-	
-		String hql="from xsjsglxt_case";
+
+		String hql = "from xsjsglxt_case";
 		Query query = session.createQuery(hql);
 
 		List<xsjsglxt_case> AllcaseList = query.list();
-	
+
 		return AllcaseList;
 	}
-	
+
+	@Override
+	public xsjsglxt_circulation get_circulation_Byresevidenceid(xsjsglxt_resevidence resevidence) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_circulation circulation where circulation.circulation_resevidence='"
+				+ resevidence.getXsjsglxt_resevidence_id() + "'";
+
+		Query query = session.createQuery(hql);
+
+		xsjsglxt_circulation circulation = (xsjsglxt_circulation) query.uniqueResult();
+
+		return circulation;
+
+	}
+
+	@Override
+	public xsjsglxt_breakecase get_breakecase_Byxsjsglxt_case_id(xsjsglxt_case xsjsglxt_case) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String hql = "from xsjsglxt_breakecase breakecase where breakecase.breakecase_case='"
+				+ xsjsglxt_case.getXsjsglxt_case_id() + "'";
+
+		Query query = session.createQuery(hql);
+
+		xsjsglxt_breakecase breakecase = (xsjsglxt_breakecase) query.uniqueResult();
+
+		return breakecase;
+	}
+
 }
