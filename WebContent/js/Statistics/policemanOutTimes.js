@@ -25,13 +25,21 @@ window.onload = function() {
 		el : "#caseContent",
 		data : {
 			'caseList' : {}
+		},
+		updated : function() {
+			highLightShow();
+		} // 渲染完页面之后执行的代码
+		,
+		mounted : function() {
+			// 第一次渲染页面执行的代码
 		}
+
 	});
+	cleanInput();
 	loadPoliceman();
 }
 
 var loadPoliceman = function() {
-	cleanInput();
 	$('#fieldStatistics').hide();
 	$('#loadingLayer').show();
 	policemanOutTimesQueryTemp.policemanName = $('#queryPolicemanName').val();
