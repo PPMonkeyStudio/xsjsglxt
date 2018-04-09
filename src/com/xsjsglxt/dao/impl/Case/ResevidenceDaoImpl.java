@@ -8,10 +8,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.Case.ResevidenceDao;
-import com.xsjsglxt.domain.DO.xsjsglxt_briefdetails;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_circulation;
-import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
 import com.xsjsglxt.domain.DO.xsjsglxt_resevidence;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
 import com.xsjsglxt.domain.VO.Case.page_list_ResevidenceInformationVO;
@@ -25,7 +23,8 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
-	} 
+	}
+
 	public Session getSession() {
 
 		return this.sessionFactory.getCurrentSession();
@@ -36,11 +35,11 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 		// TODO Auto-generated method stub
 		try {
 			getSession().save(resevidence);
-			
+
 		} catch (Error e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
 	}
 
 	@Override
@@ -49,25 +48,28 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 		Long i;
-		String startTime = "0000-00-00";
+		String startTime = "";
 		String stopTime = "9999-99-99";
 		String hql = "select count(*) from xsjsglxt_resevidence where 1=1 ";
-		//1
+		// 1
 		if (page_list_ResevidenceInformation.getResevidence_extractPerson() != null
 				&& page_list_ResevidenceInformation.getResevidence_extractPerson().trim().length() > 0) {
-			String resevidence_extractPerson = "%" + page_list_ResevidenceInformation.getResevidence_extractPerson() + "%";
+			String resevidence_extractPerson = "%" + page_list_ResevidenceInformation.getResevidence_extractPerson()
+					+ "%";
 			hql = hql + " and resevidence_extractPerson like '" + resevidence_extractPerson + "'";
-				
+
 		}
-		if (page_list_ResevidenceInformation.getStart_time() != null && page_list_ResevidenceInformation.getStart_time().trim().length() > 0) {
+		if (page_list_ResevidenceInformation.getStart_time() != null
+				&& page_list_ResevidenceInformation.getStart_time().trim().length() > 0) {
 			startTime = page_list_ResevidenceInformation.getStart_time();
 		}
-		if (page_list_ResevidenceInformation.getStop_time() != null && page_list_ResevidenceInformation.getStop_time().trim().length() > 0) {
+		if (page_list_ResevidenceInformation.getStop_time() != null
+				&& page_list_ResevidenceInformation.getStop_time().trim().length() > 0) {
 			stopTime = page_list_ResevidenceInformation.getStop_time();
 		}
-		hql = hql + " and resevidence_extractTime>='" + startTime + "' and resevidence_extractTime<='"
-				+ stopTime + "' order by resevidence_extractTime";
-		Query query = session.createQuery(hql);	
+		hql = hql + " and resevidence_extractTime>='" + startTime + "' and resevidence_extractTime<='" + stopTime
+				+ "' order by resevidence_extractTime";
+		Query query = session.createQuery(hql);
 		i = (Long) query.uniqueResult();
 		session.clear();
 		return i.intValue();
@@ -78,26 +80,29 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 			page_list_ResevidenceInformationVO page_list_ResevidenceInformation) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
-		String startTime = "0000-00-00";
+		String startTime = "";
 		String stopTime = "9999-99-99";
 		List<xsjsglxt_resevidence> listResevidenceInformationByPage = new ArrayList<xsjsglxt_resevidence>();
 		String hql = "from xsjsglxt_resevidence where 1=1 ";
-		//1
-				if (page_list_ResevidenceInformation.getResevidence_extractPerson() != null
-						&& page_list_ResevidenceInformation.getResevidence_extractPerson().trim().length() > 0) {
-					String resevidence_extractPerson = "%" + page_list_ResevidenceInformation.getResevidence_extractPerson() + "%";
-					hql = hql + " and resevidence_extractPerson like '" + resevidence_extractPerson + "'";
-						
-				}
-				if (page_list_ResevidenceInformation.getStart_time() != null && page_list_ResevidenceInformation.getStart_time().trim().length() > 0) {
-					startTime = page_list_ResevidenceInformation.getStart_time();
-				}
-				if (page_list_ResevidenceInformation.getStop_time() != null && page_list_ResevidenceInformation.getStop_time().trim().length() > 0) {
-					stopTime = page_list_ResevidenceInformation.getStop_time();
-				}
-				hql = hql + " and resevidence_extractTime>='" + startTime + "' and resevidence_extractTime<='"
-						+ stopTime + "' order by resevidence_extractTime";
-		Query query = session.createQuery(hql);	
+		// 1
+		if (page_list_ResevidenceInformation.getResevidence_extractPerson() != null
+				&& page_list_ResevidenceInformation.getResevidence_extractPerson().trim().length() > 0) {
+			String resevidence_extractPerson = "%" + page_list_ResevidenceInformation.getResevidence_extractPerson()
+					+ "%";
+			hql = hql + " and resevidence_extractPerson like '" + resevidence_extractPerson + "'";
+
+		}
+		if (page_list_ResevidenceInformation.getStart_time() != null
+				&& page_list_ResevidenceInformation.getStart_time().trim().length() > 0) {
+			startTime = page_list_ResevidenceInformation.getStart_time();
+		}
+		if (page_list_ResevidenceInformation.getStop_time() != null
+				&& page_list_ResevidenceInformation.getStop_time().trim().length() > 0) {
+			stopTime = page_list_ResevidenceInformation.getStop_time();
+		}
+		hql = hql + " and resevidence_extractTime>='" + startTime + "' and resevidence_extractTime<='" + stopTime
+				+ "' order by resevidence_extractTime";
+		Query query = session.createQuery(hql);
 		query.setFirstResult(
 				(page_list_ResevidenceInformation.getPageIndex() - 1) * page_list_ResevidenceInformation.getPageSize());
 		query.setMaxResults(page_list_ResevidenceInformation.getPageSize());
@@ -111,7 +116,8 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 	public xsjsglxt_case getCaseByxsjsglxt_resevidence_id(xsjsglxt_resevidence resevidence) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
-		String hql = "from xsjsglxt_case case1 where case1.xsjsglxt_case_id='" + resevidence.getResevidence_case() + "'";
+		String hql = "from xsjsglxt_case case1 where case1.xsjsglxt_case_id='" + resevidence.getResevidence_case()
+				+ "'";
 
 		Query query = session.createQuery(hql);
 
@@ -138,7 +144,8 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 	public xsjsglxt_circulation getCirculationByxsjsglxt_resevidence_id(xsjsglxt_resevidence resevidence) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
-		String hql = "from xsjsglxt_circulation circulation where circulation.circulation_resevidence='" + resevidence.getXsjsglxt_resevidence_id() + "'";
+		String hql = "from xsjsglxt_circulation circulation where circulation.circulation_resevidence='"
+				+ resevidence.getXsjsglxt_resevidence_id() + "'";
 
 		Query query = session.createQuery(hql);
 
@@ -146,13 +153,14 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 
 		return circulation;
 	}
-	
+
 	@Override
 	public xsjsglxt_resevidence getResevidenceById(xsjsglxt_resevidence resevidence) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
-		String hql = "from xsjsglxt_resevidence resevidence where resevidence.xsjsglxt_resevidence_id='" + resevidence.getXsjsglxt_resevidence_id() + "'";
+		String hql = "from xsjsglxt_resevidence resevidence where resevidence.xsjsglxt_resevidence_id='"
+				+ resevidence.getXsjsglxt_resevidence_id() + "'";
 
 		Query query = session.createQuery(hql);
 
@@ -166,11 +174,12 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
-		String hql = "from xsjsglxt_case case1 where case1.xsjsglxt_case_id='" + resevidence.getResevidence_case() + "'";
+		String hql = "from xsjsglxt_case case1 where case1.xsjsglxt_case_id='" + resevidence.getResevidence_case()
+				+ "'";
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_case  case1= (xsjsglxt_case) query.uniqueResult();
+		xsjsglxt_case case1 = (xsjsglxt_case) query.uniqueResult();
 
 		return case1;
 	}
@@ -184,7 +193,7 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_snece  sence= (xsjsglxt_snece) query.uniqueResult();
+		xsjsglxt_snece sence = (xsjsglxt_snece) query.uniqueResult();
 
 		return sence;
 	}
@@ -194,18 +203,20 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
-		String hql = "from xsjsglxt_circulation circulation where circulation.circulation_resevidence='" + resevidence.getXsjsglxt_resevidence_id() + "'";
+		String hql = "from xsjsglxt_circulation circulation where circulation.circulation_resevidence='"
+				+ resevidence.getXsjsglxt_resevidence_id() + "'";
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_circulation  circulation= (xsjsglxt_circulation) query.uniqueResult();
+		xsjsglxt_circulation circulation = (xsjsglxt_circulation) query.uniqueResult();
 
 		return circulation;
 	}
-/*
- *保存物证流转信息
- * 
- */
+
+	/*
+	 * 保存物证流转信息
+	 * 
+	 */
 	@Override
 	public void saveCirculation(xsjsglxt_circulation circulation) {
 		// TODO Auto-generated method stub
@@ -222,10 +233,11 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 		xsjsglxt_resevidence ResevidenceInformation = null;
-		String hql = "from xsjsglxt_resevidence resevidence where resevidence.xsjsglxt_resevidence_id='" + resevidence_id + "'";
+		String hql = "from xsjsglxt_resevidence resevidence where resevidence.xsjsglxt_resevidence_id='"
+				+ resevidence_id + "'";
 		Query query = session.createQuery(hql);
 		ResevidenceInformation = (xsjsglxt_resevidence) query.uniqueResult();
-       return ResevidenceInformation;
+		return ResevidenceInformation;
 	}
 
 	@Override
@@ -235,7 +247,7 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 		String hql = "delete from xsjsglxt_resevidence where xsjsglxt_resevidence_id='" + xsjsglxt_resevidence_id + "'";
 		Query query = session.createQuery(hql);
 		query.executeUpdate();
-       return true;
+		return true;
 	}
 
 	@Override
@@ -245,7 +257,7 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 		String hql = "delete from xsjsglxt_circulation where circulation_resevidence='" + xsjsglxt_resevidence_id + "'";
 		Query query = session.createQuery(hql);
 		query.executeUpdate();
-       return true;
+		return true;
 	}
 
 	@Override
@@ -259,5 +271,4 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 		}
 	}
 
-	
 }

@@ -72,7 +72,6 @@
 									</tr>
 								</thead>
 								<tbody>
-
 								</tbody>
 								<tfoot>
 									<tr>
@@ -178,7 +177,10 @@
 											<option value="">具体处所</option>
 									</select></td>
 									<td style="padding-left: 10px;">勘验人员</td>
-									<td colspan="3"><select
+									<td colspan="3"><input
+										name="page_list_senceInformation.snece_inquestPerson"
+										id="exploration_personnel" placeholder="请输入"
+										class="form-control"> <%-- <select
 										name="page_list_senceInformation.snece_inquestPerson"
 										id="exploration_personnel"
 										class="selectpicker show-tick form-control dropdn" multiple
@@ -197,7 +199,7 @@
 											<option value="陈佐仁">陈佐仁</option>
 											<option value="李希">李希</option>
 											<option value="魏松林">魏松林</option>
-									</select></td>
+									</select> --%></td>
 								</tr>
 								<tr>
 									<td>作案手段</td>
@@ -226,7 +228,8 @@
 								</tr>
 								<tr>
 									<td style="padding-left: 10px;">报案人</td>
-									<td><input name="page_list_senceInformation.case_reporterName"
+									<td><input
+										name="page_list_senceInformation.case_reporterName"
 										style="float: left;" type="text" class="form-control"></td>
 									<td style="padding-left: 10px;">案发地点</td>
 									<td><input name="page_list_senceInformation.case_address"

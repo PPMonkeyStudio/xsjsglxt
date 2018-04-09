@@ -271,12 +271,13 @@ var Lost_modification = function() {
 				btnClass : 'btn-danger',
 				text : '确认',
 				action : function() {
-					$.post('/xsjsglxt/case/Lost' + url, $('.Goods_table_info form').serialize(), function(xhr_data) {
+					$.post('/xsjsglxt/case/Lost' + url, $('#lost form').serialize(), function(xhr_data) {
 						if (xhr_data == "success") {
 							$('#lost').modal('hide');
 							//获取对应option中的value值
 							var value = url.substr(url.indexOf('Lost'));
 							//修改后进行一次查询
+							console.log(value);
 							lost_chose($('option[value="' + value + '"]'));
 							toastr.success("修改成功!");
 						}
@@ -393,7 +394,7 @@ var add_info = function() {
 			+ '</tr>'
 			+ '<tr>'
 			+ '<td>提取数量:</td>'
-			+ '<td><input name="resevidence.resevidence_extractNumber" class="form-control" type="text"></td>'
+			+ '<td><input name="resevidence.resevidence_extractNumber" class="form-control" type="text" placeholder="请输入数字"></td>'
 			+ '<td>提取人:</td>'
 			+ '<td><input name="resevidence.resevidence_extractPerson" class="form-control" type="text"></td>'
 			+ '</tr>'
@@ -408,8 +409,8 @@ var add_info = function() {
 			+ '<option value="理化物证">理化物证</option>'
 			+ '<option value="其他">其他</option>'
 			+ '</select></td>'
-			+ '<td>提取日期:</td>'
-			+ '<td><input name="resevidence.resevidence_extractTime" class="form-control" type="text"></td>'
+			+ '<td><span style="color:#F00">*</span>提取日期:</td>'
+			+ '<td><input name="resevidence.resevidence_extractTime" class="form-control must mydate" type="text"></td>'
 			+ '</tr>'
 			+ '<tr>'
 			+ '<td>提取单位:</td>'
@@ -423,6 +424,7 @@ var add_info = function() {
 			+ '</table>'
 			+ '</form>';
 		add_default_confirm('物证信息添加', str, '/xsjsglxt/case/Resevidence_saveResevidence', 'evidence_table_info');
+
 		$.post('/xsjsglxt/case/Case_AllCase', function(Case_data) {
 			var sel = '';
 			for (var len = 0; len < Case_data.length; len++) {
@@ -431,6 +433,20 @@ var add_info = function() {
 			$('.selectpicker').html(sel);
 			//刷新选择框
 			$('.selectpicker').selectpicker('refresh');
+			$('input[name="resevidence.resevidence_extractNumber"]').keyup(function() {
+				$(this).val($(this).val().replace(/[^\d]/g, ''));
+			});
+
+			$('.mydate').datetimepicker({
+				yearStart : 1990, // 设置最小年份
+				yearEnd : 2050, // 设置最大年份
+				yearOffset : 0, // 年偏差
+				timepicker : false, // 关闭时间选项
+				format : 'Y-m-d', // 格式化日期年-月-日
+				minDate : '1990/01/01', // 设置最小日期
+				maxDate : '2030/01/01', // 设置最大日期
+			});
+
 			//移除加载提示
 			$('.load_remind').remove();
 		}, 'json')
@@ -692,7 +708,6 @@ $(function() {
 	$('.Search_extractPerson').keyup(function() {
 		query_data["page_list_ResevidenceInformation.resevidence_extractPerson"] = $(this).val();
 		material($('option[value="evidence_table_info"]'));
-		toastr.success("查询成功!");
 	});
 })
 
@@ -927,7 +942,7 @@ function Lost_Details(xhr_data) {
 		str += '</td>';
 		str += '</tr></tbody></table>';
 		//将str加入到面板中
-		$('#lost .panel-body').append(str);
+		$('#lost .panel-body').html(str);
 		//刷新select选择框
 		$('.selectpicker').selectpicker('refresh');
 		$('#lost').modal('show');
@@ -999,16 +1014,16 @@ function Lost_Mobilephone_Details(xhr_data) {
 		str += '</select></td>';
 		str += '</tr>';
 		str += '<tr>';
-		str += '<td>手机号码</td><td><input style="witdh:70%;" class="form-control" name="lost.lost_name" type="text" value="' + xhr_data.lost_mobilephone.lost_mobilephone_phone + '"  /></td>';
+		str += '<td>手机号码</td><td><input style="witdh:70%;" class="form-control" name="lost_mobilephone.lost_mobilephone_phone" type="text" value="' + xhr_data.lost_mobilephone.lost_mobilephone_phone + '"  /></td>';
 		str += '</tr>';
 		str += '<tr>';
-		str += '<td>手机串号</td><td><input style="witdh:70%;" class="form-control" name="lost.lost_name" type="text" value="' + xhr_data.lost_mobilephone.lost_mobilephone_IMEI + '"  /></td>';
+		str += '<td>手机串号</td><td><input style="witdh:70%;" class="form-control" name="lost_mobilephone.lost_mobilephone_IMEI" type="text" value="' + xhr_data.lost_mobilephone.lost_mobilephone_IMEI + '"  /></td>';
 		str += '</tr>';
 		str += '<tr>';
-		str += '<td>手机特征</td><td><input style="witdh:70%;" class="form-control" name="lost.lost_name" type="text" value="' + xhr_data.lost_mobilephone.lost_mobilephone_feature + '"  /></td>';
+		str += '<td>手机特征</td><td><input style="witdh:70%;" class="form-control" name="lost_mobilephone.lost_mobilephone_feature" type="text" value="' + xhr_data.lost_mobilephone.lost_mobilephone_feature + '"  /></td>';
 		str += '</tr>';
 		str += '<tr>';
-		str += '<td>备注</td><td><textarea style="witdh:70%;" class="form-control" name="lost_mobilephone.lost_remarks">' + xhr_data.lost_mobilephone.lost_mobilephone_remarks + '</textarea>';
+		str += '<td>备注</td><td><textarea style="witdh:70%;" class="form-control" name="lost_mobilephone.lost_mobilephone_remarks">' + xhr_data.lost_mobilephone.lost_mobilephone_remarks + '</textarea>';
 		//添加存丢失物的id隐藏域(上一兄元素为备注文本域)
 		str += '<input name="lost_mobilephone.xsjsglxt_lost_mobilephone_id" type="hidden" value="' + xhr_data.lost_mobilephone.xsjsglxt_lost_mobilephone_id + '" />';
 		str += '</td>';
@@ -1019,7 +1034,7 @@ function Lost_Mobilephone_Details(xhr_data) {
 		$('.selectpicker').selectpicker('refresh');
 		$('#lost').modal('show');
 		//点击时调用确定修改按钮
-		$('.btn_operation').val('Mobilephone_updateLost').unbind().click(Lost_modification);
+		$('.btn_operation').val('Mobilephone_updateLostMobilephone').unbind().click(Lost_modification);
 	}, 'json');
 }
 
@@ -1083,6 +1098,10 @@ function add_default_confirm(title, content, url, value) {
 				btnClass : 'btn-info',
 				text : '确认添加',
 				action : function() {
+					if ($('.must').val() == "") {
+						toastr.error("日期不能为空！");
+						return false;
+					}
 					$.post(url, $('.jconfirm-content form').serialize(), function(xhr_data) {
 						if (xhr_data == "success") {
 							toastr.success("添加成功！");

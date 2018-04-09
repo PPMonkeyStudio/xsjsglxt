@@ -233,7 +233,6 @@ function List_EntrustmentBook(pageIndex) {
 				/*
 				 * 角色控制
 				 */
-				deleteByPower('user_check_power', 'usePower', 'managerPower');
 			} else {
 				toastr.error(xhr.status);
 			}
@@ -262,13 +261,13 @@ function List_EntrustmentBook(pageIndex) {
 		formData.append("entrustmentBookManagementVO.search", search);
 	}
 	/*
-	 * 筛选：被委托鉴定机构
+	 * 筛选：鉴定要求
 	 */
-	// if (document.getElementById("select_unitName").value == "-1") {
-	// } else {
-	// formData.append("entrustmentBookManagementVO.unitName", document
-	// .getElementById("select_unitName").value);
-	// }
+	if (document.getElementById("select_entrustmentRequire").value == "-1") {
+	} else {
+		formData.append("entrustmentBookManagementVO.entrustmentRequire",
+				document.getElementById("select_entrustmentRequire").value);
+	}
 	/*
 	 * 筛选：类型
 	 */
@@ -286,12 +285,12 @@ function List_EntrustmentBook(pageIndex) {
 				.getElementById("select_state").value);
 	}
 	/*
-	 * 筛选：鉴定要求
+	 * 筛选：委托单位
 	 */
-	if (document.getElementById("select_entrustmentRequire").value == "-1") {
+	if (document.getElementById("select_entrustmentUnit").value == "-1") {
 	} else {
-		formData.append("entrustmentBookManagementVO.entrustmentRequire",
-				document.getElementById("select_entrustmentRequire").value);
+		formData.append("entrustmentBookManagementVO.entrustmentUnit", document
+				.getElementById("select_entrustmentUnit").value);
 	}
 	/*
 	 * 筛选：开始时间

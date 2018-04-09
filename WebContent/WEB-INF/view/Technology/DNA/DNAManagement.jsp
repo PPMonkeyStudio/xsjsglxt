@@ -53,11 +53,6 @@
 					<div style="float: left;display:none;">
 						<input type="file" class="form-control" id="input_excel" style="float:left;"/>
 					</div>
-					<div style="width: 150px;  float: left;">
-						<button class="btn btn-default" onclick=""  style="float:left;">
-							<i class="fa fa-plus-square"></i> 导入Excel表
-						</button>
-					</div>
 					<!-- 检索 -->
 					<div class="input-group" style="width: 300px; float: right;">
 						<input id="input_DNASearchText" class="form-control"

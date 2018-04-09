@@ -1,16 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>技术管理首页</title>
 </head>
 <body>
-	<form action="http://localhost:8080/xsjsglxt/team/Staff_saveStaff" method="POST" enctype="multipart/form-data">
-		<input type="text" name="policeman.xsjsglxt_name">
-		<input type="file" name="staff_image">
-		<input type="submit" value="上传">
-	</form>
+	<s:action name="User_navbar" namespace="/user" executeResult="true" />
+	<jsp:include page="/technologyManager.jsp" flush="true"></jsp:include>
 </body>
 </html>
