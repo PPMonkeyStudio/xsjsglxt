@@ -165,6 +165,14 @@ function get_ListHandleInformationByPageAndSearch(data) {
 		$('.Handle_table_info tbody').html(str);
 		//tr绑定click事件
 		$('.tr_select').click(tr_select);
+
+		// 分页信息存入page_infomantion中
+		page_infomantion.pageIndex = xhr_data.pageIndex; // 当前页数
+		page_infomantion.totalRecords = xhr_data.totalRecords; // 总页数
+		page_infomantion.pageSize = xhr_data.pageSize; // 每页记录数
+		page_infomantion.totalPages = xhr_data.totalPages; // 总记录数
+		page_infomantion.HavePrePage = xhr_data.HavePrePage; // 是否有上一页
+		page_infomantion.HaveNextPage = xhr_data.HaveNextPage; // 是否有下一页
 	}, 'json')
 }
 
@@ -184,7 +192,7 @@ function firstPage() {
 }
 //上一页
 function prePage() {
-	if (page_infomantion.pageIndex - 1 <= 1) {
+	if (!page_infomantion.HavePrePage) {
 		toastr.error('已经是第一页！');
 		return;
 	}
@@ -193,7 +201,7 @@ function prePage() {
 }
 //下一页
 function nextPage() {
-	if (page_infomantion.pageIndex + 1 >= page_infomantion.totalPages) {
+	if (!page_infomantion.HaveNextPage) {
 		toastr.error('已经是最后一页！');
 		return;
 	}
