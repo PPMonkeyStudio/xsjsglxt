@@ -10,8 +10,6 @@ import org.hibernate.SessionFactory;
 import com.xsjsglxt.dao.Case.BreakecaseDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecase;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
-import com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone;
-import com.xsjsglxt.domain.DO.xsjsglxt_picture;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
 import com.xsjsglxt.domain.VO.Case.page_list_BreakecaseInformationVO;
 
@@ -27,7 +25,6 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 
 	}
 
-
 	public Session getSession() {
 
 		return this.sessionFactory.getCurrentSession();
@@ -38,7 +35,6 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		// TODO Auto-generated method stub
 		try {
 			getSession().save(breakecase);
-
 
 		} catch (Error e) {
 			// TODO Auto-generated catch block
@@ -56,12 +52,12 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		// String hql = "select count(*) from xsjsglxt_case,xsjsglxt_snece where
 		// xsjsglxt_case_id=snece_case";
 		String hql = "select count(*) from xsjsglxt_case,xsjsglxt_snece,xsjsglxt_breakecase where 1=1 and snece_case= xsjsglxt_case_id and breakecase_case=xsjsglxt_case_id";
-		String startTime = "0000-00-00";
+		String startTime = "";
 		String stopTime = "9999-99-99";
 		// 1
 		if (page_list_BreakecaseInformation.getSnece_inquestId() != null
 				&& page_list_BreakecaseInformation.getSnece_inquestId().trim().length() > 0) {
-			
+
 			String snece_inquestId = "%" + page_list_BreakecaseInformation.getSnece_inquestId() + "%";
 			hql = hql + " and snece_inquestId like '" + snece_inquestId + "'";
 
@@ -94,7 +90,6 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 			hql = hql + " and breakecase_captureUnit like '" + breakecase_captureUnit + "'";
 		}
 
-
 		if (page_list_BreakecaseInformation.getStart_time() != null
 				&& page_list_BreakecaseInformation.getStart_time().trim().length() > 0) {
 			startTime = page_list_BreakecaseInformation.getStart_time();
@@ -120,7 +115,7 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		Session session = getSession();
 		List<xsjsglxt_breakecase> listBreakecaseInformationByPage = new ArrayList<xsjsglxt_breakecase>();
 		String hql = "select breakecase  from xsjsglxt_case case1,xsjsglxt_snece sence,xsjsglxt_breakecase breakecase  where 1=1 and sence.snece_case=case1.xsjsglxt_case_id and breakecase.breakecase_case=case1.xsjsglxt_case_id";
-		String startTime = "0000-00-00";
+		String startTime = "";
 		String stopTime = "9999-99-99";
 
 		// 1
@@ -188,12 +183,9 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 
 		xsjsglxt_case case1 = (xsjsglxt_case) query.uniqueResult();
 
-
 		session.clear();
 		return case1;
 	}
-
-	
 
 	@Override
 	public xsjsglxt_snece get_sence_Byxsjsglxt_case_id(xsjsglxt_case case1) {
@@ -204,9 +196,8 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 
 		Query query = session.createQuery(hql);
 
-
 		xsjsglxt_snece sence = (xsjsglxt_snece) query.uniqueResult();
-		
+
 		session.clear();
 
 		return sence;
@@ -218,12 +209,11 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
-		String hql = "from xsjsglxt_case case1 where case1.xsjsglxt_case_id='" + breakecase.getBreakecase_case()+ "'";
+		String hql = "from xsjsglxt_case case1 where case1.xsjsglxt_case_id='" + breakecase.getBreakecase_case() + "'";
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_case	case1 = (xsjsglxt_case) query.uniqueResult();
-
+		xsjsglxt_case case1 = (xsjsglxt_case) query.uniqueResult();
 
 		return case1;
 	}
@@ -237,9 +227,7 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 
 		Query query = session.createQuery(hql);
 
-
 		xsjsglxt_snece sence = (xsjsglxt_snece) query.uniqueResult();
-
 
 		return sence;
 	}
@@ -255,8 +243,7 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 
 		Query query = session.createQuery(hql);
 
-		 breakecase = (xsjsglxt_breakecase) query.uniqueResult();
-
+		breakecase = (xsjsglxt_breakecase) query.uniqueResult();
 
 		return breakecase;
 	}
@@ -281,9 +268,7 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 
 		Query query = session.createQuery(hql);
 
-
 		xsjsglxt_breakecase breakecase = (xsjsglxt_breakecase) query.uniqueResult();
-
 
 		return breakecase;
 	}
@@ -308,9 +293,7 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 
 		Query query = session.createQuery(hql);
 
-
 		xsjsglxt_snece snece = (xsjsglxt_snece) query.uniqueResult();
-
 
 		return snece;
 	}
@@ -332,13 +315,10 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		Session session = getSession();
 		xsjsglxt_breakecase BreakecaseInformation = null;
 
-		String hql = "from xsjsglxt_breakecase breakecase where breakecase.breakecase_case='" + breakecase_id
-				+ "'";
+		String hql = "from xsjsglxt_breakecase breakecase where breakecase.breakecase_case='" + breakecase_id + "'";
 		Query query = session.createQuery(hql);
 		BreakecaseInformation = (xsjsglxt_breakecase) query.uniqueResult();
 		return BreakecaseInformation;
-
-		
 
 	}
 
@@ -354,4 +334,3 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 
 	}
 }
-
