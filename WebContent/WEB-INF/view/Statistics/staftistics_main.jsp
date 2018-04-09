@@ -214,7 +214,7 @@ td {
 			timepicker : false, // 关闭时间选项
 			format : 'Y-m-d', // 格式化日期年-月-日
 			minDate : '1900/01/01', // 设置最小日期
-			maxDate : '2030/01/01', // 设置最大日期
+			maxDate : '2100/01/01', // 设置最大日期
 		});
 	</script>
 </body>
