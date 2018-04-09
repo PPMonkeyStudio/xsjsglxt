@@ -233,7 +233,6 @@ function List_EntrustmentBook(pageIndex) {
 				/*
 				 * 角色控制
 				 */
-				deleteByPower('user_check_power', 'usePower', 'managerPower');
 			} else {
 				toastr.error(xhr.status);
 			}
