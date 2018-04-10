@@ -50,7 +50,7 @@ tfoot tr td a:hover {
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
-	<div style="float: left; width: 100%;">
+	<div id="allPanel">
 		<div class="panel" style="width: 95%; margin: 20px auto;">
 			<!--  -->
 			<div class="panel-heading">
@@ -284,7 +284,6 @@ tfoot tr td a:hover {
 										<td><select style="witdh: 100%;" class="form-control"
 											name="breakCase.breakcase_suspecter_sex"><option>男</option>
 												<option>女</option></select></td>
-
 									</tr>
 									<tr>
 										<td>案件属地</td>
@@ -297,21 +296,16 @@ tfoot tr td a:hover {
 											name="breakCase.breakcase_suspecter_identity"
 											id="breakcase_suspecter_identity" type="text"
 											onblur="BreakCaseListGetBirth()" maxlength="18"></td>
-
 									</tr>
 									<tr>
 										<td>破案依据</td>
 										<td><input style="witdh: 70%;" class="form-control"
 											name="breakCase.breakcase_according" type="text"></td>
-
 										<td>出生日期</td>
 										<td><input style="witdh: 70%;"
 											class="form-control mydate"
 											name="breakCase.breakcase_suspecter_birthday"
 											id="breakcase_suspecter_birthday" type="text"></td>
-
-
-
 									</tr>
 									<tr>
 										<td>是否抓获</td>
@@ -469,6 +463,26 @@ tfoot tr td a:hover {
 			minDate : '1900/01/01', // 设置最小日期
 			maxDate : '2100/01/01', // 设置最大日期
 		});
+	</script>
+	<script type="text/javascript">
+		var documentWidth = document.body.clientWidth;
+		var panelWidth = documentWidth - 160;
+		var navbarHeight = document.getElementById("navbar").offsetHeight;
+		var panelMargin = navbarHeight + 20;
+		document.getElementById("allPanel").setAttribute(
+				"style",
+				"width:" + panelWidth+ "px; float:right; margin-top:"
+						+ panelMargin + "px;");
+		window.onresize = function() {
+			var documentWidth = document.body.clientWidth;
+			var panelWidth = documentWidth - 160;
+			var navbarHeight = document.getElementById("navbar").offsetHeight;
+			var panelMargin = navbarHeight + 20;
+			document.getElementById("allPanel").setAttribute(
+					"style",
+					"width:" + panelWidth + "px; float:right; margin-top:"
+							+ panelMargin + "px;");
+		}
 	</script>
 </body>
 </html>

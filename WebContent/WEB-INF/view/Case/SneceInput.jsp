@@ -46,10 +46,10 @@
 				<form id="sneceInformation" action="">
 					<table>
 						<tr>
-							<td>勘探编号</td>
+							<td>勘验编号</td>
 							<td><input style="font-size: 12px;"
 								name="sence.snece_inquestId" class="form-control" type="text"></td>
-							<td style="padding-left:5px;">勘探系统编号</td>
+							<td style="padding-left:5px;">勘验系统编号</td>
 							<td><input name="sence.snece_inquestSystemId"
 								class="form-control" type="text"></td>
 							<td>案件分类</td>
@@ -70,7 +70,6 @@
 									<option selected></option>
 									<option>一般</option>
 									<option>重大</option>
-									<option>特大</option>
 									<option>特大</option>
 							</select></td>
 							<td>是否立案</td>
@@ -316,7 +315,9 @@
 						</tr>
 						<tr>
 							<td>勘验人员</td>
-							<td colspan="5"><select name="sence.snece_inquestPerson"
+							<td colspan="5"><input name="sence.snece_inquestPerson"
+								id="exploration_personnel" placeholder="请输入"
+								class="form-control"> <%-- <select name="sence.snece_inquestPerson"
 								id="exploration_personnel"
 								class="selectpicker show-tick form-control dropup" multiple
 								data-live-search="true" data-dropup-auto="false" title="请选择">
@@ -334,7 +335,7 @@
 									<option value="陈佐仁">陈佐仁</option>
 									<option value="李希">李希</option>
 									<option value="魏松林">魏松林</option>
-							</select></td>
+							</select> --%></td>
 						</tr>
 						<tr>
 							<!-- <td>填表人员</td>

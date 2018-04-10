@@ -24,7 +24,6 @@ $(function() {
 				}
 			} else
 				obj.val(v);
-
 		});
 		var briefdetails = xhr_data.briefdetails;
 		$.each(briefdetails, function(k, v) {
@@ -78,7 +77,7 @@ $(function() {
 
 	//添加照片信息
 	$('.add_picture').click(function() {
-		$.post('/xsjsglxt/case/Image_updatePicture', $('#add_picture').serialize(), function(xhr_data) {
+		$.post('/xsjsglxt/case/Image_updatePicture', $('#add_picture').serialize() + '&case1.xsjsglxt_case_id=' + $('#case1_id').val(), function(xhr_data) {
 			if (xhr_data == 'success') {
 				toastr.success('添加成功！');
 				$('#add_picture table tbody').find('input,textarea').val("");
@@ -102,6 +101,14 @@ $(function() {
 
 })
 
+function sence_checkbox(checkbox) {
+	var box = $(checkbox);
+	if (box.val() == "1") {
+		box.val('0');
+	} else {
+		box.val('1');
+	}
+}
 function ChangeItemType(option_obj) {
 	$('#LossOfGoods table tbody').each(function() {
 		if ($(this).attr("class") == $(option_obj).val()) {
@@ -145,15 +152,23 @@ function loadCaseDetail_case_change(url, case1_id) {
 	var formData = new FormData(lost_evidence);
 	formData.append("case1.xsjsglxt_case_id", case1_id);
 
+	/*// 版本二（箭头语法）
+	var convert_FormData_to_json2 = function(formData) {
+		var objData = {};
+
+		formData.forEach((value, key) => objData[key] = value);
+
+		return JSON.stringify(objData);
+	};*/
 	xmlhttp.onreadystatechange = function() {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			console.log(xmlhttp.responseText);
 			var result = xmlhttp.responseText;
 
 			if (result == '"success"') {
-				toastr.success('添加成功！');
+				toastr.success('修改成功！');
 			} else {
-				toastr.error('添加失败！');
+				toastr.error('修改失败！');
 			}
 		}
 	};

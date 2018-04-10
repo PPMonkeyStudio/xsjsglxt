@@ -44,10 +44,10 @@
 				<form id="caseDetails">
 					<table>
 						<tr>
-							<td>勘探编号</td>
+							<td>勘验编号</td>
 							<td><input style="font-size: 12px;"
 								name="sence.snece_inquestId" class="form-control" type="text"></td>
-							<td style="padding-left:5px;">勘探系统编号</td>
+							<td style="padding-left:5px;">勘验系统编号</td>
 							<td><input name="sence.snece_inquestSystemId"
 								class="form-control" type="text"></td>
 							<td>案件分类</td>
@@ -203,22 +203,22 @@
 						</tr>
 						<tr>
 							<td colspan="6"><label style="margin-left: 30%;"
-								class="fancy-checkbox"><input
+								class="fancy-checkbox"><input value="0"
 									onclick="sence_checkbox(this)" name="sence.snece_photographed"
 									type="checkbox"> <span>已拍照</span> </label> <label
-								class="fancy-checkbox"><input
+								class="fancy-checkbox"><input value="0"
 									onclick="sence_checkbox(this)" name="sence.snece_entered"
 									type="checkbox"> <span>已录入</span> </label> <label
-								class="fancy-checkbox"><input
+								class="fancy-checkbox"><input value="0"
 									onclick="sence_checkbox(this)" name="sence.snece_areadymade"
 									type="checkbox"> <span>已制作</span> </label> <label
-								class="fancy-checkbox"><input
+								class="fancy-checkbox"><input value="0"
 									onclick="sence_checkbox(this)" name="sence.snece_parsed"
 									type="checkbox"> <span>已分析</span> </label> <label
-								class="fancy-checkbox"><input
+								class="fancy-checkbox"><input value="0"
 									onclick="sence_checkbox(this)" name="sence.snece_archived"
 									type="checkbox"> <span>已存档</span> </label> <label
-								class="fancy-checkbox"> <input
+								class="fancy-checkbox"> <input value="0"
 									onclick="sence_checkbox(this)" name="sence.snece_identified"
 									type="checkbox"> <span>已认定</span>
 							</label></td>
@@ -507,14 +507,14 @@
 											<input name="image.xsjsglxt_image_id" class="form-control"
 											type="text" style="width: 85%;"></td>
 									</tr>
-									<tr>
+									<%-- <tr>
 										<td><div style="padding-top:6px; float: left;width: 15%;">所属案件</div>
 											<div style="width: 85%; float: right; margin-top: 6px;">
 												<select style="witdh:100%;"
 													class="form-control selectpicker" data-live-search="true"
 													name="case1.xsjsglxt_case_id"></select>
 											</div></td>
-									</tr>
+									</tr> --%>
 									<tr>
 										<td><div style="padding-top:6px; float: left;width: 15%;">照片编号</div>
 											<input name="picture.picture_identifier" class="form-control"

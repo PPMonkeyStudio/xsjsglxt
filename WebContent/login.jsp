@@ -36,13 +36,13 @@
 <!--------------------------------------------------------------------------------->
 <!--------------------------------------------------------------------------------->
 <!--------------------------------------------------------------------------------->
-<title>刑事技术管理系统</title>
+<title>登录</title>
 </head>
 <body>
 	
 	<div class="bg">
 			<div class="bg_center">
-				<p>刑事技术管理系统</p>
+				<p>安源刑侦信息管理系统</p>
 				<div class="input_box"><label>帐户</label><input type="text" id="login_username"/></div>
 				<div class="input_box"><label>密码</label><input type="password" id="login_password"/></div>
 				<div class="button_box">

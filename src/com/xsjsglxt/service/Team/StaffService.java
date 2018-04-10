@@ -1,5 +1,7 @@
 package com.xsjsglxt.service.Team;
 
+import java.util.List;
+
 import com.xsjsglxt.domain.DO.xsjsglxt_staff;
 import com.xsjsglxt.domain.VO.Team.policemanListVO;
 
@@ -17,4 +19,7 @@ public interface StaffService {
 
 	void getPolicemansByPage(policemanListVO policemanVO);
 
+	void getConnect();
+
+	List<xsjsglxt_staff> getAllPoliceman();
 }

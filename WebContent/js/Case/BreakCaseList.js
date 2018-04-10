@@ -127,7 +127,7 @@ $(function() {
 														.attr("selected",
 																"selected");
 												;
-											}else{
+											} else {
 												toastr.error('添加失败!');
 												return false;
 											}
@@ -439,8 +439,7 @@ var modifi_delete = function() {
 							$('#breakCase_modification .panel-body').html(str);
 							// 模态框显示
 							$('#breakCase_modification').modal('show');
-							
-							
+
 							$.datetimepicker.setLocale('ch');
 							$('.mydate').datetimepicker({
 								yearStart : 1900, // 设置最小年份
@@ -460,7 +459,6 @@ var modifi_delete = function() {
 								minDate : '1900/01/01', // 设置最小日期
 								maxDate : '2100/01/01', // 设置最大日期
 							});
-							
 
 							$
 									.post(

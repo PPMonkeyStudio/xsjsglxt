@@ -2,6 +2,8 @@ package com.xsjsglxt.service.impl.Team;
 
 import java.util.List;
 
+import org.junit.Test;
+
 import com.xsjsglxt.dao.Team.StaffDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_staff;
 import com.xsjsglxt.domain.DTO.Team.policemanListDTO;
@@ -62,4 +64,15 @@ public class StaffServiceImpl implements StaffService {
 		policemanVO.setPolicemans(policemans);
 	}
 
+	@Test
+	public void getConnect() {
+		staffDao.getConnect();
+	}
+
+	@Override
+	public List<xsjsglxt_staff> getAllPoliceman() {
+		// TODO Auto-generated method stub
+		List<xsjsglxt_staff> result = staffDao.getAllPoliceman();
+		return result;
+	}
 }
