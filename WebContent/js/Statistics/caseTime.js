@@ -31,12 +31,13 @@ var loadCase = function() {
 		success : function(data) {
 			if (data != "没有案件记录") {
 				caseTime.caseList = JSON.parse(data);
+				highLightShow();
 			} else {
 				caseTime.caseList = {};
+				highLightShow();
 			}
 			$('#loadingLayerCase').hide();
 			$('#caseContent').show();
 		}
 	});
-
 }

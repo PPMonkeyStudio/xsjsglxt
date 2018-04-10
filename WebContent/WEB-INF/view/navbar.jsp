@@ -61,13 +61,30 @@
 			style="background-color:rgb(41,22,111);">
 		<div
 			style="width: auto; float: left; line-height: 78px; margin: 0 0 0 30px; font-size: 30px; color: white;">
-			<img alt="" src="<%=basePath%>img/hui.png">安源刑侦工作信息管理系统
+			<img alt="" src="<%=basePath%>img/hui.png">安源刑侦信息管理系统
 		</div>
 		<div id="navbar-menu">
 			<ul style="margin: 0 0 0 20px;" class="nav navbar-nav navbar-left">
 				<li class="dropdown" style="float: left;"><a
 					href="<%=basePath%>user/User_index"><span>首页</span> </a></li>
 				<!--  -->
+				<!--  -->
+				<!--  -->
+				<template v-if="user_army_manager_power">
+				<li class="dropdown" style="float: left;"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown"> <span>队伍管理</span>
+						<i class="icon-submenu lnr lnr-chevron-down"></i>
+				</a>
+					<ul class="dropdown-menu">
+						<li style="float: left;"><a
+							href="<%=basePath%>team/Staff_page_staffList">人员</a></li>
+						<li class="teacher_control"><a>值班管理</a></li>
+						<li class="teacher_control"><a
+							href="<%=basePath%>user/Meeting_skipToMeetRecords">会议记录</a></li>
+						<li class="teacher_control"><a
+							href="<%=basePath%>user/Memorabilia_skipToMemorabilia">大事记</a></li>
+					</ul></li>
+				</template>
 				<li class="leader_control dropdown" style="float: left;"><a
 					href="#" class="dropdown-toggle" data-toggle="dropdown"> <span>刑事技术管理</span>
 						<i class="icon-submenu lnr lnr-chevron-down"></i>
@@ -83,26 +100,9 @@
 						<li><a href="<%=basePath%>user/User_skipToTechnologyIndex">技术管理</a></li>
 					</ul></li>
 				<!--  -->
-				<!--  -->
-				<template v-if="user_army_manager_power">
-				<li class="dropdown" style="float: left;"><a href="#"
-					class="dropdown-toggle" data-toggle="dropdown"> <span>队伍</span>
-						<i class="icon-submenu lnr lnr-chevron-down"></i>
-				</a>
-					<ul class="dropdown-menu">
-						<li style="float: left;"><a
-							href="<%=basePath%>team/Staff_page_staffList">人员</a></li>
-						<li class="teacher_control"><a>值班管理</a></li>
-						<li class="teacher_control"><a
-							href="<%=basePath%>user/Meeting_skipToMeetRecords">会议记录</a></li>
-						<li class="teacher_control"><a
-							href="<%=basePath%>user/Memorabilia_skipToMemorabilia">大事记</a></li>
-					</ul></li>
-				</template>
-				<!--  -->
 				<template v-if="user_case_query_power">
 				<li class="dropdown" style="float: left;"><a
-					href="<%=basePath%>case/Case_page_Handle"> <span>刑侦管理系统</span>
+					href="<%=basePath%>case/Case_page_Handle"> <span>侦查业务管理</span>
 				</a></li>
 				</template>
 				<!--  -->

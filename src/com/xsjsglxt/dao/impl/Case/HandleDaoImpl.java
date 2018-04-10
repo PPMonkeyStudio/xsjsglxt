@@ -45,22 +45,22 @@ public class HandleDaoImpl implements HandleDao {
 		Long i;
 		String hql = "select count(*) from xsjsglxt_handle  where 1=1 ";
 		// 拘留起始时间
-		String handle_StartTimeaOfDetention_start_time = "0000-00-00";
+		String handle_StartTimeaOfDetention_start_time = "";
 		String handle_StartTimeaOfDetention_stop_time = "9999-99-99";
 		// 逮捕时间
-		String handle_arrestTime_start_time = "0000-00-00";
+		String handle_arrestTime_start_time = "";
 		String handle_arrestTime_stop_time = "9999-99-99";
 		// 起诉时间
-		String handle_prosecuteTime_start_time = "0000-00-00";
+		String handle_prosecuteTime_start_time = "";
 		String handle_prosecuteTime_stop_time = "9999-99-99";
 		// 退查时间
-		String handle_checkbackTime_start_time = "0000-00-00";
+		String handle_checkbackTime_start_time = "";
 		String handle_checkbackTime_stop_time = "9999-99-99";
 		// 取保候审时间
-		String handle_pbatTime_start_time = "0000-00-00";
+		String handle_pbatTime_start_time = "";
 		String handle_pbatTime_stop_time = "9999-99-99";
 		// 监视居住时间
-		String handle_lhusTime_start_time = "0000-00-00";
+		String handle_lhusTime_start_time = "";
 		String handle_lhusTime_stop_time = "9999-99-99";
 		// 1
 		if (page_list_HandleInformation.getHandle_administrativeCase() != null

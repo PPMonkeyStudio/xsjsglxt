@@ -126,4 +126,14 @@ public class StaffDaoImpl implements StaffDao {
 		// xsjsglxt_staff policeman = (xsjsglxt_staff) object[0];
 		// System.out.println(policeman.getXsjsglxt_staff_id());
 	}
+
+	@Override
+	public List<xsjsglxt_staff> getAllPoliceman() {
+		// TODO Auto-generated method stub
+		String hql = "from xsjsglxt_staff";
+		Session session = this.getSession();
+		Query query = session.createQuery(hql);
+		List<xsjsglxt_staff> result = query.list();
+		return result;
+	}
 }

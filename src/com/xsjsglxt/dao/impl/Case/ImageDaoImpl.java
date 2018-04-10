@@ -100,7 +100,7 @@ public class ImageDaoImpl implements ImageDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 		Long i;
-		String startTime = "0000-00-00";
+		String startTime = "";
 		String stopTime = "9999-99-99";
 		String hql = "SELECT	count(*)FROM	xsjsglxt_image image,	xsjsglxt_picture picture,	xsjsglxt_case case1 WHERE	1 = 1 AND image.xsjsglxt_image_id = picture.picture_image AND picture.picture_case = case1.xsjsglxt_case_id ";
 		// 1
@@ -138,7 +138,7 @@ public class ImageDaoImpl implements ImageDao {
 			page_list_imageInformationVO page_list_imageInformation) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
-		String startTime = "0000-00-00";
+		String startTime = "";
 		String stopTime = "9999-99-99";
 		List<xsjsglxt_picture> listImageInformationByPage = new ArrayList<xsjsglxt_picture>();
 		String hql = "SELECT picture FROM	xsjsglxt_image image,	xsjsglxt_picture picture,	xsjsglxt_case case1 WHERE	1 = 1 AND image.xsjsglxt_image_id = picture.picture_image AND picture.picture_case = case1.xsjsglxt_case_id  ";
