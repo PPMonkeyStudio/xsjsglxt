@@ -151,7 +151,7 @@ a:hover {
 }
 /* 长表格样式start */
 .long_tableBox {
-	margin-top: 100px;
+	margin:50px 0 50px 0;
 }
 /*表格加上滚动条 start  */
 .long_tb{

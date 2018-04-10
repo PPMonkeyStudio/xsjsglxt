@@ -3,8 +3,9 @@ package com.xsjsglxt.action.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
@@ -33,6 +34,20 @@ public class UserAction extends ActionSupport {
 		return "skipToUser";
 	}
 
+	public void skipToTechnologyIndex() {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		try {
+			request.getRequestDispatcher("/WEB-INF/view/technologyIndex.jsp").forward(request,
+					ServletActionContext.getResponse());
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	public void judgePower() throws IOException, NoSuchMethodException, SecurityException, IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException {
 		HttpServletResponse response = ServletActionContext.getResponse();
@@ -43,10 +58,14 @@ public class UserAction extends ActionSupport {
 			pw.write("exception");
 		} else {
 			xsjsglxt_user xu = userService.getUserById(user_id);
-			userBlock = userBlock.substring(0, 1).toUpperCase() + userBlock.substring(1);
-			System.out.println(userBlock);
-			Method method = xu.getClass().getMethod("get" + userBlock, null);
-			String result = (String) method.invoke(xu, null);
+			// userBlock = userBlock.substring(0, 1).toUpperCase() +
+			// userBlock.substring(1);
+			// System.out.println(userBlock);
+			// Method method = xu.getClass().getMethod("get" + userBlock, null);
+			// String result = (String) method.invoke(xu, null);
+			Gson gson = new Gson();
+			String result = gson.toJson(xu);
+			System.out.println(result);
 			pw.write(result);
 		}
 	}

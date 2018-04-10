@@ -39,14 +39,14 @@ var changeSecondSelect = function(event) {
 var highLightShow = function(event) {
 	document.getElementById("caseTBody").innerHTML = document
 			.getElementById("caseTBody").innerHTML.replace(
-			/(<span style="color:red;")/g, "<span");
+			/(<span style="color:red; font-size:15px;")/g, "<span");
 	var index = event.selectedIndex;
 	if (index > 0) {
 		var trs = document.getElementsByName("caseTr");
 		for (var int = 0; int < trs.length; int++) {
 			var trd = trs[int].getElementsByTagName("td");
 			trd[index].innerHTML = trd[index].innerHTML.replace("<span",
-					"<span style='color:red;'");
+					"<span style='color:red; font-size:15px;'");
 		}
 	}
 }
