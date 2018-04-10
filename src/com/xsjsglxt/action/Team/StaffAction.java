@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
@@ -246,6 +247,24 @@ public class StaffAction extends ActionSupport {
 		try {
 			PrintWriter pw = response.getWriter();
 			pw.write(result);
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	// ---------------------------------------获得所有警员姓名-----------------------------------
+	public void getAllPolicemans() {
+		List<xsjsglxt_staff> result = staffService.getAllPoliceman();
+		Gson gson = new Gson();
+		String result1 = gson.toJson(result);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(result1);
 			pw.flush();
 			pw.close();
 		} catch (IOException e) {
