@@ -44,6 +44,10 @@ $(function() {
 			}
 		});
 	});
+
+	$.post('/xsjsglxt/team/Staff_getAllPolicemans', {}, function(xhr) {
+		console.log(xhr);
+	}, 'json');
 })
 
 
