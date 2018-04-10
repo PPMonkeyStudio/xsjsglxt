@@ -51,6 +51,10 @@ li a {
 				<li><a
 					href="<%=basePath%>Equipment/EquipmentManagement_EquipmentManagementPage">器材装备</a></li>
 				</template>
+								<template v-if="user_technology_manager_power">
+				<li><a
+					href="<%=basePath%>ContrastFingerPrint/ContrastFingerPrintManagement_ContrastFingerPrintManagementPage">比对指纹</a></li>
+				</template>
 				<template v-if="user_statistics_power">
 				<li><a
 					href="<%=basePath%>statistics/Statistics_intoMain">统计</a></li>
