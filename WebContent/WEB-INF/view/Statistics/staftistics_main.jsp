@@ -11,9 +11,10 @@
 			+ path + "/";
 %>
 <style>
-tr.trCover:HOVER{
-	background-color:  	#F5F5F5;
+tr.trCover:HOVER {
+	background-color: #F5F5F5;
 }
+
 td {
 	white-space: nowrap;
 	overflow: hidden;
@@ -37,9 +38,8 @@ td {
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
 	<jsp:include page="/technologyManager.jsp" flush="true"></jsp:include>
 	<!-----------------------------------------主面板---------------------------------------------------------  -->
-	<div style="float: left; width: 100%;" id="allContent">
-		<div class="panel"
-			style="width: 95%; margin: 20px auto; padding-left: 20px; padding-right: 20px;">
+	<div id="allContent">
+		<div class="panel" style="width: 95%; margin: 20px auto;">
 			<div class="statisticsNavbar" style="margin-top: 10px;">
 				<button class="btn btn-default" id="goFieldPage"
 					onclick="changePage(this)" style="">现场统计</button>
@@ -161,9 +161,9 @@ td {
 				<div id="loadingLayerCase" style="margin: 0 auto; width: 45px;">
 					<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
 				</div>
-				<div id="caseContent" style="margin-top: 10px;display:none;">
+				<div id="caseContent" style="margin-top: 10px; display: none;">
 					<table class="table table-bordered"
-						style="text-align: center; font-size: 10px;font-weight: bold">
+						style="text-align: center; font-size: 10px; font-weight: bold">
 						<thead>
 							<tr id="trHead">
 								<td>案件类型</td>
@@ -216,6 +216,26 @@ td {
 			minDate : '1900/01/01', // 设置最小日期
 			maxDate : '2100/01/01', // 设置最大日期
 		});
+	</script>
+	<script type="text/javascript">
+		var documentWidth = document.body.clientWidth;
+		var panelWidth = documentWidth - 160;
+		var navbarHeight = document.getElementById("navbar").offsetHeight;
+		var panelMargin = navbarHeight + 20;
+		document.getElementById("allContent").setAttribute(
+				"style",
+				"width:" + panelWidth + "px; float:right; margin-top:"
+						+ panelMargin + "px;");
+		window.onresize = function() {
+			var documentWidth = document.body.clientWidth;
+			var panelWidth = documentWidth - 160;
+			var navbarHeight = document.getElementById("navbar").offsetHeight;
+			var panelMargin = navbarHeight + 20;
+			document.getElementById("allContent").setAttribute(
+					"style",
+					"width:" + panelWidth + "px; float:right; margin-top:"
+							+ panelMargin + "px;");
+		}
 	</script>
 </body>
 </html>
