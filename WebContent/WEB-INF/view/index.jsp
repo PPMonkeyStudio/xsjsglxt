@@ -61,7 +61,7 @@
 		<!---------------------------------------------------------------------------------------------------->
 		<!---------------------------------------------------------------------------------------------------->
 		<!-- LEFT SIDEBAR -->
-		<div id="sidebar-nav" class="sidebar" style="width: 240px; background-color: rgb(41,23,91);">
+		<div id="sidebar-nav" class="sidebar" style="width: 240px; background-color: rgb(41,22,111);">
 			<div class="sidebar-scroll">
 				<nav>
 				<ul class="nav">
