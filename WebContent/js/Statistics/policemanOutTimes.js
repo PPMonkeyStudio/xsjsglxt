@@ -15,12 +15,6 @@ window.onload = function() {
 			'policemanList' : {}
 		}
 	});
-	comparisonTime = new Vue({
-		el : "#comparisonContent",
-		data : {
-			'comparisonList' : {}
-		}
-	});
 	caseTime = new Vue({
 		el : "#caseContent",
 		data : {

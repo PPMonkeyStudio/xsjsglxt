@@ -23,7 +23,7 @@ li a {
 <script src="<%=basePath%>js/technologyMargin.js"></script>
 </head>
 <body>
-	<div id="sidebar-nav" class="sidebar" style="width: 160px; background-color: rgb(41,22,111);">
+	<div id="sidebar-nav" class="sidebar" style="width: 160px; background-color: rgb( 41,22,111);">
 		<div class="sidebar-scroll">
 			<nav>
 			<ul class="nav" id="technology">

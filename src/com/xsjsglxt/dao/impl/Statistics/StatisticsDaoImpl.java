@@ -10,10 +10,8 @@ import org.hibernate.SessionFactory;
 import com.xsjsglxt.dao.Statistics.StatisticsDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_staff;
 import com.xsjsglxt.domain.DTO.Statistics.CaseTimeDTO;
-import com.xsjsglxt.domain.DTO.Statistics.ComparisonTimeDTO;
 import com.xsjsglxt.domain.DTO.Statistics.policemanOutTimesDTO;
 import com.xsjsglxt.domain.VO.Statistics.CaseTimeVO;
-import com.xsjsglxt.domain.VO.Statistics.ComparisonTimeVO;
 import com.xsjsglxt.domain.VO.Statistics.OutTimeVO;
 
 public class StatisticsDaoImpl implements StatisticsDao {
@@ -53,6 +51,20 @@ public class StatisticsDaoImpl implements StatisticsDao {
 	}
 
 	@Override
+	public void getPolicemanOutTimes(policemanOutTimesDTO policemanDTO, OutTimeVO outTimeVO) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		String hql = "select count(*) from xsjsglxt_snece as s , xsjsglxt_case as c where s.snece_case=c.xsjsglxt_case_id and s.snece_inquestPerson like '%"
+				+ policemanDTO.getPolicemanName() + "%'";
+		if (outTimeVO.getTimeStart() != null && !"".equals(outTimeVO.getTimeStart().trim()))
+			hql = hql + " and c.case_receivingAlarmDate>='" + outTimeVO.getTimeStart() + "'";
+		if (outTimeVO.getTimeEnd() != null && !"".equals(outTimeVO.getTimeEnd().trim()))
+			hql = hql + " and c.case_receivingAlarmDate<='" + outTimeVO.getTimeEnd() + "'";
+		long num = (long) session.createQuery(hql).uniqueResult();
+		policemanDTO.setOutTimes(new Long(num).intValue());
+	}
+
+	@Override
 	public List<policemanOutTimesDTO> getTimes(List<xsjsglxt_staff> policeman, OutTimeVO outTimeVO) {
 		// TODO Auto-generated method stub
 		List<policemanOutTimesDTO> policemanDTO = new ArrayList<policemanOutTimesDTO>();
@@ -79,38 +91,7 @@ public class StatisticsDaoImpl implements StatisticsDao {
 		return policemanDTO;
 	}
 
-	@Override
-	public List<ComparisonTimeDTO> getComparisonTime(List<xsjsglxt_staff> policeman,
-			ComparisonTimeVO comparisonTimeVO) {
-		// TODO Auto-generated method stub
-		List<ComparisonTimeDTO> comparistionTimeDTOList = new ArrayList<ComparisonTimeDTO>();
-		String hql = null;
-		String queryCondition = "";
-		if (comparisonTimeVO.getComparisonTimeStart() != null
-				&& comparisonTimeVO.getComparisonTimeStart().trim().length() > 0) {
-			queryCondition = queryCondition + " and breakcase_arrested_time >= '"
-					+ comparisonTimeVO.getComparisonTimeStart() + "'";
-		}
-		if (comparisonTimeVO.getComparisonTimeEnd() != null
-				&& comparisonTimeVO.getComparisonTimeEnd().trim().length() > 0) {
-			queryCondition = queryCondition + " and breakcase_arrested_time<='"
-					+ comparisonTimeVO.getComparisonTimeEnd() + "'";
-		}
-		ComparisonTimeDTO c = null;
-		Session session = this.getSession();
-		for (xsjsglxt_staff staff : policeman) {
-			hql = "select count(*) from xsjsglxt_breakcase where breakcase_contrast_contraster = '"
-					+ staff.getXsjsglxt_name() + "'";
-			hql = hql + queryCondition;
-			long count = (long) session.createQuery(hql).uniqueResult();
-			c = new ComparisonTimeDTO();
-			c.setComparisonTime((int) count);
-			c.setPolicemanname(staff.getXsjsglxt_name());
-			comparistionTimeDTOList.add(c);
-		}
-		return comparistionTimeDTOList;
-	}
-
+	// 获得案件数量
 	@Override
 	public List<CaseTimeDTO> getCaseTime(CaseTimeVO caseTimeVO) {
 		// TODO Auto-generated method stub
