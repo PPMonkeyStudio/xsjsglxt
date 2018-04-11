@@ -35,15 +35,14 @@
 		<action name="Handle_*" class="com.xsjsglxt.action.Case.HandleAction"
 			method="{1}">
 		</action>
-		
-		<!-- gxr重构破案模块添加代码 -->
-<!-- 		<action name="BreakCase_*" class="com.xsjsglxt.action.Case.BreakecaseAction"
-			method="{1}">
-			<result name="page_BreakCaseList">/WEB-INF/view/Case/BreakCaseList.jsp</result>
-		</action> -->
-		<action name="BreakCase_*" class="com.xsjsglxt.action.Case.BreakCaseAction"
+		<action name="BreakCase_*" class="com.xsjsglxt.action.Case.BreakecaseAction"
 			method="{1}">
 			<result name="page_BreakCaseList">/WEB-INF/view/Case/BreakCaseList.jsp</result>
 		</action>
+		<!-- gxr重构破案模块添加代码 -->
+
+		<!-- <action name="BreakCase_*" class="com.xsjsglxt.action.Case.BreakCaseAction" 
+			method="{1}"> <result name="page_BreakCaseList">/WEB-INF/view/Case/BreakCaseList.jsp</result> 
+			</action> -->
 	</package>
 </struts>
