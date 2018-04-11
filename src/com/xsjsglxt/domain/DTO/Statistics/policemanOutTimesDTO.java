@@ -9,7 +9,7 @@ public class policemanOutTimesDTO {
 	private int biology;
 	private int physicochemical;
 	private int other;
-	private int extractionRadio;
+	private String extractionRadio;
 	private int breakeNumber;
 
 	@Override
@@ -84,11 +84,11 @@ public class policemanOutTimesDTO {
 		this.other = other;
 	}
 
-	public int getExtractionRadio() {
+	public String getExtractionRadio() {
 		return extractionRadio;
 	}
 
-	public void setExtractionRadio(int extractionRadio) {
+	public void setExtractionRadio(String extractionRadio) {
 		this.extractionRadio = extractionRadio;
 	}
 

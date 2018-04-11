@@ -89,7 +89,7 @@ td {
 				</div>
 			</div>
 			<!-- ----------------------------案件统计-------------------------------------- -->
-			<div id="caseTime" style="margin-top: 10px; display: none;">
+			<div id="caseTime" style="margin-top: 10px; display: none; margin-left: 10px; margin-right:10px;">
 				<div id="caseSelect" style="display: inline-block;">
 					<select id='firstCase' class="form-control"
 						style="width: 200px; display: inline-block;"

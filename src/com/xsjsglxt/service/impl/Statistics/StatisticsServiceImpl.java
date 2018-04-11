@@ -29,19 +29,20 @@ public class StatisticsServiceImpl implements StatisticsService {
 		List<xsjsglxt_staff> policemans = statisticsDao.getPolicemanByName(outTimeVO.getPolicemanName());
 		List<policemanOutTimesDTO> policemanDTOList = new ArrayList<policemanOutTimesDTO>();
 		// 2.通过警员名字获得警员的出警数量
-		// if (policeman != null && policeman.size() > 0) {
-		// policemanDTO = statisticsDao.getTimes(policeman, outTimeVO);
-		// return policemanDTO;
-		// } else {
-		// return policemanDTO;
-		// }
-		policemanOutTimesDTO policemanDTO = null;
-		for (xsjsglxt_staff staff : policemans) {
-			policemanDTO = new policemanOutTimesDTO();
-			policemanDTO.setPolicemanName(staff.getXsjsglxt_name());
-			statisticsDao.getPolicemanOutTimes(policemanDTO, outTimeVO);
+		if (policemans != null && policemans.size() > 0) {
+			policemanOutTimesDTO policemanDTO = null;
+			for (xsjsglxt_staff staff : policemans) {
+				policemanDTO = new policemanOutTimesDTO();
+				policemanDTO.setPolicemanName(staff.getXsjsglxt_name());
+				statisticsDao.getPolicemanOutTimes(policemanDTO, outTimeVO);
+				statisticsDao.getEvidence(policemanDTO, outTimeVO);
+				statisticsDao.getRadio(policemanDTO, outTimeVO);
+				policemanDTOList.add(policemanDTO);
+			}
+			return policemanDTOList;
+		} else {
+			return policemanDTOList;
 		}
-		return policemanDTOList;
 
 	}
 

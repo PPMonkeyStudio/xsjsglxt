@@ -12,10 +12,12 @@ public interface StatisticsDao {
 
 	List<xsjsglxt_staff> getPolicemanByName(String policemanName);
 
-	List<policemanOutTimesDTO> getTimes(List<xsjsglxt_staff> policeman, OutTimeVO outTimeVO);
-
 	List<CaseTimeDTO> getCaseTime(CaseTimeVO caseTimeVO);
 
 	void getPolicemanOutTimes(policemanOutTimesDTO policemanDTO, OutTimeVO outTimeVO);
+
+	void getEvidence(policemanOutTimesDTO policemanDTO, OutTimeVO outTimeVO);
+
+	void getRadio(policemanOutTimesDTO policemanDTO, OutTimeVO outTimeVO);
 
 }
