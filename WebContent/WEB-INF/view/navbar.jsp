@@ -58,7 +58,7 @@
 	</script>
 	<div id="wrapper">
 		<nav id="navbar" class="navbar navbar-default navbar-fixed-top"
-			style="background-color:rgb(41,22,111);">
+			style=" background-color: rgb(41,23,91);">
 		<div
 			style="width: auto; float: left; line-height: 78px; margin: 0 0 0 30px; font-size: 30px; color: white;">
 			<img alt="" src="<%=basePath%>img/hui.png">安源刑侦信息管理系统
