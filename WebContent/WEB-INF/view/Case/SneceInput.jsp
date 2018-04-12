@@ -181,8 +181,7 @@
 								<p style="float:left; margin-top: 6px;">温度</p> <input
 								name="sence.snece_weatherTemperature"
 								style="width: 50px; float:left; margin-top: 6px;"
-								class="form-control" type="text">
-								<p style="margin-top: 6px;">°C</p></td>
+								class="form-control" type="text">°C</td>
 							<td width="85">作案时段</td>
 							<td><select name="case1.case_makeTime" class=" form-control">
 									<option selected value=""></option>

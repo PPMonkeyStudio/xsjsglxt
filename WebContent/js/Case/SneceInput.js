@@ -96,23 +96,6 @@ chapterCaseArr[11] = [ "非正常死亡", "非正常死亡", ];
 chapterCaseArr[12] = [ "故意损坏公私财物", "故意损坏公私财物", ];
 chapterCaseArr[13] = [ "其它", "其它", ];
 
-Date.prototype.Format = function(fmt) { //author: meizz
-	var o = {
-		"M+" : this.getMonth() + 1, //月份
-		"d+" : this.getDate(), //日
-		"h+" : this.getHours(), //小时
-		"m+" : this.getMinutes(), //分
-		"s+" : this.getSeconds(), //秒
-		"q+" : Math.floor((this.getMonth() + 3) / 3), //季度
-		"S" : this.getMilliseconds() //毫秒
-	};
-	if (/(y+)/.test(fmt))
-		fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-	for (var k in o)
-		if (new RegExp("(" + k + ")").test(fmt))
-			fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-	return fmt;
-}
 
 function setSectionCase(chapter) {
 	if (chapter > 3 && chapter != 13) {
@@ -132,11 +115,9 @@ function setSectionCase(chapter) {
 			$('.other_case').append("<option value='" + chapterCaseArr[chapter][2][i] + "'>" + chapterCaseArr[chapter][2][i] + "</option>");
 		}
 	}
-
-	$('.case_name').val('"' + new Date().Format("yyyy.MM.dd") + '"' + $('.case_place').val() + $('.main_case').val());
-
+	$('.case_name').val(new Date().toLocaleDateString() + $('.case_place').val() + $('.main_case').val());
 	$('.other_case').unbind().change(function() {
-		$('.case_name').val('"' + new Date().Format("yyyy.MM.dd") + '"' + $('.case_place').val() + $('.other_case').val());
+		$('.case_name').val(new Date().toLocaleDateString() + $('.case_place').val() + $('.other_case').val());
 	})
 }
 

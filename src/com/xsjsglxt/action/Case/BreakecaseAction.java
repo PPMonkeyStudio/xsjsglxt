@@ -46,7 +46,6 @@ public class BreakecaseAction extends ActionSupport implements ServletResponseAw
 	public void saveBreakecase() throws IOException {
 		try {
 			// breakecase.setBreakecase_case(case1.getXsjsglxt_case_id());
-			System.out.println(breakecase);
 			breakecaseService.saveBreakecase(breakecase);
 			http_response.setContentType("text/html;charset=utf-8");
 			http_response.getWriter().write("success");
