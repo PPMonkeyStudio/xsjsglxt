@@ -154,4 +154,12 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		return list;
 	}
 
+	@Override
+	public List<xsjsglxt_breakecase> getBreakeCaseByCaseId(String breakecase_case) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		String hql = "from xsjsglxt_breakecase where breakecase_case ='" + breakecase_case + "'";
+		return session.createQuery(hql).list();
+	}
+
 }

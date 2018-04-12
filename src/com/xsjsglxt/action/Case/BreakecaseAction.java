@@ -13,6 +13,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecase;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecasesuspect;
 import com.xsjsglxt.domain.VO.Case.BreakeCaseDetailsVO;
+import com.xsjsglxt.domain.VO.Case.BreakeCaseListVO;
 import com.xsjsglxt.service.Case.BreakecaseService;
 
 /**
@@ -23,15 +24,12 @@ import com.xsjsglxt.service.Case.BreakecaseService;
  */
 public class BreakecaseAction extends ActionSupport {
 	private BreakecaseService breakecaseService;
-
 	private xsjsglxt_breakecase breakeCase;
-
 	private xsjsglxt_breakecasesuspect suspect;
-
 	private List<xsjsglxt_breakecasesuspect> suspectList;
-
 	private String[] breakeCaseId;
 	private String[] suspectId;
+	private BreakeCaseListVO breakeCaseListVO;
 
 	// -----------------------跳转页面
 	public String page_BreakCaseList() {
@@ -40,23 +38,38 @@ public class BreakecaseAction extends ActionSupport {
 
 	// -----------------------保存破案
 	public void saveBreakeCase() {
-		boolean flag = breakecaseService.saveBreakeCase(breakeCase, suspectList);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
-		try {
-			PrintWriter pw = response.getWriter();
-			if (flag) {
-				pw.write("saveSuccess");
+		List<xsjsglxt_breakecase> breakecaseIm = breakecaseService.getBreakeCaseByCaseId(breakeCase);
+		System.out.println(breakecaseIm.size());
+		if (breakecaseIm != null && breakecaseIm.size() > 0) {
+			try {
+				PrintWriter pw = response.getWriter();
+				pw.write("caseIsBreake");
 				pw.flush();
 				pw.close();
-			} else {
-				pw.write("saveError");
-				pw.flush();
-				pw.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} else {
+			boolean flag = breakecaseService.saveBreakeCase(breakeCase, suspectList);
+			try {
+				PrintWriter pw = response.getWriter();
+				if (flag) {
+					pw.write("saveSuccess");
+					pw.flush();
+					pw.close();
+				} else {
+					pw.write("saveError");
+					pw.flush();
+					pw.close();
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
 
 	}
@@ -182,7 +195,7 @@ public class BreakecaseAction extends ActionSupport {
 
 	// -----------------------------破案列表查询
 	public void breakeCaseByPage() {
-
+		breakecaseService.breakeCaseByPage(breakeCaseListVO);
 	}
 
 	// -------------------------------------setter/getter--------------------------------------
@@ -250,6 +263,20 @@ public class BreakecaseAction extends ActionSupport {
 	 */
 	public void setSuspectId(String[] suspectId) {
 		this.suspectId = suspectId;
+	}
+
+	/**
+	 * @return the breakeCaseListVO
+	 */
+	public BreakeCaseListVO getBreakeCaseListVO() {
+		return breakeCaseListVO;
+	}
+
+	/**
+	 * @param breakeCaseListVO the breakeCaseListVO to set
+	 */
+	public void setBreakeCaseListVO(BreakeCaseListVO breakeCaseListVO) {
+		this.breakeCaseListVO = breakeCaseListVO;
 	}
 
 }

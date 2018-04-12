@@ -29,4 +29,6 @@ public interface BreakecaseDao {
 
 	List<xsjsglxt_breakecasesuspect> getBreakeCaseSuspectByBreakeCaseId(String xsjsglxt_breakecase_id);
 
+	List<xsjsglxt_breakecase> getBreakeCaseByCaseId(String breakecase_case);
+
 }

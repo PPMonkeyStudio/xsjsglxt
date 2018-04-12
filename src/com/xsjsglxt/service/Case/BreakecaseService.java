@@ -6,6 +6,7 @@ import java.util.List;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecase;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecasesuspect;
 import com.xsjsglxt.domain.VO.Case.BreakeCaseDetailsVO;
+import com.xsjsglxt.domain.VO.Case.BreakeCaseListVO;
 
 public interface BreakecaseService {
 
@@ -22,5 +23,9 @@ public interface BreakecaseService {
 	boolean updateSuspect(xsjsglxt_breakecasesuspect suspect);
 
 	BreakeCaseDetailsVO getBreakeCaseDetails(String xsjsglxt_breakecase_id);
+
+	List<xsjsglxt_breakecase> getBreakeCaseByCaseId(xsjsglxt_breakecase breakeCase);
+
+	void breakeCaseByPage(BreakeCaseListVO breakeCaseListVO);
 
 }

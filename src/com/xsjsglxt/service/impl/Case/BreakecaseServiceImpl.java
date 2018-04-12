@@ -6,6 +6,7 @@ import com.xsjsglxt.dao.Case.BreakecaseDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecase;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecasesuspect;
 import com.xsjsglxt.domain.VO.Case.BreakeCaseDetailsVO;
+import com.xsjsglxt.domain.VO.Case.BreakeCaseListVO;
 import com.xsjsglxt.service.Case.BreakecaseService;
 
 import util.TeamUtil;
@@ -113,6 +114,19 @@ public class BreakecaseServiceImpl implements BreakecaseService {
 		breakeCaseDetailsVO.setBreakeCase(breakeCase);
 		breakeCaseDetailsVO.setSuspectList(breakeCaseSuspectList);
 		return breakeCaseDetailsVO;
+	}
+
+	@Override
+	public List<xsjsglxt_breakecase> getBreakeCaseByCaseId(xsjsglxt_breakecase breakeCase) {
+		// TODO Auto-generated method stub
+
+		return breakecaseDao.getBreakeCaseByCaseId(breakeCase.getBreakecase_case());
+	}
+
+	@Override
+	public void breakeCaseByPage(BreakeCaseListVO breakeCaseListVO) {
+		// TODO Auto-generated method stub
+
 	}
 
 }
