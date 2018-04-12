@@ -127,6 +127,10 @@ public class BreakecaseServiceImpl implements BreakecaseService {
 	public void breakeCaseByPage(BreakeCaseListVO breakeCaseListVO) {
 		// TODO Auto-generated method stub
 		int count = breakecaseDao.getCountBreakeCase(breakeCaseListVO);
+		breakeCaseListVO.setTotalCount(count);
+		breakeCaseListVO.setPageSize(10);
+		breakeCaseListVO.setTotalPage((int) Math.ceil((double) count / breakeCaseListVO.getPageSize()));
+		breakecaseDao.getBreakeCaseByPage(breakeCaseListVO);
 	}
 
 }

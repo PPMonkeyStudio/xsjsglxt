@@ -9,11 +9,11 @@ public class BreakeCaseListVO {
 	private int totalPage;
 	private int totalCount;
 	private int pageSize;
-	private int query_sence_inquestId;
-	private int query_case_name;
-	private int query_breake_time_start;
-	private int query_breake_time_end;
-	private int query_breake_person;
+	private String query_sence_inquestId;
+	private String query_case_name;
+	private String query_breake_time_start;
+	private String query_breake_time_end;
+	private String query_breake_person;
 	private List<BreakeCasePageDTO> breakeCaseDTOList;
 
 	/*
@@ -89,70 +89,70 @@ public class BreakeCaseListVO {
 	/**
 	 * @return the query_sence_inquestId
 	 */
-	public int getQuery_sence_inquestId() {
+	public String getQuery_sence_inquestId() {
 		return query_sence_inquestId;
 	}
 
 	/**
 	 * @param query_sence_inquestId the query_sence_inquestId to set
 	 */
-	public void setQuery_sence_inquestId(int query_sence_inquestId) {
+	public void setQuery_sence_inquestId(String query_sence_inquestId) {
 		this.query_sence_inquestId = query_sence_inquestId;
 	}
 
 	/**
 	 * @return the query_case_name
 	 */
-	public int getQuery_case_name() {
+	public String getQuery_case_name() {
 		return query_case_name;
 	}
 
 	/**
 	 * @param query_case_name the query_case_name to set
 	 */
-	public void setQuery_case_name(int query_case_name) {
+	public void setQuery_case_name(String query_case_name) {
 		this.query_case_name = query_case_name;
 	}
 
 	/**
 	 * @return the query_breake_time_start
 	 */
-	public int getQuery_breake_time_start() {
+	public String getQuery_breake_time_start() {
 		return query_breake_time_start;
 	}
 
 	/**
 	 * @param query_breake_time_start the query_breake_time_start to set
 	 */
-	public void setQuery_breake_time_start(int query_breake_time_start) {
+	public void setQuery_breake_time_start(String query_breake_time_start) {
 		this.query_breake_time_start = query_breake_time_start;
 	}
 
 	/**
 	 * @return the query_breake_time_end
 	 */
-	public int getQuery_breake_time_end() {
+	public String getQuery_breake_time_end() {
 		return query_breake_time_end;
 	}
 
 	/**
 	 * @param query_breake_time_end the query_breake_time_end to set
 	 */
-	public void setQuery_breake_time_end(int query_breake_time_end) {
+	public void setQuery_breake_time_end(String query_breake_time_end) {
 		this.query_breake_time_end = query_breake_time_end;
 	}
 
 	/**
 	 * @return the query_breake_person
 	 */
-	public int getQuery_breake_person() {
+	public String getQuery_breake_person() {
 		return query_breake_person;
 	}
 
 	/**
 	 * @param query_breake_person the query_breake_person to set
 	 */
-	public void setQuery_breake_person(int query_breake_person) {
+	public void setQuery_breake_person(String query_breake_person) {
 		this.query_breake_person = query_breake_person;
 	}
 

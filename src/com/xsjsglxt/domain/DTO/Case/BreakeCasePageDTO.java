@@ -21,6 +21,12 @@ public class BreakeCasePageDTO {
 		this.breakecase_caseTime = breakecase_caseTime;
 	}
 
+	public BreakeCasePageDTO(String xsjsglxt_breakecase_id, String snece_inquestId) {
+		super();
+		this.xsjsglxt_breakecase_id = xsjsglxt_breakecase_id;
+		this.snece_inquestId = snece_inquestId;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 

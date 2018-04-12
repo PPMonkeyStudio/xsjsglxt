@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import com.xsjsglxt.dao.Case.BreakecaseDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecase;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecasesuspect;
+import com.xsjsglxt.domain.DTO.Case.BreakeCasePageDTO;
 import com.xsjsglxt.domain.VO.Case.BreakeCaseListVO;
 
 public class BreakecaseDaoImpl implements BreakecaseDao {
@@ -168,8 +169,54 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		// TODO Auto-generated method stub
 		Session session = this.getSession();
 		String hql = "select count(*) from xsjsglxt_breakecase as breake , xsjsglxt_case as xCase,xsjsglxt_snece as sence where breake.breakecase_case = xCase.xsjsglxt_case_id and sence.snece_case = xCase.xsjsglxt_case_id";
+		if (breakeCaseListVO.getQuery_breake_person() != null
+				&& breakeCaseListVO.getQuery_breake_person().trim().length() > 0)
+			hql = hql + " and breake.breakecase_person like '%" + breakeCaseListVO.getQuery_breake_person() + "%'";
+		if (breakeCaseListVO.getQuery_breake_time_end() != null
+				&& breakeCaseListVO.getQuery_breake_time_end().trim().length() > 0)
+			hql = hql + " and breake.breakecase_caseTime <= '" + breakeCaseListVO.getQuery_breake_time_end() + "'";
+		if (breakeCaseListVO.getQuery_breake_time_start() != null
+				&& breakeCaseListVO.getQuery_breake_time_start().trim().length() > 0)
+			hql = hql + " and breake.breakecase_caseTime >= '" + breakeCaseListVO.getQuery_breake_time_start() + "'";
+		if (breakeCaseListVO.getQuery_case_name() != null && breakeCaseListVO.getQuery_case_name().trim().length() > 0)
+			hql = hql + " and xCase.case_name like '%" + breakeCaseListVO.getQuery_case_name() + "%'";
+		if (breakeCaseListVO.getQuery_sence_inquestId() != null
+				&& breakeCaseListVO.getQuery_sence_inquestId().trim().length() > 0)
+			hql = hql + " and sence.snece_inquestId like '%" + breakeCaseListVO.getQuery_sence_inquestId() + "%'";
+		long count = (long) session.createQuery(hql).uniqueResult();
+		return (int) count;
+	}
 
-		return 0;
+	@Override
+	public void getBreakeCaseByPage(BreakeCaseListVO breakeCaseListVO) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		String hql = "select new com.xsjsglxt.domain.DTO.Case.BreakeCasePageDTO(breake.xsjsglxt_breakecase_id as xsjsglxt_breakecase_id , "
+				+ "sence.snece_inquestId as snece_inquestId , " + "xCase.case_name as case_name , "
+				+ "breake.breakecase_type as breakecase_type , " + "breake.breakecase_person as breakecase_person , "
+				+ "breake.breakecase_according as breakecase_according , "
+				+ "breake.breakecase_caseTime as breakecase_caseTime)"
+				+ " from xsjsglxt_breakecase as breake , xsjsglxt_case as xCase,xsjsglxt_snece as sence where breake.breakecase_case = xCase.xsjsglxt_case_id and sence.snece_case = xCase.xsjsglxt_case_id and 1=1";
+		System.out.println(hql);
+		if (breakeCaseListVO.getQuery_breake_person() != null
+				&& breakeCaseListVO.getQuery_breake_person().trim().length() > 0)
+			hql = hql + " and breake.breakecase_person like '%" + breakeCaseListVO.getQuery_breake_person() + "%'";
+		if (breakeCaseListVO.getQuery_breake_time_end() != null
+				&& breakeCaseListVO.getQuery_breake_time_end().trim().length() > 0)
+			hql = hql + " and breake.breakecase_caseTime <= '" + breakeCaseListVO.getQuery_breake_time_end() + "'";
+		if (breakeCaseListVO.getQuery_breake_time_start() != null
+				&& breakeCaseListVO.getQuery_breake_time_start().trim().length() > 0)
+			hql = hql + " and breake.breakecase_caseTime >= '" + breakeCaseListVO.getQuery_breake_time_start() + "'";
+		if (breakeCaseListVO.getQuery_case_name() != null && breakeCaseListVO.getQuery_case_name().trim().length() > 0)
+			hql = hql + " and xCase.case_name like '%" + breakeCaseListVO.getQuery_case_name() + "%'";
+		if (breakeCaseListVO.getQuery_sence_inquestId() != null
+				&& breakeCaseListVO.getQuery_sence_inquestId().trim().length() > 0)
+			hql = hql + " and sence.snece_inquestId like '%" + breakeCaseListVO.getQuery_sence_inquestId() + "%'";
+		List<BreakeCasePageDTO> pageDTO = session.createQuery(hql)
+				.setFirstResult((breakeCaseListVO.getCurrPage() - 1) * breakeCaseListVO.getPageSize())
+				.setMaxResults(breakeCaseListVO.getPageSize()).list();
+		breakeCaseListVO.setBreakeCaseDTOList(pageDTO);
+
 	}
 
 }

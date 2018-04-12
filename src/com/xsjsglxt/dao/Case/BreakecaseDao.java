@@ -34,4 +34,6 @@ public interface BreakecaseDao {
 
 	int getCountBreakeCase(BreakeCaseListVO breakeCaseListVO);
 
+	void getBreakeCaseByPage(BreakeCaseListVO breakeCaseListVO);
+
 }
