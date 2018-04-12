@@ -13,4 +13,8 @@ public interface BreakecaseDao {
 
 	boolean deleteSuspectByCaseId(String string);
 
+	boolean addOneSuspect(xsjsglxt_breakecasesuspect suspect);
+
+	void deleteSuspectBySuspectId(xsjsglxt_breakecasesuspect suspect);
+
 }

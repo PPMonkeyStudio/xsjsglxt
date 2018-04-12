@@ -24,9 +24,12 @@ public class BreakecaseAction extends ActionSupport {
 
 	private xsjsglxt_breakecase breakeCase;
 
+	private xsjsglxt_breakecasesuspect suspect;
+
 	private List<xsjsglxt_breakecasesuspect> suspectList;
 
 	private String[] breakeCaseId;
+	private String[] suspectId;
 
 	// -----------------------跳转页面
 	public String page_BreakCaseList() {
@@ -58,7 +61,21 @@ public class BreakecaseAction extends ActionSupport {
 
 	// -----------------------新增一个嫌疑人
 	public void addOneSuspect() {
-
+		boolean flag = breakecaseService.addOneSuspect(suspect);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			if (flag)
+				pw.write("saveSuccess");
+			else
+				pw.write("saveError");
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	// ------------------------删除破案
@@ -66,6 +83,7 @@ public class BreakecaseAction extends ActionSupport {
 		boolean flag = false;
 		flag = breakecaseService.deleteBreakeCase(breakeCaseId);
 		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
 		try {
 			PrintWriter pw = response.getWriter();
 			if (flag)
@@ -80,6 +98,37 @@ public class BreakecaseAction extends ActionSupport {
 		}
 
 	}
+
+	// -------------------------删除嫌疑人
+	public void deleteSuspect() {
+		boolean flag = false;
+		flag = breakecaseService.deleteSuspect(suspectId);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			if (flag)
+				pw.write("deleteSuccess");
+			else
+				pw.write("deleteError");
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	// ---------------------------修改破案信息
+	public void updateBreakeCase() {
+
+	}
+
+	// ----------------------------修改嫌疑人信息
+	public void updateSuspect() {
+
+	}
+	// -----------------------------破案列表查询
 
 	// -------------------------------------setter/getter--------------------------------------
 	public BreakecaseService getBreakecaseService() {
@@ -118,6 +167,34 @@ public class BreakecaseAction extends ActionSupport {
 	 */
 	public void setBreakeCaseId(String[] breakeCaseId) {
 		this.breakeCaseId = breakeCaseId;
+	}
+
+	/**
+	 * @return the suspect
+	 */
+	public xsjsglxt_breakecasesuspect getSuspect() {
+		return suspect;
+	}
+
+	/**
+	 * @param suspect the suspect to set
+	 */
+	public void setSuspect(xsjsglxt_breakecasesuspect suspect) {
+		this.suspect = suspect;
+	}
+
+	/**
+	 * @return the suspectId
+	 */
+	public String[] getSuspectId() {
+		return suspectId;
+	}
+
+	/**
+	 * @param suspectId the suspectId to set
+	 */
+	public void setSuspectId(String[] suspectId) {
+		this.suspectId = suspectId;
 	}
 
 }

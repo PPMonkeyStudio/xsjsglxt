@@ -71,4 +71,30 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		}
 	}
 
+	@Override
+	public boolean addOneSuspect(xsjsglxt_breakecasesuspect suspect) {
+		// TODO Auto-generated method stub
+
+		Session session = this.getSession();
+		try {
+			session.save(suspect);
+			return true;
+		} catch (HibernateException e) {
+			// TODO: handle exception
+			return false;
+		}
+	}
+
+	@Override
+	public void deleteSuspectBySuspectId(xsjsglxt_breakecasesuspect suspect) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		try {
+			session.delete(suspect);
+		} catch (HibernateException e) {
+			// TODO: handle exception
+		}
+
+	}
+
 }

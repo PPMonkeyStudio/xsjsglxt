@@ -55,4 +55,27 @@ public class BreakecaseServiceImpl implements BreakecaseService {
 		return result;
 	}
 
+	@Override
+	public boolean addOneSuspect(xsjsglxt_breakecasesuspect suspect) {
+		// TODO Auto-generated method stub
+
+		suspect.setXsjsglxt_breakecaseSuspect_id(TeamUtil.getUuid());
+		suspect.setBreakecaseSuspect_gmt_create(TeamUtil.getStringSecond());
+		suspect.setBreakecaseSuspect_gmt_modified(TeamUtil.getStringSecond());
+		boolean flag = breakecaseDao.addOneSuspect(suspect);
+		return flag;
+	}
+
+	@Override
+	public boolean deleteSuspect(String[] suspectId) {
+		// TODO Auto-generated method stub
+		xsjsglxt_breakecasesuspect suspect;
+		for (int i = 0; i < suspectId.length; i++) {
+			suspect = new xsjsglxt_breakecasesuspect();
+			suspect.setXsjsglxt_breakecaseSuspect_id(suspectId[i]);
+			breakecaseDao.deleteSuspectBySuspectId(suspect);
+		}
+		return true;
+	}
+
 }
