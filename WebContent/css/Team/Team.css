@@ -170,8 +170,6 @@ a:hover {
 }
 .long_table td {
 	text-align: center;
-	border-right: 1px solid #dddddd;
-	border-bottom: 1px solid #dddddd;
 }
 /*学习经历模态框start  */
 .study_indication {

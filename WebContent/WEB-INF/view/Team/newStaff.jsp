@@ -67,7 +67,7 @@
 						<tr>
 							<td><label>身份证号</label></td>
 							<td><input name="policeman.staff_idNumber"
-								class="form-control" type="text"></td>
+								class="form-control" type="text" onblur="getAge()"></td>
 
 							<td><label>年龄</label></td>
 							<td><input style="font-size: 12px;"
@@ -160,6 +160,14 @@
 									<option>副中队长</option>
 									<option>民警</option>
 									<option>辅警</option>
+									
+							</select></td>
+							<td><label>警种</label></td>
+							<td><select id="staff_duty" class="form-control"
+								name="policeman.staff_type">
+									<option>民警</option>
+									<option>辅警</option>
+									<option>文职</option>
 							</select></td>
 						</tr>
 						<tr style="height: 30px"></tr>
@@ -182,15 +190,15 @@
 							<td><label>QQ号</label></td>
 							<td><input name="policeman.staff_QQ" class="form-control"
 								style="margin-top: 6px;" type="text"></td>
-							<td><label>微信</label></td>
+							<td><label>微信&nbsp;&nbsp;&nbsp;&nbsp;号</label></td>
 							<td><input name="policeman.staff_weixin"
 								class="form-control" style="margin-top: 6px;"></td>
-							<td><label>电子邮箱</label></td>
+							<td><label>内网邮箱</label><label>外网邮箱</label></td>
 							<td><input name="policeman.staff_outEmail"
 								class="form-control" style="margin-top: 6px;"
-								placeholder="外网电子邮箱"> <input
+								> <input
 								name="policeman.staff_inEmail" class="form-control"
-								style="margin-top: 6px;" placeholder="内网电子邮箱"></td>
+								style="margin-top: 6px;"></td>
 
 						</tr>
 
@@ -207,7 +215,7 @@
 
 						<form id="study_exp">
 							<div class="long_tb">
-								<table id="studyExperience_table" class="table">
+								<table id="studyExperience_table" >
 									<tbody>
 										<tr class="long_table">
 											<th>学习地点</th>
@@ -232,7 +240,7 @@
 						</button>
 						<form id="work_exp">
 							<div class="long_tb">
-								<table id="wordExperience_table" class="table">
+								<table id="wordExperience_table"  >
 									<tbody>
 										<tr class="long_table">
 											<th>工作地点</th>
@@ -453,7 +461,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_studyExperience()" data-dismiss='modal'>新建</button>
+						onclick="add_studyExperience()" data-dismiss='modal'>增加</button>
 				</div>
 			</div>
 		</div>
@@ -520,7 +528,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_workExperience()" data-dismiss='modal'>新建</button>
+						onclick="add_workExperience()" data-dismiss='modal'>增加</button>
 				</div>
 			</div>
 		</div>
@@ -611,7 +619,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_family()" data-dismiss='modal'>新建</button>
+						onclick="add_family()" data-dismiss='modal'>增加</button>
 				</div>
 			</div>
 		</div>
@@ -673,7 +681,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_policeChange()" data-dismiss='modal'>新建</button>
+						onclick="add_policeChange()" data-dismiss='modal'>增加</button>
 				</div>
 			</div>
 		</div>
@@ -728,7 +736,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_prized()" data-dismiss='modal'>新建</button>
+						onclick="add_prized()" data-dismiss='modal'>增加</button>
 				</div>
 			</div>
 		</div>
@@ -784,7 +792,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_AgainstPrinciple()" data-dismiss='modal'>新建</button>
+						onclick="add_AgainstPrinciple()" data-dismiss='modal'>增加</button>
 				</div>
 			</div>
 		</div>
@@ -840,7 +848,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_Punish()" data-dismiss='modal'>新建</button>
+						onclick="add_Punish()" data-dismiss='modal'>增加</button>
 				</div>
 			</div>
 		</div>
@@ -911,7 +919,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_Vocation()" data-dismiss='modal'>新建</button>
+						onclick="add_Vocation()" data-dismiss='modal'>增加</button>
 				</div>
 			</div>
 		</div>
@@ -936,7 +944,7 @@
 			yearEnd : 2100, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
+			format : 'Y-m-d', // 格式化日期年-月-日
 			minDate : '1900/01/01', // 设置最小日期
 			maxDate : '2100/01/01', // 设置最大日期
 		});
