@@ -163,12 +163,16 @@
 									
 							</select></td>
 							<td><label>警种</label></td>
-							<td><select id="staff_duty" class="form-control"
+							<td><select id="staff_type" class="form-control"
 								name="policeman.staff_type">
 									<option>民警</option>
 									<option>辅警</option>
 									<option>文职</option>
 							</select></td>
+							
+							<td><label>地址</label></td>
+							<td><input name="policeman.staff_address"
+								class="form-control" type="text"></td>
 						</tr>
 						<tr style="height: 30px"></tr>
 						<tr>

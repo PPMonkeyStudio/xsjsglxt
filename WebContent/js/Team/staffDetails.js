@@ -55,6 +55,7 @@ function get_staffDetails_Ajax(url, staff_id) {
 				$('input[name="policeman.' + key + '"]').val(value);
 			});
 			$('#staff_duty').val(staff_info.staff_duty);
+			$('#staff_type').val(staff_info.staff_type);
 			$('#staff_MaxEducationalBackground').val(
 					staff_info.staff_MaxEducationalBackground);
 			$('#staff_politicalStatus').val(staff_info.staff_politicalStatus);
@@ -109,7 +110,7 @@ function show_studyAjax(staff_id) {
 						+ '</td>';
 				str1 += '<td>' + staff_study[len].staffStudent_startTime
 						+ '</td>';
-				str1 += '<td>' + staff_study[len].staffStudent_stopTime
+				str1 += '<td>' + staff_study[len].staffStudent_remarks
 						+ '</td>';
 				str1 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#reliveStudy_Modal" onclick="show_study(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_study(this)" type="button" ><i class="fa fa-trash"></i></button></td>';
 
