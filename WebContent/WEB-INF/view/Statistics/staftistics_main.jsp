@@ -153,16 +153,16 @@ td {
 					style="width: 200px; display: inline-block;"
 					onchange="highLightShow(this)">
 					<option value="">请选择案发辖区</option>
-					<option value="东大派出所">东大派出所</option>
-					<option value="高坑派出所">高坑派出所</option>
-					<option value="青山派出所">青山派出所</option>
 					<option value="安源派出所">安源派出所</option>
-					<option value="八一派出所">八一派出所</option>
-					<option value="白源派出所">白源派出所</option>
 					<option value="城郊派出所">城郊派出所</option>
-					<option value="丹江派出所">丹江派出所</option>
 					<option value="凤凰派出所">凤凰派出所</option>
 					<option value="后埠派出所">后埠派出所</option>
+					<option value="东大派出所">东大派出所</option>
+					<option value="高坑派出所">高坑派出所</option>
+					<option value="青山派出所">青山派出所</option>	
+					<option value="八一派出所">八一派出所</option>
+					<option value="白源派出所">白源派出所</option>
+					<option value="丹江派出所">丹江派出所</option>			
 					<option value="李子园派出所">李子园派出所</option>
 					<option value="五陂下派出所">五陂下派出所</option>
 					<option value="其他">其他</option>
@@ -176,16 +176,16 @@ td {
 						<thead>
 							<tr id="trHead">
 								<td>案件类型</td>
+								<td>安源派出所</td>
+								<td>城郊派出所</td>
+								<td>凤凰派出所</td>
+								<td>后埠派出所</td>
 								<td>东大派出所</td>
 								<td>高坑派出所</td>
 								<td>青山派出所</td>
-								<td>安源派出所</td>
 								<td>八一派出所</td>
-								<td>白源派出所</td>
-								<td>城郊派出所</td>
-								<td>丹江派出所</td>
-								<td>凤凰派出所</td>
-								<td>后埠派出所</td>
+								<td>白源派出所</td>		
+								<td>丹江派出所</td>		
 								<td>李子园派出所</td>
 								<td>五陂下派出所</td>
 								<td>其他</td>
@@ -194,16 +194,16 @@ td {
 						<tbody id="caseTBody">
 							<tr name="caseTr" class="trCover" v-for="caseTime in caseList">
 								<td>{{ caseTime.caseCategory }}</td>
+								<td><span v-html="caseTime.anyuanTime"></span></td>
+								<td><span v-html="caseTime.chengjiaoTime"></span></td>
+								<td><span v-html="caseTime.fenghuangTime"></span></td>
+								<td><span v-html="caseTime.houfuTime"></span></td>
 								<td><span v-html="caseTime.dongDaTime"></span></td>
 								<td><span v-html="caseTime.gaoKangTime"></span></td>
 								<td><span v-html="caseTime.qingshanTime"></span></td>
-								<td><span v-html="caseTime.anyuanTime"></span></td>
 								<td><span v-html="caseTime.bayiTime"></span></td>
 								<td><span v-html="caseTime.baiyuanTime"></span></td>
-								<td><span v-html="caseTime.chengjiaoTime"></span></td>
 								<td><span v-html="caseTime.danjiangTime"></span></td>
-								<td><span v-html="caseTime.fenghuangTime"></span></td>
-								<td><span v-html="caseTime.houfuTime"></span></td>
 								<td><span v-html="caseTime.liziyuanTime"></span></td>
 								<td><span v-html="caseTime.wupoxiaTime"></span></td>
 								<td><span v-html="caseTime.qitaTime"></span></td>
