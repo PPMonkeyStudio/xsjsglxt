@@ -9,4 +9,8 @@ public interface BreakecaseDao {
 
 	String saveBreakecaseSuspect(xsjsglxt_breakecasesuspect xsjsglxt_breakecasesuspect);
 
+	boolean deleteBreakeCase(String string);
+
+	boolean deleteSuspectByCaseId(String string);
+
 }

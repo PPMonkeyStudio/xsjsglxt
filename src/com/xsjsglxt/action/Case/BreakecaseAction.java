@@ -26,6 +26,8 @@ public class BreakecaseAction extends ActionSupport {
 
 	private List<xsjsglxt_breakecasesuspect> suspectList;
 
+	private String[] breakeCaseId;
+
 	// -----------------------跳转页面
 	public String page_BreakCaseList() {
 		return "page_BreakCaseList";
@@ -47,6 +49,31 @@ public class BreakecaseAction extends ActionSupport {
 				pw.flush();
 				pw.close();
 			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	// -----------------------新增一个嫌疑人
+	public void addOneSuspect() {
+
+	}
+
+	// ------------------------删除破案
+	public void deleteBreakeCase() {
+		boolean flag = false;
+		flag = breakecaseService.deleteBreakeCase(breakeCaseId);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		try {
+			PrintWriter pw = response.getWriter();
+			if (flag)
+				pw.write("deleteSuccess");
+			else
+				pw.write("deleteError");
+			pw.flush();
+			pw.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -77,6 +104,20 @@ public class BreakecaseAction extends ActionSupport {
 
 	public void setSuspectList(List<xsjsglxt_breakecasesuspect> suspectList) {
 		this.suspectList = suspectList;
+	}
+
+	/**
+	 * @return the breakeCaseId
+	 */
+	public String[] getBreakeCaseId() {
+		return breakeCaseId;
+	}
+
+	/**
+	 * @param breakeCaseId the breakeCaseId to set
+	 */
+	public void setBreakeCaseId(String[] breakeCaseId) {
+		this.breakeCaseId = breakeCaseId;
 	}
 
 }

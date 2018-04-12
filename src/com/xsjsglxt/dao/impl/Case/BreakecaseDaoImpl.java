@@ -1,5 +1,6 @@
 package com.xsjsglxt.dao.impl.Case;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -38,6 +39,36 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		Session session = this.getSession();
 		String result = (String) session.save(xsjsglxt_breakecasesuspect);
 		return result;
+	}
+
+	@Override
+	public boolean deleteBreakeCase(String string) {
+		// TODO Auto-generated method stub
+		xsjsglxt_breakecase breake = new xsjsglxt_breakecase();
+		breake.setXsjsglxt_breakecase_id(string);
+		Session session = this.getSession();
+		try {
+			session.delete(breake);
+			return true;
+		} catch (HibernateException e) {
+			return false;
+			// TODO: handle exception
+		}
+	}
+
+	// 根据案件id删除嫌疑人
+	@Override
+	public boolean deleteSuspectByCaseId(String string) {
+		// TODO Auto-generated method stub
+		String hql = "delete from xsjsglxt_breakecasesuspect where breakecaseSuspect_breakecase = '" + string + "'";
+		Session session = this.getSession();
+		try {
+			int result = session.createQuery(hql).executeUpdate();
+			return true;
+		} catch (HibernateException e) {
+			// TODO: handle exception
+			return false;
+		}
 	}
 
 }

@@ -10,4 +10,6 @@ public interface BreakecaseService {
 
 	boolean saveBreakeCase(xsjsglxt_breakecase breakeCase, List<xsjsglxt_breakecasesuspect> suspectList);
 
+	boolean deleteBreakeCase(String[] breakeCaseId);
+
 }

@@ -42,4 +42,17 @@ public class BreakecaseServiceImpl implements BreakecaseService {
 			return false;
 	}
 
+	// 删除破案，连带删除嫌疑人
+	@Override
+	public boolean deleteBreakeCase(String[] breakeCaseId) {
+		// TODO Auto-generated method stub
+		boolean result = false;
+		boolean resultSus = false;
+		for (int i = 0; i < breakeCaseId.length; i++) {
+			result = breakecaseDao.deleteBreakeCase(breakeCaseId[i]); // 删除一个案件
+			resultSus = breakecaseDao.deleteSuspectByCaseId(breakeCaseId[i]); // 删除所有连带嫌疑人
+		}
+		return result;
+	}
+
 }
