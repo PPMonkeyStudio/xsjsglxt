@@ -1,9 +1,6 @@
 package com.xsjsglxt.dao.impl.Case;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -113,7 +110,7 @@ public class SenceDaoImpl implements SenceDao {
 		// String hql = "select count(*) from xsjsglxt_case,xsjsglxt_snece where
 		// xsjsglxt_case_id=snece_case";
 		String hql = "select count(*) from xsjsglxt_case,xsjsglxt_snece  where 1=1 and snece_case= xsjsglxt_case_id";
-		String startTime = "0000-00-00";
+		String startTime = "";
 		String stopTime = "9999-99-99";
 		// 1
 		if (page_list_senceInformation.getCase_totalCategory() != null
@@ -205,7 +202,7 @@ public class SenceDaoImpl implements SenceDao {
 		List<xsjsglxt_case> listSenceInformationByPage = new ArrayList<xsjsglxt_case>();
 		String hql = "select case1  from xsjsglxt_case case1,xsjsglxt_snece sence where 1=1 and sence.snece_case=case1.xsjsglxt_case_id";
 		System.out.println("每条数据" + hql);
-		String startTime = "0000-00-00";
+		String startTime = "";
 		String stopTime = "9999-99-99";
 		// 1
 		if (page_list_senceInformation.getCase_totalCategory() != null
@@ -654,7 +651,7 @@ public class SenceDaoImpl implements SenceDao {
 	}
 
 	@Override
-	public xsjsglxt_resevidence getResevidenceById(String xsjsglxt_case_id) {
+	public List<xsjsglxt_resevidence> getResevidenceById(String xsjsglxt_case_id) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
@@ -663,7 +660,7 @@ public class SenceDaoImpl implements SenceDao {
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_resevidence resevidence = (xsjsglxt_resevidence) query.uniqueResult();
+		List<xsjsglxt_resevidence> resevidence = query.list();
 
 		return resevidence;
 	}

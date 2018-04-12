@@ -23,7 +23,21 @@ function Create_EntrustmentBook(type) {
 						+ '<tbody>'
 						+ '<tr>'
 						+ '<td><span style="color:#D9534F;">*</span> 负责人：</td><td><input  name="tranceCheckBook.check_entrustment_book_responsible_person" class="form-control"  /></td>'
-						+ '<td><span style="color:#D9534F;">*</span> 委托单位：</td><td><input  name="tranceCheckBook.check_entrustment_book_entrustment_unit" class="form-control"  /></td>'
+						+ '<td><span style="color:#D9534F;">*</span> 委托单位：</td><td><select class="form-control" name="tranceCheckBook.check_entrustment_book_entrustment_unit">'
+						+ '<option value="-1">委托单位（全部）</option>'
+						+ '<option value="后埠派出所">后埠派出所</option>'
+						+ '<option value="凤凰派出所">凤凰派出所</option>'
+						+ '<option value="安源派出所">安源派出所</option>'
+						+ '<option value="城郊派出所">城郊派出所</option>'
+						+ '<option value="八一派出所">八一派出所</option>'
+						+ '<option value="东大派出所">东大派出所</option>'
+						+ '<option value="青山派出所">青山派出所</option>'
+						+ '<option value="丹江派出所">丹江派出所</option>'
+						+ '<option value="白源派出所">白源派出所</option>'
+						+ '<option value="高坑派出所">高坑派出所</option>'
+						+ '<option value="五陂下派出所">五陂下派出所</option>'
+						+ '<option value="其他">其他</option>'
+						+ '</select></td>'
 						+ '<td><span style="color:#D9534F;">*</span> 委托时间：</td><td><input name="tranceCheckBook.check_entrustment_book_inspect_time" class="form-control mydate"  /></td></tr>'
 						+ '</tbody>'
 						+ '</table>'
@@ -117,13 +131,16 @@ function Create_EntrustmentBook(type) {
 					 * 
 					 */
 					var date = new Date();
+					var month = (parseInt(date.getMonth()) + 1);
+					if (month < 10)
+						month = "0" + "" + month;
+					var day = date.getDate();
+					if (day < 10)
+						day = "0" + "" + day;
 					document
 							.getElementsByName("tranceCheckBook.check_entrustment_book_inspect_time")[0].value = date
 							.getFullYear()
-							+ '-'
-							+ (parseInt(date.getMonth()) + 1)
-							+ '-'
-							+ date.getDate();
+							+ '-' + month + '-' + day;
 					$.datetimepicker.setLocale('ch');
 					$('.mydate').datetimepicker({
 						yearStart : 1990, // 设置最小年份

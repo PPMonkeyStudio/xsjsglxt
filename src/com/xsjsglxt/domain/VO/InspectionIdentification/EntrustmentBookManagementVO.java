@@ -35,13 +35,122 @@ public class EntrustmentBookManagementVO {
 	private String state;
 	// 鉴定要求
 	private String entrustmentRequire;
+	// 委托单位
+	private String entrustmentUnit;
 
 	@Override
 	public String toString() {
-		return "EntrustmentBookManagementVO [listEntrustmentBookManagementDTO=" + listEntrustmentBookManagementDTO + ", pageIndex=" + pageIndex + ", totalRecords=" + totalRecords
-				+ ", pageSize=" + pageSize + ", totalPages=" + totalPages + ", HavePrePage=" + HavePrePage + ", HaveNextPage=" + HaveNextPage + ", start_time=" + start_time
-				+ ", stop_time=" + stop_time + ", search=" + search + ", unitName=" + unitName + ", type=" + type + ", state=" + state + ", entrustmentRequire="
-				+ entrustmentRequire + "]";
+		return "EntrustmentBookManagementVO [listEntrustmentBookManagementDTO=" + listEntrustmentBookManagementDTO
+				+ ", pageIndex=" + pageIndex + ", totalRecords=" + totalRecords + ", pageSize=" + pageSize
+				+ ", totalPages=" + totalPages + ", HavePrePage=" + HavePrePage + ", HaveNextPage=" + HaveNextPage
+				+ ", start_time=" + start_time + ", stop_time=" + stop_time + ", search=" + search + ", unitName="
+				+ unitName + ", type=" + type + ", state=" + state + ", entrustmentRequire=" + entrustmentRequire
+				+ ", entrustmentUnit=" + entrustmentUnit + "]";
+	}
+
+	public List<EntrustmentBookManagementDTO> getListEntrustmentBookManagementDTO() {
+		return listEntrustmentBookManagementDTO;
+	}
+
+	public void setListEntrustmentBookManagementDTO(
+			List<EntrustmentBookManagementDTO> listEntrustmentBookManagementDTO) {
+		this.listEntrustmentBookManagementDTO = listEntrustmentBookManagementDTO;
+	}
+
+	public int getPageIndex() {
+		return pageIndex;
+	}
+
+	public void setPageIndex(int pageIndex) {
+		this.pageIndex = pageIndex;
+	}
+
+	public int getTotalRecords() {
+		return totalRecords;
+	}
+
+	public void setTotalRecords(int totalRecords) {
+		this.totalRecords = totalRecords;
+	}
+
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public int getTotalPages() {
+		return totalPages;
+	}
+
+	public void setTotalPages(int totalPages) {
+		this.totalPages = totalPages;
+	}
+
+	public boolean isHavePrePage() {
+		return HavePrePage;
+	}
+
+	public void setHavePrePage(boolean havePrePage) {
+		HavePrePage = havePrePage;
+	}
+
+	public boolean isHaveNextPage() {
+		return HaveNextPage;
+	}
+
+	public void setHaveNextPage(boolean haveNextPage) {
+		HaveNextPage = haveNextPage;
+	}
+
+	public String getStart_time() {
+		return start_time;
+	}
+
+	public void setStart_time(String start_time) {
+		this.start_time = start_time;
+	}
+
+	public String getStop_time() {
+		return stop_time;
+	}
+
+	public void setStop_time(String stop_time) {
+		this.stop_time = stop_time;
+	}
+
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
+	public String getUnitName() {
+		return unitName;
+	}
+
+	public void setUnitName(String unitName) {
+		this.unitName = unitName;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 
 	public String getEntrustmentRequire() {
@@ -52,109 +161,12 @@ public class EntrustmentBookManagementVO {
 		this.entrustmentRequire = entrustmentRequire;
 	}
 
-	public List<EntrustmentBookManagementDTO> getListEntrustmentBookManagementDTO() {
-		return listEntrustmentBookManagementDTO;
+	public String getEntrustmentUnit() {
+		return entrustmentUnit;
 	}
 
-	public int getPageIndex() {
-		return pageIndex;
-	}
-
-	public int getTotalRecords() {
-		return totalRecords;
-	}
-
-	public int getPageSize() {
-		return pageSize;
-	}
-
-	public int getTotalPages() {
-		return totalPages;
-	}
-
-	public boolean isHavePrePage() {
-		return HavePrePage;
-	}
-
-	public boolean isHaveNextPage() {
-		return HaveNextPage;
-	}
-
-	public String getStart_time() {
-		return start_time;
-	}
-
-	public String getStop_time() {
-		return stop_time;
-	}
-
-	public String getSearch() {
-		return search;
-	}
-
-	public String getUnitName() {
-		return unitName;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setListEntrustmentBookManagementDTO(
-			List<EntrustmentBookManagementDTO> listEntrustmentBookManagementDTO) {
-		this.listEntrustmentBookManagementDTO = listEntrustmentBookManagementDTO;
-	}
-
-	public void setPageIndex(int pageIndex) {
-		this.pageIndex = pageIndex;
-	}
-
-	public void setTotalRecords(int totalRecords) {
-		this.totalRecords = totalRecords;
-	}
-
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
-	}
-
-	public void setTotalPages(int totalPages) {
-		this.totalPages = totalPages;
-	}
-
-	public void setHavePrePage(boolean havePrePage) {
-		HavePrePage = havePrePage;
-	}
-
-	public void setHaveNextPage(boolean haveNextPage) {
-		HaveNextPage = haveNextPage;
-	}
-
-	public void setStart_time(String start_time) {
-		this.start_time = start_time;
-	}
-
-	public void setStop_time(String stop_time) {
-		this.stop_time = stop_time;
-	}
-
-	public void setSearch(String search) {
-		this.search = search;
-	}
-
-	public void setUnitName(String unitName) {
-		this.unitName = unitName;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public void setState(String state) {
-		this.state = state;
+	public void setEntrustmentUnit(String entrustmentUnit) {
+		this.entrustmentUnit = entrustmentUnit;
 	}
 
 }

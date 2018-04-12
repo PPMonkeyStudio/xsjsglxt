@@ -68,4 +68,11 @@ public class StaffServiceImpl implements StaffService {
 	public void getConnect() {
 		staffDao.getConnect();
 	}
+
+	@Override
+	public List<xsjsglxt_staff> getAllPoliceman() {
+		// TODO Auto-generated method stub
+		List<xsjsglxt_staff> result = staffDao.getAllPoliceman();
+		return result;
+	}
 }

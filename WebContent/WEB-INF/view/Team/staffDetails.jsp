@@ -1444,16 +1444,18 @@
 	<script type="text/javascript">
 		$.datetimepicker.setLocale('ch');
 		$('.staff_joinPartyTime').datetimepicker({
-			yearStart : 1990, // 设置最小年份
+			yearStart : 1900, // 设置最小年份
 			yearEnd : 2100, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : false, // 关闭时间选项
 			format : 'Y-m-d', // 格式化日期年-月-日
 			minDate : '1900/01/01', // 设置最小日期
+
 			maxDate : '2100/01/01', // 设置最大日期
+
 		});
 		$('.staff_joinWorkTime').datetimepicker({
-			yearStart : 1990, // 设置最小年份
+			yearStart : 1900, // 设置最小年份
 			yearEnd : 2100, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
@@ -1471,61 +1473,61 @@
 			maxDate : '2100/01/01', // 设置最大日期
 		});
 		$('.staff_birthday').datetimepicker({
-			yearStart : 1990, // 设置最小年份
+			yearStart : 1900, // 设置最小年份
 			yearEnd : 2100, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
 			format : 'Y-m-d ', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
+			minDate : '1900/01/01', // 设置最小日期
 			maxDate : '2100/01/01', // 设置最大日期
 		});
 		$('.staffStudent_startTime').datetimepicker({
-			yearStart : 1990, // 设置最小年份
+			yearStart : 1900, // 设置最小年份
 			yearEnd : 2100, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
 			format : 'Y-m-d ', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
+			minDate : '1900/01/01', // 设置最小日期
 			maxDate : '2100/01/01', // 设置最大日期
 		});
 		$('.staffStudent_stopTime').datetimepicker({
-			yearStart : 1990, // 设置最小年份
+			yearStart : 1900, // 设置最小年份
 			yearEnd : 2100, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
 			format : 'Y-m-d ', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
+			minDate : '1900/01/01', // 设置最小日期
 			maxDate : '2100/01/01', // 设置最大日期
 		});
 		$('.staffFamily_birthday').datetimepicker({
-			yearStart : 1990, // 设置最小年份
+			yearStart : 1900, // 设置最小年份
 			yearEnd : 2100, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
 			format : 'Y-m-d ', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
+			minDate : '1900/01/01', // 设置最小日期
 			maxDate : '2100/01/01', // 设置最大日期
 		});
 		$('.staffWork_startTime').datetimepicker({
-			yearStart : 1990, // 设置最小年份
+			yearStart : 1900, // 设置最小年份
 			yearEnd : 2100, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
 			format : 'Y-m-d ', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
+			minDate : '1900/01/01', // 设置最小日期
 			maxDate : '2100/01/01', // 设置最大日期
 		});
 		$('.staffWork_stopTime').datetimepicker({
-			yearStart : 1990, // 设置最小年份
+			yearStart : 1900, // 设置最小年份
 			yearEnd : 2100, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
 			format : 'Y-m-d ', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
+			minDate : '1900/01/01', // 设置最小日期
 			maxDate : '2100/01/01', // 设置最大日期
 		});
 		$('.staffMove_inTime').datetimepicker({
-			yearStart : 1990, // 设置最小年份
+			yearStart : 1900, // 设置最小年份
 			yearEnd : 2100, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
@@ -1534,25 +1536,25 @@
 			maxDate : '2100/01/01', // 设置最大日期
 		});
 		$('.staffMove_outTime').datetimepicker({
-			yearStart : 1990, // 设置最小年份
+			yearStart : 1900, // 设置最小年份
 			yearEnd : 2100, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
 			format : 'Y-m-d ', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
+			minDate : '1900/01/01', // 设置最小日期
 			maxDate : '2100/01/01', // 设置最大日期
 		});
 		$('.staffReward_Time').datetimepicker({
-			yearStart : 1990, // 设置最小年份
+			yearStart : 1900, // 设置最小年份
 			yearEnd : 2100, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
 			format : 'Y-m-d ', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
+			minDate : '1900/01/01', // 设置最小日期
 			maxDate : '2100/01/01', // 设置最大日期
 		});
 		$('.staffPrinciple_Time').datetimepicker({
-			yearStart : 1990, // 设置最小年份
+			yearStart : 1900, // 设置最小年份
 			yearEnd : 2100, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
@@ -1561,30 +1563,30 @@
 			maxDate : '2100/01/01', // 设置最大日期
 		});
 		$('.staffPunishment_Time').datetimepicker({
-			yearStart : 1990, // 设置最小年份
+			yearStart : 1900, // 设置最小年份
 			yearEnd : 2100, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
 			format : 'Y-m-d', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
+			minDate : '1900/01/01', // 设置最小日期
 			maxDate : '2100/01/01', // 设置最大日期
 		});
 		$('.staffFurlough_startTime').datetimepicker({
-			yearStart : 1990, // 设置最小年份
+			yearStart : 1900, // 设置最小年份
 			yearEnd : 2100, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
 			format : 'Y-m-d ', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
+			minDate : '1900/01/01', // 设置最小日期
 			maxDate : '2100/01/01', // 设置最大日期
 		});
 		$('.staffFurlough_stopTime').datetimepicker({
-			yearStart : 1990, // 设置最小年份
+			yearStart : 1900, // 设置最小年份
 			yearEnd : 2100, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
 			format : 'Y-m-d ', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
+			minDate : '1900/01/01', // 设置最小日期
 			maxDate : '2100/01/01', // 设置最大日期
 		});
 	</script>

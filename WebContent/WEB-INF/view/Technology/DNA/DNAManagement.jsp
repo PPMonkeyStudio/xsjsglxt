@@ -28,15 +28,12 @@
 </head>
 <body>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
-	
-	<jsp:include page="/technologyManager.jsp" flush="true"></jsp:include>	
+
+	<jsp:include page="/technologyManager.jsp" flush="true"></jsp:include>
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
-	<div style="float: left; width: 100%;">
-		<!--  -->
-		<!---------------------------------------------------------------------------------------------------->
-		<!---------------------------------------------------------------------------------------------------->
+	<div id="allPanel">
 		<div class="panel" style="width: 95%; margin: 20px auto;">
 			<!--  -->
 			<div class="panel-heading">
@@ -45,18 +42,14 @@
 			<!--  -->
 			<div class="panel-body">
 				<div style="height: 34px;">
-					<div style="width: 150px;  float: left; margin:0 20px 0 0">
+					<div style="width: 150px; float: left; margin: 0 20px 0 0">
 						<button class="btn btn-default" onclick="CreateDNA()">
 							<i class="fa fa-plus-square"></i> 新增DNA记录
 						</button>
 					</div>
-					<div style="float: left;display:none;">
-						<input type="file" class="form-control" id="input_excel" style="float:left;"/>
-					</div>
-					<div style="width: 150px;  float: left;">
-						<button class="btn btn-default" onclick=""  style="float:left;">
-							<i class="fa fa-plus-square"></i> 导入Excel表
-						</button>
+					<div style="float: left; display: none;">
+						<input type="file" class="form-control" id="input_excel"
+							style="float: left;" />
 					</div>
 					<!-- 检索 -->
 					<div class="input-group" style="width: 300px; float: right;">
@@ -137,5 +130,25 @@
 <script src="/laydate/laydate.js"></script>
 <script type="text/javascript">
 	List_DNA_By_PageAndSearch(1);
+</script>
+<script type="text/javascript">
+	var documentWidth = document.body.clientWidth;
+	var panelWidth = documentWidth - 160;
+	var navbarHeight = document.getElementById("navbar").offsetHeight;
+	var panelMargin = navbarHeight + 20;
+	document.getElementById("allPanel").setAttribute(
+			"style",
+			"width:" + panelWidth + "px; float:right; margin-top:"
+					+ panelMargin + "px;");
+	window.onresize = function() {
+		var documentWidth = document.body.clientWidth;
+		var panelWidth = documentWidth - 160;
+		var navbarHeight = document.getElementById("navbar").offsetHeight;
+		var panelMargin = navbarHeight + 20;
+		document.getElementById("allPanel").setAttribute(
+				"style",
+				"width:" + panelWidth + "px; float:right; margin-top:"
+						+ panelMargin + "px;");
+	}
 </script>
 </html>

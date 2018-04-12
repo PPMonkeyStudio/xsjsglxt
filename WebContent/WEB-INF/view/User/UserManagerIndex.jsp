@@ -101,43 +101,36 @@
 				      		<label>案件技术权限：</label>
 				      		<select name="user_case_technology_power" class="form-control">
 				      			<option value="jurisdiction_none">无权限</option>
-				      			<option value="jurisdiction_use">使用权限</option>
 				      			<option value="jurisdiction_admin">管理权限</option>	
 				      		</select>
 				      		<label>案件侦查权限：</label>
 				      		<select name="user_case_query_power" class="form-control">
 				      			<option value="jurisdiction_none">无权限</option>
-				      			<option value="jurisdiction_use">使用权限</option>
 				      			<option value="jurisdiction_admin">管理权限</option>	
 				      		</select>
 				      		<label>检验鉴定权限：</label>
 				      		<select name="user_check_power" class="form-control">
 				      			<option value="jurisdiction_none">无权限</option>
-				      			<option value="jurisdiction_use">使用权限</option>
 				      			<option value="jurisdiction_admin">管理权限</option>	
 				      		</select>
 				      		<label>队伍管理权限：</label>
 				      		<select name="user_army_manager_power" class="form-control">
 				      			<option value="jurisdiction_none">无权限</option>
-				      			<option value="jurisdiction_use">使用权限</option>
 				      			<option value="jurisdiction_admin">管理权限</option>	
 				      		</select>
 				      		<label>技术管理权限：</label>
 				      		<select name="user_technology_manager_power" class="form-control">
 				      			<option value="jurisdiction_none">无权限</option>
-				      			<option value="jurisdiction_use">使用权限</option>
 				      			<option value="jurisdiction_admin">管理权限</option>	
 				      		</select>
 				      		<label>统计权限：</label>
 				      		<select name="user_statistics_power" class="form-control">
 				      			<option value="jurisdiction_none">无权限</option>
-				      			<option value="jurisdiction_use">使用权限</option>
 				      			<option value="jurisdiction_admin">管理权限</option>	
 				      		</select>
 				      		<label>用户管理权限：</label>
 				      		<select name="user_user_manager_power" class="form-control">
 				      			<option value="jurisdiction_none">无权限</option>
-				      			<option value="jurisdiction_use">使用权限</option>
 				      			<option value="jurisdiction_admin">管理权限</option>	
 				      		</select>
 			      		</form>
@@ -178,43 +171,36 @@
 				      		<label>案件技术权限：</label>
 				      		<select id="user_case_technology_power_update" name="user_case_technology_power" class="form-control">
 				      			<option value="jurisdiction_none">无权限</option>
-				      			<option value="jurisdiction_use">使用权限</option>
 				      			<option value="jurisdiction_admin">管理权限</option>	
 				      		</select>
 				      		<label>案件侦查权限：</label>
 				      		<select id="user_case_query_power_update" name="user_case_query_power" class="form-control">
 				      			<option value="jurisdiction_none">无权限</option>
-				      			<option value="jurisdiction_use">使用权限</option>
 				      			<option value="jurisdiction_admin">管理权限</option>	
 				      		</select>
 				      		<label>检验鉴定权限：</label>
 				      		<select id="user_check_power_update" name="user_check_power" class="form-control">
 				      			<option value="jurisdiction_none">无权限</option>
-				      			<option value="jurisdiction_use">使用权限</option>
 				      			<option value="jurisdiction_admin">管理权限</option>	
 				      		</select>
 				      		<label>队伍管理权限：</label>
 				      		<select id="user_army_manager_power_update" name="user_army_manager_power" class="form-control">
 				      			<option value="jurisdiction_none">无权限</option>
-				      			<option value="jurisdiction_use">使用权限</option>
 				      			<option value="jurisdiction_admin">管理权限</option>	
 				      		</select>
 				      		<label>技术管理权限：</label>
 				      		<select id="user_technology_manager_power_update" name="user_technology_manager_power" class="form-control">
 				      			<option value="jurisdiction_none">无权限</option>
-				      			<option value="jurisdiction_use">使用权限</option>
 				      			<option value="jurisdiction_admin">管理权限</option>	
 				      		</select>
 				      		<label>统计权限：</label>
 				      		<select id="user_statistics_power_update" name="user_statistics_power" class="form-control">
 				      			<option value="jurisdiction_none">无权限</option>
-				      			<option value="jurisdiction_use">使用权限</option>
 				      			<option value="jurisdiction_admin">管理权限</option>	
 				      		</select>
 				      		<label>用户管理权限：</label>
 				      		<select id="user_user_manager_power_update" name="user_user_manager_power" class="form-control">
 				      			<option value="jurisdiction_none">无权限</option>
-				      			<option value="jurisdiction_use">使用权限</option>
 				      			<option value="jurisdiction_admin">管理权限</option>	
 				      		</select>
 			      		</form>

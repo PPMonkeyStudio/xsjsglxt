@@ -101,6 +101,9 @@ public class MeetingDaoImpl implements MeetingDao {
 		if (meetVO.getQuery_start_time_end() != null && meetVO.getQuery_start_time_end().trim().length() > 0) {
 			hql = hql + " and meet.meeting_start_time <= '" + meetVO.getQuery_start_time_end() + "'";
 		}
+		if (meetVO.getQueryMeetingContent() != null && meetVO.getQueryMeetingContent().trim().length() > 0) {
+			hql = hql + " and meet.meeting_content like '%" + meetVO.getQueryMeetingContent() + "%'";
+		}
 		long count = (long) this.getSession().createQuery(hql).uniqueResult();
 		this.getSession().clear();
 		return (int) count;
@@ -120,6 +123,9 @@ public class MeetingDaoImpl implements MeetingDao {
 		}
 		if (meetVO.getQuery_start_time_end() != null && meetVO.getQuery_start_time_end().trim().length() > 0) {
 			hql = hql + " and meet.meeting_start_time <= '" + meetVO.getQuery_start_time_end() + "'";
+		}
+		if (meetVO.getQueryMeetingContent() != null && meetVO.getQueryMeetingContent().trim().length() > 0) {
+			hql = hql + " and meet.meeting_content like '%" + meetVO.getQueryMeetingContent() + "%'";
 		}
 		if (true) {
 			hql = hql + " order by meeting_start_time " + meetVO.getStartTimeSort();

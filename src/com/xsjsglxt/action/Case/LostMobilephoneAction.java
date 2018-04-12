@@ -80,7 +80,7 @@ public class LostMobilephoneAction extends ActionSupport implements ServletReque
 	/*
 	 * 修改损失手机信息 
 	 */
-		public void updateLostMobiephone() throws IOException{
+		public void updateLostMobilephone() throws IOException{
 			GsonBuilder gsonBuilder = new GsonBuilder();
 			gsonBuilder.setPrettyPrinting();// 格式化json数据
 			Gson gson = gsonBuilder.create();
