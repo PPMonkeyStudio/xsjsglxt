@@ -23,7 +23,7 @@ li a {
 <script src="<%=basePath%>js/technologyMargin.js"></script>
 </head>
 <body>
-	<div id="sidebar-nav" class="sidebar" style="width: 160px; background-color: rgb( 41,22,111);">
+	<div id="sidebar-nav" class="sidebar" style="width: 160px; background-color: #13599d;">
 		<div class="sidebar-scroll">
 			<nav>
 			<ul class="nav" id="technology">
@@ -37,7 +37,7 @@ li a {
 				</template>
 				<template v-if="user_case_technology_power">
 				<li><a
-					href="<%=basePath%>case/BreakCase_page_BreakCaseList">刑事破案</a></li>
+					href="<%=basePath%>case/BreakeCase_page_BreakCaseList">刑事破案</a></li>
 				</template>
 				<template v-if="user_technology_manager_power">
 				<li><a
