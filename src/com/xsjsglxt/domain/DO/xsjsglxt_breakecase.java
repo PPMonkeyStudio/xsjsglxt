@@ -8,11 +8,13 @@ public class xsjsglxt_breakecase {
 
 	private String breakecase_case;// 所属案件
 
-	private String breakecase_according;// 破案依据
+	private String breakecase_according;// 破案方式
 
 	private String breakecase_caseTime;// 破案时间
 
 	private String breakecase_waitbreakecase;// 带破案件
+
+	private String breakecase_person;// 破案人
 
 	private String breakecase_remarks;// 备注
 
@@ -27,7 +29,8 @@ public class xsjsglxt_breakecase {
 
 	public xsjsglxt_breakecase(String xsjsglxt_breakecase_id, String breakecase_type, String breakecase_case,
 			String breakecase_according, String breakecase_caseTime, String breakecase_waitbreakecase,
-			String breakecase_remarks, String breakecase_gmt_create, String breakecase_gmt_modified) {
+			String breakecase_person, String breakecase_remarks, String breakecase_gmt_create,
+			String breakecase_gmt_modified) {
 		super();
 		this.xsjsglxt_breakecase_id = xsjsglxt_breakecase_id;
 		this.breakecase_type = breakecase_type;
@@ -35,6 +38,7 @@ public class xsjsglxt_breakecase {
 		this.breakecase_according = breakecase_according;
 		this.breakecase_caseTime = breakecase_caseTime;
 		this.breakecase_waitbreakecase = breakecase_waitbreakecase;
+		this.breakecase_person = breakecase_person;
 		this.breakecase_remarks = breakecase_remarks;
 		this.breakecase_gmt_create = breakecase_gmt_create;
 		this.breakecase_gmt_modified = breakecase_gmt_modified;
@@ -45,8 +49,17 @@ public class xsjsglxt_breakecase {
 		return "xsjsglxt_breakecase [xsjsglxt_breakecase_id=" + xsjsglxt_breakecase_id + ", breakecase_type="
 				+ breakecase_type + ", breakecase_case=" + breakecase_case + ", breakecase_according="
 				+ breakecase_according + ", breakecase_caseTime=" + breakecase_caseTime + ", breakecase_waitbreakecase="
-				+ breakecase_waitbreakecase + ", breakecase_remarks=" + breakecase_remarks + ", breakecase_gmt_create="
-				+ breakecase_gmt_create + ", breakecase_gmt_modified=" + breakecase_gmt_modified + "]";
+				+ breakecase_waitbreakecase + ", breakecase_person=" + breakecase_person + ", breakecase_remarks="
+				+ breakecase_remarks + ", breakecase_gmt_create=" + breakecase_gmt_create + ", breakecase_gmt_modified="
+				+ breakecase_gmt_modified + "]";
+	}
+
+	public String getBreakecase_person() {
+		return breakecase_person;
+	}
+
+	public void setBreakecase_person(String breakecase_person) {
+		this.breakecase_person = breakecase_person;
 	}
 
 	public String getXsjsglxt_breakecase_id() {

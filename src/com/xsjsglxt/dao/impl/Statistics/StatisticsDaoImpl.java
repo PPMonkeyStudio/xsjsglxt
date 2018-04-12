@@ -76,8 +76,8 @@ public class StatisticsDaoImpl implements StatisticsDao {
 	public void getEvidence(policemanOutTimesDTO policemanDTO, OutTimeVO outTimeVO) {
 		// TODO Auto-generated method stub
 		Session session = this.getSession();
-		String hql = "select count(*) from xsjsglxt_resevidence where resevidence_extractPerson ='"
-				+ policemanDTO.getPolicemanName() + "'";
+		String hql = "select count(*) from xsjsglxt_resevidence where resevidence_extractPerson like '%"
+				+ policemanDTO.getPolicemanName() + "%'";
 		if (outTimeVO.getTimeStart() != null && !"".equals(outTimeVO.getTimeStart().trim()))
 			hql = hql + " and resevidence_extractTime >='" + outTimeVO.getTimeStart() + "'";
 		if (outTimeVO.getTimeEnd() != null && !"".equals(outTimeVO.getTimeEnd().trim()))
@@ -108,12 +108,13 @@ public class StatisticsDaoImpl implements StatisticsDao {
 		}
 	}
 
+	// 获得提取率
 	@Override
 	public void getRadio(policemanOutTimesDTO policemanDTO, OutTimeVO outTimeVO) {
 		// TODO Auto-generated method stub
 		Session session = this.getSession();
-		String hql = "select count(*) from xsjsglxt_resevidence where resevidence_extractPerson ='"
-				+ policemanDTO.getPolicemanName() + "'";
+		String hql = "select count(*) from xsjsglxt_resevidence where resevidence_extractPerson like'%"
+				+ policemanDTO.getPolicemanName() + "%'";
 		if (outTimeVO.getTimeStart() != null && !"".equals(outTimeVO.getTimeStart().trim()))
 			hql = hql + " and resevidence_extractTime >='" + outTimeVO.getTimeStart() + "'";
 		if (outTimeVO.getTimeEnd() != null && !"".equals(outTimeVO.getTimeEnd().trim()))
@@ -127,6 +128,22 @@ public class StatisticsDaoImpl implements StatisticsDao {
 			DecimalFormat df = new DecimalFormat("#.0");
 			policemanDTO.setExtractionRadio(df.format(d * 100) + "%");
 		}
+	}
+
+	// 获得破案数量
+	@Override
+	public void getBreakeNum(policemanOutTimesDTO policemanDTO, OutTimeVO outTimeVO) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		String hql = "select count(*) from xsjsglxt_breakecase where breakecase_person like '%"
+				+ policemanDTO.getPolicemanName() + "%'";
+		if (outTimeVO.getTimeStart() != null && outTimeVO.getTimeStart().trim().length() > 0)
+			hql = hql + " and breakecase_caseTime >='" + outTimeVO.getTimeStart() + "'";
+		if (outTimeVO.getTimeEnd() != null && outTimeVO.getTimeEnd().trim().length() > 0)
+			hql = hql + " and breakecase_caseTime<='" + outTimeVO.getTimeEnd() + "'";
+		System.out.println(hql);
+		long count = (long) session.createQuery(hql).uniqueResult();
+		policemanDTO.setBreakeNumber(new Long(count).intValue());
 	}
 
 	// 获得案件数量
@@ -316,5 +333,4 @@ public class StatisticsDaoImpl implements StatisticsDao {
 		else if (policeStation.equals(POLICE_STATION[12]))
 			caseTimeDTO.setQitaTime(Time);
 	}
-
 }

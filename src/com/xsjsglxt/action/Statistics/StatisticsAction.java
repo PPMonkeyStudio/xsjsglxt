@@ -41,19 +41,15 @@ public class StatisticsAction {
 			outTimeVO.setPolicemanName("");
 		}
 		List<policemanOutTimesDTO> result = statisticsService.policemanOutTime(outTimeVO);
+		outTimeVO.setPolicemanOutDTOList(result);
+		System.out.println(outTimeVO.toString());
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		Gson gson = new Gson();
 		PrintWriter pw = response.getWriter();
-		if (result != null && result.size() > 0) {
-			pw.write(gson.toJson(result));
-			pw.flush();
-			pw.close();
-		} else {
-			pw.write("不存在此警员记录");
-			pw.flush();
-			pw.close();
-		}
+		pw.write(gson.toJson(outTimeVO));
+		pw.flush();
+		pw.close();
 	}
 
 	// -----------------------------------获得案件发生次数--------------------------------------

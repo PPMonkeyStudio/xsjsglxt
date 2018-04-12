@@ -37,13 +37,25 @@ public class StatisticsServiceImpl implements StatisticsService {
 				statisticsDao.getPolicemanOutTimes(policemanDTO, outTimeVO);
 				statisticsDao.getEvidence(policemanDTO, outTimeVO);
 				statisticsDao.getRadio(policemanDTO, outTimeVO);
+				statisticsDao.getBreakeNum(policemanDTO, outTimeVO);
 				policemanDTOList.add(policemanDTO);
 			}
-			return policemanDTOList;
-		} else {
-			return policemanDTOList;
 		}
-
+		outTimeVO.setTotalCount(policemanDTOList.size());
+		outTimeVO.setPageSize(2);
+		outTimeVO.setCurrPage(outTimeVO.getCurrPage());
+		outTimeVO.setTotalPage((int) Math.ceil(((double) outTimeVO.getTotalCount()) / outTimeVO.getPageSize()));
+		List<policemanOutTimesDTO> newList = new ArrayList<policemanOutTimesDTO>();
+		if (policemanDTOList.size() > 0) {
+			for (int i = (outTimeVO.getCurrPage() - 1) * outTimeVO.getPageSize(); i < (outTimeVO.getCurrPage() - 1)
+					* outTimeVO.getPageSize() + outTimeVO.getPageSize(); i++) {
+				if (i >= policemanDTOList.size())
+					break;
+				else
+					newList.add(policemanDTOList.get(i));
+			}
+		}
+		return newList;
 	}
 
 	@Override

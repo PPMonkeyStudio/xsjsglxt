@@ -23,6 +23,9 @@
         <property name="breakecase_waitbreakecase" type="java.lang.String">
             <column name="BREAKECASE_WAITBREAKECASE" />
         </property>
+        <property name="breakecase_person" type="java.lang.String">
+            <column name="BREAKECASE_PERSON" />
+        </property>
         <property name="breakecase_remarks" type="java.lang.String">
             <column name="BREAKECASE_REMARKS" />
         </property>

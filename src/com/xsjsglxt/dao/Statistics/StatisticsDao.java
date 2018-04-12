@@ -20,4 +20,6 @@ public interface StatisticsDao {
 
 	void getRadio(policemanOutTimesDTO policemanDTO, OutTimeVO outTimeVO);
 
+	void getBreakeNum(policemanOutTimesDTO policemanDTO, OutTimeVO outTimeVO);
+
 }

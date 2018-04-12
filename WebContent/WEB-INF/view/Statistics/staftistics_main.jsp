@@ -20,6 +20,9 @@ td {
 	overflow: hidden;
 	word-break: keep-all;
 }
+.pageOperation:HOVER {
+	cursor: pointer;
+}
 </style>
 <title>统计模块</title>
 <script type="text/javascript"
@@ -49,14 +52,14 @@ td {
 			<div id="fieldPage" id="fieldPage"
 				style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
 				<label>时间筛选：</label><input class="form-control startTime"
-					onchange="loadPoliceman()" type="text" id="timeStart"
+					onchange="loadPolicemanCondition()" type="text" id="timeStart"
 					style="width: 150px; display: inline-block;"><label>至</label>
-				<input class="form-control startTime" onchange="loadPoliceman()"
+				<input class="form-control startTime" onchange="loadPolicemanCondition()"
 					type="text" id="timeEnd"
 					style="width: 150px; display: inline-block;"> <label>姓名筛选：</label>
 				<input id="queryPolicemanName" type="text" class="form-control"
 					style="margin-bottom: 10px; width: 250px; display: inline-block;"
-					oninput="loadPoliceman()" placeholder="请输入警员姓名">
+					oninput="loadPolicemanCondition()" placeholder="请输入警员姓名">
 				<div id="loadingLayer" style="margin: 0 auto; width: 45px;">
 					<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
 				</div>
@@ -84,12 +87,42 @@ td {
 								<td>{{ policeman.policemanName }}</td>
 								<td>{{ policeman.outTimes }}</td>
 							</tr> -->
+							<tr v-for="policeman in policemanOutVO.policemanOutDTOList">
+								<td>{{ policeman.policemanName }}</td>
+								<td>{{ policeman.outTimes }}</td>
+								<td>{{ policeman.fingerprint }}</td>
+								<td>{{ policeman.footprint }}</td>
+								<td>{{ policeman.instrument }}</td>
+								<td>{{ policeman.biology }}</td>
+								<td>{{ policeman.physicochemical }}</td>
+								<td>{{ policeman.other }}</td>
+								<td>{{ policeman.extractionRadio }}</td>
+								<td>{{ policeman.breakeNumber }}</td>
+							</tr>
 						</tbody>
 					</table>
+					<div id="bottomPage" style="padding: 20px;">
+						<span>当前页数:<span id="currPage">{{
+								policemanOutVO.currPage }}</span></span> <span>共:<span id="totalPage">{{
+								policemanOutVO.totalPage }}</span>页
+						</span> <span onclick="skipToIndexPage()" id="indexPage"
+							class="pageOperation">首页</span> <span
+							onclick="skipToPrimaryPage()" id="previousPage"
+							class="pageOperation">上一页</span> <span onclick="skipToNextPage()"
+							id="nextPage" class="pageOperation">下一页</span> <span
+							onclick="skipToLastPage()" id="lastPage" class="pageOperation">末页</span>
+						<span> <input id="skipPage" type="text"
+							style="text-align: center; width: 60px; height: 30px;"
+							class="queryInput">
+							<button onclick="skipToArbitrarilyPage()" class="btn btn-default"
+								style="height: 30px; margin-bottom: 10px;">跳转</button>
+						</span>
+					</div>
 				</div>
 			</div>
 			<!-- ----------------------------案件统计-------------------------------------- -->
-			<div id="caseTime" style="margin-top: 10px; display: none; margin-left: 10px; margin-right:10px;">
+			<div id="caseTime"
+				style="margin-top: 10px; display: none; margin-left: 10px; margin-right: 10px;">
 				<div id="caseSelect" style="display: inline-block;">
 					<select id='firstCase' class="form-control"
 						style="width: 200px; display: inline-block;"
