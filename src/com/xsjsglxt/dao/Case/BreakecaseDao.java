@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecase;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecasesuspect;
+import com.xsjsglxt.domain.VO.Case.BreakeCaseListVO;
 
 public interface BreakecaseDao {
 
@@ -30,5 +31,7 @@ public interface BreakecaseDao {
 	List<xsjsglxt_breakecasesuspect> getBreakeCaseSuspectByBreakeCaseId(String xsjsglxt_breakecase_id);
 
 	List<xsjsglxt_breakecase> getBreakeCaseByCaseId(String breakecase_case);
+
+	int getCountBreakeCase(BreakeCaseListVO breakeCaseListVO);
 
 }

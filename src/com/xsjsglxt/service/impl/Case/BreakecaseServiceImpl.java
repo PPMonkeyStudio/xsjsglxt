@@ -126,7 +126,7 @@ public class BreakecaseServiceImpl implements BreakecaseService {
 	@Override
 	public void breakeCaseByPage(BreakeCaseListVO breakeCaseListVO) {
 		// TODO Auto-generated method stub
-
+		int count = breakecaseDao.getCountBreakeCase(breakeCaseListVO);
 	}
 
 }

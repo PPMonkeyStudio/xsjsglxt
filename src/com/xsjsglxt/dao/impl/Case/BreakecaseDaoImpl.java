@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import com.xsjsglxt.dao.Case.BreakecaseDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecase;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecasesuspect;
+import com.xsjsglxt.domain.VO.Case.BreakeCaseListVO;
 
 public class BreakecaseDaoImpl implements BreakecaseDao {
 	private SessionFactory sessionFactory;
@@ -160,6 +161,15 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		Session session = this.getSession();
 		String hql = "from xsjsglxt_breakecase where breakecase_case ='" + breakecase_case + "'";
 		return session.createQuery(hql).list();
+	}
+
+	@Override
+	public int getCountBreakeCase(BreakeCaseListVO breakeCaseListVO) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		String hql = "select count(*) from xsjsglxt_breakecase as breake , xsjsglxt_case as xCase,xsjsglxt_snece as sence where breake.breakecase_case = xCase.xsjsglxt_case_id and sence.snece_case = xCase.xsjsglxt_case_id";
+
+		return 0;
 	}
 
 }
