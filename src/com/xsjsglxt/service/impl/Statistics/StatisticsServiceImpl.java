@@ -42,7 +42,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 			}
 		}
 		outTimeVO.setTotalCount(policemanDTOList.size());
-		outTimeVO.setPageSize(2);
+		outTimeVO.setPageSize(10);
 		outTimeVO.setCurrPage(outTimeVO.getCurrPage());
 		outTimeVO.setTotalPage((int) Math.ceil(((double) outTimeVO.getTotalCount()) / outTimeVO.getPageSize()));
 		List<policemanOutTimesDTO> newList = new ArrayList<policemanOutTimesDTO>();
