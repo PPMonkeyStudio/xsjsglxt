@@ -1,5 +1,7 @@
 package com.xsjsglxt.dao.impl.Case;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -95,6 +97,61 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 			// TODO: handle exception
 		}
 
+	}
+
+	@Override
+	public boolean updateBreakeCase(xsjsglxt_breakecase breakeCase) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		try {
+			session.saveOrUpdate(breakeCase);
+			return true;
+		} catch (HibernateException e) {
+			// TODO: handle exception
+			return false;
+		}
+
+	}
+
+	@Override
+	public xsjsglxt_breakecase getBreakeCase(String xsjsglxt_breakecase_id) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		xsjsglxt_breakecase breakeCase = (xsjsglxt_breakecase) session.get(xsjsglxt_breakecase.class,
+				xsjsglxt_breakecase_id);
+		return breakeCase;
+	}
+
+	@Override
+	public xsjsglxt_breakecasesuspect getBreakeCaseSuspect(String xsjsglxt_breakecaseSuspect_id) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		xsjsglxt_breakecasesuspect suspect = (xsjsglxt_breakecasesuspect) session.get(xsjsglxt_breakecasesuspect.class,
+				xsjsglxt_breakecaseSuspect_id);
+		return suspect;
+	}
+
+	@Override
+	public boolean updateBreakeCaseSuspect(xsjsglxt_breakecasesuspect suspect) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		try {
+			session.saveOrUpdate(suspect);
+			return true;
+		} catch (HibernateException e) {
+			// TODO: handle exception
+			return false;
+		}
+	}
+
+	@Override
+	public List<xsjsglxt_breakecasesuspect> getBreakeCaseSuspectByBreakeCaseId(String xsjsglxt_breakecase_id) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		String hql = "from xsjsglxt_breakecasesuspect where breakecaseSuspect_breakecase ='" + xsjsglxt_breakecase_id
+				+ "'";
+		List<xsjsglxt_breakecasesuspect> list = session.createQuery(hql).list();
+		return list;
 	}
 
 }

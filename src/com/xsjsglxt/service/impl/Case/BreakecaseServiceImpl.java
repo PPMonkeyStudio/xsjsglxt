@@ -5,6 +5,7 @@ import java.util.List;
 import com.xsjsglxt.dao.Case.BreakecaseDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecase;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecasesuspect;
+import com.xsjsglxt.domain.VO.Case.BreakeCaseDetailsVO;
 import com.xsjsglxt.service.Case.BreakecaseService;
 
 import util.TeamUtil;
@@ -76,6 +77,42 @@ public class BreakecaseServiceImpl implements BreakecaseService {
 			breakecaseDao.deleteSuspectBySuspectId(suspect);
 		}
 		return true;
+	}
+
+	@Override
+	public boolean updateBreakeCase(xsjsglxt_breakecase breakeCase) {
+		// TODO Auto-generated method stub
+		boolean flag = false;
+		breakeCase.setBreakecase_gmt_modified(TeamUtil.getStringSecond());
+		xsjsglxt_breakecase oldBreake = breakecaseDao.getBreakeCase(breakeCase.getXsjsglxt_breakecase_id());
+		breakeCase.setBreakecase_gmt_create(oldBreake.getBreakecase_gmt_create());
+		flag = breakecaseDao.updateBreakeCase(breakeCase);
+		return flag;
+	}
+
+	@Override
+	public boolean updateSuspect(xsjsglxt_breakecasesuspect suspect) {
+		// TODO Auto-generated method stub
+		boolean flag = false;
+		xsjsglxt_breakecasesuspect oldSuspect = breakecaseDao
+				.getBreakeCaseSuspect(suspect.getXsjsglxt_breakecaseSuspect_id());
+		suspect.setBreakecaseSuspect_gmt_create(oldSuspect.getBreakecaseSuspect_gmt_create());
+		suspect.setXsjsglxt_breakecaseSuspect_id(oldSuspect.getXsjsglxt_breakecaseSuspect_id());
+		suspect.setBreakecaseSuspect_gmt_modified(TeamUtil.getStringSecond());
+		flag = breakecaseDao.updateBreakeCaseSuspect(suspect);
+		return flag;
+	}
+
+	@Override
+	public BreakeCaseDetailsVO getBreakeCaseDetails(String xsjsglxt_breakecase_id) {
+		// TODO Auto-generated method stub
+		BreakeCaseDetailsVO breakeCaseDetailsVO = new BreakeCaseDetailsVO();
+		xsjsglxt_breakecase breakeCase = breakecaseDao.getBreakeCase(xsjsglxt_breakecase_id);
+		List<xsjsglxt_breakecasesuspect> breakeCaseSuspectList = breakecaseDao
+				.getBreakeCaseSuspectByBreakeCaseId(xsjsglxt_breakecase_id);
+		breakeCaseDetailsVO.setBreakeCase(breakeCase);
+		breakeCaseDetailsVO.setSuspectList(breakeCaseSuspectList);
+		return breakeCaseDetailsVO;
 	}
 
 }

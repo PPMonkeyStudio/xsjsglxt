@@ -8,9 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecase;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecasesuspect;
+import com.xsjsglxt.domain.VO.Case.BreakeCaseDetailsVO;
 import com.xsjsglxt.service.Case.BreakecaseService;
 
 /**
@@ -121,14 +123,67 @@ public class BreakecaseAction extends ActionSupport {
 
 	// ---------------------------修改破案信息
 	public void updateBreakeCase() {
-
+		boolean flag = false;
+		flag = breakecaseService.updateBreakeCase(breakeCase);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			if (flag)
+				pw.write("updateSuccess");
+			else
+				pw.write("updateError");
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	// ----------------------------修改嫌疑人信息
 	public void updateSuspect() {
+		boolean flag = false;
+		flag = breakecaseService.updateSuspect(suspect);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			if (flag)
+				pw.write("updateSuccess");
+			else
+				pw.write("updateError");
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	// -------------------------------破案详情
+	public void breakeCaseDetails() {
+		BreakeCaseDetailsVO breakeCaseDetailsVO = breakecaseService
+				.getBreakeCaseDetails(breakeCase.getXsjsglxt_breakecase_id());
+		Gson gson = new Gson();
+		String result = gson.toJson(breakeCaseDetailsVO);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(result);
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	// -----------------------------破案列表查询
+	public void breakeCaseByPage() {
 
 	}
-	// -----------------------------破案列表查询
 
 	// -------------------------------------setter/getter--------------------------------------
 	public BreakecaseService getBreakecaseService() {
