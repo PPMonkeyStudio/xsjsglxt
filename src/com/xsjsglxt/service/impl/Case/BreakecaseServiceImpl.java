@@ -1,147 +1,118 @@
 package com.xsjsglxt.service.impl.Case;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.xsjsglxt.dao.Case.BreakecaseDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecase;
-import com.xsjsglxt.domain.DO.xsjsglxt_briefdetails;
-import com.xsjsglxt.domain.DO.xsjsglxt_case;
-import com.xsjsglxt.domain.DO.xsjsglxt_lost;
-import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
-import com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone;
-import com.xsjsglxt.domain.DO.xsjsglxt_picture;
-import com.xsjsglxt.domain.DO.xsjsglxt_resevidence;
-import com.xsjsglxt.domain.DO.xsjsglxt_snece;
-import com.xsjsglxt.domain.DTO.Case.BreakecaseInformationDTO;
-import com.xsjsglxt.domain.DTO.Case.SenceInformationDTO;
-import com.xsjsglxt.domain.VO.Case.page_list_BreakecaseInformationVO;
+import com.xsjsglxt.domain.DO.xsjsglxt_breakecasesuspect;
+import com.xsjsglxt.domain.VO.Case.BreakeCaseDetailsVO;
 import com.xsjsglxt.service.Case.BreakecaseService;
 
 import util.TeamUtil;
 
 public class BreakecaseServiceImpl implements BreakecaseService {
-private BreakecaseDao breakecaseDao;
+	private BreakecaseDao breakecaseDao;
 
-public BreakecaseDao getBreakecaseDao() {
-	return breakecaseDao;
-}
-
-public void setBreakecaseDao(BreakecaseDao breakecaseDao) {
-	this.breakecaseDao = breakecaseDao;
-}
-
-@Override
-public void saveBreakecase(xsjsglxt_breakecase breakecase) {
-	// TODO Auto-generated method stub
-	breakecase.setXsjsglxt_breakecase_id(TeamUtil.getUuid());
-	breakecase.setBreakecase_gmt_create(TeamUtil.getStringSecond());
-	breakecase.setBreakecase_gmt_modified(breakecase.getBreakecase_gmt_create());
-	breakecaseDao.saveBreakecase(breakecase);
-}
-
-@Override
-public page_list_BreakecaseInformationVO VO_BreakecaseInformation_By_PageAndSearch(
-		page_list_BreakecaseInformationVO page_list_BreakecaseInformation) {
-	// TODO Auto-generated method stub
-	List<BreakecaseInformationDTO> BreakecaseInformationDTOList = new ArrayList<BreakecaseInformationDTO>();
-	List<xsjsglxt_breakecase> listBreakecase = new ArrayList<xsjsglxt_breakecase>();
-	BreakecaseInformationDTO breakecaseInformationDTO;
-
-	
-
-	xsjsglxt_snece sence;//现场勘验表
-
-	xsjsglxt_case case1;//案件表
-	
-	int i = breakecaseDao.getCountBreakecaseInformationByPage(page_list_BreakecaseInformation);
-
-	page_list_BreakecaseInformation.setTotalRecords(i);
-	page_list_BreakecaseInformation.setTotalPages(((i - 1) / page_list_BreakecaseInformation.getPageSize()) + 1);
-	if (page_list_BreakecaseInformation.getPageIndex() <= 1) {
-		page_list_BreakecaseInformation.setHavePrePage(false);
-	} else {
-		page_list_BreakecaseInformation.setHavePrePage(true);
-	}
-	if (page_list_BreakecaseInformation.getPageIndex() >= page_list_BreakecaseInformation.getTotalPages()) {
-		page_list_BreakecaseInformation.setHaveNextPage(false);
-	} else {
-		page_list_BreakecaseInformation.setHaveNextPage(true);
+	public BreakecaseDao getBreakecaseDao() {
+		return breakecaseDao;
 	}
 
-	// 符合条件的记录
-	listBreakecase = breakecaseDao.getListBreakecaseInformatioByPage(page_list_BreakecaseInformation);
-
-	for (xsjsglxt_breakecase breakecase : listBreakecase) {
-		case1=breakecaseDao.get_case_ByBreakecaseId(breakecase);
-		sence = breakecaseDao.get_sence_Byxsjsglxt_case_id(case1);// 6
-		sence.setSnece_inquestId(sence.getSnece_inquestId().substring(10));
-	
-	
-		breakecaseInformationDTO = new BreakecaseInformationDTO(breakecase,sence,case1);
-				
-
-		BreakecaseInformationDTOList.add(breakecaseInformationDTO);
+	public void setBreakecaseDao(BreakecaseDao breakecaseDao) {
+		this.breakecaseDao = breakecaseDao;
 	}
-	page_list_BreakecaseInformation.setBreakecaseInformationDTOList(BreakecaseInformationDTOList);
-	
-	return page_list_BreakecaseInformation;
-}
 
-@Override
+	@Override
+	public boolean saveBreakeCase(xsjsglxt_breakecase breakeCase, List<xsjsglxt_breakecasesuspect> suspectList) {
+		// TODO Auto-generated method stub
+		breakeCase.setXsjsglxt_breakecase_id(TeamUtil.getUuid());
+		breakeCase.setBreakecase_gmt_create(TeamUtil.getStringSecond());
+		breakeCase.setBreakecase_gmt_modified(TeamUtil.getStringSecond());
+		String result = breakecaseDao.saveBreakeCase(breakeCase);
+		if (suspectList != null && suspectList.size() > 0)
+			for (xsjsglxt_breakecasesuspect xsjsglxt_breakecasesuspect : suspectList) {
+				xsjsglxt_breakecasesuspect.setXsjsglxt_breakecaseSuspect_id(TeamUtil.getStringSecond());
+				xsjsglxt_breakecasesuspect.setBreakecaseSuspect_gmt_create(TeamUtil.getStringSecond());
+				xsjsglxt_breakecasesuspect.setBreakecaseSuspect_gmt_modified(TeamUtil.getStringSecond());
+				xsjsglxt_breakecasesuspect.setBreakecaseSuspect_breakecase(result);
+				String suspectResult = breakecaseDao.saveBreakecaseSuspect(xsjsglxt_breakecasesuspect);
+			}
 
-public BreakecaseInformationDTO BreakecaseInformationOne(xsjsglxt_breakecase breakecase) {
-	// TODO Auto-generated method stub
-	 breakecase=breakecaseDao.getBreakecaseById(breakecase);
-	 xsjsglxt_case 	case1=breakecaseDao.getCaseById(breakecase);
-	xsjsglxt_snece sence=breakecaseDao.getSenceByID(case1);
-	
-
-	BreakecaseInformationDTO breakecaseInformationDTO= new BreakecaseInformationDTO(breakecase,sence,case1);
-	return breakecaseInformationDTO;
-}
-
-@Override
-public void updateCase(xsjsglxt_case case1) {
-	// TODO Auto-generated method stub
-	case1.setCase_gmt_modified(TeamUtil.getStringSecond());
-	breakecaseDao.updateCase(case1);
-}
-
-@Override
-public void updateBreakcase(xsjsglxt_breakecase breakecase) {
-	// TODO Auto-generated method stub
-	//xsjsglxt_breakecase  oldbreakecase=breakecaseDao.getByID(xsjsglxt_case_id);
-	//breakecase.setXsjsglxt_breakecase_id(oldbreakecase.getXsjsglxt_breakecase_id());
-	//breakecase.setBreakecase_case(oldbreakecase.getBreakecase_case());
-	//breakecase.setBreakecase_gmt_create(oldbreakecase.getBreakecase_gmt_create());
-	breakecase.setBreakecase_gmt_modified(TeamUtil.getStringSecond());
-	breakecaseDao.updateBreakcase(breakecase);
-}
-
-@Override
-public void updateSence(xsjsglxt_snece sence, String xsjsglxt_case_id) {
-	// TODO Auto-generated method stub
-	xsjsglxt_snece oldsence=breakecaseDao.getByCID(xsjsglxt_case_id);
-	sence.setXsjsglxt_snece_id(oldsence.getXsjsglxt_snece_id());
-	sence.setSnece_case(oldsence.getSnece_case());
-	sence.setSnece_gmt_create(oldsence.getSnece_gmt_create());
-	sence.setSnece_gmt_modified(TeamUtil.getStringSecond());
-	breakecaseDao.updateSence(sence);
-}
-
-@Override
-public boolean remove_BreakecaseInformationList(List<String> useBreakecaseInformationNumList) {
-	// TODO Auto-generated method stub
-	boolean flag = false;
-	for (String breakecase_id : useBreakecaseInformationNumList) {
-		System.out.println("iddd"+breakecase_id);
-		xsjsglxt_breakecase xsjsglxt_breakecase = breakecaseDao.getBreakecaseByNum(breakecase_id);
-	System.out.println("shhfhf"+xsjsglxt_breakecase.getXsjsglxt_breakecase_id());
-		flag = breakecaseDao.deleteBreakecaseById(xsjsglxt_breakecase.getXsjsglxt_breakecase_id());// ����
-		
+		if (result != null && !"".equals(result.trim()))
+			return true;
+		else
+			return false;
 	}
-	return flag;
-}
+
+	// 删除破案，连带删除嫌疑人
+	@Override
+	public boolean deleteBreakeCase(String[] breakeCaseId) {
+		// TODO Auto-generated method stub
+		boolean result = false;
+		boolean resultSus = false;
+		for (int i = 0; i < breakeCaseId.length; i++) {
+			result = breakecaseDao.deleteBreakeCase(breakeCaseId[i]); // 删除一个案件
+			resultSus = breakecaseDao.deleteSuspectByCaseId(breakeCaseId[i]); // 删除所有连带嫌疑人
+		}
+		return result;
+	}
+
+	@Override
+	public boolean addOneSuspect(xsjsglxt_breakecasesuspect suspect) {
+		// TODO Auto-generated method stub
+
+		suspect.setXsjsglxt_breakecaseSuspect_id(TeamUtil.getUuid());
+		suspect.setBreakecaseSuspect_gmt_create(TeamUtil.getStringSecond());
+		suspect.setBreakecaseSuspect_gmt_modified(TeamUtil.getStringSecond());
+		boolean flag = breakecaseDao.addOneSuspect(suspect);
+		return flag;
+	}
+
+	@Override
+	public boolean deleteSuspect(String[] suspectId) {
+		// TODO Auto-generated method stub
+		xsjsglxt_breakecasesuspect suspect;
+		for (int i = 0; i < suspectId.length; i++) {
+			suspect = new xsjsglxt_breakecasesuspect();
+			suspect.setXsjsglxt_breakecaseSuspect_id(suspectId[i]);
+			breakecaseDao.deleteSuspectBySuspectId(suspect);
+		}
+		return true;
+	}
+
+	@Override
+	public boolean updateBreakeCase(xsjsglxt_breakecase breakeCase) {
+		// TODO Auto-generated method stub
+		boolean flag = false;
+		breakeCase.setBreakecase_gmt_modified(TeamUtil.getStringSecond());
+		xsjsglxt_breakecase oldBreake = breakecaseDao.getBreakeCase(breakeCase.getXsjsglxt_breakecase_id());
+		breakeCase.setBreakecase_gmt_create(oldBreake.getBreakecase_gmt_create());
+		flag = breakecaseDao.updateBreakeCase(breakeCase);
+		return flag;
+	}
+
+	@Override
+	public boolean updateSuspect(xsjsglxt_breakecasesuspect suspect) {
+		// TODO Auto-generated method stub
+		boolean flag = false;
+		xsjsglxt_breakecasesuspect oldSuspect = breakecaseDao
+				.getBreakeCaseSuspect(suspect.getXsjsglxt_breakecaseSuspect_id());
+		suspect.setBreakecaseSuspect_gmt_create(oldSuspect.getBreakecaseSuspect_gmt_create());
+		suspect.setXsjsglxt_breakecaseSuspect_id(oldSuspect.getXsjsglxt_breakecaseSuspect_id());
+		suspect.setBreakecaseSuspect_gmt_modified(TeamUtil.getStringSecond());
+		flag = breakecaseDao.updateBreakeCaseSuspect(suspect);
+		return flag;
+	}
+
+	@Override
+	public BreakeCaseDetailsVO getBreakeCaseDetails(String xsjsglxt_breakecase_id) {
+		// TODO Auto-generated method stub
+		BreakeCaseDetailsVO breakeCaseDetailsVO = new BreakeCaseDetailsVO();
+		xsjsglxt_breakecase breakeCase = breakecaseDao.getBreakeCase(xsjsglxt_breakecase_id);
+		List<xsjsglxt_breakecasesuspect> breakeCaseSuspectList = breakecaseDao
+				.getBreakeCaseSuspectByBreakeCaseId(xsjsglxt_breakecase_id);
+		breakeCaseDetailsVO.setBreakeCase(breakeCase);
+		breakeCaseDetailsVO.setSuspectList(breakeCaseSuspectList);
+		return breakeCaseDetailsVO;
+	}
 
 }

@@ -36,6 +36,7 @@
 			<div class="headDiv" style="height: 60px; padding-top:10px;">
 				<button class="btn btn-default" onclick="createConfirm()"><i class="fa fa-pencil-square-o"></i>填写会议记录表</button>
 				<div style="display:inline-block; float: right;">
+				<input placeholder="请输入会议内容" oninput="changeContent(this)" id="queryMeetingContent" class="form-control" style="width:250px; display: inline-block;">
 				<label>时间筛选</label>
 				<input class="form-control startTime"  onchange="changeStartTime(this)" type= "text" id="query_start_time_start" style="width: 150px; display: inline-block;">至
 				<input class="form-control startTime"  onchange="changeStartTime(this)" type= "text" style="width: 150px; display: inline-block;" id="query_start_time_end">

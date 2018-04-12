@@ -1,6 +1,7 @@
 package com.xsjsglxt.dao.impl.Statistics;
 
 import java.math.BigInteger;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,10 +11,8 @@ import org.hibernate.SessionFactory;
 import com.xsjsglxt.dao.Statistics.StatisticsDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_staff;
 import com.xsjsglxt.domain.DTO.Statistics.CaseTimeDTO;
-import com.xsjsglxt.domain.DTO.Statistics.ComparisonTimeDTO;
 import com.xsjsglxt.domain.DTO.Statistics.policemanOutTimesDTO;
 import com.xsjsglxt.domain.VO.Statistics.CaseTimeVO;
-import com.xsjsglxt.domain.VO.Statistics.ComparisonTimeVO;
 import com.xsjsglxt.domain.VO.Statistics.OutTimeVO;
 
 public class StatisticsDaoImpl implements StatisticsDao {
@@ -26,6 +25,7 @@ public class StatisticsDaoImpl implements StatisticsDao {
 	private final static String[] ROB_CASE = { "入户抢劫案", "拦路抢劫案", "麻醉抢劫案", "其它抢劫案" };
 	private final static String[] POLICE_STATION = { "东大派出所", "高坑派出所", "青山派出所", "安源派出所", "八一派出所", "白源派出所", "城郊派出所",
 			"丹江派出所", "凤凰派出所", "后埠派出所", "李子园派出所", "五陂下派出所", "其他", };
+	private final static String[] RESEVIDENCE_TYPE = { "手印痕迹", "足迹痕迹", "工具痕迹", "生物物证", "理化物证", "其他" };
 
 	public Session getSession() {
 		return this.sessionFactory.getCurrentSession();
@@ -39,11 +39,11 @@ public class StatisticsDaoImpl implements StatisticsDao {
 		return sessionFactory;
 	}
 
+	// 获得所有警员
 	@Override
 	public List<xsjsglxt_staff> getPolicemanByName(String policemanName) {
 		// TODO Auto-generated method stub
 		String hql = "from xsjsglxt_staff where 1=1";
-		System.out.println(hql);
 		if (policemanName != null && !"".equals(policemanName)) {
 			hql = hql + " and xsjsglxt_name like '%" + policemanName + "%'";
 		}
@@ -52,65 +52,101 @@ public class StatisticsDaoImpl implements StatisticsDao {
 		return policemans;
 	}
 
+	// 获得出警次数
 	@Override
-	public List<policemanOutTimesDTO> getTimes(List<xsjsglxt_staff> policeman, OutTimeVO outTimeVO) {
+	public void getPolicemanOutTimes(policemanOutTimesDTO policemanDTO, OutTimeVO outTimeVO) {
 		// TODO Auto-generated method stub
-		List<policemanOutTimesDTO> policemanDTO = new ArrayList<policemanOutTimesDTO>();
 		Session session = this.getSession();
-		String hql = null;
-		String queryCondition = "";
-		if (outTimeVO.getTimeStart() != null && !"".equals(outTimeVO.getTimeStart())) {
-			queryCondition = queryCondition + " and c.case_receivingAlarmDate>='" + outTimeVO.getTimeStart() + "'";
-		}
-		if (outTimeVO.getTimeEnd() != null && !"".equals(outTimeVO.getTimeEnd())) {
-			queryCondition = queryCondition + " and c.case_receivingAlarmDate<='" + outTimeVO.getTimeEnd() + "'";
-		}
-		for (xsjsglxt_staff xsjsglxt_staff : policeman) {
-			hql = "select count(*) from xsjsglxt_snece as s , xsjsglxt_case as c where s.snece_case=c.xsjsglxt_case_id and s.snece_inquestPerson like '%"
-					+ xsjsglxt_staff.getXsjsglxt_name() + "%'";
-			hql = hql + queryCondition;
-			System.out.println(hql);
-			long count = (long) session.createQuery(hql).uniqueResult();
-			policemanOutTimesDTO p = new policemanOutTimesDTO();
-			p.setOutTimes(new Long(count).intValue());
-			p.setPolicemanName(xsjsglxt_staff.getXsjsglxt_name());
-			policemanDTO.add(p);
-		}
-		return policemanDTO;
+		String hql = "select count(*) from xsjsglxt_snece as s , xsjsglxt_case as c where s.snece_case=c.xsjsglxt_case_id and s.snece_inquestPerson like '%"
+				+ policemanDTO.getPolicemanName() + "%'";
+		if (outTimeVO.getTimeStart() != null && !"".equals(outTimeVO.getTimeStart().trim()))
+			hql = hql + " and c.case_receivingAlarmDate>='" + outTimeVO.getTimeStart() + "'";
+		if (outTimeVO.getTimeEnd() != null && !"".equals(outTimeVO.getTimeEnd().trim()))
+			hql = hql + " and c.case_receivingAlarmDate<='" + outTimeVO.getTimeEnd() + "'";
+		long num = (long) session.createQuery(hql).uniqueResult();
+		policemanDTO.setOutTimes(new Long(num).intValue());
 	}
 
+	// resevidence_extractPerson提取人
+	// xsjsglxt_resevidence 物证表
+	// resevidence_type 物证类型
+	// resevidence_extractTime 提取日期
+	// 获得物证次数
 	@Override
-	public List<ComparisonTimeDTO> getComparisonTime(List<xsjsglxt_staff> policeman,
-			ComparisonTimeVO comparisonTimeVO) {
+	public void getEvidence(policemanOutTimesDTO policemanDTO, OutTimeVO outTimeVO) {
 		// TODO Auto-generated method stub
-		List<ComparisonTimeDTO> comparistionTimeDTOList = new ArrayList<ComparisonTimeDTO>();
-		String hql = null;
-		String queryCondition = "";
-		if (comparisonTimeVO.getComparisonTimeStart() != null
-				&& comparisonTimeVO.getComparisonTimeStart().trim().length() > 0) {
-			queryCondition = queryCondition + " and breakcase_arrested_time >= '"
-					+ comparisonTimeVO.getComparisonTimeStart() + "'";
-		}
-		if (comparisonTimeVO.getComparisonTimeEnd() != null
-				&& comparisonTimeVO.getComparisonTimeEnd().trim().length() > 0) {
-			queryCondition = queryCondition + " and breakcase_arrested_time<='"
-					+ comparisonTimeVO.getComparisonTimeEnd() + "'";
-		}
-		ComparisonTimeDTO c = null;
 		Session session = this.getSession();
-		for (xsjsglxt_staff staff : policeman) {
-			hql = "select count(*) from xsjsglxt_breakcase where breakcase_contrast_contraster = '"
-					+ staff.getXsjsglxt_name() + "'";
-			hql = hql + queryCondition;
-			long count = (long) session.createQuery(hql).uniqueResult();
-			c = new ComparisonTimeDTO();
-			c.setComparisonTime((int) count);
-			c.setPolicemanname(staff.getXsjsglxt_name());
-			comparistionTimeDTOList.add(c);
+		String hql = "select count(*) from xsjsglxt_resevidence where resevidence_extractPerson like '%"
+				+ policemanDTO.getPolicemanName() + "%'";
+		if (outTimeVO.getTimeStart() != null && !"".equals(outTimeVO.getTimeStart().trim()))
+			hql = hql + " and resevidence_extractTime >='" + outTimeVO.getTimeStart() + "'";
+		if (outTimeVO.getTimeEnd() != null && !"".equals(outTimeVO.getTimeEnd().trim()))
+			hql = hql + " and resevidence_extractTime <='" + outTimeVO.getTimeEnd() + "'";
+		for (int i = 0; i < RESEVIDENCE_TYPE.length; i++) {
+			String newHQL = hql + " and resevidence_type ='" + RESEVIDENCE_TYPE[i] + "'";
+			long count = (long) session.createQuery(newHQL).uniqueResult();
+			switch (RESEVIDENCE_TYPE[i]) {
+			case "手印痕迹":
+				policemanDTO.setFingerprint(new Long(count).intValue());
+				break;
+			case "足迹痕迹":
+				policemanDTO.setFootprint(new Long(count).intValue());
+				break;
+			case "工具痕迹":
+				policemanDTO.setInstrument(new Long(count).intValue());
+				break;
+			case "生物物证":
+				policemanDTO.setBiology(new Long(count).intValue());
+				break;
+			case "理化物证":
+				policemanDTO.setPhysicochemical(new Long(count).intValue());
+				break;
+			case "其他":
+				policemanDTO.setOther(new Long(count).intValue());
+				break;
+			}
 		}
-		return comparistionTimeDTOList;
 	}
 
+	// 获得提取率
+	@Override
+	public void getRadio(policemanOutTimesDTO policemanDTO, OutTimeVO outTimeVO) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		String hql = "select count(*) from xsjsglxt_resevidence where resevidence_extractPerson like'%"
+				+ policemanDTO.getPolicemanName() + "%'";
+		if (outTimeVO.getTimeStart() != null && !"".equals(outTimeVO.getTimeStart().trim()))
+			hql = hql + " and resevidence_extractTime >='" + outTimeVO.getTimeStart() + "'";
+		if (outTimeVO.getTimeEnd() != null && !"".equals(outTimeVO.getTimeEnd().trim()))
+			hql = hql + " and resevidence_extractTime <='" + outTimeVO.getTimeEnd() + "'";
+		hql = hql + " group by resevidence_case";
+		List<Object[]> list = session.createSQLQuery(hql).list();
+		if (policemanDTO.getOutTimes() == 0)
+			policemanDTO.setExtractionRadio("0%");
+		else {
+			double d = (double) list.size() / policemanDTO.getOutTimes();
+			DecimalFormat df = new DecimalFormat("#.0");
+			policemanDTO.setExtractionRadio(df.format(d * 100) + "%");
+		}
+	}
+
+	// 获得破案数量
+	@Override
+	public void getBreakeNum(policemanOutTimesDTO policemanDTO, OutTimeVO outTimeVO) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		String hql = "select count(*) from xsjsglxt_breakecase where breakecase_person like '%"
+				+ policemanDTO.getPolicemanName() + "%'";
+		if (outTimeVO.getTimeStart() != null && outTimeVO.getTimeStart().trim().length() > 0)
+			hql = hql + " and breakecase_caseTime >='" + outTimeVO.getTimeStart() + "'";
+		if (outTimeVO.getTimeEnd() != null && outTimeVO.getTimeEnd().trim().length() > 0)
+			hql = hql + " and breakecase_caseTime<='" + outTimeVO.getTimeEnd() + "'";
+		System.out.println(hql);
+		long count = (long) session.createQuery(hql).uniqueResult();
+		policemanDTO.setBreakeNumber(new Long(count).intValue());
+	}
+
+	// 获得案件数量
 	@Override
 	public List<CaseTimeDTO> getCaseTime(CaseTimeVO caseTimeVO) {
 		// TODO Auto-generated method stub

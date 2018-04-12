@@ -20,14 +20,15 @@ td {
 	overflow: hidden;
 	word-break: keep-all;
 }
+.pageOperation:HOVER {
+	cursor: pointer;
+}
 </style>
 <title>统计模块</title>
 <script type="text/javascript"
 	src="<%=basePath%>js/Statistics/policemanOutTimes.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/Statistics/btnControl.js"></script>
-<script type="text/javascript"
-	src="<%=basePath%>js/Statistics/comparisonTimes.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/Statistics/case-select.js"></script>
 <script type="text/javascript"
@@ -40,25 +41,25 @@ td {
 	<!-----------------------------------------主面板---------------------------------------------------------  -->
 	<div id="allContent">
 		<div class="panel" style="width: 95%; margin: 20px auto;">
-			<div class="statisticsNavbar" style="margin-top: 10px;">
+			<div class="statisticsNavbar"
+				style="margin-top: 10px; margin-left: 10px;">
 				<button class="btn btn-default" id="goFieldPage"
 					onclick="changePage(this)" style="">现场统计</button>
-				<button class="btn btn-default" onclick="changePage(this)"
-					style="margin-left: 30px;" id="goComparisonPage">比对指纹统计</button>
 				<button class="btn btn-default" onclick="changePage(this)"
 					style="margin-left: 30px;" id="goCasePage">辖区案件统计</button>
 			</div>
 			<!-- --------------------------出警次数统计--------------------------------------------- -->
-			<div id="fieldPage" id="fieldPage" style="margin-top: 10px;">
-				<label>接警时间筛选：</label><input class="form-control startTime"
-					onchange="loadPoliceman()" type="text" id="timeStart"
+			<div id="fieldPage" id="fieldPage"
+				style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
+				<label>时间筛选：</label><input class="form-control startTime"
+					onchange="loadPolicemanCondition()" type="text" id="timeStart"
 					style="width: 150px; display: inline-block;"><label>至</label>
-				<input class="form-control startTime" onchange="loadPoliceman()"
+				<input class="form-control startTime" onchange="loadPolicemanCondition()"
 					type="text" id="timeEnd"
 					style="width: 150px; display: inline-block;"> <label>姓名筛选：</label>
 				<input id="queryPolicemanName" type="text" class="form-control"
 					style="margin-bottom: 10px; width: 250px; display: inline-block;"
-					oninput="loadPoliceman()" placeholder="请输入警员姓名">
+					oninput="loadPolicemanCondition()" placeholder="请输入警员姓名">
 				<div id="loadingLayer" style="margin: 0 auto; width: 45px;">
 					<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
 				</div>
@@ -66,54 +67,62 @@ td {
 					<table class="table table-bordered" style="text-align: center;">
 						<thead>
 							<tr>
-								<td>警员姓名</td>
-								<td>出警次数</td>
+								<td rowspan="2">警员姓名</td>
+								<td rowspan="2">现场出勘数</td>
+								<td colspan="6">痕迹物证提取数</td>
+								<td rowspan="2">痕迹物证提取率</td>
+								<td rowspan="2">破案数</td>
+							</tr>
+							<tr>
+								<td>手印</td>
+								<td>足迹</td>
+								<td>工具</td>
+								<td>生物</td>
+								<td>理化</td>
+								<td>其他</td>
 							</tr>
 						</thead>
 						<tbody>
-							<tr v-for="policeman in policemanList">
+							<!-- 							<tr v-for="policeman in policemanList">
 								<td>{{ policeman.policemanName }}</td>
 								<td>{{ policeman.outTimes }}</td>
+							</tr> -->
+							<tr v-for="policeman in policemanOutVO.policemanOutDTOList">
+								<td>{{ policeman.policemanName }}</td>
+								<td>{{ policeman.outTimes }}</td>
+								<td>{{ policeman.fingerprint }}</td>
+								<td>{{ policeman.footprint }}</td>
+								<td>{{ policeman.instrument }}</td>
+								<td>{{ policeman.biology }}</td>
+								<td>{{ policeman.physicochemical }}</td>
+								<td>{{ policeman.other }}</td>
+								<td>{{ policeman.extractionRadio }}</td>
+								<td>{{ policeman.breakeNumber }}</td>
 							</tr>
 						</tbody>
 					</table>
-				</div>
-			</div>
-			<!-- ----------------------------比对指纹统计-------------------------------------- -->
-			<div id="comparisonTime" style="margin-top: 10px; display: none;">
-				<label>比对时间筛选：</label><input class="form-control startTime"
-					onchange="loadComparison()" type="text" id="timeStartComparison"
-					style="width: 150px; display: inline-block;"><label>至</label>
-				<input class="form-control startTime" onchange="loadComparison()"
-					type="text" id="timeEndComparison"
-					style="width: 150px; display: inline-block;"> <label>姓名筛选：</label>
-				<input id="queryPolicemanNameComparison" type="text"
-					class="form-control"
-					style="margin-bottom: 10px; width: 250px; display: inline-block;"
-					oninput="loadComparison()" placeholder="请输入警员姓名">
-				<div id="loadingLayerComparison"
-					style="margin: 0 auto; width: 45px;">
-					<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-				</div>
-				<div id="comparisonContent" style="display: none;">
-					<table class="table table-bordered" style="text-align: center;">
-						<thead>
-							<tr>
-								<td>警员姓名</td>
-								<td>比对指纹次数</td>
-							</tr>
-						</thead>
-						<tbody>
-							<tr v-for="comparison in comparisonList">
-								<td>{{ comparison.policemanname }}</td>
-								<td>{{ comparison.comparisonTime }}</td>
-							</tr>
-						</tbody>
-					</table>
+					<div id="bottomPage" style="padding: 20px;">
+						<span>当前页数:<span id="currPage">{{
+								policemanOutVO.currPage }}</span></span> <span>共:<span id="totalPage">{{
+								policemanOutVO.totalPage }}</span>页
+						</span> <span onclick="skipToIndexPage()" id="indexPage"
+							class="pageOperation">首页</span> <span
+							onclick="skipToPrimaryPage()" id="previousPage"
+							class="pageOperation">上一页</span> <span onclick="skipToNextPage()"
+							id="nextPage" class="pageOperation">下一页</span> <span
+							onclick="skipToLastPage()" id="lastPage" class="pageOperation">末页</span>
+						<span> <input id="skipPage" type="text"
+							style="text-align: center; width: 60px; height: 30px;"
+							class="queryInput">
+							<button onclick="skipToArbitrarilyPage()" class="btn btn-default"
+								style="height: 30px; margin-bottom: 10px;">跳转</button>
+						</span>
+					</div>
 				</div>
 			</div>
 			<!-- ----------------------------案件统计-------------------------------------- -->
-			<div id="caseTime" style="margin-top: 10px; display: none;">
+			<div id="caseTime"
+				style="margin-top: 10px; display: none; margin-left: 10px; margin-right: 10px;">
 				<div id="caseSelect" style="display: inline-block;">
 					<select id='firstCase' class="form-control"
 						style="width: 200px; display: inline-block;"
@@ -144,16 +153,16 @@ td {
 					style="width: 200px; display: inline-block;"
 					onchange="highLightShow(this)">
 					<option value="">请选择案发辖区</option>
-					<option value="东大派出所">东大派出所</option>
-					<option value="高坑派出所">高坑派出所</option>
-					<option value="青山派出所">青山派出所</option>
 					<option value="安源派出所">安源派出所</option>
-					<option value="八一派出所">八一派出所</option>
-					<option value="白源派出所">白源派出所</option>
 					<option value="城郊派出所">城郊派出所</option>
-					<option value="丹江派出所">丹江派出所</option>
 					<option value="凤凰派出所">凤凰派出所</option>
 					<option value="后埠派出所">后埠派出所</option>
+					<option value="东大派出所">东大派出所</option>
+					<option value="高坑派出所">高坑派出所</option>
+					<option value="青山派出所">青山派出所</option>	
+					<option value="八一派出所">八一派出所</option>
+					<option value="白源派出所">白源派出所</option>
+					<option value="丹江派出所">丹江派出所</option>			
 					<option value="李子园派出所">李子园派出所</option>
 					<option value="五陂下派出所">五陂下派出所</option>
 					<option value="其他">其他</option>
@@ -167,16 +176,16 @@ td {
 						<thead>
 							<tr id="trHead">
 								<td>案件类型</td>
+								<td>安源派出所</td>
+								<td>城郊派出所</td>
+								<td>凤凰派出所</td>
+								<td>后埠派出所</td>
 								<td>东大派出所</td>
 								<td>高坑派出所</td>
 								<td>青山派出所</td>
-								<td>安源派出所</td>
 								<td>八一派出所</td>
-								<td>白源派出所</td>
-								<td>城郊派出所</td>
-								<td>丹江派出所</td>
-								<td>凤凰派出所</td>
-								<td>后埠派出所</td>
+								<td>白源派出所</td>		
+								<td>丹江派出所</td>		
 								<td>李子园派出所</td>
 								<td>五陂下派出所</td>
 								<td>其他</td>
@@ -185,16 +194,16 @@ td {
 						<tbody id="caseTBody">
 							<tr name="caseTr" class="trCover" v-for="caseTime in caseList">
 								<td>{{ caseTime.caseCategory }}</td>
+								<td><span v-html="caseTime.anyuanTime"></span></td>
+								<td><span v-html="caseTime.chengjiaoTime"></span></td>
+								<td><span v-html="caseTime.fenghuangTime"></span></td>
+								<td><span v-html="caseTime.houfuTime"></span></td>
 								<td><span v-html="caseTime.dongDaTime"></span></td>
 								<td><span v-html="caseTime.gaoKangTime"></span></td>
 								<td><span v-html="caseTime.qingshanTime"></span></td>
-								<td><span v-html="caseTime.anyuanTime"></span></td>
 								<td><span v-html="caseTime.bayiTime"></span></td>
 								<td><span v-html="caseTime.baiyuanTime"></span></td>
-								<td><span v-html="caseTime.chengjiaoTime"></span></td>
 								<td><span v-html="caseTime.danjiangTime"></span></td>
-								<td><span v-html="caseTime.fenghuangTime"></span></td>
-								<td><span v-html="caseTime.houfuTime"></span></td>
 								<td><span v-html="caseTime.liziyuanTime"></span></td>
 								<td><span v-html="caseTime.wupoxiaTime"></span></td>
 								<td><span v-html="caseTime.qitaTime"></span></td>

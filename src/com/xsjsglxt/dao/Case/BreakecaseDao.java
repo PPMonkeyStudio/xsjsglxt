@@ -3,44 +3,30 @@ package com.xsjsglxt.dao.Case;
 import java.util.List;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecase;
-import com.xsjsglxt.domain.DO.xsjsglxt_case;
-import com.xsjsglxt.domain.DO.xsjsglxt_snece;
-import com.xsjsglxt.domain.VO.Case.page_list_BreakecaseInformationVO;
+import com.xsjsglxt.domain.DO.xsjsglxt_breakecasesuspect;
 
 public interface BreakecaseDao {
 
-public 	void saveBreakecase(xsjsglxt_breakecase breakecase);
+	String saveBreakeCase(xsjsglxt_breakecase breakeCase);
 
-public int getCountBreakecaseInformationByPage(page_list_BreakecaseInformationVO page_list_BreakecaseInformation);
+	String saveBreakecaseSuspect(xsjsglxt_breakecasesuspect xsjsglxt_breakecasesuspect);
 
-public List<xsjsglxt_breakecase> getListBreakecaseInformatioByPage(
-		page_list_BreakecaseInformationVO page_list_BreakecaseInformation);
+	boolean deleteBreakeCase(String string);
 
-public xsjsglxt_case get_case_ByBreakecaseId(xsjsglxt_breakecase breakecase);
+	boolean deleteSuspectByCaseId(String string);
 
-public xsjsglxt_snece get_sence_Byxsjsglxt_case_id(xsjsglxt_case case1);
+	boolean addOneSuspect(xsjsglxt_breakecasesuspect suspect);
 
+	void deleteSuspectBySuspectId(xsjsglxt_breakecasesuspect suspect);
 
-public xsjsglxt_case getCaseById(xsjsglxt_breakecase breakecase);
+	boolean updateBreakeCase(xsjsglxt_breakecase breakeCase);
 
-public xsjsglxt_snece getSenceByID(xsjsglxt_case case1);
+	xsjsglxt_breakecase getBreakeCase(String xsjsglxt_breakecase_id);
 
-public xsjsglxt_breakecase getBreakecaseById(xsjsglxt_breakecase breakecase);
+	xsjsglxt_breakecasesuspect getBreakeCaseSuspect(String xsjsglxt_breakecaseSuspect_id);
 
+	boolean updateBreakeCaseSuspect(xsjsglxt_breakecasesuspect suspect);
 
-public void updateCase(xsjsglxt_case case1);
-
-public xsjsglxt_breakecase getByID(String xsjsglxt_case_id);
-
-public void updateBreakcase(xsjsglxt_breakecase breakecase);
-
-public xsjsglxt_snece getByCID(String xsjsglxt_case_id);
-
-public void updateSence(xsjsglxt_snece sence);
-
-public com.xsjsglxt.domain.DO.xsjsglxt_breakecase getBreakecaseByNum(String breakecase_id);
-
-public boolean deleteBreakecaseById(String xsjsglxt_breakecase_id);
+	List<xsjsglxt_breakecasesuspect> getBreakeCaseSuspectByBreakeCaseId(String xsjsglxt_breakecase_id);
 
 }
-
