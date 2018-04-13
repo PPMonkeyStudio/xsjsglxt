@@ -38,10 +38,10 @@ public class BreakecaseAction extends ActionSupport {
 
 	// -----------------------保存破案
 	public void saveBreakeCase() {
+		System.out.println(suspectList.size());
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		List<xsjsglxt_breakecase> breakecaseIm = breakecaseService.getBreakeCaseByCaseId(breakeCase);
-		System.out.println(breakecaseIm.size());
 		if (breakecaseIm != null && breakecaseIm.size() > 0) {
 			try {
 				PrintWriter pw = response.getWriter();
@@ -196,6 +196,17 @@ public class BreakecaseAction extends ActionSupport {
 	// -----------------------------破案列表查询
 	public void breakeCaseByPage() {
 		breakecaseService.breakeCaseByPage(breakeCaseListVO);
+		Gson gson = new Gson();
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(gson.toJson(breakeCaseListVO));
+			pw.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	// -------------------------------------setter/getter--------------------------------------
