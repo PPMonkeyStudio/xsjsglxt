@@ -66,7 +66,7 @@
 						<tr>
 							<td><label>身份证号</label></td>
 							<td><input name="policeman.staff_idNumber"
-								class="form-control" type="text"></td>
+								class="form-control" type="text" value=""  onblur="getAge()"></td>
 
 							<td><label>年龄</label></td>
 							<td><input style="font-size: 12px;"
@@ -157,9 +157,22 @@
 									<option>中队长</option>
 									<option>副中队长</option>
 									<option>民警</option>
+									<option>法医</option>
 									<option>辅警</option>
+									
 							</select></td>
+							<td><label>警种</label></td>
+							<td><select id="staff_type" class="form-control"
+								name="policeman.staff_type">
+									<option>民警</option>
+									<option>辅警</option>
+									<option>文职</option>
+							</select></td>
+							<td><label>地址</label></td>
+							<td><input name="policeman.staff_address"
+								class="form-control" type="text"></td>
 						</tr>
+						
 						<tr style="height: 30px"></tr>
 						<tr>
 							<td colspan="6" class="staff_info_title">联系方法</td>
@@ -180,7 +193,7 @@
 							<td><label>QQ号</label></td>
 							<td><input name="policeman.staff_QQ" class="form-control"
 								style="margin-top: 6px;" type="text"></td>
-							<td><label>微信</label></td>
+							<td><label>微信&nbsp;&nbsp;&nbsp;&nbsp;号</label></td>
 							<td><input name="policeman.staff_weixin"
 								class="form-control" style="margin-top: 6px;"></td>
 							<td><label>电子邮箱</label></td>
@@ -445,7 +458,7 @@
 
 		</div>
 	</div>
-	<!--新建添加学习经历模态框 start  -->
+	<!--添加添加学习经历模态框 start  -->
 	<div class="modal fade" id="addStudy_Modal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
@@ -495,14 +508,14 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_oneStudy()" data-dismiss='modal'>新建</button>
+						onclick="add_oneStudy()" data-dismiss='modal'>添加</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!--新建添加学习经历模态框 end  -->
+	<!--添加添加学习经历模态框 end  -->
 
-	<!--新建添加工作经历模态框 start  -->
+	<!--添加添加工作经历模态框 start  -->
 	<div class="modal fade" id="addWork_Modal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
@@ -556,14 +569,14 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_oneWork()" data-dismiss='modal'>新建</button>
+						onclick="add_oneWork()" data-dismiss='modal'>添加</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!--新建添加工作经历模态框 end  -->
-	<!--新建添加家庭情况模态框 start  -->
+	<!--添加添加工作经历模态框 end  -->
+	<!--添加添加家庭情况模态框 start  -->
 	<div class="modal fade" id="addFamily_Modal" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
@@ -573,7 +586,7 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">新建家庭情况</h4>
+					<h4 class="modal-title" id="myModalLabel">添加家庭情况</h4>
 				</div>
 				<div class="modal-body">
 
@@ -638,14 +651,14 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_oneFamily()" data-dismiss='modal'>新建</button>
+						onclick="add_oneFamily()" data-dismiss='modal'>添加</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!--新建添加家庭情况模态框 end  -->
-	<!--新建添加刑警大队调动模态框 start  -->
+	<!--添加添加家庭情况模态框 end  -->
+	<!--添加添加刑警大队调动模态框 start  -->
 	<div class="modal fade" id="addPoliceChange_Modal" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
@@ -697,14 +710,14 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_oneMove()" data-dismiss='modal'>新建</button>
+						onclick="add_oneMove()" data-dismiss='modal'>添加</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!--新建添加刑警大队调动模态框 end  -->
-	<!--新建添加立功受奖模态框 start  -->
+	<!--添加添加刑警大队调动模态框 end  -->
+	<!--添加添加立功受奖模态框 start  -->
 	<div class="modal fade" id="addPrized_Modal" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
@@ -750,14 +763,14 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_oneReward()" data-dismiss='modal'>新建</button>
+						onclick="add_oneReward()" data-dismiss='modal'>添加</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!--新建添加立功受奖模态框 end  -->
-	<!--新建添加违纪模态框 start  -->
+	<!--添加添加立功受奖模态框 end  -->
+	<!--添加添加违纪模态框 start  -->
 	<div class="modal fade" id="addAgainstPrinciple_Modal" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
@@ -804,14 +817,14 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_oneAgainst()" data-dismiss='modal'>新建</button>
+						onclick="add_oneAgainst()" data-dismiss='modal'>添加</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!--新建添加违纪模态框 end  -->
-	<!--新建添加处分模态框 start  -->
+	<!--添加添加违纪模态框 end  -->
+	<!--添加添加处分模态框 start  -->
 	<div class="modal fade" id="addPunish_Modal" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
@@ -858,14 +871,14 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_onePunishment()" data-dismiss='modal'>新建</button>
+						onclick="add_onePunishment()" data-dismiss='modal'>添加</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!--新建添加处分模态框 end  -->
-	<!--新建添加休假模态框 start  -->
+	<!--添加添加处分模态框 end  -->
+	<!--添加添加休假模态框 start  -->
 	<div class="modal fade" id="addVocation_Modal" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
@@ -925,13 +938,13 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_oneFurlough()" data-dismiss='modal'>新建</button>
+						onclick="add_oneFurlough()" data-dismiss='modal'>添加</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!--新建添加休假模态框 end  -->
+	<!--添加添加休假模态框 end  -->
 	<!--修改学习经历模态框 start  -->
 	<div class="modal fade" id="reliveStudy_Modal" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel">
@@ -1413,7 +1426,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="relive_furlough()" data-dismiss='modal'>新建</button>
+						onclick="relive_furlough()" data-dismiss='modal'>添加</button>
 				</div>
 			</div>
 		</div>
