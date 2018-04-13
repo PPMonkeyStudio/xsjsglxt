@@ -1,6 +1,7 @@
 package com.xsjsglxt.service.Scheduling;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_scheduling;
+import com.xsjsglxt.domain.VO.Scheduling.SchedulingDTOListVO;
 
 public interface SchedulingService {
 
@@ -11,5 +12,7 @@ public interface SchedulingService {
 	boolean delteShceduling(String[] scheduling_id);
 
 	boolean updateScheduling(xsjsglxt_scheduling scheduling);
+
+	void schedulingList(SchedulingDTOListVO schedulingListVO);
 
 }

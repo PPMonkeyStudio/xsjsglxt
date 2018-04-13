@@ -1,7 +1,11 @@
 package com.xsjsglxt.service.impl.Scheduling;
 
+import java.util.List;
+
 import com.xsjsglxt.dao.Scheduling.SchedulingDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_scheduling;
+import com.xsjsglxt.domain.DTO.Scheduling.schedulingDTO;
+import com.xsjsglxt.domain.VO.Scheduling.SchedulingDTOListVO;
 import com.xsjsglxt.service.Scheduling.SchedulingService;
 
 import util.TeamUtil;
@@ -65,10 +69,10 @@ public class SchedulingServiceImpl implements SchedulingService {
 	public boolean updateScheduling(xsjsglxt_scheduling scheduling) {
 		// TODO Auto-generated method stub
 		xsjsglxt_scheduling oldScheduling = schedulingDao.getSchedulingByDate(scheduling);
-		System.out.println(oldScheduling == null);
-		if (oldScheduling.getXsjsglxt_scheduling_id() != null
+		if (oldScheduling != null && oldScheduling.getXsjsglxt_scheduling_id() != null
 				&& oldScheduling.getXsjsglxt_scheduling_id().trim().length() > 0) {
-			if (oldScheduling.getXsjsglxt_scheduling_id() != scheduling.getXsjsglxt_scheduling_id()) {
+			if (!oldScheduling.getXsjsglxt_scheduling_id().trim()
+					.equals(scheduling.getXsjsglxt_scheduling_id().trim())) {
 				// 修改了日期并且当前日期已被占用
 				return false;
 			} else {
@@ -89,6 +93,17 @@ public class SchedulingServiceImpl implements SchedulingService {
 			return true;
 		}
 
+	}
+
+	@Override
+	public void schedulingList(SchedulingDTOListVO schedulingListVO) {
+		// TODO Auto-generated method stub
+		int count = schedulingDao.getSchedulingCount(schedulingListVO);
+		schedulingListVO.setPageSize(10);
+		schedulingListVO.setTotalCount(count);
+		schedulingListVO.setTotalPage((int) Math.ceil((double) count / schedulingListVO.getPageSize()));
+		List<schedulingDTO> dtoList = schedulingDao.getSchedulingByPage(schedulingListVO);
+		schedulingListVO.setSchedulingDTOList(dtoList);
 	}
 
 }

@@ -1,11 +1,16 @@
 package com.xsjsglxt.dao.impl.Scheduling;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.Scheduling.SchedulingDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_scheduling;
+import com.xsjsglxt.domain.DTO.Scheduling.schedulingDTO;
+import com.xsjsglxt.domain.VO.Scheduling.SchedulingDTOListVO;
 
 /**
  * 
@@ -54,7 +59,9 @@ public class SchedulingDaoImpl implements SchedulingDao {
 	public xsjsglxt_scheduling getSchedulingById(String xsjsglxt_scheduling_id) {
 		// TODO Auto-generated method stub
 		Session session = this.getSession();
-		return (xsjsglxt_scheduling) session.get(xsjsglxt_scheduling.class, xsjsglxt_scheduling_id);
+		xsjsglxt_scheduling s = (xsjsglxt_scheduling) session.get(xsjsglxt_scheduling.class, xsjsglxt_scheduling_id);
+		session.clear();
+		return s;
 	}
 
 	@Override
@@ -78,5 +85,43 @@ public class SchedulingDaoImpl implements SchedulingDao {
 		// TODO Auto-generated method stub
 		Session session = this.getSession();
 		session.saveOrUpdate(scheduling);
+	}
+
+	@Override
+	public int getSchedulingCount(SchedulingDTOListVO schedulingListVO) {
+		// TODO Auto-generated method stub
+
+		String hql = "select count(*) from xsjsglxt_scheduling where 1=1";
+		if (schedulingListVO.getQuery_name() != null && !"".equals(schedulingListVO.getQuery_name().trim()))
+			hql = hql + " and ( scheduling_main like '%" + schedulingListVO.getQuery_name()
+					+ "%' or scheduling_assistant like '%" + schedulingListVO.getQuery_name()
+					+ "%' or scheduling_leader like '%" + schedulingListVO.getQuery_name() + "%')";
+		if (schedulingListVO.getQueryTimeStart() != null && !"".equals(schedulingListVO.getQueryTimeStart().trim()))
+			hql = hql + " and scheduling_time >= '" + schedulingListVO.getQueryTimeStart() + "'";
+		if (schedulingListVO.getQueryTimeEnd() != null && !"".equals(schedulingListVO.getQueryTimeEnd().trim()))
+			hql = hql + " and scheduling_time <= '" + schedulingListVO.getQueryTimeEnd() + "'";
+		Session session = this.getSession();
+		long count = (long) session.createQuery(hql).uniqueResult();
+		return (int) count;
+	}
+
+	@Override
+	public List<schedulingDTO> getSchedulingByPage(SchedulingDTOListVO schedulingListVO) {
+		// TODO Auto-generated method stub
+		String hql = "select new com.xsjsglxt.domain.DTO.Scheduling.schedulingDTO(xsjsglxt_scheduling_id,scheduling_leader,scheduling_main,scheduling_assistant,scheduling_time) from xsjsglxt_scheduling where 1=1";
+		if (schedulingListVO.getQuery_name() != null && !"".equals(schedulingListVO.getQuery_name().trim()))
+			hql = hql + " and ( scheduling_main like '%" + schedulingListVO.getQuery_name()
+					+ "%' or scheduling_assistant like '%" + schedulingListVO.getQuery_name()
+					+ "%' or scheduling_leader like '%" + schedulingListVO.getQuery_name() + "%')";
+		if (schedulingListVO.getQueryTimeStart() != null && !"".equals(schedulingListVO.getQueryTimeStart().trim()))
+			hql = hql + " and scheduling_time >= '" + schedulingListVO.getQueryTimeStart() + "'";
+		if (schedulingListVO.getQueryTimeEnd() != null && !"".equals(schedulingListVO.getQueryTimeEnd().trim()))
+			hql = hql + " and scheduling_time <= '" + schedulingListVO.getQueryTimeEnd() + "'";
+		Session session = this.getSession();
+		Query query = session.createQuery(hql)
+				.setFirstResult((schedulingListVO.getCurrPage() - 1) * schedulingListVO.getPageSize())
+				.setMaxResults(schedulingListVO.getPageSize());
+		List<schedulingDTO> dtoList = query.list();
+		return dtoList;
 	}
 }

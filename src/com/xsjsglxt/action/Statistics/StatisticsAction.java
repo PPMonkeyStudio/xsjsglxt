@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
 
 import com.google.gson.Gson;
+import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DTO.Statistics.CaseTimeDTO;
 import com.xsjsglxt.domain.DTO.Statistics.policemanOutTimesDTO;
 import com.xsjsglxt.domain.VO.Statistics.CaseTimeVO;
@@ -22,7 +23,7 @@ import com.xsjsglxt.service.Statistics.StatisticsService;
  * 统计警员出现场的数量
  *
  */
-public class StatisticsAction {
+public class StatisticsAction extends ActionSupport {
 	private StatisticsService statisticsService;
 	private String policemanName;
 	private OutTimeVO outTimeVO;

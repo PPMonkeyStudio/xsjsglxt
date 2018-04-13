@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
 
 import com.google.gson.Gson;
+import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_scheduling;
+import com.xsjsglxt.domain.VO.Scheduling.SchedulingDTOListVO;
 import com.xsjsglxt.service.Scheduling.SchedulingService;
 
 /**
@@ -17,11 +19,12 @@ import com.xsjsglxt.service.Scheduling.SchedulingService;
  * @author 孙毅
  * 排班action
  */
-public class SchedulingAction {
+public class SchedulingAction extends ActionSupport {
 	private SchedulingService schedulingService;
 	private List<xsjsglxt_scheduling> schedulingList;
 	private xsjsglxt_scheduling scheduling;
 	private String[] scheduling_id;
+	private SchedulingDTOListVO schedulingListVO;
 
 	public String page_list() {
 		return "intoScheduling";
@@ -42,7 +45,6 @@ public class SchedulingAction {
 			pw.flush();
 			pw.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -60,7 +62,6 @@ public class SchedulingAction {
 			pw.flush();
 			pw.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -77,7 +78,6 @@ public class SchedulingAction {
 			pw.flush();
 			pw.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -96,11 +96,28 @@ public class SchedulingAction {
 				pw.write("updateError");
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
+	// -----------------------列表获得值班表
+	public void schedulingList() {
+		schedulingService.schedulingList(schedulingListVO);
+		Gson gson = new Gson();
+		String result = gson.toJson(schedulingListVO);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(result);
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 	// ------------------------------------setter/getter
 
 	public List<xsjsglxt_scheduling> getSchedulingList() {
@@ -113,6 +130,14 @@ public class SchedulingAction {
 
 	public void setSchedulingService(SchedulingService schedulingService) {
 		this.schedulingService = schedulingService;
+	}
+
+	public SchedulingDTOListVO getSchedulingListVO() {
+		return schedulingListVO;
+	}
+
+	public void setSchedulingListVO(SchedulingDTOListVO schedulingListVO) {
+		this.schedulingListVO = schedulingListVO;
 	}
 
 	public void setSchedulingList(List<xsjsglxt_scheduling> schedulingList) {

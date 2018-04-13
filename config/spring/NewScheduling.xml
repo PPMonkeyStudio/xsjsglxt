@@ -5,10 +5,10 @@
 
 	<!-- action配置 -->
 	<bean id="schedulingAction" class="com.xsjsglxt.action.Scheduling.SchedulingAction" scope="prototype">
-		<property name="shcedulingService" ref="shcedulingService"></property>
+		<property name="schedulingService" ref="schedulingService"></property>
 	</bean>
 	<!-- service配置 -->
-	<bean id="shcedulingService" class="com.xsjsglxt.service.impl.Scheduling.SchedulingServiceImpl">
+	<bean id="schedulingService" class="com.xsjsglxt.service.impl.Scheduling.SchedulingServiceImpl">
 		<property name="schedulingDao" ref="schedulingDao"></property>
 	</bean>
 	<!-- dao配置 -->
