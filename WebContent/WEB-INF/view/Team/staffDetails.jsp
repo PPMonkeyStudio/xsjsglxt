@@ -157,6 +157,7 @@
 									<option>中队长</option>
 									<option>副中队长</option>
 									<option>民警</option>
+									<option>法医</option>
 									<option>辅警</option>
 									
 							</select></td>

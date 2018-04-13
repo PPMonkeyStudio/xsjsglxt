@@ -25,6 +25,7 @@ public class xsjsglxt_staff {
 	private String staff_thePoliceTime;
 	private String staff_isItFormal;
 	private String staff_phone;
+	private String staff_type;
 	private String staff_throughThePolice;
 	private String staff_homephone;
 	private String staff_QQ;
@@ -36,6 +37,25 @@ public class xsjsglxt_staff {
 	private String staff_gmt_create;
 	private String staff_gmt_modified;
 
+	/**
+	 * @return the staff_type
+	 */
+	public String getStaff_type() {
+		return staff_type;
+	}
+
+	/**
+	 * @param staff_type the staff_type to set
+	 */
+	public void setStaff_type(String staff_type) {
+		this.staff_type = staff_type;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "xsjsglxt_staff [xsjsglxt_staff_id=" + xsjsglxt_staff_id + ", xsjsglxt_name=" + xsjsglxt_name
@@ -45,11 +65,12 @@ public class xsjsglxt_staff {
 				+ ", staff_MaxEducationalBackground=" + staff_MaxEducationalBackground + ", staff_politicalStatus="
 				+ staff_politicalStatus + ", staff_joinPartyTime=" + staff_joinPartyTime + ", staff_joinWorkTime="
 				+ staff_joinWorkTime + ", staff_alarm=" + staff_alarm + ", staff_thePoliceTime=" + staff_thePoliceTime
-				+ ", staff_isItFormal=" + staff_isItFormal + ", staff_phone=" + staff_phone
-				+ ", staff_throughThePolice=" + staff_throughThePolice + ", staff_homephone=" + staff_homephone
-				+ ", staff_QQ=" + staff_QQ + ", staff_weixin=" + staff_weixin + ", staff_outEmail=" + staff_outEmail
-				+ ", staff_inEmail=" + staff_inEmail + ", staff_photo=" + staff_photo + ", staff_duty=" + staff_duty
-				+ ", staff_gmt_create=" + staff_gmt_create + ", staff_gmt_modified=" + staff_gmt_modified + "]";
+				+ ", staff_isItFormal=" + staff_isItFormal + ", staff_phone=" + staff_phone + ", staff_type="
+				+ staff_type + ", staff_throughThePolice=" + staff_throughThePolice + ", staff_homephone="
+				+ staff_homephone + ", staff_QQ=" + staff_QQ + ", staff_weixin=" + staff_weixin + ", staff_outEmail="
+				+ staff_outEmail + ", staff_inEmail=" + staff_inEmail + ", staff_photo=" + staff_photo + ", staff_duty="
+				+ staff_duty + ", staff_gmt_create=" + staff_gmt_create + ", staff_gmt_modified=" + staff_gmt_modified
+				+ "]";
 	}
 
 	public String getXsjsglxt_staff_id() {
