@@ -29,11 +29,10 @@ var changeSort = function() {
 	loadScheduling();
 }
 var skipToArbitrarilyPage = function() {
-	console.log($('#skipPage').val());
 	if ($('#skipPage').val() >= 1
 			&& $('#skipPage').val() <= schedulingVue.vo.totalPage) {
 		queryConditionTemp.currPage = $('#skipPage').val();
-		loadPoliceman();
+		loadScheduling();
 	} else {
 		toastr.error("没有这一页");
 	}
@@ -50,7 +49,7 @@ var skipToPrimaryPage = function() {
 	if (schedulingVue.vo.currPage <= 1) {
 		toastr.error("没有上一页了哦");
 	} else {
-		queryConditionTemp.currPage = --policemanOut.policemanOutVO.currPage;
+		queryConditionTemp.currPage = --schedulingVue.vo.policemanOutVO.currPage;
 		loadScheduling();
 	}
 }
