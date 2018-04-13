@@ -1041,9 +1041,16 @@ function stopPropagation(e) {
 	else
 		e.cancelBubble = true;
 }
-//从身份证自动获取年龄
+//从身份证自动获取年龄  和判断身份证 格式
 function getAge(){
 	var ID=document.getElementsByName("policeman.staff_idNumber")[0].value;
+	var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;  
+	if(reg.test(ID)==false){
+		toastr.error('身份证格式错误,请输入有效身份证！');
+		var idNumber=document.getElementById("idNumber");
+		idNumber.value="";
+		idNumber.focus();
+	}
 	var myDate = new Date(); 
 	var month = myDate.getMonth() + 1; 
 	var day = myDate.getDate(); 
