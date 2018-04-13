@@ -19,6 +19,23 @@
 		/* $('#hideLayer').hide(); */
 		getCurrentTime();
 		setInterval(getCurrentTime, 1000);
+		console.log("执行查询查班");
+		$
+				.ajax({
+					url : '/xsjsglxt/scheduling/Scheduling_getSchedulingByDate',
+					type : 'GET',
+					success : function(data) {
+						if (data == "noScheduling") {
+							document.getElementById("schedulingH3").innerHTML = "今日未安排值班";
+						} else {
+							String
+							result = JSON.parse(data);
+							document.getElementById("leader").innerHTML = result.scheduling_leader;
+							document.getElementById("main").innerHTML = result.scheduling_main;
+							document.getElementById("assistant").innerHTML = result.scheduling_assistant;
+						}
+					}
+				});
 	}
 	function getCurrentTime() {
 		var now = new Date();
@@ -117,10 +134,14 @@
 					<!-- OVERVIEW -->
 					<div class="panel panel-headline">
 						<div class="panel-heading">
-							<h3 class="panel-title">欢迎进入安源刑侦信息管理系统</h3>
+							<h2 class="panel-title">欢迎进入安源刑侦信息管理系统</h2>
+							<h3 class="panel-title" id="schedulingH3">
+								今日值班  带班领导：<span id="leader"></span> 主班：<span id="main"></span> 副班：<span id="assistant"></span>
+							</h3>
 							<p class="panel-subtitle" style="margin-top: 20px;">
 								当前时间是：<span id="current_time"></span>
 							</p>
+							
 						</div>
 						<div class="panel-body"></div>
 					</div>
@@ -138,7 +159,7 @@
 		var sliderVue = new Vue({
 			el : '#sidebar-nav',
 			data : userPowerDTO
-		})
+		});
 	</script>
 </body>
 </html>

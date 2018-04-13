@@ -108,4 +108,12 @@ public class SchedulingServiceImpl implements SchedulingService {
 		schedulingListVO.setSchedulingDTOList(dtoList);
 	}
 
+	@Override
+	public xsjsglxt_scheduling getSchedulingByDate(xsjsglxt_scheduling scheduling) {
+		// TODO Auto-generated method stub
+
+		xsjsglxt_scheduling r = schedulingDao.getSchedulingByDate(scheduling);
+		return r;
+	}
+
 }

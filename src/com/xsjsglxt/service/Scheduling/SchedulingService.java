@@ -15,4 +15,6 @@ public interface SchedulingService {
 
 	void schedulingList(SchedulingDTOListVO schedulingListVO);
 
+	xsjsglxt_scheduling getSchedulingByDate(xsjsglxt_scheduling scheduling);
+
 }

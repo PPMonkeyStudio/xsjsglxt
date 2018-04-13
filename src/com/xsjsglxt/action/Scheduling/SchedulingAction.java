@@ -2,6 +2,8 @@ package com.xsjsglxt.action.Scheduling;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -110,6 +112,31 @@ public class SchedulingAction extends ActionSupport {
 		try {
 			PrintWriter pw = response.getWriter();
 			pw.write(result);
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public void getSchedulingByDate() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date now = new Date();
+		scheduling = new xsjsglxt_scheduling();
+		scheduling.setScheduling_time(sdf.format(now));
+		xsjsglxt_scheduling res = schedulingService.getSchedulingByDate(scheduling);
+		Gson gson = new Gson();
+		String result = gson.toJson(res);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			if (res != null && res.getXsjsglxt_scheduling_id().trim().length() > 0) {
+				pw.write(result);
+			} else
+				pw.write("noScheduling");
 			pw.flush();
 			pw.close();
 		} catch (IOException e) {
