@@ -38,7 +38,6 @@ public class BreakecaseAction extends ActionSupport {
 
 	// -----------------------保存破案
 	public void saveBreakeCase() {
-		System.out.println(suspectList.size());
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		List<xsjsglxt_breakecase> breakecaseIm = breakecaseService.getBreakeCaseByCaseId(breakeCase);
