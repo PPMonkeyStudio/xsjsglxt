@@ -78,7 +78,7 @@
 					<ul class="dropdown-menu">
 						<li style="float: left;"><a
 							href="<%=basePath%>team/Staff_page_staffList">人员</a></li>
-						<li class="teacher_control"><a>值班管理</a></li>
+						<li class="teacher_control"><a href="<%=basePath %>scheduling/Scheduling_page_list ">值班管理</a></li>
 						<li class="teacher_control"><a
 							href="<%=basePath%>user/Meeting_skipToMeetRecords">会议记录</a></li>
 						<li class="teacher_control"><a
