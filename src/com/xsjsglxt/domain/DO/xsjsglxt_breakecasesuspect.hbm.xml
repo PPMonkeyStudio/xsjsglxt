@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-4-11 21:11:59 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_breakecasesuspect" table="XSJSGLXT_BREAKECASESUSPECT">
+        <id name="xsjsglxt_breakecaseSuspect_id" type="java.lang.String">
+            <column name="XSJSGLXT_BREAKECASESUSPECT_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="breakecaseSuspect_breakecase" type="java.lang.String">
+            <column name="BREAKECASESUSPECT_BREAKECASE" />
+        </property>
+        <property name="breakecaseSuspect_name" type="java.lang.String">
+            <column name="BREAKECASESUSPECT_NAME" />
+        </property>
+        <property name="breakecaseSuspect_sex" type="java.lang.String">
+            <column name="BREAKECASESUSPECT_SEX" />
+        </property>
+        <property name="breakecaseSuspect_birthday" type="java.lang.String">
+            <column name="BREAKECASESUSPECT_BIRTHDAY" />
+        </property>
+        <property name="breakecaseSuspect_IDnum" type="java.lang.String">
+            <column name="BREAKECASESUSPECT_IDNUM" />
+        </property>
+        <property name="breakecaseSuspect_addrress" type="java.lang.String">
+            <column name="BREAKECASESUSPECT_ADDRRESS" />
+        </property>
+        <property name="breakecaseSuspect_capture" type="java.lang.String">
+            <column name="BREAKECASESUSPECT_CAPTURE" />
+        </property>
+        <property name="breakecaseSuspect_captureUnit" type="java.lang.String">
+            <column name="BREAKECASESUSPECT_CAPTUREUNIT" />
+        </property>
+        <property name="breakecaseSuspect_captureTime" type="java.lang.String">
+            <column name="BREAKECASESUSPECT_CAPTURETIME" />
+        </property>
+        <property name="breakecaseSuspect_gmt_create" type="java.lang.String">
+            <column name="BREAKECASESUSPECT_GMT_CREATE" />
+        </property>
+        <property name="breakecaseSuspect_gmt_modified" type="java.lang.String">
+            <column name="BREAKECASESUSPECT_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>

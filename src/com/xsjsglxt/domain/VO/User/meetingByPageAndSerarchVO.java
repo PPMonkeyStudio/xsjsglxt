@@ -9,11 +9,20 @@ public class meetingByPageAndSerarchVO {
 	private String startTimeSort; // 开始时间排序 desc降序 asc升序
 	private String query_start_time_start;
 	private String query_start_time_end;
+	private String queryMeetingContent;
 	private int pageCount; // 总页数
 	private int currPage; // 当前页数
 	private int pageSize; // 一页显示数目
 	private int totalCount; // 总记录数
 	private List<meetingSearchDTO> meetDTO;
+
+	public String getQueryMeetingContent() {
+		return queryMeetingContent;
+	}
+
+	public void setQueryMeetingContent(String queryMeetingContent) {
+		this.queryMeetingContent = queryMeetingContent;
+	}
 
 	public String getQuery_start_time_start() {
 		return query_start_time_start;

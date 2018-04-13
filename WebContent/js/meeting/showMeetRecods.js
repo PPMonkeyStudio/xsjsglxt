@@ -6,6 +6,7 @@ var meetVO = {
 	"startTimeSort" : "desc",
 	"query_start_time_start" : "",
 	"query_start_time_end" : "",
+	"queryMeetingContent" : "",
 	"pageCount" : 0,
 	"currPage" : 1,
 	"pageSize" : 10,
@@ -40,6 +41,7 @@ var loadData = function() {
 		"meetVO.startTimeSort" : meetVO.startTimeSort,
 		"meetVO.query_start_time_start" : meetVO.query_start_time_start,
 		"meetVO.query_start_time_end" : meetVO.query_start_time_end,
+		"meetVO.queryMeetingContent" : meetVO.queryMeetingContent,
 		"meetVO.pageCount" : meetVO.pageCount,
 		"meetVO.currPage" : meetVO.currPage,
 		"meetVO.pageSize" : meetVO.pageSize,
@@ -117,6 +119,7 @@ var skipToIndexPage = function() {
 			"meetVO.startTimeSort" : meetVO.startTimeSort,
 			"meetVO.query_start_time_start" : meetVO.query_start_time_start,
 			"meetVO.query_start_time_end" : meetVO.query_start_time_end,
+			"meetVO.queryMeetingContent" : meetVO.queryMeetingContent,
 			"meetVO.pageCount" : meetVO.pageCount,
 			"meetVO.currPage" : meetVO.currPage,
 			"meetVO.pageSize" : meetVO.pageSize,
@@ -173,6 +176,7 @@ var skipToNextPage = function() {
 			"meetVO.startTimeSort" : meetVO.startTimeSort,
 			"meetVO.query_start_time_start" : meetVO.query_start_time_start,
 			"meetVO.query_start_time_end" : meetVO.query_start_time_end,
+			"meetVO.queryMeetingContent" : meetVO.queryMeetingContent,
 			"meetVO.pageCount" : meetVO.pageCount,
 			"meetVO.currPage" : meetVO.currPage,
 			"meetVO.pageSize" : meetVO.pageSize,
@@ -200,6 +204,7 @@ var skipToLastPage = function() {
 			"meetVO.startTimeSort" : meetVO.startTimeSort,
 			"meetVO.query_start_time_start" : meetVO.query_start_time_start,
 			"meetVO.query_start_time_end" : meetVO.query_start_time_end,
+			"meetVO.queryMeetingContent" : meetVO.queryMeetingContent,
 			"meetVO.pageCount" : meetVO.pageCount,
 			"meetVO.currPage" : meetVO.currPage,
 			"meetVO.pageSize" : meetVO.pageSize,
@@ -228,6 +233,7 @@ var skipToArbitrarilyPage = function() {
 			"meetVO.startTimeSort" : meetVO.startTimeSort,
 			"meetVO.query_start_time_start" : meetVO.query_start_time_start,
 			"meetVO.query_start_time_end" : meetVO.query_start_time_end,
+			"meetVO.queryMeetingContent" : meetVO.queryMeetingContent,
 			"meetVO.pageCount" : meetVO.pageCount,
 			"meetVO.currPage" : meetVO.currPage,
 			"meetVO.pageSize" : meetVO.pageSize,
@@ -253,6 +259,7 @@ var changeQueryTitle = function(dom) {
 		"meetVO.startTimeSort" : meetVO.startTimeSort,
 		"meetVO.query_start_time_start" : meetVO.query_start_time_start,
 		"meetVO.query_start_time_end" : meetVO.query_start_time_end,
+		"meetVO.queryMeetingContent" : meetVO.queryMeetingContent,
 		"meetVO.pageCount" : meetVO.pageCount,
 		"meetVO.currPage" : meetVO.currPage,
 		"meetVO.pageSize" : meetVO.pageSize,
@@ -278,6 +285,32 @@ var changTimeSort = function() {
 		"meetVO.startTimeSort" : meetVO.startTimeSort,
 		"meetVO.query_start_time_start" : meetVO.query_start_time_start,
 		"meetVO.query_start_time_end" : meetVO.query_start_time_end,
+		"meetVO.queryMeetingContent" : meetVO.queryMeetingContent,
+		"meetVO.pageCount" : meetVO.pageCount,
+		"meetVO.currPage" : meetVO.currPage,
+		"meetVO.pageSize" : meetVO.pageSize,
+		"meetVO.totalCount" : meetVO.totalCount
+	}
+	$.ajax({
+		url : "/xsjsglxt/user/Meeting_showMeetingByPageAndList",
+		type : "POST",
+		data : meetVOPostTemp,
+		success : function(data) {
+			var jsonData = JSON.parse(data);
+			ajaxSetTable(jsonData);
+		}
+	});
+}
+var changeContent = function(event) {
+	showLoading();
+	meetVO.queryMeetingContent = event.value;
+	meetVO.currPage = 1;
+	var meetVOPostTemp = {
+		"meetVO.queryTitle" : meetVO.queryTitle,
+		"meetVO.startTimeSort" : meetVO.startTimeSort,
+		"meetVO.query_start_time_start" : meetVO.query_start_time_start,
+		"meetVO.query_start_time_end" : meetVO.query_start_time_end,
+		"meetVO.queryMeetingContent" : meetVO.queryMeetingContent,
 		"meetVO.pageCount" : meetVO.pageCount,
 		"meetVO.currPage" : meetVO.currPage,
 		"meetVO.pageSize" : meetVO.pageSize,
@@ -307,6 +340,7 @@ var changeStartTime = function(dom) {
 		"meetVO.startTimeSort" : meetVO.startTimeSort,
 		"meetVO.query_start_time_start" : meetVO.query_start_time_start,
 		"meetVO.query_start_time_end" : meetVO.query_start_time_end,
+		"meetVO.queryMeetingContent" : meetVO.queryMeetingContent,
 		"meetVO.pageCount" : meetVO.pageCount,
 		"meetVO.currPage" : meetVO.currPage,
 		"meetVO.pageSize" : meetVO.pageSize,

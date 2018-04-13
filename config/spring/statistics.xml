@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<!-- action配置 -->
+	<bean id="statisticsAction" class="com.xsjsglxt.action.Statistics.StatisticsAction" scope="prototype">
+		<property name="statisticsService" ref="statisticsService"></property>
+	</bean>
+	
+	<!-- service配置 -->
+	<bean id="statisticsService" class="com.xsjsglxt.service.impl.Statistics.StatisticsServiceImpl">
+		<property name="statisticsDao" ref="statisticsDao"></property>
+	</bean>
+	<!-- dao配置 -->
+	<bean id="statisticsDao" class="com.xsjsglxt.dao.impl.Statistics.StatisticsDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+
+</beans>

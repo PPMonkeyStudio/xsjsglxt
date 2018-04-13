@@ -1,8 +1,26 @@
 //CaseDetail.jsp中的删除案件
 function case_del() {
-	var url = "/xsjsglxt/case/Case_remove_SenceInformationList";
-	var case1_id = document.getElementById("case1_id").value;
-	loadCaseDetail_case_del(url, case1_id);
+	$.confirm({
+		title : '确定删除?',
+		smoothContent : false,
+		content : false,
+		autoClose : 'cancelAction|10000',
+		buttons : {
+			deleteUser : {
+				btnClass : 'btn-danger',
+				text : '确认',
+				action : function() {
+					var url = "/xsjsglxt/case/Case_remove_SenceInformationList";
+					var case1_id = document.getElementById("case1_id").value;
+					loadCaseDetail_case_del(url, case1_id);
+				}
+			},
+			cancelAction : {
+				btnClass : 'btn-blue',
+				text : '取消',
+			}
+		}
+	});
 }
 function loadCaseDetail_case_del(url, case1_id) {
 	if (window.XMLHttpRequest) {
@@ -22,7 +40,7 @@ function httpbackCase_del() {
 		console.log(xmlhttp.responseText);
 		var result = xmlhttp.responseText;
 
-		if (result == 'success') {
+		if (result == '"success"') {
 			toastr.success('删除成功！');
 			location.href = '/xsjsglxt/case/Case_page_SiteManagement'
 		} else {
@@ -53,9 +71,9 @@ function loadCaseDetail_case_change(url, case1_id) {
 			var result = xmlhttp.responseText;
 
 			if (result == '"success"') {
-				toastr.success('添加成功！');
+				toastr.success('修改成功！');
 			} else {
-				toastr.error('添加失败！');
+				toastr.error('修改失败！');
 			}
 		}
 	};

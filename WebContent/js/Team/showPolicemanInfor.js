@@ -28,19 +28,23 @@ window.onload = function() {
 
 var changeSort = function(event) {
 	queryConditionTemp.inPoliceTimeSort = event.value;
+	queryConditionTemp.currPage = "1";
 	loadData();
 }
 
 var changeStatus = function(event) {
 	queryConditionTemp.politicalStatus = event.value;
+	queryConditionTemp.currPage = "1";
 	loadData();
 }
 var changeSex = function(event) {
 	queryConditionTemp.policemanSex = event.value;
+	queryConditionTemp.currPage = "1";
 	loadData();
 }
 var changeName = function(event) {
 	queryConditionTemp.policemanName = event.value;
+	queryConditionTemp.currPage = "1";
 	loadData();
 }
 var firstPage = function() {
