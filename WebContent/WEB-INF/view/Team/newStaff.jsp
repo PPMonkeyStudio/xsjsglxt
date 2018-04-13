@@ -66,8 +66,8 @@
 						</tr>
 						<tr>
 							<td><label>身份证号</label></td>
-							<td><input name="policeman.staff_idNumber"
-								class="form-control" type="text" onblur="getAge()"></td>
+							<td><input name="policeman.staff_idNumber" id="idNumber"
+								class="form-control " type="text" onblur="getAge()"></td>
 
 							<td><label>年龄</label></td>
 							<td><input style="font-size: 12px;"
@@ -195,7 +195,7 @@
 							<td><label>QQ号</label></td>
 							<td><input name="policeman.staff_QQ" class="form-control"
 								style="margin-top: 6px;" type="text"></td>
-							<td><label>微信&nbsp;&nbsp;&nbsp;&nbsp;号</label></td>
+							<td><label>微&nbsp;&nbsp;信&nbsp;&nbsp;号</label></td>
 							<td><input name="policeman.staff_weixin"
 								class="form-control" style="margin-top: 6px;"></td>
 							<td><label>内网邮箱</label><label>外网邮箱</label></td>

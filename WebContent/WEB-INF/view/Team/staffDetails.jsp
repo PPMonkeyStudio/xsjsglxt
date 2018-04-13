@@ -193,7 +193,7 @@
 							<td><label>QQ号</label></td>
 							<td><input name="policeman.staff_QQ" class="form-control"
 								style="margin-top: 6px;" type="text"></td>
-							<td><label>微信&nbsp;&nbsp;&nbsp;&nbsp;号</label></td>
+							<td><label>微&nbsp;&nbsp;信&nbsp;&nbsp;号</label></td>
 							<td><input name="policeman.staff_weixin"
 								class="form-control" style="margin-top: 6px;"></td>
 							<td><label>电子邮箱</label></td>
