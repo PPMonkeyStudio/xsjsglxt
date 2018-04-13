@@ -3,6 +3,7 @@ package com.xsjsglxt.service.Team;
 import java.util.List;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_staff;
+import com.xsjsglxt.domain.VO.Team.policemanDutyVO;
 import com.xsjsglxt.domain.VO.Team.policemanListVO;
 
 public interface StaffService {
@@ -22,4 +23,6 @@ public interface StaffService {
 	void getConnect();
 
 	List<xsjsglxt_staff> getAllPoliceman();
+
+	policemanDutyVO getSchedulingStaff();
 }

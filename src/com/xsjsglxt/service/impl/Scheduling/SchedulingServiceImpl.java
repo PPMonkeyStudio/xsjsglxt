@@ -31,7 +31,7 @@ public class SchedulingServiceImpl implements SchedulingService {
 		// TODO Auto-generated method stub
 		boolean flag = false;
 		xsjsglxt_scheduling oldScehduling = schedulingDao.getSchedulingByDate(scheduling);
-		if (oldScehduling.getXsjsglxt_scheduling_id() != null
+		if (oldScehduling != null && oldScehduling.getXsjsglxt_scheduling_id() != null
 				&& !"".equals(oldScehduling.getXsjsglxt_scheduling_id().trim())) // 改日期已被占用
 		{
 			// scheduling.setXsjsglxt_scheduling_id(oldScehduling.getXsjsglxt_scheduling_id());
@@ -50,10 +50,12 @@ public class SchedulingServiceImpl implements SchedulingService {
 	}
 
 	@Override
-	public void getSchedulingById(xsjsglxt_scheduling scheduling) {
+	public xsjsglxt_scheduling getSchedulingById(xsjsglxt_scheduling scheduling) {
 		// TODO Auto-generated method stub
 		xsjsglxt_scheduling newScheduling = schedulingDao.getSchedulingById(scheduling.getXsjsglxt_scheduling_id());
+		System.out.println(newScheduling.toString());
 		scheduling = newScheduling;
+		return scheduling;
 	}
 
 	@Override

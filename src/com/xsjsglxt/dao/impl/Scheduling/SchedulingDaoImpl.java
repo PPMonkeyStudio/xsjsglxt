@@ -117,6 +117,7 @@ public class SchedulingDaoImpl implements SchedulingDao {
 			hql = hql + " and scheduling_time >= '" + schedulingListVO.getQueryTimeStart() + "'";
 		if (schedulingListVO.getQueryTimeEnd() != null && !"".equals(schedulingListVO.getQueryTimeEnd().trim()))
 			hql = hql + " and scheduling_time <= '" + schedulingListVO.getQueryTimeEnd() + "'";
+		hql = hql + " order by scheduling_time desc";
 		Session session = this.getSession();
 		Query query = session.createQuery(hql)
 				.setFirstResult((schedulingListVO.getCurrPage() - 1) * schedulingListVO.getPageSize())

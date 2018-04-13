@@ -51,9 +51,9 @@ public class SchedulingAction extends ActionSupport {
 
 	// --------------------获得值班表通过id
 	public void getSchedulingById() {
-		schedulingService.getSchedulingById(scheduling);
+		xsjsglxt_scheduling o = schedulingService.getSchedulingById(scheduling);
 		Gson gson = new Gson();
-		String result = gson.toJson(scheduling);
+		String result = gson.toJson(o);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		try {
