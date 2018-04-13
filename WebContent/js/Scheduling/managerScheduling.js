@@ -52,7 +52,7 @@ var updateScheduling = function(event) {
 			.confirm({
 				boxWidth : '500px',
 				useBootstrap : false,
-				title : '<i class="fa fa-pencil-square-o"></i>新增排班',
+				title : '<i class="fa fa-pencil-square-o"></i>修改排班',
 				type : 'green',
 				content : '<table class="table bordered-table"><tr><td>带班领导：</td><td style="text-align:center;" class="loadingLay"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></td><td class="contentName" style="display:none;"><select id="leader" style="width: 250px;" class="form-control selectpicker" data-live-search="true" title="请选择主班领导"></select></td></tr>'
 						+ '<tr><td>主班：</td><td class="loadingLay" style="text-align:center;"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></td></td><td class="contentName" style="display:none;"><select id="main" style="width: 250px;" class="form-control selectpicker" data-live-search="true" title="请选择主班"></select></td></tr>'
