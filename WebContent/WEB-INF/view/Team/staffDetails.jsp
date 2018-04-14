@@ -65,11 +65,11 @@
 						</tr>
 						<tr>
 							<td><label>身份证号</label></td>
-							<td><input name="policeman.staff_idNumber"
+							<td><input name="policeman.staff_idNumber" id="idNumber"
 								class="form-control" type="text" value=""  onblur="getAge()"></td>
 
 							<td><label>年龄</label></td>
-							<td><input style="font-size: 12px;"
+							<td><input style="font-size: 12px;" value=""
 								name="policeman.xsjsglxt_age" class="form-control" type="text"></td>
 						</tr>
 						<tr>
@@ -160,13 +160,6 @@
 									<option>法医</option>
 									<option>辅警</option>
 									
-							</select></td>
-							<td><label>警种</label></td>
-							<td><select id="staff_type" class="form-control"
-								name="policeman.staff_type">
-									<option>民警</option>
-									<option>辅警</option>
-									<option>文职</option>
 							</select></td>
 							<td><label>地址</label></td>
 							<td><input name="policeman.staff_address"

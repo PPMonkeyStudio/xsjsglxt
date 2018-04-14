@@ -39,176 +39,191 @@
 				<i class="fa fa-pencil"></i> 新建人员
 			</button>
 			<div class="panel-body staff_body">
-				<form id="staffDetails" enctype="multipart/form-data"
-					accept-charset="utf-8">
-					<table style="width:90%;">
-						<tr>
-							<td colspan="6" class="staff_info_title">基本信息</td>
-						</tr>
-						<tr style="height: 20px"></tr>
-						<tr>
-							<td><label>姓名</label></td>
-							<td><input name="policeman.xsjsglxt_name"
-								class="form-control" type="text"></td>
+				<div>
+					<form id="staffDetails" enctype="multipart/form-data"
+						accept-charset="utf-8">
+						<table style="width: 100%;">
+							<tr>
+								<td colspan="6" class="staff_info_title">基本信息</td>
+							</tr>
+							<tr style="height: 20px"></tr>
+							<tr>
+								<td><label>姓名</label></td>
+								<td><input name="policeman.xsjsglxt_name"
+									class="form-control" type="text"></td>
 
-							<td><label>警号</label></td>
-							<td><input name="policeman.staff_alarm" class="form-control"
-								type="text"></td>
+								<td><label>警号</label></td>
+								<td><input name="policeman.staff_alarm"
+									class="form-control" type="text"></td>
 
-							<td><label>照片</label></td>
-							<td rowspan="4"><a class="photo-show"></a> <a
-								class="a-upload" onclick="photo_click()">上传照片</a> <input
-								type="file" class="photo-file" name="staff_image"
-								multiple="multiple"
-								accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" />
+								<td><label>照片</label></td>
+								<td rowspan="4"><a class="photo-show"></a> <a
+									class="a-upload" onclick="photo_click()">上传照片</a> <input
+									type="file" class="photo-file" name="staff_image"
+									multiple="multiple"
+									accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" />
 
-							</td>
-						</tr>
-						<tr>
-							<td><label>身份证号</label></td>
-							<td><input name="policeman.staff_idNumber" id="idNumber"
-								class="form-control " type="text" onblur="getAge()"></td>
+								</td>
+							</tr>
+							<tr>
+								<td><label>身份证号</label></td>
+								<td><input name="policeman.staff_idNumber" id="idNumber"
+									class="form-control " type="text" onblur="getAge()"></td>
 
-							<td><label>年龄</label></td>
-							<td><input style="font-size: 12px;"
-								name="policeman.xsjsglxt_age" class="form-control" type="text"></td>
+								<td><label>年龄</label></td>
+								<td><input style="font-size: 12px;"
+									name="policeman.xsjsglxt_age" class="form-control" type="text"></td>
 
 
-						</tr>
-						<tr>
+							</tr>
+							<tr>
 
-							<td><label>民族</label></td>
-							<td><input name="policeman.xsjsglxt_nation"
-								class="form-control" type="text"></td>
-							<td><label>籍贯</label></td>
-							<td><input name="policeman.xsjsglxt_nativePlace"
-								class="form-control" type="text"></td>
+								<td><label>民族</label></td>
+								<td><input name="policeman.xsjsglxt_nation"
+									class="form-control" type="text"></td>
+								<td><label>籍贯</label></td>
+								<td><input name="policeman.xsjsglxt_nativePlace"
+									class="form-control" type="text"></td>
 
-						</tr>
+							</tr>
 
-						<tr>
+							<tr>
 
-							<td><label>最高学历</label></td>
-							<td><select class="form-control"
-								name="policeman.staff_MaxEducationalBackground">
-									<option></option>
-									<option>小学</option>
-									<option>初中</option>
-									<option>高中</option>
-									<option>大学</option>
-									<option>硕士</option>
-									<option>博士</option>
-							</select></td>
-							<td><label>政治面貌</label></td>
-							<td><select class="form-control"
-								name="policeman.staff_politicalStatus">
-									<option></option>
-									<option>群众</option>
-									<option>入党积极分子</option>
-									<option>预备党员</option>
-									<option>党员</option>
-							</select></td>
+								<td><label>最高学历</label></td>
+								<td><select class="form-control"
+									name="policeman.staff_MaxEducationalBackground">
+										<option></option>
+										<option>小学</option>
+										<option>初中</option>
+										<option>高中</option>
+										<option>大学</option>
+										<option>硕士</option>
+										<option>博士</option>
+								</select></td>
+								<td><label>入警时间</label></td>
+								<td><input name="policeman.staff_thePoliceTime"
+									class="form-control staff_thePoliceTime" type="text"></td>
 
-						</tr>
-						<tr>
-							<td><label>入党时间</label></td>
-							<td><input name="policeman.staff_joinPartyTime"
-								class="form-control staff_joinPartyTime" type="text"></td>
-							<td><label>工作时间</label></td>
-							<td><input name="policeman.staff_joinWorkTime"
-								class="form-control staff_joinWorkTime" type="text"
-								placeholder="参加工作时间"></td>
-							<td><label>性别</label></td>
-							<td><label style="float: left; width: 50px;"
-								class="fancy-radio person_radio"> <input
-									name="sex_content" onclick=changeSex_man(this) type="radio"
-									value="男"> <span> <i></i>男
-								</span>
-							</label> <label style="float: left; width: 50px; margin-left: 10px;"
-								class="fancy-radio "> <input name="sex_content"
-									onclick=changeSex_woman(this) type="radio" value="女"> <span><i></i>女</span>
-							</label> <input type="hidden" name="policeman.xsjsglxt_sex" id="sex"></td>
+							</tr>
+							<tr>
 
-						</tr>
-						<tr>
-							<td><label>入警时间</label></td>
-							<td><input name="policeman.staff_thePoliceTime"
-								class="form-control staff_thePoliceTime" type="text"></td>
-							<td><label>生日</label></td>
-							<td><input style="font-size: 12px;"
-								name="policeman.staff_birthday"
-								class="form-control staff_birthday" type="text"></td>
-							<td><label>是否正式</label></td>
-							<td><label style="float: left; width: 50px;"
-								class="fancy-radio "> <input name="format_content"
-									onclick="isFormat(this)" type="radio" value="是"> <span><i></i>是</span>
-							</label> <label style="float: left; margin-left: 10px; width: 50px;"
-								class="fancy-radio "> <input name="format_content"
-									onclick="isNotFormat(this)" type="radio" value="否"> <span><i></i>否</span>
-							</label> <input type="hidden" name="policeman.staff_isItFormal"
-								id="format" /></td>
+								<td><label>工作时间</label></td>
+								<td><input name="policeman.staff_joinWorkTime"
+									class="form-control staff_joinWorkTime" type="text"
+									placeholder="参加工作时间"></td>
+								<td><label>生日</label></td>
+								<td><input style="font-size: 12px;"
+									name="policeman.staff_birthday"
+									class="form-control staff_birthday" type="text"></td>
+								<td><label>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label></td>
+								<td><label style="float: left; width: 50px;"
+									class="fancy-radio person_radio"> <input
+										name="sex_content" onclick=changeSex_man(this) type="radio"
+										value="男"> <span> <i></i>男
+									</span>
+								</label> <label style="float: left; width: 50px; margin-left: 10px;"
+									class="fancy-radio "> <input name="sex_content"
+										onclick=changeSex_woman(this) type="radio" value="女">
+										<span><i></i>女</span>
+								</label> <input type="hidden" name="policeman.xsjsglxt_sex" id="sex"></td>
 
-						</tr>
-						<tr>
-							<td><label>职务</label></td>
-							<td><select class="form-control" name="policeman.staff_duty">
-									<option>大队长</option>
-									<option>教导员</option>
-									<option>副大队长</option>
-									<option>副教导员</option>
-									<option>中队长</option>
-									<option>副中队长</option>
-									<option>民警</option>
-									<option>法医</option>
-									<option>辅警</option>
-									
-							</select></td>
-							<td><label>警种</label></td>
-							<td><select id="staff_type" class="form-control"
-								name="policeman.staff_type">
-									<option>民警</option>
-									<option>辅警</option>
-									<option>文职</option>
-							</select></td>
-							
-							<td><label>地址</label></td>
-							<td><input name="policeman.staff_address"
-								class="form-control" type="text"></td>
-						</tr>
-						<tr style="height: 30px"></tr>
-						<tr>
-							<td colspan="6" class="staff_info_title">联系方法</td>
-						</tr>
-						<tr style="height: 20px;"></tr>
-						<tr>
-							<td><label>手机号</label></td>
-							<td><input name="policeman.staff_phone" class="form-control"
-								style="margin-top: 6px;" type="text"></td>
-							<td><label>警务通号</label></td>
-							<td><input name="policeman.staff_throughThePolice"
-								class="form-control" style="margin-top: 6px;"></td>
-							<td><label>家庭电话</label></td>
-							<td><input name="policeman.staff_homephone"
-								class="form-control" style="margin-top: 6px;"></td>
-						</tr>
-						<tr>
-							<td><label>QQ号</label></td>
-							<td><input name="policeman.staff_QQ" class="form-control"
-								style="margin-top: 6px;" type="text"></td>
-							<td><label>微&nbsp;&nbsp;信&nbsp;&nbsp;号</label></td>
-							<td><input name="policeman.staff_weixin"
-								class="form-control" style="margin-top: 6px;"></td>
-							<td><label>内网邮箱</label><label>外网邮箱</label></td>
-							<td><input name="policeman.staff_outEmail"
-								class="form-control" style="margin-top: 6px;"
-								> <input
-								name="policeman.staff_inEmail" class="form-control"
-								style="margin-top: 6px;"></td>
+							</tr>
+							<tr>
+								<td><label>职务</label></td>
+								<td><select class="form-control"
+									name="policeman.staff_duty">
+										<option>大队长</option>
+										<option>教导员</option>
+										<option>副大队长</option>
+										<option>副教导员</option>
+										<option>中队长</option>
+										<option>副中队长</option>
+										<option>民警</option>
+										<option>法医</option>
+										<option>辅警</option>
 
-						</tr>
+								</select></td>
+								<td><label>学位</label></td>
+								<td><select class="form-control" name="policeman.staff_degree">
+										<option>本科</option>
+										<option>硕士</option>
+										<option>博士</option>
+								</select></td>
+								<td><label>是否&nbsp;&nbsp;正式</label></td>
+								<td><label style="float: left; width: 50px;"
+									class="fancy-radio "> <input name="format_content"
+										onclick="isFormat(this)" type="radio" value="是"> <span><i></i>是</span>
+								</label> <label style="float: left; margin-left: 10px; width: 50px;"
+									class="fancy-radio "> <input name="format_content"
+										onclick="isNotFormat(this)" type="radio" value="否"> <span><i></i>否</span>
+								</label> <input type="hidden" name="policeman.staff_isItFormal"
+									id="format" /></td>
 
-					</table>
-				</form>
+							</tr>
+							<tr>
+								<td><label>政治面貌</label></td>
+								<td><select class="form-control"
+									name="policeman.staff_politicalStatus"
+									onchange="checkUp(this.value)">
+										<option></option>
+										<option>群众</option>
+										<option>入党积极分子</option>
+										<option>预备党员</option>
+										<option>党员</option>
+								</select></td>
+								<td class="staff_joinPartyTime_label" style="display: none;"><label>入党时间</label></td>
+								<td class="staff_joinPartyTime" style="display: none;"><input
+									name="policeman.staff_joinPartyTime" class="form-control "
+									type="text"></td>
+								<td class="staff_applicationFormTime_label"
+									style="display: none;"><label>提交申请书</label></td>
+								<td class="staff_applicationFormTime" style="display: none;"><input
+									name="policeman.staff_applicationFormTime" class="form-control"
+									type="text"></td>
+								<td class="staff_staff_delevopObjectTime_label"
+									style="display: none;"><label>发展对象</label></td>
+								<td class="staff_staff_delevopObjectTime" style="display: none;"><input
+									name="policeman.staff_delevopObjectTime"
+									class="form-control staff_joinPartyTime" type="text"></td>
+
+							</tr>
+                            <tr><td><label>地址</label></td>
+								<td><input name="policeman.staff_address" width="580px"
+									class="form-control" type="text"></td></tr>
+							<tr style="height: 30px"></tr>
+							<tr>
+								<td colspan="6" class="staff_info_title">联系方法</td>
+							</tr>
+							<tr style="height: 20px;"></tr>
+							<tr>
+								<td><label>手机号</label></td>
+								<td><input name="policeman.staff_phone"
+									class="form-control" style="margin-top: 6px;" type="text"></td>
+								<td><label>警务通号</label></td>
+								<td><input name="policeman.staff_throughThePolice"
+									class="form-control" style="margin-top: 6px;"></td>
+								<td><label>家庭电话</label></td>
+								<td><input name="policeman.staff_homephone"
+									class="form-control" style="margin-top: 6px;"></td>
+							</tr>
+							<tr>
+								<td><label>QQ号</label></td>
+								<td><input name="policeman.staff_QQ" class="form-control"
+									style="margin-top: 6px;" type="text"></td>
+								<td><label>微&nbsp;&nbsp;信&nbsp;&nbsp;号</label></td>
+								<td><input name="policeman.staff_weixin"
+									class="form-control" style="margin-top: 6px;"></td>
+								<td><label>内网邮箱</label><label style="display: block;">外网邮箱</label></td>
+								<td><input name="policeman.staff_outEmail"
+									class="form-control" style="margin-top: 6px;"> <input
+									name="policeman.staff_inEmail" class="form-control"
+									style="margin-top: 6px;"></td>
+
+							</tr>
+
+						</table>
+					</form>
+				</div>
 				<div class="longBoxs">
 					<div class="long_tableBox">
 						<span class="staff_info_title">学习经历</span>
@@ -220,7 +235,7 @@
 
 						<form id="study_exp">
 							<div class="long_tb">
-								<table id="studyExperience_table" >
+								<table id="studyExperience_table">
 									<tbody>
 										<tr class="long_table">
 											<th>学习地点</th>
@@ -229,13 +244,13 @@
 											<th>备注</th>
 											<th>操作</th>
 										</tr>
-										
+
 									</tbody>
 								</table>
 							</div>
 						</form>
 					</div>
-					<div style="background: #e7e6e6;width:1000px;height: 1px;"></div>
+					<div style="background: #e7e6e6; width: 1000px; height: 1px;"></div>
 					<div class="long_tableBox">
 						<span class="staff_info_title">工作经历</span>
 						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
@@ -245,7 +260,7 @@
 						</button>
 						<form id="work_exp">
 							<div class="long_tb">
-								<table id="wordExperience_table"  >
+								<table id="wordExperience_table">
 									<tbody>
 										<tr class="long_table">
 											<th>工作地点</th>
@@ -260,7 +275,7 @@
 							</div>
 						</form>
 					</div>
-					<div style="background: #e7e6e6;width:1000px;height: 1px;"></div>
+					<div style="background: #e7e6e6; width: 1000px; height: 1px;"></div>
 					<div class="long_tableBox">
 						<span class="staff_info_title">家庭情况</span>
 						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
@@ -269,7 +284,7 @@
 							<i class="fa fa-plus-square"></i> 添加
 						</button>
 						<div class="long_tb">
-							<table id="family_table" style="width:150%;">
+							<table id="family_table" style="width: 150%;">
 
 								<tbody>
 									<tr class="long_table">
@@ -289,7 +304,7 @@
 							</table>
 						</div>
 					</div>
-<div style="background: #e7e6e6;width:1000px;height: 1px;"></div>
+					<div style="background: #e7e6e6; width: 1000px; height: 1px;"></div>
 					<div class="long_tableBox">
 						<span class="staff_info_title">刑警大队调动情况</span>
 						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
@@ -313,7 +328,7 @@
 							</div>
 						</form>
 					</div>
-					<div style="background: #e7e6e6;width:1000px;height: 1px;"></div>
+					<div style="background: #e7e6e6; width: 1000px; height: 1px;"></div>
 					<div class="long_tableBox">
 						<span class="staff_info_title">立功受奖情况</span>
 						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
@@ -336,7 +351,7 @@
 							</div>
 						</form>
 					</div>
-					<div style="background: #e7e6e6;width:1000px;height: 1px;"></div>
+					<div style="background: #e7e6e6; width: 1000px; height: 1px;"></div>
 					<div class="long_tableBox">
 						<span class="staff_info_title">违纪情况</span>
 						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
@@ -359,30 +374,7 @@
 							</div>
 						</form>
 					</div>
-					<div style="background: #e7e6e6;width:1000px;height: 1px;"></div>
-					<div class="long_tableBox">
-						<span class="staff_info_title">处分情况</span>
-						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
-							type="button" data-toggle="modal" data-target="#addPunish_Modal"
-							onclick="">
-							<i class="fa fa-plus-square"></i> 添加
-						</button>
-						<form id="Punishment">
-							<div class="long_tb">
-								<table id="punish_table">
-									<tbody>
-										<tr class="long_table">
-											<th>处分情况</th>
-											<th>处分时间</th>
-											<th>备注</th>
-											<th>操作</th>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</form>
-					</div>
-					<div style="background: #e7e6e6;width:1000px;height: 1px;"></div>
+					<div style="background: #e7e6e6; width: 1000px; height: 1px;"></div>
 					<div class="long_tableBox">
 						<span class="staff_info_title">休假情况</span>
 						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
@@ -444,8 +436,7 @@
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">结束时间</label></td>
-									<td><input type="text" class="staffStudent_stopTime"
-									 /></td>
+									<td><input type="text" class="staffStudent_stopTime" /></td>
 								</tr>
 
 								<tr>
@@ -453,8 +444,7 @@
 									<td colspan="6"><textarea id="staffStudent_remarks"
 											class="staffStudent_remarks"
 											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											rows="3" cols="62"></textarea>
-									</td>
+											rows="3" cols="62"></textarea></td>
 
 
 								</tr>
@@ -473,8 +463,6 @@
 	</div>
 	</div>
 	<!--新建添加学习经历模态框 end  -->
-	s
-
 	<!--新建添加工作经历模态框 start  -->
 	<div class="modal fade" id="addWork_Modal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
@@ -804,62 +792,6 @@
 	</div>
 	</div>
 	<!--新建添加违纪模态框 end  -->
-	<!--新建添加处分模态框 start  -->
-	<div class="modal fade" id="addPunish_Modal" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">添加处分</h4>
-				</div>
-				<div class="modal-body">
-
-					<form action="" id="addPunish_form" accept-charset="utf-8">
-
-						<table>
-							<tbody>
-								<tr>
-									<td><label class="staff_info_label">处分情况</label></td>
-									<td><input style="font-size: 12px;"
-										class="staffPunishment_situation"
-										name="policeman.staff_birthday" type="text"></td>
-								</tr>
-								<tr>
-									<td><label class="staff_info_label">处分时间</label></td>
-									<td><input style="font-size: 12px;"
-										class="staffPunishment_Time"></td>
-								</tr>
-
-
-								<tr>
-									<td><label class="staff_info_label">备注</label></td>
-									<td colspan="6"><textarea id="staff_contactsRemark"
-											class="staffPunishment_remarks"
-											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
-											name="policeman.staff_contactsRemark" rows="3" cols="62"></textarea>
-									</td>
-
-
-								</tr>
-							</tbody>
-						</table>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default "
-						onclick="clear_iquery()" data-dismiss="modal">清空</button>
-					<button type="button" class="btn btn-primary"
-						onclick="add_Punish()" data-dismiss='modal'>增加</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	</div>
-	<!--新建添加处分模态框 end  -->
 	<!--新建添加休假模态框 start  -->
 	<div class="modal fade" id="addVocation_Modal" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel">
