@@ -38,7 +38,7 @@ var braekeCaseData = `<form action="">
 </tr><tr><td>案件类型</td><td>
 <input class="form-control" name="breakeCase.breakecase_type" type="text">
 </td><td>破案方式</td><td>
-<input class="form-control" name="breakeCase.breakecase_according" type="text">
+<select class="form-control" name="breakeCase.breakecase_according"><option value=""></option><option value="指纹">指纹</option><option value="视屏">视屏</option><option value="NDA">NDA</option></select>
 </td></tr><tr><td>破案时间</td><td>
 <input class="form-control mydate" name="breakeCase.breakecase_caseTime" type="text">
 </td><td>破案人</td><td>
@@ -70,7 +70,8 @@ var SuspectData = `<table class="table">
 <tr><td>性别</th><td><input class="form-control must su-sex" name="breakecaseSuspect_sex" type="text" value="1"></td>
     <td>生日</th><td><input class="form-control must su-birthday" name="breakecaseSuspect_birthday" type="text" value="1"></td></tr>
 <tr><td>住址</th><td><input class="form-control must" name="breakecaseSuspect_addrress" type="text" value="1"></td>
-	<td>是否抓获</th><td><input class="form-control must" name="breakecaseSuspect_capture" type="text"></td></tr>
+	<td>是否抓获</th><td><select class="form-control must" name="breakecaseSuspect_capture"><option>是</option><option>否</ption>
+<option>其他</option></select></td></tr>
 <tr><td>抓获单位</th><td><input class="form-control must" name="breakecaseSuspect_captureUnit" type="text" value="1"></td>
 	<td>抓获时间</th><td><input class="form-control mydate must" name="breakecaseSuspect_captureTime" type="text" value="1"></td></tr>
 </tbody>
@@ -242,6 +243,9 @@ $(function () {
 		});
 	});
 
+
+
+	//表格中I标签的操作绑定
 	$('.breakcase_table_info tbody').click(function (e) {
 		if (e.target.tagName == "TD") {
 			var ID = $(e.target).parent().find('input[name="chooseCheckBox"]').attr('id');
@@ -254,7 +258,7 @@ $(function () {
 			</tr><tr><td>案件类型</td><td>
 			<input class="form-control" name="breakeCase.breakecase_type" type="text" value="${msg.breakeCase.breakecase_type}">
 			</td><td>破案方式</td><td>
-			<input class="form-control" name="breakeCase.breakecase_according" type="text" value="${msg.breakeCase.breakecase_according}">
+			<select class="form-control" name="breakeCase.breakecase_according" type="text" value="${msg.breakeCase.breakecase_according}"><option value=""></option><option value="指纹">指纹</option><option value="视屏">视屏</option><option value="NDA">NDA</option></select>
 			</td></tr><tr><td>破案时间</td><td>
 			<input class="form-control mydate" name="breakeCase.breakecase_caseTime" type="text" value="${msg.breakeCase.breakecase_caseTime}">
 			</td><td>破案人</td><td>
@@ -333,15 +337,14 @@ $(function () {
 														return false;
 													}
 												}
-												alert(breakeCaseID);
 												var suspect_add = { "suspect.breakecaseSuspect_breakecase": breakeCaseID, };
-												Suspectadd.$content.find('input').each(function () {
+												Suspectadd.$content.find('.must').each(function () {
 													suspect_add["suspect." + $(this).attr('name')] = $(this).val();
 												});
 												$.post('/xsjsglxt/case/BreakeCase_addOneSuspect', suspect_add, function (msg_one) {
-													if (msg_one == 'saveSuccess') {
+													if (msg_one.length > 20 && msg_one.length <= 36) {
 														toastr.info('添加嫌疑人成功');
-														var suspectStr = '<tr id="">';
+														var suspectStr = '<tr id="' + msg_one + '">';
 														for (const key in suspect_add) {
 															if (key == "suspect.breakecaseSuspect_breakecase") {
 																continue;
@@ -371,7 +374,7 @@ $(function () {
 							btnClass: 'btn-info',
 							action: function () {
 								var BreakeCaseDATA = modifyBreakeCase.$content.find('form').serializeObject();
-								$.post('/xsjsglxt/case/BreakeCase_saveBreakeCase', BreakeCaseDATA, function (xhr) {
+								$.post('/xsjsglxt/case/BreakeCase_updateBreakeCase', BreakeCaseDATA, function (xhr) {
 									if (xhr == 'updateSuccess') {
 										toastr.info('息修改成功');
 										get_ListBreakecaseInformationByPageAndSearch(query_data);
@@ -433,7 +436,7 @@ function createSuspect(confirm_content) {
 	var newSuspect = {};
 	var name = '';
 	var val = '';
-	$.each(confirm_content.find('input'), function () {
+	$.each(confirm_content.find('.must'), function () {
 		name = $(this).attr("name");
 		val = $(this).val();
 		newSuspect[name] = val;
@@ -480,7 +483,7 @@ function Suspect_mo_del(TypeBreakeCase, type) {
 								<tr><td>性别</th><td><input class="form-control must" name="breakecaseSuspect_sex" type="text" value="${all_td.eq(2).text()}"></td>
 									<td>生日</th><td><input class="form-control must" name="breakecaseSuspect_birthday" type="text" value="${all_td.eq(3).text()}"></td></tr>
 								<tr><td>住址</th><td><input class="form-control must" name="breakecaseSuspect_addrress" type="text" value="${all_td.eq(4).text()}"></td>
-									<td>是否抓获</th><td><input class="form-control must" name="breakecaseSuspect_capture" type="text" value="${all_td.eq(5).text()}"></td></tr>
+									<td>是否抓获</th><td><select class="form-control must" name="breakecaseSuspect_capture" type="text" value="${all_td.eq(5).text()}"><option>是</option><option>否</option></select></td></tr>
 								<tr><td>抓获单位</th><td><input class="form-control must" name="breakecaseSuspect_captureUnit" type="text" value="${all_td.eq(6).text()}"></td>
 									<td>抓获时间</th><td><input class="form-control mydate must" name="breakecaseSuspect_captureTime" type="text" value="${all_td.eq(7).text()}"></td></tr>
 								</tbody>
@@ -504,13 +507,13 @@ function Suspect_mo_del(TypeBreakeCase, type) {
 									var zj = {
 										"suspect.xsjsglxt_breakecaseSuspect_id": tr.attr('id'),
 									};
-									modifi.$content.find('input').each(function () {
+									modifi.$content.find('.must').each(function () {
 										zj['suspect.' + $(this).attr('name')] = $(this).val();
 									});
 									$.post('/xsjsglxt/case/BreakeCase_updateSuspect', zj, function (msg) {
 										if (msg == 'updateSuccess') {
 											toastr.info('修改嫌疑人成功');
-											modifi.$content.find('input').each(function (i, o) {
+											modifi.$content.find('.must').each(function (i, o) {
 												all_td.eq(i).text($(this).val());
 											});
 										} else if (msg == 'updateError') {
@@ -519,7 +522,7 @@ function Suspect_mo_del(TypeBreakeCase, type) {
 									}, 'text');
 								} else {
 									var len = suspect.length;
-									modifi.$content.find('input').each(function () {
+									modifi.$content.find('.must').each(function () {
 										var name = $(this).attr('name');
 										var value = $(this).val();
 										suspect[len - index - 1][name] = value;
