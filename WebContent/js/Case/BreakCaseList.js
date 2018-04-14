@@ -106,25 +106,34 @@ $(function () {
 
 	$('#delete-breakeCase').click(function () {
 		var formData = new FormData;
+		var falg = false;
 		$('.breakcase_table_info').find('input[name="chooseCheckBox"]').each(function () {
-			formData.append('breakeCaseId', $(this).attr('id'));
-		});
-		$.ajax({
-			url: "/xsjsglxt/case/BreakeCase_deleteBreakeCase",
-			type: "POST",
-			contentType: false,
-			processData: false,
-			data: formData,
-			dataType: 'text',
-			success: function (msg) {
-				if (msg == 'deleteSuccess') {
-					toastr.info('删除成功');
-					get_ListBreakecaseInformationByPageAndSearch(query_data);
-				} else if (msg == 'deleteError') {
-					toastr.error('删除失败');
-				}
+			if ($(this).is(':checked')) {
+				formData.append('breakeCaseId', $(this).attr('id'));
+				falg = true;
 			}
 		});
+		if (falg) {
+			$.ajax({
+				url: "/xsjsglxt/case/BreakeCase_deleteBreakeCase",
+				type: "POST",
+				contentType: false,
+				processData: false,
+				data: formData,
+				dataType: 'text',
+				success: function (msg) {
+					if (msg == 'deleteSuccess') {
+						toastr.info('删除成功');
+						get_ListBreakecaseInformationByPageAndSearch(query_data);
+					} else if (msg == 'deleteError') {
+						toastr.error('删除失败');
+					}
+				}
+			});
+		} else {
+			toastr.info('未选择数据');
+		}
+
 	});
 
 	$('#breakCase_input').click(function () {
@@ -237,6 +246,7 @@ $(function () {
 		if (e.target.tagName == "TD") {
 			var ID = $(e.target).parent().find('input[name="chooseCheckBox"]').attr('id');
 			$.post('/xsjsglxt/case/BreakeCase_breakeCaseDetails', { "breakeCase.xsjsglxt_breakecase_id": ID }, function (msg) {
+				var breakeCaseID = msg.breakeCase.xsjsglxt_breakecase_id;
 				var content = `<form action="">
 			<div style="width: 100%;margin: auto;" class="panel-body"><table class="table table-hover table-condensed" align="center"><tbody>
 			<tr><td>所属案件<i class="fa fa-spinner fa-pulse load_remind"></i></td><td colspan="3">
@@ -255,18 +265,8 @@ $(function () {
 			<textarea placeholder="请填写" class="form-control"name="breakeCase.breakecase_remarks">${msg.breakeCase.breakecase_remarks}</textarea>
 			</td></tr><tr>
 			<table class="table table-hover suspect-info">
-			<thead>
-				<tr>
-				<td>姓名</td>
-				<td>身份证号</td>
-				<td>性别</td>
-				<td>生日</td>
-				<td>住址</td>
-				<td>抓获</td>
-				<td>抓获单位</td>
-				<td>抓获时间</td>
-				<td>操作</td>
-				</tr></thead><tbody></tbody></table></tr></tbody></table></div></form>`;
+			<thead><tr><td>姓名</td><td>身份证号</td><td>性别</td><td>生日</td><td>住址</td><td>抓获</td><td>抓获单位</td><td>抓获时间</td><td>操作</td>
+			</tr></thead><tbody></tbody></table></tr></tbody></table></div></form>`;
 
 				var modifyBreakeCase = $.confirm({
 					closeIcon: true,
@@ -279,7 +279,7 @@ $(function () {
 						Init();
 						for (let index = 0; index < msg.suspectList.length; index++) {
 							var _suspect = msg.suspectList[index];
-							var suspectStr = '<tr id="' + _suspect["xsjsglxt_breakecaseSuspect_id"] + '">';
+							var suspectStr = '<tr id="' + breakeCaseID + '">';
 							for (const key in _suspect) {
 								if (key == 'xsjsglxt_breakecaseSuspect_id' || key == 'breakecaseSuspect_breakecase' || key == 'breakecaseSuspect_gmt_create' || key == 'breakecaseSuspect_gmt_modified') {
 									continue;
@@ -333,13 +333,13 @@ $(function () {
 														return false;
 													}
 												}
-												var ID = modifyBreakeCase.$content.find('select[name="breakeCase.breakecase_case"]').selectpicker('val');
-												var suspect_add = { "suspect.breakecaseSuspect_breakecase": ID, };
+												alert(breakeCaseID);
+												var suspect_add = { "suspect.breakecaseSuspect_breakecase": breakeCaseID, };
 												Suspectadd.$content.find('input').each(function () {
 													suspect_add["suspect." + $(this).attr('name')] = $(this).val();
 												});
-												$.post('/xsjsglxt/case/BreakeCase_addOneSuspect', suspect_add, function (msg) {
-													if (msg == 'saveSuccess') {
+												$.post('/xsjsglxt/case/BreakeCase_addOneSuspect', suspect_add, function (msg_one) {
+													if (msg_one == 'saveSuccess') {
 														toastr.info('添加嫌疑人成功');
 														var suspectStr = '<tr id="">';
 														for (const key in suspect_add) {
@@ -350,7 +350,7 @@ $(function () {
 														}
 														suspectStr += '<td><i class="fa fa-info-circle"></i>&nbsp&nbsp<i class="fa fa-trash-o"></i></td></tr>'
 														modifyBreakeCase.$content.find('.suspect-info tbody').append(suspectStr);
-													} else if (msg == 'saveError') {
+													} else if (msg_one == 'saveError') {
 														toastr.error('添加嫌疑人人失败');
 													}
 												}, 'text');

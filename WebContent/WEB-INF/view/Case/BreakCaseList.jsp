@@ -35,6 +35,7 @@
 
 .breakcase_table_info tbody tr {
 	text-align: center;
+	cursor: pointer;
 }
 
 i {
@@ -86,7 +87,7 @@ i {
 								class="table table-hover table-condensed breakcase_table_info">
 								<thead>
 									<tr>
-										<th><input type="checkbox" onclick="selectAll(this)"></th>
+										<th>全选<input type="checkbox" onclick="selectAll(this)"></th>
 										<th>所属案件</th>
 										<th>勘验编号</th>
 										<th>案件类型</th>
@@ -137,61 +138,35 @@ i {
 						<table style="width: 50%; margin: auto;" class="Query_table">
 							<tbody>
 								<tr>
-									<td>勘验编号</td>
-									<td><input
-										name="page_list_BreakecaseInformation.snece_inquestId"
+									<td>勘验编号:</td>
+									<td><input name="breakeCaseListVO.query_sence_inquestId"
 										class="form-control" type="text"></td>
 								</tr>
 								<tr>
-									<td>案件名</td>
-									<td><input
-										name="page_list_BreakecaseInformation.snece_inquestId"
+									<td>案件名称:</td>
+									<td><input name="breakeCaseListVO.query_case_name"
 										class="form-control" type="text"></td>
 								</tr>
 								<tr>
-									<td>案件类别</td>
-									<td><select
-										name="page_list_BreakecaseInformation.case_totalCategory"
-										onchange="setSectionCase(this.selectedIndex)"
-										class="main_case form-control"><option
-												selected="selected" value="">请选择案件总类别</option>
-											<option value="盗窃案">盗窃案</option>
-											<option value="抢劫案">抢劫案</option>
-											<option value="抢夺案">抢夺案</option>
-											<option value="强奸案">强奸案</option>
-											<option value="绑架案">绑架案</option>
-											<option value="杀人案">杀人案</option>
-											<option value="故意伤害案">故意伤害案</option>
-											<option value="爆炸案">爆炸案</option>
-											<option value="放火案">放火案</option>
-											<option value="非法拘禁案">非法拘禁案</option>
-											<option value="非正常死亡">非正常死亡</option>
-											<option value="故意损坏公私财物">故意损坏公私财物</option>
-											<option value="其它">其它</option></select> <select
-										name="page_list_BreakecaseInformation.case_sonCategory"
-										class="other_case form-control">
-											<option selected value="">请选择案件子类别</option>
+									<td>破案人:</td>
+									<td><input name="breakeCaseListVO.query_breake_person"
+										class="form-control" type="text"></td>
+								</tr>
+								<tr>
+									<td>破案方式:</td>
+									<td><select name="breakeCaseListVO." class="form-control">
+											<option>指纹</option>
+											<option>视屏</option>
+											<option>NDA</option>
+											<option>其他</option>
 									</select></td>
 								</tr>
 								<tr>
-									<td>嫌疑人姓名</td>
-									<td><input
-										name="page_list_BreakecaseInformation.breakecase_suspectName"
-										class="form-control" type="text"></td>
-								</tr>
-								<tr>
-									<td>抓获单位</td>
-									<td><input
-										name="page_list_BreakecaseInformation.breakecase_captureUnit"
-										class="form-control" type="text"></td>
-								</tr>
-								<tr>
-									<td>接警时间</td>
-									<td><input
-										name="page_list_BreakecaseInformation.start_time"
+									<td>破案时间:</td>
+									<td><input name="breakeCaseListVO.query_breake_time_start"
 										style="float: left;" type="text" class="form-control mydate"
 										placeholder="起始日期"><input
-										name="page_list_BreakecaseInformation.stop_time"
+										name="breakeCaseListVO.query_breake_time_end"
 										style=" float: right;" type="text" class="form-control"
 										placeholder="结束日期"></td>
 								</tr>
