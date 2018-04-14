@@ -4,9 +4,9 @@ public class xsjsglxt_breakecasesuspect {
 	private String xsjsglxt_breakecaseSuspect_id;//嫌疑人id
 	private String breakecaseSuspect_breakecase;//所属破案
 	private String breakecaseSuspect_name;//嫌疑人姓名
+	private String breakecaseSuspect_IDnum;//嫌疑人身份证号
 	private String breakecaseSuspect_sex;//嫌疑人性别
 	private String breakecaseSuspect_birthday;//嫌疑人生日
-	private String breakecaseSuspect_IDnum;//嫌疑人身份证号
 	private String breakecaseSuspect_addrress;//嫌疑人住址
 	private String breakecaseSuspect_capture;//是否抓获
 	private String breakecaseSuspect_captureUnit;//抓获单位
