@@ -935,23 +935,28 @@ function checkUp(value){
 		document.querySelector(".staff_joinPartyTime_label").style.display="none";
 		document.querySelector(".staff_joinPartyTime").style.display="none";
 		//是入党积极分子就显示申请书事件和发展对象时间
-		document.querySelector(".staff_applicationFormTime_label").style.display="";
-		document.querySelector(".staff_applicationFormTime").style.display="";
-		document.querySelector(".staff_staff_delevopObjectTime_label").style.display="";
-		document.querySelector(".staff_staff_delevopObjectTime").style.display="";
+		document.querySelector(".staff_appliactionFormTime_label").style.display="";
+		document.querySelector(".staff_appliactionFormTime").style.display="";
+		document.querySelector(".staff_delevopObjectTime_label").style.display="";
+		document.querySelector(".staff_delevopObjectTime").style.display="";
 	}
 	else if(value=="党员"){
 		 //清空其他内容
-		document.querySelector(".staff_applicationFormTime_label").style.display="none";
-		document.querySelector(".staff_applicationFormTime").style.display="none";
-		document.querySelector(".staff_staff_delevopObjectTime_label").style.display="none";
-		document.querySelector(".staff_staff_delevopObjectTime").style.display="none";
+		document.querySelector(".staff_appliactionFormTime_label").style.display="none";
+		document.querySelector(".staff_appliactionFormTime").style.display="none";
+		document.querySelector(".staff_delevopObjectTime_label").style.display="none";
+		document.querySelector(".staff_delevopObjectTime").style.display="none";
 		//是党员就显示入党时间
 		document.querySelector(".staff_joinPartyTime_label").style.display="";
 		document.querySelector(".staff_joinPartyTime").style.display="";
 	}
 	else{
-		
+		document.querySelector(".staff_appliactionFormTime_label").style.display="none";
+		document.querySelector(".staff_appliactionFormTime").style.display="none";
+		document.querySelector(".staff_delevopObjectTime_label").style.display="none";
+		document.querySelector(".staff_delevopObjectTime").style.display="none";
+		document.querySelector(".staff_joinPartyTime_label").style.display="none";
+		document.querySelector(".staff_joinPartyTime").style.display="none";
 	}
 }
 //从身份证自动获取年龄  和判断身份证 格式

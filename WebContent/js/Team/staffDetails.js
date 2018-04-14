@@ -77,10 +77,25 @@ function get_staffDetails_Ajax(url, staff_id) {
 						isNotFormat.checked = true;
 					}
 				}
+				else if(key=="staff_politicalStatus"){
+					if(value=="预备党员"||value=="入党积极分子"){
+						document.querySelector(".staff_appliactionFormTime_label").style.display="";
+						document.querySelector(".staff_appliactionFormTime").style.display="";
+						document.querySelector(".staff_delevopObjectTime_label").style.display="";
+						document.querySelector(".staff_delevopObjectTime").style.display="";
+						$('input[name="policeman.' + key + '"]').val(value);
+					}else if(value=="党员"){
+						document.querySelector(".staff_joinPartyTime_label").style.display="";
+						document.querySelector(".staff_joinPartyTime").style.display="";
+						$('input[name="policeman.' + key + '"]').val(value);
+					}
+				}
 				$('input[name="policeman.' + key + '"]').val(value);
 			});
 			$('#staff_duty').val(staff_info.staff_duty);
 			$('#staff_type').val(staff_info.staff_type);
+			$('#staff_degree').val(staff_info.staff_degree);
+			$('#staff_politicalStatus').val(staff_info.staff_politicalStatus);
 			$('#staff_MaxEducationalBackground').val(
 					staff_info.staff_MaxEducationalBackground);
 			$('#staff_politicalStatus').val(staff_info.staff_politicalStatus);

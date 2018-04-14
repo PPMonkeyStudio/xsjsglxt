@@ -25,7 +25,9 @@ public class xsjsglxt_staff {
 	private String staff_thePoliceTime;
 	private String staff_isItFormal;
 	private String staff_phone;
-	private String staff_type;
+	private String staff_appliactionFormTime; // 提交申请书时间
+	private String staff_delevopObjectTime;// 发展对象时间
+	private String staff_degree;// 学位
 	private String staff_throughThePolice;
 	private String staff_homephone;
 	private String staff_QQ;
@@ -37,25 +39,6 @@ public class xsjsglxt_staff {
 	private String staff_gmt_create;
 	private String staff_gmt_modified;
 
-	/**
-	 * @return the staff_type
-	 */
-	public String getStaff_type() {
-		return staff_type;
-	}
-
-	/**
-	 * @param staff_type the staff_type to set
-	 */
-	public void setStaff_type(String staff_type) {
-		this.staff_type = staff_type;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		return "xsjsglxt_staff [xsjsglxt_staff_id=" + xsjsglxt_staff_id + ", xsjsglxt_name=" + xsjsglxt_name
@@ -65,12 +48,13 @@ public class xsjsglxt_staff {
 				+ ", staff_MaxEducationalBackground=" + staff_MaxEducationalBackground + ", staff_politicalStatus="
 				+ staff_politicalStatus + ", staff_joinPartyTime=" + staff_joinPartyTime + ", staff_joinWorkTime="
 				+ staff_joinWorkTime + ", staff_alarm=" + staff_alarm + ", staff_thePoliceTime=" + staff_thePoliceTime
-				+ ", staff_isItFormal=" + staff_isItFormal + ", staff_phone=" + staff_phone + ", staff_type="
-				+ staff_type + ", staff_throughThePolice=" + staff_throughThePolice + ", staff_homephone="
-				+ staff_homephone + ", staff_QQ=" + staff_QQ + ", staff_weixin=" + staff_weixin + ", staff_outEmail="
-				+ staff_outEmail + ", staff_inEmail=" + staff_inEmail + ", staff_photo=" + staff_photo + ", staff_duty="
-				+ staff_duty + ", staff_gmt_create=" + staff_gmt_create + ", staff_gmt_modified=" + staff_gmt_modified
-				+ "]";
+				+ ", staff_isItFormal=" + staff_isItFormal + ", staff_phone=" + staff_phone
+				+ ", staff_appliactionFormTime=" + staff_appliactionFormTime + ", staff_delevopObjectTime="
+				+ staff_delevopObjectTime + ", staff_degree=" + staff_degree + ", staff_throughThePolice="
+				+ staff_throughThePolice + ", staff_homephone=" + staff_homephone + ", staff_QQ=" + staff_QQ
+				+ ", staff_weixin=" + staff_weixin + ", staff_outEmail=" + staff_outEmail + ", staff_inEmail="
+				+ staff_inEmail + ", staff_photo=" + staff_photo + ", staff_duty=" + staff_duty + ", staff_gmt_create="
+				+ staff_gmt_create + ", staff_gmt_modified=" + staff_gmt_modified + "]";
 	}
 
 	public String getXsjsglxt_staff_id() {
@@ -79,6 +63,30 @@ public class xsjsglxt_staff {
 
 	public void setXsjsglxt_staff_id(String xsjsglxt_staff_id) {
 		this.xsjsglxt_staff_id = xsjsglxt_staff_id;
+	}
+
+	public String getStaff_appliactionFormTime() {
+		return staff_appliactionFormTime;
+	}
+
+	public void setStaff_appliactionFormTime(String staff_appliactionFormTime) {
+		this.staff_appliactionFormTime = staff_appliactionFormTime;
+	}
+
+	public String getStaff_delevopObjectTime() {
+		return staff_delevopObjectTime;
+	}
+
+	public void setStaff_delevopObjectTime(String staff_delevopObjectTime) {
+		this.staff_delevopObjectTime = staff_delevopObjectTime;
+	}
+
+	public String getStaff_degree() {
+		return staff_degree;
+	}
+
+	public void setStaff_degree(String staff_degree) {
+		this.staff_degree = staff_degree;
 	}
 
 	public String getXsjsglxt_name() {
