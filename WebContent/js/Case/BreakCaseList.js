@@ -5,6 +5,7 @@ var query_data = {
 	"breakeCaseListVO.query_breake_time_start": "",
 	"breakeCaseListVO.query_breake_time_end": "",
 	"breakeCaseListVO.query_breake_person": "",
+	"breakeCaseListVO.query_breake_according": "",
 };
 //当前页面分页信息
 var page_infomantion = {
@@ -86,7 +87,6 @@ $(function () {
 			//key为arr里对象的索引，value为索引为key的对象。对象以{name: 'firstname', value: 'Hello'}形式存储, 以obj.name和obj.value形式遍历 
 			query_data[value.name] = value.value;
 		});
-		$('.query_prompting_info').text('接警时间从' + $('input[name="page_list_BreakecaseInformation.start_time"]').val() + '到' + $('input[name="page_list_BreakecaseInformation.stop_time"]').val());
 		get_ListBreakecaseInformationByPageAndSearch(query_data);
 	});
 
@@ -94,10 +94,10 @@ $(function () {
 		for (var i in query_data) {
 			query_data[i] = "";
 		}
+		//页面重置为第一页
+		query_data["breakeCaseListVO.currPage"] = 1;
 		//选择框清除内容
-		$('#newQuery select').val("");
-		//输入框清除内容
-		$('$newQuery input').val("");
+		$('#newQuery').find('input,select').val('');;
 		/*//影藏模态框
 		$('#newQuery').modal('hide');*/
 		//成功提示

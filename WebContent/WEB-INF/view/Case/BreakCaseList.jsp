@@ -80,7 +80,6 @@ i {
 					<div class="panel">
 						<div class="panel-heading">
 							<h3 class="panel-title">破案列表</h3>
-							<p class="text-primary query_prompting_info">nothing query.</p>
 						</div>
 						<div class="panel-body">
 							<table
@@ -154,7 +153,9 @@ i {
 								</tr>
 								<tr>
 									<td>破案方式:</td>
-									<td><select name="breakeCaseListVO." class="form-control">
+									<td><select name="breakeCaseListVO.query_breake_according"
+										class="form-control">
+											<option value=""></option>
 											<option>指纹</option>
 											<option>视屏</option>
 											<option>NDA</option>
@@ -184,142 +185,6 @@ i {
 		</div>
 		<!-- /.modal -->
 	</div>
-	<!---------------------------------------------------------------------------------------------------->
-	<!------------------------------------------------------------------------------------------------->
-	<!---------------------------------------------------------------------------------------------------->
-	<!-- 破案信息修改-模态框（Modal） -->
-	<div class="modal fade" id="breakCase_modification" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="modal-title"></h4>
-				</div>
-				<div class="modal-body">
-					<form action="">
-						<div style="width: 80%;margin: auto;" class="panel-body"></div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary breakCase_operation">确认修改</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-				</div>
-			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal -->
-	</div>
-	<!---------------------------------------------------------------------------------------------------->
-	<!------------------------------------------------------------------------------------------------->
-	<!---------------------------------------------------------------------------------------------------->
-	<!-- 破案信息增加-模态框（Modal） -->
-	<div class="modal fade" id="bbreakCase_input" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="modal-title"></h4>
-				</div>
-				<div class="modal-body">
-					<form action="">
-						<div style="width: 80%;margin: auto;" class="panel-body">
-							<table class="table table-hover table-condensed" align="center">
-								<thead>
-									<tr>
-										<th>姓名</th>
-										<th>性别</th>
-										<th>生日</th>
-										<th>身份证号</th>
-										<th>住址</th>
-										<th>抓获</th>
-										<th>抓获单位</th>
-										<th>抓获时间</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>所属案件<i class="fa fa-spinner fa-pulse load_remind"></i></td>
-										<td colspan="3"><select style="witdh:100%;"
-											class="form-control selectpicker" data-live-search="true"
-											name="breakecase.breakecase_case"
-											title="Choose one of the following..."></select></td>
-									</tr>
-									<tr>
-										<td>案件类型</td>
-										<td><select style="witdh:100%;" class="form-control"
-											data-live-search="true" name="breakecase.breakecase_type">
-												<option>新添案件</option>
-												<option>已有案件</option>
-										</select></td>
-										<td>嫌疑人姓名</td>
-										<td><input style="witdh:70%;" class="form-control"
-											name="breakecase.breakecase_suspectName" type="text"></td>
-									</tr>
-									<tr>
-										<td>破案时间</td>
-										<td><input style="witdh:70%;" class="form-control mydate"
-											name="breakecase.breakecase_suspectName" type="text"></td>
-										<td>带破案件</td>
-										<td><input style="witdh:70%;" class="form-control"
-											name="breakecase.breakecase_waitbreakecase" type="text"></td>
-									</tr>
-									<tr>
-										<td>性别</td>
-										<td><input style="witdh:70%;" class="form-control"
-											name="breakecase.breakecase_suspectSex" type="text"></td>
-										<td>出生日期</td>
-										<td><input style="witdh:70%;" class="form-control mydate"
-											name="breakecase.breakecase_suspectBirthday" type="text"></td>
-									</tr>
-									<tr>
-										<td>身份证号码</td>
-										<td><input style="witdh:70%;" class="form-control"
-											name="breakecase.breakecase_suspectIDnum" type="text"></td>
-										<td>住址</td>
-										<td><input style="witdh:70%;" class="form-control"
-											name="breakecase.breakecase_suspectAddress" type="text"></td>
-									</tr>
-									<tr>
-										<td>破案方式</td>
-										<td><input style="witdh:70%;" class="form-control"
-											name="breakecase.breakecase_according" type="text"></td>
-										<td>是否抓获</td>
-										<td><input style="witdh:70%;" class="form-control"
-											name="breakecase.breakecase_capture" type="text"></td>
-									</tr>
-									<tr>
-										<td>抓获单位</td>
-										<td><input style="witdh:70%;" class="form-control"
-											name="breakecase.breakecase_captureUnit" type="text"></td>
-										<td>抓获时间</td>
-										<td><input style="witdh:70%;" class="form-control mydate"
-											name="breakecase.breakecase_captureUnit" type="text"></td>
-									</tr>
-									<tr>
-										<td>备注</td>
-										<td colspan="3"><textarea style="witdh:70%;"
-												placeholder="请填写" class="form-control"
-												name="breakecase.breakecase_remarks"></textarea></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary input_sure">添加</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-				</div>
-			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal -->
-	</div>
-	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
