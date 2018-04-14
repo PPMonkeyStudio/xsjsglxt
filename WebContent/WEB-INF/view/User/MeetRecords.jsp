@@ -56,6 +56,7 @@
 								<option value="党小组会">党小组会</option>
 								<option value="专案会">专案会</option>
 								<option value="工作总结会">工作总结会</option>
+								<option value="中队会议">中队会议</option>
 							</select></td>
 							<td>会议地点</td>
 							<td>会议主持人</td>
@@ -94,7 +95,7 @@
 		yearStart : 1900, // 设置最小年份
 		yearEnd : 2100, // 设置最大年份
 		yearOffset : 0, // 年偏差
-		timepicker : false, // 关闭时间选项
+		timepicker : true, // 关闭时间选项
 		format : 'Y-m-d H:i', // 格式化日期年-月-日
 		minDate : '1900/01/01 00:00', // 设置最小日期
 		maxDate : '2030/01/01 00:00', // 设置最大日期

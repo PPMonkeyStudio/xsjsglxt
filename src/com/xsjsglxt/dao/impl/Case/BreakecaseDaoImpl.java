@@ -183,6 +183,10 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		if (breakeCaseListVO.getQuery_sence_inquestId() != null
 				&& breakeCaseListVO.getQuery_sence_inquestId().trim().length() > 0)
 			hql = hql + " and sence.snece_inquestId like '%" + breakeCaseListVO.getQuery_sence_inquestId() + "%'";
+		if (breakeCaseListVO.getQuery_breake_according() != null
+				&& breakeCaseListVO.getQuery_breake_according().trim().length() > 0)
+			hql = hql + " and breake.breakecase_according like '%" + breakeCaseListVO.getQuery_breake_according()
+					+ "%'";
 		long count = (long) session.createQuery(hql).uniqueResult();
 		return (int) count;
 	}
@@ -197,7 +201,6 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 				+ "breake.breakecase_according as breakecase_according , "
 				+ "breake.breakecase_caseTime as breakecase_caseTime)"
 				+ " from xsjsglxt_breakecase as breake , xsjsglxt_case as xCase,xsjsglxt_snece as sence where breake.breakecase_case = xCase.xsjsglxt_case_id and sence.snece_case = xCase.xsjsglxt_case_id and 1=1";
-		System.out.println(hql);
 		if (breakeCaseListVO.getQuery_breake_person() != null
 				&& breakeCaseListVO.getQuery_breake_person().trim().length() > 0)
 			hql = hql + " and breake.breakecase_person like '%" + breakeCaseListVO.getQuery_breake_person() + "%'";
@@ -212,6 +215,11 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		if (breakeCaseListVO.getQuery_sence_inquestId() != null
 				&& breakeCaseListVO.getQuery_sence_inquestId().trim().length() > 0)
 			hql = hql + " and sence.snece_inquestId like '%" + breakeCaseListVO.getQuery_sence_inquestId() + "%'";
+		if (breakeCaseListVO.getQuery_breake_according() != null
+				&& breakeCaseListVO.getQuery_breake_according().trim().length() > 0)
+			hql = hql + " and breake.breakecase_according like '%" + breakeCaseListVO.getQuery_breake_according()
+					+ "%'";
+		hql = hql + " order by breake.breakecase_caseTime desc";
 		List<BreakeCasePageDTO> pageDTO = session.createQuery(hql)
 				.setFirstResult((breakeCaseListVO.getCurrPage() - 1) * breakeCaseListVO.getPageSize())
 				.setMaxResults(breakeCaseListVO.getPageSize()).list();

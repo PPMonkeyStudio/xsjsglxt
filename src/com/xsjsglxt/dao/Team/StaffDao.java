@@ -22,4 +22,6 @@ public interface StaffDao {
 	public void getConnect();
 
 	List<xsjsglxt_staff> getAllPoliceman();
+
+	List<xsjsglxt_staff> getSchedulingStaff(String pointer);
 }

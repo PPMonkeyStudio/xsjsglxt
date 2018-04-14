@@ -18,8 +18,7 @@ import com.xsjsglxt.service.Case.BreakecaseService;
 
 /**
  * 
- * @author 孙毅
- * 破案模块
+ * @author 孙毅 破案模块
  *
  */
 public class BreakecaseAction extends ActionSupport {
@@ -41,7 +40,6 @@ public class BreakecaseAction extends ActionSupport {
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		List<xsjsglxt_breakecase> breakecaseIm = breakecaseService.getBreakeCaseByCaseId(breakeCase);
-		System.out.println(breakecaseIm.size());
 		if (breakecaseIm != null && breakecaseIm.size() > 0) {
 			try {
 				PrintWriter pw = response.getWriter();
@@ -76,15 +74,12 @@ public class BreakecaseAction extends ActionSupport {
 
 	// -----------------------新增一个嫌疑人
 	public void addOneSuspect() {
-		boolean flag = breakecaseService.addOneSuspect(suspect);
+		String flag = breakecaseService.addOneSuspect(suspect);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		try {
 			PrintWriter pw = response.getWriter();
-			if (flag)
-				pw.write("saveSuccess");
-			else
-				pw.write("saveError");
+			pw.write(flag);
 			pw.flush();
 			pw.close();
 		} catch (IOException e) {
@@ -242,7 +237,8 @@ public class BreakecaseAction extends ActionSupport {
 	}
 
 	/**
-	 * @param breakeCaseId the breakeCaseId to set
+	 * @param breakeCaseId
+	 *            the breakeCaseId to set
 	 */
 	public void setBreakeCaseId(String[] breakeCaseId) {
 		this.breakeCaseId = breakeCaseId;
@@ -256,7 +252,8 @@ public class BreakecaseAction extends ActionSupport {
 	}
 
 	/**
-	 * @param suspect the suspect to set
+	 * @param suspect
+	 *            the suspect to set
 	 */
 	public void setSuspect(xsjsglxt_breakecasesuspect suspect) {
 		this.suspect = suspect;
@@ -270,7 +267,8 @@ public class BreakecaseAction extends ActionSupport {
 	}
 
 	/**
-	 * @param suspectId the suspectId to set
+	 * @param suspectId
+	 *            the suspectId to set
 	 */
 	public void setSuspectId(String[] suspectId) {
 		this.suspectId = suspectId;
@@ -284,7 +282,8 @@ public class BreakecaseAction extends ActionSupport {
 	}
 
 	/**
-	 * @param breakeCaseListVO the breakeCaseListVO to set
+	 * @param breakeCaseListVO
+	 *            the breakeCaseListVO to set
 	 */
 	public void setBreakeCaseListVO(BreakeCaseListVO breakeCaseListVO) {
 		this.breakeCaseListVO = breakeCaseListVO;

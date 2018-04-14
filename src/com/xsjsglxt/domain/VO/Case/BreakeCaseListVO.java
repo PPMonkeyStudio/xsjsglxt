@@ -14,6 +14,7 @@ public class BreakeCaseListVO {
 	private String query_breake_time_start;
 	private String query_breake_time_end;
 	private String query_breake_person;
+	private String query_breake_according;
 	private List<BreakeCasePageDTO> breakeCaseDTOList;
 
 	/*
@@ -28,6 +29,14 @@ public class BreakeCaseListVO {
 				+ query_case_name + ", query_breake_time_start=" + query_breake_time_start + ", query_breake_time_end="
 				+ query_breake_time_end + ", query_breake_person=" + query_breake_person + ", breakeCaseDTOList="
 				+ breakeCaseDTOList + "]";
+	}
+
+	public String getQuery_breake_according() {
+		return query_breake_according;
+	}
+
+	public void setQuery_breake_according(String query_breake_according) {
+		this.query_breake_according = query_breake_according;
 	}
 
 	/**
