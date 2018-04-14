@@ -143,7 +143,7 @@ public class StaffDaoImpl implements StaffDao {
 		String hql = null;
 		switch (pointer) {
 		case "leader":
-			hql = "from xsjsglxt_staff where staff_duty !='民警' and staff_duty !='法医' and staff_duty !='辅警'";
+			hql = "from xsjsglxt_staff where staff_duty =='大队长' and staff_duty =='教导员' and staff_duty =='副大队长' and staff_duty =='副教导员' and staff_duty =='中队长' and staff_duty =='副中队长'";
 			break;
 		case "main":
 			hql = "from xsjsglxt_staff where staff_duty ='民警' or staff_duty ='法医'";

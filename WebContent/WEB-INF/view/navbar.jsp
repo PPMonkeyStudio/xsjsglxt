@@ -257,6 +257,10 @@
 							}
 						}
 					});
+			
+			jconfirm.defaults = {
+					smoothContent: false
+			}
 		</script>
 </body>
 <script type="text/javascript">

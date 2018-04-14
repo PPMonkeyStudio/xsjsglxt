@@ -59,14 +59,14 @@ public class BreakecaseServiceImpl implements BreakecaseService {
 	}
 
 	@Override
-	public boolean addOneSuspect(xsjsglxt_breakecasesuspect suspect) {
+	public String addOneSuspect(xsjsglxt_breakecasesuspect suspect) {
 		// TODO Auto-generated method stub
-
-		suspect.setXsjsglxt_breakecaseSuspect_id(TeamUtil.getUuid());
+		String uu = TeamUtil.getUuid();
+		suspect.setXsjsglxt_breakecaseSuspect_id(uu);
 		suspect.setBreakecaseSuspect_gmt_create(TeamUtil.getStringSecond());
 		suspect.setBreakecaseSuspect_gmt_modified(TeamUtil.getStringSecond());
 		boolean flag = breakecaseDao.addOneSuspect(suspect);
-		return flag;
+		return uu;
 	}
 
 	@Override

@@ -48,6 +48,22 @@ public class UserAction extends ActionSupport {
 		}
 	}
 
+	public void getCurrUser() throws IOException {
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter pw = response.getWriter();
+		Gson gson = new Gson();
+		String user_id = (String) ActionContext.getContext().getSession().get("user_id");
+		if (user_id == null || user_id == "") {
+			pw.write("exception");
+		} else {
+			xsjsglxt_user xu = userService.getUserById(user_id);
+			String result = gson.toJson(xu);
+			System.out.println(result);
+			pw.write(result);
+		}
+	}
+
 	public void judgePower() throws IOException, NoSuchMethodException, SecurityException, IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException {
 		HttpServletResponse response = ServletActionContext.getResponse();
@@ -85,10 +101,9 @@ public class UserAction extends ActionSupport {
 				pw.write("loginSuccess");
 				ActionContext.getContext().getSession().put("user_id", xu.getUser_id());
 				ActionContext.getContext().getSession().put("user_name", xu.getUser_name());
-
+				ActionContext.getContext().getSession().put("userSession", xu);
 			} else {
 				pw.write("passwordError");
-
 			}
 		}
 		pw.flush();
@@ -176,6 +191,8 @@ public class UserAction extends ActionSupport {
 		xu.setUser_name(user_name);
 		xu.setUser_number(user_number);
 		xu.setUser_password(user_password);
+		xu.setUser_duty(user_duty);
+		xu.setUser_idCard(user_idCard);
 		xu.setUser_statistics_power(user_statistics_power);
 		xu.setUser_technology_manager_power(user_technology_manager_power);
 		xu.setUser_units(user_units);
@@ -228,6 +245,8 @@ public class UserAction extends ActionSupport {
 		xu.setUser_gmt_create(xuGet.getUser_gmt_create());
 		xu.setUser_gmt_modified(TeamUtil.getStringSecond());
 		xu.setUser_id(user_id);
+		xu.setUser_duty(user_duty);
+		xu.setUser_idCard(user_idCard);
 		xu.setUser_name(user_name);
 		xu.setUser_number(user_number);
 		if (user_password == "" || user_password.equals("")) {
@@ -285,6 +304,24 @@ public class UserAction extends ActionSupport {
 	private String oldPassword;
 	private String newPassword;
 	private String userBlock;
+	private String user_duty;
+	private String user_idCard;
+
+	public String getUser_duty() {
+		return user_duty;
+	}
+
+	public void setUser_duty(String user_duty) {
+		this.user_duty = user_duty;
+	}
+
+	public String getUser_idCard() {
+		return user_idCard;
+	}
+
+	public void setUser_idCard(String user_idCard) {
+		this.user_idCard = user_idCard;
+	}
 
 	public String getUserBlock() {
 		return userBlock;

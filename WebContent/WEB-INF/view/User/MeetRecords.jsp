@@ -56,6 +56,7 @@
 								<option value="党小组会">党小组会</option>
 								<option value="专案会">专案会</option>
 								<option value="工作总结会">工作总结会</option>
+								<option value="中队会议">中队会议</option>
 							</select></td>
 							<td>会议地点</td>
 							<td>会议主持人</td>
