@@ -22,6 +22,7 @@ import org.aspectj.util.FileUtil;
 import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_staff;
+import com.xsjsglxt.domain.VO.Team.policemanDutyVO;
 import com.xsjsglxt.domain.VO.Team.policemanListVO;
 import com.xsjsglxt.service.Team.StaffService;
 
@@ -41,6 +42,24 @@ public class StaffAction extends ActionSupport {
 	private policemanListVO policemanVO;
 
 	private String xsjsglxt_staff_id;
+
+	// 通过职位分类人员
+	public void getSchedulingStaff() {
+		policemanDutyVO dutyVO = staffService.getSchedulingStaff();
+		Gson gson = new Gson();
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(gson.toJson(dutyVO));
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 
 	// -----------------------------------进入人员管理---------------------------------------
 	public String page_staffList() {

@@ -172,7 +172,7 @@ td {
 				</div>
 				<div id="caseContent" style="margin-top: 10px; display: none;">
 					<table class="table table-bordered"
-						style="text-align: center; font-size: 10px; font-weight: bold">
+						style="text-align: center; font-weight: bold">
 						<thead>
 							<tr id="trHead">
 								<td>案件类型</td>
@@ -229,6 +229,8 @@ td {
 	<script type="text/javascript">
 		var documentWidth = document.body.clientWidth;
 		var panelWidth = documentWidth - 160;
+		var caseContent = document.getElementById("caseContent").innerWidth;
+		console.log(caseContent);
 		var navbarHeight = document.getElementById("navbar").offsetHeight;
 		var panelMargin = navbarHeight + 20;
 		document.getElementById("allContent").setAttribute(

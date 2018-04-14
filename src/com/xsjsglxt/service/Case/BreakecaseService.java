@@ -14,7 +14,7 @@ public interface BreakecaseService {
 
 	boolean deleteBreakeCase(String[] breakeCaseId);
 
-	boolean addOneSuspect(xsjsglxt_breakecasesuspect suspect);
+	String addOneSuspect(xsjsglxt_breakecasesuspect suspect);
 
 	boolean deleteSuspect(String[] suspectId);
 

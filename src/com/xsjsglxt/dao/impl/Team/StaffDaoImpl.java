@@ -136,4 +136,25 @@ public class StaffDaoImpl implements StaffDao {
 		List<xsjsglxt_staff> result = query.list();
 		return result;
 	}
+
+	@Override
+	public List<xsjsglxt_staff> getSchedulingStaff(String pointer) {
+		// TODO Auto-generated method stub
+		String hql = null;
+		switch (pointer) {
+		case "leader":
+			hql = "from xsjsglxt_staff where staff_duty =='大队长' and staff_duty =='教导员' and staff_duty =='副大队长' and staff_duty =='副教导员' and staff_duty =='中队长' and staff_duty =='副中队长'";
+			break;
+		case "main":
+			hql = "from xsjsglxt_staff where staff_duty ='民警' or staff_duty ='法医'";
+			break;
+		case "assistant":
+			hql = "from xsjsglxt_staff where staff_duty ='辅警'";
+			break;
+		}
+		Session session = this.getSession();
+		Query query = session.createQuery(hql);
+		List<xsjsglxt_staff> staffList = query.list();
+		return staffList;
+	}
 }
