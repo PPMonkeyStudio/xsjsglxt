@@ -74,15 +74,12 @@ public class BreakecaseAction extends ActionSupport {
 
 	// -----------------------新增一个嫌疑人
 	public void addOneSuspect() {
-		boolean flag = breakecaseService.addOneSuspect(suspect);
+		String flag = breakecaseService.addOneSuspect(suspect);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		try {
 			PrintWriter pw = response.getWriter();
-			if (flag)
-				pw.write("saveSuccess");
-			else
-				pw.write("saveError");
+			pw.write(flag);
 			pw.flush();
 			pw.close();
 		} catch (IOException e) {

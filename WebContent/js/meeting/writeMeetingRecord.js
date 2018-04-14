@@ -10,7 +10,7 @@ var createConfirm = function() {
 						+ "<select class='form-control' name='meet.meeting_title'><option value='大队例会'>大队例会</option>"
 						+ "<option value='支委会'>支委会</option><option value='党课'>党课</option>"
 						+ "<option value='党员大会'>党员大会</option><option value='党小组会'>党小组会</option>"
-						+ "<option value='专案会'>专案会</option><option value='工作总结会'>工作总结会</option></select>"
+						+ "<option value='专案会'>专案会</option><option value='工作总结会'>工作总结会</option><option value='中队会议'>中队会议</option></select>"
 						+ "</td><td>会议地点：</td><td><input name='meet.meeting_place' type='text' class='form-control' placeholder='请输入会议地点'></td></tr>"
 						+ "<tr><td>会议开始时间：</td><td><input placeholder='时分按格式手动精确（10:30英文冒号）' name='meet.meeting_start_time' type='text' class='form-control  mydate'></td>"
 						+ "<td>会议结束时间：</td><td><input placeholder='时分按格式手动精确（10:30英文冒号）' name='meet.meeting_end_time' type='text' class='form-control  mydate'></td></tr>"

@@ -104,7 +104,6 @@ public class UserAction extends ActionSupport {
 				ActionContext.getContext().getSession().put("userSession", xu);
 			} else {
 				pw.write("passwordError");
-
 			}
 		}
 		pw.flush();
@@ -192,6 +191,8 @@ public class UserAction extends ActionSupport {
 		xu.setUser_name(user_name);
 		xu.setUser_number(user_number);
 		xu.setUser_password(user_password);
+		xu.setUser_duty(user_duty);
+		xu.setUser_idCard(user_idCard);
 		xu.setUser_statistics_power(user_statistics_power);
 		xu.setUser_technology_manager_power(user_technology_manager_power);
 		xu.setUser_units(user_units);
@@ -244,6 +245,8 @@ public class UserAction extends ActionSupport {
 		xu.setUser_gmt_create(xuGet.getUser_gmt_create());
 		xu.setUser_gmt_modified(TeamUtil.getStringSecond());
 		xu.setUser_id(user_id);
+		xu.setUser_duty(user_duty);
+		xu.setUser_idCard(user_idCard);
 		xu.setUser_name(user_name);
 		xu.setUser_number(user_number);
 		if (user_password == "" || user_password.equals("")) {
@@ -301,6 +304,24 @@ public class UserAction extends ActionSupport {
 	private String oldPassword;
 	private String newPassword;
 	private String userBlock;
+	private String user_duty;
+	private String user_idCard;
+
+	public String getUser_duty() {
+		return user_duty;
+	}
+
+	public void setUser_duty(String user_duty) {
+		this.user_duty = user_duty;
+	}
+
+	public String getUser_idCard() {
+		return user_idCard;
+	}
+
+	public void setUser_idCard(String user_idCard) {
+		this.user_idCard = user_idCard;
+	}
 
 	public String getUserBlock() {
 		return userBlock;

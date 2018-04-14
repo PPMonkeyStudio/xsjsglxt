@@ -183,6 +183,10 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		if (breakeCaseListVO.getQuery_sence_inquestId() != null
 				&& breakeCaseListVO.getQuery_sence_inquestId().trim().length() > 0)
 			hql = hql + " and sence.snece_inquestId like '%" + breakeCaseListVO.getQuery_sence_inquestId() + "%'";
+		if (breakeCaseListVO.getQuery_breake_according() != null
+				&& breakeCaseListVO.getQuery_breake_according().trim().length() > 0)
+			hql = hql + " and breake.breakecase_according like '%" + breakeCaseListVO.getQuery_breake_according()
+					+ "%'";
 		long count = (long) session.createQuery(hql).uniqueResult();
 		return (int) count;
 	}
@@ -211,6 +215,10 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		if (breakeCaseListVO.getQuery_sence_inquestId() != null
 				&& breakeCaseListVO.getQuery_sence_inquestId().trim().length() > 0)
 			hql = hql + " and sence.snece_inquestId like '%" + breakeCaseListVO.getQuery_sence_inquestId() + "%'";
+		if (breakeCaseListVO.getQuery_breake_according() != null
+				&& breakeCaseListVO.getQuery_breake_according().trim().length() > 0)
+			hql = hql + " and breake.breakecase_according like '%" + breakeCaseListVO.getQuery_breake_according()
+					+ "%'";
 		hql = hql + " order by breake.breakecase_caseTime desc";
 		List<BreakeCasePageDTO> pageDTO = session.createQuery(hql)
 				.setFirstResult((breakeCaseListVO.getCurrPage() - 1) * breakeCaseListVO.getPageSize())
