@@ -6,8 +6,10 @@ public class xsjsglxt_user {
 	private String user_username;
 	private String user_password;
 	private String user_name;
-	private String user_number;
-	private String user_units;
+	private String user_number; // 警号
+	private String user_units; // 单位
+	private String user_duty; // 职位
+	private String user_idCard; // 身份证号码
 	private String user_case_technology_power;
 	private String user_case_query_power;
 	private String user_check_power;
@@ -24,6 +26,22 @@ public class xsjsglxt_user {
 
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
+	}
+
+	public String getUser_duty() {
+		return user_duty;
+	}
+
+	public void setUser_duty(String user_duty) {
+		this.user_duty = user_duty;
+	}
+
+	public String getUser_idCard() {
+		return user_idCard;
+	}
+
+	public void setUser_idCard(String user_idCard) {
+		this.user_idCard = user_idCard;
 	}
 
 	public String getUser_username() {

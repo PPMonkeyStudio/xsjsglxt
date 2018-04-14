@@ -44,7 +44,7 @@
 			<!--  -->
 			<div class="panel-body">
 				<form id="sneceInformation" action="">
-					<table class="table">
+					<table>
 						<tr>
 							<td>勘验编号</td>
 							<td><input style="font-size: 12px;"
