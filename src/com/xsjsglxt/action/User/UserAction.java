@@ -48,6 +48,22 @@ public class UserAction extends ActionSupport {
 		}
 	}
 
+	public void getCurrUser() throws IOException {
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter pw = response.getWriter();
+		Gson gson = new Gson();
+		String user_id = (String) ActionContext.getContext().getSession().get("user_id");
+		if (user_id == null || user_id == "") {
+			pw.write("exception");
+		} else {
+			xsjsglxt_user xu = userService.getUserById(user_id);
+			String result = gson.toJson(xu);
+			System.out.println(result);
+			pw.write(result);
+		}
+	}
+
 	public void judgePower() throws IOException, NoSuchMethodException, SecurityException, IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException {
 		HttpServletResponse response = ServletActionContext.getResponse();
@@ -85,7 +101,7 @@ public class UserAction extends ActionSupport {
 				pw.write("loginSuccess");
 				ActionContext.getContext().getSession().put("user_id", xu.getUser_id());
 				ActionContext.getContext().getSession().put("user_name", xu.getUser_name());
-
+				ActionContext.getContext().getSession().put("userSession", xu);
 			} else {
 				pw.write("passwordError");
 
