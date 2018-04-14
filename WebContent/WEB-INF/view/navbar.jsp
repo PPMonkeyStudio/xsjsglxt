@@ -186,7 +186,8 @@
 				'user_army_manager_power' : false, //队伍
 				'user_technology_manager_power' : false,//技术
 				'user_statistics_power' : false, //统计
-				'user_user_manager_power' : false
+				'user_user_manager_power' : false,
+				'user_check_power_modified': false
 			}
 
 			var powerNavVue = new Vue({
@@ -228,10 +229,16 @@
 								} else {
 									userPowerDTO.user_case_query_power = false;
 								}
-								if (result.user_check_power == 'jurisdiction_admin') {
-									userPowerDTO.user_check_power = true;
-								} else {
+								if (result.user_check_power == 'jurisdiction_none') {
 									userPowerDTO.user_check_power = false;
+								} else {
+									userPowerDTO.user_check_power = true;
+								}
+								if(result.user_check_power == 'jurisdiction_use'){
+									userPowerDTO.user_check_power_modified = false;
+								}
+								else{
+									userPowerDTO.user_check_power_modified=true;
 								}
 								if (result.user_army_manager_power == 'jurisdiction_admin') {
 									userPowerDTO.user_army_manager_power = true;
