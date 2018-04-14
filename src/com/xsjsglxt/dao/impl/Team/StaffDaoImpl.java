@@ -143,7 +143,7 @@ public class StaffDaoImpl implements StaffDao {
 		String hql = null;
 		switch (pointer) {
 		case "leader":
-			hql = "from xsjsglxt_staff where staff_duty =='大队长' and staff_duty =='教导员' and staff_duty =='副大队长' and staff_duty =='副教导员' and staff_duty =='中队长' and staff_duty =='副中队长'";
+			hql = "from xsjsglxt_staff where staff_duty ='大队长' or staff_duty ='教导员' or staff_duty ='副大队长' or staff_duty ='副教导员' or staff_duty ='中队长' or staff_duty ='副中队长'";
 			break;
 		case "main":
 			hql = "from xsjsglxt_staff where staff_duty ='民警' or staff_duty ='法医'";
@@ -153,6 +153,26 @@ public class StaffDaoImpl implements StaffDao {
 			break;
 		}
 		Session session = this.getSession();
+		Query query = session.createQuery(hql);
+		List<xsjsglxt_staff> staffList = query.list();
+		return staffList;
+	}
+
+	@Override
+	public List<xsjsglxt_staff> getMeetCompere() {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		String hql = "from xsjsglxt_staff where staff_duty ='大队长' or staff_duty ='教导员' or staff_duty ='副大队长' or staff_duty ='副教导员' or staff_duty ='中队长' or staff_duty ='副局长'";
+		Query query = session.createQuery(hql);
+		List<xsjsglxt_staff> staffList = query.list();
+		return staffList;
+	}
+
+	@Override
+	public List<xsjsglxt_staff> getMeetRecorder() {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		String hql = "from xsjsglxt_staff where staff_duty = '内勤'";
 		Query query = session.createQuery(hql);
 		List<xsjsglxt_staff> staffList = query.list();
 		return staffList;

@@ -92,4 +92,16 @@ public class StaffServiceImpl implements StaffService {
 		pVo.setStaffMain(main);
 		return pVo;
 	}
+
+	@Override
+	public List<xsjsglxt_staff> getMeetCompere() {
+		// TODO Auto-generated method stub
+		return staffDao.getMeetCompere();
+	}
+
+	@Override
+	public List<xsjsglxt_staff> getMeetRecorder() {
+		// TODO Auto-generated method stub
+		return staffDao.getMeetRecorder();
+	}
 }
