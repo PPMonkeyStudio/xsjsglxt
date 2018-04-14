@@ -68,29 +68,31 @@ i {
 						style="margin-left: 15px;" type="button" class="btn btn-default">
 						<i class="fa fa-plus-square"></i> 添加刑事破案
 					</button>
+					<!--  DELETE -->
+					<button id="delete-breakeCase" style="margin-left: 15px;"
+						type="button" class="btn btn-default">
+						<i class="fa fa-trash-o"></i> 删除所选破案
+					</button>
 				</div>
 				<div class="col-md-12">
 					<!-- TABLE HOVER -->
 					<div class="panel">
 						<div class="panel-heading">
 							<h3 class="panel-title">破案列表</h3>
-							<p class="text-primary query_prompting_info">nothing to
-								query.</p>
+							<p class="text-primary query_prompting_info">nothing query.</p>
 						</div>
 						<div class="panel-body">
 							<table
 								class="table table-hover table-condensed breakcase_table_info">
 								<thead>
 									<tr>
-										<th>序号</th>
+										<th><input type="checkbox" onclick="selectAll(this)"></th>
 										<th>所属案件</th>
+										<th>勘验编号</th>
 										<th>案件类型</th>
+										<th>破案人</th>
 										<th>破案方式</th>
-										<th>是否抓获</th>
-										<th>抓获单位</th>
-										<th>带破案件</th>
-										<th>嫌疑人姓名</th>
-										<th>操作</th>
+										<th>破案时间</th>
 									</tr>
 								</thead>
 								<tbody>

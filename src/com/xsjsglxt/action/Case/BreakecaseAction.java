@@ -18,8 +18,7 @@ import com.xsjsglxt.service.Case.BreakecaseService;
 
 /**
  * 
- * @author 孙毅
- * 破案模块
+ * @author 孙毅 破案模块
  *
  */
 public class BreakecaseAction extends ActionSupport {
@@ -242,7 +241,8 @@ public class BreakecaseAction extends ActionSupport {
 	}
 
 	/**
-	 * @param breakeCaseId the breakeCaseId to set
+	 * @param breakeCaseId
+	 *            the breakeCaseId to set
 	 */
 	public void setBreakeCaseId(String[] breakeCaseId) {
 		this.breakeCaseId = breakeCaseId;
@@ -256,7 +256,8 @@ public class BreakecaseAction extends ActionSupport {
 	}
 
 	/**
-	 * @param suspect the suspect to set
+	 * @param suspect
+	 *            the suspect to set
 	 */
 	public void setSuspect(xsjsglxt_breakecasesuspect suspect) {
 		this.suspect = suspect;
@@ -270,7 +271,8 @@ public class BreakecaseAction extends ActionSupport {
 	}
 
 	/**
-	 * @param suspectId the suspectId to set
+	 * @param suspectId
+	 *            the suspectId to set
 	 */
 	public void setSuspectId(String[] suspectId) {
 		this.suspectId = suspectId;
@@ -284,7 +286,8 @@ public class BreakecaseAction extends ActionSupport {
 	}
 
 	/**
-	 * @param breakeCaseListVO the breakeCaseListVO to set
+	 * @param breakeCaseListVO
+	 *            the breakeCaseListVO to set
 	 */
 	public void setBreakeCaseListVO(BreakeCaseListVO breakeCaseListVO) {
 		this.breakeCaseListVO = breakeCaseListVO;
