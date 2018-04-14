@@ -145,16 +145,16 @@
 							<td style="height: 74;">报案人基本情况</td>
 							<td colspan="5"><input style="width: 24%; float: left;"
 								name="case1.case_reporterName" class="form-control" type="text"
-								placeholder="姓名"> <input
+								placeholder="姓名"><input
 								style="width: 24%; float: left; margin-left: 6px;"
 								name="case1.case_reporterSex" class="form-control" type="text"
-								placeholder="年龄 "> <input
+								placeholder="年龄 "><input
 								style="width: 24%; float: left; margin-left: 6px;"
 								name="case1.case_reporterJobUnit" class="form-control"
-								type="text" placeholder="工作单位 "> <input
+								type="text" placeholder="工作单位 "><input
 								style="width: 25%; margin-left: 6px; float: left;"
 								name="case1.case_reporterPhone" class="form-control" type="text"
-								placeholder="联系电话 "> <input
+								placeholder="联系电话 "><input
 								style="margin-top: 6px; float: right;"
 								name="case1.case_reporterAddress" class="form-control"
 								type="text" placeholder="家庭住址 "></td>
