@@ -97,29 +97,64 @@ function Create_EntrustmentBook(type) {
 						+ '<tbody>'
 						+ '<tr><td><span style="color:#D9534F;">*</span> 鉴定要求</td>'
 						+ '<td><select class="form-control" name="tranceCheckBook.check_entrustment_book_entrustment_request" >'
-						+ '<option value="指纹检验鉴定">指纹检验鉴定</option>'
-						+ '<option value="足迹检验鉴定">足迹检验鉴定</option>'
-						+ '<option value="整体分离检验鉴定">整体分离检验鉴定</option>'
-						+ '<option value="车辆痕迹检验鉴定">车辆痕迹检验鉴定</option>'
-						+ '<option value="死因鉴定">死因鉴定</option>'
-						+ '<option value="损伤鉴定">损伤鉴定</option>'
-						+ '<option value="理化检验鉴定">理化检验鉴定</option>'
-						+ '<option value="毒物检验鉴定">毒物检验鉴定</option>'
-						+ '<option value="失踪人口查询">失踪人口查询</option>'
+						+ '<option class="EntrustmentRequest_Trance" value="指纹检验鉴定">指纹检验鉴定</option>'
+						+ '<option  class="EntrustmentRequest_Trance" value="足迹检验鉴定">足迹检验鉴定</option>'
+						+ '<option  class="EntrustmentRequest_Trance" value="整体分离检验鉴定">整体分离检验鉴定</option>'
+						+ '<option  class="EntrustmentRequest_Trance" value="车辆痕迹检验鉴定">车辆痕迹检验鉴定</option>'
+						+ '<option class="EntrustmentRequest_Forensic"  value="死因鉴定">死因鉴定</option>'
+						+ '<option class="EntrustmentRequest_Forensic"  value="损伤鉴定">损伤鉴定</option>'
+						+ '<option  class="EntrustmentRequest_Trance" value="理化检验鉴定">理化检验鉴定</option>'
+						+ '<option  class="EntrustmentRequest_Trance" value="毒物检验鉴定">毒物检验鉴定</option>'
+						+ '<option  class="EntrustmentRequest_Trance" value="失踪人口查询">失踪人口查询</option>'
 						+ '<option value="其他">其他</option>'
-						+ '</select><input class="form-control" id="check_entrustment_book_entrustment_request_qt"  style="margin:10px 0 0 0;"/></td></tr>'
+						+ '</select><input class="form-control" id="check_entrustment_book_entrustment_request_qt"  style="margin:10px 0 0 0;" placeholder="若选择 [其他] 则填写在此处" /></td></tr>'
 						+ '</tbody>' + '</table>' + '</form>' + '<hr>',
 
 				onOpenBefore : function() {
 					if (type == '痕迹') {
+						/*
+						 * 
+						 */
 						var div_ForensicCheckEntrustmentBook = document
 								.getElementById("div_ForensicCheckEntrustmentBook");
 						div_ForensicCheckEntrustmentBook.parentNode
 								.removeChild(div_ForensicCheckEntrustmentBook);
-						jc.setTitle("痕迹检验鉴定委托书");
+						jc.setTitle("检验鉴定委托书（通用）");
+						/*
+						 * 按照鉴定类型删除鉴定要求中不需要的option
+						 */
+						var EntrustmentRequest_Options = document
+								.getElementsByClassName("EntrustmentRequest_Forensic");
+
+						var EntrustmentRequest_Options_Length = EntrustmentRequest_Options.length;
+						for (var num = 0; num < EntrustmentRequest_Options_Length; num++) {
+							EntrustmentRequest_Options[0].parentNode
+									.removeChild(EntrustmentRequest_Options[0]);
+						}
+						/*
+						 * 
+						 */
 					} else {
+						/*
+						 * 
+						 */
 						jc.setTitle("法医检验鉴定委托书");
+						/*
+						 * 按照鉴定类型删除鉴定要求中不需要的option
+						 */
+						var EntrustmentRequest_Options = document
+								.getElementsByClassName("EntrustmentRequest_Trance");
+
+						var EntrustmentRequest_Options_Length = EntrustmentRequest_Options.length;
+						for (var num = 0; num < EntrustmentRequest_Options_Length; num++) {
+							EntrustmentRequest_Options[0].parentNode
+									.removeChild(EntrustmentRequest_Options[0]);
+						}
+						/*
+						 * 
+						 */
 					}
+
 				},
 				onContentReady : function() {
 					/*
