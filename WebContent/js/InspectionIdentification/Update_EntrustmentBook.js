@@ -2,7 +2,7 @@ function Update_EntrustmentBook(obj) {
 	var json_list = EntrustmentBook_json;
 	var jc = $
 			.confirm({
-				title : '痕迹检验鉴定委托书（修改）',
+				title : '检验鉴定委托书（通用）（修改）',
 				content : '',
 				type : 'blue',
 				columnClass : 'col-md-12',
