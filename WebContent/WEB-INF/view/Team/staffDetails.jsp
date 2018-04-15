@@ -937,12 +937,12 @@
 										class="staffStudent_addressRelive" type="text"></td>
 								</tr>
 								<tr>
-									<td><label class="staff_info_label">起始时间</label></td>
+									<td><label class="staff_info_label time">起始时间</label></td>
 									<td><input style="font-size: 12px;"
 										class=" staffStudent_startTimeRelive"></td>
 								</tr>
 								<tr>
-									<td><label class="staff_info_label">结束时间</label></td>
+									<td><label class="staff_info_label time">结束时间</label></td>
 									<td><input type="text" class="staffStudent_stopTimeRelive" /></td>
 								</tr>
 
@@ -1000,11 +1000,11 @@
 								<tr>
 									<td><label>起始时间</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffWork_startTimeRelive"></td>
+										class="staffWork_startTimeRelive time"></td>
 								</tr>
 								<tr>
 									<td><label>结束时间</label></td>
-									<td><input type="text" class="staffWork_stopTimeRelive" /></td>
+									<td><input type="text" class="staffWork_stopTimeRelive time" /></td>
 								</tr>
 
 								<tr>
@@ -1067,7 +1067,7 @@
 								<tr>
 									<td><label class="staff_info_label">生日</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffFamily_birthdayRelive" class=" study_startTime"
+										class="staffFamily_birthdayRelive time" class=" study_startTime"
 										type="text"></td>
 								</tr>
 								<tr>
@@ -1134,12 +1134,12 @@
 								<tr>
 									<td><label class="staff_info_label">调入时间</label></td>
 									<td><input style="font-size: 12px;"
-										class=" staffMove_inTimeRelive" type="text"></td>
+										class=" staffMove_inTimeRelive time" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">调出时间</label></td>
 									<td><input style="font-size: 12px;"
-										class=" staffMove_outTimeRelive" type="text"></td>
+										class=" staffMove_outTimeRelive time" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">是否在岗</label></td>
@@ -1208,7 +1208,7 @@
 								<tr>
 									<td><label class="staff_info_label">表彰时间</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffReward_TimeRelive"></td>
+										class="staffReward_TimeRelive time"></td>
 								</tr>
 
 								<tr>
@@ -1272,7 +1272,7 @@
 								<tr>
 									<td><label class="staff_info_label">违纪时间</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffPrinciple_TimeRelive"></td>
+										class="staffPrinciple_TimeRelive time"></td>
 								</tr>
 
 								<tr>
@@ -1325,7 +1325,7 @@
 								<tr>
 									<td><label class="staff_info_label">起始时间</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffFurlough_startTimeRelive"></td>
+										class="staffFurlough_startTimeRelive time"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">天数</label></td>
@@ -1341,7 +1341,7 @@
 								<tr>
 									<td><label class="staff_info_label">销假时间</label></td>
 									<td><input type="text"
-										class="staffFurlough_stopTimeRelive" /></td>
+										class="staffFurlough_stopTimeRelive time" /></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
@@ -1415,6 +1415,15 @@
 			maxDate : '2100/01/01', // 设置最大日期
 		});
 		$('.staff_thePoliceTime').datetimepicker({
+			yearStart : 1900, // 设置最小年份
+			yearEnd : 2100, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : false, // 关闭时间选项
+			format : 'Y-m-d', // 格式化日期年-月-日
+			minDate : '1900/01/01', // 设置最小日期
+			maxDate : '2100/01/01', // 设置最大日期
+		});
+		$('.time').datetimepicker({
 			yearStart : 1900, // 设置最小年份
 			yearEnd : 2100, // 设置最大年份
 			yearOffset : 0, // 年偏差
