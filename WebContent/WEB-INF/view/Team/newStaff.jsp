@@ -441,7 +441,7 @@
 						<table>
 							<tbody>
 								<tr>
-									<td><label class="staff_info_label">学习/出差地点</label></td>
+									<td><label class="staff_info_label">地点</label></td>
 									<td><input style="font-size: 12px;"
 										class="staffStudent_address" name="policeman.staff_birthday"
 										type="text"></td>

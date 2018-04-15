@@ -114,12 +114,12 @@
 
 								<td><label class="staff_info_label">工作时间</label></td>
 								<td><input name="policeman.staff_joinWorkTime"
-									class="form-control staff_joinWorkTime" type="text"
+									class="form-control staff_joinWorkTime time" type="text"
 									placeholder="参加工作时间"></td>
 								<td><label class="staff_info_label">生日</label></td>
 								<td><input style="font-size: 12px;"
 									name="policeman.staff_birthday"
-									class="form-control staff_birthday" type="text"></td>
+									class="form-control staff_birthday time" type="text"></td>
 								<td><label class="staff_info_label">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label></td>
 								<td><label style="float: left; width: 50px;"
 									class="fancy-radio person_radio"> <input
@@ -156,7 +156,7 @@
 					
 					<td><label class="staff_info_label">入警时间</label></td>
 								<td><input name="policeman.staff_thePoliceTime"
-									class="form-control staff_thePoliceTime" type="text"></td>
+									class="form-control staff_thePoliceTime time" type="text"></td>
 					
 								<td><label class="staff_info_label">是否&nbsp;&nbsp;正式</label></td>
 								<td><label style="float: left; width: 50px;"
@@ -183,19 +183,19 @@
 								<td class="staff_joinPartyTime_label" style="display: none;"><label
 									class="staff_info_label">入党时间</label></td>
 								<td class="staff_joinPartyTime" style="display: none;"><input
-									name="policeman.staff_joinPartyTime" class="form-control "
+									name="policeman.staff_joinPartyTime time" class="form-control "
 									type="text"></td>
 								<td class="staff_appliactionFormTime_label"
 									style="display: none;"><label class="staff_info_label">提交申请书</label></td>
-								<td class="staff_appliactionFormTime" style="display: none;"><input
+								<td class="staff_appliactionFormTime " style="display: none;"><input
 									placeholder="提交申请书时间"
-									name="policeman.staff_appliactionFormTime" class="staff_appliactionFormTime form-control"
+									name="policeman.staff_appliactionFormTime" class="time staff_appliactionFormTime form-control"
 									type="text"></td>
 								<td class="staff_delevopObjectTime_label" style="display: none;"><label
 									class="staff_info_label">发展对象</label></td>
 								<td class="staff_delevopObjectTime" style="display: none;"><input
 									name="policeman.staff_delevopObjectTime" placeholder="发展对象时间"
-									class="form-control staff_joinPartyTime" type="text"></td>
+									class="form-control staff_joinPartyTime time" type="text"></td>
 
 							</tr>
 							<tr>
@@ -479,7 +479,7 @@
 						<table>
 							<tbody>
 								<tr>
-									<td><label class="staff_info_label">学习/出差地点</label></td>
+									<td><label class="staff_info_label">地点</label></td>
 									<td><input style="font-size: 12px;"
 										class="staffStudent_address" type="text"></td>
 								</tr>
@@ -547,11 +547,11 @@
 								<tr>
 									<td><label class="staff_info_label">起始时间</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffWork_startTime"></td>
+										class="staffWork_startTime time"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">结束时间</label></td>
-									<td><input type="text" class="staffWork_stopTime" /></td>
+									<td><input type="text" class="staffWork_stopTime time" /></td>
 								</tr>
 
 								<tr>
@@ -614,7 +614,7 @@
 								<tr>
 									<td><label class="staff_info_label">生日</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffFamily_birthday" class=" study_startTime"
+										class="staffFamily_birthday time" class=" study_startTime"
 										type="text"></td>
 								</tr>
 								<tr>
@@ -681,12 +681,12 @@
 								<tr>
 									<td><label class="staff_info_label">调入时间</label></td>
 									<td><input style="font-size: 12px;"
-										class=" staffMove_inTime" type="text"></td>
+										class=" staffMove_inTime time" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">调出时间</label></td>
 									<td><input style="font-size: 12px;"
-										class=" staffMove_outTime" type="text"></td>
+										class=" staffMove_outTime time" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">是否在岗</label></td>
@@ -755,7 +755,7 @@
 								<tr>
 									<td><label class="staff_info_label">表彰时间</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffReward_Time"></td>
+										class="staffReward_Time time"></td>
 								</tr>
 
 								<tr>
@@ -819,7 +819,7 @@
 								<tr>
 									<td><label class="staff_info_label">违纪时间</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffPrinciple_Time"></td>
+										class="staffPrinciple_Time time"></td>
 								</tr>
 
 								<tr>
@@ -872,7 +872,7 @@
 								<tr>
 									<td><label class="staff_info_label">起始时间</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffFurlough_startTime"></td>
+										class="staffFurlough_startTime time"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">天数</label></td>
@@ -887,7 +887,7 @@
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">销假时间</label></td>
-									<td><input type="text" class="staffFurlough_stopTime" /></td>
+									<td><input type="text" class="staffFurlough_stopTime time" /></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
@@ -932,7 +932,7 @@
 						<table>
 							<tbody>
 								<tr>
-									<td><label class="staff_info_label">学习地点</label></td>
+									<td><label class="staff_info_label">地点</label></td>
 									<td><input style="font-size: 12px;"
 										class="staffStudent_addressRelive" type="text"></td>
 								</tr>
@@ -1377,171 +1377,7 @@
 	<script type="text/javascript"
 		src="<%=basePath%>js/Team/delete_longTable.js"></script>
 	<script type="text/javascript">
-		$.datetimepicker.setLocale('ch');
-		$('.staff_joinPartyTime').datetimepicker({
-			yearStart : 1900, // 设置最小年份
-			yearEnd : 2100, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : false, // 关闭时间选项
-			format : 'Y-m-d', // 格式化日期年-月-日
-			minDate : '1900/01/01', // 设置最小日期
-			maxDate : '2100/01/01', // 设置最大日期
-		});
-		$('.staff_appliactionFormTime').datetimepicker({
-			yearStart : 1900, // 设置最小年份
-			yearEnd : 2100, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : false, // 关闭时间选项
-			format : 'Y-m-d', // 格式化日期年-月-日
-			minDate : '1900/01/01', // 设置最小日期
-			maxDate : '2100/01/01', // 设置最大日期
-		});
-		$('.staff_delevopObjectTime').datetimepicker({
-			yearStart : 1900, // 设置最小年份
-			yearEnd : 2100, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : false, // 关闭时间选项
-			format : 'Y-m-d', // 格式化日期年-月-日
-			minDate : '1900/01/01', // 设置最小日期
-			maxDate : '2100/01/01', // 设置最大日期
-		});
-		$('.staff_joinWorkTime').datetimepicker({
-			yearStart : 1900, // 设置最小年份
-			yearEnd : 2100, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : false, // 关闭时间选项
-			format : 'Y-m-d', // 格式化日期年-月-日
-			minDate : '1900/01/01', // 设置最小日期
-			maxDate : '2100/01/01', // 设置最大日期
-		});
-		$('.staff_thePoliceTime').datetimepicker({
-			yearStart : 1900, // 设置最小年份
-			yearEnd : 2100, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : false, // 关闭时间选项
-			format : 'Y-m-d', // 格式化日期年-月-日
-			minDate : '1900/01/01', // 设置最小日期
-			maxDate : '2100/01/01', // 设置最大日期
-		});
 		$('.time').datetimepicker({
-			yearStart : 1900, // 设置最小年份
-			yearEnd : 2100, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : false, // 关闭时间选项
-			format : 'Y-m-d', // 格式化日期年-月-日
-			minDate : '1900/01/01', // 设置最小日期
-			maxDate : '2100/01/01', // 设置最大日期
-		});
-		$('.staff_birthday').datetimepicker({
-			yearStart : 1900, // 设置最小年份
-			yearEnd : 2100, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : false, // 关闭时间选项
-			format : 'Y-m-d', // 格式化日期年-月-日
-			minDate : '1900/01/01', // 设置最小日期
-			maxDate : '2100/01/01', // 设置最大日期
-		});
-		$('.staffStudent_startTime').datetimepicker({
-			yearStart : 1900, // 设置最小年份
-			yearEnd : 2100, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : false, // 关闭时间选项
-			format : 'Y-m-d', // 格式化日期年-月-日
-			minDate : '1900/01/01', // 设置最小日期
-			maxDate : '2100/01/01', // 设置最大日期
-		});
-		$('.staffStudent_stopTime').datetimepicker({
-			yearStart : 1900, // 设置最小年份
-			yearEnd : 2100, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : false, // 关闭时间选项
-			format : 'Y-m-d', // 格式化日期年-月-日
-			minDate : '1900/01/01', // 设置最小日期
-			maxDate : '2100/01/01', // 设置最大日期
-		});
-		$('.staffFamily_birthday').datetimepicker({
-			yearStart : 1900, // 设置最小年份
-			yearEnd : 2100, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : false, // 关闭时间选项
-			format : 'Y-m-d', // 格式化日期年-月-日
-			minDate : '1900/01/01', // 设置最小日期
-			maxDate : '2100/01/01', // 设置最大日期
-		});
-		$('.staffWork_startTime').datetimepicker({
-			yearStart : 1900, // 设置最小年份
-			yearEnd : 2100, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : false, // 关闭时间选项
-			format : 'Y-m-d', // 格式化日期年-月-日
-			minDate : '1900/01/01', // 设置最小日期
-			maxDate : '2100/01/01', // 设置最大日期
-		});
-		$('.staffWork_stopTime').datetimepicker({
-			yearStart : 1900, // 设置最小年份
-			yearEnd : 2100, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : false, // 关闭时间选项
-			format : 'Y-m-d', // 格式化日期年-月-日
-			minDate : '1900/01/01', // 设置最小日期
-			maxDate : '2100/01/01', // 设置最大日期
-		});
-		$('.staffMove_inTime').datetimepicker({
-			yearStart : 1900, // 设置最小年份
-			yearEnd : 2100, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : false, // 关闭时间选项
-			format : 'Y-m-d', // 格式化日期年-月-日
-			minDate : '1900/01/01', // 设置最小日期
-			maxDate : '2100/01/01', // 设置最大日期
-		});
-		$('.staffMove_outTime').datetimepicker({
-			yearStart : 1900, // 设置最小年份
-			yearEnd : 2100, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : false, // 关闭时间选项
-			format : 'Y-m-d', // 格式化日期年-月-日
-			minDate : '1900/01/01', // 设置最小日期
-			maxDate : '2100/01/01', // 设置最大日期
-		});
-		$('.staffReward_Time').datetimepicker({
-			yearStart : 1900, // 设置最小年份
-			yearEnd : 2100, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : false, // 关闭时间选项
-			format : 'Y-m-d', // 格式化日期年-月-日
-			minDate : '1900/01/01', // 设置最小日期
-			maxDate : '2100/01/01', // 设置最大日期
-		});
-		$('.staffPrinciple_Time').datetimepicker({
-			yearStart : 1900, // 设置最小年份
-			yearEnd : 2100, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : false, // 关闭时间选项
-			format : 'Y-m-d', // 格式化日期年-月-日
-			minDate : '1900/01/01', // 设置最小日期
-			maxDate : '2100/01/01', // 设置最大日期
-		});
-		$('.staffPunishment_Time').datetimepicker({
-			yearStart : 1900, // 设置最小年份
-			yearEnd : 2100, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : false, // 关闭时间选项
-			format : 'Y-m-d  ', // 格式化日期年-月-日
-			minDate : '1900/01/01', // 设置最小日期
-			maxDate : '2100/01/01', // 设置最大日期
-		});
-		$('.staffFurlough_startTime').datetimepicker({
-			yearStart : 1900, // 设置最小年份
-			yearEnd : 2100, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : false, // 关闭时间选项
-			format : 'Y-m-d  ', // 格式化日期年-月-日
-			minDate : '1900/01/01', // 设置最小日期
-			maxDate : '2100/01/01', // 设置最大日期
-		});
-
-		$('.staffFurlough_stopTime').datetimepicker({
 			yearStart : 1900, // 设置最小年份
 			yearEnd : 2100, // 设置最大年份
 			yearOffset : 0, // 年偏差
