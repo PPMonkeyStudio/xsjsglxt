@@ -99,9 +99,15 @@
 										<option>本科</option>
 										<option>研究生</option>
 								</select></td>
-								<td><label class="staff_info_label">入警时间</label></td>
-								<td><input name="policeman.staff_thePoliceTime"
-									class="form-control staff_thePoliceTime" type="text"></td>
+								<td><label class="staff_info_label">学位</label></td>
+								<td><select class="form-control" id="staff_degree"
+									name="policeman.staff_degree">
+										<option></option>
+										<option>学士学位</option>
+										<option>硕士</option>
+										<option>博士</option>
+								</select></td>
+								
 
 							</tr>
 							<tr>
@@ -147,14 +153,11 @@
 										<option>辅警</option>
 										<option>内勤</option>
 								</select></td>
-								<td><label class="staff_info_label">学位</label></td>
-								<td><select class="form-control" id="staff_degree"
-									name="policeman.staff_degree">
-										<option></option>
-										<option>学士学位</option>
-										<option>硕士</option>
-										<option>博士</option>
-								</select></td>
+					
+					<td><label class="staff_info_label">入警时间</label></td>
+								<td><input name="policeman.staff_thePoliceTime"
+									class="form-control staff_thePoliceTime" type="text"></td>
+					
 								<td><label class="staff_info_label">是否&nbsp;&nbsp;正式</label></td>
 								<td><label style="float: left; width: 50px;"
 									class="fancy-radio "> <input name="format_content"
@@ -186,7 +189,11 @@
 									style="display: none;"><label class="staff_info_label">提交申请书</label></td>
 								<td class="staff_appliactionFormTime" style="display: none;"><input
 									placeholder="提交申请书时间"
+<<<<<<< HEAD
 									name="policeman.staff_applicationFormTime" class="staff_appliactionFormTime form-control"
+=======
+									name="policeman.staff_appliactionFormTime" class="staff_appliactionFormTime form-control"
+>>>>>>> SLL1
 									type="text"></td>
 								<td class="staff_delevopObjectTime_label" style="display: none;"><label
 									class="staff_info_label">发展对象</label></td>
@@ -249,7 +256,7 @@
 								<table>
 									<tbody>
 										<tr class="long_table">
-											<th>学习地点</th>
+											<th>学习/出差地点</th>
 											<th>起始时间</th>
 											<th>结束时间</th>
 											<th>备注</th>
@@ -419,34 +426,6 @@
 					</div>
 					<div style="background: #e7e6e6; width: 1000px; height: 1px;"></div>
 					<div class="long_tableBox">
-						<span class="staff_info_title">处分情况</span>
-						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
-							type="button" data-toggle="modal" data-target="#addPunish_Modal"
-							onclick="">
-							<i class="fa fa-plus-square"></i> 添加
-						</button>
-						<form id="Punishment">
-							<div class="long_tb">
-								<table>
-									<tbody>
-										<tr class="long_table">
-											<th>处分情况</th>
-											<th>处分时间</th>
-											<th>备注</th>
-											<th>操作</th>
-										</tr>
-									</tbody>
-								</table>
-								<table id="punish_table">
-									<tbody>
-
-									</tbody>
-								</table>
-							</div>
-						</form>
-					</div>
-					<div style="background: #e7e6e6; width: 1000px; height: 1px;"></div>
-					<div class="long_tableBox">
 						<span class="staff_info_title">休假情况</span>
 						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
 							type="button" data-toggle="modal"
@@ -495,7 +474,7 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">添加学习经历</h4>
+					<h4 class="modal-title" id="myModalLabel">添加学习/出差经历</h4>
 				</div>
 				<div class="modal-body">
 
@@ -504,7 +483,7 @@
 						<table>
 							<tbody>
 								<tr>
-									<td><label class="staff_info_label">学习地点</label></td>
+									<td><label class="staff_info_label">学习/出差地点</label></td>
 									<td><input style="font-size: 12px;"
 										class="staffStudent_address" type="text"></td>
 								</tr>
@@ -522,7 +501,7 @@
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staffStudent_remarks"
 											class="staffStudent_remarks"
-											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
 
 
@@ -583,7 +562,7 @@
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffWork_remarks"
-											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
 
 
@@ -665,7 +644,7 @@
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
-											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											class="staffFamily_remarks" rows="3" cols="62"></textarea></td>
 
 
@@ -715,7 +694,7 @@
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">是否在岗</label></td>
-									<td><select class="staffMove_guard">
+									<td><select class="staffMove_guard form-control" >
 											<option>是</option>
 											<option>否</option>
 									</select></td>
@@ -724,7 +703,7 @@
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffMove_remarks"
-											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
 
 
@@ -743,8 +722,8 @@
 		</div>
 	</div>
 
-	<!--添加添加刑警大队调动模态框 end  -->
-	<!--添加添加立功受奖模态框 start  -->
+	<!--添加刑警大队调动模态框 end  -->
+	<!--添加立功受奖模态框 start  -->
 	<div class="modal fade" id="addPrized_Modal" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
@@ -764,8 +743,18 @@
 							<tbody>
 								<tr>
 									<td><label class="staff_info_label">表彰情况</label></td>
-									<td><input style="font-size: 12px;"
-										class="staffReward_situation" type="text"></td>
+									<td><select class="staffReward_situation form-control"
+										name="policeman.staff_birthday">
+											<option></option>
+											<option>嘉奖</option>
+											<option>三等功</option>
+											<option>二等功</option>
+											<option>一等功</option>
+											<option>二级英模</option>
+											<option>一级英模</option>
+											<option>优秀人民警察</option>
+											<option>优秀公务员</option>
+									</select></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">表彰时间</label></td>
@@ -777,7 +766,7 @@
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffReward_remarks"
-											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
 
 
@@ -818,8 +807,18 @@
 							<tbody>
 								<tr>
 									<td><label class="staff_info_label">违纪情况</label></td>
-									<td><input style="font-size: 12px;"
-										class="staffPrinciple_situation" type="text"></td>
+									<td><select class="staffPrinciple_situation form-control"
+										name="policeman.staff_birthday">
+											<option></option>
+											<option>通报批评</option>
+											<option>警告</option>
+											<option>记过</option>
+											<option>记大过</option>
+											<option>降职</option>
+											<option>降级</option>
+											<option>撤职</option>
+											<option>开除</option>
+									</select></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">违纪时间</label></td>
@@ -831,7 +830,7 @@
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffPrinciple_remarks"
-											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
 
 
@@ -898,7 +897,7 @@
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffFurlough_remarks"
-											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
 
 
@@ -942,12 +941,12 @@
 										class="staffStudent_addressRelive" type="text"></td>
 								</tr>
 								<tr>
-									<td><label class="staff_info_label">起始时间</label></td>
+									<td><label class="staff_info_label time">起始时间</label></td>
 									<td><input style="font-size: 12px;"
 										class=" staffStudent_startTimeRelive"></td>
 								</tr>
 								<tr>
-									<td><label class="staff_info_label">结束时间</label></td>
+									<td><label class="staff_info_label time">结束时间</label></td>
 									<td><input type="text" class="staffStudent_stopTimeRelive" /></td>
 								</tr>
 
@@ -955,7 +954,7 @@
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staffStudent_remarks"
 											class="staffStudent_remarksRelive"
-											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
 
 
@@ -1005,18 +1004,18 @@
 								<tr>
 									<td><label>起始时间</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffWork_startTimeRelive"></td>
+										class="staffWork_startTimeRelive time"></td>
 								</tr>
 								<tr>
 									<td><label>结束时间</label></td>
-									<td><input type="text" class="staffWork_stopTimeRelive" /></td>
+									<td><input type="text" class="staffWork_stopTimeRelive time" /></td>
 								</tr>
 
 								<tr>
 									<td><label>备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
-											class="staffWork_remarkRelives"
-											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											class="staffWork_remarksRelive"
+											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
 
 
@@ -1072,7 +1071,7 @@
 								<tr>
 									<td><label class="staff_info_label">生日</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffFamily_birthdayRelive" class=" study_startTime"
+										class="staffFamily_birthdayRelive time" class=" study_startTime"
 										type="text"></td>
 								</tr>
 								<tr>
@@ -1098,7 +1097,7 @@
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
-											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											class="staffFamily_remarksRelive" rows="3" cols="62"></textarea></td>
 
 
@@ -1139,12 +1138,12 @@
 								<tr>
 									<td><label class="staff_info_label">调入时间</label></td>
 									<td><input style="font-size: 12px;"
-										class=" staffMove_inTimeRelive" type="text"></td>
+										class=" staffMove_inTimeRelive time" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">调出时间</label></td>
 									<td><input style="font-size: 12px;"
-										class=" staffMove_outTimeRelive" type="text"></td>
+										class=" staffMove_outTimeRelive time" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">是否在岗</label></td>
@@ -1157,7 +1156,7 @@
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffMove_remarksRelive"
-											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
 
 
@@ -1197,20 +1196,30 @@
 							<tbody>
 								<tr>
 									<td><label class="staff_info_label">表彰情况</label></td>
-									<td><input style="font-size: 12px;"
-										class="staffReward_situationRelive" type="text"></td>
+									<td><select class="staffReward_situationRelive form-control"
+										name="policeman.staff_birthday">
+											<option></option>
+											<option>嘉奖</option>
+											<option>三等功</option>
+											<option>二等功</option>
+											<option>一等功</option>
+											<option>二级英模</option>
+											<option>一级英模</option>
+											<option>优秀人民警察</option>
+											<option>优秀公务员</option>
+									</select></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">表彰时间</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffReward_TimeRelive"></td>
+										class="staffReward_TimeRelive time"></td>
 								</tr>
 
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffReward_remarksRelive"
-											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
 
 
@@ -1251,20 +1260,30 @@
 							<tbody>
 								<tr>
 									<td><label class="staff_info_label">违纪情况</label></td>
-									<td><input style="font-size: 12px;"
-										class="staffPrinciple_situationRelive" type="text"></td>
+									<td><select class="staffPrinciple_situationRelive form-control"
+										name="policeman.staff_birthday">
+											<option></option>
+											<option>通报批评</option>
+											<option>警告</option>
+											<option>记过</option>
+											<option>记大过</option>
+											<option>降职</option>
+											<option>降级</option>
+											<option>撤职</option>
+											<option>开除</option>
+									</select></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">违纪时间</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffPrinciple_TimeRelive"></td>
+										class="staffPrinciple_TimeRelive time"></td>
 								</tr>
 
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffPrinciple_remarksRelive"
-											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
 
 
@@ -1294,7 +1313,7 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">添加休假</h4>
+					<h4 class="modal-title" id="myModalLabel">修改休假</h4>
 				</div>
 				<div class="modal-body">
 
@@ -1310,7 +1329,7 @@
 								<tr>
 									<td><label class="staff_info_label">起始时间</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffFurlough_startTimeRelive"></td>
+										class="staffFurlough_startTimeRelive time"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">天数</label></td>
@@ -1326,13 +1345,13 @@
 								<tr>
 									<td><label class="staff_info_label">销假时间</label></td>
 									<td><input type="text"
-										class="staffFurlough_stopTimeRelive" /></td>
+										class="staffFurlough_stopTimeRelive time" /></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffFurlough_remarksRelive"
-											style="border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
 
 
@@ -1405,6 +1424,18 @@
 			yearOffset : 0, // 年偏差
 			timepicker : false, // 关闭时间选项
 			format : 'Y-m-d', // 格式化日期年-月-日
+<<<<<<< HEAD
+=======
+			minDate : '1900/01/01', // 设置最小日期
+			maxDate : '2100/01/01', // 设置最大日期
+		});
+		$('.time').datetimepicker({
+			yearStart : 1900, // 设置最小年份
+			yearEnd : 2100, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : false, // 关闭时间选项
+			format : 'Y-m-d', // 格式化日期年-月-日
+>>>>>>> SLL1
 			minDate : '1900/01/01', // 设置最小日期
 			maxDate : '2100/01/01', // 设置最大日期
 		});

@@ -99,9 +99,15 @@
 										<option>本科</option>
 										<option>研究生</option>
 								</select></td>
-								<td><label class="staff_info_label">入警时间</label></td>
-								<td><input name="policeman.staff_thePoliceTime"
-									class="form-control staff_thePoliceTime" type="text"></td>
+								<td><label class="staff_info_label">学位</label></td>
+								<td><select class="form-control"
+									name="policeman.staff_degree">
+										<option></option>
+										<option>学士学位</option>
+										<option>硕士</option>
+										<option>博士</option>
+								</select></td>
+								
 
 							</tr>
 							<tr>
@@ -147,14 +153,11 @@
 										<option>辅警</option>
 										<option>内勤</option>
 								</select></td>
-								<td><label class="staff_info_label">学位</label></td>
-								<td><select class="form-control"
-									name="policeman.staff_degree">
-										<option></option>
-										<option>学士学位</option>
-										<option>硕士</option>
-										<option>博士</option>
-								</select></td>
+								<td><label class="staff_info_label">入警时间</label></td>
+								<td><input name="policeman.staff_thePoliceTime"
+									class="form-control staff_thePoliceTime" type="text"></td>
+								
+								
 								<td><label class="staff_info_label">是否&nbsp;&nbsp;正式</label></td>
 								<td><label style="float: left; width: 50px;"
 									class="fancy-radio "> <input name="format_content"
@@ -252,7 +255,7 @@
 								<table id="studyExperience_table">
 									<tbody>
 										<tr class="long_table">
-											<th>学习地点</th>
+											<th>学习/出差地点</th>
 											<th>起始时间</th>
 											<th>结束时间</th>
 											<th>备注</th>
@@ -429,7 +432,7 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">添加学习经历</h4>
+					<h4 class="modal-title" id="myModalLabel">添加学习/出差经历</h4>
 				</div>
 				<div class="modal-body">
 
@@ -438,7 +441,7 @@
 						<table>
 							<tbody>
 								<tr>
-									<td><label class="staff_info_label">学习地点</label></td>
+									<td><label class="staff_info_label">学习/出差地点</label></td>
 									<td><input style="font-size: 12px;"
 										class="staffStudent_address" name="policeman.staff_birthday"
 										type="text"></td>

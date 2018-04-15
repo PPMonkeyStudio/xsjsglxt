@@ -15,8 +15,11 @@ function staff_change() {
 				action : function() {
 					//判断身份证是否为空
 					var ID=document.getElementsByName("policeman.staff_idNumber")[0].value;
-					if(ID==""){
-						toastr.error('身份证号不能为空哦！');
+					var name=document.getElementsByName("policeman.xsjsglxt_name")[0].value;
+					var policeTime=document.getElementsByName("policeman.staff_thePoliceTime")[0].value;
+					var alarm=document.getElementsByName("policeman.staff_alarm")[0].value;
+					if(ID==""||name==""||policeTime==""||alarm==""){
+						toastr.error('姓名、警号、入警时间或身份证号不能为空哦！');
 					   return false;
 					}
 					loadstaffDetail_staff_change(url);

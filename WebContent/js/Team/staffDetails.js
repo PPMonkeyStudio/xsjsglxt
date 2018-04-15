@@ -18,9 +18,9 @@ function get_ageAjax(){
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			var result = xmlhttp.responseText;
 			if (result == 'updateSuccess') {
-				toastr.success('更新年龄成功！');
+				console.log('更新年龄成功！');
 			} else {
-				toastr.error('更新年龄成功！');
+				console.log('更新年龄成功！');
 			}
 		}
 	};
@@ -195,8 +195,8 @@ function show_workAjax(staff_id) {
 				str2 += '<input type="hidden" class="xsjsglxt_staffWork_id" id="'
 						+ xsjsglxt_staffWork_id + '">';
 				str2 += '<td>' + staff_work[len].staffWork_address + '</td>';
-				str2 += '<td>' + staff_work[len].staffWork_startTime + '</td>';
 				str2 += '<td>' + staff_work[len].staffWork_duty + '</td>';
+				str2 += '<td>' + staff_work[len].staffWork_startTime + '</td>';
 				str2 += '<td>' + staff_work[len].staffWork_stopTime + '</td>';
 				str2 += '<td>' + staff_work[len].staffWork_remarks + '</td>';
 				str2 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#reliveWork_Modal" onclick="show_work(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_work(this)" type="button" ><i class="fa fa-trash"></i></button></td>';

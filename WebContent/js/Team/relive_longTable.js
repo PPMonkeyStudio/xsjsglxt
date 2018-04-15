@@ -40,7 +40,7 @@ function show_work(relive_button) {
 	 document.querySelector(".staffWork_dutyRelive").value=this_tr.children[2].innerHTML;
 	 document.querySelector(".staffWork_startTimeRelive").value=this_tr.children[3].innerHTML;
 	 document.querySelector(".staffWork_stopTimeRelive").value=this_tr.children[4].innerHTML;
-	 document.querySelector(".staffWork_remarkRelives").value=this_tr.children[5].innerHTML;
+	 document.querySelector(".staffWork_remarksRelive").value=this_tr.children[5].innerHTML;
 }
 //修改工作经历
 function relive_work(){
@@ -211,48 +211,6 @@ function relive_against(){
 				},
 			});
 }
-//显示当前处分在模态框中
-function show_punishment(relive_button) {
-	 var this_tr=relive_button.parentNode.parentNode;
-	 this_trId=this_tr.querySelector(".xsjsglxt_staffPunishment_id").getAttribute("id");
-	 console.log(this_tr.children[1].innerHTML);
-	 document.querySelector(".staffPunishment_situationRelive").value=this_tr.children[1].innerHTML;
-	 document.querySelector(".staffPunishment_Time").value=this_tr.children[2].innerHTML;
-	 document.querySelector(".staffPunishment_remarksRelive").value=this_tr.children[3].innerHTML;
-}
-//修改处分
-function relive_punishment(){
-	console.log("处分修改");
-	// 修改一条数据
-	var staffPunishment_situation_val=$(".staffPunishment_situationRelive").val();
-	var staffPunishment_Time_val=$(".staffPunishment_TimeRelive").val();
-	var staffPunishment_remarks_val=$(".staffPunishment_remarksRelive").val();
-	$.ajax({
-				type : "POST",
-				url : '/xsjsglxt/team/StaffPunishment_updatePunishment?punishment.xsjsglxt_staffPunishment_id='+this_trId,
-				data :{
-					"punishment.staffPunishment_situation":staffPunishment_situation_val,
-					"punishment.staffPunishment_Time":staffPunishment_Time_val,
-					"punishment.staffPunishment_remarks":staffPunishment_remarks_val,
-				},
-				success:function(data){
-					toastr.success('修改处分成功！');
-					show_punishmentAjax(staff_id);
-				},
-			});
-}
-//显示当前处分在模态框中
-function show_furlough(relive_button) {
-	 var this_tr=relive_button.parentNode.parentNode;
-	 this_trId=this_tr.querySelector(".xsjsglxt_staffFurlough_id").getAttribute("id");
-	 document.querySelector(".staffFurlough_mainContentRelive").value=this_tr.children[1].innerHTML;
-	 document.querySelector(".staffFurlough_startTimeRelive").value=this_tr.children[2].innerHTML;
-	 document.querySelector(".staffFurlough_daysRelive").value=this_tr.children[3].innerHTML;
-	 document.querySelector(".staffFurlough_whetherStopRelive").value=this_tr.children[4].innerHTML;
-	 document.querySelector(".staffFurlough_stopTimeRelive").value=this_tr.children[5].innerHTML;
-	 document.querySelector(".staffFurlough_remarksRelive").value=this_tr.children[6].innerHTML;
-}
-
 //修改休假
 function relive_furlough(){
 	console.log("修改休假");
