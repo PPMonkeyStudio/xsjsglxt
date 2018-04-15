@@ -200,6 +200,7 @@
 					.ajax({
 						url : '/xsjsglxt/user/User_judgePower',
 						type : 'POST',
+						async:false, 
 						success : function(data) {
 							if (data == 'exception') {
 								$
