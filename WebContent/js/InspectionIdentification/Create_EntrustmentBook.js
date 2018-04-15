@@ -5,7 +5,7 @@ document.getElementById("button_Create_ForensicCheckEntrustmentBook").onclick = 
 	Create_EntrustmentBook("法医");
 }
 /*
- * 创建痕迹检验委托书
+ * 创建检验委托书
  */
 function Create_EntrustmentBook(type) {
 	var jc = $
@@ -24,18 +24,20 @@ function Create_EntrustmentBook(type) {
 						+ '<tr>'
 						+ '<td><span style="color:#D9534F;">*</span> 负责人：</td><td><input  name="tranceCheckBook.check_entrustment_book_responsible_person" class="form-control"  /></td>'
 						+ '<td><span style="color:#D9534F;">*</span> 委托单位：</td><td><select class="form-control" name="tranceCheckBook.check_entrustment_book_entrustment_unit">'
-						+ '<option value="后埠派出所">后埠派出所</option>'
-						+ '<option value="凤凰派出所">凤凰派出所</option>'
-						+ '<option value="安源派出所">安源派出所</option>'
-						+ '<option value="城郊派出所">城郊派出所</option>'
-						+ '<option value="八一派出所">八一派出所</option>'
-						+ '<option value="东大派出所">东大派出所</option>'
-						+ '<option value="青山派出所">青山派出所</option>'
-						+ '<option value="丹江派出所">丹江派出所</option>'
-						+ '<option value="白源派出所">白源派出所</option>'
-						+ '<option value="高坑派出所">高坑派出所</option>'
-						+ '<option value="五陂下派出所">五陂下派出所</option>'
-						+ '<option value="其他">其他</option>'
+						+ '<option id="check_entrustment_book_entrustment_unit_aygafjxjdd" value="安源公安分局刑警大队">安源公安分局刑警大队</option>'
+						+ '<option id="check_entrustment_book_entrustment_unit_ay" value="安源派出所">安源派出所</option>'
+						+ '<option id="check_entrustment_book_entrustment_unit_cj" value="城郊派出所">城郊派出所</option>'
+						+ '<option id="check_entrustment_book_entrustment_unit_fh" value="凤凰派出所">凤凰派出所</option>'
+						+ '<option id="check_entrustment_book_entrustment_unit_hf" value="后埠派出所">后埠派出所</option>'
+						+ '<option id="check_entrustment_book_entrustment_unit_by" value="八一派出所">八一派出所</option>'
+						+ '<option id="check_entrustment_book_entrustment_unit_dd" value="东大派出所">东大派出所</option>'
+						+ '<option id="check_entrustment_book_entrustment_unit_qs" value="青山派出所">青山派出所</option>'
+						+ '<option id="check_entrustment_book_entrustment_unit_dj" value="丹江派出所">丹江派出所</option>'
+						+ '<option id="check_entrustment_book_entrustment_unit_by" value="白源派出所">白源派出所</option>'
+						+ '<option id="check_entrustment_book_entrustment_unit_gk" value="高坑派出所">高坑派出所</option>'
+						+ '<option id="check_entrustment_book_entrustment_unit_wpx" value="五陂下派出所">五陂下派出所</option>'
+						+ '<option id="check_entrustment_book_entrustment_unit_lzy" value="李子园派出所">李子园派出所</option>'
+						+ '<option id="check_entrustment_book_entrustment_unit_qt" value="其他">其他</option>'
 						+ '</select></td>'
 						+ '<td><span style="color:#D9534F;">*</span> 委托时间：</td><td><input name="tranceCheckBook.check_entrustment_book_inspect_time" class="form-control mydate"  /></td></tr>'
 						+ '</tbody>'
@@ -49,7 +51,7 @@ function Create_EntrustmentBook(type) {
 						+ '</table>'
 						+ '<table  class="table table-bordered" style="text-align: center;">'
 						+ '<tbody>'
-						+ '<tr><td><span style="color:#D9534F;">*</span> 通讯地址：</td><td><input  class="form-control" name="tranceCheckBook.check_entrustment_book_communication_address" /></td><td><span style="color:#D9534F;">*</span> 邮政编码：</td><td><input class="form-control" name="tranceCheckBook.check_entrustment_book_zip_code" /></td></tr>'
+						+ '<tr><td><span style="color:#D9534F;">*</span> 通讯地址：</td><td><input  class="form-control" name="tranceCheckBook.check_entrustment_book_communication_address" /></td><td><span style="color:#D9534F;">*</span> 邮政编码：</td><td><input class="form-control" name="tranceCheckBook.check_entrustment_book_zip_code" value="337000" /></td></tr>'
 						+ '<tr><td><span style="color:#D9534F;">*</span> 联系电话：</td><td><input class="form-control" name="tranceCheckBook.check_entrustment_book_phone" /></td><td><span style="color:#D9534F;">*</span> 传真号码：</td><td><input class="form-control" name="tranceCheckBook.check_entrustment_book_fax_num" /></td></tr>'
 						+ '</tbody>'
 						+ '</table>'
@@ -158,10 +160,207 @@ function Create_EntrustmentBook(type) {
 				},
 				onContentReady : function() {
 					/*
-					 * 判断类别
+					 * 
+					 * 
+					 * 获取送检人信息
+					 * 
+					 * 
 					 */
+					var xhr = false;
+					xhr = new XMLHttpRequest();
+					xhr.onreadystatechange = function() {
+						var message;
+						if (xhr.readyState == 4) {
+							if (xhr.status == 200) {
+								var currUser = JSON.parse(xhr.responseText);
+								/*
+								 * 送检人
+								 */
+								if (currUser.user_name != null) {
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_inspectors1_name")[0].value = currUser.user_name;
+								}
+								if (currUser.user_duty != null) {
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_inspectors1_duty")[0].value = currUser.user_duty;
+								}
+								if (currUser.user_idCard != null) {
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_inspectors1_jobcard_number")[0].value = currUser.user_idCard;
+								}
+								/*
+								 * 获取单位的通讯录信息
+								 */
+								switch (currUser.user_units) {
+								case '安源公安分局刑警大队': {
+									document
+											.getElementById("check_entrustment_book_entrustment_unit_aygafjxjdd").selected = "selected";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_phone")[0].value = "6333683";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_fax_num")[0].value = "6333683";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "假的通讯地址";
+
+									break;
+								}
+								case '安源派出所': {
+									document
+											.getElementById("check_entrustment_book_entrustment_unit_ay").selected = "selected";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_phone")[0].value = "6351007";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_fax_num")[0].value = "6351007";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "假的通讯地址";
+									break;
+								}
+								case '城郊派出所': {
+									document
+											.getElementById("check_entrustment_book_entrustment_unit_cj").selected = "selected";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_phone")[0].value = "6852109";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_fax_num")[0].value = "6852109";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "假的通讯地址";
+									break;
+								}
+								case '凤凰派出所': {
+									document
+											.getElementById("check_entrustment_book_entrustment_unit_fh").selected = "selected";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_phone")[0].value = "6832693";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_fax_num")[0].value = "6832693";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "假的通讯地址";
+									break;
+								}
+								case '后埠派出所': {
+									document
+											.getElementById("check_entrustment_book_entrustment_unit_hf").selected = "selected";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_phone")[0].value = "6333468";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_fax_num")[0].value = "6333468";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "假的通讯地址";
+									break;
+								}
+								case '八一派出所': {
+									document
+											.getElementById("check_entrustment_book_entrustment_unit_by").selected = "selected";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_phone")[0].value = "6832498";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_fax_num")[0].value = "6832498";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "假的通讯地址";
+									break;
+								}
+								case '东大派出所': {
+									document
+											.getElementById("check_entrustment_book_entrustment_unit_dd").selected = "selected";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_phone")[0].value = "6832591";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_fax_num")[0].value = "6832591";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "假的通讯地址";
+									break;
+								}
+								case '青山派出所': {
+									document
+											.getElementById("check_entrustment_book_entrustment_unit_qs").selected = "selected";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_phone")[0].value = "6381110";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_fax_num")[0].value = "6381110";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "假的通讯地址";
+									break;
+								}
+								case '丹江派出所': {
+									document
+											.getElementById("check_entrustment_book_entrustment_unit_dj").selected = "selected";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_phone")[0].value = "6671596";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_fax_num")[0].value = "6671596";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "假的通讯地址";
+									break;
+								}
+								case '白源派出所': {
+									document
+											.getElementById("check_entrustment_book_entrustment_unit_by").selected = "selected";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_phone")[0].value = "6651110";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_fax_num")[0].value = "6651110";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "假的通讯地址";
+									break;
+								}
+								case '高坑派出所': {
+									document
+											.getElementById("check_entrustment_book_entrustment_unit_gk").selected = "selected";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_phone")[0].value = "6371348";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_fax_num")[0].value = "6371348";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "假的通讯地址";
+									break;
+								}
+								case '五陂下派出所': {
+									document
+											.getElementById("check_entrustment_book_entrustment_unit_wpx").selected = "selected";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_phone")[0].value = "6311110";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_fax_num")[0].value = "6311110";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "假的通讯地址";
+									break;
+								}
+								case '李子园派出所': {
+									document
+											.getElementById("check_entrustment_book_entrustment_unit_lzy").selected = "selected";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_phone")[0].value = "6833386";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_fax_num")[0].value = "6833386";
+									document
+											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "假的通讯地址";
+									break;
+								}
+								default: {
+									document
+											.getElementById("check_entrustment_book_entrustment_unit_qt").selected = "selected";
+									break;
+								}
+
+								}
+								/*
+								 * 
+								 */
+							} else {
+								toastr.error(xhr.status);
+							}
+						}
+					}
+					var formData = new FormData();
+					xhr.open("POST", "/xsjsglxt/user/User_getCurrUser");
+					xhr.send(formData);
+					return false;
 
 					/*
+					 * 
+					 * 
+					 * 获取日期
+					 * 
 					 * 
 					 */
 					var date = new Date();
@@ -185,6 +384,13 @@ function Create_EntrustmentBook(type) {
 						minDate : '1990/01/01', // 设置最小日期
 						maxDate : '2030/01/01', // 设置最大日期
 					});
+					/*
+					 * 
+					 * 
+					 * 
+					 * 
+					 * 
+					 */
 				},
 				buttons : {
 					'确认委托' : {

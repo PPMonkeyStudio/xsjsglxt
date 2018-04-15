@@ -97,10 +97,11 @@
 							<th><select class="form-control" id="select_entrustmentUnit"
 								style="width: auto;" onchange="List_EntrustmentBook(1)">
 									<option value="-1">委托单位（全部）</option>
-									<option value="后埠派出所">后埠派出所</option>
-									<option value="凤凰派出所">凤凰派出所</option>
+									<option value="安源公安分局刑警大队">安源公安分局刑警大队</option>
 									<option value="安源派出所">安源派出所</option>
 									<option value="城郊派出所">城郊派出所</option>
+									<option value="凤凰派出所">凤凰派出所</option>
+									<option value="后埠派出所">后埠派出所</option>
 									<option value="八一派出所">八一派出所</option>
 									<option value="东大派出所">东大派出所</option>
 									<option value="青山派出所">青山派出所</option>
@@ -108,6 +109,7 @@
 									<option value="白源派出所">白源派出所</option>
 									<option value="高坑派出所">高坑派出所</option>
 									<option value="五陂下派出所">五陂下派出所</option>
+									<option value="李子园派出所">李子园派出所</option>
 									<option value="其他">其他</option>
 							</select></th>
 							<th>委托日期</th>
