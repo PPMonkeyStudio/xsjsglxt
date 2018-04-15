@@ -189,11 +189,7 @@
 									style="display: none;"><label class="staff_info_label">提交申请书</label></td>
 								<td class="staff_appliactionFormTime" style="display: none;"><input
 									placeholder="提交申请书时间"
-<<<<<<< HEAD
-									name="policeman.staff_applicationFormTime" class="staff_appliactionFormTime form-control"
-=======
 									name="policeman.staff_appliactionFormTime" class="staff_appliactionFormTime form-control"
->>>>>>> SLL1
 									type="text"></td>
 								<td class="staff_delevopObjectTime_label" style="display: none;"><label
 									class="staff_info_label">发展对象</label></td>
@@ -1424,8 +1420,6 @@
 			yearOffset : 0, // 年偏差
 			timepicker : false, // 关闭时间选项
 			format : 'Y-m-d', // 格式化日期年-月-日
-<<<<<<< HEAD
-=======
 			minDate : '1900/01/01', // 设置最小日期
 			maxDate : '2100/01/01', // 设置最大日期
 		});
@@ -1435,7 +1429,7 @@
 			yearOffset : 0, // 年偏差
 			timepicker : false, // 关闭时间选项
 			format : 'Y-m-d', // 格式化日期年-月-日
->>>>>>> SLL1
+
 			minDate : '1900/01/01', // 设置最小日期
 			maxDate : '2100/01/01', // 设置最大日期
 		});
