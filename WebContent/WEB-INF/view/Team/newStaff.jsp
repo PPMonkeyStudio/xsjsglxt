@@ -141,7 +141,8 @@
 										<option>副教导员</option>
 										<option>中队长</option>
 										<option>副中队长</option>
-										<option>民警</option>
+										<option>侦查民警</option>
+										<option>技术民警</option>
 										<option>法医</option>
 										<option>辅警</option>
 										<option>内勤</option>
@@ -907,7 +908,7 @@
 			minDate : '1900/01/01', // 设置最小日期
 			maxDate : '2100/01/01', // 设置最大日期
 		});
-		$('.staff_applicationFormTime').datetimepicker({
+		$('.staff_appliactionFormTime').datetimepicker({
 			yearStart : 1900, // 设置最小年份
 			yearEnd : 2100, // 设置最大年份
 			yearOffset : 0, // 年偏差
