@@ -354,7 +354,6 @@ function Create_EntrustmentBook(type) {
 					var formData = new FormData();
 					xhr.open("POST", "/xsjsglxt/user/User_getCurrUser");
 					xhr.send(formData);
-					return false;
 
 					/*
 					 * 
