@@ -200,7 +200,7 @@ function Create_EntrustmentBook(type) {
 									document
 											.getElementsByName("tranceCheckBook.check_entrustment_book_fax_num")[0].value = "6333683";
 									document
-											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "假的通讯地址";
+											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "安源区后埠街建设中路100号";
 
 									break;
 								}
@@ -212,7 +212,7 @@ function Create_EntrustmentBook(type) {
 									document
 											.getElementsByName("tranceCheckBook.check_entrustment_book_fax_num")[0].value = "6351007";
 									document
-											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "假的通讯地址";
+											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "安源区燎原中大道1号";
 									break;
 								}
 								case '城郊派出所': {
@@ -223,7 +223,7 @@ function Create_EntrustmentBook(type) {
 									document
 											.getElementsByName("tranceCheckBook.check_entrustment_book_fax_num")[0].value = "6852109";
 									document
-											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "假的通讯地址";
+											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "安源区城郊管理委员会旁";
 									break;
 								}
 								case '凤凰派出所': {
@@ -234,7 +234,7 @@ function Create_EntrustmentBook(type) {
 									document
 											.getElementsByName("tranceCheckBook.check_entrustment_book_fax_num")[0].value = "6832693";
 									document
-											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "假的通讯地址";
+											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "安源区萍水北路8号";
 									break;
 								}
 								case '后埠派出所': {
@@ -245,7 +245,7 @@ function Create_EntrustmentBook(type) {
 									document
 											.getElementsByName("tranceCheckBook.check_entrustment_book_fax_num")[0].value = "6333468";
 									document
-											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "假的通讯地址";
+											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "安源区后埠街山下路58号";
 									break;
 								}
 								case '八一派出所': {
@@ -256,7 +256,7 @@ function Create_EntrustmentBook(type) {
 									document
 											.getElementsByName("tranceCheckBook.check_entrustment_book_fax_num")[0].value = "6832498";
 									document
-											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "假的通讯地址";
+											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "安源区八一街萍乡中学旁";
 									break;
 								}
 								case '东大派出所': {
@@ -267,7 +267,7 @@ function Create_EntrustmentBook(type) {
 									document
 											.getElementsByName("tranceCheckBook.check_entrustment_book_fax_num")[0].value = "6832591";
 									document
-											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "假的通讯地址";
+											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "安源区环城南路311号";
 									break;
 								}
 								case '青山派出所': {
@@ -278,7 +278,7 @@ function Create_EntrustmentBook(type) {
 									document
 											.getElementsByName("tranceCheckBook.check_entrustment_book_fax_num")[0].value = "6381110";
 									document
-											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "假的通讯地址";
+											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "安源区青山镇乌石青山路青山中心幼儿园对面";
 									break;
 								}
 								case '丹江派出所': {
@@ -289,7 +289,7 @@ function Create_EntrustmentBook(type) {
 									document
 											.getElementsByName("tranceCheckBook.check_entrustment_book_fax_num")[0].value = "6671596";
 									document
-											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "假的通讯地址";
+											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "安源区丹江街江矿社区居委会斜对面";
 									break;
 								}
 								case '白源派出所': {
@@ -300,7 +300,7 @@ function Create_EntrustmentBook(type) {
 									document
 											.getElementsByName("tranceCheckBook.check_entrustment_book_fax_num")[0].value = "6651110";
 									document
-											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "假的通讯地址";
+											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "安源区白源街兴业南路附近";
 									break;
 								}
 								case '高坑派出所': {
@@ -311,7 +311,7 @@ function Create_EntrustmentBook(type) {
 									document
 											.getElementsByName("tranceCheckBook.check_entrustment_book_fax_num")[0].value = "6371348";
 									document
-											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "假的通讯地址";
+											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "安源区高坑镇车谷岭70号";
 									break;
 								}
 								case '五陂下派出所': {
@@ -322,7 +322,7 @@ function Create_EntrustmentBook(type) {
 									document
 											.getElementsByName("tranceCheckBook.check_entrustment_book_fax_num")[0].value = "6311110";
 									document
-											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "假的通讯地址";
+											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "安源区安源南大道与永镇路交叉口东北100米";
 									break;
 								}
 								case '李子园派出所': {
@@ -333,7 +333,7 @@ function Create_EntrustmentBook(type) {
 									document
 											.getElementsByName("tranceCheckBook.check_entrustment_book_fax_num")[0].value = "6833386";
 									document
-											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "假的通讯地址";
+											.getElementsByName("tranceCheckBook.check_entrustment_book_communication_address")[0].value = "无";
 									break;
 								}
 								default: {

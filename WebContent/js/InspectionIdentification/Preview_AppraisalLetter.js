@@ -13,6 +13,23 @@ function Preview_AppraisalLetter(obj) {
 				type : 'green',
 				columnClass : 'col-md-12',
 				onOpenBefore : function() {
+					/*
+					 * 删除按钮
+					 */
+					if (userPowerDTO.user_check_power_modified == true) {
+
+					} else {
+						var userCheckPowers = document
+								.getElementsByClassName("user_check_power");
+						var userCheckPowers_Length = userCheckPowers.length;
+						for (var userCheckPowersNum = 0; userCheckPowersNum < userCheckPowers_Length; userCheckPowersNum++) {
+							userCheckPowers[0].parentNode
+									.removeChild(userCheckPowers[0]);
+						}
+					}
+					/*
+					 * 
+					 */
 				},
 				onContentReady : function() {
 
@@ -98,7 +115,7 @@ function Preview_AppraisalLetter(obj) {
 						}
 					},
 					'修改' : {
-						btnClass : 'btn-orange',
+						btnClass : 'btn-orange user_check_power',
 						action : function() {
 							Update_AppraisalLetter(obj);
 						}

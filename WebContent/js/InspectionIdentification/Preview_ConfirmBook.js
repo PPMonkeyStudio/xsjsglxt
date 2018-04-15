@@ -13,13 +13,33 @@ function Preview_ConfirmBook(obj) {
 				type : 'green',
 				columnClass : 'col-md-12',
 				onOpenBefore : function() {
+					/*
+					 * 删除按钮
+					 */
+					if (userPowerDTO.user_check_power_modified == true) {
+
+					} else {
+						var userCheckPowers = document
+								.getElementsByClassName("user_check_power");
+						var userCheckPowers_Length = userCheckPowers.length;
+						for (var userCheckPowersNum = 0; userCheckPowersNum < userCheckPowers_Length; userCheckPowersNum++) {
+							userCheckPowers[0].parentNode
+									.removeChild(userCheckPowers[0]);
+						}
+					}
+					/*
+					 * 
+					 */
 				},
 				onContentReady : function() {
 
-					var con = '<div style="margin:0 20px 0 0;"><hr>' + '<h5 style="text-align: right;">编号：['
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num.substring(0, 4)
+					var con = '<div style="margin:0 20px 0 0;"><hr>'
+							+ '<h5 style="text-align: right;">编号：['
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num
+									.substring(0, 4)
 							+ ']第'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num.substring(4)
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num
+									.substring(4)
 							+ '号</h5>'
 							+ '<table  class="table table-bordered" style="text-align: center;">'
 							+ '<tbody>'
@@ -31,9 +51,11 @@ function Preview_ConfirmBook(obj) {
 							+ '<tr><td colspan="1">鉴定委托单位</td><td colspan="5">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_unit
 							+ '</td><td colspan="2">委托书编号</td><td>['
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num.substring(0, 4)
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num
+									.substring(0, 4)
 							+ ']第'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num.substring(4)
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_num
+									.substring(4)
 							+ '号</td></tr>'
 							+ '<tr><td rowspan="4">送检人</td><td>姓名</td><td>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspectors1_name
@@ -79,19 +101,22 @@ function Preview_ConfirmBook(obj) {
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_address
 							+ '</td></tr>'
 							+ '<tr><td>案（事）件简要情况</td><td colspan="8">'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_simple_case_situation.replace(/\n/g, "<br>")
-									.replace(/ /g, "&nbsp;")
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_simple_case_situation
+									.replace(/\n/g, "<br>").replace(/ /g,
+											"&nbsp;")
 							+ '</tr>'
 							+ '<tr><td>收到的检材和样本等情况（包括名称、数量、性状、包装，检材提取部位和方法等）</td><td colspan="8" style="text-align: left;vertical-align: top !important;">'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_sample_situation.replace(/\n/g, "<br>")
-									.replace(/ /g, "&nbsp;")
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_sample_situation
+									.replace(/\n/g, "<br>").replace(/ /g,
+											"&nbsp;")
 							+ '</td></tr>'
 							+ '<tr><td>鉴定要求</td><td colspan="8">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request
 							+ '</td></tr>'
 							+ '<tr><td>双方对鉴定时限以及送检检材样本等使用保管和取回的约定</td><td colspan="8" style="text-align: left;vertical-align: top !important;">'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_appointment.replace(/\n/g, "<br>")
-									.replace(/ /g, "&nbsp;")
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_appointment
+									.replace(/\n/g, "<br>").replace(/ /g,
+											"&nbsp;")
 							+ '<br><br>送检人签字：'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspectors1_name
 							+ '、'
@@ -106,8 +131,8 @@ function Preview_ConfirmBook(obj) {
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_inspection_date
 									.substring(5, 7)
 							+ '月'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_inspection_date.substring(8,
-									10)
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_inspection_date
+									.substring(8, 10)
 							+ '日'
 							+ '<span style="float: right;">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_acceptance_date
@@ -116,25 +141,37 @@ function Preview_ConfirmBook(obj) {
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_acceptance_date
 									.substring(5, 7)
 							+ '月'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_acceptance_date.substring(8,
-									10)
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_acceptance_date
+									.substring(8, 10)
 							+ '日</span>'
 							+ '</td></tr>'
 							+ '<tr><td>鉴定文书和相关检材等的领取情况</td><td colspan="8" style="text-align: left;vertical-align: top !important;">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_example_receive_situation
-									.replace(/\n/g, "<br>").replace(/ /g, "&nbsp;") + '<br><br>领取人签字：'
+									.replace(/\n/g, "<br>").replace(/ /g,
+											"&nbsp;")
+							+ '<br><br>领取人签字：'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_receiver
 							+ '<span style="float: right;">鉴定机构经办人签字：'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_entrustmentor + '</span>'
-							+ '<br>' + '<span style="float: right;">'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_receive_data.substring(0, 4)
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_entrustmentor
+							+ '</span>'
+							+ '<br>'
+							+ '<span style="float: right;">'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_receive_data
+									.substring(0, 4)
 							+ '年'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_receive_data.substring(5, 7)
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_receive_data
+									.substring(5, 7)
 							+ '月'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_receive_data.substring(8, 10)
-							+ '日</span></td></tr>' + '<tr><td>备注</td><td colspan="8">'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_mark + '</td></tr>'
-							+ '</tbody>' + '</table>' + '鉴定机构承诺：鉴定工作遵循公平公正、主体合法、程序规范、方法科学、结论准确的要求。' + '<hr></div>';
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_receive_data
+									.substring(8, 10)
+							+ '日</span></td></tr>'
+							+ '<tr><td>备注</td><td colspan="8">'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_mark
+							+ '</td></tr>'
+							+ '</tbody>'
+							+ '</table>'
+							+ '鉴定机构承诺：鉴定工作遵循公平公正、主体合法、程序规范、方法科学、结论准确的要求。'
+							+ '<hr></div>';
 					jc.setContentAppend(con);
 				},
 				buttons : {
@@ -147,7 +184,7 @@ function Preview_ConfirmBook(obj) {
 						}
 					},
 					'修改' : {
-						btnClass : 'btn-orange',
+						btnClass : 'btn-orange user_check_power',
 						action : function() {
 							jc.close();
 							Update_ConfirmBook(obj);
