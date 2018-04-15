@@ -26,6 +26,8 @@ import com.xsjsglxt.domain.DTO.Case.SenceInformationDTO;
 import com.xsjsglxt.domain.VO.Case.page_list_senceInformationVO;
 import com.xsjsglxt.service.Case.SenceService;
 
+import util.TeamUtil;
+
 public class SenceAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
 	private SenceService senceService;
 	private xsjsglxt_snece sence;
@@ -115,6 +117,10 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 			senceService.save(case1);
 
 			sence.setSnece_case(case1.getXsjsglxt_case_id());
+	        String fillPerson= (String) ActionContext.getContext().getSession().get("user_name");
+		
+			sence.setSnece_fillPerson(fillPerson);
+			sence.setSnece_fillTime(TeamUtil.getStringSecond());
 			senceService.save(sence);
 
 			briefdetails.setBriefdetails_case(case1.getXsjsglxt_case_id());
