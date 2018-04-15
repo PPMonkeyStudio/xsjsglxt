@@ -12,6 +12,23 @@ function Preview_NotAcceptanceEntrustmentInform(obj) {
 				type : 'red',
 				columnClass : 'col-md-8 col-md-offset-2',
 				onOpenBefore : function() {
+					/*
+					 * 删除按钮
+					 */
+					if (userPowerDTO.user_check_power_modified == true) {
+
+					} else {
+						var userCheckPowers = document
+								.getElementsByClassName("user_check_power");
+						var userCheckPowers_Length = userCheckPowers.length;
+						for (var userCheckPowersNum = 0; userCheckPowersNum < userCheckPowers_Length; userCheckPowersNum++) {
+							userCheckPowers[0].parentNode
+									.removeChild(userCheckPowers[0]);
+						}
+					}
+					/*
+					 * 
+					 */
 				},
 				onContentReady : function() {
 					var con = '<div style="margin:0 20px 0 0;">'
@@ -120,7 +137,7 @@ function Preview_NotAcceptanceEntrustmentInform(obj) {
 						}
 					},
 					'修改' : {
-						btnClass : 'btn-orange',
+						btnClass : 'btn-orange user_check_power',
 						action : function() {
 							jc.close();
 							Update_NotAcceptanceEntrustmentInform(obj);
