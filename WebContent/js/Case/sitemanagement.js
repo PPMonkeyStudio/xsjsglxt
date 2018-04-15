@@ -22,6 +22,7 @@ var page_infomantion = {
 	HaveNextPage: false,
 }
 
+
 $(function () {
 	$('.to_quert').click(function () {
 		var arr = $('#query_infomantion_inmodal').serializeArray();

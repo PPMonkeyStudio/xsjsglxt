@@ -383,6 +383,7 @@ $(function () {
 							btnClass: 'btn-info',
 							action: function () {
 								var BreakeCaseDATA = modifyBreakeCase.$content.find('form').serializeObject();
+								BreakeCaseDATA["breakeCase.xsjsglxt_breakecase_id"] = ID;
 								$.post('/xsjsglxt/case/BreakeCase_updateBreakeCase', BreakeCaseDATA, function (xhr) {
 									if (xhr == 'updateSuccess') {
 										toastr.info('息修改成功');
