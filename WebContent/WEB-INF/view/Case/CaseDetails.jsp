@@ -250,6 +250,11 @@
 								<!-- 按钮触发模态框 -->
 								<button style="margin-top: 6px;" type="button"
 									class="btn btn-default" data-toggle="modal"
+									data-target="#station">
+									<i class="fa fa-plus-square"></i> 基站修改
+								</button>
+								<button style="margin-top: 6px;" type="button"
+									class="btn btn-default" data-toggle="modal"
 									data-target="#LossOfGoods">
 									<i class="fa fa-plus-square"></i> 添加损失物品
 								</button>
@@ -532,6 +537,55 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary add_picture">添加照片</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+	<!-- 修改基站-模态框（Modal） -->
+	<div class="modal fade" id="station" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">基站修改</h4>
+				</div>
+				<div class="modal-body">
+					<div class="panel-body">
+						<form id="modify_station">
+							<table align="center">
+								<tbody>
+									<tr>
+										<td>移动基站</td>
+										<td><input name="sence.snece_mobileStation"
+											placeholder="基站号" class="form-control" type="text"></td>
+										<td><input name="sence.snece_mobileVillage"
+											placeholder="小区号" class="form-control" type="text"></td>
+									</tr>
+									<tr>
+										<td>联通基站</td>
+										<td><input name="sence.snece_unicomSwitchboard"
+											placeholder="交换机" class="form-control" type="text"></td>
+										<td><input name="sence.snece_unicomVillage"
+											placeholder="小区号" class="form-control" type="text"></td>
+									</tr>
+									<tr>
+										<td>电信基站</td>
+										<td><input name="sence.snece_telecomStation"
+											placeholder="基站号" class="form-control" type="text"></td>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary modify_station">修改基站</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 				</div>
 			</div>
