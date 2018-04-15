@@ -47,55 +47,72 @@
 <!--------------------------------------------------------------------------------->
 <script type="text/javascript"
 	src="<%=basePath%>js/User/updatePasswd.js"></script>
-<script type="text/javascript" src="<%=basePath%>js/User/judgePower.js"></script>
+<%-- <script type="text/javascript" src="<%=basePath%>js/User/judgePower.js"></script> --%>
 <!--------------------------------------------------------------------------------->
 <title>Insert title here</title>
 </head>
 <body>
+	<script type="text/javascript">
+		document
+				.write('<div id="hideLayer" style="margin: 0 auto; background-color: white; position: fixed; width: 100%; height: 2000px; z-index: 9999999999999999999999999999999999999999;"><div style="width: 80px;height:79px; margin: 0 auto; margin-top: 200px;"><img alt=""src="/xsjsglxt/img/hui.png"><span style="color:black;">权限加载中</span></div></div>');
+	</script>
 	<div id="wrapper">
-		<nav class="navbar navbar-default navbar-fixed-top"
-			style="background-color:rgb(41,22,111);">
+		<nav id="navbar" class="navbar navbar-default navbar-fixed-top"
+			style=" background-color: #13599d;">
 		<div
 			style="width: auto; float: left; line-height: 78px; margin: 0 0 0 30px; font-size: 30px; color: white;">
-			<img alt="" src="<%=basePath%>img/hui.png">安源刑侦工作信息管理系统
+			<img alt="" src="<%=basePath%>img/hui.png">安源刑侦信息管理系统
 		</div>
 		<div id="navbar-menu">
-			<ul class="nav navbar-nav navbar-left" style="margin: 0 0 0 20px">
+			<ul style="margin: 0 0 0 20px;" class="nav navbar-nav navbar-left">
 				<li class="dropdown" style="float: left;"><a
 					href="<%=basePath%>user/User_index"><span>首页</span> </a></li>
 				<!--  -->
+				<!--  -->
+				<!--  -->
+				<template v-if="user_army_manager_power">
+				<li class="dropdown" style="float: left;"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown"> <span>队伍管理</span>
+						<i class="icon-submenu lnr lnr-chevron-down"></i>
+				</a>
+					<ul class="dropdown-menu">
+						<li style="float: left;"><a
+							href="<%=basePath%>team/Staff_page_staffList">人员管理</a></li>
+						<li class="teacher_control"><a
+							href="<%=basePath%>scheduling/Scheduling_page_list ">值班管理</a></li>
+						<li class="teacher_control"><a
+							href="<%=basePath%>user/Meeting_skipToMeetRecords">会议记录</a></li>
+						<li class="teacher_control"><a
+							href="<%=basePath%>user/Memorabilia_skipToMemorabilia">大事记</a></li>
+					</ul></li>
+				</template>
 				<li class="leader_control dropdown" style="float: left;"><a
 					href="#" class="dropdown-toggle" data-toggle="dropdown"> <span>刑事技术管理</span>
 						<i class="icon-submenu lnr lnr-chevron-down"></i>
 				</a>
 					<ul class="dropdown-menu">
+						<template v-if="user_case_technology_power">
 						<li><a href="<%=basePath%>case/Case_page_SiteManagement">现场管理</a></li>
+						</template>
+						<template v-if="user_check_power">
 						<li><a
 							href="<%=basePath%>inspectionIdentific/EntrustmentBookManagement_EntrustmentBookManagement"><span>检验鉴定</span></a></li>
-						<li><a href="<%=basePath%>case/Case_page_CaseMergerList">技术管理</a></li>
+						</template>
+						<li><a href="<%=basePath%>user/User_skipToTechnologyIndex">技术管理</a></li>
 					</ul></li>
 				<!--  -->
-				<!--  -->
-				<li class="dropdown" style="float: left;"><a href="#"
-					class="dropdown-toggle" data-toggle="dropdown"> <span>队伍</span>
-						<i class="icon-submenu lnr lnr-chevron-down"></i>
-				</a>
-					<ul class="dropdown-menu">
-						<li style="float: left;"><a
-							href="<%=basePath%>team/Staff_page_staffList">人员</a></li>
-						<li class="teacher_control"><a>值班管理</a></li>
-						<li class="teacher_control"><a href="<%=basePath%>user/Meeting_skipToMeetRecords">会议记录</a></li>
-						<li class="teacher_control"><a href="<%=basePath%>user/Memorabilia_skipToMemorabilia">大事记</a></li>
-					</ul></li>
-				<!--  -->
+				<template v-if="user_case_query_power">
 				<li class="dropdown" style="float: left;"><a
-					href="<%=basePath%>case/Case_page_Handle"> <span>刑侦管理系统</span>
+					href="<%=basePath%>case/Case_page_Handle"> <span>侦查业务管理</span>
 				</a></li>
+				</template>
 				<!--  -->
 				<!--  -->
+				<template v-if="user_user_manager_power">
 				<li class="dropdown" style="float: left;"><a
 					href="<%=basePath%>user/User_skipToUser"> <span>用户</span>
 				</a></li>
+				</template>
 				<!--  -->
 			</ul>
 			<!--  -->
@@ -161,6 +178,97 @@
 		</div>
 
 		<!-- -------------------------------------------------修改密码成功--------------------------------------------------------------- -->
+		<script type="text/javascript">
+			var userPowerDTO = {
+				'user_case_technology_power' : false, //案件技术
+				'user_case_query_power' : false, //案件侦查
+				'user_check_power' : false, //检验鉴定
+				'user_army_manager_power' : false, //队伍
+				'user_technology_manager_power' : false,//技术
+				'user_statistics_power' : false, //统计
+				'user_user_manager_power' : false,
+				'user_check_power_modified': false
+			}
+
+			var powerNavVue = new Vue({
+				el : '#navbar-menu',
+				data : userPowerDTO
+			});
+			//jurisdiction_admin管理
+			//jurisdiction_none无
+			$
+					.ajax({
+						url : '/xsjsglxt/user/User_judgePower',
+						type : 'POST',
+						success : function(data) {
+							if (data == 'exception') {
+								$
+										.confirm({
+											title : "请重新登录",
+											content : "登录验证不通过，可能是未操作时间太久或者为登录造成",
+											buttons : {
+												reLogin : {
+													text : "重新登录",
+													btnClass : "btn-blue",
+													action : function() {
+														window.location = "/xsjsglxt/login.jsp";
+													}
+												}
+											}
+										});
+								$("#hideLayer").hide();
+							} else {
+								var result = JSON.parse(data);
+								if (result.user_case_technology_power == 'jurisdiction_admin') {
+									userPowerDTO.user_case_technology_power = true;
+								} else {
+									userPowerDTO.user_case_technology_power = false;
+								}
+								if (result.user_case_query_power == 'jurisdiction_admin') {
+									userPowerDTO.user_case_query_power = true;
+								} else {
+									userPowerDTO.user_case_query_power = false;
+								}
+								if (result.user_check_power == 'jurisdiction_none') {
+									userPowerDTO.user_check_power = false;
+								} else {
+									userPowerDTO.user_check_power = true;
+								}
+								if(result.user_check_power == 'jurisdiction_use'){
+									userPowerDTO.user_check_power_modified = false;
+								}
+								else{
+									userPowerDTO.user_check_power_modified=true;
+								}
+								if (result.user_army_manager_power == 'jurisdiction_admin') {
+									userPowerDTO.user_army_manager_power = true;
+								} else {
+									userPowerDTO.user_army_manager_power = false;
+								}
+								if (result.user_statistics_power == 'jurisdiction_admin') {
+									userPowerDTO.user_statistics_power = true;
+								} else {
+									userPowerDTO.user_statistics_power = false;
+								}
+								if (result.user_user_manager_power == 'jurisdiction_admin') {
+									userPowerDTO.user_user_manager_power = true;
+								} else {
+									userPowerDTO.user_user_manager_power = false;
+								}
+								if (result.user_technology_manager_power == 'jurisdiction_admin') {
+									userPowerDTO.user_technology_manager_power = true;
+								} else {
+									userPowerDTO.user_technology_manager_power = false;
+								}
+								$("#hideLayer").hide();
+							}
+						}
+					});
+			
+			jconfirm.defaults = {
+					smoothContent: false
+			}
+		</script>
 </body>
 <script type="text/javascript">
 	//getUserSessionForAjax();

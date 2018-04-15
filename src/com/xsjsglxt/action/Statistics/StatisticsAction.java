@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
 
 import com.google.gson.Gson;
+import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DTO.Statistics.CaseTimeDTO;
-import com.xsjsglxt.domain.DTO.Statistics.ComparisonTimeDTO;
 import com.xsjsglxt.domain.DTO.Statistics.policemanOutTimesDTO;
 import com.xsjsglxt.domain.VO.Statistics.CaseTimeVO;
 import com.xsjsglxt.domain.VO.Statistics.ComparisonTimeVO;
@@ -23,7 +23,7 @@ import com.xsjsglxt.service.Statistics.StatisticsService;
  * 统计警员出现场的数量
  *
  */
-public class StatisticsAction {
+public class StatisticsAction extends ActionSupport {
 	private StatisticsService statisticsService;
 	private String policemanName;
 	private OutTimeVO outTimeVO;
@@ -42,42 +42,15 @@ public class StatisticsAction {
 			outTimeVO.setPolicemanName("");
 		}
 		List<policemanOutTimesDTO> result = statisticsService.policemanOutTime(outTimeVO);
+		outTimeVO.setPolicemanOutDTOList(result);
+		System.out.println(outTimeVO.toString());
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		Gson gson = new Gson();
 		PrintWriter pw = response.getWriter();
-		if (result != null && result.size() > 0) {
-			pw.write(gson.toJson(result));
-			pw.flush();
-			pw.close();
-		} else {
-			pw.write("不存在此警员记录");
-			pw.flush();
-			pw.close();
-		}
-	}
-
-	// ------------------------------获得警员比对指纹次数--------------------------------------
-
-	public void policemanComparisonTime() throws IOException {
-		if (comparisonTimeVO == null) {
-			comparisonTimeVO = new ComparisonTimeVO();
-			comparisonTimeVO.setComparisonPolicemanName("");
-		}
-		List<ComparisonTimeDTO> result = statisticsService.comparisonTime(comparisonTimeVO);
-		HttpServletResponse response = ServletActionContext.getResponse();
-		response.setContentType("text/html;charset=utf-8");
-		Gson gson = new Gson();
-		PrintWriter pw = response.getWriter();
-		if (result != null && result.size() > 0) {
-			pw.write(gson.toJson(result));
-			pw.flush();
-			pw.close();
-		} else {
-			pw.write("不存在此警员记录");
-			pw.flush();
-			pw.close();
-		}
+		pw.write(gson.toJson(outTimeVO));
+		pw.flush();
+		pw.close();
 	}
 
 	// -----------------------------------获得案件发生次数--------------------------------------

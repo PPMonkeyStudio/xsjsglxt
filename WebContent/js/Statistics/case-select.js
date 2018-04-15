@@ -36,13 +36,18 @@ var changeSecondSelect = function(event) {
 	}
 }
 
-var highLightShow = function(event) {
-	document.getElementById("caseTBody").innerHTML = document
-			.getElementById("caseTBody").innerHTML.replace(
-			/(<span style="color:red; font-size:15px;")/g, "<span");
-	var index = event.selectedIndex;
+var highLightShow = function() {
+
+	var trs = document.getElementsByName("caseTr");
+	for (var int = 0; int < trs.length; int++) {
+		var trd = trs[int].getElementsByTagName("td");
+		for (var int2 = 1; int2 < trd.length; int2++) {
+			var sp = trd[int2].getElementsByTagName("span");
+			sp[0].removeAttribute("style");
+		}
+	}
+	var index = document.getElementById('policeStation').selectedIndex;
 	if (index > 0) {
-		var trs = document.getElementsByName("caseTr");
 		for (var int = 0; int < trs.length; int++) {
 			var trd = trs[int].getElementsByTagName("td");
 			trd[index].innerHTML = trd[index].innerHTML.replace("<span",

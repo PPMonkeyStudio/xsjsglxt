@@ -7,6 +7,7 @@ import org.junit.Test;
 import com.xsjsglxt.dao.Team.StaffDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_staff;
 import com.xsjsglxt.domain.DTO.Team.policemanListDTO;
+import com.xsjsglxt.domain.VO.Team.policemanDutyVO;
 import com.xsjsglxt.domain.VO.Team.policemanListVO;
 import com.xsjsglxt.service.Team.StaffService;
 
@@ -67,5 +68,40 @@ public class StaffServiceImpl implements StaffService {
 	@Test
 	public void getConnect() {
 		staffDao.getConnect();
+	}
+
+	@Override
+	public List<xsjsglxt_staff> getAllPoliceman() {
+		// TODO Auto-generated method stub
+		List<xsjsglxt_staff> result = staffDao.getAllPoliceman();
+		return result;
+	}
+
+	@Override
+	public policemanDutyVO getSchedulingStaff() {
+		// TODO Auto-generated method stub
+		String pointer = "leader";
+		List<xsjsglxt_staff> leader = staffDao.getSchedulingStaff(pointer);
+		pointer = "main";
+		List<xsjsglxt_staff> main = staffDao.getSchedulingStaff(pointer);
+		pointer = "assistant";
+		List<xsjsglxt_staff> assistant = staffDao.getSchedulingStaff(pointer);
+		policemanDutyVO pVo = new policemanDutyVO();
+		pVo.setStaffLeader(leader);
+		pVo.setStaffAssitant(assistant);
+		pVo.setStaffMain(main);
+		return pVo;
+	}
+
+	@Override
+	public List<xsjsglxt_staff> getMeetCompere() {
+		// TODO Auto-generated method stub
+		return staffDao.getMeetCompere();
+	}
+
+	@Override
+	public List<xsjsglxt_staff> getMeetRecorder() {
+		// TODO Auto-generated method stub
+		return staffDao.getMeetRecorder();
 	}
 }

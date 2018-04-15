@@ -11,10 +11,10 @@
 	<import resource="spring/LostComputer.xml"/>
 	<import resource="spring/Lost.xml"/>
 	<import resource="spring/Image.xml"/>
-	<!-- <import resource="spring/Breakecase.xml"/> -->
-	<import resource="spring/BreakCase.xml"/>
+	<import resource="spring/Breakecase.xml"/>
 	<import resource="spring/Staff.xml"/>
 	<import resource="spring/Handle.xml"/>
 	<import resource="spring/Technology.xml"/>
-		<import resource="spring/statistics.xml"/>
+	<import resource="spring/NewScheduling.xml"/>
+	<import resource="spring/statistics.xml"/>
 </beans>

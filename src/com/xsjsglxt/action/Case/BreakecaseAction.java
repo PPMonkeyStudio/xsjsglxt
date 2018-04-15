@@ -1,146 +1,210 @@
 package com.xsjsglxt.action.Case;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
+import org.apache.struts2.ServletActionContext;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecase;
-import com.xsjsglxt.domain.DO.xsjsglxt_case;
-import com.xsjsglxt.domain.DO.xsjsglxt_snece;
-import com.xsjsglxt.domain.DTO.Case.BreakecaseInformationDTO;
-import com.xsjsglxt.domain.VO.Case.page_list_BreakecaseInformationVO;
+import com.xsjsglxt.domain.DO.xsjsglxt_breakecasesuspect;
+import com.xsjsglxt.domain.VO.Case.BreakeCaseDetailsVO;
+import com.xsjsglxt.domain.VO.Case.BreakeCaseListVO;
 import com.xsjsglxt.service.Case.BreakecaseService;
 
-public class BreakecaseAction extends ActionSupport implements ServletResponseAware, ServletRequestAware {
+/**
+ * 
+ * @author 孙毅 破案模块
+ *
+ */
+public class BreakecaseAction extends ActionSupport {
 	private BreakecaseService breakecaseService;
-	private xsjsglxt_breakecase breakecase;
-	private xsjsglxt_case case1;
-	private xsjsglxt_snece sence;
-	private List<String> useBreakecaseInformationNumList;
-	private HttpServletResponse http_response;
+	private xsjsglxt_breakecase breakeCase;
+	private xsjsglxt_breakecasesuspect suspect;
+	private List<xsjsglxt_breakecasesuspect> suspectList;
+	private String[] breakeCaseId;
+	private String[] suspectId;
+	private BreakeCaseListVO breakeCaseListVO;
 
-	private HttpServletRequest http_request;
-
-	private BreakecaseInformationDTO breakecaseInformationDTO;
-
-	private page_list_BreakecaseInformationVO page_list_BreakecaseInformation;
-
-	/*
-	 * 跳转刑事破案列表
-	 */
+	// -----------------------跳转页面
 	public String page_BreakCaseList() {
 		return "page_BreakCaseList";
 	}
 
-	/*
-	 * 保存破案信息
-	 */
-	public void saveBreakecase() throws IOException {
-		try {
-			// breakecase.setBreakecase_case(case1.getXsjsglxt_case_id());
-			breakecaseService.saveBreakecase(breakecase);
-			http_response.setContentType("text/html;charset=utf-8");
-			http_response.getWriter().write("success");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			http_response.setContentType("text/html;charset=utf-8");
-			http_response.getWriter().write("error");
-		}
-	}
-
-	/*
-	 * 列表信息
-	 */
-	public void ListBreakecaseInformationByPageAndSearch() throws IOException {
-
-		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// 格式化json数据
-		Gson gson = gsonBuilder.create();
-
-		page_list_BreakecaseInformation = breakecaseService
-				.VO_BreakecaseInformation_By_PageAndSearch(page_list_BreakecaseInformation);
-
-		http_response.setContentType("text/html;charset=utf-8");
-
-		http_response.getWriter().write(gson.toJson(page_list_BreakecaseInformation));
-
-	}
-
-	/*
-	 * 
-	 * 详细信息
-	 */
-	public void BreakecaseInformationOne() throws IOException {
-		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// 格式化json数据
-		Gson gson = gsonBuilder.create();
-
-		breakecaseInformationDTO = breakecaseService.BreakecaseInformationOne(breakecase);
-
-		http_response.setContentType("text/html;charset=utf-8");
-
-		http_response.getWriter().write(gson.toJson(breakecaseInformationDTO));
-	}
-
-	/*
-	 * 修改信息
-	 */
-	public void updateBreakcase() throws IOException {
-		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// 格式化json数据
-		Gson gson = gsonBuilder.create();
-		// breakecaseService.updateCase(case1);
-		breakecaseService.updateBreakcase(breakecase);
-		// breakecaseService.updateSence(sence,case1.getXsjsglxt_case_id());
-		http_response.setContentType("text/html;charset=utf-8");
-		http_response.getWriter().write(gson.toJson("success"));
-	}
-
-	/*
-	 * 删除信息
-	 */
-	public void remove_BreakecaseInformationList() {
-
-		if (breakecaseService.remove_BreakecaseInformationList(useBreakecaseInformationNumList)) {
-			http_response.setContentType("text/html;charset=utf-8");
+	// -----------------------保存破案
+	public void saveBreakeCase() {
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		List<xsjsglxt_breakecase> breakecaseIm = breakecaseService.getBreakeCaseByCaseId(breakeCase);
+		if (breakecaseIm != null && breakecaseIm.size() > 0) {
 			try {
-				http_response.getWriter().write("success");
+				PrintWriter pw = response.getWriter();
+				pw.write("caseIsBreake");
+				pw.flush();
+				pw.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
-			http_response.setContentType("text/html;charset=utf-8");
+			boolean flag = breakecaseService.saveBreakeCase(breakeCase, suspectList);
 			try {
-				http_response.getWriter().write("error");
+				PrintWriter pw = response.getWriter();
+				if (flag) {
+					pw.write("saveSuccess");
+					pw.flush();
+					pw.close();
+				} else {
+					pw.write("saveError");
+					pw.flush();
+					pw.close();
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
+		}
+
+	}
+
+	// -----------------------新增一个嫌疑人
+	public void addOneSuspect() {
+		String flag = breakecaseService.addOneSuspect(suspect);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(flag);
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
-	@Override
-	public void setServletRequest(HttpServletRequest arg0) {
-		// TODO Auto-generated method stub
-		this.http_request = arg0;
+	// ------------------------删除破案
+	public void deleteBreakeCase() {
+		boolean flag = false;
+		flag = breakecaseService.deleteBreakeCase(breakeCaseId);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			if (flag)
+				pw.write("deleteSuccess");
+			else
+				pw.write("deleteError");
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
-	@Override
-	public void setServletResponse(HttpServletResponse arg0) {
-		// TODO Auto-generated method stub
-		this.http_response = arg0;
+	// -------------------------删除嫌疑人
+	public void deleteSuspect() {
+		boolean flag = false;
+		flag = breakecaseService.deleteSuspect(suspectId);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			if (flag)
+				pw.write("deleteSuccess");
+			else
+				pw.write("deleteError");
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
+	// ---------------------------修改破案信息
+	public void updateBreakeCase() {
+		boolean flag = false;
+		flag = breakecaseService.updateBreakeCase(breakeCase);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			if (flag)
+				pw.write("updateSuccess");
+			else
+				pw.write("updateError");
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	// ----------------------------修改嫌疑人信息
+	public void updateSuspect() {
+		boolean flag = false;
+		flag = breakecaseService.updateSuspect(suspect);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			if (flag)
+				pw.write("updateSuccess");
+			else
+				pw.write("updateError");
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	// -------------------------------破案详情
+	public void breakeCaseDetails() {
+		BreakeCaseDetailsVO breakeCaseDetailsVO = breakecaseService
+				.getBreakeCaseDetails(breakeCase.getXsjsglxt_breakecase_id());
+		Gson gson = new Gson();
+		String result = gson.toJson(breakeCaseDetailsVO);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(result);
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	// -----------------------------破案列表查询
+	public void breakeCaseByPage() {
+		breakecaseService.breakeCaseByPage(breakeCaseListVO);
+		Gson gson = new Gson();
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(gson.toJson(breakeCaseListVO));
+			pw.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	// -------------------------------------setter/getter--------------------------------------
 	public BreakecaseService getBreakecaseService() {
 		return breakecaseService;
 	}
@@ -149,68 +213,80 @@ public class BreakecaseAction extends ActionSupport implements ServletResponseAw
 		this.breakecaseService = breakecaseService;
 	}
 
-	public HttpServletResponse getHttp_response() {
-		return http_response;
+	public xsjsglxt_breakecase getBreakeCase() {
+		return breakeCase;
 	}
 
-	public void setHttp_response(HttpServletResponse http_response) {
-		this.http_response = http_response;
+	public void setBreakeCase(xsjsglxt_breakecase breakeCase) {
+		this.breakeCase = breakeCase;
 	}
 
-	public HttpServletRequest getHttp_request() {
-		return http_request;
+	public List<xsjsglxt_breakecasesuspect> getSuspectList() {
+		return suspectList;
 	}
 
-	public void setHttp_request(HttpServletRequest http_request) {
-		this.http_request = http_request;
+	public void setSuspectList(List<xsjsglxt_breakecasesuspect> suspectList) {
+		this.suspectList = suspectList;
 	}
 
-	public xsjsglxt_breakecase getBreakecase() {
-		return breakecase;
+	/**
+	 * @return the breakeCaseId
+	 */
+	public String[] getBreakeCaseId() {
+		return breakeCaseId;
 	}
 
-	public void setBreakecase(xsjsglxt_breakecase breakecase) {
-		this.breakecase = breakecase;
+	/**
+	 * @param breakeCaseId
+	 *            the breakeCaseId to set
+	 */
+	public void setBreakeCaseId(String[] breakeCaseId) {
+		this.breakeCaseId = breakeCaseId;
 	}
 
-	public xsjsglxt_case getCase1() {
-		return case1;
+	/**
+	 * @return the suspect
+	 */
+	public xsjsglxt_breakecasesuspect getSuspect() {
+		return suspect;
 	}
 
-	public void setCase1(xsjsglxt_case case1) {
-		this.case1 = case1;
+	/**
+	 * @param suspect
+	 *            the suspect to set
+	 */
+	public void setSuspect(xsjsglxt_breakecasesuspect suspect) {
+		this.suspect = suspect;
 	}
 
-	public xsjsglxt_snece getSence() {
-		return sence;
+	/**
+	 * @return the suspectId
+	 */
+	public String[] getSuspectId() {
+		return suspectId;
 	}
 
-	public void setSence(xsjsglxt_snece sence) {
-		this.sence = sence;
+	/**
+	 * @param suspectId
+	 *            the suspectId to set
+	 */
+	public void setSuspectId(String[] suspectId) {
+		this.suspectId = suspectId;
 	}
 
-	public BreakecaseInformationDTO getBreakecaseInformationDTO() {
-		return breakecaseInformationDTO;
+	/**
+	 * @return the breakeCaseListVO
+	 */
+	public BreakeCaseListVO getBreakeCaseListVO() {
+		return breakeCaseListVO;
 	}
 
-	public void setBreakecaseInformationDTO(BreakecaseInformationDTO breakecaseInformationDTO) {
-		this.breakecaseInformationDTO = breakecaseInformationDTO;
-	}
-
-	public page_list_BreakecaseInformationVO getPage_list_BreakecaseInformation() {
-		return page_list_BreakecaseInformation;
-	}
-
-	public void setPage_list_BreakecaseInformation(page_list_BreakecaseInformationVO page_list_BreakecaseInformation) {
-		this.page_list_BreakecaseInformation = page_list_BreakecaseInformation;
-	}
-
-	public List<String> getUseBreakecaseInformationNumList() {
-		return useBreakecaseInformationNumList;
-	}
-
-	public void setUseBreakecaseInformationNumList(List<String> useBreakecaseInformationNumList) {
-		this.useBreakecaseInformationNumList = useBreakecaseInformationNumList;
+	/**
+	 * @param breakeCaseListVO
+	 *            the breakeCaseListVO to set
+	 */
+	public void setBreakeCaseListVO(BreakeCaseListVO breakeCaseListVO) {
+		this.breakeCaseListVO = breakeCaseListVO;
 	}
 
 }

@@ -83,6 +83,8 @@ function getUserByIdBack() {
 		$("#user_name_update").val(result.user_name);
 		$("#user_number_update").val(result.user_number);
 		$("#user_units_update").val(result.user_units);
+		$("#user_idCard_update").val(result.user_idCard);
+		$("#user_duty_update").val(result.user_duty);
 		$("#user_case_technology_power_update").val(
 				result.user_case_technology_power);
 		$("#user_case_query_power_update").val(result.user_case_query_power);
@@ -160,7 +162,6 @@ function loadUserBack() {
 		skipPage.value = result.currPage;
 		$("#loadingDiv").addClass("hideDiv");
 		$("#tableDiv").removeClass("hideDiv");
-		deleteByPower('user_user_manager_power', 'userRole', 'managerRole');
 	}
 }
 

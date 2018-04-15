@@ -44,6 +44,7 @@ function staff_change() {
 	});
 
 }
+//警员基本信息表
 function loadstaffDetail_staff_change(url) {
 	console.log("b2");
 	if (window.XMLHttpRequest) {
@@ -88,7 +89,7 @@ function loadstaffDetail_staff_change(url) {
 	// xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
 	xmlhttp.send(formData);
 }
-
+//学习经历表
 function studyExp_ajax(url,id){
 	console.log("b3");
 	if (window.XMLHttpRequest) {
@@ -129,7 +130,7 @@ function studyExp_ajax(url,id){
 	// xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
 	xmlhttp.send(formdata);
 }
-
+//工作经历表
 function workExp_ajax(id) {
 	console.log("b4");
 	if (window.XMLHttpRequest) {
@@ -534,7 +535,7 @@ function add_studyExperience() {
 	
 	//添加按钮里的图标
 	var delete_icon=document.createElement("i");
-	delete_icon.className="fa fa-plus-square";
+	delete_icon.className="fa fa-trash";
 	delete_button.append(delete_icon);
 	
 	reviseTd.append(delete_button);
@@ -607,7 +608,7 @@ function add_workExperience() {
 	delete_button.style['margin-left']="10px";
 	//添加按钮里的图标
 	var delete_icon=document.createElement("i");
-	delete_icon.className="fa fa-plus-square";
+	delete_icon.className="fa fa-trash";
 	delete_button.append(delete_icon);
 	reviseTd.append(delete_button);
 	
@@ -700,7 +701,7 @@ function add_family() {
 	delete_button.style['margin-left']="10px";
 	//添加按钮里的图标
 	var delete_icon=document.createElement("i");
-	delete_icon.className="fa fa-plus-square";
+	delete_icon.className="fa fa-trash";
 	delete_button.append(delete_icon);
 	reviseTd.append(delete_button);
 	
@@ -765,7 +766,7 @@ function add_policeChange() {
 	delete_button.style['margin-left']="10px";
 	//添加按钮里的图标
 	var delete_icon=document.createElement("i");
-	delete_icon.className="fa fa-plus-square";
+	delete_icon.className="fa fa-trash";
 	delete_button.append(delete_icon);
 	reviseTd.append(delete_button);
 	
@@ -821,7 +822,7 @@ function add_prized() {
 	delete_button.style['margin-left']="10px";
 	//添加按钮里的图标
 	var delete_icon=document.createElement("i");
-	delete_icon.className="fa fa-plus-square";
+	delete_icon.className="fa fa-trash";
 	delete_button.append(delete_icon);
 	reviseTd.append(delete_button);
 	
@@ -875,7 +876,7 @@ function add_AgainstPrinciple() {
 	delete_button.style['margin-left']="10px";
 	//添加按钮里的图标
 	var delete_icon=document.createElement("i");
-	delete_icon.className="fa fa-plus-square";
+	delete_icon.className="fa fa-trash";
 	delete_button.append(delete_icon);
 	reviseTd.append(delete_button);
 	
@@ -930,7 +931,7 @@ function add_Punish() {
 	delete_button.style['margin-left']="10px";
 	//添加按钮里的图标
 	var delete_icon=document.createElement("i");
-	delete_icon.className="fa fa-plus-square";
+	delete_icon.className="fa fa-trash";
 	delete_button.append(delete_icon);
 	reviseTd.append(delete_button);
 	
@@ -1005,7 +1006,7 @@ function add_Vocation() {
 	delete_button.style['margin-left']="10px";
 	//添加按钮里的图标
 	var delete_icon=document.createElement("i");
-	delete_icon.className="fa fa-plus-square";
+	delete_icon.className="fa fa-trash";
 	delete_button.append(delete_icon);
 	reviseTd.append(delete_button);
 	
@@ -1039,4 +1040,26 @@ function stopPropagation(e) {
 		e.stopPropagation();
 	else
 		e.cancelBubble = true;
+}
+//从身份证自动获取年龄  和判断身份证 格式
+function getAge(){
+	var ID=document.getElementsByName("policeman.staff_idNumber")[0].value;
+	var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;  
+	if(reg.test(ID)==false){
+		toastr.error('身份证格式错误,请输入有效身份证！');
+		var idNumber=document.getElementById("idNumber");
+		idNumber.value="";
+		idNumber.focus();
+	}
+	var myDate = new Date(); 
+	var month = myDate.getMonth() + 1; 
+	var day = myDate.getDate(); 
+	var age = myDate.getFullYear()-ID.substring(6, 10) - 1; 
+	if (ID.substring(10,12)<month||ID.substring(10,12)==month&&ID.substring(12,14)<=day) 
+	{ 
+	age++; 
+	}	
+    var xsjsglxt_age=document.getElementsByName("policeman.xsjsglxt_age")[0];
+	xsjsglxt_age.value=age;
+	return age;
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- action配置 -->
+	<bean id="schedulingAction" class="com.xsjsglxt.action.Scheduling.SchedulingAction" scope="prototype">
+		<property name="schedulingService" ref="schedulingService"></property>
+	</bean>
+	<!-- service配置 -->
+	<bean id="schedulingService" class="com.xsjsglxt.service.impl.Scheduling.SchedulingServiceImpl">
+		<property name="schedulingDao" ref="schedulingDao"></property>
+	</bean>
+	<!-- dao配置 -->
+	<bean id="schedulingDao" class="com.xsjsglxt.dao.impl.Scheduling.SchedulingDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+</beans>

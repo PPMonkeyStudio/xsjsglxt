@@ -151,7 +151,7 @@ a:hover {
 }
 /* 长表格样式start */
 .long_tableBox {
-	margin-top: 100px;
+	margin:50px 0 50px 0;
 }
 /*表格加上滚动条 start  */
 .long_tb{
@@ -170,8 +170,6 @@ a:hover {
 }
 .long_table td {
 	text-align: center;
-	border-right: 1px solid #dddddd;
-	border-bottom: 1px solid #dddddd;
 }
 /*学习经历模态框start  */
 .study_indication {

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +22,7 @@ import org.aspectj.util.FileUtil;
 import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_staff;
+import com.xsjsglxt.domain.VO.Team.policemanDutyVO;
 import com.xsjsglxt.domain.VO.Team.policemanListVO;
 import com.xsjsglxt.service.Team.StaffService;
 
@@ -38,8 +40,59 @@ public class StaffAction extends ActionSupport {
 	private String staff_imageContentType;
 	private String staff_imageFileName;
 	private policemanListVO policemanVO;
-
 	private String xsjsglxt_staff_id;
+
+	// 通过职位分类人员
+	public void getSchedulingStaff() {
+		policemanDutyVO dutyVO = staffService.getSchedulingStaff();
+		Gson gson = new Gson();
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(gson.toJson(dutyVO));
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	// 获得会议主持人 职务-----中队长以上
+	public void getMeetCompere() {
+		List<xsjsglxt_staff> staffList = staffService.getMeetCompere();
+		Gson gson = new Gson();
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(gson.toJson(staffList));
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	// 获得会议记录人 职务------内勤
+	public void getMeetRecorder() {
+		List<xsjsglxt_staff> staffList = staffService.getMeetRecorder();
+		Gson gson = new Gson();
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(gson.toJson(staffList));
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	// -----------------------------------进入人员管理---------------------------------------
 	public String page_staffList() {
@@ -246,6 +299,24 @@ public class StaffAction extends ActionSupport {
 		try {
 			PrintWriter pw = response.getWriter();
 			pw.write(result);
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	// ---------------------------------------获得所有警员姓名-----------------------------------
+	public void getAllPolicemans() {
+		List<xsjsglxt_staff> result = staffService.getAllPoliceman();
+		Gson gson = new Gson();
+		String result1 = gson.toJson(result);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(result1);
 			pw.flush();
 			pw.close();
 		} catch (IOException e) {

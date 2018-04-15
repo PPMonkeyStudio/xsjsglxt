@@ -1,8 +1,37 @@
 window.onload = function() {
 	var url = window.location.href;
 	staff_id = url.substring(url.indexOf("=") + 1);
+	//进入页面自动更新年龄并提交到后台
+	getAge();
+	get_ageAjax();
+	
 	console.log(staff_id);
 	get_staffDetails(staff_id);
+	
+}
+//更新年龄的ajax
+function get_ageAjax(){
+	if (window.XMLHttpRequest) {
+		xmlhttp = new XMLHttpRequest();
+	} else {
+		xmlhttp = new ActiveXOBject("Microsoft.XMLHTTP");
+	}
+	var staffDetails = document.getElementById("staffDetails");
+	var formData = new FormData(staffDetails);
+	xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			var result = xmlhttp.responseText;
+			if (result == 'updateSuccess') {
+				console.log("更新年龄成功");
+			} else {
+				console.log("更新年龄失败");
+			}
+		}
+	};
+	xmlhttp.open("post",
+			"/xsjsglxt/team/Staff_updatePoliceman?policeman.xsjsglxt_staff_id="
+					+ staff_id, true);
+	xmlhttp.send(formData);
 }
 function get_staffDetails(staff_id) {
 	console.log("b1");
@@ -55,6 +84,7 @@ function get_staffDetails_Ajax(url, staff_id) {
 				$('input[name="policeman.' + key + '"]').val(value);
 			});
 			$('#staff_duty').val(staff_info.staff_duty);
+			$('#staff_type').val(staff_info.staff_type);
 			$('#staff_MaxEducationalBackground').val(
 					staff_info.staff_MaxEducationalBackground);
 			$('#staff_politicalStatus').val(staff_info.staff_politicalStatus);
@@ -109,7 +139,7 @@ function show_studyAjax(staff_id) {
 						+ '</td>';
 				str1 += '<td>' + staff_study[len].staffStudent_startTime
 						+ '</td>';
-				str1 += '<td>' + staff_study[len].staffStudent_stopTime
+				str1 += '<td>' + staff_study[len].staffStudent_remarks
 						+ '</td>';
 				str1 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#reliveStudy_Modal" onclick="show_study(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_study(this)" type="button" ><i class="fa fa-trash"></i></button></td>';
 
@@ -486,7 +516,7 @@ function staff_relive() {
 				}
 			});
 }
-// 修改按钮
+// 修改按钮执行事件
 function loadstaffDetail_staff_relive() {
 	console.log("b2");
 	if (window.XMLHttpRequest) {
@@ -505,6 +535,8 @@ function loadstaffDetail_staff_relive() {
 			} else {
 				toastr.error('编辑失败！');
 			}
+			//刷新页面
+			//get_staffDetails();
 		}
 	};
 	xmlhttp.open("post",

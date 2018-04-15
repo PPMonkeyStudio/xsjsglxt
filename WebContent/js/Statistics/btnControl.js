@@ -9,12 +9,6 @@ var changePage = function(event) {
 		$('#fieldPage').show();
 		loadPoliceman();
 		break;
-	case "goComparisonPage":
-		$('#caseTime').hide();
-		$('#fieldPage').hide();
-		$('#comparisonTime').show();
-		loadComparison();
-		break;
 	case "goCasePage":
 		$('#fieldPage').hide();
 		$('#comparisonTime').hide();

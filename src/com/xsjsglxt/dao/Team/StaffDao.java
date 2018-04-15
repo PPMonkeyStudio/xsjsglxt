@@ -20,4 +20,12 @@ public interface StaffDao {
 	List<policemanListDTO> getPolicemansByPage(policemanListVO policemanVO);
 
 	public void getConnect();
+
+	List<xsjsglxt_staff> getAllPoliceman();
+
+	List<xsjsglxt_staff> getSchedulingStaff(String pointer);
+
+	List<xsjsglxt_staff> getMeetCompere();
+
+	List<xsjsglxt_staff> getMeetRecorder();
 }

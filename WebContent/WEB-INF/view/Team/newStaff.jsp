@@ -41,7 +41,7 @@
 			<div class="panel-body staff_body">
 				<form id="staffDetails" enctype="multipart/form-data"
 					accept-charset="utf-8">
-					<table>
+					<table style="width:90%;">
 						<tr>
 							<td colspan="6" class="staff_info_title">基本信息</td>
 						</tr>
@@ -66,8 +66,8 @@
 						</tr>
 						<tr>
 							<td><label>身份证号</label></td>
-							<td><input name="policeman.staff_idNumber"
-								class="form-control" type="text"></td>
+							<td><input name="policeman.staff_idNumber" id="idNumber"
+								class="form-control " type="text" onblur="getAge()"></td>
 
 							<td><label>年龄</label></td>
 							<td><input style="font-size: 12px;"
@@ -159,8 +159,21 @@
 									<option>中队长</option>
 									<option>副中队长</option>
 									<option>民警</option>
+									<option>法医</option>
 									<option>辅警</option>
+									
 							</select></td>
+							<td><label>警种</label></td>
+							<td><select id="staff_type" class="form-control"
+								name="policeman.staff_type">
+									<option>民警</option>
+									<option>辅警</option>
+									<option>文职</option>
+							</select></td>
+							
+							<td><label>地址</label></td>
+							<td><input name="policeman.staff_address"
+								class="form-control" type="text"></td>
 						</tr>
 						<tr style="height: 30px"></tr>
 						<tr>
@@ -182,15 +195,15 @@
 							<td><label>QQ号</label></td>
 							<td><input name="policeman.staff_QQ" class="form-control"
 								style="margin-top: 6px;" type="text"></td>
-							<td><label>微信</label></td>
+							<td><label>微&nbsp;&nbsp;信&nbsp;&nbsp;号</label></td>
 							<td><input name="policeman.staff_weixin"
 								class="form-control" style="margin-top: 6px;"></td>
-							<td><label>电子邮箱</label></td>
+							<td><label>内网邮箱</label><label>外网邮箱</label></td>
 							<td><input name="policeman.staff_outEmail"
 								class="form-control" style="margin-top: 6px;"
-								placeholder="外网电子邮箱"> <input
+								> <input
 								name="policeman.staff_inEmail" class="form-control"
-								style="margin-top: 6px;" placeholder="内网电子邮箱"></td>
+								style="margin-top: 6px;"></td>
 
 						</tr>
 
@@ -207,7 +220,7 @@
 
 						<form id="study_exp">
 							<div class="long_tb">
-								<table id="studyExperience_table" class="table">
+								<table id="studyExperience_table" >
 									<tbody>
 										<tr class="long_table">
 											<th>学习地点</th>
@@ -222,6 +235,7 @@
 							</div>
 						</form>
 					</div>
+					<div style="background: #e7e6e6;width:1000px;height: 1px;"></div>
 					<div class="long_tableBox">
 						<span class="staff_info_title">工作经历</span>
 						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
@@ -231,7 +245,7 @@
 						</button>
 						<form id="work_exp">
 							<div class="long_tb">
-								<table id="wordExperience_table" class="table">
+								<table id="wordExperience_table"  >
 									<tbody>
 										<tr class="long_table">
 											<th>工作地点</th>
@@ -246,6 +260,7 @@
 							</div>
 						</form>
 					</div>
+					<div style="background: #e7e6e6;width:1000px;height: 1px;"></div>
 					<div class="long_tableBox">
 						<span class="staff_info_title">家庭情况</span>
 						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
@@ -274,7 +289,7 @@
 							</table>
 						</div>
 					</div>
-
+<div style="background: #e7e6e6;width:1000px;height: 1px;"></div>
 					<div class="long_tableBox">
 						<span class="staff_info_title">刑警大队调动情况</span>
 						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
@@ -298,6 +313,7 @@
 							</div>
 						</form>
 					</div>
+					<div style="background: #e7e6e6;width:1000px;height: 1px;"></div>
 					<div class="long_tableBox">
 						<span class="staff_info_title">立功受奖情况</span>
 						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
@@ -320,6 +336,7 @@
 							</div>
 						</form>
 					</div>
+					<div style="background: #e7e6e6;width:1000px;height: 1px;"></div>
 					<div class="long_tableBox">
 						<span class="staff_info_title">违纪情况</span>
 						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
@@ -342,6 +359,7 @@
 							</div>
 						</form>
 					</div>
+					<div style="background: #e7e6e6;width:1000px;height: 1px;"></div>
 					<div class="long_tableBox">
 						<span class="staff_info_title">处分情况</span>
 						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
@@ -364,6 +382,7 @@
 							</div>
 						</form>
 					</div>
+					<div style="background: #e7e6e6;width:1000px;height: 1px;"></div>
 					<div class="long_tableBox">
 						<span class="staff_info_title">休假情况</span>
 						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
@@ -447,7 +466,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_studyExperience()" data-dismiss='modal'>新建</button>
+						onclick="add_studyExperience()" data-dismiss='modal'>增加</button>
 				</div>
 			</div>
 		</div>
@@ -514,7 +533,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_workExperience()" data-dismiss='modal'>新建</button>
+						onclick="add_workExperience()" data-dismiss='modal'>增加</button>
 				</div>
 			</div>
 		</div>
@@ -605,7 +624,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_family()" data-dismiss='modal'>新建</button>
+						onclick="add_family()" data-dismiss='modal'>增加</button>
 				</div>
 			</div>
 		</div>
@@ -667,7 +686,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_policeChange()" data-dismiss='modal'>新建</button>
+						onclick="add_policeChange()" data-dismiss='modal'>增加</button>
 				</div>
 			</div>
 		</div>
@@ -722,7 +741,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_prized()" data-dismiss='modal'>新建</button>
+						onclick="add_prized()" data-dismiss='modal'>增加</button>
 				</div>
 			</div>
 		</div>
@@ -778,7 +797,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_AgainstPrinciple()" data-dismiss='modal'>新建</button>
+						onclick="add_AgainstPrinciple()" data-dismiss='modal'>增加</button>
 				</div>
 			</div>
 		</div>
@@ -834,7 +853,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_Punish()" data-dismiss='modal'>新建</button>
+						onclick="add_Punish()" data-dismiss='modal'>增加</button>
 				</div>
 			</div>
 		</div>
@@ -905,7 +924,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="add_Vocation()" data-dismiss='modal'>新建</button>
+						onclick="add_Vocation()" data-dismiss='modal'>增加</button>
 				</div>
 			</div>
 		</div>
@@ -917,149 +936,149 @@
 	<script type="text/javascript">
 		$.datetimepicker.setLocale('ch');
 		$('.staff_joinPartyTime').datetimepicker({
-			yearStart : 1990, // 设置最小年份
-			yearEnd : 2050, // 设置最大年份
+			yearStart : 1900, // 设置最小年份
+			yearEnd : 2100, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : false, // 关闭时间选项
 			format : 'Y-m-d', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
-			maxDate : '2030/01/01', // 设置最大日期
+			minDate : '1900/01/01', // 设置最小日期
+			maxDate : '2100/01/01', // 设置最大日期
 		});
 		$('.staff_joinWorkTime').datetimepicker({
-			yearStart : 1990, // 设置最小年份
-			yearEnd : 2050, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d H:i', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
-			maxDate : '2030/01/01', // 设置最大日期
-		});
-		$('.staff_thePoliceTime').datetimepicker({
-			yearStart : 1990, // 设置最小年份
-			yearEnd : 2050, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d ', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
-			maxDate : '2030/01/01', // 设置最大日期
-		});
-		$('.staff_birthday').datetimepicker({
-			yearStart : 1990, // 设置最小年份
-			yearEnd : 2050, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d  ', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
-			maxDate : '2030/01/01', // 设置最大日期
-		});
-		$('.staffStudent_startTime').datetimepicker({
-			yearStart : 1990, // 设置最小年份
-			yearEnd : 2050, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d ', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
-			maxDate : '2030/01/01', // 设置最大日期
-		});
-		$('.staffStudent_stopTime').datetimepicker({
-			yearStart : 1990, // 设置最小年份
-			yearEnd : 2050, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d ', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
-			maxDate : '2030/01/01', // 设置最大日期
-		});
-		$('.staffFamily_birthday').datetimepicker({
-			yearStart : 1990, // 设置最小年份
-			yearEnd : 2050, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d  ', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
-			maxDate : '2030/01/01', // 设置最大日期
-		});
-		$('.staffWork_startTime').datetimepicker({
-			yearStart : 1990, // 设置最小年份
-			yearEnd : 2050, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d  ', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
-			maxDate : '2030/01/01', // 设置最大日期
-		});
-		$('.staffWork_stopTime').datetimepicker({
-			yearStart : 1990, // 设置最小年份
-			yearEnd : 2050, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d  ', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
-			maxDate : '2030/01/01', // 设置最大日期
-		});
-		$('.staffMove_inTime').datetimepicker({
-			yearStart : 1990, // 设置最小年份
-			yearEnd : 2050, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d ', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
-			maxDate : '2030/01/01', // 设置最大日期
-		});
-		$('.staffMove_outTime').datetimepicker({
-			yearStart : 1990, // 设置最小年份
-			yearEnd : 2050, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d  ', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
-			maxDate : '2030/01/01', // 设置最大日期
-		});
-		$('.staffReward_Time').datetimepicker({
-			yearStart : 1990, // 设置最小年份
-			yearEnd : 2050, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d  ', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
-			maxDate : '2030/01/01', // 设置最大日期
-		});
-		$('.staffPrinciple_Time').datetimepicker({
-			yearStart : 1990, // 设置最小年份
-			yearEnd : 2050, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d  ', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
-			maxDate : '2030/01/01', // 设置最大日期
-		});
-		$('.staffPunishment_Time').datetimepicker({
-			yearStart : 1990, // 设置最小年份
-			yearEnd : 2050, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d  ', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
-			maxDate : '2030/01/01', // 设置最大日期
-		});
-		$('.staffFurlough_startTime').datetimepicker({
-			yearStart : 1990, // 设置最小年份
-			yearEnd : 2050, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : true, // 关闭时间选项
-			format : 'Y-m-d  ', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
-			maxDate : '2030/01/01', // 设置最大日期
-		});
-
-		$('.staffFurlough_stopTime').datetimepicker({
-			yearStart : 1990, // 设置最小年份
-			yearEnd : 2050, // 设置最大年份
+			yearStart : 1900, // 设置最小年份
+			yearEnd : 2100, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
 			format : 'Y-m-d', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
-			maxDate : '2030/01/01', // 设置最大日期
+			minDate : '1900/01/01', // 设置最小日期
+			maxDate : '2100/01/01', // 设置最大日期
+		});
+		$('.staff_thePoliceTime').datetimepicker({
+			yearStart : 1900, // 设置最小年份
+			yearEnd : 2100, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : true, // 关闭时间选项
+			format : 'Y-m-d ', // 格式化日期年-月-日
+			minDate : '1900/01/01', // 设置最小日期
+			maxDate : '2100/01/01', // 设置最大日期
+		});
+		$('.staff_birthday').datetimepicker({
+			yearStart : 1900, // 设置最小年份
+			yearEnd : 2100, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : true, // 关闭时间选项
+			format : 'Y-m-d  ', // 格式化日期年-月-日
+			minDate : '1900/01/01', // 设置最小日期
+			maxDate : '2100/01/01', // 设置最大日期
+		});
+		$('.staffStudent_startTime').datetimepicker({
+			yearStart : 1900, // 设置最小年份
+			yearEnd : 2100, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : true, // 关闭时间选项
+			format : 'Y-m-d ', // 格式化日期年-月-日
+			minDate : '1900/01/01', // 设置最小日期
+			maxDate : '2100/01/01', // 设置最大日期
+		});
+		$('.staffStudent_stopTime').datetimepicker({
+			yearStart : 1900, // 设置最小年份
+			yearEnd : 2100, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : true, // 关闭时间选项
+			format : 'Y-m-d ', // 格式化日期年-月-日
+			minDate : '1900/01/01', // 设置最小日期
+			maxDate : '2100/01/01', // 设置最大日期
+		});
+		$('.staffFamily_birthday').datetimepicker({
+			yearStart : 1900, // 设置最小年份
+			yearEnd : 2100, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : true, // 关闭时间选项
+			format : 'Y-m-d  ', // 格式化日期年-月-日
+			minDate : '1900/01/01', // 设置最小日期
+			maxDate : '2100/01/01', // 设置最大日期
+		});
+		$('.staffWork_startTime').datetimepicker({
+			yearStart : 1900, // 设置最小年份
+			yearEnd : 2100, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : true, // 关闭时间选项
+			format : 'Y-m-d  ', // 格式化日期年-月-日
+			minDate : '1900/01/01', // 设置最小日期
+			maxDate : '2100/01/01', // 设置最大日期
+		});
+		$('.staffWork_stopTime').datetimepicker({
+			yearStart : 1900, // 设置最小年份
+			yearEnd : 2100, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : true, // 关闭时间选项
+			format : 'Y-m-d  ', // 格式化日期年-月-日
+			minDate : '1900/01/01', // 设置最小日期
+			maxDate : '2100/01/01', // 设置最大日期
+		});
+		$('.staffMove_inTime').datetimepicker({
+			yearStart : 1900, // 设置最小年份
+			yearEnd : 2100, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : true, // 关闭时间选项
+			format : 'Y-m-d ', // 格式化日期年-月-日
+			minDate : '1900/01/01', // 设置最小日期
+			maxDate : '2100/01/01', // 设置最大日期
+		});
+		$('.staffMove_outTime').datetimepicker({
+			yearStart : 1900, // 设置最小年份
+			yearEnd : 2100, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : true, // 关闭时间选项
+			format : 'Y-m-d  ', // 格式化日期年-月-日
+			minDate : '1900/01/01', // 设置最小日期
+			maxDate : '2100/01/01', // 设置最大日期
+		});
+		$('.staffReward_Time').datetimepicker({
+			yearStart : 1900, // 设置最小年份
+			yearEnd : 2100, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : true, // 关闭时间选项
+			format : 'Y-m-d  ', // 格式化日期年-月-日
+			minDate : '1900/01/01', // 设置最小日期
+			maxDate : '2100/01/01', // 设置最大日期
+		});
+		$('.staffPrinciple_Time').datetimepicker({
+			yearStart : 1900, // 设置最小年份
+			yearEnd : 2100, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : true, // 关闭时间选项
+			format : 'Y-m-d  ', // 格式化日期年-月-日
+			minDate : '1900/01/01', // 设置最小日期
+			maxDate : '2100/01/01', // 设置最大日期
+		});
+		$('.staffPunishment_Time').datetimepicker({
+			yearStart : 1900, // 设置最小年份
+			yearEnd : 2100, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : true, // 关闭时间选项
+			format : 'Y-m-d  ', // 格式化日期年-月-日
+			minDate : '1900/01/01', // 设置最小日期
+			maxDate : '2100/01/01', // 设置最大日期
+		});
+		$('.staffFurlough_startTime').datetimepicker({
+			yearStart : 1900, // 设置最小年份
+			yearEnd : 2100, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : true, // 关闭时间选项
+			format : 'Y-m-d  ', // 格式化日期年-月-日
+			minDate : '1900/01/01', // 设置最小日期
+			maxDate : '2100/01/01', // 设置最大日期
+		});
+
+		$('.staffFurlough_stopTime').datetimepicker({
+			yearStart : 1900, // 设置最小年份
+			yearEnd : 2100, // 设置最大年份
+			yearOffset : 0, // 年偏差
+			timepicker : true, // 关闭时间选项
+			format : 'Y-m-d', // 格式化日期年-月-日
+			minDate : '1900/01/01', // 设置最小日期
+			maxDate : '2100/01/01', // 设置最大日期
 		});
 	</script>
 

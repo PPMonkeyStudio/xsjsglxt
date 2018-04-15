@@ -10,8 +10,6 @@ import org.hibernate.SessionFactory;
 import com.xsjsglxt.dao.Case.ParallelDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_briefdetails;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
-import com.xsjsglxt.domain.DO.xsjsglxt_lost;
-import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
 import com.xsjsglxt.domain.DO.xsjsglxt_parallel;
 import com.xsjsglxt.domain.DO.xsjsglxt_resevidence;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
@@ -21,13 +19,15 @@ import util.TeamUtil;
 
 public class ParallelDaoImpl implements ParallelDao {
 	private SessionFactory sessionFactory;
+
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
-	} 
+	}
+
 	public Session getSession() {
 
 		return this.sessionFactory.getCurrentSession();
@@ -63,7 +63,7 @@ public class ParallelDaoImpl implements ParallelDao {
 		String hql = "from xsjsglxt_case case1 where case1.xsjsglxt_case_id='" + case_id + "'";
 		Query query = session.createQuery(hql);
 		CaseInformation = (xsjsglxt_case) query.uniqueResult();
-       return CaseInformation;
+		return CaseInformation;
 	}
 
 	@Override
@@ -72,14 +72,14 @@ public class ParallelDaoImpl implements ParallelDao {
 		Session session = getSession();
 		Long i;
 		String hql = "select count(*) from xsjsglxt_parallel where 1=1";
-		String startTime = "0000-00-00";
+		String startTime = "";
 		String stopTime = "9999-99-99";
-		  // 1
+		// 1
 		if (page_list_parallelInformation.getParallel_casename() != null
 				&& page_list_parallelInformation.getParallel_casename().trim().length() > 0) {
 			String parallel_casename = "%" + page_list_parallelInformation.getParallel_casename() + "%";
 			hql = hql + " and parallel_casename like '" + parallel_casename + "'";
-				
+
 		}
 		// 2
 		if (page_list_parallelInformation.getParallel_person() != null
@@ -87,17 +87,19 @@ public class ParallelDaoImpl implements ParallelDao {
 			String parallel_person = "%" + page_list_parallelInformation.getParallel_person() + "%";
 			hql = hql + " and parallel_person like '" + parallel_person + "'";
 		}
-		
-		if (page_list_parallelInformation.getStart_time() != null && page_list_parallelInformation.getStart_time().trim().length() > 0) {
+
+		if (page_list_parallelInformation.getStart_time() != null
+				&& page_list_parallelInformation.getStart_time().trim().length() > 0) {
 			startTime = page_list_parallelInformation.getStart_time();
 		}
-		if (page_list_parallelInformation.getStop_time() != null && page_list_parallelInformation.getStop_time().trim().length() > 0) {
+		if (page_list_parallelInformation.getStop_time() != null
+				&& page_list_parallelInformation.getStop_time().trim().length() > 0) {
 			stopTime = page_list_parallelInformation.getStop_time();
 		}
-		hql = hql + " and parallel_date>='" + startTime + "' and parallel_date<='"
-				+ stopTime + "' order by parallel_date";
+		hql = hql + " and parallel_date>='" + startTime + "' and parallel_date<='" + stopTime
+				+ "' order by parallel_date";
 		System.out.println(hql);
-		Query query = session.createQuery(hql);	
+		Query query = session.createQuery(hql);
 		i = (Long) query.uniqueResult();
 		session.clear();
 		return i.intValue();
@@ -110,31 +112,33 @@ public class ParallelDaoImpl implements ParallelDao {
 		Session session = getSession();
 		List<xsjsglxt_parallel> listParallelInformationByPage = new ArrayList<xsjsglxt_parallel>();
 		String hql = "from xsjsglxt_parallel where 1=1";
-		String startTime = "0000-00-00";
+		String startTime = "";
 		String stopTime = "9999-99-99";
-		  // 1
-				if (page_list_parallelInformation.getParallel_casename() != null
-						&& page_list_parallelInformation.getParallel_casename().trim().length() > 0) {
-					String parallel_casename = "%" + page_list_parallelInformation.getParallel_casename() + "%";
-					hql = hql + " and parallel_casename like '" + parallel_casename + "'";
-						
-				}
-				// 2
-				if (page_list_parallelInformation.getParallel_person() != null
-						&& page_list_parallelInformation.getParallel_person().trim().length() > 0) {
-					String parallel_person = "%" + page_list_parallelInformation.getParallel_person() + "%";
-					hql = hql + " and parallel_person like '" + parallel_person + "'";
-				}
-				
-				if (page_list_parallelInformation.getStart_time() != null && page_list_parallelInformation.getStart_time().trim().length() > 0) {
-					startTime = page_list_parallelInformation.getStart_time();
-				}
-				if (page_list_parallelInformation.getStop_time() != null && page_list_parallelInformation.getStop_time().trim().length() > 0) {
-					stopTime = page_list_parallelInformation.getStop_time();
-				}
-				hql = hql + " and parallel_date>='" + startTime + "' and parallel_date<='"
-						+ stopTime + "' order by parallel_date";
-		Query query = session.createQuery(hql);	
+		// 1
+		if (page_list_parallelInformation.getParallel_casename() != null
+				&& page_list_parallelInformation.getParallel_casename().trim().length() > 0) {
+			String parallel_casename = "%" + page_list_parallelInformation.getParallel_casename() + "%";
+			hql = hql + " and parallel_casename like '" + parallel_casename + "'";
+
+		}
+		// 2
+		if (page_list_parallelInformation.getParallel_person() != null
+				&& page_list_parallelInformation.getParallel_person().trim().length() > 0) {
+			String parallel_person = "%" + page_list_parallelInformation.getParallel_person() + "%";
+			hql = hql + " and parallel_person like '" + parallel_person + "'";
+		}
+
+		if (page_list_parallelInformation.getStart_time() != null
+				&& page_list_parallelInformation.getStart_time().trim().length() > 0) {
+			startTime = page_list_parallelInformation.getStart_time();
+		}
+		if (page_list_parallelInformation.getStop_time() != null
+				&& page_list_parallelInformation.getStop_time().trim().length() > 0) {
+			stopTime = page_list_parallelInformation.getStop_time();
+		}
+		hql = hql + " and parallel_date>='" + startTime + "' and parallel_date<='" + stopTime
+				+ "' order by parallel_date";
+		Query query = session.createQuery(hql);
 		query.setFirstResult(
 				(page_list_parallelInformation.getPageIndex() - 1) * page_list_parallelInformation.getPageSize());
 		query.setMaxResults(page_list_parallelInformation.getPageSize());
@@ -148,11 +152,12 @@ public class ParallelDaoImpl implements ParallelDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
-		String hql = "from xsjsglxt_parallel parallel where parallel.xsjsglxt_parallel_id='" + parallel.getXsjsglxt_parallel_id() + "'";
+		String hql = "from xsjsglxt_parallel parallel where parallel.xsjsglxt_parallel_id='"
+				+ parallel.getXsjsglxt_parallel_id() + "'";
 
 		Query query = session.createQuery(hql);
 
-		 parallel = (xsjsglxt_parallel) query.uniqueResult();
+		parallel = (xsjsglxt_parallel) query.uniqueResult();
 
 		return parallel;
 	}
@@ -165,8 +170,8 @@ public class ParallelDaoImpl implements ParallelDao {
 		String hql = "from xsjsglxt_case case1 where case1.case_parallel='" + parallel.getXsjsglxt_parallel_id() + "'";
 
 		Query query = session.createQuery(hql);
-        List<xsjsglxt_case> caseList=new ArrayList<xsjsglxt_case>();
-		caseList =  query.list();
+		List<xsjsglxt_case> caseList = new ArrayList<xsjsglxt_case>();
+		caseList = query.list();
 
 		return caseList;
 	}
@@ -180,7 +185,7 @@ public class ParallelDaoImpl implements ParallelDao {
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_snece	 sence = (xsjsglxt_snece) query.uniqueResult();
+		xsjsglxt_snece sence = (xsjsglxt_snece) query.uniqueResult();
 
 		return sence;
 	}
@@ -190,11 +195,12 @@ public class ParallelDaoImpl implements ParallelDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
-		String hql = "from xsjsglxt_briefdetails briefdetails where briefdetails.briefdetails_case='" + case1.getXsjsglxt_case_id() + "'";
+		String hql = "from xsjsglxt_briefdetails briefdetails where briefdetails.briefdetails_case='"
+				+ case1.getXsjsglxt_case_id() + "'";
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_briefdetails	 briefdetails = (xsjsglxt_briefdetails) query.uniqueResult();
+		xsjsglxt_briefdetails briefdetails = (xsjsglxt_briefdetails) query.uniqueResult();
 
 		return briefdetails;
 	}
@@ -204,11 +210,12 @@ public class ParallelDaoImpl implements ParallelDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
-		String hql = "from xsjsglxt_resevidence resevidence where resevidence.resevidence_case='" + case1.getXsjsglxt_case_id() + "'";
+		String hql = "from xsjsglxt_resevidence resevidence where resevidence.resevidence_case='"
+				+ case1.getXsjsglxt_case_id() + "'";
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_resevidence	 resevidence = (xsjsglxt_resevidence) query.uniqueResult();
+		xsjsglxt_resevidence resevidence = (xsjsglxt_resevidence) query.uniqueResult();
 
 		return resevidence;
 	}
@@ -217,23 +224,25 @@ public class ParallelDaoImpl implements ParallelDao {
 	public int getMaxParallelNum() {
 		// TODO Auto-generated method stub
 		int i;
-	
-		String year =TeamUtil.getCurrentYear();
-		String li="";
+
+		String year = TeamUtil.getCurrentYear();
+		String li = "";
 		String hql = "select right(parallel_num,4) from xsjsglxt_parallel ORDER BY right(parallel_num,4) desc limit 1";
-		//String hql = "select substring(parallel_num,-1,4) from xsjsglxt_parallel where substring(parallel_num,1,8)='"+year+"' order by substring(parallel_num,-1,4) desc limit 1";
+		// String hql = "select substring(parallel_num,-1,4) from
+		// xsjsglxt_parallel where substring(parallel_num,1,8)='"+year+"' order
+		// by substring(parallel_num,-1,4) desc limit 1";
 		System.out.println(hql);
 		Query query = getSession().createSQLQuery(hql);
-		li=(String) query.uniqueResult();
-		if(li==null || li.trim().length()<=0){
+		li = (String) query.uniqueResult();
+		if (li == null || li.trim().length() <= 0) {
 			getSession().clear();
 			return 0;
 		}
-		i=Integer.parseInt(li);
+		i = Integer.parseInt(li);
 		getSession().clear();
-		System.out.println("数量"+i);
+		System.out.println("数量" + i);
 		return i;
-		
+
 	}
 
 	@Override
@@ -255,7 +264,7 @@ public class ParallelDaoImpl implements ParallelDao {
 		String hql = "from xsjsglxt_parallel parallel where parallel.xsjsglxt_parallel_id='" + parallel_id + "'";
 		Query query = session.createQuery(hql);
 		ParallelInformation = (xsjsglxt_parallel) query.uniqueResult();
-       return ParallelInformation;
+		return ParallelInformation;
 	}
 
 	@Override
@@ -265,6 +274,6 @@ public class ParallelDaoImpl implements ParallelDao {
 		String hql = "delete from xsjsglxt_parallel where xsjsglxt_parallel_id='" + xsjsglxt_parallel_id + "'";
 		Query query = session.createQuery(hql);
 		query.executeUpdate();
-       return true;
+		return true;
 	}
 }

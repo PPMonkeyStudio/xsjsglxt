@@ -564,5 +564,4 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		}
 		return i;
 	}
-
 }
