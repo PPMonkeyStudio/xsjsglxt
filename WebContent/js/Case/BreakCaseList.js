@@ -258,11 +258,11 @@ $(function () {
 			</tr><tr><td>案件类型</td><td>
 			<input class="form-control" name="breakeCase.breakecase_type" type="text" value="${msg.breakeCase.breakecase_type}">
 			</td><td>破案方式</td><td>
-			<select class="form-control" name="breakeCase.breakecase_according" type="text" value="${msg.breakeCase.breakecase_according}"><option value=""></option><option value="指纹">指纹</option><option value="视屏">视屏</option><option value="NDA">NDA</option></select>
+			<select class="form-control" name="breakeCase.breakecase_according"><option value=""></option><option value="指纹">指纹</option><option value="视屏">视屏</option><option value="NDA">NDA</option></select>
 			</td></tr><tr><td>破案时间</td><td>
 			<input class="form-control mydate" name="breakeCase.breakecase_caseTime" type="text" value="${msg.breakeCase.breakecase_caseTime}">
 			</td><td>破案人</td><td>
-			<input class="form-control" name="breakeCase.breakecase_person" type="text" value="${msg.breakeCase.breakecase_person}">
+			<select class="form-control" name="breakeCase.breakecase_person"></select>
 			</td></tr><tr><td>带破案件</td><td colspan="3">
 			<select class="form-control selectpicker" multiple data-live-search="true" name="breakeCase.breakecase_waitbreakecase"></select>
 			</td></tr><tr><td>备注</td><td colspan="3">
@@ -274,12 +274,21 @@ $(function () {
 
 				var modifyBreakeCase = $.confirm({
 					closeIcon: true,
-					boxWidth: '80%',
-					useBootstrap: false,
+					columnClass: 'col-md-12',
+					boxWidth: '1000px',
+					useBootstrap: true,
 					smoothContent: false,
 					title: '破案信息修改',
 					content: content,
 					onContentReady: function () {
+						$('select[name="breakeCase.breakecase_according"]').val(msg.breakeCase.breakecase_according);
+						$.post('/xsjsglxt/team/Staff_getAllPolicemans', {}, function (params) {
+							var suspectStr = '';
+							for (let index = 0; index < params.length; index++) {
+								suspectStr += '<option value="' + params[index]["xsjsglxt_name"] + '">' + params[index]["xsjsglxt_name"] + '</option>';
+							}
+							$('select[name="breakeCase.breakecase_person"]').html(suspectStr).selectpicker('refresh').selectpicker('val', msg.breakeCase.breakecase_person);
+						}, 'json');
 						Init();
 						for (let index = 0; index < msg.suspectList.length; index++) {
 							var _suspect = msg.suspectList[index];

@@ -54,8 +54,6 @@
 					<div class="panel">
 						<div class="panel-heading">
 							<h3 class="panel-title">案件列表</h3>
-							<p class="text-primary query_prompting_info">nothing to
-								query.</p>
 						</div>
 						<div class="panel-body">
 							<table class="table table-hover table-condensed case_table_info">

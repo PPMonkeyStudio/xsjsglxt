@@ -30,7 +30,7 @@
 		<!--  -->
 		<!---------------------------------------------------------------------------------------------------->
 		<!---------------------------------------------------------------------------------------------------->
-		<div class="panel" style="width: 95% margin: 20px auto;">
+		<div class="panel" style="width: 1300px; margin: 20px auto;">
 			<!--  -->
 			<div class="panel-heading">
 				<h3 class="panel-title">现场录入</h3>
@@ -119,24 +119,6 @@
 							<td colspan="5"><input name="case1.case_name"
 								style="margin-top: 6px;" class="case_name form-control"
 								type="text"></td>
-						</tr>
-					</table>
-					<hr>
-					<table>
-						<tr>
-							<td width="85">移动基站</td>
-							<td><input name="sence.snece_mobileStation"
-								placeholder="基站号" class="form-control" type="text"> <input
-								name="sence.snece_mobileVillage" placeholder="小区号"
-								style="margin-top: 6px;" class="form-control" type="text"></td>
-							<td width="85">联通基站</td>
-							<td><input name="sence.snece_unicomSwitchboard"
-								placeholder="交换机" class="form-control" type="text"> <input
-								name="sence.snece_unicomVillage" placeholder="小区号"
-								style="margin-top: 6px;" class="form-control" type="text"></td>
-							<td width="85">电信基站</td>
-							<td><input name="sence.snece_telecomStation"
-								placeholder="基站号" width="40%;" class="form-control" type="text"></td>
 						</tr>
 					</table>
 					<hr>
@@ -315,27 +297,15 @@
 						</tr>
 						<tr>
 							<td>勘验人员</td>
-							<td colspan="5"><input name="sence.snece_inquestPerson"
+							<td colspan="5">
+								<!-- <input name="sence.snece_inquestPerson"
 								id="exploration_personnel" placeholder="请输入"
-								class="form-control"> <%-- <select name="sence.snece_inquestPerson"
-								id="exploration_personnel"
+								class="form-control"> --> <select
+								name="sence.snece_inquestPerson" id="exploration_personnel"
 								class="selectpicker show-tick form-control dropup" multiple
 								data-live-search="true" data-dropup-auto="false" title="请选择">
-									<option value="刘楚德">刘楚德</option>
-									<option value="龙建平">龙建平</option>
-									<option value="刘蓉">刘蓉</option>
-									<option value="杨立宇">杨立宇</option>
-									<option value="冯俊">冯俊</option>
-									<option value="吴昊晟">吴昊晟</option>
-									<option value="陈永明">陈永明</option>
-									<option value="赖鑫">赖鑫</option>
-									<option value="王树鹏">王树鹏</option>
-									<option value="许倩">许倩</option>
-									<option value="汤喜">汤喜</option>
-									<option value="陈佐仁">陈佐仁</option>
-									<option value="李希">李希</option>
-									<option value="魏松林">魏松林</option>
-							</select> --%></td>
+							</select>
+							</td>
 						</tr>
 						<tr>
 							<!-- <td>填表人员</td>
