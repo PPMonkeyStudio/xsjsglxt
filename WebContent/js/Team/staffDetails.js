@@ -1,10 +1,6 @@
 window.onload = function() {
 	var url = window.location.href;
 	staff_id = url.substring(url.indexOf("=") + 1);
-	//进入页面自动更新年龄并提交到后台
-	getAge();
-	get_ageAjax();
-	
 	console.log(staff_id);
 	get_staffDetails(staff_id);
 	
@@ -22,9 +18,9 @@ function get_ageAjax(){
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			var result = xmlhttp.responseText;
 			if (result == 'updateSuccess') {
-				console.log("更新年龄成功");
+				toastr.success('更新年龄成功！');
 			} else {
-				console.log("更新年龄失败");
+				toastr.error('更新年龄成功！');
 			}
 		}
 	};
@@ -81,16 +77,35 @@ function get_staffDetails_Ajax(url, staff_id) {
 						isNotFormat.checked = true;
 					}
 				}
+				else if(key=="staff_politicalStatus"){
+					if(value=="预备党员"||value=="入党积极分子"){
+						document.querySelector(".staff_appliactionFormTime_label").style.display="";
+						document.querySelector(".staff_appliactionFormTime").style.display="";
+						document.querySelector(".staff_delevopObjectTime_label").style.display="";
+						document.querySelector(".staff_delevopObjectTime").style.display="";
+						$('input[name="policeman.' + key + '"]').val(value);
+					}else if(value=="党员"){
+						document.querySelector(".staff_joinPartyTime_label").style.display="";
+						document.querySelector(".staff_joinPartyTime").style.display="";
+						$('input[name="policeman.' + key + '"]').val(value);
+					}
+				}
 				$('input[name="policeman.' + key + '"]').val(value);
 			});
 			$('#staff_duty').val(staff_info.staff_duty);
 			$('#staff_type').val(staff_info.staff_type);
+			$('#staff_degree').val(staff_info.staff_degree);
+			$('#staff_politicalStatus').val(staff_info.staff_politicalStatus);
 			$('#staff_MaxEducationalBackground').val(
 					staff_info.staff_MaxEducationalBackground);
 			$('#staff_politicalStatus').val(staff_info.staff_politicalStatus);
 			document.getElementById("photo-show").innerHTML = "<img src='/xsjsglxt/team/Staff_downloadPhoto?staff_imageFileName="
 					+ staff_info.staff_photo + "' />";
-
+			
+			//进入页面自动更新年龄,提交到后台
+			relive_getAge();
+			get_ageAjax();
+			
 			show_studyAjax(staff_id);
 			show_workAjax(staff_id);
 			show_familyAjax(staff_id);
@@ -99,6 +114,7 @@ function get_staffDetails_Ajax(url, staff_id) {
 			show_againstAjax(staff_id);
 			show_punishmentAjax(staff_id);
 			show_furloughAjax(staff_id);
+
 		}
 	}
 
@@ -543,4 +559,27 @@ function loadstaffDetail_staff_relive() {
 			"/xsjsglxt/team/Staff_updatePoliceman?policeman.xsjsglxt_staff_id="
 					+ staff_id, true);
 	xmlhttp.send(formData);
+}
+//从身份证自动获取年龄  和判断身份证 格式
+function relive_getAge(){
+	var ID=document.getElementsByName("policeman.staff_idNumber")[0].value;
+	var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;  
+	if(reg.test(ID)==false){
+		toastr.error('身份证格式错误,请输入有效身份证！');
+		var idNumber=document.getElementById("idNumber");
+		idNumber.value="";
+		idNumber.focus();
+	}
+	var myDate = new Date(); 
+	var month = myDate.getMonth() + 1; 
+	var day = myDate.getDate(); 
+	var age = myDate.getFullYear()-ID.substring(6, 10) - 1; 
+	if (ID.substring(10,12)<month||ID.substring(10,12)==month&&ID.substring(12,14)<=day) 
+	{ 
+	age++; 
+	}	
+    var xsjsglxt_age=document.getElementsByName("policeman.xsjsglxt_age")[0];
+	xsjsglxt_age.value=age;
+	console.log("年龄更新"+age);
+	return age;
 }
