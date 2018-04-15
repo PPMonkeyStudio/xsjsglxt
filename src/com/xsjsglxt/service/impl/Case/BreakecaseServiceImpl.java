@@ -37,7 +37,6 @@ public class BreakecaseServiceImpl implements BreakecaseService {
 				xsjsglxt_breakecasesuspect.setBreakecaseSuspect_gmt_modified(TeamUtil.getStringSecond());
 				xsjsglxt_breakecasesuspect.setBreakecaseSuspect_breakecase(result);
 				String suspectResult = breakecaseDao.saveBreakecaseSuspect(xsjsglxt_breakecasesuspect);
-
 			}
 		if (result != null && !"".equals(result.trim()))
 			return true;

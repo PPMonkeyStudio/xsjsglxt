@@ -79,8 +79,8 @@ var updateMeetingRecords = function(dom) {
 						+ "</td><td>会议地点：</td><td><input id='meeting_placeU' name='meet.meeting_place' type='text' class='form-control' placeholder='请输入会议地点'></td></tr>"
 						+ "<tr><td>会议开始时间：</td><td><input id='meeting_start_timeU' placeholder='时分按格式手动精确（10:30英文冒号）' name='meet.meeting_start_time' type='text' class='form-control  mydate'></td>"
 						+ "<td>会议结束时间：</td><td><input id='meeting_end_timeU' placeholder='时分按格式手动精确（10:30英文冒号）' name='meet.meeting_end_time' type='text' class='form-control  mydate'></td></tr>"
-						+ "<tr><td>主持人：</td><td><input id='meeting_compereU' name='meet.meeting_compere' type='text' class='form-control' placeholder='请输入会议主持人'></td>"
-						+ "<td>记录人：</td><td><input id='meeting_record_humanU' name='meet.meeting_record_human' type='text' class='form-control' placeholder='请输入会议记录人'></td></tr>"
+						+ "<tr><td>主持人：</td><td><select id='meeting_compereU' name='meet.meeting_compere' type='text' class='form-control selectpicker' data-live-search='true'></select></td>"
+						+ "<td>记录人：</td><td><select id='meeting_record_humanU' name='meet.meeting_record_human' type='text' class='form-control selectpicker' data-live-search='true'></select></td></tr>"
 						+ "<tr><td>参与人员</td><td colspan='3'><input id='meeting_join_humanU' name='meet.meeting_join_human' type='text' class='form-control' placeholder='请输入会议参与人员'></td></tr>"
 						+ "<tr><td>请假人员</td><td colspan='3'><input id='meeting_leave_humanU' name='meet.meeting_leave_human' type='text' class='form-control' placeholder='请输入会议请假人员'></td></tr>"
 						+ "<tr><td>会议内容</td><td colspan='3'><textarea id='meeting_contentU' name='meet.meeting_content' rows='10' class='form-control' placeholder='请输入会议内容'></textarea></td></tr>"
@@ -158,32 +158,103 @@ var updateMeetingRecords = function(dom) {
 						minDate : '1900/01/01 00:00', // 设置最小日期
 						maxDate : '2030/01/01 00:00', // 设置最大日期
 					});
-					$.ajax({
-						url : "/xsjsglxt/user/Meeting_getMeetingById",
-						type : "POST",
-						data : {
-							"meeting_id" : dom.id
-						},
-						success : function(data) {
-							var jsonData = JSON.parse(data);
-							$("#meeting_titleU").val(jsonData.meeting_title);
-							$("#meeting_placeU").val(jsonData.meeting_place);
-							$("#meeting_start_timeU").val(
-									jsonData.meeting_start_time);
-							$("#meeting_end_timeU").val(
-									jsonData.meeting_end_time);
-							$("#meeting_compereU")
-									.val(jsonData.meeting_compere);
-							$("#meeting_record_humanU").val(
-									jsonData.meeting_record_human);
-							$("#meeting_leave_humanU").val(
-									jsonData.meeting_leave_human);
-							$("#meeting_join_humanU").val(
-									jsonData.meeting_join_human);
-							$("#meeting_contentU")
-									.val(jsonData.meeting_content);
-						}
-					});
+					$
+							.ajax({
+								url : "/xsjsglxt/user/Meeting_getMeetingById",
+								type : "POST",
+								data : {
+									"meeting_id" : dom.id
+								},
+								success : function(datas) {
+									$
+											.ajax({
+												url : '/xsjsglxt/team/Staff_getMeetCompere',
+												type : 'GET',
+												success : function(data) {
+													var result = JSON
+															.parse(data);
+													for (var int = 0; int < result.length; int++) {
+														document
+																.getElementById("meeting_compereU").innerHTML = document
+																.getElementById("meeting_compereU").innerHTML
+																+ "<option value='"
+																+ result[int].xsjsglxt_name
+																+ "'>"
+																+ result[int].xsjsglxt_name
+																+ "</option>";
+													}
+													$
+															.ajax({
+																url : '/xsjsglxt/team/Staff_getMeetRecorder',
+																type : 'GET',
+																success : function(
+																		data) {
+																	var result = JSON
+																			.parse(data);
+																	for (var int = 0; int < result.length; int++) {
+																		document
+																				.getElementById("meeting_record_humanU").innerHTML = document
+																				.getElementById("meeting_record_humanU").innerHTML
+																				+ "<option value='"
+																				+ result[int].xsjsglxt_name
+																				+ "'>"
+																				+ result[int].xsjsglxt_name
+																				+ "</option>";
+																	}
+																	var jsonData = JSON
+																			.parse(datas);
+																	$(
+																			"#meeting_titleU")
+																			.val(
+																					jsonData.meeting_title);
+																	$(
+																			"#meeting_placeU")
+																			.val(
+																					jsonData.meeting_place);
+																	$(
+																			"#meeting_start_timeU")
+																			.val(
+																					jsonData.meeting_start_time);
+																	$(
+																			"#meeting_end_timeU")
+																			.val(
+																					jsonData.meeting_end_time);
+																	$(
+																			"#meeting_compereU")
+																			.val(
+																					jsonData.meeting_compere);
+																	$(
+																			"#meeting_record_humanU")
+																			.val(
+																					jsonData.meeting_record_human);
+																	$(
+																			"#meeting_leave_humanU")
+																			.val(
+																					jsonData.meeting_leave_human);
+																	$(
+																			"#meeting_join_humanU")
+																			.val(
+																					jsonData.meeting_join_human);
+																	$(
+																			"#meeting_contentU")
+																			.val(
+																					jsonData.meeting_content);
+																	$(
+																			".selectpicker")
+																			.selectpicker(
+																					'refresh');
+																	$(
+																			".selectpicker")
+																			.selectpicker(
+																					'render')
+																}
+															})
+
+												}
+											})
+
+								}
+							});
 				}
 			});
 }

@@ -40,7 +40,6 @@ public class StaffAction extends ActionSupport {
 	private String staff_imageContentType;
 	private String staff_imageFileName;
 	private policemanListVO policemanVO;
-
 	private String xsjsglxt_staff_id;
 
 	// 通过职位分类人员
@@ -59,6 +58,40 @@ public class StaffAction extends ActionSupport {
 			e.printStackTrace();
 		}
 
+	}
+
+	// 获得会议主持人 职务-----中队长以上
+	public void getMeetCompere() {
+		List<xsjsglxt_staff> staffList = staffService.getMeetCompere();
+		Gson gson = new Gson();
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(gson.toJson(staffList));
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	// 获得会议记录人 职务------内勤
+	public void getMeetRecorder() {
+		List<xsjsglxt_staff> staffList = staffService.getMeetRecorder();
+		Gson gson = new Gson();
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(gson.toJson(staffList));
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	// -----------------------------------进入人员管理---------------------------------------

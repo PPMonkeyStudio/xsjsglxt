@@ -13,29 +13,12 @@ function staff_change() {
 			},
 			确定 : {
 				action : function() {
-					// 判断基本信息表单是否为空 
-					var staff_details =document.getElementById("staffDetails");
-					for (var i = 0; i < staff_details.length; i++) {
-						if (staff_details.elements[i].value == "") {
-							toastr.error('基本信息不能有空项哦！');
-							console.log(staff_details.elements[i].name+"不能为空！");
-							staff_details.elements[i].focus();
-							return false;
-						}
-					} 
-					/*//判断八个长表格表单是否为空
-					var staff_details = document.querySeletorAll(".long_tableBox");
-					for (var i = 0; i < staff_details.length; i++) {
-						var long_formElement = staff_details[i];
-						for (var j = 0; j < long_formElement.length; j++) {
-							if (long_formElement.elements[j].value == "") {
-								toastr.error('长表格不能有空项哦！');
-								console.log(long_formElement.elements[i].name+"不能为空！");
-								staff_details.elements[j].focus();
-								return false;
-							}
-						}
-					}*/
+					//判断身份证是否为空
+					var ID=document.getElementsByName("policeman.staff_idNumber")[0].value;
+					if(ID==""){
+						toastr.error('身份证号不能为空哦！');
+					   return false;
+					}
 					loadstaffDetail_staff_change(url);
 					
 				}
@@ -67,9 +50,7 @@ function loadstaffDetail_staff_change(url) {
 			policeChange_ajax(id);
 			prized_ajax(id);
 			against_ajax(id);
-			punishment_ajax(id);
 			furlough_ajax(id);
-
 			$.confirm({
 				title : '新建成功!',
 				content : '新建成功!',
@@ -326,45 +307,6 @@ function against_ajax(id) {
 
 	};
 	xmlhttp.open("post","/xsjsglxt/team/StaffPrinciple_savePrinciples", true);
-	// xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
-	xmlhttp.send(formdata);
-}
-function punishment_ajax(id) {
-	console.log("b9");
-	if (window.XMLHttpRequest) {
-		xmlhttp = new XMLHttpRequest();
-	} else {
-		xmlhttp = new ActiveXOBject("Microsoft.XMLHTTP");
-	}
-	var formdata = new FormData();
-	var punish_table = document.getElementById("punish_table");
-	var punishTr = punish_table.getElementsByTagName("tr");
-	for(var i=1;i<punishTr.length;i++){
-		//得到每列
-		var p_td=punishTr[i].getElementsByTagName("td");
-		for(var j=0;j<p_td.length;j++){
-			//得到每列的class名
-			if(p_td[j].value==""){
-				p_td[j].value=" ";
-			}
-			var p_tdName=p_td[j].getAttribute("name");
-			console.log("列名"+p_tdName);
-			//将每列的名和值放到formdata中
-			formdata.append(p_tdName,p_td[j].innerHTML);
-		}
-	
-		//将id放到每行中
-		formdata.append("punishments.staffPunishment_staff", id);
-	}
-	xmlhttp.onreadystatechange = function() {
-		console.log("c9");
-		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			//console.log("punishment_ajax"+xmlhttp.responseText);
-			//workExp_ajax(id);
-		}
-
-	};
-	xmlhttp.open("post","/xsjsglxt/team/StaffPunishment_savePunishments", true);
 	// xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
 	xmlhttp.send(formdata);
 }
@@ -887,61 +829,6 @@ function add_AgainstPrinciple() {
 	againstPrinciple_table.children[0].append(againstPrinciple_tr);
 	a++;
 }
-var pu=0;
-function add_Punish() {
-	console.log("add_Punish start");
-	// 把表格的数据存到json中
-	var staffPunishment_situation = document.querySelector(".staffPunishment_situation").value;
-	var staffPunishment_Time = document.querySelector(".staffPunishment_Time").value;
-	var staffPunishment_remarks = document.querySelector(".staffPunishment_remarks").value;
-	
-	newStudyExp['staffPunishment_situation'] = staffPunishment_situation;
-	newStudyExp['staffPunishment_Time'] = staffPunishment_Time;
-	newStudyExp['staffPunishment_remarks'] = staffPunishment_remarks;
-	console.log(newStudyExp['staffPunishment_remarks']);
-	// 动态创建表格
-	var punish_table = document
-			.getElementById("punish_table");
-	punish_table.setAttribute("class", "long_table");
-
-	var punishment_tr = document.createElement("tr");
-	var staffPunishment_situation = document.createElement("td");
-	staffPunishment_situation.innerHTML = newStudyExp['staffPunishment_situation'];
-	staffPunishment_situation.setAttribute("name","punishments["+pu+"].staffPunishment_situation");
-	console.log(staffPunishment_situation.innerHTML);
-	
-	var staffPunishment_Time = document.createElement("td");
-	staffPunishment_Time.innerHTML = newStudyExp['staffPunishment_Time'];
-	staffPunishment_Time.setAttribute("name","punishments["+pu+"].staffPunishment_Time");
-
-	
-	var staffPunishment_remarks = document.createElement("td");
-	staffPunishment_remarks.innerHTML = newStudyExp['staffPunishment_remarks'];
-	staffPunishment_remarks.setAttribute("name","punishments["+pu+"].staffPunishment_remarks");
-
-	//增加删除按钮的列
-	var reviseTd =document.createElement("td");
-	//增加删除按钮及样式
-	var delete_button=document.createElement("button");
-	delete_button.className='btn btn-default btn-xs';
-	delete_button.setAttribute("type","button");
-	delete_button.addEventListener('click', function(){
-        this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
-    }, false);
-	delete_button.style['margin-left']="10px";
-	//添加按钮里的图标
-	var delete_icon=document.createElement("i");
-	delete_icon.className="fa fa-trash";
-	delete_button.append(delete_icon);
-	reviseTd.append(delete_button);
-	
-	punishment_tr.appendChild(staffPunishment_situation);
-	punishment_tr.appendChild(staffPunishment_Time);
-	punishment_tr.appendChild(staffPunishment_remarks);
-	punishment_tr.appendChild(reviseTd);
-	punish_table.children[0].append(punishment_tr);
-	pu++;
-}
 var v=0;
 function add_Vocation() {
 	console.log("add_Vocation start");
@@ -1041,6 +928,37 @@ function stopPropagation(e) {
 	else
 		e.cancelBubble = true;
 }
+//检查政治面貌的内容内新增内容
+function checkUp(value){
+	if(value=="入党积极分子"||value=="预备党员"){
+        //清空其他内容
+		document.querySelector(".staff_joinPartyTime_label").style.display="none";
+		document.querySelector(".staff_joinPartyTime").style.display="none";
+		//是入党积极分子就显示申请书事件和发展对象时间
+		document.querySelector(".staff_appliactionFormTime_label").style.display="";
+		document.querySelector(".staff_appliactionFormTime").style.display="";
+		document.querySelector(".staff_delevopObjectTime_label").style.display="";
+		document.querySelector(".staff_delevopObjectTime").style.display="";
+	}
+	else if(value=="党员"){
+		 //清空其他内容
+		document.querySelector(".staff_appliactionFormTime_label").style.display="none";
+		document.querySelector(".staff_appliactionFormTime").style.display="none";
+		document.querySelector(".staff_delevopObjectTime_label").style.display="none";
+		document.querySelector(".staff_delevopObjectTime").style.display="none";
+		//是党员就显示入党时间
+		document.querySelector(".staff_joinPartyTime_label").style.display="";
+		document.querySelector(".staff_joinPartyTime").style.display="";
+	}
+	else{
+		document.querySelector(".staff_appliactionFormTime_label").style.display="none";
+		document.querySelector(".staff_appliactionFormTime").style.display="none";
+		document.querySelector(".staff_delevopObjectTime_label").style.display="none";
+		document.querySelector(".staff_delevopObjectTime").style.display="none";
+		document.querySelector(".staff_joinPartyTime_label").style.display="none";
+		document.querySelector(".staff_joinPartyTime").style.display="none";
+	}
+}
 //从身份证自动获取年龄  和判断身份证 格式
 function getAge(){
 	var ID=document.getElementsByName("policeman.staff_idNumber")[0].value;
@@ -1061,5 +979,6 @@ function getAge(){
 	}	
     var xsjsglxt_age=document.getElementsByName("policeman.xsjsglxt_age")[0];
 	xsjsglxt_age.value=age;
+	console.log("年龄更新"+age);
 	return age;
 }

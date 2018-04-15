@@ -65,15 +65,16 @@ a {
 				<table class="table table-bordered" style="text-align: center;">
 					<thead>
 						<tr>
-							<td><label class="fancy-checkbox"> <input
+							<td rowspan="2"><label class="fancy-checkbox"> <input
 									onclick="selectAll(this)" type="checkbox" ><span>
 										全选 </span>
 							</label></td>
-							<td>日期</td>
-							<td>带班领导</td>
-							<td>主班</td>
-							<td>副班</td>
+							<td rowspan="2">日期</td>
+							<td rowspan="2">带班领导</td>
+							<td colspan="2">主班</td>
+							<td rowspan="2">副班</td>
 						</tr>
+						<tr><td>侦查民警</td><td>技术民警</td></tr>
 					</thead>
 					<tbody>
 						<template v-for="schedulingDTO in vo.schedulingDTOList">
@@ -84,6 +85,7 @@ a {
 							<td><a onclick="updateScheduling(this)" :id="schedulingDTO.xsjsglxt_scheduling_id">{{ schedulingDTO.scheduling_time }}</a></td>
 							<td>{{ schedulingDTO.scheduling_leader }}</td>
 							<td>{{ schedulingDTO.scheduling_main }}</td>
+							<td>{{ schedulingDTO.scheduling_mainTec }}</td>
 							<td>{{ schedulingDTO.scheduling_assistant }}</td>
 						</tr>
 						</template>

@@ -86,10 +86,25 @@ public class StaffServiceImpl implements StaffService {
 		List<xsjsglxt_staff> main = staffDao.getSchedulingStaff(pointer);
 		pointer = "assistant";
 		List<xsjsglxt_staff> assistant = staffDao.getSchedulingStaff(pointer);
+		pointer = "mainTech";
+		List<xsjsglxt_staff> mainTech = staffDao.getSchedulingStaff(pointer);
 		policemanDutyVO pVo = new policemanDutyVO();
 		pVo.setStaffLeader(leader);
 		pVo.setStaffAssitant(assistant);
 		pVo.setStaffMain(main);
+		pVo.setStaffMainTech(mainTech);
 		return pVo;
+	}
+
+	@Override
+	public List<xsjsglxt_staff> getMeetCompere() {
+		// TODO Auto-generated method stub
+		return staffDao.getMeetCompere();
+	}
+
+	@Override
+	public List<xsjsglxt_staff> getMeetRecorder() {
+		// TODO Auto-generated method stub
+		return staffDao.getMeetRecorder();
 	}
 }
