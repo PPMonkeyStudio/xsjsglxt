@@ -108,13 +108,45 @@
 								class="form-control" placeholder="请输入用户姓名"> <label>警号：</label>
 							<input id="user_number" name="user_number" type="text"
 								class="form-control" placeholder="请输入用户警号"> <label>单位：</label>
-							<input id="user_units" name="user_units" type="text"
-								class="form-control" placeholder="请输入用户单位"> <label>职位：</label>
-							<input id="user_duty" name="user_duty" type="text"
-								class="form-control" placeholder="请输入用户职位"> <label>身份证号码：</label>
-							<input id="user_idCard" name="user_idCard" type="text"
-								class="form-control" placeholder="请输入用户身份证号"> <label>案件技术权限：</label>
-							<select name="user_case_technology_power" class="form-control">
+							<!-- 							<input id="user_units" name="user_units" type="text"
+								class="form-control" placeholder="请输入用户单位"> -->
+							<select class="form-control" id="user_units" name="user_units">
+								<option value="安源公安分局刑警大队">安源公安分局刑警大队</option>
+								<option value="安源派出所">安源派出所</option>
+								<option value="城郊派出所">城郊派出所</option>
+								<option value="凤凰派出所">凤凰派出所</option>
+								<option value="后埠派出所">后埠派出所</option>
+								<option value="东大派出所">东大派出所</option>
+								<option value="高坑派出所">高坑派出所</option>
+								<option value="青山派出所">青山派出所</option>
+								<option value="八一派出所">八一派出所</option>
+								<option value="白源派出所">白源派出所</option>
+								<option value="丹江派出所">丹江派出所</option>
+								<option value="李子园派出所">李子园派出所</option>
+								<option value="五陂下派出所">五陂下派出所</option>
+								<option value="其他">其他</option>
+							</select> <label>职位：</label>
+							<!-- <input id="user_duty" name="user_duty"
+								type="text" class="form-control" placeholder="请输入用户职位"> -->
+							<select id="user_duty" name="user_duty" class="form-control">
+								<option value="局长">局长</option>
+								<option value="副局长">副局长</option>
+								<option value="政委">政委</option>
+								<option value="大队长">大队长</option>
+								<option value="教导员">教导员</option>
+								<option value="副大队长">副大队长</option>
+								<option value="副教导员">副教导员</option>
+								<option value="中队长">中队长</option>
+								<option value="副中队长">副中队长</option>
+								<option value="侦查民警">侦查民警</option>
+								<option value="技术民警">技术民警</option>
+								<option value="法医">法医</option>
+								<option value="辅警">辅警</option>
+								<option value="内勤">内勤</option>
+							</select> <label>身份证号码：</label> <input id="user_idCard" name="user_idCard"
+								type="text" class="form-control" placeholder="请输入用户身份证号">
+							<label>案件技术权限：</label> <select name="user_case_technology_power"
+								class="form-control">
 								<option value="jurisdiction_none">无权限</option>
 								<option value="jurisdiction_admin">管理权限</option>
 							</select> <label>案件侦查权限：</label> <select name="user_case_query_power"
@@ -185,13 +217,44 @@
 								class="form-control" placeholder="请输入用户姓名"> <label>代码：</label>
 							<input id="user_number_update" name="user_number" type="text"
 								class="form-control" placeholder="请输入用户代码"> <label>单位：</label>
-							<input id="user_units_update" name="user_units" type="text"
-								class="form-control" placeholder="请输入用户单位"> <label>职位：</label>
-							<input id="user_duty_update" name="user_duty" type="text"
-								class="form-control" placeholder="请输入用户职位"> <label>身份证号码：</label>
-							<input id="user_idCard_update" name="user_idCard" type="text"
-								class="form-control" placeholder="请输入用户身份证号"> <label>案件技术权限：</label>
-							<select id="user_case_technology_power_update"
+							<!-- 							<input id="user_units_update" name="user_units" type="text"
+								class="form-control" placeholder="请输入用户单位"> -->
+							<select id="user_units_update" name="user_units" class="form-control">
+								<option value="安源公安分局刑警大队">安源公安分局刑警大队</option>
+								<option value="安源派出所">安源派出所</option>
+								<option value="城郊派出所">城郊派出所</option>
+								<option value="凤凰派出所">凤凰派出所</option>
+								<option value="后埠派出所">后埠派出所</option>
+								<option value="东大派出所">东大派出所</option>
+								<option value="高坑派出所">高坑派出所</option>
+								<option value="青山派出所">青山派出所</option>
+								<option value="八一派出所">八一派出所</option>
+								<option value="白源派出所">白源派出所</option>
+								<option value="丹江派出所">丹江派出所</option>
+								<option value="李子园派出所">李子园派出所</option>
+								<option value="五陂下派出所">五陂下派出所</option>
+								<option value="其他">其他</option>
+							</select> <label>职位：</label> <!-- <input id="user_duty_update" name="user_duty"
+								type="text" class="form-control" placeholder="请输入用户职位"> -->
+							<select id="user_duty_update" name="user_duty" class="form-control">
+								<option value="局长">局长</option>
+								<option value="副局长">副局长</option>
+								<option value="政委">政委</option>
+								<option value="大队长">大队长</option>
+								<option value="教导员">教导员</option>
+								<option value="副大队长">副大队长</option>
+								<option value="副教导员">副教导员</option>
+								<option value="中队长">中队长</option>
+								<option value="副中队长">副中队长</option>
+								<option value="侦查民警">侦查民警</option>
+								<option value="技术民警">技术民警</option>
+								<option value="法医">法医</option>
+								<option value="辅警">辅警</option>
+								<option value="内勤">内勤</option>
+							</select> <label>身份证号码：</label> <input id="user_idCard_update"
+								name="user_idCard" type="text" class="form-control"
+								placeholder="请输入用户身份证号"> <label>案件技术权限：</label> <select
+								id="user_case_technology_power_update"
 								name="user_case_technology_power" class="form-control">
 								<option value="jurisdiction_none">无权限</option>
 								<option value="jurisdiction_admin">管理权限</option>

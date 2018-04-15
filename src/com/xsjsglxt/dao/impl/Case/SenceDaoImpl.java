@@ -275,8 +275,6 @@ public class SenceDaoImpl implements SenceDao {
 		query.setMaxResults(page_list_senceInformation.getPageSize());
 		listSenceInformationByPage = query.list();
 		System.out.println(hql);
-
-		session.clear();
 		return listSenceInformationByPage;
 	}
 

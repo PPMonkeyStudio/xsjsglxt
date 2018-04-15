@@ -60,7 +60,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void updateUser(xsjsglxt_user xu) {
 		// TODO Auto-generated method stub
-		xu.setUser_password(md5.GetMD5Code(xu.getUser_password()));
 		userDao.updateUser(xu);
 	}
 
