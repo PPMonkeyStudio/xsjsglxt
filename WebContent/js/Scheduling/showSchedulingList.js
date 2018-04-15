@@ -49,7 +49,7 @@ var skipToPrimaryPage = function() {
 	if (schedulingVue.vo.currPage <= 1) {
 		toastr.error("没有上一页了哦");
 	} else {
-		queryConditionTemp.currPage = --schedulingVue.vo.policemanOutVO.currPage;
+		queryConditionTemp.currPage = --schedulingVue.vo.currPage;
 		loadScheduling();
 	}
 }

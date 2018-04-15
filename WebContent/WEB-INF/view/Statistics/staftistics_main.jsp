@@ -138,7 +138,7 @@ td {
 						<option value="爆炸案">爆炸案</option>
 						<option value="放火案">放火案</option>
 						<option value="非法拘禁案">非法拘禁案</option>
-						<option value="非正常死亡案">非正常死亡</option>
+						<option value="非正常死亡">非正常死亡</option>
 						<option value="故意损坏公私财物案">故意损坏公私财物</option>
 						<option value="其他">其他</option>
 					</select>
@@ -172,7 +172,7 @@ td {
 				</div>
 				<div id="caseContent" style="margin-top: 10px; display: none;">
 					<table class="table table-bordered"
-						style="text-align: center; font-weight: bold">
+						style="text-align: center;">
 						<thead>
 							<tr id="trHead">
 								<td>案件类型</td>
@@ -208,6 +208,22 @@ td {
 								<td><span v-html="caseTime.wupoxiaTime"></span></td>
 								<td><span v-html="caseTime.qitaTime"></span></td>
 							</tr>
+							<tr name="caseTr">
+								<td>汇总</td>
+								<td><span v-html="count[0]"></span></td>
+								<td><span v-html="count[1]"></span></td>
+								<td><span v-html="count[2]"></span></td>
+								<td><span v-html="count[3]"></span></td>
+								<td><span v-html="count[4]"></span></td>
+								<td><span v-html="count[5]"></span></td>
+								<td><span v-html="count[6]"></span></td>
+								<td><span v-html="count[7]"></span></td>
+								<td><span v-html="count[8]"></span></td>
+								<td><span v-html="count[9]"></span></td>
+								<td><span v-html="count[10]"></span></td>
+								<td><span v-html="count[11]"></span></td>
+								<td><span v-html="count[12]"></span></td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
@@ -229,10 +245,11 @@ td {
 	<script type="text/javascript">
 		var documentWidth = document.body.clientWidth;
 		var panelWidth = documentWidth - 160;
-		var caseContent = document.getElementById("caseContent").innerWidth;
-		console.log(caseContent);
+		var caseContent = document.getElementById("caseContent").style.width;
 		var navbarHeight = document.getElementById("navbar").offsetHeight;
 		var panelMargin = navbarHeight + 20;
+		if(panelWidth<1440)
+			$('#trHead').attr("style","font-size:10px;");
 		document.getElementById("allContent").setAttribute(
 				"style",
 				"width:" + panelWidth + "px; float:right; margin-top:"
@@ -242,6 +259,8 @@ td {
 			var panelWidth = documentWidth - 160;
 			var navbarHeight = document.getElementById("navbar").offsetHeight;
 			var panelMargin = navbarHeight + 20;
+			if(panelWidth<1440)
+				$('#trHead').attr("style","font-size:10px;");
 			document.getElementById("allContent").setAttribute(
 					"style",
 					"width:" + panelWidth + "px; float:right; margin-top:"

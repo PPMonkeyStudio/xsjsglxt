@@ -96,12 +96,12 @@ public class UserAction extends ActionSupport {
 		} else {
 			xsjsglxt_user xu = userService.getUserByUsername(user_username);
 			String password = md5.GetMD5Code(user_password);
-
 			if (xu.getUser_password().equals(password)) {
 				pw.write("loginSuccess");
 				ActionContext.getContext().getSession().put("user_id", xu.getUser_id());
 				ActionContext.getContext().getSession().put("user_name", xu.getUser_name());
 				ActionContext.getContext().getSession().put("userSession", xu);
+				ActionContext.getContext().getSession().put("user_password", user_password);
 			} else {
 				pw.write("passwordError");
 			}
@@ -236,6 +236,7 @@ public class UserAction extends ActionSupport {
 	 */
 
 	public void updateUser() {
+		System.out.println(user_password);
 		xsjsglxt_user xuGet = userService.getUserById(user_id);
 		xsjsglxt_user xu = new xsjsglxt_user();
 		xu.setUser_army_manager_power(user_army_manager_power);
@@ -252,6 +253,7 @@ public class UserAction extends ActionSupport {
 		if (user_password == "" || user_password.equals("")) {
 			xu.setUser_password(xuGet.getUser_password());
 		} else {
+			user_password = md5.GetMD5Code(user_password);
 			xu.setUser_password(user_password);
 		}
 		xu.setUser_statistics_power(user_statistics_power);

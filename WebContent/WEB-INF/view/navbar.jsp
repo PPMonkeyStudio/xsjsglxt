@@ -238,7 +238,7 @@
 									userPowerDTO.user_check_power_modified = false;
 								}
 								else{
-									userPowerDTO.user_check_power_modified=true;
+									userPowerDTO.user_check_power_modified = true;
 								}
 								if (result.user_army_manager_power == 'jurisdiction_admin') {
 									userPowerDTO.user_army_manager_power = true;

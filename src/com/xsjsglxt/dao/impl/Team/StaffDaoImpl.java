@@ -143,13 +143,16 @@ public class StaffDaoImpl implements StaffDao {
 		String hql = null;
 		switch (pointer) {
 		case "leader":
-			hql = "from xsjsglxt_staff where staff_duty ='大队长' or staff_duty ='教导员' or staff_duty ='副大队长' or staff_duty ='副教导员' or staff_duty ='中队长' or staff_duty ='副中队长'";
+			hql = "from xsjsglxt_staff where staff_duty = '大队长' or staff_duty ='教导员' or staff_duty ='副大队长' or staff_duty ='副教导员' or staff_duty ='中队长' or staff_duty ='副中队长'";
 			break;
 		case "main":
-			hql = "from xsjsglxt_staff where staff_duty ='民警' or staff_duty ='法医'";
+			hql = "from xsjsglxt_staff where staff_duty = '侦查民警' or staff_duty ='法医'";
+			break;
+		case "mainTech":
+			hql = "from xsjsglxt_staff where staff_duty = '技术民警'";
 			break;
 		case "assistant":
-			hql = "from xsjsglxt_staff where staff_duty ='辅警'";
+			hql = "from xsjsglxt_staff where staff_duty = '辅警'";
 			break;
 		}
 		Session session = this.getSession();
