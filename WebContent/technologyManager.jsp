@@ -28,6 +28,9 @@ li a {
 		<div class="sidebar-scroll">
 			<nav>
 			<ul class="nav" id="technology">
+				<li>
+					<a href="<%=basePath%>user/User_index">首页</a>
+				</li>
 				<template v-if="user_case_technology_power">
 				<li><a href="<%=basePath%>case/Case_page_CaseMergerList">案件串并</a></li>
 				</template>

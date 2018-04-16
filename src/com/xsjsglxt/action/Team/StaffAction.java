@@ -42,6 +42,12 @@ public class StaffAction extends ActionSupport {
 	private policemanListVO policemanVO;
 	private String xsjsglxt_staff_id;
 
+	// 进入修改页面
+
+	public String intoUpdate() {
+		return "intoUpdate";
+	}
+
 	// 通过职位分类人员
 	public void getSchedulingStaff() {
 		policemanDutyVO dutyVO = staffService.getSchedulingStaff();
