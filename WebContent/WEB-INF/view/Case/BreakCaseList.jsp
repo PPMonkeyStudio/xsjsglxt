@@ -35,6 +35,7 @@
 
 .breakcase_table_info tbody tr {
 	text-align: center;
+	cursor: pointer;
 }
 
 i {
@@ -79,14 +80,13 @@ i {
 					<div class="panel">
 						<div class="panel-heading">
 							<h3 class="panel-title">破案列表</h3>
-							<p class="text-primary query_prompting_info">nothing query.</p>
 						</div>
 						<div class="panel-body">
 							<table
 								class="table table-hover table-condensed breakcase_table_info">
 								<thead>
 									<tr>
-										<th><input type="checkbox" onclick="selectAll(this)"></th>
+										<th>全选<input type="checkbox" onclick="selectAll(this)"></th>
 										<th>所属案件</th>
 										<th>勘验编号</th>
 										<th>案件类型</th>
@@ -137,61 +137,37 @@ i {
 						<table style="width: 50%; margin: auto;" class="Query_table">
 							<tbody>
 								<tr>
-									<td>勘验编号</td>
-									<td><input
-										name="page_list_BreakecaseInformation.snece_inquestId"
+									<td>勘验编号:</td>
+									<td><input name="breakeCaseListVO.query_sence_inquestId"
 										class="form-control" type="text"></td>
 								</tr>
 								<tr>
-									<td>案件名</td>
-									<td><input
-										name="page_list_BreakecaseInformation.snece_inquestId"
+									<td>案件名称:</td>
+									<td><input name="breakeCaseListVO.query_case_name"
 										class="form-control" type="text"></td>
 								</tr>
 								<tr>
-									<td>案件类别</td>
-									<td><select
-										name="page_list_BreakecaseInformation.case_totalCategory"
-										onchange="setSectionCase(this.selectedIndex)"
-										class="main_case form-control"><option
-												selected="selected" value="">请选择案件总类别</option>
-											<option value="盗窃案">盗窃案</option>
-											<option value="抢劫案">抢劫案</option>
-											<option value="抢夺案">抢夺案</option>
-											<option value="强奸案">强奸案</option>
-											<option value="绑架案">绑架案</option>
-											<option value="杀人案">杀人案</option>
-											<option value="故意伤害案">故意伤害案</option>
-											<option value="爆炸案">爆炸案</option>
-											<option value="放火案">放火案</option>
-											<option value="非法拘禁案">非法拘禁案</option>
-											<option value="非正常死亡">非正常死亡</option>
-											<option value="故意损坏公私财物">故意损坏公私财物</option>
-											<option value="其它">其它</option></select> <select
-										name="page_list_BreakecaseInformation.case_sonCategory"
-										class="other_case form-control">
-											<option selected value="">请选择案件子类别</option>
+									<td>破案人:</td>
+									<td><input name="breakeCaseListVO.query_breake_person"
+										class="form-control" type="text"></td>
+								</tr>
+								<tr>
+									<td>破案方式:</td>
+									<td><select name="breakeCaseListVO.query_breake_according"
+										class="form-control">
+											<option value=""></option>
+											<option>指纹</option>
+											<option>视屏</option>
+											<option>NDA</option>
+											<option>其他</option>
 									</select></td>
 								</tr>
 								<tr>
-									<td>嫌疑人姓名</td>
-									<td><input
-										name="page_list_BreakecaseInformation.breakecase_suspectName"
-										class="form-control" type="text"></td>
-								</tr>
-								<tr>
-									<td>抓获单位</td>
-									<td><input
-										name="page_list_BreakecaseInformation.breakecase_captureUnit"
-										class="form-control" type="text"></td>
-								</tr>
-								<tr>
-									<td>接警时间</td>
-									<td><input
-										name="page_list_BreakecaseInformation.start_time"
+									<td>破案时间:</td>
+									<td><input name="breakeCaseListVO.query_breake_time_start"
 										style="float: left;" type="text" class="form-control mydate"
 										placeholder="起始日期"><input
-										name="page_list_BreakecaseInformation.stop_time"
+										name="breakeCaseListVO.query_breake_time_end"
 										style=" float: right;" type="text" class="form-control"
 										placeholder="结束日期"></td>
 								</tr>
@@ -209,142 +185,6 @@ i {
 		</div>
 		<!-- /.modal -->
 	</div>
-	<!---------------------------------------------------------------------------------------------------->
-	<!------------------------------------------------------------------------------------------------->
-	<!---------------------------------------------------------------------------------------------------->
-	<!-- 破案信息修改-模态框（Modal） -->
-	<div class="modal fade" id="breakCase_modification" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="modal-title"></h4>
-				</div>
-				<div class="modal-body">
-					<form action="">
-						<div style="width: 80%;margin: auto;" class="panel-body"></div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary breakCase_operation">确认修改</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-				</div>
-			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal -->
-	</div>
-	<!---------------------------------------------------------------------------------------------------->
-	<!------------------------------------------------------------------------------------------------->
-	<!---------------------------------------------------------------------------------------------------->
-	<!-- 破案信息增加-模态框（Modal） -->
-	<div class="modal fade" id="bbreakCase_input" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="modal-title"></h4>
-				</div>
-				<div class="modal-body">
-					<form action="">
-						<div style="width: 80%;margin: auto;" class="panel-body">
-							<table class="table table-hover table-condensed" align="center">
-								<thead>
-									<tr>
-										<th>姓名</th>
-										<th>性别</th>
-										<th>生日</th>
-										<th>身份证号</th>
-										<th>住址</th>
-										<th>抓获</th>
-										<th>抓获单位</th>
-										<th>抓获时间</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>所属案件<i class="fa fa-spinner fa-pulse load_remind"></i></td>
-										<td colspan="3"><select style="witdh:100%;"
-											class="form-control selectpicker" data-live-search="true"
-											name="breakecase.breakecase_case"
-											title="Choose one of the following..."></select></td>
-									</tr>
-									<tr>
-										<td>案件类型</td>
-										<td><select style="witdh:100%;" class="form-control"
-											data-live-search="true" name="breakecase.breakecase_type">
-												<option>新添案件</option>
-												<option>已有案件</option>
-										</select></td>
-										<td>嫌疑人姓名</td>
-										<td><input style="witdh:70%;" class="form-control"
-											name="breakecase.breakecase_suspectName" type="text"></td>
-									</tr>
-									<tr>
-										<td>破案时间</td>
-										<td><input style="witdh:70%;" class="form-control mydate"
-											name="breakecase.breakecase_suspectName" type="text"></td>
-										<td>带破案件</td>
-										<td><input style="witdh:70%;" class="form-control"
-											name="breakecase.breakecase_waitbreakecase" type="text"></td>
-									</tr>
-									<tr>
-										<td>性别</td>
-										<td><input style="witdh:70%;" class="form-control"
-											name="breakecase.breakecase_suspectSex" type="text"></td>
-										<td>出生日期</td>
-										<td><input style="witdh:70%;" class="form-control mydate"
-											name="breakecase.breakecase_suspectBirthday" type="text"></td>
-									</tr>
-									<tr>
-										<td>身份证号码</td>
-										<td><input style="witdh:70%;" class="form-control"
-											name="breakecase.breakecase_suspectIDnum" type="text"></td>
-										<td>住址</td>
-										<td><input style="witdh:70%;" class="form-control"
-											name="breakecase.breakecase_suspectAddress" type="text"></td>
-									</tr>
-									<tr>
-										<td>破案方式</td>
-										<td><input style="witdh:70%;" class="form-control"
-											name="breakecase.breakecase_according" type="text"></td>
-										<td>是否抓获</td>
-										<td><input style="witdh:70%;" class="form-control"
-											name="breakecase.breakecase_capture" type="text"></td>
-									</tr>
-									<tr>
-										<td>抓获单位</td>
-										<td><input style="witdh:70%;" class="form-control"
-											name="breakecase.breakecase_captureUnit" type="text"></td>
-										<td>抓获时间</td>
-										<td><input style="witdh:70%;" class="form-control mydate"
-											name="breakecase.breakecase_captureUnit" type="text"></td>
-									</tr>
-									<tr>
-										<td>备注</td>
-										<td colspan="3"><textarea style="witdh:70%;"
-												placeholder="请填写" class="form-control"
-												name="breakecase.breakecase_remarks"></textarea></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary input_sure">添加</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-				</div>
-			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal -->
-	</div>
-	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->

@@ -2,7 +2,16 @@ var EntrustmentBook_json = null;
 
 function List_EntrustmentBook(pageIndex) {
 	document.getElementById("i_pulse").style.display = "block";
+	if (userPowerDTO.user_check_power_modified == true) {
 
+	} else {
+		var userCheckPowers = document
+				.getElementsByClassName("user_check_power");
+		var userCheckPowers_Length = userCheckPowers.length;
+		for (var num = 0; num < userCheckPowers_Length; num++) {
+			userCheckPowers[0].parentNode.removeChild(userCheckPowers[0]);
+		}
+	}
 	/*
 	 * 
 	 */
@@ -119,40 +128,67 @@ function List_EntrustmentBook(pageIndex) {
 					new_tr.appendChild(new_td);
 					switch (EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_state) {
 					case '正在申请': {
-						new_td.innerHTML = '<div class="dropdown" ><i  class="fa fa-ellipsis-v fa-2x" style="cursor: pointer;" id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>'
-								+ '<ul class="dropdown-menu" aria-labelledby="dLabel">'
-								+ '<li><a onclick="Preview_EntrustmentBook(this)" id="'
-								+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
-								+ '"><i class="fa fa-file-text-o"></i> 查看鉴定委托书</a></li>'
-								+ '<li class="managerPower"><a onclick="Acceptance_EntrustmentBook(this)" id="'
-								+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
-								+ '"><i class="fa fa-legal"></i> 受理</a></li>'
-								+ '<li class="managerPower"><a onclick="Refuse_EntrustmentBook(this)" id="'
-								+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
-								+ '"><i class="fa fa-recycle"></i> 不受理</a></li>'
-								+ '</ul></div>';
+						if (userPowerDTO.user_check_power_modified == true) {
+							new_td.innerHTML = '<div class="dropdown" ><i  class="fa fa-ellipsis-v fa-2x" style="cursor: pointer;" id="dLabel" data-toggle="dropdown" aria-haspopup=true aria-expanded="false"></i>'
+									+ '<ul class="dropdown-menu" aria-labelledby="dLabel">'
+									+ '<li><a onclick="Preview_EntrustmentBook(this)" id="'
+									+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
+									+ '"><i class="fa fa-file-text-o"></i> 查看鉴定委托书</a></li>'
+									+ '<li class="managerPower"><a onclick="Acceptance_EntrustmentBook(this)" id="'
+									+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
+									+ '"><i class="fa fa-legal"></i> 受理</a></li>'
+									+ '<li class="managerPower"><a onclick="Refuse_EntrustmentBook(this)" id="'
+									+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
+									+ '"><i class="fa fa-recycle"></i> 不受理</a></li>'
+									+ '</ul></div>';
+						} else {
+							new_td.innerHTML = '<div class="dropdown" ><i  class="fa fa-ellipsis-v fa-2x" style="cursor: pointer;" id="dLabel" data-toggle="dropdown" aria-haspopup=true aria-expanded="false"></i>'
+									+ '<ul class="dropdown-menu" aria-labelledby="dLabel">'
+									+ '<li><a onclick="Preview_EntrustmentBook(this)" id="'
+									+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
+									+ '"><i class="fa fa-file-text-o"></i> 查看鉴定委托书</a></li>'
+									+ '</ul></div>';
+						}
+
 						break;
 					}
 					case '申请已受理': {
-						new_td.innerHTML = '<div class="dropdown" ><i  class="fa fa-ellipsis-v fa-2x" style="cursor: pointer;" id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>'
-								+ '<ul class="dropdown-menu" aria-labelledby="dLabel">'
-								+ '<li><a onclick="Preview_EntrustmentBook(this)" id="'
-								+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
-								+ '"><i class="fa fa-file-text-o"></i> 查看鉴定委托书</a></li>'
-								+ '<li><a onclick="Preview_ConfirmBook(this)" id="'
-								+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
-								+ '"><i class="fa fa-file-text-o"></i> 查看鉴定事项确认书</a></li>'
-								+ '<li><a onclick="Preview_AcceptanceEntrustmentInform(this)" id="'
-								+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
-								+ '"><i class="fa fa-file-text-o"></i> 查看受理鉴定回执</a></li>'
-								+ '<li  class="managerPower"><a onclick="Create_InspectionRecord(this)" id="'
-								+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
-								+ '"><i class="fa fa-pencil-square-o"></i> 记录检验过程</a></li>'
-								+ '</ul></div>';
+
+						if (userPowerDTO.user_check_power_modified == true) {
+							new_td.innerHTML = '<div class="dropdown" ><i  class="fa fa-ellipsis-v fa-2x" style="cursor: pointer;" id="dLabel" data-toggle="dropdown" aria-haspopup=true aria-expanded="false"></i>'
+									+ '<ul class="dropdown-menu" aria-labelledby="dLabel">'
+									+ '<li><a onclick="Preview_EntrustmentBook(this)" id="'
+									+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
+									+ '"><i class="fa fa-file-text-o"></i> 查看鉴定委托书</a></li>'
+									+ '<li><a onclick="Preview_ConfirmBook(this)" id="'
+									+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
+									+ '"><i class="fa fa-file-text-o"></i> 查看鉴定事项确认书</a></li>'
+									+ '<li><a onclick="Preview_AcceptanceEntrustmentInform(this)" id="'
+									+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
+									+ '"><i class="fa fa-file-text-o"></i> 查看受理鉴定回执</a></li>'
+									+ '<li  class="managerPower"><a onclick="Create_InspectionRecord(this)" id="'
+									+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
+									+ '"><i class="fa fa-pencil-square-o"></i> 记录检验过程</a></li>'
+									+ '</ul></div>';
+						} else {
+							new_td.innerHTML = '<div class="dropdown" ><i  class="fa fa-ellipsis-v fa-2x" style="cursor: pointer;" id="dLabel" data-toggle="dropdown" aria-haspopup=true aria-expanded="false"></i>'
+									+ '<ul class="dropdown-menu" aria-labelledby="dLabel">'
+									+ '<li><a onclick="Preview_EntrustmentBook(this)" id="'
+									+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
+									+ '"><i class="fa fa-file-text-o"></i> 查看鉴定委托书</a></li>'
+									+ '<li><a onclick="Preview_ConfirmBook(this)" id="'
+									+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
+									+ '"><i class="fa fa-file-text-o"></i> 查看鉴定事项确认书</a></li>'
+									+ '<li><a onclick="Preview_AcceptanceEntrustmentInform(this)" id="'
+									+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
+									+ '"><i class="fa fa-file-text-o"></i> 查看受理鉴定回执</a></li>'
+									+ '</ul></div>';
+						}
+
 						break;
 					}
 					case '申请被拒绝': {
-						new_td.innerHTML = '<div class="dropdown"><i style="cursor: pointer;" class="fa fa-ellipsis-v fa-2x" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>'
+						new_td.innerHTML = '<div class="dropdown"><i style="cursor: pointer;" class="fa fa-ellipsis-v fa-2x" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup=true aria-expanded="false"></i>'
 								+ '<ul class="dropdown-menu" aria-labelledby="dLabel">'
 								+ '<li><a onclick="Preview_EntrustmentBook(this)" id="'
 								+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
@@ -161,31 +197,51 @@ function List_EntrustmentBook(pageIndex) {
 								+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
 								+ '"><i class="fa fa-file-text-o"></i> 查看不受理委托鉴定告知书</a></li>'
 								+ '</ul></div>';
+
 						break;
 					}
 					case '已记录': {
-						new_td.innerHTML = '<div class="dropdown" ><i  class="fa fa-ellipsis-v fa-2x" style="cursor: pointer;" id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>'
-								+ '<ul class="dropdown-menu" aria-labelledby="dLabel">'
-								+ '<li><a onclick="Preview_EntrustmentBook(this)" id="'
-								+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
-								+ '"><i class="fa fa-file-text-o"></i> 查看鉴定委托书</a></li>'
-								+ '<li><a onclick="Preview_ConfirmBook(this)" id="'
-								+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
-								+ '"><i class="fa fa-file-text-o"></i> 查看鉴定事项确认书</a></li>'
-								+ '<li><a onclick="Preview_AcceptanceEntrustmentInform(this)" id="'
-								+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
-								+ '"><i class="fa fa-file-text-o"></i> 查看受理鉴定回执</a></li>'
-								+ '<li><a onclick="Preview_InspectionRecord(this)" id="'
-								+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
-								+ '"><i class="fa fa-file-text-o"></i> 查看检验记录</a></li>'
-								+ '<li class="managerPower"><a onclick="Create_AppraisalLetter(this)" id="'
-								+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
-								+ '"><i class="fa fa-pencil-square-o"></i> 出具鉴定文书</a></li>'
-								+ '</ul></div>';
+						if (userPowerDTO.user_check_power_modified == true) {
+							new_td.innerHTML = '<div class="dropdown" ><i  class="fa fa-ellipsis-v fa-2x" style="cursor: pointer;" id="dLabel" data-toggle="dropdown" aria-haspopup=true aria-expanded="false"></i>'
+									+ '<ul class="dropdown-menu" aria-labelledby="dLabel">'
+									+ '<li><a onclick="Preview_EntrustmentBook(this)" id="'
+									+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
+									+ '"><i class="fa fa-file-text-o"></i> 查看鉴定委托书</a></li>'
+									+ '<li><a onclick="Preview_ConfirmBook(this)" id="'
+									+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
+									+ '"><i class="fa fa-file-text-o"></i> 查看鉴定事项确认书</a></li>'
+									+ '<li><a onclick="Preview_AcceptanceEntrustmentInform(this)" id="'
+									+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
+									+ '"><i class="fa fa-file-text-o"></i> 查看受理鉴定回执</a></li>'
+									+ '<li><a onclick="Preview_InspectionRecord(this)" id="'
+									+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
+									+ '"><i class="fa fa-file-text-o"></i> 查看检验记录</a></li>'
+									+ '<li class="managerPower"><a onclick="Create_AppraisalLetter(this)" id="'
+									+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
+									+ '"><i class="fa fa-pencil-square-o"></i> 出具鉴定文书</a></li>'
+									+ '</ul></div>';
+						} else {
+							new_td.innerHTML = '<div class="dropdown" ><i  class="fa fa-ellipsis-v fa-2x" style="cursor: pointer;" id="dLabel" data-toggle="dropdown" aria-haspopup=true aria-expanded="false"></i>'
+									+ '<ul class="dropdown-menu" aria-labelledby="dLabel">'
+									+ '<li><a onclick="Preview_EntrustmentBook(this)" id="'
+									+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
+									+ '"><i class="fa fa-file-text-o"></i> 查看鉴定委托书</a></li>'
+									+ '<li><a onclick="Preview_ConfirmBook(this)" id="'
+									+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
+									+ '"><i class="fa fa-file-text-o"></i> 查看鉴定事项确认书</a></li>'
+									+ '<li><a onclick="Preview_AcceptanceEntrustmentInform(this)" id="'
+									+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
+									+ '"><i class="fa fa-file-text-o"></i> 查看受理鉴定回执</a></li>'
+									+ '<li><a onclick="Preview_InspectionRecord(this)" id="'
+									+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
+									+ '"><i class="fa fa-file-text-o"></i> 查看检验记录</a></li>'
+									+ '</ul></div>';
+						}
+
 						break;
 					}
 					case '已鉴定': {
-						new_td.innerHTML = '<div class="dropdown"><i style="cursor: pointer;" class="fa fa-ellipsis-v fa-2x" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>'
+						new_td.innerHTML = '<div class="dropdown"><i style="cursor: pointer;" class="fa fa-ellipsis-v fa-2x" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup=true aria-expanded="false"></i>'
 								+ '<ul class="dropdown-menu" aria-labelledby="dLabel">'
 								+ '<li><a onclick="Preview_EntrustmentBook(this)" id="'
 								+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
@@ -203,6 +259,7 @@ function List_EntrustmentBook(pageIndex) {
 								+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
 								+ '"><i class="fa fa-file-text-o"></i> 查看鉴定文书</a></li>'
 								+ '</ul></div>';
+
 						break;
 					}
 					}
@@ -230,9 +287,6 @@ function List_EntrustmentBook(pageIndex) {
 				document.getElementById("i_pulse").style.display = "none";
 				// 让全选框取消选择
 				document.getElementById("checkbox_all_select").checked = false;
-				/*
-				 * 角色控制
-				 */
 			} else {
 				toastr.error(xhr.status);
 			}
@@ -243,7 +297,7 @@ function List_EntrustmentBook(pageIndex) {
 			.open(
 					"POST",
 					"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_getListCheckEntrustmentBookByPage",
-					false);
+					true);
 
 	var formData = new FormData();
 	/*
@@ -287,10 +341,254 @@ function List_EntrustmentBook(pageIndex) {
 	/*
 	 * 筛选：委托单位
 	 */
-	if (document.getElementById("select_entrustmentUnit").value == "-1") {
+	if (userPowerDTO.user_check_power_modified == true) {
+		if (document.getElementById("select_entrustmentUnit").value == "-1") {
+			formData
+					.append("entrustmentBookManagementVO.entrustmentUnit", "-1");
+		} else {
+			formData.append("entrustmentBookManagementVO.entrustmentUnit",
+					document.getElementById("select_entrustmentUnit").value);
+		}
 	} else {
-		formData.append("entrustmentBookManagementVO.entrustmentUnit", document
-				.getElementById("select_entrustmentUnit").value);
+		/*
+		 * 只能查看本单位
+		 */
+		var xhr_currUser = false;
+		xhr_currUser = new XMLHttpRequest();
+		xhr_currUser.onreadystatechange = function() {
+			var message;
+			if (xhr_currUser.readyState == 4) {
+				if (xhr_currUser.status == 200) {
+					var currUser = JSON.parse(xhr_currUser.responseText);
+					/*
+					 * 获取单位的通讯录信息
+					 */
+					switch (currUser.user_units) {
+					case '安源公安分局刑警大队': {
+						formData.append(
+								"entrustmentBookManagementVO.entrustmentUnit",
+								"安源公安分局刑警大队");
+						/*
+						 * 
+						 */
+						var select_entrustmentUnit = document
+								.getElementById("select_entrustmentUnit");
+						select_entrustmentUnit.parentNode.innerHTML = "安源公安分局刑警大队";
+						/*
+						 * 
+						 */
+						break;
+					}
+					case '安源派出所': {
+						formData.append(
+								"entrustmentBookManagementVO.entrustmentUnit",
+								"安源派出所");
+						/*
+						 * 
+						 */
+						var select_entrustmentUnit = document
+								.getElementById("select_entrustmentUnit");
+						select_entrustmentUnit.parentNode.innerHTML = "安源派出所";
+						/*
+						 * 
+						 */
+						break;
+					}
+					case '城郊派出所': {
+						formData.append(
+								"entrustmentBookManagementVO.entrustmentUnit",
+								"城郊派出所");
+						/*
+						 * 
+						 */
+						var select_entrustmentUnit = document
+								.getElementById("select_entrustmentUnit");
+						select_entrustmentUnit.parentNode.innerHTML = "城郊派出所";
+						/*
+						 * 
+						 */
+						break;
+					}
+					case '凤凰派出所': {
+						formData.append(
+								"entrustmentBookManagementVO.entrustmentUnit",
+								"凤凰派出所");
+						/*
+						 * 
+						 */
+						var select_entrustmentUnit = document
+								.getElementById("select_entrustmentUnit");
+						select_entrustmentUnit.parentNode.innerHTML = "凤凰派出所";
+						/*
+						 * 
+						 */
+						break;
+					}
+					case '后埠派出所': {
+						formData.append(
+								"entrustmentBookManagementVO.entrustmentUnit",
+								"后埠派出所");
+						/*
+						 * 
+						 */
+						var select_entrustmentUnit = document
+								.getElementById("select_entrustmentUnit");
+						select_entrustmentUnit.parentNode.innerHTML = "后埠派出所";
+						/*
+						 * 
+						 */
+						break;
+					}
+					case '八一派出所': {
+						formData.append(
+								"entrustmentBookManagementVO.entrustmentUnit",
+								"八一派出所");
+						/*
+						 * 
+						 */
+						var select_entrustmentUnit = document
+								.getElementById("select_entrustmentUnit");
+						select_entrustmentUnit.parentNode.innerHTML = "八一派出所";
+						/*
+						 * 
+						 */
+						break;
+					}
+					case '东大派出所': {
+						formData.append(
+								"entrustmentBookManagementVO.entrustmentUnit",
+								"东大派出所");
+						/*
+						 * 
+						 */
+						var select_entrustmentUnit = document
+								.getElementById("select_entrustmentUnit");
+						select_entrustmentUnit.parentNode.innerHTML = "东大派出所";
+						/*
+						 * 
+						 */
+						break;
+					}
+					case '青山派出所': {
+						formData.append(
+								"entrustmentBookManagementVO.entrustmentUnit",
+								"青山派出所");
+						/*
+						 * 
+						 */
+						var select_entrustmentUnit = document
+								.getElementById("select_entrustmentUnit");
+						select_entrustmentUnit.parentNode.innerHTML = "青山派出所";
+						/*
+						 * 
+						 */
+						break;
+					}
+					case '丹江派出所': {
+						formData.append(
+								"entrustmentBookManagementVO.entrustmentUnit",
+								"丹江派出所");
+						/*
+						 * 
+						 */
+						var select_entrustmentUnit = document
+								.getElementById("select_entrustmentUnit");
+						select_entrustmentUnit.parentNode.innerHTML = "丹江派出所";
+						/*
+						 * 
+						 */
+						break;
+					}
+					case '白源派出所': {
+						formData.append(
+								"entrustmentBookManagementVO.entrustmentUnit",
+								"白源派出所");
+						/*
+						 * 
+						 */
+						var select_entrustmentUnit = document
+								.getElementById("select_entrustmentUnit");
+						select_entrustmentUnit.parentNode.innerHTML = "白源派出所";
+						/*
+						 * 
+						 */
+						break;
+					}
+					case '高坑派出所': {
+						formData.append(
+								"entrustmentBookManagementVO.entrustmentUnit",
+								"高坑派出所");
+						/*
+						 * 
+						 */
+						var select_entrustmentUnit = document
+								.getElementById("select_entrustmentUnit");
+						select_entrustmentUnit.parentNode.innerHTML = "高坑派出所";
+						/*
+						 * 
+						 */
+						break;
+					}
+					case '五陂下派出所': {
+						formData.append(
+								"entrustmentBookManagementVO.entrustmentUnit",
+								"五陂下派出所");
+						/*
+						 * 
+						 */
+						var select_entrustmentUnit = document
+								.getElementById("select_entrustmentUnit");
+						select_entrustmentUnit.parentNode.innerHTML = "五陂下派出所";
+						/*
+						 * 
+						 */
+						break;
+					}
+					case '李子园派出所': {
+						formData.append(
+								"entrustmentBookManagementVO.entrustmentUnit",
+								"李子园派出所");
+						/*
+						 * 
+						 */
+						var select_entrustmentUnit = document
+								.getElementById("select_entrustmentUnit");
+						select_entrustmentUnit.parentNode.innerHTML = "李子园派出所";
+						/*
+						 * 
+						 */
+						break;
+					}
+					default: {
+						formData.append(
+								"entrustmentBookManagementVO.entrustmentUnit",
+								"其他");
+						/*
+						 * 
+						 */
+						var select_entrustmentUnit = document
+								.getElementById("select_entrustmentUnit");
+						select_entrustmentUnit.parentNode.innerHTML = "其他";
+						/*
+						 * 
+						 */
+						break;
+					}
+					}
+					/*
+					 * 
+					 */
+				} else {
+					toastr.error(xhr_currUser.status);
+				}
+			}
+		}
+		var formData = new FormData();
+		xhr_currUser.open("POST", "/xsjsglxt/user/User_getCurrUser", false);
+		xhr_currUser.send(formData);
+		/*
+		 * 
+		 */
 	}
 	/*
 	 * 筛选：开始时间
@@ -317,6 +615,7 @@ function List_EntrustmentBook(pageIndex) {
 	xhr.send(formData);
 
 }
+
 function flip(flipPage) {
 	switch (flipPage) {
 	case 1: {

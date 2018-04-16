@@ -121,6 +121,7 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		Session session = this.getSession();
 		xsjsglxt_breakecase breakeCase = (xsjsglxt_breakecase) session.get(xsjsglxt_breakecase.class,
 				xsjsglxt_breakecase_id);
+		session.clear();
 		return breakeCase;
 	}
 

@@ -32,6 +32,7 @@
 							result = JSON.parse(data);
 							document.getElementById("leader").innerHTML = result.scheduling_leader;
 							document.getElementById("main").innerHTML = result.scheduling_main;
+							document.getElementById("mainTech").innerHTML = result.scheduling_main_technology;
 							document.getElementById("assistant").innerHTML = result.scheduling_assistant;
 						}
 					}
@@ -70,6 +71,11 @@
 		document.getElementById("current_time").innerHTML = clock;
 	}
 </script>
+<style type="text/css">
+.nav li {
+	cursor: pointer;
+}
+</style>
 </head>
 <body>
 	<div id="wrapper">
@@ -78,49 +84,51 @@
 		<!---------------------------------------------------------------------------------------------------->
 		<!---------------------------------------------------------------------------------------------------->
 		<!-- LEFT SIDEBAR -->
-		<div id="sidebar-nav" class="sidebar" style="width: 240px; background-color: #13599d;">
-			<div class="sidebar-scroll">
+		<div id="sidebar-nav" class="sidebar"
+			style="width: 200px; height: 100% !important; background-color: #13599d;">
+			<div class="sidebar-scroll" style="height: 100% !important;">
 				<nav>
 				<ul class="nav">
-					<template v-if="user_case_technology_power">
-					<li><a href="/xsjsglxt/case/Case_page_Sneceinput" class=""><i
-							class="lnr lnr-file-add"></i> <span>现场录入</span></a></li>
-					</template>
-					<template v-if="user_case_technology_power">
-					<li><a href="/xsjsglxt/case/Case_page_CaseMaterials" class=""><i
-							class="lnr lnr-pushpin"></i> <span>物证录入</span></a></li>
-					</template>
-					<template v-if="user_case_technology_power">
-					<li><a href="/xsjsglxt/case/Case_page_CaseMaterials" class=""><i
-							class="lnr lnr-film-play"></i> <span>案件材料录入</span></a></li>
-					</template>
-					<template v-if="user_check_power">
-					<li><a
-						href="/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_EntrustmentBookManagement"
-						class=""><i class="lnr lnr-home"></i> <span>检验鉴定录入</span></a></li>
-					</template>
-					<template v-if="user_army_manager_power">
-					<li><a href="/xsjsglxt/team/Staff_page_newStaff" class=""><i
-							class="lnr lnr-users"></i> <span>人员录入</span></a></li>
-					</template>
-					<%-- 					<template v-if="user_case_technology_power">
-					<li><a href="/xsjsglxt/case/Case_page_CaseMerger" class=""><i
-							class="lnr lnr-database"></i> <span>案件串并</span></a></li>
-					</template> --%>
-					<template v-if="user_technology_manager_power">
-					<li><a href="/xsjsglxt/DNA/DNAManagement_DNAManagementPage"
-						class=""><i class="lnr lnr-license"></i> <span>DNA信息录入</span></a></li>
-					</template>
-					<template v-if="user_technology_manager_power">
-					<li><a
-						href="/xsjsglxt/FingerPrint/FingerPrintManagement_FingerPrintManagementPage"
-						class=""><i class="lnr lnr-thumbs-up"></i> <span>指纹信息录入</span></a></li>
-					</template>
-					<template v-if="user_technology_manager_power">
-					<li><a
-						href="/xsjsglxt/Equipment/EquipmentManagement_EquipmentManagementPage"
-						class=""><i class="lnr lnr-cog"></i> <span>器材装备录入</span></a></li>
-					</template>
+					<li><a class=""><i class="lnr lnr-file-add"></i> <span>案件信息</span></a>
+						<ul class="nav" style="background-color: #13599d;">
+							<template v-if="user_case_technology_power">
+							<li><a href="<%=basePath%>case/Case_page_SiteManagement"><span>现场录入</span></a></li>
+							</template>
+							<template v-if="user_case_technology_power">
+							<li><a href="<%=basePath%>case/Case_page_CaseMergerList"><span>案件串并</span></a></li>
+							</template>
+							<template v-if="user_case_technology_power">
+							<li><a
+								href="<%=basePath%>case/BreakeCase_page_BreakCaseList"><span>刑事破案</span></a></li>
+							</template>
+						</ul>
+					<li><a class=""><i class="lnr lnr-users"></i> <span>队伍信息</span></a>
+						<ul class="nav" style="background-color: #13599d;">
+							<template v-if="user_army_manager_power">
+							<li><a href="<%=basePath%>team/Staff_page_staffList"><span>人员管理</span></a></li>
+							</template>
+							<template v-if="user_army_manager_power">
+							<li><a href="<%=basePath%>scheduling/Scheduling_page_list"><span>值班管理</span></a></li>
+							</template>
+							<template v-if="user_army_manager_power">
+							<li><a href="<%=basePath%>user/Meeting_skipToMeetRecords"><span>会议记录</span></a></li>
+							</template>
+							<template v-if="user_army_manager_power">
+							<li><a
+								href="<%=basePath%>user/Memorabilia_skipToMemorabilia"><span>大事记</span></a></li>
+							</template>
+						</ul></li>
+					<li><a class=""><i class="lnr lnr-license"></i> <span>技术信息</span></a>
+						<ul class="nav" style="background-color: #13599d;">
+							<template v-if="user_technology_manager_power">
+							<li><a
+								href="<%=basePath%>DNA/DNAManagement_DNAManagementPage"><span>DNA/指纹录入</span></a></li>
+							</template>
+							<template v-if="user_technology_manager_power">
+							<li><a
+								href="<%=basePath%>Equipment/EquipmentManagement_EquipmentManagementPage"><span>器材装备录入</span></a></li>
+							</template>
+						</ul></li>
 				</ul>
 				</nav>
 			</div>
@@ -136,12 +144,13 @@
 						<div class="panel-heading">
 							<h2 class="panel-title">欢迎进入安源刑侦信息管理系统</h2>
 							<h3 class="panel-title" id="schedulingH3">
-								今日值班  带班领导：<span id="leader"></span> 主班：<span id="main"></span> 副班：<span id="assistant"></span>
+								今日值班 带班领导：<span id="leader"></span> 侦查民警：<span id="main"></span>
+								技术民警：<span id="mainTech"></span> 副班：<span id="assistant"></span>
 							</h3>
 							<p class="panel-subtitle" style="margin-top: 20px;">
 								当前时间是：<span id="current_time"></span>
 							</p>
-							
+
 						</div>
 						<div class="panel-body"></div>
 					</div>
@@ -162,4 +171,11 @@
 		});
 	</script>
 </body>
+<script type="text/javascript">
+	$(function() {
+		$('.slimScrollDiv')
+				.attr("style",
+						"position: relative; overflow: hidden; width: auto; height: 100%;");
+	});
+</script>
 </html>

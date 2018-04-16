@@ -2,6 +2,7 @@ package com.xsjsglxt.action.Scheduling;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -27,6 +28,11 @@ public class SchedulingAction extends ActionSupport {
 	private xsjsglxt_scheduling scheduling;
 	private String[] scheduling_id;
 	private SchedulingDTOListVO schedulingListVO;
+	private int scheduling_days;
+	private String[] leader;
+	private String[] main;
+	private String[] mainTech;
+	private String[] assistatn;
 
 	public String page_list() {
 		return "intoScheduling";
@@ -34,20 +40,55 @@ public class SchedulingAction extends ActionSupport {
 
 	// -----------------------保存值班表
 	public void saveScheduling() {
-		boolean flag = schedulingService.saveScheduling(scheduling);
-		HttpServletResponse response = ServletActionContext.getResponse();
-		response.setContentType("text/html;charset=utf-8");
-		try {
-			PrintWriter pw = response.getWriter();
-			if (flag) {
-				pw.write("saveSuccess");
-			} else {
-				pw.write("saveError"); // 改日期已被占用
+		// boolean flag = schedulingService.saveScheduling(scheduling);
+		// HttpServletResponse response = ServletActionContext.getResponse();
+		// response.setContentType("text/html;charset=utf-8");
+		// try {
+		// PrintWriter pw = response.getWriter();
+		// if (flag) {
+		// pw.write("saveSuccess");
+		// } else {
+		// pw.write("saveError"); // 改日期已被占用
+		// }
+		// pw.flush();
+		// pw.close();
+		// } catch (IOException e) {
+		// e.printStackTrace();
+		// }
+		// ------------------------获得所有待排班人员
+		System.out.println(leader.length);
+		xsjsglxt_scheduling schedulingTemp = null;
+		for (int i = 0; i < scheduling_days; i++) {
+			System.out.println("进入排班");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date d = null;
+			try {
+				d = sdf.parse(scheduling.getScheduling_time());
+				long curr = d.getTime();
+				curr = curr + (i * 24 * 60 * 60 * 1000);
+				d = new Date(curr);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			pw.flush();
-			pw.close();
-		} catch (IOException e) {
-			e.printStackTrace();
+			schedulingTemp = new xsjsglxt_scheduling();
+			schedulingTemp.setScheduling_leader(leader[i % leader.length]);
+			schedulingTemp.setScheduling_main(main[i % main.length]);
+			schedulingTemp.setScheduling_main_technology(mainTech[i % mainTech.length]);
+			schedulingTemp.setScheduling_assistant(assistatn[i % assistatn.length]);
+			schedulingTemp.setScheduling_time(sdf.format(d));
+			System.out.println("排班ok" + schedulingTemp.getScheduling_time());
+			boolean flag = schedulingService.saveScheduling(schedulingTemp);
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/html;charset=utf-8");
+			try {
+				PrintWriter pw = response.getWriter();
+				pw.write("saveSuccess");
+				pw.flush();
+				pw.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -151,6 +192,14 @@ public class SchedulingAction extends ActionSupport {
 		return schedulingList;
 	}
 
+	public int getScheduling_days() {
+		return scheduling_days;
+	}
+
+	public void setScheduling_days(int scheduling_days) {
+		this.scheduling_days = scheduling_days;
+	}
+
 	public SchedulingService getSchedulingService() {
 		return schedulingService;
 	}
@@ -181,6 +230,38 @@ public class SchedulingAction extends ActionSupport {
 
 	public String[] getScheduling_id() {
 		return scheduling_id;
+	}
+
+	public String[] getLeader() {
+		return leader;
+	}
+
+	public void setLeader(String[] leader) {
+		this.leader = leader;
+	}
+
+	public String[] getMain() {
+		return main;
+	}
+
+	public void setMain(String[] main) {
+		this.main = main;
+	}
+
+	public String[] getMainTech() {
+		return mainTech;
+	}
+
+	public void setMainTech(String[] mainTech) {
+		this.mainTech = mainTech;
+	}
+
+	public String[] getAssistatn() {
+		return assistatn;
+	}
+
+	public void setAssistatn(String[] assistatn) {
+		this.assistatn = assistatn;
 	}
 
 	public void setScheduling_id(String[] scheduling_id) {

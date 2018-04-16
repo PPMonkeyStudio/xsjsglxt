@@ -13,12 +13,7 @@
 <!---------------------------------------------------------------------------------------------------->
 
 <!---------------------------------------------------------------------------------------------------->
-<title>痕迹检验委托管理</title>
-<script type="text/javascript">
-	window.onload = function() {
-		deleteByPower("user_check_power", "usePower", "managerPower");
-	}
-</script>
+<title>检验鉴定</title>
 </head>
 <body>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
@@ -56,7 +51,7 @@
 					<div style="width: 500px; float: left;">
 						<button class="btn btn-default"
 							id="button_Create_TranceCheckEntrustmentBook">
-							<i class="fa fa-pencil-square-o"></i> 痕迹检验委托鉴定
+							<i class="fa fa-pencil-square-o"></i> 检验鉴定委托书（通用）
 						</button>
 						<button class="btn btn-default "
 							id="button_Create_ForensicCheckEntrustmentBook">
@@ -97,10 +92,11 @@
 							<th><select class="form-control" id="select_entrustmentUnit"
 								style="width: auto;" onchange="List_EntrustmentBook(1)">
 									<option value="-1">委托单位（全部）</option>
-									<option value="后埠派出所">后埠派出所</option>
-									<option value="凤凰派出所">凤凰派出所</option>
+									<option value="安源公安分局刑警大队">安源公安分局刑警大队</option>
 									<option value="安源派出所">安源派出所</option>
 									<option value="城郊派出所">城郊派出所</option>
+									<option value="凤凰派出所">凤凰派出所</option>
+									<option value="后埠派出所">后埠派出所</option>
 									<option value="八一派出所">八一派出所</option>
 									<option value="东大派出所">东大派出所</option>
 									<option value="青山派出所">青山派出所</option>
@@ -108,13 +104,14 @@
 									<option value="白源派出所">白源派出所</option>
 									<option value="高坑派出所">高坑派出所</option>
 									<option value="五陂下派出所">五陂下派出所</option>
+									<option value="李子园派出所">李子园派出所</option>
 									<option value="其他">其他</option>
 							</select></th>
 							<th>委托日期</th>
 							<th><select class="form-control" id="select_type"
 								style="width: auto;" onchange="List_EntrustmentBook(1)">
 									<option value="-1">类别（全部）</option>
-									<option value="痕迹">痕迹</option>
+									<option value="痕迹">通用</option>
 									<option value="法医">法医</option>
 							</select></th>
 							<th><select class="form-control" id="select_state"
@@ -139,7 +136,7 @@
 				</div>
 
 				<div style="height: 34px; margin: 0 0 20px 0;">
-					<button class="btn btn-danger managerPower"
+					<button class="btn btn-danger user_check_power"
 						onclick="Remove_EntrustmentBook()"
 						style="float: right; margin: 0 10px;">
 						<i class="fa fa-trash-o"></i> 删除委托

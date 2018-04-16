@@ -95,7 +95,8 @@ public class SchedulingDaoImpl implements SchedulingDao {
 		if (schedulingListVO.getQuery_name() != null && !"".equals(schedulingListVO.getQuery_name().trim()))
 			hql = hql + " and ( scheduling_main like '%" + schedulingListVO.getQuery_name()
 					+ "%' or scheduling_assistant like '%" + schedulingListVO.getQuery_name()
-					+ "%' or scheduling_leader like '%" + schedulingListVO.getQuery_name() + "%')";
+					+ "%' or scheduling_leader like '%" + schedulingListVO.getQuery_name()
+					+ "%' or scheduling_main_technology like '%" + schedulingListVO.getQuery_name() + "%')";
 		if (schedulingListVO.getQueryTimeStart() != null && !"".equals(schedulingListVO.getQueryTimeStart().trim()))
 			hql = hql + " and scheduling_time >= '" + schedulingListVO.getQueryTimeStart() + "'";
 		if (schedulingListVO.getQueryTimeEnd() != null && !"".equals(schedulingListVO.getQueryTimeEnd().trim()))
@@ -108,11 +109,12 @@ public class SchedulingDaoImpl implements SchedulingDao {
 	@Override
 	public List<schedulingDTO> getSchedulingByPage(SchedulingDTOListVO schedulingListVO) {
 		// TODO Auto-generated method stub
-		String hql = "select new com.xsjsglxt.domain.DTO.Scheduling.schedulingDTO(xsjsglxt_scheduling_id,scheduling_leader,scheduling_main,scheduling_assistant,scheduling_time) from xsjsglxt_scheduling where 1=1";
+		String hql = "select new com.xsjsglxt.domain.DTO.Scheduling.schedulingDTO(xsjsglxt_scheduling_id,scheduling_leader,scheduling_main , scheduling_main_technology as scheduling_mainTec,scheduling_assistant,scheduling_time) from xsjsglxt_scheduling where 1=1";
 		if (schedulingListVO.getQuery_name() != null && !"".equals(schedulingListVO.getQuery_name().trim()))
 			hql = hql + " and ( scheduling_main like '%" + schedulingListVO.getQuery_name()
 					+ "%' or scheduling_assistant like '%" + schedulingListVO.getQuery_name()
-					+ "%' or scheduling_leader like '%" + schedulingListVO.getQuery_name() + "%')";
+					+ "%' or scheduling_leader like '%" + schedulingListVO.getQuery_name()
+					+ "%' or scheduling_main_technology like '%" + schedulingListVO.getQuery_name() + "%')";
 		if (schedulingListVO.getQueryTimeStart() != null && !"".equals(schedulingListVO.getQueryTimeStart().trim()))
 			hql = hql + " and scheduling_time >= '" + schedulingListVO.getQueryTimeStart() + "'";
 		if (schedulingListVO.getQueryTimeEnd() != null && !"".equals(schedulingListVO.getQueryTimeEnd().trim()))

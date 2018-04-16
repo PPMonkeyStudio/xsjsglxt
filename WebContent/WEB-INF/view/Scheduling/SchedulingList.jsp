@@ -64,26 +64,27 @@ a {
 			<div id="tableContent" style="margin-top: 10px; display: none;">
 				<table class="table table-bordered" style="text-align: center;">
 					<thead>
-						<tr>
-							<td><label class="fancy-checkbox"> <input
+						<tr style="height:30;">
+							<td rowspan="2"><label class="fancy-checkbox"> <input
 									onclick="selectAll(this)" type="checkbox" ><span>
 										全选 </span>
 							</label></td>
-							<td>日期</td>
-							<td>带班领导</td>
-							<td>主班</td>
-							<td>副班</td>
+							<td rowspan="2">日期</td>
+							<td rowspan="2">带班领导</td>
+							<td colspan="3">值班人员</td>		
 						</tr>
+						<tr style="height:30;"><td>侦查民警</td><td>技术民警</td><td>辅警</td></tr>
 					</thead>
 					<tbody>
 						<template v-for="schedulingDTO in vo.schedulingDTOList">
-						<tr>
+						<tr style="height:30;">
 							<td><label class="fancy-checkbox"><input
 									type="checkbox" name="chooseCheckBox"
 									:value="schedulingDTO.xsjsglxt_scheduling_id"><span></span></label></td>
 							<td><a onclick="updateScheduling(this)" :id="schedulingDTO.xsjsglxt_scheduling_id">{{ schedulingDTO.scheduling_time }}</a></td>
 							<td>{{ schedulingDTO.scheduling_leader }}</td>
 							<td>{{ schedulingDTO.scheduling_main }}</td>
+							<td>{{ schedulingDTO.scheduling_mainTec }}</td>
 							<td>{{ schedulingDTO.scheduling_assistant }}</td>
 						</tr>
 						</template>

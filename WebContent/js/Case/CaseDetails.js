@@ -1,9 +1,46 @@
-$(function() {
+$(function () {
+	var makeMeans = document.getElementsByName('case1.case_makeMeans')[0];
+	makeMeans.addEventListener("change", setSectionmMethod(makeMeans.selectedIndex), false);
+	var residence = document.getElementsByName('case1.case_residence')[0];
+	residence.addEventListener("change", setSectionmAddress(residence.selectedIndex), false);
+	var totalCategory = document.getElementsByName('case1.case_totalCategory')[0];
+	totalCategory.addEventListener("change", setSectionCase(totalCategory.selectedIndex), false);
+
+	var sence_id = "";
 	$.post('/xsjsglxt/case/Case_SecneInformationOne', {
-		"case1.xsjsglxt_case_id" : $('#case1_id').val(),
-	}, function(xhr_data) {
-		var case1 = xhr_data.case1;
-		$.each(case1, function(k, v) {
+		"case1.xsjsglxt_case_id": $('#case1_id').val(),
+	}, function (xhr_data) {
+		sence_id = xhr_data.sence.xsjsglxt_snece_id;
+		$('#caseDetails').find('select, input,textarea').each(function () {
+			var name = $(this).attr('name');
+			if (name == "register") {
+				return true
+			}
+			var key1 = name.split('.')[0];
+			var key2 = name.split('.')[1];
+			//console.log(name);
+			//console.log(key1 + "---" + key2);
+			//console.log(xhr_data[key1][key2]);
+			if ($(this).attr("type") == "checkbox") {
+				if (xhr_data[key1][key2] == 1) {
+					$(this).attr("checked", "checked");
+				}
+			} else
+				$(this).val(xhr_data[key1][key2]);
+		});
+		var persons = xhr_data["sence"]["snece_inquestPerson"].split(',');
+		$('select[name="sence.snece_inquestPerson"]').selectpicker("val", persons);
+		//物证提取人设定
+		$('select[name="resevidence.resevidence_extractPerson"]').html(function () {
+			var option_str = '';
+			for (const key in persons) {
+				option_str += '<option value="' + persons[key] + '">' + persons[key] + '</option>';
+			}
+			return option_str;
+		}).selectpicker('refresh');
+
+		/*var case1 = xhr_data.case1;
+		$.each(case1, function (k, v) {
 			if (k == "case_register") {
 				if ($('input[type="radio"]').eq(0).val() == v) {
 					$('input[type="radio"]').eq(0).attr("checked", "checked");
@@ -15,8 +52,9 @@ $(function() {
 			} else
 				$('input[name="case1.' + k + '"]').val(v);
 		});
+
 		var sence = xhr_data.sence;
-		$.each(sence, function(k, v) {
+		$.each(sence, function (k, v) {
 			var obj = $('input[name="sence.' + k + '"]');
 			if (obj.attr("type") == "checkbox") {
 				if (v == 1) {
@@ -26,34 +64,64 @@ $(function() {
 				obj.val(v);
 		});
 		var briefdetails = xhr_data.briefdetails;
-		$.each(briefdetails, function(k, v) {
+		$.each(briefdetails, function (k, v) {
 			var obj = $('textarea[name="sence.' + k + '"]');
 			if (k == "briefdetails_details") {
 				$('textarea[name="briefdetails.' + k + '"]').val(v);
 			}
 		});
+
+
+		$('#station').find('input').each(function () {
+			var name = $(this).attr('name');
+			var key = name.split('.')[0];
+			var value = name.split('.')[1];
+			$(this).val(xhr_data[key][value]);
+		});
+
+		*/
 	}, 'json');
 
+	//修改基站
+	$('.modify_station').click(function () {
+		if ($('#station input').val() == "") {
+			toastr.info('请添加完整信息！');
+			return false;
+		}
+		var station_data = $('#station form').serialize() + '&case1.xsjsglxt_case_id=' + $('#case1_id').val() + '&sence.xsjsglxt_snece_id=' + sence_id;
+		$.post('/xsjsglxt/case/Case_updateSenceInformation', station_data, function (xhr_data) {
+			if (xhr_data == 'success') {
+				toastr.success('修改成功！');
+				window.location.reload();
+			} else {
+				toastr.error('修改失败！');
+			}
+		}, 'text');
+	});
+
 	//添加丢失物品(物品，手机，电脑)
-	$('.add_goods').click(function() {
+	$('.add_goods').click(function () {
 		if ($('#LossOfGoods table tbody:visible').find('input,textarea').val() == "") {
-			toastr.error('请添加完整信息！');
+			toastr.info('请添加完整信息！');
 			return;
 		}
 		var data = $('#Lost_Goods').serialize() + '&case1.xsjsglxt_case_id=' + $('#case1_id').val();
 		var url = '';
 		switch ($('#LossOfGoods table tbody:visible').attr('class')) {
-		case 'lost_goods':			url = '/xsjsglxt/case/Lost_saveLost';
-			break;
-		case 'lost_mobilephone':			url = '/xsjsglxt/case/LostMobilephone_saveLostMobilephone';
-			break;
-		case 'lost_computer':			url = '/xsjsglxt/case/LostComputer_saveLostComputer';
-			break;
-		default:
-			url = '';
-			break;
+			case 'lost_goods':
+				url = '/xsjsglxt/case/Lost_saveLost';
+				break;
+			case 'lost_mobilephone':
+				url = '/xsjsglxt/case/LostMobilephone_saveLostMobilephone';
+				break;
+			case 'lost_computer':
+				url = '/xsjsglxt/case/LostComputer_saveLostComputer';
+				break;
+			default:
+				url = '';
+				break;
 		}
-		$.post(url, data, function(xhr_data) {
+		$.post(url, data, function (xhr_data) {
 			if (xhr_data == 'success') {
 				toastr.success('添加成功！');
 				$('#Lost_Goods table tbody').find('input,textarea').val("");
@@ -63,8 +131,8 @@ $(function() {
 		}, 'text');
 	});
 	//添加物证信息
-	$('.add_evidence').click(function() {
-		$.post('/xsjsglxt/case/Resevidence_saveResevidence', $('#lost_evidence').serialize() + '&case1.xsjsglxt_case_id=' + $('#case1_id').val(), function(xhr_data) {
+	$('.add_evidence').click(function () {
+		$.post('/xsjsglxt/case/Resevidence_saveResevidence', $('#lost_evidence').serialize() + '&case1.xsjsglxt_case_id=' + $('#case1_id').val(), function (xhr_data) {
 			if (xhr_data == 'success') {
 				toastr.success('添加成功！');
 				$('#lost_evidence table tbody').find('input,textarea').val("");
@@ -75,9 +143,10 @@ $(function() {
 	});
 
 
+
 	//添加照片信息
-	$('.add_picture').click(function() {
-		$.post('/xsjsglxt/case/Image_updatePicture', $('#add_picture').serialize() + '&case1.xsjsglxt_case_id=' + $('#case1_id').val(), function(xhr_data) {
+	$('.add_picture').click(function () {
+		$.post('/xsjsglxt/case/Image_updatePicture', $('#add_picture').serialize() + '&case1.xsjsglxt_case_id=' + $('#case1_id').val(), function (xhr_data) {
 			if (xhr_data == 'success') {
 				toastr.success('添加成功！');
 				$('#add_picture table tbody').find('input,textarea').val("");
@@ -86,16 +155,16 @@ $(function() {
 			}
 		}, 'json');
 	});
-	$('#picture').on('show.bs.modal', function() {
-		$.post('/xsjsglxt/case/Case_AllCase', function(Case_data) {
+	$('#picture').on('show.bs.modal', function () {
+		$.post('/xsjsglxt/case/Case_AllCase', function (Case_data) {
 			//所有案件循环
 			var option = '';
 			for (var len = 0; len < Case_data.length; len++) {
 				option += '<option value="' + Case_data[len].xsjsglxt_case_id + '">' + Case_data[len].case_name + '</option>';
 			}
 			$('#picture').find('select[name="case1.xsjsglxt_case_id"]').html(option).selectpicker('refresh');
-		//除去加载提示
-		//$('.load_remind').remove();
+			//除去加载提示
+			//$('.load_remind').remove();
 		}, 'json');
 	})
 
@@ -109,12 +178,21 @@ function sence_checkbox(checkbox) {
 		box.val('1');
 	}
 }
+
 function ChangeItemType(option_obj) {
-	$('#LossOfGoods table tbody').each(function() {
+	$('#LossOfGoods table tbody').each(function () {
 		if ($(this).attr("class") == $(option_obj).val()) {
 			$(this).show();
 		} else $(this).hide();
 	});
+}
+
+function chose_labe(params) {
+	if ($(params).val() == 1) {
+		$('input[name="register"][value="1"]').attr("checked", "checked");
+	} else {
+		$('input[name="register"][value="2"]').attr("checked", "checked");
+	}
 }
 
 //CaseDetail.jsp中的修改案件
@@ -123,25 +201,26 @@ function case_change() {
 	var case1_id = document.getElementById("case1_id").value;
 	console.log(case1_id);
 	$.confirm({
-		title : '确定修改?',
-		smoothContent : false,
-		content : false,
-		autoClose : 'cancelAction|10000',
-		buttons : {
-			deleteUser : {
-				btnClass : 'btn-blue',
-				text : '确认',
-				action : function() {
+		title: '确定修改?',
+		smoothContent: false,
+		content: false,
+		autoClose: 'cancelAction|10000',
+		buttons: {
+			deleteUser: {
+				btnClass: 'btn-blue',
+				text: '确认',
+				action: function () {
 					loadCaseDetail_case_change(url, case1_id);
 				}
 			},
-			cancelAction : {
-				btnClass : 'btn-danger',
-				text : '取消',
+			cancelAction: {
+				btnClass: 'btn-danger',
+				text: '取消',
 			}
 		}
 	});
 }
+
 function loadCaseDetail_case_change(url, case1_id) {
 	if (window.XMLHttpRequest) {
 		xmlhttp = new XMLHttpRequest();
@@ -160,7 +239,7 @@ function loadCaseDetail_case_change(url, case1_id) {
 
 		return JSON.stringify(objData);
 	};*/
-	xmlhttp.onreadystatechange = function() {
+	xmlhttp.onreadystatechange = function () {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			console.log(xmlhttp.responseText);
 			var result = xmlhttp.responseText;

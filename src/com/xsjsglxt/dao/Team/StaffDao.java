@@ -24,4 +24,8 @@ public interface StaffDao {
 	List<xsjsglxt_staff> getAllPoliceman();
 
 	List<xsjsglxt_staff> getSchedulingStaff(String pointer);
+
+	List<xsjsglxt_staff> getMeetCompere();
+
+	List<xsjsglxt_staff> getMeetRecorder();
 }

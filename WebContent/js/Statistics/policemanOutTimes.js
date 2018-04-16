@@ -22,7 +22,8 @@ window.onload = function() {
 	caseTime = new Vue({
 		el : "#caseContent",
 		data : {
-			'caseList' : {}
+			'caseList' : {},
+			'count' : [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
 		},
 		updated : function() {
 			highLightShow();
@@ -104,7 +105,6 @@ var loadPoliceman = function() {
 		data : policemanOutTimesQuery,
 		success : function(data) {
 			if (data != "不存在此警员记录") {
-				console.log(data);
 				var result = JSON.parse(data);
 				policemanOut.policemanOutVO = result;
 			} else {
