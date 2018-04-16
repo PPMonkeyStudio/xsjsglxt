@@ -96,8 +96,7 @@
 								style="width: 170px; float: left; margin-top: 6px; margin-left: -100px;"
 								name="case1.case_totalCategory" name="case_class1"
 								onchange="setSectionCase(this.selectedIndex)"
-								class="main_case form-control"><option
-										selected="selected" value="">请选择案件总类别</option>
+								class="main_case form-control"><option>请选择案件总类别</option>
 									<option value="盗窃案">盗窃案</option>
 									<option value="抢劫案">抢劫案</option>
 									<option value="抢夺案">抢夺案</option>
@@ -336,6 +335,156 @@
 								style="margin-top: 6px;" class="form_time form-control mydate"
 								type="text"></td>
 						</tr>
+					</table>
+					<hr>
+					<table>
+						<tbody>
+							<tr>
+								<td>
+									<div class="panel evidence-info">
+										<div class="panel-heading">
+											<h3 class="panel-title">物证信息</h3>
+										</div>
+										<div class="panel-body">
+											<button type="button" class="btn btn-default"
+												data-toggle="modal" data-target="#evidence">
+												<i class="fa fa-plus-square"></i> 添加物证
+											</button>
+											<table style="width: 100%;">
+												<thead>
+													<tr>
+														<th>物证名称</th>
+														<th>案件性质</th>
+														<th>提取人</th>
+														<th>物证类型</th>
+														<th>提取日期</th>
+														<th>案件性质</th>
+														<th>操作</th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="panel loseGoods-info">
+										<div class="panel-heading">
+											<h3 class="panel-title">丢失物品信息</h3>
+										</div>
+										<div class="panel-body">
+											<button style="margin-top: 6px;" type="button"
+												class="btn btn-default" data-toggle="modal"
+												data-target="#LossOfGoods">
+												<i class="fa fa-plus-square"></i> 添加损失物品
+											</button>
+											<table style="width: 100%;">
+												<thead>
+													<tr>
+														<th>丢失物名称</th>
+														<th>所属案件</th>
+														<th>备注</th>
+														<th>操作</th>
+													</tr>
+												</thead>
+												<tbody></tbody>
+											</table>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+							<tr>
+								<td>
+									<div class="panel loseComputer-info">
+										<div class="panel-heading">
+											<h3 class="panel-title">丢失电脑信息</h3>
+										</div>
+										<div class="panel-body">
+											<button style="margin-top: 6px;" type="button"
+												class="btn btn-default" data-toggle="modal"
+												data-target="#LossOfGoods">
+												<i class="fa fa-plus-square"></i> 添加损失电脑
+											</button>
+											<table style="width: 100%;">
+												<thead>
+													<tr>
+														<th>所属案件</th>
+														<th>电脑品牌</th>
+														<th>上网账号</th>
+														<th>MAC地址</th>
+														<th>备注</th>
+														<th>操作</th>
+													</tr>
+												</thead>
+												<tbody></tbody>
+											</table>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+							<tr>
+								<td>
+									<div class="panel LostMobilephone-info">
+										<div class="panel-heading">
+											<h3 class="panel-title">丢失手机信息</h3>
+										</div>
+										<div class="panel-body">
+											<button style="margin-top: 6px;" type="button"
+												class="btn btn-default" data-toggle="modal"
+												data-target="#LossOfGoods">
+												<i class="fa fa-plus-square"></i> 添加损失手机信息
+											</button>
+											<table style="width: 100%;">
+												<thead>
+													<tr>
+														<th>所属案件</th>
+														<th>手机号码</th>
+														<th>手机串号</th>
+														<th>手机特征</th>
+														<th>备注</th>
+														<th>操作</th>
+													</tr>
+												</thead>
+												<tbody></tbody>
+											</table>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="panel picture-info">
+										<div class="panel-heading">
+											<h3 class="panel-title">照片信息</h3>
+										</div>
+										<div class="panel-body">
+											<button style="margin-top: 6px;" type="button"
+												class="btn btn-default" data-toggle="modal"
+												data-target="#picture">
+												<i class="fa fa-plus-square"></i> 添加照片
+											</button>
+											<table style="width: 100%;">
+												<thead>
+													<tr>
+														<th>所属影像光盘</th>
+														<th>所属案件</th>
+														<th>照片编号</th>
+														<th>备注</th>
+														<th>操作</th>
+													</tr>
+												</thead>
+												<tbody></tbody>
+											</table>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
 					</table>
 					<table>
 						<tr>

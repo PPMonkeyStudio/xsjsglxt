@@ -28,6 +28,8 @@ $(function () {
 			} else
 				$(this).val(xhr_data[key1][key2]);
 		});
+
+
 		var persons = xhr_data["sence"]["snece_inquestPerson"].split(',');
 		$('select[name="sence.snece_inquestPerson"]').selectpicker("val", persons);
 		//物证提取人设定

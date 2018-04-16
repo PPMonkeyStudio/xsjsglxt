@@ -22,6 +22,20 @@ var page_infomantion = {
 	HaveNextPage: false,
 }
 
+var selectAll = function (event) {
+	if (event.checked) {
+		var che = document.getElementsByName("chooseCheckBox");
+		for (var int = 0; int < che.length; int++) {
+			che[int].checked = true;
+		}
+	} else {
+		var che = document.getElementsByName("chooseCheckBox");
+		for (var int = 0; int < che.length; int++) {
+			che[int].checked = false;
+		}
+	}
+}
+
 
 $(function () {
 	$('.to_quert').click(function () {
@@ -46,6 +60,39 @@ $(function () {
 		//成功提示
 		toastr.success('清除查询信息成功');
 	});
+
+	$('#case_delete').click(function () {
+		var formData = new FormData;
+		var HaveDate = false;
+		var index = 0;
+		$('.case_table_info tbody').find('input[name="chooseCheckBox"]').each(function (i) {
+			if ($(this).is(':checked')) {
+				formData.append('useSenceInformationNumList[' + index + ']', $(this).attr('id'));
+				HaveDate = true;
+				index++;
+			}
+		});
+		if (HaveDate) {
+			$.ajax({
+				url: "/xsjsglxt/case/Case_remove_SenceInformationList",
+				type: "POST",
+				contentType: false,
+				processData: false,
+				data: formData,
+				dataType: 'text',
+				success: function (msg) {
+					if (msg == 'success') {
+						toastr.info('删除成功');
+						get_ListSneceInformationByPageAndSearch(query_data);
+					} else {
+						toastr.error('删除失败');
+					}
+				}
+			});
+		} else {
+			toastr.info('未选择数据');
+		}
+	});
 	get_ListSneceInformationByPageAndSearch(query_data);
 })
 
@@ -55,8 +102,7 @@ function get_ListSneceInformationByPageAndSearch(data) {
 		for (var len = 0; len < xhr.SenceInformationDTOList.length; len++) {
 			var data_list = xhr.SenceInformationDTOList[len];
 			str += '<tr>';
-			str += '<td><input type="checkbox" class="check_del" style="margin:10px;"/></td>';
-			str += '<td>' + (len + 1) + '</td>';
+			str += '<td><input name="chooseCheckBox" id="' + data_list.case1.xsjsglxt_case_id + '" type="checkbox"></td>';
 			str += '<td><a href="/xsjsglxt/case/Case_page_CaseDetails?id=' + data_list.case1.xsjsglxt_case_id + '">' + data_list.sence.snece_inquestId + '</a></td>';
 			str += '<td>' + data_list.case1.case_receivingAlarmDate + '</td>';
 			str += '<td>' + data_list.case1.case_address + '</td>';
