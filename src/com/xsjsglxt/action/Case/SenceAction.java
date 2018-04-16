@@ -22,6 +22,7 @@ import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone;
 import com.xsjsglxt.domain.DO.xsjsglxt_picture;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
+import com.xsjsglxt.domain.DTO.Case.SenceInformationAllDTO;
 import com.xsjsglxt.domain.DTO.Case.SenceInformationDTO;
 import com.xsjsglxt.domain.VO.Case.page_list_senceInformationVO;
 import com.xsjsglxt.service.Case.SenceService;
@@ -45,6 +46,8 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	private page_list_senceInformationVO page_list_senceInformation;
 
 	private SenceInformationDTO senceInformationDTO;
+	
+	private SenceInformationAllDTO senceInformationAllDTO;
 
 	/*
 	 * 跳转页面
@@ -189,10 +192,10 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
-		senceInformationDTO = senceService.SecneInformationOne(case1);
+		senceInformationAllDTO = senceService.SecneInformationOne(case1);
 		http_response.setContentType("text/html;charset=utf-8");
 
-		http_response.getWriter().write(gson.toJson(senceInformationDTO));
+		http_response.getWriter().write(gson.toJson(senceInformationAllDTO));
 	}
 
 	/*
@@ -210,8 +213,7 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 			senceService.updateBriefdetails(briefdetails, case1.getXsjsglxt_case_id());
 			senceService.updateCase(case1);
 			http_response.setContentType("text/html;charset=utf-8");
-
-			http_response.getWriter().write(gson.toJson("success"));
+			http_response.getWriter().write("success");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -229,7 +231,7 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 		if (senceService.remove_SenceInformationList(useSenceInformationNumList)) {
 			http_response.setContentType("text/html;charset=utf-8");
 			try {
-				http_response.getWriter().write(gson.toJson("success"));
+				http_response.getWriter().write("success");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -367,4 +369,13 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	public void setUseSenceInformationNumList(List<String> useSenceInformationNumList) {
 		this.useSenceInformationNumList = useSenceInformationNumList;
 	}
+
+	public SenceInformationAllDTO getSenceInformationAllDTO() {
+		return senceInformationAllDTO;
+	}
+
+	public void setSenceInformationAllDTO(SenceInformationAllDTO senceInformationAllDTO) {
+		this.senceInformationAllDTO = senceInformationAllDTO;
+	}
+	
 }

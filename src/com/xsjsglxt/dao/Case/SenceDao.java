@@ -75,15 +75,15 @@ public interface SenceDao {
 
 	public xsjsglxt_briefdetails getBriefdetailsByCaseID(xsjsglxt_case case1);
 
-	public xsjsglxt_lost getLostByCaseID(xsjsglxt_case case1);
+	public List<xsjsglxt_lost> getLostByCaseID(xsjsglxt_case case1);
 
-	public xsjsglxt_lost_mobilephone getLost_mobilephoneByCaseId(xsjsglxt_case case1);
+	public List<xsjsglxt_lost_mobilephone> getLost_mobilephoneByCaseId(xsjsglxt_case case1);
 
-	public xsjsglxt_resevidence getResevidenceByCaseId(xsjsglxt_case case1);
+	public List<xsjsglxt_resevidence> getResevidenceByCaseId(xsjsglxt_case case1);
 
-	public xsjsglxt_lost_computer getLost_computerByCaseId(xsjsglxt_case case1);
+	public List<xsjsglxt_lost_computer> getLost_computerByCaseId(xsjsglxt_case case1);
 
-	public xsjsglxt_picture getPicturtByCaseId(xsjsglxt_case case1);
+	public List<xsjsglxt_picture> getPicturtByCaseId(xsjsglxt_case case1);
 
 	/*
 	 * 修改信息
