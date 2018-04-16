@@ -940,8 +940,13 @@ function checkUp(value){
 		//是入党积极分子就显示申请书事件和发展对象时间
 		document.querySelector(".staff_appliactionFormTime_label").style.display="";
 		document.querySelector(".staff_appliactionFormTime").style.display="";
+		document.querySelector(".staff_delevopObjectTime_label").innerHTML="发展对象";
+		if(value=="预备党员"){
+			document.querySelector(".staff_delevopObjectTime_label").innerHTML="预备时间";
+		}
 		document.querySelector(".staff_delevopObjectTime_label").style.display="";
 		document.querySelector(".staff_delevopObjectTime").style.display="";
+		
 	}
 	else if(value=="党员"){
 		 //清空其他内容
