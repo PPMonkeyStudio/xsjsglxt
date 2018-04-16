@@ -79,13 +79,17 @@
 		<!---------------------------------------------------------------------------------------------------->
 		<!---------------------------------------------------------------------------------------------------->
 		<!-- LEFT SIDEBAR -->
-		<div id="sidebar-nav" class="sidebar" style="width: 240px; background-color: #13599d;">
+		<div id="sidebar-nav" class="sidebar" style="width: 200px; background-color: #13599d;">
 			<div class="sidebar-scroll">
 				<nav>
 				<ul class="nav">
 					<template v-if="user_case_technology_power">
 					<li><a href="/xsjsglxt/case/Case_page_Sneceinput" class=""><i
-							class="lnr lnr-file-add"></i> <span>现场录入</span></a></li>
+							class="lnr lnr-file-add"></i> <span>现场录入</span></a>
+							<ul style="margin-left: 6px;"><li>
+								<a style="color: white;"><span>现场录入</span></a>
+							</li></ul>
+							</li>
 					</template>
 					<template v-if="user_case_technology_power">
 					<li><a href="/xsjsglxt/case/Case_page_CaseMaterials" class=""><i
@@ -112,7 +116,7 @@
 					<li><a href="/xsjsglxt/DNA/DNAManagement_DNAManagementPage"
 						class=""><i class="lnr lnr-license"></i> <span>DNA信息录入</span></a></li>
 					</template>
-					<template v-if="user_technology_manager_power">
+					<template v-if="false">
 					<li><a
 						href="/xsjsglxt/FingerPrint/FingerPrintManagement_FingerPrintManagementPage"
 						class=""><i class="lnr lnr-thumbs-up"></i> <span>指纹信息录入</span></a></li>
