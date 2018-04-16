@@ -51,8 +51,9 @@
 							<td><input style="font-size: 12px;"
 								name="sence.snece_inquestId" class="form-control" type="text"></td>
 							<td style="padding-left:5px;">勘验系统编号</td>
-							<td><input name="sence.snece_inquestSystemId"
-								class="form-control" type="text"></td>
+							<td style="width: 100px;"><input
+								name="sence.snece_inquestSystemId" class="form-control"
+								type="text"></td>
 							<td>案件分类</td>
 							<td><select name="case1.case_classify" class=" form-control">
 									<option value=""></option>
@@ -86,16 +87,17 @@
 						</tr>
 						<tr>
 							<td>案发地点</td>
-							<td colspan="3"><input name="case1.case_address"
+							<td colspan="2"><input name="case1.case_address"
 								style="margin-top: 6px;" class="case_place form-control"
 								type="text" value="萍乡市安源区"></td>
 
 							<td>案件类别</td>
 							<td colspan="2"><select
-								style="width: 50%; float: left; margin-top: 6px;"
-								name="case1.case_totalCategory"
+								style="width: 170px; float: left; margin-top: 6px; margin-left: -100px;"
+								name="case1.case_totalCategory" name="case_class1"
 								onchange="setSectionCase(this.selectedIndex)"
-								class="main_case form-control"><option value="">请选择</option>
+								class="main_case form-control"><option
+										selected="selected" value="">请选择案件总类别</option>
 									<option value="盗窃案">盗窃案</option>
 									<option value="抢劫案">抢劫案</option>
 									<option value="抢夺案">抢夺案</option>
@@ -110,9 +112,9 @@
 									<option value="故意损坏公私财物">故意损坏公私财物</option>
 									<option value="其它">其它</option></select> <select
 								name="case1.case_sonCategory"
-								style="margin-top: 6px; width: 50%;"
+								style="margin-top: 6px; width: 170px;"
 								class="other_case form-control">
-									<option value="">请选择</option>
+									<option selected value="">请选择案件子类别</option>
 							</select></td>
 						</tr>
 						<tr>
@@ -338,12 +340,11 @@
 					<table>
 						<tr>
 							<td align="right">
-								<!-- 按钮触发模态框 -->
-								<button style="margin-top: 6px;" type="button"
+								<!-- 按钮触发模态框 --> <!-- <button style="margin-top: 6px;" type="button"
 									class="btn btn-default" data-toggle="modal"
 									data-target="#station">
 									<i class="fa fa-plus-square"></i> 基站修改
-								</button>
+								</button> -->
 								<button style="margin-top: 6px;" type="button"
 									class="btn btn-default" data-toggle="modal"
 									data-target="#LossOfGoods">
@@ -636,7 +637,7 @@
 		<!-- /.modal -->
 	</div>
 	<!-- 修改基站-模态框（Modal） -->
-	<div class="modal fade" id="station" tabindex="-1" role="dialog"
+	<!-- <div class="modal fade" id="station" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
@@ -680,10 +681,8 @@
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 				</div>
 			</div>
-			<!-- /.modal-content -->
 		</div>
-		<!-- /.modal -->
-	</div>
+	</div> -->
 
 </body>
 <script type="text/javascript"

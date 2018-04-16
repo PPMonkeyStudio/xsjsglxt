@@ -3,10 +3,14 @@ $(function () {
 	makeMeans.addEventListener("change", setSectionmMethod(makeMeans.selectedIndex), false);
 	var residence = document.getElementsByName('case1.case_residence')[0];
 	residence.addEventListener("change", setSectionmAddress(residence.selectedIndex), false);
+	var totalCategory = document.getElementsByName('case1.case_totalCategory')[0];
+	totalCategory.addEventListener("change", setSectionCase(totalCategory.selectedIndex), false);
 
+	var sence_id = "";
 	$.post('/xsjsglxt/case/Case_SecneInformationOne', {
 		"case1.xsjsglxt_case_id": $('#case1_id').val(),
 	}, function (xhr_data) {
+		sence_id = xhr_data.sence.xsjsglxt_snece_id;
 		$('#caseDetails').find('select, input,textarea').each(function () {
 			var name = $(this).attr('name');
 			if (name == "register") {
@@ -26,6 +30,7 @@ $(function () {
 		});
 		var persons = xhr_data["sence"]["snece_inquestPerson"].split(',');
 		$('select[name="sence.snece_inquestPerson"]').selectpicker("val", persons);
+		//物证提取人设定
 		$('select[name="resevidence.resevidence_extractPerson"]').html(function () {
 			var option_str = '';
 			for (const key in persons) {
@@ -83,7 +88,7 @@ $(function () {
 			toastr.info('请添加完整信息！');
 			return false;
 		}
-		var station_data = $('#station form').serialize() + '&case1.xsjsglxt_case_id=' + $('#case1_id').val();
+		var station_data = $('#station form').serialize() + '&case1.xsjsglxt_case_id=' + $('#case1_id').val() + '&sence.xsjsglxt_snece_id=' + sence_id;
 		$.post('/xsjsglxt/case/Case_updateSenceInformation', station_data, function (xhr_data) {
 			if (xhr_data == 'success') {
 				toastr.success('修改成功！');
