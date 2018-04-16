@@ -78,7 +78,8 @@
 										<td>{{ policeman.xsjsglxt_age }}</td>
 										<td>{{ policeman.staff_politicalStatus }}</td>
 										<td>{{ policeman.staff_thePoliceTime }}</td>
-										<td><button  onclick="createConfirm(this)" :id="policeman.xsjsglxt_staff_id" class="btn btn-danger">删除</button></td>
+										<td><button  onclick="createConfirm_relive(this)" :id="policeman.xsjsglxt_staff_id" class="btn btn-success">修改</button>
+										<button  onclick="createConfirm(this)" :id="policeman.xsjsglxt_staff_id" class="btn btn-danger">删除</button></td>
 									</tr>
 								</tbody>
 							</table>
