@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2017-12-13 15:02:05 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2018-4-14 13:47:49 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="com.xsjsglxt.domain.DO.xsjsglxt_user" table="XSJSGLXT_USER">
         <id name="user_id" type="java.lang.String">
@@ -22,6 +22,12 @@
         </property>
         <property name="user_units" type="java.lang.String">
             <column name="USER_UNITS" />
+        </property>
+        <property name="user_duty" type="java.lang.String">
+            <column name="USER_DUTY" />
+        </property>
+        <property name="user_idCard" type="java.lang.String">
+            <column name="USER_IDCARD" />
         </property>
         <property name="user_case_technology_power" type="java.lang.String">
             <column name="USER_CASE_TECHNOLOGY_POWER" />

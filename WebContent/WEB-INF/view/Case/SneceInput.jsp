@@ -30,13 +30,13 @@
 		<!--  -->
 		<!---------------------------------------------------------------------------------------------------->
 		<!---------------------------------------------------------------------------------------------------->
-		<div class="panel" style="width: 95% margin: 20px auto;">
+		<div class="panel" style="width: 1300px; margin: 20px auto;">
 			<!--  -->
 			<div class="panel-heading">
 				<h3 class="panel-title">现场录入</h3>
 			</div>
 			<button
-				style="margin-top: 6px; margin-left:20px; float: left; position: absolute;"
+				style="margin-top: 6px; margin-left: 20px; float: left; position: absolute;"
 				onclick="javascript:history.go(-1)" type="button"
 				class="btn btn-default">
 				<i class="fa fa-reply"></i> 返回列表
@@ -46,10 +46,10 @@
 				<form id="sneceInformation" action="">
 					<table>
 						<tr>
-							<td>勘探编号</td>
+							<td>勘验编号</td>
 							<td><input style="font-size: 12px;"
 								name="sence.snece_inquestId" class="form-control" type="text"></td>
-							<td style="padding-left:5px;">勘探系统编号</td>
+							<td style="padding-left: 5px;">勘验系统编号</td>
 							<td><input name="sence.snece_inquestSystemId"
 								class="form-control" type="text"></td>
 							<td>案件分类</td>
@@ -71,7 +71,6 @@
 									<option>一般</option>
 									<option>重大</option>
 									<option>特大</option>
-									<option>特大</option>
 							</select></td>
 							<td>是否立案</td>
 							<td><label style="float: left;" class="fancy-radio">
@@ -91,7 +90,7 @@
 
 							<td>案件类别</td>
 							<td colspan="2"><select
-								style="width:67%; float:left; margin-top: 6px;margin-left:-100px;"
+								style="width: 170px; float: left; margin-top: 6px; margin-left: -100px;"
 								name="case1.case_totalCategory" name="case_class1"
 								onchange="setSectionCase(this.selectedIndex)"
 								class="main_case form-control"><option
@@ -110,7 +109,7 @@
 									<option value="故意损坏公私财物">故意损坏公私财物</option>
 									<option value="其它">其它</option></select> <select
 								name="case1.case_sonCategory"
-								style="margin-top: 6px; width:67%;"
+								style="margin-top: 6px; width: 170px;"
 								class="other_case form-control">
 									<option selected value="">请选择案件子类别</option>
 							</select></td>
@@ -125,38 +124,20 @@
 					<hr>
 					<table>
 						<tr>
-							<td width="85">移动基站</td>
-							<td><input name="sence.snece_mobileStation"
-								placeholder="基站号" class="form-control" type="text"> <input
-								name="sence.snece_mobileVillage" placeholder="小区号"
-								style="margin-top: 6px;" class="form-control" type="text"></td>
-							<td width="85">联通基站</td>
-							<td><input name="sence.snece_unicomSwitchboard"
-								placeholder="交换机" class="form-control" type="text"> <input
-								name="sence.snece_unicomVillage" placeholder="小区号"
-								style="margin-top: 6px;" class="form-control" type="text"></td>
-							<td width="85">电信基站</td>
-							<td><input name="sence.snece_telecomStation"
-								placeholder="基站号" width="40%;" class="form-control" type="text"></td>
-						</tr>
-					</table>
-					<hr>
-					<table>
-						<tr>
 							<td style="height: 74;">报案人基本情况</td>
-							<td colspan="5"><input style=" width: 24%;float:left; "
+							<td colspan="5"><input style="width: 24%; float: left;"
 								name="case1.case_reporterName" class="form-control" type="text"
-								placeholder="姓名"> <input
-								style="width: 24%; float:left;margin-left: 6px;"
+								placeholder="姓名"><input
+								style="width: 24%; float: left; margin-left: 6px;"
 								name="case1.case_reporterSex" class="form-control" type="text"
-								placeholder="年龄 "> <input
-								style="width: 24%; float:left; margin-left: 6px;"
+								placeholder="年龄 "><input
+								style="width: 24%; float: left; margin-left: 6px;"
 								name="case1.case_reporterJobUnit" class="form-control"
-								type="text" placeholder="工作单位 "> <input
+								type="text" placeholder="工作单位 "><input
 								style="width: 25%; margin-left: 6px; float: left;"
 								name="case1.case_reporterPhone" class="form-control" type="text"
-								placeholder="联系电话 "> <input
-								style="margin-top: 6px;float: right;"
+								placeholder="联系电话 "><input
+								style="margin-top: 6px; float: right;"
 								name="case1.case_reporterAddress" class="form-control"
 								type="text" placeholder="家庭住址 "></td>
 						</tr>
@@ -169,7 +150,7 @@
 						<tr>
 							<td height="39px;">天气情况</td>
 							<td><select name="sence.snece_weather"
-								style="width:74px; float:left; margin-top: 6px;"
+								style="width: 74px; float: left; margin-top: 6px;"
 								class=" form-control" id="weather" name="weather">
 									<option selected value=""></option>
 									<option value="晴">晴</option>
@@ -179,9 +160,9 @@
 									<option value="雾">雾</option>
 									<option value="其他">其他</option>
 							</select>
-								<p style="float:left; margin-top: 6px;">温度</p> <input
+								<p style="float: left; margin-top: 6px;">温度</p> <input
 								name="sence.snece_weatherTemperature"
-								style="width: 50px; float:left; margin-top: 6px;"
+								style="width: 50px; float: left; margin-top: 6px;"
 								class="form-control" type="text">°C</td>
 							<td width="85">作案时段</td>
 							<td><select name="case1.case_makeTime" class=" form-control">
@@ -316,25 +297,15 @@
 						</tr>
 						<tr>
 							<td>勘验人员</td>
-							<td colspan="5"><select name="sence.snece_inquestPerson"
-								id="exploration_personnel"
+							<td colspan="5">
+								<!-- <input name="sence.snece_inquestPerson"
+								id="exploration_personnel" placeholder="请输入"
+								class="form-control"> --> <select
+								name="sence.snece_inquestPerson" id="exploration_personnel"
 								class="selectpicker show-tick form-control dropup" multiple
 								data-live-search="true" data-dropup-auto="false" title="请选择">
-									<option value="刘楚德">刘楚德</option>
-									<option value="龙建平">龙建平</option>
-									<option value="刘蓉">刘蓉</option>
-									<option value="杨立宇">杨立宇</option>
-									<option value="冯俊">冯俊</option>
-									<option value="吴昊晟">吴昊晟</option>
-									<option value="陈永明">陈永明</option>
-									<option value="赖鑫">赖鑫</option>
-									<option value="王树鹏">王树鹏</option>
-									<option value="许倩">许倩</option>
-									<option value="汤喜">汤喜</option>
-									<option value="陈佐仁">陈佐仁</option>
-									<option value="李希">李希</option>
-									<option value="魏松林">魏松林</option>
-							</select></td>
+							</select>
+							</td>
 						</tr>
 						<tr>
 							<!-- <td>填表人员</td>

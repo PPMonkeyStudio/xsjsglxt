@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-3-19 16:22:33 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_staffReward" table="XSJSGLXT_STAFFREWARD">
+        <id name="xsjsglxt_staffReward_id" type="java.lang.String">
+            <column name="XSJSGLXT_STAFFREWARD_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="staffReward_staff" type="java.lang.String">
+            <column name="STAFFREWARD_STAFF" />
+        </property>
+        <property name="staffReward_situation" type="java.lang.String">
+            <column name="STAFFREWARD_SITUATION" />
+        </property>
+        <property name="staffReward_Time" type="java.lang.String">
+            <column name="STAFFREWARD_TIME" />
+        </property>
+        <property name="staffReward_remarks" type="java.lang.String">
+            <column name="STAFFREWARD_REMARKS" />
+        </property>
+        <property name="staffReward_gmt_create" type="java.lang.String">
+            <column name="STAFFREWARD_GMT_CREATE" />
+        </property>
+        <property name="staffReward_gmt_modified" type="java.lang.String">
+            <column name="STAFFREWARD_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>

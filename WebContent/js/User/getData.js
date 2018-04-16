@@ -10,21 +10,18 @@ window.onload = function() {
 	xmlHttp.onreadystatechange = loadUserBack;
 }
 
-function cleanInput()
-{
+function cleanInput() {
 	$("#addUserForm input").val("");
 }
 
 function addUser() {
-	for(var i=0;i<document.addUserForm.elements.length-1;i++)
-    {
-     if(document.addUserForm.elements[i].value=="")
-     {
-       toastr.error("当前表单不能有空项");
-       document.form1.elements[i].focus();
-       return false;
-     }
-    }
+	for (var i = 0; i < document.addUserForm.elements.length - 1; i++) {
+		if (document.addUserForm.elements[i].value == "") {
+			toastr.error("当前表单不能有空项");
+			document.form1.elements[i].focus();
+			return false;
+		}
+	}
 	$("#addContent").addClass("hideDiv");
 	$("#addLoadingDiv").removeClass("hideDiv");
 	xmlHttp.open("POST", "/xsjsglxt/user/User_addUser", true);
@@ -86,6 +83,8 @@ function getUserByIdBack() {
 		$("#user_name_update").val(result.user_name);
 		$("#user_number_update").val(result.user_number);
 		$("#user_units_update").val(result.user_units);
+		$("#user_idCard_update").val(result.user_idCard);
+		$("#user_duty_update").val(result.user_duty);
 		$("#user_case_technology_power_update").val(
 				result.user_case_technology_power);
 		$("#user_case_query_power_update").val(result.user_case_query_power);
@@ -163,10 +162,17 @@ function loadUserBack() {
 		skipPage.value = result.currPage;
 		$("#loadingDiv").addClass("hideDiv");
 		$("#tableDiv").removeClass("hideDiv");
-		deleteByPower('user_user_manager_power','userRole','managerRole');
 	}
 }
 
+document.onkeydown = keyListener;
+function keyListener(e) {
+	// 当按下回车键，执行我们的代码
+	if (e.keyCode == 13) {
+		// 我们要做的事情
+		queryUser();
+	}
+}
 function queryUser() {
 	$("#loadingDiv").removeClass("hideDiv");
 	$("#tableDiv").addClass("hideDiv");

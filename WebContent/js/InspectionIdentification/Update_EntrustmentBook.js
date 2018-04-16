@@ -2,7 +2,7 @@ function Update_EntrustmentBook(obj) {
 	var json_list = EntrustmentBook_json;
 	var jc = $
 			.confirm({
-				title : '痕迹检验鉴定委托书（修改）',
+				title : '检验鉴定委托书（通用）（修改）',
 				content : '',
 				type : 'blue',
 				columnClass : 'col-md-12',
@@ -36,7 +36,6 @@ function Update_EntrustmentBook(obj) {
 							+ '" /></td>'
 							+ '<td><span style="color:#D9534F;">*</span> 委托单位：</td>'
 							+ '<td><select class="form-control" name="tranceCheckBook.check_entrustment_book_entrustment_unit">'
-							+ '<option value="-1">委托单位（全部）</option>'
 							+ '<option value="后埠派出所">后埠派出所</option>'
 							+ '<option value="凤凰派出所">凤凰派出所</option>'
 							+ '<option value="安源派出所">安源派出所</option>'
@@ -49,7 +48,7 @@ function Update_EntrustmentBook(obj) {
 							+ '<option value="高坑派出所">高坑派出所</option>'
 							+ '<option value="五陂下派出所">五陂下派出所</option>'
 							+ '<option value="其他">其他</option>'
-							+ '</select> </td></tr>'
+							+ '</select></td></tr>'
 							+ '<td><span style="color:#D9534F;">*</span> 委托时间：</td><td><input name="tranceCheckBook.check_entrustment_book_inspect_time" class="form-control mydate"  value="'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspect_time
 							+ '"/></td></tr>'

@@ -31,10 +31,7 @@
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
-	<div style="float: left; width: 100%;">
-		<!--  -->
-		<!---------------------------------------------------------------------------------------------------->
-		<!---------------------------------------------------------------------------------------------------->
+	<div id="allPanel">
 		<div class="panel" style="width: 95%; margin: 20px auto;">
 			<!--  -->
 			<div class="panel-heading">
@@ -129,5 +126,25 @@
 
 <script type="text/javascript">
 List_ContrastFingerPrint_By_PageAndSearch(1);
+</script>
+<script type="text/javascript">
+	var documentWidth = document.body.clientWidth;
+	var panelWidth = documentWidth - 160;
+	var navbarHeight = document.getElementById("navbar").offsetHeight;
+	var panelMargin = navbarHeight + 20;
+	document.getElementById("allPanel").setAttribute(
+			"style",
+			"width:" + panelWidth + "px; float:right; margin-top:"
+					+ panelMargin + "px;");
+	window.onresize = function() {
+		var documentWidth = document.body.clientWidth;
+		var panelWidth = documentWidth - 160;
+		var navbarHeight = document.getElementById("navbar").offsetHeight;
+		var panelMargin = navbarHeight + 20;
+		document.getElementById("allPanel").setAttribute(
+				"style",
+				"width:" + panelWidth + "px; float:right; margin-top:"
+						+ panelMargin + "px;");
+	}
 </script>
 </html>

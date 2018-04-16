@@ -37,6 +37,7 @@
 		<div class="panel" style="width: 95%; margin: 20px auto; padding-left:20px; padding-right:20px;">
 			<div class="headDiv" style="padding-top: 10px;">
 				<button class="btn btn-default managerRole" onclick="createConfirm()"><i class="fa fa-pencil-square-o"></i>填写大事记</button>
+
 				<div id="query" style="float: right;">
 				<label>时间筛选</label>
 				<input class="form-control startTime" onchange="changeTime(this)" type= "text" id="timeStart" style="width: 150px; display: inline-block;">至
@@ -46,7 +47,7 @@
 				</div>
 			</div>
 			<div id="loadingLayer"  style="margin: 0 auto; width: 45px;"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></div>
-			<div id="allInformation" class="hideDiv" style="margin-top: 10px;">
+			<div id="allInformation" class="hideDiv" style="margin-top: 10px; display:none;">
 				<table class="table table-bordered" style="text-align: center;">
 					<thead>
 						<tr style="background-color: #696969; color: white;">
@@ -92,8 +93,8 @@
 	<script type="text/javascript">
 		$.datetimepicker.setLocale('ch');
 		$('.startTime').datetimepicker({
-			yearStart : 1990, // 设置最小年份
-			yearEnd : 2050, // 设置最大年份
+			yearStart : 1900, // 设置最小年份
+			yearEnd : 2100, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : false, // 关闭时间选项
 			format : 'Y-m-d', // 格式化日期年-月-日

@@ -25,7 +25,8 @@ public class UserDaoImpl implements UserDao {
 		// TODO Auto-generated method stub
 		String query = "%" + queryString + "%";
 		String hql = "select count(*) from xsjsglxt_user where (user_name like '" + query + "' or user_units like '"
-				+ query + "' or user_number like '" + query + "' or user_username like '" + query + "')";
+				+ query + "' or user_number like '" + query + "' or user_username like '" + query
+				+ "') and user_username!='sunyi'";
 		System.out.println(hql);
 		int count = ((Number) getSession().createQuery(hql).uniqueResult()).intValue();
 		return count;
@@ -37,10 +38,10 @@ public class UserDaoImpl implements UserDao {
 		String query = "%" + queryString + "%";
 		String hql = "from xsjsglxt_user where (user_name like '" + query + "' or user_units like '" + query
 				+ "' or user_number like '" + query + "' or user_username like '" + query
-				+ "') order by user_gmt_create desc";
+				+ "') and user_username!='sunyi' order by user_gmt_create desc";
+		System.out.println(hql);
 		List<xsjsglxt_user> list = getSession().createQuery(hql).setFirstResult((currPage - 1) * 10).setMaxResults(10)
 				.list();
-		System.out.println("µ√µΩ ÆÃı”√ªß–≈œ¢:" + list.size());
 		return list;
 	}
 
@@ -78,9 +79,9 @@ public class UserDaoImpl implements UserDao {
 		Query query = getSession().createQuery(hql);
 		List<xsjsglxt_user> list = query.list();
 		if (list.size() <= 0) {
-			return false; // ”√ªß√˚≤ª¥Ê‘⁄
+			return false; // ÔøΩ√ªÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ
 		} else {
-			return true; // ”√ªß√˚¥Ê‘⁄
+			return true; // ÔøΩ√ªÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ
 		}
 
 	}

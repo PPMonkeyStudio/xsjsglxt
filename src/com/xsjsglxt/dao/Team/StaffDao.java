@@ -3,24 +3,29 @@ package com.xsjsglxt.dao.Team;
 import java.util.List;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_staff;
-import com.xsjsglxt.domain.VO.Team.page_list_staffInformationVO;
+import com.xsjsglxt.domain.DTO.Team.policemanListDTO;
+import com.xsjsglxt.domain.VO.Team.policemanListVO;
 
 public interface StaffDao {
+	String savePoliceman(xsjsglxt_staff policeman);
 
-public	boolean saveStaff(xsjsglxt_staff staff);
+	String deletePoliceman(xsjsglxt_staff policeman);
 
-public int getCountStaffInformationByPage(page_list_staffInformationVO page_list_staffInformation);
+	xsjsglxt_staff getPolicemanByStaffId(String xsjsglxt_staff_id);
 
-public List<xsjsglxt_staff> getListStaffInformatioByPage(page_list_staffInformationVO page_list_staffInformation);
+	String updatePoliceman(xsjsglxt_staff policeman);
 
-public xsjsglxt_staff StaffInformationOne(xsjsglxt_staff staff);
+	int getPolicemanCount(policemanListVO policemanVO);
 
-public void updateStaffInformation(xsjsglxt_staff staff);
+	List<policemanListDTO> getPolicemansByPage(policemanListVO policemanVO);
 
-public com.xsjsglxt.domain.DO.xsjsglxt_staff getStaffByNum(String staff_id);
+	public void getConnect();
 
-public boolean deleteStaffById(String xsjsglxt_staff_id);
+	List<xsjsglxt_staff> getAllPoliceman();
 
+	List<xsjsglxt_staff> getSchedulingStaff(String pointer);
 
+	List<xsjsglxt_staff> getMeetCompere();
 
+	List<xsjsglxt_staff> getMeetRecorder();
 }

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-4-14 20:54:50 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_scheduling" table="XSJSGLXT_SCHEDULING">
+        <id name="xsjsglxt_scheduling_id" type="java.lang.String">
+            <column name="XSJSGLXT_SCHEDULING_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="scheduling_leader" type="java.lang.String">
+            <column name="SCHEDULING_LEADER" />
+        </property>
+        <property name="scheduling_main" type="java.lang.String">
+            <column name="SCHEDULING_MAIN" />
+        </property>
+        <property name="scheduling_main_technology" type="java.lang.String">
+            <column name="SCHEDULING_MAIN_TECHNOLOGY" />
+        </property>
+        <property name="scheduling_assistant" type="java.lang.String">
+            <column name="SCHEDULING_ASSISTANT" />
+        </property>
+        <property name="scheduling_time" type="java.lang.String">
+            <column name="SCHEDULING_TIME" />
+        </property>
+        <property name="scheduling_gmt_create" type="java.lang.String">
+            <column name="SCHEDULING_GMT_CREATE" />
+        </property>
+        <property name="scheduling_gmt_modified" type="java.lang.String">
+            <column name="SCHEDULING_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>

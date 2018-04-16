@@ -36,6 +36,7 @@
 			<div class="headDiv" style="height: 60px; padding-top:10px;">
 				<button class="btn btn-default" onclick="createConfirm()"><i class="fa fa-pencil-square-o"></i>填写会议记录表</button>
 				<div style="display:inline-block; float: right;">
+				<input placeholder="请输入会议内容" oninput="changeContent(this)" id="queryMeetingContent" class="form-control" style="width:250px; display: inline-block;">
 				<label>时间筛选</label>
 				<input class="form-control startTime"  onchange="changeStartTime(this)" type= "text" id="query_start_time_start" style="width: 150px; display: inline-block;">至
 				<input class="form-control startTime"  onchange="changeStartTime(this)" type= "text" style="width: 150px; display: inline-block;" id="query_start_time_end">
@@ -55,6 +56,7 @@
 								<option value="党小组会">党小组会</option>
 								<option value="专案会">专案会</option>
 								<option value="工作总结会">工作总结会</option>
+								<option value="中队会议">中队会议</option>
 							</select></td>
 							<td>会议地点</td>
 							<td>会议主持人</td>
@@ -90,10 +92,10 @@
 	<script type="text/javascript">
 	$.datetimepicker.setLocale('ch');
 	$('.startTime').datetimepicker({
-		yearStart : 1990, // 设置最小年份
-		yearEnd : 2050, // 设置最大年份
+		yearStart : 1900, // 设置最小年份
+		yearEnd : 2100, // 设置最大年份
 		yearOffset : 0, // 年偏差
-		timepicker : false, // 关闭时间选项
+		timepicker : true, // 关闭时间选项
 		format : 'Y-m-d H:i', // 格式化日期年-月-日
 		minDate : '1900/01/01 00:00', // 设置最小日期
 		maxDate : '2030/01/01 00:00', // 设置最大日期
