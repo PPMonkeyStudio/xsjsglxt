@@ -1,8 +1,45 @@
 $(function () {
+	var makeMeans = document.getElementsByName('case1.case_makeMeans')[0];
+	makeMeans.addEventListener("change", setSectionmMethod(makeMeans.selectedIndex), false);
+	var residence = document.getElementsByName('case1.case_residence')[0];
+	residence.addEventListener("change", setSectionmAddress(residence.selectedIndex), false);
+	var totalCategory = document.getElementsByName('case1.case_totalCategory')[0];
+	totalCategory.addEventListener("change", setSectionCase(totalCategory.selectedIndex), false);
+
+	var sence_id = "";
 	$.post('/xsjsglxt/case/Case_SecneInformationOne', {
 		"case1.xsjsglxt_case_id": $('#case1_id').val(),
 	}, function (xhr_data) {
-		var case1 = xhr_data.case1;
+		sence_id = xhr_data.sence.xsjsglxt_snece_id;
+		$('#caseDetails').find('select, input,textarea').each(function () {
+			var name = $(this).attr('name');
+			if (name == "register") {
+				return true
+			}
+			var key1 = name.split('.')[0];
+			var key2 = name.split('.')[1];
+			//console.log(name);
+			//console.log(key1 + "---" + key2);
+			//console.log(xhr_data[key1][key2]);
+			if ($(this).attr("type") == "checkbox") {
+				if (xhr_data[key1][key2] == 1) {
+					$(this).attr("checked", "checked");
+				}
+			} else
+				$(this).val(xhr_data[key1][key2]);
+		});
+		var persons = xhr_data["sence"]["snece_inquestPerson"].split(',');
+		$('select[name="sence.snece_inquestPerson"]').selectpicker("val", persons);
+		//物证提取人设定
+		$('select[name="resevidence.resevidence_extractPerson"]').html(function () {
+			var option_str = '';
+			for (const key in persons) {
+				option_str += '<option value="' + persons[key] + '">' + persons[key] + '</option>';
+			}
+			return option_str;
+		}).selectpicker('refresh');
+
+		/*var case1 = xhr_data.case1;
 		$.each(case1, function (k, v) {
 			if (k == "case_register") {
 				if ($('input[type="radio"]').eq(0).val() == v) {
@@ -15,6 +52,7 @@ $(function () {
 			} else
 				$('input[name="case1.' + k + '"]').val(v);
 		});
+
 		var sence = xhr_data.sence;
 		$.each(sence, function (k, v) {
 			var obj = $('input[name="sence.' + k + '"]');
@@ -32,12 +70,16 @@ $(function () {
 				$('textarea[name="briefdetails.' + k + '"]').val(v);
 			}
 		});
+
+
 		$('#station').find('input').each(function () {
 			var name = $(this).attr('name');
-			var key = name.aplit('.')[0];
-			var value = name.aplit('.')[1];
+			var key = name.split('.')[0];
+			var value = name.split('.')[1];
 			$(this).val(xhr_data[key][value]);
 		});
+
+		*/
 	}, 'json');
 
 	//修改基站
@@ -46,7 +88,7 @@ $(function () {
 			toastr.info('请添加完整信息！');
 			return false;
 		}
-		var station_data = $('#station form').serialize() + '&case1.xsjsglxt_case_id=' + $('#case1_id').val();
+		var station_data = $('#station form').serialize() + '&case1.xsjsglxt_case_id=' + $('#case1_id').val() + '&sence.xsjsglxt_snece_id=' + sence_id;
 		$.post('/xsjsglxt/case/Case_updateSenceInformation', station_data, function (xhr_data) {
 			if (xhr_data == 'success') {
 				toastr.success('修改成功！');
@@ -136,12 +178,21 @@ function sence_checkbox(checkbox) {
 		box.val('1');
 	}
 }
+
 function ChangeItemType(option_obj) {
 	$('#LossOfGoods table tbody').each(function () {
 		if ($(this).attr("class") == $(option_obj).val()) {
 			$(this).show();
 		} else $(this).hide();
 	});
+}
+
+function chose_labe(params) {
+	if ($(params).val() == 1) {
+		$('input[name="register"][value="1"]').attr("checked", "checked");
+	} else {
+		$('input[name="register"][value="2"]').attr("checked", "checked");
+	}
 }
 
 //CaseDetail.jsp中的修改案件
@@ -169,6 +220,7 @@ function case_change() {
 		}
 	});
 }
+
 function loadCaseDetail_case_change(url, case1_id) {
 	if (window.XMLHttpRequest) {
 		xmlhttp = new XMLHttpRequest();

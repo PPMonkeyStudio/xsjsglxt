@@ -90,16 +90,16 @@ chapterCaseArr[0] = ["请选择案件总类别", "", sectionCase0];
 chapterCaseArr[1] = ["盗窃案", "盗窃案", sectionCase1];
 chapterCaseArr[2] = ["抢劫案", "抢劫案", sectionCase2];
 chapterCaseArr[3] = ["抢夺案", "抢夺案", sectionCase3];
-chapterCaseArr[4] = ["强奸案", "强奸案",];
-chapterCaseArr[5] = ["绑架案", "绑架案",];
-chapterCaseArr[6] = ["杀人案", "杀人案",];
-chapterCaseArr[7] = ["故意伤害案", "故意伤害案",];
-chapterCaseArr[8] = ["爆炸案", "爆炸案",];
-chapterCaseArr[9] = ["放火案", "放火案",];
-chapterCaseArr[10] = ["非法拘禁案", "非法拘禁案",];
-chapterCaseArr[11] = ["非正常死亡", "非正常死亡",];
-chapterCaseArr[12] = ["故意损坏公私财物", "故意损坏公私财物",];
-chapterCaseArr[13] = ["其它", "其它",];
+chapterCaseArr[4] = ["强奸案", "强奸案", ];
+chapterCaseArr[5] = ["绑架案", "绑架案", ];
+chapterCaseArr[6] = ["杀人案", "杀人案", ];
+chapterCaseArr[7] = ["故意伤害案", "故意伤害案", ];
+chapterCaseArr[8] = ["爆炸案", "爆炸案", ];
+chapterCaseArr[9] = ["放火案", "放火案", ];
+chapterCaseArr[10] = ["非法拘禁案", "非法拘禁案", ];
+chapterCaseArr[11] = ["非正常死亡", "非正常死亡", ];
+chapterCaseArr[12] = ["故意损坏公私财物", "故意损坏公私财物", ];
+chapterCaseArr[13] = ["其它", "其它", ];
 
 
 function setSectionCase(chapter) {
@@ -218,6 +218,7 @@ chapterMethodArr[5] = ["其它", "其它", sectionMethod5];
 
 function setSectionmMethod(chapter) {
 	$('.specific_means').empty();
+	console.log(chapter);
 	var length = chapterMethodArr[chapter][2].length;
 	for (var i = 0; i < length; i++) {
 		$('.specific_means').append("<option value='" + chapterMethodArr[chapter][2][i] + "'>" + chapterMethodArr[chapter][2][i] + "</option>");
@@ -272,6 +273,7 @@ chapterAddressArr[1] = ["居民住宅", "居民住宅", sectionAddress1];
 chapterAddressArr[2] = ["单位场所", "单位场所", sectionAddress2];
 chapterAddressArr[3] = ["服务行业", "服务行业", sectionAddress3];
 chapterAddressArr[4] = ["其它处所", "其它处所", sectionAddress4];
+
 function setSectionmAddress(chapter) {
 	$('.specific_space').empty();
 	var length = chapterAddressArr[chapter][2].length;
