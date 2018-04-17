@@ -6,9 +6,27 @@ $(function () {
 	var totalCategory = document.getElementsByName('case1.case_totalCategory')[0];
 	totalCategory.addEventListener("change", setSectionCase(totalCategory.selectedIndex), false);
 
+	//序列化为对象======----自定义方法
+	$.fn.extend({
+		serializeObject: function () {
+			if (this.length > 1) {
+				return false;
+			}
+			var arr = this.serializeArray();
+			var obj = new Object;
+			$.each(arr, function (k, v) {
+				obj[v.name] = v.value;
+			});
+			return obj;
+		}
+	});
+
+	/*===================案件和现场id记录======================= */
+	var case1_id = $('#case1_id').val();
 	var sence_id = "";
+	/*=======================页面数据初始化开始================== */
 	$.post('/xsjsglxt/case/Case_SecneInformationOne', {
-		"case1.xsjsglxt_case_id": $('#case1_id').val(),
+		"case1.xsjsglxt_case_id": case1_id,
 	}, function (xhr_data) {
 		sence_id = xhr_data.sence.xsjsglxt_snece_id;
 		$('#caseDetails').find('select, input,textarea').each(function () {
@@ -26,86 +44,81 @@ $(function () {
 				$(this).val(xhr_data[key1][key2]);
 		});
 
-		//物证列表
+		//物证列表数据显示
 		var resevidence = xhr_data["resevidence"];
 		$('#evidence-info table tbody').html(function () {
 			var tr_str = '';
 			for (let index = 0; index < resevidence.length; index++) {
-				tr_str = `<tr id="${resevidence[index]["xsjsglxt_resevidence_id"]}">
+				tr_str += `<tr id="${resevidence[index]["xsjsglxt_resevidence_id"]}">
 							  <td>${resevidence[index]["resevidence_name"]}</td>
 							  <td>${resevidence[index]["resevidence_extractTime"]}</td>
 							  <td>${resevidence[index]["resevidence_extractPerson"]}</td>
 							  <td>${resevidence[index]["resevidence_type"]}</td>
-							  <td><i class="fa fa fa-random"></i>&nbsp&nbsp<i class="fa fa-info-circle"></i>&nbsp&nbsp<i class="fa fa-trash-o"></i></td></tr>`;
+							  <td><i id="circulation" class="fa fa fa-random"></i>&nbsp&nbsp<i id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`;
 			}
 			return tr_str;
 		});
 
-		//丢失电脑列表
+		//丢失电脑列表数据显示
 		var lose_computer = xhr_data["lost_computer"];
-		$('#loseComputer-info table tbody').on('click', function (e) {
-			var o = e.target;
-			if (o.tagName == "I") {
-				var ID = $(o).parents('tr').attr('id');
-			}
-		}).html(function () {
+		$('#loseComputer-info table tbody').html(function () {
 			var tr_str = '';
 			for (let index = 0; index < lose_computer.length; index++) {
-				tr_str = `<tr id="${lose_computer[index]["xsjsglxt_lost_computer_id"]}">
+				tr_str += `<tr id="${lose_computer[index]["xsjsglxt_lost_computer_id"]}">
 							  <td>${lose_computer[index]["lost_computer_brand"]}</td>
 							  <td>${lose_computer[index]["lost_computer_internetAccount"]}</td>
 							  <td>${lose_computer[index]["lost_computer_MAC"]}</td>
 							  <td>${lose_computer[index]["lost_computer_remarks"]}</td>
-							  <td><i class="fa fa-info-circle"></i>&nbsp&nbsp<i class="fa fa-trash-o"></i></td></tr>`;
+							  <td><i id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`;
 			}
 			return tr_str;
 		});
 
-		//丢失物列表
-		var loseGoods_info = xhr_data["lose"];
+		//丢失物列表数据显示
+		var lostGoods_info = xhr_data["lost"];
 		$('#loseGoods-info table tbody').html(function () {
 			var tr_str = '';
-			for (let index = 0; index < loseGoods_info.length; index++) {
-				tr_str = `<tr id="${loseGoods_info[index]["xsjsglxt_lost_id"]}">
-							  <td>${loseGoods_info[index]["lost_name"]}</td>
-							  <td>${loseGoods_info[index]["lost_remarks"]}</td>
-							  <td><i class="fa fa-info-circle"></i>&nbsp&nbsp<i class="fa fa-trash-o"></i></td></tr>`;
+			for (let index = 0; index < lostGoods_info.length; index++) {
+				tr_str += `<tr id="${lostGoods_info[index]["xsjsglxt_lost_id"]}">
+							  <td>${lostGoods_info[index]["lost_name"]}</td>
+							  <td>${lostGoods_info[index]["lost_remarks"]}</td>
+							  <td><i id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`;
 			}
 			return tr_str;
 		});
 
-		//丢失手机列表
+		//丢失手机列表数据显示
 		var LostMobilephone_info = xhr_data["lost_mobilephone"];
 		$('#LostMobilephone-info table tbody').html(function () {
 			var tr_str = '';
 			for (let index = 0; index < LostMobilephone_info.length; index++) {
-				tr_str = `<tr id="${LostMobilephone_info[index]["xsjsglxt_lost_mobilephone_id"]}">
+				tr_str += `<tr id="${LostMobilephone_info[index]["xsjsglxt_lost_mobilephone_id"]}">
 							  <td>${LostMobilephone_info[index]["lost_mobilephone_phone"]}</td>
 							  <td>${LostMobilephone_info[index]["lost_mobilephone_IMEI"]}</td>
 							  <td>${LostMobilephone_info[index]["lost_mobilephone_feature"]}</td>
 							  <td>${LostMobilephone_info[index]["lost_mobilephone_remarks"]}</td>
-							  <td><i class="fa fa-info-circle"></i>&nbsp&nbsp<i class="fa fa-trash-o"></i></td></tr>`;
+							  <td><i id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`;
 			}
 			return tr_str;
 		});
 
-		//照片列表
+		//照片列表数据显示
 		var picture_info = xhr_data["picture"];
 		$('#picture-info table tbody').html(function () {
 			var tr_str = '';
 			for (let index = 0; index < picture_info.length; index++) {
-				tr_str = `<tr id="${picture_info[index]["xsjsglxt_picture_id"]}">
+				tr_str += `<tr id="${picture_info[index]["xsjsglxt_picture_id"]}">
 							  <td>${picture_info[index]["picture_image"]}</td>
 							  <td>${picture_info[index]["picture_identifier"]}</td>
 							  <td>${picture_info[index]["picture_remarks"]}</td>
-							  <td><i class="fa fa-info-circle"></i>&nbsp&nbsp<i class="fa fa-trash-o"></i></td></tr>`;
+							  <td><i id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`;
 			}
 			return tr_str;
 		});
 
+		//物证提取人设定
 		var persons = xhr_data["sence"]["snece_inquestPerson"].split(',');
 		$('select[name="sence.snece_inquestPerson"]').selectpicker("val", persons);
-		//物证提取人设定
 		$('select[name="resevidence.resevidence_extractPerson"]').html(function () {
 			var option_str = '';
 			for (const key in persons) {
@@ -115,45 +128,79 @@ $(function () {
 		}).selectpicker('refresh');
 	}, 'json');
 
-	//修改基站
-	$('.modify_station').click(function () {
-		if ($('#station input').val() == "") {
+	/*============================================================================添加信息系列*/
+	//添加丢失物品(物品，手机，电脑)
+	$('.add_lost').click(function () {
+		if ($('#lost table tbody').find('input,textarea').val() == "") {
 			toastr.info('请添加完整信息！');
-			return false;
+			return;
 		}
-		var station_data = $('#station form').serialize() + '&case1.xsjsglxt_case_id=' + $('#case1_id').val() + '&sence.xsjsglxt_snece_id=' + sence_id;
-		$.post('/xsjsglxt/case/Case_updateSenceInformation', station_data, function (xhr_data) {
-			if (xhr_data == 'success') {
-				toastr.success('修改成功！');
-				window.location.reload();
+		var Lost_data = $.extend({}, $('#lost form').serializeObject(), { "case1.xsjsglxt_case_id": case1_id });
+		$.post('/xsjsglxt/case/Lost_saveLost', Lost_data, function (xhr_data) {
+			if (xhr_data.length > 22 && xhr_data.length <= 36) {
+				toastr.info('添加成功！');
+				$('#loseGoods-info table tbody').append(`<tr id="${xhr_data}">
+											 <td>${Lost_data["lost.lost_name"]}</td>
+											 <td>${Lost_data["lost.lost_remarks"]}</td>
+											 <td><i id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`);
+				$('#lost table tbody').find('input,textarea').val("");
 			} else {
-				toastr.error('修改失败！');
+				toastr.error('添加失败！');
 			}
 		}, 'text');
 	});
 
-	//序列化为对象
-	$.fn.extend({
-		serializeObject: function () {
-			if (this.length > 1) {
-				return false;
-			}
-			var arr = this.serializeArray();
-			var obj = new Object;
-			$.each(arr, function (k, v) {
-				obj[v.name] = v.value;
-			});
-			return obj;
+	//添加丢失手机
+	$('.add_mobilephone').click(function () {
+		if ($('#lost_mobilephone table tbody').find('input,textarea,select').val() == "") {
+			toastr.info('请添加完整信息！');
+			return;
 		}
+		var Lost_data = $.extend({}, $('#lost_mobilephone form').serializeObject(), { "case1.xsjsglxt_case_id": case1_id });
+		$.post('/xsjsglxt/case/LostMobilephone_saveLostMobilephone', Lost_data, function (xhr_data) {
+			if (xhr_data.length > 22 && xhr_data.length <= 36) {
+				toastr.info('添加成功！');
+				$('#LostMobilephone-info table tbody').append(`<tr id="${xhr_data}">
+											 <td>${Lost_data["lost_mobilephone.lost_mobilephone_phone"]}</td>
+											 <td>${Lost_data["lost_mobilephone.lost_mobilephone_IMEI"]}</td>
+											 <td>${Lost_data["lost_mobilephone.lost_mobilephone_feature"]}</td>
+											 <td>${Lost_data["lost_mobilephone.lost_mobilephone_remarks"]}</td>
+											 <td><i id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`);
+				$('#lost_mobilephone table tbody').find('input,textarea').val("");
+			} else {
+				toastr.error('添加失败！');
+			}
+		}, 'text');
 	});
 
-	//添加丢失物品(物品，手机，电脑)
-	$('.add_goods').click(function () {
+	//添加丢失电脑
+	$('#add_computer').click(function () {
+		if ($('#lost_computer table tbody').find('input,textarea,select').val() == "") {
+			toastr.info('请添加完整信息！');
+			return;
+		}
+		var Lost_data = $.extend({}, $('#lost_computer form').serializeObject(), { "case1.xsjsglxt_case_id": case1_id });
+		$.post('/xsjsglxt/case/LostMobilephone_saveLostMobilephone', Lost_data, function (xhr_data) {
+			if (xhr_data.length > 22 && xhr_data.length <= 36) {
+				toastr.info('添加成功！');
+				$('#loseComputer-info table tbody').append(`<tr id="${xhr_data}">
+												<td>${Lost_data["lost_computer.lost_computer_brand"]}</td>
+												<td>${Lost_data["lost_computer.lost_computer_internetAccount"]}</td>
+												<td>${Lost_data["lost_computer.lost_computer_MAC"]}</td>
+												<td>${Lost_data["lost_computer.lost_computer_remarks"]}</td>
+												<td><i id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`);
+				$('#lost_computer table tbody').find('input,textarea').val("");
+			} else {
+				toastr.error('添加失败！');
+			}
+		}, 'text');
+	});
+	/*$('.add_goods').click(function () {
 		if ($('#LossOfGoods table tbody:visible').find('input,textarea').val() == "") {
 			toastr.info('请添加完整信息！');
 			return;
 		}
-		var Lost_data = $.extend({}, $('#Lost_Goods').serializeObject(), { "case1.xsjsglxt_case_id": $('#case1_id').val() });
+		var Lost_data = $.extend({}, $('#Lost_Goods').serializeObject(), { "case1.xsjsglxt_case_id": case1_id });
 		var url = '';
 		var tr_str = '';
 		var loat_callback;
@@ -199,17 +246,16 @@ $(function () {
 			if (xhr_data.length > 22 && xhr_data.length <= 36) {
 				toastr.success('添加成功！');
 				loat_callback(xhr_data);
-				$('#LossOfGoods table tbody:visible').append(tr_str);
-				$('#Lost_Goods table tbody').find('input,textarea').val("");
+				$('#Lost_Goods table tbody').append(tr_str).find('input,textarea').val("");
 			} else {
 				toastr.error('添加失败！');
 			}
 		}, 'text');
-	});
+	});*/
 
 	//添加物证信息
 	$('.add_evidence').click(function () {
-		var evidence_data = $.extend({}, $('#lost_evidence').serializeObject(), { "case1.xsjsglxt_case_id": $('#case1_id').val() });
+		var evidence_data = $.extend({}, $('#lost_evidence').serializeObject(), { "case1.xsjsglxt_case_id": case1_id });
 		$.post('/xsjsglxt/case/Resevidence_saveResevidence', evidence_data, function (xhr_data) {
 			if (xhr_data.length > 22 && xhr_data.length <= 36) {
 				toastr.success('添加成功！');
@@ -218,20 +264,18 @@ $(function () {
 							  <td>${evidence_data["resevidence.resevidence_extractPerson"]}</td>
 							  <td>${evidence_data["resevidence.resevidence_type"]}</td>
 							  <td>${evidence_data["resevidence.resevidence_extractTime"]}</td>
-							  <td><i class="fa fa fa-random"></i>&nbsp&nbsp<i class="fa fa-info-circle"></i>&nbsp&nbsp<i class="fa fa-trash-o"></i></td></tr>`;
-				$('#lost_evidence table tbody').append(tr_str);
-				$('#lost_evidence table tbody').find('input,textarea').val("");
+							  <td><i id="modify" class="fa fa fa-random"></i>&nbsp&nbsp<i class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`;
+				$('#evidence-info table tbody').append(tr_str);
+				$('#lost_evidence table tbody').find('input[name!="resevidence.resevidence_extractUnit"],textarea').val("");
 			} else {
 				toastr.error('添加失败！');
 			}
 		}, 'text');
 	});
 
-
-
 	//添加照片信息
 	$('.add_picture').click(function () {
-		var picture_data = $.extend({}, $('#picture').serializeObject(), { "case1.xsjsglxt_case_id": $('#case1_id').val() });
+		var picture_data = $.extend({}, $('#picture').serializeObject(), { "case1.xsjsglxt_case_id": case1_id });
 		$.post('/xsjsglxt/case/Image_updatePicture', picture_data, function (xhr_data) {
 			if (xhr_data.length > 22 && xhr_data.length <= 36) {
 				toastr.success('添加成功！');
@@ -239,8 +283,8 @@ $(function () {
 							  <td>${picture_data["image.xsjsglxt_image_id"]}</td>
 							  <td>${picture_data["picture.picture_identifier"]}</td>
 							  <td>${picture_data["picture.picture_remarks"]}</td>
-							  <td><i class="fa fa-info-circle"></i>&nbsp&nbsp<i class="fa fa-trash-o"></i></td></tr>`;
-				$('#picture table tbody').append(tr_str);
+							  <td><i id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`;
+				$('#picture-info table tbody').append(tr_str);
 				$('#add_picture table tbody').find('input,textarea').val("");
 			} else {
 				toastr.error('添加失败！');
@@ -260,9 +304,149 @@ $(function () {
 		}, 'json');
 	})
 
+	/*============================================================================修改系列*/
+	$('#evidence-info table tbody').on('click', function (e) {
+		var o = e.target;
+		if (o.tagName == "I") {
+			var ID = $(o).parents('tr').attr('id');
+			var operate = $(o).attr('id');
+			if (operate == "circulation") {
 
+			} else if (operate == "mofify") {
+				$.post('/xsjsglxt/case/Resevidence_ResevidenceInformationOne', { "resevidence.xsjsglxt_resevidence_id": ID }, function (msg) {
+					$('#evidence table tbody').find('input,select,textarea').each(function (i, element) {
+						var name = $(this).attr('name');
+						var key = name.split('.')[1];
+						$(this).val(msg[key]);
+					});
+				}, 'json');
+				//给修改按钮绑定事件
+				$('#evidence .modify_evidence').unbind().click(function () {
+					var data_ = $.extend({}, $('#evidence form').serializeObject(), { "resevidence.xsjsglxt_resevidence_id": ID });
+					$.post('/xsjsglxt/case/Resevidence_updateResevidenceInformation', data_, function (msg) {
 
+					}, 'text');
+				}).show();
+			}
+			else if (operate == "delete") {
+			}
+		}
+	})
 })
+
+
+function usePost(URL, DATA, TYPE) {
+	$.post(URL, DATA, function (msg) {
+
+		if (msg) {
+
+		}
+		$.post('/xsjsglxt/case/Case_SecneInformationOne', {
+			"case1.xsjsglxt_case_id": case1_id,
+		}, function (xhr_data) {
+			switch (TYPE) {
+				case 'evidence':
+					//物证列表数据显示
+					var resevidence = xhr_data["resevidence"];
+					$('#evidence-info table tbody').html(function () {
+						var tr_str = '';
+						for (let index = 0; index < resevidence.length; index++) {
+							tr_str += `<tr id="${resevidence[index]["xsjsglxt_resevidence_id"]}">
+							  <td>${resevidence[index]["resevidence_name"]}</td>
+							  <td>${resevidence[index]["resevidence_extractTime"]}</td>
+							  <td>${resevidence[index]["resevidence_extractPerson"]}</td>
+							  <td>${resevidence[index]["resevidence_type"]}</td>
+							  <td><i id="circulation" class="fa fa fa-random"></i>&nbsp&nbsp<i id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`;
+						}
+						return tr_str;
+					});
+					break;
+				case 'computer':
+					//丢失电脑列表数据显示
+					var lose_computer = xhr_data["lost_computer"];
+					$('#loseComputer-info table tbody').html(function () {
+						var tr_str = '';
+						for (let index = 0; index < lose_computer.length; index++) {
+							tr_str += `<tr id="${lose_computer[index]["xsjsglxt_lost_computer_id"]}">
+							  <td>${lose_computer[index]["lost_computer_brand"]}</td>
+							  <td>${lose_computer[index]["lost_computer_internetAccount"]}</td>
+							  <td>${lose_computer[index]["lost_computer_MAC"]}</td>
+							  <td>${lose_computer[index]["lost_computer_remarks"]}</td>
+							  <td><i id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`;
+						}
+						return tr_str;
+					});
+					break;
+				case 'mobilephone':
+					//丢失手机列表数据显示
+					var LostMobilephone_info = xhr_data["lost_mobilephone"];
+					$('#LostMobilephone-info table tbody').html(function () {
+						var tr_str = '';
+						for (let index = 0; index < LostMobilephone_info.length; index++) {
+							tr_str += `<tr id="${LostMobilephone_info[index]["xsjsglxt_lost_mobilephone_id"]}">
+							  <td>${LostMobilephone_info[index]["lost_mobilephone_phone"]}</td>
+							  <td>${LostMobilephone_info[index]["lost_mobilephone_IMEI"]}</td>
+							  <td>${LostMobilephone_info[index]["lost_mobilephone_feature"]}</td>
+							  <td>${LostMobilephone_info[index]["lost_mobilephone_remarks"]}</td>
+							  <td><i id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`;
+						}
+						return tr_str;
+					});
+					break;
+				case 'lost':
+					//丢失物列表数据显示
+					var lostGoods_info = xhr_data["lost"];
+					$('#loseGoods-info table tbody').html(function () {
+						var tr_str = '';
+						for (let index = 0; index < lostGoods_info.length; index++) {
+							tr_str += `<tr id="${lostGoods_info[index]["xsjsglxt_lost_id"]}">
+							  <td>${lostGoods_info[index]["lost_name"]}</td>
+							  <td>${lostGoods_info[index]["lost_remarks"]}</td>
+							  <td><i id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`;
+						}
+						return tr_str;
+					});
+					break;
+				case 'picture':
+					//照片列表数据显示
+					var picture_info = xhr_data["picture"];
+					$('#picture-info table tbody').html(function () {
+						var tr_str = '';
+						for (let index = 0; index < picture_info.length; index++) {
+							tr_str += `<tr id="${picture_info[index]["xsjsglxt_picture_id"]}">
+							  <td>${picture_info[index]["picture_image"]}</td>
+							  <td>${picture_info[index]["picture_identifier"]}</td>
+							  <td>${picture_info[index]["picture_remarks"]}</td>
+							  <td><i id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`;
+						}
+						return tr_str;
+					});
+					break;
+				default:
+					break;
+			}
+		}, 'json');
+
+
+	}, 'text');
+}
+
+//修改基站
+$('.modify_station').click(function () {
+	if ($('#station input').val() == "") {
+		toastr.info('请添加完整信息！');
+		return false;
+	}
+	var station_data = $('#station form').serialize() + '&case1.xsjsglxt_case_id=' + case1_id + '&sence.xsjsglxt_snece_id=' + sence_id;
+	$.post('/xsjsglxt/case/Case_updateSenceInformation', station_data, function (xhr_data) {
+		if (xhr_data == 'success') {
+			toastr.success('修改成功！');
+			window.location.reload();
+		} else {
+			toastr.error('修改失败！');
+		}
+	}, 'text');
+});
 
 //物品中的详情信息
 var UsePost = {
@@ -377,18 +561,6 @@ var UsePost = {
 		return fun;
 	},
 }
-
-function UsePost(url, ID, type, action) {
-	UsePost.prototype.modify = function (params) {
-
-	}
-	if (action == "modify") {
-
-	} else if (action == "delete") {
-
-	}
-}
-
 
 function sence_checkbox(checkbox) {
 	var box = $(checkbox);

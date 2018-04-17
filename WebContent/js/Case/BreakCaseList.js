@@ -236,7 +236,7 @@ $(function () {
 				},
 				close: {
 					text: '取消',
-					action: function () {}
+					action: function () { }
 				},
 			}
 		});
@@ -373,7 +373,7 @@ $(function () {
 										},
 										close: {
 											text: '取消',
-											action: function () {}
+											action: function () { }
 										}
 									}
 								});
@@ -399,7 +399,7 @@ $(function () {
 						},
 						close: {
 							text: '取消',
-							action: function () {}
+							action: function () { }
 						},
 					}
 				});
@@ -551,7 +551,7 @@ function Suspect_mo_del(TypeBreakeCase, type) {
 						},
 						close: {
 							text: '取消',
-							action: function () {}
+							action: function () { }
 						},
 					}
 				});
