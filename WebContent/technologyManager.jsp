@@ -23,12 +23,9 @@ li a {
 <script src="<%=basePath%>js/technologyMargin.js"></script>
 </head>
 <body>
-<<<<<<< HEAD
 	<div id="sidebar-nav" class="sidebar"
 		style="width: 160px; background-color: #13599d;">
-=======
-	<div id="sidebar-nav" class="sidebar" style="width: 160px; background-color: #13599d;">
->>>>>>> HY
+
 		<div class="sidebar-scroll">
 			<nav>
 			<ul class="nav" id="technology">
@@ -42,12 +39,7 @@ li a {
 				<li><a href="<%=basePath%>case/Case_page_CaseMaterials">案件材料</a></li>
 				</template>
 				<template v-if="user_case_technology_power">
-<<<<<<< HEAD
 				<li><a href="<%=basePath%>case/BreakeCase_page_BreakCaseList">刑事破案</a></li>
-=======
-				<li><a
-					href="<%=basePath%>case/BreakeCase_page_BreakCaseList">刑事破案</a></li>
->>>>>>> HY
 				</template>
 				<template v-if="user_technology_manager_power">
 				<li><a href="<%=basePath%>DNA/DNAManagement_DNAManagementPage">DNA/指纹</a></li>

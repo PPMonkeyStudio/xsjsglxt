@@ -25,13 +25,9 @@ public class xsjsglxt_staff {
 	private String staff_thePoliceTime;
 	private String staff_isItFormal;
 	private String staff_phone;
-<<<<<<< HEAD
 	private String staff_appliactionFormTime; // 提交申请书时间
 	private String staff_delevopObjectTime;// 发展对象时间
 	private String staff_degree;// 学位
-=======
-	private String staff_type;
->>>>>>> HY
 	private String staff_throughThePolice;
 	private String staff_homephone;
 	private String staff_QQ;
@@ -42,20 +38,6 @@ public class xsjsglxt_staff {
 	private String staff_duty;
 	private String staff_gmt_create;
 	private String staff_gmt_modified;
-
-	/**
-	 * @return the staff_type
-	 */
-	public String getStaff_type() {
-		return staff_type;
-	}
-
-	/**
-	 * @param staff_type the staff_type to set
-	 */
-	public void setStaff_type(String staff_type) {
-		this.staff_type = staff_type;
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -71,7 +53,6 @@ public class xsjsglxt_staff {
 				+ ", staff_MaxEducationalBackground=" + staff_MaxEducationalBackground + ", staff_politicalStatus="
 				+ staff_politicalStatus + ", staff_joinPartyTime=" + staff_joinPartyTime + ", staff_joinWorkTime="
 				+ staff_joinWorkTime + ", staff_alarm=" + staff_alarm + ", staff_thePoliceTime=" + staff_thePoliceTime
-<<<<<<< HEAD
 				+ ", staff_isItFormal=" + staff_isItFormal + ", staff_phone=" + staff_phone
 				+ ", staff_appliactionFormTime=" + staff_appliactionFormTime + ", staff_delevopObjectTime="
 				+ staff_delevopObjectTime + ", staff_degree=" + staff_degree + ", staff_throughThePolice="
@@ -79,14 +60,6 @@ public class xsjsglxt_staff {
 				+ ", staff_weixin=" + staff_weixin + ", staff_outEmail=" + staff_outEmail + ", staff_inEmail="
 				+ staff_inEmail + ", staff_photo=" + staff_photo + ", staff_duty=" + staff_duty + ", staff_gmt_create="
 				+ staff_gmt_create + ", staff_gmt_modified=" + staff_gmt_modified + "]";
-=======
-				+ ", staff_isItFormal=" + staff_isItFormal + ", staff_phone=" + staff_phone + ", staff_type="
-				+ staff_type + ", staff_throughThePolice=" + staff_throughThePolice + ", staff_homephone="
-				+ staff_homephone + ", staff_QQ=" + staff_QQ + ", staff_weixin=" + staff_weixin + ", staff_outEmail="
-				+ staff_outEmail + ", staff_inEmail=" + staff_inEmail + ", staff_photo=" + staff_photo + ", staff_duty="
-				+ staff_duty + ", staff_gmt_create=" + staff_gmt_create + ", staff_gmt_modified=" + staff_gmt_modified
-				+ "]";
->>>>>>> HY
 	}
 
 	public String getXsjsglxt_staff_id() {

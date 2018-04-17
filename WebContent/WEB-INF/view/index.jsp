@@ -84,14 +84,9 @@
 		<!---------------------------------------------------------------------------------------------------->
 		<!---------------------------------------------------------------------------------------------------->
 		<!-- LEFT SIDEBAR -->
-<<<<<<< HEAD
 		<div id="sidebar-nav" class="sidebar"
 			style="width: 200px; height: 100% !important; background-color: #13599d;">
 			<div class="sidebar-scroll" style="height: 100% !important;">
-=======
-		<div id="sidebar-nav" class="sidebar" style="width: 240px; background-color: #13599d;">
-			<div class="sidebar-scroll">
->>>>>>> HY
 				<nav>
 				<ul class="nav">
 					<li><a class=""><i class="lnr lnr-file-add"></i> <span>案件信息</span></a>
