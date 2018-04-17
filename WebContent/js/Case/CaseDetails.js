@@ -153,25 +153,53 @@ $(function () {
 			toastr.info('请添加完整信息！');
 			return;
 		}
-		var data = $('#Lost_Goods').serialize() + '&case1.xsjsglxt_case_id=' + $('#case1_id').val();
+		var Lost_data = $.extend({}, $('#Lost_Goods').serializeObject(), { "case1.xsjsglxt_case_id": $('#case1_id').val() });
 		var url = '';
+		var tr_str = '';
+		var loat_callback;
 		switch ($('#LossOfGoods table tbody:visible').attr('class')) {
 			case 'lost_goods':
 				url = '/xsjsglxt/case/Lost_saveLost';
+				loat_callback = function (msg) {
+					tr_str = `<tr id="${msg}">
+							  <td>${Lost_data["lost.lost_name"]}</td>
+							  <td>${Lost_data["lost.lost_remarks"]}</td>
+							  <td><i class="fa fa-info-circle"></i>&nbsp&nbsp<i class="fa fa-trash-o"></i></td></tr>`;
+				}
 				break;
 			case 'lost_mobilephone':
 				url = '/xsjsglxt/case/LostMobilephone_saveLostMobilephone';
+				loat_callback = function (msg) {
+					tr_str = `<tr id="${msg}">
+							  <td>${Lost_data["lost_mobilephone.lost_mobilephone_phone"]}</td>
+							  <td>${Lost_data["lost_mobilephone.lost_mobilephone_IMEI"]}</td>
+							  <td>${Lost_data["lost_mobilephone.lost_mobilephone_feature"]}</td>
+							  <td>${Lost_data["lost_mobilephone.lost_mobilephone_remarks"]}</td>
+							  <td><i class="fa fa-info-circle"></i>&nbsp&nbsp<i class="fa fa-trash-o"></i></td></tr>`;
+				}
 				break;
 			case 'lost_computer':
 				url = '/xsjsglxt/case/LostComputer_saveLostComputer';
+				loat_callback = function (msg) {
+					tr_str = `<tr id="${msg}">
+							  <td>${Lost_data["lost_computer.lost_computer_brand"]}</td>
+							  <td>${Lost_data["lost_computer.lost_computer_internetAccount"]}</td>
+							  <td>${Lost_data["lost_computer.lost_computer_MAC"]}</td>
+							  <td>${Lost_data["lost_computer.lost_computer_remarks"]}</td>
+							  <td><i class="fa fa-info-circle"></i>&nbsp&nbsp<i class="fa fa-trash-o"></i></td></tr>`;
+				}
 				break;
 			default:
-				url = '';
+				url = "";
+				callback = function (msg) {
+				}
 				break;
 		}
-		$.post(url, data, function (xhr_data) {
-			if (xhr_data == 'success') {
+		$.post(url, Lost_data, function (xhr_data) {
+			if (xhr_data.length > 22 && xhr_data.length <= 36) {
 				toastr.success('添加成功！');
+				loat_callback(xhr_data);
+				$('#LossOfGoods table tbody:visible').append(tr_str);
 				$('#Lost_Goods table tbody').find('input,textarea').val("");
 			} else {
 				toastr.error('添加失败！');
@@ -191,6 +219,7 @@ $(function () {
 							  <td>${evidence_data["resevidence.resevidence_type"]}</td>
 							  <td>${evidence_data["resevidence.resevidence_extractTime"]}</td>
 							  <td><i class="fa fa fa-random"></i>&nbsp&nbsp<i class="fa fa-info-circle"></i>&nbsp&nbsp<i class="fa fa-trash-o"></i></td></tr>`;
+				$('#lost_evidence table tbody').append(tr_str);
 				$('#lost_evidence table tbody').find('input,textarea').val("");
 			} else {
 				toastr.error('添加失败！');
@@ -207,12 +236,12 @@ $(function () {
 			if (xhr_data.length > 22 && xhr_data.length <= 36) {
 				toastr.success('添加成功！');
 				tr_str = `<tr id="${xhr_data}">
-							  <td>${picture_data["picture_image"]}</td>
-							  <td>${picture_data["picture_identifier"]}</td>
-							  <td>${picture_data["picture_remarks"]}</td>
+							  <td>${picture_data["image.xsjsglxt_image_id"]}</td>
+							  <td>${picture_data["picture.picture_identifier"]}</td>
+							  <td>${picture_data["picture.picture_remarks"]}</td>
 							  <td><i class="fa fa-info-circle"></i>&nbsp&nbsp<i class="fa fa-trash-o"></i></td></tr>`;
+				$('#picture table tbody').append(tr_str);
 				$('#add_picture table tbody').find('input,textarea').val("");
-
 			} else {
 				toastr.error('添加失败！');
 			}
@@ -230,6 +259,8 @@ $(function () {
 			//$('.load_remind').remove();
 		}, 'json');
 	})
+
+
 
 })
 
