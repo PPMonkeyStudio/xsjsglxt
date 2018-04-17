@@ -151,8 +151,12 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 		}
 	}
 
+	/**
+	 * @author 孙毅 
+	 * 	修改流转状态
+	 */
 	public void updateStatus() {
-
+		resevidenceService.updateStatus(resevidence);
 	}
 
 	@Override

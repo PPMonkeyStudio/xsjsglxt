@@ -737,4 +737,26 @@ public class SenceDaoImpl implements SenceDao {
 		return breakecase;
 	}
 
+	@Override
+	public void updateFileName(String newFileName, String filePosition, xsjsglxt_case case1) {
+		// TODO Auto-generated method stub
+		String hql = "";
+		switch (filePosition) {
+		case "1":
+			hql = hql + "update xsjsglxt_case set case_imageFile = '" + newFileName + "' where xsjsglxt_case_id ='"
+					+ case1.getXsjsglxt_case_id() + "'";
+			break;
+		case "2":
+			hql = hql + "update xsjsglxt_case set case_writeFile = '" + newFileName + "' where xsjsglxt_case_id ='"
+					+ case1.getXsjsglxt_case_id() + "'";
+			break;
+		case "3":
+			hql = hql + "update xsjsglxt_case set case_senceImageFile = '" + newFileName + "' where xsjsglxt_case_id ='"
+					+ case1.getXsjsglxt_case_id() + "'";
+			break;
+		}
+		Session session = this.getSession();
+		session.createQuery(hql).executeUpdate();
+	}
+
 }

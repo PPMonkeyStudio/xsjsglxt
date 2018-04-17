@@ -271,4 +271,19 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 		}
 	}
 
+	/**
+	 * @author 孙毅
+	 * 	修改流转状态
+	 */
+
+	@Override
+	public void updateStatus(xsjsglxt_resevidence resevidence) {
+		// TODO Auto-generated method stub
+		String hql = "update xsjsglxt_resevidence set resevidence_circulation = '"
+				+ resevidence.getResevidence_circulation() + "' where xsjsglxt_resevidence_id ='"
+				+ resevidence.getXsjsglxt_resevidence_id() + "'";
+		Session session = this.getSession();
+		session.createQuery(hql).executeUpdate();
+	}
+
 }
