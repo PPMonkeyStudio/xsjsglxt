@@ -125,17 +125,12 @@ public class StatisticsDaoImpl implements StatisticsDao {
 			policemanDTO.setExtractionRadio("0%");
 		else {
 			double d = (double) list.size() / policemanDTO.getOutTimes();
-<<<<<<< HEAD
 			if (d == 0.0) {
 				policemanDTO.setExtractionRadio("0%");
 			} else {
 				DecimalFormat df = new DecimalFormat("#.0");
 				policemanDTO.setExtractionRadio(df.format(d * 100) + "%");
 			}
-=======
-			DecimalFormat df = new DecimalFormat("#.0");
-			policemanDTO.setExtractionRadio(df.format(d * 100) + "%");
->>>>>>> HY
 		}
 	}
 
