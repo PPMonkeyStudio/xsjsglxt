@@ -207,9 +207,9 @@ $(function () {
 			if (xhr_data.length > 22 && xhr_data.length <= 36) {
 				toastr.success('添加成功！');
 				tr_str = `<tr id="${xhr_data}">
-							  <td>${picture_info[index]["picture_image"]}</td>
-							  <td>${picture_info[index]["picture_identifier"]}</td>
-							  <td>${picture_info[index]["picture_remarks"]}</td>
+							  <td>${picture_data["picture_image"]}</td>
+							  <td>${picture_data["picture_identifier"]}</td>
+							  <td>${picture_data["picture_remarks"]}</td>
 							  <td><i class="fa fa-info-circle"></i>&nbsp&nbsp<i class="fa fa-trash-o"></i></td></tr>`;
 				$('#add_picture table tbody').find('input,textarea').val("");
 
