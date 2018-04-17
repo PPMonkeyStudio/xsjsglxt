@@ -39,6 +39,11 @@ public class xsjsglxt_staff {
 	private String staff_gmt_create;
 	private String staff_gmt_modified;
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "xsjsglxt_staff [xsjsglxt_staff_id=" + xsjsglxt_staff_id + ", xsjsglxt_name=" + xsjsglxt_name

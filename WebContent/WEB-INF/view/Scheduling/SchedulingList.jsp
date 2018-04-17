@@ -62,23 +62,22 @@ a {
 				<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
 			</div>
 			<div id="tableContent" style="margin-top: 10px; display: none;">
-				<table class="table table-bordered" style="text-align: center;">
+				<table class="table table-bordered" style="text-align: center; font-size: 20px;">
 					<thead>
-						<tr>
+						<tr style="height:30;">
 							<td rowspan="2"><label class="fancy-checkbox"> <input
-									onclick="selectAll(this)" type="checkbox" ><span>
+									onclick="selectAll(this)" type="checkbox" ><span style="font-size: 20px;">
 										全选 </span>
 							</label></td>
 							<td rowspan="2">日期</td>
 							<td rowspan="2">带班领导</td>
-							<td colspan="2">主班</td>
-							<td rowspan="2">副班</td>
+							<td colspan="3">值班人员</td>		
 						</tr>
-						<tr><td>侦查民警</td><td>技术民警</td></tr>
+						<tr style="height:30;"><td>侦查民警</td><td>技术民警</td><td>辅警</td></tr>
 					</thead>
 					<tbody>
 						<template v-for="schedulingDTO in vo.schedulingDTOList">
-						<tr>
+						<tr style="height:30;">
 							<td><label class="fancy-checkbox"><input
 									type="checkbox" name="chooseCheckBox"
 									:value="schedulingDTO.xsjsglxt_scheduling_id"><span></span></label></td>
@@ -122,6 +121,9 @@ a {
 			minDate : '1900/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
+		$(function(){
+			$("tr").css("height","30px");
+		})
 	</script>
 </body>
 </html>

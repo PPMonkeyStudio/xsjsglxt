@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.WebApplicationContext;
 
 import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionContext;
@@ -32,6 +34,12 @@ public class UserAction extends ActionSupport {
 
 	public String skipToUser() {
 		return "skipToUser";
+	}
+
+	public void test() {
+		ApplicationContext a = (ApplicationContext) ServletActionContext.getServletContext()
+				.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
+		System.out.println(a.getBean(UserService.class));
 	}
 
 	public void skipToTechnologyIndex() {

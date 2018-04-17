@@ -2,38 +2,41 @@ package com.xsjsglxt.domain.DO;
 
 public class xsjsglxt_dna {
 
-	//ID
+	// ID
 	private String xsjsglxt_dna_id;
-	//dna编号
+	// dna编号
 	private String dna_num;
-	//姓名
+	// 姓名
 	private String dna_name;
-	//性别
+	// 性别
 	private String dna_sex;
-	//出生日期
+	// 出生日期
 	private String dna_birthday;
-	//身份证号
+	// 身份证号
 	private String dna_identity;
-	//住址
+	// 住址
 	private String dna_address;
-	//违法事实
+	// 违法事实
 	private String dna_illegal_fact;
-	//建档单位
+	// dna是否建档
+	private String dna_builder;
+	// 指纹是否建档
+	private String finger_builder;
+	// 建档单位
 	private String dna_record_organization;
-	//建档人
+	// 建档人
 	private String dna_organizer;
-	//建档时间
+	// 建档时间
 	private String dna_record_time;
-	//交档时间
+	// 交档时间
 	private String dna_submit_time;
-	//备注
+	// 备注
 	private String dna_remark;
-	//创建时间
+	// 创建时间
 	private String dna_gmt_create;
-	//修改时间
+	// 修改时间
 	private String dna_gmt_modified;
 
-	
 	@Override
 	public String toString() {
 		return "xsjsglxt_dna [xsjsglxt_dna_id=" + xsjsglxt_dna_id + ", dna_num=" + dna_num + ", dna_name=" + dna_name
@@ -44,11 +47,9 @@ public class xsjsglxt_dna {
 				+ dna_remark + ", dna_gmt_create=" + dna_gmt_create + ", dna_gmt_modified=" + dna_gmt_modified + "]";
 	}
 
-
 	public String getDna_remark() {
 		return dna_remark;
 	}
-
 
 	public void setDna_remark(String dna_remark) {
 		this.dna_remark = dna_remark;
@@ -58,11 +59,9 @@ public class xsjsglxt_dna {
 		return xsjsglxt_dna_id;
 	}
 
-
 	public void setXsjsglxt_dna_id(String xsjsglxt_dna_id) {
 		this.xsjsglxt_dna_id = xsjsglxt_dna_id;
 	}
-
 
 	public String getDna_num() {
 		return dna_num;
@@ -167,5 +166,21 @@ public class xsjsglxt_dna {
 	public void setDna_gmt_modified(String dna_gmt_modified) {
 		this.dna_gmt_modified = dna_gmt_modified;
 	}
-	
+
+	public String getDna_builder() {
+		return dna_builder;
+	}
+
+	public void setDna_builder(String dna_builder) {
+		this.dna_builder = dna_builder;
+	}
+
+	public String getFinger_builder() {
+		return finger_builder;
+	}
+
+	public void setFinger_builder(String finger_builder) {
+		this.finger_builder = finger_builder;
+	}
+
 }

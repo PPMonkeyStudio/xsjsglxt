@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2018-4-17 14:07:50 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2018-4-16 15:46:30 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="com.xsjsglxt.domain.DO.xsjsglxt_dna" table="XSJSGLXT_DNA">
         <id name="xsjsglxt_dna_id" type="java.lang.String">
@@ -28,6 +28,12 @@
         </property>
         <property name="dna_illegal_fact" type="java.lang.String">
             <column name="DNA_ILLEGAL_FACT" />
+        </property>
+        <property name="dna_builder" type="java.lang.String">
+            <column name="DNA_BUILDER" />
+        </property>
+        <property name="finger_builder" type="java.lang.String">
+            <column name="FINGER_BUILDER" />
         </property>
         <property name="dna_record_organization" type="java.lang.String">
             <column name="DNA_RECORD_ORGANIZATION" />

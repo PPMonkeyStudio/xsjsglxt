@@ -46,7 +46,6 @@ public class DNAAction extends ActionSupport implements ServletRequestAware, Ser
 	 * 
 	 */
 	public void modifiedDNA() throws IOException {
-		System.out.println("dna:" + dna);
 		int result = dNAService.modifiedDNA(dna);
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
@@ -116,8 +115,6 @@ public class DNAAction extends ActionSupport implements ServletRequestAware, Ser
 	public String CreateDNAPage() {
 		return "CreateDNAPage";
 	}
-
-
 
 	public DNAVO getDnaVO() {
 		return dnaVO;

@@ -16,6 +16,9 @@
 			<result name="staffDetails">
 					/WEB-INF/view/Team/staffDetails.jsp
 			</result>
+			<result name="intoUpdate">
+					/WEB-INF/view/Team/staffUpdate.jsp
+			</result>
 		</action>
 		<action name="StaffFamily_*" class="com.xsjsglxt.action.Team.StaffFamilyAction"
 			method="{1}">

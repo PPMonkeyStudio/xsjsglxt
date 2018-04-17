@@ -18,88 +18,96 @@ import com.xsjsglxt.domain.DTO.Case.LostInformationDTO;
 import com.xsjsglxt.domain.VO.Case.page_list_CasematerialVO;
 import com.xsjsglxt.service.Case.LostService;
 
+import util.TeamUtil;
+
 public class LostAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
-private LostService lostService;
-private xsjsglxt_case case1;
-private xsjsglxt_lost lost;
-private List<String> useLostInformationNumList;
-private HttpServletResponse http_response;
+	private LostService lostService;
+	private xsjsglxt_case case1;
+	private xsjsglxt_lost lost;
+	private List<String> useLostInformationNumList;
+	private HttpServletResponse http_response;
 
-private HttpServletRequest http_request;	
+	private HttpServletRequest http_request;
 
-private LostInformationDTO lostInformationDTO;
+	private LostInformationDTO lostInformationDTO;
 
-private page_list_CasematerialVO page_list_Casematerial;
+	private page_list_CasematerialVO page_list_Casematerial;
 
-/*
- * 保存损失物品
- */
-public void saveLost() throws IOException{
-	try {
-		lost.setLost_case(case1.getXsjsglxt_case_id());
-		lostService.saveLost(lost);
-		http_response.setContentType("text/html;charset=utf-8");
-		http_response.getWriter().write("success");
-	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-		http_response.setContentType("text/html;charset=utf-8");
-		http_response.getWriter().write("error");
-	}
-}
-/*
- * 列表信息
- */
-public void  ListLostInformationByPageAndSearch() throws IOException{
-	GsonBuilder gsonBuilder = new GsonBuilder();
-	gsonBuilder.setPrettyPrinting();// 格式化json数据
-	Gson gson = gsonBuilder.create();
-	page_list_Casematerial = lostService
-				.VO_Lostformation_By_PageAndSearch(page_list_Casematerial);
-
-			http_response.setContentType("text/html;charset=utf-8");
-
-			http_response.getWriter().write(gson.toJson(page_list_Casematerial));
-}
-/*
- * 详细信息
- */
-public void LostInformationOne() throws IOException {
-	GsonBuilder gsonBuilder = new GsonBuilder();
-	gsonBuilder.setPrettyPrinting();// 格式化json数据
-	Gson gson = gsonBuilder.create();
-	lostInformationDTO = lostService.LostInformationOne(lost);
-	http_response.setContentType("text/html;charset=utf-8");
-
-	http_response.getWriter().write(gson.toJson(lostInformationDTO));
-}
-/*
- * 修改损失物信息
- */
-public void updateLost() throws IOException{
-	GsonBuilder gsonBuilder = new GsonBuilder();
-	gsonBuilder.setPrettyPrinting();//格式化json数据
-	Gson gson = gsonBuilder.create();
-	lostService.updateLost(lost);
-	
-	http_response.setContentType("text/html;charset=utf-8");
-
-	http_response.getWriter().write(gson.toJson("success"));
-	
-}
-/*
- *删除信息 
- */
-public void remove_LostInformationList(){
-
-	if(	lostService.remove_LostInformationList( useLostInformationNumList)){
-		http_response.setContentType("text/html;charset=utf-8");
+	/*
+	 * 保存损失物品
+	 */
+	public void saveLost() throws IOException {
 		try {
-			http_response.getWriter().write("success");
-		} catch (IOException e) {
+			String uuid = TeamUtil.getUuid();
+			lost.setLost_case(case1.getXsjsglxt_case_id());
+			lost.setXsjsglxt_lost_id(uuid);
+			lostService.saveLost(lost);
+			http_response.setContentType("text/html;charset=utf-8");
+			http_response.getWriter().write(uuid);
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}}else{
+			http_response.setContentType("text/html;charset=utf-8");
+			http_response.getWriter().write("error");
+		}
+	}
+
+	/*
+	 * 列表信息
+	 */
+	public void ListLostInformationByPageAndSearch() throws IOException {
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
+		Gson gson = gsonBuilder.create();
+		page_list_Casematerial = lostService.VO_Lostformation_By_PageAndSearch(page_list_Casematerial);
+
+		http_response.setContentType("text/html;charset=utf-8");
+
+		http_response.getWriter().write(gson.toJson(page_list_Casematerial));
+	}
+
+	/*
+	 * 详细信息
+	 */
+	public void LostInformationOne() throws IOException {
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
+		Gson gson = gsonBuilder.create();
+		lostInformationDTO = lostService.LostInformationOne(lost);
+		http_response.setContentType("text/html;charset=utf-8");
+
+		http_response.getWriter().write(gson.toJson(lostInformationDTO));
+	}
+
+	/*
+	 * 修改损失物信息
+	 */
+	public void updateLost() throws IOException {
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
+		Gson gson = gsonBuilder.create();
+		lostService.updateLost(lost);
+
+		http_response.setContentType("text/html;charset=utf-8");
+
+		http_response.getWriter().write(gson.toJson("success"));
+
+	}
+
+	/*
+	 * 删除信息
+	 */
+	public void remove_LostInformationList() {
+
+		if (lostService.remove_LostInformationList(useLostInformationNumList)) {
+			http_response.setContentType("text/html;charset=utf-8");
+			try {
+				http_response.getWriter().write("success");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
 			http_response.setContentType("text/html;charset=utf-8");
 			try {
 				http_response.getWriter().write("error");
@@ -108,14 +116,15 @@ public void remove_LostInformationList(){
 				e.printStackTrace();
 			}
 		}
-}
-public LostService getLostService() {
-	return lostService;
-}
+	}
 
-public void setLostService(LostService lostService) {
-	this.lostService = lostService;
-}
+	public LostService getLostService() {
+		return lostService;
+	}
+
+	public void setLostService(LostService lostService) {
+		this.lostService = lostService;
+	}
 
 	@Override
 	public void setServletResponse(HttpServletResponse arg0) {
@@ -128,46 +137,59 @@ public void setLostService(LostService lostService) {
 		// TODO Auto-generated method stub
 		this.http_request = arg0;
 	}
-	
+
 	public xsjsglxt_case getCase1() {
 		return case1;
 	}
+
 	public void setCase1(xsjsglxt_case case1) {
 		this.case1 = case1;
 	}
+
 	public xsjsglxt_lost getLost() {
 		return lost;
 	}
+
 	public void setLost(xsjsglxt_lost lost) {
 		this.lost = lost;
 	}
+
 	public HttpServletResponse getHttp_response() {
 		return http_response;
 	}
+
 	public void setHttp_response(HttpServletResponse http_response) {
 		this.http_response = http_response;
 	}
+
 	public HttpServletRequest getHttp_request() {
 		return http_request;
 	}
+
 	public void setHttp_request(HttpServletRequest http_request) {
 		this.http_request = http_request;
 	}
+
 	public page_list_CasematerialVO getPage_list_Casematerial() {
 		return page_list_Casematerial;
 	}
+
 	public void setPage_list_Casematerial(page_list_CasematerialVO page_list_Casematerial) {
 		this.page_list_Casematerial = page_list_Casematerial;
 	}
+
 	public LostInformationDTO getLostInformationDTO() {
 		return lostInformationDTO;
 	}
+
 	public void setLostInformationDTO(LostInformationDTO lostInformationDTO) {
 		this.lostInformationDTO = lostInformationDTO;
 	}
+
 	public List<String> getUseLostInformationNumList() {
 		return useLostInformationNumList;
 	}
+
 	public void setUseLostInformationNumList(List<String> useLostInformationNumList) {
 		this.useLostInformationNumList = useLostInformationNumList;
 	}

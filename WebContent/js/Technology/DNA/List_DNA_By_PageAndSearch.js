@@ -2,6 +2,8 @@ var DNA_VO = null;
 function List_DNA_By_PageAndSearch(pageIndex) {
 
 	var input_DNASearchText = document.getElementById("input_DNASearchText").value;
+	var searchDnaBuilder = document.getElementById("searchDnaBuilder").value;
+	var searchFingerBuilder = document.getElementById("searchFingerBuilder").value;
 	var formData = new FormData();
 
 	var xhr = false;
@@ -11,10 +13,10 @@ function List_DNA_By_PageAndSearch(pageIndex) {
 
 		if (xhr.readyState == 4) {
 			if (xhr.status == 200) {
-/*console.debug(xhr.responseText);*/
+				/* console.debug(xhr.responseText); */
 
 				DNA_VO = JSON.parse(xhr.responseText);
-/*DNA_VO = xhr.responseText;*/
+				/* DNA_VO = xhr.responseText; */
 				/*
 				 * 
 				 */
@@ -28,7 +30,7 @@ function List_DNA_By_PageAndSearch(pageIndex) {
 				 */
 
 				var old_tr = document.getElementsByClassName("new_tr");
-/*console.debug(old_tr.length);*/
+				/* console.debug(old_tr.length); */
 				var long = old_tr.length;
 				for (var i = 0; i < long; i++) {
 					old_tr[0].parentNode.removeChild(old_tr[0]);
@@ -51,59 +53,61 @@ function List_DNA_By_PageAndSearch(pageIndex) {
 					new_td.style.display = "none";
 					new_td.className = "tr_dna_id";
 					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].xsjsglxt_dna_id;
-/*console.debug(new_td.innerHTML);*/
+					/* console.debug(new_td.innerHTML); */
 					/*
-					 *1. DNA编号
+					 * 1. DNA编号
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
 					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].dna_num;
 					/*
-					 *2. 姓名
+					 * 2. 姓名
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
 					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].dna_name;
 					/*
-					 *3. 性别
+					 * 3. 性别
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
 					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].dna_sex;
 					/*
-					 *4. 出生日期
+					 * 4. 出生日期
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
 					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].dna_birthday;
 					/*
-					 *5. 身份证号
+					 * 5. 身份证号
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
 					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].dna_identity;
 					/*
-					 *6. 地址
+					 * 6. 地址
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
 					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].dna_address;
 					/*
-					 *7. 违法事实
+					 * 7. 违法事实
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
 					new_td.innerHTML = DNA_VO.list_xsjsglxt_dna[num].dna_illegal_fact;
 					/*
-					 *8. 操作
+					 * 8. 操作
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
-					new_td.innerHTML = '<i  id="'+DNA_VO.list_xsjsglxt_dna[num].xsjsglxt_dna_id+'" onClick=DNADetails(this) class="fa fa-pencil-square-o" aria-hidden="true"></i>';
-					new_td.style.cursor="pointer";
-					
+					new_td.innerHTML = '<i  id="'
+							+ DNA_VO.list_xsjsglxt_dna[num].xsjsglxt_dna_id
+							+ '" onClick=DNADetails(this) class="fa fa-pencil-square-o" aria-hidden="true"></i>';
+					new_td.style.cursor = "pointer";
+
 					/*
-					 *9. 复选框
+					 * 9. 复选框
 					 */
 					new_td = document.createElement("td");
 					new_td.appendChild(document.createTextNode(''));
@@ -120,13 +124,13 @@ function List_DNA_By_PageAndSearch(pageIndex) {
 				i_pulse.style.display = "none";
 
 				/*
-				 * * 设置页数 / 
+				 * * 设置页数 /
 				 */
 				document.getElementById("span_pageIndex").innerHTML = DNA_VO.pageIndex;
 				document.getElementById("span_totalPages").innerHTML = DNA_VO.totalPages;
 				document.getElementById("span_totalRecords").innerHTML = DNA_VO.totalRecords;
-				document.getElementById("checkbox_all_select").checked=false;
-				
+				document.getElementById("checkbox_all_select").checked = false;
+
 			} else {
 				toastr.error(xhr.status);
 			}
@@ -137,6 +141,8 @@ function List_DNA_By_PageAndSearch(pageIndex) {
 	}
 	formData.append("dnaVO.pageIndex", pageIndex);
 	formData.append("dnaVO.search", input_DNASearchText);
+	formData.append("dnaVO.searchDnaBuilder", searchDnaBuilder);
+	formData.append("dnaVO.searchFingerBuilder", searchFingerBuilder);
 	xhr.open("POST", "/xsjsglxt/DNA/DNAManagement_ListDNAByPageAndSearch");
 	xhr.send(formData);
 
@@ -147,12 +153,12 @@ function List_DNA_By_PageAndSearch(pageIndex) {
  */
 function flip(flipPage) {
 	switch (flipPage) {
-	/*首页*/
+	/* 首页 */
 	case 1: {
 		List_DNA_By_PageAndSearch(1)
 		break;
 	}
-	/*上一页*/
+		/* 上一页 */
 	case 2: {
 		if (DNA_VO.pageIndex - 1 == 0) {
 			toastr.warning("已经是第一页了");
@@ -161,7 +167,7 @@ function flip(flipPage) {
 		}
 		break;
 	}
-	/*下一页*/
+		/* 下一页 */
 	case 3: {
 		if (DNA_VO.pageIndex == DNA_VO.totalPages) {
 			toastr.warning("已经是最后一页了");
@@ -170,7 +176,7 @@ function flip(flipPage) {
 		}
 		break;
 	}
-	/*尾页*/
+		/* 尾页 */
 	case 4: {
 		List_DNA_By_PageAndSearch(DNA_VO.totalPages);
 

@@ -250,6 +250,9 @@ td {
 		var panelMargin = navbarHeight + 20;
 		if(panelWidth<1440)
 			$('#trHead').attr("style","font-size:10px;");
+		else{
+			$('#trHead').removeAttr("style","font-size:10px;");
+		}
 		document.getElementById("allContent").setAttribute(
 				"style",
 				"width:" + panelWidth + "px; float:right; margin-top:"
@@ -261,6 +264,9 @@ td {
 			var panelMargin = navbarHeight + 20;
 			if(panelWidth<1440)
 				$('#trHead').attr("style","font-size:10px;");
+			else{
+				$('#trHead').removeAttr("style","font-size:10px;");
+			}
 			document.getElementById("allContent").setAttribute(
 					"style",
 					"width:" + panelWidth + "px; float:right; margin-top:"

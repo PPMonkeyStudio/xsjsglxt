@@ -15,8 +15,11 @@ function staff_change() {
 				action : function() {
 					//判断身份证是否为空
 					var ID=document.getElementsByName("policeman.staff_idNumber")[0].value;
-					if(ID==""){
-						toastr.error('身份证号不能为空哦！');
+					var name=document.getElementsByName("policeman.xsjsglxt_name")[0].value;
+					var policeTime=document.getElementsByName("policeman.staff_thePoliceTime")[0].value;
+					var alarm=document.getElementsByName("policeman.staff_alarm")[0].value;
+					if(ID==""||name==""||policeTime==""||alarm==""){
+						toastr.error('姓名、警号、入警时间或身份证号不能为空哦！');
 					   return false;
 					}
 					loadstaffDetail_staff_change(url);
@@ -937,8 +940,13 @@ function checkUp(value){
 		//是入党积极分子就显示申请书事件和发展对象时间
 		document.querySelector(".staff_appliactionFormTime_label").style.display="";
 		document.querySelector(".staff_appliactionFormTime").style.display="";
+		document.querySelector(".staff_delevopObjectTime_label").innerHTML="发展对象";
+		if(value=="预备党员"){
+			document.querySelector(".staff_delevopObjectTime_label").innerHTML="预备时间";
+		}
 		document.querySelector(".staff_delevopObjectTime_label").style.display="";
 		document.querySelector(".staff_delevopObjectTime").style.display="";
+		
 	}
 	else if(value=="党员"){
 		 //清空其他内容
