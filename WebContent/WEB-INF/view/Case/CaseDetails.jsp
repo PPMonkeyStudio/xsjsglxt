@@ -15,6 +15,11 @@
 <title>案件详情信息</title>
 <link rel="stylesheet" href="<%=basePath%>css/Case/table.css">
 <link rel="stylesheet" href="<%=basePath%>css/Case/Case.css">
+<style type="text/css">
+i {
+	cursor: pointer;
+}
+</style>
 </head>
 <body>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
@@ -350,15 +355,13 @@
 												data-toggle="modal" data-target="#evidence">
 												<i class="fa fa-plus-square"></i> 添加物证
 											</button>
-											<table style="width: 100%;">
+											<table style="width: 100%;" class="table table-striped">
 												<thead>
 													<tr>
 														<th>物证名称</th>
-														<th>案件性质</th>
-														<th>提取人</th>
-														<th>物证类型</th>
 														<th>提取日期</th>
-														<th>案件性质</th>
+														<th>提取人</th>
+														<th>流转状态</th>
 														<th>操作</th>
 													</tr>
 												</thead>
@@ -381,11 +384,10 @@
 												data-target="#LossOfGoods">
 												<i class="fa fa-plus-square"></i> 添加损失物品
 											</button>
-											<table style="width: 100%;">
+											<table style="width: 100%;" class="table table-striped">
 												<thead>
 													<tr>
 														<th>丢失物名称</th>
-														<th>所属案件</th>
 														<th>备注</th>
 														<th>操作</th>
 													</tr>
@@ -399,7 +401,7 @@
 							<tr>
 							<tr>
 								<td>
-									<div class="panel loseComputer-info">
+									<div class="panel" id="loseComputer-info">
 										<div class="panel-heading">
 											<h3 class="panel-title">丢失电脑信息</h3>
 										</div>
@@ -409,10 +411,10 @@
 												data-target="#LossOfGoods">
 												<i class="fa fa-plus-square"></i> 添加损失电脑
 											</button>
-											<table style="width: 100%;">
+											<table style="width: 100%;"
+												class="table table-striped table-condensed">
 												<thead>
 													<tr>
-														<th>所属案件</th>
 														<th>电脑品牌</th>
 														<th>上网账号</th>
 														<th>MAC地址</th>
@@ -439,10 +441,9 @@
 												data-target="#LossOfGoods">
 												<i class="fa fa-plus-square"></i> 添加损失手机信息
 											</button>
-											<table style="width: 100%;">
+											<table style="width: 100%;" class="table table-striped">
 												<thead>
 													<tr>
-														<th>所属案件</th>
 														<th>手机号码</th>
 														<th>手机串号</th>
 														<th>手机特征</th>
@@ -468,11 +469,10 @@
 												data-target="#picture">
 												<i class="fa fa-plus-square"></i> 添加照片
 											</button>
-											<table style="width: 100%;">
+											<table style="width: 100%;" class="table table-striped">
 												<thead>
 													<tr>
 														<th>所属影像光盘</th>
-														<th>所属案件</th>
 														<th>照片编号</th>
 														<th>备注</th>
 														<th>操作</th>
@@ -535,31 +535,26 @@
 						<form id="lost_evidence" action="">
 							<table>
 								<tbody>
-									<tr>
+									<!-- <tr>
 										<td>案发时间:</td>
 										<td><input name="case_receivingAlarmDate"
-											class="form-control mydate" value="1900-1-10" maxlength="19"
-											type="text"></td>
-										<td>物证名称:</td>
-										<td><input name="resevidence.resevidence_name"
-											class="form-control" value="" size="30" maxlength="19"
-											type="text"></td>
-
-									</tr>
-									<tr>
+											class="form-control mydate" value="" type="text"></td>
 										<td>案发地点:</td>
 										<td><input name="case_address" class="form-control"
-											value="萍乡市安源区" size="30" maxlength="19" type="text"></td>
-										<td>提取部位:</td>
-										<td><input name="resevidence.resevidence_extractPart"
-											class="form-control" value="" size="30" maxlength="19"
-											type="text"></td>
-
-									</tr>
-									<tr>
+											value="萍乡市安源区" type="text"></td>
 										<td>案件性质:</td>
 										<td><input name="case_classify" class="form-control"
-											value="" size="30" maxlength="19" type="text"></td>
+											value="" type="text"></td>
+									</tr> -->
+									<tr>
+										<td>物证名称:</td>
+										<td><input name="resevidence.resevidence_name"
+											class="form-control" value="" type="text"></td>
+										<td>提取部位:</td>
+										<td><input name="resevidence.resevidence_extractPart"
+											class="form-control" value="" type="text"></td>
+									</tr>
+									<tr>
 										<td>提取方法:</td>
 										<td><select name="resevidence.resevidence_extractMethod"
 											class="form-control">
@@ -573,19 +568,17 @@
 												<option value="纱布转移">纱布转移</option>
 												<option value="其他">其他</option>
 										</select></td>
-									</tr>
-									<tr>
 										<td>提取数量:</td>
 										<td><input name="resevidence.resevidence_extractNumber"
-											class="form-control" value="" size="30" maxlength="19"
-											type="text"></td>
+											class="form-control" value="" type="text"></td>
+									</tr>
+									<tr>
+
 										<td>提取人:</td>
 										<td><select name="resevidence.resevidence_extractPerson"
 											class="selectpicker form-control" multiple
 											data-live-search="true" data-dropup-auto="false" title="请选择"></select></td>
-									</tr>
-									<tr>
-										<td>物证类型：</td>
+										<td>物证类型:</td>
 										<td><select name="resevidence.resevidence_type"
 											class="form-control">
 												<option value="" selected>请选择物证类型</option>
@@ -596,11 +589,12 @@
 												<option value="理化物证">理化物证</option>
 												<option value="其他">其他</option>
 										</select></td>
+									</tr>
+									<tr>
+
 										<td>提取日期:</td>
 										<td><input name="resevidence.resevidence_extractTime"
 											class="form-control mydate" type="text"></td>
-									</tr>
-									<tr>
 										<td>提取单位:</td>
 										<td colspan="3"><input
 											name="resevidence.resevidence_extractUnit"
