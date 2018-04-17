@@ -30,7 +30,6 @@ public class ImageServiceImpl implements ImageService {
 	@Override
 	public void saveCD(xsjsglxt_image image) {
 		// TODO Auto-generated method stub
-		image.setXsjsglxt_image_id(TeamUtil.getUuid());
 		image.setImage_gmt_create(TeamUtil.getStringSecond());
 		image.setImage_gmt_modified(image.getImage_gmt_create());
 		imageDao.saveCD(image);

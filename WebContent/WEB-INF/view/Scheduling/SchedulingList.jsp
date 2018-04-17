@@ -62,11 +62,11 @@ a {
 				<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
 			</div>
 			<div id="tableContent" style="margin-top: 10px; display: none;">
-				<table class="table table-bordered" style="text-align: center;">
+				<table class="table table-bordered" style="text-align: center; font-size: 20px;">
 					<thead>
 						<tr style="height:30;">
 							<td rowspan="2"><label class="fancy-checkbox"> <input
-									onclick="selectAll(this)" type="checkbox" ><span>
+									onclick="selectAll(this)" type="checkbox" ><span style="font-size: 20px;">
 										全选 </span>
 							</label></td>
 							<td rowspan="2">日期</td>
@@ -121,6 +121,9 @@ a {
 			minDate : '1900/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
+		$(function(){
+			$("tr").css("height","30px");
+		})
 	</script>
 </body>
 </html>
