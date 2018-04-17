@@ -3,9 +3,9 @@ function Update_InspectionRecord(obj) {
 	var jc = $
 			.confirm({
 				icon : 'fa fa-ban',
-				title : '不受理委托鉴定',
+				title : '检验记录（修改）',
 				content : '',
-				type : 'red',
+				type : 'blue',
 				columnClass : 'col-md-12',
 				onOpenBefore : function() {
 				},
