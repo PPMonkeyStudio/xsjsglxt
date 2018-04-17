@@ -3,6 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2018-4-14 13:53:27 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
+<<<<<<< HEAD
     <class name="com.xsjsglxt.domain.DO.xsjsglxt_staff" table="XSJSGLXT_STAFF">
         <id name="xsjsglxt_staff_id" type="java.lang.String">
             <column name="XSJSGLXT_STAFF_ID" />
@@ -96,4 +97,93 @@
             <column name="STAFF_GMT_MODIFIED" />
         </property>
     </class>
+=======
+	<class name="com.xsjsglxt.domain.DO.xsjsglxt_staff" table="XSJSGLXT_STAFF">
+		<id name="xsjsglxt_staff_id" type="java.lang.String">
+			<column name="XSJSGLXT_STAFF_ID" />
+			<generator class="assigned" />
+		</id>
+		<property name="xsjsglxt_name" type="java.lang.String">
+			<column name="XSJSGLXT_NAME" />
+		</property>
+		<property name="xsjsglxt_sex" type="java.lang.String">
+			<column name="XSJSGLXT_SEX" />
+		</property>
+		<property name="xsjsglxt_age" type="java.lang.String">
+			<column name="XSJSGLXT_AGE" />
+		</property>
+		<property name="xsjsglxt_nation" type="java.lang.String">
+			<column name="XSJSGLXT_NATION" />
+		</property>
+		<property name="xsjsglxt_nativePlace" type="java.lang.String">
+			<column name="XSJSGLXT_NATIVEPLACE" />
+		</property>
+		<property name="staff_birthday" type="java.lang.String">
+			<column name="STAFF_BIRTHDAY" />
+		</property>
+		<property name="staff_idNumber" type="java.lang.String">
+			<column name="STAFF_IDNUMBER" />
+		</property>
+		<property name="staff_address" type="java.lang.String">
+			<column name="STAFF_ADDRESS" />
+		</property>
+		<property name="staff_MaxEducationalBackground" type="java.lang.String">
+			<column name="STAFF_MAXEDUCATIONALBACKGROUND" />
+		</property>
+		<property name="staff_politicalStatus" type="java.lang.String">
+			<column name="STAFF_POLITICALSTATUS" />
+		</property>
+		<property name="staff_joinPartyTime" type="java.lang.String">
+			<column name="STAFF_JOINPARTYTIME" />
+		</property>
+		<property name="staff_joinWorkTime" type="java.lang.String">
+			<column name="STAFF_JOINWORKTIME" />
+		</property>
+		<property name="staff_alarm" type="java.lang.String">
+			<column name="STAFF_ALARM" />
+		</property>
+		<property name="staff_thePoliceTime" type="java.lang.String">
+			<column name="STAFF_THEPOLICETIME" />
+		</property>
+		<property name="staff_isItFormal" type="java.lang.String">
+			<column name="STAFF_ISITFORMAL" />
+		</property>
+		<property name="staff_phone" type="java.lang.String">
+			<column name="STAFF_PHONE" />
+		</property>
+		<property name="staff_type" type="java.lang.String">
+			<column name="STAFF_TYPE" />
+		</property>
+		<property name="staff_throughThePolice" type="java.lang.String">
+			<column name="STAFF_THROUGHTHEPOLICE" />
+		</property>
+		<property name="staff_homephone" type="java.lang.String">
+			<column name="STAFF_HOMEPHONE" />
+		</property>
+		<property name="staff_QQ" type="java.lang.String">
+			<column name="STAFF_QQ" />
+		</property>
+		<property name="staff_weixin" type="java.lang.String">
+			<column name="STAFF_WEIXIN" />
+		</property>
+		<property name="staff_outEmail" type="java.lang.String">
+			<column name="STAFF_OUTEMAIL" />
+		</property>
+		<property name="staff_inEmail" type="java.lang.String">
+			<column name="STAFF_INEMAIL" />
+		</property>
+		<property name="staff_photo" type="java.lang.String">
+			<column name="STAFF_PHOTO" />
+		</property>
+		<property name="staff_duty" type="java.lang.String">
+			<column name="STAFF_DUTY" />
+		</property>
+		<property name="staff_gmt_create" type="java.lang.String">
+			<column name="STAFF_GMT_CREATE" />
+		</property>
+		<property name="staff_gmt_modified" type="java.lang.String">
+			<column name="STAFF_GMT_MODIFIED" />
+		</property>
+	</class>
+>>>>>>> HY
 </hibernate-mapping>

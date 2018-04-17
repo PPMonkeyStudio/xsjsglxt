@@ -45,6 +45,7 @@ $(function () {
 		});
 	});
 
+<<<<<<< HEAD
 
 	$.post('/xsjsglxt/team/Staff_getAllPolicemans', {}, function (params) {
 		var suspectStr = '';
@@ -52,6 +53,10 @@ $(function () {
 			suspectStr += '<option value="' + params[index]["xsjsglxt_name"] + '">' + params[index]["xsjsglxt_name"] + '</option>';
 		}
 		$('select[name="sence.snece_inquestPerson"]').html(suspectStr).selectpicker('refresh');
+=======
+	$.post('/xsjsglxt/team/Staff_getAllPolicemans', {}, function(xhr) {
+		console.log(xhr);
+>>>>>>> HY
 	}, 'json');
 })
 
