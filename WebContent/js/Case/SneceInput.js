@@ -120,9 +120,11 @@ function setSectionCase(chapter) {
 			$('.other_case').append("<option value='" + chapterCaseArr[chapter][2][i] + "'>" + chapterCaseArr[chapter][2][i] + "</option>");
 		}
 	}
-	$('.case_name').val(new Date().toLocaleDateString() + $('.case_place').val() + $('.main_case').val());
+
+	$('.case_name').val('"' + $('input[name="case1.case_receivingAlarmDate"]').val() + '"' + $('.case_place').val() + $('.main_case').val());
+
 	$('.other_case').unbind().change(function () {
-		$('.case_name').val(new Date().toLocaleDateString() + $('.case_place').val() + $('.other_case').val());
+		$('.case_name').val('"' + $('input[name="case1.case_receivingAlarmDate"]').val() + '"' + $('.case_place').val() + $('.other_case').val());
 	})
 }
 

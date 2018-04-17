@@ -134,7 +134,6 @@ $(function () {
 		} else {
 			toastr.info('未选择数据');
 		}
-
 	});
 
 	$('#breakCase_input').click(function () {
@@ -237,7 +236,7 @@ $(function () {
 				},
 				close: {
 					text: '取消',
-					action: function () { }
+					action: function () {}
 				},
 			}
 		});
@@ -249,7 +248,9 @@ $(function () {
 	$('.breakcase_table_info tbody').click(function (e) {
 		if (e.target.tagName == "TD") {
 			var ID = $(e.target).parent().find('input[name="chooseCheckBox"]').attr('id');
-			$.post('/xsjsglxt/case/BreakeCase_breakeCaseDetails', { "breakeCase.xsjsglxt_breakecase_id": ID }, function (msg) {
+			$.post('/xsjsglxt/case/BreakeCase_breakeCaseDetails', {
+				"breakeCase.xsjsglxt_breakecase_id": ID
+			}, function (msg) {
 				var breakeCaseID = msg.breakeCase.xsjsglxt_breakecase_id;
 				var content = `<form action="">
 			<div style="width: 100%;margin: auto;" class="panel-body"><table class="table table-hover table-condensed" align="center"><tbody>
@@ -346,7 +347,9 @@ $(function () {
 														return false;
 													}
 												}
-												var suspect_add = { "suspect.breakecaseSuspect_breakecase": breakeCaseID, };
+												var suspect_add = {
+													"suspect.breakecaseSuspect_breakecase": breakeCaseID,
+												};
 												Suspectadd.$content.find('.must').each(function () {
 													suspect_add["suspect." + $(this).attr('name')] = $(this).val();
 												});
@@ -370,8 +373,7 @@ $(function () {
 										},
 										close: {
 											text: '取消',
-											action: function () {
-											}
+											action: function () {}
 										}
 									}
 								});
@@ -397,8 +399,7 @@ $(function () {
 						},
 						close: {
 							text: '取消',
-							action: function () {
-							}
+							action: function () {}
 						},
 					}
 				});
@@ -550,7 +551,7 @@ function Suspect_mo_del(TypeBreakeCase, type) {
 						},
 						close: {
 							text: '取消',
-							action: function () { }
+							action: function () {}
 						},
 					}
 				});

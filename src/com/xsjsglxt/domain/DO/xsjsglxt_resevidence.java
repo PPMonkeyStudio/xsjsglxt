@@ -24,6 +24,8 @@ private String resevidence_extractTime;//提取日期
 
 private String resevidence_remarks;//备注
 
+private String resevidence_circulation;//流转状态
+
 private String resevidence_teststate;//检验状态
 
 private String resevidence_gmt_create;//创建时间
@@ -36,12 +38,17 @@ public xsjsglxt_resevidence() {
 }
 
 
+
+
+
+
+
 public xsjsglxt_resevidence(String xsjsglxt_resevidence_id, String resevidence_case, String resevidence_name,
 		String resevidence_extractUnit, String resevidence_type, String resevidence_extractPart,
 		String resevidence_extractMethod, int resevidence_extractNumber, String resevidence_extractPerson,
-		String resevidence_extractTime, String resevidence_remarks, String resevidence_teststate,
-		String resevidence_gmt_create, String resevidence_gmt_modified) {
-
+		String resevidence_extractTime, String resevidence_remarks, String resevidence_circulation,
+		String resevidence_teststate, String resevidence_gmt_create, String resevidence_gmt_modified) {
+	
 	this.xsjsglxt_resevidence_id = xsjsglxt_resevidence_id;
 	this.resevidence_case = resevidence_case;
 	this.resevidence_name = resevidence_name;
@@ -53,23 +60,31 @@ public xsjsglxt_resevidence(String xsjsglxt_resevidence_id, String resevidence_c
 	this.resevidence_extractPerson = resevidence_extractPerson;
 	this.resevidence_extractTime = resevidence_extractTime;
 	this.resevidence_remarks = resevidence_remarks;
+	this.resevidence_circulation = resevidence_circulation;
 	this.resevidence_teststate = resevidence_teststate;
 	this.resevidence_gmt_create = resevidence_gmt_create;
 	this.resevidence_gmt_modified = resevidence_gmt_modified;
 }
 
 
+
+
+
+
+
 @Override
 public String toString() {
-	return "resevidence [xsjsglxt_resevidence_id=" + xsjsglxt_resevidence_id + ", resevidence_case=" + resevidence_case
-			+ ", resevidence_name=" + resevidence_name + ", resevidence_extractUnit=" + resevidence_extractUnit
-			+ ", resevidence_type=" + resevidence_type + ", resevidence_extractPart=" + resevidence_extractPart
-			+ ", resevidence_extractMethod=" + resevidence_extractMethod + ", resevidence_extractNumber="
-			+ resevidence_extractNumber + ", resevidence_extractPerson=" + resevidence_extractPerson
-			+ ", resevidence_extractTime=" + resevidence_extractTime + ", resevidence_remarks=" + resevidence_remarks
+	return "xsjsglxt_resevidence [xsjsglxt_resevidence_id=" + xsjsglxt_resevidence_id + ", resevidence_case="
+			+ resevidence_case + ", resevidence_name=" + resevidence_name + ", resevidence_extractUnit="
+			+ resevidence_extractUnit + ", resevidence_type=" + resevidence_type + ", resevidence_extractPart="
+			+ resevidence_extractPart + ", resevidence_extractMethod=" + resevidence_extractMethod
+			+ ", resevidence_extractNumber=" + resevidence_extractNumber + ", resevidence_extractPerson="
+			+ resevidence_extractPerson + ", resevidence_extractTime=" + resevidence_extractTime
+			+ ", resevidence_remarks=" + resevidence_remarks + ", resevidence_circulation=" + resevidence_circulation
 			+ ", resevidence_teststate=" + resevidence_teststate + ", resevidence_gmt_create=" + resevidence_gmt_create
 			+ ", resevidence_gmt_modified=" + resevidence_gmt_modified + "]";
 }
+
 
 public String getXsjsglxt_resevidence_id() {
 	return xsjsglxt_resevidence_id;
@@ -185,6 +200,16 @@ public String getResevidence_gmt_modified() {
 
 public void setResevidence_gmt_modified(String resevidence_gmt_modified) {
 	this.resevidence_gmt_modified = resevidence_gmt_modified;
+}
+
+
+public String getResevidence_circulation() {
+	return resevidence_circulation;
+}
+
+
+public void setResevidence_circulation(String resevidence_circulation) {
+	this.resevidence_circulation = resevidence_circulation;
 }
 
 

@@ -63,7 +63,8 @@
 						<tr>
 							<td>接警时间</td>
 							<td><input name="case1.case_receivingAlarmDate"
-								class="form-control mydate" style="margin-top: 6px;" type="text"></td>
+								class="form-control mydate_minute" style="margin-top: 6px;"
+								type="text"></td>
 							<td>危害程度</td>
 							<td><select name="case1.case_extentOfInjury"
 								class="form-control" style="margin-top: 6px;">
@@ -349,22 +350,22 @@
 	<script type="text/javascript">
 		$.datetimepicker.setLocale('ch');
 		$('.mydate').datetimepicker({
-			yearStart : 1990, // 设置最小年份
-			yearEnd : 2050, // 设置最大年份
+			yearStart : 1950, // 设置最小年份
+			yearEnd : 2025, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : false, // 关闭时间选项
 			format : 'Y-m-d', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
-			maxDate : '2030/01/01', // 设置最大日期
+			minDate : '1950/01/01', // 设置最小日期
+			maxDate : '2025/01/01', // 设置最大日期
 		});
 		$('.mydate_minute').datetimepicker({
-			yearStart : 1990, // 设置最小年份
-			yearEnd : 2050, // 设置最大年份
+			yearStart : 1950, // 设置最小年份
+			yearEnd : 2025, // 设置最大年份
 			yearOffset : 0, // 年偏差
 			timepicker : true, // 关闭时间选项
 			format : 'Y-m-d H:i', // 格式化日期年-月-日
-			minDate : '1990/01/01', // 设置最小日期
-			maxDate : '2030/01/01', // 设置最大日期
+			minDate : '1950/01/01', // 设置最小日期
+			maxDate : '2025/01/01', // 设置最大日期
 		});
 	</script>
 </body>

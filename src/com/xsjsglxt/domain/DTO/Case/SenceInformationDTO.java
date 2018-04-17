@@ -33,24 +33,7 @@ public xsjsglxt_case getCase1() {
 public void setCase1(xsjsglxt_case case1) {
 	this.case1 = case1;
 }
-//public xsjsglxt_lost_computer getLost_computer() {
-//	return lost_computer;
-//}
-//public void setLost_computer(xsjsglxt_lost_computer lost_computer) {
-//	this.lost_computer = lost_computer;
-//}
-//public xsjsglxt_lost_mobilephone getLost_mobilephone() {
-//	return lost_mobilephone;
-//}
-//public void setLost_mobilephone(xsjsglxt_lost_mobilephone lost_mobilephone) {
-//	this.lost_mobilephone = lost_mobilephone;
-//}
-//public xsjsglxt_lost getLost() {
-//	return lost;
-//}
-//public void setLost(xsjsglxt_lost lost) {
-//	this.lost = lost;
-//}
+
 public xsjsglxt_picture getPicture() {
 	return picture;
 }
@@ -65,7 +48,7 @@ public void setSence(xsjsglxt_snece sence) {
 }
 public SenceInformationDTO(xsjsglxt_briefdetails briefdetails, xsjsglxt_case case1, xsjsglxt_picture picture,
 		xsjsglxt_snece sence) {
-
+	super();
 	this.briefdetails = briefdetails;
 	this.case1 = case1;
 	this.picture = picture;
@@ -76,5 +59,7 @@ public String toString() {
 	return "SenceInformationDTO [briefdetails=" + briefdetails + ", case1=" + case1 + ", picture=" + picture
 			+ ", sence=" + sence + "]";
 }
+
+
 
 }
