@@ -6,10 +6,8 @@ import java.util.List;
 import com.xsjsglxt.dao.Case.ResevidenceDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_circulation;
-import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
 import com.xsjsglxt.domain.DO.xsjsglxt_resevidence;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
-import com.xsjsglxt.domain.DTO.Case.LostComputerInformationDTO;
 import com.xsjsglxt.domain.DTO.Case.ResevidenceInformationDTO;
 import com.xsjsglxt.domain.VO.Case.page_list_ResevidenceInformationVO;
 import com.xsjsglxt.service.Case.ResevidenceService;
@@ -33,7 +31,6 @@ public class ResevidenceServiceImpl implements ResevidenceService {
 	@Override
 	public void saveResevidence(xsjsglxt_resevidence resevidence) {
 		// TODO Auto-generated method stub
-		resevidence.setXsjsglxt_resevidence_id(TeamUtil.getUuid());
 		resevidence.setResevidence_gmt_create(TeamUtil.getStringSecond());
 		resevidence.setResevidence_gmt_modified(resevidence.getResevidence_gmt_create());
 		resevidenceDao.save(resevidence);
@@ -136,6 +133,17 @@ public class ResevidenceServiceImpl implements ResevidenceService {
 		// TODO Auto-generated method stub
 		resevidence.setResevidence_gmt_modified(TeamUtil.getStringSecond());
 		resevidenceDao.updateResevidenceIn(resevidence);
+	}
+
+	/**
+	 * @author 孙毅
+	 * 修改流转状态
+	 */
+
+	@Override
+	public void updateStatus(xsjsglxt_resevidence resevidence) {
+		// TODO Auto-generated method stub
+		resevidenceDao.updateStatus(resevidence);
 	}
 
 }

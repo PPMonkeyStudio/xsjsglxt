@@ -48,21 +48,22 @@
 						onclick="javascript:location.href='/xsjsglxt/case/Case_page_Sneceinput'">
 						<i class="fa fa-plus-square"></i> 新建案件
 					</button>
+					<button id="case_delete" style="margin-left: 15px; color:red;"
+						type="button" class="btn btn-default">
+						<i class="fa fa-trash-o"></i> 删除所选案件
+					</button>
 				</div>
 				<div class="col-md-12">
 					<!-- TABLE HOVER -->
 					<div class="panel">
 						<div class="panel-heading">
 							<h3 class="panel-title">案件列表</h3>
-							<p class="text-primary query_prompting_info">nothing to
-								query.</p>
 						</div>
 						<div class="panel-body">
 							<table class="table table-hover table-condensed case_table_info">
 								<thead>
 									<tr>
-										<th>状态</th>
-										<th>序号</th>
+										<th>全选<input type="checkbox" onclick="selectAll(this)"></th>
 										<th>勘验编号</th>
 										<th>接警时间</th>
 										<th>案发地点</th>

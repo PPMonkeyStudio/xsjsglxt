@@ -25,4 +25,8 @@ public interface StaffService {
 	List<xsjsglxt_staff> getAllPoliceman();
 
 	policemanDutyVO getSchedulingStaff();
+
+	List<xsjsglxt_staff> getMeetCompere();
+
+	List<xsjsglxt_staff> getMeetRecorder();
 }

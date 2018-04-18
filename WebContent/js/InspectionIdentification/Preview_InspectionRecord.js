@@ -32,6 +32,23 @@ function Preview_InspectionRecord(obj) {
 				columnClass : 'col-md-12',
 				theme : 'modern',
 				onOpenBefore : function() {
+					/*
+					 * 删除按钮
+					 */
+					if (userPowerDTO.user_check_power_modified == true) {
+
+					} else {
+						var userCheckPowers = document
+								.getElementsByClassName("user_check_power");
+						var userCheckPowers_Length = userCheckPowers.length;
+						for (var userCheckPowersNum = 0; userCheckPowersNum < userCheckPowers_Length; userCheckPowersNum++) {
+							userCheckPowers[0].parentNode
+									.removeChild(userCheckPowers[0]);
+						}
+					}
+					/*
+					 * 
+					 */
 				},
 				onContentReady : function() {
 					for (var num = 0; num < json_list.listEntrustmentBookManagementDTO.length; num++) {
@@ -39,19 +56,28 @@ function Preview_InspectionRecord(obj) {
 							break;
 						}
 					}
-					var con = '<div style="margin:0 20px 0 0;"><hr>' + '<table  class="table table-bordered" style="text-align: center;">' + '<tbody>'
-							+ '<tr><td style="width:200px;">案（事）件简要情况</td><td  style="text-align: left !important;">'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_simple_case_situation.replace(/\n/g, "<br>")
-									.replace(/ /g, "&nbsp;")
+					var con = '<div style="margin:0 20px 0 0;"><hr>'
+							+ '<table  class="table table-bordered" style="text-align: center;">'
+							+ '<tbody>'
+							+ '<tr>'
+							+ '<td style="width:200px;">案（事）件简要情况</td><td  style="text-align: left !important;">'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_simple_case_situation
+									.replace(/\n/g, "<br>").replace(/ /g,
+											"&nbsp;")
 							+ '</td>'
 							+ '</tr>'
-							+ '<tr><td >检材情况</td><td style="text-align: left !important;>'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_check_material_situation.replace(/\n/g, "<br>").replace(/ /g,
-									"&nbsp;")
+							+ '<tr>'
+							+ '<td >检材情况</td><td style="text-align: left !important;">'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_check_material_situation
+									.replace(/\n/g, "<br>").replace(/ /g,
+											"&nbsp;")
 							+ '</td>'
 							+ '</tr>'
-							+ '<tr><td >样本情况</td><td style="text-align: left !important;>'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_sample_situation.replace(/\n/g, "<br>").replace(/ /g, "&nbsp;")
+							+ '<tr>'
+							+ '<td>样本情况</td><td style="text-align: left !important;">'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_sample_situation
+									.replace(/\n/g, "<br>").replace(/ /g,
+											"&nbsp;")
 							+ '</td>'
 							+ '</tr>'
 							+ '<tr><td>鉴定要求</td><td>'
@@ -81,18 +107,25 @@ function Preview_InspectionRecord(obj) {
 							+ '</td>'
 							+ '</tr>'
 							+ '<tr><td>检验过程</td><td style="text-align: left !important;">'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_process.replace(/\n/g, "<br>").replace(/ /g, "&nbsp;")
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_process
+									.replace(/\n/g, "<br>").replace(/ /g,
+											"&nbsp;")
 							+ '</td>'
 
 							+ '</tr>'
 							+ '<tr><td>检验意见</td><td style="text-align: left !important;>'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_option.replace(/\n/g, "<br>").replace(/ /g, "&nbsp;")
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_option
+									.replace(/\n/g, "<br>").replace(/ /g,
+											"&nbsp;")
 							+ '</td>'
 							+ '</tr>'
 							+ '<tr><td>备注</td><td style="text-align: left !important;">'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_mark.replace(/\n/g, "<br>").replace(/ /g, "&nbsp;")
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_mark
+									.replace(/\n/g, "<br>").replace(/ /g,
+											"&nbsp;")
 							+ '</td>'
-							+ '</tr>' + '</tbody>' + '</table>' + '<hr></div>';
+							+ '</tr>'
+							+ '</tbody>' + '</table>' + '<hr></div>';
 					jc.setContentAppend(con);
 					/*
 					 * 
@@ -111,7 +144,7 @@ function Preview_InspectionRecord(obj) {
 						}
 					},
 					'修改' : {
-						btnClass : 'btn-orange managerPower',
+						btnClass : 'btn-orange managerPower user_check_power',
 						action : function() {
 							jc.close();
 							Update_InspectionRecord(obj);

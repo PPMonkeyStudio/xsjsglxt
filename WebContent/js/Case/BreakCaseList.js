@@ -5,6 +5,7 @@ var query_data = {
 	"breakeCaseListVO.query_breake_time_start": "",
 	"breakeCaseListVO.query_breake_time_end": "",
 	"breakeCaseListVO.query_breake_person": "",
+	"breakeCaseListVO.query_breake_according": "",
 };
 //当前页面分页信息
 var page_infomantion = {
@@ -37,7 +38,7 @@ var braekeCaseData = `<form action="">
 </tr><tr><td>案件类型</td><td>
 <input class="form-control" name="breakeCase.breakecase_type" type="text">
 </td><td>破案方式</td><td>
-<input class="form-control" name="breakeCase.breakecase_according" type="text">
+<select class="form-control" name="breakeCase.breakecase_according"><option value=""></option><option value="指纹">指纹</option><option value="视屏">视屏</option><option value="NDA">NDA</option></select>
 </td></tr><tr><td>破案时间</td><td>
 <input class="form-control mydate" name="breakeCase.breakecase_caseTime" type="text">
 </td><td>破案人</td><td>
@@ -69,7 +70,8 @@ var SuspectData = `<table class="table">
 <tr><td>性别</th><td><input class="form-control must su-sex" name="breakecaseSuspect_sex" type="text" value="1"></td>
     <td>生日</th><td><input class="form-control must su-birthday" name="breakecaseSuspect_birthday" type="text" value="1"></td></tr>
 <tr><td>住址</th><td><input class="form-control must" name="breakecaseSuspect_addrress" type="text" value="1"></td>
-	<td>是否抓获</th><td><input class="form-control must" name="breakecaseSuspect_capture" type="text"></td></tr>
+	<td>是否抓获</th><td><select class="form-control must" name="breakecaseSuspect_capture"><option>是</option><option>否</ption>
+<option>其他</option></select></td></tr>
 <tr><td>抓获单位</th><td><input class="form-control must" name="breakecaseSuspect_captureUnit" type="text" value="1"></td>
 	<td>抓获时间</th><td><input class="form-control mydate must" name="breakecaseSuspect_captureTime" type="text" value="1"></td></tr>
 </tbody>
@@ -86,7 +88,6 @@ $(function () {
 			//key为arr里对象的索引，value为索引为key的对象。对象以{name: 'firstname', value: 'Hello'}形式存储, 以obj.name和obj.value形式遍历 
 			query_data[value.name] = value.value;
 		});
-		$('.query_prompting_info').text('接警时间从' + $('input[name="page_list_BreakecaseInformation.start_time"]').val() + '到' + $('input[name="page_list_BreakecaseInformation.stop_time"]').val());
 		get_ListBreakecaseInformationByPageAndSearch(query_data);
 	});
 
@@ -94,10 +95,10 @@ $(function () {
 		for (var i in query_data) {
 			query_data[i] = "";
 		}
+		//页面重置为第一页
+		query_data["breakeCaseListVO.currPage"] = 1;
 		//选择框清除内容
-		$('#newQuery select').val("");
-		//输入框清除内容
-		$('$newQuery input').val("");
+		$('#newQuery').find('input,select').val('');;
 		/*//影藏模态框
 		$('#newQuery').modal('hide');*/
 		//成功提示
@@ -106,25 +107,33 @@ $(function () {
 
 	$('#delete-breakeCase').click(function () {
 		var formData = new FormData;
+		var falg = false;
 		$('.breakcase_table_info').find('input[name="chooseCheckBox"]').each(function () {
-			formData.append('breakeCaseId', $(this).attr('id'));
-		});
-		$.ajax({
-			url: "/xsjsglxt/case/BreakeCase_deleteBreakeCase",
-			type: "POST",
-			contentType: false,
-			processData: false,
-			data: formData,
-			dataType: 'text',
-			success: function (msg) {
-				if (msg == 'deleteSuccess') {
-					toastr.info('删除成功');
-					get_ListBreakecaseInformationByPageAndSearch(query_data);
-				} else if (msg == 'deleteError') {
-					toastr.error('删除失败');
-				}
+			if ($(this).is(':checked')) {
+				formData.append('breakeCaseId', $(this).attr('id'));
+				falg = true;
 			}
 		});
+		if (falg) {
+			$.ajax({
+				url: "/xsjsglxt/case/BreakeCase_deleteBreakeCase",
+				type: "POST",
+				contentType: false,
+				processData: false,
+				data: formData,
+				dataType: 'text',
+				success: function (msg) {
+					if (msg == 'deleteSuccess') {
+						toastr.info('删除成功');
+						get_ListBreakecaseInformationByPageAndSearch(query_data);
+					} else if (msg == 'deleteError') {
+						toastr.error('删除失败');
+					}
+				}
+			});
+		} else {
+			toastr.info('未选择数据');
+		}
 	});
 
 	$('#breakCase_input').click(function () {
@@ -233,10 +242,16 @@ $(function () {
 		});
 	});
 
+
+
+	//表格中I标签的操作绑定
 	$('.breakcase_table_info tbody').click(function (e) {
 		if (e.target.tagName == "TD") {
 			var ID = $(e.target).parent().find('input[name="chooseCheckBox"]').attr('id');
-			$.post('/xsjsglxt/case/BreakeCase_breakeCaseDetails', { "breakeCase.xsjsglxt_breakecase_id": ID }, function (msg) {
+			$.post('/xsjsglxt/case/BreakeCase_breakeCaseDetails', {
+				"breakeCase.xsjsglxt_breakecase_id": ID
+			}, function (msg) {
+				var breakeCaseID = msg.breakeCase.xsjsglxt_breakecase_id;
 				var content = `<form action="">
 			<div style="width: 100%;margin: auto;" class="panel-body"><table class="table table-hover table-condensed" align="center"><tbody>
 			<tr><td>所属案件<i class="fa fa-spinner fa-pulse load_remind"></i></td><td colspan="3">
@@ -244,42 +259,41 @@ $(function () {
 			</tr><tr><td>案件类型</td><td>
 			<input class="form-control" name="breakeCase.breakecase_type" type="text" value="${msg.breakeCase.breakecase_type}">
 			</td><td>破案方式</td><td>
-			<input class="form-control" name="breakeCase.breakecase_according" type="text" value="${msg.breakeCase.breakecase_according}">
+			<select class="form-control" name="breakeCase.breakecase_according"><option value=""></option><option value="指纹">指纹</option><option value="视屏">视屏</option><option value="NDA">NDA</option></select>
 			</td></tr><tr><td>破案时间</td><td>
 			<input class="form-control mydate" name="breakeCase.breakecase_caseTime" type="text" value="${msg.breakeCase.breakecase_caseTime}">
 			</td><td>破案人</td><td>
-			<input class="form-control" name="breakeCase.breakecase_person" type="text" value="${msg.breakeCase.breakecase_person}">
+			<select class="form-control" name="breakeCase.breakecase_person"></select>
 			</td></tr><tr><td>带破案件</td><td colspan="3">
 			<select class="form-control selectpicker" multiple data-live-search="true" name="breakeCase.breakecase_waitbreakecase"></select>
 			</td></tr><tr><td>备注</td><td colspan="3">
 			<textarea placeholder="请填写" class="form-control"name="breakeCase.breakecase_remarks">${msg.breakeCase.breakecase_remarks}</textarea>
 			</td></tr><tr>
 			<table class="table table-hover suspect-info">
-			<thead>
-				<tr>
-				<td>姓名</td>
-				<td>身份证号</td>
-				<td>性别</td>
-				<td>生日</td>
-				<td>住址</td>
-				<td>抓获</td>
-				<td>抓获单位</td>
-				<td>抓获时间</td>
-				<td>操作</td>
-				</tr></thead><tbody></tbody></table></tr></tbody></table></div></form>`;
+			<thead><tr><td>姓名</td><td>身份证号</td><td>性别</td><td>生日</td><td>住址</td><td>抓获</td><td>抓获单位</td><td>抓获时间</td><td>操作</td>
+			</tr></thead><tbody></tbody></table></tr></tbody></table></div></form>`;
 
 				var modifyBreakeCase = $.confirm({
 					closeIcon: true,
-					boxWidth: '80%',
-					useBootstrap: false,
+					columnClass: 'col-md-12',
+					boxWidth: '1000px',
+					useBootstrap: true,
 					smoothContent: false,
 					title: '破案信息修改',
 					content: content,
 					onContentReady: function () {
+						$('select[name="breakeCase.breakecase_according"]').val(msg.breakeCase.breakecase_according);
+						$.post('/xsjsglxt/team/Staff_getAllPolicemans', {}, function (params) {
+							var suspectStr = '';
+							for (let index = 0; index < params.length; index++) {
+								suspectStr += '<option value="' + params[index]["xsjsglxt_name"] + '">' + params[index]["xsjsglxt_name"] + '</option>';
+							}
+							$('select[name="breakeCase.breakecase_person"]').html(suspectStr).selectpicker('refresh').selectpicker('val', msg.breakeCase.breakecase_person);
+						}, 'json');
 						Init();
 						for (let index = 0; index < msg.suspectList.length; index++) {
 							var _suspect = msg.suspectList[index];
-							var suspectStr = '<tr id="' + _suspect["xsjsglxt_breakecaseSuspect_id"] + '">';
+							var suspectStr = '<tr id="' + breakeCaseID + '">';
 							for (const key in _suspect) {
 								if (key == 'xsjsglxt_breakecaseSuspect_id' || key == 'breakecaseSuspect_breakecase' || key == 'breakecaseSuspect_gmt_create' || key == 'breakecaseSuspect_gmt_modified') {
 									continue;
@@ -333,15 +347,16 @@ $(function () {
 														return false;
 													}
 												}
-												var ID = modifyBreakeCase.$content.find('select[name="breakeCase.breakecase_case"]').selectpicker('val');
-												var suspect_add = { "suspect.breakecaseSuspect_breakecase": ID, };
-												Suspectadd.$content.find('input').each(function () {
+												var suspect_add = {
+													"suspect.breakecaseSuspect_breakecase": breakeCaseID,
+												};
+												Suspectadd.$content.find('.must').each(function () {
 													suspect_add["suspect." + $(this).attr('name')] = $(this).val();
 												});
-												$.post('/xsjsglxt/case/BreakeCase_addOneSuspect', suspect_add, function (msg) {
-													if (msg == 'saveSuccess') {
+												$.post('/xsjsglxt/case/BreakeCase_addOneSuspect', suspect_add, function (msg_one) {
+													if (msg_one.length > 20 && msg_one.length <= 36) {
 														toastr.info('添加嫌疑人成功');
-														var suspectStr = '<tr id="">';
+														var suspectStr = '<tr id="' + msg_one + '">';
 														for (const key in suspect_add) {
 															if (key == "suspect.breakecaseSuspect_breakecase") {
 																continue;
@@ -350,7 +365,7 @@ $(function () {
 														}
 														suspectStr += '<td><i class="fa fa-info-circle"></i>&nbsp&nbsp<i class="fa fa-trash-o"></i></td></tr>'
 														modifyBreakeCase.$content.find('.suspect-info tbody').append(suspectStr);
-													} else if (msg == 'saveError') {
+													} else if (msg_one == 'saveError') {
 														toastr.error('添加嫌疑人人失败');
 													}
 												}, 'text');
@@ -358,8 +373,7 @@ $(function () {
 										},
 										close: {
 											text: '取消',
-											action: function () {
-											}
+											action: function () { }
 										}
 									}
 								});
@@ -371,7 +385,8 @@ $(function () {
 							btnClass: 'btn-info',
 							action: function () {
 								var BreakeCaseDATA = modifyBreakeCase.$content.find('form').serializeObject();
-								$.post('/xsjsglxt/case/BreakeCase_saveBreakeCase', BreakeCaseDATA, function (xhr) {
+								BreakeCaseDATA["breakeCase.xsjsglxt_breakecase_id"] = ID;
+								$.post('/xsjsglxt/case/BreakeCase_updateBreakeCase', BreakeCaseDATA, function (xhr) {
 									if (xhr == 'updateSuccess') {
 										toastr.info('息修改成功');
 										get_ListBreakecaseInformationByPageAndSearch(query_data);
@@ -384,8 +399,7 @@ $(function () {
 						},
 						close: {
 							text: '取消',
-							action: function () {
-							}
+							action: function () { }
 						},
 					}
 				});
@@ -433,7 +447,7 @@ function createSuspect(confirm_content) {
 	var newSuspect = {};
 	var name = '';
 	var val = '';
-	$.each(confirm_content.find('input'), function () {
+	$.each(confirm_content.find('.must'), function () {
 		name = $(this).attr("name");
 		val = $(this).val();
 		newSuspect[name] = val;
@@ -480,7 +494,7 @@ function Suspect_mo_del(TypeBreakeCase, type) {
 								<tr><td>性别</th><td><input class="form-control must" name="breakecaseSuspect_sex" type="text" value="${all_td.eq(2).text()}"></td>
 									<td>生日</th><td><input class="form-control must" name="breakecaseSuspect_birthday" type="text" value="${all_td.eq(3).text()}"></td></tr>
 								<tr><td>住址</th><td><input class="form-control must" name="breakecaseSuspect_addrress" type="text" value="${all_td.eq(4).text()}"></td>
-									<td>是否抓获</th><td><input class="form-control must" name="breakecaseSuspect_capture" type="text" value="${all_td.eq(5).text()}"></td></tr>
+									<td>是否抓获</th><td><select class="form-control must" name="breakecaseSuspect_capture" type="text" value="${all_td.eq(5).text()}"><option>是</option><option>否</option></select></td></tr>
 								<tr><td>抓获单位</th><td><input class="form-control must" name="breakecaseSuspect_captureUnit" type="text" value="${all_td.eq(6).text()}"></td>
 									<td>抓获时间</th><td><input class="form-control mydate must" name="breakecaseSuspect_captureTime" type="text" value="${all_td.eq(7).text()}"></td></tr>
 								</tbody>
@@ -504,13 +518,13 @@ function Suspect_mo_del(TypeBreakeCase, type) {
 									var zj = {
 										"suspect.xsjsglxt_breakecaseSuspect_id": tr.attr('id'),
 									};
-									modifi.$content.find('input').each(function () {
+									modifi.$content.find('.must').each(function () {
 										zj['suspect.' + $(this).attr('name')] = $(this).val();
 									});
 									$.post('/xsjsglxt/case/BreakeCase_updateSuspect', zj, function (msg) {
 										if (msg == 'updateSuccess') {
 											toastr.info('修改嫌疑人成功');
-											modifi.$content.find('input').each(function (i, o) {
+											modifi.$content.find('.must').each(function (i, o) {
 												all_td.eq(i).text($(this).val());
 											});
 										} else if (msg == 'updateError') {
@@ -519,7 +533,7 @@ function Suspect_mo_del(TypeBreakeCase, type) {
 									}, 'text');
 								} else {
 									var len = suspect.length;
-									modifi.$content.find('input').each(function () {
+									modifi.$content.find('.must').each(function () {
 										var name = $(this).attr('name');
 										var value = $(this).val();
 										suspect[len - index - 1][name] = value;

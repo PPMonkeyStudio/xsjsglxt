@@ -29,6 +29,7 @@
 			<div class="panel-heading">
 				<h3 class="panel-title">人员详情</h3>
 			</div>
+			<div style="margin-left: 4.5%">
 			<button onclick="javascript:history.go(-1)" type="button"
 				class="btn btn-default button button_return ">
 				<i class="fa fa-reply"></i> 返回列表
@@ -37,6 +38,8 @@
 				onclick="staff_relive()">
 				<i class="fa fa-pencil"></i> 修改人员
 			</button>
+			
+			</div>
 			<div class="panel-body staff_body">
 				<div style="width: 1000px; margin: 0 auto;">
 					<form id="staffDetails" enctype="multipart/form-data"
@@ -1368,7 +1371,7 @@
 
 	<!--修改休假模态框 end  -->
 	<script type="text/javascript"
-		src="<%=basePath%>js/Team/staffDetails.js"></script>
+		src="<%=basePath%>js/Team/staffUpdate.js"></script>
 	<script type="text/javascript" src="<%=basePath%>js/Team/newStaff.js"></script>
 	<script type="text/javascript"
 		src="<%=basePath%>js/Team/addOne_longTable.js"></script>

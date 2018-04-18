@@ -122,7 +122,7 @@ function  createConfirm_relive(event) {
 	enterRelivePage(event);
 }
 function enterRelivePage(event){
-	window.location = "/xsjsglxt/team/Staff_intpUpdate?xsjsglxt_staff_id="
+	window.location = "/xsjsglxt/team/Staff_intoUpdate?xsjsglxt_staff_id="
 		+ event.id;
 }
 var deletePoliceman = function(event) {

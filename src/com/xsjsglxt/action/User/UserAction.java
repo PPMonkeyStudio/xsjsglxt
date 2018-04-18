@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.WebApplicationContext;
 
 import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionContext;
@@ -32,6 +34,12 @@ public class UserAction extends ActionSupport {
 
 	public String skipToUser() {
 		return "skipToUser";
+	}
+
+	public void test() {
+		ApplicationContext a = (ApplicationContext) ServletActionContext.getServletContext()
+				.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
+		System.out.println(a.getBean(UserService.class));
 	}
 
 	public void skipToTechnologyIndex() {
@@ -96,12 +104,13 @@ public class UserAction extends ActionSupport {
 		} else {
 			xsjsglxt_user xu = userService.getUserByUsername(user_username);
 			String password = md5.GetMD5Code(user_password);
-
 			if (xu.getUser_password().equals(password)) {
 				pw.write("loginSuccess");
 				ActionContext.getContext().getSession().put("user_id", xu.getUser_id());
 				ActionContext.getContext().getSession().put("user_name", xu.getUser_name());
 				ActionContext.getContext().getSession().put("userSession", xu);
+				ActionContext.getContext().getSession().put("user_unit", xu.getUser_units());
+				ActionContext.getContext().getSession().put("user_password", user_password);
 			} else {
 				pw.write("passwordError");
 			}
@@ -236,6 +245,7 @@ public class UserAction extends ActionSupport {
 	 */
 
 	public void updateUser() {
+		System.out.println(user_password);
 		xsjsglxt_user xuGet = userService.getUserById(user_id);
 		xsjsglxt_user xu = new xsjsglxt_user();
 		xu.setUser_army_manager_power(user_army_manager_power);
@@ -252,6 +262,7 @@ public class UserAction extends ActionSupport {
 		if (user_password == "" || user_password.equals("")) {
 			xu.setUser_password(xuGet.getUser_password());
 		} else {
+			user_password = md5.GetMD5Code(user_password);
 			xu.setUser_password(user_password);
 		}
 		xu.setUser_statistics_power(user_statistics_power);

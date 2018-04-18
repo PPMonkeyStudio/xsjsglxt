@@ -1,4 +1,6 @@
 var createConfirm = function() {
+	// meet.meeting_compere
+	// meet.meeting_record_human
 	var jc = $
 			.confirm({
 				columnClass : "col-md-12",
@@ -14,8 +16,8 @@ var createConfirm = function() {
 						+ "</td><td>会议地点：</td><td><input name='meet.meeting_place' type='text' class='form-control' placeholder='请输入会议地点'></td></tr>"
 						+ "<tr><td>会议开始时间：</td><td><input placeholder='时分按格式手动精确（10:30英文冒号）' name='meet.meeting_start_time' type='text' class='form-control  mydate'></td>"
 						+ "<td>会议结束时间：</td><td><input placeholder='时分按格式手动精确（10:30英文冒号）' name='meet.meeting_end_time' type='text' class='form-control  mydate'></td></tr>"
-						+ "<tr><td>主持人：</td><td><input name='meet.meeting_compere' type='text' class='form-control' placeholder='请输入会议主持人'></td>"
-						+ "<td>记录人：</td><td><input name='meet.meeting_record_human' type='text' class='form-control' placeholder='请输入会议记录人'></td></tr>"
+						+ "<tr><td>主持人：</td><td><select name='meet.meeting_compere' id='compere' style='width: 250px;' class='form-control selectpicker' data-live-search='true' title='请选择主持人'></select></td>"
+						+ "<td>记录人：</td><td><select name='meet.meeting_record_human' id='Recorder' style='width: 250px;' class='form-control selectpicker' data-live-search='true' title='请选择记录人'></select></td></tr>"
 						+ "<tr><td>参与人员</td><td colspan='3'><input name='meet.meeting_join_human' type='text' class='form-control' placeholder='请输入会议参与人员'></td></tr>"
 						+ "<tr><td>请假人员</td><td colspan='3'><input name='meet.meeting_leave_human' type='text' class='form-control' placeholder='请输入会议请假人员'></td></tr>"
 						+ "<tr><td>会议内容</td><td colspan='3'><textarea name='meet.meeting_content' rows='10' class='form-control' placeholder='请输入会议内容'></textarea></td></tr>"
@@ -95,6 +97,50 @@ var createConfirm = function() {
 						minDate : '1900/01/01 00:00', // 设置最小日期
 						maxDate : '2030/01/01 00:00', // 设置最大日期
 					});
+					// select加入option
+					$
+							.ajax({
+								url : '/xsjsglxt/team/Staff_getMeetCompere',
+								type : 'GET',
+								success : function(data) {
+									var result = JSON.parse(data);
+									for (var int = 0; int < result.length; int++) {
+										document.getElementById("compere").innerHTML = document
+												.getElementById("compere").innerHTML
+												+ "<option value='"
+												+ result[int].xsjsglxt_name
+												+ "'>"
+												+ result[int].xsjsglxt_name
+												+ "</option>";
+									}
+									$
+											.ajax({
+												url : '/xsjsglxt/team/Staff_getMeetRecorder',
+												type : 'GET',
+												success : function(data) {
+													var result = JSON
+															.parse(data);
+													for (var int = 0; int < result.length; int++) {
+														document
+																.getElementById("Recorder").innerHTML = document
+																.getElementById("Recorder").innerHTML
+																+ "<option value='"
+																+ result[int].xsjsglxt_name
+																+ "'>"
+																+ result[int].xsjsglxt_name
+																+ "</option>";
+													}
+													$(".selectpicker")
+															.selectpicker(
+																	'refresh');
+													$(".selectpicker")
+															.selectpicker(
+																	'render')
+												}
+											})
+
+								}
+							})
 				}
 			});
 }

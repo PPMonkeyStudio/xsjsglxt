@@ -75,15 +75,15 @@ public interface SenceDao {
 
 	public xsjsglxt_briefdetails getBriefdetailsByCaseID(xsjsglxt_case case1);
 
-	public xsjsglxt_lost getLostByCaseID(xsjsglxt_case case1);
+	public List<xsjsglxt_lost> getLostByCaseID(xsjsglxt_case case1);
 
-	public xsjsglxt_lost_mobilephone getLost_mobilephoneByCaseId(xsjsglxt_case case1);
+	public List<xsjsglxt_lost_mobilephone> getLost_mobilephoneByCaseId(xsjsglxt_case case1);
 
-	public xsjsglxt_resevidence getResevidenceByCaseId(xsjsglxt_case case1);
+	public List<xsjsglxt_resevidence> getResevidenceByCaseId(xsjsglxt_case case1);
 
-	public xsjsglxt_lost_computer getLost_computerByCaseId(xsjsglxt_case case1);
+	public List<xsjsglxt_lost_computer> getLost_computerByCaseId(xsjsglxt_case case1);
 
-	public xsjsglxt_picture getPicturtByCaseId(xsjsglxt_case case1);
+	public List<xsjsglxt_picture> getPicturtByCaseId(xsjsglxt_case case1);
 
 	/*
 	 * 修改信息
@@ -111,5 +111,7 @@ public interface SenceDao {
 	public xsjsglxt_circulation get_circulation_Byresevidenceid(xsjsglxt_resevidence resevidence);
 
 	public xsjsglxt_breakecase get_breakecase_Byxsjsglxt_case_id(xsjsglxt_case xsjsglxt_case);
+
+	public void updateFileName(String newFileName, String filePosition, xsjsglxt_case case1);
 
 }

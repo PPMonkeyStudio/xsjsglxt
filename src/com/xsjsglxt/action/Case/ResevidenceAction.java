@@ -19,6 +19,8 @@ import com.xsjsglxt.domain.DTO.Case.ResevidenceInformationDTO;
 import com.xsjsglxt.domain.VO.Case.page_list_ResevidenceInformationVO;
 import com.xsjsglxt.service.Case.ResevidenceService;
 
+import util.TeamUtil;
+
 public class ResevidenceAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
 	private ResevidenceService resevidenceService;
 
@@ -46,10 +48,12 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 		http_response.setContentType("text/html;charset=utf-8");
 		String result = null;
 		try {
+			String uuid = TeamUtil.getUuid();
+			resevidence.setXsjsglxt_resevidence_id(uuid);
 			resevidence.setResevidence_case(case1.getXsjsglxt_case_id());
 			System.out.println("asuf" + resevidence.getResevidence_case());
 			resevidenceService.saveResevidence(resevidence);
-			result = "success";
+			result = uuid;
 		} catch (Exception e) {
 			e.printStackTrace();
 			result = "error";
@@ -119,7 +123,7 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 
 		http_response.setContentType("text/html;charset=utf-8");
 
-		http_response.getWriter().write(gson.toJson("success"));
+		http_response.getWriter().write("success");
 
 	}
 
@@ -145,6 +149,14 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 				e.printStackTrace();
 			}
 		}
+	}
+
+	/**
+	 * @author 孙毅 
+	 * 	修改流转状态
+	 */
+	public void updateStatus() {
+		resevidenceService.updateStatus(resevidence);
 	}
 
 	@Override

@@ -4,6 +4,7 @@ public class xsjsglxt_scheduling {
 	private String xsjsglxt_scheduling_id; // 排班表id
 	private String scheduling_leader; // 带班领导
 	private String scheduling_main; // 主班
+	private String scheduling_main_technology; // 技术`主班
 	private String scheduling_assistant; // 副班
 	private String scheduling_time; // 时间
 	private String scheduling_gmt_create;
@@ -15,6 +16,14 @@ public class xsjsglxt_scheduling {
 				+ scheduling_leader + ", scheduling_main=" + scheduling_main + ", scheduling_assistant="
 				+ scheduling_assistant + ", scheduling_gmt_create=" + scheduling_gmt_create
 				+ ", scheduling_gmt_modified=" + scheduling_gmt_modified + "]";
+	}
+
+	public String getScheduling_main_technology() {
+		return scheduling_main_technology;
+	}
+
+	public void setScheduling_main_technology(String scheduling_main_technology) {
+		this.scheduling_main_technology = scheduling_main_technology;
 	}
 
 	public String getScheduling_time() {

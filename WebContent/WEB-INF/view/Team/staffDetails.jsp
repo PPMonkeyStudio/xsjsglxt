@@ -34,7 +34,10 @@
 				class="btn btn-default button button_return ">
 				<i class="fa fa-reply"></i> 返回列表
 			</button>
-			
+			<button type="button" class="btn btn-default button button_change"
+				onclick="staff_print()">
+				<i class="fa fa-pencil"></i>打印人员
+			</button>
 			</div>
 			<div class="panel-body staff_body">
 				<div style="width: 1000px; margin: 0 auto;">
@@ -51,9 +54,9 @@
 								<td class="odd"><label class="staff_info_label">警号</label></td>
 								<td class="even">{{ returnData.staff_alarm }}</td>
 
-								<td class="odd" rowspan="4"></td>
-								<td class="even" rowspan="4"><a class="photo-show"
+								<td class="odd" rowspan="4" style="border-right: 0px"><a class="photo-show"
 									id="photo-show"></a></td>
+								<td class="even" rowspan="4" style="border-left: 0px"></td>
 							</tr>
 							<tr>
 								<td class="odd"><label class="staff_info_label">身份证号</label></td>
@@ -404,6 +407,7 @@
 			yearOffset : 0, // 年偏差
 			timepicker : false, // 关闭时间选项
 			format : 'Y-m-d', // 格式化日期年-月-日
+
 			minDate : '1900/01/01', // 设置最小日期
 			maxDate : '2100/01/01', // 设置最大日期
 		});

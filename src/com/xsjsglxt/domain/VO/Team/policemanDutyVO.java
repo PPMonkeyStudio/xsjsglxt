@@ -8,6 +8,7 @@ public class policemanDutyVO {
 	private List<xsjsglxt_staff> staffLeader; // 带班领导
 	private List<xsjsglxt_staff> staffMain; // 主班
 	private List<xsjsglxt_staff> staffAssitant; // 副班
+	private List<xsjsglxt_staff> staffMainTech;
 
 	public List<xsjsglxt_staff> getStaffLeader() {
 		return staffLeader;
@@ -15,6 +16,14 @@ public class policemanDutyVO {
 
 	public void setStaffLeader(List<xsjsglxt_staff> staffLeader) {
 		this.staffLeader = staffLeader;
+	}
+
+	public List<xsjsglxt_staff> getStaffMainTech() {
+		return staffMainTech;
+	}
+
+	public void setStaffMainTech(List<xsjsglxt_staff> staffMainTech) {
+		this.staffMainTech = staffMainTech;
 	}
 
 	public List<xsjsglxt_staff> getStaffMain() {

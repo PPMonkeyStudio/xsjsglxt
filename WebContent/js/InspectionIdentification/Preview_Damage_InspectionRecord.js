@@ -15,10 +15,30 @@ function Preview_Damage_InspectionRecord(obj) {
 				columnClass : 'col-md-12',
 				theme : 'modern',
 				onOpenBefore : function() {
+					/*
+					 * 删除按钮
+					 */
+					if (userPowerDTO.user_check_power_modified == true) {
+
+					} else {
+						var userCheckPowers = document
+								.getElementsByClassName("user_check_power");
+						var userCheckPowers_Length = userCheckPowers.length;
+						for (var userCheckPowersNum = 0; userCheckPowersNum < userCheckPowers_Length; userCheckPowersNum++) {
+							userCheckPowers[0].parentNode
+									.removeChild(userCheckPowers[0]);
+						}
+					}
+					/*
+					 * 
+					 */
 				},
 				onContentReady : function() {
-
-					var con = '<hr>' + '<div style="text-align: left;">' + '<table  class="table table-bordered" style="text-align: center;">' + '<tbody>' + '<tr>'
+					var con = '<hr>'
+							+ '<div style="text-align: left;">'
+							+ '<table  class="table table-bordered" style="text-align: center;">'
+							+ '<tbody>'
+							+ '<tr>'
 							+ '<td style="width:200px;">姓名：</td><td style="width:150px;">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.damage_inspection_record_name
 							+ '</td><td style="width:200px;">性别：</td><td style="width:150px;">'
@@ -58,8 +78,9 @@ function Preview_Damage_InspectionRecord(obj) {
 							+ '</tr>'
 							+ '<tr>'
 							+ '<td>检验所见：</td><td colspan="5">'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.damage_inspection_record_inspection.replace(/\n/g, "<br>").replace(
-									/ /g, "&nbsp;")
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.damage_inspection_record_inspection
+									.replace(/\n/g, "<br>").replace(/ /g,
+											"&nbsp;")
 							+ '</td>'
 							+ '</tr>'
 							+ '<tr>'
@@ -89,7 +110,12 @@ function Preview_Damage_InspectionRecord(obj) {
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.xsjsglxt_damage_inspection_record_id
 							+ '_'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.damage_inspection_record_picture3
-							+ '" onclick="()" style="width:300px; margin:20px auto;"  />' + '</p>' + '</td>' + '</tr>' + '</tbody>' + '</table>' + '<hr>' + '</div>';
+							+ '" onclick="()" style="width:300px; margin:20px auto;"  />'
+							+ '</p>'
+							+ '</td>'
+							+ '</tr>'
+							+ '</tbody>'
+							+ '</table>' + '<hr>' + '</div>';
 					jc.setContentAppend(con);
 					/*
 					 * 
@@ -108,7 +134,7 @@ function Preview_Damage_InspectionRecord(obj) {
 						}
 					},
 					'修改' : {
-						btnClass : 'btn-orange',
+						btnClass : 'btn-orange user_check_power',
 						action : function() {
 							Update_Damage_InspectionRecord(obj);
 						}

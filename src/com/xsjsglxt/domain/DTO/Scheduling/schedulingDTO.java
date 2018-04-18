@@ -2,19 +2,29 @@ package com.xsjsglxt.domain.DTO.Scheduling;
 
 public class schedulingDTO {
 	private String xsjsglxt_scheduling_id;
-	private String scheduling_leader;
-	private String scheduling_main;
-	private String scheduling_assistant;
-	private String scheduling_time;
+	private String scheduling_leader; // 带班领导
+	private String scheduling_main; // 侦查民警主班
+	private String scheduling_mainTec; // 技术民警主班
+	private String scheduling_assistant;// 辅班
+	private String scheduling_time; // 值班日期
 
 	public schedulingDTO(String xsjsglxt_scheduling_id, String scheduling_leader, String scheduling_main,
-			String scheduling_assistant, String scheduling_time) {
+			String scheduling_mainTec, String scheduling_assistant, String scheduling_time) {
 		super();
 		this.xsjsglxt_scheduling_id = xsjsglxt_scheduling_id;
 		this.scheduling_leader = scheduling_leader;
 		this.scheduling_main = scheduling_main;
+		this.scheduling_mainTec = scheduling_mainTec;
 		this.scheduling_assistant = scheduling_assistant;
 		this.scheduling_time = scheduling_time;
+	}
+
+	public String getScheduling_mainTec() {
+		return scheduling_mainTec;
+	}
+
+	public void setScheduling_mainTec(String scheduling_mainTec) {
+		this.scheduling_mainTec = scheduling_mainTec;
 	}
 
 	public String getXsjsglxt_scheduling_id() {

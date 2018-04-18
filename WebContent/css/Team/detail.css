@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @CHARSET "UTF-8";
 html, body, ul, li, div, h3, a, span, input, button, p, label, details,
 	figure, figcaption, article, table, tr, th, td {
@@ -129,15 +130,15 @@ a:hover {
 }
 /* 长表格样式start */
 .long_tableBox {
-	margin:50px 0 50px 40px;
+	margin:50px 40px 50px 40px;
 }
 /*表格加上滚动条 start  */
-.long_tb{
+/* .long_tb{
 	width:100%;
 	height:200px;
 	overflow-x:scroll;
 	overflow-y:scroll;
-}
+} */
 .longBoxs table {
 	width:101%;
 	margin: 0px;
@@ -165,5 +166,4 @@ a:hover {
 	text-indent: 10px;
 }
 /*学习经历模态框end  */
-
 /* 长表格样式end */
