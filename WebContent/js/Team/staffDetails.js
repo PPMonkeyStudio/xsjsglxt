@@ -21,8 +21,8 @@ window.onload = function() {
 }
 //打印详细
 function staff_print(){
-	window.open = "/xsjsglxt/team/Staff_intoPrintPage?xsjsglxt_staff_id="
-		+ staff_id;
+	window.open("/xsjsglxt/team/Staff_intoPrintPage?id="
+			+ staff_id);
 }
 function get_staffDetails(staff_id) {
 	console.log("b1");

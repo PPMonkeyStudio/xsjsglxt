@@ -1,3 +1,8 @@
+/*===================案件和现场id记录======================= */
+//便以全局使用
+var case1_id = $('#case1_id').val();
+var sence_id = "";
+
 $(function () {
 	var makeMeans = document.getElementsByName('case1.case_makeMeans')[0];
 	makeMeans.addEventListener("change", setSectionmMethod(makeMeans.selectedIndex), false);
@@ -21,13 +26,8 @@ $(function () {
 		}
 	});
 
-	/*===================案件和现场id记录======================= */
-	var case1_id = $('#case1_id').val();
-	var sence_id = "";
 	/*=======================页面数据初始化开始================== */
-	$.post('/xsjsglxt/case/Case_SecneInformationOne', {
-		"case1.xsjsglxt_case_id": case1_id,
-	}, function (xhr_data) {
+	$.post('/xsjsglxt/case/Case_SecneInformationOne', { "case1.xsjsglxt_case_id": case1_id }, function (xhr_data) {
 		sence_id = xhr_data.sence.xsjsglxt_snece_id;
 		$('#caseDetails').find('select, input,textarea').each(function () {
 			var name = $(this).attr('name');
@@ -54,7 +54,7 @@ $(function () {
 							  <td>${resevidence[index]["resevidence_extractTime"]}</td>
 							  <td>${resevidence[index]["resevidence_extractPerson"]}</td>
 							  <td>${resevidence[index]["resevidence_type"]}</td>
-							  <td><i id="circulation" class="fa fa fa-random"></i>&nbsp&nbsp<i id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`;
+							  <td><i id="circulation" class="fa fa fa-random"></i>&nbsp&nbsp<i title="修改" id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i title="删除" id="delete" class="fa fa-trash-o"></i></td></tr>`;
 			}
 			return tr_str;
 		});
@@ -452,7 +452,6 @@ $(function () {
 //修改使用的post
 function mdPost(URL, DATA, TYPE) {
 	$.post(URL, DATA, function (msg) {
-		console.log(msg);
 		if (msg == 'success') {
 			toastr.info("操作成功");
 			//将案件信息找到并刷新一遍表格中的信息
@@ -544,6 +543,28 @@ function mdPost(URL, DATA, TYPE) {
 		}
 	}, 'text');
 }
+
+//页面文件上传使用
+function upload(button_element) {
+	$('#file_upload').trigger('click');
+	upLoadFile.element = button_element;
+}
+var upLoadFile = function () {
+	var file_name = $('#file_upload').val();
+	console.log(file_name);
+	if (file_name != "") {
+		var ele_type = upLoadFile.element;
+		toastr.success('<div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">75%</div>', '上传中。。。', { timeOut: 50000 })
+		console.log(ele_type);
+		/*switch (ele_type.id) {
+			case value:
+				break;
+			default:
+				break;
+		}*/
+	}
+}
+
 
 //修改基站
 $('.modify_station').click(function () {
@@ -740,9 +761,7 @@ function loadCaseDetail_case_change(url, case1_id) {
 	/*// 版本二（箭头语法）
 	var convert_FormData_to_json2 = function(formData) {
 		var objData = {};
-
 		formData.forEach((value, key) => objData[key] = value);
-
 		return JSON.stringify(objData);
 	};*/
 	xmlhttp.onreadystatechange = function () {

@@ -27,15 +27,9 @@
 			style="width: 1100px; margin: 20px auto; overflow: inherit; position: relative;">
 			<!--  -->
 			<div class="panel-heading">
-				<h3 class="panel-title">人员详情</h3>
+				<h3 class="panel-title">人员打印</h3>
 			</div>
-			<div style="margin-left:4.5%;">
-			<button onclick="javascript:history.go(-1)" type="button"
-				class="btn btn-default button button_return ">
-				<i class="fa fa-reply"></i> 返回列表
-			</button>
 			
-			</div>
 			<div class="panel-body staff_body">
 				<div style="width: 1000px; margin: 0 auto;">
 					<form id="staffDetails" enctype="multipart/form-data"
