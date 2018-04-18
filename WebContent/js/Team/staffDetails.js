@@ -19,6 +19,11 @@ window.onload = function() {
 	console.log(staff_id);
 	get_staffDetails(staff_id);
 }
+//打印详细
+function staff_print(){
+	window.open("/xsjsglxt/team/Staff_intoPrintPage?id="
+			+ staff_id);
+}
 function get_staffDetails(staff_id) {
 	console.log("b1");
 	var url = "/xsjsglxt/team/Staff_getPolicemanByStaffId?policeman.xsjsglxt_staff_id="

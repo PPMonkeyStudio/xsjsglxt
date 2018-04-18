@@ -117,11 +117,12 @@ var createConfirm = function(event) {
 		}
 	})
 }
-var createConfirm_relive = function(event) {
-	enterRelivePage();
+function  createConfirm_relive(event) {
+	console.log("进入修改");
+	enterRelivePage(event);
 }
-function enterRelivePage(){
-	window.location = "/xsjsglxt/team/Staff_inptUpdate?xsjsglxt_staff_id="
+function enterRelivePage(event){
+	window.location = "/xsjsglxt/team/Staff_intoUpdate?xsjsglxt_staff_id="
 		+ event.id;
 }
 var deletePoliceman = function(event) {

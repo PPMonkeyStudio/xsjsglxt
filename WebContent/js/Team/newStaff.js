@@ -54,19 +54,7 @@ function loadstaffDetail_staff_change(url) {
 			prized_ajax(id);
 			against_ajax(id);
 			furlough_ajax(id);
-			$.confirm({
-				title : '新建成功!',
-				content : '新建成功!',
-				buttons : {
-
-					返回列表 : function() {
-						window.location.href='http://localhost:8080/xsjsglxt/team/Staff_page_staffList';
-					},
-					再次新建 :function() {
-						window.location.href='http://localhost:8080/xsjsglxt/team/Staff_page_newStaff';
-					}
-				}
-			});
+			window.location.href='http://localhost:8080/xsjsglxt/team/Staff_page_staffList';
 		}
 	};
 	xmlhttp.open("post", url, true);

@@ -18,6 +18,8 @@ table tr td{
 }
 .even{
 width:190px;
+text-indent: 20px;
+overflow:hidden;
 	}
 .longBoxs table{
 	table-layout:fixed;/* 只有定义了表格的布局算法为fixed，下面td的定义才能起作用。 */
@@ -52,21 +54,19 @@ a:hover {
 }
 
 .staff_body {
-	float: right;
-	width: 90%;
+	/* float: right;
+	width: 90%; */
 }
 /*功能按钮  */
 .button_return {
-	position: absolute;
-	top: 70px;
-	left: 25px;
+	margin-right:15px;
 }
 
-.button_change {
+/* .button_change {
 	position: absolute;
 	top: 120px;
 	left: 25px;
-}
+} */
 
 #staffDetails label {
 	width: 120px;
@@ -129,15 +129,15 @@ a:hover {
 }
 /* 长表格样式start */
 .long_tableBox {
-	margin:50px 0 50px 0;
+	margin:50px 40px 50px 40px;
 }
 /*表格加上滚动条 start  */
-.long_tb{
+/* .long_tb{
 	width:100%;
 	height:200px;
 	overflow-x:scroll;
 	overflow-y:scroll;
-}
+} */
 .longBoxs table {
 	width:101%;
 	margin: 0px;
@@ -165,5 +165,4 @@ a:hover {
 	text-indent: 10px;
 }
 /*学习经历模态框end  */
-
 /* 长表格样式end */
