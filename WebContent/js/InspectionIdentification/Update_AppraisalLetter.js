@@ -3,7 +3,7 @@ function Update_AppraisalLetter() {
 	var jc = $
 			.confirm({
 				icon : 'fa fa-ban',
-				title : '不受理委托鉴定',
+				title : '修改鉴定书',
 				content : '',
 				type : 'red',
 				columnClass : 'col-md-12',
