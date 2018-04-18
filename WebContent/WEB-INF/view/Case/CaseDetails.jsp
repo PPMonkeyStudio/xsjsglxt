@@ -131,24 +131,6 @@ i {
 					<hr>
 					<table>
 						<tr>
-							<td width="85">移动基站</td>
-							<td><input name="sence.snece_mobileStation"
-								placeholder="基站号" class="form-control" type="text"> <input
-								name="sence.snece_mobileVillage" placeholder="小区号"
-								style="margin-top: 6px;" class="form-control" type="text"></td>
-							<td width="85">联通基站</td>
-							<td><input name="sence.snece_unicomSwitchboard"
-								placeholder="交换机" class="form-control" type="text"> <input
-								name="sence.snece_unicomVillage" placeholder="小区号"
-								style="margin-top: 6px;" class="form-control" type="text"></td>
-							<td width="85">电信基站</td>
-							<td><input name="sence.snece_telecomStation"
-								placeholder="基站号" width="40%;" class="form-control" type="text"></td>
-						</tr>
-					</table>
-					<hr>
-					<table>
-						<tr>
 							<td style="height: 74;">报案人基本情况</td>
 							<td colspan="5"><input style=" width: 24%;float:left; "
 								name="case1.case_reporterName" class="form-control" type="text"
@@ -343,6 +325,24 @@ i {
 					</table>
 					<hr>
 					<table>
+						<tr>
+							<td width="85">移动基站</td>
+							<td><input name="sence.snece_mobileStation"
+								placeholder="基站号" class="form-control" type="text"> <input
+								name="sence.snece_mobileVillage" placeholder="小区号"
+								style="margin-top: 6px;" class="form-control" type="text"></td>
+							<td width="85">联通基站</td>
+							<td><input name="sence.snece_unicomSwitchboard"
+								placeholder="交换机" class="form-control" type="text"> <input
+								name="sence.snece_unicomVillage" placeholder="小区号"
+								style="margin-top: 6px;" class="form-control" type="text"></td>
+							<td width="85">电信基站</td>
+							<td><input name="sence.snece_telecomStation"
+								placeholder="基站号" width="40%;" class="form-control" type="text"></td>
+						</tr>
+					</table>
+					<hr>
+					<table>
 						<tbody>
 							<tr>
 								<td>
@@ -490,36 +490,73 @@ i {
 							</tr>
 						</tbody>
 					</table>
-					<!-- <table>
+				</form>
+				<table style="width: 40%;float: left;">
+					<thead>
 						<tr>
-							<td align="right">
-								按钮触发模态框 <button style="margin-top: 6px;" type="button"
-									class="btn btn-default" data-toggle="modal"
-									data-target="#station">
-									<i class="fa fa-plus-square"></i> 基站修改
-								</button>
+							<td><i class="fa fa-spinner fa-pulse load_remind"></i></td>
+							<td colspan="2"><div class="progress">
+									<div class="progress-bar" role="progressbar" aria-valuenow="75"
+										aria-valuemin="0" aria-valuemax="100" style="width: 75%;">
+										75%</div>
+								</div></td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><h4>物证图</h4></td>
+							<td>
 								<button style="margin-top: 6px;" type="button"
-									class="btn btn-default" data-toggle="modal"
-									data-target="#LossOfGoods">
-									<i class="fa fa-plus-square"></i> 添加损失物品
+									class="btn btn-default" onclick="upload(this)">
+									<i class="fa fa-upload"></i> 上传
 								</button>
+								<p></p>
+							</td>
+							<td>
 								<button style="margin-top: 6px;" type="button"
-									class="btn btn-default" data-toggle="modal"
-									data-target="#picture">
-									<i class="fa fa-plus-square"></i> 添加照片
-								</button>
-								<button style="margin-top: 6px;" type="button"
-									class="btn btn-default" data-toggle="modal"
-									data-target="#evidence">
-									<i class="fa fa-plus-square"></i> 添加物证
+									class="btn btn-default">
+									<i class="fa fa-download"></i> 下载
 								</button>
 							</td>
 						</tr>
-					</table> -->
-				</form>
+						<tr>
+							<td><h4>笔录文件</h4></td>
+							<td>
+								<button style="margin-top: 6px;" type="button"
+									class="btn btn-default" onclick="upload(this)">
+									<i class="fa fa-upload"></i> 上传
+								</button>
+							</td>
+							<td>
+								<button style="margin-top: 6px;" type="button"
+									class="btn btn-default">
+									<i class="fa fa-download"></i> 下载
+								</button>
+							</td>
+						</tr>
+						<tr>
+							<td><h4>物证图片</h4></td>
+							<td>
+								<button style="margin-top: 6px;" type="button"
+									class="btn btn-default" onclick="upload(this)">
+									<i class="fa fa-upload"></i> 上传
+								</button>
+							</td>
+							<td>
+								<button style="margin-top: 6px;" type="button"
+									class="btn btn-default">
+									<i class="fa fa-download"></i> 下载
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
+	<input id="file_upload" accept="image/*" onchange="upLoadFile()"
+		style="filter:alpha(opacity=0);opacity: 0;width: 0;height: 0;"
+		type="file">
 	<input type="hidden" id="case1_id" value="<s:property value="id"/>">
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
@@ -662,7 +699,7 @@ i {
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" id="modify_lost"
+					<button type="button" id="modify_lost" style="display: none;"
 						class="btn btn-primary modify_lost">修改</button>
 					<button type="button" id="add_lost"
 						class="btn btn-primary add_lost">提交</button>
@@ -723,7 +760,7 @@ i {
 				</div>
 				<div class="modal-footer">
 					<button type="button" id="modify_mobilephone"
-						class="btn btn-primary modify_mobilephone">修改</button>
+						style="display: none;" class="btn btn-primary modify_mobilephone">修改</button>
 					<button type="button" id="add_mobilephone"
 						class="btn btn-primary add_mobilephone">提交</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -781,7 +818,7 @@ i {
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary modify_computer"
-						id="modify_computer">修改</button>
+						style="display: none;" id="modify_computer">修改</button>
 					<button type="button" class="btn btn-primary add_computer"
 						id="add_computer">提交</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -830,7 +867,7 @@ i {
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" id="modify_picture"
+					<button type="button" id="modify_picture" style="display: none;"
 						class="btn btn-primary modify_picture">修改</button>
 					<button type="button" id="add_picture"
 						class="btn btn-primary add_picture">添加照片</button>
