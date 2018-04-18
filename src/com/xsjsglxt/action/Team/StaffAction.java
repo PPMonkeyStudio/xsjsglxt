@@ -48,6 +48,11 @@ public class StaffAction extends ActionSupport {
 		return "intoUpdate";
 	}
 
+	// 进入打印页
+	public String intoPrintPage() {
+		return "intoPrintPage";
+	}
+
 	// 通过职位分类人员
 	public void getSchedulingStaff() {
 		policemanDutyVO dutyVO = staffService.getSchedulingStaff();
