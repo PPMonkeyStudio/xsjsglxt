@@ -297,7 +297,7 @@ function List_EntrustmentBook(pageIndex) {
 			.open(
 					"POST",
 					"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_getListCheckEntrustmentBookByPage",
-					true);
+					false);
 
 	var formData = new FormData();
 	/*

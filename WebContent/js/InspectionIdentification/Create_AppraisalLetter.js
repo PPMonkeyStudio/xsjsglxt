@@ -34,13 +34,13 @@ function Create_AppraisalLetter(obj) {
 						+ '<td colspan="4"><textarea class="form-control" style="resize: none;height:100px;" name="appraisalLetter.appraisal_letter_expert_opinion" ></textarea></td>'
 						+ '</tr>'
 						+ '<tr>'
-						+ '<td rowspan="2">鉴定人：</td><td>姓名：</td><td><input class="form-control" name="appraisalLetter."/></td><td>职务：</td><td><input class="form-control" name="appraisalLetter."/></td>'
+						+ '<td rowspan="2">鉴定人：</td><td>姓名：</td><td><input class="form-control" name="appraisalLetter.appraisal_letter_man1_name"/></td><td>职务：</td><td><input class="form-control" name="appraisalLetter.appraisal_letter_man1_duty"/></td>'
 						+ '</tr>'
 						+ '<tr>'
-						+ '<td>姓名：</td><td><input class="form-control" name="appraisalLetter."/></td><td>职务：</td><td><input class="form-control" name="appraisalLetter."/></td>'
+						+ '<td>姓名：</td><td><input class="form-control" name="appraisalLetter.appraisal_letter_man2_name"/></td><td>职务：</td><td><input class="form-control" name="appraisalLetter.appraisal_letter_man2_duty"/></td>'
 						+ '</tr>'
 						+ '<tr>'
-						+ '<td >授权签字人：</td><td>姓名：</td><td><input class="form-control" name="appraisalLetter."/></td><td>职务：</td><td><input class="form-control" name="appraisalLetter."/></td>'
+						+ '<td >授权签字人：</td><td>姓名：</td><td><input class="form-control" name="appraisalLetter.appraisal_letter_authorization_name"/></td><td>职务：</td><td><input class="form-control" name="appraisalLetter.appraisal_letter_authorization_duty"/></td>'
 						+ '</tr>' + '</tbody></table></form>' + '<hr>',
 				type : 'blue',
 				columnClass : 'col-md-12',

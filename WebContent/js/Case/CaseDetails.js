@@ -558,9 +558,7 @@ var upLoadFile = function () {
 		console.log(ele_type);
 		/*switch (ele_type.id) {
 			case value:
-
 				break;
-
 			default:
 				break;
 		}*/
@@ -763,9 +761,7 @@ function loadCaseDetail_case_change(url, case1_id) {
 	/*// 版本二（箭头语法）
 	var convert_FormData_to_json2 = function(formData) {
 		var objData = {};
-
 		formData.forEach((value, key) => objData[key] = value);
-
 		return JSON.stringify(objData);
 	};*/
 	xmlhttp.onreadystatechange = function () {

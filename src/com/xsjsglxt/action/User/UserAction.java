@@ -109,6 +109,7 @@ public class UserAction extends ActionSupport {
 				ActionContext.getContext().getSession().put("user_id", xu.getUser_id());
 				ActionContext.getContext().getSession().put("user_name", xu.getUser_name());
 				ActionContext.getContext().getSession().put("userSession", xu);
+				ActionContext.getContext().getSession().put("user_unit", xu.getUser_units());
 				ActionContext.getContext().getSession().put("user_password", user_password);
 			} else {
 				pw.write("passwordError");
