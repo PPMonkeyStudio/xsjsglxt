@@ -10,64 +10,62 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!---------------------------------------------------------------------------------------------------->
-<!---------------------------------------------------------------------------------------------------->
-<title>案件详情信息</title>
+<title>打印表格</title>
 <link rel="stylesheet" href="<%=basePath%>css/Case/table.css">
 <link rel="stylesheet" href="<%=basePath%>css/Case/Case.css">
 <script type="text/javascript"
 	src="<%=basePath%>js/Case/caseDetails_table.js"></script>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<!--------------------------------------------------------------------------------->
+<script src="<%=basePath%>js/jquery-3.1.1.min.js"></script>
+<script src="<%=basePath%>js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="<%=basePath%>css/bootstrap.min.css">
+<!--------------------------------------------------------------------------------->
+<link rel="stylesheet" href="<%=basePath%>css/bootstrap-select.min.css">
+<script src="<%=basePath%>js/bootstrap-select.js"></script>
+<!--------------------------------------------------------------------------------->
+<link rel="stylesheet"
+	href="<%=basePath%>css/navbar/chartist-custom.css">
+<%-- <link rel="stylesheet" href="<%=basePath%>css/navbar/main.css"> --%>
+<link rel="stylesheet"
+	href="<%=basePath%>css/navbar/font-awesome.min.css">
+<%-- <link rel="stylesheet" href="<%=basePath%>css/navbar/style.css"> --%>
+<link rel="stylesheet" href="<%=basePath%>css/table.css">
+<!--------------------------------------------------------------------------------->
+<link rel="stylesheet" href="<%=basePath%>css/toastr.css" />
+<script src="<%=basePath%>js/toastr.js"></script>
+<!--------------------------------------------------------------------------------->
+<link rel="stylesheet" href="<%=basePath%>css/jquery-confirm.css" />
+<script src="<%=basePath%>js/jquery-confirm.js"></script>
+<!--------------------------------------------------------------------------------->
+<script src="<%=basePath%>js/jquery.bootstrap.wizard.js"></script>
+<script src="<%=basePath%>js/vue.js"></script>
+<script src="<%=basePath%>js/jquery.slimscroll.min.js"></script>
+<script src="<%=basePath%>js/klorofil-common.js"></script>
+<!--------------------------------------------------------------------------------->
+<link rel="stylesheet" href="<%=basePath%>css/jquery.datetimepicker.css" />
+<script type="text/javascript"
+	src="<%=basePath%>js/jquery.datetimepicker.full.js"></script>
 <style type="text/css">
 i {
 	cursor: pointer;
 }
 
 table tr th {
-	border: 1px solid #eee5e5;
+	border: 1px solid black;
 	height: 42px;
 }
 
 table tr td {
-	border: 1px solid #eee5e5;
+	border: 1px solid black;
 	height: 42px;
 }
 </style>
 </head>
 <body>
-	<s:action name="User_navbar" namespace="/user" executeResult="true" />
-
-	<!---------------------------------------------------------------------------------------------------->
-	<!---------------------------------------------------------------------------------------------------->
-	<!---------------------------------------------------------------------------------------------------->
-	<div style="margin: 80px 0 0 0; float: left; width: 100%;">
-		<div class="panel" style="width: 1300px; margin: 20px auto;">
-			<!--  -->
-			<div class="panel-heading">
-				<h3 class="panel-title" style="display: inline-block;">案件详情信息</h3>
-				<input value="返回列表" class="btn btn-default"
-					onclick="javascript:history.go(-1)" type="button"> <input
-					value="修改案件" class="btn btn-default" type="button"
-					onclick="case_change()"> <input value="打印"
-					class="btn btn-default" type="button" onclick="print_Page()">
-			</div>
-			<div class="panel-body">
-				<!-- 				<div class="operation" style="margin-bottom: 6px;">
-					<button onclick="javascript:history.go(-1)" type="button"
-						class="btn btn-default button button_return">
-						<i class="fa fa-reply"></i> 返回列表
-					</button>
-					<button type="button" class="btn btn-default button button_change"
-						onclick="case_change()">
-						<i class="fa fa-pencil"></i> 修改案件
-					</button>
-					<button type="button" class="btn btn-default button button_del"
-						onclick="case_del()">
-						<i class="fa fa-times"></i> 删除案件
-					</button>
-				</div> -->
-				<table id="tableContent" style="text-align: center; width: 1200px;">
-					<tr>
-						<td colspan="6">案件信息</td>
+<table id="tableContent" style="text-align: center; width: 1200px; margin: 0 auto;">
+					<tr style="border-top:none;border-left:none;border-right:none;">
+						<td colspan="6" style="border-top:none;border-left:none;border-right:none;"><h3>案件信息</h3></td>
 					</tr>
 					<tr>
 						<td>案件名称</td>
@@ -163,8 +161,8 @@ table tr td {
 						<td>填表时间</td>
 						<td>{{ senceInfor.snece_fillTime }}</td>
 					</tr>
-					<tr>
-						<td colspan="6">报案人信息</td>
+					<tr style="border-top:none;border-left:none;border-right:none;">
+						<td colspan="6" style="border-top:none;border-left:none;border-right:none;"><h3>报案人信息</h3></td>
 					</tr>
 					<tr>
 						<td>姓名</td>
@@ -180,8 +178,8 @@ table tr td {
 						<td>家庭地址</td>
 						<td colspan="3">{{ caseInfor.case_reporterAddress }}</td>
 					</tr>
-					<tr>
-						<td colspan="6">基站信息</td>
+					<tr style="border-top:none;border-left:none;border-right:none;">
+						<td colspan="6" style="border-top:none;border-left:none;border-right:none;"><h3>基站信息</h3></td>
 					</tr>
 					<tr>
 						<td>移动基站号</td>
@@ -197,8 +195,8 @@ table tr td {
 						<td>联通小区号</td>
 						<td colspan="2">{{ senceInfor.snece_unicomVillage }}</td>
 					</tr>
-					<tr>
-						<td colspan="6">物证信息</td>
+					<tr style="border-top:none;border-left:none;border-right:none;">
+						<td colspan="6" style="border-top:none;border-left:none;border-right:none;"><h3>物证信息</h3></td>
 					</tr>
 					<tr>
 						<td colspan="2">物证名称</td>
@@ -220,8 +218,8 @@ table tr td {
 						<td colspan="2"></td>
 						<td></td>
 					</tr>
-					<tr>
-						<td colspan="6">丢失物品信息</td>
+					<tr style="border-top:none;border-left:none;border-right:none;">
+						<td colspan="6" style="border-top:none;border-left:none;border-right:none;"><h3>丢失物品信息</h3></td>
 					</tr>
 					<tr>
 						<td colspan="3">丢失物品名称</td>
@@ -237,8 +235,8 @@ table tr td {
 						<td colspan="3"></td>
 						<td colspan="3"></td>
 					</tr>
-					<tr>
-						<td colspan="6">丢失电脑信息</td>
+					<tr style="border-top:none;border-left:none;border-right:none;">
+						<td colspan="6" style="border-top:none;border-left:none;border-right:none;"><h3>丢失电脑信息</h3></td>
 					</tr>
 					<tr>
 						<td>电脑品牌</td>
@@ -260,8 +258,8 @@ table tr td {
 						<td colspan="2"></td>
 						<td colspan="2"></td>
 					</tr>
-					<tr>
-						<td colspan="6">丢失手机信息</td>
+					<tr style="border-top:none;border-left:none;border-right:none;">
+						<td colspan="6" style="border-top:none;border-left:none;border-right:none;"><h3>丢失手机信息</h3></td>
 					</tr>
 					<tr>
 						<td>手机号码</td>
@@ -283,8 +281,8 @@ table tr td {
 						<td colspan="2"></td>
 						<td colspan="2"></td>
 					</tr>
-					<tr>
-						<td colspan="6">照片信息</td>
+					<tr style="border-top:none;border-left:none;border-right:none;">
+						<td colspan="6" style="border-top:none;border-left:none;border-right:none;"><h3>照片信息</h3></td>
 					</tr>
 					<tr>
 						<td colspan="2">所属光盘编号</td>
@@ -305,25 +303,4 @@ table tr td {
 					</tr>
 				</table>
 </body>
-<script type="text/javascript">
-	$.datetimepicker.setLocale('ch');
-	$('.mydate').datetimepicker({
-		yearStart : 1990, // 设置最小年份
-		yearEnd : 2050, // 设置最大年份
-		yearOffset : 0, // 年偏差
-		timepicker : false, // 关闭时间选项
-		format : 'Y-m-d', // 格式化日期年-月-日
-		minDate : '1990/01/01', // 设置最小日期
-		maxDate : '2030/01/01', // 设置最大日期
-	});
-	$('.mydate_minute').datetimepicker({
-		yearStart : 1990, // 设置最小年份
-		yearEnd : 2050, // 设置最大年份
-		yearOffset : 0, // 年偏差
-		timepicker : true, // 关闭时间选项
-		format : 'Y-m-d H:i', // 格式化日期年-月-日
-		minDate : '1990/01/01', // 设置最小日期
-		maxDate : '2030/01/01', // 设置最大日期
-	});
-</script>
 </html>

@@ -281,6 +281,10 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 		return "page_intoDetails";
 	}
 
+	public String page_printPage() {
+		return "page_printPage";
+	}
+
 	/*
 	 * 跳转页面
 	 */
