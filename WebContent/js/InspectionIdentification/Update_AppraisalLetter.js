@@ -1,4 +1,4 @@
-function Update_AppraisalLetter() {
+function Update_AppraisalLetter(obj) {
 	var json_list = EntrustmentBook_json;
 	var jc = $
 			.confirm({
@@ -136,7 +136,7 @@ function Update_AppraisalLetter() {
 						}
 					},
 					'返回' : function() {
-						Preview_NotAcceptanceEntrustmentInform(obj);
+						Preview_AppraisalLetter(obj);
 					}
 				}
 			});
