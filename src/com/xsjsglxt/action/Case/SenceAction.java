@@ -351,9 +351,11 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 			String fillPerson = (String) ActionContext.getContext().getSession().get("user_name");
 
 			sence.setSnece_fillPerson(fillPerson);
+			String unit = (String) ActionContext.getContext().getSession().get("user_unit");
+			System.out.println(unit);
+			sence.setSnece_fillUnit(unit);
 			sence.setSnece_fillTime(TeamUtil.getStringSecond());
 			senceService.save(sence);
-
 			briefdetails.setBriefdetails_case(case1.getXsjsglxt_case_id());
 			senceService.save(briefdetails);
 
