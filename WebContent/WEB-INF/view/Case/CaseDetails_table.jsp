@@ -25,11 +25,13 @@ i {
 table tr th {
 	border: 1px solid #eee5e5;
 	height: 42px;
+	word-break:break-all;	/* 设置自动换行切不挤压其他td */
 }
 
 table tr td {
 	border: 1px solid #eee5e5;
 	height: 42px;
+	word-break:break-all;	/* 设置自动换行切不挤压其他td */
 }
 </style>
 </head>
