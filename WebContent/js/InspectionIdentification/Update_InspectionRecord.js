@@ -3,9 +3,13 @@ function Update_InspectionRecord(obj) {
 	var jc = $
 			.confirm({
 				icon : 'fa fa-ban',
+<<<<<<< HEAD
 				title : '修改检验记录',
+=======
+				title : '检验记录（修改）',
+>>>>>>> origin/ZB
 				content : '',
-				type : 'red',
+				type : 'blue',
 				columnClass : 'col-md-12',
 				onOpenBefore : function() {
 				},

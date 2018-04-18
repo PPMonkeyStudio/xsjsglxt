@@ -59,19 +59,22 @@ function Preview_InspectionRecord(obj) {
 					var con = '<div style="margin:0 20px 0 0;"><hr>'
 							+ '<table  class="table table-bordered" style="text-align: center;">'
 							+ '<tbody>'
-							+ '<tr><td style="width:200px;">案（事）件简要情况</td><td  style="text-align: left !important;">'
+							+ '<tr>'
+							+ '<td style="width:200px;">案（事）件简要情况</td><td  style="text-align: left !important;">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_simple_case_situation
 									.replace(/\n/g, "<br>").replace(/ /g,
 											"&nbsp;")
 							+ '</td>'
 							+ '</tr>'
-							+ '<tr><td >检材情况</td><td style="text-align: left !important;>'
+							+ '<tr>'
+							+ '<td >检材情况</td><td style="text-align: left !important;">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_check_material_situation
 									.replace(/\n/g, "<br>").replace(/ /g,
 											"&nbsp;")
 							+ '</td>'
 							+ '</tr>'
-							+ '<tr><td >样本情况</td><td style="text-align: left !important;>'
+							+ '<tr>'
+							+ '<td>样本情况</td><td style="text-align: left !important;">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_sample_situation
 									.replace(/\n/g, "<br>").replace(/ /g,
 											"&nbsp;")
