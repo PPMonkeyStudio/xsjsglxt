@@ -346,7 +346,7 @@ i {
 						<tbody>
 							<tr>
 								<td>
-									<div class="panel evidence-info">
+									<div class="panel" id="evidence-info">
 										<div class="panel-heading">
 											<h3 class="panel-title">物证信息</h3>
 										</div>
@@ -355,7 +355,8 @@ i {
 												data-toggle="modal" data-target="#evidence">
 												<i class="fa fa-plus-square"></i> 添加物证
 											</button>
-											<table style="width: 100%;" class="table table-striped">
+											<table style="width: 100%;"
+												class="table table-striped table-condensed">
 												<thead>
 													<tr>
 														<th>物证名称</th>
@@ -374,17 +375,18 @@ i {
 							</tr>
 							<tr>
 								<td>
-									<div class="panel loseGoods-info">
+									<div class="panel" id="loseGoods-info">
 										<div class="panel-heading">
 											<h3 class="panel-title">丢失物品信息</h3>
 										</div>
 										<div class="panel-body">
 											<button style="margin-top: 6px;" type="button"
 												class="btn btn-default" data-toggle="modal"
-												data-target="#LossOfGoods">
+												data-target="#lost">
 												<i class="fa fa-plus-square"></i> 添加损失物品
 											</button>
-											<table style="width: 100%;" class="table table-striped">
+											<table style="width: 100%;"
+												class="table table-striped table-condensed">
 												<thead>
 													<tr>
 														<th>丢失物名称</th>
@@ -408,7 +410,7 @@ i {
 										<div class="panel-body">
 											<button style="margin-top: 6px;" type="button"
 												class="btn btn-default" data-toggle="modal"
-												data-target="#LossOfGoods">
+												data-target="#lost_computer">
 												<i class="fa fa-plus-square"></i> 添加损失电脑
 											</button>
 											<table style="width: 100%;"
@@ -431,17 +433,18 @@ i {
 							<tr>
 							<tr>
 								<td>
-									<div class="panel LostMobilephone-info">
+									<div class="panel" id="LostMobilephone-info">
 										<div class="panel-heading">
 											<h3 class="panel-title">丢失手机信息</h3>
 										</div>
 										<div class="panel-body">
 											<button style="margin-top: 6px;" type="button"
 												class="btn btn-default" data-toggle="modal"
-												data-target="#LossOfGoods">
+												data-target="#lost_mobilephone">
 												<i class="fa fa-plus-square"></i> 添加损失手机信息
 											</button>
-											<table style="width: 100%;" class="table table-striped">
+											<table style="width: 100%;"
+												class="table table-striped table-condensed">
 												<thead>
 													<tr>
 														<th>手机号码</th>
@@ -459,7 +462,7 @@ i {
 							</tr>
 							<tr>
 								<td>
-									<div class="panel picture-info">
+									<div class="panel" id="picture-info">
 										<div class="panel-heading">
 											<h3 class="panel-title">照片信息</h3>
 										</div>
@@ -469,7 +472,8 @@ i {
 												data-target="#picture">
 												<i class="fa fa-plus-square"></i> 添加照片
 											</button>
-											<table style="width: 100%;" class="table table-striped">
+											<table style="width: 100%;"
+												class="table table-striped table-condensed">
 												<thead>
 													<tr>
 														<th>所属影像光盘</th>
@@ -486,14 +490,14 @@ i {
 							</tr>
 						</tbody>
 					</table>
-					<table>
+					<!-- <table>
 						<tr>
 							<td align="right">
-								<!-- 按钮触发模态框 --> <!-- <button style="margin-top: 6px;" type="button"
+								按钮触发模态框 <button style="margin-top: 6px;" type="button"
 									class="btn btn-default" data-toggle="modal"
 									data-target="#station">
 									<i class="fa fa-plus-square"></i> 基站修改
-								</button> -->
+								</button>
 								<button style="margin-top: 6px;" type="button"
 									class="btn btn-default" data-toggle="modal"
 									data-target="#LossOfGoods">
@@ -511,7 +515,7 @@ i {
 								</button>
 							</td>
 						</tr>
-					</table>
+					</table> -->
 				</form>
 			</div>
 		</div>
@@ -532,7 +536,7 @@ i {
 				</div>
 				<div class="modal-body">
 					<div class="panel-body">
-						<form id="lost_evidence" action="">
+						<form action="">
 							<table>
 								<tbody>
 									<!-- <tr>
@@ -549,15 +553,15 @@ i {
 									<tr>
 										<td>物证名称:</td>
 										<td><input name="resevidence.resevidence_name"
-											class="form-control" value="" type="text"></td>
+											refresh="text" class="form-control" value="" type="text"></td>
 										<td>提取部位:</td>
 										<td><input name="resevidence.resevidence_extractPart"
-											class="form-control" value="" type="text"></td>
+											refresh="text" class="form-control" value="" type="text"></td>
 									</tr>
 									<tr>
 										<td>提取方法:</td>
 										<td><select name="resevidence.resevidence_extractMethod"
-											class="form-control">
+											refresh="text" class="form-control">
 												<option value="">请输入提取方法</option>
 												<option value="粉末显现">粉末显现</option>
 												<option value="茚三酮熏显">茚三酮熏显</option>
@@ -570,17 +574,17 @@ i {
 										</select></td>
 										<td>提取数量:</td>
 										<td><input name="resevidence.resevidence_extractNumber"
-											class="form-control" value="" type="text"></td>
+											refresh="text" class="form-control" value="" type="text"></td>
 									</tr>
 									<tr>
 
 										<td>提取人:</td>
 										<td><select name="resevidence.resevidence_extractPerson"
-											class="selectpicker form-control" multiple
-											data-live-search="true" data-dropup-auto="false" title="请选择"></select></td>
+											refresh="selectpicker" class="selectpicker form-control"
+											multiple data-dropup-auto="false" title="请选择"></select></td>
 										<td>物证类型:</td>
 										<td><select name="resevidence.resevidence_type"
-											class="form-control">
+											refresh="text" class="form-control">
 												<option value="" selected>请选择物证类型</option>
 												<option value="手印痕迹">手印痕迹</option>
 												<option value="足迹痕迹">足迹痕迹</option>
@@ -594,18 +598,17 @@ i {
 
 										<td>提取日期:</td>
 										<td><input name="resevidence.resevidence_extractTime"
-											class="form-control mydate" type="text"></td>
+											refresh="text" class="form-control mydate" type="text"></td>
 										<td>提取单位:</td>
 										<td colspan="3"><input
-											name="resevidence.resevidence_extractUnit"
-											class="form-control" value="安源分局刑事科学技术室" size="30"
-											maxlength="19" type="text"></td>
+											name="resevidence.resevidence_extractUnit" type="text"
+											refresh="fixed" class="form-control" value="安源分局刑事科学技术室"></td>
 									</tr>
 									<tr>
 										<td>备注:</td>
 										<td colspan="3"><textarea
 												name="resevidence.resevidence_remarks" class="form-control"
-												placeholder="请填写" rows="2"></textarea></td>
+												refresh="text" placeholder="请填写" rows="2"></textarea></td>
 									</tr>
 								</tbody>
 							</table>
@@ -613,7 +616,10 @@ i {
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary add_evidence">提交</button>
+					<button style="display:none;" type="button" id="modify_evidence"
+						class="btn btn-primary modify_evidence">修改</button>
+					<button type="button" id="add_evidence"
+						class="btn btn-primary add_evidence">提交</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 
 				</div>
@@ -626,7 +632,7 @@ i {
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!-- 添加丢失物品-模态框（Modal） -->
-	<div class="modal fade" id="LossOfGoods" tabindex="-1" role="dialog"
+	<div class="modal fade" id="lost" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
@@ -637,76 +643,77 @@ i {
 				</div>
 				<div class="modal-body">
 					<div class="panel-body">
-						<form id="Lost_Goods" action="">
+						<form action="">
 							<table align="center">
-								<thead>
-									<tr>
-										<td><div
-												style="padding-left:10px; float: left; width: 16%;">丢失类型</div>
-											<select class="form-control" onchange="ChangeItemType(this)"
-											style="width: 84%;">
-												<option value="" selected="selected">请选择</option>
-												<option value="lost_goods">物品</option>
-												<option value="lost_computer">电脑</option>
-												<option value="lost_mobilephone">手机</option>
-										</select></td>
-									</tr>
-								</thead>
-								<tbody class="lost_goods" style="display: none;">
+								<tbody class="lost_goods">
 									<tr>
 										<td><div style="padding-top:6px; float: left;width: 15%;">物品名称</div>
 											<input name="lost.lost_name" class="form-control" type="text"
-											style="width: 85%;"></td>
+											refresh="text" style="width: 85%;"></td>
 									</tr>
 									<tr>
 										<td><div style="padding-top:6px; float: left;width: 15%;">备注</div>
-											<textarea style="margin-top: 6px;width: 85%;"
+											<textarea style="margin-top: 6px;width: 85%;" refresh="text"
 												name="lost.lost_remarks" class="form-control" rows="2"></textarea></td>
 									</tr>
 								</tbody>
-								<tbody class="lost_mobilephone" style="display: none;">
+							</table>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="modify_lost"
+						class="btn btn-primary modify_lost">修改</button>
+					<button type="button" id="add_lost"
+						class="btn btn-primary add_lost">提交</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+	<!---------------------------------------------------------------------------------------------------->
+	<!---------------------------------------------------------------------------------------------------->
+	<!---------------------------------------------------------------------------------------------------->
+	<!-- 添加丢失手机模态框（Modal） -->
+	<div class="modal fade" id="lost_mobilephone" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">添加丢失手机</h4>
+				</div>
+				<div class="modal-body">
+					<div class="panel-body">
+						<form action="">
+							<table align="center">
+								<tbody class="lost_mobilephone">
 									<tr>
 										<td><div style="padding-top:6px; float: left;width: 15%;">手机号码</div>
 											<input name="lost_mobilephone.lost_mobilephone_phone"
-											class="form-control" type="text" style="width: 85%;"></td>
+											refresh="text" class="form-control" type="text"
+											style="width: 85%;"></td>
 									</tr>
 									<tr>
 										<td><div style="padding-top:6px; float: left;width: 15%;">手机串号</div>
 											<input name="lost_mobilephone.lost_mobilephone_IMEI"
-											class="form-control" type="text" style="width: 85%;"></td>
+											refresh="text" class="form-control" type="text"
+											style="width: 85%;"></td>
 									</tr>
 									<tr>
 										<td><div style="padding-top:6px; float: left;width: 15%;">手机特征</div>
 											<input name="lost_mobilephone.lost_mobilephone_feature"
-											class="form-control" type="text" style="width: 85%;"></td>
+											refresh="text" class="form-control" type="text"
+											style="width: 85%;"></td>
 									</tr>
 									<tr>
 										<td><div style="padding-top:6px; float: left;width: 15%;">备注</div>
 											<textarea name="lost_mobilephone.lost_mobilephone_remarks"
-												style="margin-top: 6px;width: 85%;" class="form-control"
-												rows="2"></textarea></td>
-									</tr>
-								</tbody>
-								<tbody class="lost_computer" style="display: none;">
-									<tr>
-										<td><div style="padding-top:6px; float: left;width: 15%;">电脑品牌</div>
-											<input name="lost_computer.lost_computer_brand"
-											class="form-control" type="text" style="width: 85%;"></td>
-									</tr>
-									<tr>
-										<td><div style="padding-top:6px; float: left;width: 15%;">上网账号</div>
-											<input name="lost_computer.lost_computer_internetAccount"
-											class="form-control" type="text" style="width: 85%;"></td>
-									</tr>
-									<tr>
-										<td><div style="padding-top:6px; float: left;width: 15%;">MAC地址</div>
-											<input name="lost_computer.lost_computer_MAC"
-											class="form-control" type="text" style="width: 85%;"></td>
-									</tr>
-									<tr>
-										<td><div style="padding-top:6px; float: left;width: 15%;">备注</div>
-											<textarea name="lost_computer.lost_computer_remarks"
-												style="margin-top: 6px;width: 85%;" name=""
+												refresh="text" style="margin-top: 6px;width: 85%;"
 												class="form-control" rows="2"></textarea></td>
 									</tr>
 								</tbody>
@@ -715,9 +722,69 @@ i {
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary add_goods">提交</button>
+					<button type="button" id="modify_mobilephone"
+						class="btn btn-primary modify_mobilephone">修改</button>
+					<button type="button" id="add_mobilephone"
+						class="btn btn-primary add_mobilephone">提交</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+	<!---------------------------------------------------------------------------------------------------->
+	<!---------------------------------------------------------------------------------------------------->
+	<!---------------------------------------------------------------------------------------------------->
+	<!-- 添加丢失电脑-模态框（Modal） -->
+	<div class="modal fade" id="lost_computer" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">添加丢失电脑</h4>
+				</div>
+				<div class="modal-body">
+					<div class="panel-body">
+						<form action="">
+							<table align="center">
+								<tbody class="lost_computer">
+									<tr>
+										<td><div style="padding-top:6px; float: left;width: 15%;">电脑品牌</div>
+											<input name="lost_computer.lost_computer_brand"
+											refresh="text" class="form-control" type="text"
+											style="width: 85%;"></td>
+									</tr>
+									<tr>
+										<td><div style="padding-top:6px; float: left;width: 15%;">上网账号</div>
+											<input name="lost_computer.lost_computer_internetAccount"
+											refresh="text" class="form-control" type="text"
+											style="width: 85%;"></td>
+									</tr>
+									<tr>
+										<td><div style="padding-top:6px; float: left;width: 15%;">MAC地址</div>
+											<input name="lost_computer.lost_computer_MAC" refresh="text"
+											class="form-control" type="text" style="width: 85%;"></td>
+									</tr>
+									<tr>
+										<td><div style="padding-top:6px; float: left;width: 15%;">备注</div>
+											<textarea name="lost_computer.lost_computer_remarks"
+												refresh="text" style="margin-top: 6px;width: 85%;"
+												class="form-control" rows="2"></textarea></td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary modify_computer"
+						id="modify_computer">修改</button>
+					<button type="button" class="btn btn-primary add_computer"
+						id="add_computer">提交</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->
@@ -735,7 +802,7 @@ i {
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">痕迹物证单</h4>
+					<h4 class="modal-title" id="myModalLabel">添加照片</h4>
 				</div>
 				<div class="modal-body">
 					<div class="panel-body">
@@ -745,24 +812,16 @@ i {
 									<tr>
 										<td><div style="padding-top:6px; float: left;width: 15%;">光盘编号</div>
 											<input name="image.xsjsglxt_image_id" class="form-control"
-											type="text" style="width: 85%;"></td>
+											refresh="text" type="text" style="width: 85%;"></td>
 									</tr>
-									<%-- <tr>
-										<td><div style="padding-top:6px; float: left;width: 15%;">所属案件</div>
-											<div style="width: 85%; float: right; margin-top: 6px;">
-												<select style="witdh:100%;"
-													class="form-control selectpicker" data-live-search="true"
-													name="case1.xsjsglxt_case_id"></select>
-											</div></td>
-									</tr> --%>
 									<tr>
 										<td><div style="padding-top:6px; float: left;width: 15%;">照片编号</div>
 											<input name="picture.picture_identifier" class="form-control"
-											type="text" style="width: 85%;"></td>
+											refresh="text" type="text" style="width: 85%;"></td>
 									</tr>
 									<tr>
 										<td><div style=" padding-top:6px;float: left;width: 15%;">备注</div>
-											<textarea style="margin-top: 6px;width: 85%;"
+											<textarea style="margin-top: 6px;width: 85%;" refresh="text"
 												name="picture.picture_remarks" class="form-control" rows="2"></textarea></td>
 									</tr>
 								</tbody>
@@ -771,7 +830,10 @@ i {
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary add_picture">添加照片</button>
+					<button type="button" id="modify_picture"
+						class="btn btn-primary modify_picture">修改</button>
+					<button type="button" id="add_picture"
+						class="btn btn-primary add_picture">添加照片</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 				</div>
 			</div>
