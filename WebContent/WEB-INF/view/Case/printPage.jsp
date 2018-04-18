@@ -63,7 +63,7 @@ table tr td {
 </style>
 </head>
 <body>
-<table id="tableContent" style="text-align: center; width: 1200px; margin: 0 auto;">
+<table id="tableContent" style="text-align: center; width: 1200px; margin: 0 auto; margin-bottom: 20px;">
 					<tr style="border-top:none;border-left:none;border-right:none;">
 						<td colspan="6" style="border-top:none;border-left:none;border-right:none;"><h3>案件信息</h3></td>
 					</tr>
