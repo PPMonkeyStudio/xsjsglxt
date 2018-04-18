@@ -1,17 +1,10 @@
-<<<<<<< HEAD
-function Update_AppraisalLetter() {
-=======
 function Update_AppraisalLetter(obj) {
->>>>>>> origin/ZB
+
 	var json_list = EntrustmentBook_json;
 	var jc = $
 			.confirm({
 				icon : 'fa fa-ban',
-<<<<<<< HEAD
-				title : '修改鉴定书',
-=======
 				title : '不受理委托鉴定',
->>>>>>> origin/ZB
 				content : '',
 				type : 'red',
 				columnClass : 'col-md-12',
@@ -144,11 +137,7 @@ function Update_AppraisalLetter(obj) {
 						}
 					},
 					'返回' : function() {
-<<<<<<< HEAD
-						Preview_NotAcceptanceEntrustmentInform(obj);
-=======
 						Preview_AppraisalLetter(obj);
->>>>>>> origin/ZB
 					}
 				}
 			});
