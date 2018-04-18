@@ -336,7 +336,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		int i = 2;
 		int x = -1;
 
-		System.out.println("length:" + positionFile.length);
 
 		/*
 		 * 获取路径
@@ -348,16 +347,10 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			lj = props.getProperty("lj");
 			// lj=F:\\
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 		String path = lj + "xsjsglxt/damage/";
 		// 将文件以及文件名格式化
-		for (String string : fileName) {
-			System.out.println("string:" + string);
-		}
-		System.out.println("-------------------");
-		System.out.println("name:" + fileName);
 		file = file(file, positionFile, "damage");
 		fileName = fileName(fileName, positionFile, "damage");
 		if (!("申请已受理".equals(entrustmentBookState(
@@ -431,7 +424,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			lj = props.getProperty("lj");
 			// lj=F:\\
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 
@@ -643,9 +635,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		// 将文件以及文件名格式化
 		updateDeathFile = file(updateDeathFile, positionFile, "death");
 		updateDeathFileName = fileName(updateDeathFileName, positionFile, "death");
-		for (String string : updateDeathFileName) {
-			System.out.println("name:" + string);
-		}
 		xsjsglxt_death_inspection_record death_inspection_record = new xsjsglxt_death_inspection_record();
 		death_inspection_record = inspectionIdentificationDao
 				.getDeathInspectionRecordOwnId(deathInspectionRecord.getXsjsglxt_death_inspection_record_id());
@@ -830,7 +819,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
 			lj = props.getProperty("lj");
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 		params.putAll(mapTranceCheckBook(id));
@@ -865,7 +853,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
 			lj = props.getProperty("lj");
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 		params.putAll(mapIdentifiederCaseConfirmBook(id));
@@ -900,7 +887,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
 			lj = props.getProperty("lj");
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 		params.putAll(mapAcceptanceIdentifieder(id));
@@ -935,7 +921,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
 			lj = props.getProperty("lj");
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 		params.putAll(mapNotAcceptanceIdentifieder(id));
@@ -993,7 +978,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
 			lj = props.getProperty("lj");
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 		params.putAll(mapInspectionRecord(id));
@@ -1070,7 +1054,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
 			lj = props.getProperty("lj");
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 		params.putAll(mapDeathInspectionRecord(id));
@@ -1127,7 +1110,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
 			lj = props.getProperty("lj");
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 		params.putAll(mapDamageInspectionRecord(id));
@@ -1163,7 +1145,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
 			lj = props.getProperty("lj");
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 		params.putAll(mapAppraisalLetter(id));
@@ -1363,7 +1344,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
 			lj = props.getProperty("lj");
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 		xsjsglxt_damage_inspection_record xsjsglxt_damage_inspection_record = new xsjsglxt_damage_inspection_record();
@@ -1538,7 +1518,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
 			lj = props.getProperty("lj");
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 		xsjsglxt_death_inspection_record xsjsglxt_death_inspection_record = new xsjsglxt_death_inspection_record();
@@ -2855,7 +2834,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
 			lj = props.getProperty("lj");
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 		String path = lj + "xsjsglxt/damage/";
@@ -2931,7 +2909,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
 			lj = props.getProperty("lj");
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 		String path = lj + "xsjsglxt/death/";
