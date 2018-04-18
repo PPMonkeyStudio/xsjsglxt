@@ -3,10 +3,10 @@ $(function () {
 
 	$.post('/xsjsglxt/case/Case_getSenceInquestId', function (xhr) {
 		$('input[name="sence.snece_inquestId"]').val(xhr);
-		//接警时间改变时勘验编号相应改变
+		// 接警时间改变时勘验编号相应改变
 		$('input[name="case1.case_receivingAlarmDate"]').blur(function () {
 			var time = new Date($(this).val());
-			//toastr.danger("请输入正确的时间");
+			// toastr.danger("请输入正确的时间");
 			if (time == "Invalid Date") {
 				toastr.error("请输入正确的时间");
 				return;
@@ -59,7 +59,7 @@ $(function () {
 
 
 
-//-----------------------------------------------------------案件
+// -----------------------------------------------------------案件
 var sectionCase0 = new Array();
 sectionCase0[0] = ["请选择案件子类别"]
 
@@ -106,7 +106,7 @@ function setSectionCase(chapter) {
 	if (chapter > 3 && chapter != 13) {
 		$('.other_case').hide();
 	} else if (chapter == 13) {
-		//清空other_case的select元素，改为input元素
+		// 清空other_case的select元素，改为input元素
 		$('.main_case').next().remove();
 		$('.main_case').after('<input style="margin-top: 6px; width:65%;" class="other_case form-control" type="text">');
 	} else {
@@ -120,13 +120,15 @@ function setSectionCase(chapter) {
 			$('.other_case').append("<option value='" + chapterCaseArr[chapter][2][i] + "'>" + chapterCaseArr[chapter][2][i] + "</option>");
 		}
 	}
-	$('.case_name').val(new Date().toLocaleDateString() + $('.case_place').val() + $('.main_case').val());
+
+	$('.case_name').val('"' + $('input[name="case1.case_receivingAlarmDate"]').val() + '"' + $('.case_place').val() + $('.main_case').val());
+
 	$('.other_case').unbind().change(function () {
-		$('.case_name').val(new Date().toLocaleDateString() + $('.case_place').val() + $('.other_case').val());
+		$('.case_name').val('"' + $('input[name="case1.case_receivingAlarmDate"]').val() + '"' + $('.case_place').val() + $('.other_case').val());
 	})
 }
 
-//-----------------------------------------------------------作案手段
+// -----------------------------------------------------------作案手段
 var sectionMethod0 = new Array();
 sectionMethod0[0] = ["具体手段"]
 
@@ -225,7 +227,7 @@ function setSectionmMethod(chapter) {
 	}
 }
 
-//-----------------------------------------------------------处所
+// -----------------------------------------------------------处所
 var sectionAddress0 = new Array();
 sectionAddress0[0] = ["具体处所"]
 var sectionAddress1 = new Array();
@@ -282,7 +284,7 @@ function setSectionmAddress(chapter) {
 	}
 }
 
-//-------------------------------------------------立案与否
+// -------------------------------------------------立案与否
 function buildCase_chose(obj) {
 	$('input[name="case1.case_register"]').val($(obj).val());
 }

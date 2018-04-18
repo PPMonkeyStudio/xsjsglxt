@@ -25,6 +25,7 @@ li a {
 <body>
 	<div id="sidebar-nav" class="sidebar"
 		style="width: 160px; background-color: #13599d;">
+
 		<div class="sidebar-scroll">
 			<nav>
 			<ul class="nav" id="technology">

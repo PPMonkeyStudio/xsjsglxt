@@ -513,7 +513,7 @@ public class SenceDaoImpl implements SenceDao {
 	}
 
 	@Override
-	public xsjsglxt_lost getLostByCaseID(xsjsglxt_case case1) {
+	public List<xsjsglxt_lost> getLostByCaseID(xsjsglxt_case case1) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
@@ -521,13 +521,13 @@ public class SenceDaoImpl implements SenceDao {
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_lost lost = (xsjsglxt_lost) query.uniqueResult();
+		List<xsjsglxt_lost> lost = query.list();
 
 		return lost;
 	}
 
 	@Override
-	public xsjsglxt_lost_mobilephone getLost_mobilephoneByCaseId(xsjsglxt_case case1) {
+	public List<xsjsglxt_lost_mobilephone> getLost_mobilephoneByCaseId(xsjsglxt_case case1) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
@@ -536,13 +536,13 @@ public class SenceDaoImpl implements SenceDao {
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_lost_mobilephone lost_mobilephone = (xsjsglxt_lost_mobilephone) query.uniqueResult();
+		List<xsjsglxt_lost_mobilephone> lost_mobilephone = query.list();
 
 		return lost_mobilephone;
 	}
 
 	@Override
-	public xsjsglxt_resevidence getResevidenceByCaseId(xsjsglxt_case case1) {
+	public List<xsjsglxt_resevidence> getResevidenceByCaseId(xsjsglxt_case case1) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
@@ -551,13 +551,13 @@ public class SenceDaoImpl implements SenceDao {
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_resevidence resevidence = (xsjsglxt_resevidence) query.uniqueResult();
+		List<xsjsglxt_resevidence> resevidence = query.list();
 
 		return resevidence;
 	}
 
 	@Override
-	public xsjsglxt_lost_computer getLost_computerByCaseId(xsjsglxt_case case1) {
+	public List<xsjsglxt_lost_computer> getLost_computerByCaseId(xsjsglxt_case case1) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
@@ -566,13 +566,13 @@ public class SenceDaoImpl implements SenceDao {
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_lost_computer lost_computer = (xsjsglxt_lost_computer) query.uniqueResult();
+		List<xsjsglxt_lost_computer> lost_computer = query.list();
 
 		return lost_computer;
 	}
 
 	@Override
-	public xsjsglxt_picture getPicturtByCaseId(xsjsglxt_case case1) {
+	public List<xsjsglxt_picture> getPicturtByCaseId(xsjsglxt_case case1) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
@@ -580,7 +580,7 @@ public class SenceDaoImpl implements SenceDao {
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_picture picture = (xsjsglxt_picture) query.uniqueResult();
+		List<xsjsglxt_picture> picture = query.list();
 
 		return picture;
 	}
@@ -735,6 +735,28 @@ public class SenceDaoImpl implements SenceDao {
 		xsjsglxt_breakecase breakecase = (xsjsglxt_breakecase) query.uniqueResult();
 
 		return breakecase;
+	}
+
+	@Override
+	public void updateFileName(String newFileName, String filePosition, xsjsglxt_case case1) {
+		// TODO Auto-generated method stub
+		String hql = "";
+		switch (filePosition) {
+		case "1":
+			hql = hql + "update xsjsglxt_case set case_imageFile = '" + newFileName + "' where xsjsglxt_case_id ='"
+					+ case1.getXsjsglxt_case_id() + "'";
+			break;
+		case "2":
+			hql = hql + "update xsjsglxt_case set case_writeFile = '" + newFileName + "' where xsjsglxt_case_id ='"
+					+ case1.getXsjsglxt_case_id() + "'";
+			break;
+		case "3":
+			hql = hql + "update xsjsglxt_case set case_senceImageFile = '" + newFileName + "' where xsjsglxt_case_id ='"
+					+ case1.getXsjsglxt_case_id() + "'";
+			break;
+		}
+		Session session = this.getSession();
+		session.createQuery(hql).executeUpdate();
 	}
 
 }
