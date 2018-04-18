@@ -13,6 +13,7 @@
 			<result name="page_CaseMerger">/WEB-INF/view/Case/CaseMerger.jsp</result>
 			<result name="page_CaseMaterials">/WEB-INF/view/Case/CaseMaterials.jsp</result>
 			<result name="page_Handle">/WEB-INF/view/Case/HandleList.jsp</result>
+			<result name="page_intoDetails">/WEB-INF/view/Case/CaseDetails_table.jsp</result>
 		</action>
 		<action name="Resevidence_*" class="com.xsjsglxt.action.Case.ResevidenceAction"
 			method="{1}">
