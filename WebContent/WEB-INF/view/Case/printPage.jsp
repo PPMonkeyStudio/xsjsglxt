@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
@@ -87,7 +86,7 @@ table tr td {
 						<td>{{ caseInfor.case_extentOfInjury }}</td>
 						<td>是否立案</td>
 						<td v-if="caseInfor.case_register == '1'">是</td>
-						<td v-if="caseInfor.case_register == '2'">否</td>
+						<td v-if="caseInfor.case_register == '0'">否</td>
 					</tr>
 					<tr>
 						<td>天气情况</td>
