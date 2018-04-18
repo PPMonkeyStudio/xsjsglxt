@@ -132,7 +132,7 @@ public class ImageAction extends ActionSupport implements ServletRequestAware, S
 		Gson gson = gsonBuilder.create();
 		imageService.updatePicture(picture);
 		http_response.setContentType("text/html;charset=utf-8");
-		http_response.getWriter().write(gson.toJson("success"));
+		http_response.getWriter().write("success");
 	}
 
 	/*

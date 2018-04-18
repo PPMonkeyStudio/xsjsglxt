@@ -123,7 +123,7 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 
 		http_response.setContentType("text/html;charset=utf-8");
 
-		http_response.getWriter().write(gson.toJson("success"));
+		http_response.getWriter().write("success");
 
 	}
 
@@ -149,6 +149,14 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 				e.printStackTrace();
 			}
 		}
+	}
+
+	/**
+	 * @author 孙毅 
+	 * 	修改流转状态
+	 */
+	public void updateStatus() {
+		resevidenceService.updateStatus(resevidence);
 	}
 
 	@Override

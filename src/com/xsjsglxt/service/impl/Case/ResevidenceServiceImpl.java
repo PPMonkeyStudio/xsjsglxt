@@ -135,4 +135,15 @@ public class ResevidenceServiceImpl implements ResevidenceService {
 		resevidenceDao.updateResevidenceIn(resevidence);
 	}
 
+	/**
+	 * @author 孙毅
+	 * 修改流转状态
+	 */
+
+	@Override
+	public void updateStatus(xsjsglxt_resevidence resevidence) {
+		// TODO Auto-generated method stub
+		resevidenceDao.updateStatus(resevidence);
+	}
+
 }

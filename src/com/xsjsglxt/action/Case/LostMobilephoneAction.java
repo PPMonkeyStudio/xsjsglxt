@@ -91,7 +91,7 @@ public class LostMobilephoneAction extends ActionSupport implements ServletReque
 		Gson gson = gsonBuilder.create();
 		lostMobilephoneService.updateParallel(lost_mobilephone);
 		http_response.setContentType("text/html;charset=utf-8");
-		http_response.getWriter().write(gson.toJson("success"));
+		http_response.getWriter().write("success");
 	}
 
 	/*
