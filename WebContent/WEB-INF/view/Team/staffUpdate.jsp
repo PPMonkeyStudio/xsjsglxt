@@ -36,7 +36,7 @@
 				</button>
 				<button type="button" class="btn btn-default button button_change"
 					onclick="staff_relive()">
-					<i class="fa fa-pencil"></i> 修改人员
+					<i class="fa fa-pencil"></i> 保存
 				</button>
 
 			</div>
@@ -152,9 +152,9 @@
 										<option>副中队长</option>
 										<option>侦查民警</option>
 										<option>技术民警</option>
-										<option>法医</option>
+										<option>法医民警</option>
+										<option>内勤民警</option>
 										<option>辅警</option>
-										<option>内勤</option>
 								</select></td>
 
 								<td><label class="staff_info_label">入警时间</label></td>
@@ -1111,7 +1111,7 @@
 					<button type="button" class="btn btn-default "
 						onclick="clear_iquery()" data-dismiss="modal">清空</button>
 					<button type="button" class="btn btn-primary"
-						onclick="relive_family()" data-dismiss='modal'>修改</button>
+						onclick="relive_family()" data-dismiss='modal'>保存</button>
 				</div>
 			</div>
 		</div>
