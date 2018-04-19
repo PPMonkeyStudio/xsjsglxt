@@ -3,6 +3,7 @@ function add_oneStudy() {
 	console.log("学习经历添加");
 	console.log(staff_id);
 	// 添加一条数据
+	var staffStudent_evection_val = $(".staffStudent_evection").val();
 	var staffStudent_address_val = $(".staffStudent_address").val();
 	var staffStudent_startTime_val = $(".staffStudent_startTime").val();
 	var staffStudent_stopTime_val = $(".staffStudent_stopTime").val();
@@ -13,6 +14,7 @@ function add_oneStudy() {
 				url : "/xsjsglxt/team/StaffStudent_saveStudents?students.staffStudent_staff="
 						+ staff_id,
 				data : {
+					"students[0].staffStudent_evection" : staffStudent_evection_val,
 					"students[0].staffStudent_address" : staffStudent_address_val,
 					"students[0].staffStudent_startTime" : staffStudent_startTime_val,
 					"students[0].staffStudent_stopTime" : staffStudent_stopTime_val,
@@ -35,6 +37,7 @@ function add_oneWork() {
 	var staffWork_startTime_val = $(".staffWork_startTime").val();
 	var staffWork_stopTime_val = $(".staffWork_stopTime").val();
 	var staffWork_remarks_val = $(".staffWork_remarks").val();
+	
 	$.ajax({
 		type : "POST",
 		url : "/xsjsglxt/team/StaffWork_saveWorks?works.staffWork_staff="

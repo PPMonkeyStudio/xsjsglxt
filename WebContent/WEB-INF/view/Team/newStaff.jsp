@@ -31,14 +31,14 @@
 				<h3 class="panel-title">新建人员</h3>
 			</div>
 			<div style="margin-left: 5%;">
-			<button onclick="javascript:history.go(-1)" type="button"
-				class="btn btn-default button button_return " >
-				<i class="fa fa-reply"></i> 返回列表
-			</button>
-			<button type="button" class="btn btn-default button button_change"
-				onclick="staff_change()">
-				<i class="fa fa-pencil"></i> 新建人员
-			</button>
+				<button onclick="javascript:history.go(-1)" type="button"
+					class="btn btn-default button button_return ">
+					<i class="fa fa-reply"></i> 返回列表
+				</button>
+				<button type="button" class="btn btn-default button button_change"
+					onclick="staff_change()">
+					<i class="fa fa-pencil"></i> 新建人员
+				</button>
 			</div>
 			<div class="panel-body staff_body">
 				<div style="width: 1000px; margin: 0 auto;">
@@ -124,14 +124,14 @@
 								<td><label class="staff_info_label">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label></td>
 								<td><label style="float: left; width: 50px;"
 									class="fancy-radio person_radio"> <input
-										name="sex_content" onclick=changeSex_man(this) type="radio"
-										value="男"> <span> <i></i>男
+										name="policeman.xsjsglxt_sex" type="radio" value="男">
+										<span> <i></i>男
 									</span>
 								</label> <label style="float: left; width: 50px; margin-left: 10px;"
-									class="fancy-radio "> <input name="sex_content"
-										onclick=changeSex_woman(this) type="radio" value="女">
+									class="fancy-radio "> <input
+										name="policeman.xsjsglxt_sex" type="radio" value="女">
 										<span><i></i>女</span>
-								</label> <input type="hidden" name="policeman.xsjsglxt_sex" id="sex"></td>
+								</label></td>
 
 							</tr>
 							<tr>
@@ -150,9 +150,10 @@
 										<option>副中队长</option>
 										<option>侦查民警</option>
 										<option>技术民警</option>
-										<option>法医</option>
+										<option>法医民警</option>
+
+										<option>内勤民警</option>
 										<option>辅警</option>
-										<option>内勤</option>
 								</select></td>
 								<td><label class="staff_info_label">入警时间</label></td>
 								<td><input name="policeman.staff_thePoliceTime"
@@ -190,15 +191,14 @@
 								<td class="staff_appliactionFormTime_label"
 									style="display: none;"><label class="staff_info_label">提交申请书</label></td>
 								<td class="staff_appliactionFormTime" style="display: none;"><input
-									placeholder="时间"
-									name="policeman.staff_appliactionFormTime"
+									placeholder="时间" name="policeman.staff_appliactionFormTime"
 									class="staff_appliactionFormTime form-control" type="text"></td>
 								<td class="staff_delevopObjectTime_label" style="display: none;"><label
 									class="staff_info_label">发展对象</label></td>
 								<td class="staff_delevopObjectTime" style="display: none;">
 									<input name="policeman.staff_delevopObjectTime"
-									placeholder="时间"
-									class="staff_delevopObjectTime form-control" type="text">
+									placeholder="时间" class="staff_delevopObjectTime form-control"
+									type="text">
 								</td>
 
 							</tr>
@@ -232,14 +232,15 @@
 
 							</tr>
 							<tr>
+
+								<td><label class="staff_info_label">家庭地址</label></td>
+								<td colspan="3"><input name="policeman.staff_address"
+									style="width: 590px;" class="form-control" type="text"></td>
 								<td><label style="display: block;">外网邮箱</label></td>
 								<td><input name="policeman.staff_outEmail" type="text"
 									class="form-control" style="margin-top: 6px;"></td>
-								<td><label class="staff_info_label">家庭地址</label></td>
-								<td colspan="3"><input name="policeman.staff_address" width="580px"
-									class="form-control" type="text"></td>
 							</tr>
-							
+
 						</table>
 					</form>
 				</div>
@@ -257,7 +258,8 @@
 								<table id="studyExperience_table">
 									<tbody>
 										<tr class="long_table">
-											<th>学习/出差地点</th>
+											<th>类别</th>
+											<th>地点</th>
 											<th>起始时间</th>
 											<th>结束时间</th>
 											<th>备注</th>
@@ -406,11 +408,11 @@
 								<table id="vocation_table">
 									<tbody>
 										<tr class="long_table">
-											<th>休假事由</th>
-											<th>起始时间时间</th>
-											<th>天数</th>
-											<th>是否销假</th>
+											<th>起始时间</th>
 											<th>销假时间</th>
+											<th>是否销假</th>
+											<th>休假事由</th>
+											<th>天数</th>
 											<th>备注</th>
 											<th>操作</th>
 										</tr>
@@ -446,15 +448,21 @@
 						<table>
 							<tbody>
 								<tr>
+									<td><label class="staff_info_label">类别</label></td>
+									<td><select class="form-control staffStudent_evection">
+											<option>学习</option>
+											<option>出差</option>
+									</select></td>
+								</tr>
+								<tr>
 									<td><label class="staff_info_label">地点</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffStudent_address" name="policeman.staff_birthday"
-										type="text"></td>
+										class="staffStudent_address" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">起始时间</label></td>
 									<td><input style="font-size: 12px;"
-										class=" staffStudent_startTime"></td>
+										class=" staffStudent_startTime" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">结束时间</label></td>
@@ -516,7 +524,7 @@
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">起始时间</label></td>
-									<td><input style="font-size: 12px;"
+									<td><input style="font-size: 12px;" type="text"
 										class="staffWork_startTime"></td>
 								</tr>
 								<tr>
@@ -850,23 +858,17 @@
 
 						<table>
 							<tbody>
-								<tr>
-									<td><label class="staff_info_label">休假事由</label></td>
-									<td><input style="font-size: 12px;"
-										class="staffFurlough_mainContent"
-										name="policeman.staff_birthday" type="text"></td>
-								</tr>
-								<tr>
+							<tr>
 									<td><label class="staff_info_label">起始时间</label></td>
 									<td><input style="font-size: 12px;"
 										class="staffFurlough_startTime"></td>
 								</tr>
 								<tr>
-									<td><label class="staff_info_label">天数</label></td>
-									<td><input type="text" class="staffFurlough_days"
+									<td><label class="staff_info_label">销假时间</label></td>
+									<td><input type="text" class="staffFurlough_stopTime"
 										name="page_list_staffInformation.staff_name" /></td>
 								</tr>
-								<tr>
+									<tr>
 									<td><label class="staff_info_label">是否销假</label></td>
 									<td><select class="staffFurlough_whetherStop form-control">
 											<option>是</option>
@@ -874,10 +876,19 @@
 									</select></td>
 								</tr>
 								<tr>
-									<td><label class="staff_info_label">销假时间</label></td>
-									<td><input type="text" class="staffFurlough_stopTime"
+									<td><label class="staff_info_label">休假事由</label></td>
+									<td><input style="font-size: 12px;"
+										class="staffFurlough_mainContent"
+										name="policeman.staff_birthday" type="text"></td>
+								</tr>
+								
+								<tr>
+									<td><label class="staff_info_label">天数</label></td>
+									<td><input type="text" class="staffFurlough_days"
 										name="page_list_staffInformation.staff_name" /></td>
 								</tr>
+							
+								
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"

@@ -99,7 +99,7 @@ function show_workAjax(staff_id) {
 		if (xmlhttp_work.readyState == 4 && xmlhttp_work.status == 200) {
 			var staff_work = xmlhttp_work.responseText;
 			if(staff_work=="worksIsNull"){
-				$('#wordExperience_table tbody').html("<tr><th>工作地点</th><th>职务</th><th>起始时间</th><th><th>起始时间</th></tr><tr><td></td><td></td><td></td><td></td></tr>");
+				$('#wordExperience_table tbody').html("<tr><th>工作地点</th><th>职务</th><th>起始时间</th><th>起始时间</th></tr><tr><td></td><td></td><td></td><td></td></tr>");
 			}else{
 			console.log(staff_work);
 			staff_work = JSON.parse(staff_work);

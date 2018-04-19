@@ -237,7 +237,7 @@
 
 						<div class="long_tb">
 
-							<table id="family_table" style="width: 150%;">
+							<table id="family_table" >
 
 								<tbody>
 									<tr class="long_table">
