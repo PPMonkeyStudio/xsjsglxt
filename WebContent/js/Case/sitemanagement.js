@@ -6,6 +6,7 @@ var query_data = {
 	"page_list_senceInformation.case_makeTime" : "",
 	"page_list_senceInformation.case_residence" : "",
 	"page_list_senceInformation.case_concreteResidence" : "",
+	"page_list_senceInformation.case_reporterName" : "",
 	"page_list_senceInformation.snece_inquestPerson" : "",
 	"page_list_senceInformation.case_makeMeans" : "",
 	"page_list_senceInformation.case_concreteMakeMeans" : "",
@@ -107,6 +108,7 @@ $(function() {
 
 function get_ListSneceInformationByPageAndSearch(data) {
 	$
+
 			.post(
 					'/xsjsglxt/case/Case_ListSneceInformationByPageAndSearch',
 					data,
@@ -158,6 +160,13 @@ function get_ListSneceInformationByPageAndSearch(data) {
 						// 影藏模态框
 						$('#newQuery').modal('hide')
 					}, 'json')
+}
+
+// 输入框查询事件
+function input_query(params) {
+	query_data[$(params).attr('query_name')] = $(params).val();
+	get_ListSneceInformationByPageAndSearch(query_data);
+	query_data[$(params).attr('query_name')] = '';
 }
 
 // 首页

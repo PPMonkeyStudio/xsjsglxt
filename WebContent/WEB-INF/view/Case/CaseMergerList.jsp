@@ -40,12 +40,25 @@
 					onclick="javascript:location.href='/xsjsglxt/case/Case_page_CaseMerger'">
 					<i class="fa fa-plus-square"></i> 添加案件串并
 				</button>
+				<!--  DELETE -->
+				<button id="delete-parallel" style="margin-left: 15px;"
+					type="button" class="btn btn-default">
+					<i class="fa fa-trash-o"></i> 删除所选破案
+				</button>
+				<input class="form-control" type="text" placeholder="串并名查询"
+					style="float: right; width: 140px; margin-right: 15px;"
+					onkeyup="input_query(this)" name=""
+					query_name="page_list_parallelInformation.parallel_casename">
+				<input class="form-control" type="text" placeholder="串并人查询"
+					style="float: right; width: 140px; margin-right: 15px;"
+					onkeyup="input_query(this)" name=""
+					query_name="page_list_parallelInformation.parallel_person">
 			</div>
 			<div class="panel-body">
 				<table class="table table-hover table-condensed case_table_info">
 					<thead>
 						<tr>
-							<th>序号</th>
+							<th>全选<input type="checkbox" onclick="selectAll(this)"></th>
 							<th>串并号</th>
 							<th>串并名称</th>
 							<th>串并时间</th>
@@ -56,6 +69,19 @@
 					</thead>
 					<tbody>
 					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="8" style="font-size: 12px;" class="page_info"><a
+								onclick="firstPage()"><i class="fa fa-angle-double-left">首页</i>
+							</a>&nbsp&nbsp<a onclick="prePage()"><i class="fa fa-angle-left"></i>上一页
+							</a>&nbsp&nbsp<a onclick="nextPage()">下一页<i
+									class="fa fa-angle-right"></i>
+							</a>&nbsp&nbsp <a onclick="lastPage()">尾页<i
+									class="fa fa-angle-double-right"></i>
+							</a> <br />
+								<p class='info'></p></td>
+						</tr>
+					</tfoot>
 				</table>
 			</div>
 		</div>
@@ -82,7 +108,7 @@
 						</tbody>
 					</table>
 					<form action="">
-						<table>
+						<table style="width: 80%; margin: auto;">
 							<tbody>
 								<tr>
 									<td>串并时间</td>
@@ -348,13 +374,13 @@
 	var panelWidth = documentWidth - 160;
 	var navbarHeight = document.getElementById("navbar").offsetHeight;
 	var panelMargin = navbarHeight + 20;
-	document.getElementById("allPanel").setAttribute("style","width:"+panelWidth+"px; float:right; margin-top:"+panelMargin+"px;");
-	window.onresize = function(){
+	document.getElementById("allPanel").setAttribute("style", "width:" + panelWidth + "px; float:right; margin-top:" + panelMargin + "px;");
+	window.onresize = function() {
 		var documentWidth = document.body.clientWidth;
 		var panelWidth = documentWidth - 160;
 		var navbarHeight = document.getElementById("navbar").offsetHeight;
 		var panelMargin = navbarHeight + 20;
-		document.getElementById("allPanel").setAttribute("style","width:"+panelWidth+"px; float:right; margin-top:"+panelMargin+"px;");
+		document.getElementById("allPanel").setAttribute("style", "width:" + panelWidth + "px; float:right; margin-top:" + panelMargin + "px;");
 	}
 </script>
 </html>
