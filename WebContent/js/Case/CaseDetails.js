@@ -42,13 +42,15 @@ $(function () {
 			}
 			var key1 = name.split('.')[0];
 			var key2 = name.split('.')[1];
-			if ($(this).attr("type") == "checkbox") {
-				if (xhr_data[key1][key2] == 1) {
-					$(this).attr("checked", "checked");
-				}
-			} else
-				$(this).val(xhr_data[key1][key2]);
+			$(this).val(xhr_data[key1][key2]);
 		});
+		//redio信息		
+		$("input[type=radio][name=register][value=" + xhr_data["case1"]["case_register"] + "]").attr("checked", 'checked');
+		//select信息		
+		$('select[name="case1.case_sonCategory"]').html(`<option selected value="${xhr_data["case1"]["case_sonCategory"]}">${xhr_data["case1"]["case_sonCategory"]}</option>`)
+		$('select[name="case1.case_concreteMakeMeans"]').html(`<option selected value="${xhr_data["case1"]["case_concreteMakeMeans"]}">${xhr_data["case1"]["case_concreteMakeMeans"]}</option>`)
+		$('select[name="case1.case_concreteResidence"]').html(`<option selected value="${xhr_data["case1"]["case_concreteResidence"]}">${xhr_data["case1"]["case_concreteResidence"]}</option>`)
+
 
 		//物证列表数据显示
 		var resevidence = xhr_data["resevidence"];
@@ -131,7 +133,6 @@ $(function () {
 		$.post('/xsjsglxt/case/Image_ListAllImageInformation', function (Image_data) {
 			//所有光盘遍历
 			var option = '';
-			console.log(Image_data[0].image_number);
 			for (var len = 0; len < Image_data.length; len++) {
 				option += '<option value="' + Image_data[len].image_number + '">' + Image_data[len].image_number + '</option>';
 			}
@@ -729,7 +730,14 @@ function chose_labe(params) {
 	if ($(params).val() == 1) {
 		$('input[name="register"][value="1"]').attr("checked", "checked");
 	} else {
-		$('input[name="register"][value="2"]').attr("checked", "checked");
+		$('input[name="register"][value="0"]').attr("checked", "checked");
+	}
+}
+function chose_labe(params) {
+	if ($(params).val() == 1) {
+		$('input[name="case1.case_register"]').val(1);
+	} else {
+		$('input[name="case1.case_register"]').val(0);
 	}
 }
 
