@@ -240,7 +240,7 @@
 
 						<div class="long_tb">
 
-							<table id="family_table">
+							<table id="family_table" style="width:150%;">
 
 								<tbody>
 									<tr class="long_table">
