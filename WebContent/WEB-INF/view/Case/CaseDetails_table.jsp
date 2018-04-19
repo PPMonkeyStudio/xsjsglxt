@@ -21,7 +21,10 @@
 i {
 	cursor: pointer;
 }
-
+table tbody tr td {
+	padding-right: 10px;
+	width: 200px;
+}
 table tr th {
 	border: 1px solid #eee5e5;
 	height: 42px;
@@ -67,7 +70,7 @@ table tr td {
 						<i class="fa fa-times"></i> 删除案件
 					</button>
 				</div> -->
-				<table id="tableContent" style="text-align: center; width: 1200px;">
+				<table id="tableContent" style="text-align: center; width: 1235px;">
 					<tr>
 						<td colspan="6">案件信息</td>
 					</tr>

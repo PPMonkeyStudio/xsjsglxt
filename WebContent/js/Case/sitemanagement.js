@@ -128,7 +128,7 @@ function get_ListSneceInformationByPageAndSearch(data) {
 									+ '</td>';
 							str += '<td>' + data_list.case1.case_address
 									+ '</td>';
-							str += '<td>' + data_list.case1.case_sonCategory
+							str += '<td>' + data_list.case1.case_totalCategory
 									+ '</td>';
 							str += '<td>' + data_list.case1.case_reporterName
 									+ '</td>';
