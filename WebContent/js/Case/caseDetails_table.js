@@ -41,13 +41,12 @@ var loadDataCaseT = function() {
 			caseVue.lost_mobilephone = returnData.lost_mobilephone;
 			caseVue.lost = returnData.lost;
 			caseVue.picture = returnData.picture;
-			getManDate();
-			getCheckDate();
+			/* getManDate(); */
+			/* getCheckDate(); */
 			$('#loadingLayer').hide();
 			$('#tableContent').show();
 		}
 	})
-
 }
 
 var case_change = function() {

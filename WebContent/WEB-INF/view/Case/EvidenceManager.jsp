@@ -48,7 +48,7 @@ table tr td {
 }
 </style>
 <script type="text/javascript"
-	src="<%=basePath%>js/Case/caseDetails_table.js"></script>
+	src="<%=basePath%>js/Case/EvidenveManager_table.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/Case/EvidenceCheck.js"></script>
 <script type="text/javascript"
