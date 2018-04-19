@@ -51,6 +51,8 @@ table tr td {
 	src="<%=basePath%>js/Case/caseDetails_table.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/Case/EvidenceCheck.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/Case/getManDateDTO.js"></script>
 </head>
 <body>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
@@ -60,8 +62,8 @@ table tr td {
 		<div class="panel"
 			style="width: 95%; margin: 20px auto; padding-top: 30px;">
 			<div class="panel-heading">
-			<h3 class="panel-title" style="display: inline-block; color: black;">物证管理</h3>
-			<input value="返回列表" class="btn btn-default"
+				<h3 class="panel-title" style="display: inline-block; color: black;">物证管理</h3>
+				<input value="返回列表" class="btn btn-default"
 					onclick="javascript:history.go(-1)" type="button">
 			</div>
 			<div id="loadingLayer" style="margin: 0 auto; width: 45px;">
@@ -119,10 +121,9 @@ table tr td {
 							<button class="btn btn-default"
 								:value="re.xsjsglxt_resevidence_id"
 								:id="caseInfor.xsjsglxt_case_id">流转</button>
-						<button class="btn btn-default"
-							:value="re.xsjsglxt_resevidence_id"
-							:id="caseInfor.xsjsglxt_case_id">流转过程</button>
-						</td>
+							<button class="btn btn-default"
+								:value="re.xsjsglxt_resevidence_id"
+								:id="caseInfor.xsjsglxt_case_id">流转过程</button></td>
 					</tr>
 					</template>
 					<tr>
@@ -142,9 +143,18 @@ table tr td {
 						<td style="width: 200px;">物证名称</td>
 						<td style="width: 200px;">检验时间</td>
 						<td style="width: 200px;">检验方法</td>
-						<td  style="width: 200px;">检验地点</td>
+						<td style="width: 200px;">检验地点</td>
 						<td colspan="2" style="width: 200px;">检验结果</td>
 					</tr>
+					<template v-for="checkCase in CaseCheckDTOS">
+					<tr>
+						<td style="width: 200px;">{{ checkCase.resevidence_name }}</td>
+						<td style="width: 200px;">{{ checkCase.inspection_start_time }}</td>
+						<td style="width: 200px;">{{ checkCase.inspection_method }}</td>
+						<td style="width: 200px;">{{ checkCase.inspection_location }}</td>
+						<td colspan="2" style="width: 200px;">{{ checkCase.inspection_option }}</td>
+					</tr>
+					</template>
 					<tr>
 						<td style="width: 200px;"></td>
 						<td style="width: 200px;"></td>
@@ -165,6 +175,19 @@ table tr td {
 						<td colspan="2" style="width: 200px;">鉴定机构名称</td>
 						<td style="width: 200px;">委托时间</td>
 					</tr>
+					<template v-for="data in MandataDTOS">
+					<tr>
+						<td style="width: 200px;">{{ data.resevidence_name }}</td>
+						<td style="width: 200px;">{{ data.check_entrustment_book_num
+							}}</td>
+						<td style="width: 200px;">{{
+							data.check_entrustment_book_entrustment_unit }}</td>
+						<td style="width: 200px;" colspan="2">{{
+							data.check_entrustment_book_entrustment_unit_name }}</td>
+						<td style="width: 200px;">{{
+							data.check_entrustment_book_inspect_time }}</td>
+					</tr>
+					</template>
 					<tr>
 						<td style="width: 200px;"></td>
 						<td style="width: 200px;"></td>
