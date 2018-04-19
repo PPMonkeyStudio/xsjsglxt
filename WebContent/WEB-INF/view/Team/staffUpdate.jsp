@@ -490,11 +490,11 @@
 								<tr>
 									<td><label class="staff_info_label">起始时间</label></td>
 									<td><input style="font-size: 12px;"
-										class=" staffStudent_startTime"></td>
+										class=" staffStudent_startTime time"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">结束时间</label></td>
-									<td><input type="text" class="staffStudent_stopTime" /></td>
+									<td><input type="text" class="staffStudent_stopTime time" /></td>
 								</tr>
 
 								<tr>
@@ -943,11 +943,11 @@
 								<tr>
 									<td><label class="staff_info_label time">起始时间</label></td>
 									<td><input style="font-size: 12px;"
-										class=" staffStudent_startTimeRelive"></td>
+										class=" staffStudent_startTimeRelive time"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label time">结束时间</label></td>
-									<td><input type="text" class="staffStudent_stopTimeRelive" /></td>
+									<td><input type="text" class="staffStudent_stopTimeRelive time" /></td>
 								</tr>
 
 								<tr>
