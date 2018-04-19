@@ -59,6 +59,11 @@ table tr td {
 	<div style="margin: 80px 0 0 0; float: left; width: 100%;">
 		<div class="panel"
 			style="width: 95%; margin: 20px auto; padding-top: 30px;">
+			<div class="panel-heading">
+			<h3 class="panel-title" style="display: inline-block; color: black;">物证管理</h3>
+			<input value="返回列表" class="btn btn-default"
+					onclick="javascript:history.go(-1)" type="button">
+			</div>
 			<div id="loadingLayer" style="margin: 0 auto; width: 45px;">
 				<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
 			</div>

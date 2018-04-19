@@ -213,19 +213,21 @@ table tr td {
 					style="text-align: left; border-top: none; border-left: none; border-right: none;"><h3>物证信息</h3></td>
 			</tr>
 			<tr>
-				<td style="width: 200px;" colspan="2">物证名称</td>
+				<td style="width: 200px;" colspan="1">物证名称</td>
 				<td style="width: 200px; text-align: center;">提取日期</td>
+				<td>存放位置</td>
 				<td style="width: 200px;">提取人</td>
 				<td style="text-align: center; width: 200px;">流转状态</td>
 				<td style="text-align: center; width: 200px;">检验状态</td>
 			</tr>
 			<template v-for="re in resevidence">
 			<tr>
-				<td colspan="2" style="width: 200px;">{{ re.resevidence_name }}</td>
+				<td colspan="1" style="width: 200px;">{{ re.resevidence_name }}</td>
 				<td style="width: 200px;">{{ re.resevidence_extractTime }}</td>
+				<td>{{ re.resevidence_savePlace }}</td>
 				<td style="width: 200px;">{{ re.resevidence_extractPerson }}</td>
 				<td style="width: 200px;">{{ re.resevidence_circulation }}</td>
-				<td style="width: 200px;">{{ re.resevidence_teststate }}</td>
+				<td style="width: 200px;">{{ re.resevidence_teststate }}|{{ re.resevidence_sendstate }}</td>
 			</tr>
 			</template>
 			<tr>
