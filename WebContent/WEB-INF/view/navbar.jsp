@@ -98,7 +98,7 @@
 						<li><a
 							href="<%=basePath%>inspectionIdentific/EntrustmentBookManagement_EntrustmentBookManagement"><span>检验鉴定</span></a></li>
 						</template>
-						<li><a href="<%=basePath%>user/User_skipToTechnologyIndex">技术管理</a></li>
+						<li><a href="<%=basePath%>user/User_skipToTechnologyIndex">台账管理</a></li>
 					</ul></li>
 				<!--  -->
 				<template v-if="user_case_query_power">

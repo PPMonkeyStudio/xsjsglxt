@@ -18,6 +18,8 @@ window.onload = function() {
 	});
 	var url = window.location.href;
 	var case_id = url.substring(url.indexOf("=") + 1);
+	$('#tableContent').hide();
+	$('#loadingLayer').show();
 	$.ajax({
 		url : '/xsjsglxt/case/Case_SecneInformationOne',
 		data : {
@@ -33,6 +35,8 @@ window.onload = function() {
 			caseVue.lost_mobilephone = returnData.lost_mobilephone;
 			caseVue.lost = returnData.lost;
 			caseVue.picture = returnData.picture;
+			$('#loadingLayer').hide();
+			$('#tableContent').show();
 		}
 	})
 };
