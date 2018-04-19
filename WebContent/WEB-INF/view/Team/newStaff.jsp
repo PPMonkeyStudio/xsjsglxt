@@ -327,7 +327,7 @@
 					</div>
 					<div style="background: #e7e6e6; width: 1000px; height: 1px;"></div>
 					<div class="long_tableBox">
-						<span class="staff_info_title">刑警大队调动情况</span>
+						<span class="staff_info_title">工作调动情况</span>
 						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
 							type="button" data-toggle="modal"
 							data-target="#addPoliceChange_Modal" onclick="">
@@ -397,7 +397,7 @@
 					</div>
 					<div style="background: #e7e6e6; width: 1000px; height: 1px;"></div>
 					<div class="long_tableBox">
-						<span class="staff_info_title">休假情况</span>
+						<span class="staff_info_title">请休假情况</span>
 						<button style="margin-left: 10px;" class="btn btn-default btn-xs"
 							type="button" data-toggle="modal"
 							data-target="#addVocation_Modal" onclick="">
@@ -411,7 +411,7 @@
 											<th>起始时间</th>
 											<th>销假时间</th>
 											<th>是否销假</th>
-											<th>休假事由</th>
+											<th>请休假事由</th>
 											<th>天数</th>
 											<th>备注</th>
 											<th>操作</th>
