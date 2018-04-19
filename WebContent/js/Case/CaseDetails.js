@@ -149,7 +149,7 @@ $(function () {
 	/*============================================================================添加信息系列*/
 	//添加物证信息
 	$('.add_evidence').click(function () {
-		var evidence_data = $.extend({}, $('#evidence form').serializeObject(), { "case1.xsjsglxt_case_id": case1_id });
+		var evidence_data = $.extend({}, $('#evidence form').serializeObject(), { "case1.xsjsglxt_case_id": case1_id, "resevidence.resevidence_teststate": "未检验", "resevidence.resevidence_sendstate": "未送检" });
 		$.post('/xsjsglxt/case/Resevidence_saveResevidence', evidence_data, function (xhr_data) {
 			if (xhr_data.length > 22 && xhr_data.length <= 36) {
 				toastr.success('添加成功！');
