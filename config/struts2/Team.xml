@@ -19,6 +19,9 @@
 			<result name="intoUpdate">
 					/WEB-INF/view/Team/staffUpdate.jsp
 			</result>
+			<result name="intoPrintPage">
+					/WEB-INF/view/Team/printPage.jsp
+			</result>
 		</action>
 		<action name="StaffFamily_*" class="com.xsjsglxt.action.Team.StaffFamilyAction"
 			method="{1}">

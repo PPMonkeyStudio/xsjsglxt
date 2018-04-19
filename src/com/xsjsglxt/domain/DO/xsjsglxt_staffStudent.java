@@ -9,6 +9,7 @@ package com.xsjsglxt.domain.DO;
 public class xsjsglxt_staffStudent {
 	private String xsjsglxt_staffStudent_id;
 	private String staffStudent_staff;
+	private String staffStudent_evection; // 出差还是学习
 	private String staffStudent_address;
 	private String staffStudent_startTime;
 	private String staffStudent_stopTime;
@@ -39,6 +40,14 @@ public class xsjsglxt_staffStudent {
 
 	public void setStaffStudent_staff(String staffStudent_staff) {
 		this.staffStudent_staff = staffStudent_staff;
+	}
+
+	public String getStaffStudent_evection() {
+		return staffStudent_evection;
+	}
+
+	public void setStaffStudent_evection(String staffStudent_evection) {
+		this.staffStudent_evection = staffStudent_evection;
 	}
 
 	public String getStaffStudent_address() {

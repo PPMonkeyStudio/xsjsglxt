@@ -11,6 +11,7 @@ table tr th{
 }
 table tr td{
 	border:1px solid #eee5e5;
+	
 }
 /*表格奇数和偶数的样式  */
 .odd{
@@ -18,6 +19,8 @@ table tr td{
 }
 .even{
 width:190px;
+text-indent: 20px;
+overflow:hidden;
 	}
 .longBoxs table{
 	table-layout:fixed;/* 只有定义了表格的布局算法为fixed，下面td的定义才能起作用。 */
@@ -29,7 +32,7 @@ width:190px;
 .longBoxs td{
 	overflow:hidden;
 	border-top:0px;
-	height:20px;
+	height:35px;
     width:100%; 
     text-align:center;
     word-break:keep-all;/* 不换行 */
@@ -52,21 +55,19 @@ a:hover {
 }
 
 .staff_body {
-	float: right;
-	width: 90%;
+	/* float: right;
+	width: 90%; */
 }
 /*功能按钮  */
 .button_return {
-	position: absolute;
-	top: 70px;
-	left: 25px;
+	margin-right:15px;
 }
 
-.button_change {
+/* .button_change {
 	position: absolute;
 	top: 120px;
 	left: 25px;
-}
+} */
 
 #staffDetails label {
 	width: 120px;
@@ -104,7 +105,6 @@ a:hover {
 	width: 120px;
 	height: 150px;
 	margin-left:20px;
-	border: 1px solid #dbd9d9;
 	cursor: pointer;
 	overflow: hidden;
 	display: block;
@@ -122,24 +122,25 @@ a:hover {
 /*标题分割线  */
 .staff_info_title {
 	    text-indent: 30px;
-    border-bottom: 1px solid #eee;
+  
     margin-bottom: 10px;
     display: inline-block;
-    font: 16px bold 微软雅黑;
+    font: 18px bold 微软雅黑;
 }
 /* 长表格样式start */
 .long_tableBox {
-	margin:50px 0 50px 0;
+	margin:50px 40px 50px 40px;
 }
+
 /*表格加上滚动条 start  */
 .long_tb{
 	width:100%;
 	height:200px;
 	overflow-x:scroll;
 	overflow-y:scroll;
-}
+} 
 .longBoxs table {
-	width:101%;
+	width:100%;
 	margin: 0px;
 }
 /*表格加上滚动条 end  */
@@ -165,5 +166,4 @@ a:hover {
 	text-indent: 10px;
 }
 /*学习经历模态框end  */
-
 /* 长表格样式end */

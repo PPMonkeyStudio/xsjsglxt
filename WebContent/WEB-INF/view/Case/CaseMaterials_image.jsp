@@ -81,10 +81,10 @@
 					class="btn btn-default" data-toggle="modal" data-target="#image">
 					<i class="fa fa-plus-square"></i> 添加信息
 				</button>
-				<input class="form-control" type="text" placeholder="串并人查询"
+				<!-- <input class="form-control" type="text" placeholder="串并人查询"
 					style="float: right; width: 140px; margin-right: 15px;"
 					onkeyup="input_query(this)" name=""
-					query_name="page_list_parallelInformation.parallel_person">
+					query_name="page_list_parallelInformation.parallel_person"> -->
 			</div>
 			<div class="panel-body">
 				<table style="display: none;"

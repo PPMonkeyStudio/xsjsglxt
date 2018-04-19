@@ -112,7 +112,6 @@ function get_staffDetails_Ajax(url, staff_id) {
 			show_moveAjax(staff_id);
 			show_rewardAjax(staff_id);
 			show_againstAjax(staff_id);
-			show_punishmentAjax(staff_id);
 			show_furloughAjax(staff_id);
 
 		}

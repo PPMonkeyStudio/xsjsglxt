@@ -24,19 +24,21 @@
 	<div
 		style="margin: 80px 0 0 0; float: left; width: 100%; overflow: hidden;">
 		<div class="panel"
-			style="width: 1281px; margin: 20px auto; overflow: inherit; position: relative;">
+			style="width: 1100px; margin: 20px auto; overflow: inherit; position: relative;">
 			<!--  -->
 			<div class="panel-heading">
 				<h3 class="panel-title">人员详情</h3>
 			</div>
+			<div style="margin-left:4.5%;">
 			<button onclick="javascript:history.go(-1)" type="button"
 				class="btn btn-default button button_return ">
 				<i class="fa fa-reply"></i> 返回列表
 			</button>
 			<button type="button" class="btn btn-default button button_change"
-				onclick="staff_relive()">
-				<i class="fa fa-pencil"></i> 修改人员
+				onclick="staff_print()">
+				<i class="fa fa-pencil"></i>打印人员
 			</button>
+			</div>
 			<div class="panel-body staff_body">
 				<div style="width: 1000px; margin: 0 auto;">
 					<form id="staffDetails" enctype="multipart/form-data"
@@ -52,9 +54,9 @@
 								<td class="odd"><label class="staff_info_label">警号</label></td>
 								<td class="even">{{ returnData.staff_alarm }}</td>
 
-								<td class="odd" rowspan="4"></td>
-								<td class="even" rowspan="4"><a class="photo-show"
+								<td class="odd" rowspan="4" style="border-right: 0px"><a class="photo-show"
 									id="photo-show"></a></td>
+								<td class="even" rowspan="4" style="border-left: 0px"></td>
 							</tr>
 							<tr>
 								<td class="odd"><label class="staff_info_label">身份证号</label></td>

@@ -11,7 +11,7 @@
 			<result name="page_CaseMergerList">/WEB-INF/view/Case/CaseMergerList.jsp</result>
 			<result name="page_CaseDetails">/WEB-INF/view/Case/CaseDetails.jsp</result>
 			<result name="page_CaseMerger">/WEB-INF/view/Case/CaseMerger.jsp</result>
-			<result name="page_CaseMaterials">/WEB-INF/view/Case/CaseMaterials.jsp</result>
+			<result name="page_CaseMaterials">/WEB-INF/view/Case/CaseMaterials_image.jsp</result>
 			<result name="page_Handle">/WEB-INF/view/Case/HandleList.jsp</result>
 			<result name="page_intoDetails">/WEB-INF/view/Case/CaseDetails_table.jsp</result>
 			<result name="page_printPage">/WEB-INF/view/Case/printPage.jsp</result>
