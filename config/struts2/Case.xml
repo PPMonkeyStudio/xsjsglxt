@@ -15,6 +15,7 @@
 			<result name="page_Handle">/WEB-INF/view/Case/HandleList.jsp</result>
 			<result name="page_intoDetails">/WEB-INF/view/Case/CaseDetails_table.jsp</result>
 			<result name="page_printPage">/WEB-INF/view/Case/printPage.jsp</result>
+			<result name="intoEvidence">/WEB-INF/view/Case/EvidenceManager.jsp</result>
 		</action>
 		<action name="Resevidence_*" class="com.xsjsglxt.action.Case.ResevidenceAction"
 			method="{1}">

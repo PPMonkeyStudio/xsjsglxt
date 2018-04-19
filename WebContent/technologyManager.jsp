@@ -30,19 +30,19 @@ li a {
 			<nav>
 			<ul class="nav" id="technology">
 				<li>
-					<a href="<%=basePath%>user/User_index">首页</a>
+					<a href="<%=basePath%>user/User_index"><i class="fa fa-telegram"></i>首页</a>
 				</li>
 				<template v-if="user_case_technology_power">
-				<li><a href="<%=basePath%>case/Case_page_CaseMergerList">案件串并</a></li>
+				<li><a href="<%=basePath%>case/Case_page_CaseMergerList"><i class="fa fa-exchange"></i>案件串并</a></li>
 				</template>
 				<template v-if="user_case_technology_power">
-				<li><a href="<%=basePath%>case/Case_page_CaseMaterials">影像光盘</a></li>
+				<li><a href="<%=basePath%>case/Case_page_CaseMaterials"><i class="fa fa-file"></i>影像光盘</a></li>
 				</template>
 				<template v-if="user_case_technology_power">
-				<li><a href="<%=basePath%>case/BreakeCase_page_BreakCaseList">刑事破案</a></li>
+				<li><a href="<%=basePath%>case/BreakeCase_page_BreakCaseList"><i class="fa fa-sun-o"></i>刑事破案</a></li>
 				</template>
 				<template v-if="user_technology_manager_power">
-				<li><a href="<%=basePath%>DNA/DNAManagement_DNAManagementPage">DNA/指纹</a></li>
+				<li><a href="<%=basePath%>DNA/DNAManagement_DNAManagementPage"><i class="fa fa-map-o"></i>DNA/指纹</a></li>
 				</template>
 				<template v-if="false">
 				<li><a
@@ -50,14 +50,14 @@ li a {
 				</template>
 				<template v-if="user_technology_manager_power">
 				<li><a
-					href="<%=basePath%>Equipment/EquipmentManagement_EquipmentManagementPage">器材装备</a></li>
+					href="<%=basePath%>Equipment/EquipmentManagement_EquipmentManagementPage"><i class="fa fa-bank"></i>器材装备</a></li>
 				</template>
 				<template v-if="false">
 				<li><a
 					href="<%=basePath%>ContrastFingerPrint/ContrastFingerPrintManagement_ContrastFingerPrintManagementPage">比对指纹</a></li>
 				</template>
 				<template v-if="user_statistics_power">
-				<li><a href="<%=basePath%>statistics/Statistics_intoMain">统计</a></li>
+				<li><a href="<%=basePath%>statistics/Statistics_intoMain"><i class="fa fa-bar-chart"></i>统计</a></li>
 				</template>
 			</ul>
 			</nav>

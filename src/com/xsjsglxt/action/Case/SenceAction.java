@@ -342,6 +342,15 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 		return "page_Handle";
 	}
 
+	/**
+	 * @author 孙毅
+	 * 进入物证管理页面
+	 */
+
+	public String page_intoEvidence() {
+		return "intoEvidence";
+	}
+
 	/*
 	 * 
 	 * 保存信息
