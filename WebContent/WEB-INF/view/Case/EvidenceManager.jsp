@@ -60,8 +60,8 @@ table tr td {
 		<div class="panel"
 			style="width: 95%; margin: 20px auto; padding-top: 30px;">
 			<div class="panel-heading">
-			<h3 class="panel-title" style="display: inline-block; color: black;">物证管理</h3>
-			<input value="返回列表" class="btn btn-default"
+				<h3 class="panel-title" style="display: inline-block; color: black;">物证管理</h3>
+				<input value="返回列表" class="btn btn-default"
 					onclick="javascript:history.go(-1)" type="button">
 			</div>
 			<div id="loadingLayer" style="margin: 0 auto; width: 45px;">
@@ -116,13 +116,12 @@ table tr td {
 							<button class="btn btn-default" :id="re.xsjsglxt_resevidence_id"
 								:value="caseInfor.xsjsglxt_case_id" onclick="checkSelf(this)">检验</button>
 							</template>
-							<button class="btn btn-default"
+							<button class="btn btn-default" onclick="transferOperation(this)"
 								:value="re.xsjsglxt_resevidence_id"
 								:id="caseInfor.xsjsglxt_case_id">流转</button>
-						<button class="btn btn-default"
-							:value="re.xsjsglxt_resevidence_id"
-							:id="caseInfor.xsjsglxt_case_id">流转过程</button>
-						</td>
+							<button class="btn btn-default" onclick="transferProcess(this)"
+								:value="re.xsjsglxt_resevidence_id"
+								:id="caseInfor.xsjsglxt_case_id">流转过程</button></td>
 					</tr>
 					</template>
 					<tr>
@@ -142,7 +141,7 @@ table tr td {
 						<td style="width: 200px;">物证名称</td>
 						<td style="width: 200px;">检验时间</td>
 						<td style="width: 200px;">检验方法</td>
-						<td  style="width: 200px;">检验地点</td>
+						<td style="width: 200px;">检验地点</td>
 						<td colspan="2" style="width: 200px;">检验结果</td>
 					</tr>
 					<tr>
@@ -176,5 +175,7 @@ table tr td {
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript"
+	src="<%=basePath%>js/Case/transferOperation.js"></script>
 </body>
 </html>

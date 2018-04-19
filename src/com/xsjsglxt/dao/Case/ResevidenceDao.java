@@ -22,7 +22,7 @@ public interface ResevidenceDao {
 
 	public xsjsglxt_snece getSenceByxsjsglxt_case_id(xsjsglxt_case case1);
 
-	public xsjsglxt_circulation getCirculationByxsjsglxt_resevidence_id(xsjsglxt_resevidence resevidence);
+	public List<xsjsglxt_circulation> getCirculationByxsjsglxt_resevidence_id(xsjsglxt_resevidence resevidence);
 
 	public xsjsglxt_resevidence getResevidenceById(xsjsglxt_resevidence resevidence);
 
@@ -30,7 +30,7 @@ public interface ResevidenceDao {
 
 	public xsjsglxt_snece getsenceBycase1Id(xsjsglxt_case case1);
 
-	public xsjsglxt_circulation getcirculationByresevidenceId(xsjsglxt_resevidence resevidence);
+	public List<xsjsglxt_circulation> getcirculationByresevidenceId(xsjsglxt_resevidence resevidence);
 
 	public void saveCirculation(xsjsglxt_circulation circulation);
 

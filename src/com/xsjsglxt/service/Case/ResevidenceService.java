@@ -37,4 +37,7 @@ public interface ResevidenceService {
 
 	public void updateResevidenceSendCheckState(xsjsglxt_resevidence resevidence);
 
+	// 获取物证的全部送检状态
+	public List<xsjsglxt_circulation> getCirculationList(xsjsglxt_resevidence resevidence);
+
 }
