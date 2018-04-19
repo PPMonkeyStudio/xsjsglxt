@@ -29,22 +29,22 @@
 			<div class="panel-heading">
 				<h3 class="panel-title">人员详情</h3>
 			</div>
-			<div style="margin-left: 4.5%">
-			<button onclick="javascript:history.go(-1)" type="button"
-				class="btn btn-default button button_return ">
-				<i class="fa fa-reply"></i> 返回列表
-			</button>
-			<button type="button" class="btn btn-default button button_change"
-				onclick="staff_relive()">
-				<i class="fa fa-pencil"></i> 修改人员
-			</button>
-			
+			<div style="margin-left: 7%">
+				<button onclick="javascript:history.go(-1)" type="button"
+					class="btn btn-default button button_return ">
+					<i class="fa fa-reply"></i> 返回列表
+				</button>
+				<button type="button" class="btn btn-default button button_change"
+					onclick="staff_relive()">
+					<i class="fa fa-pencil"></i> 修改人员
+				</button>
+
 			</div>
-			<div class="panel-body staff_body">
-				<div style="width: 1000px; margin: 0 auto;">
+			<div class="panel-body staff_body" style="width: 1200px; margin: 0 auto;">
+				<div >
 					<form id="staffDetails" enctype="multipart/form-data"
 						accept-charset="utf-8">
-						<table style="width: 100%;">
+						<table style="width: 1200px;margin-left: 50px">
 							<tr>
 								<td colspan="6" class="staff_info_title">基本信息</td>
 							</tr>
@@ -110,7 +110,7 @@
 										<option>硕士</option>
 										<option>博士</option>
 								</select></td>
-								
+
 
 							</tr>
 							<tr>
@@ -156,11 +156,11 @@
 										<option>辅警</option>
 										<option>内勤</option>
 								</select></td>
-					
-					<td><label class="staff_info_label">入警时间</label></td>
+
+								<td><label class="staff_info_label">入警时间</label></td>
 								<td><input name="policeman.staff_thePoliceTime"
 									class="form-control staff_thePoliceTime time" type="text"></td>
-					
+
 								<td><label class="staff_info_label">是否&nbsp;&nbsp;正式</label></td>
 								<td><label style="float: left; width: 50px;"
 									class="fancy-radio "> <input name="format_content"
@@ -192,8 +192,8 @@
 									style="display: none;"><label class="staff_info_label">提交申请书</label></td>
 								<td class="staff_appliactionFormTime " style="display: none;"><input
 									placeholder="提交申请书时间"
-									name="policeman.staff_appliactionFormTime" class="time staff_appliactionFormTime form-control"
-									type="text"></td>
+									name="policeman.staff_appliactionFormTime"
+									class="time staff_appliactionFormTime form-control" type="text"></td>
 								<td class="staff_delevopObjectTime_label" style="display: none;"><label
 									class="staff_info_label">发展对象</label></td>
 								<td class="staff_delevopObjectTime" style="display: none;"><input
@@ -201,11 +201,7 @@
 									class="form-control staff_joinPartyTime time" type="text"></td>
 
 							</tr>
-							<tr>
-								<td><label class="staff_info_label">家庭地址</label></td>
-								<td><input name="policeman.staff_address" width="580px"
-									class="form-control" type="text"></td>
-							</tr>
+
 							<tr style="height: 30px"></tr>
 							<tr>
 								<td colspan="6" class="staff_info_title">联系方法</td>
@@ -216,8 +212,8 @@
 								<td><input name="policeman.staff_phone"
 									class="form-control" style="margin-top: 6px;" type="text"></td>
 								<td><label class="staff_info_label">警务通号</label></td>
-								<td><input name="policeman.staff_throughThePolice" type="text"
-									class="form-control" style="margin-top: 6px;"></td>
+								<td><input name="policeman.staff_throughThePolice"
+									type="text" class="form-control" style="margin-top: 6px;"></td>
 								<td><label class="staff_info_label">家庭电话</label></td>
 								<td><input name="policeman.staff_homephone" type="text"
 									class="form-control" style="margin-top: 6px;"></td>
@@ -229,15 +225,20 @@
 								<td><label class="staff_info_label">微&nbsp;&nbsp;信&nbsp;&nbsp;号</label></td>
 								<td><input name="policeman.staff_weixin" type="text"
 									class="form-control" style="margin-top: 6px;"></td>
-								<td><label class="staff_info_label">内网邮箱</label><label
-									style="display: block;">外网邮箱</label></td>
-								<td><input name="policeman.staff_outEmail"  type="text"
-									class="form-control" style="margin-top: 6px;"> <input
-									name="policeman.staff_inEmail" class="form-control" type="text"
-									style="margin-top: 6px;"></td>
+								<td><label class="staff_info_label">内网邮箱</label></td>
+								<td><input name="policeman.staff_inEmail"
+									class="form-control" type="text" style="margin-top: 6px;"></td>
+
 
 							</tr>
-
+							<tr>
+								<td><label style="display: block;">外网邮箱</label></td>
+								<td><input name="policeman.staff_outEmail" type="text"
+									class="form-control" style="margin-top: 6px;"></td>
+								<td><label class="staff_info_label">家庭地址</label></td>
+								<td colspan="3"><input name="policeman.staff_address" style="width:665px;"
+									class="form-control" type="text"></td>
+							</tr>
 						</table>
 					</form>
 				</div>
@@ -500,7 +501,7 @@
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staffStudent_remarks"
 											class="staffStudent_remarks"
-											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
 
 
@@ -561,7 +562,7 @@
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffWork_remarks"
-											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
 
 
@@ -643,7 +644,7 @@
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
-											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											class="staffFamily_remarks" rows="3" cols="62"></textarea></td>
 
 
@@ -693,7 +694,7 @@
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">是否在岗</label></td>
-									<td><select class="staffMove_guard form-control" >
+									<td><select class="staffMove_guard form-control">
 											<option>是</option>
 											<option>否</option>
 									</select></td>
@@ -702,7 +703,7 @@
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffMove_remarks"
-											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
 
 
@@ -765,7 +766,7 @@
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffReward_remarks"
-											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
 
 
@@ -829,7 +830,7 @@
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffPrinciple_remarks"
-											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
 
 
@@ -896,7 +897,7 @@
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffFurlough_remarks"
-											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
 
 
@@ -953,7 +954,7 @@
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staffStudent_remarks"
 											class="staffStudent_remarksRelive"
-											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
 
 
@@ -1007,14 +1008,15 @@
 								</tr>
 								<tr>
 									<td><label>结束时间</label></td>
-									<td><input type="text" class="staffWork_stopTimeRelive time" /></td>
+									<td><input type="text"
+										class="staffWork_stopTimeRelive time" /></td>
 								</tr>
 
 								<tr>
 									<td><label>备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffWork_remarksRelive"
-											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
 
 
@@ -1070,8 +1072,8 @@
 								<tr>
 									<td><label class="staff_info_label">生日</label></td>
 									<td><input style="font-size: 12px;"
-										class="staffFamily_birthdayRelive time" class=" study_startTime"
-										type="text"></td>
+										class="staffFamily_birthdayRelive time"
+										class=" study_startTime" type="text"></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">手机号</label></td>
@@ -1096,7 +1098,7 @@
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
-											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											class="staffFamily_remarksRelive" rows="3" cols="62"></textarea></td>
 
 
@@ -1155,7 +1157,7 @@
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffMove_remarksRelive"
-											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
 
 
@@ -1195,7 +1197,8 @@
 							<tbody>
 								<tr>
 									<td><label class="staff_info_label">表彰情况</label></td>
-									<td><select class="staffReward_situationRelive form-control"
+									<td><select
+										class="staffReward_situationRelive form-control"
 										name="policeman.staff_birthday">
 											<option></option>
 											<option>嘉奖</option>
@@ -1218,7 +1221,7 @@
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffReward_remarksRelive"
-											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
 
 
@@ -1259,7 +1262,8 @@
 							<tbody>
 								<tr>
 									<td><label class="staff_info_label">违纪情况</label></td>
-									<td><select class="staffPrinciple_situationRelive form-control"
+									<td><select
+										class="staffPrinciple_situationRelive form-control"
 										name="policeman.staff_birthday">
 											<option></option>
 											<option>通报批评</option>
@@ -1282,7 +1286,7 @@
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffPrinciple_remarksRelive"
-											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
 
 
@@ -1350,7 +1354,7 @@
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffFurlough_remarksRelive"
-											style="width:480px;border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
+											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
 											rows="3" cols="62"></textarea></td>
 
 
@@ -1390,7 +1394,7 @@
 			maxDate : '2100/01/01', // 设置最大日期
 		});
 	</script>
-	
+
 
 </body>
 </html>

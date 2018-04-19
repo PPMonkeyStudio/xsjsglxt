@@ -19,7 +19,7 @@ window.onload = function() {
 	console.log(staff_id);
 	get_staffDetails(staff_id);
 }
-//打印详细
+//条状打印详细页面
 function staff_print(){
 	window.open("/xsjsglxt/team/Staff_intoPrintPage?id="
 			+ staff_id);
@@ -74,7 +74,7 @@ function show_studyAjax(staff_id) {
 		if (xmlhttp_study.readyState == 4 && xmlhttp_study.status == 200) {
 			var staff_study = xmlhttp_study.responseText;
 			if(staff_study=="studentIsNull"){
-				$('#studyExperience_table tbody').html("");
+				$('#studyExperience_table tbody ').html("<tr><th>学习/出差地点</th><th>起始时间</th><th>结束时间</th></tr><tr><td></td><td></td><td></td></tr>");
 			}else{
 			console.log("staff_study" + staff_study);
 			staff_study = JSON.parse(staff_study);
@@ -99,7 +99,7 @@ function show_workAjax(staff_id) {
 		if (xmlhttp_work.readyState == 4 && xmlhttp_work.status == 200) {
 			var staff_work = xmlhttp_work.responseText;
 			if(staff_work=="worksIsNull"){
-				$('#wordExperience_table tbody').html("");
+				$('#wordExperience_table tbody').html("<tr><th>工作地点</th><th>职务</th><th>起始时间</th><th><th>起始时间</th></tr><tr><td></td><td></td><td></td><td></td></tr>");
 			}else{
 			console.log(staff_work);
 			staff_work = JSON.parse(staff_work);
@@ -124,7 +124,7 @@ function show_familyAjax(staff_id) {
 		if (xmlhttp_family.readyState == 4 && xmlhttp_family.status == 200) {
 			var staff_family = xmlhttp_family.responseText;
 			if(staff_family=="familyIsNull"){
-				$('#family_table tbody').html("");
+				$('#family_table tbody').html("<tr><th>关系</th><th>职务</th><th>姓名</th><th><th>身份证号</th><th>手机号</th><th>工作单位</th><th>工作单位</th><th>职位</th></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
 			}else{
 			console.log(staff_family);
 			staff_family = JSON.parse(staff_family);
@@ -151,7 +151,7 @@ function show_moveAjax(staff_id) {
 		if (xmlhttp_move.readyState == 4 && xmlhttp_move.status == 200) {
 			var staff_move = xmlhttp_move.responseText;
 			if(staff_move=="moveIsNull"){
-				$('#policeChange_table tbody').html("");
+				$('#policeChange_table tbody').html("<tr><th>调入时间</th><th>调出时间</th><th>是否在岗</th></tr><tr><td></td><td></td><td></td></tr>");
 			}else{
 			console.log("staff_move" + staff_move);
 			staff_move = JSON.parse(staff_move);
@@ -177,7 +177,7 @@ function show_rewardAjax(staff_id) {
 		if (xmlhttp_reward.readyState == 4 && xmlhttp_reward.status == 200) {
 			var staff_reward = xmlhttp_reward.responseText;
 			if(staff_reward=="rewardsIsNull"){
-				$('#prized_table tbody').html("");
+				$('#prized_table tbody').html("<tr><th>表彰情况</th><th>表彰时间</th></tr><tr><td></td><td></td></tr>");
 			}else{
 			console.log(staff_reward);
 			staff_reward = JSON.parse(staff_reward);
@@ -203,7 +203,7 @@ function show_againstAjax(staff_id) {
 		if (xmlhttp_against.readyState == 4 && xmlhttp_against.status == 200) {
 			var staff_against = xmlhttp_against.responseText;
 			if(staff_against=="principleIsNull"){
-				$('#againstPrinciple_table tbody').html("");
+				$('#againstPrinciple_table tbody').html("<tr><th>违纪情况</th><th>违纪时间</th></tr><tr><td></td><td></td></tr>");
 			}else{
 			staff_against = JSON.parse(staff_against);
 			staffVue.punishments=staff_against;
@@ -230,7 +230,7 @@ function show_furloughAjax(staff_id) {
 		if (xmlhttp_furlough.readyState == 4 && xmlhttp_furlough.status == 200) {
 			var staff_furlough = xmlhttp_furlough.responseText;
 			if(staff_furlough=="furloughIsNull"){
-				$('#vocation_table tbody').html("");
+				$('#vocation_table tbody').html("<tr><th>休假事由</th><th>起始时间</th><th>天数</th><th>是否销假</th><th>销假时间</th></tr><tr><td></td><td></td><td></td><td></td><td></td></tr>");
 			}else{
 			staff_furlough = JSON.parse(staff_furlough);
             staffVue.furloughs=staff_furlough;

@@ -12,26 +12,65 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!---------------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------------->
-<title>人员详情信息</title>
-<link rel="stylesheet" href="<%=basePath%>css/Team/detail.css">
+<title>人员详情打印</title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<!--------------------------------------------------------------------------------->
+<script src="<%=basePath%>js/jquery-3.1.1.min.js"></script>
+<script src="<%=basePath%>js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="<%=basePath%>css/bootstrap.min.css">
+<!--------------------------------------------------------------------------------->
+<link rel="stylesheet" href="<%=basePath%>css/bootstrap-select.min.css">
+<script src="<%=basePath%>js/bootstrap-select.js"></script>
+<!--------------------------------------------------------------------------------->
 
+<link rel="stylesheet" href="<%=basePath%>css/table.css">
+<!--------------------------------------------------------------------------------->
+<link rel="stylesheet" href="<%=basePath%>css/jquery-confirm.css" />
+<script src="<%=basePath%>js/jquery-confirm.js"></script>
+<!--------------------------------------------------------------------------------->
+<script src="<%=basePath%>js/jquery.bootstrap.wizard.js"></script>
+<script src="<%=basePath%>js/vue.js"></script>
+<script src="<%=basePath%>js/jquery.slimscroll.min.js"></script>
+<script src="<%=basePath%>js/klorofil-common.js"></script>
+<!--------------------------------------------------------------------------------->
+<link rel="stylesheet" href="<%=basePath%>css/jquery.datetimepicker.css" />
+<script type="text/javascript"
+	src="<%=basePath%>js/jquery.datetimepicker.full.js"></script>
+<!--------------------------------------------------------------------------------->
+<script type="text/javascript"
+	src="<%=basePath%>js/User/Input_Select.js"></script>
+<!--------------------------------------------------------------------------------->
+<script type="text/javascript"
+	src="<%=basePath%>js/User/updatePasswd.js"></script>
+<link rel="stylesheet" href="<%=basePath%>css/Team/detail.css">
+<style>
+table{
+    border:1px solid black;
+}
+table tr th{
+    height: 35px;
+    border:1px solid black;
+}
+table tr td{
+
+    border:1px solid black;
+}
+.long_tableBox{
+    margin:50px 0px;
+     }
+</style>
 </head>
-<body>
-	<s:action name="User_navbar" namespace="/user" executeResult="true" />
+<body style="background-color:white;">
+	
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<div
-		style="margin: 80px 0 0 0; float: left; width: 100%; overflow: hidden;">
+		style="width: 100%; overflow: hidden;">
 		<div class="panel"
-			style="width: 1100px; margin: 20px auto; overflow: inherit; position: relative;">
-			<!--  -->
-			<div class="panel-heading">
-				<h3 class="panel-title">人员打印</h3>
-			</div>
-			
+			style="width: 1200px; margin: 20px auto; overflow: inherit; position: relative;">
 			<div class="panel-body staff_body">
-				<div style="width: 1000px; margin: 0 auto;">
+				<div style=" margin: 0 auto;">
 					<form id="staffDetails" enctype="multipart/form-data"
 						accept-charset="utf-8">
 						<table style="width: 100%;">
@@ -131,7 +170,7 @@
 								</template>
 							</tr>
 
-							<tr style="height: 30px"></tr>
+							<tr style="height: 50px"></tr>
 							<tr>
 								<td colspan="6" style="text-align: center;">联系方法</td>
 							</tr>
@@ -166,7 +205,7 @@
 						<span class="staff_info_title">学习/出差经历</span>
 
 						<form id="study_exp">
-							<div class="long_tb">
+							<div class="long_tb11">
 
 								<table id="studyExperience_table">
 									<tbody>
@@ -177,6 +216,7 @@
 										
 
 										</tr>
+										
 										<template v-for="study in studys">
 										<tr>
 											<td>{{ study.staffStudent_address }}</td>
@@ -196,7 +236,7 @@
 						<span class="staff_info_title">工作经历</span>
 
 						<form id="work_exp">
-							<div class="long_tb">
+							<div class="long_tb11">
 
 								<table id="wordExperience_table">
 									<tbody>
@@ -223,12 +263,12 @@
 						</form>
 					</div>
 					 
-					<div class="long_tableBox" style="text-align:center; width:65%;">
+					<div class="long_tableBox" style="text-align:center;">
 						<span class="staff_info_title">家庭情况</span>
 
-						<div class="long_tb">
+						<div class="long_tb1">
 
-							<table id="family_table" style="width: 150%;">
+							<table id="family_table" >
 
 								<tbody>
 									<tr class="long_table">
@@ -265,7 +305,7 @@
 						<span class="staff_info_title">刑警大队调动情况</span>
 
 						<form id="police_move">
-							<div class="long_tb">
+							<div class="long_tb1">
 
 								<table id="policeChange_table">
 									<tbody>
@@ -294,7 +334,7 @@
 						<span class="staff_info_title">立功受奖情况</span>
 
 						<form id="staffReward">
-							<div class="long_tb">
+							<div class="long_tb1">
 
 								<table id="prized_table">
 									<tbody>
@@ -322,7 +362,7 @@
 						<span class="staff_info_title">违纪情况</span>
 
 						<form id="againstPrinciple">
-							<div class="long_tb">
+							<div class="long_tb1">
 
 								<table id="againstPrinciple_table">
 									<tbody>
@@ -350,7 +390,7 @@
 						<span class="staff_info_title">休假情况</span>
 
 						<form id="Furlough">
-							<div class="long_tb">
+							<div class="long_tb1">
 								<table id="vocation_table">
 									<tbody>
 										<tr class="long_table">
