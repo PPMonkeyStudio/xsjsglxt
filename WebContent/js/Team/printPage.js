@@ -74,7 +74,7 @@ function show_studyAjax(staff_id) {
 		if (xmlhttp_study.readyState == 4 && xmlhttp_study.status == 200) {
 			var staff_study = xmlhttp_study.responseText;
 			if(staff_study=="studentIsNull"){
-				$('#studyExperience_table tbody ').html("<tr><th>学习/出差地点</th><th>起始时间</th><th>结束时间</th></tr><tr><td></td><td></td><td></td></tr>");
+				$('#studyExperience_table tbody ').html("<tr><th>类别</th><th>地点</th><th>起始时间</th><th>结束时间</th></tr><tr><td></td><td></td><td></td><td></td></tr>");
 			}else{
 			console.log("staff_study" + staff_study);
 			staff_study = JSON.parse(staff_study);
