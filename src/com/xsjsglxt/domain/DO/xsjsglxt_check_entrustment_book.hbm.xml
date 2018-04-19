@@ -1,13 +1,19 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2017-12-13 16:08:18 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2018-4-19 14:34:28 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book" table="XSJSGLXT_CHECK_ENTRUSTMENT_BOOK">
         <id name="xsjsglxt_check_entrustment_book_id" type="java.lang.String">
             <column name="XSJSGLXT_CHECK_ENTRUSTMENT_BOOK_ID" />
             <generator class="assigned" />
         </id>
+        <property name="checkEvidenceId" type="java.lang.String">
+            <column name="CHECKEVIDENCEID" />
+        </property>
+        <property name="checkCaseId" type="java.lang.String">
+            <column name="CHECKCASEID" />
+        </property>
         <property name="check_entrustment_book_physical_evidence" type="java.lang.String">
             <column name="CHECK_ENTRUSTMENT_BOOK_PHYSICAL_EVIDENCE" />
         </property>

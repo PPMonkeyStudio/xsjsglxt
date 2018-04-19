@@ -30,6 +30,16 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		return this.sessionFactory.getCurrentSession();
 	}
 
+	// 返回list集合
+	@Override
+	public List<?> listObject(String hql) {
+		Session session = getSession();
+		Query query = session.createQuery(hql);
+		List<?> list = query.list();
+		session.clear();
+		return list;
+	}
+
 	// 保存
 	@Override
 	public int saveObject(Object object) {
@@ -564,4 +574,5 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		}
 		return i;
 	}
+
 }

@@ -2,6 +2,11 @@ package com.xsjsglxt.domain.DO;
 
 public class xsjsglxt_inspection_record {
 
+	// 物证id
+	private String inspectionEvidenceId;
+	// 案件id
+	private String inspectionCaseId;
+
 	private String xsjsglxt_inspection_record_id;
 	private String inspection_belong_entrustment_book;
 	private String inspection_check_material_situation;
@@ -20,12 +25,33 @@ public class xsjsglxt_inspection_record {
 
 	@Override
 	public String toString() {
-		return "xsjsglxt_inspection_record [xsjsglxt_inspection_record_id=" + xsjsglxt_inspection_record_id + ", inspection_belong_entrustment_book="
-				+ inspection_belong_entrustment_book + ", inspection_check_material_situation=" + inspection_check_material_situation + ", inspection_sample_situation="
-				+ inspection_sample_situation + ", inspection_equipment=" + inspection_equipment + ", inspection_method=" + inspection_method + ", inspection_start_time="
-				+ inspection_start_time + ", inspection_stop_time=" + inspection_stop_time + ", inspection_location=" + inspection_location + ", inspection_people="
-				+ inspection_people + ", inspection_process=" + inspection_process + ", inspection_option=" + inspection_option + ", inspection_mark=" + inspection_mark
-				+ ", inspection_gmt_create=" + inspection_gmt_create + ", inspection_gmt_modified=" + inspection_gmt_modified + "]";
+		return "xsjsglxt_inspection_record [inspectionEvidenceId=" + inspectionEvidenceId + ", inspectionCaseId="
+				+ inspectionCaseId + ", xsjsglxt_inspection_record_id=" + xsjsglxt_inspection_record_id
+				+ ", inspection_belong_entrustment_book=" + inspection_belong_entrustment_book
+				+ ", inspection_check_material_situation=" + inspection_check_material_situation
+				+ ", inspection_sample_situation=" + inspection_sample_situation + ", inspection_equipment="
+				+ inspection_equipment + ", inspection_method=" + inspection_method + ", inspection_start_time="
+				+ inspection_start_time + ", inspection_stop_time=" + inspection_stop_time + ", inspection_location="
+				+ inspection_location + ", inspection_people=" + inspection_people + ", inspection_process="
+				+ inspection_process + ", inspection_option=" + inspection_option + ", inspection_mark="
+				+ inspection_mark + ", inspection_gmt_create=" + inspection_gmt_create + ", inspection_gmt_modified="
+				+ inspection_gmt_modified + "]";
+	}
+
+	public String getInspectionEvidenceId() {
+		return inspectionEvidenceId;
+	}
+
+	public void setInspectionEvidenceId(String inspectionEvidenceId) {
+		this.inspectionEvidenceId = inspectionEvidenceId;
+	}
+
+	public String getInspectionCaseId() {
+		return inspectionCaseId;
+	}
+
+	public void setInspectionCaseId(String inspectionCaseId) {
+		this.inspectionCaseId = inspectionCaseId;
 	}
 
 	public String getXsjsglxt_inspection_record_id() {

@@ -13,6 +13,8 @@ import com.xsjsglxt.domain.VO.InspectionIdentification.EntrustmentBookManagement
 
 public interface InspectionIdentificationDao {
 
+	public List<?> listObject(String hql);
+	
 	public int saveObject(Object object);
 
 	public int getMaxCheckNum(String check_entrustment_book_year, String type);
