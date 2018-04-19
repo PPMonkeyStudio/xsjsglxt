@@ -81,6 +81,7 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 		switch (filePosition) {
 		case "1":
 			fileSavePath = ServletActionContext.getServletContext().getRealPath("/upload/case/caseImage");
+			System.out.println(fileSavePath);
 			File fileHome = new File(fileSavePath);
 			if (!fileHome.exists())
 				fileHome.mkdirs();

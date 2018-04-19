@@ -48,10 +48,18 @@
 						onclick="javascript:location.href='/xsjsglxt/case/Case_page_Sneceinput'">
 						<i class="fa fa-plus-square"></i> 新建案件
 					</button>
-					<button id="case_delete" style="margin-left: 15px; color:red;"
-						type="button" class="btn btn-default">
+					<button id="case_delete" style="margin-left: 15px;"
+						class="btn btn-default" type="button">
 						<i class="fa fa-trash-o"></i> 删除所选案件
 					</button>
+					<input class="form-control" type="text" placeholder="报案人查询"
+						style="float: right; width: 140px; margin-right: 15px;"
+						onkeyup="input_query(this)" name=""
+						query_name="page_list_senceInformation.case_reporterName">
+					<input class="form-control" type="text" placeholder="主勘人员查询"
+						style="float: right; width: 140px; margin-right: 15px;"
+						onkeyup="input_query(this)" name=""
+						query_name="page_list_senceInformation.snece_inquestPerson">
 				</div>
 				<div class="col-md-12">
 					<!-- TABLE HOVER -->
@@ -68,7 +76,7 @@
 										<th>接警时间</th>
 										<th>案发地点</th>
 										<th>案件类别</th>
-										<th>报案人基本情况</th>
+										<th>报案人</th>
 										<th>主勘人员</th>
 									</tr>
 								</thead>

@@ -28,7 +28,13 @@ $(function () {
 
 	/*=======================页面数据初始化开始================== */
 	$.post('/xsjsglxt/case/Case_SecneInformationOne', { "case1.xsjsglxt_case_id": case1_id }, function (xhr_data) {
+		//保存现场ID
 		sence_id = xhr_data.sence.xsjsglxt_snece_id;
+		//保存下载的文件ID
+		downloadFile.case_imageFile = xhr_data.case1.case_imageFile;
+		downloadFile.case_writeFile = xhr_data.case1.case_writeFile;
+		downloadFile.case_senceImageFile = xhr_data.case1.case_senceImageFile;
+		//主信息
 		$('#caseDetails').find('select, input,textarea').each(function () {
 			var name = $(this).attr('name');
 			if (name == "register") {
@@ -53,7 +59,7 @@ $(function () {
 							  <td>${resevidence[index]["resevidence_name"]}</td>
 							  <td>${resevidence[index]["resevidence_extractTime"]}</td>
 							  <td>${resevidence[index]["resevidence_extractPerson"]}</td>
-							  <td>${resevidence[index]["resevidence_type"]}</td>
+							  <td><span class="label label-primary">${resevidence[index]["resevidence_teststate"]}</span></td>
 							  <td><i id="circulation" class="fa fa fa-random"></i>&nbsp&nbsp<i title="修改" id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i title="删除" id="delete" class="fa fa-trash-o"></i></td></tr>`;
 			}
 			return tr_str;
@@ -115,6 +121,18 @@ $(function () {
 			}
 			return tr_str;
 		});
+		//照片中的光盘信息
+		$.post('/xsjsglxt/case/Image_ListAllImageInformation', function (Image_data) {
+			//所有光盘遍历
+			var option = '';
+			console.log(Image_data[0].image_number);
+			for (var len = 0; len < Image_data.length; len++) {
+				option += '<option value="' + Image_data[len].image_number + '">' + Image_data[len].image_number + '</option>';
+			}
+			$('#picture').find('select[name="image.xsjsglxt_image_id"]').html(option).selectpicker('refresh');
+		}, 'json');
+
+
 
 		//物证提取人设定
 		var persons = xhr_data["sence"]["snece_inquestPerson"].split(',');
@@ -241,18 +259,6 @@ $(function () {
 				toastr.error('添加失败！');
 			}
 		}, 'json');
-	});
-	$('#picture').on('show.bs.modal', function () {
-		$.post('/xsjsglxt/case/Case_AllCase', function (Case_data) {
-			//所有案件循环
-			var option = '';
-			for (var len = 0; len < Case_data.length; len++) {
-				option += '<option value="' + Case_data[len].xsjsglxt_case_id + '">' + Case_data[len].case_name + '</option>';
-			}
-			$('#picture').find('select[name="case1.xsjsglxt_case_id"]').html(option).selectpicker('refresh');
-			//除去加载提示
-			//$('.load_remind').remove();
-		}, 'json');
 	})
 
 	/*============================================================================修改系列*/
@@ -264,6 +270,24 @@ $(function () {
 			var operate = $(o).attr('id');
 			console.log(operate);
 			if (operate == "circulation") {
+				$.post('/xsjsglxt/case/Resevidence_ResevidenceInformationOne', { "resevidence.xsjsglxt_resevidence_id": ID }, function (msg) {
+					$('#circulation-info form').find('input').each(function () {
+						var name = $(this).attr('name');
+						var key = name.split('.')[1];
+						$(this).val(msg["resevidence"][key]);
+					});
+					//给修改按钮绑定事件
+					$('#circulation-info .save_circulation').unbind().click(function () {
+						var resevidence_ = {};
+						for (const key in msg["resevidence"]) {
+							resevidence_['resevidence.' + key] = msg["resevidence"][key];
+						}
+						var data_ = $.extend({}, $('#circulation-info form').serializeObject(), resevidence_);
+						console.log(data_);
+					});
+					//模态框出现
+					$('#circulation-info').modal('show');
+				}, 'json');
 			}
 			else if (operate == "modify") {
 				$.post('/xsjsglxt/case/Resevidence_ResevidenceInformationOne', { "resevidence.xsjsglxt_resevidence_id": ID }, function (msg) {
@@ -448,7 +472,7 @@ $(function () {
 
 
 
-/*============================================================================定义事件系列，提供使用*/
+/*============================================================================定义事件系列，提供修改时候使用*/
 //修改使用的post
 function mdPost(URL, DATA, TYPE) {
 	$.post(URL, DATA, function (msg) {
@@ -544,28 +568,114 @@ function mdPost(URL, DATA, TYPE) {
 	}, 'text');
 }
 
-//页面文件上传使用
+/*============================================================================文件上传下载块*/
+//按钮事件
 function upload(button_element) {
 	$('#file_upload').trigger('click');
 	upLoadFile.element = button_element;
 }
+//文件上传
 var upLoadFile = function () {
 	var file_name = $('#file_upload').val();
-	console.log(file_name);
 	if (file_name != "") {
+		var formData = new FormData();
+		formData.append("case1.xsjsglxt_case_id", case1_id);
+		var file = $("#file_upload")[0].files[0];
 		var ele_type = upLoadFile.element;
-		toastr.success('<div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">75%</div>', '上传中。。。', { timeOut: 50000 })
-		console.log(ele_type);
-		/*switch (ele_type.id) {
-			case value:
+		switch (ele_type.id) {
+			case "evidence_photo"://物证图
+				formData.append("evidenceImage", file);
+				formData.append("filePosition", "1");
+				break;
+			case "record_file"://笔录文件
+				formData.append("writeText", file);
+				formData.append("filePosition", "2");
+				break;
+			case "scene_picture"://现场图片
+				formData.append("senceImage", file);
+				formData.append("filePosition", "3");
 				break;
 			default:
+				return;
 				break;
-		}*/
+		}
+		//进度条出现
+		$('.progress-bar').attr('aria-valuenow', '0').text('0%').parents('tr').show();
+		$.ajax({
+			type: "post",
+			async: true,  //这里要设置异步上传，才能成功调用myXhr.upload.addEventListener('progress',function(e){}),progress的回掉函数
+			Accept: 'text/html;charset=UTF-8',
+			data: formData,
+			contentType: "multipart/form-data",
+			url: "/xsjsglxt/case/Case_uploadFile",
+			processData: false, // 告诉jQuery不要去处理发送的数据
+			contentType: false, // 告诉jQuery不要去设置Content-Type请求头
+			xhr: function () {
+				myXhr = $.ajaxSettings.xhr();
+				if (myXhr.upload) { // check if upload property exists
+					myXhr.upload.addEventListener('progress', function (e) {
+						var loaded = e.loaded;                  //已经上传大小情况 
+						var total = e.total;                      //附件总大小 
+						var percent = Math.floor(100 * loaded / total) + "%";     //已经上传的百分比  
+						$('.progress-bar').attr('aria-valuenow', percent).text(percent);
+						if (percent == "100%") {
+							toastr.info('上传完成');
+							setTimeout(function () {
+								$('.progress-bar').attr('aria-valuenow', '0').text('0%').parents('tr').hide();
+							}, 2000);
+							$.post('/xsjsglxt/case/Case_SecneInformationOne', { "case1.xsjsglxt_case_id": case1_id }, function (xhr_data) {
+								//保存下载的文件ID
+								downloadFile.case_imageFile = xhr_data.case1.case_imageFile;
+								downloadFile.case_writeFile = xhr_data.case1.case_writeFile;
+								downloadFile.case_senceImageFile = xhr_data.case1.case_senceImageFile;
+							}, 'json');
+						}
+					}, false); // for handling the progress of the upload
+				}
+				return myXhr;
+			},
+			success: function (data) {
+				console.log("上传成功!!!!");
+			},
+			error: function () {
+				alert("上传失败！");
+			}
+		});
 	}
 }
+//文件下载
+var downloadFile = function (element) {
+	var href_str = '?';
+	switch (element.id) {
+		case "evidence_photo"://物证图
+			if (downloadFile.case_imageFile == undefined) {
+				toastr.info('该案件不包含有物证图,请上传!');
+				return;
+			}
+			href_str += "downloadFileName=" + downloadFile.case_imageFile + "&filePosition=" + 1;
+			break;
+		case "record_file"://笔录文件
+			if (downloadFile.case_writeFile == undefined) {
+				toastr.info('该案件不包含有笔录文件,请上传!');
+				return;
+			}
+			href_str += "downloadFileName=" + downloadFile.case_writeFile + "&filePosition=" + 2;
+			break;
+		case "scene_picture"://现场图片
+			if (downloadFile.case_senceImageFile == undefined) {
+				toastr.info('该案件不包含有现场图片,请上传!');
+				return;
+			}
+			href_str += "downloadFileName=" + downloadFile.case_senceImageFile + "&filePosition=" + 3;
+			break;
+		default:
+			return;
+			break;
+	}
+	window.open("/xsjsglxt/case/Case_download" + href_str);
+}
 
-
+/*
 //修改基站
 $('.modify_station').click(function () {
 	if ($('#station input').val() == "") {
@@ -581,120 +691,16 @@ $('.modify_station').click(function () {
 			toastr.error('修改失败！');
 		}
 	}, 'text');
-});
+});*/
 
-//物品中的详情信息
-var UsePost = {
-	data: {},
-	init: function (tansmittedData, type, action, item, parent) {
-		this.data.tansmittedData = tansmittedData;
-		this.data.type = type;//类型
-		this.data.action = action;//修改或是删除
-		this.data.item = item;//当前元素
-		this.data.parent = parent;//父div
-	},
-	sendPost: function () {
-		var that = this;
-		$.post(that.url, that.tansmittedData, that.getCallback(msg), 'json');
-	},
-	callback: function () {
-
-	},
-	getCallback: function (msg) {
-		var that = this;
-		var fun;
-		if (this.data.action == "modify") {
-			switch (this.data.type) {
-				case "resevidence":
-					that.data.url = '/xsjsglxt/case/Resevidence_updateResevidenceInformation';
-					fun = function (msg) {
-						var tr_str = '';
-						for (let index = 0; index < resevidence.length; index++) {
-							tr_str = `<tr id="${resevidence[index]["xsjsglxt_resevidence_id"]}">
-							  <td>${resevidence[index]["resevidence_name"]}</td>
-							  <td>${resevidence[index]["resevidence_extractPerson"]}</td>
-							  <td>${resevidence[index]["resevidence_type"]}</td>
-							  <td>${resevidence[index]["resevidence_extractTime"]}</td>
-							  <td><i class="fa fa-info-circle"></i>&nbsp&nbsp<i class="fa fa-trash-o"></i></td></tr>`;
-						}
-					}
-					break;
-				case "loseGoods_info":
-					that.data.url = '/xsjsglxt/case/Lost_updateLost';
-					var tr_str = '';
-					for (let index = 0; index < loseGoods_info.length; index++) {
-						tr_str = `<tr id="${loseGoods_info[index]["xsjsglxt_lost_id"]}">
-							  <td>${loseGoods_info[index]["lost_name"]}</td>
-							  <td>${loseGoods_info[index]["lost_remarks"]}</td>
-							  <td><i class="fa fa-info-circle"></i>&nbsp&nbsp<i class="fa fa-trash-o"></i></td></tr>`;
-					}
-					return tr_str;
-					break;
-				case "LostMobilephone_info":
-					that.data.url = '/xsjsglxt/case/LostMobilephone_updateLostMobilephone';
-					var tr_str = '';
-					for (let index = 0; index < LostMobilephone_info.length; index++) {
-						tr_str = `<tr id="${LostMobilephone_info[index]["xsjsglxt_lost_mobilephone_id"]}">
-							  <td>${LostMobilephone_info[index]["lost_mobilephone_phone"]}</td>
-							  <td>${LostMobilephone_info[index]["lost_mobilephone_IMEI"]}</td>
-							  <td>${LostMobilephone_info[index]["lost_mobilephone_feature"]}</td>
-							  <td>${LostMobilephone_info[index]["lost_mobilephone_remarks"]}</td>
-							  <td><i class="fa fa-info-circle"></i>&nbsp&nbsp<i class="fa fa-trash-o"></i></td></tr>`;
-					}
-					return tr_str;
-					break;
-				case "lose_computer":
-					that.data.url = '/xsjsglxt/case/LostComputer_updateLostComputer';
-					var tr_str = '';
-					for (let index = 0; index < lose_computer.length; index++) {
-						tr_str = `<tr id="${lose_computer[index]["xsjsglxt_lost_computer_id"]}">
-							  <td>${lose_computer[index]["lost_computer_brand"]}</td>
-							  <td>${lose_computer[index]["lost_computer_internetAccount"]}</td>
-							  <td>${lose_computer[index]["lost_computer_MAC"]}</td>
-							  <td>${lose_computer[index]["lost_computer_remarks"]}</td>
-							  <td><i class="fa fa-info-circle"></i>&nbsp&nbsp<i class="fa fa-trash-o"></i></td></tr>`;
-					}
-					return tr_str;
-					break;
-				case "picture_info":
-					that.data.url = '/xsjsglxt/case/Image_updatePicture';
-					var tr_str = '';
-					for (let index = 0; index < picture_info.length; index++) {
-						tr_str = `<tr id="${picture_info[index]["xsjsglxt_picture_id"]}">
-							  <td>${picture_info[index]["picture_image"]}</td>
-							  <td>${picture_info[index]["picture_identifier"]}</td>
-							  <td>${picture_info[index]["picture_remarks"]}</td>
-							  <td><i class="fa fa-info-circle"></i>&nbsp&nbsp<i class="fa fa-trash-o"></i></td></tr>`;
-					}
-					return tr_str;
-					break;
-				default:
-					break;
-			}
-		}
-		else if (this.data.action == "delete") {
-			switch (this.data.type) {
-				case "resevidence":
-					that.data.url = '/xsjsglxt/case/Resevidence_remove_ResevidenceInformationList';
-					break;
-				case "loseGoods_info":
-					that.data.url = '/xsjsglxt/case/Lost_remove_LostInformationList';
-					break;
-				case "LostMobilephone_info":
-					that.data.url = '/xsjsglxt/case/LostMobilephone_remove_Lost_mobilephoneInformationList';
-					break;
-				case "lose_computer":
-					that.data.url = '/xsjsglxt/case/LostComputer_remove_Lost_computerInformationList';
-					break;
-				case "picture_info":
-					that.data.url = '/xsjsglxt/case/Image_remove_PictureInformationList';
-					break;
-				default:
-					break;
-			}
-		}
-		return fun;
-	},
+//流转情况选择框事件
+function situation(element) {
+	console.log($(this).val());
+	if ($(this).val() == '入库保存') {
+		$(this).parent().nextAll().show();
+	} else {
+		$(this).parent().nextAll().hide();
+	}
 }
 
 function sence_checkbox(checkbox) {
