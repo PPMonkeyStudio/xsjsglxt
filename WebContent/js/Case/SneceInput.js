@@ -45,7 +45,6 @@ $(function () {
 		});
 	});
 
-
 	$.post('/xsjsglxt/team/Staff_getAllPolicemans', {}, function (params) {
 		var suspectStr = '';
 		for (let index = 0; index < params.length; index++) {
@@ -90,16 +89,16 @@ chapterCaseArr[0] = ["请选择案件总类别", "", sectionCase0];
 chapterCaseArr[1] = ["盗窃案", "盗窃案", sectionCase1];
 chapterCaseArr[2] = ["抢劫案", "抢劫案", sectionCase2];
 chapterCaseArr[3] = ["抢夺案", "抢夺案", sectionCase3];
-chapterCaseArr[4] = ["强奸案", "强奸案", ];
-chapterCaseArr[5] = ["绑架案", "绑架案", ];
-chapterCaseArr[6] = ["杀人案", "杀人案", ];
-chapterCaseArr[7] = ["故意伤害案", "故意伤害案", ];
-chapterCaseArr[8] = ["爆炸案", "爆炸案", ];
-chapterCaseArr[9] = ["放火案", "放火案", ];
-chapterCaseArr[10] = ["非法拘禁案", "非法拘禁案", ];
-chapterCaseArr[11] = ["非正常死亡", "非正常死亡", ];
-chapterCaseArr[12] = ["故意损坏公私财物", "故意损坏公私财物", ];
-chapterCaseArr[13] = ["其它", "其它", ];
+chapterCaseArr[4] = ["强奸案", "强奸案",];
+chapterCaseArr[5] = ["绑架案", "绑架案",];
+chapterCaseArr[6] = ["杀人案", "杀人案",];
+chapterCaseArr[7] = ["故意伤害案", "故意伤害案",];
+chapterCaseArr[8] = ["爆炸案", "爆炸案",];
+chapterCaseArr[9] = ["放火案", "放火案",];
+chapterCaseArr[10] = ["非法拘禁案", "非法拘禁案",];
+chapterCaseArr[11] = ["非正常死亡", "非正常死亡",];
+chapterCaseArr[12] = ["故意损坏公私财物", "故意损坏公私财物",];
+chapterCaseArr[13] = ["其它", "其它",];
 
 
 function setSectionCase(chapter) {
@@ -121,10 +120,11 @@ function setSectionCase(chapter) {
 		}
 	}
 
-	$('.case_name').val('"' + $('input[name="case1.case_receivingAlarmDate"]').val() + '"' + $('.case_place').val() + $('.main_case').val());
+	var receivingAlarmDate = new Date($('input[name="case1.case_receivingAlarmDate"]').val()).Format("yyyy.MM.dd");
+	$('.case_name').val('"' + receivingAlarmDate + '"' + $('.case_place').val() + $('.main_case').val());
 
 	$('.other_case').unbind().change(function () {
-		$('.case_name').val('"' + $('input[name="case1.case_receivingAlarmDate"]').val() + '"' + $('.case_place').val() + $('.other_case').val());
+		$('.case_name').val('"' + receivingAlarmDate + '"' + $('.case_place').val() + $('.other_case').val());
 	})
 }
 
@@ -287,4 +287,21 @@ function setSectionmAddress(chapter) {
 // -------------------------------------------------立案与否
 function buildCase_chose(obj) {
 	$('input[name="case1.case_register"]').val($(obj).val());
+}
+
+//日期扩展
+Date.prototype.Format = function (fmt) {
+	var o = {
+		"M+": this.getMonth() + 1, //月份 
+		"d+": this.getDate(), //日 
+		"h+": this.getHours(), //小时 
+		"m+": this.getMinutes(), //分 
+		"s+": this.getSeconds(), //秒 
+		"q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+		"S": this.getMilliseconds() //毫秒 
+	};
+	if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+	for (var k in o)
+		if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+	return fmt;
 }

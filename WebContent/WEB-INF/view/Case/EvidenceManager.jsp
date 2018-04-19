@@ -137,15 +137,15 @@ table tr td {
 						<td style="width: 200px;">物证名称</td>
 						<td style="width: 200px;">检验时间</td>
 						<td style="width: 200px;">检验方法</td>
-						<td colspan="2" style="width: 200px;">检验地点</td>
-						<td style="width: 200px;">鉴定要求</td>
+						<td  style="width: 200px;">检验地点</td>
+						<td colspan="2" style="width: 200px;">检验结果</td>
 					</tr>
 					<tr>
 						<td style="width: 200px;"></td>
 						<td style="width: 200px;"></td>
 						<td style="width: 200px;"></td>
-						<td style="width: 200px;" colspan="2"></td>
 						<td style="width: 200px;"></td>
+						<td colspan="2" style="width: 200px;"></td>
 					</tr>
 				</table>
 
