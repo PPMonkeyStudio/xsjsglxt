@@ -1,17 +1,23 @@
 var query_data = {
 	"page_list_senceInformation.pageIndex": "1",
-	"page_list_senceInformation.case_totalCategory": "",
 	"page_list_senceInformation.case_sonCategory": "",
 	"page_list_senceInformation.case_classify": "",
 	"page_list_senceInformation.case_makeTime": "",
 	"page_list_senceInformation.case_residence": "",
 	"page_list_senceInformation.case_concreteResidence": "",
 	"page_list_senceInformation.case_reporterName": "",
-	"page_list_senceInformation.snece_inquestPerson": "",
 	"page_list_senceInformation.case_makeMeans": "",
 	"page_list_senceInformation.case_concreteMakeMeans": "",
 	"page_list_senceInformation.start_time": "",
 	"page_list_senceInformation.stop_time": "",
+
+	"page_list_senceInformation.snece_inquestPerson": "",
+	"page_list_senceInformation.case_receivingAlarmDate": "",
+	"page_list_senceInformation.case_totalCategory": "",
+	"page_list_senceInformation.snece_inquestId": "",
+	"page_list_senceInformation.case_address": "",
+
+
 };
 // 当前页面分页信息
 var page_infomantion = {
@@ -23,6 +29,7 @@ var page_infomantion = {
 	HaveNextPage: false,
 }
 
+//选择全部
 var selectAll = function (event) {
 	if (event.checked) {
 		var che = document.getElementsByName("chooseCheckBox");
@@ -38,6 +45,8 @@ var selectAll = function (event) {
 }
 
 $(function () {
+	get_ListSneceInformationByPageAndSearch(query_data);
+
 	$('.to_quert').click(function () {
 		var arr = $('#query_infomantion_inmodal').serializeArray();
 		$.each(arr, function (key, value) {
@@ -103,67 +112,56 @@ $(function () {
 					toastr.info('未选择数据');
 				}
 			});
-	get_ListSneceInformationByPageAndSearch(query_data);
 })
 
 function get_ListSneceInformationByPageAndSearch(data) {
-	$
-		.post(
-			'/xsjsglxt/case/Case_ListSneceInformationByPageAndSearch',
-			data,
-			function (xhr) {
-				var str = '';
-				for (var len = 0; len < xhr.SenceInformationDTOList.length; len++) {
-					var data_list = xhr.SenceInformationDTOList[len];
-					str += '<tr>';
-					str += '<td><input name="chooseCheckBox" id="'
-						+ data_list.case1.xsjsglxt_case_id
-						+ '" type="checkbox"></td>';
-					str += '<td><a href="/xsjsglxt/case/Case_ page_intoDetails?id='
-						+ data_list.case1.xsjsglxt_case_id
-						+ '">'
-						+ data_list.sence.snece_inquestId
-						+ '</a></td>';
-					str += '<td>'
-						+ data_list.case1.case_receivingAlarmDate
-						+ '</td>';
-					str += '<td>' + data_list.case1.case_address
-						+ '</td>';
-					str += '<td>' + data_list.case1.case_sonCategory
-						+ '</td>';
-					str += '<td>' + data_list.case1.case_reporterName
-						+ '</td>';
-					str += '<td>' + data_list.sence.snece_inquestPerson
-						+ '</td>';
-					str += '</tr>';
-				}
-				$('.case_table_info tbody').html(str);
-				// 分页信息存入page_infomantion中
-				page_infomantion.pageIndex = xhr.pageIndex; // 当前页数
-				page_infomantion.totalRecords = xhr.totalRecords; // 总页数
-				page_infomantion.pageSize = xhr.pageSize; // 每页记录数
-				page_infomantion.totalPages = xhr.totalPages; // 总记录数
-				page_infomantion.HavePrePage = xhr.HavePrePage; // 是否有上一页
-				page_infomantion.HaveNextPage = xhr.HaveNextPage; // 是否有下一页
-
-				// 分页下的记录信息
-				var opt = '<option value=""></option>';
-				for (var index = xhr.pageIndex + 1; index <= xhr.totalPages; index++) {
-					opt += '<option>' + index + '</option>';
-				}
-				$('.info').html(
-					'共 ' + xhr.totalRecords + '条信息 当前'
-					+ xhr.pageIndex + '/' + xhr.totalPages
-					+ '页 ' + xhr.pageSize + '条信息/页');
-
-				// 影藏模态框
-				$('#newQuery').modal('hide')
-			}, 'json')
+	$.post('/xsjsglxt/case/Case_ListSneceInformationByPageAndSearch', data, function (xhr) {
+		var str = '';
+		for (var len = 0; len < xhr.SenceInformationDTOList.length; len++) {
+			var data_list = xhr.SenceInformationDTOList[len];
+			str += '<tr id="' + data_list.case1.xsjsglxt_case_id + '">';
+			str += '<td><input name="chooseCheckBox" id="' + data_list.case1.xsjsglxt_case_id + '" type="checkbox"></td>';
+			str += '<td><a href="/xsjsglxt/case/Case_ page_intoDetails?id=' + data_list.case1.xsjsglxt_case_id + '">'
+				+ data_list.sence.snece_inquestId
+				+ '</a></td>';
+			str += '<td>'
+				+ data_list.case1.case_receivingAlarmDate
+				+ '</td>';
+			str += '<td>' + data_list.case1.case_sonCategory
+				+ '</td>';
+			str += '<td>' + data_list.case1.case_reporterName
+				+ '</td>';
+			str += '<td>' + data_list.sence.snece_inquestPerson
+				+ '</td>';
+			str += '<td><i action="LinkToEvidence" class="fa fa-arrow-right" aria-hidden="true"></i></td>';
+			str += '</tr>';
+		}
+		$('.case_table_info tbody').html(str);
+		// 分页信息存入page_infomantion中
+		page_infomantion.pageIndex = xhr.pageIndex; // 当前页数
+		page_infomantion.totalRecords = xhr.totalRecords; // 总页数
+		page_infomantion.pageSize = xhr.pageSize; // 每页记录数
+		page_infomantion.totalPages = xhr.totalPages; // 总记录数
+		page_infomantion.HavePrePage = xhr.HavePrePage; // 是否有上一页
+		page_infomantion.HaveNextPage = xhr.HaveNextPage; // 是否有下一页
+		//入口设置事件
+		$('i[action="LinkToEvidence"]').click(function () {
+			window.location.href = "/xsjsglxt/case/Case_page_intoEvidence?id=" + $(this).parents('tr').attr('id');
+		});
+		// 分页下的记录信息
+		var opt = '<option value=""></option>';
+		for (var index = xhr.pageIndex + 1; index <= xhr.totalPages; index++) {
+			opt += '<option>' + index + '</option>';
+		}
+		$('.info').html('共 ' + xhr.totalRecords + '条信息 当前' + xhr.pageIndex + '/' + xhr.totalPages + '页 ' + xhr.pageSize + '条信息/页');
+		// 影藏模态框
+		$('#newQuery').modal('hide')
+	}, 'json')
 }
 
 
 //输入框查询事件
-function input_query(params) {
+function dynamic_query(params) {
 	query_data[$(params).attr('query_name')] = $(params).val();
 	get_ListSneceInformationByPageAndSearch(query_data);
 	query_data[$(params).attr('query_name')] = '';

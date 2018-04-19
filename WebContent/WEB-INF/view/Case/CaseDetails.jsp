@@ -934,7 +934,8 @@ i {
 									<tr>
 										<td>流转情况</td>
 										<td><select name="circulation.circulation_situation"
-											refresh="text" class="form-control" onchange="situation(this)">
+											refresh="text" class="form-control"
+											onchange="situation(this)">
 												<option value=""></option>
 												<option value="入库保存">入库保存</option>
 												<option value="出库送检">出库送检</option>

@@ -23,6 +23,11 @@
 	-->
 <link rel="stylesheet" type="text/css"
 	href="<%=basePath%>css/Case/Case.css" />
+<style type="text/css">
+i {
+	cursor: pointer;
+}
+</style>
 </head>
 
 <body>
@@ -52,14 +57,6 @@
 						class="btn btn-default" type="button">
 						<i class="fa fa-trash-o"></i> 删除所选案件
 					</button>
-					<input class="form-control" type="text" placeholder="报案人查询"
-						style="float: right; width: 140px; margin-right: 15px;"
-						onkeyup="input_query(this)" name=""
-						query_name="page_list_senceInformation.case_reporterName">
-					<input class="form-control" type="text" placeholder="主勘人员查询"
-						style="float: right; width: 140px; margin-right: 15px;"
-						onkeyup="input_query(this)" name=""
-						query_name="page_list_senceInformation.snece_inquestPerson">
 				</div>
 				<div class="col-md-12">
 					<!-- TABLE HOVER -->
@@ -71,13 +68,31 @@
 							<table class="table table-hover table-condensed case_table_info">
 								<thead>
 									<tr>
-										<th>全选<input type="checkbox" onclick="selectAll(this)"></th>
-										<th>勘验编号</th>
-										<th>接警时间</th>
-										<th>案发地点</th>
-										<th>案件类别</th>
-										<th>报案人</th>
-										<th>主勘人员</th>
+										<th style="padding-left:5px;width: 70px;">全选<input
+											type="checkbox" onclick="selectAll(this)"></th>
+										<th><input type="text" onkeyup="dynamic_query(this)"
+											class="form-control"
+											query_name="page_list_senceInformation.snece_inquestId"
+											placeholder="勘验编号"></th>
+										<th><select onchange="dynamic_query(this)"
+											class="form-control"
+											query_name="page_list_senceInformation.case_receivingAlarmDate">
+												<option value="desc">接警时间(降序)</option>
+												<option value="asc">接警时间(升序)</option>
+										</select></th>
+										<th><input type="text" onkeyup="dynamic_query(this)"
+											class="form-control"
+											query_name="page_list_senceInformation.snece_inquestId"
+											placeholder="案件类别"></th>
+										<th><input type="text" onkeyup="dynamic_query(this)"
+											class="form-control"
+											query_name="page_list_senceInformation.case_totalCategory"
+											placeholder="报案人"></th>
+										<th style="padding-left:5px;"><input type="text"
+											onkeyup="dynamic_query(this)" class="form-control"
+											query_name="page_list_senceInformation.snece_inquestPerson"
+											placeholder="主勘人员"></th>
+										<th><h5>物证入口</h5></th>
 									</tr>
 								</thead>
 								<tbody>
