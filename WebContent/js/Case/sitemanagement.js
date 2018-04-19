@@ -124,15 +124,10 @@ function get_ListSneceInformationByPageAndSearch(data) {
 			str += '<td><a href="/xsjsglxt/case/Case_ page_intoDetails?id=' + data_list.case1.xsjsglxt_case_id + '">'
 				+ data_list.sence.snece_inquestId
 				+ '</a></td>';
-			str += '<td>'
-				+ data_list.case1.case_receivingAlarmDate
-				+ '</td>';
-			str += '<td>' + data_list.case1.case_sonCategory
-				+ '</td>';
-			str += '<td>' + data_list.case1.case_reporterName
-				+ '</td>';
-			str += '<td>' + data_list.sence.snece_inquestPerson
-				+ '</td>';
+			str += '<td>' + data_list.case1.case_receivingAlarmDate + '</td>';
+			str += '<td>' + data_list.case1.case_sonCategory + '</td>';
+			str += '<td>' + data_list.case1.case_reporterName + '</td>';
+			str += '<td>' + (data_list.sence.snece_inquestPerson).split(',').slice(0, 3).join() + '</td>';
 			str += '<td><i action="LinkToEvidence" class="fa fa-arrow-right" aria-hidden="true"></i></td>';
 			str += '</tr>';
 		}
