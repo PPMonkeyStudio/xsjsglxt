@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2018-4-17 14:07:50 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2018-4-19 16:35:57 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="com.xsjsglxt.domain.DO.xsjsglxt_resevidence" table="XSJSGLXT_RESEVIDENCE">
         <id name="xsjsglxt_resevidence_id" type="java.lang.String">
@@ -43,6 +43,12 @@
         </property>
         <property name="resevidence_teststate" type="java.lang.String">
             <column name="RESEVIDENCE_TESTSTATE" />
+        </property>
+        <property name="resevidence_sendstate" type="java.lang.String">
+            <column name="RESEVIDENCE_SENDSTATE" />
+        </property>
+        <property name="resevidence_savePlace" type="java.lang.String">
+            <column name="RESEVIDENCE_SAVEPLACE" />
         </property>
         <property name="resevidence_gmt_create" type="java.lang.String">
             <column name="RESEVIDENCE_GMT_CREATE" />

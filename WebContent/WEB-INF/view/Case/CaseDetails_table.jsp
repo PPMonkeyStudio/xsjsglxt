@@ -203,23 +203,26 @@ table tr td {
 							style="text-align: left; border-top: none; border-left: none; border-right: none;"><h3>物证信息</h3></td>
 					</tr>
 					<tr>
-						<td colspan="2">物证名称</td>
+						<td colspan="1">物证名称</td>
 						<td style="text-align: center;">提取日期</td>
+						<td>存放位置</td>
 						<td>提取人</td>
 						<td style="text-align: center;">流转状态</td>
 						<td style="text-align: center;">检验状态</td>
 					</tr>
 					<template v-for="re in resevidence">
 					<tr>
-						<td colspan="2">{{ re.resevidence_name }}</td>
+						<td colspan="1">{{ re.resevidence_name }}</td>
 						<td>{{ re.resevidence_extractTime }}</td>
+						<td>{{ re. }}</td>
 						<td>{{ re.resevidence_extractPerson }}</td>
 						<td>{{ re.resevidence_circulation }}</td>
 						<td>{{ re.resevidence_teststate }}</td>
 					</tr>
 					</template>
 					<tr>
-						<td colspan="2"></td>
+						<td colspan="1"></td>
+						<td></td>
 						<td></td>
 						<td colspan="1"></td>
 						<td></td>

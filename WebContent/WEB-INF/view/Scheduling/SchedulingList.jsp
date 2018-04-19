@@ -62,7 +62,7 @@ a {
 				<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
 			</div>
 			<div id="tableContent" style="margin-top: 10px; display: none;">
-				<table class="table table-bordered" style="text-align: center; font-size: 20px;">
+				<table class="table table-bordered" style="text-align: center;">
 					<thead>
 						<tr style="height:30;">
 							<td rowspan="2"><label class="fancy-checkbox"> <input

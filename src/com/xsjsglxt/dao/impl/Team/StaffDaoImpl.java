@@ -146,7 +146,7 @@ public class StaffDaoImpl implements StaffDao {
 			hql = "from xsjsglxt_staff where staff_duty = '大队长' or staff_duty ='教导员' or staff_duty ='副大队长' or staff_duty ='副教导员' or staff_duty ='中队长' or staff_duty ='副中队长'";
 			break;
 		case "main":
-			hql = "from xsjsglxt_staff where staff_duty = '侦查民警' or staff_duty ='法医'";
+			hql = "from xsjsglxt_staff where staff_duty = '侦查民警' or staff_duty ='法医民警'";
 			break;
 		case "mainTech":
 			hql = "from xsjsglxt_staff where staff_duty = '技术民警'";
@@ -175,7 +175,7 @@ public class StaffDaoImpl implements StaffDao {
 	public List<xsjsglxt_staff> getMeetRecorder() {
 		// TODO Auto-generated method stub
 		Session session = this.getSession();
-		String hql = "from xsjsglxt_staff where staff_duty = '内勤'";
+		String hql = "from xsjsglxt_staff where staff_duty = '内勤民警'";
 		Query query = session.createQuery(hql);
 		List<xsjsglxt_staff> staffList = query.list();
 		return staffList;
