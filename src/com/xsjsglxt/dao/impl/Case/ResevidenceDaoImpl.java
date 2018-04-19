@@ -286,4 +286,24 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 		session.createQuery(hql).executeUpdate();
 	}
 
+	@Override
+	public void updateResevidenceCheckState(xsjsglxt_resevidence resevidence) {
+		// TODO Auto-generated method stub
+		String hql = "update xsjsglxt_resevidence set resevidence_teststate = '"
+				+ resevidence.getResevidence_teststate() + "' where xsjsglxt_resevidence_id ='"
+				+ resevidence.getXsjsglxt_resevidence_id() + "'";
+		Session session = this.getSession();
+		session.createQuery(hql).executeUpdate();
+	}
+
+	@Override
+	public void updateResevidenceSendCheckState(xsjsglxt_resevidence resevidence) {
+		// TODO Auto-generated method stub
+		String hql = "update xsjsglxt_resevidence set resevidence_sendstate = '"
+				+ resevidence.getResevidence_sendstate() + "' where xsjsglxt_resevidence_id ='"
+				+ resevidence.getXsjsglxt_resevidence_id() + "'";
+		Session session = this.getSession();
+		session.createQuery(hql).executeUpdate();
+	}
+
 }

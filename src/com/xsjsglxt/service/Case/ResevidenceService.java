@@ -33,4 +33,8 @@ public interface ResevidenceService {
 
 	public void updateStatus(xsjsglxt_resevidence resevidence);
 
+	public void updateResevidenceCheckState(xsjsglxt_resevidence resevidence);
+
+	public void updateResevidenceSendCheckState(xsjsglxt_resevidence resevidence);
+
 }

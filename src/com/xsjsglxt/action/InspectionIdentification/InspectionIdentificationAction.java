@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +26,8 @@ import com.xsjsglxt.domain.DO.xsjsglxt_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform;
 import com.xsjsglxt.domain.VO.InspectionIdentification.EntrustmentBookManagementVO;
 import com.xsjsglxt.service.InspectionIdentification.InspectionIdentificationService;
+
+import util.TeamUtil;
 
 @SuppressWarnings("serial")
 public class InspectionIdentificationAction extends ActionSupport implements ServletResponseAware, ServletRequestAware {
@@ -76,6 +79,102 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	 * 
 	 * 
 	 */
+
+	/**
+	 * 根据案件id获取委托书列表
+	 * 
+	 * @param tranceCheckBook.getCheckCaseId()
+	 *            案件id
+	 * @return listEnstrustment委托书列表
+	 */
+	public void getListEntrustmentByCaseId() {
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
+		Gson gson = gsonBuilder.create();
+		List<xsjsglxt_check_entrustment_book> listEnstrustment = new ArrayList<>();
+		listEnstrustment = inspectionIdentificationService
+				.getListEnstrustmentByCaseId(tranceCheckBook.getCheckCaseId());
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			response.getWriter().write(gson.toJson(listEnstrustment));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * @author 孙毅
+	 * 保存检验记录
+	 */
+
+	public void saveInspectionRecord() {
+		inspectionRecord.setXsjsglxt_inspection_record_id(TeamUtil.getUuid());
+		inspectionIdentificationService.saveInspectionRecords(inspectionRecord);
+	}
+
+	/**
+	 * 根据物证id获取委托书 tranceCheckBook.getCheckEvidenceId() 物证id
+	 * 
+	 * @return listEntrustmentBook委托书
+	 * 
+	 */
+	public void getListEntrustmentByEvidenceId() {
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
+		Gson gson = gsonBuilder.create();
+		List<xsjsglxt_check_entrustment_book> listEntrustmentBook = new ArrayList<>();
+		listEntrustmentBook = inspectionIdentificationService
+				.getListEnstrustmentByEvidenceId(tranceCheckBook.getCheckEvidenceId());
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			response.getWriter().write(gson.toJson(listEntrustmentBook));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 根据案件id获取检验记录
+	 * 
+	 * @param inspectionRecord.getInspectionCaseId()
+	 *            案件id
+	 * @return listInspectionRecord检验记录列表
+	 */
+	public void getListInspectionRecordByCaseId() {
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
+		Gson gson = gsonBuilder.create();
+		List<xsjsglxt_inspection_record> listInspectionRecord = new ArrayList<>();
+		listInspectionRecord = inspectionIdentificationService
+				.listInspectionRecordByCaseId(inspectionRecord.getInspectionCaseId());
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			response.getWriter().write(gson.toJson(listInspectionRecord));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 根据物证id获取委托书inspectionRecord.getInspectionEvidenceId() 物证id
+	 * 
+	 * @return listInspectionRecord检验记录
+	 * 
+	 */
+	public void getListIndsectionRecordByEvidenceId() {
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
+		Gson gson = gsonBuilder.create();
+		List<xsjsglxt_inspection_record> listInspectionRecord = new ArrayList<>();
+		listInspectionRecord = inspectionIdentificationService
+				.listInspectionRecordByEvidenceId(inspectionRecord.getInspectionEvidenceId());
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			response.getWriter().write(gson.toJson(listInspectionRecord));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	// 点击进入检验鉴定委托管理
 	public String EntrustmentBookManagement() {
