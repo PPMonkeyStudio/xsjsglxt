@@ -54,7 +54,7 @@ function loadstaffDetail_staff_change(url) {
 			prized_ajax(id);
 			against_ajax(id);
 			furlough_ajax(id);
-			window.location.href='http://localhost:8080/xsjsglxt/team/Staff_page_staffList';
+			//window.location.href='http://localhost:8080/xsjsglxt/team/Staff_page_staffList';
 		}
 	};
 	xmlhttp.open("post", url, true);
