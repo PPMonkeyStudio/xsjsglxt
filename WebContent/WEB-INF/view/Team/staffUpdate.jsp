@@ -40,11 +40,12 @@
 				</button>
 
 			</div>
-			<div class="panel-body staff_body" style="width: 1200px; margin: 0 auto;">
-				<div >
+			<div class="panel-body staff_body"
+				style="width: 1200px; margin: 0 auto;">
+				<div>
 					<form id="staffDetails" enctype="multipart/form-data"
 						accept-charset="utf-8">
-						<table style="width: 1200px;margin-left: 50px">
+						<table style="width: 1200px; margin-left: 50px">
 							<tr>
 								<td colspan="6" class="staff_info_title">基本信息</td>
 							</tr>
@@ -236,8 +237,8 @@
 								<td><input name="policeman.staff_outEmail" type="text"
 									class="form-control" style="margin-top: 6px;"></td>
 								<td><label class="staff_info_label">家庭地址</label></td>
-								<td colspan="3"><input name="policeman.staff_address" style="width:665px;"
-									class="form-control" type="text"></td>
+								<td colspan="3"><input name="policeman.staff_address"
+									style="width: 665px;" class="form-control" type="text"></td>
 							</tr>
 						</table>
 					</form>
@@ -256,6 +257,7 @@
 								<table>
 									<tbody>
 										<tr class="long_table">
+											<th>类别</th>
 											<th>学习/出差地点</th>
 											<th>起始时间</th>
 											<th>结束时间</th>
@@ -437,11 +439,11 @@
 								<table>
 									<tbody>
 										<tr class="long_table">
-											<th>休假事由</th>
-											<th>起始时间时间</th>
-											<th>天数</th>
-											<th>是否销假</th>
+											<th>起始时间</th>
 											<th>销假时间</th>
+											<th>是否销假</th>
+											<th>休假事由</th>
+											<th>天数</th>
 											<th>备注</th>
 											<th>操作</th>
 										</tr>
@@ -482,6 +484,13 @@
 
 						<table>
 							<tbody>
+								<tr>
+									<td><label class="staff_info_label">类别</label></td>
+									<td><select class="form-control staffStudent_evection">
+											<option>学习</option>
+											<option>出差</option>
+									</select></td>
+								</tr>
 								<tr>
 									<td><label class="staff_info_label">地点</label></td>
 									<td><input style="font-size: 12px;"
@@ -868,19 +877,14 @@
 
 						<table>
 							<tbody>
-								<tr>
-									<td><label class="staff_info_label">休假事由</label></td>
-									<td><input style="font-size: 12px;"
-										class="staffFurlough_mainContent" type="text"></td>
-								</tr>
-								<tr>
+							    <tr>
 									<td><label class="staff_info_label">起始时间</label></td>
 									<td><input style="font-size: 12px;"
 										class="staffFurlough_startTime time"></td>
 								</tr>
 								<tr>
-									<td><label class="staff_info_label">天数</label></td>
-									<td><input type="text" class="staffFurlough_days" /></td>
+									<td><label class="staff_info_label">销假时间</label></td>
+									<td><input type="text" class="staffFurlough_stopTime time" /></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">是否销假</label></td>
@@ -890,9 +894,17 @@
 									</select></td>
 								</tr>
 								<tr>
-									<td><label class="staff_info_label">销假时间</label></td>
-									<td><input type="text" class="staffFurlough_stopTime time" /></td>
+									<td><label class="staff_info_label">休假事由</label></td>
+									<td><input style="font-size: 12px;"
+										class="staffFurlough_mainContent" type="text"></td>
 								</tr>
+								
+								<tr>
+									<td><label class="staff_info_label">天数</label></td>
+									<td><input type="text" class="staffFurlough_days" /></td>
+								</tr>
+								
+								
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
@@ -936,6 +948,13 @@
 						<table>
 							<tbody>
 								<tr>
+									<td><label class="staff_info_label">类别</label></td>
+									<td><select class="form-control staffStudent_evectionRelive">
+											<option>学习</option>
+											<option>出差</option>
+									</select></td>
+								</tr>
+								<tr>
 									<td><label class="staff_info_label">地点</label></td>
 									<td><input style="font-size: 12px;"
 										class="staffStudent_addressRelive" type="text"></td>
@@ -947,7 +966,8 @@
 								</tr>
 								<tr>
 									<td><label class="staff_info_label time">结束时间</label></td>
-									<td><input type="text" class="staffStudent_stopTimeRelive time" /></td>
+									<td><input type="text"
+										class="staffStudent_stopTimeRelive time" /></td>
 								</tr>
 
 								<tr>
@@ -992,28 +1012,28 @@
 						<table>
 							<tbody>
 								<tr>
-									<td><label>工作地点</label></td>
+									<td><label class="staff_info_label">工作地点</label></td>
 									<td><input style="font-size: 12px;"
 										class="staffWork_addressRelive" type="text"></td>
 								</tr>
 								<tr>
-									<td><label>职务</label></td>
+									<td><label class="staff_info_label">职务</label></td>
 									<td><input style="font-size: 12px;"
 										class="staffWork_dutyRelive" type="text"></td>
 								</tr>
 								<tr>
-									<td><label>起始时间</label></td>
+									<td><label class="staff_info_label">起始时间</label></td>
 									<td><input style="font-size: 12px;"
 										class="staffWork_startTimeRelive time"></td>
 								</tr>
 								<tr>
-									<td><label>结束时间</label></td>
+									<td><label class="staff_info_label">结束时间</label></td>
 									<td><input type="text"
 										class="staffWork_stopTimeRelive time" /></td>
 								</tr>
 
 								<tr>
-									<td><label>备注</label></td>
+									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
 											class="staffWork_remarksRelive"
 											style="width: 480px; border: 1px solid #ccc; text-indent: 30px; margin-top: 10px;"
@@ -1324,19 +1344,15 @@
 
 						<table>
 							<tbody>
-								<tr>
-									<td><label class="staff_info_label">休假事由</label></td>
-									<td><input style="font-size: 12px;"
-										class="staffFurlough_mainContentRelive" type="text"></td>
-								</tr>
-								<tr>
+							<tr>
 									<td><label class="staff_info_label">起始时间</label></td>
 									<td><input style="font-size: 12px;"
 										class="staffFurlough_startTimeRelive time"></td>
 								</tr>
 								<tr>
-									<td><label class="staff_info_label">天数</label></td>
-									<td><input type="text" class="staffFurlough_daysRelive" /></td>
+									<td><label class="staff_info_label">销假时间</label></td>
+									<td><input type="text"
+										class="staffFurlough_stopTimeRelive time" /></td>
 								</tr>
 								<tr>
 									<td><label class="staff_info_label">是否销假</label></td>
@@ -1346,10 +1362,17 @@
 									</select></td>
 								</tr>
 								<tr>
-									<td><label class="staff_info_label">销假时间</label></td>
-									<td><input type="text"
-										class="staffFurlough_stopTimeRelive time" /></td>
+									<td><label class="staff_info_label">休假事由</label></td>
+									<td><input style="font-size: 12px;"
+										class="staffFurlough_mainContentRelive" type="text"></td>
 								</tr>
+								
+								<tr>
+									<td><label class="staff_info_label">天数</label></td>
+									<td><input type="text" class="staffFurlough_daysRelive" /></td>
+								</tr>
+								
+								
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"

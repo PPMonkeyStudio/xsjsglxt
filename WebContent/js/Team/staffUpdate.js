@@ -135,9 +135,7 @@ function show_studyAjax(staff_id) {
 			if(staff_study=="studentIsNull"){
 				$('#studyExperience_table tbody').html("");
 			}else{
-			console.log("staff_study" + staff_study);
 			staff_study = JSON.parse(staff_study);
-			console.log(staff_study.length);
 			var table_elements=$("#studyExperience_table tbody");
 			for(var i=1;i<table_elements.length;i++){
 				table_elements.removeChild(table_elements.element[i]);
@@ -148,6 +146,8 @@ function show_studyAjax(staff_id) {
 				str1 += '<tr>';
 				str1 += '<input type="hidden" class="xsjsglxt_staffStudent_id" id="'
 						+ xsjsglxt_staffStudent_id + '">';
+				str1 += '<td>' + staff_study[len].staffStudent_evection
+				+ '</td>';
 				str1 += '<td>' + staff_study[len].staffStudent_address
 						+ '</td>';
 				str1 += '<td>' + staff_study[len].staffStudent_startTime
@@ -414,17 +414,19 @@ function show_furloughAjax(staff_id) {
 				str8 += '<tr>';
 				str8 += '<input type="hidden" class="xsjsglxt_staffFurlough_id" id="'
 						+ xsjsglxt_staffFurlough_id + '">';
-
+				str8 += '<td>' + staff_furlough[len].staffFurlough_startTime
+				+ '</td>';
+				str8 += '<td>' + staff_furlough[len].staffFurlough_stopTime
+				+ '</td>';
+				str8 += '<td>' + staff_furlough[len].staffFurlough_whetherStop
+				+ '</td>';
 				str8 += '<td>' + staff_furlough[len].staffFurlough_mainContent
 						+ '</td>';
-				str8 += '<td>' + staff_furlough[len].staffFurlough_startTime
-						+ '</td>';
+				
 				str8 += '<td>' + staff_furlough[len].staffFurlough_days
 						+ '</td>';
-				str8 += '<td>' + staff_furlough[len].staffFurlough_whetherStop
-						+ '</td>';
-				str8 += '<td>' + staff_furlough[len].staffFurlough_stopTime
-						+ '</td>';
+				
+				
 				str8 += '<td>' + staff_furlough[len].staffFurlough_remarks
 						+ '</td>';
 				str8 += '<td> <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#reliveFurlough_Modal" onclick="show_furlough(this)" type="button" ><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs" onclick="delete_furlough(this)" type="button" ><i class="fa fa-trash"></i></button></td>';
