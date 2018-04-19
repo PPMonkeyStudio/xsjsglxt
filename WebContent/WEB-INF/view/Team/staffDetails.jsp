@@ -54,9 +54,9 @@
 								<td class="odd"><label class="staff_info_label">警号</label></td>
 								<td class="even">{{ returnData.staff_alarm }}</td>
 
-								<td class="odd" rowspan="4" style="border-right: 0px"><a class="photo-show"
+								<td class="odd" rowspan="4"><label class="staff_info_label">照&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;片</label></td>
+								<td class="even" rowspan="4" ><a class="photo-show"
 									id="photo-show"></a></td>
-								<td class="even" rowspan="4" style="border-left: 0px"></td>
 							</tr>
 							<tr>
 								<td class="odd"><label class="staff_info_label">身份证号</label></td>
