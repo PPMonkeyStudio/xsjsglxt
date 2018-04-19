@@ -3,7 +3,12 @@ var query_data = {
 	"page_list_parallelInformation.start_time": "",
 	"page_list_parallelInformation.stop_time": "",
 	"page_list_parallelInformation.parallel_casename": "",
+
 	"page_list_parallelInformation.parallel_person": "",
+	"page_list_parallelInformation.parallel_num": "",
+	"page_list_parallelInformation.parallel_casename": "",
+	"page_list_parallelInformation.parallel_date": "",
+	"page_list_parallelInformation.parallel_breakecaseSituation": "",
 };
 //当前页面分页信息
 var page_infomantion = {
@@ -34,71 +39,45 @@ var selectAll = function (event) {
 var modifi_delete = function () {
 	var type = $(this).text().trim();
 	var id = $(this).siblings('input').val();
-	if (type == "修改") {
-		$.post('/xsjsglxt/case/Parallel_ParallelInformationOne', {
-			"parallel.xsjsglxt_parallel_id": id
-		}, function (xhr_data) {
-			//模态框显示
-			$('#CaseMerger_modification').modal('show');
-			$.post('/xsjsglxt/case/Case_AllCase', function (Case_data) {
-				//所有案件循环
-				var option = '';
-				for (var len = 0; len < Case_data.length; len++) {
-					option += '<option ';
-					if (xhr_data.case1.case_name == Case_data[len].case_name) {
-						option += 'selected';
-					}
-					option += ' value="' + Case_data[len].xsjsglxt_case_id + '">' + Case_data[len].case_name + '</option>';
-				}
-				$('#breakCase_modification .selectpicker').html(option).selectpicker('refresh');
-				//除去加载提示
-				$('#breakCase_modification .load_remind').remove();
-			}, 'json');
-			//确认修改按钮添加事件
-			$('.breakCase_operation').click(breakecase_modification);
-		}, 'json');
-	} else if (type == "删除") {
-		var formData = new FormData();
-		formData.append("useParallelInformationNumList", id);
-		$.confirm({
-			title: '确定删除?',
-			smoothContent: false,
-			content: false,
-			autoClose: 'cancelAction|10000',
-			buttons: {
-				deleteUser: {
-					btnClass: 'btn-danger',
-					text: '确认',
-					action: function () {
-						$.ajax({
-							url: '/xsjsglxt/case/Parallel_remove_ParallelInformationList',
-							type: 'post',
-							data: formData,
-							processData: false,
-							contentType: false,
-							dataType: 'text',
-							success: function (data, text) {
-								if (text == "success") {
-									toastr.success("删除成功！");
-									//获取对应option中的value值
-									get_ListParallelInformationByPageAndSearch(query_data);
-								} else {
-									toastr.error("删除失败！");
-								}
-							}
-						});
-					}
-				},
-				cancelAction: {
-					btnClass: 'btn-blue',
-					text: '取消',
-				}
-			}
+	$.post('/xsjsglxt/case/Parallel_ParallelInformationOne', {
+		"parallel.xsjsglxt_parallel_id": id
+	}, function (xhr_data) {
+		$('#CaseMerger_modification table tbody').find('input,select,textarea').each(function () {
+			var name = $(this).attr('name');
+			var key = name.split('.')[1];
+			$(this).val(xhr_data["parallel"][key]);
 		});
-	}
+		//模态框显示
+		$('#CaseMerger_modification').modal('show');
+		var caseID = [];
+		for (let index = 0; index < xhr_data.caseList.length; index++) {
+			caseID.push(xhr_data.caseList[index].xsjsglxt_case_id);
+		}
+		$.post('/xsjsglxt/case/Case_AllCase', function (Case_data) {
+			//所有案件循环
+			var option = '';
+			for (var len = 0; len < Case_data.length; len++) {
+				option += '<option value="' + Case_data[len].xsjsglxt_case_id + '">' + Case_data[len].case_name + '</option>';
+			}
+			$('select[name="parallel.parallel_num"]').html(option).selectpicker('refresh').selectpicker('val', caseID);
+			//除去加载提示
+			$('#breakCase_modification .load_remind').remove();
+		}, 'json');
+		//确认修改按钮添加事件
+		$('.modify_merger').unbind().click(function () {
+			$.post('/xsjsglxt/case/Parallel_updateParallel', $('#CaseMerger_modification form').serialize(), function (msg) {
+				if (msg == "success") {
+					toastr.info('修改成功');
+					$('#CaseMerger_modification').modal('hide');
+					get_ListParallelInformationByPageAndSearch(query_data);
+				}
+			}, 'text');
+		})
+	}, 'json');
 }
 
 $(function () {
+
 	get_ListParallelInformationByPageAndSearch(query_data);
 
 	$('.to_quert').click(function () {
@@ -147,6 +126,23 @@ $(function () {
 		}
 	});
 
+	//模态框清除数据
+	$('#CaseMerger_modification').on('hidden.bs.modal', function () {
+		var refresh = '';
+		$(value).find('input,select,textarea').each(function () {
+			refresh = $(this).attr("refresh");
+			//文本刷新
+			if (refresh == "text") {
+				$(this).val('');
+			}
+			//select插件刷新
+			else if (refresh == "selectpicker") {
+				$(this).selectpicker('deselectAll');
+			} else {
+
+			}
+		});
+	})
 })
 
 function get_ListParallelInformationByPageAndSearch(data) {
@@ -163,25 +159,28 @@ function get_ListParallelInformationByPageAndSearch(data) {
 			str += '<td>' + data_list.parallel_date + '</td>';
 			str += '<td>' + data_list.parallel_person + '</td>';
 			str += '<td>' + (data_list.parallel_breakecaseSituation == "1" ? "是" : "否") + '</td>';
-			str += '<td width="240px">'
+			str += '<td style="padding-left:0px;">'
 				+ '<input type="hidden"  value="' + data_list.xsjsglxt_parallel_id + '" />'
-				+ '<button type="button" style="margin-left:6px;" class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 修改</button>'
-				+ '<button type="button" style="margin-left:6px;" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除</button>'
+				+ '<button type="button" style="margin-left:6px;" class="btn btn-primary btn-xs modify_parallel"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 修改</button>'
 				+ '</td>';
 			str += '</tr>';
 		}
 		$('.case_table_info tbody').html(str);
-		$('.btn-xs').click(modifi_delete);
+		$('.modify_parallel').click(modifi_delete);
 	}, 'json');
 }
 
 //输入框查询事件
-function input_query(params) {
+function dynamic_query(params) {
 	query_data[$(params).attr('query_name')] = $(params).val();
 	get_ListParallelInformationByPageAndSearch(query_data);
 	query_data[$(params).attr('query_name')] = '';
 }
 
+//单选框的点击事件
+function buildCase_chose(params) {
+	$('input[name="parallel.parallel_breakecaseSituation"]').val($(params).val());
+}
 
 // 首页
 function firstPage() {

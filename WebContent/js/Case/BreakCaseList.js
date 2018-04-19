@@ -5,7 +5,14 @@ var query_data = {
 	"breakeCaseListVO.query_breake_time_start": "",
 	"breakeCaseListVO.query_breake_time_end": "",
 	"breakeCaseListVO.query_breake_person": "",
+
+
 	"breakeCaseListVO.query_breake_according": "",
+	"breakeCaseListVO.breakecase_case": "",
+	"breakeCaseListVO.breakecase_type": "",
+	"breakeCaseListVO.breakecase_person": "",
+	"breakeCaseListVO.breakecase_caseTime": "",
+
 };
 //当前页面分页信息
 var page_infomantion = {
@@ -38,13 +45,13 @@ var braekeCaseData = `<form action="">
 </tr><tr><td>案件类型</td><td>
 <input class="form-control" name="breakeCase.breakecase_type" type="text">
 </td><td>破案方式</td><td>
-<select class="form-control" name="breakeCase.breakecase_according"><option value=""></option><option value="指纹">指纹</option><option value="视屏">视屏</option><option value="NDA">NDA</option></select>
+<select class="form-control" name="breakeCase.breakecase_according"><option value=""></option><option value="指纹">指纹</option><option value="视频">视频</option><option value="DNA">DNA</option></select>
 </td></tr><tr><td>破案时间</td><td>
 <input class="form-control mydate" name="breakeCase.breakecase_caseTime" type="text">
 </td><td>破案人</td><td>
 <input class="form-control" name="breakeCase.breakecase_person" type="text">
 </td></tr><tr><td>带破案件</td><td colspan="3">
-<select class="form-control selectpicker" multiple data-live-search="true" name="breakeCase.breakecase_waitbreakecase"></select>
+<select class="form-control selectpicker" multiple data-live-search="true" name="breakeCase.breakecase_waitbreakecase" title="请选择..."></select>
 </td></tr><tr><td>备注</td><td colspan="3">
 <textarea placeholder="请填写" class="form-control"name="breakeCase.breakecase_remarks"></textarea>
 </td></tr><tr>
@@ -81,6 +88,8 @@ var SuspectData = `<table class="table">
 var suspect = [];
 
 $(function () {
+
+	get_ListBreakecaseInformationByPageAndSearch(query_data);
 
 	$('.to_quert').click(function () {
 		var arr = $('#query_infomantion_inmodal').serializeArray();
@@ -272,7 +281,6 @@ $(function () {
 			<table class="table table-hover suspect-info">
 			<thead><tr><td>姓名</td><td>身份证号</td><td>性别</td><td>生日</td><td>住址</td><td>抓获</td><td>抓获单位</td><td>抓获时间</td><td>操作</td>
 			</tr></thead><tbody></tbody></table></tr></tbody></table></div></form>`;
-
 				var modifyBreakeCase = $.confirm({
 					closeIcon: true,
 					columnClass: 'col-md-12',
@@ -407,7 +415,6 @@ $(function () {
 		}
 	});
 
-	get_ListBreakecaseInformationByPageAndSearch(query_data);
 })
 
 function get_ListBreakecaseInformationByPageAndSearch(data) {
@@ -591,6 +598,13 @@ $.fn.extend({
 		return obj;
 	}
 });
+
+//输入框查询事件
+function dynamic_query(params) {
+	query_data[$(params).attr('query_name')] = $(params).val();
+	get_ListBreakecaseInformationByPageAndSearch(data);
+	query_data[$(params).attr('query_name')] = '';
+}
 
 //首页
 function firstPage() {

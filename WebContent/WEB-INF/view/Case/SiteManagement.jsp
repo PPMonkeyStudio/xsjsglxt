@@ -46,7 +46,7 @@ i {
 					<button style="margin-left: 15px;" type="button"
 						class="btn btn-default" data-toggle="modal"
 						data-target="#newQuery">
-						<i class="fa fa-plus-square"></i> 案件查询
+						<i class="fa fa-plus-square"></i> 案件高级查询
 					</button>
 					<button style="margin-left: 15px;" type="button"
 						class="btn btn-default"
@@ -130,15 +130,15 @@ i {
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">现场勘验信息修改查询</h4>
+					<h4 class="modal-title" id="myModalLabel">现场勘验信息高级查询</h4>
 				</div>
 				<div class="modal-body">
 					<form id="query_infomantion_inmodal" action="">
 						<table style="width: 100%;" class="Query_table">
 							<tbody>
 								<tr>
-									<td width="70px">案件类别</td>
-									<td><select
+									<td width="10%">案件类别</td>
+									<td width="30%"><select
 										name="page_list_senceInformation.case_totalCategory"
 										onchange="setSectionCase(this.selectedIndex)"
 										class="main_case form-control"><option
@@ -160,30 +160,11 @@ i {
 										class="other_case form-control">
 											<option selected value="">案件子类别</option>
 									</select></td>
-									<td style="padding-left: 10px; width: 70px;">案件分类</td>
-									<td><select
-										name="page_list_senceInformation.case_classify"
-										class=" form-control">
-											<option value="" selected></option>
-											<option value="非刑事案件">非刑事案件</option>
-											<option value="刑事案件">刑事案件</option>
-											<option value="非正常死亡">非正常死亡</option>
-									</select></td>
-									<td width="70px">作案时段</td>
-									<td><select
-										name="page_list_senceInformation.case_makeTime"
-										class="form-control">
-											<option selected value=""></option>
-											<option value="昼">昼</option>
-											<option value="夜">夜</option>
-											<option value="上午">上午</option>
-											<option value="中午">中午</option>
-											<option value="下午">下午</option>
-											<option value="晚上">晚上</option>
-											<option value="深夜">深夜</option>
-											<option value="凌晨">凌晨</option>
-											<option value="其他">其他</option>
-									</select></td>
+									<td style="padding-left: 10px;width:10%;">勘验人员</td>
+									<td colspan="3"><input
+										name="page_list_senceInformation.snece_inquestPerson"
+										id="exploration_personnel" placeholder="请输入"
+										class="form-control" style="width: 100%;">
 								</tr>
 								<tr style="margin-top: 6px;">
 									<td style="margin-top: 6px;">选择处所</td>
@@ -200,11 +181,12 @@ i {
 										class=" specific_space form-control">
 											<option value="">具体处所</option>
 									</select></td>
-									<td style="padding-left: 10px;">勘验人员</td>
+									<td style="padding-left: 10px;">案发地点</td>
 									<td colspan="3"><input
-										name="page_list_senceInformation.snece_inquestPerson"
-										id="exploration_personnel" placeholder="请输入"
-										class="form-control"> <%-- <select
+										name="page_list_senceInformation.case_address"
+										style="float: left; width: 100%;" type="text"
+										class="form-control"></td>
+									<%-- <select
 										name="page_list_senceInformation.snece_inquestPerson"
 										id="exploration_personnel"
 										class="selectpicker show-tick form-control dropdn" multiple
@@ -223,7 +205,7 @@ i {
 											<option value="陈佐仁">陈佐仁</option>
 											<option value="李希">李希</option>
 											<option value="魏松林">魏松林</option>
-									</select> --%></td>
+									</select> --%>
 								</tr>
 								<tr>
 									<td>作案手段</td>
@@ -242,22 +224,45 @@ i {
 										class=" specific_means form-control">
 											<option value="">具体手段</option>
 									</select></td>
-									<td style="padding-left: 10px;">勘验时间</td>
-									<td><input name="page_list_senceInformation.start_time"
-										style="float: left;" type="text" class="form-control mydate"
-										placeholder="起始日期"><input
-										name="page_list_senceInformation.stop_time"
-										style=" float: right;" type="text" class="form-control mydate"
-										placeholder="结束日期"></td>
+									<td style="padding-left: 10px;">报案人</td>
+									<td colspan="3"><input
+										name="page_list_senceInformation.case_reporterName"
+										style="float: left;width: 100%;" type="text"
+										class="form-control"></td>
+
 								</tr>
 								<tr>
-									<td style="padding-left: 10px;">报案人</td>
-									<td><input
-										name="page_list_senceInformation.case_reporterName"
-										style="float: left;" type="text" class="form-control"></td>
-									<td style="padding-left: 10px;">案发地点</td>
-									<td><input name="page_list_senceInformation.case_address"
-										style="float: left;" type="text" class="form-control"></td>
+									<td>勘验时间</td>
+									<td><input name="page_list_senceInformation.start_time"
+										style="float: left;margin-top: 6px;" type="text"
+										class="form-control mydate" placeholder="起始日期"><input
+										name="page_list_senceInformation.stop_time"
+										style=" float: right;margin-top: 6px;" type="text"
+										class="form-control mydate" placeholder="结束日期"></td>
+									<td style="padding-left: 10px;width: 10%;">作案时段</td>
+									<td><select
+										name="page_list_senceInformation.case_makeTime"
+										class="form-control">
+											<option selected value=""></option>
+											<option value="昼">昼</option>
+											<option value="夜">夜</option>
+											<option value="上午">上午</option>
+											<option value="中午">中午</option>
+											<option value="下午">下午</option>
+											<option value="晚上">晚上</option>
+											<option value="深夜">深夜</option>
+											<option value="凌晨">凌晨</option>
+											<option value="其他">其他</option>
+									</select></td>
+									<td style="padding-left: 10px; width: 70px;">案件分类</td>
+									<td><select
+										name="page_list_senceInformation.case_classify"
+										class=" form-control">
+											<option value="" selected></option>
+											<option value="非刑事案件">非刑事案件</option>
+											<option value="刑事案件">刑事案件</option>
+											<option value="非正常死亡">非正常死亡</option>
+									</select></td>
 								</tr>
 							</tbody>
 						</table>

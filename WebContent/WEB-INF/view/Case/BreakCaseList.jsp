@@ -62,7 +62,7 @@ i {
 					<button style="margin-left: 15px;" type="button"
 						class="btn btn-default" data-toggle="modal"
 						data-target="#newQuery">
-						<i class="fa fa-plus-square"></i> 刑事破案查询
+						<i class="fa fa-plus-square"></i> 刑事破案高级查询
 					</button>
 					<!--  data-toggle="modal" -->
 					<button id="breakCase_input" data-target="#breakCase_input"
@@ -86,13 +86,34 @@ i {
 								class="table table-hover table-condensed breakcase_table_info">
 								<thead>
 									<tr>
-										<th>全选<input type="checkbox" onclick="selectAll(this)"></th>
-										<th>所属案件</th>
-										<th>勘验编号</th>
-										<th>案件类型</th>
-										<th>破案人</th>
-										<th>破案方式</th>
-										<th>破案时间</th>
+										<th style="padding-left:5px;width: 70px;">全选<input
+											type="checkbox" onclick="selectAll(this)"></th>
+										<th><input type="text" onkeyup="dynamic_query(this)"
+											class="form-control"
+											query_name="breakeCaseListVO.breakecase_case"
+											placeholder="所属案件"></th>
+										<th><input type="text" onkeyup="dynamic_query(this)"
+											class="form-control"
+											query_name="breakeCaseListVO.snece_inquestId"
+											placeholder="勘验编号"></th>
+										<th><input type="text" onkeyup="dynamic_query(this)"
+											class="form-control"
+											query_name="breakeCaseListVO.breakecase_type"
+											placeholder="案件类型"></th>
+										<th><input type="text" onkeyup="dynamic_query(this)"
+											class="form-control"
+											query_name="breakeCaseListVO.breakecase_person"
+											placeholder="破案人"></th>
+										<th><input type="text" onkeyup="dynamic_query(this)"
+											class="form-control"
+											query_name="breakeCaseListVO.query_breake_according"
+											placeholder="破案方式"></th>
+										<th style="padding-left:5px;"><select
+											onchange="dynamic_query(this)" class="form-control"
+											query_name="breakeCaseListVO.breakecase_caseTime">
+												<option value="desc">破案时间(降序)</option>
+												<option value="asc">破案时间(升序)</option>
+										</select></th>
 									</tr>
 								</thead>
 								<tbody>
