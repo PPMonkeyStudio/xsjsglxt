@@ -214,10 +214,10 @@ table tr td {
 					<tr>
 						<td colspan="1">{{ re.resevidence_name }}</td>
 						<td>{{ re.resevidence_extractTime }}</td>
-						<td>{{ re. }}</td>
+						<td>{{ re.resevidence_savePlace }}</td>
 						<td>{{ re.resevidence_extractPerson }}</td>
 						<td>{{ re.resevidence_circulation }}</td>
-						<td>{{ re.resevidence_teststate }}</td>
+						<td>{{ re.resevidence_teststate }}|{{ re.resevidence_sendstate }}</td>
 					</tr>
 					</template>
 					<tr>

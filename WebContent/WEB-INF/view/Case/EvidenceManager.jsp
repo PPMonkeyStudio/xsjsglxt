@@ -59,6 +59,11 @@ table tr td {
 	<div style="margin: 80px 0 0 0; float: left; width: 100%;">
 		<div class="panel"
 			style="width: 95%; margin: 20px auto; padding-top: 30px;">
+			<div class="panel-heading">
+			<h3 class="panel-title" style="display: inline-block; color: black;">物证管理</h3>
+			<input value="返回列表" class="btn btn-default"
+					onclick="javascript:history.go(-1)" type="button">
+			</div>
 			<div id="loadingLayer" style="margin: 0 auto; width: 45px;">
 				<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
 			</div>
@@ -102,16 +107,21 @@ table tr td {
 						<td style="width: 200px;">{{ re.resevidence_circulation }}</td>
 						<td style="width: 200px;">{{ re.resevidence_teststate }}|{{
 							re.resevidence_sendstate }}</td>
-						<td style="width: 200px;" colspan="2">
+						<td style="width: 200px;" colspan="2"><template
+								v-if="re.resevidence_sendstate == '未送检'">
 							<button class="btn btn-default"
 								:value="caseInfor.xsjsglxt_case_id"
 								:id="re.xsjsglxt_resevidence_id" onclick="sendCheck(this)">送检</button>
-							<button class="btn btn-default"
-								:id="re.xsjsglxt_resevidence_id"
+							</template> <template v-if="re.resevidence_teststate == '未检验'">
+							<button class="btn btn-default" :id="re.xsjsglxt_resevidence_id"
 								:value="caseInfor.xsjsglxt_case_id" onclick="checkSelf(this)">检验</button>
+							</template>
 							<button class="btn btn-default"
 								:value="re.xsjsglxt_resevidence_id"
 								:id="caseInfor.xsjsglxt_case_id">流转</button>
+						<button class="btn btn-default"
+							:value="re.xsjsglxt_resevidence_id"
+							:id="caseInfor.xsjsglxt_case_id">流转过程</button>
 						</td>
 					</tr>
 					</template>
@@ -132,15 +142,15 @@ table tr td {
 						<td style="width: 200px;">物证名称</td>
 						<td style="width: 200px;">检验时间</td>
 						<td style="width: 200px;">检验方法</td>
-						<td colspan="2" style="width: 200px;">检验地点</td>
-						<td style="width: 200px;">鉴定要求</td>
+						<td  style="width: 200px;">检验地点</td>
+						<td colspan="2" style="width: 200px;">检验结果</td>
 					</tr>
 					<tr>
 						<td style="width: 200px;"></td>
 						<td style="width: 200px;"></td>
 						<td style="width: 200px;"></td>
-						<td style="width: 200px;" colspan="2"></td>
 						<td style="width: 200px;"></td>
+						<td colspan="2" style="width: 200px;"></td>
 					</tr>
 				</table>
 

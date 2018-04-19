@@ -16,6 +16,10 @@ window.onload = function() {
 			'picture' : {}
 		}
 	});
+	loadDataCaseT();
+};
+
+var loadDataCaseT = function() {
 	var url = window.location.href;
 	var case_id = url.substring(url.indexOf("=") + 1);
 	$('#tableContent').hide();
@@ -39,7 +43,8 @@ window.onload = function() {
 			$('#tableContent').show();
 		}
 	})
-};
+
+}
 
 var case_change = function() {
 	var url = window.location.href;

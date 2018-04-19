@@ -159,6 +159,22 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 		resevidenceService.updateStatus(resevidence);
 	}
 
+	/**
+	 *@author 孙毅
+	 *修改检验状态
+	 */
+	public void updateResevidenceCheckState() {
+		resevidenceService.updateResevidenceCheckState(resevidence);
+	}
+
+	/**
+	 *@author 孙毅
+	 *修改送检状态
+	 */
+	public void updateResevidenceSendCheckState() {
+		resevidenceService.updateResevidenceSendCheckState(resevidence);
+	}
+
 	@Override
 	public void setServletResponse(HttpServletResponse arg0) {
 		// TODO Auto-generated method stub

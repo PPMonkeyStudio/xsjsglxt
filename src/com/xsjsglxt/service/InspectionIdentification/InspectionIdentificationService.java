@@ -28,21 +28,23 @@ public interface InspectionIdentificationService {
 
 	public int saveInspectionRecord(xsjsglxt_inspection_record inspectionRecord);
 
-	public int saveDeathInspectionRecord(xsjsglxt_death_inspection_record deathInspectionRecord, File[] file, String[] fileName, String[] positionFile) throws IOException;
+	public int saveDeathInspectionRecord(xsjsglxt_death_inspection_record deathInspectionRecord, File[] file,
+			String[] fileName, String[] positionFile) throws IOException;
 
-	public int saveDamageInspectionRecord(xsjsglxt_damage_inspection_record damageInspectionRecord, File[] file, String[] fileName, String[] positionFile) throws IOException;
+	public int saveDamageInspectionRecord(xsjsglxt_damage_inspection_record damageInspectionRecord, File[] file,
+			String[] fileName, String[] positionFile) throws IOException;
 
 	public int saveAppraisalLetter(xsjsglxt_appraisal_letter appraisalLetter);
 
 	public int updateTranceCheckBook(xsjsglxt_check_entrustment_book tranceCheckBook);
 
-	public int updateDamageInspectionRecord(xsjsglxt_damage_inspection_record damageInspectionRecord, File[] updateDamageFile, String[] updateDamageFileName, String[] positionFile)
-			throws IOException;
+	public int updateDamageInspectionRecord(xsjsglxt_damage_inspection_record damageInspectionRecord,
+			File[] updateDamageFile, String[] updateDamageFileName, String[] positionFile) throws IOException;
 
 	public int updateIdentifiederCaseConfirmBook(xsjsglxt_identifieder_case_confirm_book identifiederCaseConfirmBook);
 
-	public int updateDeathInspectionRecord(xsjsglxt_death_inspection_record deathInspectionRecord, File[] updateDeathFile, String[] updateDeathFileName, String[] positionFile)
-			throws IOException;
+	public int updateDeathInspectionRecord(xsjsglxt_death_inspection_record deathInspectionRecord,
+			File[] updateDeathFile, String[] updateDeathFileName, String[] positionFile) throws IOException;
 
 	public int updateNotAcceptanceInform(xsjsglxt_not_acceptance_entrustment_inform notAcceptanceEntrustmentInform);
 
@@ -84,5 +86,15 @@ public interface InspectionIdentificationService {
 	public int saveEntrustmentSample(xsjsglxt_entrustment_sample entrustment_sample);
 
 	public int deleteEntrustmentSample(List<String> listEntrustmentSample);
+
+	public List<xsjsglxt_check_entrustment_book> getListEnstrustmentByCaseId(String checkCaseId);
+
+	public List<xsjsglxt_check_entrustment_book> getListEnstrustmentByEvidenceId(String checkEvidenceId);
+
+	public List<xsjsglxt_inspection_record> listInspectionRecordByCaseId(String inspectionCaseId);
+
+	public List<xsjsglxt_inspection_record> listInspectionRecordByEvidenceId(String inspectionEvidenceId);
+
+	public void saveInspectionRecords(xsjsglxt_inspection_record inspectionRecord);
 
 }

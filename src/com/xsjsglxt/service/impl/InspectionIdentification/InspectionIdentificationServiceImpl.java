@@ -46,6 +46,49 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		this.inspectionIdentificationDao = inspectionIdentificationDao;
 	}
 
+	/**
+	 * 根据案件id获取委托书列表
+	 * 
+	 * @param tranceCheckBook.getCheckCaseId()
+	 *            案件id
+	 * @return listEnstrustment委托书列表
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<xsjsglxt_check_entrustment_book> getListEnstrustmentByCaseId(String checkCaseId) {
+		String hql = "from xsjsglxt_check_entrustment_book where checkCaseId='" + checkCaseId + "'";
+		List<xsjsglxt_check_entrustment_book> listEnstrustmentByCaseId = (List<xsjsglxt_check_entrustment_book>) inspectionIdentificationDao
+				.listObject(hql);
+		return listEnstrustmentByCaseId;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<xsjsglxt_check_entrustment_book> getListEnstrustmentByEvidenceId(String checkEvidenceId) {
+		String hql = "from xsjsglxt_check_entrustment_book where checkEvidenceId='" + checkEvidenceId + "'";
+		List<xsjsglxt_check_entrustment_book> listEnstrustmentByEvidenceId = (List<xsjsglxt_check_entrustment_book>) inspectionIdentificationDao
+				.listObject(hql);
+		return listEnstrustmentByEvidenceId;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<xsjsglxt_inspection_record> listInspectionRecordByCaseId(String inspectionCaseId) {
+		String hql = "from xsjsglxt_inspection_record where = inspectionCaseId" + inspectionCaseId + "";
+		List<xsjsglxt_inspection_record> listInspectionRecordByCaseId = (List<xsjsglxt_inspection_record>) inspectionIdentificationDao
+				.listObject(hql);
+		return listInspectionRecordByCaseId;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<xsjsglxt_inspection_record> listInspectionRecordByEvidenceId(String inspectionEvidenceId) {
+		String hql = "from xsjsglxt_inspection_record where =inspectionEvidenceId " + inspectionEvidenceId + "";
+		List<xsjsglxt_inspection_record> listInspectionRecordByEvidenceId = (List<xsjsglxt_inspection_record>) inspectionIdentificationDao
+				.listObject(hql);
+		return listInspectionRecordByEvidenceId;
+	}
+
 	// 保存痕迹检验委托书
 	@Override
 	public int saveTranceCheckBook(xsjsglxt_check_entrustment_book tranceCheckBook) {
@@ -335,7 +378,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			String[] fileName, String[] positionFile) throws IOException {
 		int i = 2;
 		int x = -1;
-
 
 		/*
 		 * 获取路径
@@ -3040,6 +3082,17 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			}
 		}
 		return fileName;
+	}
+
+	/**
+	 * @author 孙毅
+	 * 保存检验记录
+	 */
+
+	@Override
+	public void saveInspectionRecords(xsjsglxt_inspection_record inspectionRecord) {
+		// TODO Auto-generated method stub
+		inspectionIdentificationDao.saveInspectionRecords(inspectionRecord);
 	}
 
 }

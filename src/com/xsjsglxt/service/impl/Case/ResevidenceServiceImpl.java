@@ -146,4 +146,16 @@ public class ResevidenceServiceImpl implements ResevidenceService {
 		resevidenceDao.updateStatus(resevidence);
 	}
 
+	@Override
+	public void updateResevidenceCheckState(xsjsglxt_resevidence resevidence) {
+		// TODO Auto-generated method stub
+		resevidenceDao.updateResevidenceCheckState(resevidence);
+	}
+
+	@Override
+	public void updateResevidenceSendCheckState(xsjsglxt_resevidence resevidence) {
+		// TODO Auto-generated method stub
+		resevidenceDao.updateResevidenceSendCheckState(resevidence);
+	}
+
 }

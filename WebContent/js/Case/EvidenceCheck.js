@@ -2,8 +2,179 @@
  * 
  */
 var idValue;
+var caseId;
+
+var checkSelf = function(event) {
+	idValue = event.id;
+	caseId = event.value;
+	Create_InspectionRecord(event)
+	{
+
+	}
+}
+/*
+ * 记录检验记录
+ */
+function Create_InspectionRecord(obj) {
+
+	var jc = $
+			.confirm({
+				icon : 'fa fa-pencil-square-o',
+				title : '记录检验过程',
+				content : '<form id="form_InspectionRecords">'
+						+ '<hr>'
+						+ '<table  class="table table-bordered" style="text-align: center;">'
+						+ '<tbody>'
+						+ '<tr><td>检验人：</td>'
+						+ '<td><input  class="form-control" name="inspectionRecord.inspection_people"  /></td>'
+						+ '<td>检验开始时间：</td>'
+						+ '<td><input  class="form-control mydate" name="inspectionRecord.inspection_start_time"  /></td>'
+						+ '<td>检验结束时间：</td>'
+						+ '<td><input  class="form-control mydate" name="inspectionRecord.inspection_stop_time"  /></td></tr>'
+						+ '<tr><td colspan="2">检验地点：</td>'
+						+ '<td colspan="2"><input  class="form-control" name="inspectionRecord.inspection_location"  /></td>'
+						+ '<td>检验设备：</td>'
+						+ '<td><select class="form-control"  id="create_inspection_equipment">'
+						+ '<option value="放大镜">放大镜</option>'
+						+ '<option value="比例尺">比例尺</option>'
+						+ '<option value="尸体解剖检验箱">尸体解剖检验箱</option>'
+						+ '<option value="钢直尺">钢直尺</option>'
+						+ '<option value="医用双联观片灯">医用双联观片灯</option>'
+						+ '<option value="国际视力表">国际视力表</option>'
+						+ '<option value="502熏显柜">502熏显柜</option>'
+						+ '<option value="WBY-5比对显微镜">WBY-5比对显微镜</option>'
+						+ '<option value="其他">其他</option>'
+						+ '</select><input  class="form-control"  id="create_inspection_equipment_qt" style="margin:10px 0 0 0;"/></td></tr>'
+						+ '<tr><td>检材情况：</td>'
+						+ '<td colspan="5"><textarea class="form-control" style="resize: none;height:100px;" name="inspectionRecord.inspection_check_material_situation" ></textarea></td></tr>'
+						+ '<tr><td>样本情况：</td>'
+						+ '<td colspan="5"><textarea class="form-control" style="resize: none;height:100px;" name="inspectionRecord.inspection_sample_situation" ></textarea></td></tr>'
+						+ '<tr><td>检验方法：</td>'
+						+ '<td colspan="5"><textarea class="form-control" style="resize: none;height:100px;" name="inspectionRecord.inspection_method" ></textarea></td></tr>'
+						+ '<tr><td>检验过程：</td>'
+						+ '<td colspan="5"><textarea class="form-control" style="resize: none;height:200px;" name="inspectionRecord.inspection_process" ></textarea></td></tr>'
+						+ '<tr><td>检验意见：</td>'
+						+ '<td colspan="5"><textarea class="form-control" style="resize: none;height:100px;" name="inspectionRecord.inspection_option" ></textarea></td></tr>'
+						+ '<tr><td>备注：</td>'
+						+ '<td colspan="5"><textarea class="form-control" style="resize: none;height:100px;" name="inspectionRecord.inspection_mark" ></textarea></td></tr>'
+						+ '</tbody>' + '</table></form>' + '<hr>',
+				type : 'blue',
+				columnClass : 'col-md-12',
+				onOpenBefore : function() {
+				},
+				onContentReady : function() {
+
+					/*
+					 * 
+					 */
+					var date = new Date();
+					var month = (parseInt(date.getMonth()) + 1);
+					if (month < 10)
+						month = "0" + "" + month;
+					var day = date.getDate();
+					if (day < 10)
+						day = "0" + "" + day;
+					document
+							.getElementsByName("inspectionRecord.inspection_start_time")[0].value = date
+							.getFullYear()
+							+ '-' + month + '-' + day;
+					document
+							.getElementsByName("inspectionRecord.inspection_stop_time")[0].value = date
+							.getFullYear()
+							+ '-' + month + '-' + day;
+					/*
+					 * 
+					 */
+					$.datetimepicker.setLocale('ch');
+					$('.mydate').datetimepicker({
+						yearStart : 1990, // 设置最小年份
+						yearEnd : 2050, // 设置最大年份
+						yearOffset : 0, // 年偏差
+						timepicker : false, // 关闭时间选项
+						format : 'Y-m-d', // 格式化日期年-月-日
+						minDate : '1990/01/01', // 设置最小日期
+						maxDate : '2030/01/01', // 设置最大日期
+					});
+					/*
+					 * 
+					 */
+				},
+				buttons : {
+					'记录' : {
+						btnClass : 'btn-blue',
+						action : function() {
+							jc.showLoading(false);
+							addInspectionRecord(jc);
+							return false;
+						}
+					},
+					'放弃' : function() {
+					}
+				}
+			});
+}
+
+function addInspectionRecord(jc) {
+	var xhr1 = false;
+	xhr1 = new XMLHttpRequest();
+	xhr1.onreadystatechange = function() {
+		var message;
+		if (xhr1.readyState == 4) {
+			if (xhr1.status == 200) {
+				toastr.success("记录成功");
+				$
+						.ajax({
+							url : '/xsjsglxt/case/Resevidence_updateResevidenceCheckState',
+							type : 'POST',
+							data : {
+								'resevidence.xsjsglxt_resevidence_id' : idValue,
+								'resevidence.resevidence_teststate' : '已检验'
+							},
+							success : function(data) {
+								loadDataCaseT();
+							}
+
+						});
+				jc.close();
+			}
+		}
+	}
+	/*
+	 * 
+	 */
+
+	var formData = new FormData(document
+			.getElementById("form_InspectionRecords"));
+
+	/*
+	 * 检验设备
+	 */
+	formData.append("inspectionRecord.inspectionEvidenceId", idValue);
+	formData.append("inspectionRecord.inspectionCaseId", caseId);
+	var create_inspection_equipment = document
+			.getElementById("create_inspection_equipment");
+	if (create_inspection_equipment.value == "其他") {
+		var create_inspection_equipment_qt = document
+				.getElementById("create_inspection_equipment_qt");
+		formData.append("inspectionRecord.inspection_equipment",
+				create_inspection_equipment_qt.value);
+	} else {
+		formData.append("inspectionRecord.inspection_equipment",
+				create_inspection_equipment.value);
+	}
+
+	/*
+	 * 
+	 */
+	xhr1
+			.open("POST",
+					"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_saveInspectionRecord");
+	xhr1.send(formData);
+}
+
 var sendCheck = function(event) {
 	idValue = event.id;
+	caseId = event.value;
 	Create_EntrustmentBook('痕迹');
 }
 
@@ -438,6 +609,19 @@ function Create_EntrustmentBook(type) {
 										console.debug(xhr.responseText);
 										if (xhr.responseText == 1) {
 											toastr.success("保存成功");
+											$
+													.ajax({
+														url : '/xsjsglxt/case/Resevidence_updateResevidenceSendCheckState',
+														type : 'POST',
+														data : {
+															'resevidence.xsjsglxt_resevidence_id' : idValue,
+															'resevidence.resevidence_sendstate' : '已送检'
+														},
+														success : function(data) {
+															loadDataCaseT();
+														}
+
+													})
 											jc.close();
 											List_EntrustmentBook(1);
 										} else {
@@ -470,11 +654,15 @@ function Create_EntrustmentBook(type) {
 							 */
 							var formData = new FormData(document
 									.getElementById("form_EntrustmentBook"));
+
+							formData.append("tranceCheckBook.checkEvidenceId",
+									idValue);
+							formData.append("tranceCheckBook.checkCaseId",
+									caseId);
 							/*
 							 * 鉴定要求
 							 */
 
-							formData.append();
 							if (document
 									.getElementsByName("tranceCheckBook.check_entrustment_book_entrustment_request")[0].value == '其他') {
 								formData
