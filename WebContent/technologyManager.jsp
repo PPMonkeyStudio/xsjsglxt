@@ -35,8 +35,8 @@ li a {
 				<template v-if="user_case_technology_power">
 				<li><a href="<%=basePath%>case/Case_page_CaseMergerList">案件串并</a></li>
 				</template>
-				<template v-if="false">
-				<li><a href="<%=basePath%>case/Case_page_CaseMaterials">案件材料</a></li>
+				<template v-if="user_case_technology_power">
+				<li><a href="<%=basePath%>case/Case_page_CaseMaterials">影像光盘</a></li>
 				</template>
 				<template v-if="user_case_technology_power">
 				<li><a href="<%=basePath%>case/BreakeCase_page_BreakCaseList">刑事破案</a></li>

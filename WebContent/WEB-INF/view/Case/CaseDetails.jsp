@@ -170,7 +170,7 @@ i {
 								<p style="float: left; margin-top: 6px;">温度</p> <input
 								name="sence.snece_weatherTemperature"
 								style="width: 50px; float: left; margin-top: 6px;"
-								class="form-control" type="text"><span style="top:5px;">°C</span></td>
+								class="form-control" type="text"><span style="top:5px;">度</span></td>
 							<td width="85">作案时段</td>
 							<td><select name="case1.case_makeTime" class=" form-control">
 									<option value=""></option>
@@ -491,60 +491,63 @@ i {
 						</tbody>
 					</table>
 				</form>
-				<table style="width: 40%;float: left;">
+				<table style="width: 70%;margin: auto;">
 					<thead>
 						<tr>
-							<td><i class="fa fa-spinner fa-pulse load_remind"></i></td>
-							<td colspan="2"><div class="progress">
-									<div class="progress-bar" role="progressbar" aria-valuenow="75"
-										aria-valuemin="0" aria-valuemax="100" style="width: 75%;">
-										75%</div>
-								</div></td>
+							<td colspan="3">
+								<h4>图片文件</h4>
+							</td>
+						</tr>
+						<tr style="display:none; ">
+							<td colspan="3">
+								<div class="progress">
+									<div class="progress-bar" role="progressbar" aria-valuenow="0"
+										aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+										0%</div>
+								</div>
+							</td>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td><h4>物证图</h4></td>
-							<td>
-								<button style="margin-top: 6px;" type="button"
+							<td style="width: 33%"><h5>物证图</h5></td>
+							<td style="width: 33%">
+								<button type="button" id="evidence_photo"
 									class="btn btn-default" onclick="upload(this)">
 									<i class="fa fa-upload"></i> 上传
 								</button>
-								<p></p>
 							</td>
-							<td>
-								<button style="margin-top: 6px;" type="button"
-									class="btn btn-default">
+							<td style="width: 33%">
+								<button type="button" id="evidence_photo"
+									class="btn btn-default" onclick="downloadFile(this)">
 									<i class="fa fa-download"></i> 下载
 								</button>
 							</td>
 						</tr>
 						<tr>
-							<td><h4>笔录文件</h4></td>
+							<td><h5>笔录文件</h5></td>
 							<td>
-								<button style="margin-top: 6px;" type="button"
-									class="btn btn-default" onclick="upload(this)">
+								<button type="button" id="record_file" onclick="upload(this)"
+									class="btn btn-default">
 									<i class="fa fa-upload"></i> 上传
 								</button>
 							</td>
 							<td>
-								<button style="margin-top: 6px;" type="button"
-									class="btn btn-default">
+								<button type="button" onclick="downloadFile(this)"
+									id="record_file" class="btn btn-default">
 									<i class="fa fa-download"></i> 下载
 								</button>
 							</td>
 						</tr>
 						<tr>
-							<td><h4>物证图片</h4></td>
-							<td>
-								<button style="margin-top: 6px;" type="button"
+							<td><h5>现场图片</h5></td>
+							<td><button type="button" id="scene_picture"
 									class="btn btn-default" onclick="upload(this)">
 									<i class="fa fa-upload"></i> 上传
-								</button>
-							</td>
+								</button></td>
 							<td>
-								<button style="margin-top: 6px;" type="button"
-									class="btn btn-default">
+								<button type="button" id="scene_picture" class="btn btn-default"
+									onclick="downloadFile(this)">
 									<i class="fa fa-download"></i> 下载
 								</button>
 							</td>
@@ -554,7 +557,8 @@ i {
 			</div>
 		</div>
 	</div>
-	<input id="file_upload" accept="image/*" onchange="upLoadFile()"
+	<!-- accept="image/*" -->
+	<input id="file_upload" onchange="upLoadFile()"
 		style="filter:alpha(opacity=0);opacity: 0;width: 0;height: 0;"
 		type="file">
 	<input type="hidden" id="case1_id" value="<s:property value="id"/>">
@@ -847,18 +851,19 @@ i {
 							<table align="center">
 								<tbody>
 									<tr>
-										<td><div style="padding-top:6px; float: left;width: 15%;">光盘编号</div>
-											<input name="image.xsjsglxt_image_id" class="form-control"
-											refresh="text" type="text" style="width: 85%;"></td>
+										<td style="width: 20%;">光盘编号</td>
+										<td style="width: 80%;"><select
+											name="image.xsjsglxt_image_id" class="form-control"
+											refresh="selectpicker"></select></td>
 									</tr>
 									<tr>
-										<td><div style="padding-top:6px; float: left;width: 15%;">照片编号</div>
-											<input name="picture.picture_identifier" class="form-control"
-											refresh="text" type="text" style="width: 85%;"></td>
+										<td>照片编号</td>
+										<td><input name="picture.picture_identifier"
+											class="form-control" refresh="text" type="text"></td>
 									</tr>
 									<tr>
-										<td><div style=" padding-top:6px;float: left;width: 15%;">备注</div>
-											<textarea style="margin-top: 6px;width: 85%;" refresh="text"
+										<td>备注</td>
+										<td><textarea style="margin-top: 6px;" refresh="text"
 												name="picture.picture_remarks" class="form-control" rows="2"></textarea></td>
 									</tr>
 								</tbody>
@@ -878,6 +883,97 @@ i {
 		</div>
 		<!-- /.modal -->
 	</div>
+
+
+	<!-- 物证流转-模态框（Modal） -->
+	<div class="modal fade" id="circulation-info" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">物证流转</h4>
+				</div>
+				<div class="modal-body">
+					<div class="panel-body">
+						<form>
+							<table style="width: 80%;" align="center">
+								<tbody>
+									<tr>
+										<td>物证名称:</td>
+										<td colspan="3"><input
+											name="resevidence.resevidence_name" refresh="text"
+											class="form-control" type="text"></td>
+									</tr>
+									<tr>
+										<td style="width: 20%;">提取方法:</td>
+										<td style="width: 30%;"><input
+											name="resevidence.resevidence_extractMethod" refresh="text"
+											class="form-control" type="text"></td>
+										<td style="width: 20%;">提取数量:</td>
+										<td style="width: 30%;"><input
+											name="resevidence.resevidence_extractNumber" refresh="text"
+											class="form-control" type="text"></td>
+									</tr>
+									<tr>
+										<td>提取单位:</td>
+										<td><input name="resevidence.resevidence_extractUnit"
+											type="text" refresh="fixed" class="form-control"
+											value="安源分局刑事科学技术室"></td>
+
+										<td>提取人:</td>
+										<td><input name="resevidence.resevidence_extractPerson"
+											refresh="text" class="form-control" type="text"></td>
+									</tr>
+									<tr>
+										<td>提取日期:</td>
+										<td><input name="resevidence.resevidence_extractTime"
+											refresh="text" class="form-control" type="text"></td>
+									</tr>
+									<tr>
+										<td>流转情况</td>
+										<td><select name="circulation.circulation_situation"
+											refresh="text" class="form-control" onchange="situation(this)">
+												<option value=""></option>
+												<option value="入库保存">入库保存</option>
+												<option value="出库送检">出库送检</option>
+												<option value="出库移交">出库移交</option>
+										</select></td>
+										<td>存放位置</td>
+										<td><input name="circulation.circulation_position"
+											refresh="text" class="form-control" value="" type="text"></td>
+									</tr>
+									<tr>
+										<td>流转日期</td>
+										<td><input name="circulation.circulation_date"
+											refresh="text" class="form-control mydate_minute" type="text"></td>
+									</tr>
+									<tr>
+										<td>移交人</td>
+										<td><input name="circulation.circulation_transferperson"
+											refresh="text" class="form-control" type="text"></td>
+										<td>接收人</td>
+										<td><input name="circulation.circulation_recipient"
+											refresh="text" class="form-control" type="text"></td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="save_circulation"
+						class="btn btn-primary save_circulation">保存</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+
+
 	<!-- 修改基站-模态框（Modal） -->
 	<!-- <div class="modal fade" id="station" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
