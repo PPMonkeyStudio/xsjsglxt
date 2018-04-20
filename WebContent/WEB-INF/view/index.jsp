@@ -34,7 +34,8 @@
 							document.getElementById("main").innerHTML = result.scheduling_main;
 							document.getElementById("mainTech").innerHTML = result.scheduling_main_technology;
 							document.getElementById("assistant").innerHTML = result.scheduling_assistant;
-							document.getElementById("patrol").innerHTML = result.scheduling_patrol;				
+							if(result.scheduling_patrol!=null)
+								document.getElementById("patrol").innerHTML = result.scheduling_patrol;				
 						}
 					}
 				});
