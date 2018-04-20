@@ -72,7 +72,7 @@
 <body>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
 	<jsp:include page="/technologyManager.jsp" flush="true"></jsp:include>
-	
+			<div class="wrapper" id="wrapper">
 			<div class="main" style="margin-left: 40px;">
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
@@ -98,6 +98,7 @@
 			</div>
 		</div>
 		<!-- END MAIN CONTENT -->
+	</div>
 	</div>
 </body>
 </html>
