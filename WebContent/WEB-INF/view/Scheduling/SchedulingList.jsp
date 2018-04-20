@@ -97,7 +97,7 @@ table tr td {
 				<table style="text-align: center; margin:0 auto; width: 1200px; color: black;">
 					<thead>
 						<tr style="height:30;">
-							<td rowspan="2"><label class="fancy-checkbox"> <input
+							<td rowspan="2"><label> <input
 									onclick="selectAll(this)" type="checkbox" ><span style="">
 										全选 </span>
 							</label></td>
@@ -112,7 +112,7 @@ table tr td {
 					<tbody>
 						<template v-for="schedulingDTO in vo.schedulingDTOList">
 						<tr style="height:30;">
-							<td><label class="fancy-checkbox"><input
+							<td><label><input
 									type="checkbox" name="chooseCheckBox"
 									:value="schedulingDTO.xsjsglxt_scheduling_id"><span></span></label></td>
 							<td><a onclick="updateScheduling(this)" :id="schedulingDTO.xsjsglxt_scheduling_id">{{ schedulingDTO.scheduling_time }}</a></td>
