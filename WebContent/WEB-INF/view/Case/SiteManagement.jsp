@@ -76,17 +76,17 @@ i {
 											placeholder="勘验编号"></th>
 										<th><select onchange="dynamic_query(this)"
 											class="form-control"
-											query_name="page_list_senceInformation.case_receivingAlarmDate">
-												<option value="desc">接警时间(降序)</option>
+											query_name="page_list_senceInformation.order">
+												<option selected="selected" value="desc">接警时间(降序)</option>
 												<option value="asc">接警时间(升序)</option>
 										</select></th>
 										<th><input type="text" onkeyup="dynamic_query(this)"
 											class="form-control"
-											query_name="page_list_senceInformation.snece_inquestId"
+											query_name="page_list_senceInformation.case_totalCategory"
 											placeholder="案件类别"></th>
 										<th><input type="text" onkeyup="dynamic_query(this)"
 											class="form-control"
-											query_name="page_list_senceInformation.case_totalCategory"
+											query_name="page_list_senceInformation.case_reporterName"
 											placeholder="报案人"></th>
 										<th style="padding-left:5px;"><input type="text"
 											onkeyup="dynamic_query(this)" class="form-control"

@@ -115,7 +115,7 @@ public class ParallelDaoImpl implements ParallelDao {
 			stopTime = page_list_parallelInformation.getStop_time();
 		}
 		hql = hql + " and parallel_date>='" + startTime + "' and parallel_date<='" + stopTime
-				+ "' order by parallel_date"+order;
+				+ "' order by parallel_date "+order;
 		System.out.println(hql);
 		Query query = session.createQuery(hql);
 		i = (Long) query.uniqueResult();
@@ -173,7 +173,7 @@ public class ParallelDaoImpl implements ParallelDao {
 			stopTime = page_list_parallelInformation.getStop_time();
 		}
 		hql = hql + " and parallel_date>='" + startTime + "' and parallel_date<='" + stopTime
-				+ "' order by parallel_date"+order;
+				+ "' order by parallel_date "+order;
 		Query query = session.createQuery(hql);
 		query.setFirstResult(
 				(page_list_parallelInformation.getPageIndex() - 1) * page_list_parallelInformation.getPageSize());

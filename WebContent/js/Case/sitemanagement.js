@@ -16,6 +16,7 @@ var query_data = {
 	"page_list_senceInformation.case_totalCategory": "",
 	"page_list_senceInformation.snece_inquestId": "",
 	"page_list_senceInformation.case_address": "",
+	"page_list_senceInformation.order": "desc",
 
 };
 // 当前页面分页信息
@@ -140,7 +141,7 @@ function get_ListSneceInformationByPageAndSearch(data) {
 					str += '<td>' + data_list.case1.case_reporterName
 						+ '</td>';
 					str += '<td>'
-						+ (data_list.sence.snece_inquestPerson).split(',').length > 3 ? (data_list.sence.snece_inquestPerson).split(',').slice(0, 3).join() : data_list.sence.snece_inquestPerson
+						+ ((data_list.sence.snece_inquestPerson).split(',').length > 3 ? (data_list.sence.snece_inquestPerson).split(',').slice(0, 3).join() : data_list.sence.snece_inquestPerson)
 						+ '</td>';
 					str += '<td><i action="LinkToEvidence" class="fa fa-arrow-right" aria-hidden="true"></i></td>';
 					str += '</tr>';
