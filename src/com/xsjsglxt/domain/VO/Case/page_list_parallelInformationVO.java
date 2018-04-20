@@ -5,27 +5,35 @@ import java.util.List;
 import com.xsjsglxt.domain.DO.xsjsglxt_parallel;
 
 public class page_list_parallelInformationVO {
-	        // µ±Ç°Ò³
+	        // ï¿½ï¿½Ç°Ò³
 			private int pageIndex = 1;
-		    //×Ü¼ÇÂ¼Êı
+		    //ï¿½Ü¼ï¿½Â¼ï¿½ï¿½
 			private int totalRecords = 0;
-		    //Ã¿Ò³ÏÔÊ¾¼ÇÂ¼Êı
+		    //Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½Â¼ï¿½ï¿½
 			private int pageSize = 20;
-			// ×ÜÒ³Êı
+			// ï¿½ï¿½Ò³ï¿½ï¿½
 			private int totalPages = 1;
-			// ÊÇ·ñÓĞÉÏÒ»Ò³
+			// ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Ò³
 			private boolean HavePrePage = false;
-			// ÊÇ·ñÓĞÏÂÒ»Ò³
+			// ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Ò³
 			private boolean HaveNextPage = false;
-			// ¿ªÊ¼Ê±¼ä
+			// ï¿½ï¿½Ê¼Ê±ï¿½ï¿½
 			private String start_time = "0000-00-00";
 
-			// ½áÊøÊ±¼ä
+			// ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 			private String stop_time = "9999-99-99";
 			
-			private String parallel_casename;//´®²¢Ãû³Æ
+			private String parallel_casename;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			
-			private String parallel_person;//´®²¢ÈË
+			private String parallel_person;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			
+			private String parallel_num;
+			
+			private String parallel_date;
+			
+			private String parallel_breakecaseSituation;
+			//å‡åº/é™åº
+			private String order;
 			
 			private List<xsjsglxt_parallel> parallelList;
 
@@ -117,14 +125,51 @@ public class page_list_parallelInformationVO {
 				this.parallelList = parallelList;
 			}
 
+			public String getParallel_num() {
+				return parallel_num;
+			}
+
+			public void setParallel_num(String parallel_num) {
+				this.parallel_num = parallel_num;
+			}
+
+			public String getParallel_date() {
+				return parallel_date;
+			}
+
+			public void setParallel_date(String parallel_date) {
+				this.parallel_date = parallel_date;
+			}
+
+			public String getParallel_breakecaseSituation() {
+				return parallel_breakecaseSituation;
+			}
+
+			public void setParallel_breakecaseSituation(String parallel_breakecaseSituation) {
+				this.parallel_breakecaseSituation = parallel_breakecaseSituation;
+			}
+
+			public String getOrder() {
+				return order;
+			}
+
+			public void setOrder(String order) {
+				this.order = order;
+			}
+
 			@Override
 			public String toString() {
 				return "page_list_parallelInformationVO [pageIndex=" + pageIndex + ", totalRecords=" + totalRecords
 						+ ", pageSize=" + pageSize + ", totalPages=" + totalPages + ", HavePrePage=" + HavePrePage
 						+ ", HaveNextPage=" + HaveNextPage + ", start_time=" + start_time + ", stop_time=" + stop_time
 						+ ", parallel_casename=" + parallel_casename + ", parallel_person=" + parallel_person
+						+ ", parallel_num=" + parallel_num + ", parallel_date=" + parallel_date
+						+ ", parallel_breakecaseSituation=" + parallel_breakecaseSituation + ", order=" + order
 						+ ", parallelList=" + parallelList + "]";
 			}
+
 			
+
+		
 			
 }
