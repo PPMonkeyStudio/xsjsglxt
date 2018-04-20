@@ -1,17 +1,12 @@
 var query_data = {
 	"breakeCaseListVO.currPage": "1",
 	"breakeCaseListVO.query_sence_inquestId": "",
-	"breakeCaseListVO.query_case_name": "",
+	"breakeCaseListVO.query_case_name": "",//案件名称
 	"breakeCaseListVO.query_breake_time_start": "",
 	"breakeCaseListVO.query_breake_time_end": "",
 	"breakeCaseListVO.query_breake_person": "",
-
-
 	"breakeCaseListVO.query_breake_according": "",
-	"breakeCaseListVO.breakecase_case": "",
-	"breakeCaseListVO.breakecase_type": "",
-	"breakeCaseListVO.breakecase_person": "",
-	"breakeCaseListVO.breakecase_caseTime": "",
+	"breakeCaseListVO.query_breake_time_sort": "desc",
 
 };
 //当前页面分页信息
@@ -427,7 +422,7 @@ function get_ListBreakecaseInformationByPageAndSearch(data) {
 			//str += '<td><a href="/xsjsglxt/case/Case_page_CaseDetails?id=' + data_list[len].case1.xsjsglxt_case_id + '">' + data_list[len].sence.snece_inquestId + '</a></td>';
 			str += '<td>' + data_list[len].case_name + '</td>';
 			str += '<td>' + data_list[len].snece_inquestId + '</td>';
-			str += '<td>' + data_list[len].breakecase_type + '</td>';
+			//str += '<td>' + data_list[len].breakecase_type + '</td>';
 			str += '<td>' + data_list[len].breakecase_person + '</td>';
 			str += '<td>' + data_list[len].breakecase_according + '</td>';
 			str += '<td>' + data_list[len].breakecase_caseTime + '</td>';
@@ -602,7 +597,7 @@ $.fn.extend({
 //输入框查询事件
 function dynamic_query(params) {
 	query_data[$(params).attr('query_name')] = $(params).val();
-	get_ListBreakecaseInformationByPageAndSearch(data);
+	get_ListBreakecaseInformationByPageAndSearch(query_data);
 	query_data[$(params).attr('query_name')] = '';
 }
 

@@ -149,10 +149,12 @@ table tr td {
 					<template v-for="checkCase in CaseCheckDTOS">
 					<tr>
 						<td style="width: 200px;">{{ checkCase.resevidence_name }}</td>
-						<td style="width: 200px;">{{ checkCase.inspection_start_time }}</td>
+						<td style="width: 200px;">{{ checkCase.inspection_start_time
+							}}</td>
 						<td style="width: 200px;">{{ checkCase.inspection_method }}</td>
 						<td style="width: 200px;">{{ checkCase.inspection_location }}</td>
-						<td colspan="2" style="width: 200px;">{{ checkCase.inspection_option }}</td>
+						<td colspan="2" style="width: 200px;">{{
+							checkCase.inspection_option }}</td>
 					</tr>
 					</template>
 					<tr>
@@ -199,10 +201,7 @@ table tr td {
 			</div>
 		</div>
 	</div>
-<<<<<<< HEAD
-=======
 	<script type="text/javascript"
-	src="<%=basePath%>js/Case/transferOperation.js"></script>
->>>>>>> HY
+		src="<%=basePath%>js/Case/transferOperation.js"></script>
 </body>
 </html>

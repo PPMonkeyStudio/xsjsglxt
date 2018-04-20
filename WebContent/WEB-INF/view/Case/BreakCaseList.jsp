@@ -90,19 +90,19 @@ i {
 											type="checkbox" onclick="selectAll(this)"></th>
 										<th><input type="text" onkeyup="dynamic_query(this)"
 											class="form-control"
-											query_name="breakeCaseListVO.breakecase_case"
+											query_name="breakeCaseListVO.query_case_name"
 											placeholder="所属案件"></th>
 										<th><input type="text" onkeyup="dynamic_query(this)"
 											class="form-control"
-											query_name="breakeCaseListVO.snece_inquestId"
+											query_name="breakeCaseListVO.query_sence_inquestId"
 											placeholder="勘验编号"></th>
-										<th><input type="text" onkeyup="dynamic_query(this)"
+										<!-- <th><input type="text" onkeyup="dynamic_query(this)"
 											class="form-control"
 											query_name="breakeCaseListVO.breakecase_type"
-											placeholder="案件类型"></th>
+											placeholder="案件类型"></th> -->
 										<th><input type="text" onkeyup="dynamic_query(this)"
 											class="form-control"
-											query_name="breakeCaseListVO.breakecase_person"
+											query_name="breakeCaseListVO.query_breake_person"
 											placeholder="破案人"></th>
 										<th><input type="text" onkeyup="dynamic_query(this)"
 											class="form-control"
@@ -110,8 +110,8 @@ i {
 											placeholder="破案方式"></th>
 										<th style="padding-left:5px;"><select
 											onchange="dynamic_query(this)" class="form-control"
-											query_name="breakeCaseListVO.breakecase_caseTime">
-												<option value="desc">破案时间(降序)</option>
+											query_name="breakeCaseListVO.query_breake_time_sort">
+												<option selected="selected" value="desc">破案时间(降序)</option>
 												<option value="asc">破案时间(升序)</option>
 										</select></th>
 									</tr>

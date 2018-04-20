@@ -106,6 +106,7 @@ function transferOperation(params) {
 					$(this).parent().nextAll().show();
 				} else {
 					$(this).parent().nextAll().hide();
+					transfer.$content.find('input[name="circulation.circulation_position"]').val('');
 				}
 			});
 		},
@@ -125,6 +126,7 @@ function transferOperation(params) {
 					$.post('/xsjsglxt/case/Resevidence_saveCirculation', data_, function (msg) {
 						if (msg == "success") {
 							toastr.info('修改成功');
+							loadDataCaseT();
 						}
 					}, 'text');
 				}
