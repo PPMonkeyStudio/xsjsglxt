@@ -112,6 +112,7 @@ public class SenceDaoImpl implements SenceDao {
 		String hql = "select count(*) from xsjsglxt_case,xsjsglxt_snece  where 1=1 and snece_case= xsjsglxt_case_id";
 		String startTime = "";
 		String stopTime = "9999-99-99";
+		String order=page_list_senceInformation.getOrder();
 		// 1
 		if (page_list_senceInformation.getCase_totalCategory() != null
 				&& page_list_senceInformation.getCase_totalCategory().trim().length() > 0) {
@@ -187,7 +188,7 @@ public class SenceDaoImpl implements SenceDao {
 			stopTime = page_list_senceInformation.getStop_time();
 		}
 		hql = hql + " and case_receivingAlarmDate>='" + startTime + "' and case_receivingAlarmDate<='" + stopTime
-				+ "' order by case_receivingAlarmDate";
+				+ "' order by case_receivingAlarmDate "+ order;
 		System.out.println(hql);
 		Query query = session.createQuery(hql);
 		i = (Long) query.uniqueResult();
@@ -204,6 +205,7 @@ public class SenceDaoImpl implements SenceDao {
 		System.out.println("每条数据" + hql);
 		String startTime = "";
 		String stopTime = "9999-99-99";
+		String order=page_list_senceInformation.getOrder();
 		// 1
 		if (page_list_senceInformation.getCase_totalCategory() != null
 				&& page_list_senceInformation.getCase_totalCategory().trim().length() > 0) {
@@ -268,7 +270,7 @@ public class SenceDaoImpl implements SenceDao {
 			stopTime = page_list_senceInformation.getStop_time();
 		}
 		hql = hql + " and case_receivingAlarmDate>='" + startTime + "' and case_receivingAlarmDate<='" + stopTime
-				+ "' order by case_receivingAlarmDate";
+				+ "' order by case_receivingAlarmDate "+order;
 		Query query = session.createQuery(hql);
 		query.setFirstResult(
 				(page_list_senceInformation.getPageIndex() - 1) * page_list_senceInformation.getPageSize());

@@ -32,6 +32,7 @@ public class ImageAction extends ActionSupport implements ServletRequestAware, S
 	private List<String> useImageInformationNumList;
 	private ImageInformationDTO imageInformationDTO;
 	private page_list_imageInformationVO page_list_imageInformation;
+	
 
 	/*
 	 * 保存光盘
