@@ -115,6 +115,7 @@ $(function() {
 
 function get_ListSneceInformationByPageAndSearch(data) {
 	$
+
 			.post(
 					'/xsjsglxt/case/Case_ListSneceInformationByPageAndSearch',
 					data,
@@ -139,9 +140,12 @@ function get_ListSneceInformationByPageAndSearch(data) {
 									+ '</td>';
 							str += '<td>' + data_list.case1.case_reporterName
 									+ '</td>';
-							str += '<td>' + data_list.sence.snece_inquestPerson
-
-							+ '</td>';
+							str += '<td>'
+									+ ((data_list.sence.snece_inquestPerson)
+											.split(',').length > 3 ? (data_list.sence.snece_inquestPerson)
+											.split(',').slice(0, 3).join()
+											: data_list.sence.snece_inquestPerson)
+									+ '</td>';
 							str += '<td><i action="LinkToEvidence" class="fa fa-arrow-right" aria-hidden="true"></i></td>';
 							str += '</tr>';
 						}
