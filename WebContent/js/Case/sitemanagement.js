@@ -139,10 +139,9 @@ function get_ListSneceInformationByPageAndSearch(data) {
 									+ '</td>';
 							str += '<td>' + data_list.case1.case_reporterName
 									+ '</td>';
-							str += '<td>'
-									+ (data_list.sence.snece_inquestPerson)
-											.split(',').slice(0, 3).join()
-									+ '</td>';
+							str += '<td>' + data_list.sence.snece_inquestPerson
+
+							+ '</td>';
 							str += '<td><i action="LinkToEvidence" class="fa fa-arrow-right" aria-hidden="true"></i></td>';
 							str += '</tr>';
 						}
