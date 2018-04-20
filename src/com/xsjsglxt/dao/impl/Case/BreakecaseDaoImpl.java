@@ -188,6 +188,8 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 				&& breakeCaseListVO.getQuery_breake_according().trim().length() > 0)
 			hql = hql + " and breake.breakecase_according like '%" + breakeCaseListVO.getQuery_breake_according()
 					+ "%'";
+
+		hql = hql + " order by breakecase_caseTime " + breakeCaseListVO.getQuery_breake_time_sort();
 		long count = (long) session.createQuery(hql).uniqueResult();
 		return (int) count;
 	}
