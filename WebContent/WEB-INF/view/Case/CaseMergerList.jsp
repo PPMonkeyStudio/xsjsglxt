@@ -60,8 +60,8 @@
 								query_name="page_list_parallelInformation.parallel_casename"></th>
 							<th><select onchange="dynamic_query(this)"
 								class="form-control"
-								query_name="page_list_parallelInformation.parallel_date">
-									<option value="desc">串并时间(降序)</option>
+								query_name="page_list_parallelInformation.order">
+									<option selected="selected" value="desc">串并时间(降序)</option>
 									<option value="asc">串并时间(升序)</option>
 							</select></th>
 							<th><input type="text" onkeyup="dynamic_query(this)"
@@ -71,8 +71,8 @@
 								class="form-control"
 								query_name="page_list_parallelInformation.parallel_breakecaseSituation">
 									<option selected="selected" value="">破案情况(全)</option>
-									<option value="desc">破案情况(是)</option>
-									<option value="asc">破案情况(否)</option>
+									<option value="1">破案情况(是)</option>
+									<option value="0">破案情况(否)</option>
 							</select></th>
 							<th style="padding-left:5px;">操作</th>
 						</tr>

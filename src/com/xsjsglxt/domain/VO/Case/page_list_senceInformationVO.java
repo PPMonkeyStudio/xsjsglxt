@@ -44,7 +44,9 @@ public class page_list_senceInformationVO {
 	private String case_reporterName;
 	// 案发地点
 	private String case_address;
-
+    //升序\降序
+	private String order;
+	
 	private List<SenceInformationDTO> SenceInformationDTOList;
 
 	public int getPageIndex() {
@@ -207,6 +209,14 @@ public class page_list_senceInformationVO {
 		SenceInformationDTOList = senceInformationDTOList;
 	}
 
+	public String getOrder() {
+		return order;
+	}
+
+	public void setOrder(String order) {
+		this.order = order;
+	}
+
 	@Override
 	public String toString() {
 		return "page_list_senceInformationVO [pageIndex=" + pageIndex + ", totalRecords=" + totalRecords + ", pageSize="
@@ -216,20 +226,10 @@ public class page_list_senceInformationVO {
 				+ ", case_residence=" + case_residence + ", case_concreteResidence=" + case_concreteResidence
 				+ ", snece_inquestPerson=" + snece_inquestPerson + ", case_makeTime=" + case_makeTime
 				+ ", case_makeMeans=" + case_makeMeans + ", case_concreteMakeMeans=" + case_concreteMakeMeans
-				+ ", case_reporterName=" + case_reporterName + ", case_address=" + case_address
-				+ ", SenceInformationDTOList=" + SenceInformationDTOList + ", getPageIndex()=" + getPageIndex()
-				+ ", getTotalRecords()=" + getTotalRecords() + ", getPageSize()=" + getPageSize() + ", getTotalPages()="
-				+ getTotalPages() + ", isHavePrePage()=" + isHavePrePage() + ", isHaveNextPage()=" + isHaveNextPage()
-				+ ", getStart_time()=" + getStart_time() + ", getStop_time()=" + getStop_time()
-				+ ", getCase_totalCategory()=" + getCase_totalCategory() + ", getCase_sonCategory()="
-				+ getCase_sonCategory() + ", getCase_classify()=" + getCase_classify() + ", getCase_residence()="
-				+ getCase_residence() + ", getCase_concreteResidence()=" + getCase_concreteResidence()
-				+ ", getSnece_inquestPerson()=" + getSnece_inquestPerson() + ", getCase_makeTime()="
-				+ getCase_makeTime() + ", getCase_makeMeans()=" + getCase_makeMeans() + ", getCase_concreteMakeMeans()="
-				+ getCase_concreteMakeMeans() + ", getCase_reporterName()=" + getCase_reporterName()
-				+ ", getCase_address()=" + getCase_address() + ", getSenceInformationDTOList()="
-				+ getSenceInformationDTOList() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+				+ ", case_reporterName=" + case_reporterName + ", case_address=" + case_address + ", order=" + order
+				+ ", SenceInformationDTOList=" + SenceInformationDTOList + "]";
 	}
+
+
 
 }

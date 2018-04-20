@@ -8,6 +8,7 @@ var query_data = {
 	"page_list_parallelInformation.parallel_num": "",
 	"page_list_parallelInformation.parallel_casename": "",
 	"page_list_parallelInformation.parallel_date": "",
+	"page_list_parallelInformation.order": "desc",
 	"page_list_parallelInformation.parallel_breakecaseSituation": "",
 };
 //当前页面分页信息
