@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.xsjsglxt.dao.Case.ResevidenceDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
@@ -141,7 +142,7 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 	}
 
 	@Override
-	public xsjsglxt_circulation getCirculationByxsjsglxt_resevidence_id(xsjsglxt_resevidence resevidence) {
+	public List<xsjsglxt_circulation> getCirculationByxsjsglxt_resevidence_id(xsjsglxt_resevidence resevidence) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 		String hql = "from xsjsglxt_circulation circulation where circulation.circulation_resevidence='"
@@ -149,7 +150,7 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_circulation circulation = (xsjsglxt_circulation) query.uniqueResult();
+		List<xsjsglxt_circulation> circulation = query.list();
 
 		return circulation;
 	}
@@ -198,8 +199,11 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 		return sence;
 	}
 
+	/**
+	 * @author 何毅
+	 */
 	@Override
-	public xsjsglxt_circulation getcirculationByresevidenceId(xsjsglxt_resevidence resevidence) {
+	public List<xsjsglxt_circulation> getcirculationByresevidenceId(xsjsglxt_resevidence resevidence) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
@@ -208,7 +212,7 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_circulation circulation = (xsjsglxt_circulation) query.uniqueResult();
+		List<xsjsglxt_circulation> circulation = query.list();
 
 		return circulation;
 	}
@@ -272,8 +276,7 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 	}
 
 	/**
-	 * @author 孙毅
-	 * 	修改流转状态
+	 * @author 孙毅 修改流转状态
 	 */
 
 	@Override

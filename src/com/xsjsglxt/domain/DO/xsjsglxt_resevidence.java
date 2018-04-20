@@ -41,6 +41,10 @@ public class xsjsglxt_resevidence {
 		// TODO Auto-generated constructor stub
 	}
 
+	public xsjsglxt_resevidence(String xsjsglxt_resevidence_id) {
+		this.xsjsglxt_resevidence_id = xsjsglxt_resevidence_id;
+	}
+
 	public xsjsglxt_resevidence(String xsjsglxt_resevidence_id, String resevidence_case, String resevidence_name,
 			String resevidence_extractUnit, String resevidence_type, String resevidence_extractPart,
 			String resevidence_extractMethod, int resevidence_extractNumber, String resevidence_extractPerson,

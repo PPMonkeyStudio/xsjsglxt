@@ -118,10 +118,10 @@ table tr td {
 							<button class="btn btn-default" :id="re.xsjsglxt_resevidence_id"
 								:value="caseInfor.xsjsglxt_case_id" onclick="checkSelf(this)">检验</button>
 							</template>
-							<button class="btn btn-default"
+							<button class="btn btn-default" onclick="transferOperation(this)"
 								:value="re.xsjsglxt_resevidence_id"
 								:id="caseInfor.xsjsglxt_case_id">流转</button>
-							<button class="btn btn-default"
+							<button class="btn btn-default" onclick="transferProcess(this)"
 								:value="re.xsjsglxt_resevidence_id"
 								:id="caseInfor.xsjsglxt_case_id">流转过程</button></td>
 					</tr>
@@ -199,5 +199,10 @@ table tr td {
 			</div>
 		</div>
 	</div>
+<<<<<<< HEAD
+=======
+	<script type="text/javascript"
+	src="<%=basePath%>js/Case/transferOperation.js"></script>
+>>>>>>> HY
 </body>
 </html>

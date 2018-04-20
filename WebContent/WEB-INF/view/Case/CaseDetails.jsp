@@ -85,7 +85,7 @@ i {
 									type="radio" value="1"> <span><i></i>是</span>
 							</label><label style="float: left; margin-left: 10px;"
 								class="fancy-radio"> <input name="register"
-									onclick="buildCase_chose(this)" type="radio" value="2">
+									onclick="buildCase_chose(this)" type="radio" value="0">
 									<span><i></i>否</span>
 							</label> <input type="hidden" name="case1.case_register"
 								onchange="chose_labe(this)"></td>
@@ -363,6 +363,7 @@ i {
 														<th>提取日期</th>
 														<th>提取人</th>
 														<th>流转状态</th>
+														<th>检验状态</th>
 														<th>操作</th>
 													</tr>
 												</thead>

@@ -49,7 +49,7 @@ public class ResevidenceServiceImpl implements ResevidenceService {
 
 		xsjsglxt_case case1;
 		xsjsglxt_snece snece;
-		xsjsglxt_circulation circulation;
+		List<xsjsglxt_circulation> circulation;
 		// 符合筛选条件的物证记录数
 		int i = resevidenceDao.getCountResevidenceInformationByPage(page_list_ResevidenceInformation);
 		page_list_ResevidenceInformation.setTotalRecords(i);
@@ -91,7 +91,7 @@ public class ResevidenceServiceImpl implements ResevidenceService {
 		resevidence = resevidenceDao.getResevidenceById(resevidence);
 		xsjsglxt_case case1 = resevidenceDao.getcaseByresevidenceId(resevidence);
 		xsjsglxt_snece sence = resevidenceDao.getsenceBycase1Id(case1);
-		xsjsglxt_circulation circulation = resevidenceDao.getcirculationByresevidenceId(resevidence);
+		List<xsjsglxt_circulation> circulation = resevidenceDao.getcirculationByresevidenceId(resevidence);
 		ResevidenceInformationDTO resevidenceInformationDTO = new ResevidenceInformationDTO(resevidence, case1, sence,
 				circulation);
 		return resevidenceInformationDTO;
@@ -106,6 +106,14 @@ public class ResevidenceServiceImpl implements ResevidenceService {
 		circulation.setXsjsglxt_circulation_id(TeamUtil.getUuid());
 		circulation.setCirculation_gmt_create(TeamUtil.getStringSecond());
 		circulation.setCirculation_gmt_modified(circulation.getCirculation_gmt_create());
+
+		xsjsglxt_resevidence resevidence = resevidenceDao
+				.getResevidenceById(new xsjsglxt_resevidence(circulation.getCirculation_resevidence()));
+		resevidence.setResevidence_circulation(circulation.getCirculation_situation());
+		if (circulation.getCirculation_position() != null && !"".equals(circulation.getCirculation_position())) {
+			resevidence.setResevidence_savePlace(circulation.getCirculation_position());
+		}
+		resevidenceDao.save(resevidence);
 		resevidenceDao.saveCirculation(circulation);
 	}
 	/*
@@ -136,8 +144,7 @@ public class ResevidenceServiceImpl implements ResevidenceService {
 	}
 
 	/**
-	 * @author 孙毅
-	 * 修改流转状态
+	 * @author 孙毅 修改流转状态
 	 */
 
 	@Override
@@ -156,6 +163,12 @@ public class ResevidenceServiceImpl implements ResevidenceService {
 	public void updateResevidenceSendCheckState(xsjsglxt_resevidence resevidence) {
 		// TODO Auto-generated method stub
 		resevidenceDao.updateResevidenceSendCheckState(resevidence);
+	}
+
+	@Override
+	public List<xsjsglxt_circulation> getCirculationList(xsjsglxt_resevidence resevidence) {
+		// TODO Auto-generated method stub
+		return resevidenceDao.getcirculationByresevidenceId(resevidence);
 	}
 
 }

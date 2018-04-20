@@ -42,13 +42,15 @@ $(function () {
 			}
 			var key1 = name.split('.')[0];
 			var key2 = name.split('.')[1];
-			if ($(this).attr("type") == "checkbox") {
-				if (xhr_data[key1][key2] == 1) {
-					$(this).attr("checked", "checked");
-				}
-			} else
-				$(this).val(xhr_data[key1][key2]);
+			$(this).val(xhr_data[key1][key2]);
 		});
+		//redio信息		
+		$("input[type=radio][name=register][value=" + xhr_data["case1"]["case_register"] + "]").attr("checked", 'checked');
+		//select信息		
+		$('select[name="case1.case_sonCategory"]').html(`<option selected value="${xhr_data["case1"]["case_sonCategory"]}">${xhr_data["case1"]["case_sonCategory"]}</option>`)
+		$('select[name="case1.case_concreteMakeMeans"]').html(`<option selected value="${xhr_data["case1"]["case_concreteMakeMeans"]}">${xhr_data["case1"]["case_concreteMakeMeans"]}</option>`)
+		$('select[name="case1.case_concreteResidence"]').html(`<option selected value="${xhr_data["case1"]["case_concreteResidence"]}">${xhr_data["case1"]["case_concreteResidence"]}</option>`)
+
 
 		//物证列表数据显示
 		var resevidence = xhr_data["resevidence"];
@@ -59,9 +61,11 @@ $(function () {
 							  <td>${resevidence[index]["resevidence_name"]}</td>
 							  <td>${resevidence[index]["resevidence_extractTime"]}</td>
 							  <td>${resevidence[index]["resevidence_extractPerson"]}</td>
-							  <td><span class="label label-primary">${resevidence[index]["resevidence_teststate"]}</span></td>
-							  <td><i id="circulation" class="fa fa fa-random"></i>&nbsp&nbsp<i title="修改" id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i title="删除" id="delete" class="fa fa-trash-o"></i></td></tr>`;
+							  <td><span class="label label-info">${resevidence[index]["resevidence_circulation"] == undefined ? "未流转" : resevidence[index]["resevidence_circulation"]}</span></td>
+							  <td><span class="label ${resevidence[index]["resevidence_sendstate"] == "已送检" ? "label-default" : "label-primary"}">${resevidence[index]["resevidence_sendstate"]}</span>|<span class="label ${resevidence[index]["resevidence_teststate"] == "已检验" ? "label-default" : "label-primary"}">${resevidence[index]["resevidence_teststate"]}</span></td>
+							  <td><i title="修改" id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i title="删除" id="delete" class="fa fa-trash-o"></i></td></tr>`;
 			}
+			/*<i id="circulation" class="fa fa fa-random"></i>&nbsp&nbsp*/
 			return tr_str;
 		});
 
@@ -125,7 +129,6 @@ $(function () {
 		$.post('/xsjsglxt/case/Image_ListAllImageInformation', function (Image_data) {
 			//所有光盘遍历
 			var option = '';
-			console.log(Image_data[0].image_number);
 			for (var len = 0; len < Image_data.length; len++) {
 				option += '<option value="' + Image_data[len].image_number + '">' + Image_data[len].image_number + '</option>';
 			}
@@ -149,19 +152,29 @@ $(function () {
 	/*============================================================================添加信息系列*/
 	//添加物证信息
 	$('.add_evidence').click(function () {
-		var evidence_data = $.extend({}, $('#evidence form').serializeObject(), { "case1.xsjsglxt_case_id": case1_id });
+		var evidence_data = $.extend({}, $('#evidence form').serializeObject(), { "case1.xsjsglxt_case_id": case1_id, "resevidence.resevidence_teststate": "未检验", "resevidence.resevidence_sendstate": "未送检" });
 		$.post('/xsjsglxt/case/Resevidence_saveResevidence', evidence_data, function (xhr_data) {
 			if (xhr_data.length > 22 && xhr_data.length <= 36) {
 				toastr.success('添加成功！');
 				//控制模态框隐藏
 				$('#evidence').modal('hide');
-				//数据添加
-				$('#evidence-info table tbody').append(`<tr id="${xhr_data}">
-							  <td>${evidence_data["resevidence.resevidence_name"]}</td>
-							  <td>${evidence_data["resevidence.resevidence_extractPerson"]}</td>
-							  <td>${evidence_data["resevidence.resevidence_type"]}</td>
-							  <td>${evidence_data["resevidence.resevidence_extractTime"]}</td>
-							  <td><i id="modify" class="fa fa fa-random"></i>&nbsp&nbsp<i class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`);
+				//数据刷新
+				$.post('/xsjsglxt/case/Case_SecneInformationOne', { "case1.xsjsglxt_case_id": case1_id, }, function (xhr_data) {
+					var resevidence = xhr_data["resevidence"];
+					$('#evidence-info table tbody').html(function () {
+						var tr_str = '';
+						for (let index = 0; index < resevidence.length; index++) {
+							tr_str += `<tr id="${resevidence[index]["xsjsglxt_resevidence_id"]}">
+										   <td>${resevidence[index]["resevidence_name"]}</td>
+										   <td>${resevidence[index]["resevidence_extractTime"]}</td>
+										   <td>${resevidence[index]["resevidence_extractPerson"]}</td>
+										   <td><span class="label label-info">${resevidence[index]["resevidence_circulation"] == undefined ? "未流转" : resevidence[index]["resevidence_circulation"]}</span></td>
+										   <td><span class="label ${resevidence[index]["resevidence_sendstate"] == "已送检" ? "label-default" : "label-primary"}">${resevidence[index]["resevidence_sendstate"]}</span>|<span class="label ${resevidence[index]["resevidence_teststate"] == "已检验" ? "label-default" : "label-primary"}">${resevidence[index]["resevidence_teststate"]}</span></td>
+										   <td><i title="修改" id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i title="删除" id="delete" class="fa fa-trash-o"></i></td></tr>`;
+						}
+						return tr_str;
+					});
+				}, 'json');
 			} else {
 				toastr.error('添加失败！');
 			}
@@ -268,7 +281,6 @@ $(function () {
 		if (o.tagName == "I") {
 			var ID = $(o).parents('tr').attr('id');
 			var operate = $(o).attr('id');
-			console.log(operate);
 			if (operate == "circulation") {
 				$.post('/xsjsglxt/case/Resevidence_ResevidenceInformationOne', { "resevidence.xsjsglxt_resevidence_id": ID }, function (msg) {
 					$('#circulation-info form').find('input').each(function () {
@@ -724,7 +736,14 @@ function chose_labe(params) {
 	if ($(params).val() == 1) {
 		$('input[name="register"][value="1"]').attr("checked", "checked");
 	} else {
-		$('input[name="register"][value="2"]').attr("checked", "checked");
+		$('input[name="register"][value="0"]').attr("checked", "checked");
+	}
+}
+function chose_labe(params) {
+	if ($(params).val() == 1) {
+		$('input[name="case1.case_register"]').val(1);
+	} else {
+		$('input[name="case1.case_register"]').val(0);
 	}
 }
 

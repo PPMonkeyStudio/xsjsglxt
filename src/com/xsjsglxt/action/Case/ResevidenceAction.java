@@ -113,6 +113,22 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 	}
 
 	/*
+	 * 流转信息列表
+	 */
+	public void getCirculationList() throws IOException {
+		try {
+			List<xsjsglxt_circulation> list = resevidenceService.getCirculationList(resevidence);
+			http_response.setContentType("text/html;charset=utf-8");
+			http_response.getWriter().write(new Gson().toJson(list));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			http_response.setContentType("text/html;charset=utf-8");
+			http_response.getWriter().write("error");
+		}
+	}
+
+	/*
 	 * 修改物证信息
 	 */
 	public void updateResevidenceInformation() throws IOException {
@@ -152,24 +168,21 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 	}
 
 	/**
-	 * @author 孙毅 
-	 * 	修改流转状态
+	 * @author 孙毅 修改流转状态
 	 */
 	public void updateStatus() {
 		resevidenceService.updateStatus(resevidence);
 	}
 
 	/**
-	 *@author 孙毅
-	 *修改检验状态
+	 * @author 孙毅 修改检验状态
 	 */
 	public void updateResevidenceCheckState() {
 		resevidenceService.updateResevidenceCheckState(resevidence);
 	}
 
 	/**
-	 *@author 孙毅
-	 *修改送检状态
+	 * @author 孙毅 修改送检状态
 	 */
 	public void updateResevidenceSendCheckState() {
 		resevidenceService.updateResevidenceSendCheckState(resevidence);

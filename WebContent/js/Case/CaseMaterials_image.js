@@ -109,7 +109,7 @@ $(function () {
 		}
 	});
 
-	get_ListImageInformationByPageAndSearch(data);
+	get_ListImageInformationByPageAndSearch(query_data);
 })
 
 
