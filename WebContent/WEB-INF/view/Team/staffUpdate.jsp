@@ -460,7 +460,7 @@
 				</div>
 				<button style="float: right;" type="button"
 					class="btn btn-default button" onclick="staff_relive()">
-					<i class="fa fa-pencil"></i> 修改人员
+					<i class="fa fa-pencil"></i> 保存
 				</button>
 			</div>
 
