@@ -5,12 +5,13 @@ var query_data = {
 	"page_list_senceInformation.case_makeTime": "",
 	"page_list_senceInformation.case_residence": "",
 	"page_list_senceInformation.case_concreteResidence": "",
-	"page_list_senceInformation.case_reporterName": "",
+
 	"page_list_senceInformation.case_makeMeans": "",
 	"page_list_senceInformation.case_concreteMakeMeans": "",
 	"page_list_senceInformation.start_time": "",
 	"page_list_senceInformation.stop_time": "",
 
+	"page_list_senceInformation.case_reporterName": "",
 	"page_list_senceInformation.snece_inquestPerson": "",
 	"page_list_senceInformation.case_receivingAlarmDate": "",
 	"page_list_senceInformation.case_totalCategory": "",

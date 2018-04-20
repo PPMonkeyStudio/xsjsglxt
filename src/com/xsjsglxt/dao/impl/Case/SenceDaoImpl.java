@@ -112,7 +112,7 @@ public class SenceDaoImpl implements SenceDao {
 		String hql = "select count(*) from xsjsglxt_case,xsjsglxt_snece  where 1=1 and snece_case= xsjsglxt_case_id";
 		String startTime = "";
 		String stopTime = "9999-99-99";
-		String order=page_list_senceInformation.getOrder();
+		String order = page_list_senceInformation.getOrder();
 		// 1
 		if (page_list_senceInformation.getCase_totalCategory() != null
 				&& page_list_senceInformation.getCase_totalCategory().trim().length() > 0) {
@@ -171,12 +171,17 @@ public class SenceDaoImpl implements SenceDao {
 		if (page_list_senceInformation.getCase_reporterName() != null
 				&& page_list_senceInformation.getCase_reporterName().trim().length() > 0) {
 			String Case_reporterName = "%" + page_list_senceInformation.getCase_reporterName() + "%";
-			hql = hql + " and Case_reporterName like '" + Case_reporterName + "'";
+			hql = hql + " and case_reporterName like '" + Case_reporterName + "'";
 		}
 		if (page_list_senceInformation.getCase_address() != null
 				&& page_list_senceInformation.getCase_address().trim().length() > 0) {
 			String case_address = "%" + page_list_senceInformation.getCase_address() + "%";
 			hql = hql + " and case_address like '" + case_address + "'";
+		}
+		if (page_list_senceInformation.getSnece_inquestId() != null
+				&& page_list_senceInformation.getSnece_inquestId().trim().length() > 0) {
+			String getSnece_inquestId = "%" + page_list_senceInformation.getSnece_inquestId() + "%";
+			hql = hql + " and snece_inquestId like '" + getSnece_inquestId + "'";
 		}
 
 		if (page_list_senceInformation.getStart_time() != null
@@ -188,7 +193,7 @@ public class SenceDaoImpl implements SenceDao {
 			stopTime = page_list_senceInformation.getStop_time();
 		}
 		hql = hql + " and case_receivingAlarmDate>='" + startTime + "' and case_receivingAlarmDate<='" + stopTime
-				+ "' order by case_receivingAlarmDate "+ order;
+				+ "' order by case_receivingAlarmDate " + order;
 		System.out.println(hql);
 		Query query = session.createQuery(hql);
 		i = (Long) query.uniqueResult();
@@ -205,7 +210,7 @@ public class SenceDaoImpl implements SenceDao {
 		System.out.println("每条数据" + hql);
 		String startTime = "";
 		String stopTime = "9999-99-99";
-		String order=page_list_senceInformation.getOrder();
+		String order = page_list_senceInformation.getOrder();
 		// 1
 		if (page_list_senceInformation.getCase_totalCategory() != null
 				&& page_list_senceInformation.getCase_totalCategory().trim().length() > 0) {
@@ -261,6 +266,25 @@ public class SenceDaoImpl implements SenceDao {
 			String case_concreteMakeMeans = "%" + page_list_senceInformation.getCase_concreteMakeMeans() + "%";
 			hql = hql + " and case_concreteMakeMeans like '" + case_concreteMakeMeans + "'";
 		}
+
+		// 10
+		if (page_list_senceInformation.getCase_reporterName() != null
+				&& page_list_senceInformation.getCase_reporterName().trim().length() > 0) {
+			String getCase_reporterName = "%" + page_list_senceInformation.getCase_reporterName() + "%";
+			hql = hql + " and case_concreteMakeMeans like '" + getCase_reporterName + "'";
+		}
+		// 11
+		if (page_list_senceInformation.getCase_address() != null
+				&& page_list_senceInformation.getCase_address().trim().length() > 0) {
+			String case_address = "%" + page_list_senceInformation.getCase_address() + "%";
+			hql = hql + " and case_address like '" + case_address + "'";
+		}
+		// 12
+		if (page_list_senceInformation.getSnece_inquestId() != null
+				&& page_list_senceInformation.getSnece_inquestId().trim().length() > 0) {
+			String getSnece_inquestId = "%" + page_list_senceInformation.getSnece_inquestId() + "%";
+			hql = hql + " and snece_inquestId like '" + getSnece_inquestId + "'";
+		}
 		if (page_list_senceInformation.getStart_time() != null
 				&& page_list_senceInformation.getStart_time().trim().length() > 0) {
 			startTime = page_list_senceInformation.getStart_time();
@@ -270,7 +294,7 @@ public class SenceDaoImpl implements SenceDao {
 			stopTime = page_list_senceInformation.getStop_time();
 		}
 		hql = hql + " and case_receivingAlarmDate>='" + startTime + "' and case_receivingAlarmDate<='" + stopTime
-				+ "' order by case_receivingAlarmDate "+order;
+				+ "' order by case_receivingAlarmDate " + order;
 		Query query = session.createQuery(hql);
 		query.setFirstResult(
 				(page_list_senceInformation.getPageIndex() - 1) * page_list_senceInformation.getPageSize());
