@@ -7,9 +7,10 @@ public class schedulingDTO {
 	private String scheduling_mainTec; // 技术民警主班
 	private String scheduling_assistant;// 辅班
 	private String scheduling_time; // 值班日期
+	private String scheduling_patrol;
 
 	public schedulingDTO(String xsjsglxt_scheduling_id, String scheduling_leader, String scheduling_main,
-			String scheduling_mainTec, String scheduling_assistant, String scheduling_time) {
+			String scheduling_mainTec, String scheduling_assistant, String scheduling_time, String scheduling_patrol) {
 		super();
 		this.xsjsglxt_scheduling_id = xsjsglxt_scheduling_id;
 		this.scheduling_leader = scheduling_leader;
@@ -17,6 +18,15 @@ public class schedulingDTO {
 		this.scheduling_mainTec = scheduling_mainTec;
 		this.scheduling_assistant = scheduling_assistant;
 		this.scheduling_time = scheduling_time;
+		this.scheduling_patrol = scheduling_patrol;
+	}
+
+	public String getScheduling_patrol() {
+		return scheduling_patrol;
+	}
+
+	public void setScheduling_patrol(String scheduling_patrol) {
+		this.scheduling_patrol = scheduling_patrol;
 	}
 
 	public String getScheduling_mainTec() {

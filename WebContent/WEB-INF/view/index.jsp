@@ -34,6 +34,7 @@
 							document.getElementById("main").innerHTML = result.scheduling_main;
 							document.getElementById("mainTech").innerHTML = result.scheduling_main_technology;
 							document.getElementById("assistant").innerHTML = result.scheduling_assistant;
+							document.getElementById("patrol").innerHTML = result.scheduling_patrol;				
 						}
 					}
 				});
@@ -145,7 +146,8 @@
 							<h2 class="panel-title">欢迎进入安源刑侦信息管理系统</h2>
 							<h3 class="panel-title" id="schedulingH3">
 								今日值班 带班领导：<span id="leader"></span> 侦查民警：<span id="main"></span>
-								技术民警：<span id="mainTech"></span> 副班：<span id="assistant"></span>
+								技术民警：<span id="mainTech"></span> 辅警：<span id="assistant"></span>
+								 今日巡逻：<span id="patrol"></span>
 							</h3>
 							<p class="panel-subtitle" style="margin-top: 20px;">
 								当前时间是：<span id="current_time"></span>

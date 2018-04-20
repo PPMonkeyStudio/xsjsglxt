@@ -28,6 +28,34 @@
 a {
 	cursor: pointer;
 }
+i {
+	cursor: pointer;
+}
+
+table tbody tr td {
+	padding-left: 10px;
+	width: 300px;
+	color: black;
+}
+
+table tbody tr td {
+	text-align: center;
+}
+
+table tr th {
+	border: 1px solid black;
+	word-break: break-all; /* 设置自动换行切不挤压其他td */
+}
+
+table tr td {
+	border: 1px solid black;
+	word-break: break-all; /* 设置自动换行切不挤压其他td */
+}
+
+
+.tdWidth {
+	width: 100px;
+}
 </style>
 </head>
 <body>
@@ -42,6 +70,10 @@ a {
 				<button class="btn btn-default managerRole"
 					onclick="createScheduling()">
 					<i class="fa fa-pencil-square-o"></i>增加值班
+				</button>
+				<button class="btn btn-default managerRole"
+					onclick="printCurrPage()">
+					<i class="fa fa-print"></i>打印值班表
 				</button>
 				<button class="btn btn-danger managerRole"
 					onclick="deleteScheduling()">
@@ -62,7 +94,7 @@ a {
 				<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
 			</div>
 			<div id="tableContent" style="margin-top: 10px; display: none;">
-				<table class="table table-bordered" style="text-align: center;">
+				<table style="text-align: center; margin:0 auto; width: 1200px; color: black;">
 					<thead>
 						<tr style="height:30;">
 							<td rowspan="2"><label class="fancy-checkbox"> <input
@@ -71,9 +103,11 @@ a {
 							</label></td>
 							<td rowspan="2">日期</td>
 							<td rowspan="2">带班领导</td>
-							<td colspan="3">值班人员</td>		
+							<td colspan="3">值班人员</td>
+							<td rowspan="2">今日巡逻</td>		
 						</tr>
 						<tr style="height:30;"><td>侦查民警</td><td>技术民警</td><td>辅警</td></tr>
+						
 					</thead>
 					<tbody>
 						<template v-for="schedulingDTO in vo.schedulingDTOList">
@@ -86,6 +120,7 @@ a {
 							<td>{{ schedulingDTO.scheduling_main }}</td>
 							<td>{{ schedulingDTO.scheduling_mainTec }}</td>
 							<td>{{ schedulingDTO.scheduling_assistant }}</td>
+							<td>{{ schedulingDTO.scheduling_patrol }}</td>
 						</tr>
 						</template>
 					</tbody>

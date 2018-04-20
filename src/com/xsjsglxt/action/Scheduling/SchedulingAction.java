@@ -38,6 +38,10 @@ public class SchedulingAction extends ActionSupport {
 		return "intoScheduling";
 	}
 
+	public String page_print() {
+		return "printCurrPage";
+	}
+
 	// -----------------------保存值班表
 	public void saveScheduling() {
 		// boolean flag = schedulingService.saveScheduling(scheduling);

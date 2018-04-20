@@ -101,7 +101,7 @@ public class SchedulingServiceImpl implements SchedulingService {
 	public void schedulingList(SchedulingDTOListVO schedulingListVO) {
 		// TODO Auto-generated method stub
 		int count = schedulingDao.getSchedulingCount(schedulingListVO);
-		schedulingListVO.setPageSize(10);
+		schedulingListVO.setPageSize(31);
 		schedulingListVO.setTotalCount(count);
 		schedulingListVO.setTotalPage((int) Math.ceil((double) count / schedulingListVO.getPageSize()));
 		List<schedulingDTO> dtoList = schedulingDao.getSchedulingByPage(schedulingListVO);

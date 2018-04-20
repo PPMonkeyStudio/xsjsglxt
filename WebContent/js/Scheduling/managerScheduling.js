@@ -2,6 +2,14 @@
  * 
  */
 
+var printCurrPage = function() {
+	window.open("/xsjsglxt/scheduling/Scheduling_page_print?currPage="
+			+ queryConditionTemp.currPage + "&start="
+			+ queryConditionTemp.queryTimeStart + "&end="
+			+ queryConditionTemp.queryTimeEnd + "&name="
+			+ queryConditionTemp.query_name);
+}
+
 var deleteScheduling = function() {
 	$
 			.confirm({
@@ -58,6 +66,7 @@ var updateScheduling = function(event) {
 						+ '<tr><td>侦查民警：</td><td class="loadingLay" style="text-align:center;"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></td></td><td class="contentName" style="display:none;"><select id="main" style="width: 250px;" class="form-control selectpicker" data-live-search="true" title="请选择侦查民警"></select></td></tr>'
 						+ '<tr><td>技术民警：</td><td class="loadingLay" style="text-align:center;"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></td></td><td class="contentName" style="display:none;"><select id="mainTech" style="width: 250px;" class="form-control selectpicker" data-live-search="true" title="请选择技术民警"></select></td></tr>'
 						+ '<tr><td>辅警：</td><td class="loadingLay" style="text-align:center;"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></td><td class="contentName" style="display:none;"><select id="assistant" style="width: 250px;" class="form-control selectpicker" data-live-search="true" title="请选择副班"></select></td></tr>'
+						+ '<tr><td>今日巡逻：</td><td class="loadingLay" style="text-align:center;"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></td><td class="contentName" style="display:none;"><select id="patrol" style="width: 250px;" data-dropup-auto="false" multiple class="form-control selectpicker" data-live-search="true" title="请选择巡逻人员"></select></td></tr>'
 						+ '<tr><td>值班时间：</td><td><input id="scheTime" style="250px" class="form-control timeDate"></td></tr></table>',
 				buttons : {
 					save : {
@@ -77,7 +86,12 @@ var updateScheduling = function(event) {
 											'#assistant').val(),
 									'scheduling.scheduling_time' : $(
 											'#scheTime').val(),
-									'scheduling.xsjsglxt_scheduling_id' : event.id
+									'scheduling.xsjsglxt_scheduling_id' : event.id,
+									'scheduling.scheduling_patrol' : $(
+											'#patrol').selectpicker('val')
+											.join(','),
+									'scheduling.scheduling_main_technology' : $(
+											'#mainTech').val()
 								}
 								$
 										.ajax({
@@ -152,43 +166,87 @@ var updateScheduling = function(event) {
 																+ result.staffAssitant[i].xsjsglxt_name
 																+ "</option>");
 									}
-									var d = {
-										'scheduling.xsjsglxt_scheduling_id' : event.id
-									};
 									$
 											.ajax({
-												url : '/xsjsglxt/scheduling/Scheduling_getSchedulingById',
-												type : 'POST',
-												data : d,
+												url : '/xsjsglxt/team/Staff_getAllPolicemans',
+												type : 'GET',
 												success : function(data) {
-													var result = JSON
+													var results = JSON
 															.parse(data);
-													$('#leader')
-															.selectpicker(
-																	'val',
-																	result.scheduling_leader);
-													$('#main')
-															.selectpicker(
-																	'val',
-																	result.scheduling_main);
-													$('#mainTech')
-															.selectpicker(
-																	'val',
-																	result.scheduling_main_technology);
-													$('#assistant')
-															.selectpicker(
-																	'val',
-																	result.scheduling_assistant);
-													$('#scheTime')
-															.val(
-																	result.scheduling_time);
-													$(".selectpicker")
-															.selectpicker(
-																	'refresh');
-													$(".loadingLay").hide();
-													$(".contentName").show();
-												}
+													for (var i = 0; i < results.length; i++) {
+														$('#patrol')
+																.append(
+																		"<option value='"
+																				+ results[i].xsjsglxt_name
+																				+ "'>"
+																				+ results[i].xsjsglxt_name
+																				+ "</option>");
+													}
+													var d = {
+														'scheduling.xsjsglxt_scheduling_id' : event.id
+													};
+													$
+															.ajax({
+																url : '/xsjsglxt/scheduling/Scheduling_getSchedulingById',
+																type : 'POST',
+																data : d,
+																success : function(
+																		data) {
+																	var result = JSON
+																			.parse(data);
+																	$('#leader')
+																			.selectpicker(
+																					'val',
+																					result.scheduling_leader);
+																	$('#main')
+																			.selectpicker(
+																					'val',
+																					result.scheduling_main);
+																	$(
+																			'#mainTech')
+																			.selectpicker(
+																					'val',
+																					result.scheduling_main_technology);
+																	$(
+																			'#assistant')
+																			.selectpicker(
+																					'val',
+																					result.scheduling_assistant);
+																	if (result.scheduling_patrol != null
+																			&& result.scheduling_patrol
+																					.indexOf(',') > 0) {
+																		$(
+																				'#patrol')
+																				.selectpicker(
+																						'val',
+																						result.scheduling_patrol
+																								.split(','));
+																	} else {
+																		$(
+																				'#patrol')
+																				.selectpicker(
+																						'val',
+																						result.scheduling_patrol);
+																	}
+																	$(
+																			'#scheTime')
+																			.val(
+																					result.scheduling_time);
 
+																	$(
+																			".selectpicker")
+																			.selectpicker(
+																					'refresh');
+																	$(
+																			".loadingLay")
+																			.hide();
+																	$(
+																			".contentName")
+																			.show();
+																}
+
+															});
+												}
 											});
 
 								}
