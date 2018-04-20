@@ -499,12 +499,14 @@ function mdPost(URL, DATA, TYPE) {
 							var tr_str = '';
 							for (let index = 0; index < resevidence.length; index++) {
 								tr_str += `<tr id="${resevidence[index]["xsjsglxt_resevidence_id"]}">
-											<td>${resevidence[index]["resevidence_name"]}</td>
-											<td>${resevidence[index]["resevidence_extractTime"]}</td>
-											<td>${resevidence[index]["resevidence_extractPerson"]}</td>
-											<td>${resevidence[index]["resevidence_type"]}</td>
-											<td><i id="circulation" class="fa fa fa-random"></i>&nbsp&nbsp<i id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`;
+							  <td>${resevidence[index]["resevidence_name"]}</td>
+							  <td>${resevidence[index]["resevidence_extractTime"]}</td>
+							  <td>${resevidence[index]["resevidence_extractPerson"]}</td>
+							  <td><span class="label label-info">${resevidence[index]["resevidence_circulation"] == undefined ? "未流转" : resevidence[index]["resevidence_circulation"]}</span></td>
+							  <td><span class="label ${resevidence[index]["resevidence_sendstate"] == "已送检" ? "label-default" : "label-primary"}">${resevidence[index]["resevidence_sendstate"]}</span>|<span class="label ${resevidence[index]["resevidence_teststate"] == "已检验" ? "label-default" : "label-primary"}">${resevidence[index]["resevidence_teststate"]}</span></td>
+							  <td><i title="修改" id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i title="删除" id="delete" class="fa fa-trash-o"></i></td></tr>`;
 							}
+							/*<i id="circulation" class="fa fa fa-random"></i>&nbsp&nbsp*/
 							return tr_str;
 						});
 						break;

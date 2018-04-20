@@ -42,7 +42,7 @@ i {
 					</button>
 					<button type="button" class="btn btn-default button button_change"
 						onclick="case_change()">
-						<i class="fa fa-pencil"></i> 修改案件
+						<i class="fa fa-pencil"></i> 确定修改
 					</button>
 					<button type="button" class="btn btn-default button button_del"
 						onclick="case_del()">
