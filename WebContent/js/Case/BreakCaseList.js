@@ -612,7 +612,7 @@ function firstPage() {
 		toastr.error('已经是第一页！');
 		return;
 	}
-	query_data['page_list_senceInformation.pageIndex'] = 1;
+	query_data['breakeCaseListVO.currPage'] = 1;
 	get_ListBreakecaseInformationByPageAndSearch(query_data);
 }
 //上一页
@@ -621,7 +621,7 @@ function prePage() {
 		toastr.error('已经是第一页！');
 		return;
 	}
-	query_data['page_list_senceInformation.pageIndex'] = page_infomantion.pageIndex - 1;
+	query_data['breakeCaseListVO.currPage'] = page_infomantion.pageIndex - 1;
 	get_ListBreakecaseInformationByPageAndSearch(query_data);
 }
 //下一页
@@ -630,7 +630,7 @@ function nextPage() {
 		toastr.error('已经是最后一页！');
 		return;
 	}
-	query_data['page_list_senceInformation.pageIndex'] = page_infomantion.pageIndex + 1;
+	query_data['breakeCaseListVO.currPage'] = page_infomantion.pageIndex + 1;
 	get_ListBreakecaseInformationByPageAndSearch(query_data);
 }
 //尾页
@@ -639,11 +639,11 @@ function lastPage() {
 		toastr.error('已经是最后一页！');
 		return;
 	}
-	query_data['page_list_senceInformation.pageIndex'] = page_infomantion.totalPages;
+	query_data['breakeCaseListVO.currPage'] = page_infomantion.totalPages;
 	get_ListBreakecaseInformationByPageAndSearch(query_data);
 }
 //跳转到n页
 function toPage(object) {
-	query_data['page_list_senceInformation.pageIndex'] = $(object).val();
+	query_data['breakeCaseListVO.currPage'] = $(object).val();
 	get_ListBreakecaseInformationByPageAndSearch(query_data);
 }

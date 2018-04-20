@@ -62,6 +62,10 @@
 	margin-left: -20px !important;
 	margin-top: 6px;
 }
+
+.page_info a {
+	cursor: pointer;
+}
 </style>
 <body>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
@@ -77,7 +81,7 @@
 				<h3 class="panel-title">影像光盘</h3>
 			</div>
 			<div class="operation" style="margin-bottom: 6px; ">
-				<button style="margin-left: 6px; type="button"
+				<button style="margin-left: 15px;" type="button"
 					class="btn btn-default" data-toggle="modal" data-target="#image">
 					<i class="fa fa-plus-square"></i> 添加信息
 				</button>
@@ -115,9 +119,7 @@
 			</div>
 		</div>
 	</div>
-	<!-------------------------------------------------------------------------------------------------
-	---
-	>
+	<!---------------------------------------------------------------------------------------------------->
 	<!------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!-- 影像光盘信息-模态框（Modal） -->
@@ -132,7 +134,7 @@
 				</div>
 				<div class="modal-body">
 					<form action="">
-						<table>
+						<table class="table" align="center">
 							<tbody>
 								<tr>
 									<td>影像光盘编号</td>
