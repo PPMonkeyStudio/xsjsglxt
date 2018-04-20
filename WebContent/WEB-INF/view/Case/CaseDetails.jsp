@@ -74,7 +74,7 @@ i {
 							<td>危害程度</td>
 							<td><select name="case1.case_extentOfInjury"
 								class="form-control" style="margin-top: 6px;">
-									<option></option>
+									<option value=""></option>
 									<option>一般</option>
 									<option>重大</option>
 									<option>特大</option>

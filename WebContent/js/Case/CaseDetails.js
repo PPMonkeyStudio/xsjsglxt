@@ -1,15 +1,12 @@
+/**
+ * @author 何毅
+ */
 /*===================案件和现场id记录======================= */
 //便以全局使用
 var case1_id = $('#case1_id').val();
 var sence_id = "";
 
 $(function () {
-	var makeMeans = document.getElementsByName('case1.case_makeMeans')[0];
-	makeMeans.addEventListener("change", setSectionmMethod(makeMeans.selectedIndex), false);
-	var residence = document.getElementsByName('case1.case_residence')[0];
-	residence.addEventListener("change", setSectionmAddress(residence.selectedIndex), false);
-	var totalCategory = document.getElementsByName('case1.case_totalCategory')[0];
-	totalCategory.addEventListener("change", setSectionCase(totalCategory.selectedIndex), false);
 
 	//序列化为对象======----自定义方法
 	$.fn.extend({
@@ -687,6 +684,11 @@ var downloadFile = function (element) {
 	window.open("/xsjsglxt/case/Case_download" + href_str);
 }
 
+
+//=========================封装(物证，丢失物，照片)信息更新，当用到，增加，修改，删除时，触发信息更新
+function updateSenceInformation(type, jsonData) {
+
+}
 /*
 //修改基站
 $('.modify_station').click(function () {
@@ -707,7 +709,6 @@ $('.modify_station').click(function () {
 
 //流转情况选择框事件
 function situation(element) {
-	console.log($(this).val());
 	if ($(this).val() == '入库保存') {
 		$(this).parent().nextAll().show();
 	} else {
@@ -739,7 +740,7 @@ function chose_labe(params) {
 		$('input[name="register"][value="0"]').attr("checked", "checked");
 	}
 }
-function chose_labe(params) {
+function buildCase_chose(params) {
 	if ($(params).val() == 1) {
 		$('input[name="case1.case_register"]').val(1);
 	} else {
