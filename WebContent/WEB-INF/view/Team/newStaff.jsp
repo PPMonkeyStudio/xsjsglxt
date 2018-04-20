@@ -37,7 +37,7 @@
 				</button>
 				<button type="button" class="btn btn-default button button_change"
 					onclick="staff_change()">
-					<i class="fa fa-pencil"></i> 新建人员
+					<i class="fa fa-pencil"></i> 保存
 				</button>
 			</div>
 			<div class="panel-body staff_body">
@@ -424,7 +424,7 @@
 				</div>
 				<button style="float: right;" type="button"
 					class="btn btn-default button" onclick="staff_change()">
-					<i class="fa fa-pencil"></i> 新建人员
+					<i class="fa fa-pencil"></i> 保存
 				</button>
 			</div>
 		</div>

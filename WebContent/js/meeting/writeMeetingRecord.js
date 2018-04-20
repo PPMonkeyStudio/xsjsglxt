@@ -29,12 +29,12 @@ var createConfirm = function() {
 						action : function() {
 							var formData = new FormData(document
 									.getElementById("meetRecords"));
-							for (var i = 0; i < document.meetRecords.elements.length - 1; i++) {
-								if (document.meetRecords.elements[i].value == "") {
-									toastr.error("当前表单不能有空项");
-									document.meetRecords.elements[i].focus();
-									return false;
-								}
+							if ($('select[name="meet.meeting_compere"]').val() == ""
+									|| $(
+											'select[name="meet.meeting_record_human"]')
+											.val() == "") {
+								toastr.error("不能有空项哦");
+								return false;
 							}
 							$("#ConfirmTableDiv").hide();
 							$("#addLoadingLayer").show();

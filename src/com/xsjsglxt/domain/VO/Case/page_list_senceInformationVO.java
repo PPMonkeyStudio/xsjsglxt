@@ -44,9 +44,11 @@ public class page_list_senceInformationVO {
 	private String case_reporterName;
 	// 案发地点
 	private String case_address;
-    //升序\降序
+	// 升序\降序
 	private String order;
-	
+	// 勘验编号
+	private String snece_inquestId;
+
 	private List<SenceInformationDTO> SenceInformationDTOList;
 
 	public int getPageIndex() {
@@ -217,6 +219,14 @@ public class page_list_senceInformationVO {
 		this.order = order;
 	}
 
+	public String getSnece_inquestId() {
+		return snece_inquestId;
+	}
+
+	public void setSnece_inquestId(String snece_inquestId) {
+		this.snece_inquestId = snece_inquestId;
+	}
+
 	@Override
 	public String toString() {
 		return "page_list_senceInformationVO [pageIndex=" + pageIndex + ", totalRecords=" + totalRecords + ", pageSize="
@@ -229,7 +239,5 @@ public class page_list_senceInformationVO {
 				+ ", case_reporterName=" + case_reporterName + ", case_address=" + case_address + ", order=" + order
 				+ ", SenceInformationDTOList=" + SenceInformationDTOList + "]";
 	}
-
-
 
 }

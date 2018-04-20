@@ -1,33 +1,38 @@
-var newStudyExp = { 
-};
+var newStudyExp = {};
 // newStaff新建人员
 function staff_change() {
 	var url = "/xsjsglxt/team/Staff_saveStaff";
-	$.confirm({
-		title : '新建!',
-		content : '确定新建么!',
-		buttons : {
+	$
+			.confirm({
+				title : '新建!',
+				content : '确定新建么!',
+				buttons : {
 
-			取消 : function() {
-				// here the button key 'hey' will be used as the text.
-			},
-			确定 : {
-				action : function() {
-					// 判断身份证是否为空
-					var ID=document.getElementsByName("policeman.staff_idNumber")[0].value;
-					var name=document.getElementsByName("policeman.xsjsglxt_name")[0].value;
-					var policeTime=document.getElementsByName("policeman.staff_thePoliceTime")[0].value;
-					var alarm=document.getElementsByName("policeman.staff_alarm")[0].value;
-					if(ID==""||name==""||policeTime==""||alarm==""){
-						toastr.error('姓名、警号、入警时间或身份证号不能为空哦！');
-					   return false;
+					取消 : function() {
+						// here the button key 'hey' will be used as the text.
+					},
+					确定 : {
+						action : function() {
+							// 判断身份证是否为空
+							var ID = document
+									.getElementsByName("policeman.staff_idNumber")[0].value;
+							var name = document
+									.getElementsByName("policeman.xsjsglxt_name")[0].value;
+							var policeTime = document
+									.getElementsByName("policeman.staff_thePoliceTime")[0].value;
+							var alarm = document
+									.getElementsByName("policeman.staff_alarm")[0].value;
+							if (ID == "" || name == "" || policeTime == ""
+									|| alarm == "") {
+								toastr.error('姓名、警号、入警时间或身份证号不能为空哦！');
+								return false;
+							}
+							loadstaffDetail_staff_change(url);
+
+						}
 					}
-					loadstaffDetail_staff_change(url);
-					
 				}
-			}
-		}
-	});
+			});
 
 }
 // 警员基本信息表
@@ -47,14 +52,15 @@ function loadstaffDetail_staff_change(url) {
 			console.log(xmlhttp.responseText);
 			var id = xmlhttp.responseText;
 			// 得到
-			studyExp_ajax(url,id);
+			studyExp_ajax(url, id);
 			workExp_ajax(id);
 			family_ajax(id);
 			policeChange_ajax(id);
 			prized_ajax(id);
 			against_ajax(id);
 			furlough_ajax(id);
-			//window.location.href='http://localhost:8080/xsjsglxt/team/Staff_page_staffList';
+			toastr.success("新建人员成功");
+			window.location.href = '/xsjsglxt/team/Staff_page_newStaff';
 		}
 	};
 	xmlhttp.open("post", url, true);
@@ -62,32 +68,33 @@ function loadstaffDetail_staff_change(url) {
 	xmlhttp.send(formData);
 }
 // 学习经历表
-function studyExp_ajax(url,id){
+function studyExp_ajax(url, id) {
 	console.log("b3");
 	if (window.XMLHttpRequest) {
 		xmlhttp = new XMLHttpRequest();
 	} else {
 		xmlhttp = new ActiveXOBject("Microsoft.XMLHTTP");
 	}
-	
-	var formdata=new FormData();
+
+	var formdata = new FormData();
 	// 得到每行
-	var s_tr = document.getElementById("studyExperience_table").getElementsByTagName("tr");
-	
-	for(var i=1;i<s_tr.length;i++){
+	var s_tr = document.getElementById("studyExperience_table")
+			.getElementsByTagName("tr");
+
+	for (var i = 1; i < s_tr.length; i++) {
 		// 得到每列
-		var s_td=s_tr[i].getElementsByTagName("td");
-		for(var j=0;j<s_td.length;j++){
+		var s_td = s_tr[i].getElementsByTagName("td");
+		for (var j = 0; j < s_td.length; j++) {
 			// 得到每列的class名
-			if(s_td[j].innerHTML==""){
-				s_td[j].innerHTML="d";
+			if (s_td[j].innerHTML == "") {
+				s_td[j].innerHTML = "d";
 			}
-			var s_tdName=s_td[j].getAttribute("name");
-			console.log("列名"+s_tdName);
+			var s_tdName = s_td[j].getAttribute("name");
+			console.log("列名" + s_tdName);
 			// 将每列的名和值放到formdata中
-			formdata.append(s_tdName,s_td[j].innerHTML);
+			formdata.append(s_tdName, s_td[j].innerHTML);
 		}
-	
+
 		// 将id放到每行中
 		formdata.append("students.staffStudent_staff", id);
 	}
@@ -98,7 +105,7 @@ function studyExp_ajax(url,id){
 		}
 
 	};
-	xmlhttp.open("post","/xsjsglxt/team/StaffStudent_saveStudents", true);
+	xmlhttp.open("post", "/xsjsglxt/team/StaffStudent_saveStudents", true);
 	// xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
 	xmlhttp.send(formdata);
 }
@@ -110,26 +117,27 @@ function workExp_ajax(id) {
 	} else {
 		xmlhttp = new ActiveXOBject("Microsoft.XMLHTTP");
 	}
-	
-	var formdata=new FormData();
+
+	var formdata = new FormData();
 	// 得到每行
-	var w_tr = document.getElementById("wordExperience_table").getElementsByTagName("tr");
-	
-	for(var i=1;i<w_tr.length;i++){
+	var w_tr = document.getElementById("wordExperience_table")
+			.getElementsByTagName("tr");
+
+	for (var i = 1; i < w_tr.length; i++) {
 		// 得到每列
-		var w_td=w_tr[i].getElementsByTagName("td");
-		for(var j=0;j<w_td.length;j++){
+		var w_td = w_tr[i].getElementsByTagName("td");
+		for (var j = 0; j < w_td.length; j++) {
 			// 得到每列的class名
-			if(w_td[j].value==""){
-				w_td[j].value=" ";
+			if (w_td[j].value == "") {
+				w_td[j].value = " ";
 			}
 			console.log(w_td[j].innerHTML);
-			var w_tdName=w_td[j].getAttribute("name");
-			console.log("列名"+w_tdName);
+			var w_tdName = w_td[j].getAttribute("name");
+			console.log("列名" + w_tdName);
 			// 将每列的名和值放到formdata中
-			formdata.append(w_tdName,w_td[j].innerHTML);
+			formdata.append(w_tdName, w_td[j].innerHTML);
 			// 将id放到每行中
-		
+
 		}
 		formdata.append("works.staffWork_staff", id);
 	}
@@ -141,7 +149,7 @@ function workExp_ajax(id) {
 		}
 
 	};
-	xmlhttp.open("post","/xsjsglxt/team/StaffWork_saveWorks", true);
+	xmlhttp.open("post", "/xsjsglxt/team/StaffWork_saveWorks", true);
 	// xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
 	xmlhttp.send(formdata);
 }
@@ -155,20 +163,20 @@ function family_ajax(id) {
 	var formdata = new FormData();
 	var family_table = document.getElementById("family_table");
 	var familyTr = family_table.getElementsByTagName("tr");
-	for(var i=1;i<familyTr.length;i++){
+	for (var i = 1; i < familyTr.length; i++) {
 		// 得到每列
-		var f_td=familyTr[i].getElementsByTagName("td");
-		for(var j=0;j<f_td.length;j++){
+		var f_td = familyTr[i].getElementsByTagName("td");
+		for (var j = 0; j < f_td.length; j++) {
 			// 得到每列的class名
-			if(f_td[j].value==""){
-				f_td[j].value=" ";
+			if (f_td[j].value == "") {
+				f_td[j].value = " ";
 			}
-			var f_tdName=f_td[j].getAttribute("name");
-			console.log("列名"+f_tdName);
+			var f_tdName = f_td[j].getAttribute("name");
+			console.log("列名" + f_tdName);
 			// 将每列的名和值放到formdata中
-			formdata.append(f_tdName,f_td[j].innerHTML);
+			formdata.append(f_tdName, f_td[j].innerHTML);
 		}
-	
+
 		// 将id放到每行中
 		formdata.append("familys.staffFamily_staff", id);
 	}
@@ -176,11 +184,11 @@ function family_ajax(id) {
 		console.log("c5");
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			// console.log("family_ajax"+xmlhttp.responseText);
-			
+
 		}
 
 	};
-	xmlhttp.open("post","/xsjsglxt/team/StaffFamily_saveFamilys", true);
+	xmlhttp.open("post", "/xsjsglxt/team/StaffFamily_saveFamilys", true);
 	// xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
 	xmlhttp.send(formdata);
 }
@@ -194,20 +202,20 @@ function policeChange_ajax(id) {
 	var formdata = new FormData();
 	var policeChange_table = document.getElementById("policeChange_table");
 	var policeTr = policeChange_table.getElementsByTagName("tr");
-	for(var i=1;i<policeTr.length;i++){
+	for (var i = 1; i < policeTr.length; i++) {
 		// 得到每列
-		var p_td=policeTr[i].getElementsByTagName("td");
-		for(var j=0;j<p_td.length;j++){
+		var p_td = policeTr[i].getElementsByTagName("td");
+		for (var j = 0; j < p_td.length; j++) {
 			// 得到每列的class名
-			if(p_td[j].value==""){
-				p_td[j].value=" ";
+			if (p_td[j].value == "") {
+				p_td[j].value = " ";
 			}
-			var p_tdName=p_td[j].getAttribute("name");
-			console.log("列名"+p_tdName);
+			var p_tdName = p_td[j].getAttribute("name");
+			console.log("列名" + p_tdName);
 			// 将每列的名和值放到formdata中
-			formdata.append(p_tdName,p_td[j].innerHTML);
+			formdata.append(p_tdName, p_td[j].innerHTML);
 		}
-	
+
 		// 将id放到每行中
 		formdata.append("moves.staffMove_staff", id);
 	}
@@ -219,7 +227,7 @@ function policeChange_ajax(id) {
 		}
 
 	};
-	xmlhttp.open("post","/xsjsglxt/team/StaffMove_saveMoves", true);
+	xmlhttp.open("post", "/xsjsglxt/team/StaffMove_saveMoves", true);
 	// xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
 	xmlhttp.send(formdata);
 }
@@ -233,20 +241,20 @@ function prized_ajax(id) {
 	var formdata = new FormData();
 	var prized_table = document.getElementById("prized_table");
 	var prizedTr = prized_table.getElementsByTagName("tr");
-	for(var i=1;i<prizedTr.length;i++){
+	for (var i = 1; i < prizedTr.length; i++) {
 		// 得到每列
-		var p_td=prizedTr[i].getElementsByTagName("td");
-		for(var j=0;j<p_td.length;j++){
+		var p_td = prizedTr[i].getElementsByTagName("td");
+		for (var j = 0; j < p_td.length; j++) {
 			// 得到每列的class名
-			if(p_td[j].value==""){
-				p_td[j].value=" ";
+			if (p_td[j].value == "") {
+				p_td[j].value = " ";
 			}
-			var p_tdName=p_td[j].getAttribute("name");
-			console.log("列名"+p_tdName);
+			var p_tdName = p_td[j].getAttribute("name");
+			console.log("列名" + p_tdName);
 			// 将每列的名和值放到formdata中
-			formdata.append(p_tdName,p_td[j].innerHTML);
+			formdata.append(p_tdName, p_td[j].innerHTML);
 		}
-	
+
 		// 将id放到每行中
 		formdata.append("rewards.staffReward_staff", id);
 	}
@@ -258,7 +266,7 @@ function prized_ajax(id) {
 		}
 
 	};
-	xmlhttp.open("post","/xsjsglxt/team/StaffReward_saveRewards", true);
+	xmlhttp.open("post", "/xsjsglxt/team/StaffReward_saveRewards", true);
 	// xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
 	xmlhttp.send(formdata);
 }
@@ -270,22 +278,23 @@ function against_ajax(id) {
 		xmlhttp = new ActiveXOBject("Microsoft.XMLHTTP");
 	}
 	var formdata = new FormData();
-	var againstPrinciple_table = document.getElementById("againstPrinciple_table");
+	var againstPrinciple_table = document
+			.getElementById("againstPrinciple_table");
 	var againstPrincipleTr = againstPrinciple_table.getElementsByTagName("tr");
-	for(var i=1;i<againstPrincipleTr.length;i++){
+	for (var i = 1; i < againstPrincipleTr.length; i++) {
 		// 得到每列
-		var a_td=againstPrincipleTr[i].getElementsByTagName("td");
-		for(var j=0;j<a_td.length;j++){
+		var a_td = againstPrincipleTr[i].getElementsByTagName("td");
+		for (var j = 0; j < a_td.length; j++) {
 			// 得到每列的class名
-			if(a_td[j].value==""){
-				a_td[j].value=" ";
+			if (a_td[j].value == "") {
+				a_td[j].value = " ";
 			}
-			var a_tdName=a_td[j].getAttribute("name");
-			console.log("列名"+a_tdName);
+			var a_tdName = a_td[j].getAttribute("name");
+			console.log("列名" + a_tdName);
 			// 将每列的名和值放到formdata中
-			formdata.append(a_tdName,a_td[j].innerHTML);
+			formdata.append(a_tdName, a_td[j].innerHTML);
 		}
-	
+
 		// 将id放到每行中
 		formdata.append("principles.staffPrinciple_staff", id);
 	}
@@ -297,7 +306,7 @@ function against_ajax(id) {
 		}
 
 	};
-	xmlhttp.open("post","/xsjsglxt/team/StaffPrinciple_savePrinciples", true);
+	xmlhttp.open("post", "/xsjsglxt/team/StaffPrinciple_savePrinciples", true);
 	// xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
 	xmlhttp.send(formdata);
 }
@@ -311,20 +320,20 @@ function furlough_ajax(id) {
 	var formdata = new FormData();
 	var vocation_table = document.getElementById("vocation_table");
 	var vacationTr = vocation_table.getElementsByTagName("tr");
-	for(var i=1;i<vacationTr.length;i++){
+	for (var i = 1; i < vacationTr.length; i++) {
 		// 得到每列
-		var v_td=vacationTr[i].getElementsByTagName("td");
-		for(var j=0;j<v_td.length;j++){
+		var v_td = vacationTr[i].getElementsByTagName("td");
+		for (var j = 0; j < v_td.length; j++) {
 			// 得到每列的class名
-			if(v_td[j].value==""){
-				v_td[j].value=" ";
+			if (v_td[j].value == "") {
+				v_td[j].value = " ";
 			}
-			var v_tdName=v_td[j].getAttribute("name");
-			console.log("列名"+v_tdName);
+			var v_tdName = v_td[j].getAttribute("name");
+			console.log("列名" + v_tdName);
 			// 将每列的名和值放到formdata中
-			formdata.append(v_tdName,v_td[j].innerHTML);
+			formdata.append(v_tdName, v_td[j].innerHTML);
 		}
-	
+
 		// 将id放到每行中
 		formdata.append("furloughs.staffFurlough_staff", id);
 	}
@@ -336,7 +345,7 @@ function furlough_ajax(id) {
 		}
 
 	};
-	xmlhttp.open("post","/xsjsglxt/team/StaffFurlough_saveFurloughs", true);
+	xmlhttp.open("post", "/xsjsglxt/team/StaffFurlough_saveFurloughs", true);
 	// xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
 	xmlhttp.send(formdata);
 }
@@ -366,14 +375,14 @@ function isNotFormat(even) {
 // 实现点击file新建页面的
 function photo_click() {
 	var photo_file = document.querySelector(".photo-file");
-	var photo_show=document.getElementById("photo-show");
+	var photo_show = document.getElementById("photo-show");
 	photo_file.click();
 }
 // 实现点击file修改页面的
 function relivePhoto_click() {
 	var photo_file = document.querySelector(".photo-file");
-	var photo_show=document.getElementById("photo-show");
-	photo_show.innerHTML="";
+	var photo_show = document.getElementById("photo-show");
+	photo_show.innerHTML = "";
 	photo_file.click();
 }
 // 图片预览
@@ -418,14 +427,17 @@ function photo_preview() {
 	return true;
 }
 // 添加学习经历
-var i=0;
+var i = 0;
 function add_studyExperience() {
 	console.log("add_studyExperience start");
 	// 把表格的数据存到json中
-	var staffStudent_evection = document.querySelector(".staffStudent_evection").value;
+	var staffStudent_evection = document
+			.querySelector(".staffStudent_evection").value;
 	var staffStudent_address = document.querySelector(".staffStudent_address").value;
-	var staffStudent_startTime = document.querySelector(".staffStudent_startTime").value;
-	var staffStudent_stopTime = document.querySelector(".staffStudent_stopTime").value;
+	var staffStudent_startTime = document
+			.querySelector(".staffStudent_startTime").value;
+	var staffStudent_stopTime = document
+			.querySelector(".staffStudent_stopTime").value;
 	var staffStudent_remarks = document.querySelector(".staffStudent_remarks").value;
 	newStudyExp['staffStudent_evection'] = staffStudent_evection;
 	newStudyExp['staffStudent_address'] = staffStudent_address;
@@ -440,43 +452,49 @@ function add_studyExperience() {
 	studyExperience_table.setAttribute("class", "long_table");
 
 	var study_tr = document.createElement("tr");
-	
+
 	var staffStudent_evection = document.createElement("td");
 	staffStudent_evection.innerHTML = newStudyExp['staffStudent_evection'];
-	staffStudent_evection.setAttribute("name","students["+i+"].staffStudent_evection");
-	
+	staffStudent_evection.setAttribute("name", "students[" + i
+			+ "].staffStudent_evection");
+
 	var staffStudent_address = document.createElement("td");
 	staffStudent_address.innerHTML = newStudyExp['staffStudent_address'];
-	staffStudent_address.setAttribute("name","students["+i+"].staffStudent_address");
+	staffStudent_address.setAttribute("name", "students[" + i
+			+ "].staffStudent_address");
 	console.log(staffStudent_address.innerHTML);
-	
+
 	var staffStudent_startTime = document.createElement("td");
 	staffStudent_startTime.innerHTML = newStudyExp['staffStudent_startTime'];
-	staffStudent_startTime.setAttribute("name","students["+i+"].staffStudent_startTime");
-	
+	staffStudent_startTime.setAttribute("name", "students[" + i
+			+ "].staffStudent_startTime");
+
 	var staffStudent_stopTime = document.createElement("td");
 	staffStudent_stopTime.innerHTML = newStudyExp['staffStudent_stopTime'];
-	staffStudent_stopTime.setAttribute("name","students["+i+"].staffStudent_stopTime");
-	
+	staffStudent_stopTime.setAttribute("name", "students[" + i
+			+ "].staffStudent_stopTime");
+
 	var staffStudent_remarks = document.createElement("td");
 	staffStudent_remarks.innerHTML = newStudyExp['staffStudent_remarks'];
-	staffStudent_remarks.setAttribute("name","students["+i+"].staffStudent_remarks");
-	
+	staffStudent_remarks.setAttribute("name", "students[" + i
+			+ "].staffStudent_remarks");
+
 	// 增加删除按钮的列
-	var reviseTd =document.createElement("td");
+	var reviseTd = document.createElement("td");
 	// 增加删除按钮及样式
-	var delete_button=document.createElement("button");
-	delete_button.className='btn btn-default btn-xs';
-	delete_button.setAttribute("type","button");
-	delete_button.addEventListener('click', function(){
-        this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
-    }, false);
-	
+	var delete_button = document.createElement("button");
+	delete_button.className = 'btn btn-default btn-xs';
+	delete_button.setAttribute("type", "button");
+	delete_button.addEventListener('click', function() {
+		this.parentNode.parentNode.parentNode
+				.removeChild(this.parentNode.parentNode);
+	}, false);
+
 	// 添加按钮里的图标
-	var delete_icon=document.createElement("i");
-	delete_icon.className="fa fa-trash";
+	var delete_icon = document.createElement("i");
+	delete_icon.className = "fa fa-trash";
 	delete_button.append(delete_icon);
-	
+
 	reviseTd.append(delete_button);
 	study_tr.appendChild(staffStudent_evection);
 	study_tr.appendChild(staffStudent_address);
@@ -489,7 +507,7 @@ function add_studyExperience() {
 	i++;
 }
 
-var w=0;
+var w = 0;
 function add_workExperience() {
 	console.log("add_workExperience start");
 	// 把表格的数据存到json中
@@ -498,7 +516,7 @@ function add_workExperience() {
 	var staffWork_startTime = document.querySelector(".staffWork_startTime").value;
 	var staffWork_stopTime = document.querySelector(".staffWork_stopTime").value;
 	var staffWork_remarks = document.querySelector(".staffWork_remarks").value;
-    
+
 	console.log(staffWork_address);
 	newStudyExp['staffWork_address'] = staffWork_address;
 	newStudyExp['staffWork_duty'] = staffWork_duty;
@@ -507,50 +525,54 @@ function add_workExperience() {
 	newStudyExp['staffWork_remarks'] = staffWork_remarks;
 	console.log(newStudyExp['staffWork_address']);
 	// 动态创建表格
-	var wordExperience_table = document
-			.getElementById("wordExperience_table");
+	var wordExperience_table = document.getElementById("wordExperience_table");
 	wordExperience_table.setAttribute("class", "long_table");
 
 	var work_tr = document.createElement("tr");
-	
+
 	var staffWork_address = document.createElement("td");
 	staffWork_address.innerHTML = newStudyExp['staffWork_address'];
-	staffWork_address.setAttribute("name","works["+w+"].staffWork_address");
+	staffWork_address
+			.setAttribute("name", "works[" + w + "].staffWork_address");
 	console.log(staffWork_address.innerHTML);
-	
+
 	var staffWork_duty = document.createElement("td");
 	staffWork_duty.innerHTML = newStudyExp['staffWork_duty'];
-	staffWork_duty.setAttribute("name","works["+w+"].staffWork_duty");
+	staffWork_duty.setAttribute("name", "works[" + w + "].staffWork_duty");
 	console.log(staffWork_duty.innerHTML);
-	
+
 	var staffWork_startTime = document.createElement("td");
 	staffWork_startTime.innerHTML = newStudyExp['staffWork_startTime'];
-	staffWork_startTime.setAttribute("name","works["+w+"].staffWork_startTime");
-	
+	staffWork_startTime.setAttribute("name", "works[" + w
+			+ "].staffWork_startTime");
+
 	var staffWork_stopTime = document.createElement("td");
 	staffWork_stopTime.innerHTML = newStudyExp['staffWork_stopTime'];
-	staffWork_stopTime.setAttribute("name","works["+w+"].staffWork_stopTime");
-	
+	staffWork_stopTime.setAttribute("name", "works[" + w
+			+ "].staffWork_stopTime");
+
 	var staffWork_remarks = document.createElement("td");
 	staffWork_remarks.innerHTML = newStudyExp['staffWork_remarks'];
-	staffWork_remarks.setAttribute("name","works["+w+"].staffWork_remarks");
-	
+	staffWork_remarks
+			.setAttribute("name", "works[" + w + "].staffWork_remarks");
+
 	// 增加删除按钮的列
-	var reviseTd =document.createElement("td");
+	var reviseTd = document.createElement("td");
 	// 增加删除按钮及样式
-	var delete_button=document.createElement("button");
-	delete_button.className='btn btn-default btn-xs';
-	delete_button.setAttribute("type","button");
-	delete_button.addEventListener('click', function(){
-        this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
-    }, false);
-	delete_button.style['margin-left']="10px";
+	var delete_button = document.createElement("button");
+	delete_button.className = 'btn btn-default btn-xs';
+	delete_button.setAttribute("type", "button");
+	delete_button.addEventListener('click', function() {
+		this.parentNode.parentNode.parentNode
+				.removeChild(this.parentNode.parentNode);
+	}, false);
+	delete_button.style['margin-left'] = "10px";
 	// 添加按钮里的图标
-	var delete_icon=document.createElement("i");
-	delete_icon.className="fa fa-trash";
+	var delete_icon = document.createElement("i");
+	delete_icon.className = "fa fa-trash";
 	delete_button.append(delete_icon);
 	reviseTd.append(delete_button);
-	
+
 	work_tr.appendChild(staffWork_address);
 	work_tr.appendChild(staffWork_duty);
 	work_tr.appendChild(staffWork_startTime);
@@ -560,20 +582,22 @@ function add_workExperience() {
 	wordExperience_table.children[0].append(work_tr);
 	w++;
 }
-var f=0;
+var f = 0;
 function add_family() {
 	console.log("add_family start");
 	// 把表格的数据存到json中
-	var staffFamily_contactsRelationship = document.querySelector(".staffFamily_contactsRelationship").value;
+	var staffFamily_contactsRelationship = document
+			.querySelector(".staffFamily_contactsRelationship").value;
 	var staffFamily_name = document.querySelector(".staffFamily_name").value;
 	var staffFamily_IDcard = document.querySelector(".staffFamily_IDcard").value;
 	var staffFamily_birthday = document.querySelector(".staffFamily_birthday").value;
 	var staffFamily_tel = document.querySelector(".staffFamily_tel").value;
 	var staffFamily_WeiXin = document.querySelector(".staffFamily_WeiXin").value;
-	var staffFamily_workSpace = document.querySelector(".staffFamily_workSpace").value;
+	var staffFamily_workSpace = document
+			.querySelector(".staffFamily_workSpace").value;
 	var staffFamily_duty = document.querySelector(".staffFamily_duty").value;
 	var staffFamily_remarks = document.querySelector(".staffFamily_remarks").value;
-	
+
 	newStudyExp['staffFamily_contactsRelationship'] = staffFamily_contactsRelationship;
 	newStudyExp['staffFamily_name'] = staffFamily_name;
 	newStudyExp['staffFamily_IDcard'] = staffFamily_IDcard;
@@ -585,65 +609,73 @@ function add_family() {
 	newStudyExp['staffFamily_remarks'] = staffFamily_remarks;
 	console.log(newStudyExp['staffFamily_remarks']);
 	// 动态创建表格
-	var family_table = document
-			.getElementById("family_table");
+	var family_table = document.getElementById("family_table");
 	family_table.setAttribute("class", "long_table");
 
 	var family_tr = document.createElement("tr");
 	var staffFamily_contactsRelationship = document.createElement("td");
 	staffFamily_contactsRelationship.innerHTML = newStudyExp['staffFamily_contactsRelationship'];
-	staffFamily_contactsRelationship.setAttribute("name","familys["+f+"].staffFamily_contactsRelationship");
+	staffFamily_contactsRelationship.setAttribute("name", "familys[" + f
+			+ "].staffFamily_contactsRelationship");
 	console.log(staffFamily_contactsRelationship.innerHTML);
-	
+
 	var staffFamily_name = document.createElement("td");
 	staffFamily_name.innerHTML = newStudyExp['staffFamily_name'];
-	staffFamily_name.setAttribute("name","familys["+f+"].staffFamily_name");
-	
+	staffFamily_name
+			.setAttribute("name", "familys[" + f + "].staffFamily_name");
+
 	var staffFamily_IDcard = document.createElement("td");
 	staffFamily_IDcard.innerHTML = newStudyExp['staffFamily_IDcard'];
-	staffFamily_IDcard.setAttribute("name","familys["+f+"].staffFamily_IDcard");
-	
+	staffFamily_IDcard.setAttribute("name", "familys[" + f
+			+ "].staffFamily_IDcard");
+
 	var staffFamily_birthday = document.createElement("td");
 	staffFamily_birthday.innerHTML = newStudyExp['staffFamily_birthday'];
-	staffFamily_birthday.setAttribute("name","familys["+f+"].staffFamily_birthday");
-	
+	staffFamily_birthday.setAttribute("name", "familys[" + f
+			+ "].staffFamily_birthday");
+
 	var staffFamily_tel = document.createElement("td");
 	staffFamily_tel.innerHTML = newStudyExp['staffFamily_tel'];
-	staffFamily_tel.setAttribute("name","familys["+f+"].staffFamily_tel");
-	
+	staffFamily_tel.setAttribute("name", "familys[" + f + "].staffFamily_tel");
+
 	var staffFamily_WeiXin = document.createElement("td");
 	staffFamily_WeiXin.innerHTML = newStudyExp['staffFamily_WeiXin'];
-	staffFamily_WeiXin.setAttribute("name","familys["+f+"].staffFamily_WeiXin");
-	
+	staffFamily_WeiXin.setAttribute("name", "familys[" + f
+			+ "].staffFamily_WeiXin");
+
 	var staffFamily_workSpace = document.createElement("td");
 	staffFamily_workSpace.innerHTML = newStudyExp['staffFamily_workSpace'];
-	staffFamily_workSpace.setAttribute("name","familys["+f+"].staffFamily_workSpace");
-	
+	staffFamily_workSpace.setAttribute("name", "familys[" + f
+			+ "].staffFamily_workSpace");
+
 	var staffFamily_duty = document.createElement("td");
 	staffFamily_duty.innerHTML = newStudyExp['staffFamily_duty'];
-	staffFamily_duty.setAttribute("name","familys["+f+"].staffFamily_duty");
-	
+	staffFamily_duty
+			.setAttribute("name", "familys[" + f + "].staffFamily_duty");
+
 	var staffFamily_remarks = document.createElement("td");
 	staffFamily_remarks.innerHTML = newStudyExp['staffFamily_remarks'];
-	staffFamily_remarks.setAttribute("name","familys["+f+"].staffFamily_remarks");
-	staffFamily_remarks.setAttribute("colspan","2");
-	
+	staffFamily_remarks.setAttribute("name", "familys[" + f
+			+ "].staffFamily_remarks");
+	staffFamily_remarks.setAttribute("colspan", "2");
+
 	// 增加删除按钮的列
-	var reviseTd =document.createElement("td");
+	var reviseTd = document.createElement("td");
 	// 增加删除按钮及样式
-	var delete_button=document.createElement("button");
-	delete_button.className='btn btn-default btn-xs';
-	delete_button.setAttribute("type","button");
-	delete_button.addEventListener('click', function(){
-        this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
-    }, false);
-	delete_button.style['margin-left']="10px";
+	var delete_button = document.createElement("button");
+	delete_button.className = 'btn btn-default btn-xs';
+	delete_button.setAttribute("type", "button");
+	delete_button.addEventListener('click', function() {
+		this.parentNode.parentNode.parentNode
+				.removeChild(this.parentNode.parentNode);
+	}, false);
+	delete_button.style['margin-left'] = "10px";
 	// 添加按钮里的图标
-	var delete_icon=document.createElement("i");
-	delete_icon.className="fa fa-trash";
+	var delete_icon = document.createElement("i");
+	delete_icon.className = "fa fa-trash";
 	delete_button.append(delete_icon);
 	reviseTd.append(delete_button);
-	
+
 	family_tr.appendChild(staffFamily_contactsRelationship);
 	family_tr.appendChild(staffFamily_name);
 	family_tr.appendChild(staffFamily_IDcard);
@@ -657,7 +689,7 @@ function add_family() {
 	family_table.children[0].append(family_tr);
 	f++;
 }
-var p=0;
+var p = 0;
 function add_policeChange() {
 	console.log("add_policeChange start");
 	// 把表格的数据存到json中
@@ -671,44 +703,46 @@ function add_policeChange() {
 	newStudyExp['staffMove_remarks'] = staffMove_remarks;
 	console.log(newStudyExp['staffMove_inTime']);
 	// 动态创建表格
-	var policeChange_table = document
-			.getElementById("policeChange_table");
+	var policeChange_table = document.getElementById("policeChange_table");
 	policeChange_table.setAttribute("class", "long_table");
 
 	var policemanChange_tr = document.createElement("tr");
 	var staffMove_inTime = document.createElement("td");
 	staffMove_inTime.innerHTML = newStudyExp['staffMove_inTime'];
-	staffMove_inTime.setAttribute("name","moves["+p+"].staffMove_inTime");
+	staffMove_inTime.setAttribute("name", "moves[" + p + "].staffMove_inTime");
 	console.log(staffMove_inTime.innerHTML);
-	
+
 	var staffMove_outTime = document.createElement("td");
 	staffMove_outTime.innerHTML = newStudyExp['staffMove_outTime'];
-	staffMove_outTime.setAttribute("name","moves["+p+"].staffMove_outTime");
-	
+	staffMove_outTime
+			.setAttribute("name", "moves[" + p + "].staffMove_outTime");
+
 	var staffMove_guard = document.createElement("td");
 	staffMove_guard.innerHTML = newStudyExp['staffMove_guard'];
-	staffMove_guard.setAttribute("name","moves["+p+"].staffMove_guard");
-	
+	staffMove_guard.setAttribute("name", "moves[" + p + "].staffMove_guard");
+
 	var staffMove_remarks = document.createElement("td");
 	staffMove_remarks.innerHTML = newStudyExp['staffMove_remarks'];
-	staffMove_remarks.setAttribute("name","moves["+p+"].staffMove_remarks");
-	
+	staffMove_remarks
+			.setAttribute("name", "moves[" + p + "].staffMove_remarks");
+
 	// 增加删除按钮的列
-	var reviseTd =document.createElement("td");
+	var reviseTd = document.createElement("td");
 	// 增加删除按钮及样式
-	var delete_button=document.createElement("button");
-	delete_button.className='btn btn-default btn-xs';
-	delete_button.setAttribute("type","button");
-	delete_button.addEventListener('click', function(){
-        this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
-    }, false);
-	delete_button.style['margin-left']="10px";
+	var delete_button = document.createElement("button");
+	delete_button.className = 'btn btn-default btn-xs';
+	delete_button.setAttribute("type", "button");
+	delete_button.addEventListener('click', function() {
+		this.parentNode.parentNode.parentNode
+				.removeChild(this.parentNode.parentNode);
+	}, false);
+	delete_button.style['margin-left'] = "10px";
 	// 添加按钮里的图标
-	var delete_icon=document.createElement("i");
-	delete_icon.className="fa fa-trash";
+	var delete_icon = document.createElement("i");
+	delete_icon.className = "fa fa-trash";
 	delete_button.append(delete_icon);
 	reviseTd.append(delete_button);
-	
+
 	policemanChange_tr.appendChild(staffMove_inTime);
 	policemanChange_tr.appendChild(staffMove_outTime);
 	policemanChange_tr.appendChild(staffMove_guard);
@@ -717,54 +751,58 @@ function add_policeChange() {
 	policeChange_table.children[0].append(policemanChange_tr);
 	p++;
 }
-var pr=0;
+var pr = 0;
 function add_prized() {
 	console.log("add_prized start");
 	// 把表格的数据存到json中
-	var staffReward_situation = document.querySelector(".staffReward_situation").value;
+	var staffReward_situation = document
+			.querySelector(".staffReward_situation").value;
 	var staffReward_Time = document.querySelector(".staffReward_Time").value;
 	var staffReward_remarks = document.querySelector(".staffReward_remarks").value;
-	
+
 	newStudyExp['staffReward_situation'] = staffReward_situation;
 	newStudyExp['staffReward_Time'] = staffReward_Time;
 	newStudyExp['staffReward_remarks'] = staffReward_remarks;
 	console.log(newStudyExp['staffReward_remarks']);
 	// 动态创建表格
-	var prized_table = document
-			.getElementById("prized_table");
+	var prized_table = document.getElementById("prized_table");
 	prized_table.setAttribute("class", "long_table");
 
 	var prized_tr = document.createElement("tr");
-	
+
 	var staffReward_situation = document.createElement("td");
 	staffReward_situation.innerHTML = newStudyExp['staffReward_situation'];
-	staffReward_situation.setAttribute("name","rewards["+pr+"].staffReward_situation");
+	staffReward_situation.setAttribute("name", "rewards[" + pr
+			+ "].staffReward_situation");
 	console.log(staffReward_situation.innerHTML);
-	
+
 	var staffReward_Time = document.createElement("td");
 	staffReward_Time.innerHTML = newStudyExp['staffReward_Time'];
-	staffReward_Time.setAttribute("name","rewards["+pr+"].staffReward_Time");
-	
+	staffReward_Time.setAttribute("name", "rewards[" + pr
+			+ "].staffReward_Time");
+
 	var staffReward_remarks = document.createElement("td");
 	staffReward_remarks.innerHTML = newStudyExp['staffReward_remarks'];
-	staffReward_remarks.setAttribute("name","rewards["+pr+"].staffReward_remarks");
-	
+	staffReward_remarks.setAttribute("name", "rewards[" + pr
+			+ "].staffReward_remarks");
+
 	// 增加删除按钮的列
-	var reviseTd =document.createElement("td");
+	var reviseTd = document.createElement("td");
 	// 增加删除按钮及样式
-	var delete_button=document.createElement("button");
-	delete_button.className='btn btn-default btn-xs';
-	delete_button.setAttribute("type","button");
-	delete_button.addEventListener('click', function(){
-        this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
-    }, false);
-	delete_button.style['margin-left']="10px";
+	var delete_button = document.createElement("button");
+	delete_button.className = 'btn btn-default btn-xs';
+	delete_button.setAttribute("type", "button");
+	delete_button.addEventListener('click', function() {
+		this.parentNode.parentNode.parentNode
+				.removeChild(this.parentNode.parentNode);
+	}, false);
+	delete_button.style['margin-left'] = "10px";
 	// 添加按钮里的图标
-	var delete_icon=document.createElement("i");
-	delete_icon.className="fa fa-trash";
+	var delete_icon = document.createElement("i");
+	delete_icon.className = "fa fa-trash";
 	delete_button.append(delete_icon);
 	reviseTd.append(delete_button);
-	
+
 	prized_tr.appendChild(staffReward_situation);
 	prized_tr.appendChild(staffReward_Time);
 	prized_tr.appendChild(staffReward_remarks);
@@ -772,14 +810,16 @@ function add_prized() {
 	prized_table.children[0].append(prized_tr);
 	pr++;
 }
-var a=0;
+var a = 0;
 function add_AgainstPrinciple() {
 	console.log("add_AgainstPrinciple start");
 	// 把表格的数据存到json中
-	var staffPrinciple_situation = document.querySelector(".staffPrinciple_situation").value;
+	var staffPrinciple_situation = document
+			.querySelector(".staffPrinciple_situation").value;
 	var staffPrinciple_Time = document.querySelector(".staffPrinciple_Time").value;
-	var staffPrinciple_remarks = document.querySelector(".staffPrinciple_remarks").value;
-	
+	var staffPrinciple_remarks = document
+			.querySelector(".staffPrinciple_remarks").value;
+
 	newStudyExp['staffPrinciple_situation'] = staffPrinciple_situation;
 	newStudyExp['staffPrinciple_Time'] = staffPrinciple_Time;
 	newStudyExp['staffPrinciple_remarks'] = staffPrinciple_remarks;
@@ -792,33 +832,37 @@ function add_AgainstPrinciple() {
 	var againstPrinciple_tr = document.createElement("tr");
 	var staffPrinciple_situation = document.createElement("td");
 	staffPrinciple_situation.innerHTML = newStudyExp['staffPrinciple_situation'];
-	staffPrinciple_situation.setAttribute("name","principles["+a+"].staffPrinciple_situation");
+	staffPrinciple_situation.setAttribute("name", "principles[" + a
+			+ "].staffPrinciple_situation");
 	console.log(staffPrinciple_situation.innerHTML);
-	
+
 	var staffPrinciple_Time = document.createElement("td");
 	staffPrinciple_Time.innerHTML = newStudyExp['staffPrinciple_Time'];
-	staffPrinciple_Time.setAttribute("name","principles["+a+"].staffPrinciple_Time");
-	
+	staffPrinciple_Time.setAttribute("name", "principles[" + a
+			+ "].staffPrinciple_Time");
+
 	var staffPrinciple_remarks = document.createElement("td");
 	staffPrinciple_remarks.innerHTML = newStudyExp['staffPrinciple_remarks'];
-	staffPrinciple_remarks.setAttribute("name","principles["+a+"].staffPrinciple_remarks");
+	staffPrinciple_remarks.setAttribute("name", "principles[" + a
+			+ "].staffPrinciple_remarks");
 
 	// 增加删除按钮的列
-	var reviseTd =document.createElement("td");
+	var reviseTd = document.createElement("td");
 	// 增加删除按钮及样式
-	var delete_button=document.createElement("button");
-	delete_button.className='btn btn-default btn-xs';
-	delete_button.setAttribute("type","button");
-	delete_button.addEventListener('click', function(){
-        this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
-    }, false);
-	delete_button.style['margin-left']="10px";
+	var delete_button = document.createElement("button");
+	delete_button.className = 'btn btn-default btn-xs';
+	delete_button.setAttribute("type", "button");
+	delete_button.addEventListener('click', function() {
+		this.parentNode.parentNode.parentNode
+				.removeChild(this.parentNode.parentNode);
+	}, false);
+	delete_button.style['margin-left'] = "10px";
 	// 添加按钮里的图标
-	var delete_icon=document.createElement("i");
-	delete_icon.className="fa fa-trash";
+	var delete_icon = document.createElement("i");
+	delete_icon.className = "fa fa-trash";
 	delete_button.append(delete_icon);
 	reviseTd.append(delete_button);
-	
+
 	againstPrinciple_tr.appendChild(staffPrinciple_situation);
 	againstPrinciple_tr.appendChild(staffPrinciple_Time);
 	againstPrinciple_tr.appendChild(staffPrinciple_remarks);
@@ -826,16 +870,21 @@ function add_AgainstPrinciple() {
 	againstPrinciple_table.children[0].append(againstPrinciple_tr);
 	a++;
 }
-var v=0;
+var v = 0;
 function add_Vocation() {
 	console.log("add_Vocation start");
 	// 把表格的数据存到json中
-	var staffFurlough_mainContent = document.querySelector(".staffFurlough_mainContent").value;
-	var staffFurlough_startTime = document.querySelector(".staffFurlough_startTime").value;
+	var staffFurlough_mainContent = document
+			.querySelector(".staffFurlough_mainContent").value;
+	var staffFurlough_startTime = document
+			.querySelector(".staffFurlough_startTime").value;
 	var staffFurlough_days = document.querySelector(".staffFurlough_days").value;
-	var staffFurlough_whetherStop = document.querySelector(".staffFurlough_whetherStop").value;
-	var staffFurlough_stopTime = document.querySelector(".staffFurlough_stopTime").value;
-	var staffFurlough_remarks = document.querySelector(".staffFurlough_remarks").value;
+	var staffFurlough_whetherStop = document
+			.querySelector(".staffFurlough_whetherStop").value;
+	var staffFurlough_stopTime = document
+			.querySelector(".staffFurlough_stopTime").value;
+	var staffFurlough_remarks = document
+			.querySelector(".staffFurlough_remarks").value;
 	newStudyExp['staffFurlough_mainContent'] = staffFurlough_mainContent;
 	newStudyExp['staffFurlough_startTime'] = staffFurlough_startTime;
 	newStudyExp['staffFurlough_days'] = staffFurlough_days;
@@ -844,56 +893,58 @@ function add_Vocation() {
 	newStudyExp['staffFurlough_remarks'] = staffFurlough_remarks;
 	console.log(newStudyExp['staffFurlough_remarks']);
 	// 动态创建表格
-	var vocation_table = document
-			.getElementById("vocation_table");
+	var vocation_table = document.getElementById("vocation_table");
 	vocation_table.setAttribute("class", "long_table");
 
 	var vocation_tr = document.createElement("tr");
 	var staffFurlough_mainContent = document.createElement("td");
 	staffFurlough_mainContent.innerHTML = newStudyExp['staffFurlough_mainContent'];
-	staffFurlough_mainContent.setAttribute("name","furloughs["+v+"].staffFurlough_mainContent");
+	staffFurlough_mainContent.setAttribute("name", "furloughs[" + v
+			+ "].staffFurlough_mainContent");
 	console.log(staffFurlough_mainContent.innerHTML);
-	
+
 	var staffFurlough_startTime = document.createElement("td");
 	staffFurlough_startTime.innerHTML = newStudyExp['staffFurlough_startTime'];
-	staffFurlough_startTime.setAttribute("name","furloughs["+v+"].staffFurlough_startTime");
+	staffFurlough_startTime.setAttribute("name", "furloughs[" + v
+			+ "].staffFurlough_startTime");
 
-	
 	var staffFurlough_days = document.createElement("td");
 	staffFurlough_days.innerHTML = newStudyExp['staffFurlough_days'];
-	staffFurlough_days.setAttribute("name","furloughs["+v+"].staffFurlough_days");
+	staffFurlough_days.setAttribute("name", "furloughs[" + v
+			+ "].staffFurlough_days");
 
-	
 	var staffFurlough_whetherStop = document.createElement("td");
 	staffFurlough_whetherStop.innerHTML = newStudyExp['staffFurlough_whetherStop'];
-	staffFurlough_whetherStop.setAttribute("name","furloughs["+v+"].staffFurlough_whetherStop");
+	staffFurlough_whetherStop.setAttribute("name", "furloughs[" + v
+			+ "].staffFurlough_whetherStop");
 
-	
 	var staffFurlough_stopTime = document.createElement("td");
 	staffFurlough_stopTime.innerHTML = newStudyExp['staffFurlough_stopTime'];
-	staffFurlough_stopTime.setAttribute("name","furloughs["+v+"].staffFurlough_stopTime");
+	staffFurlough_stopTime.setAttribute("name", "furloughs[" + v
+			+ "].staffFurlough_stopTime");
 
-	
 	var staffFurlough_remarks = document.createElement("td");
 	staffFurlough_remarks.innerHTML = newStudyExp['staffFurlough_remarks'];
-	staffFurlough_remarks.setAttribute("name","furloughs["+v+"].staffFurlough_remarks");
+	staffFurlough_remarks.setAttribute("name", "furloughs[" + v
+			+ "].staffFurlough_remarks");
 
 	// 增加删除按钮的列
-	var reviseTd =document.createElement("td");
+	var reviseTd = document.createElement("td");
 	// 增加删除按钮及样式
-	var delete_button=document.createElement("button");
-	delete_button.className='btn btn-default btn-xs';
-	delete_button.setAttribute("type","button");
-	delete_button.addEventListener('click', function(){
-        this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
-    }, false);
-	delete_button.style['margin-left']="10px";
+	var delete_button = document.createElement("button");
+	delete_button.className = 'btn btn-default btn-xs';
+	delete_button.setAttribute("type", "button");
+	delete_button.addEventListener('click', function() {
+		this.parentNode.parentNode.parentNode
+				.removeChild(this.parentNode.parentNode);
+	}, false);
+	delete_button.style['margin-left'] = "10px";
 	// 添加按钮里的图标
-	var delete_icon=document.createElement("i");
-	delete_icon.className="fa fa-trash";
+	var delete_icon = document.createElement("i");
+	delete_icon.className = "fa fa-trash";
 	delete_button.append(delete_icon);
 	reviseTd.append(delete_button);
-	
+
 	vocation_tr.appendChild(staffFurlough_startTime);
 	vocation_tr.appendChild(staffFurlough_stopTime);
 	vocation_tr.appendChild(staffFurlough_whetherStop);
@@ -905,11 +956,10 @@ function add_Vocation() {
 	v++;
 }
 
-
 // 长表格每行的删除
-function delete_long(){
+function delete_long() {
 	console.log("删除方法执行");
-	var this_tbody=this.parentNode.parentNode.parentNode;
+	var this_tbody = this.parentNode.parentNode.parentNode;
 	this_tbody.removeChild(this.parentNode.parentNode);
 }
 
@@ -926,79 +976,78 @@ function stopPropagation(e) {
 		e.cancelBubble = true;
 }
 // 检查政治面貌的内容内新增内容
-function checkUp(value){
-	if(value=="入党积极分子"||value=="预备党员"){
-        // 清空其他内容
-		document.querySelector(".staff_joinPartyTime_label").style.display="none";
-		document.querySelector(".staff_joinPartyTime").style.display="none";
+function checkUp(value) {
+	if (value == "入党积极分子" || value == "预备党员") {
+		// 清空其他内容
+		document.querySelector(".staff_joinPartyTime_label").style.display = "none";
+		document.querySelector(".staff_joinPartyTime").style.display = "none";
 		// 是入党积极分子就显示申请书事件和发展对象时间
-		document.querySelector(".staff_appliactionFormTime_label").style.display="";
-		document.querySelector(".staff_appliactionFormTime").style.display="";
-		document.querySelector(".staff_delevopObjectTime_label").innerHTML="发展对象";
-		if(value=="预备党员"){
-			document.querySelector(".staff_delevopObjectTime_label").innerHTML="预备时间";
+		document.querySelector(".staff_appliactionFormTime_label").style.display = "";
+		document.querySelector(".staff_appliactionFormTime").style.display = "";
+		document.querySelector(".staff_delevopObjectTime_label").innerHTML = "发展对象";
+		if (value == "预备党员") {
+			document.querySelector(".staff_delevopObjectTime_label").innerHTML = "预备时间";
 		}
-		document.querySelector(".staff_delevopObjectTime_label").style.display="";
-		document.querySelector(".staff_delevopObjectTime").style.display="";
-		
-	}
-	else if(value=="党员"){
-		 // 清空其他内容
-		document.querySelector(".staff_appliactionFormTime_label").style.display="none";
-		document.querySelector(".staff_appliactionFormTime").style.display="none";
-		document.querySelector(".staff_delevopObjectTime_label").style.display="none";
-		document.querySelector(".staff_delevopObjectTime").style.display="none";
+		document.querySelector(".staff_delevopObjectTime_label").style.display = "";
+		document.querySelector(".staff_delevopObjectTime").style.display = "";
+
+	} else if (value == "党员") {
+		// 清空其他内容
+		document.querySelector(".staff_appliactionFormTime_label").style.display = "none";
+		document.querySelector(".staff_appliactionFormTime").style.display = "none";
+		document.querySelector(".staff_delevopObjectTime_label").style.display = "none";
+		document.querySelector(".staff_delevopObjectTime").style.display = "none";
 		// 是党员就显示入党时间
-		document.querySelector(".staff_joinPartyTime_label").style.display="";
-		document.querySelector(".staff_joinPartyTime").style.display="";
-	}
-	else{
-		document.querySelector(".staff_appliactionFormTime_label").style.display="none";
-		document.querySelector(".staff_appliactionFormTime").style.display="none";
-		document.querySelector(".staff_delevopObjectTime_label").style.display="none";
-		document.querySelector(".staff_delevopObjectTime").style.display="none";
-		document.querySelector(".staff_joinPartyTime_label").style.display="none";
-		document.querySelector(".staff_joinPartyTime").style.display="none";
+		document.querySelector(".staff_joinPartyTime_label").style.display = "";
+		document.querySelector(".staff_joinPartyTime").style.display = "";
+	} else {
+		document.querySelector(".staff_appliactionFormTime_label").style.display = "none";
+		document.querySelector(".staff_appliactionFormTime").style.display = "none";
+		document.querySelector(".staff_delevopObjectTime_label").style.display = "none";
+		document.querySelector(".staff_delevopObjectTime").style.display = "none";
+		document.querySelector(".staff_joinPartyTime_label").style.display = "none";
+		document.querySelector(".staff_joinPartyTime").style.display = "none";
 	}
 }
 // 从身份证自动获取年龄 和判断身份证 格式
-function getAge(){
-	var ID=document.getElementsByName("policeman.staff_idNumber")[0].value;
-	var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;  
-	if(reg.test(ID)==false){
+function getAge() {
+	var ID = document.getElementsByName("policeman.staff_idNumber")[0].value;
+	var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+	if (reg.test(ID) == false) {
 		toastr.error('身份证格式错误,请输入有效身份证！');
-		var idNumber=document.getElementById("idNumber");
-		idNumber.value="";
+		var idNumber = document.getElementById("idNumber");
+		idNumber.value = "";
 		idNumber.focus();
 	}
-	var sex_man =document.getElementsByName("policeman.xsjsglxt_sex")[0];
+	var sex_man = document.getElementsByName("policeman.xsjsglxt_sex")[0];
 	var sex_woman = document.getElementsByName("policeman.xsjsglxt_sex")[1];
-	//根据身份证得到性别
-	if(parseInt(ID.substr(16, 1)) % 2== 1){
-		sex_man.checked=true;
-	}else{
-		sex_woman.checked=true;
+	// 根据身份证得到性别
+	if (parseInt(ID.substr(16, 1)) % 2 == 1) {
+		sex_man.checked = true;
+	} else {
+		sex_woman.checked = true;
 	}
-	//根据身份证得到生日
-	var year = ID.substring(6,10);
-	var month = ID.substring(10,12);
-	var date=ID.substring(12,14);
-	document.querySelector(".staff_birthday").value=year+"-"+month+"-"+date;
-	//根据身份证得到年龄
-	var myDate = new Date(); 
-	var month = myDate.getMonth() + 1; 
-	var day = myDate.getDate(); 
-	var age = myDate.getFullYear()-ID.substring(6, 10) - 1; 
-	if (ID.substring(10,12)<month||ID.substring(10,12)==month&&ID.substring(12,14)<=day) 
-	{ 
-	age++; 
-	}	
-    var xsjsglxt_age=document.getElementsByName("policeman.xsjsglxt_age")[0];
-	xsjsglxt_age.value=age;
-	console.log("年龄更新"+age);
+	// 根据身份证得到生日
+	var year = ID.substring(6, 10);
+	var month = ID.substring(10, 12);
+	var date = ID.substring(12, 14);
+	document.querySelector(".staff_birthday").value = year + "-" + month + "-"
+			+ date;
+	// 根据身份证得到年龄
+	var myDate = new Date();
+	var month = myDate.getMonth() + 1;
+	var day = myDate.getDate();
+	var age = myDate.getFullYear() - ID.substring(6, 10) - 1;
+	if (ID.substring(10, 12) < month || ID.substring(10, 12) == month
+			&& ID.substring(12, 14) <= day) {
+		age++;
+	}
+	var xsjsglxt_age = document.getElementsByName("policeman.xsjsglxt_age")[0];
+	xsjsglxt_age.value = age;
+	console.log("年龄更新" + age);
 	return age;
 }
-function clear_iquery(){
+function clear_iquery() {
 	console.log("这是清空");
 	$(" input[ type='text' ]").val('');
 	$(" textarea").val('');
