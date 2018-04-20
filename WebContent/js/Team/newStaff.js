@@ -13,7 +13,7 @@ function staff_change() {
 			},
 			确定 : {
 				action : function() {
-					//判断身份证是否为空
+					// 判断身份证是否为空
 					var ID=document.getElementsByName("policeman.staff_idNumber")[0].value;
 					var name=document.getElementsByName("policeman.xsjsglxt_name")[0].value;
 					var policeTime=document.getElementsByName("policeman.staff_thePoliceTime")[0].value;
@@ -30,7 +30,7 @@ function staff_change() {
 	});
 
 }
-//警员基本信息表
+// 警员基本信息表
 function loadstaffDetail_staff_change(url) {
 	console.log("b2");
 	if (window.XMLHttpRequest) {
@@ -54,14 +54,14 @@ function loadstaffDetail_staff_change(url) {
 			prized_ajax(id);
 			against_ajax(id);
 			furlough_ajax(id);
-			window.location.href='http://localhost:8080/xsjsglxt/team/Staff_page_staffList';
+			//window.location.href='http://localhost:8080/xsjsglxt/team/Staff_page_staffList';
 		}
 	};
 	xmlhttp.open("post", url, true);
 	// xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
 	xmlhttp.send(formData);
 }
-//学习经历表
+// 学习经历表
 function studyExp_ajax(url,id){
 	console.log("b3");
 	if (window.XMLHttpRequest) {
@@ -71,30 +71,30 @@ function studyExp_ajax(url,id){
 	}
 	
 	var formdata=new FormData();
-	//得到每行
+	// 得到每行
 	var s_tr = document.getElementById("studyExperience_table").getElementsByTagName("tr");
 	
 	for(var i=1;i<s_tr.length;i++){
-		//得到每列
+		// 得到每列
 		var s_td=s_tr[i].getElementsByTagName("td");
 		for(var j=0;j<s_td.length;j++){
-			//得到每列的class名
+			// 得到每列的class名
 			if(s_td[j].innerHTML==""){
 				s_td[j].innerHTML="d";
 			}
 			var s_tdName=s_td[j].getAttribute("name");
 			console.log("列名"+s_tdName);
-			//将每列的名和值放到formdata中
+			// 将每列的名和值放到formdata中
 			formdata.append(s_tdName,s_td[j].innerHTML);
 		}
 	
-		//将id放到每行中
+		// 将id放到每行中
 		formdata.append("students.staffStudent_staff", id);
 	}
 	xmlhttp.onreadystatechange = function() {
 		console.log("c3");
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			//console.log("studyExp_ajax"+xmlhttp.responseText);
+			// console.log("studyExp_ajax"+xmlhttp.responseText);
 		}
 
 	};
@@ -102,7 +102,7 @@ function studyExp_ajax(url,id){
 	// xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
 	xmlhttp.send(formdata);
 }
-//工作经历表
+// 工作经历表
 function workExp_ajax(id) {
 	console.log("b4");
 	if (window.XMLHttpRequest) {
@@ -112,23 +112,23 @@ function workExp_ajax(id) {
 	}
 	
 	var formdata=new FormData();
-	//得到每行
+	// 得到每行
 	var w_tr = document.getElementById("wordExperience_table").getElementsByTagName("tr");
 	
 	for(var i=1;i<w_tr.length;i++){
-		//得到每列
+		// 得到每列
 		var w_td=w_tr[i].getElementsByTagName("td");
 		for(var j=0;j<w_td.length;j++){
-			//得到每列的class名
+			// 得到每列的class名
 			if(w_td[j].value==""){
 				w_td[j].value=" ";
 			}
 			console.log(w_td[j].innerHTML);
 			var w_tdName=w_td[j].getAttribute("name");
 			console.log("列名"+w_tdName);
-			//将每列的名和值放到formdata中
+			// 将每列的名和值放到formdata中
 			formdata.append(w_tdName,w_td[j].innerHTML);
-			//将id放到每行中
+			// 将id放到每行中
 		
 		}
 		formdata.append("works.staffWork_staff", id);
@@ -136,8 +136,8 @@ function workExp_ajax(id) {
 	xmlhttp.onreadystatechange = function() {
 		console.log("c4");
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			//console.log("workExp_ajax"+xmlhttp.responseText);
-			//workExp_ajax(id);
+			// console.log("workExp_ajax"+xmlhttp.responseText);
+			// workExp_ajax(id);
 		}
 
 	};
@@ -156,26 +156,26 @@ function family_ajax(id) {
 	var family_table = document.getElementById("family_table");
 	var familyTr = family_table.getElementsByTagName("tr");
 	for(var i=1;i<familyTr.length;i++){
-		//得到每列
+		// 得到每列
 		var f_td=familyTr[i].getElementsByTagName("td");
 		for(var j=0;j<f_td.length;j++){
-			//得到每列的class名
+			// 得到每列的class名
 			if(f_td[j].value==""){
 				f_td[j].value=" ";
 			}
 			var f_tdName=f_td[j].getAttribute("name");
 			console.log("列名"+f_tdName);
-			//将每列的名和值放到formdata中
+			// 将每列的名和值放到formdata中
 			formdata.append(f_tdName,f_td[j].innerHTML);
 		}
 	
-		//将id放到每行中
+		// 将id放到每行中
 		formdata.append("familys.staffFamily_staff", id);
 	}
 	xmlhttp.onreadystatechange = function() {
 		console.log("c5");
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			//console.log("family_ajax"+xmlhttp.responseText);
+			// console.log("family_ajax"+xmlhttp.responseText);
 			
 		}
 
@@ -195,27 +195,27 @@ function policeChange_ajax(id) {
 	var policeChange_table = document.getElementById("policeChange_table");
 	var policeTr = policeChange_table.getElementsByTagName("tr");
 	for(var i=1;i<policeTr.length;i++){
-		//得到每列
+		// 得到每列
 		var p_td=policeTr[i].getElementsByTagName("td");
 		for(var j=0;j<p_td.length;j++){
-			//得到每列的class名
+			// 得到每列的class名
 			if(p_td[j].value==""){
 				p_td[j].value=" ";
 			}
 			var p_tdName=p_td[j].getAttribute("name");
 			console.log("列名"+p_tdName);
-			//将每列的名和值放到formdata中
+			// 将每列的名和值放到formdata中
 			formdata.append(p_tdName,p_td[j].innerHTML);
 		}
 	
-		//将id放到每行中
+		// 将id放到每行中
 		formdata.append("moves.staffMove_staff", id);
 	}
 	xmlhttp.onreadystatechange = function() {
 		console.log("c6");
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			//console.log("policeChange_ajax"+xmlhttp.responseText);
-			//workExp_ajax(id);
+			// console.log("policeChange_ajax"+xmlhttp.responseText);
+			// workExp_ajax(id);
 		}
 
 	};
@@ -234,27 +234,27 @@ function prized_ajax(id) {
 	var prized_table = document.getElementById("prized_table");
 	var prizedTr = prized_table.getElementsByTagName("tr");
 	for(var i=1;i<prizedTr.length;i++){
-		//得到每列
+		// 得到每列
 		var p_td=prizedTr[i].getElementsByTagName("td");
 		for(var j=0;j<p_td.length;j++){
-			//得到每列的class名
+			// 得到每列的class名
 			if(p_td[j].value==""){
 				p_td[j].value=" ";
 			}
 			var p_tdName=p_td[j].getAttribute("name");
 			console.log("列名"+p_tdName);
-			//将每列的名和值放到formdata中
+			// 将每列的名和值放到formdata中
 			formdata.append(p_tdName,p_td[j].innerHTML);
 		}
 	
-		//将id放到每行中
+		// 将id放到每行中
 		formdata.append("rewards.staffReward_staff", id);
 	}
 	xmlhttp.onreadystatechange = function() {
 		console.log("c7");
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			//console.log("prized_ajax"+xmlhttp.responseText);
-			//workExp_ajax(id);
+			// console.log("prized_ajax"+xmlhttp.responseText);
+			// workExp_ajax(id);
 		}
 
 	};
@@ -273,27 +273,27 @@ function against_ajax(id) {
 	var againstPrinciple_table = document.getElementById("againstPrinciple_table");
 	var againstPrincipleTr = againstPrinciple_table.getElementsByTagName("tr");
 	for(var i=1;i<againstPrincipleTr.length;i++){
-		//得到每列
+		// 得到每列
 		var a_td=againstPrincipleTr[i].getElementsByTagName("td");
 		for(var j=0;j<a_td.length;j++){
-			//得到每列的class名
+			// 得到每列的class名
 			if(a_td[j].value==""){
 				a_td[j].value=" ";
 			}
 			var a_tdName=a_td[j].getAttribute("name");
 			console.log("列名"+a_tdName);
-			//将每列的名和值放到formdata中
+			// 将每列的名和值放到formdata中
 			formdata.append(a_tdName,a_td[j].innerHTML);
 		}
 	
-		//将id放到每行中
+		// 将id放到每行中
 		formdata.append("principles.staffPrinciple_staff", id);
 	}
 	xmlhttp.onreadystatechange = function() {
 		console.log("c8");
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			//console.log("against_ajax"+xmlhttp.responseText);
-			//workExp_ajax(id);
+			// console.log("against_ajax"+xmlhttp.responseText);
+			// workExp_ajax(id);
 		}
 
 	};
@@ -312,27 +312,27 @@ function furlough_ajax(id) {
 	var vocation_table = document.getElementById("vocation_table");
 	var vacationTr = vocation_table.getElementsByTagName("tr");
 	for(var i=1;i<vacationTr.length;i++){
-		//得到每列
+		// 得到每列
 		var v_td=vacationTr[i].getElementsByTagName("td");
 		for(var j=0;j<v_td.length;j++){
-			//得到每列的class名
+			// 得到每列的class名
 			if(v_td[j].value==""){
 				v_td[j].value=" ";
 			}
 			var v_tdName=v_td[j].getAttribute("name");
 			console.log("列名"+v_tdName);
-			//将每列的名和值放到formdata中
+			// 将每列的名和值放到formdata中
 			formdata.append(v_tdName,v_td[j].innerHTML);
 		}
 	
-		//将id放到每行中
+		// 将id放到每行中
 		formdata.append("furloughs.staffFurlough_staff", id);
 	}
 	xmlhttp.onreadystatechange = function() {
 		console.log("c10");
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			//console.log("vacation_ajax"+xmlhttp.responseText);
-			//workExp_ajax(id);
+			// console.log("vacation_ajax"+xmlhttp.responseText);
+			// workExp_ajax(id);
 		}
 
 	};
@@ -369,7 +369,7 @@ function photo_click() {
 	var photo_show=document.getElementById("photo-show");
 	photo_file.click();
 }
-//实现点击file修改页面的
+// 实现点击file修改页面的
 function relivePhoto_click() {
 	var photo_file = document.querySelector(".photo-file");
 	var photo_show=document.getElementById("photo-show");
@@ -422,10 +422,12 @@ var i=0;
 function add_studyExperience() {
 	console.log("add_studyExperience start");
 	// 把表格的数据存到json中
+	var staffStudent_evection = document.querySelector(".staffStudent_evection").value;
 	var staffStudent_address = document.querySelector(".staffStudent_address").value;
 	var staffStudent_startTime = document.querySelector(".staffStudent_startTime").value;
 	var staffStudent_stopTime = document.querySelector(".staffStudent_stopTime").value;
 	var staffStudent_remarks = document.querySelector(".staffStudent_remarks").value;
+	newStudyExp['staffStudent_evection'] = staffStudent_evection;
 	newStudyExp['staffStudent_address'] = staffStudent_address;
 	newStudyExp['staffStudent_startTime'] = staffStudent_startTime;
 	newStudyExp['staffStudent_stopTime'] = staffStudent_stopTime;
@@ -438,6 +440,10 @@ function add_studyExperience() {
 	studyExperience_table.setAttribute("class", "long_table");
 
 	var study_tr = document.createElement("tr");
+	
+	var staffStudent_evection = document.createElement("td");
+	staffStudent_evection.innerHTML = newStudyExp['staffStudent_evection'];
+	staffStudent_evection.setAttribute("name","students["+i+"].staffStudent_evection");
 	
 	var staffStudent_address = document.createElement("td");
 	staffStudent_address.innerHTML = newStudyExp['staffStudent_address'];
@@ -456,9 +462,9 @@ function add_studyExperience() {
 	staffStudent_remarks.innerHTML = newStudyExp['staffStudent_remarks'];
 	staffStudent_remarks.setAttribute("name","students["+i+"].staffStudent_remarks");
 	
-	//增加删除按钮的列
+	// 增加删除按钮的列
 	var reviseTd =document.createElement("td");
-	//增加删除按钮及样式
+	// 增加删除按钮及样式
 	var delete_button=document.createElement("button");
 	delete_button.className='btn btn-default btn-xs';
 	delete_button.setAttribute("type","button");
@@ -466,20 +472,20 @@ function add_studyExperience() {
         this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
     }, false);
 	
-	//添加按钮里的图标
+	// 添加按钮里的图标
 	var delete_icon=document.createElement("i");
 	delete_icon.className="fa fa-trash";
 	delete_button.append(delete_icon);
 	
 	reviseTd.append(delete_button);
-	
+	study_tr.appendChild(staffStudent_evection);
 	study_tr.appendChild(staffStudent_address);
 	study_tr.appendChild(staffStudent_startTime);
 	study_tr.appendChild(staffStudent_stopTime);
 	study_tr.appendChild(staffStudent_remarks);
 	study_tr.appendChild(reviseTd);
 	studyExperience_table.children[0].append(study_tr);
-	//得到一行数据i++
+	// 得到一行数据i++
 	i++;
 }
 
@@ -529,9 +535,9 @@ function add_workExperience() {
 	staffWork_remarks.innerHTML = newStudyExp['staffWork_remarks'];
 	staffWork_remarks.setAttribute("name","works["+w+"].staffWork_remarks");
 	
-	//增加删除按钮的列
+	// 增加删除按钮的列
 	var reviseTd =document.createElement("td");
-	//增加删除按钮及样式
+	// 增加删除按钮及样式
 	var delete_button=document.createElement("button");
 	delete_button.className='btn btn-default btn-xs';
 	delete_button.setAttribute("type","button");
@@ -539,7 +545,7 @@ function add_workExperience() {
         this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
     }, false);
 	delete_button.style['margin-left']="10px";
-	//添加按钮里的图标
+	// 添加按钮里的图标
 	var delete_icon=document.createElement("i");
 	delete_icon.className="fa fa-trash";
 	delete_button.append(delete_icon);
@@ -622,9 +628,9 @@ function add_family() {
 	staffFamily_remarks.setAttribute("name","familys["+f+"].staffFamily_remarks");
 	staffFamily_remarks.setAttribute("colspan","2");
 	
-	//增加删除按钮的列
+	// 增加删除按钮的列
 	var reviseTd =document.createElement("td");
-	//增加删除按钮及样式
+	// 增加删除按钮及样式
 	var delete_button=document.createElement("button");
 	delete_button.className='btn btn-default btn-xs';
 	delete_button.setAttribute("type","button");
@@ -632,7 +638,7 @@ function add_family() {
         this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
     }, false);
 	delete_button.style['margin-left']="10px";
-	//添加按钮里的图标
+	// 添加按钮里的图标
 	var delete_icon=document.createElement("i");
 	delete_icon.className="fa fa-trash";
 	delete_button.append(delete_icon);
@@ -687,9 +693,9 @@ function add_policeChange() {
 	staffMove_remarks.innerHTML = newStudyExp['staffMove_remarks'];
 	staffMove_remarks.setAttribute("name","moves["+p+"].staffMove_remarks");
 	
-	//增加删除按钮的列
+	// 增加删除按钮的列
 	var reviseTd =document.createElement("td");
-	//增加删除按钮及样式
+	// 增加删除按钮及样式
 	var delete_button=document.createElement("button");
 	delete_button.className='btn btn-default btn-xs';
 	delete_button.setAttribute("type","button");
@@ -697,7 +703,7 @@ function add_policeChange() {
         this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
     }, false);
 	delete_button.style['margin-left']="10px";
-	//添加按钮里的图标
+	// 添加按钮里的图标
 	var delete_icon=document.createElement("i");
 	delete_icon.className="fa fa-trash";
 	delete_button.append(delete_icon);
@@ -743,9 +749,9 @@ function add_prized() {
 	staffReward_remarks.innerHTML = newStudyExp['staffReward_remarks'];
 	staffReward_remarks.setAttribute("name","rewards["+pr+"].staffReward_remarks");
 	
-	//增加删除按钮的列
+	// 增加删除按钮的列
 	var reviseTd =document.createElement("td");
-	//增加删除按钮及样式
+	// 增加删除按钮及样式
 	var delete_button=document.createElement("button");
 	delete_button.className='btn btn-default btn-xs';
 	delete_button.setAttribute("type","button");
@@ -753,7 +759,7 @@ function add_prized() {
         this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
     }, false);
 	delete_button.style['margin-left']="10px";
-	//添加按钮里的图标
+	// 添加按钮里的图标
 	var delete_icon=document.createElement("i");
 	delete_icon.className="fa fa-trash";
 	delete_button.append(delete_icon);
@@ -797,9 +803,9 @@ function add_AgainstPrinciple() {
 	staffPrinciple_remarks.innerHTML = newStudyExp['staffPrinciple_remarks'];
 	staffPrinciple_remarks.setAttribute("name","principles["+a+"].staffPrinciple_remarks");
 
-	//增加删除按钮的列
+	// 增加删除按钮的列
 	var reviseTd =document.createElement("td");
-	//增加删除按钮及样式
+	// 增加删除按钮及样式
 	var delete_button=document.createElement("button");
 	delete_button.className='btn btn-default btn-xs';
 	delete_button.setAttribute("type","button");
@@ -807,7 +813,7 @@ function add_AgainstPrinciple() {
         this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
     }, false);
 	delete_button.style['margin-left']="10px";
-	//添加按钮里的图标
+	// 添加按钮里的图标
 	var delete_icon=document.createElement("i");
 	delete_icon.className="fa fa-trash";
 	delete_button.append(delete_icon);
@@ -872,9 +878,9 @@ function add_Vocation() {
 	staffFurlough_remarks.innerHTML = newStudyExp['staffFurlough_remarks'];
 	staffFurlough_remarks.setAttribute("name","furloughs["+v+"].staffFurlough_remarks");
 
-	//增加删除按钮的列
+	// 增加删除按钮的列
 	var reviseTd =document.createElement("td");
-	//增加删除按钮及样式
+	// 增加删除按钮及样式
 	var delete_button=document.createElement("button");
 	delete_button.className='btn btn-default btn-xs';
 	delete_button.setAttribute("type","button");
@@ -882,17 +888,17 @@ function add_Vocation() {
         this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
     }, false);
 	delete_button.style['margin-left']="10px";
-	//添加按钮里的图标
+	// 添加按钮里的图标
 	var delete_icon=document.createElement("i");
 	delete_icon.className="fa fa-trash";
 	delete_button.append(delete_icon);
 	reviseTd.append(delete_button);
 	
-	vocation_tr.appendChild(staffFurlough_mainContent);
 	vocation_tr.appendChild(staffFurlough_startTime);
-	vocation_tr.appendChild(staffFurlough_days);
-	vocation_tr.appendChild(staffFurlough_whetherStop);
 	vocation_tr.appendChild(staffFurlough_stopTime);
+	vocation_tr.appendChild(staffFurlough_whetherStop);
+	vocation_tr.appendChild(staffFurlough_mainContent);
+	vocation_tr.appendChild(staffFurlough_days);
 	vocation_tr.appendChild(staffFurlough_remarks);
 	vocation_tr.appendChild(reviseTd);
 	vocation_table.children[0].append(vocation_tr);
@@ -900,7 +906,7 @@ function add_Vocation() {
 }
 
 
-//长表格每行的删除
+// 长表格每行的删除
 function delete_long(){
 	console.log("删除方法执行");
 	var this_tbody=this.parentNode.parentNode.parentNode;
@@ -919,13 +925,13 @@ function stopPropagation(e) {
 	else
 		e.cancelBubble = true;
 }
-//检查政治面貌的内容内新增内容
+// 检查政治面貌的内容内新增内容
 function checkUp(value){
 	if(value=="入党积极分子"||value=="预备党员"){
-        //清空其他内容
+        // 清空其他内容
 		document.querySelector(".staff_joinPartyTime_label").style.display="none";
 		document.querySelector(".staff_joinPartyTime").style.display="none";
-		//是入党积极分子就显示申请书事件和发展对象时间
+		// 是入党积极分子就显示申请书事件和发展对象时间
 		document.querySelector(".staff_appliactionFormTime_label").style.display="";
 		document.querySelector(".staff_appliactionFormTime").style.display="";
 		document.querySelector(".staff_delevopObjectTime_label").innerHTML="发展对象";
@@ -937,12 +943,12 @@ function checkUp(value){
 		
 	}
 	else if(value=="党员"){
-		 //清空其他内容
+		 // 清空其他内容
 		document.querySelector(".staff_appliactionFormTime_label").style.display="none";
 		document.querySelector(".staff_appliactionFormTime").style.display="none";
 		document.querySelector(".staff_delevopObjectTime_label").style.display="none";
 		document.querySelector(".staff_delevopObjectTime").style.display="none";
-		//是党员就显示入党时间
+		// 是党员就显示入党时间
 		document.querySelector(".staff_joinPartyTime_label").style.display="";
 		document.querySelector(".staff_joinPartyTime").style.display="";
 	}
@@ -955,7 +961,7 @@ function checkUp(value){
 		document.querySelector(".staff_joinPartyTime").style.display="none";
 	}
 }
-//从身份证自动获取年龄  和判断身份证 格式
+// 从身份证自动获取年龄 和判断身份证 格式
 function getAge(){
 	var ID=document.getElementsByName("policeman.staff_idNumber")[0].value;
 	var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;  
@@ -965,6 +971,20 @@ function getAge(){
 		idNumber.value="";
 		idNumber.focus();
 	}
+	var sex_man =document.getElementsByName("policeman.xsjsglxt_sex")[0];
+	var sex_woman = document.getElementsByName("policeman.xsjsglxt_sex")[1];
+	//根据身份证得到性别
+	if(parseInt(ID.substr(16, 1)) % 2== 1){
+		sex_man.checked=true;
+	}else{
+		sex_woman.checked=true;
+	}
+	//根据身份证得到生日
+	var year = ID.substring(6,10);
+	var month = ID.substring(10,12);
+	var date=ID.substring(12,14);
+	document.querySelector(".staff_birthday").value=year+"-"+month+"-"+date;
+	//根据身份证得到年龄
 	var myDate = new Date(); 
 	var month = myDate.getMonth() + 1; 
 	var day = myDate.getDate(); 
@@ -977,4 +997,9 @@ function getAge(){
 	xsjsglxt_age.value=age;
 	console.log("年龄更新"+age);
 	return age;
+}
+function clear_iquery(){
+	console.log("这是清空");
+	$(" input[ type='text' ]").val('');
+	$(" textarea").val('');
 }

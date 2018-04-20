@@ -48,9 +48,11 @@ table tr td {
 }
 </style>
 <script type="text/javascript"
-	src="<%=basePath%>js/Case/caseDetails_table.js"></script>
+	src="<%=basePath%>js/Case/EvidenveManager_table.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/Case/EvidenceCheck.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/Case/getManDateDTO.js"></script>
 </head>
 <body>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
@@ -144,6 +146,15 @@ table tr td {
 						<td style="width: 200px;">检验地点</td>
 						<td colspan="2" style="width: 200px;">检验结果</td>
 					</tr>
+					<template v-for="checkCase in CaseCheckDTOS">
+					<tr>
+						<td style="width: 200px;">{{ checkCase.resevidence_name }}</td>
+						<td style="width: 200px;">{{ checkCase.inspection_start_time }}</td>
+						<td style="width: 200px;">{{ checkCase.inspection_method }}</td>
+						<td style="width: 200px;">{{ checkCase.inspection_location }}</td>
+						<td colspan="2" style="width: 200px;">{{ checkCase.inspection_option }}</td>
+					</tr>
+					</template>
 					<tr>
 						<td style="width: 200px;"></td>
 						<td style="width: 200px;"></td>
@@ -164,6 +175,19 @@ table tr td {
 						<td colspan="2" style="width: 200px;">鉴定机构名称</td>
 						<td style="width: 200px;">委托时间</td>
 					</tr>
+					<template v-for="data in MandataDTOS">
+					<tr>
+						<td style="width: 200px;">{{ data.resevidence_name }}</td>
+						<td style="width: 200px;">{{ data.check_entrustment_book_num
+							}}</td>
+						<td style="width: 200px;">{{
+							data.check_entrustment_book_entrustment_unit }}</td>
+						<td style="width: 200px;" colspan="2">{{
+							data.check_entrustment_book_entrustment_unit_name }}</td>
+						<td style="width: 200px;">{{
+							data.check_entrustment_book_inspect_time }}</td>
+					</tr>
+					</template>
 					<tr>
 						<td style="width: 200px;"></td>
 						<td style="width: 200px;"></td>
@@ -175,7 +199,10 @@ table tr td {
 			</div>
 		</div>
 	</div>
+<<<<<<< HEAD
+=======
 	<script type="text/javascript"
 	src="<%=basePath%>js/Case/transferOperation.js"></script>
+>>>>>>> HY
 </body>
 </html>

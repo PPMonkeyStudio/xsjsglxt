@@ -13,7 +13,9 @@ window.onload = function() {
 			'lost_computer' : {},
 			'lost_mobilephone' : {},
 			'lost' : {},
-			'picture' : {}
+			'picture' : {},
+			'MandataDTOS' : {},
+			'CaseCheckDTOS' : {}
 		}
 	});
 	loadDataCaseT();
@@ -39,11 +41,12 @@ var loadDataCaseT = function() {
 			caseVue.lost_mobilephone = returnData.lost_mobilephone;
 			caseVue.lost = returnData.lost;
 			caseVue.picture = returnData.picture;
+			/* getManDate(); */
+			/* getCheckDate(); */
 			$('#loadingLayer').hide();
 			$('#tableContent').show();
 		}
 	})
-
 }
 
 var case_change = function() {

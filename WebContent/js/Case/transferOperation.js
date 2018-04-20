@@ -1,4 +1,3 @@
-//序列化为对象
 $.fn.extend({
 	serializeObject: function () {
 		if (this.length > 1) {

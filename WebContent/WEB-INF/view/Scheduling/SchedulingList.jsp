@@ -66,7 +66,7 @@ a {
 					<thead>
 						<tr style="height:30;">
 							<td rowspan="2"><label class="fancy-checkbox"> <input
-									onclick="selectAll(this)" type="checkbox" ><span style="font-size: 20px;">
+									onclick="selectAll(this)" type="checkbox" ><span style="">
 										全选 </span>
 							</label></td>
 							<td rowspan="2">日期</td>

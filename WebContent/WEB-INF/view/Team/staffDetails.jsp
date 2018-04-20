@@ -29,15 +29,15 @@
 			<div class="panel-heading">
 				<h3 class="panel-title">人员详情</h3>
 			</div>
-			<div style="margin-left:4.5%;">
-			<button onclick="javascript:history.go(-1)" type="button"
-				class="btn btn-default button button_return ">
-				<i class="fa fa-reply"></i> 返回列表
-			</button>
-			<button type="button" class="btn btn-default button button_change"
-				onclick="staff_print()">
-				<i class="fa fa-pencil"></i>打印人员
-			</button>
+			<div style="margin-left: 4.5%;">
+				<button onclick="javascript:history.go(-1)" type="button"
+					class="btn btn-default button button_return ">
+					<i class="fa fa-reply"></i> 返回列表
+				</button>
+				<button type="button" class="btn btn-default button button_change"
+					onclick="staff_print()">
+					<i class="fa fa-pencil"></i>打印人员
+				</button>
 			</div>
 			<div class="panel-body staff_body">
 				<div style="width: 1000px; margin: 0 auto;">
@@ -54,9 +54,9 @@
 								<td class="odd"><label class="staff_info_label">警号</label></td>
 								<td class="even">{{ returnData.staff_alarm }}</td>
 
-								<td class="odd" rowspan="4" style="border-right: 0px"><a class="photo-show"
+								<td class="odd" rowspan="4"><label class="staff_info_label">照&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;片</label></td>
+								<td class="even" rowspan="4"><a class="photo-show"
 									id="photo-show"></a></td>
-								<td class="even" rowspan="4" style="border-left: 0px"></td>
 							</tr>
 							<tr>
 								<td class="odd"><label class="staff_info_label">身份证号</label></td>
@@ -130,7 +130,7 @@
 								<template v-if="returnData.staff_politicalStatus === '预备党员'">
 								<td class="odd" class="staff_appliactionFormTime_label"><label
 									class="staff_info_label">提交申请书</label></td>
-								<td>{{ returnData.staff_appliactionFormTime }}</td>
+								<td class="even">{{ returnData.staff_appliactionFormTime }}</td>
 
 
 								<td class="odd" class="staff_delevopObjectTime_label"><label
@@ -162,10 +162,11 @@
 
 							</tr>
 							<tr>
-								<td class="odd"><label class="staff_info_label">外网邮箱</label></td>
-								<td class="even">{{ returnData.staff_outEmail }}</td>
+								
 								<td class="odd"><label>家庭地址</label></td>
 								<td class="even" colspan="3">{{ returnData.staff_address }}</td>
+								<td class="odd"><label class="staff_info_label">外网邮箱</label></td>
+								<td class="even">{{ returnData.staff_outEmail }}</td>
 							</tr>
 						</table>
 					</form>
@@ -180,7 +181,8 @@
 								<table id="studyExperience_table">
 									<tbody>
 										<tr class="long_table">
-											<th>学习/出差地点</th>
+											<th>类别</th>
+											<th>地点</th>
 											<th>起始时间</th>
 											<th>结束时间</th>
 											<th>备注</th>
@@ -188,6 +190,7 @@
 										</tr>
 										<template v-for="study in studys">
 										<tr>
+											<td>{{ study.staffStudent_evection }}</td>
 											<td>{{ study.staffStudent_address }}</td>
 											<td>{{ study.staffStudent_startTime }}</td>
 											<td>{{ study.staffStudent_stopTime }}</td>
@@ -237,7 +240,7 @@
 
 						<div class="long_tb">
 
-							<table id="family_table" style="width: 150%;">
+							<table id="family_table">
 
 								<tbody>
 									<tr class="long_table">
@@ -255,11 +258,11 @@
 									<template v-for="family in familys">
 									<tr>
 										<td>{{ family.staffFamily_contactsRelationship }}</td>
-										<td>{{ family.staffFamily_name  }}</td>
+										<td>{{ family.staffFamily_name }}</td>
 										<td>{{ family.staffFamily_IDcard }}</td>
 										<td>{{ family.staffFamily_birthday }}</td>
 										<td>{{ family.staffFamily_tel }}</td>
-										<td>{{ family.staffFamily_WeiXin  }}</td>
+										<td>{{ family.staffFamily_WeiXin }}</td>
 										<td>{{ family.staffFamily_workSpace }}</td>
 										<td>{{ family.staffFamily_duty }}</td>
 										<td>{{ family.staffFamily_remarks }}</td>
@@ -272,7 +275,7 @@
 					</div>
 					<div style="background: #e7e6e6; width: 1000px; height: 1px;"></div>
 					<div class="long_tableBox">
-						<span class="staff_info_title">刑警大队调动情况</span>
+						<span class="staff_info_title">工作调动情况</span>
 
 						<form id="police_move">
 							<div class="long_tb">
@@ -287,13 +290,13 @@
 
 										</tr>
 										<template v-for="move in moves">
-									<tr>
-										<td>{{ move.staffMove_inTime }}</td>
-										<td>{{ move.staffMove_outTime  }}</td>
-										<td>{{ move.staffMove_guard }}</td>
-										<td>{{ move.staffMove_remarks }}</td>
-									</tr>
-									</template>
+										<tr>
+											<td>{{ move.staffMove_inTime }}</td>
+											<td>{{ move.staffMove_outTime }}</td>
+											<td>{{ move.staffMove_guard }}</td>
+											<td>{{ move.staffMove_remarks }}</td>
+										</tr>
+										</template>
 									</tbody>
 								</table>
 							</div>
@@ -314,14 +317,14 @@
 											<th>备注</th>
 
 										</tr>
-											<template v-for="reward in rewards">
-									<tr>
-			
-										<td>{{ reward.staffReward_situation  }}</td>
-										<td>{{ reward.staffReward_Time }}</td>
-										<td>{{ reward.staffReward_remarks }}</td>
-									</tr>
-									</template>
+										<template v-for="reward in rewards">
+										<tr>
+
+											<td>{{ reward.staffReward_situation }}</td>
+											<td>{{ reward.staffReward_Time }}</td>
+											<td>{{ reward.staffReward_remarks }}</td>
+										</tr>
+										</template>
 									</tbody>
 								</table>
 							</div>
@@ -342,14 +345,14 @@
 											<th>备注</th>
 
 										</tr>
-									<template v-for="punishment in punishments">
-									<tr>
-			
-										<td>{{ punishment.staffPrinciple_situation  }}</td>
-										<td>{{ punishment.staffPrinciple_Time }}</td>
-										<td>{{ punishment.staffPrinciple_remarks }}</td>
-									</tr>
-									</template>
+										<template v-for="punishment in punishments">
+										<tr>
+
+											<td>{{ punishment.staffPrinciple_situation }}</td>
+											<td>{{ punishment.staffPrinciple_Time }}</td>
+											<td>{{ punishment.staffPrinciple_remarks }}</td>
+										</tr>
+										</template>
 									</tbody>
 								</table>
 							</div>
@@ -357,30 +360,30 @@
 					</div>
 					<div style="background: #e7e6e6; width: 1000px; height: 1px;"></div>
 					<div class="long_tableBox">
-						<span class="staff_info_title">休假情况</span>
+						<span class="staff_info_title">请休假情况</span>
 
 						<form id="Furlough">
 							<div class="long_tb">
 								<table id="vocation_table">
 									<tbody>
 										<tr class="long_table">
-											<th>休假事由</th>
-											<th>起始时间时间</th>
-											<th>天数</th>
-											<th>是否销假</th>
+											<th>起始时间</th>
 											<th>销假时间</th>
-											<th>备注</th></tr>
-											<template v-for="furlough in furloughs">
-									<tr>
-			
-										<td>{{ furlough.staffFurlough_mainContent  }}</td>
-										<td>{{ furlough.staffFurlough_startTime }}</td>
-										<td>{{ furlough.staffFurlough_days }}</td>
-										<td>{{ furlough.staffFurlough_whetherStop  }}</td>
-										<td>{{ furlough.staffFurlough_stopTime }}</td>
-										<td>{{ furlough.staffFurlough_remarks }}</td>
-									</tr>
-									</template>
+											<th>是否销假</th>
+											<th>请休假事由</th>
+											<th>天数</th>
+											<th>备注</th>
+										</tr>
+										<template v-for="furlough in furloughs">
+										<tr>
+											<td>{{ furlough.staffFurlough_startTime }}</td>
+											<td>{{ furlough.staffFurlough_stopTime }}</td>
+											<td>{{ furlough.staffFurlough_whetherStop }}</td>
+											<td>{{ furlough.staffFurlough_mainContent }}</td>
+											<td>{{ furlough.staffFurlough_days }}</td>
+											<td>{{ furlough.staffFurlough_remarks }}</td>
+										</tr>
+										</template>
 									</tbody>
 								</table>
 							</div>

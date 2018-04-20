@@ -11,7 +11,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>案件材料</title>
+<title>影像光盘</title>
 <!-- 物证列表 -->
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -74,10 +74,10 @@
 		<div class="panel" style="width: 95%; margin: 20px auto;">
 			<!--  -->
 			<div class="panel-heading">
-				<h3 class="panel-title">案件材料</h3>
+				<h3 class="panel-title">影像光盘</h3>
 			</div>
 			<div class="operation" style="margin-bottom: 6px; ">
-				<button style="margin-left: 6px; display:none;" type="button"
+				<button style="margin-left: 6px; type="button"
 					class="btn btn-default" data-toggle="modal" data-target="#image">
 					<i class="fa fa-plus-square"></i> 添加信息
 				</button>
@@ -87,7 +87,7 @@
 					query_name="page_list_parallelInformation.parallel_person"> -->
 			</div>
 			<div class="panel-body">
-				<table style="display: none;"
+				<table style=""
 					class="table table-hover table-condensed image_table_info">
 					<thead>
 						<tr>

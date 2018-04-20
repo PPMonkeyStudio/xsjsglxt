@@ -7,10 +7,7 @@ var caseId;
 var checkSelf = function(event) {
 	idValue = event.id;
 	caseId = event.value;
-	Create_InspectionRecord(event)
-	{
-
-	}
+	Create_InspectionRecord(event);
 }
 /*
  * 记录检验记录
@@ -67,6 +64,61 @@ function Create_InspectionRecord(obj) {
 					/*
 					 * 
 					 */
+					var currEvidence;
+					for (var int = 0; int < caseVue.resevidence.length; int++) {
+						if (caseVue.resevidence[int].xsjsglxt_resevidence_id == idValue) {
+							currEvidence = caseVue.resevidence[int];
+						}
+					}
+					switch (currEvidence.resevidence_type) {
+					case "手印痕迹": {
+						//
+						document
+								.getElementsByName("inspectionRecord.inspection_check_material_situation")[0].value = '检材是现场XXX提取的指纹一枚';
+						//
+						document
+								.getElementsByName("inspectionRecord.inspection_sample_situation")[0].value = '样本是犯罪嫌疑人XXX的十指纹一份';
+						//
+						document
+								.getElementsByName("inspectionRecord.inspection_method")[0].value = 'IFSC 07-02-01-2006（指纹鉴定法）';
+						//
+						document
+								.getElementsByName("inspectionRecord.inspection_process")[0].value = '      现场XXX提取的指纹，用照相法加以固定，类型是XXX纹。指纹纹线较清晰，特征稳定，有鉴定价值。经细致寻找，发现稳定的细节特征XX个，构成同一认定的条件。'
+								+ '\n      送检犯罪嫌疑人XXX的十指指纹捺印样本是油墨捺印，用照相法加以固定，指印纹线清晰，特征稳定，可供同一认定。'
+								+ '\n      将现场指纹与XXX的捺印十指纹进行逐一比对检验，发现XXX的XX指指纹所出现的XX个细节特征与现场指纹的XX个细节特征相吻合，因而构成了同一认定的依据。';
+						//
+						document
+								.getElementsByName("inspectionRecord.inspection_option")[0].value = '现场XXXX提取的指纹是犯罪嫌疑人XXX所留。';
+						break;
+					}
+					case "足迹痕迹": {
+						//
+						document
+								.getElementsByName("inspectionRecord.inspection_check_material_situation")[0].value = '检材是现场提取的鞋印一枚';
+						//
+						document
+								.getElementsByName("inspectionRecord.inspection_sample_situation")[0].value = '样本是犯罪嫌疑人XXXX穿鞋行走的灰尘鞋印样本左右脚各一枚';
+						//
+						document
+								.getElementsByName("inspectionRecord.inspection_method")[0].value = 'IFSC06-01-03-2006（足迹鉴定法）';
+						//
+						document
+								.getElementsByName("inspectionRecord.inspection_process")[0].value = '1、对现场鞋印的检验：'
+								+ '\n      现场鞋印系遗留在现场XXX灰尘减层鞋印,无明显变形，为X脚所留。通过观察鞋印大小及花纹种类、鞋印边缘虚实部位及长短、边缘磨损块痕清晰，能够客观地反映出鞋印形象特征和特定磨损情况的稳定特征，具有鉴定价值。经检验，现场鞋印全长XX厘米，前掌宽XX厘米，后跟宽XX厘米。鞋印前掌为XX形花纹，后跟为XX纹。进一步检验发现，在现场鞋印前掌及后跟部位发现细节特征XX处。'
+								+ '\n2、对样本鞋印的检验：'
+								+ '\n      样本为XXX所穿自用鞋行走的灰尘鞋印，拍照提取。鞋底花纹清晰完整，可供比对。初步检验鞋印全长XX厘米，前掌宽XX厘米，后跟宽XX厘米，鞋印前掌为XX形花纹，后跟为XX花纹。进一步检验发现，在现场鞋印前掌及后跟部位发现XX处细节特征。'
+								+ '\n3、比对检验：'
+								+ '\n      比较检验检材与样本，发现检材鞋印与样本鞋印大小及花纹种类相同，细节特征处反映清晰。在鞋印特征标注处，反映出鞋底具有同样的损伤特征系同一鞋所留。';
+						//
+						document
+								.getElementsByName("inspectionRecord.inspection_option")[0].value = '送检的的现场鞋印是XX右脚鞋所留。';
+						break;
+					}
+					default: {
+						break;
+					}
+					}
+
 					var date = new Date();
 					var month = (parseInt(date.getMonth()) + 1);
 					if (month < 10)
@@ -333,7 +385,7 @@ function Create_EntrustmentBook(type) {
 					/*
 					 * 
 					 * 
-					 * 获取送检人信息
+					 * 获取当前物证
 					 * 
 					 * 
 					 */
