@@ -25,6 +25,8 @@ public class xsjsglxt_case {
 
 	private int case_register;// 是否立案
 
+	private String case_registerTime;// 立案时间
+
 	private String case_address;// 案发地点
 
 	private String case_makeTime;// 作案时段
@@ -341,6 +343,14 @@ public class xsjsglxt_case {
 
 	public void setCase_senceImageFile(String case_senceImageFile) {
 		this.case_senceImageFile = case_senceImageFile;
+	}
+
+	public String getCase_registerTime() {
+		return case_registerTime;
+	}
+
+	public void setCase_registerTime(String case_registerTime) {
+		this.case_registerTime = case_registerTime;
 	}
 
 }

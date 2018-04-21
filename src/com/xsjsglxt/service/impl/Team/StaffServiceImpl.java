@@ -1,6 +1,7 @@
 package com.xsjsglxt.service.impl.Team;
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 
@@ -106,5 +107,24 @@ public class StaffServiceImpl implements StaffService {
 	public List<xsjsglxt_staff> getMeetRecorder() {
 		// TODO Auto-generated method stub
 		return staffDao.getMeetRecorder();
+	}
+
+	@Override
+	public Map<String, List<xsjsglxt_staff>> getInquestPerson() {
+		// TODO Auto-generated method stub
+
+		return staffDao.getInquestPerson();
+	}
+
+	@Override
+	public List<xsjsglxt_staff> getHandleCenter() {
+		// TODO Auto-generated method stub
+		return staffDao.getHandleCenter();
+	}
+
+	@Override
+	public List<xsjsglxt_staff> getHandleCheck() {
+		// TODO Auto-generated method stub
+		return staffDao.getHandleCheck();
 	}
 }
