@@ -7,6 +7,10 @@ public class xsjsglxt_takeBreakeCase {
 	private String take_gmt_create;
 	private String take_gmt_modified;
 
+	public xsjsglxt_takeBreakeCase() {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public String toString() {
 		return "xsjsglxt_takeBreakeCase [take_id=" + take_id + ", take_name=" + take_name + ", take_case=" + take_case

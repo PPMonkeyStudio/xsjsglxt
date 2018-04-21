@@ -238,4 +238,12 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		session.save(dBreakeCase);
 	}
 
+	@Override
+	public List<xsjsglxt_takeBreakeCase> getTakeBreakeCaseByBreakeCaseId(String xsjsglxt_breakecase_id) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		String hql = "from xsjsglxt_takeBreakeCase where take_case ='" + xsjsglxt_breakecase_id + "'";
+		return session.createQuery(hql).list();
+	}
+
 }

@@ -39,4 +39,6 @@ public interface BreakecaseDao {
 
 	void saveTakeBreakeCase(xsjsglxt_takeBreakeCase dBreakeCase);
 
+	List<xsjsglxt_takeBreakeCase> getTakeBreakeCaseByBreakeCaseId(String xsjsglxt_breakecase_id);
+
 }

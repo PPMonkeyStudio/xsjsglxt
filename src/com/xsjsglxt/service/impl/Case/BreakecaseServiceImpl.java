@@ -136,14 +136,21 @@ public class BreakecaseServiceImpl implements BreakecaseService {
 	}
 
 	@Override
-	public void saveTakeBreakeCase(String[] takeBreakeCase, String[] takeBreakeCaseId) {
+	public void saveTakeBreakeCase(String[] takeBreakeCase, xsjsglxt_breakecase breakeCase) {
 		// TODO Auto-generated method stub
 		xsjsglxt_takeBreakeCase dBreakeCase;
-		for (int i = 0; i < takeBreakeCaseId.length; i++) {
-			dBreakeCase = new xsjsglxt_takeBreakeCase(TeamUtil.getUuid(), takeBreakeCase[i], takeBreakeCaseId[i],
-					TeamUtil.getStringSecond(), TeamUtil.getStringSecond());
+		for (int i = 0; i < takeBreakeCase.length; i++) {
+			dBreakeCase = new xsjsglxt_takeBreakeCase(TeamUtil.getUuid(), takeBreakeCase[i],
+					breakeCase.getXsjsglxt_breakecase_id(), TeamUtil.getStringSecond(), TeamUtil.getStringSecond());
 			breakecaseDao.saveTakeBreakeCase(dBreakeCase);
 		}
+	}
+
+	@Override
+	public List<xsjsglxt_takeBreakeCase> getTakeBreakeCaseByBreakeCaseId(String xsjsglxt_breakecase_id) {
+		// TODO Auto-generated method stub
+
+		return breakecaseDao.getTakeBreakeCaseByBreakeCaseId(xsjsglxt_breakecase_id);
 	}
 
 }
