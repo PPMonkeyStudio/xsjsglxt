@@ -87,7 +87,7 @@
 	list-style-type: none;
 	color: black;
 	font-size: 18px;
-	padding-left: 5px;
+	padding:5px;
 }
 
 .message li:nth-child(even) {
@@ -186,10 +186,7 @@
 							<div style="height: 550px; width: 980px; margin: 40px;">
 								<div class="mesaageDIV"
 									style="border: 1px solid #BFBFBF; box-shadow: 0px 0px 10px 5px #aaa; width: 300px; height: 400px; float: left; margin-right: 10px;">
-									<ul class="message">
-										<li>【案件名称】办理时间已过25天,请及时办理。</li>
-										<li>【案件名称】办理时间已过25天,请及时办理。</li>
-										<li>【案件名称】办理时间已过25天,请及时办理。</li>
+									<ul class="message" id="handleExceed">
 									</ul>
 								</div>
 								<div class="mesaageDIV"
@@ -234,4 +231,5 @@
 						"position: relative; overflow: hidden; width: auto; height: 100%;");
 	});
 </script>
+<script src="<%=basePath%>js/index/message_detention.js"></script>
 </html>

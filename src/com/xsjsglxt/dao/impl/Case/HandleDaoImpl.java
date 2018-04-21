@@ -371,4 +371,14 @@ public class HandleDaoImpl implements HandleDao {
 		return AllPoliceInHandlingCasesList;
 	}
 
+	@Override
+	public List<String> getHandleExceedTime(String oldTime) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		String hql = "select c.case_name from xsjsglxt_case as c left join xsjsglxt_handle as h on c.xsjsglxt_case_id = h.handle_Case where c.case_registerTime <='"
+				+ oldTime + "' and h.handle_Case is null order by c.case_registerTime asc";
+		List<String> caseList = session.createSQLQuery(hql).list();
+		return caseList;
+	}
+
 }

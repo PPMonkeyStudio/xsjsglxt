@@ -26,4 +26,6 @@ public interface HandleDao {
 
 	public List<xsjsglxt_handle> allPoliceInHandlingCases();
 
+	public List<String> getHandleExceedTime(String oldTime);
+
 }
