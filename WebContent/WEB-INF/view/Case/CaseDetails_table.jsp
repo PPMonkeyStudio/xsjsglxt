@@ -34,13 +34,13 @@ table tbody tr td:nth-child(odd) {
 
 table tr th {
 	border: 1px solid black;
-	height: 42px;
+	height: 30px;
 	word-break: break-all; /* 设置自动换行切不挤压其他td */
 }
 
 table tr td {
 	border: 1px solid black;
-	height: 42px;
+	height: 30px;
 	word-break: break-all; /* 设置自动换行切不挤压其他td */
 }
 

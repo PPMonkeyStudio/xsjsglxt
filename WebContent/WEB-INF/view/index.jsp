@@ -34,8 +34,8 @@
 							document.getElementById("main").innerHTML = result.scheduling_main;
 							document.getElementById("mainTech").innerHTML = result.scheduling_main_technology;
 							document.getElementById("assistant").innerHTML = result.scheduling_assistant;
-							if(result.scheduling_patrol!=null)
-								document.getElementById("patrol").innerHTML = result.scheduling_patrol;				
+							if (result.scheduling_patrol != null)
+								document.getElementById("patrol").innerHTML = result.scheduling_patrol;
 						}
 					}
 				});
@@ -76,6 +76,30 @@
 <style type="text/css">
 .nav li {
 	cursor: pointer;
+}
+
+.message {
+	padding: 0;
+	margin: 0;
+}
+
+.message li {
+	list-style-type: none;
+	color: black;
+	font-size: 18px;
+	padding:5px;
+}
+
+.message li:nth-child(even) {
+	background-color: #baefff;
+}
+
+.message li:nth-child(odd) {
+	background-color: #9ae7fe;
+}
+
+.mesaageDIV {
+	overflow-y: auto;
 }
 </style>
 </head>
@@ -148,17 +172,40 @@
 							<h3 class="panel-title" id="schedulingH3">
 								今日值班 带班领导：<span id="leader"></span> 侦查民警：<span id="main"></span>
 								技术民警：<span id="mainTech"></span> 辅警：<span id="assistant"></span>
-								 今日巡逻：<span id="patrol"></span>
+								今日巡逻：<span id="patrol"></span>
 							</h3>
 							<p class="panel-subtitle" style="margin-top: 20px;">
 								当前时间是：<span id="current_time"></span>
 							</p>
 
 						</div>
-						<div class="panel-body"></div>
+						<div class="panel-body">
+							<div style="height: 40px;">
+								<h3 style="display: inline-block; margin-left: 130px;">办理通知</h3>
+								<h3 style="display: inline-block; margin-left: 270px;">拘留通知</h3>
+								<h3 style="display: inline-block; margin-left: 210px;">取保候审通知</h3>
+							</div>
+							<div style="height: 550px; width: 980px; margin: 40px;">
+								<div class="mesaageDIV"
+									style="border: 1px solid #BFBFBF; box-shadow: 0px 0px 10px 5px #aaa; width: 300px; height: 400px; float: left; margin-right: 10px;">
+									<ul class="message" id="handleExceed">
+									</ul>
+								</div>
+								<div class="mesaageDIV"
+									style="border: 1px solid #BFBFBF; box-shadow: 0px 0px 10px 5px #aaa; width: 280px; height: 400px; float: right;">
+									<ul class="message" id="pending">
+									</ul>
+								</div>
+								<div class="mesaageDIV"
+									style="border: 1px solid #BFBFBF; box-shadow: 0px 0px 10px 5px #aaa; width: 280px; height: 400px; float: right; margin-right: 60px;">
+									<ul class="message" id="detention">
+										
+									</ul>
+								</div>
+							</div>
+						</div>
 					</div>
 					<!-- END OVERVIEW -->
-
 				</div>
 			</div>
 		</div>
@@ -181,4 +228,5 @@
 						"position: relative; overflow: hidden; width: auto; height: 100%;");
 	});
 </script>
+<script src="<%=basePath%>js/index/message_detention.js"></script>
 </html>

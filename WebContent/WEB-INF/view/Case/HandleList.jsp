@@ -48,10 +48,10 @@
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
-		<div style="margin: 80px 0 0 0; float: left; width: 100%;">
-			<!---------------------------------------------------------------------------------------------------->
-			<!---------------------------------------------------------------------------------------------------->
-			<div class="panel" style="width: 95%; margin: 20px auto;">
+	<div style="margin: 80px 0 0 0; float: left; width: 100%;">
+		<!---------------------------------------------------------------------------------------------------->
+		<!---------------------------------------------------------------------------------------------------->
+		<div class="panel" style="width: 95%; margin: 20px auto;">
 			<!--  -->
 			<div class="panel-heading">
 				<h3 class="panel-title">办案管理</h3>
@@ -147,14 +147,14 @@
 				</div>
 				<div class="modal-body">
 					<form action="">
-						<div style="width: 100%;margin: auto;" class="panel-body">
+						<div style="width: 100%; margin: auto;" class="panel-body">
 							<table class="table table-condensed" width="100%">
 								<tbody>
 									<tr>
 										<td>序号</td>
 										<td><input class="form-control" readonly="readonly"
 											name="handle.handle_orderNumber" type="text"></td>
-										<td>行政案件名称</td>
+										<td>案件名称</td>
 										<td><input class="form-control"
 											name="handle.handle_administrativeCase" type="text"></td>
 										<td>违法嫌疑人姓名</td>
@@ -312,7 +312,7 @@
 				</div>
 				<div class="modal-body">
 					<form action="">
-						<div style="width: 100%;margin: auto;" class="panel-body">
+						<div style="width: 100%; margin: auto;" class="panel-body">
 							<table class="table table-condensed" width="100%">
 								<tbody>
 									<tr>
@@ -380,7 +380,7 @@
 										</select></td>
 									</tr>
 									<tr>
-										<td>行政案件名称</td>
+										<td>案件名称</td>
 										<td><input class="form-control"
 											name="page_list_HandleInformation.handle_administrativeCase"
 											type="text"></td>

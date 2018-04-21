@@ -1,7 +1,11 @@
 package com.xsjsglxt.dao.impl.Case;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -369,6 +373,51 @@ public class HandleDaoImpl implements HandleDao {
 		List<xsjsglxt_handle> AllPoliceInHandlingCasesList = query.list();
 
 		return AllPoliceInHandlingCasesList;
+	}
+
+	@Override
+	public List<String> getHandleExceedTime(String oldTime) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		String hql = "select c.case_name from xsjsglxt_case as c left join xsjsglxt_handle as h on c.xsjsglxt_case_id = h.handle_Case where c.case_registerTime <='"
+				+ oldTime + "' and h.handle_Case is null order by c.case_registerTime asc";
+		List<String> caseList = session.createSQLQuery(hql).list();
+		return caseList;
+	}
+
+	@Override
+	public Map<String, List<xsjsglxt_handle>> getOutTime() {
+		// TODO Auto-generated method stub
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar c = Calendar.getInstance();
+		c.add(Calendar.DATE, 30);
+		Session session = this.getSession();
+		List<xsjsglxt_handle> thirtyDays = session.createQuery(
+				"from xsjsglxt_handle where handle_pbat='" + sdf.format(c.getTime()) + "' order by handle_pbat desc")
+				.list();
+		c.clear();
+		Calendar c1 = Calendar.getInstance();
+		c1.add(Calendar.YEAR, -1);
+		List<xsjsglxt_handle> outTime = session
+				.createQuery("from xsjsglxt_handle where handle_pbat='" + sdf.format(c1.getTime()) + "'").list();
+		Map<String, List<xsjsglxt_handle>> map = new HashMap<String, List<xsjsglxt_handle>>();
+		map.put("thirtyDays", thirtyDays);
+		map.put("outTime", outTime);
+		c1.clear();
+		return map;
+	}
+
+	@Override
+	public List<xsjsglxt_handle> getDetention() {
+		// TODO Auto-generated method stub
+		Calendar c = Calendar.getInstance();
+		c.add(Calendar.DATE, 1);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Session session = this.getSession();
+
+		return session
+				.createQuery("from xsjsglxt_handle where handle_EndTimeaOfDetention='" + sdf.format(c.getTime()) + "'")
+				.list();
 	}
 
 }

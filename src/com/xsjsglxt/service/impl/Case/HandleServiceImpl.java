@@ -1,7 +1,10 @@
 package com.xsjsglxt.service.impl.Case;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 import com.xsjsglxt.dao.Case.HandleDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_handle;
@@ -97,6 +100,32 @@ public class HandleServiceImpl implements HandleService {
 		// TODO Auto-generated method stub
 
 		return handleDao.allPoliceInHandlingCases();
+	}
+
+	@Override
+	public List<String> getHandleExceedTime() {
+		// TODO Auto-generated method stub
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar c = Calendar.getInstance();
+		c.add(Calendar.DATE, -25);
+		String oldTime = sdf.format(c.getTime());
+		System.out.println(oldTime);
+		List<String> caseList = handleDao.getHandleExceedTime(oldTime);
+		c.clear();
+		return caseList;
+	}
+
+	@Override
+	public Map<String, List<xsjsglxt_handle>> getOutTime() {
+		// TODO Auto-generated method stub
+		return handleDao.getOutTime();
+	}
+
+	@Override
+	public List<xsjsglxt_handle> getDetention() {
+		// TODO Auto-generated method stub
+
+		return handleDao.getDetention();
 	}
 
 }

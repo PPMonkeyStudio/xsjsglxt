@@ -1,7 +1,9 @@
 
 package com.xsjsglxt.dao.impl.Team;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -179,5 +181,35 @@ public class StaffDaoImpl implements StaffDao {
 		Query query = session.createQuery(hql);
 		List<xsjsglxt_staff> staffList = query.list();
 		return staffList;
+	}
+
+	@Override
+	public Map<String, List<xsjsglxt_staff>> getInquestPerson() {
+		// TODO Auto-generated method stub
+		Map<String, List<xsjsglxt_staff>> map = new HashMap<String, List<xsjsglxt_staff>>();
+		Session session = this.getSession();
+		String hqlLeader = "from xsjsglxt_staff where staff_duty ='局长' or staff_duty='政委' or staff_duty ='大队长' or staff_duty ='教导员' or staff_duty ='副大队长' or staff_duty ='副教导员' or staff_duty ='中队长' or staff_duty ='副局长'";
+		String hqlHuman = "from xsjsglxt_staff where staff_duty ='技术民警'";
+		List<xsjsglxt_staff> leader = session.createQuery(hqlLeader).list();
+		map.put("leader", leader);
+		List<xsjsglxt_staff> human = session.createQuery(hqlHuman).list();
+		map.put("human", human);
+		return map;
+	}
+
+	@Override
+	public List<xsjsglxt_staff> getHandleCenter() {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		String hql = "from xsjsglxt_staff where staff_duty ='中队长'";
+		return session.createQuery(hql).list();
+	}
+
+	@Override
+	public List<xsjsglxt_staff> getHandleCheck() {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		String hql = "from xsjsglxt_staff where staff_duty ='侦查民警'";
+		return session.createQuery(hql).list();
 	}
 }
