@@ -189,7 +189,7 @@ public class SenceServiceImpl implements SenceService {
 			sence.setSnece_inquestId(sence.getSnece_inquestId().substring(10));
 			System.out.println("getSnece_inquestId:" + sence.getSnece_inquestId());
 			resevidence = senceDao.get_resevidence_Byxsjsglxt_case_id(case1);
-			senceInformationDTO = new SenceInformationDTO(briefdetails, case1, null, sence,resevidence);
+			senceInformationDTO = new SenceInformationDTO(briefdetails, case1, null, sence, resevidence);
 
 			SenceInformationDTOList.add(senceInformationDTO);
 		}
@@ -279,6 +279,7 @@ public class SenceServiceImpl implements SenceService {
 			flag = senceDao.deleteBriefdetailsById(xsjsglxt_case.getXsjsglxt_case_id());// ��Ҫ����
 			flag = senceDao.deleteSenceById(xsjsglxt_case.getXsjsglxt_case_id());// ��̽�ֳ�
 			flag = senceDao.deleteCaseById(xsjsglxt_case.getXsjsglxt_case_id());// ����
+			senceDao.deleteHandle(xsjsglxt_case);
 		}
 		return flag;
 	}

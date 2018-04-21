@@ -45,7 +45,7 @@ table tr td {
 }
 
 .tdWidth {
-	width: 100px;
+	width: 150px;
 }
 </style>
 </head>

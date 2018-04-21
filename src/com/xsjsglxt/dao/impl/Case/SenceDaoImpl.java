@@ -785,4 +785,14 @@ public class SenceDaoImpl implements SenceDao {
 		session.createQuery(hql).executeUpdate();
 	}
 
+	@Override
+	public void deleteHandle(xsjsglxt_case xsjsglxt_case) {
+		// TODO Auto-generated method stub
+
+		String hql = "delete from xsjsglxt_handle where handle_Case ='" + xsjsglxt_case.getXsjsglxt_case_id() + "'";
+		Session session = this.getSession();
+		session.createQuery(hql).executeUpdate();
+
+	}
+
 }
