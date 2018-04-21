@@ -22,6 +22,19 @@ $(function () {
 			return obj;
 		}
 	});
+	$.fn.extend({
+		serializeCaseDetails: function () {
+			if (this.length > 1) {
+				return false;
+			}
+			var obj = new Object;
+			this.find('input,select,textarea').each(function (i, e) {
+				obj[e.name] = $(e).val();
+			});
+			obj["sence.snece_inquestPerson"] = obj["sence.snece_inquestPerson"].join();
+			return obj;
+		}
+	});
 
 	/*=======================页面数据初始化开始================== */
 	$.post('/xsjsglxt/case/Case_SecneInformationOne', { "case1.xsjsglxt_case_id": case1_id }, function (xhr_data) {
@@ -44,10 +57,9 @@ $(function () {
 		//redio信息		
 		$("input[type=radio][name=register][value=" + xhr_data["case1"]["case_register"] + "]").attr("checked", 'checked');
 		//select信息		
-		$('select[name="case1.case_sonCategory"]').html(`<option selected value="${xhr_data["case1"]["case_sonCategory"]}">${xhr_data["case1"]["case_sonCategory"]}</option>`)
-		$('select[name="case1.case_concreteMakeMeans"]').html(`<option selected value="${xhr_data["case1"]["case_concreteMakeMeans"]}">${xhr_data["case1"]["case_concreteMakeMeans"]}</option>`)
-		$('select[name="case1.case_concreteResidence"]').html(`<option selected value="${xhr_data["case1"]["case_concreteResidence"]}">${xhr_data["case1"]["case_concreteResidence"]}</option>`)
-
+		$('select[name="case1.case_sonCategory"]').html(`<option selected value="${xhr_data["case1"]["case_sonCategory"]}">${xhr_data["case1"]["case_sonCategory"]}</option>`);
+		$('select[name="case1.case_concreteMakeMeans"]').html(`<option selected value="${xhr_data["case1"]["case_concreteMakeMeans"]}">${xhr_data["case1"]["case_concreteMakeMeans"]}</option>`);
+		$('select[name="case1.case_concreteResidence"]').html(`<option selected value="${xhr_data["case1"]["case_concreteResidence"]}">${xhr_data["case1"]["case_concreteResidence"]}</option>`);
 
 		//物证列表数据显示
 		var resevidence = xhr_data["resevidence"];
@@ -136,7 +148,8 @@ $(function () {
 
 		//物证提取人设定
 		var persons = xhr_data["sence"]["snece_inquestPerson"].split(',');
-		$('select[name="sence.snece_inquestPerson"]').selectpicker("val", persons);
+		console.log(persons);
+		$('select[name="sence.snece_inquestPerson"]').selectpicker('refresh').selectpicker("val", persons);
 		$('select[name="resevidence.resevidence_extractPerson"]').html(function () {
 			var option_str = '';
 			for (const key in persons) {
@@ -754,7 +767,6 @@ function buildCase_chose(params) {
 function case_change() {
 	var url = "/xsjsglxt/case/Case_updateSenceInformation";
 	var case1_id = document.getElementById("case1_id").value;
-	console.log(case1_id);
 	$.confirm({
 		title: '确定修改?',
 		smoothContent: false,
@@ -783,9 +795,13 @@ function loadCaseDetail_case_change(url, case1_id) {
 		xmlhttp = new ActiveXOBject("Microsoft.XMLHTTP");
 	}
 	var lost_evidence = document.getElementById("caseDetails");
-	var formData = new FormData(lost_evidence);
+	var formData = new FormData();
 	formData.append("case1.xsjsglxt_case_id", case1_id);
-
+	//特殊的序列化
+	var info = $('#caseDetails').serializeCaseDetails();
+	for (const key in info) {
+		formData.append(key, info[key]);
+	}
 	/*// 版本二（箭头语法）
 	var convert_FormData_to_json2 = function(formData) {
 		var objData = {};
@@ -796,8 +812,7 @@ function loadCaseDetail_case_change(url, case1_id) {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			console.log(xmlhttp.responseText);
 			var result = xmlhttp.responseText;
-
-			if (result == '"success"') {
+			if (result == "success") {
 				toastr.success('修改成功！');
 			} else {
 				toastr.error('修改失败！');

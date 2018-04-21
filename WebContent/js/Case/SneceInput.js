@@ -45,7 +45,7 @@ $(function () {
 		});
 	});
 
-	$.post('/xsjsglxt/team/Staff_getAllPolicemans', {}, function (params) {
+	$.post('/xsjsglxt/team/Staff_getInquestPerson', {}, function (params) {
 		var suspectStr = '';
 		for (let index = 0; index < params.length; index++) {
 			suspectStr += '<option value="' + params[index]["xsjsglxt_name"] + '">' + params[index]["xsjsglxt_name"] + '</option>';
@@ -220,7 +220,6 @@ chapterMethodArr[5] = ["其它", "其它", sectionMethod5];
 
 function setSectionmMethod(chapter) {
 	$('.specific_means').empty();
-	console.log(chapter);
 	var length = chapterMethodArr[chapter][2].length;
 	for (var i = 0; i < length; i++) {
 		$('.specific_means').append("<option value='" + chapterMethodArr[chapter][2][i] + "'>" + chapterMethodArr[chapter][2][i] + "</option>");

@@ -70,8 +70,8 @@ i {
 									<tr>
 										<th style="padding-left:5px;width: 70px;">全选<input
 											type="checkbox" onclick="selectAll(this)"></th>
-										<th><input type="text" onkeyup="dynamic_query(this)"
-											class="form-control"
+										<th width="120px;"><input type="text"
+											onkeyup="dynamic_query(this)" class="form-control"
 											query_name="page_list_senceInformation.snece_inquestId"
 											placeholder="勘验编号"></th>
 										<th><select onchange="dynamic_query(this)"
@@ -80,10 +80,14 @@ i {
 												<option selected="selected" value="desc">接警时间(降序)</option>
 												<option value="asc">接警时间(升序)</option>
 										</select></th>
-										<th><input type="text" onkeyup="dynamic_query(this)"
-											class="form-control"
+										<th width="150px;"><input type="text"
+											onkeyup="dynamic_query(this)" class="form-control"
+											query_name="page_list_senceInformation.case_address"
+											placeholder="案发地点"></th>
+										<th width="120px;"><input type="text"
+											onkeyup="dynamic_query(this)" class="form-control"
 											query_name="page_list_senceInformation.case_totalCategory"
-											placeholder="案件类别"></th>
+											placeholder="案件子类别"></th>
 										<th><input type="text" onkeyup="dynamic_query(this)"
 											class="form-control"
 											query_name="page_list_senceInformation.case_reporterName"

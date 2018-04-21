@@ -138,9 +138,12 @@ function get_ListSneceInformationByPageAndSearch(data) {
 							str += '<td>'
 									+ data_list.case1.case_receivingAlarmDate
 									+ '</td>';
+							str += '<td>'
+									+ data_list.case1.case_address
+									+ '</td>';
 							str += '<td>' + data_list.case1.case_sonCategory
 									+ '</td>';
-							str += '<td>' + data_list.case1.case_reporterName
+							str += '<td>' + data_list.case1.case_reporterName+','+data_list.case1.case_reporterPhone
 									+ '</td>';
 							str += '<td>'
 									+ ((data_list.sence.snece_inquestPerson)

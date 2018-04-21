@@ -19,6 +19,11 @@
 i {
 	cursor: pointer;
 }
+
+/* input, select {
+	width: 30px !important;
+	font-size: 13px !important;
+} */
 </style>
 </head>
 <body>
@@ -33,7 +38,6 @@ i {
 			<div class="panel-heading">
 				<h3 class="panel-title">案件详情信息</h3>
 			</div>
-
 			<div class="panel-body">
 				<div class="operation" style="margin-bottom: 6px;">
 					<button onclick="javascript:history.go(-1)" type="button"
@@ -52,9 +56,9 @@ i {
 				<form id="caseDetails">
 					<table>
 						<tr>
-							<td>勘验编号</td>
-							<td><input style="font-size: 12px;"
-								name="sence.snece_inquestId" class="form-control" type="text"></td>
+							<td width="96px;">勘验编号</td>
+							<td><input name="sence.snece_inquestId" class="form-control"
+								type="text"></td>
 							<td style="padding-left:5px;">勘验系统编号</td>
 							<td style="width: 100px;"><input
 								name="sence.snece_inquestSystemId" class="form-control"
@@ -70,7 +74,8 @@ i {
 						<tr>
 							<td>接警时间</td>
 							<td><input name="case1.case_receivingAlarmDate"
-								class="form-control" style="margin-top: 6px;" type="text"></td>
+								class="form-control mydate_minute" style="margin-top: 6px;"
+								type="text"></td>
 							<td>危害程度</td>
 							<td><select name="case1.case_extentOfInjury"
 								class="form-control" style="margin-top: 6px;">
@@ -92,13 +97,12 @@ i {
 						</tr>
 						<tr>
 							<td>案发地点</td>
-							<td colspan="2"><input name="case1.case_address"
+							<td><input name="case1.case_address"
 								style="margin-top: 6px;" class="case_place form-control"
 								type="text" value="萍乡市安源区"></td>
-
 							<td>案件类别</td>
-							<td colspan="2"><select
-								style="width: 170px; float: left; margin-top: 6px; margin-left: -100px;"
+							<td><select
+								style="width: 170px; float: left; margin-top: 6px;"
 								name="case1.case_totalCategory" name="case_class1"
 								onchange="setSectionCase(this.selectedIndex)"
 								class="main_case form-control"><option>请选择案件总类别</option>
@@ -114,8 +118,8 @@ i {
 									<option value="非法拘禁案">非法拘禁案</option>
 									<option value="非正常死亡">非正常死亡</option>
 									<option value="故意损坏公私财物">故意损坏公私财物</option>
-									<option value="其它">其它</option></select> <select
-								name="case1.case_sonCategory"
+									<option value="其它">其它</option></select></td>
+							<td colspan="2"><select name="case1.case_sonCategory"
 								style="margin-top: 6px; width: 170px;"
 								class="other_case form-control">
 									<option selected value="">请选择案件子类别</option>
@@ -131,33 +135,33 @@ i {
 					<hr>
 					<table>
 						<tr>
-							<td style="height: 74;">报案人基本情况</td>
-							<td colspan="5"><input style=" width: 24%;float:left; "
+							<td width="96px;">报案人情况</td>
+							<td colspan="5"><input style=" width: 80px;float:left; "
 								name="case1.case_reporterName" class="form-control" type="text"
 								placeholder="姓名"> <input
-								style="width: 24%; float:left;margin-left: 6px;"
+								style="width: 45px; float:left;margin-left: 6px;"
 								name="case1.case_reporterSex" class="form-control" type="text"
-								placeholder="年龄 "> <input
+								placeholder="年龄 "> <!-- <input
 								style="width: 24%; float:left; margin-left: 6px;"
 								name="case1.case_reporterJobUnit" class="form-control"
-								type="text" placeholder="工作单位 "> <input
-								style="width: 25%; margin-left: 6px; float: left;"
+								type="text" placeholder="工作单位 "> --> <input
+								style="width: 120px; margin-left: 6px; float: left;"
 								name="case1.case_reporterPhone" class="form-control" type="text"
 								placeholder="联系电话 "> <input
-								style="margin-top: 6px;float: right;"
+								style="margin-left: 6px;float: left; width: 504px;"
 								name="case1.case_reporterAddress" class="form-control"
-								type="text" placeholder="家庭住址 "></td>
+								type="text" placeholder="家庭住址或工作单位 "></td>
 						</tr>
 						<tr>
 							<td>简要案情</td>
 							<td colspan="5"><textarea style="margin-top: 6px;"
 									name="briefdetails.briefdetails_details" class="form-control"
-									rows="4"></textarea></td>
+									rows="2"></textarea></td>
 						</tr>
 						<tr>
-							<td height="39px;">天气情况</td>
+							<td>天气情况</td>
 							<td><select name="sence.snece_weather"
-								style="width: 70px; float: left; margin-top: 6px;"
+								style="width: 80px; float: left; margin-top: 6px;"
 								class=" form-control" id="weather">
 									<option value=""></option>
 									<option value="晴">晴</option>
@@ -167,26 +171,15 @@ i {
 									<option value="雾">雾</option>
 									<option value="其他">其他</option>
 							</select>
-								<p style="float: left; margin-top: 6px;">温度</p> <input
-								name="sence.snece_weatherTemperature"
+								<p
+									style="float: left; margin-top: 6px;margin-left:6px;margin-right:6px;">温度</p>
+								<input name="sence.snece_weatherTemperature"
 								style="width: 50px; float: left; margin-top: 6px;"
-								class="form-control" type="text"><span style="top:5px;">度</span></td>
-							<td width="85">作案时段</td>
-							<td><select name="case1.case_makeTime" class=" form-control">
-									<option value=""></option>
-									<option value="昼">昼</option>
-									<option value="夜">夜</option>
-									<option value="上午">上午</option>
-									<option value="中午">中午</option>
-									<option value="下午">下午</option>
-									<option value="晚上">晚上</option>
-									<option value="深夜">深夜</option>
-									<option value="凌晨">凌晨</option>
-									<option value="其他">其他</option>
-							</select></td>
+								class="form-control" type="text"><span
+								style="margin-top: 6px;margin-left:6px; float:left;">℃</span></td>
 							<td>发案辖区</td>
 							<td><select name="case1.case_jurisdiction"
-								class=" form-control">
+								class=" form-control" style="width:220px; margin:0px;">
 									<option value=""></option>
 									<option value="东大派出所">东大派出所</option>
 									<option value="高坑派出所">高坑派出所</option>
@@ -202,11 +195,25 @@ i {
 									<option value="五陂下派出所">五陂下派出所</option>
 									<option value="其他">其他</option>
 							</select></td>
-						</tr>
+							<td>作案时段</td>
+							<td><select name="case1.case_makeTime" class=" form-control">
+									<option value=""></option>
+									<option value="昼">昼</option>
+									<option value="夜">夜</option>
+									<option value="上午">上午</option>
+									<option value="中午">中午</option>
+									<option value="下午">下午</option>
+									<option value="晚上">晚上</option>
+									<option value="深夜">深夜</option>
+									<option value="凌晨">凌晨</option>
+									<option value="其他">其他</option>
+							</select></td>
 
-						<tr style="margin-top: -6px;">
-							<td height="78px;">作案手段</td>
-							<td><select name="case1.case_makeMeans"
+						</tr>
+						<tr>
+							<td>作案手段</td>
+							<td width="240px;"><select name="case1.case_makeMeans"
+								style="width: 110px; float:left;"
 								onchange="setSectionmMethod(this.selectedIndex)"
 								class="crime_means form-control">
 									<option selected="selected" value="">请选择</option>
@@ -217,18 +224,21 @@ i {
 									<option value="洞口侵入">洞口侵入</option>
 									<option value="其它">其它</option>
 							</select> <select name="case1.case_concreteMakeMeans"
-								style="margin-top: 6px;" class="specific_means form-control">
+								style="width: 120px; float:left;"
+								class="specific_means form-control">
 									<option value="">具体手段</option>
 							</select></td>
 							<td>选择处所</td>
 							<td><select name="case1.case_residence"
+								style="width: 110px; float:left;"
 								onchange="setSectionmAddress(this.selectedIndex)"
 								class="widel_space form-control"><option value="">选择处所</option>
 									<option value="居民住宅">居民住宅</option>
 									<option value="单位场所">单位场所</option>
 									<option value="服务行业">服务行业</option>
 									<option value="其它处所">其它处所</option></select><select
-								name="case1.case_concreteResidence" style="margin-top: 6px;"
+								name="case1.case_concreteResidence"
+								style="width: 110px; float:left;"
 								class="specific_space form-control">
 									<option value="">具体处所</option>
 							</select></td>
@@ -276,9 +286,9 @@ i {
 					<hr>
 					<table>
 						<tr>
-							<td>作案过程</td>
+							<td width="96px;">作案过程</td>
 							<td colspan="5"><textarea name="case1.case_process"
-									class="form-control" rows="4"></textarea></td>
+									class="form-control" rows="2"></textarea></td>
 						</tr>
 						<tr>
 							<td colspan="6"><label style="margin-left: 30%;"
@@ -305,9 +315,8 @@ i {
 						<tr>
 							<td>勘验人员</td>
 							<td colspan="5"><select name="sence.snece_inquestPerson"
-								id="exploration_personnel"
-								class="selectpicker show-tick form-control dropup" multiple
-								data-dropup-auto="false" title="请选择">
+								id="exploration_personnel" class="selectpicker form-control"
+								multiple title="请选择">
 							</select></td>
 						</tr>
 						<tr>
@@ -326,17 +335,21 @@ i {
 					<hr>
 					<table>
 						<tr>
-							<td width="85">移动基站</td>
+							<td width="96">移动基站</td>
 							<td><input name="sence.snece_mobileStation"
-								placeholder="基站号" class="form-control" type="text"> <input
+								style="width: 50%; float:left;" placeholder="基站号"
+								class="form-control" type="text"> <input
 								name="sence.snece_mobileVillage" placeholder="小区号"
-								style="margin-top: 6px;" class="form-control" type="text"></td>
-							<td width="85">联通基站</td>
+								style="width: 50%; float:left;" style="margin-top: 6px;"
+								class="form-control" type="text"></td>
+							<td width="96">联通基站</td>
 							<td><input name="sence.snece_unicomSwitchboard"
-								placeholder="交换机" class="form-control" type="text"> <input
+								style="width: 50%; float:left;" placeholder="交换机"
+								class="form-control" type="text"> <input
 								name="sence.snece_unicomVillage" placeholder="小区号"
-								style="margin-top: 6px;" class="form-control" type="text"></td>
-							<td width="85">电信基站</td>
+								style="width: 50%; float:left;" style="margin-top: 6px;"
+								class="form-control" type="text"></td>
+							<td width="96">电信基站</td>
 							<td><input name="sence.snece_telecomStation"
 								placeholder="基站号" width="40%;" class="form-control" type="text"></td>
 						</tr>
@@ -348,13 +361,14 @@ i {
 								<td>
 									<div class="panel" id="evidence-info">
 										<div class="panel-heading">
-											<h3 class="panel-title">物证信息</h3>
-										</div>
-										<div class="panel-body">
+											<h3 class="panel-title" style="float: left;">物证信息</h3>
 											<button type="button" class="btn btn-default"
+												style="margin-left: 6px;float: left;margin-top: -6px; padding: 5px 14px;"
 												data-toggle="modal" data-target="#evidence">
 												<i class="fa fa-plus-square"></i> 添加物证
 											</button>
+										</div>
+										<div class="panel-body">
 											<table style="width: 100%;"
 												class="table table-striped table-condensed">
 												<thead>
@@ -378,19 +392,19 @@ i {
 								<td>
 									<div class="panel" id="loseGoods-info">
 										<div class="panel-heading">
-											<h3 class="panel-title">丢失物品信息</h3>
+											<h3 class="panel-title" style="float: left;">被盗物品信息</h3>
+											<button type="button" class="btn btn-default"
+												data-toggle="modal" data-target="#lost"
+												style="margin-left: 6px;float: left;margin-top: -6px; padding: 5px 14px;">
+												<i class="fa fa-plus-square"></i> 添加被盗物品
+											</button>
 										</div>
 										<div class="panel-body">
-											<button style="margin-top: 6px;" type="button"
-												class="btn btn-default" data-toggle="modal"
-												data-target="#lost">
-												<i class="fa fa-plus-square"></i> 添加损失物品
-											</button>
 											<table style="width: 100%;"
 												class="table table-striped table-condensed">
 												<thead>
 													<tr>
-														<th>丢失物名称</th>
+														<th>被盗物名称</th>
 														<th>备注</th>
 														<th>操作</th>
 													</tr>
@@ -406,14 +420,14 @@ i {
 								<td>
 									<div class="panel" id="loseComputer-info">
 										<div class="panel-heading">
-											<h3 class="panel-title">丢失电脑信息</h3>
+											<h3 class="panel-title" style="float: left;">被盗电脑信息</h3>
+											<button type="button" class="btn btn-default"
+												data-toggle="modal" data-target="#lost_computer"
+												style="margin-left: 6px;float: left;margin-top: -6px; padding: 5px 14px;">
+												<i class="fa fa-plus-square"></i> 添加被盗电脑
+											</button>
 										</div>
 										<div class="panel-body">
-											<button style="margin-top: 6px;" type="button"
-												class="btn btn-default" data-toggle="modal"
-												data-target="#lost_computer">
-												<i class="fa fa-plus-square"></i> 添加损失电脑
-											</button>
 											<table style="width: 100%;"
 												class="table table-striped table-condensed">
 												<thead>
@@ -436,14 +450,14 @@ i {
 								<td>
 									<div class="panel" id="LostMobilephone-info">
 										<div class="panel-heading">
-											<h3 class="panel-title">丢失手机信息</h3>
+											<h3 class="panel-title" style="float: left;">被盗手机信息</h3>
+											<button type="button" class="btn btn-default"
+												data-toggle="modal" data-target="#lost_mobilephone"
+												style="margin-left: 6px;float: left;margin-top: -6px; padding: 5px 14px;">
+												<i class="fa fa-plus-square"></i> 添加被盗手机信息
+											</button>
 										</div>
 										<div class="panel-body">
-											<button style="margin-top: 6px;" type="button"
-												class="btn btn-default" data-toggle="modal"
-												data-target="#lost_mobilephone">
-												<i class="fa fa-plus-square"></i> 添加损失手机信息
-											</button>
 											<table style="width: 100%;"
 												class="table table-striped table-condensed">
 												<thead>
@@ -465,14 +479,16 @@ i {
 								<td>
 									<div class="panel" id="picture-info">
 										<div class="panel-heading">
-											<h3 class="panel-title">照片信息</h3>
-										</div>
-										<div class="panel-body">
-											<button style="margin-top: 6px;" type="button"
-												class="btn btn-default" data-toggle="modal"
-												data-target="#picture">
+											<h3 class="panel-title" style="float: left;">照片信息</h3>
+											<button
+												style="margin-left: 6px;float: left;margin-top: -6px; padding: 5px 14px;"
+												type="button" class="btn btn-default btn-xs"
+												data-toggle="modal" data-target="#picture">
 												<i class="fa fa-plus-square"></i> 添加照片
 											</button>
+										</div>
+										<div class="panel-body">
+
 											<table style="width: 100%;"
 												class="table table-striped table-condensed">
 												<thead>
@@ -1049,6 +1065,6 @@ i {
 		minDate : '1990/01/01', // 设置最小日期
 		maxDate : '2030/01/01', // 设置最大日期
 	});
-	document.documentElement.scrollTop=1000;
+	//document.documentElement.scrollTop=1000;
 </script>
 </html>
