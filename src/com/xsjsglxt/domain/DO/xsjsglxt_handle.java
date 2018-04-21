@@ -4,7 +4,7 @@ public class xsjsglxt_handle {
 	private String xsjsglxt_handle_id;// 办案ID
 	private String handle_Case;// 案件id
 	private String handle_orderNumber;// 序号
-	private String handle_administrativeCase;// 行政案件名称
+	private String handle_administrativeCase;// 案件名称
 	private String handle_suspectName;// 违法嫌疑人姓名
 	private String handle_administrativeAttachment;// 行政拘留
 	private String handle_arrest;// 逮捕
@@ -19,7 +19,6 @@ public class xsjsglxt_handle {
 	private String handle_checkbackTime;// 退查时间
 	private String handle_pbatTime;// 取保候审时间
 	private String handle_lhusTime;// 监视居住时间
-
 	private String handle_detentionDay;// 拘留时间
 	private String handle_FinancialName;// 财物名称
 	private String handle_handTime;// 上交时间

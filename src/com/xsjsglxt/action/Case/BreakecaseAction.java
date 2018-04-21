@@ -28,6 +28,8 @@ public class BreakecaseAction extends ActionSupport {
 	private List<xsjsglxt_breakecasesuspect> suspectList;
 	private String[] breakeCaseId;
 	private String[] suspectId;
+	private String[] takeBreakeCase; // 连带破案名
+	private String[] takeBreakeCaseId; // 连带破案id
 	private BreakeCaseListVO breakeCaseListVO;
 
 	// -----------------------跳转页面
@@ -40,6 +42,7 @@ public class BreakecaseAction extends ActionSupport {
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		List<xsjsglxt_breakecase> breakecaseIm = breakecaseService.getBreakeCaseByCaseId(breakeCase);
+		breakecaseService.saveTakeBreakeCase(takeBreakeCase, takeBreakeCaseId);
 		if (breakecaseIm != null && breakecaseIm.size() > 0) {
 			try {
 				PrintWriter pw = response.getWriter();
@@ -287,6 +290,22 @@ public class BreakecaseAction extends ActionSupport {
 	 */
 	public void setBreakeCaseListVO(BreakeCaseListVO breakeCaseListVO) {
 		this.breakeCaseListVO = breakeCaseListVO;
+	}
+
+	public String[] getTakeBreakeCase() {
+		return takeBreakeCase;
+	}
+
+	public void setTakeBreakeCase(String[] takeBreakeCase) {
+		this.takeBreakeCase = takeBreakeCase;
+	}
+
+	public String[] getTakeBreakeCaseId() {
+		return takeBreakeCaseId;
+	}
+
+	public void setTakeBreakeCaseId(String[] takeBreakeCaseId) {
+		this.takeBreakeCaseId = takeBreakeCaseId;
 	}
 
 }

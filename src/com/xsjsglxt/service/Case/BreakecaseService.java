@@ -28,4 +28,6 @@ public interface BreakecaseService {
 
 	void breakeCaseByPage(BreakeCaseListVO breakeCaseListVO);
 
+	void saveTakeBreakeCase(String[] takeBreakeCase, String[] takeBreakeCaseId);
+
 }

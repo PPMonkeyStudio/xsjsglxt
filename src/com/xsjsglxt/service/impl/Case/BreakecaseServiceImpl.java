@@ -5,6 +5,7 @@ import java.util.List;
 import com.xsjsglxt.dao.Case.BreakecaseDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecase;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecasesuspect;
+import com.xsjsglxt.domain.DO.xsjsglxt_takeBreakeCase;
 import com.xsjsglxt.domain.VO.Case.BreakeCaseDetailsVO;
 import com.xsjsglxt.domain.VO.Case.BreakeCaseListVO;
 import com.xsjsglxt.service.Case.BreakecaseService;
@@ -132,6 +133,17 @@ public class BreakecaseServiceImpl implements BreakecaseService {
 		breakeCaseListVO.setPageSize(10);
 		breakeCaseListVO.setTotalPage((int) Math.ceil((double) count / breakeCaseListVO.getPageSize()));
 		breakecaseDao.getBreakeCaseByPage(breakeCaseListVO);
+	}
+
+	@Override
+	public void saveTakeBreakeCase(String[] takeBreakeCase, String[] takeBreakeCaseId) {
+		// TODO Auto-generated method stub
+		xsjsglxt_takeBreakeCase dBreakeCase;
+		for (int i = 0; i < takeBreakeCaseId.length; i++) {
+			dBreakeCase = new xsjsglxt_takeBreakeCase(TeamUtil.getUuid(), takeBreakeCase[i], takeBreakeCaseId[i],
+					TeamUtil.getStringSecond(), TeamUtil.getStringSecond());
+			breakecaseDao.saveTakeBreakeCase(dBreakeCase);
+		}
 	}
 
 }
