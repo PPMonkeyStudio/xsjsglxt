@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -154,6 +155,50 @@ public class HandleAction extends ActionSupport implements ServletRequestAware, 
 		try {
 			PrintWriter pw = response.getWriter();
 			pw.write(gson.toJson(caseList));
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * @author 孙毅
+	 * 获得拘留天数到期
+	 * 
+	 */
+
+	public void getDetention() {
+		List<xsjsglxt_handle> list = handleService.getDetention();
+		Gson gson = new Gson();
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(gson.toJson(list));
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * @author 孙毅
+	 * 获得取保候审超期提醒
+	 * 
+	 */
+
+	public void getOutTime() {
+		Map<String, List<xsjsglxt_handle>> map = handleService.getOutTime();
+		Gson gson = new Gson();
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(gson.toJson(map));
 			pw.flush();
 			pw.close();
 		} catch (IOException e) {

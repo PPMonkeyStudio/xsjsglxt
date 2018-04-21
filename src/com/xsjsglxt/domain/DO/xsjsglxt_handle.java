@@ -13,6 +13,7 @@ public class xsjsglxt_handle {
 	private String handle_pbat;// 取保候审
 	private String handle_lhus;// 监视居住
 	private String handle_StartTimeaOfDetention;// 拘留起始时间
+	private String handle_EndTimeaOfDetention; // 拘留结束时间
 	private String handle_arrestTime;// 逮捕时间
 	private String handle_prosecuteTime;// 起诉时间
 	private String handle_checkbackTime;// 退查时间
@@ -86,6 +87,14 @@ public class xsjsglxt_handle {
 				+ ", handle_squadronleader=" + handle_squadronleader + ", handle_PoliceInHandlingCases="
 				+ handle_PoliceInHandlingCases + ", handle_gnt_create=" + handle_gnt_create + ", handle_gmt_modified="
 				+ handle_gmt_modified + "]";
+	}
+
+	public String getHandle_EndTimeaOfDetention() {
+		return handle_EndTimeaOfDetention;
+	}
+
+	public void setHandle_EndTimeaOfDetention(String handle_EndTimeaOfDetention) {
+		this.handle_EndTimeaOfDetention = handle_EndTimeaOfDetention;
 	}
 
 	public String getXsjsglxt_handle_id() {

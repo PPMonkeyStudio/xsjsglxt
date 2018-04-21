@@ -1,6 +1,7 @@
 package com.xsjsglxt.service.Case;
 
 import java.util.List;
+import java.util.Map;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_handle;
 import com.xsjsglxt.domain.VO.Case.page_list_HandleInformationVO;
@@ -28,5 +29,9 @@ public interface HandleService {
 	public List<xsjsglxt_handle> allPoliceInHandlingCases();
 
 	public List<String> getHandleExceedTime();
+
+	public Map<String, List<xsjsglxt_handle>> getOutTime();
+
+	public List<xsjsglxt_handle> getDetention();
 
 }

@@ -181,7 +181,9 @@
 						</div>
 						<div class="panel-body">
 							<div style="height: 40px;">
-								<h3>通知</h3>
+								<h3 style="display: inline-block; margin-left: 130px;">办理通知</h3>
+								<h3 style="display: inline-block; margin-left: 270px;">拘留通知</h3>
+								<h3 style="display: inline-block; margin-left: 210px;">取保候审通知</h3>
 							</div>
 							<div style="height: 550px; width: 980px; margin: 40px;">
 								<div class="mesaageDIV"
@@ -191,18 +193,13 @@
 								</div>
 								<div class="mesaageDIV"
 									style="border: 1px solid #BFBFBF; box-shadow: 0px 0px 10px 5px #aaa; width: 280px; height: 400px; float: right;">
-									<ul class="message">
-										<li class="">【案件名称】中嫌疑人(嫌疑人姓名)取保候审时限还剩30天，请及时办理解除取保候审。</li>
-										<li>【案件名称】中嫌疑人(嫌疑人姓名)取保候审时限还剩30天，请及时办理解除取保候审。</li>
-										<li>【案件名称】中嫌疑人(嫌疑人姓名)取保候审时限还剩30天，请及时办理解除取保候审。</li>
+									<ul class="message" id="pending">
 									</ul>
 								</div>
 								<div class="mesaageDIV"
 									style="border: 1px solid #BFBFBF; box-shadow: 0px 0px 10px 5px #aaa; width: 280px; height: 400px; float: right; margin-right: 60px;">
-									<ul class="message">
-										<li class="">【案件名称】中嫌疑人(嫌疑人姓名)监视居住时限还剩15天，请及时办理。(主办单位)</li>
-										<li>【案件名称】中嫌疑人(嫌疑人姓名)监视居住时限还剩15天，请及时办理。(主办单位)</li>
-										<li>【案件名称】中嫌疑人(嫌疑人姓名)监视居住时限还剩15天，请及时办理。(主办单位)</li>
+									<ul class="message" id="detention">
+										
 									</ul>
 								</div>
 							</div>
