@@ -49,7 +49,7 @@ public interface SenceDao {
 
 	public xsjsglxt_snece get_sence_Byxsjsglxt_case_id(xsjsglxt_case case1);
 
-	public xsjsglxt_resevidence get_resevidence_Byxsjsglxt_case_id(xsjsglxt_case case1);
+	public List<xsjsglxt_resevidence> get_resevidence_Byxsjsglxt_case_id(xsjsglxt_case case1);
 
 	public com.xsjsglxt.domain.DO.xsjsglxt_case getCaseByNum(String case_id);
 

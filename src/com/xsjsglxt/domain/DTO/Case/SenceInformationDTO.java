@@ -1,5 +1,7 @@
 package com.xsjsglxt.domain.DTO.Case;
 
+import java.util.List;
+
 import com.xsjsglxt.domain.DO.xsjsglxt_briefdetails;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost;
@@ -17,7 +19,7 @@ private xsjsglxt_case case1;
 //private xsjsglxt_lost lost;
 private xsjsglxt_picture picture ;
 private xsjsglxt_snece sence;
-//private xsjsglxt_resevidence resevidence;
+private List<xsjsglxt_resevidence> resevidence;
 
 
 public xsjsglxt_briefdetails getBriefdetails() {
@@ -53,6 +55,23 @@ public SenceInformationDTO(xsjsglxt_briefdetails briefdetails, xsjsglxt_case cas
 	this.case1 = case1;
 	this.picture = picture;
 	this.sence = sence;
+}
+
+
+public SenceInformationDTO(xsjsglxt_briefdetails briefdetails, xsjsglxt_case case1, xsjsglxt_picture picture,
+		xsjsglxt_snece sence, List<xsjsglxt_resevidence> resevidence) {
+	super();
+	this.briefdetails = briefdetails;
+	this.case1 = case1;
+	this.picture = picture;
+	this.sence = sence;
+	this.resevidence = resevidence;
+}
+public List<xsjsglxt_resevidence> getResevidence() {
+	return resevidence;
+}
+public void setResevidence(List<xsjsglxt_resevidence> resevidence) {
+	this.resevidence = resevidence;
 }
 @Override
 public String toString() {

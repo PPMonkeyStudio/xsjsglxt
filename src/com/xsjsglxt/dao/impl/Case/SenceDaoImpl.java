@@ -416,7 +416,7 @@ public class SenceDaoImpl implements SenceDao {
 	}
 
 	@Override
-	public xsjsglxt_resevidence get_resevidence_Byxsjsglxt_case_id(xsjsglxt_case case1) {
+	public List<xsjsglxt_resevidence> get_resevidence_Byxsjsglxt_case_id(xsjsglxt_case case1) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
@@ -425,7 +425,7 @@ public class SenceDaoImpl implements SenceDao {
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_resevidence resevidence = (xsjsglxt_resevidence) query.uniqueResult();
+		List<xsjsglxt_resevidence> resevidence = query.list();
 
 		return resevidence;
 	}

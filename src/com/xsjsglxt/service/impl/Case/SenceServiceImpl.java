@@ -95,7 +95,7 @@ public class SenceServiceImpl implements SenceService {
 
 		xsjsglxt_snece sence;//
 
-		// xsjsglxt_resevidence resevidence;//
+		List<xsjsglxt_resevidence> resevidence;
 		// ��ȡɸѡ�����еļ�¼
 		int i = senceDao.getCountSenceInformationByPage(page_list_senceInformation);
 		// System.out.println(i);
@@ -188,8 +188,8 @@ public class SenceServiceImpl implements SenceService {
 			sence = senceDao.get_sence_Byxsjsglxt_case_id(case1);// 6
 			sence.setSnece_inquestId(sence.getSnece_inquestId().substring(10));
 			System.out.println("getSnece_inquestId:" + sence.getSnece_inquestId());
-			// resevidence = senceDao.get_resevidence_Byxsjsglxt_case_id(case1);
-			senceInformationDTO = new SenceInformationDTO(briefdetails, case1, null, sence);
+			resevidence = senceDao.get_resevidence_Byxsjsglxt_case_id(case1);
+			senceInformationDTO = new SenceInformationDTO(briefdetails, case1, null, sence,resevidence);
 
 			SenceInformationDTOList.add(senceInformationDTO);
 		}
@@ -212,9 +212,7 @@ public class SenceServiceImpl implements SenceService {
 		for (String Case_id : useSenceInformationNumList) {
 			xsjsglxt_case xsjsglxt_case = senceDao.getCaseByNum(Case_id);
 			/**
-			 * 孙毅修改
-			 * 修改时间：2018-04-17
-			 * 修改内容：增加文件删除
+			 * 孙毅修改 修改时间：2018-04-17 修改内容：增加文件删除
 			 */
 			if (xsjsglxt_case.getCase_writeFile() != null && !"".equals(xsjsglxt_case.getCase_writeFile())) {
 				File file = new File(ServletActionContext.getServletContext()

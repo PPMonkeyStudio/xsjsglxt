@@ -57,6 +57,13 @@ i {
 						class="btn btn-default" type="button">
 						<i class="fa fa-trash-o"></i> 删除所选案件
 					</button>
+					<input query_name="page_list_senceInformation.stop_time" onchange="dynamic_query(this)"
+						style=" float: right;margin-top: 6px; width: 150px; margin-right: 15px;"
+						type="text" class="form-control mydate" placeholder="结束日期">
+					<input query_name="page_list_senceInformation.start_time" onchange="dynamic_query(this)"
+						style="float: right;margin-top: 6px; width: 150px; margin-right: 6px;"
+						type="text" class="form-control mydate" placeholder="起始日期">
+					<span style="float: right; margin: 0 20 0 0px; line-height: 40px;">接警时间</span>
 				</div>
 				<div class="col-md-12">
 					<!-- TABLE HOVER -->

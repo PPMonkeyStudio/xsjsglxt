@@ -119,7 +119,8 @@ i {
 									<option value="非正常死亡">非正常死亡</option>
 									<option value="故意损坏公私财物">故意损坏公私财物</option>
 									<option value="其它">其它</option></select></td>
-							<td colspan="2"><select name="case1.case_sonCategory"
+							<td id="other_case_td" colspan="2"><select
+								name="case1.case_sonCategory"
 								style="margin-top: 6px; width: 170px;"
 								class="other_case form-control">
 									<option selected value="">请选择案件子类别</option>

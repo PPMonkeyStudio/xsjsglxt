@@ -22,6 +22,7 @@ $(function () {
 			return obj;
 		}
 	});
+	// 只在本页面使用
 	$.fn.extend({
 		serializeCaseDetails: function () {
 			if (this.length > 1) {
@@ -146,10 +147,18 @@ $(function () {
 
 
 
-		//物证提取人设定
+		//获取案件的勘验人员
 		var persons = xhr_data["sence"]["snece_inquestPerson"].split(',');
-		console.log(persons);
-		$('select[name="sence.snece_inquestPerson"]').selectpicker('refresh').selectpicker("val", persons);
+		//勘验人员查询，以便修改勘验人员
+		$.post('/xsjsglxt/team/Staff_getInquestPerson', {}, function (params) {
+			params = params.leader;
+			var suspectStr = '';
+			for (let index = 0; index < params.length; index++) {
+				suspectStr += '<option value="' + params[index]["xsjsglxt_name"] + '">' + params[index]["xsjsglxt_name"] + '</option>';
+			}
+			$('select[name="sence.snece_inquestPerson"]').html(suspectStr).selectpicker('refresh').selectpicker("val", persons);
+		}, 'json');
+		//物证提取人设定
 		$('select[name="resevidence.resevidence_extractPerson"]').html(function () {
 			var option_str = '';
 			for (const key in persons) {
@@ -731,6 +740,7 @@ function situation(element) {
 	}
 }
 
+//6个多选框使用
 function sence_checkbox(checkbox) {
 	var box = $(checkbox);
 	if (box.val() == "1") {
@@ -740,14 +750,7 @@ function sence_checkbox(checkbox) {
 	}
 }
 
-function ChangeItemType(option_obj) {
-	$('#LossOfGoods table tbody').each(function () {
-		if ($(this).attr("class") == $(option_obj).val()) {
-			$(this).show();
-		} else $(this).hide();
-	});
-}
-
+//是否立案使用
 function chose_labe(params) {
 	if ($(params).val() == 1) {
 		$('input[name="register"][value="1"]').attr("checked", "checked");

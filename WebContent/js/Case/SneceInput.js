@@ -22,30 +22,37 @@ $(function () {
 	}, 'json')
 
 	$('.sneceInformation_finish').click(function () {
-		if (($('select').val() == "" || $('select').val() == null) && ($('input').val() == "" || $('input').val() == null)) {
-			toastr.error("信息不能为空");
-			return;
-		}
-		$.ajax({
-			url: "/xsjsglxt/case/Case_saveSenceInformation",
-			type: "post",
-			timeout: 3000,
-			data: $('#sneceInformation').serialize(),
-			dataType: "json",
-			success: function (xhr_data) {
-				var reg = /^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$/;
-				var r = xhr_data.match(reg);
-				if (r == null) {
-					toastr.error("录入失败！");
-				} else {
-					toastr.success("录入成功！");
-					location.href = '/xsjsglxt/case/Case_page_CaseDetails?id=' + xhr_data;
-				}
+		var isValue = true;
+		$('#sneceInformation').find('.must').each(function () {
+			if ($(this).val() == "") {
+				toastr.error("信息不能为空");
+				isValue = false;
+				return false;
 			}
 		});
+		if (isValue) {
+			$.ajax({
+				url: "/xsjsglxt/case/Case_saveSenceInformation",
+				type: "post",
+				timeout: 3000,
+				data: $('#sneceInformation').serialize(),
+				dataType: "json",
+				success: function (xhr_data) {
+					var reg = /^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$/;
+					var r = xhr_data.match(reg);
+					if (r == null) {
+						toastr.error("录入失败！");
+					} else {
+						toastr.success("录入成功！");
+						location.href = '/xsjsglxt/case/Case_page_CaseDetails?id=' + xhr_data;
+					}
+				}
+			});
+		}
 	});
 
 	$.post('/xsjsglxt/team/Staff_getInquestPerson', {}, function (params) {
+		params = params.leader;
 		var suspectStr = '';
 		for (let index = 0; index < params.length; index++) {
 			suspectStr += '<option value="' + params[index]["xsjsglxt_name"] + '">' + params[index]["xsjsglxt_name"] + '</option>';
@@ -107,13 +114,13 @@ function setSectionCase(chapter) {
 	} else if (chapter == 13) {
 		// 清空other_case的select元素，改为input元素
 		$('.main_case').next().remove();
-		$('.main_case').after('<input style="margin-top: 6px; width:65%;" class="other_case form-control" type="text">');
+		$('#other_case_td').html('<input type="text" name="case1.case_sonCategory" style="margin-top: 6px; width: 170px;" class="other_case form-control must">');
 	} else {
 		$('.other_case').empty().show();
 		var length = chapterCaseArr[chapter][2].length;
 		if ($('select[class="other_case form-control"]').length == 0) {
 			$('input[class="other_case form-control"]').remove();
-			$('.main_case').after('<select name="case1.case_sonCategory" style="margin-top: 6px; width:65%;"class="other_case form-control"></select>');
+			$('#other_case_td').html('<select name="case1.case_sonCategory" style="margin-top: 6px; width: 170px;" class="other_case form-control must"><option selected value="">请选择案件子类别</option></select>');
 		}
 		for (var i = 0; i < length; i++) {
 			$('.other_case').append("<option value='" + chapterCaseArr[chapter][2][i] + "'>" + chapterCaseArr[chapter][2][i] + "</option>");

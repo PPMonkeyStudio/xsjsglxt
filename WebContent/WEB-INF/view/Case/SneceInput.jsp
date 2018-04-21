@@ -42,15 +42,16 @@
 				<form id="sneceInformation" action="">
 					<table>
 						<tr>
-							<td width="96px;">勘验编号</td>
-							<td><input name="sence.snece_inquestId" class="form-control"
-								type="text"></td>
-							<td style="padding-left:5px;">勘验系统编号</td>
+							<td width="96px;"><span style="color:red;">*</span>勘验编号</td>
+							<td><input name="sence.snece_inquestId"
+								class="form-control must" type="text"></td>
+							<td style="padding-left:5px;"><span style="color:red;">*</span>勘验系统编号</td>
 							<td style="width: 100px;"><input
-								name="sence.snece_inquestSystemId" class="form-control"
+								name="sence.snece_inquestSystemId" class="form-control must"
 								type="text"></td>
-							<td>案件分类</td>
-							<td><select name="case1.case_classify" class=" form-control">
+							<td><span style="color:red;">*</span>案件分类</td>
+							<td><select name="case1.case_classify"
+								class=" form-control must">
 									<option value=""></option>
 									<option value="非刑事案件">非刑事案件</option>
 									<option value="刑事案件">刑事案件</option>
@@ -58,19 +59,19 @@
 							</select></td>
 						</tr>
 						<tr>
-							<td>接警时间</td>
+							<td><span style="color:red;">*</span>接警时间</td>
 							<td><input name="case1.case_receivingAlarmDate"
-								class="form-control mydate_minute" style="margin-top: 6px;"
+								class="form-control mydate_minute must" style="margin-top: 6px;"
 								type="text"></td>
-							<td>危害程度</td>
+							<td><span style="color:red;">*</span>危害程度</td>
 							<td><select name="case1.case_extentOfInjury"
-								class="form-control" style="margin-top: 6px;">
+								class="form-control must" style="margin-top: 6px;">
 									<option value=""></option>
 									<option>一般</option>
 									<option>重大</option>
 									<option>特大</option>
 							</select></td>
-							<td>是否立案</td>
+							<td><span style="color:red;">*</span>是否立案</td>
 							<td><label style="float: left;" class="fancy-radio">
 									<input name="register" onclick="buildCase_chose(this)"
 									type="radio" value="1"> <span><i></i>是</span>
@@ -78,20 +79,20 @@
 								class="fancy-radio"> <input name="register"
 									onclick="buildCase_chose(this)" type="radio" value="0">
 									<span><i></i>否</span>
-							</label> <input type="hidden" name="case1.case_register"
+							</label> <input type="hidden" name="case1.case_register" class="must"
 								onchange="chose_labe(this)"></td>
 						</tr>
 						<tr>
-							<td>案发地点</td>
+							<td><span style="color:red;">*</span>案发地点</td>
 							<td><input name="case1.case_address"
-								style="margin-top: 6px;" class="case_place form-control"
+								style="margin-top: 6px;" class="case_place form-control must"
 								type="text" value="萍乡市安源区"></td>
-							<td>案件类别</td>
+							<td><span style="color:red;">*</span>案件类别</td>
 							<td><select
 								style="width: 170px; float: left; margin-top: 6px;"
 								name="case1.case_totalCategory" name="case_class1"
 								onchange="setSectionCase(this.selectedIndex)"
-								class="main_case form-control"><option>请选择案件总类别</option>
+								class="main_case form-control must"><option>请选择案件总类别</option>
 									<option value="盗窃案">盗窃案</option>
 									<option value="抢劫案">抢劫案</option>
 									<option value="抢夺案">抢夺案</option>
@@ -105,14 +106,15 @@
 									<option value="非正常死亡">非正常死亡</option>
 									<option value="故意损坏公私财物">故意损坏公私财物</option>
 									<option value="其它">其它</option></select></td>
-							<td colspan="2"><select name="case1.case_sonCategory"
+							<td id="other_case_td" colspan="2"><select
+								name="case1.case_sonCategory"
 								style="margin-top: 6px; width: 170px;"
-								class="other_case form-control">
+								class="other_case form-control must">
 									<option selected value="">请选择案件子类别</option>
 							</select></td>
 						</tr>
 						<tr>
-							<td>案发名称</td>
+							<td><span style="color:red;">*</span>案发名称</td>
 							<td colspan="5"><input name="case1.case_name"
 								style="margin-top: 6px;" class="case_name form-control"
 								type="text"></td>
@@ -306,7 +308,7 @@
 								data-dropup-auto="false" title="请选择">
 							</select></td>
 						</tr>
-						<tr>
+						<!-- <tr>
 							<td>填表人员</td>
 							<td><input name="sence.snece_fillPerson"
 								style="margin-top: 6px;" class="form-control" type="text"></td>
@@ -317,7 +319,7 @@
 							<td><input name="sence.snece_fillTime"
 								style="margin-top: 6px;" class="form_time form-control mydate"
 								type="text"></td>
-						</tr>
+						</tr> -->
 					</table>
 				</form>
 				<table>
