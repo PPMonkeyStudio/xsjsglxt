@@ -5,62 +5,62 @@
 <hibernate-mapping>
     <class name="com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter" table="XSJSGLXT_APPRAISAL_LETTER">
         <id name="xsjsglxt_appraisal_letter_id" type="java.lang.String">
-            <column name="XSJSGLXT_APPRAISAL_LETTER_ID" />
+            <column name="xsjsglxt_appraisal_letter_id" />
             <generator class="assigned" />
         </id>
         <property name="appraisal_letter_belong_entrustment_book" type="java.lang.String">
-            <column name="APPRAISAL_LETTER_BELONG_ENTRUSTMENT_BOOK" />
+            <column name="appraisal_letter_belong_entrustment_book" />
         </property>
         <property name="appraisal_letter_num" type="java.lang.String">
-            <column name="APPRAISAL_LETTER_NUM" />
+            <column name="appraisal_letter_num" />
         </property>
         <property name="appraisal_letter_simple_case_situation" type="java.lang.String">
-            <column name="APPRAISAL_LETTER_SIMPLE_CASE_SITUATION" />
+            <column name="appraisal_letter_simple_case_situation" />
         </property>
         <property name="appraisal_letter_sample_situation" type="java.lang.String">
-            <column name="APPRAISAL_LETTER_SAMPLE_SITUATION" />
+            <column name="appraisal_letter_sample_situation" />
         </property>
         <property name="appraisal_letter_man1_duty" type="java.lang.String">
-            <column name="APPRAISAL_LETTER_MAN1_DUTY" />
+            <column name="appraisal_letter_man1_duty" />
         </property>
         <property name="appraisal_letter_man1_name" type="java.lang.String">
-            <column name="APPRAISAL_LETTER_MAN1_NAME" />
+            <column name="appraisal_letter_man1_name" />
         </property>
         <property name="appraisal_letter_man2_duty" type="java.lang.String">
-            <column name="APPRAISAL_LETTER_MAN2_DUTY" />
+            <column name="appraisal_letter_man2_duty" />
         </property>
         <property name="appraisal_letter_man2_name" type="java.lang.String">
-            <column name="APPRAISAL_LETTER_MAN2_NAME" />
+            <column name="appraisal_letter_man2_name" />
         </property>
         <property name="appraisal_letter_authorization_duty" type="java.lang.String">
-            <column name="APPRAISAL_LETTER_AUTHORIZATION_DUTY" />
+            <column name="appraisal_letter_authorization_duty" />
         </property>
         <property name="appraisal_letter_authorization_name" type="java.lang.String">
-            <column name="APPRAISAL_LETTER_AUTHORIZATION_NAME" />
+            <column name="appraisal_letter_authorization_name" />
         </property>
         <property name="appraisal_letter_mark" type="java.lang.String">
-            <column name="APPRAISAL_LETTER_MARK" />
+            <column name="appraisal_letter_mark" />
         </property>
         <property name="appraisal_letter_date" type="java.lang.String">
-            <column name="APPRAISAL_LETTER_DATE" />
+            <column name="appraisal_letter_date" />
         </property>
         <property name="appraisal_letter_inspection" type="java.lang.String">
-            <column name="APPRAISAL_LETTER_INSPECTION" />
+            <column name="appraisal_letter_inspection" />
         </property>
         <property name="appraisal_letter_argumentation" type="java.lang.String">
-            <column name="APPRAISAL_LETTER_ARGUMENTATION" />
+            <column name="appraisal_letter_argumentation" />
         </property>
         <property name="appraisal_letter_expert_opinion" type="java.lang.String">
-            <column name="APPRAISAL_LETTER_EXPERT_OPINION" />
+            <column name="appraisal_letter_expert_opinion" />
         </property>
         <property name="appraisal_letter_type" type="java.lang.String">
-            <column name="APPRAISAL_LETTER_TYPE" />
+            <column name="appraisal_letter_type" />
         </property>
         <property name="appraisal_letter_gmt_create" type="java.lang.String">
-            <column name="APPRAISAL_LETTER_GMT_CREATE" />
+            <column name="appraisal_letter_gmt_create" />
         </property>
         <property name="appraisal_letter_gmt_modified" type="java.lang.String">
-            <column name="APPRAISAL_LETTER_GMT_MODIFIED" />
+            <column name="appraisal_letter_gmt_modified" />
         </property>
     </class>
 </hibernate-mapping>

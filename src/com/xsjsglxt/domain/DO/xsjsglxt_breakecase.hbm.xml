@@ -5,35 +5,35 @@
 <hibernate-mapping>
     <class name="com.xsjsglxt.domain.DO.xsjsglxt_breakecase" table="XSJSGLXT_BREAKECASE">
         <id name="xsjsglxt_breakecase_id" type="java.lang.String">
-            <column name="XSJSGLXT_BREAKECASE_ID" />
+            <column name="xsjsglxt_breakecase_id" />
             <generator class="assigned" />
         </id>
         <property name="breakecase_type" type="java.lang.String">
-            <column name="BREAKECASE_TYPE" />
+            <column name="breakecase_type" />
         </property>
         <property name="breakecase_case" type="java.lang.String">
-            <column name="BREAKECASE_CASE" />
+            <column name="breakecase_case" />
         </property>
         <property name="breakecase_according" type="java.lang.String">
-            <column name="BREAKECASE_ACCORDING" />
+            <column name="breakecase_according" />
         </property>
         <property name="breakecase_caseTime" type="java.lang.String">
-            <column name="BREAKECASE_CASETIME" />
+            <column name="breakecase_casetime" />
         </property>
         <property name="breakecase_waitbreakecase" type="java.lang.String">
-            <column name="BREAKECASE_WAITBREAKECASE" />
+            <column name="breakecase_waitbreakecase" />
         </property>
         <property name="breakecase_person" type="java.lang.String">
-            <column name="BREAKECASE_PERSON" />
+            <column name="breakecase_person" />
         </property>
         <property name="breakecase_remarks" type="java.lang.String">
-            <column name="BREAKECASE_REMARKS" />
+            <column name="breakecase_remarks" />
         </property>
         <property name="breakecase_gmt_create" type="java.lang.String">
-            <column name="BREAKECASE_GMT_CREATE" />
+            <column name="breakecase_gmt_create" />
         </property>
         <property name="breakecase_gmt_modified" type="java.lang.String">
-            <column name="BREAKECASE_GMT_MODIFIED" />
+            <column name="breakecase_gmt_modified" />
         </property>
     </class>
 </hibernate-mapping>
