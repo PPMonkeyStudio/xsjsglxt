@@ -248,20 +248,29 @@ table tr td {
 						<td colspan="6"
 							style="text-align: left; border-top: none; border-left: none; border-right: none;">丢失物品信息</td>
 					</tr> -->
-			<tr>
-				<td colspan="3">丢失物品名称</td>
-				<td colspan="3" style="text-align: center;">备注</td>
-			</tr>
-			<template v-for="lo in lost">
-			<tr>
-				<td colspan="3">{{ lo.lost_name }}</td>
-				<td colspan="3">{{ lo.lost_remarks }}</td>
-			</tr>
-			</template>
-			<tr>
-				<td colspan="3"></td>
-				<td colspan="3"></td>
-			</tr>
+					<tr>
+						<td colspan="1">被盗物品名称</td>
+						<td>厂牌和型号</td>
+						<td>数量</td>
+						<td>价值/元</td>
+						<td colspan="1" style="text-align: center;">特征描述</td>
+					</tr>
+					<template v-for="lo in lost">
+					<tr>
+						<td colspan="1">{{ lo.lost_name }}</td>
+						<td>{{ lo.lost_model }}</td>
+						<td>{{ lo.lost_number }}</td>
+						<td>{{ lo.lost_price }}</td>
+						<td colspan="1">{{ lo.lost_remarks }}</td>
+					</tr>
+					</template>
+					<tr>
+						<td colspan="1"></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td colspan="1"></td>
+					</tr>
 			<tr>
 				<td colspan="6"
 					style="text-align: left; border-top: none; border-left: none; border-right: none;"></td>
