@@ -1,5 +1,11 @@
 package com.xsjsglxt.domain.DO;
 
+/**
+ * 
+ * @author 孙毅
+ *修改时间： 2018-04-22
+ *备注：被java的可维护性惊讶到无法呼吸
+ */
 public class xsjsglxt_lost {
 
 	private String xsjsglxt_lost_id;// 损失物品ID
