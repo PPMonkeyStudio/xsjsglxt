@@ -764,6 +764,11 @@ function sence_checkbox(checkbox) {
 	}
 }
 
+//返回list
+function back() {
+	location.href = '/xsjsglxt/case/Case_page_SiteManagement';
+}
+
 //是否立案使用
 function chose_labe(params) {
 	if ($(params).val() == 1) {
