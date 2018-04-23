@@ -391,15 +391,15 @@ public class HandleDaoImpl implements HandleDao {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar c = Calendar.getInstance();
 		c.add(Calendar.DATE, 30);
+		System.out.println(sdf.format(c.getTime()) + "取保候审时间");
 		Session session = this.getSession();
-		List<xsjsglxt_handle> thirtyDays = session.createQuery(
-				"from xsjsglxt_handle where handle_pbat='" + sdf.format(c.getTime()) + "' order by handle_pbat desc")
-				.list();
+		List<xsjsglxt_handle> thirtyDays = session.createQuery("from xsjsglxt_handle where handle_pbatTime='"
+				+ sdf.format(c.getTime()) + "' order by handle_pbat desc").list();
 		c.clear();
 		Calendar c1 = Calendar.getInstance();
 		c1.add(Calendar.YEAR, -1);
 		List<xsjsglxt_handle> outTime = session
-				.createQuery("from xsjsglxt_handle where handle_pbat='" + sdf.format(c1.getTime()) + "'").list();
+				.createQuery("from xsjsglxt_handle where handle_pbatTime='" + sdf.format(c1.getTime()) + "'").list();
 		Map<String, List<xsjsglxt_handle>> map = new HashMap<String, List<xsjsglxt_handle>>();
 		map.put("thirtyDays", thirtyDays);
 		map.put("outTime", outTime);

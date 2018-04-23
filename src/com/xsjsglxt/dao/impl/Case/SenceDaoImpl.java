@@ -724,7 +724,7 @@ public class SenceDaoImpl implements SenceDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
-		String hql = "from xsjsglxt_case";
+		String hql = "from xsjsglxt_case order by case_receivingAlarmDate desc";
 		Query query = session.createQuery(hql);
 
 		List<xsjsglxt_case> AllcaseList = query.list();
