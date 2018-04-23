@@ -60,4 +60,6 @@ public interface SenceService {
 
 	public void updateFileName(String newFileName, String filePosition, xsjsglxt_case case1);
 
+	public void updateCaseTime(xsjsglxt_case case1);
+
 }

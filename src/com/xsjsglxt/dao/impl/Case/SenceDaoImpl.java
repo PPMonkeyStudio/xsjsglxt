@@ -795,4 +795,14 @@ public class SenceDaoImpl implements SenceDao {
 
 	}
 
+	@Override
+	public void updateCaseTime(xsjsglxt_case case1) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		String hql = "update xsjsglxt_case set case_registerTime = '" + case1.getCase_registerTime()
+				+ "' where xsjsglxt_case_id = '" + case1.getXsjsglxt_case_id() + "'";
+		session.createQuery(hql).executeUpdate();
+
+	}
+
 }

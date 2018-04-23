@@ -376,4 +376,10 @@ public class SenceServiceImpl implements SenceService {
 		senceDao.updateFileName(newFileName, filePosition, case1);
 	}
 
+	@Override
+	public void updateCaseTime(xsjsglxt_case case1) {
+		// TODO Auto-generated method stub
+		senceDao.updateCaseTime(case1);
+	}
+
 }

@@ -116,4 +116,6 @@ public interface SenceDao {
 
 	public void deleteHandle(xsjsglxt_case xsjsglxt_case);
 
+	public void updateCaseTime(xsjsglxt_case case1);
+
 }
