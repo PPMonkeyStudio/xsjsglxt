@@ -173,6 +173,7 @@ $(function () {
 					text: '添加嫌疑人',
 					btnClass: 'btn-info',
 					action: function () {
+						/*===================================================== 破案窗口中嫌疑人添加*/
 						var Suspect = $.confirm({
 							closeIcon: true,
 							boxWidth: '50%',
@@ -185,7 +186,7 @@ $(function () {
 							},
 							buttons: {
 								sureAddProson: {
-									text: "确认添加",
+									text: "确认添加",/*===================================================== 确认嫌疑人添加*/
 									btnClass: 'btn-info',
 									action: function () {
 										var must = Suspect.$content.find('.must');
@@ -213,7 +214,7 @@ $(function () {
 					}
 				},
 				sureAdd: {
-					text: '确认添加',
+					text: '确认添加',/*===================================================== 确认破案添加*/
 					btnClass: 'btn-info',
 					action: function () {
 						addBreakeCase.$content.find('form').serializeObject();
@@ -268,7 +269,7 @@ $(function () {
 			<input class="form-control mydate" name="breakeCase.breakecase_caseTime" type="text" value="${msg.breakeCase.breakecase_caseTime}">
 			</td><td>破案人</td><td>
 			<select class="form-control" name="breakeCase.breakecase_person"></select>
-			</td></tr><tr><td>带破案件</td><td colspan="3">
+			</td></tr><tr><td>带破案件<i onclick="breakeCaseDetails(${breakeCaseID})" class="fa fa-book" aria-hidden="true"></i></td><td colspan="3">
 			<select class="form-control selectpicker" multiple data-live-search="true" name="breakeCase.breakecase_waitbreakecase"></select>
 			</td></tr><tr><td>备注</td><td colspan="3">
 			<textarea placeholder="请填写" class="form-control"name="breakeCase.breakecase_remarks">${msg.breakeCase.breakecase_remarks}</textarea>
@@ -593,6 +594,11 @@ $.fn.extend({
 		return obj;
 	}
 });
+
+//带破案件列表
+function breakeCaseDetails(id) {
+
+}
 
 //输入框查询事件
 function dynamic_query(params) {
