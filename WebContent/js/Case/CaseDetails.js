@@ -101,6 +101,9 @@ $(function () {
 			for (let index = 0; index < lostGoods_info.length; index++) {
 				tr_str += `<tr id="${lostGoods_info[index]["xsjsglxt_lost_id"]}">
 							  <td>${lostGoods_info[index]["lost_name"]}</td>
+							  <td>${lostGoods_info[index]["lost_model"]}</td>
+							  <td>${lostGoods_info[index]["lost_number"]}</td>
+							  <td>${lostGoods_info[index]["lost_price"]}</td>
 							  <td>${lostGoods_info[index]["lost_remarks"]}</td>
 							  <td><i id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`;
 			}
@@ -211,6 +214,7 @@ $(function () {
 			return;
 		}
 		var Lost_data = $.extend({}, $('#lost form').serializeObject(), { "case1.xsjsglxt_case_id": case1_id });
+		console.log(Lost_data);
 		$.post('/xsjsglxt/case/Lost_saveLost', Lost_data, function (xhr_data) {
 			if (xhr_data.length > 22 && xhr_data.length <= 36) {
 				toastr.info('添加成功！');
@@ -219,6 +223,9 @@ $(function () {
 				//数据添加
 				$('#loseGoods-info table tbody').append(`<tr id="${xhr_data}">
 											 <td>${Lost_data["lost.lost_name"]}</td>
+											 <td>${Lost_data["lost.lost_model"]}</td>
+							 				 <td>${Lost_data["lost.lost_number"]}</td>
+							  				 <td>${Lost_data["lost.lost_price"]}</td>
 											 <td>${Lost_data["lost.lost_remarks"]}</td>
 											 <td><i id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`);
 			} else {
@@ -576,6 +583,9 @@ function mdPost(URL, DATA, TYPE) {
 							for (let index = 0; index < lostGoods_info.length; index++) {
 								tr_str += `<tr id="${lostGoods_info[index]["xsjsglxt_lost_id"]}">
 							  <td>${lostGoods_info[index]["lost_name"]}</td>
+							  <td>${lostGoods_info[index]["lost_model"]}</td>
+							  <td>${lostGoods_info[index]["lost_number"]}</td>
+							  <td>${lostGoods_info[index]["lost_price"]}</td>
 							  <td>${lostGoods_info[index]["lost_remarks"]}</td>
 							  <td><i id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`;
 							}
