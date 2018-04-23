@@ -151,12 +151,16 @@ $(function () {
 		var persons = xhr_data["sence"]["snece_inquestPerson"].split(',');
 		//勘验人员查询，以便修改勘验人员
 		$.post('/xsjsglxt/team/Staff_getInquestPerson', {}, function (params) {
-			params = params.leader;
+			var leader = params.leader;
+			var human = params.human;
 			var suspectStr = '';
-			for (let index = 0; index < params.length; index++) {
-				suspectStr += '<option value="' + params[index]["xsjsglxt_name"] + '">' + params[index]["xsjsglxt_name"] + '</option>';
+			for (let index = 0; index < leader.length; index++) {
+				suspectStr += '<option value="' + leader[index]["xsjsglxt_name"] + '">' + leader[index]["xsjsglxt_name"] + '</option>';
 			}
-			$('select[name="sence.snece_inquestPerson"]').html(suspectStr).selectpicker('refresh').selectpicker("val", persons);
+			for (let index = 0; index < human.length; index++) {
+				suspectStr += '<option value="' + human[index]["xsjsglxt_name"] + '">' + human[index]["xsjsglxt_name"] + '</option>';
+			}
+			$('select[name="sence.snece_inquestPerson"]').html(suspectStr).selectpicker('refresh');
 		}, 'json');
 		//物证提取人设定
 		$('select[name="resevidence.resevidence_extractPerson"]').html(function () {
