@@ -5,14 +5,14 @@
 <hibernate-mapping>
     <class name="com.xsjsglxt.domain.DO.xsjsglxt_breakecasesuspect" table="XSJSGLXT_BREAKECASESUSPECT">
         <id name="xsjsglxt_breakecaseSuspect_id" type="java.lang.String">
-            <column name="XSJSGLXT_BREAKECASESUSPECT_ID" />
+            <column name="xsjsglxt_breakecasesuspect_id" />
             <generator class="assigned" />
         </id>
         <property name="breakecaseSuspect_breakecase" type="java.lang.String">
-            <column name="BREAKECASESUSPECT_BREAKECASE" />
+            <column name="breakecasesuspect_breakecase" />
         </property>
         <property name="breakecaseSuspect_name" type="java.lang.String">
-            <column name="BREAKECASESUSPECT_NAME" />
+            <column name="breakecasesuspect_name" />
         </property>
         <property name="breakecaseSuspect_IDnum" type="java.lang.String">
             <column name="BREAKECASESUSPECT_IDNUM" />

@@ -91,7 +91,7 @@ table tr td {
 						<td>发案辖区</td>
 					</tr>
 					<tr class="tableBody">
-						<td>{{ caseInfor.case_receivingAlarmDate }}</td>
+						<td>{{ caseInfor.case_receivingAlarmDate | returnAlarmTime }}</td>
 						<td>{{ caseInfor.case_address }}</td>
 						<td>{{ caseInfor.case_classify }}</td>
 						<td>{{ caseInfor.case_totalCategory }}</td>

@@ -1066,6 +1066,6 @@ i {
 		minDate : '1990/01/01', // 设置最小日期
 		maxDate : '2030/01/01', // 设置最大日期
 	});
-	//document.documentElement.scrollTop=1000;
+	document.documentElement.scrollTop=$('#evidence-info').offset().top-$('#navbar').height();
 </script>
 </html>

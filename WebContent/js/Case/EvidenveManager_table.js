@@ -19,6 +19,14 @@ window.onload = function() {
 			'picture' : {},
 			'MandataDTOS' : {},
 			'CaseCheckDTOS' : {}
+		},
+		filters : {
+			returnAlarmTime : function(value) {
+				if (!value)
+					return ''
+				value = value.substring(0, 10);
+				return value;
+			}
 		}
 	});
 	loadDataCaseT();

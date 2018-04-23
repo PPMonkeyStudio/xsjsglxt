@@ -114,4 +114,6 @@ public interface SenceDao {
 
 	public void updateFileName(String newFileName, String filePosition, xsjsglxt_case case1);
 
+	public void deleteHandle(xsjsglxt_case xsjsglxt_case);
+
 }
