@@ -118,6 +118,14 @@ $(function () {
 	})
 	//中对长和办案民警
 	$("#Handle_input").on('show.bs.modal', function () {
+		$.post('/xsjsglxt/case/Case_AllCase', {}, function (Case_data) {
+			//所有案件循环
+			var option = '';
+			for (var len = 0; len < Case_data.length; len++) {
+				option += '<option value="' + Case_data[len].xsjsglxt_case_id + '">' + Case_data[len].case_name + '</option>';
+			}
+			$('select[name="handle.handle_Case"]').html(option).selectpicker('refresh');
+		}, 'json');
 		$.post('/xsjsglxt/team/Staff_getHandleCenter', {}, function (msg) {
 			$('select[name="handle.handle_squadronleader"]').html(function () {
 				var option = "";
@@ -139,7 +147,13 @@ $(function () {
 	})
 
 	$('.handle_input').click(function () {
-		$.post('/xsjsglxt/case/Handle_saveHandle', $('#Handle_input form').serialize(), function (xhr) {
+		var handl_data = $('#Handle_input form').serialize();
+		var dta = $('input[name="handle.handle_StartTimeaOfDetention" ]').val();
+		var day = $('select[name="handle.handle_detentionDay"]').val();
+		var time_end = '&handle.handle_EndTimeaOfDetention=' + addDate(dta, day);
+		handl_data += '&handle.handle_administrativeCase=' + $('select[name="handle.handle_Case"] option:selected').text();
+		handl_data += time_end;
+		$.post('/xsjsglxt/case/Handle_saveHandle', handl_data, function (xhr) {
 			$('#Handle_input').modal('hide');
 			if (xhr == "success") {
 				toastr.success("添加成功！");
@@ -168,7 +182,7 @@ function get_ListHandleInformationByPageAndSearch(data) {
 			str += '<tr class="tr_select">';
 			str += '<td style="padding-left: 5px;"><input class="form-control" id="' + Handle[len].xsjsglxt_handle_id + '" type="checkbox"></td>'
 			str += '<td style="padding-left: 5px;">' + Handle[len].handle_orderNumber + '</td>';
-			str += '<td>' + Handle[len].handle_administrativeCase + '</td>';
+			str += '<td>' + (Handle[len].handle_administrativeCase).replace('萍乡市安源区', '') + '</td>';
 			str += '<td>' + Handle[len].handle_suspectName + '</td>';
 			str += '<td>' + Handle[len].handle_administrativeAttachment + '</td>';
 			str += '<td>' + Handle[len].handle_arrest + '</td>';
@@ -196,6 +210,21 @@ function get_ListHandleInformationByPageAndSearch(data) {
 		page_infomantion.HavePrePage = xhr_data.HavePrePage; // 是否有上一页
 		page_infomantion.HaveNextPage = xhr_data.HaveNextPage; // 是否有下一页
 	}, 'json')
+}
+
+//日期加减
+function addDate(date, days) {
+	var d = new Date(date);
+	d.setDate(d.getDate() + parseInt(days));
+	var m_ = d.getMonth() + 1;
+	var day_ = d.getDate();
+	if (day_ < 10) {
+		day_ = '0' + day_;
+	}
+	if (m_ < 10) {
+		m_ = '0' + m_;
+	}
+	return d.getFullYear() + '-' + m_ + '-' + day_;
 }
 
 //radio

@@ -765,6 +765,8 @@ function chose_labe(params) {
 function buildCase_chose(params) {
 	if ($(params).val() == 1) {
 		$('input[name="case1.case_register"]').val(1);
+		//修改立案时间
+		$.post('/xsjsglxt/case/Case_updateCaseTime', { "case1.xsjsglxt_case_id": case1_id }, function (msg) { }, 'text');
 	} else {
 		$('input[name="case1.case_register"]').val(0);
 	}
