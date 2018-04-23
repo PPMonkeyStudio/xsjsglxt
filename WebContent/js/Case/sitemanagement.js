@@ -93,23 +93,22 @@ $(function () {
 							}
 						});
 				if (HaveDate) {
-					$
-						.ajax({
-							url: "/xsjsglxt/case/Case_remove_SenceInformationList",
-							type: "POST",
-							contentType: false,
-							processData: false,
-							data: formData,
-							dataType: 'text',
-							success: function (msg) {
-								if (msg == 'success') {
-									toastr.info('删除成功');
-									get_ListSneceInformationByPageAndSearch(query_data);
-								} else {
-									toastr.error('删除失败');
-								}
+					$.ajax({
+						url: "/xsjsglxt/case/Case_remove_SenceInformationList",
+						type: "POST",
+						contentType: false,
+						processData: false,
+						data: formData,
+						dataType: 'text',
+						success: function (msg) {
+							if (msg == 'success') {
+								toastr.info('删除成功');
+								get_ListSneceInformationByPageAndSearch(query_data);
+							} else {
+								toastr.error('删除失败');
 							}
-						});
+						}
+					});
 				} else {
 					toastr.info('未选择数据');
 				}
@@ -198,7 +197,6 @@ function get_ListSneceInformationByPageAndSearch(data) {
 function dynamic_query(params) {
 	query_data[$(params).attr('query_name')] = $(params).val();
 	get_ListSneceInformationByPageAndSearch(query_data);
-	query_data[$(params).attr('query_name')] = '';
 }
 
 // 首页

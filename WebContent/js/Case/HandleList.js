@@ -1,44 +1,44 @@
 var query_data = {
-	"page_list_HandleInformation.pageIndex" : "1",
+	"page_list_HandleInformation.pageIndex": "1",
 	//拘留起始时间
-	"page_list_HandleInformation.handle_StartTimeaOfDetention_start_time" : "",
-	"page_list_HandleInformation.handle_StartTimeaOfDetention_stop_time" : "",
+	"page_list_HandleInformation.handle_StartTimeaOfDetention_start_time": "",
+	"page_list_HandleInformation.handle_StartTimeaOfDetention_stop_time": "",
 	//逮捕时间
-	"page_list_HandleInformation.handle_arrestTime_start_time" : "",
-	"page_list_HandleInformation.handle_arrestTime_stop_time" : "",
+	"page_list_HandleInformation.handle_arrestTime_start_time": "",
+	"page_list_HandleInformation.handle_arrestTime_stop_time": "",
 	//起诉时间
-	"page_list_HandleInformation.handle_prosecuteTime_start_time" : "",
-	"page_list_HandleInformation.handle_prosecuteTime_stop_time" : "",
+	"page_list_HandleInformation.handle_prosecuteTime_start_time": "",
+	"page_list_HandleInformation.handle_prosecuteTime_stop_time": "",
 	//退查时间
-	"page_list_HandleInformation.handle_checkbackTime_start_time" : "",
-	"page_list_HandleInformation.handle_checkbackTime_stop_time" : "",
+	"page_list_HandleInformation.handle_checkbackTime_start_time": "",
+	"page_list_HandleInformation.handle_checkbackTime_stop_time": "",
 	//取保候审时间
-	"page_list_HandleInformation.handle_pbatTime_start_time" : "",
-	"page_list_HandleInformation.handle_pbatTime_stop_time" : "",
+	"page_list_HandleInformation.handle_pbatTime_start_time": "",
+	"page_list_HandleInformation.handle_pbatTime_stop_time": "",
 	//监视居住时间
-	"page_list_HandleInformation.handle_lhusTime_start_time" : "",
-	"page_list_HandleInformation.handle_lhusTime_stop_time" : "",
+	"page_list_HandleInformation.handle_lhusTime_start_time": "",
+	"page_list_HandleInformation.handle_lhusTime_stop_time": "",
 	//拘留天数
-	"page_list_HandleInformation.handle_detentionDay" : "",
+	"page_list_HandleInformation.handle_detentionDay": "",
 	//行政案件名称
-	"page_list_HandleInformation.handle_administrativeCase" : "",
+	"page_list_HandleInformation.handle_administrativeCase": "",
 	//中队长
-	"page_list_HandleInformation.handle_squadronleader" : "",
+	"page_list_HandleInformation.handle_squadronleader": "",
 	//办案民警
-	"page_list_HandleInformation.handle_PoliceInHandlingCases" : "",
+	"page_list_HandleInformation.handle_PoliceInHandlingCases": "",
 };
 //当前页面分页信息
 var page_infomantion = {
-	pageIndex : 1,
-	totalRecords : 1,
-	pageSize : 20,
-	totalPages : 1,
-	HavePrePage : false,
-	HaveNextPage : false,
+	pageIndex: 1,
+	totalRecords: 1,
+	pageSize: 20,
+	totalPages: 1,
+	HavePrePage: false,
+	HaveNextPage: false,
 }
 
 //tr_select
-var tr_select = function() {
+var tr_select = function () {
 	var input = $(this).find('input[type="checkbox"]');
 	if (input.is(':checked')) {
 		input.removeAttr('checked');
@@ -46,29 +46,29 @@ var tr_select = function() {
 		input.attr('checked', 'checked');
 	}
 }
-var Handle_delete = function() {
+var Handle_delete = function () {
 	var formData = new FormData();
-	$('.Handle_table_info tbody input:checked').each(function() {
+	$('.Handle_table_info tbody input:checked').each(function () {
 		formData.append("useHandleInformationNumList", $(this).attr('id'));
 	});
 	$.confirm({
-		title : '确定删除?',
-		smoothContent : false,
-		content : false,
-		autoClose : 'cancelAction|10000',
-		buttons : {
-			deleteUser : {
-				btnClass : 'btn-danger',
-				text : '确认',
-				action : function() {
+		title: '确定删除?',
+		smoothContent: false,
+		content: false,
+		autoClose: 'cancelAction|10000',
+		buttons: {
+			deleteUser: {
+				btnClass: 'btn-danger',
+				text: '确认',
+				action: function () {
 					$.ajax({
-						url : '/xsjsglxt/case/Handle_remove_HandleInformationList',
-						type : 'post',
-						data : formData,
-						processData : false,
-						contentType : false,
-						dataType : 'text',
-						success : function(data, text) {
+						url: '/xsjsglxt/case/Handle_remove_HandleInformationList',
+						type: 'post',
+						data: formData,
+						processData: false,
+						contentType: false,
+						dataType: 'text',
+						success: function (data, text) {
 							if (text == "success") {
 								toastr.success("删除成功！");
 								//获取对应option中的value值
@@ -80,9 +80,9 @@ var Handle_delete = function() {
 					});
 				}
 			},
-			cancelAction : {
-				btnClass : 'btn-blue',
-				text : '取消',
+			cancelAction: {
+				btnClass: 'btn-blue',
+				text: '取消',
 			}
 		}
 	});
@@ -90,8 +90,8 @@ var Handle_delete = function() {
 
 
 //办案查询
-var handle_query = function() {
-	$.each($('#Handle_query form').serializeArray(), function(k, v) {
+var handle_query = function () {
+	$.each($('#Handle_query form').serializeArray(), function (k, v) {
 		query_data[v.name] = v.value;
 	});
 	$("#Handle_query").modal('hide');
@@ -99,25 +99,47 @@ var handle_query = function() {
 	toastr.success('查询成功!');
 }
 
-$(function() {
+$(function () {
 	get_ListHandleInformationByPageAndSearch(query_data);
 
 	//Handle_delete删除办案管理事件
 	$('.Handle_delete').click(Handle_delete);
 
 	//办案添加
-	$('#Handle_input').on('show.bs.modal', function() {
-		$.post('/xsjsglxt/case/Handle_xuhao', function(json_data, text_data) {
+	$('#Handle_input').on('show.bs.modal', function () {
+		$.post('/xsjsglxt/case/Handle_xuhao', function (json_data, text_data) {
 			$('input[name="handle.handle_orderNumber"]').val(json_data);
 		}, 'json');
 	})
 	//清除内容
-	$(".modal").on('hidden.bs.modal', function() {
+	$(".modal").on('hidden.bs.modal', function () {
 		$(this).find('input[type!="radio"][type!="hidden"]').val('');
 		$(this).find('select').find('option:first-child').attr("selected", "selected");
 	})
-	$('.handle_input').click(function() {
-		$.post('/xsjsglxt/case/Handle_saveHandle', $('#Handle_input form').serialize(), function(xhr) {
+	//中对长和办案民警
+	$("#Handle_input").on('show.bs.modal', function () {
+		$.post('/xsjsglxt/team/Staff_getHandleCenter', {}, function (msg) {
+			$('select[name="handle.handle_squadronleader"]').html(function () {
+				var option = "";
+				for (const key in msg) {
+					option += `<option value="${msg[key]["xsjsglxt_name"]}">${msg[key]["xsjsglxt_name"]}</option>`;
+				}
+				return option;
+			}).selectpicker('refresh');
+		}, 'json');
+		$.post('/xsjsglxt/team/Staff_getHandleCheck', {}, function (msg) {
+			$('select[name="handle.handle_PoliceInHandlingCases"]').html(function () {
+				var option = "";
+				for (const key in msg) {
+					option += `<option value="${msg[key]["xsjsglxt_name"]}">${msg[key]["xsjsglxt_name"]}</option>`;
+				}
+				return option;
+			}).selectpicker('refresh');
+		}, 'json');
+	})
+
+	$('.handle_input').click(function () {
+		$.post('/xsjsglxt/case/Handle_saveHandle', $('#Handle_input form').serialize(), function (xhr) {
 			$('#Handle_input').modal('hide');
 			if (xhr == "success") {
 				toastr.success("添加成功！");
@@ -132,14 +154,14 @@ $(function() {
 	//办案查询
 	$('.handle_query').click(handle_query);
 	//清空查询
-	$('.handle_empty').click(function() {
+	$('.handle_empty').click(function () {
 		$('#Handle_query input,select').val("");
 	});
 
 })
 
 function get_ListHandleInformationByPageAndSearch(data) {
-	$.post('/xsjsglxt/case/Handle_ListHandleInformationByPageAndSearch', data, function(xhr_data) {
+	$.post('/xsjsglxt/case/Handle_ListHandleInformationByPageAndSearch', data, function (xhr_data) {
 		var Handle = xhr_data.listHandle;
 		var str = '';
 		for (var len = 0; len < Handle.length; len++) {

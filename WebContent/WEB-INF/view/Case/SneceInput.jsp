@@ -165,7 +165,7 @@
 								style="width: 50px; float: left; margin-top: 6px;"
 								class="form-control" type="text"><span
 								style="margin-top: 6px;margin-left:6px; float:left;">℃</span></td>
-							<td>发案辖区</td>
+							<td width="75px;">发案辖区</td>
 							<td><select name="case1.case_jurisdiction"
 								class=" form-control" style="width:220px; margin:0px;">
 									<option value=""></option>
@@ -183,7 +183,7 @@
 									<option value="五陂下派出所">五陂下派出所</option>
 									<option value="其他">其他</option>
 							</select></td>
-							<td>作案时段</td>
+							<td style="padding-left:0px;">作案时段</td>
 							<td><select name="case1.case_makeTime" class=" form-control">
 									<option value=""></option>
 									<option value="昼">昼</option>
@@ -230,7 +230,7 @@
 								class="specific_space form-control">
 									<option value="">具体处所</option>
 							</select></td>
-							<td width="85">进出口</td>
+							<td width="75px;">进出口</td>
 							<td><select name="case1.case_exit" class=" form-control">
 									<option value=""></option>
 									<option value="窗进窗出">窗进窗出</option>

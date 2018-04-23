@@ -52,10 +52,14 @@ $(function () {
 	});
 
 	$.post('/xsjsglxt/team/Staff_getInquestPerson', {}, function (params) {
-		params = params.leader;
+		var leader = params.leader;
+		var human = params.human;
 		var suspectStr = '';
-		for (let index = 0; index < params.length; index++) {
-			suspectStr += '<option value="' + params[index]["xsjsglxt_name"] + '">' + params[index]["xsjsglxt_name"] + '</option>';
+		for (let index = 0; index < leader.length; index++) {
+			suspectStr += '<option value="' + leader[index]["xsjsglxt_name"] + '">' + leader[index]["xsjsglxt_name"] + '</option>';
+		}
+		for (let index = 0; index < human.length; index++) {
+			suspectStr += '<option value="' + human[index]["xsjsglxt_name"] + '">' + human[index]["xsjsglxt_name"] + '</option>';
 		}
 		$('select[name="sence.snece_inquestPerson"]').html(suspectStr).selectpicker('refresh');
 	}, 'json');

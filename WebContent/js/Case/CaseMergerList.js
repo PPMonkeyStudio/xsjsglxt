@@ -175,7 +175,6 @@ function get_ListParallelInformationByPageAndSearch(data) {
 function dynamic_query(params) {
 	query_data[$(params).attr('query_name')] = $(params).val();
 	get_ListParallelInformationByPageAndSearch(query_data);
-	query_data[$(params).attr('query_name')] = '';
 }
 
 //单选框的点击事件
