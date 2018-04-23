@@ -40,8 +40,8 @@ i {
 			</div>
 			<div class="panel-body">
 				<div class="operation" style="margin-bottom: 6px;">
-					<button onclick="<%=basePath%>case/Case_page_SiteManagement"
-						type="button" class="btn btn-default button button_return">
+					<button onclick="back();" type="button"
+						class="btn btn-default button button_return">
 						<i class="fa fa-reply"></i> 返回列表
 					</button>
 					<button type="button" class="btn btn-default button button_change"
