@@ -28,6 +28,7 @@
 .Handle_table_info tbody tr td {
 	text-align: center;
 	font-size: 14px;
+	cursor: pointer;
 }
 
 #Handle_input table {
@@ -40,6 +41,10 @@
 
 .tr_back {
 	background-color: silver;
+}
+
+.page_info a {
+	cursor: pointer;
 }
 </style>
 
@@ -83,7 +88,8 @@
 								class="table table-hover table-condensed table-bordered Handle_table_info">
 								<thead>
 									<tr>
-										<td style="padding-left: 5px;" rowspan="2">选择</td>
+										<td style="padding-left: 5px;" rowspan="2"><input
+											type="checkbox" onclick="selectAll(this)"><br>全选</td>
 										<td style="padding-left: 5px;" rowspan="2"><span
 											style="line-height: 70px;">序号</span></td>
 										<td rowspan="2"><span style="line-height: 70px;">案件名称</span></td>
@@ -175,7 +181,7 @@
 										</label><label style="float: left; margin-left: 10px;"
 											class="fancy-radio"> <input name="register"
 												onclick="chose(this)" type="radio" value="否"> <span><i></i>否</span>
-										</label> <input type="hidden"
+										</label> <input type="hidden" onchange="invertSelection(this)"
 											name="handle.handle_administrativeAttachment"></td>
 										<td>拘留起始时间</td>
 										<td><input class="form-control mydate"
@@ -196,7 +202,8 @@
 										</label><label style="float: left; margin-left: 10px;"
 											class="fancy-radio"> <input name="handle_arrest"
 												onclick="chose(this)" type="radio" value="否"> <span><i></i>否</span>
-										</label> <input type="hidden" name="handle.handle_arrest"></td>
+										</label> <input type="hidden" name="handle.handle_arrest"
+											onchange="invertSelection(this)"></td>
 										<td>逮捕时间</td>
 										<td><input class="form-control mydate"
 											name="handle.handle_arrestTime" type="text" /></td>
@@ -209,7 +216,8 @@
 										</label><label style="float: left; margin-left: 10px;"
 											class="fancy-radio"> <input name="handle_prosecute"
 												onclick="chose(this)" type="radio" value="否"> <span><i></i>否</span>
-										</label> <input type="hidden" name="handle.handle_prosecute"></td>
+										</label> <input type="hidden" name="handle.handle_prosecute"
+											onchange="invertSelection(this)"></td>
 										<td>起诉时间</td>
 										<td><input class="form-control mydate"
 											name="handle.handle_prosecuteTime" type="text" /></td>
@@ -222,7 +230,8 @@
 										</label><label style="float: left; margin-left: 10px;"
 											class="fancy-radio"> <input name="handle_checkback"
 												onclick="chose(this)" type="radio" value="否"> <span><i></i>否</span>
-										</label> <input type="hidden" name="handle.handle_checkback"></td>
+										</label> <input type="hidden" name="handle.handle_checkback"
+											onchange="invertSelection(this)"></td>
 										<td>退查时间</td>
 										<td><input class="form-control mydate"
 											name="handle.handle_checkbackTime" type="text" /></td>
@@ -235,7 +244,8 @@
 										</label><label style="float: left; margin-left: 10px;"
 											class="fancy-radio"> <input name="handle_pbat"
 												onclick="chose(this)" type="radio" value="否"> <span><i></i>否</span>
-										</label> <input type="hidden" name="handle.handle_pbat"></td>
+										</label> <input type="hidden" name="handle.handle_pbat"
+											onchange="invertSelection(this)"></td>
 										<td>取保候审时间</td>
 										<td><input class="form-control mydate"
 											name="handle.handle_pbatTime" type="text" /></td>
@@ -248,7 +258,8 @@
 										</label><label style="float: left; margin-left: 10px;"
 											class="fancy-radio"> <input name="handle_lhus"
 												onclick="chose(this)" type="radio" value="否"> <span><i></i>否</span>
-										</label> <input type="hidden" name="handle.handle_lhus"></td>
+										</label> <input type="hidden" name="handle.handle_lhus"
+											onchange="invertSelection(this)"></td>
 										<td>监视居住时间</td>
 										<td><input class="form-control mydate"
 											name="handle.handle_lhusTime" type="text" /></td>
@@ -296,6 +307,8 @@
 					</form>
 				</div>
 				<div class="modal-footer">
+					<button id="" style="display: none;" type="button"
+						class="btn btn-primary handle_modify">修改</button>
 					<button type="button" class="btn btn-primary handle_input">添加</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 				</div>
