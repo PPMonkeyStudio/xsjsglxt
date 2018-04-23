@@ -40,8 +40,8 @@ i {
 			</div>
 			<div class="panel-body">
 				<div class="operation" style="margin-bottom: 6px;">
-					<button onclick="javascript:history.go(-1)" type="button"
-						class="btn btn-default button button_return">
+					<button onclick="<%=basePath%>case/Case_page_SiteManagement"
+						type="button" class="btn btn-default button button_return">
 						<i class="fa fa-reply"></i> 返回列表
 					</button>
 					<button type="button" class="btn btn-default button button_change"
@@ -406,7 +406,10 @@ i {
 												<thead>
 													<tr>
 														<th>被盗物名称</th>
-														<th>备注</th>
+														<th>型号</th>
+														<th>丢失数量</th>
+														<th>价值</th>
+														<th>特征描述</th>
 														<th>操作</th>
 													</tr>
 												</thead>
@@ -709,6 +712,21 @@ i {
 										<td><div style="padding-top:6px; float: left;width: 15%;">物品名称</div>
 											<input name="lost.lost_name" class="form-control" type="text"
 											refresh="text" style="width: 85%;"></td>
+									</tr>
+									<tr>
+										<td><div style="padding-top:6px; float: left;width: 15%;">型号</div>
+											<input name="lost.lost_model" class="form-control"
+											type="text" refresh="text" style="width: 85%;"></td>
+									</tr>
+									<tr>
+										<td><div style="padding-top:6px; float: left;width: 15%;">丢失数量</div>
+											<input name="lost.lost_number" class="form-control"
+											type="text" refresh="text" style="width: 85%;"></td>
+									</tr>
+									<tr>
+										<td><div style="padding-top:6px; float: left;width: 15%;">价值</div>
+											<input name="lost.lost_price" class="form-control"
+											type="text" refresh="text" style="width: 85%;"></td>
 									</tr>
 									<tr>
 										<td><div style="padding-top:6px; float: left;width: 15%;">备注</div>
@@ -1066,6 +1084,6 @@ i {
 		minDate : '1990/01/01', // 设置最小日期
 		maxDate : '2030/01/01', // 设置最大日期
 	});
-	document.documentElement.scrollTop=$('#evidence-info').offset().top-$('#navbar').height();
+	document.documentElement.scrollTop = $('#evidence-info').offset().top - $('#navbar').height();
 </script>
 </html>
