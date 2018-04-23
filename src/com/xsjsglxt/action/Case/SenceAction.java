@@ -71,6 +71,16 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	private String downloadFileName;
 
 	/**
+	 * @author 孙毅
+	 * 修改内容：修改立案时间
+	 * 修改时间：2018-04-23
+	 */
+
+	public void updateCaseTime() {
+		senceService.updateCaseTime(case1);
+	}
+
+	/**
 	 * 上传物证图片
 	 * 
 	 */
