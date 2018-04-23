@@ -77,8 +77,6 @@
 					<div class="panel">
 						<div class="panel-heading">
 							<h3 class="panel-title">破案列表</h3>
-							<p class="text-primary query_prompting_info">notding to
-								query.</p>
 						</div>
 						<div class="panel-body">
 							<table
@@ -274,14 +272,16 @@
 									</tr>
 									<tr>
 										<td>中队长</td>
-										<td colspan="2"><input class="form-control"
-											name="handle.handle_squadronleader" type="text"> <%-- <select name="handle.handle_squadronleader"
-											class="form-control selectpicker"></select> --%></td>
+										<td colspan="2">
+											<!-- <input class="form-control"
+											name="handle.handle_squadronleader" type="text"> --> <select
+											name="handle.handle_squadronleader" class="form-control"></select>
+										</td>
 										<td>办案民警</td>
-										<td colspan="2"><input class="form-control"
-											name="handle.handle_PoliceInHandlingCases" type="text">
-											<%-- <select name="handle.handle_PoliceInHandlingCases"
-											class="form-control selectpicker"></select> --%></td>
+										<td colspan="2"><!-- <input class="form-control"
+											name="handle.handle_PoliceInHandlingCases" type="text"> -->
+											<select name="handle.handle_PoliceInHandlingCases"
+											class="form-control"></select></td>
 									</tr>
 								</tbody>
 							</table>
