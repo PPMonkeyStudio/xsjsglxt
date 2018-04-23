@@ -26,7 +26,7 @@ public class BreakecaseServiceImpl implements BreakecaseService {
 	@Override
 	public boolean saveBreakeCase(xsjsglxt_breakecase breakeCase, List<xsjsglxt_breakecasesuspect> suspectList) {
 		// TODO Auto-generated method stub
-		breakeCase.setXsjsglxt_breakecase_id(TeamUtil.getUuid());
+
 		breakeCase.setBreakecase_gmt_create(TeamUtil.getStringSecond());
 		breakeCase.setBreakecase_gmt_modified(TeamUtil.getStringSecond());
 		String result = breakecaseDao.saveBreakeCase(breakeCase);

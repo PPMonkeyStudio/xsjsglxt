@@ -224,6 +224,7 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 			hql = hql + " and breake.breakecase_according like '%" + breakeCaseListVO.getQuery_breake_according()
 					+ "%'";
 		hql = hql + " order by breake.breakecase_caseTime desc";
+		System.out.println(hql);
 		List<BreakeCasePageDTO> pageDTO = session.createQuery(hql)
 				.setFirstResult((breakeCaseListVO.getCurrPage() - 1) * breakeCaseListVO.getPageSize())
 				.setMaxResults(breakeCaseListVO.getPageSize()).list();
