@@ -18,7 +18,6 @@ $(function () {
 			}
 			$('input[name="sence.snece_inquestId"]').val(xhr.substring(0, 10) + tear + month + xhr.substring(16, xhr.length));
 		});
-
 	}, 'json')
 
 	$('.sneceInformation_finish').click(function () {
@@ -31,11 +30,15 @@ $(function () {
 			}
 		});
 		if (isValue) {
+			var sence_data = $('#sneceInformation').serialize();
+			if ($('input[name="case1.case_register"]').val() == 1) {
+				sence_data += '&case1.case_registerTime=' + new Date().Format('yyyy-MM-dd');
+			}
 			$.ajax({
 				url: "/xsjsglxt/case/Case_saveSenceInformation",
 				type: "post",
 				timeout: 3000,
-				data: $('#sneceInformation').serialize(),
+				data: sence_data,
 				dataType: "json",
 				success: function (xhr_data) {
 					var reg = /^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$/;

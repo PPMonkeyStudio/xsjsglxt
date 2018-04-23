@@ -61,7 +61,7 @@
 					<button style="margin-left: 15px;" type="button"
 						class="btn btn-default" data-toggle="modal"
 						data-target="#Handle_query">
-						<i class="fa fa-plus-square"></i> 刑事破案查询
+						<i class="fa fa-plus-square"></i> 办案查询
 					</button>
 					<button data-toggle="modal" data-target="#Handle_input"
 						style="margin-left: 15px;" type="button" class="btn btn-default">
@@ -86,11 +86,11 @@
 										<td style="padding-left: 5px;" rowspan="2">选择</td>
 										<td style="padding-left: 5px;" rowspan="2"><span
 											style="line-height: 70px;">序号</span></td>
-										<td rowspan="2"><span style="line-height: 70px;">行政案件名称</span></td>
-										<td rowspan="2"><span style="line-height: 70px;">违法嫌疑人姓名</span></td>
+										<td rowspan="2"><span style="line-height: 70px;">案件名称</span></td>
+										<td rowspan="2"><span style="line-height: 70px;">嫌疑人</span></td>
 										<td colspan="6"><span>处理方式</span></td>
 										<td colspan="4"><span>涉案财物</span></td>
-										<td style="padding-left: 5px;" colspan="2"><span>案件承办人员</span></td>
+										<td style="padding-left: 5px;" colspan="2"><span>承办人员</span></td>
 									</tr>
 									<tr>
 										<td style="padding-left: 5px;"><span>行政拘留</span></td>
@@ -151,14 +151,19 @@
 									<tr>
 										<td>序号</td>
 										<td><input class="form-control" readonly="readonly"
-											name="handle.handle_orderNumber" type="text"></td>
+											style="width: 100px;" name="handle.handle_orderNumber"
+											type="text"></td>
 										<td>案件名称</td>
-										<td><input class="form-control"
-											name="handle.handle_administrativeCase" type="text"></td>
+										<td><select class="form-control" data-live-search="true"
+											name="handle.handle_Case"></select></td>
 										<td>违法嫌疑人姓名</td>
 										<td><input class="form-control"
 											name="handle.handle_suspectName" type="text"></td>
 									</tr>
+								</tbody>
+							</table>
+							<table class="table table-condensed" width="100%">
+								<tbody>
 									<tr>
 										<td style="text-align: center;" colspan="6">处理方式</td>
 									</tr>
@@ -278,10 +283,12 @@
 											name="handle.handle_squadronleader" class="form-control"></select>
 										</td>
 										<td>办案民警</td>
-										<td colspan="2"><!-- <input class="form-control"
-											name="handle.handle_PoliceInHandlingCases" type="text"> -->
-											<select name="handle.handle_PoliceInHandlingCases"
-											class="form-control"></select></td>
+										<td colspan="2">
+											<!-- <input class="form-control"
+											name="handle.handle_PoliceInHandlingCases" type="text"> --> <select
+											name="handle.handle_PoliceInHandlingCases"
+											class="form-control"></select>
+										</td>
 									</tr>
 								</tbody>
 							</table>
