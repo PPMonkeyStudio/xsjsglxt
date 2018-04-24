@@ -1,5 +1,6 @@
 package com.xsjsglxt.dao.impl.Case;
 
+import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -7,12 +8,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.Case.HandleDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_handle;
+import com.xsjsglxt.domain.DO.xsjsglxt_introduce_letter;
+import com.xsjsglxt.domain.VO.Case.IntroduceLetterVO;
 import com.xsjsglxt.domain.VO.Case.page_list_HandleInformationVO;
 
 public class HandleDaoImpl implements HandleDao {
@@ -415,6 +419,99 @@ public class HandleDaoImpl implements HandleDao {
 		return session
 				.createQuery("from xsjsglxt_handle where handle_EndTimeaOfDetention='" + sdf.format(c.getTime()) + "'")
 				.list();
+	}
+
+	// 通过筛选年份过的介绍信最大的id
+	@Override
+	public int getLetterMaxId() {
+		// TODO Auto-generated method stub
+		Calendar c = Calendar.getInstance();
+		int currYear = c.get(Calendar.YEAR);
+		c.clear();
+		String hql = "select count(*) from xsjsglxt_introduce_letter where introduce_letter_serial_number regexp '^"
+				+ currYear + "'";
+		Session session = this.getSession();
+		BigInteger count = (BigInteger) session.createSQLQuery(hql).uniqueResult();
+		return count.intValue();
+	}
+
+	// 保存介绍信
+	@Override
+	public String saveIntroduceLetter(xsjsglxt_introduce_letter xsjsglxt_introduce_letter) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		String returnId = (String) session.save(xsjsglxt_introduce_letter);
+		return returnId;
+	}
+
+	@Override
+	public void deleteIntroduceLetter(String string) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		xsjsglxt_introduce_letter d = (xsjsglxt_introduce_letter) session.get(xsjsglxt_introduce_letter.class, string);
+		session.delete(d);
+		String hql = "update xsjsglxt_introduce_letter set introduce_letter_serial_number = introduce_letter_serial_number-1 where introduce_letter_serial_number>'"
+				+ d.getIntroduce_letter_serial_number() + "' and introduce_letter_serial_number regexp '^"
+				+ d.getIntroduce_letter_serial_number().substring(0, 4) + "'";
+		session.createSQLQuery(hql).executeUpdate();
+	}
+
+	@Override
+	public xsjsglxt_introduce_letter getIntroduceLetterById(String xsjsglxt_introduce_letter_id) {
+		// TODO Auto-generated method stub
+
+		return (xsjsglxt_introduce_letter) this.getSession().get(xsjsglxt_introduce_letter.class,
+				xsjsglxt_introduce_letter_id);
+	}
+
+	@Override
+	public String updateIntroduceLetter(xsjsglxt_introduce_letter letter) {
+		// TODO Auto-generated method stub
+
+		Session session = this.getSession();
+		session.clear();
+		try {
+			session.saveOrUpdate(letter);
+			return "updateSuccess";
+		} catch (HibernateException e) {
+			// TODO: handle exception
+			return "updateError";
+		}
+	}
+
+	@Override
+	public int getCountByCondition(IntroduceLetterVO letterVO) {
+		// TODO Auto-generated method stub
+
+		String hql = "select count(*) from xsjsglxt_introduce_letter where 1=1";
+		if (letterVO.getQueryContent() != null && !"".equals(letterVO.getQueryContent()))
+			hql = hql + " and (introduce_letter_tounit like '%" + letterVO.getQueryContent() + "%' or "
+					+ "introduce_letter_introduceMan like '%" + letterVO.getQueryContent() + "%')";
+		if (letterVO.getQuery_time_start() != null && !"".equals(letterVO.getQuery_time_start()))
+			hql = hql + " and introduce_time >='" + letterVO.getQuery_time_start() + "'";
+		if (letterVO.getQuery_time_end() != null && !"".equals(letterVO.getQuery_time_start()))
+			hql = hql + " and introduce_time<='" + letterVO.getQuery_time_end() + "'";
+
+		Session session = this.getSession();
+		long count = (long) session.createQuery(hql).uniqueResult();
+		return new Long(count).intValue();
+	}
+
+	@Override
+	public void getLetterByPage(IntroduceLetterVO letterVO) {
+		// TODO Auto-generated method stub
+		String hql = "from xsjsglxt_introduce_letter where 1=1";
+		if (letterVO.getQueryContent() != null && !"".equals(letterVO.getQueryContent()))
+			hql = hql + " and (introduce_letter_tounit like '%" + letterVO.getQueryContent() + "%' or "
+					+ "introduce_letter_introduceMan like '%" + letterVO.getQueryContent() + "%')";
+		if (letterVO.getQuery_time_start() != null && !"".equals(letterVO.getQuery_time_start()))
+			hql = hql + " and introduce_time >='" + letterVO.getQuery_time_start() + "'";
+		if (letterVO.getQuery_time_end() != null && !"".equals(letterVO.getQuery_time_start()))
+			hql = hql + " and introduce_time<='" + letterVO.getQuery_time_end() + "'";
+		hql = hql + " order by introduce_time " + letterVO.getQuery_time_sort();
+		Session session = this.getSession();
+		List<xsjsglxt_introduce_letter> letterList = session.createQuery(hql).list();
+		letterVO.setLetterList(letterList);
 	}
 
 }

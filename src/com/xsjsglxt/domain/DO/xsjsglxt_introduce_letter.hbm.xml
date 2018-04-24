@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-4-24 15:28:32 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_introduce_letter" table="XSJSGLXT_INTRODUCE_LETTER">
+        <id name="xsjsglxt_introduce_letter_id" type="java.lang.String">
+            <column name="XSJSGLXT_INTRODUCE_LETTER_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="introduce_letter_serial_number" type="java.lang.String">
+            <column name="INTRODUCE_LETTER_SERIAL_NUMBER" />
+        </property>
+        <property name="introduce_letter_tounit" type="java.lang.String">
+            <column name="INTRODUCE_LETTER_TOUNIT" />
+        </property>
+        <property name="introduce_letter_introduceMan" type="java.lang.String">
+            <column name="INTRODUCE_LETTER_INTRODUCEMAN" />
+        </property>
+        <property name="introduce_letter_number" type="java.lang.String">
+            <column name="INTRODUCE_LETTER_NUMBER" />
+        </property>
+        <property name="introduce_letter_reasons" type="java.lang.String">
+            <column name="INTRODUCE_LETTER_REASONS" />
+        </property>
+        <property name="introduce_time" type="java.lang.String">
+            <column name="INTRODUCE_TIME" />
+        </property>
+        <property name="introduce_time_limit" type="java.lang.String">
+            <column name="INTRODUCE_TIME_LIMIT" />
+        </property>
+        <property name="introduce_approve_man" type="java.lang.String">
+            <column name="INTRODUCE_APPROVE_MAN" />
+        </property>
+        <property name="introduce_approve_time" type="java.lang.String">
+            <column name="INTRODUCE_APPROVE_TIME" />
+        </property>
+        <property name="introduce_gmt_create" type="java.lang.String">
+            <column name="INTRODUCE_GMT_CREATE" />
+        </property>
+        <property name="introduce_gmt_modified" type="java.lang.String">
+            <column name="INTRODUCE_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>
