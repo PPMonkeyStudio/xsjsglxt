@@ -23,11 +23,15 @@
 a {
 	cursor: pointer;
 }
+
 i {
 	cursor: pointer;
 }
-table{
-border-collapse:collapse;}
+
+table {
+	border-collapse: collapse;
+}
+
 table tbody tr td {
 	color: black;
 }
@@ -39,35 +43,44 @@ table tbody tr td {
 table tr th {
 	border: 1px solid black;
 	word-break: break-all; /* 设置自动换行切不挤压其他td */
-	width:150px;
+	width: 150px;
 }
 
 table tr td {
 	border: 1px solid black;
 	word-break: break-all; /* 设置自动换行切不挤压其他td */
-	width:150px;
+	width: 150px;
 }
 </style>
 </head>
 <body>
-	<table id="tableContent" style="text-align: center; margin:0 auto; width: 920px; color: black;">
-						<tr>
-							<td rowspan="2">日期</td>
-							<td rowspan="2">带班领导</td>
-							<td colspan="3">值班人员</td>
-							<td rowspan="2">今日巡逻</td>		
-						</tr>
-						<tr><td>侦查民警</td><td>技术民警</td><td>辅警</td></tr>
-						<template v-for="schedulingDTO in vo.schedulingDTOList">
-						<tr>
-							<td>{{ schedulingDTO.scheduling_time }}</td>
-							<td>{{ schedulingDTO.scheduling_leader }}</td>
-							<td>{{ schedulingDTO.scheduling_main }}</td>
-							<td>{{ schedulingDTO.scheduling_mainTec }}</td>
-							<td>{{ schedulingDTO.scheduling_assistant }}</td>
-							<td>{{ schedulingDTO.scheduling_patrol }}</td>
-						</tr>
-						</template>
-				</table>
+	<table id="tableContent"
+		style="text-align: center; margin: 0 auto; width: 920px; color: black;">
+		<tr>
+			<td rowspan="2" style="width: 100px;">日期</td>
+			<td rowspan="2" style="width: 100px;">带班领导</td>
+			<td colspan="3" style="width: 300px;">值班人员</td>
+			<td rowspan="2" style="width: 200px;">今日巡逻</td>
+			<td rowspan="2" style="width: 200px;">今日加班</td>
+			<td rowspan="2" style="width: 200px;">今日外协</td>
+		</tr>
+		<tr>
+			<td>侦查民警</td>
+			<td>技术民警</td>
+			<td>辅警</td>
+		</tr>
+		<template v-for="schedulingDTO in vo.schedulingDTOList">
+		<tr>
+			<td>{{ schedulingDTO.scheduling_time }}</td>
+			<td>{{ schedulingDTO.scheduling_leader }}</td>
+			<td>{{ schedulingDTO.scheduling_main }}</td>
+			<td>{{ schedulingDTO.scheduling_mainTec }}</td>
+			<td>{{ schedulingDTO.scheduling_assistant }}</td>
+			<td>{{ schedulingDTO.scheduling_patrol }}</td>
+			<td>{{ schedulingDTO.scheduling_overtime }}</td>
+			<td>{{ schedulingDTO.scheduling_out_help }}</td>
+		</tr>
+		</template>
+	</table>
 </body>
 </html>

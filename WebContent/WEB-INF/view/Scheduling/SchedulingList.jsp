@@ -33,8 +33,6 @@ i {
 }
 
 table tbody tr td {
-	padding-left: 10px;
-	width: 300px;
 	color: black;
 }
 
@@ -43,12 +41,12 @@ table tbody tr td {
 }
 
 table tr th {
-	border: 1px solid black;
+	border-bottom: 1px solid  	#DCDCDC;
 	word-break: break-all; /* 设置自动换行切不挤压其他td */
 }
 
 table tr td {
-	border: 1px solid black;
+	border-bottom: 1px solid  	#DCDCDC;
 	word-break: break-all; /* 设置自动换行切不挤压其他td */
 }
 
@@ -101,10 +99,12 @@ table tr td {
 									onclick="selectAll(this)" type="checkbox" ><span style="">
 										全选 </span>
 							</label></td>
-							<td rowspan="2">日期</td>
-							<td rowspan="2">带班领导</td>
-							<td colspan="3">值班人员</td>
-							<td rowspan="2">今日巡逻</td>		
+							<td rowspan="2" style="width: 100px;">日期</td>
+							<td rowspan="2" style="width: 100px;">带班领导</td>
+							<td colspan="3" style="width: 300px;">值班人员</td>
+							<td rowspan="2" style="width: 200px;">今日巡逻</td>	
+							<td rowspan="2" style="width: 200px;">今日加班</td>	
+							<td rowspan="2" style="width: 200px;">今日外协</td>	
 						</tr>
 						<tr style="height:30;"><td>侦查民警</td><td>技术民警</td><td>辅警</td></tr>
 						
@@ -121,6 +121,8 @@ table tr td {
 							<td>{{ schedulingDTO.scheduling_mainTec }}</td>
 							<td>{{ schedulingDTO.scheduling_assistant }}</td>
 							<td>{{ schedulingDTO.scheduling_patrol }}</td>
+							<td>{{ schedulingDTO.scheduling_overtime }}</td>
+							<td>{{ schedulingDTO.scheduling_out_help }}</td>
 						</tr>
 						</template>
 					</tbody>

@@ -62,12 +62,16 @@ var updateScheduling = function(event) {
 				useBootstrap : false,
 				title : '<i class="fa fa-pencil-square-o"></i>修改排班',
 				type : 'green',
-				content : '<table class="table bordered-table"><tr><td>带班领导：</td><td style="text-align:center;" class="loadingLay"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></td><td class="contentName" style="display:none;"><select id="leader" style="width: 250px;" class="form-control selectpicker" data-live-search="true" title="请选择主班领导"></select></td></tr>'
+				content : '<table class="table bordered-table">'
+						+ '<tr><td>今日巡逻：</td><td class="loadingLay" style="text-align:center;"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></td><td class="contentName" style="display:none;"><select id="patrol" style="width: 250px;" data-dropup-auto="false" multiple class="form-control selectpicker" data-live-search="true" title="请选择巡逻人员"></select></td></tr>'
+						+ '<tr><td>今日加班：</td><td class="loadingLay"  style="text-align:center;"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></td><td class="contentName" style="display:none;"><select id="overtime" style="width: 250px;" data-dropup-auto="false" multiple class="form-control selectpicker" data-live-search="true" title="请选择加班人员"></select></td></tr>'
+						+ '<tr><td>今日外协：</td><td class="loadingLay"  style="text-align:center;"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></td><td class="contentName" style="display:none;"><select id="outHelp" style="width: 250px;" data-dropup-auto="false" multiple class="form-control selectpicker" data-live-search="true" title="请选择外协人员"></select></td></tr>'
+						+ '<tr><td>带班领导：</td><td style="text-align:center;" class="loadingLay"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></td><td class="contentName" style="display:none;"><select id="leader" style="width: 250px;" class="form-control selectpicker" data-live-search="true" title="请选择主班领导"></select></td></tr>'
 						+ '<tr><td>侦查民警：</td><td class="loadingLay" style="text-align:center;"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></td></td><td class="contentName" style="display:none;"><select id="main" style="width: 250px;" class="form-control selectpicker" data-live-search="true" title="请选择侦查民警"></select></td></tr>'
 						+ '<tr><td>技术民警：</td><td class="loadingLay" style="text-align:center;"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></td></td><td class="contentName" style="display:none;"><select id="mainTech" style="width: 250px;" class="form-control selectpicker" data-live-search="true" title="请选择技术民警"></select></td></tr>'
 						+ '<tr><td>辅警：</td><td class="loadingLay" style="text-align:center;"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></td><td class="contentName" style="display:none;"><select id="assistant" style="width: 250px;" class="form-control selectpicker" data-live-search="true" title="请选择辅警"></select></td></tr>'
-						+ '<tr><td>今日巡逻：</td><td class="loadingLay" style="text-align:center;"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></td><td class="contentName" style="display:none;"><select id="patrol" style="width: 250px;" data-dropup-auto="false" multiple class="form-control selectpicker" data-live-search="true" title="请选择巡逻人员"></select></td></tr>'
 						+ '<tr><td>值班时间：</td><td><input id="scheTime" style="250px" class="form-control timeDate"></td></tr></table>',
+
 				buttons : {
 					save : {
 						text : '<i class="fa fa-upload" aria-hidden="true"></i>修改',
@@ -89,6 +93,12 @@ var updateScheduling = function(event) {
 									'scheduling.xsjsglxt_scheduling_id' : event.id,
 									'scheduling.scheduling_patrol' : $(
 											'#patrol').selectpicker('val')
+											.join(','),
+									'scheduling.scheduling_overtime' : $(
+											'#overtime').selectpicker('val')
+											.join(','),
+									'scheduling.scheduling_out_help' : $(
+											'#outHelp').selectpicker('val')
 											.join(','),
 									'scheduling.scheduling_main_technology' : $(
 											'#mainTech').val()
@@ -181,6 +191,24 @@ var updateScheduling = function(event) {
 																				+ "'>"
 																				+ results[i].xsjsglxt_name
 																				+ "</option>");
+														for (var i = 0; i < results.length; i++) {
+															$('#overtime')
+																	.append(
+																			"<option value='"
+																					+ results[i].xsjsglxt_name
+																					+ "'>"
+																					+ results[i].xsjsglxt_name
+																					+ "</option>");
+														}
+														for (var i = 0; i < results.length; i++) {
+															$('#outHelp')
+																	.append(
+																			"<option value='"
+																					+ results[i].xsjsglxt_name
+																					+ "'>"
+																					+ results[i].xsjsglxt_name
+																					+ "</option>");
+														}
 													}
 													var d = {
 														'scheduling.xsjsglxt_scheduling_id' : event.id
@@ -227,6 +255,38 @@ var updateScheduling = function(event) {
 																				.selectpicker(
 																						'val',
 																						result.scheduling_patrol);
+																	}
+																	if (result.scheduling_overtime != null
+																			&& result.scheduling_overtime
+																					.indexOf(',') > 0) {
+																		$(
+																				'#overtime')
+																				.selectpicker(
+																						'val',
+																						result.scheduling_overtime
+																								.split(','));
+																	} else {
+																		$(
+																				'#overtime')
+																				.selectpicker(
+																						'val',
+																						result.scheduling_overtime);
+																	}
+																	if (result.scheduling_out_help != null
+																			&& result.scheduling_out_help
+																					.indexOf(',') > 0) {
+																		$(
+																				'#outHelp')
+																				.selectpicker(
+																						'val',
+																						result.scheduling_out_help
+																								.split(','));
+																	} else {
+																		$(
+																				'#outHelp')
+																				.selectpicker(
+																						'val',
+																						result.scheduling_out_help);
 																	}
 																	$(
 																			'#scheTime')
