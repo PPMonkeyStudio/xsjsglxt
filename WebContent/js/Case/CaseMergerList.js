@@ -1,27 +1,27 @@
 var query_data = {
-	"page_list_parallelInformation.pageIndex": "1",
-	"page_list_parallelInformation.start_time": "",
-	"page_list_parallelInformation.stop_time": "",
-	"page_list_parallelInformation.parallel_casename": "",
+	"page_list_parallelInformation.pageIndex" : "1",
+	"page_list_parallelInformation.start_time" : "",
+	"page_list_parallelInformation.stop_time" : "",
+	"page_list_parallelInformation.parallel_casename" : "",
 
-	"page_list_parallelInformation.parallel_person": "",
-	"page_list_parallelInformation.parallel_num": "",
-	"page_list_parallelInformation.parallel_casename": "",
-	"page_list_parallelInformation.parallel_date": "",
-	"page_list_parallelInformation.order": "desc",
-	"page_list_parallelInformation.parallel_breakecaseSituation": "",
+	"page_list_parallelInformation.parallel_person" : "",
+	"page_list_parallelInformation.parallel_num" : "",
+	"page_list_parallelInformation.parallel_casename" : "",
+	"page_list_parallelInformation.parallel_date" : "",
+	"page_list_parallelInformation.order" : "desc",
+	"page_list_parallelInformation.parallel_breakecaseSituation" : "",
 };
 //当前页面分页信息
 var page_infomantion = {
-	pageIndex: 1,
-	totalRecords: 1,
-	pageSize: 20,
-	totalPages: 1,
-	HavePrePage: false,
-	HaveNextPage: false,
+	pageIndex : 1,
+	totalRecords : 1,
+	pageSize : 20,
+	totalPages : 1,
+	HavePrePage : false,
+	HaveNextPage : false,
 }
 
-var selectAll = function (event) {
+var selectAll = function(event) {
 	if (event.checked) {
 		console.log("选中了");
 		var che = document.getElementsByName("chooseCheckBox");
@@ -37,16 +37,18 @@ var selectAll = function (event) {
 	}
 }
 
-var modifi_delete = function () {
+var modifi_delete = function() {
 	var type = $(this).text().trim();
 	var id = $(this).siblings('input').val();
 	$.post('/xsjsglxt/case/Parallel_ParallelInformationOne', {
-		"parallel.xsjsglxt_parallel_id": id
-	}, function (xhr_data) {
-		$('#CaseMerger_modification table tbody').find('input,select,textarea').each(function () {
-			var name = $(this).attr('name');
-			var key = name.split('.')[1];
-			$(this).val(xhr_data["parallel"][key]);
+		"parallel.xsjsglxt_parallel_id" : id
+	}, function(xhr_data) {
+		$('#CaseMerger_modification table tbody').find('input,select,textarea').each(function() {
+			if ($(this).attr('name')) {
+				var name = $(this).attr('name');
+				var key = name.split('.')[1];
+				$(this).val(xhr_data["parallel"][key]);
+			}
 		});
 		//模态框显示
 		$('#CaseMerger_modification').modal('show');
@@ -54,7 +56,7 @@ var modifi_delete = function () {
 		for (let index = 0; index < xhr_data.caseList.length; index++) {
 			caseID.push(xhr_data.caseList[index].xsjsglxt_case_id);
 		}
-		$.post('/xsjsglxt/case/Case_AllCase', function (Case_data) {
+		$.post('/xsjsglxt/case/Case_AllCase', function(Case_data) {
 			//所有案件循环
 			var option = '';
 			for (var len = 0; len < Case_data.length; len++) {
@@ -65,8 +67,8 @@ var modifi_delete = function () {
 			$('#breakCase_modification .load_remind').remove();
 		}, 'json');
 		//确认修改按钮添加事件
-		$('.modify_merger').unbind().click(function () {
-			$.post('/xsjsglxt/case/Parallel_updateParallel', $('#CaseMerger_modification form').serialize(), function (msg) {
+		$('.modify_merger').unbind().click(function() {
+			$.post('/xsjsglxt/case/Parallel_updateParallel', $('#CaseMerger_modification form').serialize(), function(msg) {
 				if (msg == "success") {
 					toastr.info('修改成功');
 					$('#CaseMerger_modification').modal('hide');
@@ -77,12 +79,12 @@ var modifi_delete = function () {
 	}, 'json');
 }
 
-$(function () {
+$(function() {
 
 	get_ListParallelInformationByPageAndSearch(query_data);
 
-	$('.to_quert').click(function () {
-		$('#newCaseMergerQuery form input').each(function () {
+	$('.to_quert').click(function() {
+		$('#newCaseMergerQuery form input').each(function() {
 			query_data[$(this).attr('name')] = $(this).val();
 		});
 		$('#newCaseMergerQuery').modal('hide');
@@ -90,16 +92,16 @@ $(function () {
 		toastr.success("查询成功！");
 	});
 
-	$('.empty_quert').click(function () {
-		$('#newCaseMergerQuery form input').each(function () {
+	$('.empty_quert').click(function() {
+		$('#newCaseMergerQuery form input').each(function() {
 			$(this).val('');
 		});
 	});
 
-	$('#delete-parallel').click(function () {
+	$('#delete-parallel').click(function() {
 		var formData = new FormData;
 		var falg = false;
-		$('.case_table_info').find('input[name="chooseCheckBox"]').each(function () {
+		$('.case_table_info').find('input[name="chooseCheckBox"]').each(function() {
 			if ($(this).is(':checked')) {
 				formData.append('useParallelInformationNumList', $(this).attr('id'));
 				falg = true;
@@ -107,13 +109,13 @@ $(function () {
 		});
 		if (falg) {
 			$.ajax({
-				url: "/xsjsglxt/case/Parallel_remove_ParallelInformationList",
-				type: "POST",
-				contentType: false,
-				processData: false,
-				data: formData,
-				dataType: 'text',
-				success: function (msg) {
+				url : "/xsjsglxt/case/Parallel_remove_ParallelInformationList",
+				type : "POST",
+				contentType : false,
+				processData : false,
+				data : formData,
+				dataType : 'text',
+				success : function(msg) {
 					if (msg == 'success') {
 						toastr.info('删除成功');
 						get_ListParallelInformationByPageAndSearch(query_data);
@@ -128,9 +130,9 @@ $(function () {
 	});
 
 	//模态框清除数据
-	$('#CaseMerger_modification').on('hidden.bs.modal', function () {
+	$('#CaseMerger_modification').on('hidden.bs.modal', function() {
 		var refresh = '';
-		$(value).find('input,select,textarea').each(function () {
+		$(value).find('input,select,textarea').each(function() {
 			refresh = $(this).attr("refresh");
 			//文本刷新
 			if (refresh == "text") {
@@ -147,7 +149,7 @@ $(function () {
 })
 
 function get_ListParallelInformationByPageAndSearch(data) {
-	$.post('/xsjsglxt/case/Parallel_ListParallelInformationByPageAndSearch', data, function (xhr_data) {
+	$.post('/xsjsglxt/case/Parallel_ListParallelInformationByPageAndSearch', data, function(xhr_data) {
 		var str = '';
 		for (var len = 0; len < xhr_data.parallelList.length; len++) {
 			var data_list = xhr_data.parallelList[len];

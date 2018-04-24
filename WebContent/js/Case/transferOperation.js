@@ -1,11 +1,11 @@
 $.fn.extend({
-	serializeObject: function () {
+	serializeObject : function() {
 		if (this.length > 1) {
 			return false;
 		}
 		var arr = this.serializeArray();
 		var obj = new Object;
-		$.each(arr, function (k, v) {
+		$.each(arr, function(k, v) {
 			obj[v.name] = v.value;
 		});
 		return obj;
@@ -16,13 +16,13 @@ function transferOperation(params) {
 	var case_id = $(params).attr('id');
 	var resevidence_id = $(params).attr('value');
 	var transfer = $.confirm({
-		closeIcon: true,
-		type: 'blue',
-		useBootstrap: true,
-		columnClass: 'col-md-12',
-		smoothContent: false,
-		title: '流转记录添加',
-		content: `<form>
+		closeIcon : true,
+		type : 'blue',
+		useBootstrap : true,
+		columnClass : 'col-md-12',
+		smoothContent : false,
+		title : '流转记录添加',
+		content : `<form>
 				  <table style="width: 100%;" class="table">
 				  <tbody>
 				  <tr>
@@ -84,24 +84,28 @@ function transferOperation(params) {
 				  </tbody>
 				  </table>
 				  </form>`,
-		onContentReady: function () {
-			$.post('/xsjsglxt/case/Resevidence_ResevidenceInformationOne', { "resevidence.xsjsglxt_resevidence_id": resevidence_id }, function (msg) {
-				transfer.$content.find('form input').each(function () {
-					var name = $(this).attr('name');
-					var key = name.split('.')[1];
-					$(this).val(msg["resevidence"][key]);
+		onContentReady : function() {
+			$.post('/xsjsglxt/case/Resevidence_ResevidenceInformationOne', {
+				"resevidence.xsjsglxt_resevidence_id" : resevidence_id
+			}, function(msg) {
+				transfer.$content.find('form input').each(function() {
+					if ($(this).attr('name')) {
+						var name = $(this).attr('name');
+						var key = name.split('.')[1];
+						$(this).val(msg["resevidence"][key]);
+					}
 				});
 			}, 'json');
 			$('.mydate').datetimepicker({
-				yearStart: 1990, // 设置最小年份
-				yearEnd: 2050, // 设置最大年份
-				yearOffset: 0, // 年偏差
-				timepicker: false, // 关闭时间选项
-				format: 'Y-m-d', // 格式化日期年-月-日
-				minDate: '1990/01/01', // 设置最小日期
-				maxDate: '2030/01/01', // 设置最大日期
+				yearStart : 1990, // 设置最小年份
+				yearEnd : 2050, // 设置最大年份
+				yearOffset : 0, // 年偏差
+				timepicker : false, // 关闭时间选项
+				format : 'Y-m-d', // 格式化日期年-月-日
+				minDate : '1990/01/01', // 设置最小日期
+				maxDate : '2030/01/01', // 设置最大日期
 			});
-			transfer.$content.find('select[name="circulation.circulation_situation"]').change(function () {
+			transfer.$content.find('select[name="circulation.circulation_situation"]').change(function() {
 				if ($(this).val() == "入库保存") {
 					$(this).parent().nextAll().show();
 				} else {
@@ -110,11 +114,11 @@ function transferOperation(params) {
 				}
 			});
 		},
-		buttons: {
-			sureAddProson: {
-				text: "确认添加",
-				btnClass: 'btn-info',
-				action: function () {
+		buttons : {
+			sureAddProson : {
+				text : "确认添加",
+				btnClass : 'btn-info',
+				action : function() {
 					var must = transfer.$content.find('.must');
 					for (let index = 0; index < must.length; index++) {
 						if (must.eq(index).val() == "") {
@@ -122,8 +126,10 @@ function transferOperation(params) {
 							return false;
 						}
 					}
-					var data_ = $.extend({}, transfer.$content.find('form').serializeObject(), { "resevidence.xsjsglxt_resevidence_id": resevidence_id });
-					$.post('/xsjsglxt/case/Resevidence_saveCirculation', data_, function (msg) {
+					var data_ = $.extend({}, transfer.$content.find('form').serializeObject(), {
+						"resevidence.xsjsglxt_resevidence_id" : resevidence_id
+					});
+					$.post('/xsjsglxt/case/Resevidence_saveCirculation', data_, function(msg) {
 						if (msg == "success") {
 							toastr.info('修改成功');
 							loadDataCaseT();
@@ -131,8 +137,8 @@ function transferOperation(params) {
 					}, 'text');
 				}
 			},
-			close: {
-				text: "取消"
+			close : {
+				text : "取消"
 			}
 		}
 	});
@@ -144,13 +150,13 @@ function transferProcess(params) {
 	var case_id = $(params).attr('id');
 	var resevidence_id = $(params).attr('value');
 	var transfer = $.confirm({
-		closeIcon: true,
-		type: 'blue',
-		useBootstrap: true,
-		columnClass: 'col-md-12',
-		smoothContent: false,
-		title: '流转记录汇总',
-		content: `<table style="width: 100%;" class="table">
+		closeIcon : true,
+		type : 'blue',
+		useBootstrap : true,
+		columnClass : 'col-md-12',
+		smoothContent : false,
+		title : '流转记录汇总',
+		content : `<table style="width: 100%;" class="table">
 				  <thead>
 				  <tr>
 				  <th>流转状态</th>
@@ -163,10 +169,12 @@ function transferProcess(params) {
 				  <tbody>
 				  </tbody>
 				  </table>`,
-		onContentReady: function () {
-			$.post('/xsjsglxt/case/Resevidence_getCirculationList', { "resevidence.xsjsglxt_resevidence_id": resevidence_id }, function (msg) {
+		onContentReady : function() {
+			$.post('/xsjsglxt/case/Resevidence_getCirculationList', {
+				"resevidence.xsjsglxt_resevidence_id" : resevidence_id
+			}, function(msg) {
 				var tr = '';
-				$.each(msg, function (i, josnobj) {
+				$.each(msg, function(i, josnobj) {
 					tr += `<tr><th>${josnobj.circulation_situation}</th>
 							   <th>${josnobj.circulation_position == undefined ? "无" : josnobj.circulation_position}</th>
 							   <th>${josnobj.circulation_date}</th>
@@ -176,9 +184,9 @@ function transferProcess(params) {
 				transfer.$content.find('table tbody').html(tr);
 			}, 'json');
 		},
-		buttons: {
-			close: {
-				text: "确认"
+		buttons : {
+			close : {
+				text : "确认"
 			}
 		}
 	});

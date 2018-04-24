@@ -1,38 +1,36 @@
 var query_data = {
+	"page_list_senceInformation.pageIndex" : "1",
+	"page_list_senceInformation.case_sonCategory" : "",
+	"page_list_senceInformation.case_classify" : "",
+	"page_list_senceInformation.case_makeTime" : "",
+	"page_list_senceInformation.case_residence" : "",
+	"page_list_senceInformation.case_concreteResidence" : "",
 
-	"page_list_senceInformation.pageIndex": "1",
-	"page_list_senceInformation.case_sonCategory": "",
-	"page_list_senceInformation.case_classify": "",
-	"page_list_senceInformation.case_makeTime": "",
-	"page_list_senceInformation.case_residence": "",
-	"page_list_senceInformation.case_concreteResidence": "",
+	"page_list_senceInformation.case_makeMeans" : "",
+	"page_list_senceInformation.case_concreteMakeMeans" : "",
+	"page_list_senceInformation.start_time" : "",
+	"page_list_senceInformation.stop_time" : "",
 
-	"page_list_senceInformation.case_makeMeans": "",
-	"page_list_senceInformation.case_concreteMakeMeans": "",
-	"page_list_senceInformation.start_time": "",
-	"page_list_senceInformation.stop_time": "",
-
-	"page_list_senceInformation.case_reporterName": "",
-	"page_list_senceInformation.snece_inquestPerson": "",
-	"page_list_senceInformation.case_receivingAlarmDate": "",
-	"page_list_senceInformation.case_totalCategory": "",
-	"page_list_senceInformation.snece_inquestId": "",
-	"page_list_senceInformation.case_address": "",
-	"page_list_senceInformation.order": "desc",
-
+	"page_list_senceInformation.case_reporterName" : "",
+	"page_list_senceInformation.snece_inquestPerson" : "",
+	"page_list_senceInformation.case_receivingAlarmDate" : "",
+	"page_list_senceInformation.case_totalCategory" : "",
+	"page_list_senceInformation.snece_inquestId" : "",
+	"page_list_senceInformation.case_address" : "",
+	"page_list_senceInformation.order" : "desc",
 };
 // 当前页面分页信息
 var page_infomantion = {
-	pageIndex: 1,
-	totalRecords: 1,
-	pageSize: 20,
-	totalPages: 1,
-	HavePrePage: false,
-	HaveNextPage: false,
+	pageIndex : 1,
+	totalRecords : 1,
+	pageSize : 20,
+	totalPages : 1,
+	HavePrePage : false,
+	HaveNextPage : false,
 }
 
 // 选择全部
-var selectAll = function (event) {
+var selectAll = function(event) {
 	if (event.checked) {
 		var che = document.getElementsByName("chooseCheckBox");
 		for (var int = 0; int < che.length; int++) {
@@ -46,19 +44,19 @@ var selectAll = function (event) {
 	}
 }
 
-$(function () {
+$(function() {
 	get_ListSneceInformationByPageAndSearch(query_data);
 
-	$('.to_quert').click(function () {
+	$('.to_quert').click(function() {
 		var arr = $('#query_infomantion_inmodal').serializeArray();
-		$.each(arr, function (key, value) {
+		$.each(arr, function(key, value) {
 			// key为arr里对象的索引，value为索引为key的对象。对象以{name: 'firstname', value:
 			// 'Hello'}形式存储, 以obj.name和obj.value形式遍历
 			query_data[value.name] = value.value;
 		});
 		get_ListSneceInformationByPageAndSearch(query_data);
 	});
-	$('.empty_quert').click(function () {
+	$('.empty_quert').click(function() {
 		for (var i in query_data) {
 			query_data[i] = "";
 		}
@@ -76,31 +74,31 @@ $(function () {
 
 	$('#case_delete')
 		.click(
-			function () {
+			function() {
 				var formData = new FormData;
 				var HaveDate = false;
 				var index = 0;
 				$('.case_table_info tbody').find(
 					'input[name="chooseCheckBox"]').each(
-						function (i) {
-							if ($(this).is(':checked')) {
-								formData.append(
-									'useSenceInformationNumList['
-									+ index + ']', $(this)
-										.attr('id'));
-								HaveDate = true;
-								index++;
-							}
-						});
+					function(i) {
+						if ($(this).is(':checked')) {
+							formData.append(
+								'useSenceInformationNumList['
+								+ index + ']', $(this)
+									.attr('id'));
+							HaveDate = true;
+							index++;
+						}
+					});
 				if (HaveDate) {
 					$.ajax({
-						url: "/xsjsglxt/case/Case_remove_SenceInformationList",
-						type: "POST",
-						contentType: false,
-						processData: false,
-						data: formData,
-						dataType: 'text',
-						success: function (msg) {
+						url : "/xsjsglxt/case/Case_remove_SenceInformationList",
+						type : "POST",
+						contentType : false,
+						processData : false,
+						data : formData,
+						dataType : 'text',
+						success : function(msg) {
 							if (msg == 'success') {
 								toastr.info('删除成功');
 								get_ListSneceInformationByPageAndSearch(query_data);
@@ -120,30 +118,21 @@ function get_ListSneceInformationByPageAndSearch(data) {
 		.post(
 			'/xsjsglxt/case/Case_ListSneceInformationByPageAndSearch',
 			data,
-			function (xhr) {
+			function(xhr) {
 				var str = '';
 				for (var len = 0; len < xhr.SenceInformationDTOList.length; len++) {
 					var data_list = xhr.SenceInformationDTOList[len];
-					str += '<tr id="'
-						+ data_list.case1.xsjsglxt_case_id + '">';
-					str += '<td><input name="chooseCheckBox" id="'
-						+ data_list.case1.xsjsglxt_case_id
-						+ '" type="checkbox"></td>';
+					str += '<tr id="' + data_list.case1.xsjsglxt_case_id + '">';
+					str += '<td><input name="chooseCheckBox" id="' + data_list.case1.xsjsglxt_case_id + '" type="checkbox"></td>';
 					str += '<td><a href="/xsjsglxt/case/Case_ page_intoDetails?id='
 						+ data_list.case1.xsjsglxt_case_id
 						+ '">'
 						+ data_list.sence.snece_inquestId
 						+ '</a></td>';
-					str += '<td>'
-						+ data_list.case1.case_receivingAlarmDate
-						+ '</td>';
-					str += '<td>'
-						+ data_list.case1.case_address
-						+ '</td>';
-					str += '<td>' + data_list.case1.case_sonCategory
-						+ '</td>';
-					str += '<td>' + data_list.case1.case_reporterName + ',' + data_list.case1.case_reporterPhone
-						+ '</td>';
+					str += '<td>' + new Date(data_list.case1.case_receivingAlarmDate).Format('yyyy-MM-dd') + '</td>';
+					str += '<td>' + data_list.case1.case_address + '</td>';
+					str += '<td>' + data_list.case1.case_sonCategory + '</td>';
+					str += '<td>' + data_list.case1.case_reporterName + ',' + data_list.case1.case_reporterPhone + '</td>';
 					str += '<td>'
 					if (data_list.sence.snece_inquestPerson != undefined && data_list.sence.snece_inquestPerson != "") {
 						if ((data_list.sence.snece_inquestPerson).split(',').length > 3) {
@@ -174,10 +163,10 @@ function get_ListSneceInformationByPageAndSearch(data) {
 				// 入口设置事件
 				$('i[action="LinkToEvidence"]')
 					.click(
-						function () {
+						function() {
 							window.location.href = "/xsjsglxt/case/Case_page_intoEvidence?id="
-								+ $(this).parents('tr')
-									.attr('id');
+							+ $(this).parents('tr')
+								.attr('id');
 						});
 				// 分页下的记录信息
 				var opt = '<option value=""></option>';
@@ -239,4 +228,22 @@ function lastPage() {
 function toPage(object) {
 	query_data['page_list_senceInformation.pageIndex'] = $(object).val();
 	get_ListSneceInformationByPageAndSearch(query_data);
+}
+//日期扩展
+Date.prototype.Format = function(fmt) {
+	var o = {
+		"M+" : this.getMonth() + 1, //月份 
+		"d+" : this.getDate(), //日 
+		"h+" : this.getHours(), //小时 
+		"m+" : this.getMinutes(), //分 
+		"s+" : this.getSeconds(), //秒 
+		"q+" : Math.floor((this.getMonth() + 3) / 3), //季度 
+		"S" : this.getMilliseconds() //毫秒 
+	};
+	if (/(y+)/.test(fmt))
+		fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+	for (var k in o)
+		if (new RegExp("(" + k + ")").test(fmt))
+			fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+	return fmt;
 }

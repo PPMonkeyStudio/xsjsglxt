@@ -213,9 +213,9 @@ $(function() {
 			}, function(msg) {
 				//input非单选框
 				$('#Handle_input form').find('input').each(function() {
-					var ele_name = this.name;
-					var key = ele_name.split('.')[1];
-					if (key) {
+					if (this.name) {
+						var ele_name = this.name;
+						var key = ele_name.split('.')[1];
 						if (msg[key] == '是') {
 							$(this).val(msg[key]);
 							$(this).siblings('label').find('input[type="radio"][value="是"]').attr('checked', 'true');
@@ -242,9 +242,11 @@ $(function() {
 				});*/
 				//select
 				$('#Handle_input form').find('select').each(function() {
-					var ele_name = this.name;
-					var key = ele_name.split('.')[1];
-					$(this).selectpicker('val', msg[key]);
+					if (this.name) {
+						var ele_name = this.name;
+						var key = ele_name.split('.')[1];
+						$(this).selectpicker('val', msg[key]);
+					}
 				});
 				$('.handle_modify').attr('id', msg['xsjsglxt_handle_id']);
 				$('#Handle_input').find('.handle_modify').show();
