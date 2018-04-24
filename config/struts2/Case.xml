@@ -37,6 +37,7 @@
 		</action>
 		<action name="Handle_*" class="com.xsjsglxt.action.Case.HandleAction"
 			method="{1}">
+			<result name="introduce_page">/WEB-INF/view/introduceLetter/introduceLetter.jsp</result>
 		</action>
 		
 		<!-- gxr重构破案模块添加代码 -->

@@ -50,6 +50,10 @@ public class HandleAction extends ActionSupport implements ServletRequestAware, 
 	 * 介绍信
 	 */
 
+	public String into_introduce_page() {
+		return "introduce_page";
+	}
+
 	public void saveIntroduceLetter() {
 		String result = handleService.saveIntroduceLetter(letter);
 		HttpServletResponse response = ServletActionContext.getResponse();
@@ -142,7 +146,6 @@ public class HandleAction extends ActionSupport implements ServletRequestAware, 
 		Date d = sdf.parse(letter1.getIntroduce_time());
 		Calendar c = Calendar.getInstance();
 		c.setTime(d);
-		System.out.println(c.get(Calendar.MONTH));
 		c.add(Calendar.DATE, Integer.parseInt(letter1.getIntroduce_time_limit()));
 		map.put("month_limit", Integer.toString(c.get(Calendar.MONTH) + 1));
 		map.put("day_limit", Integer.toString(c.get(Calendar.DATE)));
@@ -161,6 +164,21 @@ public class HandleAction extends ActionSupport implements ServletRequestAware, 
 		t.process(map, pw);
 		pw.flush();
 		pw.close();
+	}
+
+	public void updateApproveStatus() {
+		String result = handleService.updateApproveStatus(letter);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(result);
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	// ----------------------------------------------办案内容----------------------------------------------

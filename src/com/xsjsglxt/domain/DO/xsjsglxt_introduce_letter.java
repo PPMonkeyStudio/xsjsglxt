@@ -17,6 +17,7 @@ public class xsjsglxt_introduce_letter {
 	private String introduce_time_limit;// 界限
 	private String introduce_approve_man;// 审批人
 	private String introduce_approve_time;// 审批时间
+	private String introduce_approve_status;// 审批状态
 	private String introduce_gmt_create;// 创建时间
 	private String introduce_gmt_modified;// 修改时间
 
@@ -118,6 +119,14 @@ public class xsjsglxt_introduce_letter {
 
 	public void setIntroduce_gmt_modified(String introduce_gmt_modified) {
 		this.introduce_gmt_modified = introduce_gmt_modified;
+	}
+
+	public String getIntroduce_approve_status() {
+		return introduce_approve_status;
+	}
+
+	public void setIntroduce_approve_status(String introduce_approve_status) {
+		this.introduce_approve_status = introduce_approve_status;
 	}
 
 	@Override

@@ -49,4 +49,6 @@ public interface HandleDao {
 
 	public void getLetterByPage(IntroduceLetterVO letterVO);
 
+	public String updateApproveStatus(xsjsglxt_introduce_letter letter);
+
 }

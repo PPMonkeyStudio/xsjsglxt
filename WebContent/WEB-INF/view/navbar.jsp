@@ -102,9 +102,17 @@
 					</ul></li>
 				<!--  -->
 				<template v-if="user_case_query_power">
-				<li class="dropdown" style="float: left;"><a
-					href="<%=basePath%>case/Case_page_Handle"> <span>侦查业务管理</span>
-				</a></li>
+				<li class="dropdown" style="float: left;"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown"><span>侦查业务管理</span>
+					<i class="icon-submenu lnr lnr-chevron-down"></i>
+				</a>
+					<ul class="dropdown-menu">
+						<li style="float: left;"><a
+							href="<%=basePath%>case/Case_page_Handle">办案管理</a></li>
+						<li class="teacher_control"><a
+							href="<%=basePath%>case/Handle_into_introduce_page">介绍信</a></li>
+					</ul>
+				</li>
 				</template>
 				<!--  -->
 				<!--  -->

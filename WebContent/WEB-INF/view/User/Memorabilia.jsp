@@ -65,7 +65,7 @@
 							<td><span v-html="memorabilia.memorabilia_title"></span></td>
 							<td><span v-html="memorabilia.memorabilia_join_human"></span></td>
 							<td>{{ memorabilia.memorabilia_time }}</td>
-							<td><div class='dropdown'><i class='dropdown-toggle fa fa-angle-double-down pageOperation'  data-toggle='dropdown' aria-hidden='true' aria-haspopup=true' aria-expanded='false'></i>
+							<td><div class='dropdown'><i class='dropdown-toggle fa fa-angle-double-down pageOperation'  data-toggle='dropdown' aria-hidden='true' aria-haspopup='true' aria-expanded='false'></i>
 								<ul class='dropdown-menu' aria-labelledby='dLabe' style='text-align:center; min-width: 100px;'>
 								<li :id='memorabilia.memorabilia_id' onclick='exportMemorabiliaWord(this)' class='pageOperation'><a>导出</a></li>
 								<li class="managerRole pageOperation" :id='memorabilia.memorabilia_id'  onclick='updateMeetingRecords(this)'><a>修改</a></li>

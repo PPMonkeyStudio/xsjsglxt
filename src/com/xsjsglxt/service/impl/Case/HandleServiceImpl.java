@@ -174,6 +174,7 @@ public class HandleServiceImpl implements HandleService {
 		letter.setIntroduce_gmt_create(oldLetter.getIntroduce_gmt_create());
 		letter.setIntroduce_letter_serial_number(oldLetter.getIntroduce_letter_serial_number());
 		letter.setIntroduce_gmt_modified(TeamUtil.getStringSecond());
+		letter.setIntroduce_approve_status(oldLetter.getIntroduce_approve_status());
 		String result = handleDao.updateIntroduceLetter(letter);
 		return result;
 	}
@@ -193,6 +194,13 @@ public class HandleServiceImpl implements HandleService {
 		// TODO Auto-generated method stub
 		xsjsglxt_introduce_letter letter = handleDao.getIntroduceLetterById(xsjsglxt_introduce_letter_id);
 		return letter;
+	}
+
+	@Override
+	public String updateApproveStatus(xsjsglxt_introduce_letter letter) {
+		// TODO Auto-generated method stub
+
+		return handleDao.updateApproveStatus(letter);
 	}
 
 }

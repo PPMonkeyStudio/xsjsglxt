@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.xsjsglxt.dao.Case.HandleDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_handle;
 import com.xsjsglxt.domain.DO.xsjsglxt_introduce_letter;
@@ -510,8 +512,31 @@ public class HandleDaoImpl implements HandleDao {
 			hql = hql + " and introduce_time<='" + letterVO.getQuery_time_end() + "'";
 		hql = hql + " order by introduce_time " + letterVO.getQuery_time_sort();
 		Session session = this.getSession();
-		List<xsjsglxt_introduce_letter> letterList = session.createQuery(hql).list();
+		List<xsjsglxt_introduce_letter> letterList = session.createQuery(hql)
+				.setFirstResult((letterVO.getCurrPage() - 1) * letterVO.getPageSize())
+				.setMaxResults(letterVO.getPageSize()).list();
 		letterVO.setLetterList(letterList);
+	}
+
+	@Override
+	public String updateApproveStatus(xsjsglxt_introduce_letter letter) {
+		// TODO Auto-generated method stub
+		String name = (String) ActionContext.getContext().getSession().get("user_name");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String date = sdf.format(new Date());
+		String hql = "update xsjsglxt_introduce_letter set introduce_approve_status = '"
+				+ letter.getIntroduce_approve_status() + "' , introduce_approve_man='" + name
+				+ "' , introduce_approve_time = '" + date + "' where xsjsglxt_introduce_letter_id ='"
+				+ letter.getXsjsglxt_introduce_letter_id() + "'";
+		Session session = this.getSession();
+		try {
+
+			session.createQuery(hql).executeUpdate();
+			return "updateSuccess";
+		} catch (HibernateException e) {
+			// TODO: handle exception
+			return "updateError";
+		}
 	}
 
 }

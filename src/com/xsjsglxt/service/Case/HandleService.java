@@ -48,4 +48,6 @@ public interface HandleService {
 
 	public xsjsglxt_introduce_letter getIntroduceLetterByIdObject(String xsjsglxt_introduce_letter_id);
 
+	public String updateApproveStatus(xsjsglxt_introduce_letter letter);
+
 }
