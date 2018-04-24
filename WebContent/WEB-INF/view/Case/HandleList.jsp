@@ -291,14 +291,15 @@
 										<td colspan="2">
 											<!-- <input class="form-control"
 											name="handle.handle_squadronleader" type="text"> --> <select
-											name="handle.handle_squadronleader" class="form-control"></select>
+											name="handle.handle_squadronleader" class="form-control"
+											data-live-search="true"></select>
 										</td>
 										<td>办案民警</td>
 										<td colspan="2">
 											<!-- <input class="form-control"
 											name="handle.handle_PoliceInHandlingCases" type="text"> --> <select
 											name="handle.handle_PoliceInHandlingCases"
-											class="form-control"></select>
+											data-live-search="true" class="form-control"></select>
 										</td>
 									</tr>
 								</tbody>

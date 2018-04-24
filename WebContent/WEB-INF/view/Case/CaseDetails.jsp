@@ -97,12 +97,12 @@ i {
 						</tr>
 						<tr>
 							<td>案发地点</td>
-							<td><input name="case1.case_address"
+							<td colspan="2"><input name="case1.case_address"
 								style="margin-top: 6px;" class="case_place form-control"
 								type="text" value="萍乡市安源区"></td>
 							<td>案件类别</td>
 							<td><select
-								style="width: 170px; float: left; margin-top: 6px;"
+								style="width: 120px; float: left; margin-top: 6px;"
 								name="case1.case_totalCategory" name="case_class1"
 								onchange="setSectionCase(this.selectedIndex)"
 								class="main_case form-control"><option>请选择案件总类别</option>
@@ -119,9 +119,8 @@ i {
 									<option value="非正常死亡">非正常死亡</option>
 									<option value="故意损坏公私财物">故意损坏公私财物</option>
 									<option value="其它">其它</option></select></td>
-							<td id="other_case_td" colspan="2"><select
-								name="case1.case_sonCategory"
-								style="margin-top: 6px; width: 170px;"
+							<td id="other_case_td"><select name="case1.case_sonCategory"
+								style="margin-top: 6px; width: 160px;"
 								class="other_case form-control">
 									<option selected value="">请选择案件子类别</option>
 							</select></td>
@@ -1084,6 +1083,9 @@ i {
 		minDate : '1990/01/01', // 设置最小日期
 		maxDate : '2030/01/01', // 设置最大日期
 	});
-	document.documentElement.scrollTop = $('#evidence-info').offset().top - $('#navbar').height();
+	$("html,body").animate({
+		scrollTop : $("#evidence-info").offset().top - $('#navbar').height()
+	}, 2000);
+	//document.documentElement.scrollTop = $('#evidence-info').offset().top - $('#navbar').height();
 </script>
 </html>

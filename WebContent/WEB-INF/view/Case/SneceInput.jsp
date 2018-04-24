@@ -29,7 +29,15 @@
 		<div class="panel" style="width: 1300px; margin: 20px auto;">
 			<!--  -->
 			<div class="panel-heading">
-				<h3 class="panel-title">现场录入</h3>
+				<h3 class="panel-title">
+					<!-- 现场录入 -->
+					<ol class="breadcrumb" style="width: 70%;margin: auto;">
+						<li class="active"><span class="badge">1</span>现场录入</li>
+						<li class="active"><span class="badge">2</span>物证，被盗物品，照片添加</li>
+						<li class="active"><span class="badge">3</span>完成</li>
+					</ol>
+				</h3>
+
 			</div>
 			<button
 				style="margin-top: 6px; margin-left: 20px; float: left; position: absolute;"
@@ -45,11 +53,11 @@
 							<td width="96px;"><span style="color:red;">*</span>勘验编号</td>
 							<td><input name="sence.snece_inquestId"
 								class="form-control must" type="text"></td>
-							<td style="padding-left:5px;"><span style="color:red;">*</span>勘验系统编号</td>
+							<td style="padding-left:5px;width: 120px;">勘验系统编号</td>
 							<td style="width: 100px;"><input
-								name="sence.snece_inquestSystemId" class="form-control must"
+								name="sence.snece_inquestSystemId" class="form-control"
 								type="text"></td>
-							<td><span style="color:red;">*</span>案件分类</td>
+							<td style="width: 100px;"><span style="color:red;">*</span>案件分类</td>
 							<td><select name="case1.case_classify"
 								class=" form-control must">
 									<option value=""></option>
@@ -84,12 +92,12 @@
 						</tr>
 						<tr>
 							<td><span style="color:red;">*</span>案发地点</td>
-							<td><input name="case1.case_address"
+							<td colspan="2"><input name="case1.case_address"
 								style="margin-top: 6px;" class="case_place form-control must"
 								type="text" value="萍乡市安源区"></td>
 							<td><span style="color:red;">*</span>案件类别</td>
 							<td><select
-								style="width: 170px; float: left; margin-top: 6px;"
+								style="width: 120px; float: left; margin-top: 6px;"
 								name="case1.case_totalCategory" name="case_class1"
 								onchange="setSectionCase(this.selectedIndex)"
 								class="main_case form-control must"><option>请选择案件总类别</option>
@@ -106,9 +114,8 @@
 									<option value="非正常死亡">非正常死亡</option>
 									<option value="故意损坏公私财物">故意损坏公私财物</option>
 									<option value="其它">其它</option></select></td>
-							<td id="other_case_td" colspan="2"><select
-								name="case1.case_sonCategory"
-								style="margin-top: 6px; width: 170px;"
+							<td id="other_case_td"><select name="case1.case_sonCategory"
+								style="margin-top: 6px; width: 160px;"
 								class="other_case form-control must">
 									<option selected value="">请选择案件子类别</option>
 							</select></td>
@@ -333,7 +340,7 @@
 						<td align="right">
 							<button style="margin-top: 6px; margin-right: 10px;"
 								type="button" class="btn btn-default sneceInformation_finish">
-								<i class="fa fa-check-circle"></i> 完成
+								<i class="fa fa-check-circle"></i> 下一步
 							</button>
 						</td>
 					</tr>

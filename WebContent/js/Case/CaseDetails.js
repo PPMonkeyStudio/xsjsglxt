@@ -6,17 +6,17 @@
 var case1_id = $('#case1_id').val();
 var sence_id = "";
 
-$(function () {
+$(function() {
 
 	//序列化为对象======----自定义方法
 	$.fn.extend({
-		serializeObject: function () {
+		serializeObject : function() {
 			if (this.length > 1) {
 				return false;
 			}
 			var arr = this.serializeArray();
 			var obj = new Object;
-			$.each(arr, function (k, v) {
+			$.each(arr, function(k, v) {
 				obj[v.name] = v.value;
 			});
 			return obj;
@@ -24,12 +24,12 @@ $(function () {
 	});
 	// 只在本页面使用
 	$.fn.extend({
-		serializeCaseDetails: function () {
+		serializeCaseDetails : function() {
 			if (this.length > 1) {
 				return false;
 			}
 			var obj = new Object;
-			this.find('input,select,textarea').each(function (i, e) {
+			this.find('input,select,textarea').each(function(i, e) {
 				obj[e.name] = $(e).val();
 			});
 			obj["sence.snece_inquestPerson"] = obj["sence.snece_inquestPerson"].join();
@@ -38,7 +38,9 @@ $(function () {
 	});
 
 	/*=======================页面数据初始化开始================== */
-	$.post('/xsjsglxt/case/Case_SecneInformationOne', { "case1.xsjsglxt_case_id": case1_id }, function (xhr_data) {
+	$.post('/xsjsglxt/case/Case_SecneInformationOne', {
+		"case1.xsjsglxt_case_id" : case1_id
+	}, function(xhr_data) {
 		//保存现场ID
 		sence_id = xhr_data.sence.xsjsglxt_snece_id;
 		//保存下载的文件ID
@@ -46,14 +48,16 @@ $(function () {
 		downloadFile.case_writeFile = xhr_data.case1.case_writeFile;
 		downloadFile.case_senceImageFile = xhr_data.case1.case_senceImageFile;
 		//主信息
-		$('#caseDetails').find('select, input,textarea').each(function () {
-			var name = $(this).attr('name');
-			if (name == "register") {
-				return true
+		$('#caseDetails').find('select, input,textarea').each(function() {
+			if ($(this).attr('name')) {
+				var name = $(this).attr('name');
+				if (name == "register") {
+					return true
+				}
+				var key1 = name.split('.')[0];
+				var key2 = name.split('.')[1];
+				$(this).val(xhr_data[key1][key2]);
 			}
-			var key1 = name.split('.')[0];
-			var key2 = name.split('.')[1];
-			$(this).val(xhr_data[key1][key2]);
 		});
 		//redio信息		
 		$("input[type=radio][name=register][value=" + xhr_data["case1"]["case_register"] + "]").attr("checked", 'checked');
@@ -64,7 +68,7 @@ $(function () {
 
 		//物证列表数据显示
 		var resevidence = xhr_data["resevidence"];
-		$('#evidence-info table tbody').html(function () {
+		$('#evidence-info table tbody').html(function() {
 			var tr_str = '';
 			for (let index = 0; index < resevidence.length; index++) {
 				tr_str += `<tr id="${resevidence[index]["xsjsglxt_resevidence_id"]}">
@@ -81,7 +85,7 @@ $(function () {
 
 		//丢失电脑列表数据显示
 		var lose_computer = xhr_data["lost_computer"];
-		$('#loseComputer-info table tbody').html(function () {
+		$('#loseComputer-info table tbody').html(function() {
 			var tr_str = '';
 			for (let index = 0; index < lose_computer.length; index++) {
 				tr_str += `<tr id="${lose_computer[index]["xsjsglxt_lost_computer_id"]}">
@@ -96,7 +100,7 @@ $(function () {
 
 		//丢失物列表数据显示
 		var lostGoods_info = xhr_data["lost"];
-		$('#loseGoods-info table tbody').html(function () {
+		$('#loseGoods-info table tbody').html(function() {
 			var tr_str = '';
 			for (let index = 0; index < lostGoods_info.length; index++) {
 				tr_str += `<tr id="${lostGoods_info[index]["xsjsglxt_lost_id"]}">
@@ -112,7 +116,7 @@ $(function () {
 
 		//丢失手机列表数据显示
 		var LostMobilephone_info = xhr_data["lost_mobilephone"];
-		$('#LostMobilephone-info table tbody').html(function () {
+		$('#LostMobilephone-info table tbody').html(function() {
 			var tr_str = '';
 			for (let index = 0; index < LostMobilephone_info.length; index++) {
 				tr_str += `<tr id="${LostMobilephone_info[index]["xsjsglxt_lost_mobilephone_id"]}">
@@ -127,7 +131,7 @@ $(function () {
 
 		//照片列表数据显示
 		var picture_info = xhr_data["picture"];
-		$('#picture-info table tbody').html(function () {
+		$('#picture-info table tbody').html(function() {
 			var tr_str = '';
 			for (let index = 0; index < picture_info.length; index++) {
 				tr_str += `<tr id="${picture_info[index]["xsjsglxt_picture_id"]}">
@@ -139,7 +143,7 @@ $(function () {
 			return tr_str;
 		});
 		//照片中的光盘信息
-		$.post('/xsjsglxt/case/Image_ListAllImageInformation', function (Image_data) {
+		$.post('/xsjsglxt/case/Image_ListAllImageInformation', function(Image_data) {
 			//所有光盘遍历
 			var option = '';
 			for (var len = 0; len < Image_data.length; len++) {
@@ -153,7 +157,7 @@ $(function () {
 		//获取案件的勘验人员
 		var persons = xhr_data["sence"]["snece_inquestPerson"].split(',');
 		//勘验人员查询，以便修改勘验人员
-		$.post('/xsjsglxt/team/Staff_getInquestPerson', {}, function (params) {
+		$.post('/xsjsglxt/team/Staff_getInquestPerson', {}, function(params) {
 			var leader = params.leader;
 			var human = params.human;
 			var suspectStr = '';
@@ -166,7 +170,7 @@ $(function () {
 			$('select[name="sence.snece_inquestPerson"]').html(suspectStr).selectpicker('refresh');
 		}, 'json');
 		//物证提取人设定
-		$('select[name="resevidence.resevidence_extractPerson"]').html(function () {
+		$('select[name="resevidence.resevidence_extractPerson"]').html(function() {
 			var option_str = '';
 			for (const key in persons) {
 				option_str += '<option value="' + persons[key] + '">' + persons[key] + '</option>';
@@ -177,17 +181,23 @@ $(function () {
 
 	/*============================================================================添加信息系列*/
 	//添加物证信息
-	$('.add_evidence').click(function () {
-		var evidence_data = $.extend({}, $('#evidence form').serializeObject(), { "case1.xsjsglxt_case_id": case1_id, "resevidence.resevidence_teststate": "未检验", "resevidence.resevidence_sendstate": "未送检" });
-		$.post('/xsjsglxt/case/Resevidence_saveResevidence', evidence_data, function (xhr_data) {
+	$('.add_evidence').click(function() {
+		var evidence_data = $.extend({}, $('#evidence form').serializeObject(), {
+			"case1.xsjsglxt_case_id" : case1_id,
+			"resevidence.resevidence_teststate" : "未检验",
+			"resevidence.resevidence_sendstate" : "未送检"
+		});
+		$.post('/xsjsglxt/case/Resevidence_saveResevidence', evidence_data, function(xhr_data) {
 			if (xhr_data.length > 22 && xhr_data.length <= 36) {
 				toastr.success('添加成功！');
 				//控制模态框隐藏
 				$('#evidence').modal('hide');
 				//数据刷新
-				$.post('/xsjsglxt/case/Case_SecneInformationOne', { "case1.xsjsglxt_case_id": case1_id, }, function (xhr_data) {
+				$.post('/xsjsglxt/case/Case_SecneInformationOne', {
+					"case1.xsjsglxt_case_id" : case1_id,
+				}, function(xhr_data) {
 					var resevidence = xhr_data["resevidence"];
-					$('#evidence-info table tbody').html(function () {
+					$('#evidence-info table tbody').html(function() {
 						var tr_str = '';
 						for (let index = 0; index < resevidence.length; index++) {
 							tr_str += `<tr id="${resevidence[index]["xsjsglxt_resevidence_id"]}">
@@ -208,14 +218,16 @@ $(function () {
 	});
 
 	//添加丢失物品
-	$('.add_lost').click(function () {
+	$('.add_lost').click(function() {
 		if ($('#lost table tbody').find('input,textarea').val() == "") {
 			toastr.info('请添加完整信息！');
 			return;
 		}
-		var Lost_data = $.extend({}, $('#lost form').serializeObject(), { "case1.xsjsglxt_case_id": case1_id });
+		var Lost_data = $.extend({}, $('#lost form').serializeObject(), {
+			"case1.xsjsglxt_case_id" : case1_id
+		});
 		console.log(Lost_data);
-		$.post('/xsjsglxt/case/Lost_saveLost', Lost_data, function (xhr_data) {
+		$.post('/xsjsglxt/case/Lost_saveLost', Lost_data, function(xhr_data) {
 			if (xhr_data.length > 22 && xhr_data.length <= 36) {
 				toastr.info('添加成功！');
 				//控制模态框隐藏
@@ -235,13 +247,15 @@ $(function () {
 	});
 
 	//添加丢失手机
-	$('.add_mobilephone').click(function () {
+	$('.add_mobilephone').click(function() {
 		if ($('#lost_mobilephone table tbody').find('input,textarea,select').val() == "") {
 			toastr.info('请添加完整信息！');
 			return;
 		}
-		var Lost_data = $.extend({}, $('#lost_mobilephone form').serializeObject(), { "case1.xsjsglxt_case_id": case1_id });
-		$.post('/xsjsglxt/case/LostMobilephone_saveLostMobilephone', Lost_data, function (xhr_data) {
+		var Lost_data = $.extend({}, $('#lost_mobilephone form').serializeObject(), {
+			"case1.xsjsglxt_case_id" : case1_id
+		});
+		$.post('/xsjsglxt/case/LostMobilephone_saveLostMobilephone', Lost_data, function(xhr_data) {
 			if (xhr_data.length > 22 && xhr_data.length <= 36) {
 				toastr.info('添加成功！');
 				//控制模态框隐藏
@@ -260,13 +274,15 @@ $(function () {
 	});
 
 	//添加丢失电脑
-	$('#add_computer').click(function () {
+	$('#add_computer').click(function() {
 		if ($('#lost_computer table tbody').find('input,textarea,select').val() == "") {
 			toastr.info('请添加完整信息！');
 			return;
 		}
-		var Lost_data = $.extend({}, $('#lost_computer form').serializeObject(), { "case1.xsjsglxt_case_id": case1_id });
-		$.post('/xsjsglxt/case/LostMobilephone_saveLostMobilephone', Lost_data, function (xhr_data) {
+		var Lost_data = $.extend({}, $('#lost_computer form').serializeObject(), {
+			"case1.xsjsglxt_case_id" : case1_id
+		});
+		$.post('/xsjsglxt/case/LostMobilephone_saveLostMobilephone', Lost_data, function(xhr_data) {
 			if (xhr_data.length > 22 && xhr_data.length <= 36) {
 				toastr.info('添加成功！');
 				//控制模态框隐藏
@@ -285,9 +301,11 @@ $(function () {
 	});
 
 	//添加照片信息
-	$('.add_picture').click(function () {
-		var picture_data = $.extend({}, $('#picture form').serializeObject(), { "case1.xsjsglxt_case_id": case1_id });
-		$.post('/xsjsglxt/case/Image_updatePicture', picture_data, function (xhr_data) {
+	$('.add_picture').click(function() {
+		var picture_data = $.extend({}, $('#picture form').serializeObject(), {
+			"case1.xsjsglxt_case_id" : case1_id
+		});
+		$.post('/xsjsglxt/case/Image_updatePicture', picture_data, function(xhr_data) {
 			if (xhr_data.length > 22 && xhr_data.length <= 36) {
 				toastr.success('添加成功！');
 				//控制模态框隐藏
@@ -306,20 +324,24 @@ $(function () {
 
 	/*============================================================================修改系列*/
 	//修改物证
-	$('#evidence-info table tbody').on('click', function (e) {
+	$('#evidence-info table tbody').on('click', function(e) {
 		var o = e.target;
 		if (o.tagName == "I") {
 			var ID = $(o).parents('tr').attr('id');
 			var operate = $(o).attr('id');
 			if (operate == "circulation") {
-				$.post('/xsjsglxt/case/Resevidence_ResevidenceInformationOne', { "resevidence.xsjsglxt_resevidence_id": ID }, function (msg) {
-					$('#circulation-info form').find('input').each(function () {
-						var name = $(this).attr('name');
-						var key = name.split('.')[1];
-						$(this).val(msg["resevidence"][key]);
+				$.post('/xsjsglxt/case/Resevidence_ResevidenceInformationOne', {
+					"resevidence.xsjsglxt_resevidence_id" : ID
+				}, function(msg) {
+					$('#circulation-info form').find('input').each(function() {
+						if ($(this).attr('name')) {
+							var name = $(this).attr('name');
+							var key = name.split('.')[1];
+							$(this).val(msg["resevidence"][key]);
+						}
 					});
 					//给修改按钮绑定事件
-					$('#circulation-info .save_circulation').unbind().click(function () {
+					$('#circulation-info .save_circulation').unbind().click(function() {
 						var resevidence_ = {};
 						for (const key in msg["resevidence"]) {
 							resevidence_['resevidence.' + key] = msg["resevidence"][key];
@@ -330,172 +352,211 @@ $(function () {
 					//模态框出现
 					$('#circulation-info').modal('show');
 				}, 'json');
-			}
-			else if (operate == "modify") {
-				$.post('/xsjsglxt/case/Resevidence_ResevidenceInformationOne', { "resevidence.xsjsglxt_resevidence_id": ID }, function (msg) {
+			} else if (operate == "modify") {
+				$.post('/xsjsglxt/case/Resevidence_ResevidenceInformationOne', {
+					"resevidence.xsjsglxt_resevidence_id" : ID
+				}, function(msg) {
 					//模态框信息填充
-					$('#evidence table tbody').find('input,select,textarea').each(function () {
-						var name = $(this).attr('name');
-						var key = name.split('.')[1];
-						$(this).val(msg["resevidence"][key]);
+					$('#evidence table tbody').find('input,select,textarea').each(function() {
+						if ($(this).attr('name')) {
+							var name = $(this).attr('name');
+							var key = name.split('.')[1];
+							$(this).val(msg["resevidence"][key]);
+						}
 					});
 					var select_proson = msg["resevidence"]["resevidence_extractPerson"].split(',');
 					$('select[name="resevidence.resevidence_extractPerson"]').selectpicker('val', select_proson);
 					//模态框展示操作
-					$('#evidence .add_evidence').hide();//添加按钮消失
-					$('#evidence .modify_evidence').show();//修改按钮可见
+					$('#evidence .add_evidence').hide(); //添加按钮消失
+					$('#evidence .modify_evidence').show(); //修改按钮可见
 					$('#evidence').modal('show');
 				}, 'json');
 				//给修改按钮绑定事件
-				$('#evidence .modify_evidence').unbind().click(function () {
-					var data_ = $.extend({}, $('#evidence form').serializeObject(), { "resevidence.xsjsglxt_resevidence_id": ID, "resevidence.resevidence_case": case1_id });
+				$('#evidence .modify_evidence').unbind().click(function() {
+					var data_ = $.extend({}, $('#evidence form').serializeObject(), {
+						"resevidence.xsjsglxt_resevidence_id" : ID,
+						"resevidence.resevidence_case" : case1_id
+					});
 					$('#evidence').modal('hide');
 					mdPost('/xsjsglxt/case/Resevidence_updateResevidenceInformation', data_, 'evidence');
 				});
-			}
-			else if (operate == "delete") {
-				var dle_data_ = { "useResevidenceInformationNumList": ID };
+			} else if (operate == "delete") {
+				var dle_data_ = {
+					"useResevidenceInformationNumList" : ID
+				};
 				mdPost('/xsjsglxt/case/Resevidence_remove_ResevidenceInformationList', dle_data_, 'evidence');
 			}
 		}
 	})
 
 	//修改丢失电脑
-	$('#loseComputer-info table tbody').on('click', function (e) {
+	$('#loseComputer-info table tbody').on('click', function(e) {
 		var o = e.target;
 		if (o.tagName == "I") {
 			var ID = $(o).parents('tr').attr('id');
 			var operate = $(o).attr('id');
 			if (operate == "modify") {
-				$.post('/xsjsglxt/case/LostComputer_LostComputerInformationOne', { "lost_computer.xsjsglxt_lost_computer_id": ID }, function (msg) {
-					$('#lost_computer table tbody').find('input,select,textarea').each(function (i, element) {
-						var name = $(this).attr('name');
-						var key = name.split('.')[1];
-						$(this).val(msg["lost_computer"][key]);
+				$.post('/xsjsglxt/case/LostComputer_LostComputerInformationOne', {
+					"lost_computer.xsjsglxt_lost_computer_id" : ID
+				}, function(msg) {
+					$('#lost_computer table tbody').find('input,select,textarea').each(function(i, element) {
+						if ($(this).attr('name')) {
+							var name = $(this).attr('name');
+							var key = name.split('.')[1];
+							$(this).val(msg["lost_computer"][key]);
+						}
 					});
 					//模态框展示操作
-					$('#lost_computer .add_computer').hide();//添加按钮消失
-					$('#lost_computer .modify_computer').show();//修改按钮可见
+					$('#lost_computer .add_computer').hide(); //添加按钮消失
+					$('#lost_computer .modify_computer').show(); //修改按钮可见
 					$('#lost_computer').modal('show');
 				}, 'json');
 				//给修改按钮绑定事件
-				$('#lost_computer .modify_computer').unbind().click(function () {
-					var data_ = $.extend({}, $('#lost_computer form').serializeObject(), { "lost_computer.xsjsglxt_lost_computer_id": ID, "lost_computer.lost_computer_case": case1_id });
+				$('#lost_computer .modify_computer').unbind().click(function() {
+					var data_ = $.extend({}, $('#lost_computer form').serializeObject(), {
+						"lost_computer.xsjsglxt_lost_computer_id" : ID,
+						"lost_computer.lost_computer_case" : case1_id
+					});
 					$('#lost_computer').modal('hide');
 					mdPost('/xsjsglxt/case/LostComputer_updateLostComputer', data_, 'computer');
 				});
-			}
-			else if (operate == "delete") {
-				var dle_data_ = { "useLost_computerInformationNumList": ID };
+			} else if (operate == "delete") {
+				var dle_data_ = {
+					"useLost_computerInformationNumList" : ID
+				};
 				mdPost('/xsjsglxt/case/LostComputer_remove_Lost_computerInformationList', dle_data_, 'computer');
 			}
 		}
 	})
 
 	//修改丢失手机
-	$('#LostMobilephone-info table tbody').on('click', function (e) {
+	$('#LostMobilephone-info table tbody').on('click', function(e) {
 		var o = e.target;
 		if (o.tagName == "I") {
 			var ID = $(o).parents('tr').attr('id');
 			var operate = $(o).attr('id');
 			if (operate == "modify") {
-				$.post('/xsjsglxt/case/LostMobilephone_LostMobiephoneInformationOne', { "lost_mobilephone.xsjsglxt_lost_mobilephone_id": ID }, function (msg) {
-					$('#lost_mobilephone table tbody').find('input,select,textarea').each(function (i, element) {
-						var name = $(this).attr('name');
-						var key = name.split('.')[1];
-						$(this).val(msg["lost_mobilephone"][key]);
+				$.post('/xsjsglxt/case/LostMobilephone_LostMobiephoneInformationOne', {
+					"lost_mobilephone.xsjsglxt_lost_mobilephone_id" : ID
+				}, function(msg) {
+					$('#lost_mobilephone table tbody').find('input,select,textarea').each(function(i, element) {
+						if ($(this).attr('name')) {
+							var name = $(this).attr('name');
+							var key = name.split('.')[1];
+							$(this).val(msg["lost_mobilephone"][key]);
+						}
 					});
 					//模态框展示操作
-					$('#lost_mobilephone .add_mobilephone').hide();//添加按钮消失
-					$('#lost_mobilephone .modify_mobilephone').show();//修改按钮可见
+					$('#lost_mobilephone .add_mobilephone').hide(); //添加按钮消失
+					$('#lost_mobilephone .modify_mobilephone').show(); //修改按钮可见
 					$('#lost_mobilephone').modal('show');
 				}, 'json');
 				//给修改按钮绑定事件
-				$('#lost_mobilephone .modify_mobilephone').unbind().click(function () {
-					var data_ = $.extend({}, $('#lost_computer form').serializeObject(), { "lost_mobilephone.xsjsglxt_lost_mobilephone_id": ID, "lost_mobilephone.lost_mobilephone_case": case1_id });
+				$('#lost_mobilephone .modify_mobilephone').unbind().click(function() {
+					var data_ = $.extend({}, $('#lost_computer form').serializeObject(), {
+						"lost_mobilephone.xsjsglxt_lost_mobilephone_id" : ID,
+						"lost_mobilephone.lost_mobilephone_case" : case1_id
+					});
 					$('#lost_mobilephone').modal('hide');
 					mdPost('/xsjsglxt/case/LostMobilephone_updateLostMobilephone', data_, 'mobilephone');
 				});
-			}
-			else if (operate == "delete") {
-				var dle_data_ = { "useLost_mobilephoneInformationNumList": ID };
+			} else if (operate == "delete") {
+				var dle_data_ = {
+					"useLost_mobilephoneInformationNumList" : ID
+				};
 				mdPost('/xsjsglxt/case/LostMobilephone_remove_Lost_mobilephoneInformationList', dle_data_, 'mobilephone');
 			}
 		}
 	})
 
 	//修改丢失物品
-	$('#loseGoods-info table tbody').on('click', function (e) {
+	$('#loseGoods-info table tbody').on('click', function(e) {
 		var o = e.target;
 		if (o.tagName == "I") {
 			var ID = $(o).parents('tr').attr('id');
 			var operate = $(o).attr('id');
 			if (operate == "modify") {
-				$.post('/xsjsglxt/case/Lost_LostInformationOne', { "lost.xsjsglxt_lost_id": ID }, function (msg) {
-					$('#lost table tbody').find('input,select,textarea').each(function (i, element) {
-						var name = $(this).attr('name');
-						var key = name.split('.')[1];
-						$(this).val(msg["lost"][key]);
+				$.post('/xsjsglxt/case/Lost_LostInformationOne', {
+					"lost.xsjsglxt_lost_id" : ID
+				}, function(msg) {
+					$('#lost table tbody').find('input,select,textarea').each(function(i, element) {
+						if ($(this).attr('name')) {
+							var name = $(this).attr('name');
+							var key = name.split('.')[1];
+							$(this).val(msg["lost"][key]);
+						}
 					});
 					//模态框展示操作
-					$('#lost .add_lost').hide();//添加按钮消失
-					$('#lost .modify_lost').show();//修改按钮可见
+					$('#lost .add_lost').hide(); //添加按钮消失
+					$('#lost .modify_lost').show(); //修改按钮可见
 					$('#lost').modal('show');
 				}, 'json');
 				//给修改按钮绑定事件
-				$('#lost .modify_lost').unbind().click(function () {
-					var data_ = $.extend({}, $('#lost form').serializeObject(), { "lost.xsjsglxt_lost_id": ID, "lost.lost_case": case1_id });
+				$('#lost .modify_lost').unbind().click(function() {
+					var data_ = $.extend({}, $('#lost form').serializeObject(), {
+						"lost.xsjsglxt_lost_id" : ID,
+						"lost.lost_case" : case1_id
+					});
 					$('#lost').modal('hide');
 					mdPost('/xsjsglxt/case/Lost_updateLost', data_, 'lost');
 				});
-			}
-			else if (operate == "delete") {
-				var dle_data_ = { "useLostInformationNumList": ID };
+			} else if (operate == "delete") {
+				var dle_data_ = {
+					"useLostInformationNumList" : ID
+				};
 				mdPost('/xsjsglxt/case/Lost_remove_LostInformationList', dle_data_, 'lost');
 			}
 		}
 	})
 
 	//修改丢失照片
-	$('#picture-info table tbody').on('click', function (e) {
+	$('#picture-info table tbody').on('click', function(e) {
 		var o = e.target;
 		if (o.tagName == "I") {
 			var ID = $(o).parents('tr').attr('id');
 			var operate = $(o).attr('id');
 			if (operate == "modify") {
-				$.post('/xsjsglxt/case/Image_getPictureOne', { "picture.xsjsglxt_picture_id": ID }, function (msg) {
-					$('#picture table tbody').find('input,select,textarea').each(function (i, element) {
-						var name = $(this).attr('name');
-						var key = name.split('.')[1];
-						$(this).val(msg["resevidence"][key]);
+				$.post('/xsjsglxt/case/Image_getPictureOne', {
+					"picture.xsjsglxt_picture_id" : ID
+				}, function(msg) {
+					$('#picture table tbody').find('input,select,textarea').each(function(i, element) {
+						if ($(this).attr('name')) {
+							var name = $(this).attr('name');
+							var key = name.split('.')[1];
+							$(this).val(msg["resevidence"][key]);
+						}
 					});
 					//模态框展示操作
-					$('#picture .add_picture').hide();//添加按钮消失
-					$('#picture .modify_picture').show();//修改按钮可见
+					$('#picture .add_picture').hide(); //添加按钮消失
+					$('#picture .modify_picture').show(); //修改按钮可见
 					$('#picture').modal('show');
 				}, 'json');
 				//给修改按钮绑定事件
-				$('#picture .modify_picture').unbind().click(function () {
-					var data_ = $.extend({}, $('#picture form').serializeObject(), { "picture.xsjsglxt_picture_id": ID, "picture.picture_case": case1_id });
+				$('#picture .modify_picture').unbind().click(function() {
+					var data_ = $.extend({}, $('#picture form').serializeObject(), {
+						"picture.xsjsglxt_picture_id" : ID,
+						"picture.picture_case" : case1_id
+					});
 					$('#picture').modal('hide');
 					mdPost('/xsjsglxt/case/Image_updatePicture', data_, 'picture');
 				});
-			}
-			else if (operate == "delete") {
-				var dle_data_ = { "usePictureInformationNumList": ID };
+			} else if (operate == "delete") {
+				var dle_data_ = {
+					"usePictureInformationNumList" : ID
+				};
 				mdPost('/xsjsglxt/case/Image_remove_LostInformationList', dle_data_, 'picture');
 			}
 		}
 	})
 
 	/*============================================================================模态框按钮事件绑定系列*/
-	$.each(['#evidence', '#lost', '#lost_mobilephone', '#lost_computer', '#picture'], function (index, value) {
+	$.each([ '#evidence', '#lost', '#lost_mobilephone', '#lost_computer', '#picture' ], function(index, value) {
 		//alert(i + "..." + value);
-		$(value).on('hidden.bs.modal', function () {
+		$(value).on('hidden.bs.modal', function() {
 			$(value).find('button[id^="add"]').show();
 			$(value).find('button[id^="modify"]').hide();
 			var refresh = '';
-			$(value).find('input,select,textarea').each(function () {
+			$(value).find('input,select,textarea').each(function() {
 				refresh = $(this).attr("refresh");
 				//文本刷新
 				if (refresh == "text") {
@@ -517,98 +578,98 @@ $(function () {
 /*============================================================================定义事件系列，提供修改时候使用*/
 //修改使用的post
 function mdPost(URL, DATA, TYPE) {
-	$.post(URL, DATA, function (msg) {
+	$.post(URL, DATA, function(msg) {
 		if (msg == 'success') {
 			toastr.info("操作成功");
 			//将案件信息找到并刷新一遍表格中的信息
 			$.post('/xsjsglxt/case/Case_SecneInformationOne', {
-				"case1.xsjsglxt_case_id": case1_id,
-			}, function (xhr_data) {
+				"case1.xsjsglxt_case_id" : case1_id,
+			}, function(xhr_data) {
 				switch (TYPE) {
-					case 'evidence':
-						//物证列表数据显示
-						var resevidence = xhr_data["resevidence"];
-						$('#evidence-info table tbody').html(function () {
-							var tr_str = '';
-							for (let index = 0; index < resevidence.length; index++) {
-								tr_str += `<tr id="${resevidence[index]["xsjsglxt_resevidence_id"]}">
+				case 'evidence':
+					//物证列表数据显示
+					var resevidence = xhr_data["resevidence"];
+					$('#evidence-info table tbody').html(function() {
+						var tr_str = '';
+						for (let index = 0; index < resevidence.length; index++) {
+							tr_str += `<tr id="${resevidence[index]["xsjsglxt_resevidence_id"]}">
 							  <td>${resevidence[index]["resevidence_name"]}</td>
 							  <td>${resevidence[index]["resevidence_extractTime"]}</td>
 							  <td>${resevidence[index]["resevidence_extractPerson"]}</td>
 							  <td><span class="label label-info">${resevidence[index]["resevidence_circulation"] == undefined ? "未流转" : resevidence[index]["resevidence_circulation"]}</span></td>
 							  <td><span class="label ${resevidence[index]["resevidence_sendstate"] == "已送检" ? "label-default" : "label-primary"}">${resevidence[index]["resevidence_sendstate"]}</span>|<span class="label ${resevidence[index]["resevidence_teststate"] == "已检验" ? "label-default" : "label-primary"}">${resevidence[index]["resevidence_teststate"]}</span></td>
 							  <td><i title="修改" id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i title="删除" id="delete" class="fa fa-trash-o"></i></td></tr>`;
-							}
-							/*<i id="circulation" class="fa fa fa-random"></i>&nbsp&nbsp*/
-							return tr_str;
-						});
-						break;
-					case 'computer':
-						//丢失电脑列表数据显示
-						var lose_computer = xhr_data["lost_computer"];
-						$('#loseComputer-info table tbody').html(function () {
-							var tr_str = '';
-							for (let index = 0; index < lose_computer.length; index++) {
-								tr_str += `<tr id="${lose_computer[index]["xsjsglxt_lost_computer_id"]}">
+						}
+						/*<i id="circulation" class="fa fa fa-random"></i>&nbsp&nbsp*/
+						return tr_str;
+					});
+					break;
+				case 'computer':
+					//丢失电脑列表数据显示
+					var lose_computer = xhr_data["lost_computer"];
+					$('#loseComputer-info table tbody').html(function() {
+						var tr_str = '';
+						for (let index = 0; index < lose_computer.length; index++) {
+							tr_str += `<tr id="${lose_computer[index]["xsjsglxt_lost_computer_id"]}">
 							  <td>${lose_computer[index]["lost_computer_brand"]}</td>
 							  <td>${lose_computer[index]["lost_computer_internetAccount"]}</td>
 							  <td>${lose_computer[index]["lost_computer_MAC"]}</td>
 							  <td>${lose_computer[index]["lost_computer_remarks"]}</td>
 							  <td><i id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`;
-							}
-							return tr_str;
-						});
-						break;
-					case 'mobilephone':
-						//丢失手机列表数据显示
-						var LostMobilephone_info = xhr_data["lost_mobilephone"];
-						$('#LostMobilephone-info table tbody').html(function () {
-							var tr_str = '';
-							for (let index = 0; index < LostMobilephone_info.length; index++) {
-								tr_str += `<tr id="${LostMobilephone_info[index]["xsjsglxt_lost_mobilephone_id"]}">
+						}
+						return tr_str;
+					});
+					break;
+				case 'mobilephone':
+					//丢失手机列表数据显示
+					var LostMobilephone_info = xhr_data["lost_mobilephone"];
+					$('#LostMobilephone-info table tbody').html(function() {
+						var tr_str = '';
+						for (let index = 0; index < LostMobilephone_info.length; index++) {
+							tr_str += `<tr id="${LostMobilephone_info[index]["xsjsglxt_lost_mobilephone_id"]}">
 							  <td>${LostMobilephone_info[index]["lost_mobilephone_phone"]}</td>
 							  <td>${LostMobilephone_info[index]["lost_mobilephone_IMEI"]}</td>
 							  <td>${LostMobilephone_info[index]["lost_mobilephone_feature"]}</td>
 							  <td>${LostMobilephone_info[index]["lost_mobilephone_remarks"]}</td>
 							  <td><i id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`;
-							}
-							return tr_str;
-						});
-						break;
-					case 'lost':
-						//丢失物列表数据显示
-						var lostGoods_info = xhr_data["lost"];
-						$('#loseGoods-info table tbody').html(function () {
-							var tr_str = '';
-							for (let index = 0; index < lostGoods_info.length; index++) {
-								tr_str += `<tr id="${lostGoods_info[index]["xsjsglxt_lost_id"]}">
+						}
+						return tr_str;
+					});
+					break;
+				case 'lost':
+					//丢失物列表数据显示
+					var lostGoods_info = xhr_data["lost"];
+					$('#loseGoods-info table tbody').html(function() {
+						var tr_str = '';
+						for (let index = 0; index < lostGoods_info.length; index++) {
+							tr_str += `<tr id="${lostGoods_info[index]["xsjsglxt_lost_id"]}">
 							  <td>${lostGoods_info[index]["lost_name"]}</td>
 							  <td>${lostGoods_info[index]["lost_model"]}</td>
 							  <td>${lostGoods_info[index]["lost_number"]}</td>
 							  <td>${lostGoods_info[index]["lost_price"]}</td>
 							  <td>${lostGoods_info[index]["lost_remarks"]}</td>
 							  <td><i id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`;
-							}
-							return tr_str;
-						});
-						break;
-					case 'picture':
-						//照片列表数据显示
-						var picture_info = xhr_data["picture"];
-						$('#picture-info table tbody').html(function () {
-							var tr_str = '';
-							for (let index = 0; index < picture_info.length; index++) {
-								tr_str += `<tr id="${picture_info[index]["xsjsglxt_picture_id"]}">
+						}
+						return tr_str;
+					});
+					break;
+				case 'picture':
+					//照片列表数据显示
+					var picture_info = xhr_data["picture"];
+					$('#picture-info table tbody').html(function() {
+						var tr_str = '';
+						for (let index = 0; index < picture_info.length; index++) {
+							tr_str += `<tr id="${picture_info[index]["xsjsglxt_picture_id"]}">
 							  <td>${picture_info[index]["picture_image"]}</td>
 							  <td>${picture_info[index]["picture_identifier"]}</td>
 							  <td>${picture_info[index]["picture_remarks"]}</td>
 							  <td><i id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`;
-							}
-							return tr_str;
-						});
-						break;
-					default:
-						break;
+						}
+						return tr_str;
+					});
+					break;
+				default:
+					break;
 				}
 			}, 'json');
 		}
@@ -622,7 +683,7 @@ function upload(button_element) {
 	upLoadFile.element = button_element;
 }
 //文件上传
-var upLoadFile = function () {
+var upLoadFile = function() {
 	var file_name = $('#file_upload').val();
 	if (file_name != "") {
 		var formData = new FormData();
@@ -630,47 +691,49 @@ var upLoadFile = function () {
 		var file = $("#file_upload")[0].files[0];
 		var ele_type = upLoadFile.element;
 		switch (ele_type.id) {
-			case "evidence_photo"://物证图
-				formData.append("evidenceImage", file);
-				formData.append("filePosition", "1");
-				break;
-			case "record_file"://笔录文件
-				formData.append("writeText", file);
-				formData.append("filePosition", "2");
-				break;
-			case "scene_picture"://现场图片
-				formData.append("senceImage", file);
-				formData.append("filePosition", "3");
-				break;
-			default:
-				return;
-				break;
+		case "evidence_photo": //物证图
+			formData.append("evidenceImage", file);
+			formData.append("filePosition", "1");
+			break;
+		case "record_file": //笔录文件
+			formData.append("writeText", file);
+			formData.append("filePosition", "2");
+			break;
+		case "scene_picture": //现场图片
+			formData.append("senceImage", file);
+			formData.append("filePosition", "3");
+			break;
+		default:
+			return;
+			break;
 		}
 		//进度条出现
 		$('.progress-bar').attr('aria-valuenow', '0').text('0%').parents('tr').show();
 		$.ajax({
-			type: "post",
-			async: true,  //这里要设置异步上传，才能成功调用myXhr.upload.addEventListener('progress',function(e){}),progress的回掉函数
-			Accept: 'text/html;charset=UTF-8',
-			data: formData,
-			contentType: "multipart/form-data",
-			url: "/xsjsglxt/case/Case_uploadFile",
-			processData: false, // 告诉jQuery不要去处理发送的数据
-			contentType: false, // 告诉jQuery不要去设置Content-Type请求头
-			xhr: function () {
+			type : "post",
+			async : true, //这里要设置异步上传，才能成功调用myXhr.upload.addEventListener('progress',function(e){}),progress的回掉函数
+			Accept : 'text/html;charset=UTF-8',
+			data : formData,
+			contentType : "multipart/form-data",
+			url : "/xsjsglxt/case/Case_uploadFile",
+			processData : false, // 告诉jQuery不要去处理发送的数据
+			contentType : false, // 告诉jQuery不要去设置Content-Type请求头
+			xhr : function() {
 				myXhr = $.ajaxSettings.xhr();
 				if (myXhr.upload) { // check if upload property exists
-					myXhr.upload.addEventListener('progress', function (e) {
-						var loaded = e.loaded;                  //已经上传大小情况 
-						var total = e.total;                      //附件总大小 
-						var percent = Math.floor(100 * loaded / total) + "%";     //已经上传的百分比  
+					myXhr.upload.addEventListener('progress', function(e) {
+						var loaded = e.loaded; //已经上传大小情况 
+						var total = e.total; //附件总大小 
+						var percent = Math.floor(100 * loaded / total) + "%"; //已经上传的百分比  
 						$('.progress-bar').attr('aria-valuenow', percent).text(percent);
 						if (percent == "100%") {
 							toastr.info('上传完成');
-							setTimeout(function () {
+							setTimeout(function() {
 								$('.progress-bar').attr('aria-valuenow', '0').text('0%').parents('tr').hide();
 							}, 2000);
-							$.post('/xsjsglxt/case/Case_SecneInformationOne', { "case1.xsjsglxt_case_id": case1_id }, function (xhr_data) {
+							$.post('/xsjsglxt/case/Case_SecneInformationOne', {
+								"case1.xsjsglxt_case_id" : case1_id
+							}, function(xhr_data) {
 								//保存下载的文件ID
 								downloadFile.case_imageFile = xhr_data.case1.case_imageFile;
 								downloadFile.case_writeFile = xhr_data.case1.case_writeFile;
@@ -681,43 +744,43 @@ var upLoadFile = function () {
 				}
 				return myXhr;
 			},
-			success: function (data) {
+			success : function(data) {
 				console.log("上传成功!!!!");
 			},
-			error: function () {
+			error : function() {
 				alert("上传失败！");
 			}
 		});
 	}
 }
 //文件下载
-var downloadFile = function (element) {
+var downloadFile = function(element) {
 	var href_str = '?';
 	switch (element.id) {
-		case "evidence_photo"://物证图
-			if (downloadFile.case_imageFile == undefined) {
-				toastr.info('该案件不包含有物证图,请上传!');
-				return;
-			}
-			href_str += "downloadFileName=" + downloadFile.case_imageFile + "&filePosition=" + 1;
-			break;
-		case "record_file"://笔录文件
-			if (downloadFile.case_writeFile == undefined) {
-				toastr.info('该案件不包含有笔录文件,请上传!');
-				return;
-			}
-			href_str += "downloadFileName=" + downloadFile.case_writeFile + "&filePosition=" + 2;
-			break;
-		case "scene_picture"://现场图片
-			if (downloadFile.case_senceImageFile == undefined) {
-				toastr.info('该案件不包含有现场图片,请上传!');
-				return;
-			}
-			href_str += "downloadFileName=" + downloadFile.case_senceImageFile + "&filePosition=" + 3;
-			break;
-		default:
+	case "evidence_photo": //物证图
+		if (downloadFile.case_imageFile == undefined) {
+			toastr.info('该案件不包含有物证图,请上传!');
 			return;
-			break;
+		}
+		href_str += "downloadFileName=" + downloadFile.case_imageFile + "&filePosition=" + 1;
+		break;
+	case "record_file": //笔录文件
+		if (downloadFile.case_writeFile == undefined) {
+			toastr.info('该案件不包含有笔录文件,请上传!');
+			return;
+		}
+		href_str += "downloadFileName=" + downloadFile.case_writeFile + "&filePosition=" + 2;
+		break;
+	case "scene_picture": //现场图片
+		if (downloadFile.case_senceImageFile == undefined) {
+			toastr.info('该案件不包含有现场图片,请上传!');
+			return;
+		}
+		href_str += "downloadFileName=" + downloadFile.case_senceImageFile + "&filePosition=" + 3;
+		break;
+	default:
+		return;
+		break;
 	}
 	window.open("/xsjsglxt/case/Case_download" + href_str);
 }
@@ -725,7 +788,6 @@ var downloadFile = function (element) {
 
 //=========================封装(物证，丢失物，照片)信息更新，当用到，增加，修改，删除时，触发信息更新
 function updateSenceInformation(type, jsonData) {
-
 }
 /*
 //修改基站
@@ -781,7 +843,9 @@ function buildCase_chose(params) {
 	if ($(params).val() == 1) {
 		$('input[name="case1.case_register"]').val(1);
 		//修改立案时间
-		$.post('/xsjsglxt/case/Case_updateCaseTime', { "case1.xsjsglxt_case_id": case1_id }, function (msg) { }, 'text');
+		$.post('/xsjsglxt/case/Case_updateCaseTime', {
+			"case1.xsjsglxt_case_id" : case1_id
+		}, function(msg) {}, 'text');
 	} else {
 		$('input[name="case1.case_register"]').val(0);
 	}
@@ -792,21 +856,21 @@ function case_change() {
 	var url = "/xsjsglxt/case/Case_updateSenceInformation";
 	var case1_id = document.getElementById("case1_id").value;
 	$.confirm({
-		title: '确定修改?',
-		smoothContent: false,
-		content: false,
-		autoClose: 'cancelAction|10000',
-		buttons: {
-			deleteUser: {
-				btnClass: 'btn-blue',
-				text: '确认',
-				action: function () {
+		title : '确定修改?',
+		smoothContent : false,
+		content : false,
+		autoClose : 'cancelAction|10000',
+		buttons : {
+			deleteUser : {
+				btnClass : 'btn-blue',
+				text : '确认',
+				action : function() {
 					loadCaseDetail_case_change(url, case1_id);
 				}
 			},
-			cancelAction: {
-				btnClass: 'btn-danger',
-				text: '取消',
+			cancelAction : {
+				btnClass : 'btn-danger',
+				text : '取消',
 			}
 		}
 	});
@@ -832,7 +896,7 @@ function loadCaseDetail_case_change(url, case1_id) {
 		formData.forEach((value, key) => objData[key] = value);
 		return JSON.stringify(objData);
 	};*/
-	xmlhttp.onreadystatechange = function () {
+	xmlhttp.onreadystatechange = function() {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			console.log(xmlhttp.responseText);
 			var result = xmlhttp.responseText;
