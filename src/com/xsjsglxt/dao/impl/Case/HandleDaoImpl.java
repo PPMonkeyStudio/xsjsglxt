@@ -345,7 +345,6 @@ public class HandleDaoImpl implements HandleDao {
 		xsjsglxt_handle xh = (xsjsglxt_handle) session.get(xsjsglxt_handle.class, xsjsglxt_handle_id);
 		String hqlUpdate = "update xsjsglxt_handle set handle_orderNumber = handle_orderNumber-1 where handle_orderNumber>'"
 				+ xh.getHandle_orderNumber() + "'";
-		System.out.println(hqlUpdate);
 		session.createQuery(hqlUpdate).executeUpdate();
 		return true;
 	}
@@ -369,9 +368,7 @@ public class HandleDaoImpl implements HandleDao {
 		Session session = getSession();
 		String hql = "from xsjsglxt_handle";
 		Query query = session.createQuery(hql);
-
 		List<xsjsglxt_handle> AllPoliceInHandlingCasesList = query.list();
-
 		return AllPoliceInHandlingCasesList;
 	}
 
