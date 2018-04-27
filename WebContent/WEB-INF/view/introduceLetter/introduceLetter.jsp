@@ -43,7 +43,7 @@ table tr:hover {
 	src="<%=basePath%>js/introduceLetter/createLetter.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/introduceLetter/showLetterList.js"></script>
-	<script type="text/javascript"
+<script type="text/javascript"
 	src="<%=basePath%>js/introduceLetter/managerLetter.js"></script>
 <!-- -----------------模态框js文件引入--------------------------------  -->
 </head>
@@ -58,18 +58,19 @@ table tr:hover {
 				<button class="btn btn-default managerRole" onclick="createLetter()">
 					<i class="fa fa-pencil-square-o"></i>新建介绍信
 				</button>
-				<button class="btn btn-danger managerRole"
+				<button class="btn btn-danger managerRole letter_admin"
 					onclick="deleteLetter()">
-					<i class="fa fa-trash-o"></i>删除值班
+					<i class="fa fa-trash-o"></i>删除介绍信
 				</button>
 				<div id="query" style="float: right;">
 					<label>时间筛选</label> <input class="form-control startTime"
 						onchange="changeQuerySort()" type="text" id="timeStart"
 						style="width: 150px; display: inline-block;">至 <input
-						class="form-control startTime" onchange="changeQuerySort()" type="text"
-						style="width: 150px; display: inline-block;" id="timeEnd">
-					<label>查询</label> <input type="text" id="searchInput"
-						class="form-control" style="width: 250px; display: inline-block;"
+						class="form-control startTime" onchange="changeQuerySort()"
+						type="text" style="width: 150px; display: inline-block;"
+						id="timeEnd"> <label>查询</label> <input type="text"
+						id="searchInput" class="form-control"
+						style="width: 250px; display: inline-block;"
 						oninput="changeQuerySort()" placeholder="请输入搜索内容">
 				</div>
 			</div>
@@ -86,7 +87,8 @@ table tr:hover {
 						<td>目的单位</td>
 						<td>前往人员</td>
 						<td>前往人员数量</td>
-						<td><select class="form-control" id="timeSort" onchange="changeQuerySort()">
+						<td><select class="form-control" id="timeSort"
+							onchange="changeQuerySort()">
 								<option value="desc">前往时间（降序）</option>
 								<option value="asc">前往时间（升序）</option>
 						</select></td>
@@ -109,16 +111,20 @@ table tr:hover {
 									style='text-align: center; min-width: 100px;'>
 									<li :id='letter.xsjsglxt_introduce_letter_id'
 										onclick='exportLetter(this)' class='pageOperation'><a>导出</a></li>
-									<li class="managerRole pageOperation"
+									<template v-if="letter_admin_power">
+									<li class="managerRole pageOperation letter_admin"
 										:id='letter.xsjsglxt_introduce_letter_id'
 										onclick='updateLetter(this)'><a>修改</a></li>
-									<template v-if="letter.introduce_approve_status=='未审批'">
-									<li class="managerRole pageOperation"
+									</template>
+									<template
+										v-if="letter.introduce_approve_status=='未审批' && letter_admin_power">
+									<li class="managerRole pageOperation letter_admin"
 										:id='letter.xsjsglxt_introduce_letter_id'
 										onclick='approveLetter(this)'><a>审批</a></li>
 									</template>
-									<template v-if="letter.introduce_approve_status=='已审批'">
-									<li class="managerRole pageOperation"
+									<template
+										v-if="letter.introduce_approve_status=='已审批' && letter_admin_power">
+									<li class="managerRole pageOperation letter_admin"
 										:id='letter.xsjsglxt_introduce_letter_id'
 										onclick='showApproveStup(this)'><a>查看审批存根</a></li>
 									</template>
@@ -146,17 +152,20 @@ table tr:hover {
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
-		$.datetimepicker.setLocale('ch');
-		$('.startTime').datetimepicker({
-			yearStart : 1900, // 设置最小年份
-			yearEnd : 2100, // 设置最大年份
-			yearOffset : 0, // 年偏差
-			timepicker : false, // 关闭时间选项
-			format : 'Y-m-d', // 格式化日期年-月-日
-			minDate : '1900/01/01', // 设置最小日期
-			maxDate : '2030/01/01', // 设置最大日期
-		});
-	</script>
 </body>
+<script type="text/javascript">
+	$.datetimepicker.setLocale('ch');
+	$('.startTime').datetimepicker({
+		yearStart : 1900, // 设置最小年份
+		yearEnd : 2100, // 设置最大年份
+		yearOffset : 0, // 年偏差
+		timepicker : false, // 关闭时间选项
+		format : 'Y-m-d', // 格式化日期年-月-日
+		minDate : '1900/01/01', // 设置最小日期
+		maxDate : '2030/01/01', // 设置最大日期
+	});
+	if (!userPowerDTO.user_letter_power) {
+		$('.letter_admin').hide();
+	}
+</script>
 </html>

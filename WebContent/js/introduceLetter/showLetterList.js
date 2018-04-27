@@ -21,7 +21,9 @@ window.onload = function() {
 	letterVue = new Vue({
 		el : '#allInformation',
 		data : {
-			allData : {}
+			allData : {},
+			letter_admin_power : ''
+
 		}
 	});
 	loadData();
@@ -107,6 +109,7 @@ var loadData = function() {
 			queryConditionTemp.pageSize = letterVue.allData.pageSize;
 			queryConditionTemp.totalPage = letterVue.allData.totalPage;
 			queryConditionTemp.totalCount = letterVue.allData.totalCount;
+			letterVue.letter_admin_power = userPowerDTO.user_letter_power;
 			$('#loadingLayer').hide();
 			$('#allInformation').show();
 		}

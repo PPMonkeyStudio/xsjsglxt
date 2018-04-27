@@ -195,7 +195,8 @@
 				'user_technology_manager_power' : false,//技术
 				'user_statistics_power' : false, //统计
 				'user_user_manager_power' : false,
-				'user_check_power_modified': false
+				'user_check_power_modified': false,
+				'user_letter_power':false
 			}
 
 			var powerNavVue = new Vue({
@@ -233,10 +234,16 @@
 								} else {
 									userPowerDTO.user_case_technology_power = false;
 								}
-								if (result.user_case_query_power == 'jurisdiction_admin') {
-									userPowerDTO.user_case_query_power = true;
-								} else {
+								if(result.user_case_query_power == 'letter_admin'){
+									userPowerDTO.user_letter_power = true;
+								}
+								else{
+									userPowerDTO.user_letter_power = false;
+								}
+								if (result.user_case_query_power == 'jurisdiction_none') {
 									userPowerDTO.user_case_query_power = false;
+								} else {
+									userPowerDTO.user_case_query_power = true;
 								}
 								if (result.user_check_power == 'jurisdiction_none') {
 									userPowerDTO.user_check_power = false;

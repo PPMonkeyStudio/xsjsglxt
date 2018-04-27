@@ -36,6 +36,10 @@
 							document.getElementById("assistant").innerHTML = result.scheduling_assistant;
 							if (result.scheduling_patrol != null)
 								document.getElementById("patrol").innerHTML = result.scheduling_patrol;
+							if (result.scheduling_out_help != null)
+								document.getElementById("outHelp").innerHTML = result.scheduling_out_help;
+							if (result.scheduling_overtime != null)
+								document.getElementById("overtime").innerHTML = result.scheduling_overtime;
 						}
 					}
 				});
@@ -169,10 +173,13 @@
 					<div class="panel panel-headline">
 						<div class="panel-heading">
 							<h2 class="panel-title">欢迎进入安源刑侦信息管理系统</h2>
+							<br>
 							<h3 class="panel-title" id="schedulingH3">
 								今日值班 带班领导：<span id="leader"></span> 侦查民警：<span id="main"></span>
 								技术民警：<span id="mainTech"></span> 辅警：<span id="assistant"></span>
-								今日巡逻：<span id="patrol"></span>
+								今日巡逻：<span id="patrol"></span><br><br>
+								今日加班：<span id="overtime"></span>
+								今日外协：<span id="outHelp"></span>
 							</h3>
 							<p class="panel-subtitle" style="margin-top: 20px;">
 								当前时间是：<span id="current_time"></span>
