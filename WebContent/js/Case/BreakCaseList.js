@@ -1,23 +1,22 @@
 var query_data = {
-	"breakeCaseListVO.currPage": "1",
-	"breakeCaseListVO.query_sence_inquestId": "",
-	"breakeCaseListVO.query_case_name": "",//案件名称
-	"breakeCaseListVO.query_breake_time_start": "",
-	"breakeCaseListVO.query_breake_time_end": "",
-	"breakeCaseListVO.query_breake_person": "",
-	"breakeCaseListVO.query_breake_according": "",
-	"breakeCaseListVO.query_breake_time_sort": "desc",
-
+	"breakeCaseListVO.currPage" : "1",
+	"breakeCaseListVO.query_sence_inquestId" : "",
+	"breakeCaseListVO.query_case_name" : "", //案件名称
+	"breakeCaseListVO.query_breake_time_start" : "",
+	"breakeCaseListVO.query_breake_time_end" : "",
+	"breakeCaseListVO.query_breake_person" : "",
+	"breakeCaseListVO.query_breake_according" : "",
+	"breakeCaseListVO.query_breake_time_sort" : "desc",
 };
 //当前页面分页信息
 var page_infomantion = {
-	currPage: 1,
-	totalPage: 1,
-	totalCount: 10,
-	pageSize: 1,
+	currPage : 1,
+	totalPage : 1,
+	totalCount : 10,
+	pageSize : 1,
 }
 
-var selectAll = function (event) {
+var selectAll = function(event) {
 	if (event.checked) {
 		console.log("选中了");
 		var che = document.getElementsByName("chooseCheckBox");
@@ -44,7 +43,7 @@ var braekeCaseData = `<form action="">
 </td></tr><tr><td>破案时间</td><td>
 <input class="form-control mydate" name="breakeCase.breakecase_caseTime" type="text">
 </td><td>破案人</td><td>
-<input class="form-control" name="breakeCase.breakecase_person" type="text">
+<select class="form-control" data-live-search="true" name="breakeCase.breakecase_person"></select>
 </td></tr><tr><td>带破案件</td><td colspan="3">
 <select class="form-control selectpicker" multiple data-live-search="true" name="breakeCase.breakecase_waitbreakecase" title="请选择..."></select>
 </td></tr><tr><td>备注</td><td colspan="3">
@@ -67,52 +66,53 @@ var braekeCaseData = `<form action="">
 
 var SuspectData = `<table class="table">
 <tbody>
-<tr><td>姓名</th><td><input class="form-control must" name="breakecaseSuspect_name" type="text" value="1"></td>
-    <td>身份证号</th><td><input class="form-control must su-IDnum" name="breakecaseSuspect_IDnum" type="text" value="36073319931116591X"></td></tr>
-<tr><td>性别</th><td><input class="form-control must su-sex" name="breakecaseSuspect_sex" type="text" value="1"></td>
-    <td>生日</th><td><input class="form-control must su-birthday" name="breakecaseSuspect_birthday" type="text" value="1"></td></tr>
-<tr><td>住址</th><td><input class="form-control must" name="breakecaseSuspect_addrress" type="text" value="1"></td>
+<tr><td>姓名</th><td><input class="form-control must" name="breakecaseSuspect_name" type="text" value=""></td>
+    <td>身份证号</th><td><input class="form-control must su-IDnum" name="breakecaseSuspect_IDnum" type="text" value=""></td></tr>
+<tr><td>性别</th><td><input class="form-control must su-sex" name="breakecaseSuspect_sex" type="text" value=""></td>
+    <td>生日</th><td><input class="form-control must su-birthday" name="breakecaseSuspect_birthday" type="text" value=""></td></tr>
+<tr><td>住址</th><td><input class="form-control must" name="breakecaseSuspect_addrress" type="text" value=""></td>
 	<td>是否抓获</th><td><select class="form-control must" name="breakecaseSuspect_capture"><option>是</option><option>否</ption>
 <option>其他</option></select></td></tr>
-<tr><td>抓获单位</th><td><input class="form-control must" name="breakecaseSuspect_captureUnit" type="text" value="1"></td>
-	<td>抓获时间</th><td><input class="form-control mydate must" name="breakecaseSuspect_captureTime" type="text" value="1"></td></tr>
+<tr><td>抓获单位</th><td><input class="form-control must" name="breakecaseSuspect_captureUnit" type="text" value=""></td>
+	<td>抓获时间</th><td><input class="form-control mydate must" name="breakecaseSuspect_captureTime" type="text" value=""></td></tr>
 </tbody>
 </table>`;
 
 //保存嫌疑人信息
 var suspect = [];
 
-$(function () {
+$(function() {
 
 	get_ListBreakecaseInformationByPageAndSearch(query_data);
 
-	$('.to_quert').click(function () {
+	$('.to_quert').click(function() {
 		var arr = $('#query_infomantion_inmodal').serializeArray();
-		$.each(arr, function (key, value) {
+		$.each(arr, function(key, value) {
 			//key为arr里对象的索引，value为索引为key的对象。对象以{name: 'firstname', value: 'Hello'}形式存储, 以obj.name和obj.value形式遍历 
 			query_data[value.name] = value.value;
 		});
 		get_ListBreakecaseInformationByPageAndSearch(query_data);
 	});
 
-	$('.empty_quert').click(function () {
+	$('.empty_quert').click(function() {
 		for (var i in query_data) {
 			query_data[i] = "";
 		}
 		//页面重置为第一页
 		query_data["breakeCaseListVO.currPage"] = 1;
 		//选择框清除内容
-		$('#newQuery').find('input,select').val('');;
+		$('#newQuery').find('input,select').val('');
+		;
 		/*//影藏模态框
 		$('#newQuery').modal('hide');*/
 		//成功提示
 		toastr.info('清除查询信息成功');
 	});
 
-	$('#delete-breakeCase').click(function () {
+	$('#delete-breakeCase').click(function() {
 		var formData = new FormData;
 		var falg = false;
-		$('.breakcase_table_info').find('input[name="chooseCheckBox"]').each(function () {
+		$('.breakcase_table_info').find('input[name="chooseCheckBox"]').each(function() {
 			if ($(this).is(':checked')) {
 				formData.append('breakeCaseId', $(this).attr('id'));
 				falg = true;
@@ -120,13 +120,13 @@ $(function () {
 		});
 		if (falg) {
 			$.ajax({
-				url: "/xsjsglxt/case/BreakeCase_deleteBreakeCase",
-				type: "POST",
-				contentType: false,
-				processData: false,
-				data: formData,
-				dataType: 'text',
-				success: function (msg) {
+				url : "/xsjsglxt/case/BreakeCase_deleteBreakeCase",
+				type : "POST",
+				contentType : false,
+				processData : false,
+				data : formData,
+				dataType : 'text',
+				success : function(msg) {
 					if (msg == 'deleteSuccess') {
 						toastr.info('删除成功');
 						get_ListBreakecaseInformationByPageAndSearch(query_data);
@@ -140,21 +140,21 @@ $(function () {
 		}
 	});
 
-	$('#breakCase_input').click(function () {
+	$('#breakCase_input').click(function() {
 		var addBreakeCase = $.confirm({
-			closeIcon: true,
-			boxWidth: '80%',
-			useBootstrap: false,
-			smoothContent: false,
-			title: '破案信息添加',
-			content: braekeCaseData,
-			onContentReady: function () {
+			closeIcon : true,
+			boxWidth : '80%',
+			useBootstrap : false,
+			smoothContent : false,
+			title : '破案信息添加',
+			content : braekeCaseData,
+			onContentReady : function() {
 				//日期，身份证识别
 				Init();
 				//嫌疑人表中的修改，删除事件
 				Suspect_mo_del(addBreakeCase, "add");
 				//查询所有案件并添加
-				$.post('/xsjsglxt/case/Case_AllCase', {}, function (Case_data) {
+				$.post('/xsjsglxt/case/Case_AllCase', {}, function(Case_data) {
 					//所有案件循环
 					var option = '';
 					var option2 = '';
@@ -167,28 +167,35 @@ $(function () {
 					//除去加载提示
 					addBreakeCase.$content.find('.load_remind').hide();
 				}, 'json');
+				$.post('/xsjsglxt/team/Staff_getAllPolicemans', {}, function(params) {
+					var suspectStr = '';
+					for (let index = 0; index < params.length; index++) {
+						suspectStr += '<option value="' + params[index]["xsjsglxt_name"] + '">' + params[index]["xsjsglxt_name"] + '</option>';
+					}
+					$('select[name="breakeCase.breakecase_person"]').html(suspectStr).selectpicker('refresh');
+				}, 'json');
 			},
-			buttons: {
-				addProson: {
-					text: '添加嫌疑人',
-					btnClass: 'btn-info',
-					action: function () {
+			buttons : {
+				addProson : {
+					text : '添加嫌疑人',
+					btnClass : 'btn-info',
+					action : function() {
 						/*===================================================== 破案窗口中嫌疑人添加*/
 						var Suspect = $.confirm({
-							closeIcon: true,
-							boxWidth: '50%',
-							useBootstrap: false,
-							smoothContent: false,
-							title: '嫌疑人添加',
-							content: SuspectData,
-							onContentReady: function () {
+							closeIcon : true,
+							boxWidth : '50%',
+							useBootstrap : false,
+							smoothContent : false,
+							title : '嫌疑人添加',
+							content : SuspectData,
+							onContentReady : function() {
 								Init();
 							},
-							buttons: {
-								sureAddProson: {
-									text: "确认添加",/*===================================================== 确认嫌疑人添加*/
-									btnClass: 'btn-info',
-									action: function () {
+							buttons : {
+								sureAddProson : {
+									text : "确认添加", /*===================================================== 确认嫌疑人添加*/
+									btnClass : 'btn-info',
+									action : function() {
 										var must = Suspect.$content.find('.must');
 										for (let index = 0; index < must.length; index++) {
 											if (must.eq(index).val() == "") {
@@ -205,18 +212,18 @@ $(function () {
 										addBreakeCase.$content.find('.suspect-info tbody').append(suspectStr);
 									}
 								},
-								close: {
-									text: "取消"
+								close : {
+									text : "取消"
 								}
 							}
 						});
 						return false;
 					}
 				},
-				sureAdd: {
-					text: '确认添加',/*===================================================== 确认破案添加*/
-					btnClass: 'btn-info',
-					action: function () {
+				sureAdd : {
+					text : '确认添加', /*===================================================== 确认破案添加*/
+					btnClass : 'btn-info',
+					action : function() {
 						addBreakeCase.$content.find('form').serializeObject();
 						var suspects = {};
 						for (let index = 0; index < suspect.length; index++) {
@@ -234,14 +241,14 @@ $(function () {
 							formData.append("takeBreakeCase", breakeCaseDetails[index].text);
 						}
 						$.ajax({
-							url: '/xsjsglxt/case/BreakeCase_saveBreakeCase',
-							type: 'POST',
-							cache: false,
-							data: formData,
-							processData: false,
-							contentType: false,
-							dataType: 'text',
-							success: function (xhr) {
+							url : '/xsjsglxt/case/BreakeCase_saveBreakeCase',
+							type : 'POST',
+							cache : false,
+							data : formData,
+							processData : false,
+							contentType : false,
+							dataType : 'text',
+							success : function(xhr) {
 								if (xhr == 'caseIsBreake') {
 									toastr.error('此案件已经包含破案情况！');
 									return false;
@@ -253,27 +260,25 @@ $(function () {
 								}
 								suspect = [];
 							},
-							error: function (msg) {
-
-							}
+							error : function(msg) {}
 						});
-						/*$.post('/xsjsglxt/case/BreakeCase_saveBreakeCase', data, function (xhr) {
-							if (xhr == 'caseIsBreake') {
-								toastr.error('此案件已经包含破案情况！');
-								return false;
-							} else if (xhr == 'saveSuccess') {
-								toastr.info('成功添加');
-								get_ListBreakecaseInformationByPageAndSearch(query_data);
-							} else if (xhr == 'saveError') {
-								toastr.info('添加失败');
-							}
-							suspect = [];
-						}, 'text');*/
+					/*$.post('/xsjsglxt/case/BreakeCase_saveBreakeCase', data, function (xhr) {
+						if (xhr == 'caseIsBreake') {
+							toastr.error('此案件已经包含破案情况！');
+							return false;
+						} else if (xhr == 'saveSuccess') {
+							toastr.info('成功添加');
+							get_ListBreakecaseInformationByPageAndSearch(query_data);
+						} else if (xhr == 'saveError') {
+							toastr.info('添加失败');
+						}
+						suspect = [];
+					}, 'text');*/
 					}
 				},
-				close: {
-					text: '取消',
-					action: function () { }
+				close : {
+					text : '取消',
+					action : function() {}
 				},
 			}
 		});
@@ -282,12 +287,12 @@ $(function () {
 
 
 	//表格中I标签的操作绑定
-	$('.breakcase_table_info tbody').click(function (e) {
+	$('.breakcase_table_info tbody').click(function(e) {
 		if (e.target.tagName == "TD") {
 			var ID = $(e.target).parent().find('input[name="chooseCheckBox"]').attr('id');
 			$.post('/xsjsglxt/case/BreakeCase_breakeCaseDetails', {
-				"breakeCase.xsjsglxt_breakecase_id": ID
-			}, function (msg) {
+				"breakeCase.xsjsglxt_breakecase_id" : ID
+			}, function(msg) {
 				var breakeCaseID = msg.breakeCase.xsjsglxt_breakecase_id;
 				var content = `<form action="">
 			<div style="width: 100%;margin: auto;" class="panel-body"><table class="table table-hover table-condensed" align="center"><tbody>
@@ -310,16 +315,16 @@ $(function () {
 			<thead><tr><td>姓名</td><td>身份证号</td><td>性别</td><td>生日</td><td>住址</td><td>抓获</td><td>抓获单位</td><td>抓获时间</td><td>操作</td>
 			</tr></thead><tbody></tbody></table></tr></tbody></table></div></form>`;
 				var modifyBreakeCase = $.confirm({
-					closeIcon: true,
-					columnClass: 'col-md-12',
-					boxWidth: '1000px',
-					useBootstrap: true,
-					smoothContent: false,
-					title: '破案信息修改',
-					content: content,
-					onContentReady: function () {
+					closeIcon : true,
+					columnClass : 'col-md-12',
+					boxWidth : '1000px',
+					useBootstrap : true,
+					smoothContent : false,
+					title : '破案信息修改',
+					content : content,
+					onContentReady : function() {
 						$('select[name="breakeCase.breakecase_according"]').val(msg.breakeCase.breakecase_according);
-						$.post('/xsjsglxt/team/Staff_getAllPolicemans', {}, function (params) {
+						$.post('/xsjsglxt/team/Staff_getAllPolicemans', {}, function(params) {
 							var suspectStr = '';
 							for (let index = 0; index < params.length; index++) {
 								suspectStr += '<option value="' + params[index]["xsjsglxt_name"] + '">' + params[index]["xsjsglxt_name"] + '</option>';
@@ -342,7 +347,7 @@ $(function () {
 						//嫌疑人表中的修改，删除事件
 						Suspect_mo_del(modifyBreakeCase, "modify");
 						//查询所有案件并添加
-						$.post('/xsjsglxt/case/Case_AllCase', {}, function (Case_data) {
+						$.post('/xsjsglxt/case/Case_AllCase', {}, function(Case_data) {
 							//所有案件循环
 							var option = '';
 							var option2 = '';
@@ -356,26 +361,26 @@ $(function () {
 							modifyBreakeCase.$content.find('.load_remind').hide();
 						}, 'json');
 					},
-					buttons: {
-						addProson: {
-							text: '嫌疑人添加',
-							btnClass: 'btn-info',
-							action: function () {
+					buttons : {
+						addProson : {
+							text : '嫌疑人添加',
+							btnClass : 'btn-info',
+							action : function() {
 								var Suspectadd = $.confirm({
-									closeIcon: true,
-									boxWidth: '50%',
-									useBootstrap: false,
-									smoothContent: false,
-									title: '嫌疑人添加',
-									content: SuspectData,
-									onContentReady: function () {
+									closeIcon : true,
+									boxWidth : '50%',
+									useBootstrap : false,
+									smoothContent : false,
+									title : '嫌疑人添加',
+									content : SuspectData,
+									onContentReady : function() {
 										Init();
 									},
-									buttons: {
-										sureAddProson: {
-											text: "确认添加",
-											btnClass: 'btn-info',
-											action: function () {
+									buttons : {
+										sureAddProson : {
+											text : "确认添加",
+											btnClass : 'btn-info',
+											action : function() {
 												var must = Suspectadd.$content.find('.must');
 												for (let index = 0; index < must.length; index++) {
 													if (must.eq(index).val() == "") {
@@ -384,12 +389,12 @@ $(function () {
 													}
 												}
 												var suspect_add = {
-													"suspect.breakecaseSuspect_breakecase": breakeCaseID,
+													"suspect.breakecaseSuspect_breakecase" : breakeCaseID,
 												};
-												Suspectadd.$content.find('.must').each(function () {
+												Suspectadd.$content.find('.must').each(function() {
 													suspect_add["suspect." + $(this).attr('name')] = $(this).val();
 												});
-												$.post('/xsjsglxt/case/BreakeCase_addOneSuspect', suspect_add, function (msg_one) {
+												$.post('/xsjsglxt/case/BreakeCase_addOneSuspect', suspect_add, function(msg_one) {
 													if (msg_one.length > 20 && msg_one.length <= 36) {
 														toastr.info('添加嫌疑人成功');
 														var suspectStr = '<tr id="' + msg_one + '">';
@@ -407,22 +412,22 @@ $(function () {
 												}, 'text');
 											}
 										},
-										close: {
-											text: '取消',
-											action: function () { }
+										close : {
+											text : '取消',
+											action : function() {}
 										}
 									}
 								});
 								return false;
 							}
 						},
-						modifi: {
-							text: '修改',
-							btnClass: 'btn-info',
-							action: function () {
+						modifi : {
+							text : '修改',
+							btnClass : 'btn-info',
+							action : function() {
 								var BreakeCaseDATA = modifyBreakeCase.$content.find('form').serializeObject();
 								BreakeCaseDATA["breakeCase.xsjsglxt_breakecase_id"] = ID;
-								$.post('/xsjsglxt/case/BreakeCase_updateBreakeCase', BreakeCaseDATA, function (xhr) {
+								$.post('/xsjsglxt/case/BreakeCase_updateBreakeCase', BreakeCaseDATA, function(xhr) {
 									if (xhr == 'updateSuccess') {
 										toastr.info('息修改成功');
 										get_ListBreakecaseInformationByPageAndSearch(query_data);
@@ -433,9 +438,9 @@ $(function () {
 								}, 'text');
 							}
 						},
-						close: {
-							text: '取消',
-							action: function () { }
+						close : {
+							text : '取消',
+							action : function() {}
 						},
 					}
 				});
@@ -446,7 +451,7 @@ $(function () {
 })
 
 function get_ListBreakecaseInformationByPageAndSearch(data) {
-	$.post('/xsjsglxt/case/BreakeCase_breakeCaseByPage', data, function (xhr) {
+	$.post('/xsjsglxt/case/BreakeCase_breakeCaseByPage', data, function(xhr) {
 		var data_list = xhr.breakeCaseDTOList;
 		var str = '';
 		for (var len = 0; len < data_list.length; len++) {
@@ -482,7 +487,7 @@ function createSuspect(confirm_content) {
 	var newSuspect = {};
 	var name = '';
 	var val = '';
-	$.each(confirm_content.find('.must'), function () {
+	$.each(confirm_content.find('.must'), function() {
 		name = $(this).attr("name");
 		val = $(this).val();
 		newSuspect[name] = val;
@@ -493,15 +498,15 @@ function createSuspect(confirm_content) {
 //初始化操作---日期，身份证中生日男女的自动识别，
 function Init() {
 	$('.mydate').datetimepicker({
-		yearStart: 1900, // 设置最小年份
-		yearEnd: 2100, // 设置最大年份
-		yearOffset: 0, // 年偏差
-		timepicker: false, // 关闭时间选项
-		format: 'Y-m-d', // 格式化日期年-月-日
-		minDate: '1900/01/01', // 设置最小日期
-		maxDate: '2100/01/01', // 设置最大日期
+		yearStart : 1900, // 设置最小年份
+		yearEnd : 2100, // 设置最大年份
+		yearOffset : 0, // 年偏差
+		timepicker : false, // 关闭时间选项
+		format : 'Y-m-d', // 格式化日期年-月-日
+		minDate : '1900/01/01', // 设置最小日期
+		maxDate : '2100/01/01', // 设置最大日期
 	});
-	$('.su-IDnum').on('keyup', function () {
+	$('.su-IDnum').on('keyup', function() {
 		var IDlen = $(this).val();
 		if (IDlen.length == 18) {
 			if (!/^\d{17}(\d|x|X)$/i.test(IDlen)) {
@@ -515,7 +520,7 @@ function Init() {
 }
 
 function Suspect_mo_del(TypeBreakeCase, type) {
-	TypeBreakeCase.$content.find('.suspect-info').on('click', function (e) {
+	TypeBreakeCase.$content.find('.suspect-info').on('click', function(e) {
 		if (e.target.tagName == 'I') {
 			var i = e.target;
 			var tr = $(i).parents('tr');
@@ -535,31 +540,31 @@ function Suspect_mo_del(TypeBreakeCase, type) {
 								</tbody>
 								</table>`;
 				var modifi = $.confirm({
-					closeIcon: true,
-					boxWidth: '50%',
-					useBootstrap: false,
-					smoothContent: false,
-					title: '嫌疑人信息修改',
-					content: mo_SuspectData,
-					onContentReady: function () {
+					closeIcon : true,
+					boxWidth : '50%',
+					useBootstrap : false,
+					smoothContent : false,
+					title : '嫌疑人信息修改',
+					content : mo_SuspectData,
+					onContentReady : function() {
 						Init();
 					},
-					buttons: {
-						sureAdd: {
-							text: '确认修改',
-							btnClass: 'btn-info',
-							action: function () {
+					buttons : {
+						sureAdd : {
+							text : '确认修改',
+							btnClass : 'btn-info',
+							action : function() {
 								if (type == "modify") {
 									var zj = {
-										"suspect.xsjsglxt_breakecaseSuspect_id": tr.attr('id'),
+										"suspect.xsjsglxt_breakecaseSuspect_id" : tr.attr('id'),
 									};
-									modifi.$content.find('.must').each(function () {
+									modifi.$content.find('.must').each(function() {
 										zj['suspect.' + $(this).attr('name')] = $(this).val();
 									});
-									$.post('/xsjsglxt/case/BreakeCase_updateSuspect', zj, function (msg) {
+									$.post('/xsjsglxt/case/BreakeCase_updateSuspect', zj, function(msg) {
 										if (msg == 'updateSuccess') {
 											toastr.info('修改嫌疑人成功');
-											modifi.$content.find('.must').each(function (i, o) {
+											modifi.$content.find('.must').each(function(i, o) {
 												all_td.eq(i).text($(this).val());
 											});
 										} else if (msg == 'updateError') {
@@ -568,12 +573,12 @@ function Suspect_mo_del(TypeBreakeCase, type) {
 									}, 'text');
 								} else {
 									var len = suspect.length;
-									modifi.$content.find('.must').each(function () {
+									modifi.$content.find('.must').each(function() {
 										var name = $(this).attr('name');
 										var value = $(this).val();
 										suspect[len - index - 1][name] = value;
 									});
-									tr.html(function () {
+									tr.html(function() {
 										var str = '';
 										for (const key in suspect[len - index - 1]) {
 											str += `<td>${suspect[len - index - 1][key]}</td>`;
@@ -584,18 +589,18 @@ function Suspect_mo_del(TypeBreakeCase, type) {
 								}
 							}
 						},
-						close: {
-							text: '取消',
-							action: function () { }
+						close : {
+							text : '取消',
+							action : function() {}
 						},
 					}
 				});
 			} else if (i.className == "fa fa-trash-o") { //删除
 				if (type == "modify") {
 					var zj = {
-						"suspectId": tr.attr('id'),
+						"suspectId" : tr.attr('id'),
 					};
-					$.post('/xsjsglxt/case/BreakeCase_deleteSuspect', zj, function (msg) {
+					$.post('/xsjsglxt/case/BreakeCase_deleteSuspect', zj, function(msg) {
 						if (msg == 'deleteSuccess') {
 							toastr.info('删除嫌疑人成功');
 							tr.remove();
@@ -614,13 +619,13 @@ function Suspect_mo_del(TypeBreakeCase, type) {
 
 //序列化为对象
 $.fn.extend({
-	serializeObject: function () {
+	serializeObject : function() {
 		if (this.length > 1) {
 			return false;
 		}
 		var arr = this.serializeArray();
 		var obj = new Object;
-		$.each(arr, function (k, v) {
+		$.each(arr, function(k, v) {
 			obj[v.name] = v.value;
 		});
 		return obj;
@@ -629,7 +634,9 @@ $.fn.extend({
 
 //带破案件列表
 function breakeCaseDetails(params) {
-	$.post('/xsjsglxt/case/BreakeCase_getTakeBreakeCaseByBreakeCaseId', { "breakeCase.xsjsglxt_breakecase_id": params.id }, function (msg) {
+	$.post('/xsjsglxt/case/BreakeCase_getTakeBreakeCaseByBreakeCaseId', {
+		"breakeCase.xsjsglxt_breakecase_id" : params.id
+	}, function(msg) {
 		var tablein = `<table class="table"><tbody>`;
 		for (const key in msg) {
 			if (msg.hasOwnProperty(key)) {
@@ -638,20 +645,18 @@ function breakeCaseDetails(params) {
 		}
 		tablein += `</tbody ></table > `;
 		var breakeCaseDetail = $.confirm({
-			closeIcon: true,
-			boxWidth: '50%',
-			useBootstrap: false,
-			smoothContent: false,
-			title: '带破案件',
-			content: tablein,
-			onContentReady: function () {
-			},
-			buttons: {
-				sureAdd: {
-					text: '确认',
-					btnClass: 'btn-info',
-					action: function () {
-					}
+			closeIcon : true,
+			boxWidth : '50%',
+			useBootstrap : false,
+			smoothContent : false,
+			title : '带破案件',
+			content : tablein,
+			onContentReady : function() {},
+			buttons : {
+				sureAdd : {
+					text : '确认',
+					btnClass : 'btn-info',
+					action : function() {}
 				}
 			}
 		});

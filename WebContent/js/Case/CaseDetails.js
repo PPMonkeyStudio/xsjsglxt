@@ -305,7 +305,7 @@ $(function() {
 		var picture_data = $.extend({}, $('#picture form').serializeObject(), {
 			"case1.xsjsglxt_case_id" : case1_id
 		});
-		$.post('/xsjsglxt/case/Image_updatePicture', picture_data, function(xhr_data) {
+		$.post('/xsjsglxt/case/Image_savePicture', picture_data, function(xhr_data) {
 			if (xhr_data.length > 22 && xhr_data.length <= 36) {
 				toastr.success('添加成功！');
 				//控制模态框隐藏
