@@ -116,7 +116,7 @@
 									<option value="其它">其它</option></select></td>
 							<td id="other_case_td"><select name="case1.case_sonCategory"
 								style="margin-top: 6px; width: 160px;"
-								class="other_case form-control must">
+								class="other_case form-control">
 									<option selected value="">请选择案件子类别</option>
 							</select></td>
 						</tr>

@@ -34,8 +34,8 @@ var selectAll = function(event) {
 
 var braekeCaseData = `<form action="">
 <div style="width: 100%;margin: auto;" class="panel-body"><table class="table table-hover table-condensed" align="center"><tbody>
-<tr><td>所属案件<i class="fa fa-spinner fa-pulse load_remind"></i></td><td colspan="3">
-<select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="breakeCase.breakecase_case" title="请选择..."></select></td>
+<tr><td>所属案件<i class="fa fa-spinner fa-pulse load_remind"></i></td><td style="width:863px;" colspan="3">
+<select class="form-control selectpicker" data-live-search="true" name="breakeCase.breakecase_case" title="请选择..."></select></td>
 </tr><tr><td>案件类型</td><td>
 <input class="form-control" name="breakeCase.breakecase_type" type="text">
 </td><td>破案方式</td><td>
@@ -45,7 +45,7 @@ var braekeCaseData = `<form action="">
 </td><td>破案人</td><td>
 <select class="form-control" data-live-search="true" name="breakeCase.breakecase_person"></select>
 </td></tr><tr><td>带破案件</td><td colspan="3">
-<select class="form-control selectpicker" multiple data-live-search="true" name="breakeCase.breakecase_waitbreakecase" title="请选择..."></select>
+<select class="form-control selectpicker" multiple data-selected-text-format="count > 3" data-live-search="true" name="breakeCase.breakecase_waitbreakecase" title="请选择..."></select>
 </td></tr><tr><td>备注</td><td colspan="3">
 <textarea placeholder="请填写" class="form-control"name="breakeCase.breakecase_remarks"></textarea>
 </td></tr><tr>
@@ -172,7 +172,7 @@ $(function() {
 					for (let index = 0; index < params.length; index++) {
 						suspectStr += '<option value="' + params[index]["xsjsglxt_name"] + '">' + params[index]["xsjsglxt_name"] + '</option>';
 					}
-					$('select[name="breakeCase.breakecase_person"]').html(suspectStr).selectpicker('refresh');
+					$('select[name="breakeCase.breakecase_person"]').html(suspectStr).selectpicker('refresh').addClass('col-lg-12');
 				}, 'json');
 			},
 			buttons : {
