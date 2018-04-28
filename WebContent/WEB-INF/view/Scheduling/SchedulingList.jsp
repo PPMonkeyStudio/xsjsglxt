@@ -20,6 +20,8 @@
 <script src="<%=basePath%>js/Scheduling/showSchedulingList.js"></script>
 <script src="<%=basePath%>js/Scheduling/selectCheckBox.js"></script>
 <script src="<%=basePath%>js/Scheduling/managerScheduling.js"></script>
+	<script type="text/javascript"
+		src="<%=basePath%>js/Case/defaults-zh_CN.js"></script>
 <style type="text/css">
 .pageOperation {
 	cursor: pointer;

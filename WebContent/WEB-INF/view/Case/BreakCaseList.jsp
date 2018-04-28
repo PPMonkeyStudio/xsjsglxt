@@ -216,6 +216,8 @@ td{
 	<!-- SneceInput.js仅作为在查询模态框中（案件类别，选择处所，作案手段）的自动匹配子项使用 -->
 	<script type="text/javascript" src="<%=basePath%>js/Case/SneceInput.js"></script>
 	<script type="text/javascript"
+		src="<%=basePath%>js/Case/defaults-zh_CN.js"></script>
+	<script type="text/javascript"
 		src="<%=basePath%>js/Case/BreakCaseList.js"></script>
 	<script type="text/javascript">
 		$.datetimepicker.setLocale('ch');
