@@ -1,14 +1,14 @@
 var query_data = {
 	"breakeCaseListVO.currPage" : "1",
 	"breakeCaseListVO.query_sence_inquestId" : "",
-	"breakeCaseListVO.query_case_name" : "", //案件名称
+	"breakeCaseListVO.query_case_name" : "", // 案件名称
 	"breakeCaseListVO.query_breake_time_start" : "",
 	"breakeCaseListVO.query_breake_time_end" : "",
 	"breakeCaseListVO.query_breake_person" : "",
 	"breakeCaseListVO.query_breake_according" : "",
 	"breakeCaseListVO.query_breake_time_sort" : "desc",
 };
-//当前页面分页信息
+// 当前页面分页信息
 var page_infomantion = {
 	currPage : 1,
 	totalPage : 1,
@@ -33,7 +33,7 @@ var selectAll = function(event) {
 }
 
 var braekeCaseData = `<form action="">
-<div style="width: 100%;margin: auto;" class="panel-body"><table class="table table-hover table-condensed" align="center"><tbody>
+<div style="width: 100%;margin: auto;" class="panel-body"><table style="width:1000px;" align="center"><tbody>
 <tr><td>所属案件<i class="fa fa-spinner fa-pulse load_remind"></i></td><td colspan="3">
 <select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="breakeCase.breakecase_case" title="请选择..."></select></td>
 </tr><tr><td>案件类型</td><td>
@@ -45,7 +45,7 @@ var braekeCaseData = `<form action="">
 </td><td>破案人</td><td>
 <select class="form-control" data-live-search="true" name="breakeCase.breakecase_person"></select>
 </td></tr><tr><td>带破案件</td><td colspan="3">
-<select class="form-control selectpicker" multiple data-live-search="true" name="breakeCase.breakecase_waitbreakecase" title="请选择..."></select>
+<select style="width:750px;" class="form-control selectpicker" multiple data-live-search="true" name="breakeCase.breakecase_waitbreakecase" title="请选择..."></select>
 </td></tr><tr><td>备注</td><td colspan="3">
 <textarea placeholder="请填写" class="form-control"name="breakeCase.breakecase_remarks"></textarea>
 </td></tr><tr>
@@ -78,7 +78,7 @@ var SuspectData = `<table class="table">
 </tbody>
 </table>`;
 
-//保存嫌疑人信息
+// 保存嫌疑人信息
 var suspect = [];
 
 $(function() {
@@ -88,7 +88,8 @@ $(function() {
 	$('.to_quert').click(function() {
 		var arr = $('#query_infomantion_inmodal').serializeArray();
 		$.each(arr, function(key, value) {
-			//key为arr里对象的索引，value为索引为key的对象。对象以{name: 'firstname', value: 'Hello'}形式存储, 以obj.name和obj.value形式遍历 
+			// key为arr里对象的索引，value为索引为key的对象。对象以{name: 'firstname', value:
+			// 'Hello'}形式存储, 以obj.name和obj.value形式遍历
 			query_data[value.name] = value.value;
 		});
 		get_ListBreakecaseInformationByPageAndSearch(query_data);
@@ -98,14 +99,15 @@ $(function() {
 		for (var i in query_data) {
 			query_data[i] = "";
 		}
-		//页面重置为第一页
+		// 页面重置为第一页
 		query_data["breakeCaseListVO.currPage"] = 1;
-		//选择框清除内容
+		// 选择框清除内容
 		$('#newQuery').find('input,select').val('');
 		;
-		/*//影藏模态框
-		$('#newQuery').modal('hide');*/
-		//成功提示
+		/*
+		 * //影藏模态框 $('#newQuery').modal('hide');
+		 */
+		// 成功提示
 		toastr.info('清除查询信息成功');
 	});
 
@@ -149,13 +151,13 @@ $(function() {
 			title : '破案信息添加',
 			content : braekeCaseData,
 			onContentReady : function() {
-				//日期，身份证识别
+				// 日期，身份证识别
 				Init();
-				//嫌疑人表中的修改，删除事件
+				// 嫌疑人表中的修改，删除事件
 				Suspect_mo_del(addBreakeCase, "add");
-				//查询所有案件并添加
+				// 查询所有案件并添加
 				$.post('/xsjsglxt/case/Case_AllCase', {}, function(Case_data) {
-					//所有案件循环
+					// 所有案件循环
 					var option = '';
 					var option2 = '';
 					for (var len = 0; len < Case_data.length; len++) {
@@ -164,7 +166,7 @@ $(function() {
 					}
 					addBreakeCase.$content.find('select[name="breakeCase.breakecase_case"]').html(option).selectpicker('refresh');
 					addBreakeCase.$content.find('select[name="breakeCase.breakecase_waitbreakecase"]').html(option).selectpicker('refresh');
-					//除去加载提示
+					// 除去加载提示
 					addBreakeCase.$content.find('.load_remind').hide();
 				}, 'json');
 				$.post('/xsjsglxt/team/Staff_getAllPolicemans', {}, function(params) {
@@ -180,7 +182,10 @@ $(function() {
 					text : '添加嫌疑人',
 					btnClass : 'btn-info',
 					action : function() {
-						/*===================================================== 破案窗口中嫌疑人添加*/
+						/*
+						 * =====================================================
+						 * 破案窗口中嫌疑人添加
+						 */
 						var Suspect = $.confirm({
 							closeIcon : true,
 							boxWidth : '50%',
@@ -193,7 +198,10 @@ $(function() {
 							},
 							buttons : {
 								sureAddProson : {
-									text : "确认添加", /*===================================================== 确认嫌疑人添加*/
+									text : "确认添加", /*
+													 * =====================================================
+													 * 确认嫌疑人添加
+													 */
 									btnClass : 'btn-info',
 									action : function() {
 										var must = Suspect.$content.find('.must');
@@ -221,7 +229,10 @@ $(function() {
 					}
 				},
 				sureAdd : {
-					text : '确认添加', /*===================================================== 确认破案添加*/
+					text : '确认添加', /*
+									 * =====================================================
+									 * 确认破案添加
+									 */
 					btnClass : 'btn-info',
 					action : function() {
 						addBreakeCase.$content.find('form').serializeObject();
@@ -262,18 +273,15 @@ $(function() {
 							},
 							error : function(msg) {}
 						});
-					/*$.post('/xsjsglxt/case/BreakeCase_saveBreakeCase', data, function (xhr) {
-						if (xhr == 'caseIsBreake') {
-							toastr.error('此案件已经包含破案情况！');
-							return false;
-						} else if (xhr == 'saveSuccess') {
-							toastr.info('成功添加');
-							get_ListBreakecaseInformationByPageAndSearch(query_data);
-						} else if (xhr == 'saveError') {
-							toastr.info('添加失败');
-						}
-						suspect = [];
-					}, 'text');*/
+					/*
+					 * $.post('/xsjsglxt/case/BreakeCase_saveBreakeCase', data,
+					 * function (xhr) { if (xhr == 'caseIsBreake') {
+					 * toastr.error('此案件已经包含破案情况！'); return false; } else if
+					 * (xhr == 'saveSuccess') { toastr.info('成功添加');
+					 * get_ListBreakecaseInformationByPageAndSearch(query_data); }
+					 * else if (xhr == 'saveError') { toastr.info('添加失败'); }
+					 * suspect = []; }, 'text');
+					 */
 					}
 				},
 				close : {
@@ -286,7 +294,7 @@ $(function() {
 
 
 
-	//表格中I标签的操作绑定
+	// 表格中I标签的操作绑定
 	$('.breakcase_table_info tbody').click(function(e) {
 		if (e.target.tagName == "TD") {
 			var ID = $(e.target).parent().find('input[name="chooseCheckBox"]').attr('id');
@@ -344,11 +352,11 @@ $(function() {
 							suspectStr += '<td><i class="fa fa-info-circle"></i>&nbsp&nbsp<i class="fa fa-trash-o"></i></td></tr>'
 							modifyBreakeCase.$content.find('.suspect-info tbody').append(suspectStr);
 						}
-						//嫌疑人表中的修改，删除事件
+						// 嫌疑人表中的修改，删除事件
 						Suspect_mo_del(modifyBreakeCase, "modify");
-						//查询所有案件并添加
+						// 查询所有案件并添加
 						$.post('/xsjsglxt/case/Case_AllCase', {}, function(Case_data) {
-							//所有案件循环
+							// 所有案件循环
 							var option = '';
 							var option2 = '';
 							for (var len = 0; len < Case_data.length; len++) {
@@ -357,7 +365,7 @@ $(function() {
 							}
 							modifyBreakeCase.$content.find('select[name="breakeCase.breakecase_case"]').html(option).selectpicker('val', msg.breakeCase.breakecase_case).selectpicker('refresh');
 							modifyBreakeCase.$content.find('select[name="breakeCase.breakecase_waitbreakecase"]').html(option).selectpicker('val', msg.breakeCase.breakecase_waitbreakecase).selectpicker('refresh');
-							//除去加载提示
+							// 除去加载提示
 							modifyBreakeCase.$content.find('.load_remind').hide();
 						}, 'json');
 					},
@@ -457,32 +465,34 @@ function get_ListBreakecaseInformationByPageAndSearch(data) {
 		for (var len = 0; len < data_list.length; len++) {
 			str += '<tr>';
 			str += '<td><input name="chooseCheckBox" id="' + data_list[len].xsjsglxt_breakecase_id + '" type="checkbox"></td>';
-			//str += '<td><a href="/xsjsglxt/case/Case_page_CaseDetails?id=' + data_list[len].case1.xsjsglxt_case_id + '">' + data_list[len].sence.snece_inquestId + '</a></td>';
+			// str += '<td><a href="/xsjsglxt/case/Case_page_CaseDetails?id=' +
+			// data_list[len].case1.xsjsglxt_case_id + '">' +
+			// data_list[len].sence.snece_inquestId + '</a></td>';
 			str += '<td>' + (data_list[len].case_name).replace('萍乡市安源区', '') + '</td>';
 			str += '<td>' + data_list[len].snece_inquestId + '</td>';
-			//str += '<td>' + data_list[len].breakecase_type + '</td>';
+			// str += '<td>' + data_list[len].breakecase_type + '</td>';
 			str += '<td>' + data_list[len].breakecase_person + '</td>';
 			str += '<td>' + data_list[len].breakecase_according + '</td>';
 			str += '<td>' + data_list[len].breakecase_caseTime + '</td>';
 		}
-		//加载到表格中
+		// 加载到表格中
 		$('.breakcase_table_info tbody').html(str);
-		//分页信息存入page_infomantion中
-		page_infomantion.pageIndex = xhr.currPage; //当前页数
-		page_infomantion.totalRecords = xhr.totalPage; //总页数
-		page_infomantion.pageSize = xhr.pageSize; //每页记录数
-		page_infomantion.totalPages = xhr.totalCount; //总记录数
-		//page_infomantion.HavePrePage = xhr.HavePrePage; //是否有上一页
-		//page_infomantion.HaveNextPage = xhr.HaveNextPage; //是否有下一页
+		// 分页信息存入page_infomantion中
+		page_infomantion.pageIndex = xhr.currPage; // 当前页数
+		page_infomantion.totalRecords = xhr.totalPage; // 总页数
+		page_infomantion.pageSize = xhr.pageSize; // 每页记录数
+		page_infomantion.totalPages = xhr.totalCount; // 总记录数
+		// page_infomantion.HavePrePage = xhr.HavePrePage; //是否有上一页
+		// page_infomantion.HaveNextPage = xhr.HaveNextPage; //是否有下一页
 
 		$('.info').html('共 ' + xhr.totalCount + '条信息 当前' + xhr.currPage + '/' + xhr.totalPage + '页 ' + xhr.pageSize + '条信息/页');
-		//影藏模态框
+		// 影藏模态框
 		$('#newQuery').modal('hide')
 	}, 'json')
 }
 
 
-//创建一个嫌疑人对象
+// 创建一个嫌疑人对象
 function createSuspect(confirm_content) {
 	var newSuspect = {};
 	var name = '';
@@ -495,7 +505,7 @@ function createSuspect(confirm_content) {
 	return newSuspect;
 }
 
-//初始化操作---日期，身份证中生日男女的自动识别，
+// 初始化操作---日期，身份证中生日男女的自动识别，
 function Init() {
 	$('.mydate').datetimepicker({
 		yearStart : 1900, // 设置最小年份
@@ -526,7 +536,7 @@ function Suspect_mo_del(TypeBreakeCase, type) {
 			var tr = $(i).parents('tr');
 			var index = tr.index();
 			var all_td = tr.find('td');
-			if (i.className == "fa fa-info-circle") { //修改
+			if (i.className == "fa fa-info-circle") { // 修改
 				var mo_SuspectData = `<table class="table">
 								<tbody>
 								<tr><td>姓名</td><td><input class="form-control must" name="breakecaseSuspect_name" type="text" value="${all_td.eq(0).text()}"></td>
@@ -595,7 +605,7 @@ function Suspect_mo_del(TypeBreakeCase, type) {
 						},
 					}
 				});
-			} else if (i.className == "fa fa-trash-o") { //删除
+			} else if (i.className == "fa fa-trash-o") { // 删除
 				if (type == "modify") {
 					var zj = {
 						"suspectId" : tr.attr('id'),
@@ -617,7 +627,7 @@ function Suspect_mo_del(TypeBreakeCase, type) {
 	});
 }
 
-//序列化为对象
+// 序列化为对象
 $.fn.extend({
 	serializeObject : function() {
 		if (this.length > 1) {
@@ -632,7 +642,7 @@ $.fn.extend({
 	}
 });
 
-//带破案件列表
+// 带破案件列表
 function breakeCaseDetails(params) {
 	$.post('/xsjsglxt/case/BreakeCase_getTakeBreakeCaseByBreakeCaseId', {
 		"breakeCase.xsjsglxt_breakecase_id" : params.id
@@ -663,13 +673,13 @@ function breakeCaseDetails(params) {
 	}, 'json');
 }
 
-//输入框查询事件
+// 输入框查询事件
 function dynamic_query(params) {
 	query_data[$(params).attr('query_name')] = $(params).val();
 	get_ListBreakecaseInformationByPageAndSearch(query_data);
 }
 
-//首页
+// 首页
 function firstPage() {
 	if (page_infomantion.pageIndex == 1) {
 		toastr.error('已经是第一页！');
@@ -678,7 +688,7 @@ function firstPage() {
 	query_data['breakeCaseListVO.currPage'] = 1;
 	get_ListBreakecaseInformationByPageAndSearch(query_data);
 }
-//上一页
+// 上一页
 function prePage() {
 	if (page_infomantion.pageIndex - 1 <= 1) {
 		toastr.error('已经是第一页！');
@@ -687,7 +697,7 @@ function prePage() {
 	query_data['breakeCaseListVO.currPage'] = page_infomantion.pageIndex - 1;
 	get_ListBreakecaseInformationByPageAndSearch(query_data);
 }
-//下一页
+// 下一页
 function nextPage() {
 	if (page_infomantion.pageIndex + 1 >= page_infomantion.totalPages) {
 		toastr.error('已经是最后一页！');
@@ -696,7 +706,7 @@ function nextPage() {
 	query_data['breakeCaseListVO.currPage'] = page_infomantion.pageIndex + 1;
 	get_ListBreakecaseInformationByPageAndSearch(query_data);
 }
-//尾页
+// 尾页
 function lastPage() {
 	if (page_infomantion.pageIndex == page_infomantion.totalPages) {
 		toastr.error('已经是最后一页！');
@@ -705,7 +715,7 @@ function lastPage() {
 	query_data['breakeCaseListVO.currPage'] = page_infomantion.totalPages;
 	get_ListBreakecaseInformationByPageAndSearch(query_data);
 }
-//跳转到n页
+// 跳转到n页
 function toPage(object) {
 	query_data['breakeCaseListVO.currPage'] = $(object).val();
 	get_ListBreakecaseInformationByPageAndSearch(query_data);
