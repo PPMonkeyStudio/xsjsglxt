@@ -462,6 +462,7 @@ function get_ListBreakecaseInformationByPageAndSearch(data) {
 	$.post('/xsjsglxt/case/BreakeCase_breakeCaseByPage', data, function(xhr) {
 		var data_list = xhr.breakeCaseDTOList;
 		var str = '';
+		var sups = '';
 		for (var len = 0; len < data_list.length; len++) {
 			str += '<tr>';
 			str += '<td style="width:70px;"><input name="chooseCheckBox" id="' + data_list[len].xsjsglxt_breakecase_id + '" type="checkbox"></td>';
@@ -472,6 +473,16 @@ function get_ListBreakecaseInformationByPageAndSearch(data) {
 			str += '<td>' + data_list[len].snece_inquestId + '</td>';
 			// str += '<td>' + data_list[len].breakecase_type + '</td>';
 			str += '<td>' + data_list[len].breakecase_person + '</td>';
+
+			//嫌疑人
+			sups = data_list[len].breakecase_suspect.split('、');
+			if (sups.length > 0 && sups.length < 3) {
+				str += '<td>' + sups.join() + '</td>';
+			} else {
+				str += '<td>' + sups.slice(0, 3).join() + '</td>';
+			}
+
+
 			str += '<td>' + data_list[len].breakecase_according + '</td>';
 			str += '<td>' + data_list[len].breakecase_caseTime + '</td>';
 		}

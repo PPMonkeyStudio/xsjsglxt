@@ -110,6 +110,7 @@ i {
 											class="form-control"
 											query_name="breakeCaseListVO.query_breake_person"
 											placeholder="破案人"></th>
+										<th>嫌疑人</th>
 										<th><input type="text" onkeyup="dynamic_query(this)"
 											class="form-control"
 											query_name="breakeCaseListVO.query_breake_according"

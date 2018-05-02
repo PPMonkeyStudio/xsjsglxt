@@ -18,6 +18,8 @@
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+<style type="text/css">
+</style>
 </head>
 
 <body>
@@ -50,14 +52,16 @@
 				<form id="sneceInformation" action="">
 					<table>
 						<tr>
-							<td width="96px;"><span style="color:red;">*</span>勘验编号</td>
+							<td style="width: 96px;font-weight: bold;"><span
+								style="color:red;">*</span>勘验编号</td>
 							<td><input name="sence.snece_inquestId"
 								class="form-control must" type="text"></td>
-							<td style="padding-left:5px;width: 120px;">勘验系统编号</td>
+							<td style="padding-left:5px;width: 120px;font-weight: bold;">勘验系统编号</td>
 							<td style="width: 100px;"><input
 								name="sence.snece_inquestSystemId" class="form-control"
 								type="text"></td>
-							<td style="width: 100px;"><span style="color:red;">*</span>案件分类</td>
+							<td style="width: 100px;font-weight: bold;"><span
+								style="color:red;">*</span>案件分类</td>
 							<td><select name="case1.case_classify"
 								class=" form-control must">
 									<option value=""></option>
@@ -67,11 +71,11 @@
 							</select></td>
 						</tr>
 						<tr>
-							<td><span style="color:red;">*</span>接警时间</td>
+							<td style="font-weight: bold;"><span style="color:red;">*</span>接警时间</td>
 							<td><input name="case1.case_receivingAlarmDate"
 								class="form-control mydate_minute must" style="margin-top: 6px;"
 								type="text"></td>
-							<td><span style="color:red;">*</span>危害程度</td>
+							<td style="font-weight: bold;"><span style="color:red;">*</span>危害程度</td>
 							<td><select name="case1.case_extentOfInjury"
 								class="form-control must" style="margin-top: 6px;">
 									<option value=""></option>
@@ -79,7 +83,7 @@
 									<option>重大</option>
 									<option>特大</option>
 							</select></td>
-							<td><span style="color:red;">*</span>是否立案</td>
+							<td style="font-weight: bold;"><span style="color:red;">*</span>是否立案</td>
 							<td><label style="float: left;" class="fancy-radio">
 									<input name="register" onclick="buildCase_chose(this)"
 									type="radio" value="1"> <span><i></i>是</span>
@@ -93,11 +97,12 @@
 					</table>
 					<table>
 						<tr>
-							<td width="96px;"><span style="color:red;">*</span>案发地点</td>
+							<td style=" width:96px;font-weight: bold;"><span
+								style="color:red;">*</span>案发地点</td>
 							<td style=" width: 300px;"><input name="case1.case_address"
 								style="margin-top: 6px;" class="case_place form-control must"
 								type="text" value="萍乡市安源区"></td>
-							<td><span style="color:red;">*</span>案件类别</td>
+							<td style="font-weight: bold;"><span style="color:red;">*</span>案件类别</td>
 							<td><select
 								style="width: 160px; float: left; margin-top: 6px;"
 								name="case1.case_totalCategory" name="case_class1"
@@ -123,7 +128,7 @@
 							</select></td>
 						</tr>
 						<tr>
-							<td><span style="color:red;">*</span>案发名称</td>
+							<td style="font-weight: bold;"><span style="color:red;">*</span>案发名称</td>
 							<td colspan="4"><input name="case1.case_name"
 								style="margin-top: 6px;" class="case_name form-control"
 								type="text"></td>
@@ -132,7 +137,7 @@
 					<hr>
 					<table>
 						<tr>
-							<td width="96px;">报案人情况</td>
+							<td width="96px;" style="font-weight: bold;">报案人情况</td>
 							<td colspan="5"><input style=" width: 80px;float:left; "
 								name="case1.case_reporterName" class="form-control" type="text"
 								placeholder="姓名"> <input
@@ -150,13 +155,13 @@
 								type="text" placeholder="家庭住址或工作单位 "></td>
 						</tr>
 						<tr>
-							<td>简要案情</td>
+							<td style="font-weight: bold;">简要案情</td>
 							<td colspan="5"><textarea style="margin-top: 6px;"
 									name="briefdetails.briefdetails_details" class="form-control"
 									rows="2"></textarea></td>
 						</tr>
 						<tr>
-							<td>天气情况</td>
+							<td style="font-weight: bold;">天气情况</td>
 							<td><select name="sence.snece_weather"
 								style="width: 80px; float: left; margin-top: 6px;"
 								class=" form-control" id="weather">
@@ -169,12 +174,12 @@
 									<option value="其他">其他</option>
 							</select>
 								<p
-									style="float: left; margin-top: 6px;margin-left:6px;margin-right:6px;">温度</p>
+									style="float: left; margin-top: 6px;margin-left:6px;margin-right:6px; font-weight: bold;">温度</p>
 								<input name="sence.snece_weatherTemperature"
 								style="width: 50px; float: left; margin-top: 6px;"
 								class="form-control" type="text"><span
 								style="margin-top: 6px;margin-left:6px; float:left;">℃</span></td>
-							<td width="75px;">发案辖区</td>
+							<td width="75px;" style="font-weight: bold;">发案辖区</td>
 							<td><select name="case1.case_jurisdiction"
 								class=" form-control" style="width:220px; margin:0px;">
 									<option value=""></option>
@@ -192,7 +197,7 @@
 									<option value="五陂下派出所">五陂下派出所</option>
 									<option value="其他">其他</option>
 							</select></td>
-							<td style="padding-left:0px;">作案时段</td>
+							<td style="padding-left:0px;font-weight: bold;">作案时段</td>
 							<td><select name="case1.case_makeTime" class=" form-control">
 									<option value=""></option>
 									<option value="昼">昼</option>
@@ -208,7 +213,7 @@
 
 						</tr>
 						<tr>
-							<td>作案手段</td>
+							<td style="font-weight: bold;">作案手段</td>
 							<td width="240px;"><select name="case1.case_makeMeans"
 								style="width: 110px; float:left;"
 								onchange="setSectionmMethod(this.selectedIndex)"
@@ -225,7 +230,7 @@
 								class="specific_means form-control">
 									<option value="">具体手段</option>
 							</select></td>
-							<td>选择处所</td>
+							<td style="font-weight: bold;">选择处所</td>
 							<td><select name="case1.case_residence"
 								style="width: 110px; float:left;"
 								onchange="setSectionmAddress(this.selectedIndex)"
@@ -239,7 +244,7 @@
 								class="specific_space form-control">
 									<option value="">具体处所</option>
 							</select></td>
-							<td width="75px;">进出口</td>
+							<td width="75px;" style="font-weight: bold;">进出口</td>
 							<td><select name="case1.case_exit" class=" form-control">
 									<option value=""></option>
 									<option value="窗进窗出">窗进窗出</option>
@@ -283,7 +288,7 @@
 					<hr>
 					<table>
 						<tr>
-							<td width="96px;">作案过程</td>
+							<td width="96px;" style="font-weight: bold;">作案过程</td>
 							<td colspan="5"><textarea name="case1.case_process"
 									class="form-control" rows="2"></textarea></td>
 						</tr>
@@ -310,7 +315,7 @@
 							</label></td>
 						</tr>
 						<tr>
-							<td>勘验人员</td>
+							<td style="font-weight: bold;">勘验人员</td>
 							<td colspan="5"><select name="sence.snece_inquestPerson"
 								id="exploration_personnel"
 								class="selectpicker show-tick form-control dropup" multiple
