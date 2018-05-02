@@ -232,10 +232,14 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 					+ breakeCasePageDTO.getXsjsglxt_breakecase_id() + "'";
 			List<xsjsglxt_breakecasesuspect> listSuspect = session.createQuery(hqlSuspect).list();
 			if (listSuspect != null) {
+				breakeCasePageDTO.setBreakecase_suspect("");
 				for (int i = 0; i < listSuspect.size(); i++) {
-					breakeCasePageDTO.setBreakecase_suspect(listSuspect.get(i).getBreakecaseSuspect_name());
-					if (i < listSuspect.size() - 1) {
-						breakeCasePageDTO.setBreakecase_suspect(breakeCasePageDTO.getBreakecase_suspect() + "、");
+					if (i < (listSuspect.size() - 1)) {
+						breakeCasePageDTO.setBreakecase_suspect(breakeCasePageDTO.getBreakecase_suspect()
+								+ listSuspect.get(i).getBreakecaseSuspect_name() + "、");
+					} else {
+						breakeCasePageDTO.setBreakecase_suspect(breakeCasePageDTO.getBreakecase_suspect()
+								+ listSuspect.get(i).getBreakecaseSuspect_name());
 					}
 				}
 			}

@@ -166,7 +166,6 @@ public class HandleDaoImpl implements HandleDao {
 		}
 		hql = hql + " and handle_lhusTime>='" + handle_lhusTime_start_time + "' and handle_lhusTime<='"
 				+ handle_lhusTime_stop_time + "'order by handle_gnt_create ";
-		System.out.println(hql);
 		Query query = session.createQuery(hql);
 		i = (Long) query.uniqueResult();
 		session.clear();
@@ -180,7 +179,6 @@ public class HandleDaoImpl implements HandleDao {
 		Session session = getSession();
 		List<xsjsglxt_handle> listHandleInformationByPage = new ArrayList<xsjsglxt_handle>();
 		String hql = "from xsjsglxt_handle  where 1=1 ";
-		System.out.println("每条数据" + hql);
 		// 拘留起始时间
 		String handle_StartTimeaOfDetention_start_time = "";
 		String handle_StartTimeaOfDetention_stop_time = "9999-99-99";
@@ -298,7 +296,6 @@ public class HandleDaoImpl implements HandleDao {
 				(page_list_HandleInformation.getPageIndex() - 1) * page_list_HandleInformation.getPageSize());
 		query.setMaxResults(page_list_HandleInformation.getPageSize());
 		listHandleInformationByPage = query.list();
-		System.out.println(hql);
 
 		session.clear();
 		return listHandleInformationByPage;
@@ -394,7 +391,6 @@ public class HandleDaoImpl implements HandleDao {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar c = Calendar.getInstance();
 		c.add(Calendar.DATE, 30);
-		System.out.println(sdf.format(c.getTime()) + "取保候审时间");
 		Session session = this.getSession();
 		List<xsjsglxt_handle> thirtyDays = session.createQuery("from xsjsglxt_handle where handle_pbatTime='"
 				+ sdf.format(c.getTime()) + "' order by handle_pbat desc").list();
