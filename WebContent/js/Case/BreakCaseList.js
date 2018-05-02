@@ -475,7 +475,7 @@ function get_ListBreakecaseInformationByPageAndSearch(data) {
 		//page_infomantion.HavePrePage = xhr.HavePrePage; //是否有上一页
 		//page_infomantion.HaveNextPage = xhr.HaveNextPage; //是否有下一页
 
-		$('.info').html('共 ' + xhr.totalCount + '条信息 当前' + xhr.currPage + '/' + xhr.totalPage + '页 ' + xhr.pageSize + '条信息/页');
+		$('.info').html('当前页数:' + xhr.pageIndex + ' 共:' + xhr.totalPages);
 		//影藏模态框
 		$('#newQuery').modal('hide')
 	}, 'json')
@@ -706,7 +706,12 @@ function lastPage() {
 	get_ListBreakecaseInformationByPageAndSearch(query_data);
 }
 //跳转到n页
-function toPage(object) {
-	query_data['breakeCaseListVO.currPage'] = $(object).val();
+function toPage() {
+	var topage = $('#skipPage').val();
+	if (topage > page_infomantion.totalPages || topage < 0) {
+		toastr.info('页码有误，请重新输入');
+		return;
+	}
+	query_data['breakeCaseListVO.currPage'] = topage;
 	get_ListBreakecaseInformationByPageAndSearch(query_data);
 }

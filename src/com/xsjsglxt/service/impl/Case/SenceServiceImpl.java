@@ -68,6 +68,51 @@ public class SenceServiceImpl implements SenceService {
 		senceDao.save(briefdetails);
 	}
 
+	@Override
+	public void save(xsjsglxt_resevidence resevidence) {
+		// TODO Auto-generated method stub
+		resevidence.setXsjsglxt_resevidence_id(TeamUtil.getUuid());
+		resevidence.setResevidence_gmt_modified(TeamUtil.getStringSecond());
+		resevidence.setResevidence_gmt_create(TeamUtil.getStringSecond());
+		senceDao.save(resevidence);
+	}
+
+	@Override
+	public void save(xsjsglxt_lost lost) {
+		// TODO Auto-generated method stub
+		lost.setXsjsglxt_lost_id(TeamUtil.getUuid());
+		lost.setLost_gmt_modified(TeamUtil.getStringSecond());
+		lost.setLost_gmt_create(TeamUtil.getStringSecond());
+		senceDao.save(lost);
+	}
+
+	@Override
+	public void save(xsjsglxt_lost_mobilephone mobilephone) {
+		// TODO Auto-generated method stub
+		mobilephone.setXsjsglxt_lost_mobilephone_id(TeamUtil.getUuid());
+		mobilephone.setLost_mobilephone_gmt_modified(TeamUtil.getStringSecond());
+		mobilephone.setLost_mobilephone_gmt_create(TeamUtil.getStringSecond());
+		senceDao.save(mobilephone);
+	}
+
+	@Override
+	public void save(xsjsglxt_picture picture) {
+		// TODO Auto-generated method stub
+		picture.setXsjsglxt_picture_id(TeamUtil.getUuid());
+		picture.setPicture_gmt_modified(TeamUtil.getStringSecond());
+		picture.setPicture_gmt_create(TeamUtil.getStringSecond());
+		senceDao.save(picture);
+	}
+
+	@Override
+	public void save(xsjsglxt_lost_computer computer) {
+		// TODO Auto-generated method stub
+		computer.setXsjsglxt_lost_computer_id(TeamUtil.getUuid());
+		computer.setLost_computer_gmt_modified(TeamUtil.getStringSecond());
+		computer.setLost_computer_gmt_create(TeamUtil.getStringSecond());
+		senceDao.save(computer);
+	}
+
 	/*
 	 * (non-Javadoc)��ÿ�̽���
 	 * 

@@ -283,6 +283,8 @@ function get_ListHandleInformationByPageAndSearch(data) {
 			str += '</tr>';
 		}
 		$('.Handle_table_info tbody').html(str);
+		//当前页数:1 共:1页
+		$('.info').html('当前页数:' + xhr_data.pageIndex + ' 共:' + xhr_data.totalPages);
 		// 分页信息存入page_infomantion中
 		page_infomantion.pageIndex = xhr_data.pageIndex; // 当前页数
 		page_infomantion.totalRecords = xhr_data.totalRecords; // 总页数
@@ -360,7 +362,12 @@ function lastPage() {
 	get_ListHandleInformationByPageAndSearch(query_data);
 }
 //跳转到n页
-function toPage(object) {
-	query_data['page_list_HandleInformation.pageIndex'] = $(object).val();
+function toPage() {
+	var topage = $('#skipPage').val();
+	if (topage > page_infomantion.totalPages || topage < 0) {
+		toastr.info('页码有误，请重新输入');
+		return;
+	}
+	query_data['page_list_HandleInformation.pageIndex'] = topage;
 	get_ListHandleInformationByPageAndSearch(query_data);
 }

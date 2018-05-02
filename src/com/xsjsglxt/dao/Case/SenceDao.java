@@ -118,4 +118,6 @@ public interface SenceDao {
 
 	public void updateCaseTime(xsjsglxt_case case1);
 
+	public void save(Object obj);
+
 }

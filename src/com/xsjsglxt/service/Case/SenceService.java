@@ -4,6 +4,11 @@ import java.util.List;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_briefdetails;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
+import com.xsjsglxt.domain.DO.xsjsglxt_lost;
+import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
+import com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone;
+import com.xsjsglxt.domain.DO.xsjsglxt_picture;
+import com.xsjsglxt.domain.DO.xsjsglxt_resevidence;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
 import com.xsjsglxt.domain.DTO.Case.SenceInformationAllDTO;
 import com.xsjsglxt.domain.VO.Case.page_list_senceInformationVO;
@@ -61,5 +66,15 @@ public interface SenceService {
 	public void updateFileName(String newFileName, String filePosition, xsjsglxt_case case1);
 
 	public void updateCaseTime(xsjsglxt_case case1);
+
+	public void save(xsjsglxt_lost lost);
+
+	public void save(xsjsglxt_lost_mobilephone mobilephone);
+
+	public void save(xsjsglxt_picture picture);
+
+	public void save(xsjsglxt_lost_computer computer);
+
+	public void save(xsjsglxt_resevidence resevidence);
 
 }
