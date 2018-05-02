@@ -355,8 +355,8 @@
 								<option value="null" selected="selected">--选择添加--</option>
 								<option value="#lost_computer">添加被盗电脑信息</option>
 								<option value="#lost_mobilephone">添加被盗手机信息</option>
-								<option value="#lost">添加被盗物品信息</option>
-								<option value="#picture">添加照片信息</option>
+								<!-- <option value="#lost">添加被盗物品信息</option>
+								<option value="#picture">添加照片信息</option> -->
 						</select></td>
 						<td align="right" style="float: right;">
 							<button type="button" class="btn btn-default"
