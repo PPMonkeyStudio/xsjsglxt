@@ -63,21 +63,6 @@ var createScheduling = function() {
 											success : function(data) {
 												if (data == "saveSuccess") {
 													toastr.success("保存成功！");
-													document
-															.getElementById("leader").options.selectedIndex = 0; // 回到初始状态
-													document
-															.getElementById("main").options.selectedIndex = 0; // 回到初始状态
-													document
-															.getElementById("assistant").options.selectedIndex = 0; // 回到初始状态
-													document
-															.getElementById("mainTech").options.selectedIndex = 0; // 回到初始状态
-													$(".selectpicker")
-															.selectpicker(
-																	'refresh');
-													$(".selectpicker")
-															.selectpicker(
-																	'render')
-													$('#scheTime').val("");
 													queryConditionTemp.currPage = 1;
 													loadScheduling();
 													// 在次数重新加载列表
@@ -89,6 +74,8 @@ var createScheduling = function() {
 								toastr.error("不能有空项");
 								return false;
 							}
+							$('#tableContent').hide();
+							$('#loadingLayer').show();
 						}
 					},
 					close : {

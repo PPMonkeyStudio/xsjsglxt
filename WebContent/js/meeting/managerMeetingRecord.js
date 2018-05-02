@@ -81,7 +81,9 @@ var updateMeetingRecords = function(dom) {
 						+ "<td>会议结束时间：</td><td><input id='meeting_end_timeU' placeholder='时分按格式手动精确（10:30英文冒号）' name='meet.meeting_end_time' type='text' class='form-control  mydate'></td></tr>"
 						+ "<tr><td>主持人：</td><td><select id='meeting_compereU' name='meet.meeting_compere' type='text' class='form-control selectpicker' data-live-search='true'></select></td>"
 						+ "<td>记录人：</td><td><select id='meeting_record_humanU' name='meet.meeting_record_human' type='text' class='form-control selectpicker' data-live-search='true'></select></td></tr>"
-						+ "<tr><td>参与人员</td><td colspan='3'><input id='meeting_join_humanU' name='meet.meeting_join_human' type='text' class='form-control' placeholder='请输入会议参与人员'></td></tr>"
+						+ "<tr>"
+						+ "<td>会议主题</td><td><input id='meeting_themeU' name='meet.meeting_theme' type='text' class='form-control' placeholder='请输入会议主题'></td>"
+						+ "<td>参与人员</td><td><input id='meeting_join_humanU' name='meet.meeting_join_human' type='text' class='form-control' placeholder='请输入会议参与人员'></td></tr>"
 						+ "<tr><td>请假人员</td><td colspan='3'><input id='meeting_leave_humanU' name='meet.meeting_leave_human' type='text' class='form-control' placeholder='请输入会议请假人员'></td></tr>"
 						+ "<tr><td>会议内容</td><td colspan='3'><textarea id='meeting_contentU' name='meet.meeting_content' rows='10' class='form-control' placeholder='请输入会议内容'></textarea></td></tr>"
 						+ "<table></form></div>",
@@ -207,6 +209,10 @@ var updateMeetingRecords = function(dom) {
 																			"#meeting_titleU")
 																			.val(
 																					jsonData.meeting_title);
+																	$(
+																			"#meeting_themeU")
+																			.val(
+																					jsonData.meeting_theme);
 																	$(
 																			"#meeting_placeU")
 																			.val(

@@ -67,18 +67,20 @@ var ajaxSetTable = function(jsonData) {
 	var tableContent = "";
 	for (var i = 0; i < jsonData.meetDTO.length; i++) {
 		tableContent = tableContent
-				+ "<tr>"
+				+ "<tr id='"
+				+ jsonData.meetDTO[i].meeting_id
+				+ "'  onclick='updateMeetingRecords(this)'>"
+				+ "<td>"
+				+ jsonData.meetDTO[i].meeting_start_time
+				+ "</td>"
 				+ "<td>"
 				+ jsonData.meetDTO[i].meeting_title
 				+ "</td>"
 				+ "<td>"
-				+ jsonData.meetDTO[i].meeting_place
+				+ jsonData.meetDTO[i].meeting_theme
 				+ "</td>"
 				+ "<td>"
 				+ jsonData.meetDTO[i].meeting_compere
-				+ "</td>"
-				+ "<td>"
-				+ jsonData.meetDTO[i].meeting_start_time
 				+ "</td>"
 				+ "<td>"
 				+ jsonData.meetDTO[i].meeting_end_time

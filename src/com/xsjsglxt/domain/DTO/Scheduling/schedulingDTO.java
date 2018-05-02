@@ -8,12 +8,13 @@ public class schedulingDTO {
 	private String scheduling_assistant;// 辅班
 	private String scheduling_overtime;// 今日加班
 	private String scheduling_out_help;// 今日外协
+	private String scheduling_evection;
 	private String scheduling_time; // 值班日期
 	private String scheduling_patrol;
 
 	public schedulingDTO(String xsjsglxt_scheduling_id, String scheduling_leader, String scheduling_main,
 			String scheduling_mainTec, String scheduling_assistant, String scheduling_overtime,
-			String scheduling_out_help, String scheduling_time, String scheduling_patrol) {
+			String scheduling_out_help, String scheduling_evection, String scheduling_time, String scheduling_patrol) {
 		super();
 		this.xsjsglxt_scheduling_id = xsjsglxt_scheduling_id;
 		this.scheduling_leader = scheduling_leader;
@@ -22,8 +23,17 @@ public class schedulingDTO {
 		this.scheduling_assistant = scheduling_assistant;
 		this.scheduling_overtime = scheduling_overtime;
 		this.scheduling_out_help = scheduling_out_help;
+		this.scheduling_evection = scheduling_evection;
 		this.scheduling_time = scheduling_time;
 		this.scheduling_patrol = scheduling_patrol;
+	}
+
+	public String getScheduling_evection() {
+		return scheduling_evection;
+	}
+
+	public void setScheduling_evection(String scheduling_evection) {
+		this.scheduling_evection = scheduling_evection;
 	}
 
 	public String getScheduling_overtime() {

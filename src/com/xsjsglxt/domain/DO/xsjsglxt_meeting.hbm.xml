@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2018-4-17 14:07:50 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2018-5-2 15:35:29 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="com.xsjsglxt.domain.DO.xsjsglxt_meeting" table="XSJSGLXT_MEETING">
         <id name="meeting_id" type="java.lang.String">
@@ -16,6 +16,9 @@
         </property>
         <property name="meeting_end_time" type="java.lang.String">
             <column name="MEETING_END_TIME" />
+        </property>
+        <property name="meeting_theme" type="java.lang.String">
+            <column name="MEETING_THEME" />
         </property>
         <property name="meeting_place" type="java.lang.String">
             <column name="MEETING_PLACE" />

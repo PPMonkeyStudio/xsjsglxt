@@ -114,7 +114,7 @@ public class MeetingDaoImpl implements MeetingDao {
 	public List<meetingSearchDTO> ListMeetRecordsBySearch(meetingByPageAndSerarchVO meetVO) {
 		// TODO Auto-generated method stub
 
-		String hql = "select new com.xsjsglxt.domain.DTO.User.meetingSearchDTO(meeting_id,meeting_title,meeting_start_time,meeting_end_time,meeting_place,meeting_compere) from xsjsglxt_meeting meet where 1=1";
+		String hql = "select new com.xsjsglxt.domain.DTO.User.meetingSearchDTO(meeting_id,meeting_title,meeting_start_time,meeting_end_time,meeting_theme,meeting_place,meeting_compere) from xsjsglxt_meeting meet where 1=1";
 		if (meetVO.getQuery_start_time_start() != null && meetVO.getQuery_start_time_start().trim().length() > 0) {
 			hql = hql + " and meet.meeting_start_time >= '" + meetVO.getQuery_start_time_start() + "'";
 		}

@@ -7,6 +7,7 @@ public class policemanListDTO {
 	private String xsjsglxt_age;
 	private String staff_politicalStatus;
 	private String staff_thePoliceTime;
+	private String staff_phone;
 
 	public String getXsjsglxt_staff_id() {
 		return xsjsglxt_staff_id;
@@ -72,6 +73,26 @@ public class policemanListDTO {
 		this.xsjsglxt_age = xsjsglxt_age;
 		this.staff_politicalStatus = staff_politicalStatus;
 		this.staff_thePoliceTime = staff_thePoliceTime;
+	}
+
+	public policemanListDTO(String xsjsglxt_staff_id, String xsjsglxt_name, String xsjsglxt_sex, String xsjsglxt_age,
+			String staff_politicalStatus, String staff_thePoliceTime, String staff_phone) {
+		super();
+		this.xsjsglxt_staff_id = xsjsglxt_staff_id;
+		this.xsjsglxt_name = xsjsglxt_name;
+		this.xsjsglxt_sex = xsjsglxt_sex;
+		this.xsjsglxt_age = xsjsglxt_age;
+		this.staff_politicalStatus = staff_politicalStatus;
+		this.staff_thePoliceTime = staff_thePoliceTime;
+		this.staff_phone = staff_phone;
+	}
+
+	public String getStaff_phone() {
+		return staff_phone;
+	}
+
+	public void setStaff_phone(String staff_phone) {
+		this.staff_phone = staff_phone;
 	}
 
 }

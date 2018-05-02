@@ -9,6 +9,7 @@ public class xsjsglxt_scheduling {
 	private String scheduling_patrol;// 设置巡逻
 	private String scheduling_overtime; // 加班
 	private String scheduling_out_help;// 外出协助
+	private String scheduling_evection;// 出差人员
 	private String scheduling_time; // 时间
 	private String scheduling_gmt_create;
 	private String scheduling_gmt_modified;
@@ -19,6 +20,14 @@ public class xsjsglxt_scheduling {
 				+ scheduling_leader + ", scheduling_main=" + scheduling_main + ", scheduling_assistant="
 				+ scheduling_assistant + ", scheduling_gmt_create=" + scheduling_gmt_create
 				+ ", scheduling_gmt_modified=" + scheduling_gmt_modified + "]";
+	}
+
+	public String getScheduling_evection() {
+		return scheduling_evection;
+	}
+
+	public void setScheduling_evection(String scheduling_evection) {
+		this.scheduling_evection = scheduling_evection;
 	}
 
 	public String getScheduling_overtime() {

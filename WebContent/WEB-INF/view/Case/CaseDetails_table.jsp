@@ -33,13 +33,13 @@ table tbody tr td:nth-child(odd) {
 }
 
 table tr th {
-	border: 1px solid black;
+	border: 1px solid #ddd;
 	height: 30px;
 	word-break: break-all; /* 设置自动换行切不挤压其他td */
 }
 
 table tr td {
-	border: 1px solid black;
+	border: 1px solid #ddd;
 	height: 30px;
 	word-break: break-all; /* 设置自动换行切不挤压其他td */
 }
@@ -66,7 +66,9 @@ table tr td {
 					onclick="case_change()"> <input value="打印"
 					class="btn btn-default" type="button" onclick="print_Page()">
 			</div>
-			<div id="loadingLayer"  style="margin: 0 auto; width: 45px;"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></div>
+			<div id="loadingLayer" style="margin: 0 auto; width: 45px;">
+				<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+			</div>
 			<div id="tableContent" class="panel-body" style="display: none;">
 				<table style="width: 1200px;">
 					<tr>
@@ -196,7 +198,6 @@ table tr td {
 						<td>{{ senceInfor.snece_fillTime }}</td>
 					</tr>
 				</table>
-				<hr style="margin-top:45px; border: solid 1px black;">
 				<table style="width: 1200px; text-align: center;">
 					<tr>
 						<td colspan="6"
@@ -217,7 +218,8 @@ table tr td {
 						<td>{{ re.resevidence_savePlace }}</td>
 						<td>{{ re.resevidence_extractPerson }}</td>
 						<td>{{ re.resevidence_circulation }}</td>
-						<td>{{ re.resevidence_teststate }}|{{ re.resevidence_sendstate }}</td>
+						<td>{{ re.resevidence_teststate }}|{{
+							re.resevidence_sendstate }}</td>
 					</tr>
 					</template>
 					<tr>
@@ -229,42 +231,10 @@ table tr td {
 						<td></td>
 					</tr>
 				</table>
-				<hr style="margin-top:45px; border: solid 1px black;">
 				<table style="width: 1200px; text-align: center;">
 					<tr>
 						<td colspan="6"
 							style="text-align: left; border-top: none; border-left: none; border-right: none;"><h3>被盗物品信息</h3></td>
-					</tr>
-					<!-- <tr>
-						<td colspan="6"
-							style="text-align: left; border-top: none; border-left: none; border-right: none;">丢失物品信息</td>
-					</tr> -->
-					<tr>
-						<td colspan="1">被盗物品名称</td>
-						<td>厂牌和型号</td>
-						<td>数量</td>
-						<td>价值/元</td>
-						<td colspan="1" style="text-align: center;">特征描述</td>
-					</tr>
-					<template v-for="lo in lost">
-					<tr>
-						<td colspan="1">{{ lo.lost_name }}</td>
-						<td>{{ lo.lost_model }}</td>
-						<td>{{ lo.lost_number }}</td>
-						<td>{{ lo.lost_price }}</td>
-						<td colspan="1">{{ lo.lost_remarks }}</td>
-					</tr>
-					</template>
-					<tr>
-						<td colspan="1"></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td colspan="1"></td>
-					</tr>
-					<tr>
-						<td colspan="6"
-							style="text-align: left; border-top: none; border-left: none; border-right: none;"></td>
 					</tr>
 					<tr>
 						<td>电脑品牌</td>
@@ -311,7 +281,6 @@ table tr td {
 						<td colspan="2"></td>
 					</tr>
 				</table>
-				<hr style="margin-top:45px; border: solid 1px black;">
 				<table style="font-weight: bold; width: 1200px; text-align: center;">
 					<tr>
 						<td colspan="6"

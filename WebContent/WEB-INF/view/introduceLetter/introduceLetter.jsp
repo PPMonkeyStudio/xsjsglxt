@@ -84,6 +84,7 @@ table tr:hover {
 						<td><label> <input onclick="selectAll(this)"
 								type="checkbox"><span style=""> 全选 </span>
 						</label></td>
+						<td>编号</td>
 						<td>目的单位</td>
 						<td>前往人员</td>
 						<td>前往人员数量</td>
@@ -99,6 +100,7 @@ table tr:hover {
 						<td><label><input type="checkbox"
 								name="chooseCheckBox"
 								:value="letter.xsjsglxt_introduce_letter_id"><span></span></label></td>
+								<td>{{ letter.introduce_letter_serial_number }}</td>
 						<td>{{ letter.introduce_letter_tounit }}</td>
 						<td>{{ letter.introduce_letter_introduceMan }}</td>
 						<td>{{ letter.introduce_letter_number }}</td>
