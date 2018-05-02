@@ -41,6 +41,9 @@ i {
 	cursor: pointer;
 }
 
+.page_info span {
+	cursor: pointer;
+}
 /* td {
 	width: 250px;
 	word-break: break-all; /* 设置自动换行切不挤压其他td */

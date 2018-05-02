@@ -388,7 +388,7 @@ i {
 									</div>
 								</td>
 							</tr>
-							<tr>
+							<!-- <tr>
 								<td>
 									<div class="panel" id="loseGoods-info">
 										<div class="panel-heading">
@@ -417,7 +417,7 @@ i {
 										</div>
 									</div>
 								</td>
-							</tr>
+							</tr> -->
 							<tr>
 							<tr>
 								<td>

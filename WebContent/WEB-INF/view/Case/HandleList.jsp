@@ -43,7 +43,7 @@
 	background-color: silver;
 }
 
-.page_info a {
+.page_info span {
 	cursor: pointer;
 }
 </style>

@@ -27,6 +27,10 @@
 i {
 	cursor: pointer;
 }
+
+.page_info span {
+	cursor: pointer;
+}
 </style>
 </head>
 
