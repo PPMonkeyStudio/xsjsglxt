@@ -81,6 +81,7 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	 */
 
 	public void updateCaseTime() {
+		case1.setCase_registerTime(TeamUtil.getStringDay());
 		senceService.updateCaseTime(case1);
 	}
 

@@ -8,6 +8,7 @@ public class BreakeCasePageDTO {
 	private String breakecase_person; // 破案人
 	private String breakecase_according; // 破案方式
 	private String breakecase_caseTime; // 破案时间
+	private String breakecase_suspect; // 嫌疑人
 
 	public BreakeCasePageDTO(String xsjsglxt_breakecase_id, String snece_inquestId, String case_name,
 			String breakecase_type, String breakecase_person, String breakecase_according, String breakecase_caseTime) {
@@ -45,6 +46,14 @@ public class BreakeCasePageDTO {
 	 */
 	public String getXsjsglxt_breakecase_id() {
 		return xsjsglxt_breakecase_id;
+	}
+
+	public String getBreakecase_suspect() {
+		return breakecase_suspect;
+	}
+
+	public void setBreakecase_suspect(String breakecase_suspect) {
+		this.breakecase_suspect = breakecase_suspect;
 	}
 
 	/**

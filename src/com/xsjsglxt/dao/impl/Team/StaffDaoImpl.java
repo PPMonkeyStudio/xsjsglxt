@@ -90,7 +90,7 @@ public class StaffDaoImpl implements StaffDao {
 	public List<policemanListDTO> getPolicemansByPage(policemanListVO policemanVO) {
 		// TODO Auto-generated method stub
 		String hql = "select new com.xsjsglxt.domain.DTO.Team.policemanListDTO(x.xsjsglxt_staff_id as xsjsglxt_staff_id,x.xsjsglxt_name as xsjsglxt_name,"
-				+ "x.xsjsglxt_sex as xsjsglxt_sex,x.xsjsglxt_age as xsjsglxt_age,x.staff_politicalStatus as staff_politicalStatus,x.staff_thePoliceTime as staff_thePoliceTime) from xsjsglxt_staff x where 1=1 ";
+				+ "x.xsjsglxt_sex as xsjsglxt_sex,x.xsjsglxt_age as xsjsglxt_age,x.staff_politicalStatus as staff_politicalStatus,x.staff_thePoliceTime as staff_thePoliceTime,x.staff_phone as staff_phone) from xsjsglxt_staff x where 1=1 ";
 		if (policemanVO.getPolicemanName() != null && policemanVO.getPolicemanName().trim().length() > 0) {
 			String name = "%" + policemanVO.getPolicemanName() + "%";
 			hql = hql + " and xsjsglxt_name like '" + name + "'";

@@ -84,7 +84,7 @@
 	<!-----------------------------------------------------------------新增模态框---------------------------------------------------  -->
 	<div class="modal fade" id="addUser" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
+		<div class="modal-dialog" role="document" style="width: 700px;">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
@@ -100,81 +100,121 @@
 					</div>
 					<div id="addContent">
 						<form id="addUserForm" name="addUserForm">
-							<label>账号：</label> <input id="user_username" name="user_username"
-								type="text" class="form-control" placeholder="请输入账号"> <label>密码：</label>
-							<input id="user_password" name="user_password" type="password"
-								class="form-control" placeholder="请输入密码"> <label>姓名：</label>
-							<input id="user_name" name="user_name" type="text"
-								class="form-control" placeholder="请输入用户姓名"> <label>警号：</label>
-							<input id="user_number" name="user_number" type="text"
-								class="form-control" placeholder="请输入用户警号"> <label>单位：</label>
-							<!-- 							<input id="user_units" name="user_units" type="text"
+							<table class="table" style="margin: 0 auto;">
+								<tr>
+									<td><label>账号：</label></td>
+									<td><input id="user_username" name="user_username"
+										type="text" class="form-control" placeholder="请输入账号">
+									</td>
+									<td><label>密码：</label></td>
+									<td><input id="user_password" name="user_password"
+										type="password" class="form-control" placeholder="请输入密码"></td>
+								</tr>
+								<tr>
+									<td><label>姓名：</label></td>
+									<td><input id="user_name" name="user_name" type="text"
+										class="form-control" placeholder="请输入用户姓名"></td>
+									<td><label>警号：</label></td>
+									<td><input id="user_number" name="user_number" type="text"
+										class="form-control" placeholder="请输入用户警号"></td>
+								</tr>
+								<tr>
+									<td><label>单位：</label></td>
+									<!-- 							<input id="user_units" name="user_units" type="text"
 								class="form-control" placeholder="请输入用户单位"> -->
-							<select class="form-control" id="user_units" name="user_units">
-								<option value="安源公安分局刑警大队">安源公安分局刑警大队</option>
-								<option value="安源派出所">安源派出所</option>
-								<option value="城郊派出所">城郊派出所</option>
-								<option value="凤凰派出所">凤凰派出所</option>
-								<option value="后埠派出所">后埠派出所</option>
-								<option value="东大派出所">东大派出所</option>
-								<option value="高坑派出所">高坑派出所</option>
-								<option value="青山派出所">青山派出所</option>
-								<option value="八一派出所">八一派出所</option>
-								<option value="白源派出所">白源派出所</option>
-								<option value="丹江派出所">丹江派出所</option>
-								<option value="李子园派出所">李子园派出所</option>
-								<option value="五陂下派出所">五陂下派出所</option>
-								<option value="其他">其他</option>
-							</select> <label>职位：</label>
-							<!-- <input id="user_duty" name="user_duty"
+									<td><select class="form-control" id="user_units"
+										name="user_units">
+											<option value="安源公安分局刑警大队">安源公安分局刑警大队</option>
+											<option value="安源派出所">安源派出所</option>
+											<option value="城郊派出所">城郊派出所</option>
+											<option value="凤凰派出所">凤凰派出所</option>
+											<option value="后埠派出所">后埠派出所</option>
+											<option value="东大派出所">东大派出所</option>
+											<option value="高坑派出所">高坑派出所</option>
+											<option value="青山派出所">青山派出所</option>
+											<option value="八一派出所">八一派出所</option>
+											<option value="白源派出所">白源派出所</option>
+											<option value="丹江派出所">丹江派出所</option>
+											<option value="李子园派出所">李子园派出所</option>
+											<option value="五陂下派出所">五陂下派出所</option>
+											<option value="其他">其他</option>
+									</select></td>
+									<td><label>职位：</label></td>
+									<!-- <input id="user_duty" name="user_duty"
 								type="text" class="form-control" placeholder="请输入用户职位"> -->
-							<select id="user_duty" name="user_duty" class="form-control">
-								<option value="局长">局长</option>
-								<option value="副局长">副局长</option>
-								<option value="政委">政委</option>
-								<option value="大队长">大队长</option>
-								<option value="教导员">教导员</option>
-								<option value="副大队长">副大队长</option>
-								<option value="副教导员">副教导员</option>
-								<option value="中队长">中队长</option>
-								<option value="副中队长">副中队长</option>
-								<option value="侦查民警">侦查民警</option>
-								<option value="技术民警">技术民警</option>
-								<option value="法医">法医</option>
-								<option value="辅警">辅警</option>
-								<option value="内勤">内勤</option>
-							</select> <label>身份证号码：</label> <input id="user_idCard" name="user_idCard"
-								type="text" class="form-control" placeholder="请输入用户身份证号">
-							<label>案件技术权限：</label> <select name="user_case_technology_power"
-								class="form-control">
-								<option value="jurisdiction_none">无权限</option>
-								<option value="jurisdiction_admin">管理权限</option>
-							</select> <label>案件侦查权限：</label> <select name="user_case_query_power"
-								class="form-control">
-								<option value="jurisdiction_none">无权限</option>
-								<option value="jurisdiction_admin">管理权限</option>
-							</select> <label>检验鉴定权限：</label> <select name="user_check_power"
-								class="form-control">
-								<option value="jurisdiction_none">无权限</option>
-								<option value="jurisdiction_use">委托权限</option>
-								<option value="jurisdiction_admin">管理权限</option>
-							</select> <label>队伍管理权限：</label> <select name="user_army_manager_power"
-								class="form-control">
-								<option value="jurisdiction_none">无权限</option>
-								<option value="jurisdiction_admin">管理权限</option>
-							</select> <label>技术管理权限：</label> <select
-								name="user_technology_manager_power" class="form-control">
-								<option value="jurisdiction_none">无权限</option>
-								<option value="jurisdiction_admin">管理权限</option>
-							</select> <label>统计权限：</label> <select name="user_statistics_power"
-								class="form-control">
-								<option value="jurisdiction_none">无权限</option>
-								<option value="jurisdiction_admin">管理权限</option>
-							</select> <label>用户管理权限：</label> <select name="user_user_manager_power"
-								class="form-control">
-								<option value="jurisdiction_none">无权限</option>
-								<option value="jurisdiction_admin">管理权限</option>
-							</select>
+									<td><select id="user_duty" name="user_duty"
+										class="form-control">
+											<option value="局长">局长</option>
+											<option value="副局长">副局长</option>
+											<option value="政委">政委</option>
+											<option value="大队长">大队长</option>
+											<option value="教导员">教导员</option>
+											<option value="副大队长">副大队长</option>
+											<option value="副教导员">副教导员</option>
+											<option value="中队长">中队长</option>
+											<option value="副中队长">副中队长</option>
+											<option value="侦查民警">侦查民警</option>
+											<option value="技术民警">技术民警</option>
+											<option value="法医">法医</option>
+											<option value="辅警">辅警</option>
+											<option value="内勤">内勤</option>
+									</select></td>
+								</tr>
+								<tr>
+									<td><label>身份证号码：</label></td>
+									<td><input id="user_idCard" name="user_idCard" type="text"
+										class="form-control" placeholder="请输入用户身份证号"></td>
+									<td><label>案件技术权限：</label></td>
+									<td><select name="user_case_technology_power"
+										class="form-control">
+											<option value="jurisdiction_none">无权限</option>
+											<option value="jurisdiction_admin">管理权限</option>
+									</select></td>
+								</tr>
+								<tr>
+									<td><label>案件侦查权限：</label></td>
+									<td><select name="user_case_query_power"
+										class="form-control">
+											<option value="jurisdiction_none">无权限</option>
+											<option value="jurisdiction_admin">管理权限</option>
+											<option value="letter_admin">介绍信审批权限</option>
+									</select></td>
+									<td><label>检验鉴定权限：</label></td>
+									<td><select name="user_check_power" class="form-control">
+											<option value="jurisdiction_none">无权限</option>
+											<option value="jurisdiction_use">委托权限</option>
+											<option value="jurisdiction_admin">管理权限</option>
+									</select></td>
+								</tr>
+								<tr>
+									<td><label>队伍管理权限：</label></td>
+									<td><select name="user_army_manager_power"
+										class="form-control">
+											<option value="jurisdiction_none">无权限</option>
+											<option value="jurisdiction_admin">管理权限</option>
+									</select></td>
+									<td><label>技术管理权限：</label></td>
+									<td><select name="user_technology_manager_power"
+										class="form-control">
+											<option value="jurisdiction_none">无权限</option>
+											<option value="jurisdiction_admin">管理权限</option>
+									</select></td>
+								</tr>
+								<tr>
+									<td><label>统计权限：</label></td>
+									<td><select name="user_statistics_power"
+										class="form-control">
+											<option value="jurisdiction_none">无权限</option>
+											<option value="jurisdiction_admin">管理权限</option>
+									</select></td>
+									<td><label>用户管理权限：</label></td>
+									<td><select name="user_user_manager_power"
+										class="form-control">
+											<option value="jurisdiction_none">无权限</option>
+											<option value="jurisdiction_admin">管理权限</option>
+									</select></td>
+								</tr>
+							</table>
 						</form>
 					</div>
 				</div>
@@ -192,7 +232,7 @@
 	<!-----------------------------------------------------------------修改模态框----------------------------------------------------  -->
 	<div class="modal fade" id="updateUser" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
+		<div class="modal-dialog" role="document" style="width: 700px;">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
@@ -208,85 +248,120 @@
 					</div>
 					<div id="updateContent">
 						<form id="updateUserForm">
-							<label>账号：</label> <input id="user_username_update"
-								name="user_username" type="text" class="form-control"
-								placeholder="请输入账号"> <label>密码：</label> <input
-								id="user_password_update" name="user_password" type="password"
-								class="form-control" placeholder="请输入密码"> <label>姓名：</label>
-							<input id="user_name_update" name="user_name" type="text"
-								class="form-control" placeholder="请输入用户姓名"> <label>代码：</label>
-							<input id="user_number_update" name="user_number" type="text"
-								class="form-control" placeholder="请输入用户代码"> <label>单位：</label>
-							<!-- 							<input id="user_units_update" name="user_units" type="text"
+							<table class="table" style="margin: 0 auto;">
+								<tr>
+									<td><label>账号：</label></td>
+									<td><input id="user_username_update" name="user_username"
+										type="text" class="form-control" placeholder="请输入账号"></td>
+									<td><label>密码：</label></td>
+									<td><input id="user_password_update" name="user_password"
+										type="password" class="form-control" placeholder="请输入密码"></td>
+								</tr>
+								<tr>
+									<td><label>姓名：</label></td>
+									<td><input id="user_name_update" name="user_name"
+										type="text" class="form-control" placeholder="请输入用户姓名"></td>
+									<td><label>代码：</label></td>
+									<td><input id="user_number_update" name="user_number"
+										type="text" class="form-control" placeholder="请输入用户代码"></td>
+								</tr>
+								<tr>
+									<td><label>单位：</label></td>
+									<!-- 							<input id="user_units_update" name="user_units" type="text"
 								class="form-control" placeholder="请输入用户单位"> -->
-							<select id="user_units_update" name="user_units" class="form-control">
-								<option value="安源公安分局刑警大队">安源公安分局刑警大队</option>
-								<option value="安源派出所">安源派出所</option>
-								<option value="城郊派出所">城郊派出所</option>
-								<option value="凤凰派出所">凤凰派出所</option>
-								<option value="后埠派出所">后埠派出所</option>
-								<option value="东大派出所">东大派出所</option>
-								<option value="高坑派出所">高坑派出所</option>
-								<option value="青山派出所">青山派出所</option>
-								<option value="八一派出所">八一派出所</option>
-								<option value="白源派出所">白源派出所</option>
-								<option value="丹江派出所">丹江派出所</option>
-								<option value="李子园派出所">李子园派出所</option>
-								<option value="五陂下派出所">五陂下派出所</option>
-								<option value="其他">其他</option>
-							</select> <label>职位：</label> <!-- <input id="user_duty_update" name="user_duty"
+									<td><select id="user_units_update" name="user_units"
+										class="form-control">
+											<option value="安源公安分局刑警大队">安源公安分局刑警大队</option>
+											<option value="安源派出所">安源派出所</option>
+											<option value="城郊派出所">城郊派出所</option>
+											<option value="凤凰派出所">凤凰派出所</option>
+											<option value="后埠派出所">后埠派出所</option>
+											<option value="东大派出所">东大派出所</option>
+											<option value="高坑派出所">高坑派出所</option>
+											<option value="青山派出所">青山派出所</option>
+											<option value="八一派出所">八一派出所</option>
+											<option value="白源派出所">白源派出所</option>
+											<option value="丹江派出所">丹江派出所</option>
+											<option value="李子园派出所">李子园派出所</option>
+											<option value="五陂下派出所">五陂下派出所</option>
+											<option value="其他">其他</option>
+									</select></td>
+									<td><label>职位：</label></td>
+									<!-- <input id="user_duty_update" name="user_duty"
 								type="text" class="form-control" placeholder="请输入用户职位"> -->
-							<select id="user_duty_update" name="user_duty" class="form-control">
-								<option value="局长">局长</option>
-								<option value="副局长">副局长</option>
-								<option value="政委">政委</option>
-								<option value="大队长">大队长</option>
-								<option value="教导员">教导员</option>
-								<option value="副大队长">副大队长</option>
-								<option value="副教导员">副教导员</option>
-								<option value="中队长">中队长</option>
-								<option value="副中队长">副中队长</option>
-								<option value="侦查民警">侦查民警</option>
-								<option value="技术民警">技术民警</option>
-								<option value="法医">法医</option>
-								<option value="辅警">辅警</option>
-								<option value="内勤">内勤</option>
-							</select> <label>身份证号码：</label> <input id="user_idCard_update"
-								name="user_idCard" type="text" class="form-control"
-								placeholder="请输入用户身份证号"> <label>案件技术权限：</label> <select
-								id="user_case_technology_power_update"
-								name="user_case_technology_power" class="form-control">
-								<option value="jurisdiction_none">无权限</option>
-								<option value="jurisdiction_admin">管理权限</option>
-							</select> <label>案件侦查权限：</label> <select id="user_case_query_power_update"
-								name="user_case_query_power" class="form-control">
-								<option value="jurisdiction_none">无权限</option>
-								<option value="jurisdiction_admin">管理权限</option>
-							</select> <label>检验鉴定权限：</label> <select id="user_check_power_update"
-								name="user_check_power" class="form-control">
-								<option value="jurisdiction_none">无权限</option>
-								<option value="jurisdiction_use">委托权限</option>
-								<option value="jurisdiction_admin">管理权限</option>
-							</select> <label>队伍管理权限：</label> <select
-								id="user_army_manager_power_update"
-								name="user_army_manager_power" class="form-control">
-								<option value="jurisdiction_none">无权限</option>
-								<option value="jurisdiction_admin">管理权限</option>
-							</select> <label>技术管理权限：</label> <select
-								id="user_technology_manager_power_update"
-								name="user_technology_manager_power" class="form-control">
-								<option value="jurisdiction_none">无权限</option>
-								<option value="jurisdiction_admin">管理权限</option>
-							</select> <label>统计权限：</label> <select id="user_statistics_power_update"
-								name="user_statistics_power" class="form-control">
-								<option value="jurisdiction_none">无权限</option>
-								<option value="jurisdiction_admin">管理权限</option>
-							</select> <label>用户管理权限：</label> <select
-								id="user_user_manager_power_update"
-								name="user_user_manager_power" class="form-control">
-								<option value="jurisdiction_none">无权限</option>
-								<option value="jurisdiction_admin">管理权限</option>
-							</select>
+									<td><select id="user_duty_update" name="user_duty"
+										class="form-control">
+											<option value="局长">局长</option>
+											<option value="副局长">副局长</option>
+											<option value="政委">政委</option>
+											<option value="大队长">大队长</option>
+											<option value="教导员">教导员</option>
+											<option value="副大队长">副大队长</option>
+											<option value="副教导员">副教导员</option>
+											<option value="中队长">中队长</option>
+											<option value="副中队长">副中队长</option>
+											<option value="侦查民警">侦查民警</option>
+											<option value="技术民警">技术民警</option>
+											<option value="法医">法医</option>
+											<option value="辅警">辅警</option>
+											<option value="内勤">内勤</option>
+									</select></td>
+								<tr>
+									<td><label>身份证号码：</label></td>
+									<td><input id="user_idCard_update" name="user_idCard"
+										type="text" class="form-control" placeholder="请输入用户身份证号"></td>
+									<td><label>案件技术权限：</label></td>
+									<td><select id="user_case_technology_power_update"
+										name="user_case_technology_power" class="form-control">
+											<option value="jurisdiction_none">无权限</option>
+											<option value="jurisdiction_admin">管理权限</option>
+									</select></td>
+								</tr>
+								<tr>
+									<td><label>案件侦查权限：</label></td>
+									<td><select id="user_case_query_power_update"
+										name="user_case_query_power" class="form-control">
+											<option value="jurisdiction_none">无权限</option>
+											<option value="jurisdiction_admin">管理权限</option>
+											<option value="letter_admin">介绍信审批权限</option>
+									</select></td>
+									<td><label>检验鉴定权限：</label></td>
+									<td><select id="user_check_power_update"
+										name="user_check_power" class="form-control">
+											<option value="jurisdiction_none">无权限</option>
+											<option value="jurisdiction_use">委托权限</option>
+											<option value="jurisdiction_admin">管理权限</option>
+									</select></td>
+								</tr>
+								<tr>
+									<td><label>队伍管理权限：</label></td>
+									<td><select id="user_army_manager_power_update"
+										name="user_army_manager_power" class="form-control">
+											<option value="jurisdiction_none">无权限</option>
+											<option value="jurisdiction_admin">管理权限</option>
+									</select></td>
+									<td><label>技术管理权限：</label></td>
+									<td><select id="user_technology_manager_power_update"
+										name="user_technology_manager_power" class="form-control">
+											<option value="jurisdiction_none">无权限</option>
+											<option value="jurisdiction_admin">管理权限</option>
+									</select></td>
+								</tr>
+								<tr>
+									<td><label>统计权限：</label></td>
+									<td><select id="user_statistics_power_update"
+										name="user_statistics_power" class="form-control">
+											<option value="jurisdiction_none">无权限</option>
+											<option value="jurisdiction_admin">管理权限</option>
+									</select></td>
+									<td><label>用户管理权限：</label></td>
+									<td><select id="user_user_manager_power_update"
+										name="user_user_manager_power" class="form-control">
+											<option value="jurisdiction_none">无权限</option>
+											<option value="jurisdiction_admin">管理权限</option>
+									</select></td>
+								</tr>
+							</table>
 						</form>
 					</div>
 				</div>

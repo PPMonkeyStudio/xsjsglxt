@@ -17,6 +17,8 @@ import com.xsjsglxt.domain.VO.Case.BreakeCaseDetailsVO;
 import com.xsjsglxt.domain.VO.Case.BreakeCaseListVO;
 import com.xsjsglxt.service.Case.BreakecaseService;
 
+import util.TeamUtil;
+
 /**
  * 
  * @author 孙毅 破案模块
@@ -60,6 +62,7 @@ public class BreakecaseAction extends ActionSupport {
 	public void saveBreakeCase() {
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
+		breakeCase.setXsjsglxt_breakecase_id(TeamUtil.getUuid());
 		List<xsjsglxt_breakecase> breakecaseIm = breakecaseService.getBreakeCaseByCaseId(breakeCase);
 		breakecaseService.saveTakeBreakeCase(takeBreakeCase, breakeCase);
 		if (breakecaseIm != null && breakecaseIm.size() > 0) {
