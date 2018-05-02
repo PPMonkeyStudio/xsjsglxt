@@ -224,15 +224,13 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 			hql = hql + " and breake.breakecase_according like '%" + breakeCaseListVO.getQuery_breake_according()
 					+ "%'";
 		hql = hql + " order by breake.breakecase_caseTime desc";
-		System.out.println(hql);
 		List<BreakeCasePageDTO> pageDTO = session.createQuery(hql)
 				.setFirstResult((breakeCaseListVO.getCurrPage() - 1) * breakeCaseListVO.getPageSize())
 				.setMaxResults(breakeCaseListVO.getPageSize()).list();
 		for (BreakeCasePageDTO breakeCasePageDTO : pageDTO) {
 			String hqlSuspect = "from xsjsglxt_breakecasesuspect where breakecaseSuspect_breakecase = '"
 					+ breakeCasePageDTO.getXsjsglxt_breakecase_id() + "'";
-			List<xsjsglxt_breakecasesuspect> listSuspect = (List<xsjsglxt_breakecasesuspect>) session
-					.createQuery(hqlSuspect);
+			List<xsjsglxt_breakecasesuspect> listSuspect = session.createQuery(hqlSuspect).list();
 			if (listSuspect != null) {
 				for (int i = 0; i < listSuspect.size(); i++) {
 					breakeCasePageDTO.setBreakecase_suspect(listSuspect.get(i).getBreakecaseSuspect_name());
