@@ -53,7 +53,7 @@ var braekeCaseData = `<form action="">
 <thead>
 	<tr>
 	<td>姓名</td>
-	<td>身份证号</td>
+	<td style="width:120px;">身份证号</td>
 	<td>性别</td>
 	<td>生日</td>
 	<td>住址</td>
@@ -304,17 +304,17 @@ $(function() {
 				var breakeCaseID = msg.breakeCase.xsjsglxt_breakecase_id;
 				var content = `<form action="">
 			<div style="width: 100%;margin: auto;" class="panel-body"><table class="table table-hover table-condensed" align="center"><tbody>
-			<tr><td style="witdh:20%;">所属案件<i class="fa fa-spinner fa-pulse load_remind"></i></td><td colspan="3">
+			<tr><td style="width: 120px;margin: auto;">所属案件<i class="fa fa-spinner fa-pulse load_remind"></i></td><td colspan="3">
 			<select style="witdh:100%;" class="form-control selectpicker" data-live-search="true" name="breakeCase.breakecase_case" title="请选择..."></select></td>
-			</tr><tr><td>案件类型</td><td>
+			</tr><tr><td style="width: 120px;margin: auto;">案件类型</td><td>
 			<input class="form-control" name="breakeCase.breakecase_type" type="text" value="${msg.breakeCase.breakecase_type}">
 			</td><td>破案方式</td><td>
 			<select class="form-control" name="breakeCase.breakecase_according"><option value=""></option><option value="指纹">指纹</option><option value="视屏">视屏</option><option value="NDA">NDA</option></select>
-			</td></tr><tr><td>破案时间</td><td>
+			</td></tr><tr><td style="width: 120px;margin: auto;">破案时间</td><td>
 			<input class="form-control mydate" name="breakeCase.breakecase_caseTime" type="text" value="${msg.breakeCase.breakecase_caseTime}">
 			</td><td>破案人</td><td>
 			<select class="form-control" name="breakeCase.breakecase_person"></select>
-			</td></tr><tr><td>带破案件<i id="${breakeCaseID}" onclick="breakeCaseDetails(this)" class="fa fa-book" aria-hidden="true"></i></td><td colspan="3">
+			</td></tr><tr><td style="width: 120px;margin: auto;">带破案件<i id="${breakeCaseID}" onclick="breakeCaseDetails(this)" class="fa fa-book" aria-hidden="true"></i></td><td colspan="3">
 			<select class="form-control selectpicker" multiple data-live-search="true" name="breakeCase.breakecase_waitbreakecase"></select>
 			</td></tr><tr><td>备注</td><td colspan="3">
 			<textarea placeholder="请填写" class="form-control"name="breakeCase.breakecase_remarks">${msg.breakeCase.breakecase_remarks}</textarea>
@@ -462,9 +462,10 @@ function get_ListBreakecaseInformationByPageAndSearch(data) {
 	$.post('/xsjsglxt/case/BreakeCase_breakeCaseByPage', data, function(xhr) {
 		var data_list = xhr.breakeCaseDTOList;
 		var str = '';
+		var sups = '';
 		for (var len = 0; len < data_list.length; len++) {
 			str += '<tr>';
-			str += '<td><input name="chooseCheckBox" id="' + data_list[len].xsjsglxt_breakecase_id + '" type="checkbox"></td>';
+			str += '<td style="width:70px;"><input name="chooseCheckBox" id="' + data_list[len].xsjsglxt_breakecase_id + '" type="checkbox"></td>';
 			// str += '<td><a href="/xsjsglxt/case/Case_page_CaseDetails?id=' +
 			// data_list[len].case1.xsjsglxt_case_id + '">' +
 			// data_list[len].sence.snece_inquestId + '</a></td>';
@@ -472,6 +473,16 @@ function get_ListBreakecaseInformationByPageAndSearch(data) {
 			str += '<td>' + data_list[len].snece_inquestId + '</td>';
 			// str += '<td>' + data_list[len].breakecase_type + '</td>';
 			str += '<td>' + data_list[len].breakecase_person + '</td>';
+
+			//嫌疑人
+			sups = data_list[len].breakecase_suspect.split('、');
+			if (sups.length > 0 && sups.length < 3) {
+				str += '<td>' + sups.join() + '</td>';
+			} else {
+				str += '<td>' + sups.slice(0, 3).join() + '</td>';
+			}
+
+
 			str += '<td>' + data_list[len].breakecase_according + '</td>';
 			str += '<td>' + data_list[len].breakecase_caseTime + '</td>';
 		}
@@ -485,8 +496,8 @@ function get_ListBreakecaseInformationByPageAndSearch(data) {
 		// page_infomantion.HavePrePage = xhr.HavePrePage; //是否有上一页
 		// page_infomantion.HaveNextPage = xhr.HaveNextPage; //是否有下一页
 
-		$('.info').html('共 ' + xhr.totalCount + '条信息 当前' + xhr.currPage + '/' + xhr.totalPage + '页 ' + xhr.pageSize + '条信息/页');
-		// 影藏模态框
+		$('.info').html('当前页数:' + xhr.currPage + ' 共:' + xhr.totalPage);
+		//影藏模态框
 		$('#newQuery').modal('hide')
 	}, 'json')
 }
@@ -715,8 +726,13 @@ function lastPage() {
 	query_data['breakeCaseListVO.currPage'] = page_infomantion.totalPages;
 	get_ListBreakecaseInformationByPageAndSearch(query_data);
 }
-// 跳转到n页
-function toPage(object) {
-	query_data['breakeCaseListVO.currPage'] = $(object).val();
+//跳转到n页
+function toPage() {
+	var topage = $('#skipPage').val();
+	if (topage > page_infomantion.totalPages || topage < 0) {
+		toastr.info('页码有误，请重新输入');
+		return;
+	}
+	query_data['breakeCaseListVO.currPage'] = topage;
 	get_ListBreakecaseInformationByPageAndSearch(query_data);
 }

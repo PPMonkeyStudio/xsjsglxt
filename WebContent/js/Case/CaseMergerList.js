@@ -168,6 +168,8 @@ function get_ListParallelInformationByPageAndSearch(data) {
 				+ '</td>';
 			str += '</tr>';
 		}
+		//当前页数:1 共:1页
+		$('.info').html('当前页数:' + xhr_data.pageIndex + ' 共:' + xhr_data.totalPages);
 		$('.case_table_info tbody').html(str);
 		$('.modify_parallel').click(modifi_delete);
 	}, 'json');
@@ -218,5 +220,15 @@ function lastPage() {
 		return;
 	}
 	query_data['page_list_parallelInformation.pageIndex'] = page_infomantion.totalPages;
+	get_ListParallelInformationByPageAndSearch(query_data);
+}
+//跳转到n页
+function toPage() {
+	var topage = $('#skipPage').val();
+	if (topage > page_infomantion.totalPages || topage < 0) {
+		toastr.info('页码有误，请重新输入');
+		return;
+	}
+	query_data['page_list_parallelInformation.pageIndex'] = topage;
 	get_ListParallelInformationByPageAndSearch(query_data);
 }

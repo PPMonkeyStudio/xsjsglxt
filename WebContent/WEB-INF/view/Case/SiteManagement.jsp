@@ -57,10 +57,12 @@ i {
 						class="btn btn-default" type="button">
 						<i class="fa fa-trash-o"></i> 删除所选案件
 					</button>
-					<input query_name="page_list_senceInformation.stop_time" onchange="dynamic_query(this)"
+					<input query_name="page_list_senceInformation.stop_time"
+						onchange="dynamic_query(this)"
 						style=" float: right;margin-top: 6px; width: 150px; margin-right: 15px;"
 						type="text" class="form-control mydate" placeholder="结束日期">
-					<input query_name="page_list_senceInformation.start_time" onchange="dynamic_query(this)"
+					<input query_name="page_list_senceInformation.start_time"
+						onchange="dynamic_query(this)"
 						style="float: right;margin-top: 6px; width: 150px; margin-right: 6px;"
 						type="text" class="form-control mydate" placeholder="起始日期">
 					<span style="float: right; margin: 0 20 0 0px; line-height: 40px;">接警时间</span>
@@ -104,21 +106,20 @@ i {
 											query_name="page_list_senceInformation.snece_inquestPerson"
 											placeholder="主勘人员"></th>
 										<th><h5>物证入口</h5></th>
+										<th><h5>修改入口</h5></th>
 									</tr>
 								</thead>
 								<tbody>
 								</tbody>
 								<tfoot>
 									<tr>
-										<td colspan="8" style="font-size: 12px;" class="page_info"><a
-											onclick="firstPage()"><i class="fa fa-angle-double-left">首页</i>
-										</a>&nbsp&nbsp<a onclick="prePage()"><i
-												class="fa fa-angle-left"></i>上一页 </a>&nbsp&nbsp<a
-											onclick="nextPage()">下一页<i class="fa fa-angle-right"></i>
-										</a>&nbsp&nbsp <a onclick="lastPage()">尾页<i
-												class="fa fa-angle-double-right"></i>
-										</a> <br />
-											<p class='info'></p></td>
+										<td colspan="8" style="" class="page_info"><span
+											class='info'></span> <span onclick="firstPage()">首页</span> <span
+											onclick="prePage()">上一页 </span><span onclick="nextPage()">下一页
+										</span><span onclick="lastPage()">末页 </span> <input id="skipPage"
+											style="display: inline-block; text-align: center; width: 60px; height: 30px;">
+											<button onclick="toPage()" class="btn btn-default"
+												style="height: 30px; vertical-align:initial;">跳转</button></td>
 									</tr>
 								</tfoot>
 							</table>
@@ -126,6 +127,28 @@ i {
 					</div>
 					<!-- END TABLE HOVER -->
 				</div>
+
+
+				<!-- 
+<span>当前页数:<span id="currPage">{{ vo.currPage }}</span></span> <span>共:<span
+						id="totalPage">{{ vo.totalPage }}</span>页
+					</span> <span onclick="skipToIndexPage()" id="indexPage"
+						class="pageOperation">首页</span> <span
+						onclick="skipToPrimaryPage()" id="previousPage"
+						class="pageOperation">上一页</span> <span onclick="skipToNextPage()"
+						id="nextPage" class="pageOperation">下一页</span> <span
+						onclick="skipToLastPage()" id="lastPage" class="pageOperation">末页</span>
+					<span> <input id="skipPage" class="form-control" type="text"
+						style="display: inline-block; text-align: center; width: 60px; height: 30px;"
+						class="queryInput">
+						<button onclick="skipToArbitrarilyPage()" class="btn btn-default"
+							style="height: 30px;">跳转</button>
+					</span>
+
+
+ -->
+
+
 
 			</div>
 		</div>

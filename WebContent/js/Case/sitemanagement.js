@@ -149,7 +149,7 @@ function get_ListSneceInformationByPageAndSearch(data) {
 					} else {
 						str += '<td><i action="none" class="fa fa-ban" aria-hidden="true"></i></td>';
 					}
-
+					str += '<td><i action="LinkToModifySnece" class="fa fa-edit" aria-hidden="true"></i></td>';
 					str += '</tr>';
 				}
 				$('.case_table_info tbody').html(str);
@@ -161,22 +161,19 @@ function get_ListSneceInformationByPageAndSearch(data) {
 				page_infomantion.HavePrePage = xhr.HavePrePage; // 是否有上一页
 				page_infomantion.HaveNextPage = xhr.HaveNextPage; // 是否有下一页
 				// 入口设置事件
-				$('i[action="LinkToEvidence"]')
-					.click(
-						function() {
-							window.location.href = "/xsjsglxt/case/Case_page_intoEvidence?id="
-							+ $(this).parents('tr')
-								.attr('id');
-						});
+				$('i[action="LinkToEvidence"]').click(function() {
+					window.location.href = "/xsjsglxt/case/Case_page_intoEvidence?id=" + $(this).parents('tr').attr('id');
+				});
+				$('i[action="LinkToModifySnece"]').click(function() {
+					window.location.href = "/xsjsglxt/case/Case_ page_CaseDetails?id=" + $(this).parents('tr').attr('id');
+				});
 				// 分页下的记录信息
 				var opt = '<option value=""></option>';
 				for (var index = xhr.pageIndex + 1; index <= xhr.totalPages; index++) {
 					opt += '<option>' + index + '</option>';
 				}
-				$('.info').html(
-					'共 ' + xhr.totalRecords + '条信息 当前'
-					+ xhr.pageIndex + '/' + xhr.totalPages
-					+ '页 ' + xhr.pageSize + '条信息/页');
+				//当前页数:1 共:1页
+				$('.info').html('当前页数:' + xhr.pageIndex + ' 共:' + xhr.totalPages);
 				// 影藏模态框
 				$('#newQuery').modal('hide')
 			}, 'json')
@@ -225,8 +222,13 @@ function lastPage() {
 	get_ListSneceInformationByPageAndSearch(query_data);
 }
 // 跳转到n页
-function toPage(object) {
-	query_data['page_list_senceInformation.pageIndex'] = $(object).val();
+function toPage() {
+	var topage = $('#skipPage').val();
+	if (topage > page_infomantion.totalPages || topage < 0) {
+		toastr.info('页码有误，请重新输入');
+		return;
+	}
+	query_data['page_list_senceInformation.pageIndex'] = topage;
 	get_ListSneceInformationByPageAndSearch(query_data);
 }
 //日期扩展

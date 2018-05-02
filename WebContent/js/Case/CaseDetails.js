@@ -167,7 +167,7 @@ $(function() {
 			for (let index = 0; index < human.length; index++) {
 				suspectStr += '<option value="' + human[index]["xsjsglxt_name"] + '">' + human[index]["xsjsglxt_name"] + '</option>';
 			}
-			$('select[name="sence.snece_inquestPerson"]').html(suspectStr).selectpicker('refresh');
+			$('select[name="sence.snece_inquestPerson"]').html(suspectStr).selectpicker('refresh').selectpicker('val', persons);
 		}, 'json');
 		//物证提取人设定
 		$('select[name="resevidence.resevidence_extractPerson"]').html(function() {
@@ -182,144 +182,182 @@ $(function() {
 	/*============================================================================添加信息系列*/
 	//添加物证信息
 	$('.add_evidence').click(function() {
-		var evidence_data = $.extend({}, $('#evidence form').serializeObject(), {
-			"case1.xsjsglxt_case_id" : case1_id,
-			"resevidence.resevidence_teststate" : "未检验",
-			"resevidence.resevidence_sendstate" : "未送检"
+		var falg = true;
+		$('#evidence table tbody').find('input,textarea,select').each(function() {
+			if (!$(this).val()) {
+				toastr.info('请添加完整信息！');
+				falg = false;
+				return false;
+			}
 		});
-		$.post('/xsjsglxt/case/Resevidence_saveResevidence', evidence_data, function(xhr_data) {
-			if (xhr_data.length > 22 && xhr_data.length <= 36) {
-				toastr.success('添加成功！');
-				//控制模态框隐藏
-				$('#evidence').modal('hide');
-				//数据刷新
-				$.post('/xsjsglxt/case/Case_SecneInformationOne', {
-					"case1.xsjsglxt_case_id" : case1_id,
-				}, function(xhr_data) {
-					var resevidence = xhr_data["resevidence"];
-					$('#evidence-info table tbody').html(function() {
-						var tr_str = '';
-						for (let index = 0; index < resevidence.length; index++) {
-							tr_str += `<tr id="${resevidence[index]["xsjsglxt_resevidence_id"]}">
+		if (falg) {
+			var evidence_data = $.extend({}, $('#evidence form').serializeObject(), {
+				"case1.xsjsglxt_case_id" : case1_id,
+				"resevidence.resevidence_teststate" : "未检验",
+				"resevidence.resevidence_sendstate" : "未送检"
+			});
+			$.post('/xsjsglxt/case/Resevidence_saveResevidence', evidence_data, function(xhr_data) {
+				if (xhr_data.length > 22 && xhr_data.length <= 36) {
+					toastr.success('添加成功！');
+					//控制模态框隐藏
+					$('#evidence').modal('hide');
+					//数据刷新
+					$.post('/xsjsglxt/case/Case_SecneInformationOne', {
+						"case1.xsjsglxt_case_id" : case1_id,
+					}, function(xhr_data) {
+						var resevidence = xhr_data["resevidence"];
+						$('#evidence-info table tbody').html(function() {
+							var tr_str = '';
+							for (let index = 0; index < resevidence.length; index++) {
+								tr_str += `<tr id="${resevidence[index]["xsjsglxt_resevidence_id"]}">
 										   <td>${resevidence[index]["resevidence_name"]}</td>
 										   <td>${resevidence[index]["resevidence_extractTime"]}</td>
 										   <td>${resevidence[index]["resevidence_extractPerson"]}</td>
 										   <td><span class="label label-info">${resevidence[index]["resevidence_circulation"] == undefined ? "未流转" : resevidence[index]["resevidence_circulation"]}</span></td>
 										   <td><span class="label ${resevidence[index]["resevidence_sendstate"] == "已送检" ? "label-default" : "label-primary"}">${resevidence[index]["resevidence_sendstate"]}</span>|<span class="label ${resevidence[index]["resevidence_teststate"] == "已检验" ? "label-default" : "label-primary"}">${resevidence[index]["resevidence_teststate"]}</span></td>
 										   <td><i title="修改" id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i title="删除" id="delete" class="fa fa-trash-o"></i></td></tr>`;
-						}
-						return tr_str;
-					});
-				}, 'json');
-			} else {
-				toastr.error('添加失败！');
-			}
-		}, 'text');
+							}
+							return tr_str;
+						});
+					}, 'json');
+				} else {
+					toastr.error('添加失败！');
+				}
+			}, 'text');
+		}
 	});
 
 	//添加丢失物品
 	$('.add_lost').click(function() {
-		if ($('#lost table tbody').find('input,textarea').val() == "") {
-			toastr.info('请添加完整信息！');
-			return;
-		}
-		var Lost_data = $.extend({}, $('#lost form').serializeObject(), {
-			"case1.xsjsglxt_case_id" : case1_id
+		var falg = true;
+		$('#lost table tbody').find('input,textarea,select').each(function() {
+			if (!$(this).val()) {
+				toastr.info('请添加完整信息！');
+				falg = false;
+				return false;
+			}
 		});
-		console.log(Lost_data);
-		$.post('/xsjsglxt/case/Lost_saveLost', Lost_data, function(xhr_data) {
-			if (xhr_data.length > 22 && xhr_data.length <= 36) {
-				toastr.info('添加成功！');
-				//控制模态框隐藏
-				$('#lost').modal('hide');
-				//数据添加
-				$('#loseGoods-info table tbody').append(`<tr id="${xhr_data}">
+		if (falg) {
+			var Lost_data = $.extend({}, $('#lost form').serializeObject(), {
+				"case1.xsjsglxt_case_id" : case1_id
+			});
+			console.log(Lost_data);
+			$.post('/xsjsglxt/case/Lost_saveLost', Lost_data, function(xhr_data) {
+				if (xhr_data.length > 22 && xhr_data.length <= 36) {
+					toastr.info('添加成功！');
+					//控制模态框隐藏
+					$('#lost').modal('hide');
+					//数据添加
+					$('#loseGoods-info table tbody').append(`<tr id="${xhr_data}">
 											 <td>${Lost_data["lost.lost_name"]}</td>
 											 <td>${Lost_data["lost.lost_model"]}</td>
 							 				 <td>${Lost_data["lost.lost_number"]}</td>
 							  				 <td>${Lost_data["lost.lost_price"]}</td>
 											 <td>${Lost_data["lost.lost_remarks"]}</td>
 											 <td><i id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`);
-			} else {
-				toastr.error('添加失败！');
-			}
-		}, 'text');
+				} else {
+					toastr.error('添加失败！');
+				}
+			}, 'text');
+		}
 	});
 
 	//添加丢失手机
 	$('.add_mobilephone').click(function() {
-		if ($('#lost_mobilephone table tbody').find('input,textarea,select').val() == "") {
-			toastr.info('请添加完整信息！');
-			return;
-		}
-		var Lost_data = $.extend({}, $('#lost_mobilephone form').serializeObject(), {
-			"case1.xsjsglxt_case_id" : case1_id
+		var falg = true;
+		$('#lost_mobilephone table tbody').find('input,textarea,select').each(function() {
+			if (!$(this).val()) {
+				toastr.info('请添加完整信息！');
+				falg = false;
+				return false;
+			}
 		});
-		$.post('/xsjsglxt/case/LostMobilephone_saveLostMobilephone', Lost_data, function(xhr_data) {
-			if (xhr_data.length > 22 && xhr_data.length <= 36) {
-				toastr.info('添加成功！');
-				//控制模态框隐藏
-				$('#lost_mobilephone').modal('hide');
-				//数据添加
-				$('#LostMobilephone-info table tbody').append(`<tr id="${xhr_data}">
+		if (falg) {
+			var Lost_data = $.extend({}, $('#lost_mobilephone form').serializeObject(), {
+				"case1.xsjsglxt_case_id" : case1_id
+			});
+			$.post('/xsjsglxt/case/LostMobilephone_saveLostMobilephone', Lost_data, function(xhr_data) {
+				if (xhr_data.length > 22 && xhr_data.length <= 36) {
+					toastr.info('添加成功！');
+					//控制模态框隐藏
+					$('#lost_mobilephone').modal('hide');
+					//数据添加
+					$('#LostMobilephone-info table tbody').append(`<tr id="${xhr_data}">
 											 <td>${Lost_data["lost_mobilephone.lost_mobilephone_phone"]}</td>
 											 <td>${Lost_data["lost_mobilephone.lost_mobilephone_IMEI"]}</td>
 											 <td>${Lost_data["lost_mobilephone.lost_mobilephone_feature"]}</td>
 											 <td>${Lost_data["lost_mobilephone.lost_mobilephone_remarks"]}</td>
 											 <td><i id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`);
-			} else {
-				toastr.error('添加失败！');
-			}
-		}, 'text');
+				} else {
+					toastr.error('添加失败！');
+				}
+			}, 'text');
+		}
 	});
 
 	//添加丢失电脑
 	$('#add_computer').click(function() {
-		if ($('#lost_computer table tbody').find('input,textarea,select').val() == "") {
-			toastr.info('请添加完整信息！');
-			return;
-		}
-		var Lost_data = $.extend({}, $('#lost_computer form').serializeObject(), {
-			"case1.xsjsglxt_case_id" : case1_id
+		var falg = true;
+		$('#lost_computer table tbody').find('input,textarea,select').each(function() {
+			if (!$(this).val()) {
+				toastr.info('请添加完整信息！');
+				falg = false;
+				return false;
+			}
 		});
-		$.post('/xsjsglxt/case/LostMobilephone_saveLostMobilephone', Lost_data, function(xhr_data) {
-			if (xhr_data.length > 22 && xhr_data.length <= 36) {
-				toastr.info('添加成功！');
-				//控制模态框隐藏
-				$('#lost_computer').modal('hide');
-				//数据添加
-				$('#loseComputer-info table tbody').append(`<tr id="${xhr_data}">
+		if (falg) {
+			var Lost_data = $.extend({}, $('#lost_computer form').serializeObject(), {
+				"case1.xsjsglxt_case_id" : case1_id
+			});
+			$.post('/xsjsglxt/case/LostMobilephone_saveLostMobilephone', Lost_data, function(xhr_data) {
+				if (xhr_data.length > 22 && xhr_data.length <= 36) {
+					toastr.info('添加成功！');
+					//控制模态框隐藏
+					$('#lost_computer').modal('hide');
+					//数据添加
+					$('#loseComputer-info table tbody').append(`<tr id="${xhr_data}">
 												<td>${Lost_data["lost_computer.lost_computer_brand"]}</td>
 												<td>${Lost_data["lost_computer.lost_computer_internetAccount"]}</td>
 												<td>${Lost_data["lost_computer.lost_computer_MAC"]}</td>
 												<td>${Lost_data["lost_computer.lost_computer_remarks"]}</td>
 												<td><i id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`);
-			} else {
-				toastr.error('添加失败！');
-			}
-		}, 'text');
+				} else {
+					toastr.error('添加失败！');
+				}
+			}, 'text');
+		}
 	});
 
 	//添加照片信息
 	$('.add_picture').click(function() {
-		var picture_data = $.extend({}, $('#picture form').serializeObject(), {
-			"case1.xsjsglxt_case_id" : case1_id
+		var falg = true;
+		$('#picture table tbody').find('input,textarea,select').each(function() {
+			if (!$(this).val()) {
+				toastr.info('请添加完整信息！');
+				falg = false;
+				return false;
+			}
 		});
-		$.post('/xsjsglxt/case/Image_savePicture', picture_data, function(xhr_data) {
-			if (xhr_data.length > 22 && xhr_data.length <= 36) {
-				toastr.success('添加成功！');
-				//控制模态框隐藏
-				$('#picture').modal('hide');
-				//数据添加
-				$('#picture-info table tbody').append(`<tr id="${xhr_data}">
+		if (falg) {
+			var picture_data = $.extend({}, $('#picture form').serializeObject(), {
+				"case1.xsjsglxt_case_id" : case1_id
+			});
+			$.post('/xsjsglxt/case/Image_savePicture', picture_data, function(xhr_data) {
+				if (xhr_data.length > 22 && xhr_data.length <= 36) {
+					toastr.success('添加成功！');
+					//控制模态框隐藏
+					$('#picture').modal('hide');
+					//数据添加
+					$('#picture-info table tbody').append(`<tr id="${xhr_data}">
 							  <td>${picture_data["image.xsjsglxt_image_id"]}</td>
 							  <td>${picture_data["picture.picture_identifier"]}</td>
 							  <td>${picture_data["picture.picture_remarks"]}</td>
 							  <td><i id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i id="delete" class="fa fa-trash-o"></i></td></tr>`);
-			} else {
-				toastr.error('添加失败！');
-			}
-		}, 'json');
+				} else {
+					toastr.error('添加失败！');
+				}
+			}, 'json');
+		}
 	})
 
 	/*============================================================================修改系列*/

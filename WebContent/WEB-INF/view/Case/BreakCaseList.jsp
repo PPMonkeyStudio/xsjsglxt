@@ -17,11 +17,10 @@
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-<meta http-equiv="description" content="This is my page">
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-<link rel="stylesheet" type="text/css" href="<%=basePath%>Case.css" />
+<%-- <link rel="stylesheet" type="text/css" href="<%=basePath%>Case.css" /> --%>
 <style type="text/css">
 #newQuery table tbody tr td input {
 	margin-top: 6px;
@@ -41,10 +40,13 @@
 i {
 	cursor: pointer;
 }
-td{
-	width:250px;
+
+/* td {
+	width: 250px;
 	word-break: break-all; /* 设置自动换行切不挤压其他td */
 }
+*
+/
 </style>
 </head>
 
@@ -95,7 +97,7 @@ td{
 										<th><input type="text" onkeyup="dynamic_query(this)"
 											class="form-control"
 											query_name="breakeCaseListVO.query_case_name"
-											placeholder="所属案件"></th>
+											placeholder="案件名称"></th>
 										<th><input type="text" onkeyup="dynamic_query(this)"
 											class="form-control"
 											query_name="breakeCaseListVO.query_sence_inquestId"
@@ -108,6 +110,7 @@ td{
 											class="form-control"
 											query_name="breakeCaseListVO.query_breake_person"
 											placeholder="破案人"></th>
+										<th>嫌疑人</th>
 										<th><input type="text" onkeyup="dynamic_query(this)"
 											class="form-control"
 											query_name="breakeCaseListVO.query_breake_according"
@@ -124,15 +127,13 @@ td{
 								</tbody>
 								<tfoot>
 									<tr>
-										<td colspan="8" style="font-size: 12px;" class="page_info"><a
-											onclick="firstPage()"><i class="fa fa-angle-double-left">首页</i>
-										</a>&nbsp&nbsp<a onclick="prePage()"><i
-												class="fa fa-angle-left"></i>上一页 </a>&nbsp&nbsp<a
-											onclick="nextPage()">下一页<i class="fa fa-angle-right"></i>
-										</a>&nbsp&nbsp <a onclick="lastPage()">尾页<i
-												class="fa fa-angle-double-right"></i>
-										</a> <br />
-											<p class='info'></p></td>
+										<td colspan="8" style="" class="page_info"><span
+											class='info'></span> <span onclick="firstPage()">首页</span> <span
+											onclick="prePage()">上一页 </span><span onclick="nextPage()">下一页
+										</span><span onclick="lastPage()">末页 </span> <input id="skipPage"
+											style="display: inline-block; text-align: center; width: 60px; height: 30px;">
+											<button onclick="toPage()" class="btn btn-default"
+												style="height: 30px; vertical-align:initial;">跳转</button></td>
 									</tr>
 								</tfoot>
 							</table>

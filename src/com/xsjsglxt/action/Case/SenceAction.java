@@ -28,6 +28,7 @@ import com.xsjsglxt.domain.DO.xsjsglxt_lost;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone;
 import com.xsjsglxt.domain.DO.xsjsglxt_picture;
+import com.xsjsglxt.domain.DO.xsjsglxt_resevidence;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
 import com.xsjsglxt.domain.DTO.Case.SenceInformationAllDTO;
 import com.xsjsglxt.domain.DTO.Case.SenceInformationDTO;
@@ -38,9 +39,7 @@ import util.TeamUtil;
 
 /**
  * 
- * @author 孙毅
- *	修改时间 ：2018-04-17 
- *	修改内容：上传下载
+ * @author 孙毅 修改时间 ：2018-04-17 修改内容：上传下载
  */
 public class SenceAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
 	private SenceService senceService;
@@ -51,6 +50,13 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	private xsjsglxt_lost_mobilephone lost_mobilephone;
 	private xsjsglxt_picture picture;
 	private xsjsglxt_lost_computer lost_computer;
+
+	private List<xsjsglxt_resevidence> resevidencelist;
+	private List<xsjsglxt_lost> lostlist;
+	private List<xsjsglxt_lost_mobilephone> lost_mobilephonelist;
+	private List<xsjsglxt_picture> picturelist;
+	private List<xsjsglxt_lost_computer> lost_computerlist;
+
 	private List<String> useSenceInformationNumList;
 	private HttpServletResponse http_response;
 	private HttpServletRequest http_request;
@@ -71,9 +77,7 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	private String downloadFileName;
 
 	/**
-	 * @author 孙毅
-	 * 修改内容：修改立案时间
-	 * 修改时间：2018-04-23
+	 * @author 孙毅 修改内容：修改立案时间 修改时间：2018-04-23
 	 */
 
 	public void updateCaseTime() {
@@ -354,8 +358,7 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 	}
 
 	/**
-	 * @author 孙毅
-	 * 进入物证管理页面
+	 * @author 孙毅 进入物证管理页面
 	 */
 
 	public String page_intoEvidence() {
@@ -388,6 +391,44 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 			briefdetails.setBriefdetails_case(case1.getXsjsglxt_case_id());
 			senceService.save(briefdetails);
 
+			/*
+			 * private List<xsjsglxt_lost> lostlist; private
+			 * List<xsjsglxt_lost_mobilephone> lost_mobilephonelist; private
+			 * List<xsjsglxt_picture> picturelist; private
+			 * List<xsjsglxt_lost_computer> lost_computerlist;
+			 */
+			if (resevidencelist != null) {
+				for (xsjsglxt_resevidence resevidence : resevidencelist) {
+					resevidence.setResevidence_case(case1.getXsjsglxt_case_id());
+					senceService.save(resevidence);
+				}
+			}
+
+			if (lostlist != null) {
+				for (xsjsglxt_lost lost : lostlist) {
+					lost.setLost_case(case1.getXsjsglxt_case_id());
+					senceService.save(lost);
+				}
+			}
+
+			if (lost_mobilephonelist != null) {
+				for (xsjsglxt_lost_mobilephone mobilephone : lost_mobilephonelist) {
+					mobilephone.setLost_mobilephone_case(case1.getXsjsglxt_case_id());
+					senceService.save(mobilephone);
+				}
+			}
+			if (picturelist != null) {
+				for (xsjsglxt_picture picture : picturelist) {
+					picture.setPicture_case(case1.getXsjsglxt_case_id());
+					senceService.save(picture);
+				}
+			}
+			if (lost_computerlist != null) {
+				for (xsjsglxt_lost_computer computer : lost_computerlist) {
+					computer.setLost_computer_case(case1.getXsjsglxt_case_id());
+					senceService.save(computer);
+				}
+			}
 			// lost.setLost_case(Case.getXsjsglxt_case_id());
 			// senceService.save(lost);
 
@@ -723,6 +764,46 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 
 	public void setDownloadFileName(String downloadFileName) {
 		this.downloadFileName = downloadFileName;
+	}
+
+	public List<xsjsglxt_lost> getLostlist() {
+		return lostlist;
+	}
+
+	public void setLostlist(List<xsjsglxt_lost> lostlist) {
+		this.lostlist = lostlist;
+	}
+
+	public List<xsjsglxt_lost_mobilephone> getLost_mobilephonelist() {
+		return lost_mobilephonelist;
+	}
+
+	public void setLost_mobilephonelist(List<xsjsglxt_lost_mobilephone> lost_mobilephonelist) {
+		this.lost_mobilephonelist = lost_mobilephonelist;
+	}
+
+	public List<xsjsglxt_picture> getPicturelist() {
+		return picturelist;
+	}
+
+	public void setPicturelist(List<xsjsglxt_picture> picturelist) {
+		this.picturelist = picturelist;
+	}
+
+	public List<xsjsglxt_lost_computer> getLost_computerlist() {
+		return lost_computerlist;
+	}
+
+	public void setLost_computerlist(List<xsjsglxt_lost_computer> lost_computerlist) {
+		this.lost_computerlist = lost_computerlist;
+	}
+
+	public List<xsjsglxt_resevidence> getResevidencelist() {
+		return resevidencelist;
+	}
+
+	public void setResevidencelist(List<xsjsglxt_resevidence> resevidencelist) {
+		this.resevidencelist = resevidencelist;
 	}
 
 }

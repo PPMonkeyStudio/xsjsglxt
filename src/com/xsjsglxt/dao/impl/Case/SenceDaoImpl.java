@@ -74,6 +74,18 @@ public class SenceDaoImpl implements SenceDao {
 		}
 	}
 
+	@Override
+	public void save(Object obj) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+		try {
+			getSession().save(obj);
+		} catch (Error e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	public int getMaxSenceInquestId() {
 		int i;
 		// 201711
