@@ -37,14 +37,14 @@
 		<div class="panel" style="width: 95%; margin: 20px auto;">
 			<!--  -->
 			<div class="panel-heading">
-				<h3 class="panel-title">DNA/指纹管理</h3>
+				<h3 class="panel-title">DNA信息管理</h3>
 			</div>
 			<!--  -->
 			<div class="panel-body">
 				<div style="height: 34px;">
 					<div style="width: 150px; float: left; margin: 0 20px 0 0">
 						<button class="btn btn-default" onclick="CreateDNA()">
-							<i class="fa fa-plus-square"></i> 新增DNA/指纹记录
+							<i class="fa fa-plus-square"></i> 新增DNA记录
 						</button>
 					</div>
 					<div style="float: left; display: none;">
@@ -57,17 +57,6 @@
 							oninput="List_DNA_By_PageAndSearch(1)" type="text"> <span
 							class="input-group-addon"> <i class="fa fa-search"></i>
 						</span>
-					</div>
-					<div style="float: right; margin-right:5px;">
-						<select onchange="List_DNA_By_PageAndSearch(1)" class="form-control" style="width: 200px; display: inline-block;" id="searchDnaBuilder">
-							<option value="">dna是否建档</option>
-							<option value="是">dna已建档</option>
-							<option value="否">dna未建档</option>
-						</select> <select onchange="List_DNA_By_PageAndSearch(1)" class="form-control"  style="width: 200px; display: inline-block;" id="searchFingerBuilder">
-							<option value="">指纹是否建档</option>
-							<option value="是">指纹已建档</option>
-							<option value="否">指纹未建档</option>
-						</select>
 					</div>
 				</div>
 				<table id="table_DNA" class="table table-hover table-bordered"
@@ -143,8 +132,6 @@
 	List_DNA_By_PageAndSearch(1);
 </script>
 <script type="text/javascript">
-	document.getElementById("searchDnaBuilder").value="";
-	document.getElementById("searchFingerBuilder").value="";
 	var documentWidth = document.body.clientWidth;
 	var panelWidth = documentWidth - 160;
 	var navbarHeight = document.getElementById("navbar").offsetHeight;

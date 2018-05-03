@@ -46,7 +46,7 @@ li a {
 				</template>
 				<template v-if="user_technology_manager_power">
 				<li><a
-					href="<%=basePath%>FingerPrint/FingerPrintManagement_FingerPrintManagementPage">指纹</a></li>
+					href="<%=basePath%>FingerPrint/FingerPrintManagement_FingerPrintManagementPage"><i class="fa fa-id-card-o"></i>指纹</a></li>
 				</template>
 				<template v-if="user_technology_manager_power">
 				<li><a

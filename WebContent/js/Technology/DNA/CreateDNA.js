@@ -14,13 +14,10 @@ function CreateDNA() {
 						+ '<input type="radio" name="input_sex" value="女">'
 						+ '女'
 						+ '</label></td></tr>'
-
 						+ '<tr><th><span style="color:red;">*&nbsp;</span>身份证号：</th><td><input type="text" id="input_IDCard" class="form-control" maxlength="18" onblur="DNAGetBirth()" /></td></tr>'
 						+ '<tr><th>出生日期：</th><td><input type="text" id="input_birth" class="form-control" /></td></tr>'
 						+ '<tr><th>住址：</th><td><input type="text" id="input_address" class="form-control" /></td></tr>'
 						+ '<tr><th><span style="color:red;">*&nbsp;</span>违法事实：</th><td><input type="text" id="input_illegalFact" class="form-control" /></td></tr>'
-						+ '<tr><th><span style="color:red;">*&nbsp;</span>dna是否建档：</th><td><label style="margin:0 10px;"><input checked="checked" value="是" name="dnaBuilder" type="radio">是</label><label style="margin:0 10px;"><input value="否"  name="dnaBuilder" type="radio">否</label></td></tr>'
-						+ '<tr><th><span style="color:red;">*&nbsp;</span>指纹是否建档：</th><td><label style="margin:0 10px;"><input checked="checked" value="是" name="fingerprintBuilder" type="radio">是</label><label style="margin:0 10px;"><input value="否"  name="fingerprintBuilder" type="radio">否</label></td></tr>'
 						+ '<tr><th><span style="color:red;">*&nbsp;</span>建档单位：</th><td><input type="text" id="input_inputtingUnit" class="form-control" /></td></tr>'
 						+ '<tr><th><span style="color:red;">*&nbsp;</span>建档人：</th><td><input type="text" id="input_inputtingPerson" class="form-control" /></td></tr>'
 						+ '<tr><th><span style="color:red;">*&nbsp;</span>建档时间：</th><td><input type="text" id="input_inputtingTime" class="form-control" /></td></tr>'
@@ -117,22 +114,6 @@ function CreateDNA() {
 							if (input_sex[num].checked) {
 								formData.append("dna.dna_sex",
 										input_sex[num].value);
-							}
-						}
-						var dnaBuilder = document
-								.getElementsByName("dnaBuilder");
-						for (var num = 0; num < 2; num++) {
-							if (dnaBuilder[num].checked) {
-								formData.append("dna.dna_builder",
-										dnaBuilder[num].value);
-							}
-						}
-						var fingerprintBuilder = document
-								.getElementsByName("fingerprintBuilder");
-						for (var num = 0; num < 2; num++) {
-							if (fingerprintBuilder[num].checked) {
-								formData.append("dna.finger_builder",
-										fingerprintBuilder[num].value);
 							}
 						}
 						formData.append("dna.dna_birthday", input_birth.value);

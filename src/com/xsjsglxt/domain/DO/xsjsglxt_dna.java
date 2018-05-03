@@ -18,10 +18,6 @@ public class xsjsglxt_dna {
 	private String dna_address;
 	// 违法事实
 	private String dna_illegal_fact;
-	// dna是否建档
-	private String dna_builder;
-	// 指纹是否建档
-	private String finger_builder;
 	// 建档单位
 	private String dna_record_organization;
 	// 建档人
@@ -165,22 +161,6 @@ public class xsjsglxt_dna {
 
 	public void setDna_gmt_modified(String dna_gmt_modified) {
 		this.dna_gmt_modified = dna_gmt_modified;
-	}
-
-	public String getDna_builder() {
-		return dna_builder;
-	}
-
-	public void setDna_builder(String dna_builder) {
-		this.dna_builder = dna_builder;
-	}
-
-	public String getFinger_builder() {
-		return finger_builder;
-	}
-
-	public void setFinger_builder(String finger_builder) {
-		this.finger_builder = finger_builder;
 	}
 
 }

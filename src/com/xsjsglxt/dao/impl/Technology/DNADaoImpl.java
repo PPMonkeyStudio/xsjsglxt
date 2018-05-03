@@ -10,6 +10,8 @@ import com.xsjsglxt.dao.Technology.DNADao;
 import com.xsjsglxt.domain.DO.xsjsglxt_dna;
 import com.xsjsglxt.domain.VO.Technology.DNAVO;
 
+import util.TeamUtil;
+
 public class DNADaoImpl implements DNADao {
 
 	// 获取总记录数
@@ -57,7 +59,9 @@ public class DNADaoImpl implements DNADao {
 	@Override
 	public int getFeild() {
 		Session session = getSession();
-		String hql = "select right(dna_num,4) FROM xsjsglxt_dna ORDER BY right(dna_num,4) desc limit 1";
+		String year = TeamUtil.getCurrentYear();
+		String hql = "select right(dna_num,4) FROM xsjsglxt_dna where LEFT(dna_gmt_create,4) ='" + year
+				+ "'  ORDER BY right(dna_num,4) desc limit 1";
 		/**
 		 * 这里要记得使用 createSQLQuery 可能hql并不支持这种用法
 		 */
@@ -120,8 +124,7 @@ public class DNADaoImpl implements DNADao {
 				+ "',dna_record_organization='" + dna.getDna_record_organization() + "' ,dna_organizer='"
 				+ dna.getDna_organizer() + "' ,dna_record_time='" + dna.getDna_record_time() + "' ,dna_submit_time='"
 				+ dna.getDna_submit_time() + "',dna_remark='" + dna.getDna_remark() + "' ,dna_gmt_modified='"
-				+ dna.getDna_gmt_modified() + "' , dna_builder ='" + dna.getDna_builder() + "'" + " , finger_builder ='"
-				+ dna.getFinger_builder() + "' where xsjsglxt_dna_id='" + dna.getXsjsglxt_dna_id() + "'";
+				+ dna.getDna_gmt_modified() + "'";
 		Query query = session.createQuery(hql);
 		int result = query.executeUpdate();
 		return result;

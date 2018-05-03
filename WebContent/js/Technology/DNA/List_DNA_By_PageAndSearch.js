@@ -2,8 +2,6 @@ var DNA_VO = null;
 function List_DNA_By_PageAndSearch(pageIndex) {
 
 	var input_DNASearchText = document.getElementById("input_DNASearchText").value;
-	var searchDnaBuilder = document.getElementById("searchDnaBuilder").value;
-	var searchFingerBuilder = document.getElementById("searchFingerBuilder").value;
 	var formData = new FormData();
 
 	var xhr = false;
@@ -141,8 +139,6 @@ function List_DNA_By_PageAndSearch(pageIndex) {
 	}
 	formData.append("dnaVO.pageIndex", pageIndex);
 	formData.append("dnaVO.search", input_DNASearchText);
-	formData.append("dnaVO.searchDnaBuilder", searchDnaBuilder);
-	formData.append("dnaVO.searchFingerBuilder", searchFingerBuilder);
 	xhr.open("POST", "/xsjsglxt/DNA/DNAManagement_ListDNAByPageAndSearch");
 	xhr.send(formData);
 
