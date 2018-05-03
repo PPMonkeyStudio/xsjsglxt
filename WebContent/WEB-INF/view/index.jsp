@@ -152,7 +152,7 @@
 						<ul class="nav" style="background-color: #13599d;">
 							<template v-if="user_technology_manager_power">
 							<li><a
-								href="<%=basePath%>DNA/DNAManagement_DNAManagementPage"><span>DNA/指纹录入</span></a></li>
+								href="<%=basePath%>DNA/DNAManagement_DNAManagementPage"><span>DNA录入</span></a></li>
 							</template>
 							<template v-if="user_technology_manager_power">
 							<li><a

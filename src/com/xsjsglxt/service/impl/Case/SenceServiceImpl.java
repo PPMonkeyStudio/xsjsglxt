@@ -333,7 +333,6 @@ public class SenceServiceImpl implements SenceService {
 	public String getMaxSenceInquestId() {
 		// TODO Auto-generated method stub
 		int i = senceDao.getMaxSenceInquestId();
-		System.out.println("���ֵ" + i);
 		// System.out.println("iiiiii"+i);
 		String num = "";
 		num = num.format("%04d", i + 1);

@@ -94,9 +94,9 @@ public class SenceDaoImpl implements SenceDao {
 		// List<xsjsglxt_snece> xsjsglxt_snece = new
 		// ArrayList<xsjsglxt_snece>();
 		// K3603020012017110001
-		String hql = "select right(snece_inquestId,4) from xsjsglxt_snece ORDER BY right(snece_inquestId,4) desc limit 1";
-
-		System.out.println(hql);
+		String year = TeamUtil.getCurrentYear();
+		String hql = "select right(snece_inquestId,4) from xsjsglxt_snece where LEFT(snece_fillTime,4) = '" + year
+				+ "' ORDER BY right(snece_inquestId,4) desc limit 1";
 		Query query = getSession().createSQLQuery(hql);
 		li = (String) query.uniqueResult();
 		if (li == null || li.trim().length() <= 0) {

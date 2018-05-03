@@ -74,7 +74,7 @@ i {
 			<div id="tableContent" style="margin-top: 10px; display: none;">
 				<table class="table table-hover table-condensed" style="text-align: center;">
 					<thead>
-						<tr style="height:30;">
+						<tr style="height:30; color: black;">
 							<td rowspan="2"><label> <input
 									onclick="selectAll(this)" type="checkbox" >
 										全选 
@@ -87,7 +87,7 @@ i {
 							<td rowspan="2">外协人员</td>
 							<td rowspan="2">出差人员</td>
 						</tr>
-						<tr style="height:30;"><td>侦查值班人员</td><td>技术值班人员</td><td>值班辅警</td></tr>
+						<tr style="height:30; color: black;"><td>侦查值班人员</td><td>技术值班人员</td><td>值班辅警</td></tr>
 					</thead>
 					<tbody>
 						<template v-for="schedulingDTO in vo.schedulingDTOList">

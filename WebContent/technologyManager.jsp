@@ -42,9 +42,9 @@ li a {
 				<li><a href="<%=basePath%>case/BreakeCase_page_BreakCaseList"><i class="fa fa-sun-o"></i>刑事破案</a></li>
 				</template>
 				<template v-if="user_technology_manager_power">
-				<li><a href="<%=basePath%>DNA/DNAManagement_DNAManagementPage"><i class="fa fa-map-o"></i>DNA/指纹</a></li>
+				<li><a href="<%=basePath%>DNA/DNAManagement_DNAManagementPage"><i class="fa fa-map-o"></i>DNA</a></li>
 				</template>
-				<template v-if="false">
+				<template v-if="user_technology_manager_power">
 				<li><a
 					href="<%=basePath%>FingerPrint/FingerPrintManagement_FingerPrintManagementPage">指纹</a></li>
 				</template>

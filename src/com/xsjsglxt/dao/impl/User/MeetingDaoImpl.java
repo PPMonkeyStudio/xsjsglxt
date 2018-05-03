@@ -102,7 +102,8 @@ public class MeetingDaoImpl implements MeetingDao {
 			hql = hql + " and meet.meeting_start_time <= '" + meetVO.getQuery_start_time_end() + "'";
 		}
 		if (meetVO.getQueryMeetingContent() != null && meetVO.getQueryMeetingContent().trim().length() > 0) {
-			hql = hql + " and meet.meeting_content like '%" + meetVO.getQueryMeetingContent() + "%'";
+			hql = hql + " and (meet.meeting_content like '%" + meetVO.getQueryMeetingContent()
+					+ "%' or meet.meeting_theme like '%" + meetVO.getQueryMeetingContent() + "%')";
 		}
 		long count = (long) this.getSession().createQuery(hql).uniqueResult();
 		this.getSession().clear();
@@ -125,7 +126,8 @@ public class MeetingDaoImpl implements MeetingDao {
 			hql = hql + " and meet.meeting_start_time <= '" + meetVO.getQuery_start_time_end() + "'";
 		}
 		if (meetVO.getQueryMeetingContent() != null && meetVO.getQueryMeetingContent().trim().length() > 0) {
-			hql = hql + " and meet.meeting_content like '%" + meetVO.getQueryMeetingContent() + "%'";
+			hql = hql + " and (meet.meeting_content like '%" + meetVO.getQueryMeetingContent()
+					+ "%' or meet.meeting_theme like '%" + meetVO.getQueryMeetingContent() + "%')";
 		}
 		if (true) {
 			hql = hql + " order by meeting_start_time " + meetVO.getStartTimeSort();
@@ -134,7 +136,6 @@ public class MeetingDaoImpl implements MeetingDao {
 		Query query = session.createQuery(hql).setFirstResult((meetVO.getCurrPage() - 1) * meetVO.getPageSize())
 				.setMaxResults(meetVO.getPageSize());
 		List<meetingSearchDTO> list = query.list();
-		System.out.println(list.size());
 		session.clear();
 		return list;
 	}
