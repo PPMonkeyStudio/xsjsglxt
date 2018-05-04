@@ -470,10 +470,18 @@ function get_ListBreakecaseInformationByPageAndSearch(data) {
 			// data_list[len].case1.xsjsglxt_case_id + '">' +
 			// data_list[len].sence.snece_inquestId + '</a></td>';
 			str += '<td>' + (data_list[len].case_name).replace('萍乡市安源区', '') + '</td>';
-			str += '<td>' + data_list[len].snece_inquestId + '</td>';
-			// str += '<td>' + data_list[len].breakecase_type + '</td>';
-			str += '<td>' + data_list[len].breakecase_person + '</td>';
+			//str += '<td>' + data_list[len].snece_inquestId + '</td>';
 
+			str += '<td><a href="/xsjsglxt/case/Case_ page_intoDetails?id='
+				//+ data_list.case1.xsjsglxt_case_id
+				+ '">'
+				+ data_list[len].snece_inquestId
+				+ '</a></td>';
+
+			// str += '<td>' + data_list[len].breakecase_type + '</td>';
+
+			str += '<td>' + data_list[len].breakecase_person + '</td>';
+			str += '<td>' + data_list[len].breakecase_according + '</td>';
 			//嫌疑人
 			sups = data_list[len].breakecase_suspect.split('、');
 			if (sups.length > 0 && sups.length < 3) {
@@ -481,9 +489,6 @@ function get_ListBreakecaseInformationByPageAndSearch(data) {
 			} else {
 				str += '<td>' + sups.slice(0, 3).join() + '</td>';
 			}
-
-
-			str += '<td>' + data_list[len].breakecase_according + '</td>';
 			str += '<td>' + data_list[len].breakecase_caseTime + '</td>';
 		}
 		// 加载到表格中
