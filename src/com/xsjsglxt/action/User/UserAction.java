@@ -39,7 +39,6 @@ public class UserAction extends ActionSupport {
 	public void test() {
 		ApplicationContext a = (ApplicationContext) ServletActionContext.getServletContext()
 				.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
-		System.out.println(a.getBean(UserService.class));
 	}
 
 	public void skipToTechnologyIndex() {
@@ -67,7 +66,7 @@ public class UserAction extends ActionSupport {
 		} else {
 			xsjsglxt_user xu = userService.getUserById(user_id);
 			String result = gson.toJson(xu);
-			System.out.println(result);
+
 			pw.write(result);
 		}
 	}
@@ -89,7 +88,6 @@ public class UserAction extends ActionSupport {
 			// String result = (String) method.invoke(xu, null);
 			Gson gson = new Gson();
 			String result = gson.toJson(xu);
-			System.out.println(result);
 			pw.write(result);
 		}
 	}
@@ -169,7 +167,6 @@ public class UserAction extends ActionSupport {
 		showUserVO suv = userService.getUserByPage(queryString, currPage);
 		Gson gson = new Gson();
 		String result = gson.toJson(suv);
-		System.out.println(result);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = response.getWriter();
@@ -245,7 +242,6 @@ public class UserAction extends ActionSupport {
 	 */
 
 	public void updateUser() {
-		System.out.println(user_password);
 		xsjsglxt_user xuGet = userService.getUserById(user_id);
 		xsjsglxt_user xu = new xsjsglxt_user();
 		xu.setUser_army_manager_power(user_army_manager_power);
