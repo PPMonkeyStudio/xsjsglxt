@@ -156,6 +156,7 @@ $(function() {
 
 		//获取案件的勘验人员
 		var persons = xhr_data["sence"]["snece_inquestPerson"].split(',');
+		console.log(persons);
 		//勘验人员查询，以便修改勘验人员
 		$.post('/xsjsglxt/team/Staff_getInquestPerson', {}, function(params) {
 			var leader = params.leader;
@@ -196,6 +197,8 @@ $(function() {
 				"resevidence.resevidence_teststate" : "未检验",
 				"resevidence.resevidence_sendstate" : "未送检"
 			});
+			//手动更改提取人
+			evidence_data["resevidence.resevidence_extractPerson"] = $('select[name="resevidence.resevidence_extractPerson"]').val().join();
 			$.post('/xsjsglxt/case/Resevidence_saveResevidence', evidence_data, function(xhr_data) {
 				if (xhr_data.length > 22 && xhr_data.length <= 36) {
 					toastr.success('添加成功！');

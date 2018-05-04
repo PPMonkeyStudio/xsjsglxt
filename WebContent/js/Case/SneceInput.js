@@ -160,13 +160,13 @@ function setSectionCase(chapter) {
 	} else if (chapter == 13) {
 		// 清空other_case的select元素，改为input元素
 		$('.main_case').next().remove();
-		$('#other_case_td').html('<input type="text" name="case1.case_sonCategory" style="margin-top: 6px; width: 170px;" class="other_case form-control must">');
+		$('#other_case_td').html('<input type="text" name="case1.case_sonCategory" style="margin-top: 6px; width: 160px;" class="other_case form-control must">');
 	} else {
 		$('.other_case').empty().show();
 		var length = chapterCaseArr[chapter][2].length;
 		if ($('select[class="other_case form-control"]').length == 0) {
 			$('input[class="other_case form-control"]').remove();
-			$('#other_case_td').html('<select name="case1.case_sonCategory" style="margin-top: 6px; width: 170px;" class="other_case form-control must"><option selected value="">请选择案件子类别</option></select>');
+			$('#other_case_td').html('<select name="case1.case_sonCategory" style="margin-top: 6px; width: 160px;" class="other_case form-control must"><option selected value="">请选择案件子类别</option></select>');
 		}
 		for (var i = 0; i < length; i++) {
 			$('.other_case').append("<option value='" + chapterCaseArr[chapter][2][i] + "'>" + chapterCaseArr[chapter][2][i] + "</option>");
@@ -181,6 +181,10 @@ function setSectionCase(chapter) {
 	})
 }
 
+function setCase_name() {
+	var receivingAlarmDate = new Date($('input[name="case1.case_receivingAlarmDate"]').val()).Format("yyyy.MM.dd");
+	$('.case_name').val('"' + receivingAlarmDate + '"' + $('.case_place').val() + $('.main_case').val());
+}
 // -----------------------------------------------------------作案手段
 var sectionMethod0 = new Array();
 sectionMethod0[0] = [ "具体手段" ]

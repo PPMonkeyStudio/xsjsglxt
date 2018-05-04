@@ -530,7 +530,7 @@ i {
 					</thead>
 					<tbody>
 						<tr>
-							<td style="width: 33%"><h5>物证图</h5></td>
+							<td style="width: 33%"><h5>现场方位图</h5></td>
 							<td style="width: 33%">
 								<button type="button" id="evidence_photo"
 									class="btn btn-default" onclick="upload(this)">
@@ -545,7 +545,7 @@ i {
 							</td>
 						</tr>
 						<tr>
-							<td><h5>笔录文件</h5></td>
+							<td><h5>现场笔录</h5></td>
 							<td>
 								<button type="button" id="record_file" onclick="upload(this)"
 									class="btn btn-default">
@@ -560,7 +560,7 @@ i {
 							</td>
 						</tr>
 						<tr>
-							<td><h5>现场图片</h5></td>
+							<td><h5>现场照片</h5></td>
 							<td><button type="button" id="scene_picture"
 									class="btn btn-default" onclick="upload(this)">
 									<i class="fa fa-upload"></i> 上传
