@@ -100,7 +100,7 @@ table tr:hover {
 						<td><label><input type="checkbox"
 								name="chooseCheckBox"
 								:value="letter.xsjsglxt_introduce_letter_id"><span></span></label></td>
-								<td>{{ letter.introduce_letter_serial_number }}</td>
+								<td :id="letter.xsjsglxt_introduce_letter_id" onclick="previewLetter(this)" style="color:blue;">{{ letter.introduce_letter_serial_number }}</td>
 						<td>{{ letter.introduce_letter_tounit }}</td>
 						<td>{{ letter.introduce_letter_introduceMan }}</td>
 						<td>{{ letter.introduce_letter_number }}</td>
