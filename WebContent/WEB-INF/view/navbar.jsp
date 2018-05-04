@@ -14,8 +14,6 @@
 <!--------------------------------------------------------------------------------->
 <script src="<%=basePath%>js/jquery-3.1.1.min.js"></script>
 <script src="<%=basePath%>js/bootstrap.min.js"></script>
-<script type="text/javascript"
-	src="<%=basePath%>js/Case/defaults-zh_CN.js"></script>
 <link rel="stylesheet" href="<%=basePath%>css/bootstrap.min.css">
 <!--------------------------------------------------------------------------------->
 <link rel="stylesheet" href="<%=basePath%>css/bootstrap-select.min.css">
