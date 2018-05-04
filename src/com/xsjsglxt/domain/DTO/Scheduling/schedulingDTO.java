@@ -8,7 +8,7 @@ public class schedulingDTO {
 	private String scheduling_assistant;// 辅班
 	private String scheduling_overtime;// 今日加班
 	private String scheduling_out_help;// 今日外协
-	private String scheduling_evection;
+	private String scheduling_evection;// 出差
 	private String scheduling_time; // 值班日期
 	private String scheduling_patrol;
 

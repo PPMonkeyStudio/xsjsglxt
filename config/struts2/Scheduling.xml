@@ -7,6 +7,7 @@
 		<action name="Scheduling_*" class="com.xsjsglxt.action.Scheduling.SchedulingAction" method="{1}">
 			<result name="intoScheduling">/WEB-INF/view/Scheduling/SchedulingList.jsp</result>
 			<result name="printCurrPage">/WEB-INF/view/Scheduling/printCurr.jsp</result>
+			<result name="intoStastics">/WEB-INF/view/Scheduling/schedulingStatistics.jsp</result>
 		</action>
 	</package>
 </struts>
