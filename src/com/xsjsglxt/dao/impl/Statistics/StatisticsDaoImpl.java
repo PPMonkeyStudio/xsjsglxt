@@ -151,7 +151,6 @@ public class StatisticsDaoImpl implements StatisticsDao {
 			hql = hql + " and breakecase_caseTime >='" + outTimeVO.getTimeStart() + "'";
 		if (outTimeVO.getTimeEnd() != null && outTimeVO.getTimeEnd().trim().length() > 0)
 			hql = hql + " and breakecase_caseTime<='" + outTimeVO.getTimeEnd() + "'";
-		System.out.println(hql);
 		BigInteger bi = (BigInteger) session.createSQLQuery(hql).uniqueResult();
 		policemanDTO.setBreakeNumber(bi.intValue());
 	}
