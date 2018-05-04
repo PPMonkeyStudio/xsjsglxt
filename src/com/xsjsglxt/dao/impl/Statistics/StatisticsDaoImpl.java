@@ -59,14 +59,13 @@ public class StatisticsDaoImpl implements StatisticsDao {
 	public void getPolicemanOutTimes(policemanOutTimesDTO policemanDTO, OutTimeVO outTimeVO) {
 		// TODO Auto-generated method stub
 		Session session = this.getSession();
-		String hql = "select count(*) from xsjsglxt_snece as s , xsjsglxt_case as c where s.snece_case=c.xsjsglxt_case_id and s.snece_inquestPerson REGEXP '(^"
-				+ policemanDTO.getPolicemanName() + ")|((, )" + policemanDTO.getPolicemanName() + "(, ))|((, )"
-				+ policemanDTO.getPolicemanName() + "$)'";
+		String hql = "select count(*) from xsjsglxt_snece as s ,xsjsglxt_case as c where s.snece_case=c.xsjsglxt_case_id and s.snece_inquestPerson REGEXP '(^"
+				+ policemanDTO.getPolicemanName() + "(,))|(^" + policemanDTO.getPolicemanName() + "$)|((,)"
+				+ policemanDTO.getPolicemanName() + "(,))|((,)" + policemanDTO.getPolicemanName() + "$)'";
 		if (outTimeVO.getTimeStart() != null && !"".equals(outTimeVO.getTimeStart().trim()))
 			hql = hql + " and c.case_receivingAlarmDate>='" + outTimeVO.getTimeStart() + "'";
 		if (outTimeVO.getTimeEnd() != null && !"".equals(outTimeVO.getTimeEnd().trim()))
 			hql = hql + " and c.case_receivingAlarmDate<='" + outTimeVO.getTimeEnd() + "'";
-		System.out.println(hql);
 		BigInteger num = (BigInteger) session.createSQLQuery(hql).uniqueResult();
 		policemanDTO.setOutTimes(num.intValue());
 	}
@@ -81,8 +80,8 @@ public class StatisticsDaoImpl implements StatisticsDao {
 		// TODO Auto-generated method stub
 		Session session = this.getSession();
 		String hql = "select count(*) from xsjsglxt_resevidence where resevidence_extractPerson  REGEXP '(^"
-				+ policemanDTO.getPolicemanName() + ")|((, )" + policemanDTO.getPolicemanName() + "(, ))|((, )"
-				+ policemanDTO.getPolicemanName() + "$)'";
+				+ policemanDTO.getPolicemanName() + "(,))|(^" + policemanDTO.getPolicemanName() + "$)|((,)"
+				+ policemanDTO.getPolicemanName() + "(,))|((,)" + policemanDTO.getPolicemanName() + "$)'";
 		if (outTimeVO.getTimeStart() != null && !"".equals(outTimeVO.getTimeStart().trim()))
 			hql = hql + " and resevidence_extractTime >='" + outTimeVO.getTimeStart() + "'";
 		if (outTimeVO.getTimeEnd() != null && !"".equals(outTimeVO.getTimeEnd().trim()))
@@ -119,8 +118,8 @@ public class StatisticsDaoImpl implements StatisticsDao {
 		// TODO Auto-generated method stub
 		Session session = this.getSession();
 		String hql = "select count(*) from xsjsglxt_resevidence where resevidence_extractPerson REGEXP '(^"
-				+ policemanDTO.getPolicemanName() + ")|((, )" + policemanDTO.getPolicemanName() + "(, ))|((, )"
-				+ policemanDTO.getPolicemanName() + "$)'";
+				+ policemanDTO.getPolicemanName() + "(,))|(^" + policemanDTO.getPolicemanName() + "$)|((,)"
+				+ policemanDTO.getPolicemanName() + "(,))|((,)" + policemanDTO.getPolicemanName() + "$)'";
 		if (outTimeVO.getTimeStart() != null && !"".equals(outTimeVO.getTimeStart().trim()))
 			hql = hql + " and resevidence_extractTime >='" + outTimeVO.getTimeStart() + "'";
 		if (outTimeVO.getTimeEnd() != null && !"".equals(outTimeVO.getTimeEnd().trim()))
@@ -146,8 +145,8 @@ public class StatisticsDaoImpl implements StatisticsDao {
 		// TODO Auto-generated method stub
 		Session session = this.getSession();
 		String hql = "select count(*) from xsjsglxt_breakecase where breakecase_person REGEXP '(^"
-				+ policemanDTO.getPolicemanName() + ")|((, )" + policemanDTO.getPolicemanName() + "(, ))|((, )"
-				+ policemanDTO.getPolicemanName() + "$)'";
+				+ policemanDTO.getPolicemanName() + "(,))|(^" + policemanDTO.getPolicemanName() + "$)|((,)"
+				+ policemanDTO.getPolicemanName() + "(,))|((,)" + policemanDTO.getPolicemanName() + "$)'";
 		if (outTimeVO.getTimeStart() != null && outTimeVO.getTimeStart().trim().length() > 0)
 			hql = hql + " and breakecase_caseTime >='" + outTimeVO.getTimeStart() + "'";
 		if (outTimeVO.getTimeEnd() != null && outTimeVO.getTimeEnd().trim().length() > 0)
