@@ -405,7 +405,8 @@ $(function() {
 							$(this).val(msg["resevidence"][key]);
 						}
 					});
-					var select_proson = msg["resevidence"]["resevidence_extractPerson"].split(',');
+					//console.log("wwwwwww:" + (msg["resevidence"]["resevidence_extractPerson"]).split(','));
+					var select_proson = (msg["resevidence"]["resevidence_extractPerson"]).split(',');
 					$('select[name="resevidence.resevidence_extractPerson"]').selectpicker('val', select_proson);
 					//模态框展示操作
 					$('#evidence .add_evidence').hide(); //添加按钮消失

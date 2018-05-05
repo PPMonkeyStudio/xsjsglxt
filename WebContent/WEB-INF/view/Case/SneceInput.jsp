@@ -705,6 +705,8 @@
 		<!-- /.modal -->
 	</div>
 
+	<script type="text/javascript"
+		src="<%=basePath%>js/Case/SneceInput_self.js"></script>
 	<script type="text/javascript" src="<%=basePath%>js/Case/SneceInput.js"></script>
 	<script type="text/javascript"
 		src="<%=basePath%>js/Case/sence_checkbox.js"></script>
