@@ -12,7 +12,9 @@ var printCurrPage = function() {
 			+ "&schedulingListVO.query_name="
 			+ queryConditionTemp.query_name;
 }
-
+var intoStastics = function() {
+	window.location.href = "/xsjsglxt/scheduling/Scheduling_intoStastics";
+}
 var deleteScheduling = function() {
 	$
 			.confirm({

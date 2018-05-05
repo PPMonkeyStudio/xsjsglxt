@@ -1,5 +1,6 @@
 package com.xsjsglxt.dao.impl.Scheduling;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -9,8 +10,10 @@ import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.Scheduling.SchedulingDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_scheduling;
+import com.xsjsglxt.domain.DO.xsjsglxt_staff;
 import com.xsjsglxt.domain.DTO.Scheduling.schedulingDTO;
 import com.xsjsglxt.domain.VO.Scheduling.SchedulingDTOListVO;
+import com.xsjsglxt.domain.VO.Scheduling.schedulingTimeVO;
 
 /**
  * 
@@ -133,5 +136,95 @@ public class SchedulingDaoImpl implements SchedulingDao {
 				.setMaxResults(schedulingListVO.getPageSize());
 		List<schedulingDTO> dtoList = query.list();
 		return dtoList;
+	}
+
+	// ----------------------------------以下为值班统计内容
+	@Override
+	public List<xsjsglxt_staff> getStaffByQuery(String queryName) {
+		// TODO Auto-generated method stub
+		String hql = "from xsjsglxt_staff where xsjsglxt_name like '%" + queryName + "%'";
+		Session session = this.getSession();
+		return session.createQuery(hql).list();
+	}
+
+	@Override
+	public int getSchedulingTime(schedulingTimeVO schedulingTimeVO, String xsjsglxt_name) {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from xsjsglxt_scheduling where (scheduling_leader = '" + xsjsglxt_name
+				+ "' or scheduling_main = '" + xsjsglxt_name + "' or scheduling_main_technology = '" + xsjsglxt_name
+				+ "' or scheduling_assistant REGEXP '(^" + xsjsglxt_name + "、)|(、" + xsjsglxt_name + "$)')";
+		if (schedulingTimeVO.getQueryTimeStart() != null && !"".equals(schedulingTimeVO.getQueryTimeStart().trim())) {
+			hql = hql + " and scheduling_time >= '" + schedulingTimeVO.getQueryTimeStart() + "'";
+		}
+		if (schedulingTimeVO.getQueryTimeEnd() != null && !"".equals(schedulingTimeVO.getQueryTimeEnd().trim())) {
+			hql = hql + " and scheduling_time <= '" + schedulingTimeVO.getQueryTimeEnd() + "'";
+		}
+		Session session = this.getSession();
+		BigInteger count = (BigInteger) session.createSQLQuery(hql).uniqueResult();
+		return count.intValue();
+	}
+
+	@Override
+	public int getOutTime(schedulingTimeVO schedulingTimeVO, String xsjsglxt_name) {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from xsjsglxt_scheduling where scheduling_out_help REGEXP '(^" + xsjsglxt_name
+				+ ",)|(^" + xsjsglxt_name + "$)|(," + xsjsglxt_name + ",)|(," + xsjsglxt_name + "$)'";
+		if (schedulingTimeVO.getQueryTimeStart() != null && !"".equals(schedulingTimeVO.getQueryTimeStart().trim())) {
+			hql = hql + " and scheduling_time >= '" + schedulingTimeVO.getQueryTimeStart() + "'";
+		}
+		if (schedulingTimeVO.getQueryTimeEnd() != null && !"".equals(schedulingTimeVO.getQueryTimeEnd().trim())) {
+			hql = hql + " and scheduling_time <= '" + schedulingTimeVO.getQueryTimeEnd() + "'";
+		}
+		Session session = this.getSession();
+		BigInteger count = (BigInteger) session.createSQLQuery(hql).uniqueResult();
+		return count.intValue();
+	}
+
+	@Override
+	public int getOverTime(schedulingTimeVO schedulingTimeVO, String xsjsglxt_name) {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from xsjsglxt_scheduling where scheduling_overtime REGEXP '(^" + xsjsglxt_name
+				+ ",)|(^" + xsjsglxt_name + "$)|(," + xsjsglxt_name + ",)|(," + xsjsglxt_name + "$)'";
+		if (schedulingTimeVO.getQueryTimeStart() != null && !"".equals(schedulingTimeVO.getQueryTimeStart().trim())) {
+			hql = hql + " and scheduling_time >= '" + schedulingTimeVO.getQueryTimeStart() + "'";
+		}
+		if (schedulingTimeVO.getQueryTimeEnd() != null && !"".equals(schedulingTimeVO.getQueryTimeEnd().trim())) {
+			hql = hql + " and scheduling_time <= '" + schedulingTimeVO.getQueryTimeEnd() + "'";
+		}
+		Session session = this.getSession();
+		BigInteger count = (BigInteger) session.createSQLQuery(hql).uniqueResult();
+		return count.intValue();
+	}
+
+	@Override
+	public int getPatrolTime(schedulingTimeVO schedulingTimeVO, String xsjsglxt_name) {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from xsjsglxt_scheduling where scheduling_patrol REGEXP '(^" + xsjsglxt_name
+				+ ",)|(^" + xsjsglxt_name + "$)|(," + xsjsglxt_name + ",)|(," + xsjsglxt_name + "$)'";
+		if (schedulingTimeVO.getQueryTimeStart() != null && !"".equals(schedulingTimeVO.getQueryTimeStart().trim())) {
+			hql = hql + " and scheduling_time >= '" + schedulingTimeVO.getQueryTimeStart() + "'";
+		}
+		if (schedulingTimeVO.getQueryTimeEnd() != null && !"".equals(schedulingTimeVO.getQueryTimeEnd().trim())) {
+			hql = hql + " and scheduling_time <= '" + schedulingTimeVO.getQueryTimeEnd() + "'";
+		}
+		Session session = this.getSession();
+		BigInteger count = (BigInteger) session.createSQLQuery(hql).uniqueResult();
+		return count.intValue();
+	}
+
+	@Override
+	public int getEvectionTime(schedulingTimeVO schedulingTimeVO, String xsjsglxt_staff_id) {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from xsjsglxt_staffStudent where staffStudent_staff = '" + xsjsglxt_staff_id
+				+ "'";
+		if (schedulingTimeVO.getQueryTimeStart() != null && !"".equals(schedulingTimeVO.getQueryTimeStart().trim())) {
+			hql = hql + " and staffStudent_startTime >= '" + schedulingTimeVO.getQueryTimeStart() + "'";
+		}
+		if (schedulingTimeVO.getQueryTimeEnd() != null && !"".equals(schedulingTimeVO.getQueryTimeEnd().trim())) {
+			hql = hql + " and staffStudent_startTime <= '" + schedulingTimeVO.getQueryTimeEnd() + "'";
+		}
+		Session session = this.getSession();
+		BigInteger count = (BigInteger) session.createSQLQuery(hql).uniqueResult();
+		return count.intValue();
 	}
 }

@@ -23,6 +23,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_scheduling;
 import com.xsjsglxt.domain.DTO.Scheduling.schedulingDTO;
 import com.xsjsglxt.domain.VO.Scheduling.SchedulingDTOListVO;
+import com.xsjsglxt.domain.VO.Scheduling.schedulingTimeVO;
 import com.xsjsglxt.service.Scheduling.SchedulingService;
 
 import util.ExportExcelCollection;
@@ -38,6 +39,7 @@ public class SchedulingAction extends ActionSupport {
 	private xsjsglxt_scheduling scheduling;
 	private String[] scheduling_id;
 	private SchedulingDTOListVO schedulingListVO;
+	private schedulingTimeVO schedulingTimeVO;
 	private int scheduling_days;
 	private String[] leader;
 	private String[] main;
@@ -50,6 +52,27 @@ public class SchedulingAction extends ActionSupport {
 
 	public String page_print() {
 		return "printCurrPage";
+	}
+
+	public String intoStastics() {
+		return "intoStastics";
+	}
+
+	// ----------------------值班统计
+	public void schedulingStastics() {
+		schedulingService.schedulingStastics(schedulingTimeVO);
+		Gson gson = new Gson();
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(gson.toJson(schedulingTimeVO));
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	// -----------------------保存值班表
@@ -339,6 +362,14 @@ public class SchedulingAction extends ActionSupport {
 
 	public void setScheduling_id(String[] scheduling_id) {
 		this.scheduling_id = scheduling_id;
+	}
+
+	public schedulingTimeVO getSchedulingTimeVO() {
+		return schedulingTimeVO;
+	}
+
+	public void setSchedulingTimeVO(schedulingTimeVO schedulingTimeVO) {
+		this.schedulingTimeVO = schedulingTimeVO;
 	}
 
 }

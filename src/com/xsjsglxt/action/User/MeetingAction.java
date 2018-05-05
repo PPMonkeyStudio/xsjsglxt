@@ -49,13 +49,10 @@ public class MeetingAction extends ActionSupport {
 	}
 
 	public void showMeetingByPageAndList() throws IOException {
-		System.out.println(meetVO.getStartTimeSort());
 		response = ServletActionContext.getResponse();
 		meetingByPageAndSerarchVO meetVOReturn = meetingService.getMeetingByPageAndList(meetVO);
 		Gson gson = new Gson();
 		String result = gson.toJson(meetVOReturn);
-		System.out.println(result + "打印数据");
-		System.out.println(result);
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter write = response.getWriter();
 		write.write(result);
@@ -64,7 +61,6 @@ public class MeetingAction extends ActionSupport {
 	}
 
 	public void deleteMeetingRecord() throws IOException {
-		System.out.println(meeting_id);
 		String result = meetingService.deleteMeetingRecord(meeting_id);
 		response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
