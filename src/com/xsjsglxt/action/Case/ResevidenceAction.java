@@ -61,21 +61,6 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 	 */
 	public void saveResevidence() throws IOException {
 		http_response.setContentType("text/html;charset=utf-8");
-		if (resevidenceImage != null && resevidenceImage.exists()) {
-			String path = ServletActionContext.getServletContext().getRealPath("/upload/resevidence"); // 保存路径
-			File factory = new File(path);
-			if (!factory.exists())
-				factory.mkdirs();
-			String filename = TeamUtil.getUuid()
-					+ resevidenceImageFileName.substring(resevidenceImageFileName.lastIndexOf("."));
-			File file = new File(path + "/" + filename);
-			if (!file.exists())
-				file.createNewFile();
-			FileUtil.copyFile(resevidenceImage, file);
-			resevidence.setResevidence_image(filename);
-		} else {
-			resevidence.setResevidence_image("");
-		}
 		String result = null;
 		try {
 			String uuid = TeamUtil.getUuid();
@@ -94,6 +79,26 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 			}
 		}
 
+	}
+
+	// 上传图片
+	public void uploadResevidenceImage() throws IOException {
+		xsjsglxt_resevidence resevidences = resevidenceService
+				.getResevidenceById(resevidence.getXsjsglxt_resevidence_id());
+		if (resevidenceImage != null && resevidenceImage.exists()) {
+			String path = ServletActionContext.getServletContext().getRealPath("/upload/resevidence"); // 保存路径
+			File factory = new File(path);
+			if (!factory.exists())
+				factory.mkdirs();
+			String filename = TeamUtil.getUuid()
+					+ resevidenceImageFileName.substring(resevidenceImageFileName.lastIndexOf("."));
+			File file = new File(path + "/" + filename);
+			if (!file.exists())
+				file.createNewFile();
+			FileUtil.copyFile(resevidenceImage, file);
+			resevidences.setResevidence_image(filename);
+		}
+		resevidenceService.updateResevidenceIn(resevidences);
 	}
 
 	// 下载物证图片

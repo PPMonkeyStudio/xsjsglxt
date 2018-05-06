@@ -177,4 +177,11 @@ public class ResevidenceServiceImpl implements ResevidenceService {
 		return resevidenceDao.getcirculationByresevidenceId(resevidence);
 	}
 
+	@Override
+	public xsjsglxt_resevidence getResevidenceById(String string) {
+		// TODO Auto-generated method stub
+
+		return resevidenceDao.getByResevidenceNum(string);
+	}
+
 }

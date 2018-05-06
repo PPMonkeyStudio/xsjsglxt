@@ -229,7 +229,7 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 								("笔录" + downloadFileName.substring(downloadFileName.lastIndexOf("."))).getBytes(),
 								"ISO-8859-1") + "\"");
 				File file = new File(ServletActionContext.getServletContext()
-						.getRealPath("/upload/case/caseWrite/" + downloadFileName + "/"));
+						.getRealPath("/upload/case/caseWrite/" + downloadFileName));
 				try {
 					FileInputStream fi = new FileInputStream(file);
 					try {
