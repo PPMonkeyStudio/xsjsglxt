@@ -1,5 +1,6 @@
 package com.xsjsglxt.service.impl.Case;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -128,6 +129,11 @@ public class ResevidenceServiceImpl implements ResevidenceService {
 			xsjsglxt_resevidence resevidence = resevidenceDao.getByResevidenceNum(Resevidence_id);
 			flag = resevidenceDao.deleteResevidenceById(resevidence.getXsjsglxt_resevidence_id());// ��֤
 			flag = resevidenceDao.deleteCirculationById(resevidence.getXsjsglxt_resevidence_id());// ��֤��ת��Ϣ
+			if (resevidence.getResevidence_image() != null && !"".equals(resevidence.getResevidence_image().trim())) {
+				File file = new File(resevidence.getResevidence_image());
+				if (file != null && file.exists())
+					file.delete();
+			}
 
 		}
 		return flag;
