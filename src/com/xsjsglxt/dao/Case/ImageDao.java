@@ -47,4 +47,9 @@ public interface ImageDao {
 
 	public List<xsjsglxt_image> getAllImage();
 
+	public int getCountImageInformationByPage_image(page_list_imageInformationVO page_list_imageInformation);
+
+	public List<xsjsglxt_image> getListImageInformatioByPage_image(
+			page_list_imageInformationVO page_list_imageInformation);
+
 }

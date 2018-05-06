@@ -48,17 +48,17 @@
 				<i class="fa fa-reply"></i> 返回列表
 			</button>
 			<!--  -->
-			<div class="panel-body">
+			<div class="panel-body" style="width: 1400px;">
 				<form id="sneceInformation" action="">
 					<table>
 						<tr>
 							<td style="width: 96px;/*font-weight: bold;*/"><span
 								style="color:red;">*</span>勘验编号</td>
-							<td style="width: 180px;"><input
+							<td style="width: 200px;"><input
 								name="sence.snece_inquestId" class="form-control must"
 								type="text"></td>
 							<td style="padding-left:5px;width: 120px;/*font-weight: bold;*/">勘验系统编号</td>
-							<td style="width: 180px;"><input
+							<td style="width: 200px;"><input
 								name="sence.snece_inquestSystemId" class="form-control"
 								type="text"></td>
 							<td style="/*font-weight: bold;*/"><span style="color:red;">*</span>危害程度</td>
@@ -100,7 +100,7 @@
 						<tr>
 							<td style=" width:96px;/*font-weight: bold;*/"><span
 								style="color:red;">*</span>案发地点</td>
-							<td style=" width: 300px;"><input name="case1.case_address"
+							<td style=" width: 370px;"><input name="case1.case_address"
 								onkeyup="setCase_name()" style="margin-top: 8px;"
 								class="case_place form-control must" type="text" value="萍乡市安源区"></td>
 							<td style="/*font-weight: bold;*/ width: 90px;"><span
@@ -153,7 +153,7 @@
 								style="width: 120px; margin-left: 6px; float: left;"
 								name="case1.case_reporterPhone" class="form-control" type="text"
 								placeholder="联系电话 "> <input
-								style="margin-left: 6px;float: left; width: 484px;"
+								style="margin-left: 6px;float: left; width: 555px;"
 								name="case1.case_reporterAddress" class="form-control"
 								type="text" placeholder="家庭住址或工作单位 "></td>
 						</tr>

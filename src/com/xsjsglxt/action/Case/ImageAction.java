@@ -32,7 +32,6 @@ public class ImageAction extends ActionSupport implements ServletRequestAware, S
 	private List<String> useImageInformationNumList;
 	private ImageInformationDTO imageInformationDTO;
 	private page_list_imageInformationVO page_list_imageInformation;
-	
 
 	/*
 	 * 保存光盘
@@ -203,6 +202,24 @@ public class ImageAction extends ActionSupport implements ServletRequestAware, S
 		Gson gson = gsonBuilder.create();
 
 		page_list_imageInformation = imageService.VO_ImageInformation_By_PageAndSearch(page_list_imageInformation);
+
+		http_response.setContentType("text/html;charset=utf-8");
+
+		http_response.getWriter().write(gson.toJson(page_list_imageInformation));
+
+	}
+
+	/*
+	 * 列表信息
+	 * 
+	 */
+	public void ListImageInformationByPage_image() throws IOException {
+
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
+		Gson gson = gsonBuilder.create();
+
+		page_list_imageInformation = imageService.VO_ImageInformation_By_Page(page_list_imageInformation);
 
 		http_response.setContentType("text/html;charset=utf-8");
 
