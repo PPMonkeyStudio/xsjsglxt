@@ -193,7 +193,7 @@ public class SenceAction extends ActionSupport implements ServletRequestAware, S
 			try {
 				response.addHeader("Content-Disposition",
 						"attachment; filename=\"" + new String(
-								("物证图" + downloadFileName.substring(downloadFileName.lastIndexOf("."))).getBytes(),
+								("现场方位图" + downloadFileName.substring(downloadFileName.lastIndexOf("."))).getBytes(),
 								"ISO-8859-1") + "\"");
 				File file = new File(ServletActionContext.getServletContext()
 						.getRealPath("/upload/case/caseImage/" + downloadFileName + "/"));

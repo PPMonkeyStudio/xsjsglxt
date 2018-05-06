@@ -32,6 +32,8 @@ public class xsjsglxt_resevidence {
 
 	private String resevidence_savePlace;// 存放位置
 
+	private String resevidence_image;// 物证图片
+
 	private String resevidence_gmt_create;// 创建时间
 
 	private String resevidence_gmt_modified;// 修改时间
@@ -66,6 +68,14 @@ public class xsjsglxt_resevidence {
 		this.resevidence_teststate = resevidence_teststate;
 		this.resevidence_gmt_create = resevidence_gmt_create;
 		this.resevidence_gmt_modified = resevidence_gmt_modified;
+	}
+
+	public String getResevidence_image() {
+		return resevidence_image;
+	}
+
+	public void setResevidence_image(String resevidence_image) {
+		this.resevidence_image = resevidence_image;
 	}
 
 	@Override

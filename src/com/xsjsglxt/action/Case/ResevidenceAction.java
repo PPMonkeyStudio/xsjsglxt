@@ -1,13 +1,20 @@
 package com.xsjsglxt.action.Case;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
+import org.aspectj.util.FileUtil;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -40,18 +47,40 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 
 	private page_list_ResevidenceInformationVO page_list_ResevidenceInformation;
 
+	private File resevidenceImage; // 上传物证图片文件
+
+	private String resevidenceImageFileName;
+
+	private String resevidenceImageContentType;
+
+	private String downloadFileName;
+
 	/*
 	 * 保存物证
 	 * 
 	 */
-	public void saveResevidence() {
+	public void saveResevidence() throws IOException {
 		http_response.setContentType("text/html;charset=utf-8");
+		if (resevidenceImage != null && resevidenceImage.exists()) {
+			String path = ServletActionContext.getServletContext().getRealPath("/upload/resevidence"); // 保存路径
+			File factory = new File(path);
+			if (!factory.exists())
+				factory.mkdirs();
+			String filename = TeamUtil.getUuid()
+					+ resevidenceImageFileName.substring(resevidenceImageFileName.lastIndexOf("."));
+			File file = new File(path + "/" + filename);
+			if (!file.exists())
+				file.createNewFile();
+			FileUtil.copyFile(resevidenceImage, file);
+			resevidence.setResevidence_image(filename);
+		} else {
+			resevidence.setResevidence_image("");
+		}
 		String result = null;
 		try {
 			String uuid = TeamUtil.getUuid();
 			resevidence.setXsjsglxt_resevidence_id(uuid);
 			resevidence.setResevidence_case(case1.getXsjsglxt_case_id());
-			System.out.println("asuf" + resevidence.getResevidence_case());
 			resevidenceService.saveResevidence(resevidence);
 			result = uuid;
 		} catch (Exception e) {
@@ -65,6 +94,42 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 			}
 		}
 
+	}
+
+	// 下载物证图片
+	public void downloadResevidence() {
+		HttpServletResponse response = ServletActionContext.getResponse();
+		try {
+			response.addHeader("Content-Disposition",
+					"attachment; filename=\"" + new String(
+							("物证图" + downloadFileName.substring(downloadFileName.lastIndexOf("."))).getBytes(),
+							"ISO-8859-1") + "\"");
+			File file = new File(ServletActionContext.getServletContext()
+					.getRealPath("/upload/resevidence/" + downloadFileName + "/"));
+			try {
+				FileInputStream fi = new FileInputStream(file);
+				try {
+					OutputStream os = response.getOutputStream();
+					byte[] buffer = new byte[2048];
+					while (fi.read(buffer) != -1) {
+						os.write(buffer);
+						os.flush();
+					}
+					os.close();
+					fi.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/*
@@ -271,6 +336,38 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 
 	public void setUseResevidenceInformationNumList(List<String> useResevidenceInformationNumList) {
 		this.useResevidenceInformationNumList = useResevidenceInformationNumList;
+	}
+
+	public File getResevidenceImage() {
+		return resevidenceImage;
+	}
+
+	public void setResevidenceImage(File resevidenceImage) {
+		this.resevidenceImage = resevidenceImage;
+	}
+
+	public String getResevidenceImageFileName() {
+		return resevidenceImageFileName;
+	}
+
+	public void setResevidenceImageFileName(String resevidenceImageFileName) {
+		this.resevidenceImageFileName = resevidenceImageFileName;
+	}
+
+	public String getResevidenceImageContentType() {
+		return resevidenceImageContentType;
+	}
+
+	public void setResevidenceImageContentType(String resevidenceImageContentType) {
+		this.resevidenceImageContentType = resevidenceImageContentType;
+	}
+
+	public String getDownloadFileName() {
+		return downloadFileName;
+	}
+
+	public void setDownloadFileName(String downloadFileName) {
+		this.downloadFileName = downloadFileName;
 	}
 
 }
