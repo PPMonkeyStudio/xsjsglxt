@@ -40,4 +40,6 @@ public interface ResevidenceService {
 	// 获取物证的全部送检状态
 	public List<xsjsglxt_circulation> getCirculationList(xsjsglxt_resevidence resevidence);
 
+	public xsjsglxt_resevidence getResevidenceById(String string);
+
 }
