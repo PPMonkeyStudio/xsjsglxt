@@ -147,7 +147,6 @@ public class ResevidenceServiceImpl implements ResevidenceService {
 		// TODO Auto-generated method stub
 		xsjsglxt_resevidence old = resevidenceDao.getResevidenceById(resevidence);
 		resevidence.setResevidence_gmt_modified(TeamUtil.getStringSecond());
-		resevidence.setResevidence_image(old.getResevidence_image());
 		resevidence.setResevidence_sendstate(old.getResevidence_sendstate());
 		resevidence.setResevidence_teststate(old.getResevidence_teststate());
 		resevidenceDao.updateResevidenceIn(resevidence);

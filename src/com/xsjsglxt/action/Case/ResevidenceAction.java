@@ -85,6 +85,13 @@ public class ResevidenceAction extends ActionSupport implements ServletRequestAw
 	public void uploadResevidenceImage() throws IOException {
 		xsjsglxt_resevidence resevidences = resevidenceService
 				.getResevidenceById(resevidence.getXsjsglxt_resevidence_id());
+		if (resevidences.getResevidence_image() != null && !"无".equals(resevidences.getResevidence_image())) {
+			String path = ServletActionContext.getServletContext().getRealPath("/upload/resevidence"); // 保存路径
+			File file = new File(path + "/" + resevidences.getResevidence_image());
+			if (file.exists()) {
+				file.delete();
+			}
+		}
 		if (resevidenceImage != null && resevidenceImage.exists()) {
 			String path = ServletActionContext.getServletContext().getRealPath("/upload/resevidence"); // 保存路径
 			File factory = new File(path);
