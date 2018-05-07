@@ -95,11 +95,13 @@ i {
 							</label> <input type="hidden" name="case1.case_register"
 								onchange="chose_labe(this)"></td>
 						</tr>
+					</table>
+					<table>
 						<tr>
-							<td>案发地点</td>
+							<td style=" width:96px;/*font-weight: bold;*/">案发地点</td>
 							<td colspan="2"><input name="case1.case_address"
-								style="margin-top: 6px;" class="case_place form-control"
-								type="text" value="萍乡市安源区"></td>
+								style="margin-top: 6px; width: 370px;"
+								class="case_place form-control" type="text" value="萍乡市安源区"></td>
 							<td style="width: 90px;">案件类别</td>
 							<td style="width: 160px;"><select
 								style="width: 160px; float: left; margin-top: 6px;"
@@ -136,19 +138,19 @@ i {
 					<table>
 						<tr>
 							<td width="96px;">报案人情况</td>
-							<td colspan="5"><input style=" width: 80px;float:left; "
+							<td colspan="5"><input style=" width: 90px;float:left; "
 								name="case1.case_reporterName" class="form-control" type="text"
 								placeholder="姓名"> <input
-								style="width: 45px; float:left;margin-left: 6px;"
+								style="width: 50px; float:left;margin-left: 6px;"
 								name="case1.case_reporterSex" class="form-control" type="text"
 								placeholder="年龄 "> <!-- <input
 								style="width: 24%; float:left; margin-left: 6px;"
 								name="case1.case_reporterJobUnit" class="form-control"
 								type="text" placeholder="工作单位 "> --> <input
-								style="width: 120px; margin-left: 6px; float: left;"
+								style="width: 125px; margin-left: 6px; float: left;"
 								name="case1.case_reporterPhone" class="form-control" type="text"
 								placeholder="联系电话 "> <input
-								style="margin-left: 6px;float: left; width: 504px;"
+								style="margin-left: 6px;float: left; width: 555px;"
 								name="case1.case_reporterAddress" class="form-control"
 								type="text" placeholder="家庭住址或工作单位 "></td>
 						</tr>

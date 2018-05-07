@@ -420,7 +420,7 @@ $(function() {
 							"resevidence.resevidence_case" : case1_id,
 							"resevidence.resevidence_image" : msg["resevidence"]["resevidence_image"],
 							"resevidence.resevidence_image" : msg["resevidence"]["resevidence_teststate"],
-							"resevidence.resevidence_image" : msg["resevidence"]["resevidence_teststate"],
+							"resevidence.resevidence_image" : msg["resevidence"]["resevidence_sendstate"],
 						});
 						$('#evidence').modal('hide');
 						mdPost('/xsjsglxt/case/Resevidence_updateResevidenceInformation', data_, 'evidence');
