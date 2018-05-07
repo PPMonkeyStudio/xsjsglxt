@@ -61,20 +61,6 @@
 							<td style="width: 200px;"><input
 								name="sence.snece_inquestSystemId" class="form-control"
 								type="text"></td>
-							<td style="/*font-weight: bold;*/"><span style="color:red;">*</span>危害程度</td>
-							<td><select name="case1.case_extentOfInjury"
-								class="form-control must" style="">
-									<option value=""></option>
-									<option>一般</option>
-									<option>重大</option>
-									<option>特大</option>
-							</select></td>
-						</tr>
-						<tr>
-							<td style="/*font-weight: bold;*/"><span style="color:red;">*</span>接警时间</td>
-							<td><input name="case1.case_receivingAlarmDate"
-								onkeyup="setCase_name()" class="form-control mydate_minute must"
-								style="margin-top: 8px;" type="text"></td>
 							<td style="width: 100px;/*font-weight: bold;*/"><span
 								style="color:red;">*</span>案件分类</td>
 							<td><select name="case1.case_classify"
@@ -83,6 +69,20 @@
 									<option value="非刑事案件">非刑事案件</option>
 									<option value="刑事案件">刑事案件</option>
 									<option value="非正常死亡">非正常死亡</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td style="/*font-weight: bold;*/"><span style="color:red;">*</span>接警时间</td>
+							<td><input name="case1.case_receivingAlarmDate"
+								onkeyup="setCase_name()" class="form-control mydate_minute must"
+								style="margin-top: 8px;" type="text"></td>
+							<td style="/*font-weight: bold;*/"><span style="color:red;">*</span>危害程度</td>
+							<td><select name="case1.case_extentOfInjury"
+								class="form-control must">
+									<option value=""></option>
+									<option>一般</option>
+									<option>重大</option>
+									<option>特大</option>
 							</select></td>
 							<td style="/*font-weight: bold;*/"><span style="color:red;">*</span>是否立案</td>
 							<td><label style="float: left;" class="fancy-radio">
