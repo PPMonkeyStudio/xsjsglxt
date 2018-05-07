@@ -137,7 +137,7 @@ public class HandleAction extends ActionSupport implements ServletRequestAware, 
 		map.put("serialNumber", letter1.getIntroduce_letter_serial_number());
 		map.put("toUnit", letter1.getIntroduce_letter_tounit());
 		map.put("introducedMan", letter1.getIntroduce_letter_introduceMan());
-		map.put("number_", letter1.getIntroduce_letter_number() + "名");
+		map.put("number_", letter1.getIntroduce_letter_number() + "");
 		map.put("introduceReasons", letter1.getIntroduce_letter_reasons());
 		map.put("year_", letter1.getIntroduce_time().substring(0, 4));
 		map.put("month_", letter1.getIntroduce_time().substring(5, 7));

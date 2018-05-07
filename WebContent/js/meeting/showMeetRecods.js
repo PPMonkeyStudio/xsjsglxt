@@ -69,7 +69,7 @@ var ajaxSetTable = function(jsonData) {
 		tableContent = tableContent
 				+ "<tr id='"
 				+ jsonData.meetDTO[i].meeting_id
-				+ "'  onclick='updateMeetingRecords(this)'>"
+				+ "'  onclick='previewMeetingRecords(this)'>"
 				+ "<td>"
 				+ jsonData.meetDTO[i].meeting_start_time
 				+ "</td>"
@@ -85,18 +85,17 @@ var ajaxSetTable = function(jsonData) {
 				+ "<td>"
 				+ jsonData.meetDTO[i].meeting_end_time
 				+ "</td>"
-				+ "<td><div class='dropdown'><i class='dropdown-toggle fa fa-angle-double-down pageOperation'  data-toggle='dropdown' aria-hidden='true' aria-haspopup=true' aria-expanded='false'></i>"
-				+ "<ul class='dropdown-menu' aria-labelledby='dLabe' style='text-align:center; min-width: 100px;'>"
-				+ "<li id='"
+				+ "<td>"
+				+ "<button class='btn btn-info' id='"
 				+ jsonData.meetDTO[i].meeting_id
-				+ "' onclick='exportMeetingRecord(this)' class='pageOperation'><a>导出</a></li>"
-				+ "<li id='"
+				+ "' onclick='exportMeetingRecord(this)' class='pageOperation'><i class='fa fa-print'></i>导出</button>"
+				+ "<button class='btn btn-default' id='"
 				+ jsonData.meetDTO[i].meeting_id
-				+ "'  onclick='updateMeetingRecords(this)' class='pageOperation'><a>修改</a></li>"
-				+ "<li id='"
+				+ "'  onclick='updateMeetingRecords(this)' class='pageOperation'><i class='fa fa-pencil-square-o'></i>修改</button>"
+				+ "<button class='btn btn-danger' id='"
 				+ jsonData.meetDTO[i].meeting_id
-				+ "' onclick='deleteMeetingRecords(this)'  class='pageOperation'><a>删除</a></li>"
-				+ "</ul></div></td>" + "</tr>"
+				+ "' onclick='deleteMeetingRecords(this)'  class='pageOperation'><i class='fa fa-trash-o'></i>删除</button>"
+				+ "</td>" + "</tr>"
 	}
 	$("#showList").html(tableContent);
 	hideLoading();

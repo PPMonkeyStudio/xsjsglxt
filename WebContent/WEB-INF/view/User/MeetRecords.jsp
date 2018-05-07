@@ -29,6 +29,7 @@
 <script type="text/javascript" src="<%=basePath %>js/meeting/writeMeetingRecord.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/meeting/showMeetRecods.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/meeting/managerMeetingRecord.js"></script>
+<script type="text/javascript" src="<%=basePath %>js/meeting/previewMeetingRecord.js"></script>
 </head>
 <body>
 	<!-----------------------------------------引入导航条 ------------------------------------------------------>

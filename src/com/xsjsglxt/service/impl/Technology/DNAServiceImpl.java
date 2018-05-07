@@ -21,12 +21,12 @@ public class DNAServiceImpl implements DNAService {
 		String time = new SimpleDateFormat("yyyyMM").format(new Date());
 		int lastFour = dNADao.getFeild();
 		String four = "";
-		four = four.format("%04d", lastFour+1);
+		four = four.format("%06d", lastFour + 1);
 		num.append(time);
 		num.append(four);
-		return num.toString();	
+		return num.toString();
 	}
-	
+
 	// 分页
 	public DNAVO list_xsjsglxt_dna(DNAVO dNAVO) {
 		int totalRecords = dNADao.count_DNA_all(dNAVO);
@@ -71,7 +71,7 @@ public class DNAServiceImpl implements DNAService {
 		dNA.setXsjsglxt_dna_id(TeamUtil.getUuid());
 		dNA.setDna_num(this.create_dna_num());
 		dNA.setDna_gmt_create(TeamUtil.getStringSecond());
-//		dNA.setDna_gmt_modified(TeamUtil.getStringSecond());
+		// dNA.setDna_gmt_modified(TeamUtil.getStringSecond());
 		int result = dNADao.saveDNA(dNA);
 		if (result > 0) {
 			return 1;
@@ -90,7 +90,6 @@ public class DNAServiceImpl implements DNAService {
 		}
 		return 2;
 	}
-
 
 	@Override
 	public int deleteDNA(String xsjsglxt_dna_id) {

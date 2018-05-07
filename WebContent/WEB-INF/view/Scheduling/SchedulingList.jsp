@@ -55,7 +55,7 @@ i {
 				</button>
 				<button class="btn btn-default managerRole"
 					onclick="intoStastics()">
-					<i class="fa fa-arrow-circle-right"></i>进入统计
+					<i class="fa fa-arrow-circle-right"></i>统计
 				</button>
 				<button class="btn btn-danger managerRole"
 					onclick="deleteScheduling()">
@@ -75,7 +75,7 @@ i {
 			<div id="loadingLayer" style="margin: 0 auto; width: 45px;">
 				<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
 			</div>
-			<div id="tableContent" style="margin-top: 10px; display: none;">
+			<div id="tableContent" style="margin-top: 30px; display: none;">
 				<table class="table table-hover table-condensed"
 					style="text-align: center;">
 					<thead>

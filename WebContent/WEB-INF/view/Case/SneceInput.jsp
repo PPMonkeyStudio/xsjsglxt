@@ -48,17 +48,17 @@
 				<i class="fa fa-reply"></i> 返回列表
 			</button>
 			<!--  -->
-			<div class="panel-body">
+			<div class="panel-body" style="width: 1400px">
 				<form id="sneceInformation" action="">
 					<table>
 						<tr>
 							<td style="width: 96px;/*font-weight: bold;*/"><span
 								style="color:red;">*</span>勘验编号</td>
-							<td style="width: 180px;"><input
+							<td style="width: 200px;"><input
 								name="sence.snece_inquestId" class="form-control must"
 								type="text"></td>
 							<td style="padding-left:5px;width: 120px;/*font-weight: bold;*/">勘验系统编号</td>
-							<td style="width: 180px;"><input
+							<td style="width: 200px;"><input
 								name="sence.snece_inquestSystemId" class="form-control"
 								type="text"></td>
 							<td style="/*font-weight: bold;*/"><span style="color:red;">*</span>危害程度</td>
