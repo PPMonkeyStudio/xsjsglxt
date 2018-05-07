@@ -114,69 +114,65 @@ $(function() {
 })
 
 function get_ListSneceInformationByPageAndSearch(data) {
-	$
-		.post(
-			'/xsjsglxt/case/Case_ListSneceInformationByPageAndSearch',
-			data,
-			function(xhr) {
-				var str = '';
-				for (var len = 0; len < xhr.SenceInformationDTOList.length; len++) {
-					var data_list = xhr.SenceInformationDTOList[len];
-					str += '<tr id="' + data_list.case1.xsjsglxt_case_id + '">';
-					str += '<td><input name="chooseCheckBox" id="' + data_list.case1.xsjsglxt_case_id + '" type="checkbox"></td>';
-					str += '<td><a href="/xsjsglxt/case/Case_ page_intoDetails?id='
-						+ data_list.case1.xsjsglxt_case_id
-						+ '">'
-						+ data_list.sence.snece_inquestId
-						+ '</a></td>';
-					str += '<td>' + new Date(data_list.case1.case_receivingAlarmDate).Format('yyyy-MM-dd') + '</td>';
-					str += '<td>' + data_list.case1.case_address + '</td>';
-					str += '<td>' + data_list.case1.case_sonCategory + '</td>';
-					str += '<td>' + data_list.case1.case_reporterName + ',' + data_list.case1.case_reporterPhone + '</td>';
-					str += '<td>'
-					if (data_list.sence.snece_inquestPerson != undefined && data_list.sence.snece_inquestPerson != "") {
-						if ((data_list.sence.snece_inquestPerson).split(',').length > 3) {
-							str += (data_list.sence.snece_inquestPerson).split(',').slice(0, 3).join();
-						} else {
-							str += data_list.sence.snece_inquestPerson;
-						}
-					} else {
-						str += '无';
-					}
-					str += '</td>';
-					if (data_list.resevidence.length > 0) {
-						str += '<td><i action="LinkToEvidence" class="fa fa-arrow-right" aria-hidden="true"></i></td>';
-					} else {
-						str += '<td><i action="none" class="fa fa-ban" aria-hidden="true"></i></td>';
-					}
-					str += '<td><i action="LinkToModifySnece" class="fa fa-edit" aria-hidden="true"></i></td>';
-					str += '</tr>';
+	$.post('/xsjsglxt/case/Case_ListSneceInformationByPageAndSearch', data, function(xhr) {
+		var str = '';
+		for (var len = 0; len < xhr.SenceInformationDTOList.length; len++) {
+			var data_list = xhr.SenceInformationDTOList[len];
+			str += '<tr id="' + data_list.case1.xsjsglxt_case_id + '">';
+			str += '<td><input name="chooseCheckBox" id="' + data_list.case1.xsjsglxt_case_id + '" type="checkbox"></td>';
+			str += '<td><a href="/xsjsglxt/case/Case_ page_intoDetails?id='
+				+ data_list.case1.xsjsglxt_case_id
+				+ '">'
+				+ data_list.sence.snece_inquestId
+				+ '</a></td>';
+			str += '<td>' + new Date(data_list.case1.case_receivingAlarmDate).Format('yyyy-MM-dd') + '</td>';
+			str += '<td>' + (data_list.case1.case_address).replace("萍乡市安源区", "") + '</td>';
+			str += '<td>' + data_list.case1.case_sonCategory + '</td>';
+			str += '<td>' + data_list.case1.case_reporterName + ',' + data_list.case1.case_reporterPhone + '</td>';
+			str += '<td>'
+			if (data_list.sence.snece_inquestPerson != undefined && data_list.sence.snece_inquestPerson != "") {
+				if ((data_list.sence.snece_inquestPerson).split(',').length > 3) {
+					str += (data_list.sence.snece_inquestPerson).split(',').slice(0, 3).join();
+				} else {
+					str += data_list.sence.snece_inquestPerson;
 				}
-				$('.case_table_info tbody').html(str);
-				// 分页信息存入page_infomantion中
-				page_infomantion.pageIndex = xhr.pageIndex; // 当前页数
-				page_infomantion.totalRecords = xhr.totalRecords; // 总页数
-				page_infomantion.pageSize = xhr.pageSize; // 每页记录数
-				page_infomantion.totalPages = xhr.totalPages; // 总记录数
-				page_infomantion.HavePrePage = xhr.HavePrePage; // 是否有上一页
-				page_infomantion.HaveNextPage = xhr.HaveNextPage; // 是否有下一页
-				// 入口设置事件
-				$('i[action="LinkToEvidence"]').click(function() {
-					window.location.href = "/xsjsglxt/case/Case_page_intoEvidence?id=" + $(this).parents('tr').attr('id');
-				});
-				$('i[action="LinkToModifySnece"]').click(function() {
-					window.location.href = "/xsjsglxt/case/Case_ page_CaseDetails?id=" + $(this).parents('tr').attr('id');
-				});
-				// 分页下的记录信息
-				var opt = '<option value=""></option>';
-				for (var index = xhr.pageIndex + 1; index <= xhr.totalPages; index++) {
-					opt += '<option>' + index + '</option>';
-				}
-				//当前页数:1 共:1页
-				$('.info').html('当前页数:' + xhr.pageIndex + ' 共:' + xhr.totalPages);
-				// 影藏模态框
-				$('#newQuery').modal('hide')
-			}, 'json')
+			} else {
+				str += '无';
+			}
+			str += '</td>';
+			if (data_list.resevidence.length > 0) {
+				str += '<td><i action="LinkToEvidence" class="fa fa-arrow-right" aria-hidden="true"></i></td>';
+			} else {
+				str += '<td><i action="none" class="fa fa-ban" aria-hidden="true"></i></td>';
+			}
+			str += '<td><i action="LinkToModifySnece" class="fa fa-edit" aria-hidden="true"></i></td>';
+			str += '</tr>';
+		}
+		$('.case_table_info tbody').html(str);
+		// 分页信息存入page_infomantion中
+		page_infomantion.pageIndex = xhr.pageIndex; // 当前页数
+		page_infomantion.totalRecords = xhr.totalRecords; // 总页数
+		page_infomantion.pageSize = xhr.pageSize; // 每页记录数
+		page_infomantion.totalPages = xhr.totalPages; // 总记录数
+		page_infomantion.HavePrePage = xhr.HavePrePage; // 是否有上一页
+		page_infomantion.HaveNextPage = xhr.HaveNextPage; // 是否有下一页
+		// 入口设置事件
+		$('i[action="LinkToEvidence"]').click(function() {
+			window.location.href = "/xsjsglxt/case/Case_page_intoEvidence?id=" + $(this).parents('tr').attr('id');
+		});
+		$('i[action="LinkToModifySnece"]').click(function() {
+			window.location.href = "/xsjsglxt/case/Case_ page_CaseDetails?id=" + $(this).parents('tr').attr('id');
+		});
+		// 分页下的记录信息
+		var opt = '<option value=""></option>';
+		for (var index = xhr.pageIndex + 1; index <= xhr.totalPages; index++) {
+			opt += '<option>' + index + '</option>';
+		}
+		//当前页数:1 共:1页
+		$('.info').html('当前页数:' + xhr.pageIndex + ' 共:' + xhr.totalPages);
+		// 影藏模态框
+		$('#newQuery').modal('hide')
+	}, 'json')
 }
 
 // 输入框查询事件

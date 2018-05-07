@@ -14,31 +14,11 @@
 <!---------------------------------------------------------------------------------------------------->
 <title>首页</title>
 </head>
+<link rel="stylesheet" type="text/css"
+	href="<%=basePath%>css/Case/Case.css" />
 <style type="text/css">
-a {
+.page_info span {
 	cursor: pointer;
-}
-
-.table-condensed thead tr>th {
-	text-align: left;
-}
-
-.table-condensed tbody>tr>td {
-	font-size: 15px;
-}
-
-#newQuery table input {
-	width: 50%;
-}
-
-#newQuery table tbody tr td:nth-child(2) select {
-	margin-top: 6px;
-	width: 50%;
-	float: left;
-}
-
-#newQuery table selcet[id="exploration_personnel"] {
-	width: 100%;
 }
 </style>
 <body>
@@ -60,7 +40,7 @@ a {
 				</button>
 				<button style="margin-left: 15px;" type="button"
 					class="btn btn-default" data-toggle="modal" data-target="#newQuery">
-					<i class="fa fa-plus-square"></i> 案件查询
+					<i class="fa fa-plus-square"></i> 案件高级查询
 				</button>
 				<button style="margin-left: 15px;" type="button"
 					class="btn btn-default" data-toggle="modal"
@@ -72,37 +52,49 @@ a {
 				<table class="table table-hover table-condensed case_table_info">
 					<thead>
 						<tr>
-							<th>#</th>
-							<th>勘验编号</th>
-							<th>接警时间</th>
-							<th>案发地点</th>
-							<th>案件类别</th>
-							<th>报案人基本情况</th>
-							<th>主勘人员</th>
+							<th style="padding-left:5px;width: 70px;">全选<input
+								type="checkbox" onclick="selectAll(this)"></th>
+							<th width="120px;"><input type="text"
+								onkeyup="dynamic_query(this)" class="form-control"
+								query_name="page_list_senceInformation.snece_inquestId"
+								placeholder="勘验编号"></th>
+							<th><select onchange="dynamic_query(this)"
+								class="form-control"
+								query_name="page_list_senceInformation.order">
+									<option selected="selected" value="desc">接警时间(降序)</option>
+									<option value="asc">接警时间(升序)</option>
+							</select></th>
+							<th width="150px;"><input type="text"
+								onkeyup="dynamic_query(this)" class="form-control"
+								query_name="page_list_senceInformation.case_address"
+								placeholder="案发地点"></th>
+							<th width="120px;"><input type="text"
+								onkeyup="dynamic_query(this)" class="form-control"
+								query_name="page_list_senceInformation.case_totalCategory"
+								placeholder="案件子类别"></th>
+							<th><input type="text" onkeyup="dynamic_query(this)"
+								class="form-control"
+								query_name="page_list_senceInformation.case_reporterName"
+								placeholder="报案人"></th>
+							<th style="padding-left:5px;"><input type="text"
+								onkeyup="dynamic_query(this)" class="form-control"
+								query_name="page_list_senceInformation.snece_inquestPerson"
+								placeholder="主勘人员"></th>
+							<!-- <th><h5>物证入口</h5></th> -->
+							<!-- <th><h5>修改入口</h5></th> -->
 						</tr>
 					</thead>
 					<tbody>
-						<!-- <tr>
-							<td><input name="parallel."type="checkbox" checked="checked"></td>
-							<td><a>K3603020012017110001</a></td>
-							<td>2017/11/12</td>
-							<td>萍乡市</td>
-							<td>其它盗窃</td>
-							<td>李显明 13979987657</td>
-							<td>杨立宇 吴昊晟</td>
-						</tr> -->
 					</tbody>
 					<tfoot>
 						<tr>
-							<td colspan="8" style="font-size: 12px;" class="page_info"><a
-								onclick="firstPage()"><i class="fa fa-angle-double-left">首页</i>
-							</a>&nbsp&nbsp<a onclick="prePage()"><i class="fa fa-angle-left"></i>上一页
-							</a>&nbsp&nbsp<a onclick="nextPage()">下一页<i
-									class="fa fa-angle-right"></i>
-							</a>&nbsp&nbsp <a onclick="lastPage()">尾页<i
-									class="fa fa-angle-double-right"></i>
-							</a> <br />
-								<p class='info'></p></td>
+							<td colspan="8" style="" class="page_info"><span
+								class='info'></span> <span onclick="firstPage()">首页</span> <span
+								onclick="prePage()">上一页 </span><span onclick="nextPage()">下一页
+							</span><span onclick="lastPage()">末页 </span> <input id="skipPage"
+								style="display: inline-block; text-align: center; width: 60px; height: 30px;">
+								<button onclick="toPage()" class="btn btn-default"
+									style="height: 30px; vertical-align:initial;">跳转</button></td>
 						</tr>
 					</tfoot>
 				</table>
@@ -321,12 +313,12 @@ a {
 						<table style="width: 100%;" class="Query_table">
 							<tbody>
 								<tr>
-									<td>案件类别</td>
-									<td><select
+									<td width="10%">案件类别</td>
+									<td width="30%"><select
 										name="page_list_senceInformation.case_totalCategory"
 										onchange="setSectionCase(this.selectedIndex)"
 										class="main_case form-control"><option
-												selected="selected" value="">请选择案件总类别</option>
+												selected="selected" value="">案件总类别</option>
 											<option value="盗窃案">盗窃案</option>
 											<option value="抢劫案">抢劫案</option>
 											<option value="抢夺案">抢夺案</option>
@@ -342,32 +334,13 @@ a {
 											<option value="其它">其它</option></select> <select
 										name="page_list_senceInformation.case_sonCategory"
 										class="other_case form-control">
-											<option selected value="">请选择案件子类别</option>
+											<option selected value="">案件子类别</option>
 									</select></td>
-									<td style="padding-left: 10px;">案件分类</td>
-									<td><select
-										name="page_list_senceInformation.case_classify"
-										class=" form-control">
-											<option value="" selected></option>
-											<option value="非刑事案件">非刑事案件</option>
-											<option value="刑事案件">刑事案件</option>
-											<option value="非正常死亡">非正常死亡</option>
-									</select></td>
-									<td>作案时段</td>
-									<td><select
-										name="page_list_senceInformation.case_makeTime"
-										class=" form-control">
-											<option selected value=""></option>
-											<option value="昼">昼</option>
-											<option value="夜">夜</option>
-											<option value="上午">上午</option>
-											<option value="中午">中午</option>
-											<option value="下午">下午</option>
-											<option value="晚上">晚上</option>
-											<option value="深夜">深夜</option>
-											<option value="凌晨">凌晨</option>
-											<option value="其他">其他</option>
-									</select></td>
+									<td style="padding-left: 10px;width:10%;">勘验人员</td>
+									<td colspan="3"><input
+										name="page_list_senceInformation.snece_inquestPerson"
+										id="exploration_personnel" placeholder="请输入"
+										class="form-control" style="width: 100%;">
 								</tr>
 								<tr style="margin-top: 6px;">
 									<td style="margin-top: 6px;">选择处所</td>
@@ -384,11 +357,12 @@ a {
 										class=" specific_space form-control">
 											<option value="">具体处所</option>
 									</select></td>
-									<td style="padding-left: 10px;">勘验人员</td>
+									<td style="padding-left: 10px;">案发地点</td>
 									<td colspan="3"><input
-										name="page_list_senceInformation.snece_inquestPerson"
-										id="exploration_personnel" placeholder="请输入勘验人员"
-										class="form-control"> <%-- <select
+										name="page_list_senceInformation.case_address"
+										style="float: left; width: 100%;" type="text"
+										class="form-control"></td>
+									<%-- <select
 										name="page_list_senceInformation.snece_inquestPerson"
 										id="exploration_personnel"
 										class="selectpicker show-tick form-control dropdn" multiple
@@ -407,7 +381,7 @@ a {
 											<option value="陈佐仁">陈佐仁</option>
 											<option value="李希">李希</option>
 											<option value="魏松林">魏松林</option>
-									</select> --%></td>
+									</select> --%>
 								</tr>
 								<tr>
 									<td>作案手段</td>
@@ -426,14 +400,45 @@ a {
 										class=" specific_means form-control">
 											<option value="">具体手段</option>
 									</select></td>
-									<td style="padding-left: 10px;">接警时间</td>
+									<td style="padding-left: 10px;">报案人</td>
 									<td colspan="3"><input
-										name="page_list_senceInformation.start_time"
-										style="float: left;" type="text" class="form-control mydate"
-										placeholder="起始日期"><input
+										name="page_list_senceInformation.case_reporterName"
+										style="float: left;width: 100%;" type="text"
+										class="form-control"></td>
+
+								</tr>
+								<tr>
+									<td>勘验时间</td>
+									<td><input name="page_list_senceInformation.start_time"
+										style="float: left;margin-top: 6px;" type="text"
+										class="form-control mydate" placeholder="起始日期"><input
 										name="page_list_senceInformation.stop_time"
-										style=" float: right;" type="text" class="form-control mydate"
-										placeholder="结束日期"></td>
+										style=" float: right;margin-top: 6px;" type="text"
+										class="form-control mydate" placeholder="结束日期"></td>
+									<td style="padding-left: 10px;width: 10%;">作案时段</td>
+									<td><select
+										name="page_list_senceInformation.case_makeTime"
+										class="form-control">
+											<option selected value=""></option>
+											<option value="昼">昼</option>
+											<option value="夜">夜</option>
+											<option value="上午">上午</option>
+											<option value="中午">中午</option>
+											<option value="下午">下午</option>
+											<option value="晚上">晚上</option>
+											<option value="深夜">深夜</option>
+											<option value="凌晨">凌晨</option>
+											<option value="其他">其他</option>
+									</select></td>
+									<td style="padding-left: 10px; width: 70px;">案件分类</td>
+									<td><select
+										name="page_list_senceInformation.case_classify"
+										class=" form-control">
+											<option value="" selected></option>
+											<option value="非刑事案件">非刑事案件</option>
+											<option value="刑事案件">刑事案件</option>
+											<option value="非正常死亡">非正常死亡</option>
+									</select></td>
 								</tr>
 							</tbody>
 						</table>

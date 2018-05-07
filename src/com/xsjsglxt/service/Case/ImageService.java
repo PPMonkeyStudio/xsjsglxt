@@ -34,4 +34,7 @@ public interface ImageService {
 
 	public xsjsglxt_picture getPictureOne(xsjsglxt_picture picture);
 
+	public page_list_imageInformationVO VO_ImageInformation_By_Page(
+			page_list_imageInformationVO page_list_imageInformation);
+
 }

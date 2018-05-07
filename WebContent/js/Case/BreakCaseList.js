@@ -162,10 +162,10 @@ $(function() {
 					var option2 = '';
 					for (var len = 0; len < Case_data.length; len++) {
 						option += '<option value="' + Case_data[len].xsjsglxt_case_id + '">' + Case_data[len].case_name + '</option>';
-						option2 += '<option value="' + Case_data[len].case_name + '">' + Case_data[len].case_name + '</option>';
+						option2 += `<option value='${ Case_data[len].case_name}'>${Case_data[len].case_name}</option>`;
 					}
 					addBreakeCase.$content.find('select[name="breakeCase.breakecase_case"]').html(option).selectpicker('refresh');
-					addBreakeCase.$content.find('select[name="breakeCase.breakecase_waitbreakecase"]').html(option).selectpicker('refresh');
+					addBreakeCase.$content.find('select[name="breakeCase.breakecase_waitbreakecase"]').html(option2).selectpicker('refresh');
 					// 除去加载提示
 					addBreakeCase.$content.find('.load_remind').hide();
 				}, 'json');
@@ -229,10 +229,8 @@ $(function() {
 					}
 				},
 				sureAdd : {
-					text : '确认添加', /*
-									 * =====================================================
-									 * 确认破案添加
-									 */
+					/* ===================================================== 确认破案添加*/
+					text : '确认添加',
 					btnClass : 'btn-info',
 					action : function() {
 						addBreakeCase.$content.find('form').serializeObject();
@@ -247,9 +245,10 @@ $(function() {
 						for (const key in data) {
 							formData.append(key, data[key]);
 						}
-						var breakeCaseDetails = addBreakeCase.$content.find('select[name="breakeCase.breakecase_waitbreakecase"] option:selected');
+						console.log(addBreakeCase.$content.find('select[name="breakeCase.breakecase_waitbreakecase"]').selectpicker('val'));
+						var breakeCaseDetails = addBreakeCase.$content.find('select[name="breakeCase.breakecase_waitbreakecase"]').selectpicker('val');
 						for (let index = 0; index < breakeCaseDetails.length; index++) {
-							formData.append("takeBreakeCase", breakeCaseDetails[index].text);
+							formData.append("takeBreakeCase", breakeCaseDetails[index]);
 						}
 						$.ajax({
 							url : '/xsjsglxt/case/BreakeCase_saveBreakeCase',

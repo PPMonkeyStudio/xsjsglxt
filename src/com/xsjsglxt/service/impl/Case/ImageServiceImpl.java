@@ -75,6 +75,36 @@ public class ImageServiceImpl implements ImageService {
 	}
 
 	@Override
+	public page_list_imageInformationVO VO_ImageInformation_By_Page(
+			page_list_imageInformationVO page_list_imageInformation) {
+		List<ImageInformationDTO> imageInformationDTOList = new ArrayList<ImageInformationDTO>();
+		ImageInformationDTO imageInformationDTO;
+		List<xsjsglxt_image> image = null;
+		// 筛选条件的记录数
+		int i = imageDao.getCountImageInformationByPage_image(page_list_imageInformation);
+		page_list_imageInformation.setTotalRecords(i);
+		page_list_imageInformation.setTotalPages(((i - 1) / page_list_imageInformation.getPageSize()) + 1);
+		if (page_list_imageInformation.getPageIndex() <= 1) {
+			page_list_imageInformation.setHavePrePage(false);
+		} else {
+			page_list_imageInformation.setHavePrePage(true);
+		}
+		if (page_list_imageInformation.getPageIndex() >= page_list_imageInformation.getTotalPages()) {
+			page_list_imageInformation.setHaveNextPage(false);
+		} else {
+			page_list_imageInformation.setHaveNextPage(true);
+		}
+		// 记录
+		image = imageDao.getListImageInformatioByPage_image(page_list_imageInformation);
+		for (xsjsglxt_image image0 : image) {
+			imageInformationDTO = new ImageInformationDTO(null, image0, null);
+			imageInformationDTOList.add(imageInformationDTO);
+		}
+		page_list_imageInformation.setImageInformationDTOList(imageInformationDTOList);
+		return page_list_imageInformation;
+	}
+
+	@Override
 	public page_list_imageInformationVO VO_ImageInformation_By_PageAndSearch(
 			page_list_imageInformationVO page_list_imageInformation) {
 		// TODO Auto-generated method stub

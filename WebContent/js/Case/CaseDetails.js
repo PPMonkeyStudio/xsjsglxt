@@ -77,7 +77,7 @@ $(function() {
 							  <td>${resevidence[index]["resevidence_extractPerson"]}</td>
 							  <td><span class="label label-info">${resevidence[index]["resevidence_circulation"] == undefined ? "未流转" : resevidence[index]["resevidence_circulation"]}</span></td>
 							  <td><span class="label ${resevidence[index]["resevidence_sendstate"] == "已送检" ? "label-default" : "label-primary"}">${resevidence[index]["resevidence_sendstate"]}</span>|<span class="label ${resevidence[index]["resevidence_teststate"] == "已检验" ? "label-default" : "label-primary"}">${resevidence[index]["resevidence_teststate"]}</span></td>
-							  <td><i title="修改" id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i title="删除" id="delete" class="fa fa-trash-o"></i></td></tr>`;
+							  <td><i title="上传物证照片" id="uploadimage" class="fa fa-upload"></i>&nbsp&nbsp<i title="修改" id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i title="删除" id="delete" class="fa fa-trash-o"></i></td></tr>`;
 			}
 			/*<i id="circulation" class="fa fa fa-random"></i>&nbsp&nbsp*/
 			return tr_str;
@@ -218,7 +218,7 @@ $(function() {
 										   <td>${resevidence[index]["resevidence_extractPerson"]}</td>
 										   <td><span class="label label-info">${resevidence[index]["resevidence_circulation"] == undefined ? "未流转" : resevidence[index]["resevidence_circulation"]}</span></td>
 										   <td><span class="label ${resevidence[index]["resevidence_sendstate"] == "已送检" ? "label-default" : "label-primary"}">${resevidence[index]["resevidence_sendstate"]}</span>|<span class="label ${resevidence[index]["resevidence_teststate"] == "已检验" ? "label-default" : "label-primary"}">${resevidence[index]["resevidence_teststate"]}</span></td>
-										   <td><i title="修改" id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i title="删除" id="delete" class="fa fa-trash-o"></i></td></tr>`;
+										   <td><i title="上传物证照片" id="uploadimage" class="fa fa-upload">&nbsp&nbsp</i><i title="修改" id="modify" class="fa fa-info-circle"></i>&nbsp&nbsp<i title="删除" id="delete" class="fa fa-trash-o"></i></td></tr>`;
 							}
 							return tr_str;
 						});
@@ -388,7 +388,6 @@ $(function() {
 							resevidence_['resevidence.' + key] = msg["resevidence"][key];
 						}
 						var data_ = $.extend({}, $('#circulation-info form').serializeObject(), resevidence_);
-						console.log(data_);
 					});
 					//模态框出现
 					$('#circulation-info').modal('show');
@@ -427,6 +426,56 @@ $(function() {
 					"useResevidenceInformationNumList" : ID
 				};
 				mdPost('/xsjsglxt/case/Resevidence_remove_ResevidenceInformationList', dle_data_, 'evidence');
+			} else if (operate == "uploadimage") {
+				var uploadimage = $.confirm({
+					title : '物证图片上传',
+					smoothContent : false,
+					content : `	<table><tbody>
+								<tr>
+									<td><button type="button" style="float: left;" class="btn btn-primary">上传</button><span></span></td>
+									<td><input style="display:none" type="file" id="up-file"></td>
+								</tr>
+								</tbody></table>`,
+					onContentReady : function() {
+						uploadimage.$content.find('#up-file').change(function() {
+							uploadimage.$content.find('.btn-primary').next('span').html(this.value);
+						});
+						uploadimage.$content.find('.btn-primary').click(function() {
+							uploadimage.$content.find('#up-file').click();
+						});
+					},
+					buttons : {
+						deleteUser : {
+							btnClass : 'btn-blue',
+							text : '确认',
+							action : function() {
+								var formData = new FormData();
+								formData.append("resevidenceImage", uploadimage.$content.find('#up-file').get(0).files[0]);
+								formData.append("resevidence.xsjsglxt_resevidence_id", ID);
+								if (formData != null) {
+									$.ajax({
+										url : "/xsjsglxt/case/Resevidence_uploadResevidenceImage",
+										type : "post",
+										timeout : 3000,
+										data : formData,
+										contentType : false,
+										processData : false,
+										success : function(data) {
+											$.alert('上传成功!')
+										},
+										error : function() {}
+									});
+								} else {
+									$.alert('选择文件!')
+								}
+							}
+						},
+						cancelAction : {
+							btnClass : 'btn-danger',
+							text : '取消',
+						}
+					}
+				});
 			}
 		}
 	})

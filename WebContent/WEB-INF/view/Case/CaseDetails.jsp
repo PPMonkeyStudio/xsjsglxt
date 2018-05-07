@@ -365,7 +365,7 @@ i {
 											<button type="button" class="btn btn-default"
 												style="margin-left: 6px;float: left;margin-top: -6px; padding: 5px 14px;"
 												data-toggle="modal" data-target="#evidence">
-												<i class="fa fa-plus-square"></i> 添加物证
+												<i class="fa fa-plus-square"></i> 添加
 											</button>
 										</div>
 										<div class="panel-body">
@@ -396,7 +396,7 @@ i {
 											<button type="button" class="btn btn-default"
 												data-toggle="modal" data-target="#lost"
 												style="margin-left: 6px;float: left;margin-top: -6px; padding: 5px 14px;">
-												<i class="fa fa-plus-square"></i> 添加被盗物品
+												<i class="fa fa-plus-square"></i> 添加
 											</button>
 										</div>
 										<div class="panel-body">
@@ -427,7 +427,7 @@ i {
 											<button type="button" class="btn btn-default"
 												data-toggle="modal" data-target="#lost_computer"
 												style="margin-left: 6px;float: left;margin-top: -6px; padding: 5px 14px;">
-												<i class="fa fa-plus-square"></i> 添加被盗电脑
+												<i class="fa fa-plus-square"></i> 添加
 											</button>
 										</div>
 										<div class="panel-body">
@@ -457,7 +457,7 @@ i {
 											<button type="button" class="btn btn-default"
 												data-toggle="modal" data-target="#lost_mobilephone"
 												style="margin-left: 6px;float: left;margin-top: -6px; padding: 5px 14px;">
-												<i class="fa fa-plus-square"></i> 添加被盗手机信息
+												<i class="fa fa-plus-square"></i> 添加
 											</button>
 										</div>
 										<div class="panel-body">
@@ -487,7 +487,7 @@ i {
 												style="margin-left: 6px;float: left;margin-top: -6px; padding: 5px 14px;"
 												type="button" class="btn btn-default btn-xs"
 												data-toggle="modal" data-target="#picture">
-												<i class="fa fa-plus-square"></i> 添加照片
+												<i class="fa fa-plus-square"></i> 添加
 											</button>
 										</div>
 										<div class="panel-body">
@@ -918,7 +918,6 @@ i {
 		</div>
 		<!-- /.modal -->
 	</div>
-
 
 	<!-- 物证流转-模态框（Modal） -->
 	<div class="modal fade" id="circulation-info" tabindex="-1"
