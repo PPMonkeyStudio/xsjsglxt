@@ -8,8 +8,6 @@ public class xsjsglxt_breakecase {
 
 	private String breakecase_case;// 所属案件
 
-	private String breakecase_case_id;// 所属案件id
-
 	private String breakecase_according;// 破案方式
 
 	private String breakecase_caseTime;// 破案时间
@@ -27,14 +25,6 @@ public class xsjsglxt_breakecase {
 	public xsjsglxt_breakecase() {
 
 		// TODO Auto-generated constructor stub
-	}
-
-	public String getBreakecase_case_id() {
-		return breakecase_case_id;
-	}
-
-	public void setBreakecase_case_id(String breakecase_case_id) {
-		this.breakecase_case_id = breakecase_case_id;
 	}
 
 	public xsjsglxt_breakecase(String xsjsglxt_breakecase_id, String breakecase_type, String breakecase_case,

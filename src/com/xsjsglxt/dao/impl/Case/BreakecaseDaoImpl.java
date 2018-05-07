@@ -203,7 +203,7 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 				+ "sence.snece_inquestId as snece_inquestId , " + "xCase.case_name as case_name , "
 				+ "breake.breakecase_type as breakecase_type , " + "breake.breakecase_person as breakecase_person , "
 				+ "breake.breakecase_according as breakecase_according , "
-				+ "breake.breakecase_caseTime as breakecase_caseTime ,breake.breakecase_case_id as case_id)"
+				+ "breake.breakecase_caseTime as breakecase_caseTime ,breake.breakecase_case as case_id)"
 				+ " from xsjsglxt_breakecase as breake , xsjsglxt_case as xCase,xsjsglxt_snece as sence where breake.breakecase_case = xCase.xsjsglxt_case_id and sence.snece_case = xCase.xsjsglxt_case_id and 1=1";
 		if (breakeCaseListVO.getQuery_breake_person() != null
 				&& breakeCaseListVO.getQuery_breake_person().trim().length() > 0)
