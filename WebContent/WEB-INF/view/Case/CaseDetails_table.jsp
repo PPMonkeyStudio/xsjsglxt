@@ -200,7 +200,7 @@ table tr td {
 				</table>
 				<table style="width: 1200px; text-align: center;">
 					<tr>
-						<td colspan="6"
+						<td colspan="7"
 							style="text-align: left; border-top: none; border-left: none; border-right: none;"><h3>物证信息</h3></td>
 					</tr>
 					<tr>
@@ -210,6 +210,7 @@ table tr td {
 						<td>提取人</td>
 						<td style="text-align: center;">流转状态</td>
 						<td style="text-align: center;">检验状态</td>
+						<td style="text-align: center;">下载</td>
 					</tr>
 					<template v-for="re in resevidence">
 					<tr>
@@ -220,6 +221,15 @@ table tr td {
 						<td>{{ re.resevidence_circulation }}</td>
 						<td>{{ re.resevidence_teststate }}|{{
 							re.resevidence_sendstate }}</td>
+						<td style="text-align: center;">
+						<template v-if="re.resevidence_image == '无'">
+							<i class="fa fa-close" ></i>
+						</template>
+						<template v-else>
+							<i class="fa fa-cloud-download" :id="re.resevidence_image" onclick="downloadImage(this)"></i>
+						</template>
+						</td>
+						
 					</tr>
 					</template>
 					<tr>
@@ -227,6 +237,7 @@ table tr td {
 						<td></td>
 						<td></td>
 						<td colspan="1"></td>
+						<td></td>
 						<td></td>
 						<td></td>
 					</tr>
