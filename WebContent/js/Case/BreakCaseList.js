@@ -472,7 +472,7 @@ function get_ListBreakecaseInformationByPageAndSearch(data) {
 			//str += '<td>' + data_list[len].snece_inquestId + '</td>';
 
 			str += '<td><a href="/xsjsglxt/case/Case_ page_intoDetails?id='
-				//+ data_list.case1.xsjsglxt_case_id
+				+ data_list[len].case_id
 				+ '">'
 				+ data_list[len].snece_inquestId
 				+ '</a></td>';
