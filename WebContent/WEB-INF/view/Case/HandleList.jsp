@@ -81,7 +81,7 @@
 					<!-- TABLE HOVER -->
 					<div class="panel">
 						<div class="panel-heading">
-							<h3 class="panel-title">破案列表</h3>
+							<h3 class="panel-title">办案列表</h3>
 						</div>
 						<div class="panel-body">
 							<table
