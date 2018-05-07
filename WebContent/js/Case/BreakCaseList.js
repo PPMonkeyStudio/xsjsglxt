@@ -45,7 +45,7 @@ var braekeCaseData = `<form action="">
 </td><td>破案人</td><td>
 <select class="form-control" data-live-search="true" name="breakeCase.breakecase_person"></select>
 </td></tr><tr><td>带破案件</td><td colspan="3">
-<select class="form-control selectpicker" multiple data-selected-text-format="count > 3" data-live-search="true" name="breakeCase.breakecase_waitbreakecase" title="请选择..."></select>
+<select class="form-control selectpicker" multiple data-selected-text-format="count > 2" data-live-search="true" name="breakeCase.breakecase_waitbreakecase" title="请选择..."></select>
 </td></tr><tr><td>备注</td><td colspan="3">
 <textarea placeholder="请填写" class="form-control"name="breakeCase.breakecase_remarks"></textarea>
 </td></tr><tr>
