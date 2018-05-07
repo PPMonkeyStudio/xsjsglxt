@@ -42,6 +42,7 @@ public class SenceServiceImpl implements SenceService {
 	@Override
 	public void save(xsjsglxt_snece sence) {
 		// TODO Auto-generated method stub
+		sence.setSnece_inquestId(getMaxSenceInquestId());
 		sence.setXsjsglxt_snece_id(TeamUtil.getUuid());
 		sence.setSnece_gmt_create(TeamUtil.getStringSecond());
 		sence.setSnece_gmt_modified(sence.getSnece_gmt_create());
