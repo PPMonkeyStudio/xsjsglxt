@@ -229,7 +229,10 @@ $(function() {
 					}
 				},
 				sureAdd : {
-					/* ===================================================== 确认破案添加*/
+					/*
+					 * =====================================================
+					 * 确认破案添加
+					 */
 					text : '确认添加',
 					btnClass : 'btn-info',
 					action : function() {
@@ -469,19 +472,19 @@ function get_ListBreakecaseInformationByPageAndSearch(data) {
 			// data_list[len].case1.xsjsglxt_case_id + '">' +
 			// data_list[len].sence.snece_inquestId + '</a></td>';
 			str += '<td>' + (data_list[len].case_name).replace('萍乡市安源区', '') + '</td>';
-			//str += '<td>' + data_list[len].snece_inquestId + '</td>';
+			// str += '<td>' + data_list[len].snece_inquestId + '</td>';
 
 			str += '<td><a href="/xsjsglxt/case/Case_ page_intoDetails?id='
 				+ data_list[len].case_id
 				+ '">'
-				+ data_list[len].snece_inquestId
+				+ data_list[len].snece_inquestId.substring(10)
 				+ '</a></td>';
 
 			// str += '<td>' + data_list[len].breakecase_type + '</td>';
 
 			str += '<td>' + data_list[len].breakecase_person + '</td>';
 			str += '<td>' + data_list[len].breakecase_according + '</td>';
-			//嫌疑人
+			// 嫌疑人
 			sups = data_list[len].breakecase_suspect.split('、');
 			if (sups.length > 0 && sups.length < 3) {
 				str += '<td>' + sups.join() + '</td>';
@@ -501,7 +504,7 @@ function get_ListBreakecaseInformationByPageAndSearch(data) {
 		// page_infomantion.HaveNextPage = xhr.HaveNextPage; //是否有下一页
 
 		$('.info').html('当前页数:' + xhr.currPage + ' 共:' + xhr.totalPage);
-		//影藏模态框
+		// 影藏模态框
 		$('#newQuery').modal('hide')
 	}, 'json')
 }
@@ -730,7 +733,7 @@ function lastPage() {
 	query_data['breakeCaseListVO.currPage'] = page_infomantion.totalPages;
 	get_ListBreakecaseInformationByPageAndSearch(query_data);
 }
-//跳转到n页
+// 跳转到n页
 function toPage() {
 	var topage = $('#skipPage').val();
 	if (topage > page_infomantion.totalPages || topage < 0) {
