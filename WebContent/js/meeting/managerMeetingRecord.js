@@ -3,6 +3,8 @@
  */
 
 var deleteMeetingRecords = function(dom) {
+	dom.cancelBubble = true;
+	dom.stopPropagation();
 	var jc = $
 			.confirm({
 				title : "<i class='fa fa-exclamation-triangle' style='color:red;' aria-hidden='true'></i>是否确定删除",
@@ -64,6 +66,8 @@ var deleteMeetingRecords = function(dom) {
 }
 
 var updateMeetingRecords = function(dom) {
+	dom.cancelBubble = true;
+	dom.stopPropagation();
 	var jc = $
 			.confirm({
 				columnClass : "col-md-12",
@@ -265,6 +269,8 @@ var updateMeetingRecords = function(dom) {
 			});
 }
 var exportMeetingRecord = function(dom) {
+	dom.cancelBubble = true;
+	dom.stopPropagation();
 	window.location = "/xsjsglxt/user/Meeting_exportMeetingRecord?meeting_id="
 			+ dom.id;
 }

@@ -49,9 +49,9 @@
 				<img alt="" src="<%=basePath%>img/loading.gif">
 			</div>
 			<div id="tableDiv" class="hideDiv">
-				<table class="table table-bordered" style="text-align: center;">
+				<table class="table table-hover table-condensed" style="text-align: center;">
 					<tbody id="userTable">
-						<tr style="background-color: #696969; color: white;">
+						<tr>
 							<td>账号</td>
 							<td>姓名</td>
 							<td>代码</td>
@@ -100,7 +100,7 @@
 					</div>
 					<div id="addContent">
 						<form id="addUserForm" name="addUserForm">
-							<table class="table" style="margin: 0 auto;">
+							<table class="table table-hover table-condensed" style="margin: 0 auto;">
 								<tr>
 									<td><label>账号：</label></td>
 									<td><input id="user_username" name="user_username"

@@ -21,6 +21,11 @@ window.onload = function() {
 	loadDataCaseT();
 };
 
+var downloadImage = function(dom) {
+	window.location.href = "/xsjsglxt/case/Resevidence_downloadResevidence?downloadFileName="
+			+ dom.id;
+}
+
 var loadDataCaseT = function() {
 	var url = window.location.href;
 	var case_id = url.substring(url.indexOf("=") + 1);

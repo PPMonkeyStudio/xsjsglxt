@@ -39,14 +39,12 @@
 				<div style="height: 34px; margin: 0 0 20px 0;">
 
 					<input id="select_stop_time" class="form-control mydate"
-						placeholder="XXXX-XX-XX"
 						style="width: 150px; float: right; margin: 0 0 0 20px; text-align: center;"
 						type="text">
 					<%--  --%>
 					<span style="float: right; margin: 0 0 0 20px; line-height: 34px;">至</span>
 					<!--  -->
 					<input id="select_start_time" class="form-control mydate"
-						placeholder="XXXX-XX-XX"
 						style="width: 150px; float: right; text-align: center;"
 						type="text">
 					<%--  --%>

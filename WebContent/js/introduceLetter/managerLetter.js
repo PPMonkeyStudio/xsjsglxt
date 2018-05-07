@@ -154,24 +154,19 @@ var updateLetter = function(event) {
 var previewLetter = function(event) {
 	$
 			.confirm({
-				boxWidth : '500px',
+				boxWidth : '700px',
 				useBootstrap : false,
 				title : '<i class="fa fa-pencil-square-o"></i>预览介绍信',
 				type : 'blue',
-				content : "<div id='addLoadingLayer' class='hideDiv' style='margin: 0 auto; width: 45px;'><i class='fa fa-spinner fa-spin fa-3x fa-fw'></i></div>"
-						+ "<div id='confirmDiv'><form id='formDataIntroduce' name='formDataIntroduce'>"
-						+ "<table class='table bordered-table'><tr><td>目的单位：</td><td><input type='text' placeholder='请输入目的单位' name='letter.introduce_letter_tounit' id='introduce_letter_tounit' class='form-control'></td></tr>"
-						+ "<tr><td>前往人员：</td><td><input type='text' placeholder='请输入姓名用\",\"划分' name='letter.introduce_letter_introduceMan' id='introduce_letter_introduceMan' class='form-control'></td></tr>"
-						+ "<tr><td>前往人员数量：</td><td><input type='text' placeholder='请输入前往人员数量' name='letter.introduce_letter_number' id='introduce_letter_number' class='form-control'></td></tr>"
-						+ "<tr><td>前往事由：</td><td><input type='text' placeholder='请输入前往事由' name='letter.introduce_letter_reasons' id='introduce_letter_reasons' class='form-control'></td></tr>"
-						+ "<tr><td>前往时间：</td><td><input type='text' placeholder='请输入前往时间' name='letter.introduce_time' id='introduce_time' class='form-control startTime'></td></tr>"
-						+ "<tr><td>前往天数：</td><td><select class='form-control' name='letter.introduce_time_limit' id='introduce_time_limit'>"
-						+ "<option value='3'>3</option>"
-						+ "<option value='4'>4</option>"
-						+ "<option value='5'>5</option>"
-						+ "<option value='6'>6</option>"
-						+ "<option value='7'>7</option>"
-						+ "</select></td></tr>" + "</table></from></div>",
+				content : '<div style="color: black; border: 1px solid black; padding:10px;">'
+						+ '<h4><span style="float: right;">萍安公（刑）介字第<span id="introduce_letter_serial_number"></span>号</span></h4>'
+						+ '<br><h4><b><span id="introduce_letter_tounit" style="text-decoration:underline; fon"></span></b></h4>'
+						+ '<br><h4 style="margin-left:40px;">兹介绍<b id="human"></b>同志前往你处<span id="introduce_letter_reasons"></span>请接洽并希予以协助为荷。</h4>'
+						+ '<br><h4 style="margin-left:90px;"><b>此致</b></h4>'
+						+ '<br><h4><b>敬礼<b></h4>'
+						+ '<br><h4 style="float: right;"><span id="year_"></span>年<span id="month_"></span>月<span id="day_"></span>日</h4>'
+						+ '<br><h4>（限<span id="month_limit"></span>月<span id="day_limit"></span>日以前有效）</h4>'
+						+ '</div>',
 				buttons : {
 					close : {
 						text : "<i class='fa fa-times' aria-hidden='true'></i>关闭",
@@ -199,20 +194,37 @@ var previewLetter = function(event) {
 								type : 'GET',
 								success : function(data) {
 									var returnData = JSON.parse(data);
-									$('#introduce_letter_tounit').val(
-											returnData.introduce_letter_tounit);
-									$('#introduce_letter_introduceMan')
-											.val(
-													returnData.introduce_letter_introduceMan);
-									$('#introduce_letter_number').val(
-											returnData.introduce_letter_number);
+									$('#introduce_letter_serial_number')
+											.html(
+													returnData.introduce_letter_serial_number);
+									$('#introduce_letter_tounit').html(
+											returnData.introduce_letter_tounit
+													+ "：");
+									$('#human')
+											.html(
+													returnData.introduce_letter_introduceMan
+															+ "等"
+															+ returnData.introduce_letter_number
+															+ "名");
 									$('#introduce_letter_reasons')
-											.val(
+											.html(
 													returnData.introduce_letter_reasons);
-									$('#introduce_time').val(
+									$('#year_').html(
+											returnData.introduce_time
+													.substring(0, 4));
+									$('#month_').html(
+											returnData.introduce_time
+													.substring(5, 7));
+									$('#day_').html(
+											returnData.introduce_time
+													.substring(8, 10));
+									var date = new Date(
 											returnData.introduce_time);
-									$('#introduce_time_limit').val(
-											returnData.introduce_time_limit);
+									date
+											.setDate(date.getDate()
+													+ parseInt(returnData.introduce_time_limit));
+									$('#month_limit').html(date.getMonth() + 1);
+									$('#day_limit').html(date.getDate());
 								}
 							})
 				}

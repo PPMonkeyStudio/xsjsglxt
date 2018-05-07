@@ -105,33 +105,27 @@ table tr:hover {
 						<td>{{ letter.introduce_letter_introduceMan }}</td>
 						<td>{{ letter.introduce_letter_number }}</td>
 						<td>{{ letter.introduce_time }}</td>
-						<td><div class='dropdown'>
-								<i class='dropdown-toggle fa fa-angle-double-down pageOperation'
-									data-toggle='dropdown' aria-hidden='true' aria-haspopup='true'
-									aria-expanded='false'></i>
-								<ul class='dropdown-menu' aria-labelledby='dLabe'
-									style='text-align: center; min-width: 100px;'>
-									<li :id='letter.xsjsglxt_introduce_letter_id'
-										onclick='exportLetter(this)' class='pageOperation'><a>导出</a></li>
+						<td>
+									<button :id='letter.xsjsglxt_introduce_letter_id'
+										onclick='exportLetter(this)'  class="btn btn-info"><i class='fa fa-print'></i>导出</button>
 									<template v-if="letter_admin_power">
-									<li class="managerRole pageOperation letter_admin"
+									<button class="btn btn-default"
 										:id='letter.xsjsglxt_introduce_letter_id'
-										onclick='updateLetter(this)'><a>修改</a></li>
+										onclick='updateLetter(this)'><i class='fa fa-pencil-square-o'></i>修改</button>
 									</template>
 									<template
 										v-if="letter.introduce_approve_status=='未审批' && letter_admin_power">
-									<li class="managerRole pageOperation letter_admin"
+									<button class="btn btn-primary"
 										:id='letter.xsjsglxt_introduce_letter_id'
-										onclick='approveLetter(this)'><a>审批</a></li>
+										onclick='approveLetter(this)'><i class="fa fa-dot-circle-o"></i>审批</button>
 									</template>
 									<template
 										v-if="letter.introduce_approve_status=='已审批' && letter_admin_power">
-									<li class="managerRole pageOperation letter_admin"
+									<button class="btn btn-primary"
 										:id='letter.xsjsglxt_introduce_letter_id'
-										onclick='showApproveStup(this)'><a>查看审批存根</a></li>
+										onclick='showApproveStup(this)'><i class="fa fa-table"></i>查看审批存根</button>
 									</template>
-								</ul>
-							</div></td>
+								</td>
 					</tr>
 					</template>
 				</table>

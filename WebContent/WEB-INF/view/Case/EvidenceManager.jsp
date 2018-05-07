@@ -33,25 +33,25 @@ table tbody tr td {
 
 table tr th {
 	word-break: break-all; /* 设置自动换行切不挤压其他td */
+	height:30px;
+	border: 1px solid #ddd;
 }
 
 table tr td {
 	word-break: break-all; /* 设置自动换行切不挤压其他td */
 	height:30px;
+	border: 1px solid #ddd;
 }
 
 .tdWidth {
 	width: 100px;
 }
 .tableBoss{
-	background-color: #0aa6d6;
 
 }
 .tableHead{
-	background-color: #21c7f9;
 }
 .tableBody{
-	background-color: #67d7f9;
 }
 </style>
 <script type="text/javascript"

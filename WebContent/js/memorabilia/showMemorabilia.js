@@ -109,25 +109,22 @@ var loadData = function() {
 
 	};
 
-	$
-			.ajax({
-				url : "/xsjsglxt/user/Memorabilia_getMemorabiliaList",
-				type : "post",
-				data : memorabiliaVOTemp,
-				success : function(data) {
-					var jsonData = JSON.parse(data);
-					allInformation.currPage = jsonData.currPage;
-					allInformation.pageCount = jsonData.pageCount;
-					allInformation.memorabiliaList = jsonData.memorabiliaListDTO;
-					memorabilia.currPage = jsonData.currPage;
-					memorabilia.pageCount = jsonData.pageCount;
-					memorabilia.pageSize = jsonData.pageSize;
-					memorabilia.totalCount = jsonData.totalCount;
-					$("#loadingLayer").hide();
-					$("#allInformation").show();
-					deleteByPower('user_army_manager_power', 'userRole',
-							'managerRole');
-				}
-			});
+	$.ajax({
+		url : "/xsjsglxt/user/Memorabilia_getMemorabiliaList",
+		type : "post",
+		data : memorabiliaVOTemp,
+		success : function(data) {
+			var jsonData = JSON.parse(data);
+			allInformation.currPage = jsonData.currPage;
+			allInformation.pageCount = jsonData.pageCount;
+			allInformation.memorabiliaList = jsonData.memorabiliaListDTO;
+			memorabilia.currPage = jsonData.currPage;
+			memorabilia.pageCount = jsonData.pageCount;
+			memorabilia.pageSize = jsonData.pageSize;
+			memorabilia.totalCount = jsonData.totalCount;
+			$("#loadingLayer").hide();
+			$("#allInformation").show();
+		}
+	});
 
 }

@@ -6,7 +6,6 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.xsjsglxt.dao.Case.ResevidenceDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
@@ -166,7 +165,7 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 		Query query = session.createQuery(hql);
 
 		resevidence = (xsjsglxt_resevidence) query.uniqueResult();
-
+		session.clear();
 		return resevidence;
 	}
 

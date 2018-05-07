@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2018-5-5 1:37:42 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2018-5-7 21:15:01 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="com.xsjsglxt.domain.DO.xsjsglxt_breakecase" table="XSJSGLXT_BREAKECASE">
         <id name="xsjsglxt_breakecase_id" type="java.lang.String">
@@ -13,9 +13,6 @@
         </property>
         <property name="breakecase_case" type="java.lang.String">
             <column name="BREAKECASE_CASE" />
-        </property>
-        <property name="breakecase_case_id" type="java.lang.String">
-            <column name="BREAKECASE_CASE_ID" />
         </property>
         <property name="breakecase_according" type="java.lang.String">
             <column name="BREAKECASE_ACCORDING" />

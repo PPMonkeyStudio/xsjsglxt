@@ -83,27 +83,20 @@ tbody tr:hover {
 					<tbody>
 						<tr v-for="memorabilia in memorabiliaList"
 							:id='memorabilia.memorabilia_id'
-							onclick='updateMeetingRecords(this)'>
+							onclick='previewMemorabilia(this)'>
 							<td>{{ memorabilia.memorabilia_time }}</td>
 							<td><span v-html="memorabilia.memorabilia_title"></span></td>
 							<td><span v-html="memorabilia.memorabilia_join_human"></span></td>
-							<td><div class='dropdown'>
-									<i
-										class='dropdown-toggle fa fa-angle-double-down pageOperation'
-										data-toggle='dropdown' aria-hidden='true' aria-haspopup='true'
-										aria-expanded='false'></i>
-									<ul class='dropdown-menu' aria-labelledby='dLabe'
-										style='text-align: center; min-width: 100px;'>
-										<li :id='memorabilia.memorabilia_id'
-											onclick='exportMemorabiliaWord(this)' class='pageOperation'><a>导出</a></li>
-										<li class="managerRole pageOperation"
-											:id='memorabilia.memorabilia_id'
-											onclick='updateMeetingRecords(this)'><a>修改</a></li>
-										<li class="managerRole pageOperation"
-											:id='memorabilia.memorabilia_id'
-											onclick='deleteMeetingRecords(this)'><a>删除</a></li>
-									</ul>
-								</div></td>
+							<td>
+								<button class="btn btn-info" :id='memorabilia.memorabilia_id'
+									onclick='exportMemorabiliaWord(this)' class='pageOperation'><i class='fa fa-print'></i>导出</button>
+								<button class="btn btn-default managerRole pageOperation"
+									:id='memorabilia.memorabilia_id'
+									onclick='updateMeetingRecords(this)'><i class='fa fa-pencil-square-o'></i>修改</button>
+								<button class="btn btn-danger managerRole pageOperation"
+									:id='memorabilia.memorabilia_id'
+									onclick='deleteMeetingRecords(this)'><i class='fa fa-trash-o'></i>删除</button>
+							</td>
 						</tr>
 					</tbody>
 				</table>

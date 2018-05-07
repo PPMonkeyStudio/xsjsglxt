@@ -60,8 +60,8 @@ public class DNADaoImpl implements DNADao {
 	public int getFeild() {
 		Session session = getSession();
 		String year = TeamUtil.getCurrentYear();
-		String hql = "select right(dna_num,4) FROM xsjsglxt_dna where LEFT(dna_gmt_create,4) ='" + year
-				+ "'  ORDER BY right(dna_num,4) desc limit 1";
+		String hql = "select right(dna_num,6) FROM xsjsglxt_dna where LEFT(dna_gmt_create,4) ='" + year
+				+ "'  ORDER BY right(dna_num,6) desc limit 1";
 		/**
 		 * 这里要记得使用 createSQLQuery 可能hql并不支持这种用法
 		 */
