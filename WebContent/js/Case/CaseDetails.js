@@ -195,7 +195,8 @@ $(function() {
 			var evidence_data = $.extend({}, $('#evidence form').serializeObject(), {
 				"case1.xsjsglxt_case_id" : case1_id,
 				"resevidence.resevidence_teststate" : "未检验",
-				"resevidence.resevidence_sendstate" : "未送检"
+				"resevidence.resevidence_sendstate" : "未送检",
+				"resevidence.resevidence_image" : "无",
 			});
 			//手动更改提取人
 			evidence_data["resevidence.resevidence_extractPerson"] = $('select[name="resevidence.resevidence_extractPerson"]').val().join();
@@ -416,7 +417,8 @@ $(function() {
 				$('#evidence .modify_evidence').unbind().click(function() {
 					var data_ = $.extend({}, $('#evidence form').serializeObject(), {
 						"resevidence.xsjsglxt_resevidence_id" : ID,
-						"resevidence.resevidence_case" : case1_id
+						"resevidence.resevidence_case" : case1_id,
+						"resevidence.resevidence_image" : "无",
 					});
 					$('#evidence').modal('hide');
 					mdPost('/xsjsglxt/case/Resevidence_updateResevidenceInformation', data_, 'evidence');

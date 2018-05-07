@@ -76,7 +76,8 @@ function addSneceInfo() {
 			var evidence_data = $.extend({}, $('#evidence form').serializeObject(), {
 				//"case1.xsjsglxt_case_id" : case1_id,
 				"resevidence.resevidence_teststate" : "未检验",
-				"resevidence.resevidence_sendstate" : "未送检"
+				"resevidence.resevidence_sendstate" : "未送检",
+				"resevidence.resevidence_image" : "无",
 			});
 			$('#evidence').modal('hide');
 			Case_Snece_lost.evidencelist.push(evidence_data);

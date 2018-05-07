@@ -38,7 +38,7 @@ i {
 			<div class="panel-heading">
 				<h3 class="panel-title">案件详情信息</h3>
 			</div>
-			<div class="panel-body">
+			<div class="panel-body" style="width: 1400px;">
 				<div class="operation" style="margin-bottom: 6px;">
 					<button onclick="back();" type="button"
 						class="btn btn-default button button_return">
@@ -60,21 +60,8 @@ i {
 							<td><input name="sence.snece_inquestId" class="form-control"
 								type="text"></td>
 							<td style="padding-left:5px;">勘验系统编号</td>
-							<td style="width: 100px;"><input
+							<td style="width: 200px;"><input
 								name="sence.snece_inquestSystemId" class="form-control"
-								type="text"></td>
-							<td>案件分类</td>
-							<td><select name="case1.case_classify" class=" form-control">
-									<option value=""></option>
-									<option value="非刑事案件">非刑事案件</option>
-									<option value="刑事案件">刑事案件</option>
-									<option value="非正常死亡">非正常死亡</option>
-							</select></td>
-						</tr>
-						<tr>
-							<td>接警时间</td>
-							<td><input name="case1.case_receivingAlarmDate"
-								class="form-control mydate_minute" style="margin-top: 6px;"
 								type="text"></td>
 							<td>危害程度</td>
 							<td><select name="case1.case_extentOfInjury"
@@ -83,6 +70,19 @@ i {
 									<option>一般</option>
 									<option>重大</option>
 									<option>特大</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td>接警时间</td>
+							<td><input name="case1.case_receivingAlarmDate"
+								class="form-control mydate_minute" style="margin-top: 6px;"
+								type="text"></td>
+							<td style="width: 100px;/*font-weight: bold;*/">案件分类</td>
+							<td><select name="case1.case_classify" class=" form-control">
+									<option value=""></option>
+									<option value="非刑事案件">非刑事案件</option>
+									<option value="刑事案件">刑事案件</option>
+									<option value="非正常死亡">非正常死亡</option>
 							</select></td>
 							<td>是否立案</td>
 							<td><label style="float: left;" class="fancy-radio">
