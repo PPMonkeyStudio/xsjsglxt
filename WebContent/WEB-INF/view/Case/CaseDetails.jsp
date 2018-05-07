@@ -63,13 +63,12 @@ i {
 							<td style="width: 200px;"><input
 								name="sence.snece_inquestSystemId" class="form-control"
 								type="text"></td>
-							<td>危害程度</td>
-							<td><select name="case1.case_extentOfInjury"
-								class="form-control" style="margin-top: 6px;">
+							<td style="width: 100px;/*font-weight: bold;*/">案件分类</td>
+							<td><select name="case1.case_classify" class=" form-control">
 									<option value=""></option>
-									<option>一般</option>
-									<option>重大</option>
-									<option>特大</option>
+									<option value="非刑事案件">非刑事案件</option>
+									<option value="刑事案件">刑事案件</option>
+									<option value="非正常死亡">非正常死亡</option>
 							</select></td>
 						</tr>
 						<tr>
@@ -77,12 +76,13 @@ i {
 							<td><input name="case1.case_receivingAlarmDate"
 								class="form-control mydate_minute" style="margin-top: 6px;"
 								type="text"></td>
-							<td style="width: 100px;/*font-weight: bold;*/">案件分类</td>
-							<td><select name="case1.case_classify" class=" form-control">
+							<td style="/*font-weight: bold;*/">危害程度</td>
+							<td><select name="case1.case_extentOfInjury"
+								class="form-control" style="margin-top: 6px;">
 									<option value=""></option>
-									<option value="非刑事案件">非刑事案件</option>
-									<option value="刑事案件">刑事案件</option>
-									<option value="非正常死亡">非正常死亡</option>
+									<option>一般</option>
+									<option>重大</option>
+									<option>特大</option>
 							</select></td>
 							<td>是否立案</td>
 							<td><label style="float: left;" class="fancy-radio">
@@ -100,9 +100,9 @@ i {
 							<td colspan="2"><input name="case1.case_address"
 								style="margin-top: 6px;" class="case_place form-control"
 								type="text" value="萍乡市安源区"></td>
-							<td>案件类别</td>
-							<td><select
-								style="width: 120px; float: left; margin-top: 6px;"
+							<td style="width: 90px;">案件类别</td>
+							<td style="width: 160px;"><select
+								style="width: 160px; float: left; margin-top: 6px;"
 								name="case1.case_totalCategory" name="case_class1"
 								onchange="setSectionCase(this.selectedIndex)"
 								class="main_case form-control"><option>请选择案件总类别</option>
