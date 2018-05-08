@@ -438,9 +438,9 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		fileName = inspectionIdentificationService.exportIdentifiederCaseConfirmBookName(
 				identifiederCaseConfirmBook.getXsjsglxt_identifieder_case_confirm_book_id());
 		if (fileName != null) {
-			fileName = new String(("受理回执单：" + fileName + ".docx").getBytes("GBK"), "ISO-8859-1");
+			fileName = new String(("受理回执单：" + fileName + ".doc").getBytes("GBK"), "ISO-8859-1");
 		} else {
-			fileName = new String(("受理回执单：" + ".docx").getBytes("GBK"), "ISO-8859-1");
+			fileName = new String(("受理回执单：" + ".doc").getBytes("GBK"), "ISO-8859-1");
 		}
 		inputStream = new FileInputStream(exportAcceptanceReturnReceiptFile);
 		exportAcceptanceReturnReceiptFile.delete();

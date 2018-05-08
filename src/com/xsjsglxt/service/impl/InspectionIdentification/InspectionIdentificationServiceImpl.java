@@ -1,5 +1,6 @@
 package com.xsjsglxt.service.impl.InspectionIdentification;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -7,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,6 +40,8 @@ import com.xsjsglxt.domain.DTO.InspectionIdentification.EntrustmentBookManagemen
 import com.xsjsglxt.domain.VO.InspectionIdentification.EntrustmentBookManagementVO;
 import com.xsjsglxt.service.InspectionIdentification.InspectionIdentificationService;
 
+import freemarker.template.Configuration;
+import freemarker.template.Template;
 import util.TeamUtil;
 import util.XwpfTUtil;
 
@@ -945,7 +949,15 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			e.printStackTrace();
 		}
 		params.putAll(mapAcceptanceIdentifieder(id));
-		XwpfTUtil xwpfTUtil = new XwpfTUtil();
+		Configuration configuration = new Configuration();
+		configuration.setDefaultEncoding("utf-8");
+		// 设置默认的编码方式，将数据以utf-8的方式进行编码
+		configuration.setClassForTemplateLoading(this.getClass(), "");
+		Template t = configuration.getTemplate("xsjsglxt_acceptance_return_receipt.ftl", "utf-8");
+		OutputStream os = new FileOutputStream(lj + "kokokoko.doc");
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
+		t.process(params, bw);
+/*		XwpfTUtil xwpfTUtil = new XwpfTUtil();
 		XWPFDocument doc;
 		String fileNameInResource = ServletActionContext.getServletContext()
 				.getRealPath("/DocTem/xsjsglxt_acceptance_return_receipt.docx");
@@ -960,7 +972,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		xwpfTUtil.close(is);
 		os.flush();
 		os.close();
-		return new File(lj + "kokokoko.docx");
+*/		return new File(lj + "kokokoko.doc");
 
 	}
 
@@ -2017,100 +2029,100 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim()
 								.length() > 0) {
-					params.put("${h1}",
+					params.put("h1",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim()
 									+ "记录");
-					params.put("${h5}",
+					params.put("h5",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim());
 				} else {
-					params.put("${h1}", "");
-					params.put("${h5}", "");
+					params.put("h1", "");
+					params.put("h5", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation().trim()
 								.length() > 0) {
-					params.put("${h2}",
+					params.put("h2",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation().trim());
 				} else {
-					params.put("${h2}", "");
+					params.put("h2", "");
 				}
 			}
 			if (xsjsglxt_inspection_record.getInspection_check_material_situation() != null
 					&& xsjsglxt_inspection_record.getInspection_check_material_situation().trim().length() > 0) {
-				params.put("${h3}", xsjsglxt_inspection_record.getInspection_check_material_situation().trim());
+				params.put("h3", xsjsglxt_inspection_record.getInspection_check_material_situation().trim());
 			} else {
-				params.put("${h3}", "");
+				params.put("h3", "");
 			}
 			if (xsjsglxt_inspection_record.getInspection_sample_situation() != null
 					&& xsjsglxt_inspection_record.getInspection_sample_situation().trim().length() > 0) {
-				params.put("${h4}", xsjsglxt_inspection_record.getInspection_sample_situation().trim());
+				params.put("h4", xsjsglxt_inspection_record.getInspection_sample_situation().trim());
 			} else {
-				params.put("${h4}", "");
+				params.put("h4", "");
 			}
 			if (xsjsglxt_inspection_record.getInspection_equipment() != null
 					&& xsjsglxt_inspection_record.getInspection_equipment().trim().length() > 0) {
-				params.put("${h6}", xsjsglxt_inspection_record.getInspection_equipment().trim());
+				params.put("h6", xsjsglxt_inspection_record.getInspection_equipment().trim());
 			} else {
-				params.put("${h6}", "");
+				params.put("h6", "");
 			}
 			if (xsjsglxt_inspection_record.getInspection_method() != null
 					&& xsjsglxt_inspection_record.getInspection_method().trim().length() > 0) {
-				params.put("${h7}", xsjsglxt_inspection_record.getInspection_method().trim());
+				params.put("h7", xsjsglxt_inspection_record.getInspection_method().trim());
 			} else {
-				params.put("${h7}", "");
+				params.put("h7", "");
 			}
 			if (xsjsglxt_inspection_record.getInspection_location() != null
 					&& xsjsglxt_inspection_record.getInspection_location().trim().length() > 0) {
-				params.put("${h14}", xsjsglxt_inspection_record.getInspection_location().trim());
+				params.put("h14", xsjsglxt_inspection_record.getInspection_location().trim());
 			} else {
-				params.put("${h14}", "");
+				params.put("h14", "");
 			}
 			if (xsjsglxt_inspection_record.getInspection_people() != null
 					&& xsjsglxt_inspection_record.getInspection_people().trim().length() > 0) {
-				params.put("${h15}", xsjsglxt_inspection_record.getInspection_people().trim());
+				params.put("h15", xsjsglxt_inspection_record.getInspection_people().trim());
 			} else {
-				params.put("${h15}", "");
+				params.put("h15", "");
 			}
 			if (xsjsglxt_inspection_record.getInspection_process() != null
 					&& xsjsglxt_inspection_record.getInspection_process().trim().length() > 0) {
-				params.put("${h16}", xsjsglxt_inspection_record.getInspection_process().trim());
+				params.put("h16", xsjsglxt_inspection_record.getInspection_process().trim());
 			} else {
-				params.put("${h16}", "");
+				params.put("h16", "");
 			}
 			if (xsjsglxt_inspection_record.getInspection_option() != null
 					&& xsjsglxt_inspection_record.getInspection_option().trim().length() > 0) {
-				params.put("${h17}", xsjsglxt_inspection_record.getInspection_option().trim());
+				params.put("h17", xsjsglxt_inspection_record.getInspection_option().trim());
 			} else {
-				params.put("${h17}", "");
+				params.put("h17", "");
 			}
 			if (xsjsglxt_inspection_record.getInspection_mark() != null
 					&& xsjsglxt_inspection_record.getInspection_mark().trim().length() > 0) {
-				params.put("${h18}", xsjsglxt_inspection_record.getInspection_mark().trim());
+				params.put("h18", xsjsglxt_inspection_record.getInspection_mark().trim());
 			} else {
-				params.put("${h18}", "");
+				params.put("h18", "");
 			}
 
 			// 检验开始时间
 			if (xsjsglxt_inspection_record.getInspection_start_time() != null
 					&& xsjsglxt_inspection_record.getInspection_start_time().trim().length() > 0) {
-				params.put("${h8}", TeamUtil.timeToYear(xsjsglxt_inspection_record.getInspection_start_time().trim()));
-				params.put("${h9}", TeamUtil.timeToMonth(xsjsglxt_inspection_record.getInspection_start_time().trim()));
-				params.put("${h10}", TeamUtil.timeToDay(xsjsglxt_inspection_record.getInspection_start_time().trim()));
+				params.put("h8", TeamUtil.timeToYear(xsjsglxt_inspection_record.getInspection_start_time().trim()));
+				params.put("h9", TeamUtil.timeToMonth(xsjsglxt_inspection_record.getInspection_start_time().trim()));
+				params.put("h10", TeamUtil.timeToDay(xsjsglxt_inspection_record.getInspection_start_time().trim()));
 			} else {
-				params.put("${h8}", "");
-				params.put("${h9}", "");
-				params.put("${h10}", "");
+				params.put("h8", "");
+				params.put("h9", "");
+				params.put("h10", "");
 			}
 			// 检验结束时间
 			if (xsjsglxt_inspection_record.getInspection_stop_time() != null
 					&& xsjsglxt_inspection_record.getInspection_stop_time().trim().length() > 0) {
-				params.put("${h11}", TeamUtil.timeToYear(xsjsglxt_inspection_record.getInspection_stop_time().trim()));
-				params.put("${h12}", TeamUtil.timeToMonth(xsjsglxt_inspection_record.getInspection_stop_time().trim()));
-				params.put("${h13}", TeamUtil.timeToDay(xsjsglxt_inspection_record.getInspection_stop_time().trim()));
+				params.put("h11", TeamUtil.timeToYear(xsjsglxt_inspection_record.getInspection_stop_time().trim()));
+				params.put("h12", TeamUtil.timeToMonth(xsjsglxt_inspection_record.getInspection_stop_time().trim()));
+				params.put("h13", TeamUtil.timeToDay(xsjsglxt_inspection_record.getInspection_stop_time().trim()));
 			} else {
-				params.put("${h11}", "");
-				params.put("${h12}", "");
-				params.put("${h13}", "");
+				params.put("h11", "");
+				params.put("h12", "");
+				params.put("h13", "");
 			}
 		}
 		return params;
@@ -2137,10 +2149,10 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim()
 								.length() > 0) {
-					params.put("${n1}",
+					params.put("n1",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
 				} else {
-					params.put("${n1}", "");
+					params.put("n1", "");
 				}
 				// 送检人
 				String temp1 = "";
@@ -2155,7 +2167,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 								.length() > 0) {
 					temp2 = temp2 + xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name().trim();
 				}
-				params.put("${n2}", temp1 + "  " + temp2);
+				params.put("n2", temp1 + "  " + temp2);
 				// 送检人编号
 				String tmp1 = "";
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_jobcard_number() != null
@@ -2171,74 +2183,74 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 					tmp2 = tmp2 + xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_jobcard_number()
 							.trim();
 				}
-				params.put("${n3}", "工作证：" + tmp1 + "  " + tmp2);
+				params.put("n3", "工作证：" + tmp1 + "  " + tmp2);
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim().length() > 0) {
-					params.put("${n4}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim());
+					params.put("n4", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim());
 				} else {
-					params.put("${n4}", "");
+					params.put("n4", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num().trim().length() > 0) {
-					params.put("${n5}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num().trim());
+					params.put("n5", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num().trim());
 				} else {
-					params.put("${n5}", "");
+					params.put("n5", "");
 				}
 				//
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim().length() > 0) {
-					params.put("${n14}", "[ "
+					params.put("n14", "[ "
 							+ (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4)
 							+ " ]");
-					params.put("${n15}",
+					params.put("n15",
 							(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4));
 				} else {
-					params.put("${n14}", "");
-					params.put("${n15}", "");
+					params.put("n14", "");
+					params.put("n15", "");
 				}
 			}
 			if (xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_reason() != null
 					&& xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_reason().trim()
 							.length() > 0) {
-				params.put("${n6}",
+				params.put("n6",
 						xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_reason().trim()
 								+ "，故不予受理。");
 			} else {
-				params.put("${n6}", "");
+				params.put("n6", "");
 			}
 			if (xsjsglxt_not_acceptance_entrustment_inform
 					.getNot_acceptance_entrustment_inform_inputhuman_name() != null
 					&& xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_inputhuman_name()
 							.trim().length() > 0) {
-				params.put("${n7}", xsjsglxt_not_acceptance_entrustment_inform
+				params.put("n7", xsjsglxt_not_acceptance_entrustment_inform
 						.getNot_acceptance_entrustment_inform_inputhuman_name().trim());
 			} else {
-				params.put("${n7}", "");
+				params.put("n7", "");
 			}
 			if (xsjsglxt_not_acceptance_entrustment_inform
 					.getNot_acceptance_entrustment_inform_approvalhuman_name() != null
 					&& xsjsglxt_not_acceptance_entrustment_inform
 							.getNot_acceptance_entrustment_inform_approvalhuman_name().trim().length() > 0) {
-				params.put("${n8}", xsjsglxt_not_acceptance_entrustment_inform
+				params.put("n8", xsjsglxt_not_acceptance_entrustment_inform
 						.getNot_acceptance_entrustment_inform_approvalhuman_name().trim());
 			} else {
-				params.put("${n8}", "");
+				params.put("n8", "");
 			}
 			if (xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_approval_time() != null
 					&& xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_approval_time()
 							.trim().length() > 0) {
-				params.put("${n9}", xsjsglxt_not_acceptance_entrustment_inform
+				params.put("n9", xsjsglxt_not_acceptance_entrustment_inform
 						.getNot_acceptance_entrustment_inform_approval_time().trim());
 			} else {
-				params.put("${n9}", "");
+				params.put("n9", "");
 			}
 			if (xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_reason() != null
 					&& xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_reason().trim()
 							.length() > 0) {
-				params.put("${n12}", xsjsglxt_not_acceptance_entrustment_inform
+				params.put("n12", xsjsglxt_not_acceptance_entrustment_inform
 						.getNot_acceptance_entrustment_inform_reason().trim());
 			} else {
-				params.put("${n12}", "");
+				params.put("n12", "");
 			}
 		}
 		return params;
@@ -2267,34 +2279,34 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim()
 								.length() > 0) {
-					params.put("${a1}", TeamUtil.timeToYear(
+					params.put("a1", TeamUtil.timeToYear(
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim()));
 				} else {
-					params.put("${a1}", "");
+					params.put("a1", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim()
 								.length() > 0) {
-					params.put("${a2}", TeamUtil.timeToMonth(
+					params.put("a2", TeamUtil.timeToMonth(
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim()));
 				} else {
-					params.put("${a2}", "");
+					params.put("a2", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim()
 								.length() > 0) {
-					params.put("${a3}", TeamUtil.timeToDay(
+					params.put("a3", TeamUtil.timeToDay(
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim()));
 				} else {
-					params.put("${a3}", "");
+					params.put("a3", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim()
 								.length() > 0) {
-					params.put("${a4}",
+					params.put("a4",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
 				} else {
-					params.put("${a4}", "");
+					params.put("a4", "");
 				}
 				String temp1 = "";
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name() != null
@@ -2308,68 +2320,68 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 								.length() > 0) {
 					temp2 = temp2 + xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name().trim();
 				}
-				params.put("${a5}", temp1 + "  " + temp2);
+				params.put("a5", temp1 + "  " + temp2);
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim().length() > 0) {
-					params.put("${a6}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim());
-					params.put("${a7}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim());
+					params.put("a6", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim());
+					params.put("a7", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim());
 				} else {
-					params.put("${a6}", "");
-					params.put("${a7}", "");
+					params.put("a6", "");
+					params.put("a7", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim().length() > 0) {
-					params.put("${a8}",
+					params.put("a8",
 							(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4));
-					params.put("${a9}",
+					params.put("a9",
 							(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4));
 				} else {
-					params.put("${a8}", "");
-					params.put("${a9}", "");
+					params.put("a8", "");
+					params.put("a9", "");
 				}
 			}
 			if (xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_num() != null
 					&& xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_num().trim()
 							.length() > 0) {
-				params.put("${a10}", (xsjsglxt_identifieder_case_confirm_book
+				params.put("a10", (xsjsglxt_identifieder_case_confirm_book
 						.getIdentifieder_case_confirm_book_acceptance_num().trim()).substring(0, 4));
-				params.put("${a11}", (xsjsglxt_identifieder_case_confirm_book
+				params.put("a11", (xsjsglxt_identifieder_case_confirm_book
 						.getIdentifieder_case_confirm_book_acceptance_num().trim()).substring(4));
 			} else {
-				params.put("${a10}", "");
-				params.put("${a11}", "");
+				params.put("a10", "");
+				params.put("a11", "");
 			}
 			if (xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_major() != null
 					&& xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_major()
 							.trim().length() > 0) {
-				params.put("${a12}", xsjsglxt_identifieder_case_confirm_book
+				params.put("a12", xsjsglxt_identifieder_case_confirm_book
 						.getIdentifieder_case_confirm_book_acceptance_major().trim());
 			} else {
-				params.put("${a12}", "");
+				params.put("a12", "");
 			}
 			if (xsjsglxt_identifieder_case_confirm_book
 					.getIdentifieder_case_confirm_book_acceptance_human_name() != null
 					&& xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_human_name()
 							.trim().length() > 0) {
-				params.put("${a13}", xsjsglxt_identifieder_case_confirm_book
+				params.put("a13", xsjsglxt_identifieder_case_confirm_book
 						.getIdentifieder_case_confirm_book_acceptance_human_name().trim());
 			} else {
-				params.put("${a13}", "");
+				params.put("a13", "");
 			}
 			// 这个领取日期似乎不是那么好确定
 			if (xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_receive_data() != null
 					&& xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_receive_data().trim()
 							.length() > 0) {
-				params.put("${a14}", TeamUtil.timeToYear(xsjsglxt_identifieder_case_confirm_book
+				params.put("a14", TeamUtil.timeToYear(xsjsglxt_identifieder_case_confirm_book
 						.getIdentifieder_case_confirm_book_receive_data().trim()));
-				params.put("${a15}", TeamUtil.timeToMonth(xsjsglxt_identifieder_case_confirm_book
+				params.put("a15", TeamUtil.timeToMonth(xsjsglxt_identifieder_case_confirm_book
 						.getIdentifieder_case_confirm_book_receive_data().trim()));
-				params.put("${a16}", TeamUtil.timeToDay(xsjsglxt_identifieder_case_confirm_book
+				params.put("a16", TeamUtil.timeToDay(xsjsglxt_identifieder_case_confirm_book
 						.getIdentifieder_case_confirm_book_receive_data().trim()));
 			} else {
-				params.put("${a14}", "");
-				params.put("${a15}", "");
-				params.put("${a16}", "");
+				params.put("a14", "");
+				params.put("a15", "");
+				params.put("a16", "");
 			}
 		}
 		return params;
@@ -2391,217 +2403,217 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 								.getIdentifieder_case_confirm_book_belong_entrustment_book().trim());
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim().length() > 0) {
-					params.put("${q1}", "["
+					params.put("q1", "["
 							+ (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4)
 							+ "]");
-					params.put("${q2}",
+					params.put("q2",
 							(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4));
 				} else {
-					params.put("${q1}", "");
-					params.put("${q2}", "");
+					params.put("q1", "");
+					params.put("q2", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit_name() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit_name().trim()
 								.length() > 0) {
-					params.put("${q3}",
+					params.put("q3",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit_name().trim());
 				} else {
-					params.put("${q3}", "");
+					params.put("q3", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim()
 								.length() > 0) {
-					params.put("${q4}",
+					params.put("q4",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
 				} else {
-					params.put("${q4}", "");
+					params.put("q4", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim().length() > 0) {
-					params.put("${q5}",
+					params.put("q5",
 							(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4));
-					params.put("${q6}",
+					params.put("q6",
 							(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4));
 				} else {
-					params.put("${q5}", "");
-					params.put("${q6}", "");
+					params.put("q5", "");
+					params.put("q6", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name().trim()
 								.length() > 0) {
-					params.put("${q7}",
+					params.put("q7",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name().trim());
 				} else {
-					params.put("${q7}", "");
+					params.put("q7", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name().trim()
 								.length() > 0) {
-					params.put("${q10}",
+					params.put("q10",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name().trim());
 				} else {
-					params.put("${q10}", "");
+					params.put("q10", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_duty() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_duty().trim()
 								.length() > 0) {
-					params.put("${q8}",
+					params.put("q8",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_duty().trim());
 				} else {
-					params.put("${q8}", "");
+					params.put("q8", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_duty() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_duty().trim()
 								.length() > 0) {
-					params.put("${q11}",
+					params.put("q11",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_duty().trim());
 				} else {
-					params.put("${q11}", "");
+					params.put("q11", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_jobcard_number() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_jobcard_number().trim()
 								.length() > 0) {
-					params.put("${q9}", xsjsglxt_check_entrustment_book
+					params.put("q9", xsjsglxt_check_entrustment_book
 							.getCheck_entrustment_book_inspectors1_jobcard_number().trim());
 				} else {
-					params.put("${q9}", "");
+					params.put("q9", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_jobcard_number() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_jobcard_number().trim()
 								.length() > 0) {
-					params.put("${q12}", xsjsglxt_check_entrustment_book
+					params.put("q12", xsjsglxt_check_entrustment_book
 							.getCheck_entrustment_book_inspectors2_jobcard_number().trim());
 				} else {
-					params.put("${q12}", "");
+					params.put("q12", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_communication_address() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_communication_address().trim()
 								.length() > 0) {
-					params.put("${q13}",
+					params.put("q13",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_communication_address().trim());
 				} else {
-					params.put("${q13}", "");
+					params.put("q13", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_zip_code() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_zip_code().trim().length() > 0) {
-					params.put("${q14}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_zip_code().trim());
+					params.put("q14", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_zip_code().trim());
 				} else {
-					params.put("${q14}", "");
+					params.put("q14", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_phone() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_phone().trim().length() > 0) {
-					params.put("${q15}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_phone().trim());
+					params.put("q15", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_phone().trim());
 				} else {
-					params.put("${q15}", "");
+					params.put("q15", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_fax_num() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_fax_num().trim().length() > 0) {
-					params.put("${q16}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_fax_num().trim());
+					params.put("q16", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_fax_num().trim());
 				} else {
-					params.put("${q16}", "");
+					params.put("q16", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim().length() > 0) {
-					params.put("${q17}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim());
+					params.put("q17", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim());
 				} else {
-					params.put("${q17}", "");
+					params.put("q17", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num().trim().length() > 0) {
-					params.put("${q18}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num().trim());
+					params.put("q18", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num().trim());
 				} else {
-					params.put("${q18}", "");
+					params.put("q18", "");
 				}
 				if ("痕迹检验".equals(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_type())) {
-					params.put("${q19}", "/");
-					params.put("${q20}", "/");
-					params.put("${q21}", "/");
-					params.put("${q22}", "/");
-					params.put("${q23}", "/");
-					params.put("${q24}", "/");
+					params.put("q19", "/");
+					params.put("q20", "/");
+					params.put("q21", "/");
+					params.put("q22", "/");
+					params.put("q23", "/");
+					params.put("q24", "/");
 				} else {
 					if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name() != null
 							&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name().trim()
 									.length() > 0) {
-						params.put("${q19}",
+						params.put("q19",
 								xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name().trim());
 					} else {
-						params.put("${q19}", "");
+						params.put("q19", "");
 					}
 					if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_sex() != null
 							&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_sex().trim()
 									.length() > 0) {
-						params.put("${q20}",
+						params.put("q20",
 								xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_sex().trim());
 					} else {
-						params.put("${q20}", "");
+						params.put("q20", "");
 					}
 					if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_age() != null
 							&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_age().trim()
 									.length() > 0) {
-						params.put("${q21}",
+						params.put("q21",
 								xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_age().trim());
 					} else {
-						params.put("${q21}", "");
+						params.put("q21", "");
 					}
 					if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_phone() != null
 							&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_phone().trim()
 									.length() > 0) {
-						params.put("${q22}",
+						params.put("q22",
 								xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_phone().trim());
 					} else {
-						params.put("${q22}", "");
+						params.put("q22", "");
 					}
 					if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
 							&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim()
 									.length() > 0) {
-						params.put("${q23}",
+						params.put("q23",
 								xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
 					} else {
-						params.put("${q23}", "");
+						params.put("q23", "");
 					}
 					if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_address() != null
 							&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_address().trim()
 									.length() > 0) {
-						params.put("${q24}", xsjsglxt_check_entrustment_book
+						params.put("q24", xsjsglxt_check_entrustment_book
 								.getCheck_entrustment_book_entrustmentor_address().trim());
 					} else {
-						params.put("${q24}", "");
+						params.put("q24", "");
 					}
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation().trim()
 								.length() > 0) {
-					params.put("${q25}",
+					params.put("q25",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation().trim());
 				} else {
-					params.put("${q25}", "");
+					params.put("q25", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation().trim()
 								.length() > 0) {
-					params.put("${q26}",
+					params.put("q26",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation().trim());
 				} else {
-					params.put("${q26}", "");
+					params.put("q26", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim()
 								.length() > 0) {
-					params.put("${q27}",
+					params.put("q27",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim());
 				} else {
-					params.put("${q27}", "");
+					params.put("q27", "");
 				}
 			}
 			if (xsjsglxt_identifieder_case_confirm_book
 					.getIdentifieder_case_confirm_book_acceptance_human_name() != null
 					&& xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_human_name()
 							.trim().length() > 0) {
-				params.put("${q28}", xsjsglxt_identifieder_case_confirm_book
+				params.put("q28", xsjsglxt_identifieder_case_confirm_book
 						.getIdentifieder_case_confirm_book_acceptance_human_name().trim());
 			} else {
-				params.put("${q28}", "");
+				params.put("q28", "");
 			}
 		}
 		return params;
@@ -2616,219 +2628,219 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		if (xsjsglxt_check_entrustment_book != null) {
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim().length() > 0) {
-				params.put("${x1}",
+				params.put("x1",
 						"[" + (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4)
 								+ "]");
-				params.put("${x2}",
+				params.put("x2",
 						(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4));
 			} else {
-				params.put("${x1}", "");
-				params.put("${x2}", "");
+				params.put("x1", "");
+				params.put("x2", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim()
 							.length() > 0) {
-				params.put("${x3}",
+				params.put("x3",
 						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
 			} else {
-				params.put("${x3}", "");
+				params.put("x3", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim().length() > 0) {
-				params.put("${x4}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim());
+				params.put("x4", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim());
 			} else {
-				params.put("${x4}", "");
+				params.put("x4", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name().trim()
 							.length() > 0) {
-				params.put("${x5}",
+				params.put("x5",
 						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name().trim());
 			} else {
-				params.put("${x5}", "");
+				params.put("x5", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name().trim()
 							.length() > 0) {
-				params.put("${x8}",
+				params.put("x8",
 						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name().trim());
 			} else {
-				params.put("${x8}", "");
+				params.put("x8", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_duty() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_duty().trim()
 							.length() > 0) {
-				params.put("${x6}",
+				params.put("x6",
 						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_duty().trim());
 			} else {
-				params.put("${x6}", "");
+				params.put("x6", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_duty() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_duty().trim()
 							.length() > 0) {
-				params.put("${x9}",
+				params.put("x9",
 						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_duty().trim());
 			} else {
-				params.put("${x9}", "");
+				params.put("x9", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_jobcard_number() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_jobcard_number().trim()
 							.length() > 0) {
-				params.put("${x7}",
+				params.put("x7",
 						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_jobcard_number().trim());
 			} else {
-				params.put("${x7}", "");
+				params.put("x7", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_jobcard_number() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_jobcard_number().trim()
 							.length() > 0) {
-				params.put("${x10}",
+				params.put("x10",
 						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_jobcard_number().trim());
 			} else {
-				params.put("${x10}", "");
+				params.put("x10", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_communication_address() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_communication_address().trim()
 							.length() > 0) {
-				params.put("${x11}",
+				params.put("x11",
 						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_communication_address().trim());
 			} else {
-				params.put("${x11}", "");
+				params.put("x11", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_zip_code() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_zip_code().trim().length() > 0) {
-				params.put("${x12}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_zip_code().trim());
+				params.put("x12", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_zip_code().trim());
 			} else {
-				params.put("${x12}", "");
+				params.put("x12", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_phone() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_phone().trim().length() > 0) {
-				params.put("${x13}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_phone().trim());
+				params.put("x13", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_phone().trim());
 			} else {
-				params.put("${x13}", "");
+				params.put("x13", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_fax_num() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_fax_num().trim().length() > 0) {
-				params.put("${x14}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_fax_num().trim());
+				params.put("x14", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_fax_num().trim());
 			} else {
-				params.put("${x14}", "");
+				params.put("x14", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit_name() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit_name().trim()
 							.length() > 0) {
-				params.put("${x15}",
+				params.put("x15",
 						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit_name().trim());
 			} else {
-				params.put("${x15}", "");
+				params.put("x15", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim().length() > 0) {
-				params.put("${x16}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim());
+				params.put("x16", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim());
 			} else {
-				params.put("${x16}", "");
+				params.put("x16", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num().trim().length() > 0) {
-				params.put("${x17}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num().trim());
+				params.put("x17", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num().trim());
 			} else {
-				params.put("${x17}", "");
+				params.put("x17", "");
 			}
 			if ("痕迹检验".equals(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_type())) {
-				params.put("${x18}", "/");
-				params.put("${x19}", "/");
-				params.put("${x20}", "/");
-				params.put("${x21}", "/");
-				params.put("${x22}", "/");
-				params.put("${x23}", "/");
+				params.put("x18", "/");
+				params.put("x19", "/");
+				params.put("x20", "/");
+				params.put("x21", "/");
+				params.put("x22", "/");
+				params.put("x23", "/");
 			} else {
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name().trim()
 								.length() > 0) {
-					params.put("${x18}",
+					params.put("x18",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name().trim());
 				} else {
-					params.put("${x18}", "");
+					params.put("x18", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_sex() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_sex().trim()
 								.length() > 0) {
-					params.put("${x19}",
+					params.put("x19",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_sex().trim());
 				} else {
-					params.put("${x19}", "");
+					params.put("x19", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_age() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_age().trim()
 								.length() > 0) {
-					params.put("${x20}",
+					params.put("x20",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_age().trim());
 				} else {
-					params.put("${x20}", "");
+					params.put("x20", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_phone() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_phone().trim()
 								.length() > 0) {
-					params.put("${x21}",
+					params.put("x21",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_phone().trim());
 				} else {
-					params.put("${x21}", "");
+					params.put("x21", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim()
 								.length() > 0) {
-					params.put("${x22}",
+					params.put("x22",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
 				} else {
-					params.put("${x22}", "");
+					params.put("x22", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_address() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_address().trim()
 								.length() > 0) {
-					params.put("${x23}",
+					params.put("x23",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_address().trim());
 				} else {
-					params.put("${x23}", "");
+					params.put("x23", "");
 				}
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation().trim()
 							.length() > 0) {
-				params.put("${x24}",
+				params.put("x24",
 						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation().trim());
 			} else {
-				params.put("${x24}", "");
+				params.put("x24", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_old_entrustment_situation() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_old_entrustment_situation().trim()
 							.length() > 0) {
-				params.put("${x25}",
+				params.put("x25",
 						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_old_entrustment_situation().trim());
 			} else {
-				params.put("${x25}", "");
+				params.put("x25", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation().trim()
 							.length() > 0) {
-				params.put("${x26}",
+				params.put("x26",
 						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation().trim());
 			} else {
-				params.put("${x26}", "");
+				params.put("x26", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim()
 							.length() > 0) {
-				params.put("${x27}",
+				params.put("x27",
 						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim());
 			} else {
-				params.put("${x27}", "");
+				params.put("x27", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_responsible_person() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_responsible_person().trim()
 							.length() > 0) {
-				params.put("${x28}",
+				params.put("x28",
 						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_responsible_person().trim());
 			} else {
-				params.put("${x28}", "");
+				params.put("x28", "");
 			}
 		}
 		return params;
