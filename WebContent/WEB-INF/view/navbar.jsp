@@ -98,13 +98,19 @@
 						<li><a
 							href="<%=basePath%>inspectionIdentific/EntrustmentBookManagement_EntrustmentBookManagement"><span>检验鉴定</span></a></li>
 						</template>
-						<li><a href="<%=basePath%>user/User_skipToTechnologyIndex">技术管理</a></li>
+						<li><a href="<%=basePath%>user/User_skipToTechnologyIndex">台账管理</a></li>
 					</ul></li>
 				<!--  -->
 				<template v-if="user_case_query_power">
-				<li class="dropdown" style="float: left;"><a
-					href="<%=basePath%>case/Case_page_Handle"> <span>侦查业务管理</span>
-				</a></li>
+				<li class="dropdown" style="float: left;"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown"><span>侦查业务管理</span>
+						<i class="icon-submenu lnr lnr-chevron-down"></i> </a>
+					<ul class="dropdown-menu">
+						<li style="float: left;"><a
+							href="<%=basePath%>case/Case_page_Handle">办案管理</a></li>
+						<li class="teacher_control"><a
+							href="<%=basePath%>case/Handle_into_introduce_page">介绍信</a></li>
+					</ul></li>
 				</template>
 				<!--  -->
 				<!--  -->
@@ -187,7 +193,8 @@
 				'user_technology_manager_power' : false,//技术
 				'user_statistics_power' : false, //统计
 				'user_user_manager_power' : false,
-				'user_check_power_modified': false
+				'user_check_power_modified' : false,
+				'user_letter_power' : false
 			}
 
 			var powerNavVue = new Vue({
@@ -200,7 +207,7 @@
 					.ajax({
 						url : '/xsjsglxt/user/User_judgePower',
 						type : 'POST',
-						async:false, 
+						async : false,
 						success : function(data) {
 							if (data == 'exception') {
 								$
@@ -225,20 +232,24 @@
 								} else {
 									userPowerDTO.user_case_technology_power = false;
 								}
-								if (result.user_case_query_power == 'jurisdiction_admin') {
-									userPowerDTO.user_case_query_power = true;
+								if (result.user_case_query_power == 'letter_admin') {
+									userPowerDTO.user_letter_power = true;
 								} else {
+									userPowerDTO.user_letter_power = false;
+								}
+								if (result.user_case_query_power == 'jurisdiction_none') {
 									userPowerDTO.user_case_query_power = false;
+								} else {
+									userPowerDTO.user_case_query_power = true;
 								}
 								if (result.user_check_power == 'jurisdiction_none') {
 									userPowerDTO.user_check_power = false;
 								} else {
 									userPowerDTO.user_check_power = true;
 								}
-								if(result.user_check_power == 'jurisdiction_use'){
+								if (result.user_check_power == 'jurisdiction_use') {
 									userPowerDTO.user_check_power_modified = false;
-								}
-								else{
+								} else {
 									userPowerDTO.user_check_power_modified = true;
 								}
 								if (result.user_army_manager_power == 'jurisdiction_admin') {
@@ -265,9 +276,9 @@
 							}
 						}
 					});
-			
+
 			jconfirm.defaults = {
-					smoothContent: false
+				smoothContent : false
 			}
 		</script>
 </body>

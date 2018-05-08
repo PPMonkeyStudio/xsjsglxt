@@ -1,6 +1,7 @@
 package com.xsjsglxt.dao.Team;
 
 import java.util.List;
+import java.util.Map;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_staff;
 import com.xsjsglxt.domain.DTO.Team.policemanListDTO;
@@ -28,4 +29,10 @@ public interface StaffDao {
 	List<xsjsglxt_staff> getMeetCompere();
 
 	List<xsjsglxt_staff> getMeetRecorder();
+
+	Map<String, List<xsjsglxt_staff>> getInquestPerson();
+
+	List<xsjsglxt_staff> getHandleCenter();
+
+	List<xsjsglxt_staff> getHandleCheck();
 }

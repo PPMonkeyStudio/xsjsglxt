@@ -30,7 +30,6 @@ public class ImageServiceImpl implements ImageService {
 	@Override
 	public void saveCD(xsjsglxt_image image) {
 		// TODO Auto-generated method stub
-		image.setXsjsglxt_image_id(TeamUtil.getUuid());
 		image.setImage_gmt_create(TeamUtil.getStringSecond());
 		image.setImage_gmt_modified(image.getImage_gmt_create());
 		imageDao.saveCD(image);
@@ -73,6 +72,36 @@ public class ImageServiceImpl implements ImageService {
 		String Picture_identifier = "Z" + time + num;
 		// System.out.println("SenceInformationInquestIdSenceInformationInquestIdSenceInformationInquestId"+SenceInformationInquestId);
 		return Picture_identifier;
+	}
+
+	@Override
+	public page_list_imageInformationVO VO_ImageInformation_By_Page(
+			page_list_imageInformationVO page_list_imageInformation) {
+		List<ImageInformationDTO> imageInformationDTOList = new ArrayList<ImageInformationDTO>();
+		ImageInformationDTO imageInformationDTO;
+		List<xsjsglxt_image> image = null;
+		// 筛选条件的记录数
+		int i = imageDao.getCountImageInformationByPage_image(page_list_imageInformation);
+		page_list_imageInformation.setTotalRecords(i);
+		page_list_imageInformation.setTotalPages(((i - 1) / page_list_imageInformation.getPageSize()) + 1);
+		if (page_list_imageInformation.getPageIndex() <= 1) {
+			page_list_imageInformation.setHavePrePage(false);
+		} else {
+			page_list_imageInformation.setHavePrePage(true);
+		}
+		if (page_list_imageInformation.getPageIndex() >= page_list_imageInformation.getTotalPages()) {
+			page_list_imageInformation.setHaveNextPage(false);
+		} else {
+			page_list_imageInformation.setHaveNextPage(true);
+		}
+		// 记录
+		image = imageDao.getListImageInformatioByPage_image(page_list_imageInformation);
+		for (xsjsglxt_image image0 : image) {
+			imageInformationDTO = new ImageInformationDTO(null, image0, null);
+			imageInformationDTOList.add(imageInformationDTO);
+		}
+		page_list_imageInformation.setImageInformationDTOList(imageInformationDTOList);
+		return page_list_imageInformation;
 	}
 
 	@Override

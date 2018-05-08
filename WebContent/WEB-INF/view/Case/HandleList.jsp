@@ -28,6 +28,7 @@
 .Handle_table_info tbody tr td {
 	text-align: center;
 	font-size: 14px;
+	cursor: pointer;
 }
 
 #Handle_input table {
@@ -41,6 +42,10 @@
 .tr_back {
 	background-color: silver;
 }
+
+.page_info span {
+	cursor: pointer;
+}
 </style>
 
 <body>
@@ -48,10 +53,10 @@
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
-		<div style="margin: 80px 0 0 0; float: left; width: 100%;">
-			<!---------------------------------------------------------------------------------------------------->
-			<!---------------------------------------------------------------------------------------------------->
-			<div class="panel" style="width: 95%; margin: 20px auto;">
+	<div style="margin: 80px 0 0 0; float: left; width: 100%;">
+		<!---------------------------------------------------------------------------------------------------->
+		<!---------------------------------------------------------------------------------------------------->
+		<div class="panel" style="width: 95%; margin: 20px auto;">
 			<!--  -->
 			<div class="panel-heading">
 				<h3 class="panel-title">办案管理</h3>
@@ -61,7 +66,7 @@
 					<button style="margin-left: 15px;" type="button"
 						class="btn btn-default" data-toggle="modal"
 						data-target="#Handle_query">
-						<i class="fa fa-plus-square"></i> 刑事破案查询
+						<i class="fa fa-plus-square"></i> 办案查询
 					</button>
 					<button data-toggle="modal" data-target="#Handle_input"
 						style="margin-left: 15px;" type="button" class="btn btn-default">
@@ -76,23 +81,22 @@
 					<!-- TABLE HOVER -->
 					<div class="panel">
 						<div class="panel-heading">
-							<h3 class="panel-title">破案列表</h3>
-							<p class="text-primary query_prompting_info">notding to
-								query.</p>
+							<h3 class="panel-title">办案列表</h3>
 						</div>
 						<div class="panel-body">
 							<table
 								class="table table-hover table-condensed table-bordered Handle_table_info">
 								<thead>
 									<tr>
-										<td style="padding-left: 5px;" rowspan="2">选择</td>
+										<td style="padding-left: 5px;" rowspan="2"><input
+											type="checkbox" onclick="selectAll(this)"><br>全选</td>
 										<td style="padding-left: 5px;" rowspan="2"><span
 											style="line-height: 70px;">序号</span></td>
-										<td rowspan="2"><span style="line-height: 70px;">行政案件名称</span></td>
-										<td rowspan="2"><span style="line-height: 70px;">违法嫌疑人姓名</span></td>
+										<td rowspan="2"><span style="line-height: 70px;">案件名称</span></td>
+										<td rowspan="2"><span style="line-height: 70px;">嫌疑人</span></td>
 										<td colspan="6"><span>处理方式</span></td>
 										<td colspan="4"><span>涉案财物</span></td>
-										<td style="padding-left: 5px;" colspan="2"><span>案件承办人员</span></td>
+										<td style="padding-left: 5px;" colspan="2"><span>承办人员</span></td>
 									</tr>
 									<tr>
 										<td style="padding-left: 5px;"><span>行政拘留</span></td>
@@ -113,15 +117,13 @@
 								</tbody>
 								<tfoot>
 									<tr>
-										<td colspan="16" style="font-size: 12px;" class="page_info"><a
-											onclick="firstPage()"><i class="fa fa-angle-double-left">首页</i>
-										</a>&nbsp&nbsp<a onclick="prePage()"><i
-												class="fa fa-angle-left"></i>上一页 </a>&nbsp&nbsp<a
-											onclick="nextPage()">下一页<i class="fa fa-angle-right"></i>
-										</a>&nbsp&nbsp <a onclick="lastPage()">尾页<i
-												class="fa fa-angle-double-right"></i>
-										</a> <br />
-											<p class='info'></p></td>
+										<td colspan="8" style="" class="page_info"><span
+											class='info'></span> <span onclick="firstPage()">首页</span> <span
+											onclick="prePage()">上一页 </span><span onclick="nextPage()">下一页
+										</span><span onclick="lastPage()">末页 </span> <input id="skipPage"
+											style="display: inline-block; text-align: center; width: 60px; height: 30px;">
+											<button onclick="toPage()" class="btn btn-default"
+												style="height: 30px; vertical-align:initial;">跳转</button></td>
 									</tr>
 								</tfoot>
 							</table>
@@ -147,20 +149,25 @@
 				</div>
 				<div class="modal-body">
 					<form action="">
-						<div style="width: 100%;margin: auto;" class="panel-body">
+						<div style="width: 100%; margin: auto;" class="panel-body">
 							<table class="table table-condensed" width="100%">
 								<tbody>
 									<tr>
 										<td>序号</td>
 										<td><input class="form-control" readonly="readonly"
-											name="handle.handle_orderNumber" type="text"></td>
-										<td>行政案件名称</td>
-										<td><input class="form-control"
-											name="handle.handle_administrativeCase" type="text"></td>
+											style="width: 100px;" name="handle.handle_orderNumber"
+											type="text"></td>
+										<td>案件名称</td>
+										<td><select class="form-control" data-live-search="true"
+											name="handle.handle_Case"></select></td>
 										<td>违法嫌疑人姓名</td>
 										<td><input class="form-control"
 											name="handle.handle_suspectName" type="text"></td>
 									</tr>
+								</tbody>
+							</table>
+							<table class="table table-condensed" width="100%">
+								<tbody>
 									<tr>
 										<td style="text-align: center;" colspan="6">处理方式</td>
 									</tr>
@@ -172,7 +179,7 @@
 										</label><label style="float: left; margin-left: 10px;"
 											class="fancy-radio"> <input name="register"
 												onclick="chose(this)" type="radio" value="否"> <span><i></i>否</span>
-										</label> <input type="hidden"
+										</label> <input type="hidden" onchange="invertSelection(this)"
 											name="handle.handle_administrativeAttachment"></td>
 										<td>拘留起始时间</td>
 										<td><input class="form-control mydate"
@@ -193,7 +200,8 @@
 										</label><label style="float: left; margin-left: 10px;"
 											class="fancy-radio"> <input name="handle_arrest"
 												onclick="chose(this)" type="radio" value="否"> <span><i></i>否</span>
-										</label> <input type="hidden" name="handle.handle_arrest"></td>
+										</label> <input type="hidden" name="handle.handle_arrest"
+											onchange="invertSelection(this)"></td>
 										<td>逮捕时间</td>
 										<td><input class="form-control mydate"
 											name="handle.handle_arrestTime" type="text" /></td>
@@ -206,7 +214,8 @@
 										</label><label style="float: left; margin-left: 10px;"
 											class="fancy-radio"> <input name="handle_prosecute"
 												onclick="chose(this)" type="radio" value="否"> <span><i></i>否</span>
-										</label> <input type="hidden" name="handle.handle_prosecute"></td>
+										</label> <input type="hidden" name="handle.handle_prosecute"
+											onchange="invertSelection(this)"></td>
 										<td>起诉时间</td>
 										<td><input class="form-control mydate"
 											name="handle.handle_prosecuteTime" type="text" /></td>
@@ -219,7 +228,8 @@
 										</label><label style="float: left; margin-left: 10px;"
 											class="fancy-radio"> <input name="handle_checkback"
 												onclick="chose(this)" type="radio" value="否"> <span><i></i>否</span>
-										</label> <input type="hidden" name="handle.handle_checkback"></td>
+										</label> <input type="hidden" name="handle.handle_checkback"
+											onchange="invertSelection(this)"></td>
 										<td>退查时间</td>
 										<td><input class="form-control mydate"
 											name="handle.handle_checkbackTime" type="text" /></td>
@@ -232,7 +242,8 @@
 										</label><label style="float: left; margin-left: 10px;"
 											class="fancy-radio"> <input name="handle_pbat"
 												onclick="chose(this)" type="radio" value="否"> <span><i></i>否</span>
-										</label> <input type="hidden" name="handle.handle_pbat"></td>
+										</label> <input type="hidden" name="handle.handle_pbat"
+											onchange="invertSelection(this)"></td>
 										<td>取保候审时间</td>
 										<td><input class="form-control mydate"
 											name="handle.handle_pbatTime" type="text" /></td>
@@ -245,7 +256,8 @@
 										</label><label style="float: left; margin-left: 10px;"
 											class="fancy-radio"> <input name="handle_lhus"
 												onclick="chose(this)" type="radio" value="否"> <span><i></i>否</span>
-										</label> <input type="hidden" name="handle.handle_lhus"></td>
+										</label> <input type="hidden" name="handle.handle_lhus"
+											onchange="invertSelection(this)"></td>
 										<td>监视居住时间</td>
 										<td><input class="form-control mydate"
 											name="handle.handle_lhusTime" type="text" /></td>
@@ -274,14 +286,19 @@
 									</tr>
 									<tr>
 										<td>中队长</td>
-										<td colspan="2"><input class="form-control"
-											name="handle.handle_squadronleader" type="text"> <%-- <select name="handle.handle_squadronleader"
-											class="form-control selectpicker"></select> --%></td>
+										<td colspan="2">
+											<!-- <input class="form-control"
+											name="handle.handle_squadronleader" type="text"> --> <select
+											name="handle.handle_squadronleader" class="form-control"
+											data-live-search="true"></select>
+										</td>
 										<td>办案民警</td>
-										<td colspan="2"><input class="form-control"
-											name="handle.handle_PoliceInHandlingCases" type="text">
-											<%-- <select name="handle.handle_PoliceInHandlingCases"
-											class="form-control selectpicker"></select> --%></td>
+										<td colspan="2">
+											<!-- <input class="form-control"
+											name="handle.handle_PoliceInHandlingCases" type="text"> --> <select
+											name="handle.handle_PoliceInHandlingCases"
+											data-live-search="true" class="form-control"></select>
+										</td>
 									</tr>
 								</tbody>
 							</table>
@@ -289,6 +306,8 @@
 					</form>
 				</div>
 				<div class="modal-footer">
+					<button id="" style="display: none;" type="button"
+						class="btn btn-primary handle_modify">修改</button>
 					<button type="button" class="btn btn-primary handle_input">添加</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 				</div>
@@ -312,7 +331,7 @@
 				</div>
 				<div class="modal-body">
 					<form action="">
-						<div style="width: 100%;margin: auto;" class="panel-body">
+						<div style="width: 100%; margin: auto;" class="panel-body">
 							<table class="table table-condensed" width="100%">
 								<tbody>
 									<tr>
@@ -380,7 +399,7 @@
 										</select></td>
 									</tr>
 									<tr>
-										<td>行政案件名称</td>
+										<td>案件名称</td>
 										<td><input class="form-control"
 											name="page_list_HandleInformation.handle_administrativeCase"
 											type="text"></td>

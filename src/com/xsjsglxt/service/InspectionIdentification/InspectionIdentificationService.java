@@ -12,6 +12,8 @@ import com.xsjsglxt.domain.DO.xsjsglxt_entrustment_sample;
 import com.xsjsglxt.domain.DO.xsjsglxt_identifieder_case_confirm_book;
 import com.xsjsglxt.domain.DO.xsjsglxt_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform;
+import com.xsjsglxt.domain.DTO.InspectionIdentification.CaseCheckDTO;
+import com.xsjsglxt.domain.DTO.InspectionIdentification.CaseMandateDTO;
 import com.xsjsglxt.domain.VO.InspectionIdentification.EntrustmentBookManagementVO;
 
 public interface InspectionIdentificationService {
@@ -87,12 +89,14 @@ public interface InspectionIdentificationService {
 
 	public int deleteEntrustmentSample(List<String> listEntrustmentSample);
 
-	public List<xsjsglxt_check_entrustment_book> getListEnstrustmentByCaseId(String checkCaseId);
+	public List<CaseMandateDTO> getListEnstrustmentByCaseId(String checkCaseId);
 
 	public List<xsjsglxt_check_entrustment_book> getListEnstrustmentByEvidenceId(String checkEvidenceId);
 
-	public List<xsjsglxt_inspection_record> listInspectionRecordByCaseId(String inspectionCaseId);
+	public List<CaseCheckDTO> listInspectionRecordByCaseId(String inspectionCaseId);
 
 	public List<xsjsglxt_inspection_record> listInspectionRecordByEvidenceId(String inspectionEvidenceId);
+
+	public void saveInspectionRecords(xsjsglxt_inspection_record inspectionRecord);
 
 }

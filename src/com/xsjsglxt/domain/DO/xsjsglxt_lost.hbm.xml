@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2017-12-19 8:29:39 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2018-4-22 14:17:56 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="com.xsjsglxt.domain.DO.xsjsglxt_lost" table="XSJSGLXT_LOST">
         <id name="xsjsglxt_lost_id" type="java.lang.String">
@@ -13,6 +13,15 @@
         </property>
         <property name="lost_name" type="java.lang.String">
             <column name="LOST_NAME" />
+        </property>
+        <property name="lost_model" type="java.lang.String">
+            <column name="LOST_MODEL" />
+        </property>
+        <property name="lost_number" type="java.lang.String">
+            <column name="LOST_NUMBER" />
+        </property>
+        <property name="lost_price" type="java.lang.String">
+            <column name="LOST_PRICE" />
         </property>
         <property name="lost_remarks" type="java.lang.String">
             <column name="LOST_REMARKS" />

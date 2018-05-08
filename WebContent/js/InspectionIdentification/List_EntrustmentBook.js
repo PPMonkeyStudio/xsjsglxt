@@ -129,7 +129,7 @@ function List_EntrustmentBook(pageIndex) {
 					switch (EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_state) {
 					case '正在申请': {
 						if (userPowerDTO.user_check_power_modified == true) {
-							new_td.innerHTML = '<div class="dropdown" ><i  class="fa fa-ellipsis-v fa-2x" style="cursor: pointer;" id="dLabel" data-toggle="dropdown" aria-haspopup=true aria-expanded="false"></i>'
+							new_td.innerHTML = '<div class="dropdown" ><i  class="fa fa-angle-double-down" style="cursor: pointer;" id="dLabel" data-toggle="dropdown" aria-haspopup=true aria-expanded="false"></i>'
 									+ '<ul class="dropdown-menu" aria-labelledby="dLabel">'
 									+ '<li><a onclick="Preview_EntrustmentBook(this)" id="'
 									+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
@@ -142,7 +142,7 @@ function List_EntrustmentBook(pageIndex) {
 									+ '"><i class="fa fa-recycle"></i> 不受理</a></li>'
 									+ '</ul></div>';
 						} else {
-							new_td.innerHTML = '<div class="dropdown" ><i  class="fa fa-ellipsis-v fa-2x" style="cursor: pointer;" id="dLabel" data-toggle="dropdown" aria-haspopup=true aria-expanded="false"></i>'
+							new_td.innerHTML = '<div class="dropdown" ><i  class="fa fa-angle-double-down" style="cursor: pointer;" id="dLabel" data-toggle="dropdown" aria-haspopup=true aria-expanded="false"></i>'
 									+ '<ul class="dropdown-menu" aria-labelledby="dLabel">'
 									+ '<li><a onclick="Preview_EntrustmentBook(this)" id="'
 									+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
@@ -155,7 +155,7 @@ function List_EntrustmentBook(pageIndex) {
 					case '申请已受理': {
 
 						if (userPowerDTO.user_check_power_modified == true) {
-							new_td.innerHTML = '<div class="dropdown" ><i  class="fa fa-ellipsis-v fa-2x" style="cursor: pointer;" id="dLabel" data-toggle="dropdown" aria-haspopup=true aria-expanded="false"></i>'
+							new_td.innerHTML = '<div class="dropdown" ><i  class="fa fa-angle-double-down" style="cursor: pointer;" id="dLabel" data-toggle="dropdown" aria-haspopup=true aria-expanded="false"></i>'
 									+ '<ul class="dropdown-menu" aria-labelledby="dLabel">'
 									+ '<li><a onclick="Preview_EntrustmentBook(this)" id="'
 									+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
@@ -171,7 +171,7 @@ function List_EntrustmentBook(pageIndex) {
 									+ '"><i class="fa fa-pencil-square-o"></i> 记录检验过程</a></li>'
 									+ '</ul></div>';
 						} else {
-							new_td.innerHTML = '<div class="dropdown" ><i  class="fa fa-ellipsis-v fa-2x" style="cursor: pointer;" id="dLabel" data-toggle="dropdown" aria-haspopup=true aria-expanded="false"></i>'
+							new_td.innerHTML = '<div class="dropdown" ><i  class="fa fa-angle-double-down" style="cursor: pointer;" id="dLabel" data-toggle="dropdown" aria-haspopup=true aria-expanded="false"></i>'
 									+ '<ul class="dropdown-menu" aria-labelledby="dLabel">'
 									+ '<li><a onclick="Preview_EntrustmentBook(this)" id="'
 									+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
@@ -188,7 +188,7 @@ function List_EntrustmentBook(pageIndex) {
 						break;
 					}
 					case '申请被拒绝': {
-						new_td.innerHTML = '<div class="dropdown"><i style="cursor: pointer;" class="fa fa-ellipsis-v fa-2x" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup=true aria-expanded="false"></i>'
+						new_td.innerHTML = '<div class="dropdown"><i style="cursor: pointer;" class="fa fa-angle-double-down" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup=true aria-expanded="false"></i>'
 								+ '<ul class="dropdown-menu" aria-labelledby="dLabel">'
 								+ '<li><a onclick="Preview_EntrustmentBook(this)" id="'
 								+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
@@ -202,7 +202,7 @@ function List_EntrustmentBook(pageIndex) {
 					}
 					case '已记录': {
 						if (userPowerDTO.user_check_power_modified == true) {
-							new_td.innerHTML = '<div class="dropdown" ><i  class="fa fa-ellipsis-v fa-2x" style="cursor: pointer;" id="dLabel" data-toggle="dropdown" aria-haspopup=true aria-expanded="false"></i>'
+							new_td.innerHTML = '<div class="dropdown" ><i  class="fa fa-angle-double-down" style="cursor: pointer;" id="dLabel" data-toggle="dropdown" aria-haspopup=true aria-expanded="false"></i>'
 									+ '<ul class="dropdown-menu" aria-labelledby="dLabel">'
 									+ '<li><a onclick="Preview_EntrustmentBook(this)" id="'
 									+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
@@ -221,7 +221,7 @@ function List_EntrustmentBook(pageIndex) {
 									+ '"><i class="fa fa-pencil-square-o"></i> 出具鉴定文书</a></li>'
 									+ '</ul></div>';
 						} else {
-							new_td.innerHTML = '<div class="dropdown" ><i  class="fa fa-ellipsis-v fa-2x" style="cursor: pointer;" id="dLabel" data-toggle="dropdown" aria-haspopup=true aria-expanded="false"></i>'
+							new_td.innerHTML = '<div class="dropdown" ><i  class="fa fa-angle-double-down" style="cursor: pointer;" id="dLabel" data-toggle="dropdown" aria-haspopup=true aria-expanded="false"></i>'
 									+ '<ul class="dropdown-menu" aria-labelledby="dLabel">'
 									+ '<li><a onclick="Preview_EntrustmentBook(this)" id="'
 									+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
@@ -241,7 +241,7 @@ function List_EntrustmentBook(pageIndex) {
 						break;
 					}
 					case '已鉴定': {
-						new_td.innerHTML = '<div class="dropdown"><i style="cursor: pointer;" class="fa fa-ellipsis-v fa-2x" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup=true aria-expanded="false"></i>'
+						new_td.innerHTML = '<div class="dropdown"><i style="cursor: pointer;" class="fa fa-angle-double-down" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup=true aria-expanded="false"></i>'
 								+ '<ul class="dropdown-menu" aria-labelledby="dLabel">'
 								+ '<li><a onclick="Preview_EntrustmentBook(this)" id="'
 								+ EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.xsjsglxt_check_entrustment_book_id
@@ -297,7 +297,7 @@ function List_EntrustmentBook(pageIndex) {
 			.open(
 					"POST",
 					"/xsjsglxt/inspectionIdentific/EntrustmentBookManagement_getListCheckEntrustmentBookByPage",
-					true);
+					false);
 
 	var formData = new FormData();
 	/*

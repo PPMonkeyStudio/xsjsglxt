@@ -1,10 +1,13 @@
 package com.xsjsglxt.service.impl.Case;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.apache.struts2.ServletActionContext;
 
 import com.xsjsglxt.dao.Case.SenceDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecase;
@@ -17,6 +20,7 @@ import com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone;
 import com.xsjsglxt.domain.DO.xsjsglxt_picture;
 import com.xsjsglxt.domain.DO.xsjsglxt_resevidence;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
+import com.xsjsglxt.domain.DTO.Case.SenceInformationAllDTO;
 import com.xsjsglxt.domain.DTO.Case.SenceInformationDTO;
 import com.xsjsglxt.domain.VO.Case.page_list_senceInformationVO;
 import com.xsjsglxt.service.Case.SenceService;
@@ -38,6 +42,7 @@ public class SenceServiceImpl implements SenceService {
 	@Override
 	public void save(xsjsglxt_snece sence) {
 		// TODO Auto-generated method stub
+		sence.setSnece_inquestId(getMaxSenceInquestId());
 		sence.setXsjsglxt_snece_id(TeamUtil.getUuid());
 		sence.setSnece_gmt_create(TeamUtil.getStringSecond());
 		sence.setSnece_gmt_modified(sence.getSnece_gmt_create());
@@ -62,6 +67,51 @@ public class SenceServiceImpl implements SenceService {
 		briefdetails.setBriefdetails_gmt_create(TeamUtil.getStringSecond());
 		briefdetails.setBriefdetails_details_modified(briefdetails.getBriefdetails_gmt_create());
 		senceDao.save(briefdetails);
+	}
+
+	@Override
+	public void save(xsjsglxt_resevidence resevidence) {
+		// TODO Auto-generated method stub
+		resevidence.setXsjsglxt_resevidence_id(TeamUtil.getUuid());
+		resevidence.setResevidence_gmt_modified(TeamUtil.getStringSecond());
+		resevidence.setResevidence_gmt_create(TeamUtil.getStringSecond());
+		senceDao.save(resevidence);
+	}
+
+	@Override
+	public void save(xsjsglxt_lost lost) {
+		// TODO Auto-generated method stub
+		lost.setXsjsglxt_lost_id(TeamUtil.getUuid());
+		lost.setLost_gmt_modified(TeamUtil.getStringSecond());
+		lost.setLost_gmt_create(TeamUtil.getStringSecond());
+		senceDao.save(lost);
+	}
+
+	@Override
+	public void save(xsjsglxt_lost_mobilephone mobilephone) {
+		// TODO Auto-generated method stub
+		mobilephone.setXsjsglxt_lost_mobilephone_id(TeamUtil.getUuid());
+		mobilephone.setLost_mobilephone_gmt_modified(TeamUtil.getStringSecond());
+		mobilephone.setLost_mobilephone_gmt_create(TeamUtil.getStringSecond());
+		senceDao.save(mobilephone);
+	}
+
+	@Override
+	public void save(xsjsglxt_picture picture) {
+		// TODO Auto-generated method stub
+		picture.setXsjsglxt_picture_id(TeamUtil.getUuid());
+		picture.setPicture_gmt_modified(TeamUtil.getStringSecond());
+		picture.setPicture_gmt_create(TeamUtil.getStringSecond());
+		senceDao.save(picture);
+	}
+
+	@Override
+	public void save(xsjsglxt_lost_computer computer) {
+		// TODO Auto-generated method stub
+		computer.setXsjsglxt_lost_computer_id(TeamUtil.getUuid());
+		computer.setLost_computer_gmt_modified(TeamUtil.getStringSecond());
+		computer.setLost_computer_gmt_create(TeamUtil.getStringSecond());
+		senceDao.save(computer);
 	}
 
 	/*
@@ -91,7 +141,7 @@ public class SenceServiceImpl implements SenceService {
 
 		xsjsglxt_snece sence;//
 
-		// xsjsglxt_resevidence resevidence;//
+		List<xsjsglxt_resevidence> resevidence;
 		// ��ȡɸѡ�����еļ�¼
 		int i = senceDao.getCountSenceInformationByPage(page_list_senceInformation);
 		// System.out.println(i);
@@ -184,8 +234,8 @@ public class SenceServiceImpl implements SenceService {
 			sence = senceDao.get_sence_Byxsjsglxt_case_id(case1);// 6
 			sence.setSnece_inquestId(sence.getSnece_inquestId().substring(10));
 			System.out.println("getSnece_inquestId:" + sence.getSnece_inquestId());
-			// resevidence = senceDao.get_resevidence_Byxsjsglxt_case_id(case1);
-			senceInformationDTO = new SenceInformationDTO(briefdetails, case1, null, sence);
+			resevidence = senceDao.get_resevidence_Byxsjsglxt_case_id(case1);
+			senceInformationDTO = new SenceInformationDTO(briefdetails, case1, null, sence, resevidence);
 
 			SenceInformationDTOList.add(senceInformationDTO);
 		}
@@ -207,13 +257,33 @@ public class SenceServiceImpl implements SenceService {
 		// private xsjsglxt_breakecase breakecase;
 		for (String Case_id : useSenceInformationNumList) {
 			xsjsglxt_case xsjsglxt_case = senceDao.getCaseByNum(Case_id);
+			/**
+			 * 孙毅修改 修改时间：2018-04-17 修改内容：增加文件删除
+			 */
+			if (xsjsglxt_case.getCase_writeFile() != null && !"".equals(xsjsglxt_case.getCase_writeFile())) {
+				File file = new File(ServletActionContext.getServletContext()
+						.getRealPath("/upload/case/caseWrite/" + xsjsglxt_case.getCase_writeFile()));
+				if (!file.exists())
+					file.delete();
+			}
+			if (xsjsglxt_case.getCase_imageFile() != null && !"".equals(xsjsglxt_case.getCase_imageFile())) {
+				File file = new File(ServletActionContext.getServletContext()
+						.getRealPath("/upload/case/caseImage/" + xsjsglxt_case.getCase_imageFile()));
+				if (!file.exists())
+					file.delete();
+			}
+			if (xsjsglxt_case.getCase_senceImageFile() != null && !"".equals(xsjsglxt_case.getCase_senceImageFile())) {
+				File file = new File(ServletActionContext.getServletContext()
+						.getRealPath("/upload/case/caseSenceImage/" + xsjsglxt_case.getCase_senceImageFile()));
+				if (!file.exists())
+					file.delete();
+			}
 			xsjsglxt_lost_computer lost_computer = senceDao.get_lost_computer_Byxsjsglxt_case_id(xsjsglxt_case);
 			xsjsglxt_lost_mobilephone lost_mobilephone = senceDao
 					.get_lost_mobilephone_Byxsjsglxt_case_id(xsjsglxt_case);
 			xsjsglxt_lost lost = senceDao.get_lost_Byxsjsglxt_case_id(xsjsglxt_case);
 			xsjsglxt_picture picture = senceDao.get_picture_Byxsjsglxt_case_id(xsjsglxt_case);
 			List<xsjsglxt_resevidence> resevidence = senceDao.getResevidenceById(xsjsglxt_case.getXsjsglxt_case_id());
-
 			xsjsglxt_breakecase breakecase = senceDao.get_breakecase_Byxsjsglxt_case_id(xsjsglxt_case);
 
 			if (lost_computer == null) {
@@ -255,6 +325,7 @@ public class SenceServiceImpl implements SenceService {
 			flag = senceDao.deleteBriefdetailsById(xsjsglxt_case.getXsjsglxt_case_id());// ��Ҫ����
 			flag = senceDao.deleteSenceById(xsjsglxt_case.getXsjsglxt_case_id());// ��̽�ֳ�
 			flag = senceDao.deleteCaseById(xsjsglxt_case.getXsjsglxt_case_id());// ����
+			senceDao.deleteHandle(xsjsglxt_case);
 		}
 		return flag;
 	}
@@ -263,7 +334,6 @@ public class SenceServiceImpl implements SenceService {
 	public String getMaxSenceInquestId() {
 		// TODO Auto-generated method stub
 		int i = senceDao.getMaxSenceInquestId();
-		System.out.println("���ֵ" + i);
 		// System.out.println("iiiiii"+i);
 		String num = "";
 		num = num.format("%04d", i + 1);
@@ -277,21 +347,29 @@ public class SenceServiceImpl implements SenceService {
 	}
 
 	@Override
-	public SenceInformationDTO SecneInformationOne(xsjsglxt_case case1) {
+	public SenceInformationAllDTO SecneInformationOne(xsjsglxt_case case1) {
 		// TODO Auto-generated method stub
-		xsjsglxt_snece sence = senceDao.getSeceByCaseId(case1);
-		case1 = senceDao.getCaseByCaseId(case1);
-		xsjsglxt_briefdetails briefdetails = senceDao.getBriefdetailsByCaseID(case1);
-		// xsjsglxt_lost lost = senceDao.getLostByCaseID(case1);
-		// xsjsglxt_lost_mobilephone lost_mobilephone
-		// =senceDao.getLost_mobilephoneByCaseId(case1);
-		// xsjsglxt_lost_computer
-		// lost_computer=senceDao.getLost_computerByCaseId(case1);
-		// xsjsglxt_resevidence resevidence
-		// =senceDao.getResevidenceByCaseId(case1);
-		xsjsglxt_picture picture = senceDao.getPicturtByCaseId(case1);
-		SenceInformationDTO senceInformationDTO = new SenceInformationDTO(briefdetails, case1, picture, sence);
-		return senceInformationDTO;
+
+		xsjsglxt_snece sence = senceDao.getSeceByCaseId(case1);// 现场信息
+		xsjsglxt_snece sence1 = (sence == null ? null : sence);
+		case1 = senceDao.getCaseByCaseId(case1);// 案件信息
+		xsjsglxt_case case2 = (case1 == null ? null : case1);
+		xsjsglxt_briefdetails briefdetails = senceDao.getBriefdetailsByCaseID(case1);// 简要案情
+		xsjsglxt_briefdetails briefdetails1 = (briefdetails == null ? null : briefdetails);
+		List<xsjsglxt_lost> lost = senceDao.getLostByCaseID(case1);// 被盗品
+		List<xsjsglxt_lost> lost1 = (lost == null ? null : lost);
+		List<xsjsglxt_lost_mobilephone> lost_mobilephone = senceDao.getLost_mobilephoneByCaseId(case1);// 被盗手机
+		List<xsjsglxt_lost_mobilephone> lost_mobilephone1 = (lost_mobilephone == null ? null : lost_mobilephone);
+		List<xsjsglxt_lost_computer> lost_computer = senceDao.getLost_computerByCaseId(case1);// 被盗电脑
+		List<xsjsglxt_lost_computer> lost_computer1 = (lost_computer == null ? null : lost_computer);
+		List<xsjsglxt_resevidence> resevidence = senceDao.getResevidenceByCaseId(case1);// 物证信息
+		List<xsjsglxt_resevidence> resevidence1 = (resevidence == null ? null : resevidence);
+		List<xsjsglxt_picture> picture = senceDao.getPicturtByCaseId(case1);// 照片信息
+		List<xsjsglxt_picture> picture1 = (picture == null ? null : picture);
+		SenceInformationAllDTO senceInformationAllDTO = new SenceInformationAllDTO(briefdetails1, case2, lost_computer1,
+				lost_mobilephone1, lost1, picture1, sence1, resevidence1);
+
+		return senceInformationAllDTO;
 	}
 
 	@Override
@@ -329,6 +407,24 @@ public class SenceServiceImpl implements SenceService {
 	public List<xsjsglxt_case> AllCase() {
 		// TODO Auto-generated method stub
 		return senceDao.AllCase();
+	}
+
+	@Override
+	public xsjsglxt_case getCaseByCaseId(xsjsglxt_case case1) {
+		// TODO Auto-generated method stub
+		return senceDao.getCaseByCaseId(case1);
+	}
+
+	@Override
+	public void updateFileName(String newFileName, String filePosition, xsjsglxt_case case1) {
+		// TODO Auto-generated method stub
+		senceDao.updateFileName(newFileName, filePosition, case1);
+	}
+
+	@Override
+	public void updateCaseTime(xsjsglxt_case case1) {
+		// TODO Auto-generated method stub
+		senceDao.updateCaseTime(case1);
 	}
 
 }

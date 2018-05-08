@@ -575,4 +575,16 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		return i;
 	}
 
+	/**
+	 * @author 孙毅
+	 * 保存检验记录
+	 */
+
+	@Override
+	public void saveInspectionRecords(xsjsglxt_inspection_record inspectionRecord) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		session.save(inspectionRecord);
+	}
+
 }

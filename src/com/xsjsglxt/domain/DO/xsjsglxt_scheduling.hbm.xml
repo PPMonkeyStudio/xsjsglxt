@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2018-4-14 20:54:50 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2018-5-2 15:13:38 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="com.xsjsglxt.domain.DO.xsjsglxt_scheduling" table="XSJSGLXT_SCHEDULING">
         <id name="xsjsglxt_scheduling_id" type="java.lang.String">
@@ -19,6 +19,18 @@
         </property>
         <property name="scheduling_assistant" type="java.lang.String">
             <column name="SCHEDULING_ASSISTANT" />
+        </property>
+        <property name="scheduling_patrol" type="java.lang.String">
+            <column name="SCHEDULING_PATROL" />
+        </property>
+        <property name="scheduling_overtime" type="java.lang.String">
+            <column name="SCHEDULING_OVERTIME" />
+        </property>
+        <property name="scheduling_out_help" type="java.lang.String">
+            <column name="SCHEDULING_OUT_HELP" />
+        </property>
+        <property name="scheduling_evection" type="java.lang.String">
+            <column name="SCHEDULING_EVECTION" />
         </property>
         <property name="scheduling_time" type="java.lang.String">
             <column name="SCHEDULING_TIME" />

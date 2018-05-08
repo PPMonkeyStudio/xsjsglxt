@@ -354,7 +354,7 @@ ul.notifications > li {
 .sidebar {
   z-index: 9; }
   .sidebar .nav > li > a {
-    padding: 18px 30px;
+    padding: 18px 20px;
     color: white;
     border-left: 5px solid transparent; }
    /*  .sidebar .nav > li > a:hover, .sidebar .nav > li > a:focus, .sidebar .nav > li > a.active {

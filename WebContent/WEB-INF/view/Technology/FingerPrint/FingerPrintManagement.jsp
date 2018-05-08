@@ -93,21 +93,14 @@
 					</button>
 
 				</div>
-				<div style="margin: 0 auto; width: 400px; text-align: center;">
-					<button id="button_HomePage" class="btn btn-default"
-						onclick="flip(1)">首页</button>
-					<button id="button_PrePage" class="btn btn-default"
-						onclick="flip(2)">上一页</button>
-					<button id="button_NextPage" class="btn btn-default"
-						onclick="flip(3)">下一页</button>
-					<button id="button_EndPage" class="btn btn-default"
-						onclick="flip(4)">尾页</button>
-				</div>
-				<div
-					style="margin: 20px auto 20px; width: 200px; text-align: center;">
-					第 <span id="span_pageIndex">1</span> 页 <br> 共 <span
-						id="span_totalPages">1</span> 页 <br> 共 <span
-						id="span_totalRecords">0</span> 条记录
+				<div id="bottomPage" style="padding: 20px;">
+					<span>当前页数:<span id="span_pageIndex">1</span></span> <span>共:<span
+						id="span_totalPages">2</span>页
+					</span> 共 <span id="span_totalRecords">0</span> 条记录 <span
+						onclick="flip(1)" id="indexPage" class="pageOperation">首页</span> <span
+						onclick="flip(2)" id="previousPage" class="pageOperation">上一页</span>
+					<span onclick="flip(3)" id="nextPage" class="pageOperation">下一页</span>
+					<span onclick="flip(4)" id="lastPage" class="pageOperation">末页</span>
 				</div>
 			</div>
 			<!--  -->

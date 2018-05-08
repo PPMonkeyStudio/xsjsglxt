@@ -15,6 +15,16 @@
 <title>案件详情信息</title>
 <link rel="stylesheet" href="<%=basePath%>css/Case/table.css">
 <link rel="stylesheet" href="<%=basePath%>css/Case/Case.css">
+<style type="text/css">
+i {
+	cursor: pointer;
+}
+
+/* input, select {
+	width: 30px !important;
+	font-size: 13px !important;
+} */
+</style>
 </head>
 <body>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
@@ -28,16 +38,15 @@
 			<div class="panel-heading">
 				<h3 class="panel-title">案件详情信息</h3>
 			</div>
-
-			<div class="panel-body">
+			<div class="panel-body" style="width: 1400px;">
 				<div class="operation" style="margin-bottom: 6px;">
-					<button onclick="javascript:history.go(-1)" type="button"
+					<button onclick="back();" type="button"
 						class="btn btn-default button button_return">
 						<i class="fa fa-reply"></i> 返回列表
 					</button>
 					<button type="button" class="btn btn-default button button_change"
 						onclick="case_change()">
-						<i class="fa fa-pencil"></i> 修改案件
+						<i class="fa fa-pencil"></i> 确定修改
 					</button>
 					<button type="button" class="btn btn-default button button_del"
 						onclick="case_del()">
@@ -47,14 +56,14 @@
 				<form id="caseDetails">
 					<table>
 						<tr>
-							<td>勘验编号</td>
-							<td><input style="font-size: 12px;"
-								name="sence.snece_inquestId" class="form-control" type="text"></td>
+							<td width="96px;">勘验编号</td>
+							<td><input name="sence.snece_inquestId" class="form-control"
+								type="text"></td>
 							<td style="padding-left:5px;">勘验系统编号</td>
-							<td style="width: 100px;"><input
+							<td style="width: 200px;"><input
 								name="sence.snece_inquestSystemId" class="form-control"
 								type="text"></td>
-							<td>案件分类</td>
+							<td style="width: 100px;/*font-weight: bold;*/">案件分类</td>
 							<td><select name="case1.case_classify" class=" form-control">
 									<option value=""></option>
 									<option value="非刑事案件">非刑事案件</option>
@@ -65,11 +74,12 @@
 						<tr>
 							<td>接警时间</td>
 							<td><input name="case1.case_receivingAlarmDate"
-								class="form-control" style="margin-top: 6px;" type="text"></td>
-							<td>危害程度</td>
+								class="form-control mydate_minute" style="margin-top: 6px;"
+								type="text"></td>
+							<td style="/*font-weight: bold;*/">危害程度</td>
 							<td><select name="case1.case_extentOfInjury"
 								class="form-control" style="margin-top: 6px;">
-									<option></option>
+									<option value=""></option>
 									<option>一般</option>
 									<option>重大</option>
 									<option>特大</option>
@@ -80,24 +90,24 @@
 									type="radio" value="1"> <span><i></i>是</span>
 							</label><label style="float: left; margin-left: 10px;"
 								class="fancy-radio"> <input name="register"
-									onclick="buildCase_chose(this)" type="radio" value="2">
+									onclick="buildCase_chose(this)" type="radio" value="0">
 									<span><i></i>否</span>
 							</label> <input type="hidden" name="case1.case_register"
 								onchange="chose_labe(this)"></td>
 						</tr>
+					</table>
+					<table>
 						<tr>
-							<td>案发地点</td>
+							<td style=" width:96px;/*font-weight: bold;*/">案发地点</td>
 							<td colspan="2"><input name="case1.case_address"
-								style="margin-top: 6px;" class="case_place form-control"
-								type="text" value="萍乡市安源区"></td>
-
-							<td>案件类别</td>
-							<td colspan="2"><select
-								style="width: 170px; float: left; margin-top: 6px; margin-left: -100px;"
+								style="margin-top: 6px; width: 370px;"
+								class="case_place form-control" type="text" value="萍乡市安源区"></td>
+							<td style="width: 90px;">案件类别</td>
+							<td style="width: 160px;"><select
+								style="width: 160px; float: left; margin-top: 6px;"
 								name="case1.case_totalCategory" name="case_class1"
 								onchange="setSectionCase(this.selectedIndex)"
-								class="main_case form-control"><option
-										selected="selected" value="">请选择案件总类别</option>
+								class="main_case form-control"><option>请选择案件总类别</option>
 									<option value="盗窃案">盗窃案</option>
 									<option value="抢劫案">抢劫案</option>
 									<option value="抢夺案">抢夺案</option>
@@ -110,9 +120,9 @@
 									<option value="非法拘禁案">非法拘禁案</option>
 									<option value="非正常死亡">非正常死亡</option>
 									<option value="故意损坏公私财物">故意损坏公私财物</option>
-									<option value="其它">其它</option></select> <select
-								name="case1.case_sonCategory"
-								style="margin-top: 6px; width: 170px;"
+									<option value="其它">其它</option></select></td>
+							<td id="other_case_td"><select name="case1.case_sonCategory"
+								style="margin-top: 6px; width: 160px;"
 								class="other_case form-control">
 									<option selected value="">请选择案件子类别</option>
 							</select></td>
@@ -127,51 +137,33 @@
 					<hr>
 					<table>
 						<tr>
-							<td width="85">移动基站</td>
-							<td><input name="sence.snece_mobileStation"
-								placeholder="基站号" class="form-control" type="text"> <input
-								name="sence.snece_mobileVillage" placeholder="小区号"
-								style="margin-top: 6px;" class="form-control" type="text"></td>
-							<td width="85">联通基站</td>
-							<td><input name="sence.snece_unicomSwitchboard"
-								placeholder="交换机" class="form-control" type="text"> <input
-								name="sence.snece_unicomVillage" placeholder="小区号"
-								style="margin-top: 6px;" class="form-control" type="text"></td>
-							<td width="85">电信基站</td>
-							<td><input name="sence.snece_telecomStation"
-								placeholder="基站号" width="40%;" class="form-control" type="text"></td>
-						</tr>
-					</table>
-					<hr>
-					<table>
-						<tr>
-							<td style="height: 74;">报案人基本情况</td>
-							<td colspan="5"><input style=" width: 24%;float:left; "
+							<td width="96px;">报案人情况</td>
+							<td colspan="5"><input style=" width: 90px;float:left; "
 								name="case1.case_reporterName" class="form-control" type="text"
 								placeholder="姓名"> <input
-								style="width: 24%; float:left;margin-left: 6px;"
+								style="width: 50px; float:left;margin-left: 6px;"
 								name="case1.case_reporterSex" class="form-control" type="text"
-								placeholder="年龄 "> <input
+								placeholder="年龄 "> <!-- <input
 								style="width: 24%; float:left; margin-left: 6px;"
 								name="case1.case_reporterJobUnit" class="form-control"
-								type="text" placeholder="工作单位 "> <input
-								style="width: 25%; margin-left: 6px; float: left;"
+								type="text" placeholder="工作单位 "> --> <input
+								style="width: 125px; margin-left: 6px; float: left;"
 								name="case1.case_reporterPhone" class="form-control" type="text"
 								placeholder="联系电话 "> <input
-								style="margin-top: 6px;float: right;"
+								style="margin-left: 6px;float: left; width: 555px;"
 								name="case1.case_reporterAddress" class="form-control"
-								type="text" placeholder="家庭住址 "></td>
+								type="text" placeholder="家庭住址或工作单位 "></td>
 						</tr>
 						<tr>
 							<td>简要案情</td>
 							<td colspan="5"><textarea style="margin-top: 6px;"
 									name="briefdetails.briefdetails_details" class="form-control"
-									rows="4"></textarea></td>
+									rows="2"></textarea></td>
 						</tr>
 						<tr>
-							<td height="39px;">天气情况</td>
+							<td>天气情况</td>
 							<td><select name="sence.snece_weather"
-								style="width: 70px; float: left; margin-top: 6px;"
+								style="width: 80px; float: left; margin-top: 6px;"
 								class=" form-control" id="weather">
 									<option value=""></option>
 									<option value="晴">晴</option>
@@ -181,26 +173,15 @@
 									<option value="雾">雾</option>
 									<option value="其他">其他</option>
 							</select>
-								<p style="float: left; margin-top: 6px;">温度</p> <input
-								name="sence.snece_weatherTemperature"
+								<p
+									style="float: left; margin-top: 6px;margin-left:6px;margin-right:6px;">温度</p>
+								<input name="sence.snece_weatherTemperature"
 								style="width: 50px; float: left; margin-top: 6px;"
-								class="form-control" type="text"><span style="top:5px;">°C</span></td>
-							<td width="85">作案时段</td>
-							<td><select name="case1.case_makeTime" class=" form-control">
-									<option value=""></option>
-									<option value="昼">昼</option>
-									<option value="夜">夜</option>
-									<option value="上午">上午</option>
-									<option value="中午">中午</option>
-									<option value="下午">下午</option>
-									<option value="晚上">晚上</option>
-									<option value="深夜">深夜</option>
-									<option value="凌晨">凌晨</option>
-									<option value="其他">其他</option>
-							</select></td>
+								class="form-control" type="text"><span
+								style="margin-top: 6px;margin-left:6px; float:left;">℃</span></td>
 							<td>发案辖区</td>
 							<td><select name="case1.case_jurisdiction"
-								class=" form-control">
+								class=" form-control" style="width:220px; margin:0px;">
 									<option value=""></option>
 									<option value="东大派出所">东大派出所</option>
 									<option value="高坑派出所">高坑派出所</option>
@@ -216,11 +197,25 @@
 									<option value="五陂下派出所">五陂下派出所</option>
 									<option value="其他">其他</option>
 							</select></td>
-						</tr>
+							<td>作案时段</td>
+							<td><select name="case1.case_makeTime" class=" form-control">
+									<option value=""></option>
+									<option value="昼">昼</option>
+									<option value="夜">夜</option>
+									<option value="上午">上午</option>
+									<option value="中午">中午</option>
+									<option value="下午">下午</option>
+									<option value="晚上">晚上</option>
+									<option value="深夜">深夜</option>
+									<option value="凌晨">凌晨</option>
+									<option value="其他">其他</option>
+							</select></td>
 
-						<tr style="margin-top: -6px;">
-							<td height="78px;">作案手段</td>
-							<td><select name="case1.case_makeMeans"
+						</tr>
+						<tr>
+							<td>作案手段</td>
+							<td width="240px;"><select name="case1.case_makeMeans"
+								style="width: 110px; float:left;"
 								onchange="setSectionmMethod(this.selectedIndex)"
 								class="crime_means form-control">
 									<option selected="selected" value="">请选择</option>
@@ -231,18 +226,21 @@
 									<option value="洞口侵入">洞口侵入</option>
 									<option value="其它">其它</option>
 							</select> <select name="case1.case_concreteMakeMeans"
-								style="margin-top: 6px;" class="specific_means form-control">
+								style="width: 120px; float:left;"
+								class="specific_means form-control">
 									<option value="">具体手段</option>
 							</select></td>
 							<td>选择处所</td>
 							<td><select name="case1.case_residence"
+								style="width: 110px; float:left;"
 								onchange="setSectionmAddress(this.selectedIndex)"
 								class="widel_space form-control"><option value="">选择处所</option>
 									<option value="居民住宅">居民住宅</option>
 									<option value="单位场所">单位场所</option>
 									<option value="服务行业">服务行业</option>
 									<option value="其它处所">其它处所</option></select><select
-								name="case1.case_concreteResidence" style="margin-top: 6px;"
+								name="case1.case_concreteResidence"
+								style="width: 110px; float:left;"
 								class="specific_space form-control">
 									<option value="">具体处所</option>
 							</select></td>
@@ -290,9 +288,9 @@
 					<hr>
 					<table>
 						<tr>
-							<td>作案过程</td>
+							<td width="96px;">作案过程</td>
 							<td colspan="5"><textarea name="case1.case_process"
-									class="form-control" rows="4"></textarea></td>
+									class="form-control" rows="2"></textarea></td>
 						</tr>
 						<tr>
 							<td colspan="6"><label style="margin-left: 30%;"
@@ -319,9 +317,8 @@
 						<tr>
 							<td>勘验人员</td>
 							<td colspan="5"><select name="sence.snece_inquestPerson"
-								id="exploration_personnel"
-								class="selectpicker show-tick form-control dropup" multiple
-								data-dropup-auto="false" title="请选择">
+								id="exploration_personnel" class="selectpicker form-control"
+								multiple title="请选择">
 							</select></td>
 						</tr>
 						<tr>
@@ -337,36 +334,255 @@
 								type="text"></td>
 						</tr>
 					</table>
+					<hr>
 					<table>
 						<tr>
-							<td align="right">
-								<!-- 按钮触发模态框 --> <!-- <button style="margin-top: 6px;" type="button"
-									class="btn btn-default" data-toggle="modal"
-									data-target="#station">
-									<i class="fa fa-plus-square"></i> 基站修改
-								</button> -->
-								<button style="margin-top: 6px;" type="button"
-									class="btn btn-default" data-toggle="modal"
-									data-target="#LossOfGoods">
-									<i class="fa fa-plus-square"></i> 添加损失物品
+							<td width="96">移动基站</td>
+							<td><input name="sence.snece_mobileStation"
+								style="width: 50%; float:left;" placeholder="基站号"
+								class="form-control" type="text"> <input
+								name="sence.snece_mobileVillage" placeholder="小区号"
+								style="width: 50%; float:left;" style="margin-top: 6px;"
+								class="form-control" type="text"></td>
+							<td width="96">联通基站</td>
+							<td><input name="sence.snece_unicomSwitchboard"
+								style="width: 50%; float:left;" placeholder="交换机"
+								class="form-control" type="text"> <input
+								name="sence.snece_unicomVillage" placeholder="小区号"
+								style="width: 50%; float:left;" style="margin-top: 6px;"
+								class="form-control" type="text"></td>
+							<td width="96">电信基站</td>
+							<td><input name="sence.snece_telecomStation"
+								placeholder="基站号" width="40%;" class="form-control" type="text"></td>
+						</tr>
+					</table>
+					<hr>
+					<table>
+						<tbody>
+							<tr>
+								<td>
+									<div class="panel" id="evidence-info">
+										<div class="panel-heading">
+											<h3 class="panel-title" style="float: left;">物证信息</h3>
+											<button type="button" class="btn btn-default"
+												style="margin-left: 6px;float: left;margin-top: -6px; padding: 5px 14px;"
+												data-toggle="modal" data-target="#evidence">
+												<i class="fa fa-plus-square"></i> 添加
+											</button>
+										</div>
+										<div class="panel-body">
+											<table style="width: 100%;"
+												class="table table-striped table-condensed">
+												<thead>
+													<tr>
+														<th>物证名称</th>
+														<th>提取日期</th>
+														<th>提取人</th>
+														<th>流转状态</th>
+														<th>检验状态</th>
+														<th>操作</th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<!-- <tr>
+								<td>
+									<div class="panel" id="loseGoods-info">
+										<div class="panel-heading">
+											<h3 class="panel-title" style="float: left;">被盗物品信息</h3>
+											<button type="button" class="btn btn-default"
+												data-toggle="modal" data-target="#lost"
+												style="margin-left: 6px;float: left;margin-top: -6px; padding: 5px 14px;">
+												<i class="fa fa-plus-square"></i> 添加
+											</button>
+										</div>
+										<div class="panel-body">
+											<table style="width: 100%;"
+												class="table table-striped table-condensed">
+												<thead>
+													<tr>
+														<th>被盗物名称</th>
+														<th>型号</th>
+														<th>丢失数量</th>
+														<th>价值</th>
+														<th>特征描述</th>
+														<th>操作</th>
+													</tr>
+												</thead>
+												<tbody></tbody>
+											</table>
+										</div>
+									</div>
+								</td>
+							</tr> -->
+							<tr>
+							<tr>
+								<td>
+									<div class="panel" id="loseComputer-info">
+										<div class="panel-heading">
+											<h3 class="panel-title" style="float: left;">被盗电脑信息</h3>
+											<button type="button" class="btn btn-default"
+												data-toggle="modal" data-target="#lost_computer"
+												style="margin-left: 6px;float: left;margin-top: -6px; padding: 5px 14px;">
+												<i class="fa fa-plus-square"></i> 添加
+											</button>
+										</div>
+										<div class="panel-body">
+											<table style="width: 100%;"
+												class="table table-striped table-condensed">
+												<thead>
+													<tr>
+														<th>电脑品牌</th>
+														<th>上网账号</th>
+														<th>MAC地址</th>
+														<th>备注</th>
+														<th>操作</th>
+													</tr>
+												</thead>
+												<tbody></tbody>
+											</table>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+							<tr>
+								<td>
+									<div class="panel" id="LostMobilephone-info">
+										<div class="panel-heading">
+											<h3 class="panel-title" style="float: left;">被盗手机信息</h3>
+											<button type="button" class="btn btn-default"
+												data-toggle="modal" data-target="#lost_mobilephone"
+												style="margin-left: 6px;float: left;margin-top: -6px; padding: 5px 14px;">
+												<i class="fa fa-plus-square"></i> 添加
+											</button>
+										</div>
+										<div class="panel-body">
+											<table style="width: 100%;"
+												class="table table-striped table-condensed">
+												<thead>
+													<tr>
+														<th>手机号码</th>
+														<th>手机串号</th>
+														<th>手机特征</th>
+														<th>备注</th>
+														<th>操作</th>
+													</tr>
+												</thead>
+												<tbody></tbody>
+											</table>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="panel" id="picture-info">
+										<div class="panel-heading">
+											<h3 class="panel-title" style="float: left;">照片信息</h3>
+											<button
+												style="margin-left: 6px;float: left;margin-top: -6px; padding: 5px 14px;"
+												type="button" class="btn btn-default btn-xs"
+												data-toggle="modal" data-target="#picture">
+												<i class="fa fa-plus-square"></i> 添加
+											</button>
+										</div>
+										<div class="panel-body">
+
+											<table style="width: 100%;"
+												class="table table-striped table-condensed">
+												<thead>
+													<tr>
+														<th>所属影像光盘</th>
+														<th>照片编号</th>
+														<th>备注</th>
+														<th>操作</th>
+													</tr>
+												</thead>
+												<tbody></tbody>
+											</table>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+				<table style="width: 70%;margin: auto;">
+					<thead>
+						<tr>
+							<td colspan="3">
+								<h4>图片文件</h4>
+							</td>
+						</tr>
+						<tr style="display:none; ">
+							<td colspan="3">
+								<div class="progress">
+									<div class="progress-bar" role="progressbar" aria-valuenow="0"
+										aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+										0%</div>
+								</div>
+							</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td style="width: 33%"><h5>现场方位图</h5></td>
+							<td style="width: 33%">
+								<button type="button" id="evidence_photo"
+									class="btn btn-default" onclick="upload(this)">
+									<i class="fa fa-upload"></i> 上传
 								</button>
-								<button style="margin-top: 6px;" type="button"
-									class="btn btn-default" data-toggle="modal"
-									data-target="#picture">
-									<i class="fa fa-plus-square"></i> 添加照片
-								</button>
-								<button style="margin-top: 6px;" type="button"
-									class="btn btn-default" data-toggle="modal"
-									data-target="#evidence">
-									<i class="fa fa-plus-square"></i> 添加物证
+							</td>
+							<td style="width: 33%">
+								<button type="button" id="evidence_photo"
+									class="btn btn-default" onclick="downloadFile(this)">
+									<i class="fa fa-download"></i> 下载
 								</button>
 							</td>
 						</tr>
-					</table>
-				</form>
+						<tr>
+							<td><h5>现场笔录</h5></td>
+							<td>
+								<button type="button" id="record_file" onclick="upload(this)"
+									class="btn btn-default">
+									<i class="fa fa-upload"></i> 上传
+								</button>
+							</td>
+							<td>
+								<button type="button" onclick="downloadFile(this)"
+									id="record_file" class="btn btn-default">
+									<i class="fa fa-download"></i> 下载
+								</button>
+							</td>
+						</tr>
+						<tr>
+							<td><h5>现场照片</h5></td>
+							<td><button type="button" id="scene_picture"
+									class="btn btn-default" onclick="upload(this)">
+									<i class="fa fa-upload"></i> 上传
+								</button></td>
+							<td>
+								<button type="button" id="scene_picture" class="btn btn-default"
+									onclick="downloadFile(this)">
+									<i class="fa fa-download"></i> 下载
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
+	<!-- accept="image/*" -->
+	<input id="file_upload" onchange="upLoadFile()"
+		style="filter:alpha(opacity=0);opacity: 0;width: 0;height: 0;"
+		type="file">
 	<input type="hidden" id="case1_id" value="<s:property value="id"/>">
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
@@ -383,37 +599,32 @@
 				</div>
 				<div class="modal-body">
 					<div class="panel-body">
-						<form id="lost_evidence" action="">
+						<form action="">
 							<table>
 								<tbody>
-									<tr>
+									<!-- <tr>
 										<td>案发时间:</td>
 										<td><input name="case_receivingAlarmDate"
-											class="form-control mydate" value="1900-1-10" maxlength="19"
-											type="text"></td>
-										<td>物证名称:</td>
-										<td><input name="resevidence.resevidence_name"
-											class="form-control" value="" size="30" maxlength="19"
-											type="text"></td>
-
-									</tr>
-									<tr>
+											class="form-control mydate" value="" type="text"></td>
 										<td>案发地点:</td>
 										<td><input name="case_address" class="form-control"
-											value="萍乡市安源区" size="30" maxlength="19" type="text"></td>
-										<td>提取部位:</td>
-										<td><input name="resevidence.resevidence_extractPart"
-											class="form-control" value="" size="30" maxlength="19"
-											type="text"></td>
-
-									</tr>
-									<tr>
+											value="萍乡市安源区" type="text"></td>
 										<td>案件性质:</td>
 										<td><input name="case_classify" class="form-control"
-											value="" size="30" maxlength="19" type="text"></td>
+											value="" type="text"></td>
+									</tr> -->
+									<tr>
+										<td>物证名称:</td>
+										<td><input name="resevidence.resevidence_name"
+											refresh="text" class="form-control" value="" type="text"></td>
+										<td>提取部位:</td>
+										<td><input name="resevidence.resevidence_extractPart"
+											refresh="text" class="form-control" value="" type="text"></td>
+									</tr>
+									<tr>
 										<td>提取方法:</td>
 										<td><select name="resevidence.resevidence_extractMethod"
-											class="form-control">
+											refresh="text" class="form-control">
 												<option value="">请输入提取方法</option>
 												<option value="粉末显现">粉末显现</option>
 												<option value="茚三酮熏显">茚三酮熏显</option>
@@ -424,21 +635,19 @@
 												<option value="纱布转移">纱布转移</option>
 												<option value="其他">其他</option>
 										</select></td>
-									</tr>
-									<tr>
 										<td>提取数量:</td>
 										<td><input name="resevidence.resevidence_extractNumber"
-											class="form-control" value="" size="30" maxlength="19"
-											type="text"></td>
-										<td>提取人:</td>
-										<td><select name="resevidence.resevidence_extractPerson"
-											class="selectpicker form-control" multiple
-											data-live-search="true" data-dropup-auto="false" title="请选择"></select></td>
+											refresh="text" class="form-control" value="" type="text"></td>
 									</tr>
 									<tr>
-										<td>物证类型：</td>
+
+										<td>提取人:</td>
+										<td><select name="resevidence.resevidence_extractPerson"
+											refresh="selectpicker" class="selectpicker form-control"
+											multiple data-dropup-auto="false" title="请选择"></select></td>
+										<td>物证类型:</td>
 										<td><select name="resevidence.resevidence_type"
-											class="form-control">
+											refresh="text" class="form-control">
 												<option value="" selected>请选择物证类型</option>
 												<option value="手印痕迹">手印痕迹</option>
 												<option value="足迹痕迹">足迹痕迹</option>
@@ -447,22 +656,22 @@
 												<option value="理化物证">理化物证</option>
 												<option value="其他">其他</option>
 										</select></td>
-										<td>提取日期:</td>
-										<td><input name="resevidence.resevidence_extractTime"
-											class="form-control mydate" type="text"></td>
 									</tr>
 									<tr>
+
+										<td>提取日期:</td>
+										<td><input name="resevidence.resevidence_extractTime"
+											refresh="text" class="form-control mydate" type="text"></td>
 										<td>提取单位:</td>
 										<td colspan="3"><input
-											name="resevidence.resevidence_extractUnit"
-											class="form-control" value="安源分局刑事科学技术室" size="30"
-											maxlength="19" type="text"></td>
+											name="resevidence.resevidence_extractUnit" type="text"
+											refresh="fixed" class="form-control" value="安源分局刑事科学技术室"></td>
 									</tr>
 									<tr>
 										<td>备注:</td>
 										<td colspan="3"><textarea
 												name="resevidence.resevidence_remarks" class="form-control"
-												placeholder="请填写" rows="2"></textarea></td>
+												refresh="text" placeholder="请填写" rows="2"></textarea></td>
 									</tr>
 								</tbody>
 							</table>
@@ -470,7 +679,10 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary add_evidence">提交</button>
+					<button style="display:none;" type="button" id="modify_evidence"
+						class="btn btn-primary modify_evidence">修改</button>
+					<button type="button" id="add_evidence"
+						class="btn btn-primary add_evidence">提交</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 
 				</div>
@@ -483,7 +695,7 @@
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!-- 添加丢失物品-模态框（Modal） -->
-	<div class="modal fade" id="LossOfGoods" tabindex="-1" role="dialog"
+	<div class="modal fade" id="lost" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
@@ -494,76 +706,92 @@
 				</div>
 				<div class="modal-body">
 					<div class="panel-body">
-						<form id="Lost_Goods" action="">
+						<form action="">
 							<table align="center">
-								<thead>
-									<tr>
-										<td><div
-												style="padding-left:10px; float: left; width: 16%;">丢失类型</div>
-											<select class="form-control" onchange="ChangeItemType(this)"
-											style="width: 84%;">
-												<option value="" selected="selected">请选择</option>
-												<option value="lost_goods">物品</option>
-												<option value="lost_computer">电脑</option>
-												<option value="lost_mobilephone">手机</option>
-										</select></td>
-									</tr>
-								</thead>
-								<tbody class="lost_goods" style="display: none;">
+								<tbody class="lost_goods">
 									<tr>
 										<td><div style="padding-top:6px; float: left;width: 15%;">物品名称</div>
 											<input name="lost.lost_name" class="form-control" type="text"
-											style="width: 85%;"></td>
+											refresh="text" style="width: 85%;"></td>
+									</tr>
+									<tr>
+										<td><div style="padding-top:6px; float: left;width: 15%;">型号</div>
+											<input name="lost.lost_model" class="form-control"
+											type="text" refresh="text" style="width: 85%;"></td>
+									</tr>
+									<tr>
+										<td><div style="padding-top:6px; float: left;width: 15%;">丢失数量</div>
+											<input name="lost.lost_number" class="form-control"
+											type="text" refresh="text" style="width: 85%;"></td>
+									</tr>
+									<tr>
+										<td><div style="padding-top:6px; float: left;width: 15%;">价值</div>
+											<input name="lost.lost_price" class="form-control"
+											type="text" refresh="text" style="width: 85%;"></td>
 									</tr>
 									<tr>
 										<td><div style="padding-top:6px; float: left;width: 15%;">备注</div>
-											<textarea style="margin-top: 6px;width: 85%;"
+											<textarea style="margin-top: 6px;width: 85%;" refresh="text"
 												name="lost.lost_remarks" class="form-control" rows="2"></textarea></td>
 									</tr>
 								</tbody>
-								<tbody class="lost_mobilephone" style="display: none;">
+							</table>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="modify_lost" style="display: none;"
+						class="btn btn-primary modify_lost">修改</button>
+					<button type="button" id="add_lost"
+						class="btn btn-primary add_lost">提交</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+	<!---------------------------------------------------------------------------------------------------->
+	<!---------------------------------------------------------------------------------------------------->
+	<!---------------------------------------------------------------------------------------------------->
+	<!-- 添加丢失手机模态框（Modal） -->
+	<div class="modal fade" id="lost_mobilephone" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">添加丢失手机</h4>
+				</div>
+				<div class="modal-body">
+					<div class="panel-body">
+						<form action="">
+							<table align="center">
+								<tbody class="lost_mobilephone">
 									<tr>
 										<td><div style="padding-top:6px; float: left;width: 15%;">手机号码</div>
 											<input name="lost_mobilephone.lost_mobilephone_phone"
-											class="form-control" type="text" style="width: 85%;"></td>
+											refresh="text" class="form-control" type="text"
+											style="width: 85%;"></td>
 									</tr>
 									<tr>
 										<td><div style="padding-top:6px; float: left;width: 15%;">手机串号</div>
 											<input name="lost_mobilephone.lost_mobilephone_IMEI"
-											class="form-control" type="text" style="width: 85%;"></td>
+											refresh="text" class="form-control" type="text"
+											style="width: 85%;"></td>
 									</tr>
 									<tr>
 										<td><div style="padding-top:6px; float: left;width: 15%;">手机特征</div>
 											<input name="lost_mobilephone.lost_mobilephone_feature"
-											class="form-control" type="text" style="width: 85%;"></td>
+											refresh="text" class="form-control" type="text"
+											style="width: 85%;"></td>
 									</tr>
 									<tr>
 										<td><div style="padding-top:6px; float: left;width: 15%;">备注</div>
 											<textarea name="lost_mobilephone.lost_mobilephone_remarks"
-												style="margin-top: 6px;width: 85%;" class="form-control"
-												rows="2"></textarea></td>
-									</tr>
-								</tbody>
-								<tbody class="lost_computer" style="display: none;">
-									<tr>
-										<td><div style="padding-top:6px; float: left;width: 15%;">电脑品牌</div>
-											<input name="lost_computer.lost_computer_brand"
-											class="form-control" type="text" style="width: 85%;"></td>
-									</tr>
-									<tr>
-										<td><div style="padding-top:6px; float: left;width: 15%;">上网账号</div>
-											<input name="lost_computer.lost_computer_internetAccount"
-											class="form-control" type="text" style="width: 85%;"></td>
-									</tr>
-									<tr>
-										<td><div style="padding-top:6px; float: left;width: 15%;">MAC地址</div>
-											<input name="lost_computer.lost_computer_MAC"
-											class="form-control" type="text" style="width: 85%;"></td>
-									</tr>
-									<tr>
-										<td><div style="padding-top:6px; float: left;width: 15%;">备注</div>
-											<textarea name="lost_computer.lost_computer_remarks"
-												style="margin-top: 6px;width: 85%;" name=""
+												refresh="text" style="margin-top: 6px;width: 85%;"
 												class="form-control" rows="2"></textarea></td>
 									</tr>
 								</tbody>
@@ -572,9 +800,69 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary add_goods">提交</button>
+					<button type="button" id="modify_mobilephone"
+						style="display: none;" class="btn btn-primary modify_mobilephone">修改</button>
+					<button type="button" id="add_mobilephone"
+						class="btn btn-primary add_mobilephone">提交</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+	<!---------------------------------------------------------------------------------------------------->
+	<!---------------------------------------------------------------------------------------------------->
+	<!---------------------------------------------------------------------------------------------------->
+	<!-- 添加丢失电脑-模态框（Modal） -->
+	<div class="modal fade" id="lost_computer" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">添加丢失电脑</h4>
+				</div>
+				<div class="modal-body">
+					<div class="panel-body">
+						<form action="">
+							<table align="center">
+								<tbody class="lost_computer">
+									<tr>
+										<td><div style="padding-top:6px; float: left;width: 15%;">电脑品牌</div>
+											<input name="lost_computer.lost_computer_brand"
+											refresh="text" class="form-control" type="text"
+											style="width: 85%;"></td>
+									</tr>
+									<tr>
+										<td><div style="padding-top:6px; float: left;width: 15%;">上网账号</div>
+											<input name="lost_computer.lost_computer_internetAccount"
+											refresh="text" class="form-control" type="text"
+											style="width: 85%;"></td>
+									</tr>
+									<tr>
+										<td><div style="padding-top:6px; float: left;width: 15%;">MAC地址</div>
+											<input name="lost_computer.lost_computer_MAC" refresh="text"
+											class="form-control" type="text" style="width: 85%;"></td>
+									</tr>
+									<tr>
+										<td><div style="padding-top:6px; float: left;width: 15%;">备注</div>
+											<textarea name="lost_computer.lost_computer_remarks"
+												refresh="text" style="margin-top: 6px;width: 85%;"
+												class="form-control" rows="2"></textarea></td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary modify_computer"
+						style="display: none;" id="modify_computer">修改</button>
+					<button type="button" class="btn btn-primary add_computer"
+						id="add_computer">提交</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->
@@ -592,7 +880,7 @@
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">痕迹物证单</h4>
+					<h4 class="modal-title" id="myModalLabel">添加照片</h4>
 				</div>
 				<div class="modal-body">
 					<div class="panel-body">
@@ -600,26 +888,19 @@
 							<table align="center">
 								<tbody>
 									<tr>
-										<td><div style="padding-top:6px; float: left;width: 15%;">光盘编号</div>
-											<input name="image.xsjsglxt_image_id" class="form-control"
-											type="text" style="width: 85%;"></td>
-									</tr>
-									<%-- <tr>
-										<td><div style="padding-top:6px; float: left;width: 15%;">所属案件</div>
-											<div style="width: 85%; float: right; margin-top: 6px;">
-												<select style="witdh:100%;"
-													class="form-control selectpicker" data-live-search="true"
-													name="case1.xsjsglxt_case_id"></select>
-											</div></td>
-									</tr> --%>
-									<tr>
-										<td><div style="padding-top:6px; float: left;width: 15%;">照片编号</div>
-											<input name="picture.picture_identifier" class="form-control"
-											type="text" style="width: 85%;"></td>
+										<td style="width: 20%;">光盘编号</td>
+										<td style="width: 80%;"><select
+											name="image.xsjsglxt_image_id" class="form-control"
+											refresh="selectpicker"></select></td>
 									</tr>
 									<tr>
-										<td><div style=" padding-top:6px;float: left;width: 15%;">备注</div>
-											<textarea style="margin-top: 6px;width: 85%;"
+										<td>照片编号</td>
+										<td><input name="picture.picture_identifier"
+											class="form-control" refresh="text" type="text"></td>
+									</tr>
+									<tr>
+										<td>备注</td>
+										<td><textarea style="margin-top: 6px;" refresh="text"
 												name="picture.picture_remarks" class="form-control" rows="2"></textarea></td>
 									</tr>
 								</tbody>
@@ -628,7 +909,10 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary add_picture">添加照片</button>
+					<button type="button" id="modify_picture" style="display: none;"
+						class="btn btn-primary modify_picture">修改</button>
+					<button type="button" id="add_picture"
+						class="btn btn-primary add_picture">添加照片</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 				</div>
 			</div>
@@ -636,6 +920,97 @@
 		</div>
 		<!-- /.modal -->
 	</div>
+
+	<!-- 物证流转-模态框（Modal） -->
+	<div class="modal fade" id="circulation-info" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">物证流转</h4>
+				</div>
+				<div class="modal-body">
+					<div class="panel-body">
+						<form>
+							<table style="width: 80%;" align="center">
+								<tbody>
+									<tr>
+										<td>物证名称:</td>
+										<td colspan="3"><input
+											name="resevidence.resevidence_name" refresh="text"
+											class="form-control" type="text"></td>
+									</tr>
+									<tr>
+										<td style="width: 20%;">提取方法:</td>
+										<td style="width: 30%;"><input
+											name="resevidence.resevidence_extractMethod" refresh="text"
+											class="form-control" type="text"></td>
+										<td style="width: 20%;">提取数量:</td>
+										<td style="width: 30%;"><input
+											name="resevidence.resevidence_extractNumber" refresh="text"
+											class="form-control" type="text"></td>
+									</tr>
+									<tr>
+										<td>提取单位:</td>
+										<td><input name="resevidence.resevidence_extractUnit"
+											type="text" refresh="fixed" class="form-control"
+											value="安源分局刑事科学技术室"></td>
+
+										<td>提取人:</td>
+										<td><input name="resevidence.resevidence_extractPerson"
+											refresh="text" class="form-control" type="text"></td>
+									</tr>
+									<tr>
+										<td>提取日期:</td>
+										<td><input name="resevidence.resevidence_extractTime"
+											refresh="text" class="form-control" type="text"></td>
+									</tr>
+									<tr>
+										<td>流转情况</td>
+										<td><select name="circulation.circulation_situation"
+											refresh="text" class="form-control"
+											onchange="situation(this)">
+												<option value=""></option>
+												<option value="入库保存">入库保存</option>
+												<option value="出库送检">出库送检</option>
+												<option value="出库移交">出库移交</option>
+										</select></td>
+										<td>存放位置</td>
+										<td><input name="circulation.circulation_position"
+											refresh="text" class="form-control" value="" type="text"></td>
+									</tr>
+									<tr>
+										<td>流转日期</td>
+										<td><input name="circulation.circulation_date"
+											refresh="text" class="form-control mydate_minute" type="text"></td>
+									</tr>
+									<tr>
+										<td>移交人</td>
+										<td><input name="circulation.circulation_transferperson"
+											refresh="text" class="form-control" type="text"></td>
+										<td>接收人</td>
+										<td><input name="circulation.circulation_recipient"
+											refresh="text" class="form-control" type="text"></td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="save_circulation"
+						class="btn btn-primary save_circulation">保存</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+
+
 	<!-- 修改基站-模态框（Modal） -->
 	<!-- <div class="modal fade" id="station" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
@@ -709,5 +1084,9 @@
 		minDate : '1990/01/01', // 设置最小日期
 		maxDate : '2030/01/01', // 设置最大日期
 	});
+	$("html,body").animate({
+		scrollTop : $("#evidence-info").offset().top - $('#navbar').height()
+	}, 2000);
+	//document.documentElement.scrollTop = $('#evidence-info').offset().top - $('#navbar').height();
 </script>
 </html>

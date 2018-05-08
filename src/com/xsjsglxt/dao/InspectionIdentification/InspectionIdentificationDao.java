@@ -14,7 +14,7 @@ import com.xsjsglxt.domain.VO.InspectionIdentification.EntrustmentBookManagement
 public interface InspectionIdentificationDao {
 
 	public List<?> listObject(String hql);
-	
+
 	public int saveObject(Object object);
 
 	public int getMaxCheckNum(String check_entrustment_book_year, String type);
@@ -39,13 +39,17 @@ public interface InspectionIdentificationDao {
 
 	public xsjsglxt_appraisal_letter getAppraisalLetterById(String xsjsglxt_check_entrustment_book_id);
 
-	public com.xsjsglxt.domain.DO.xsjsglxt_identifieder_case_confirm_book getIdentifiederCaseConfirmBookByOwnId(String xsjsglxt_identifieder_case_confirm_book_id);
+	public com.xsjsglxt.domain.DO.xsjsglxt_identifieder_case_confirm_book getIdentifiederCaseConfirmBookByOwnId(
+			String xsjsglxt_identifieder_case_confirm_book_id);
 
-	public com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform getNotAcceptanceEntrustmentInformByOwnId(String xsjsglxt_not_acceptance_entrustment_inform_id);
+	public com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform getNotAcceptanceEntrustmentInformByOwnId(
+			String xsjsglxt_not_acceptance_entrustment_inform_id);
 
-	public com.xsjsglxt.domain.DO.xsjsglxt_inspection_record getInspectionRecordByOwnId(String xsjsglxt_inspection_record_id);
+	public com.xsjsglxt.domain.DO.xsjsglxt_inspection_record getInspectionRecordByOwnId(
+			String xsjsglxt_inspection_record_id);
 
-	public com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter getAppraisalLetterByOwnId(String xsjsglxt_appraisal_letter_id);
+	public com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter getAppraisalLetterByOwnId(
+			String xsjsglxt_appraisal_letter_id);
 
 	public int deleteIdentifiederCaseConfirmBookId(String xsjsglxt_identifieder_case_confirm_book_id);
 
@@ -65,9 +69,11 @@ public interface InspectionIdentificationDao {
 
 	public int deleteDamageInspectionRecordById(String xsjsglxt_damage_inspection_record_id);
 
-	public com.xsjsglxt.domain.DO.xsjsglxt_death_inspection_record getDeathInspectionRecordOwnId(String xsjsglxt_death_inspection_record_id);
+	public com.xsjsglxt.domain.DO.xsjsglxt_death_inspection_record getDeathInspectionRecordOwnId(
+			String xsjsglxt_death_inspection_record_id);
 
-	public com.xsjsglxt.domain.DO.xsjsglxt_damage_inspection_record getDamageInspectionRecordByOwnId(String xsjsglxt_damage_inspection_record_id);
+	public com.xsjsglxt.domain.DO.xsjsglxt_damage_inspection_record getDamageInspectionRecordByOwnId(
+			String xsjsglxt_damage_inspection_record_id);
 
 	public int getMaxLetterNum(String currentYear, String appraisal_letter_type);
 
@@ -80,5 +86,7 @@ public interface InspectionIdentificationDao {
 	public com.xsjsglxt.domain.DO.xsjsglxt_entrustment_sample getEentrustment_sample(String id);
 
 	public int deleteCheckEntrustmentByOwnId(String xsjsglxt_entrustment_sample_id);
+
+	public void saveInspectionRecords(xsjsglxt_inspection_record inspectionRecord);
 
 }

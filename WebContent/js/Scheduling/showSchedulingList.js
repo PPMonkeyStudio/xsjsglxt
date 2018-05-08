@@ -14,6 +14,17 @@ var queryConditionTemp = {
 window.onload = function() {
 	$('input').val("");
 	$('input[type="checkbox"]').attr("checked", false);
+	var currDate = new Date();
+	var currMonth = currDate.getMonth() + 1;
+	if (currMonth <= 10) {
+		currMonth = '0' + currMonth;
+	}
+	queryConditionTemp.queryTimeStart = currDate.getFullYear() + '-'
+			+ currMonth + '-01';
+	queryConditionTemp.queryTimeEnd = currDate.getFullYear() + '-' + currMonth
+			+ '-31';
+	$('#timeStart').val(currDate.getFullYear() + '-' + currMonth + '-01');
+	$('#timeEnd').val(currDate.getFullYear() + '-' + currMonth + '-31');
 	schedulingVue = new Vue({
 		el : '#tableContent',
 		data : {

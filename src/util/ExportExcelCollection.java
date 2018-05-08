@@ -57,7 +57,6 @@ public class ExportExcelCollection {
 			// 列数
 			short in = 0;
 			for (String str : map.keySet()) {
-
 				// 一行中创建列
 				XSSFCell cell = row.createCell(in);
 				try {

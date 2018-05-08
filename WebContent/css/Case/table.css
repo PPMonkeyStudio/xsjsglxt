@@ -9,7 +9,7 @@
 
 .panel-body table tbody tr td:nth-child(even) {
 	padding-right: 10px;
-	width: 180px;
+	/*width: 180px; */
 }
 
 .panel-body table tbody tr td:nth-child(odd) {

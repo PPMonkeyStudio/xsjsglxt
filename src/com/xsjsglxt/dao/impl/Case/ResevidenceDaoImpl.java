@@ -141,7 +141,7 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 	}
 
 	@Override
-	public xsjsglxt_circulation getCirculationByxsjsglxt_resevidence_id(xsjsglxt_resevidence resevidence) {
+	public List<xsjsglxt_circulation> getCirculationByxsjsglxt_resevidence_id(xsjsglxt_resevidence resevidence) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 		String hql = "from xsjsglxt_circulation circulation where circulation.circulation_resevidence='"
@@ -149,7 +149,7 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_circulation circulation = (xsjsglxt_circulation) query.uniqueResult();
+		List<xsjsglxt_circulation> circulation = query.list();
 
 		return circulation;
 	}
@@ -165,7 +165,7 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 		Query query = session.createQuery(hql);
 
 		resevidence = (xsjsglxt_resevidence) query.uniqueResult();
-
+		session.clear();
 		return resevidence;
 	}
 
@@ -198,8 +198,11 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 		return sence;
 	}
 
+	/**
+	 * @author 何毅
+	 */
 	@Override
-	public xsjsglxt_circulation getcirculationByresevidenceId(xsjsglxt_resevidence resevidence) {
+	public List<xsjsglxt_circulation> getcirculationByresevidenceId(xsjsglxt_resevidence resevidence) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
@@ -208,7 +211,7 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 
 		Query query = session.createQuery(hql);
 
-		xsjsglxt_circulation circulation = (xsjsglxt_circulation) query.uniqueResult();
+		List<xsjsglxt_circulation> circulation = query.list();
 
 		return circulation;
 	}
@@ -269,6 +272,40 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * @author 孙毅 修改流转状态
+	 */
+
+	@Override
+	public void updateStatus(xsjsglxt_resevidence resevidence) {
+		// TODO Auto-generated method stub
+		String hql = "update xsjsglxt_resevidence set resevidence_circulation = '"
+				+ resevidence.getResevidence_circulation() + "' where xsjsglxt_resevidence_id ='"
+				+ resevidence.getXsjsglxt_resevidence_id() + "'";
+		Session session = this.getSession();
+		session.createQuery(hql).executeUpdate();
+	}
+
+	@Override
+	public void updateResevidenceCheckState(xsjsglxt_resevidence resevidence) {
+		// TODO Auto-generated method stub
+		String hql = "update xsjsglxt_resevidence set resevidence_teststate = '"
+				+ resevidence.getResevidence_teststate() + "' where xsjsglxt_resevidence_id ='"
+				+ resevidence.getXsjsglxt_resevidence_id() + "'";
+		Session session = this.getSession();
+		session.createQuery(hql).executeUpdate();
+	}
+
+	@Override
+	public void updateResevidenceSendCheckState(xsjsglxt_resevidence resevidence) {
+		// TODO Auto-generated method stub
+		String hql = "update xsjsglxt_resevidence set resevidence_sendstate = '"
+				+ resevidence.getResevidence_sendstate() + "' where xsjsglxt_resevidence_id ='"
+				+ resevidence.getXsjsglxt_resevidence_id() + "'";
+		Session session = this.getSession();
+		session.createQuery(hql).executeUpdate();
 	}
 
 }

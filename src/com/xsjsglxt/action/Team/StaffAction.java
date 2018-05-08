@@ -12,6 +12,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
@@ -41,6 +42,17 @@ public class StaffAction extends ActionSupport {
 	private String staff_imageFileName;
 	private policemanListVO policemanVO;
 	private String xsjsglxt_staff_id;
+
+	// 进入修改页面
+
+	public String intoUpdate() {
+		return "intoUpdate";
+	}
+
+	// 进入打印页
+	public String intoPrintPage() {
+		return "intoPrintPage";
+	}
 
 	// 通过职位分类人员
 	public void getSchedulingStaff() {
@@ -89,6 +101,58 @@ public class StaffAction extends ActionSupport {
 			pw.flush();
 			pw.close();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	// 获得办案中队长
+	public void getHandleCenter() {
+		List<xsjsglxt_staff> staffList = staffService.getHandleCenter();
+		Gson gson = new Gson();
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(gson.toJson(staffList));
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	// 获得办案侦查民警
+	public void getHandleCheck() {
+		List<xsjsglxt_staff> staffList = staffService.getHandleCheck();
+		Gson gson = new Gson();
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(gson.toJson(staffList));
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	// 获得现场勘验人员
+	public void getInquestPerson() {
+		Map<String, List<xsjsglxt_staff>> inquestPerson = staffService.getInquestPerson();
+		Gson gson = new Gson();
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(gson.toJson(inquestPerson));
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -32,6 +32,8 @@ import com.xsjsglxt.domain.DO.xsjsglxt_entrustment_sample;
 import com.xsjsglxt.domain.DO.xsjsglxt_identifieder_case_confirm_book;
 import com.xsjsglxt.domain.DO.xsjsglxt_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform;
+import com.xsjsglxt.domain.DTO.InspectionIdentification.CaseCheckDTO;
+import com.xsjsglxt.domain.DTO.InspectionIdentification.CaseMandateDTO;
 import com.xsjsglxt.domain.DTO.InspectionIdentification.EntrustmentBookManagementDTO;
 import com.xsjsglxt.domain.VO.InspectionIdentification.EntrustmentBookManagementVO;
 import com.xsjsglxt.service.InspectionIdentification.InspectionIdentificationService;
@@ -55,9 +57,14 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<xsjsglxt_check_entrustment_book> getListEnstrustmentByCaseId(String checkCaseId) {
-		String hql = "from xsjsglxt_check_entrustment_book where checkCaseId='" + checkCaseId + "'";
-		List<xsjsglxt_check_entrustment_book> listEnstrustmentByCaseId = (List<xsjsglxt_check_entrustment_book>) inspectionIdentificationDao
+	public List<CaseMandateDTO> getListEnstrustmentByCaseId(String checkCaseId) {
+		String hql = "select new com.xsjsglxt.domain.DTO.InspectionIdentification.CaseMandateDTO("
+				+ "x.xsjsglxt_check_entrustment_book_id as xsjsglxt_check_entrustment_book_id , r.resevidence_name as resevidence_name,"
+				+ "x.check_entrustment_book_num as check_entrustment_book_num , x.check_entrustment_book_entrustment_unit as check_entrustment_book_entrustment_unit,"
+				+ "x.check_entrustment_book_entrustment_unit_name as check_entrustment_book_entrustment_unit_name ,x.check_entrustment_book_inspect_time as check_entrustment_book_inspect_time"
+				+ ") " + "from xsjsglxt_check_entrustment_book as x , xsjsglxt_resevidence as r "
+				+ "where x.checkEvidenceId = r.xsjsglxt_resevidence_id " + "and x.checkCaseId='" + checkCaseId + "'";
+		List<CaseMandateDTO> listEnstrustmentByCaseId = (List<CaseMandateDTO>) inspectionIdentificationDao
 				.listObject(hql);
 		return listEnstrustmentByCaseId;
 	}
@@ -73,9 +80,15 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<xsjsglxt_inspection_record> listInspectionRecordByCaseId(String inspectionCaseId) {
-		String hql = "from xsjsglxt_inspection_record where = inspectionCaseId" + inspectionCaseId + "";
-		List<xsjsglxt_inspection_record> listInspectionRecordByCaseId = (List<xsjsglxt_inspection_record>) inspectionIdentificationDao
+	public List<CaseCheckDTO> listInspectionRecordByCaseId(String inspectionCaseId) {
+		String hql = "select new com.xsjsglxt.domain.DTO.InspectionIdentification.CaseCheckDTO("
+				+ "x.xsjsglxt_inspection_record_id as xsjsglxt_inspection_record_id ,"
+				+ "r.resevidence_name as resevidence_name , x.inspection_start_time as inspection_start_time , x.inspection_method as inspection_method"
+				+ ", x.inspection_location as inspection_location , x.inspection_option as inspection_option"
+				+ ") from xsjsglxt_inspection_record as x , xsjsglxt_resevidence as r "
+				+ "where x.inspectionEvidenceId = r.xsjsglxt_resevidence_id " + "and x.inspectionCaseId='"
+				+ inspectionCaseId + "'";
+		List<CaseCheckDTO> listInspectionRecordByCaseId = (List<CaseCheckDTO>) inspectionIdentificationDao
 				.listObject(hql);
 		return listInspectionRecordByCaseId;
 	}
@@ -3082,6 +3095,17 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			}
 		}
 		return fileName;
+	}
+
+	/**
+	 * @author 孙毅
+	 * 保存检验记录
+	 */
+
+	@Override
+	public void saveInspectionRecords(xsjsglxt_inspection_record inspectionRecord) {
+		// TODO Auto-generated method stub
+		inspectionIdentificationDao.saveInspectionRecords(inspectionRecord);
 	}
 
 }

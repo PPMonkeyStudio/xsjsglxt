@@ -12,9 +12,12 @@ import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecase;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecasesuspect;
+import com.xsjsglxt.domain.DO.xsjsglxt_takeBreakeCase;
 import com.xsjsglxt.domain.VO.Case.BreakeCaseDetailsVO;
 import com.xsjsglxt.domain.VO.Case.BreakeCaseListVO;
 import com.xsjsglxt.service.Case.BreakecaseService;
+
+import util.TeamUtil;
 
 /**
  * 
@@ -28,6 +31,8 @@ public class BreakecaseAction extends ActionSupport {
 	private List<xsjsglxt_breakecasesuspect> suspectList;
 	private String[] breakeCaseId;
 	private String[] suspectId;
+	private String[] takeBreakeCase; // 连带破案名
+	private String[] takeBreakeCaseId; // 连带破案id
 	private BreakeCaseListVO breakeCaseListVO;
 
 	// -----------------------跳转页面
@@ -35,11 +40,31 @@ public class BreakecaseAction extends ActionSupport {
 		return "page_BreakCaseList";
 	}
 
+	// 通过id获得连带案件
+	public void getTakeBreakeCaseByBreakeCaseId() {
+		List<xsjsglxt_takeBreakeCase> list = breakecaseService
+				.getTakeBreakeCaseByBreakeCaseId(breakeCase.getXsjsglxt_breakecase_id());
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		Gson gson = new Gson();
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(gson.toJson(list));
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	// -----------------------保存破案
 	public void saveBreakeCase() {
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
+		breakeCase.setXsjsglxt_breakecase_id(TeamUtil.getUuid());
 		List<xsjsglxt_breakecase> breakecaseIm = breakecaseService.getBreakeCaseByCaseId(breakeCase);
+		breakecaseService.saveTakeBreakeCase(takeBreakeCase, breakeCase);
 		if (breakecaseIm != null && breakecaseIm.size() > 0) {
 			try {
 				PrintWriter pw = response.getWriter();
@@ -287,6 +312,22 @@ public class BreakecaseAction extends ActionSupport {
 	 */
 	public void setBreakeCaseListVO(BreakeCaseListVO breakeCaseListVO) {
 		this.breakeCaseListVO = breakeCaseListVO;
+	}
+
+	public String[] getTakeBreakeCase() {
+		return takeBreakeCase;
+	}
+
+	public void setTakeBreakeCase(String[] takeBreakeCase) {
+		this.takeBreakeCase = takeBreakeCase;
+	}
+
+	public String[] getTakeBreakeCaseId() {
+		return takeBreakeCaseId;
+	}
+
+	public void setTakeBreakeCaseId(String[] takeBreakeCaseId) {
+		this.takeBreakeCaseId = takeBreakeCaseId;
 	}
 
 }

@@ -24,8 +24,12 @@ import com.xsjsglxt.domain.DO.xsjsglxt_entrustment_sample;
 import com.xsjsglxt.domain.DO.xsjsglxt_identifieder_case_confirm_book;
 import com.xsjsglxt.domain.DO.xsjsglxt_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform;
+import com.xsjsglxt.domain.DTO.InspectionIdentification.CaseCheckDTO;
+import com.xsjsglxt.domain.DTO.InspectionIdentification.CaseMandateDTO;
 import com.xsjsglxt.domain.VO.InspectionIdentification.EntrustmentBookManagementVO;
 import com.xsjsglxt.service.InspectionIdentification.InspectionIdentificationService;
+
+import util.TeamUtil;
 
 @SuppressWarnings("serial")
 public class InspectionIdentificationAction extends ActionSupport implements ServletResponseAware, ServletRequestAware {
@@ -89,7 +93,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
-		List<xsjsglxt_check_entrustment_book> listEnstrustment = new ArrayList<>();
+		List<CaseMandateDTO> listEnstrustment = new ArrayList<>();
 		listEnstrustment = inspectionIdentificationService
 				.getListEnstrustmentByCaseId(tranceCheckBook.getCheckCaseId());
 		response.setContentType("text/html;charset=utf-8");
@@ -98,6 +102,16 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * @author 孙毅
+	 * 保存检验记录
+	 */
+
+	public void saveInspectionRecord() {
+		inspectionRecord.setXsjsglxt_inspection_record_id(TeamUtil.getUuid());
+		inspectionIdentificationService.saveInspectionRecords(inspectionRecord);
 	}
 
 	/**
@@ -132,7 +146,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
-		List<xsjsglxt_inspection_record> listInspectionRecord = new ArrayList<>();
+		List<CaseCheckDTO> listInspectionRecord = new ArrayList<>();
 		listInspectionRecord = inspectionIdentificationService
 				.listInspectionRecordByCaseId(inspectionRecord.getInspectionCaseId());
 		response.setContentType("text/html;charset=utf-8");

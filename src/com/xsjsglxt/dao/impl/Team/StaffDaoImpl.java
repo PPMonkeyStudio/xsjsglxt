@@ -1,7 +1,9 @@
 
 package com.xsjsglxt.dao.impl.Team;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -88,7 +90,7 @@ public class StaffDaoImpl implements StaffDao {
 	public List<policemanListDTO> getPolicemansByPage(policemanListVO policemanVO) {
 		// TODO Auto-generated method stub
 		String hql = "select new com.xsjsglxt.domain.DTO.Team.policemanListDTO(x.xsjsglxt_staff_id as xsjsglxt_staff_id,x.xsjsglxt_name as xsjsglxt_name,"
-				+ "x.xsjsglxt_sex as xsjsglxt_sex,x.xsjsglxt_age as xsjsglxt_age,x.staff_politicalStatus as staff_politicalStatus,x.staff_thePoliceTime as staff_thePoliceTime) from xsjsglxt_staff x where 1=1 ";
+				+ "x.xsjsglxt_sex as xsjsglxt_sex,x.xsjsglxt_age as xsjsglxt_age,x.staff_politicalStatus as staff_politicalStatus,x.staff_thePoliceTime as staff_thePoliceTime,x.staff_phone as staff_phone) from xsjsglxt_staff x where 1=1 ";
 		if (policemanVO.getPolicemanName() != null && policemanVO.getPolicemanName().trim().length() > 0) {
 			String name = "%" + policemanVO.getPolicemanName() + "%";
 			hql = hql + " and xsjsglxt_name like '" + name + "'";
@@ -146,7 +148,7 @@ public class StaffDaoImpl implements StaffDao {
 			hql = "from xsjsglxt_staff where staff_duty = '大队长' or staff_duty ='教导员' or staff_duty ='副大队长' or staff_duty ='副教导员' or staff_duty ='中队长' or staff_duty ='副中队长'";
 			break;
 		case "main":
-			hql = "from xsjsglxt_staff where staff_duty = '侦查民警' or staff_duty ='法医'";
+			hql = "from xsjsglxt_staff where staff_duty = '侦查民警' or staff_duty ='法医民警'";
 			break;
 		case "mainTech":
 			hql = "from xsjsglxt_staff where staff_duty = '技术民警'";
@@ -175,9 +177,39 @@ public class StaffDaoImpl implements StaffDao {
 	public List<xsjsglxt_staff> getMeetRecorder() {
 		// TODO Auto-generated method stub
 		Session session = this.getSession();
-		String hql = "from xsjsglxt_staff where staff_duty = '内勤'";
+		String hql = "from xsjsglxt_staff where staff_duty = '内勤民警'";
 		Query query = session.createQuery(hql);
 		List<xsjsglxt_staff> staffList = query.list();
 		return staffList;
+	}
+
+	@Override
+	public Map<String, List<xsjsglxt_staff>> getInquestPerson() {
+		// TODO Auto-generated method stub
+		Map<String, List<xsjsglxt_staff>> map = new HashMap<String, List<xsjsglxt_staff>>();
+		Session session = this.getSession();
+		String hqlLeader = "from xsjsglxt_staff where staff_duty ='局长' or staff_duty='政委' or staff_duty ='大队长' or staff_duty ='教导员' or staff_duty ='副大队长' or staff_duty ='副教导员' or staff_duty ='中队长' or staff_duty ='副局长'";
+		String hqlHuman = "from xsjsglxt_staff where staff_duty ='技术民警'";
+		List<xsjsglxt_staff> leader = session.createQuery(hqlLeader).list();
+		map.put("leader", leader);
+		List<xsjsglxt_staff> human = session.createQuery(hqlHuman).list();
+		map.put("human", human);
+		return map;
+	}
+
+	@Override
+	public List<xsjsglxt_staff> getHandleCenter() {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		String hql = "from xsjsglxt_staff where staff_duty ='中队长'";
+		return session.createQuery(hql).list();
+	}
+
+	@Override
+	public List<xsjsglxt_staff> getHandleCheck() {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		String hql = "from xsjsglxt_staff where staff_duty ='侦查民警'";
+		return session.createQuery(hql).list();
 	}
 }

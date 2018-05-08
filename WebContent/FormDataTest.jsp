@@ -7,18 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form id="test">
-	<select name="testRadio">
-		<option value="1">男</option>
-		<option value="2">女</option>
-	</select>
-		<button onclick="get()">我是孙毅</button>
+	<form method="POST" action="http://localhost:8080/xsjsglxt/case/Case_uploadFile" enctype="multipart/form-data">
+		<input name="case1.xsjsglxt_case_id" type="text">
+		<input name="filePosition" type="text">
+		<input name="writeText" type="file">
+		<input type="submit" value="上传">
 	</form>
-	<script type="text/javascript">
-		var get=function(){
-				var formData=  new FormData(document.getElementById("test"));
-				console.log(formData.get("testRadio"));
-			}
-	</script>
 </body>
 </html>

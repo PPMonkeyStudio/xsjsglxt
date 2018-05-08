@@ -117,7 +117,14 @@ var createConfirm = function(event) {
 		}
 	})
 }
-
+function  createConfirm_relive(event) {
+	console.log("进入修改");
+	enterRelivePage(event);
+}
+function enterRelivePage(event){
+	window.location = "/xsjsglxt/team/Staff_intoUpdate?xsjsglxt_staff_id="
+		+ event.id;
+}
 var deletePoliceman = function(event) {
 	// 此处调用九个接口
 	// 删除警员基本信息

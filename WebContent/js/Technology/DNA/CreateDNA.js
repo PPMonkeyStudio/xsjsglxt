@@ -56,17 +56,17 @@ function CreateDNA() {
 						if (input_IDCard.value == "") {
 							toastr.error("身份证号不能为空！");
 							return false;
-						}else{
-							//判断身份证号并获取出生日期
-							var result=DNAGetBirth();
-							if(result==false){
+						} else {
+							// 判断身份证号并获取出生日期
+							var result = DNAGetBirth();
+							if (result == false) {
 								return false;
 							}
 						}
-						/*if (input_birth.value == "") {
-							toastr.error("出生日期不能为空！");
-							return false;
-						}*/
+						/*
+						 * if (input_birth.value == "") {
+						 * toastr.error("出生日期不能为空！"); return false; }
+						 */
 						if (input_illegalFact.value == "") {
 							toastr.error("违法事实不能为空！");
 							return false;
@@ -144,12 +144,12 @@ function CreateDNA() {
 				onContentReady : function() {
 					// 执行一个laydate实例
 					laydate.render({
-						elem : '#input_inputtingTime' ,// 指定元素建档时间
-							value : new Date()
+						elem : '#input_inputtingTime',// 指定元素建档时间
+						value : new Date()
 					});
 					laydate.render({
-						elem : '#input_makingTime' ,// 指定元素交档时间
-							value : new Date()
+						elem : '#input_makingTime',// 指定元素交档时间
+						value : new Date()
 					});
 				}
 			});

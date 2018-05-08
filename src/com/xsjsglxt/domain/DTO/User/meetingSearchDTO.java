@@ -5,18 +5,28 @@ public class meetingSearchDTO {
 	private String meeting_title;
 	private String meeting_start_time;
 	private String meeting_end_time;
+	private String meeting_theme;
 	private String meeting_place;
 	private String meeting_compere;
 
 	public meetingSearchDTO(String meeting_id, String meeting_title, String meeting_start_time, String meeting_end_time,
-			String meeting_place, String meeting_compere) {
-		// TODO Auto-generated constructor stub
+			String meeting_theme, String meeting_place, String meeting_compere) {
+		super();
 		this.meeting_id = meeting_id;
 		this.meeting_title = meeting_title;
 		this.meeting_start_time = meeting_start_time;
 		this.meeting_end_time = meeting_end_time;
+		this.meeting_theme = meeting_theme;
 		this.meeting_place = meeting_place;
 		this.meeting_compere = meeting_compere;
+	}
+
+	public String getMeeting_theme() {
+		return meeting_theme;
+	}
+
+	public void setMeeting_theme(String meeting_theme) {
+		this.meeting_theme = meeting_theme;
 	}
 
 	public meetingSearchDTO() {

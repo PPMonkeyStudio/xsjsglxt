@@ -49,7 +49,7 @@ public interface SenceDao {
 
 	public xsjsglxt_snece get_sence_Byxsjsglxt_case_id(xsjsglxt_case case1);
 
-	public xsjsglxt_resevidence get_resevidence_Byxsjsglxt_case_id(xsjsglxt_case case1);
+	public List<xsjsglxt_resevidence> get_resevidence_Byxsjsglxt_case_id(xsjsglxt_case case1);
 
 	public com.xsjsglxt.domain.DO.xsjsglxt_case getCaseByNum(String case_id);
 
@@ -75,15 +75,15 @@ public interface SenceDao {
 
 	public xsjsglxt_briefdetails getBriefdetailsByCaseID(xsjsglxt_case case1);
 
-	public xsjsglxt_lost getLostByCaseID(xsjsglxt_case case1);
+	public List<xsjsglxt_lost> getLostByCaseID(xsjsglxt_case case1);
 
-	public xsjsglxt_lost_mobilephone getLost_mobilephoneByCaseId(xsjsglxt_case case1);
+	public List<xsjsglxt_lost_mobilephone> getLost_mobilephoneByCaseId(xsjsglxt_case case1);
 
-	public xsjsglxt_resevidence getResevidenceByCaseId(xsjsglxt_case case1);
+	public List<xsjsglxt_resevidence> getResevidenceByCaseId(xsjsglxt_case case1);
 
-	public xsjsglxt_lost_computer getLost_computerByCaseId(xsjsglxt_case case1);
+	public List<xsjsglxt_lost_computer> getLost_computerByCaseId(xsjsglxt_case case1);
 
-	public xsjsglxt_picture getPicturtByCaseId(xsjsglxt_case case1);
+	public List<xsjsglxt_picture> getPicturtByCaseId(xsjsglxt_case case1);
 
 	/*
 	 * 修改信息
@@ -111,5 +111,13 @@ public interface SenceDao {
 	public xsjsglxt_circulation get_circulation_Byresevidenceid(xsjsglxt_resevidence resevidence);
 
 	public xsjsglxt_breakecase get_breakecase_Byxsjsglxt_case_id(xsjsglxt_case xsjsglxt_case);
+
+	public void updateFileName(String newFileName, String filePosition, xsjsglxt_case case1);
+
+	public void deleteHandle(xsjsglxt_case xsjsglxt_case);
+
+	public void updateCaseTime(xsjsglxt_case case1);
+
+	public void save(Object obj);
 
 }

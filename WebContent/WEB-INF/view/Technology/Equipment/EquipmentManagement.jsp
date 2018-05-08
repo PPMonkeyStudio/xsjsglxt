@@ -13,7 +13,7 @@
 <!---------------------------------------------------------------------------------------------------->
 <script type="text/javascript"
 	src="<%=basePath%>js/Technology/Equipment/CreateEquipment.js"></script>
-	<script type="text/javascript" 
+<script type="text/javascript"
 	src="<%=basePath%>js/Technology/Equipment/EquipmentSelectChange.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/Technology/Equipment/EquipmentDetails.js"></script>
@@ -23,11 +23,16 @@
 	src="<%=basePath%>js/Technology/Equipment/List_Equipment_By_PageAndSearch.js"></script>
 <!---------------------------------------------------------------------------------------------------->
 <title>技术管理 > 器材装备</title>
+<style type="text/css">
+	#bottomPage{
+		cursor: pointer;
+	}
+</style>
 </head>
 <body>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
-	
-	<jsp:include page="/technologyManager.jsp" flush="true"></jsp:include>	
+
+	<jsp:include page="/technologyManager.jsp" flush="true"></jsp:include>
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
@@ -50,8 +55,8 @@
 					<!-- 检索 -->
 					<div class="input-group" style="width: 300px; float: right;">
 						<input id="input_EquipmentSearchText" class="form-control"
-							oninput="List_Equipment_By_PageAndSearch(1)" type="text"> <span
-							class="input-group-addon"> <i class="fa fa-search"></i>
+							oninput="List_Equipment_By_PageAndSearch(1)" type="text">
+						<span class="input-group-addon"> <i class="fa fa-search"></i>
 						</span>
 					</div>
 				</div>
@@ -89,21 +94,14 @@
 					</button>
 
 				</div>
-				<div style="margin: 0 auto; width: 400px; text-align: center;">
-					<button id="button_HomePage" class="btn btn-default"
-						onclick="flip(1)">首页</button>
-					<button id="button_PrePage" class="btn btn-default"
-						onclick="flip(2)">上一页</button>
-					<button id="button_NextPage" class="btn btn-default"
-						onclick="flip(3)">下一页</button>
-					<button id="button_EndPage" class="btn btn-default"
-						onclick="flip(4)">尾页</button>
-				</div>
-				<div
-					style="margin: 20px auto 20px; width: 200px; text-align: center;">
-					第 <span id="span_pageIndex">1</span> 页 <br> 共 <span
-						id="span_totalPages">1</span> 页 <br> 共 <span
-						id="span_totalRecords">0</span> 条记录
+				<div id="bottomPage" style="padding: 20px;">
+					<span>当前页数:<span id="span_pageIndex">1</span></span> <span>共:<span
+						id="span_totalPages">2</span>页
+					</span> 共 <span id="span_totalRecords">0</span> 条记录 <span
+						onclick="flip(1)" id="indexPage" class="pageOperation">首页</span> <span
+						onclick="flip(2)" id="previousPage" class="pageOperation">上一页</span>
+					<span onclick="flip(3)" id="nextPage" class="pageOperation">下一页</span>
+					<span onclick="flip(4)" id="lastPage" class="pageOperation">末页</span>
 				</div>
 			</div>
 			<!--  -->
@@ -124,7 +122,7 @@
 <script type="text/javascript" src="<%=basePath%>js/laydate/laydate.js"></script>
 
 <script type="text/javascript">
-List_Equipment_By_PageAndSearch(1);
+	List_Equipment_By_PageAndSearch(1);
 </script>
 <script type="text/javascript">
 	var documentWidth = document.body.clientWidth;

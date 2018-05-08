@@ -8,9 +8,12 @@ public class BreakeCasePageDTO {
 	private String breakecase_person; // 破案人
 	private String breakecase_according; // 破案方式
 	private String breakecase_caseTime; // 破案时间
+	private String breakecase_suspect; // 嫌疑人
+	private String case_id;// 案件id
 
 	public BreakeCasePageDTO(String xsjsglxt_breakecase_id, String snece_inquestId, String case_name,
-			String breakecase_type, String breakecase_person, String breakecase_according, String breakecase_caseTime) {
+			String breakecase_type, String breakecase_person, String breakecase_according, String breakecase_caseTime,
+			String case_id) {
 		super();
 		this.xsjsglxt_breakecase_id = xsjsglxt_breakecase_id;
 		this.snece_inquestId = snece_inquestId;
@@ -19,6 +22,30 @@ public class BreakeCasePageDTO {
 		this.breakecase_person = breakecase_person;
 		this.breakecase_according = breakecase_according;
 		this.breakecase_caseTime = breakecase_caseTime;
+		this.case_id = case_id;
+	}
+
+	public BreakeCasePageDTO(String xsjsglxt_breakecase_id, String snece_inquestId, String case_name,
+			String breakecase_type, String breakecase_person, String breakecase_according, String breakecase_caseTime,
+			String breakecase_suspect, String case_id) {
+		super();
+		this.xsjsglxt_breakecase_id = xsjsglxt_breakecase_id;
+		this.snece_inquestId = snece_inquestId;
+		this.case_name = case_name;
+		this.breakecase_type = breakecase_type;
+		this.breakecase_person = breakecase_person;
+		this.breakecase_according = breakecase_according;
+		this.breakecase_caseTime = breakecase_caseTime;
+		this.breakecase_suspect = breakecase_suspect;
+		this.case_id = case_id;
+	}
+
+	public String getCase_id() {
+		return case_id;
+	}
+
+	public void setCase_id(String case_id) {
+		this.case_id = case_id;
 	}
 
 	public BreakeCasePageDTO(String xsjsglxt_breakecase_id, String snece_inquestId) {
@@ -45,6 +72,14 @@ public class BreakeCasePageDTO {
 	 */
 	public String getXsjsglxt_breakecase_id() {
 		return xsjsglxt_breakecase_id;
+	}
+
+	public String getBreakecase_suspect() {
+		return breakecase_suspect;
+	}
+
+	public void setBreakecase_suspect(String breakecase_suspect) {
+		this.breakecase_suspect = breakecase_suspect;
 	}
 
 	/**

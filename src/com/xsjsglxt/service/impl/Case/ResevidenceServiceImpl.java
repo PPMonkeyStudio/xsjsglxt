@@ -1,15 +1,14 @@
 package com.xsjsglxt.service.impl.Case;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.xsjsglxt.dao.Case.ResevidenceDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_circulation;
-import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
 import com.xsjsglxt.domain.DO.xsjsglxt_resevidence;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
-import com.xsjsglxt.domain.DTO.Case.LostComputerInformationDTO;
 import com.xsjsglxt.domain.DTO.Case.ResevidenceInformationDTO;
 import com.xsjsglxt.domain.VO.Case.page_list_ResevidenceInformationVO;
 import com.xsjsglxt.service.Case.ResevidenceService;
@@ -33,7 +32,6 @@ public class ResevidenceServiceImpl implements ResevidenceService {
 	@Override
 	public void saveResevidence(xsjsglxt_resevidence resevidence) {
 		// TODO Auto-generated method stub
-		resevidence.setXsjsglxt_resevidence_id(TeamUtil.getUuid());
 		resevidence.setResevidence_gmt_create(TeamUtil.getStringSecond());
 		resevidence.setResevidence_gmt_modified(resevidence.getResevidence_gmt_create());
 		resevidenceDao.save(resevidence);
@@ -52,7 +50,7 @@ public class ResevidenceServiceImpl implements ResevidenceService {
 
 		xsjsglxt_case case1;
 		xsjsglxt_snece snece;
-		xsjsglxt_circulation circulation;
+		List<xsjsglxt_circulation> circulation;
 		// 符合筛选条件的物证记录数
 		int i = resevidenceDao.getCountResevidenceInformationByPage(page_list_ResevidenceInformation);
 		page_list_ResevidenceInformation.setTotalRecords(i);
@@ -94,7 +92,7 @@ public class ResevidenceServiceImpl implements ResevidenceService {
 		resevidence = resevidenceDao.getResevidenceById(resevidence);
 		xsjsglxt_case case1 = resevidenceDao.getcaseByresevidenceId(resevidence);
 		xsjsglxt_snece sence = resevidenceDao.getsenceBycase1Id(case1);
-		xsjsglxt_circulation circulation = resevidenceDao.getcirculationByresevidenceId(resevidence);
+		List<xsjsglxt_circulation> circulation = resevidenceDao.getcirculationByresevidenceId(resevidence);
 		ResevidenceInformationDTO resevidenceInformationDTO = new ResevidenceInformationDTO(resevidence, case1, sence,
 				circulation);
 		return resevidenceInformationDTO;
@@ -109,6 +107,14 @@ public class ResevidenceServiceImpl implements ResevidenceService {
 		circulation.setXsjsglxt_circulation_id(TeamUtil.getUuid());
 		circulation.setCirculation_gmt_create(TeamUtil.getStringSecond());
 		circulation.setCirculation_gmt_modified(circulation.getCirculation_gmt_create());
+
+		xsjsglxt_resevidence resevidence = resevidenceDao
+				.getResevidenceById(new xsjsglxt_resevidence(circulation.getCirculation_resevidence()));
+		resevidence.setResevidence_circulation(circulation.getCirculation_situation());
+		if (circulation.getCirculation_position() != null && !"".equals(circulation.getCirculation_position())) {
+			resevidence.setResevidence_savePlace(circulation.getCirculation_position());
+		}
+		resevidenceDao.save(resevidence);
 		resevidenceDao.saveCirculation(circulation);
 	}
 	/*
@@ -123,6 +129,11 @@ public class ResevidenceServiceImpl implements ResevidenceService {
 			xsjsglxt_resevidence resevidence = resevidenceDao.getByResevidenceNum(Resevidence_id);
 			flag = resevidenceDao.deleteResevidenceById(resevidence.getXsjsglxt_resevidence_id());// ��֤
 			flag = resevidenceDao.deleteCirculationById(resevidence.getXsjsglxt_resevidence_id());// ��֤��ת��Ϣ
+			if (resevidence.getResevidence_image() != null && !"".equals(resevidence.getResevidence_image().trim())) {
+				File file = new File(resevidence.getResevidence_image());
+				if (file != null && file.exists())
+					file.delete();
+			}
 
 		}
 		return flag;
@@ -134,8 +145,46 @@ public class ResevidenceServiceImpl implements ResevidenceService {
 	@Override
 	public void updateResevidenceIn(xsjsglxt_resevidence resevidence) {
 		// TODO Auto-generated method stub
+		xsjsglxt_resevidence old = resevidenceDao.getResevidenceById(resevidence);
 		resevidence.setResevidence_gmt_modified(TeamUtil.getStringSecond());
+		resevidence.setResevidence_sendstate(old.getResevidence_sendstate());
+		resevidence.setResevidence_teststate(old.getResevidence_teststate());
 		resevidenceDao.updateResevidenceIn(resevidence);
+	}
+
+	/**
+	 * @author 孙毅 修改流转状态
+	 */
+
+	@Override
+	public void updateStatus(xsjsglxt_resevidence resevidence) {
+		// TODO Auto-generated method stub
+		resevidenceDao.updateStatus(resevidence);
+	}
+
+	@Override
+	public void updateResevidenceCheckState(xsjsglxt_resevidence resevidence) {
+		// TODO Auto-generated method stub
+		resevidenceDao.updateResevidenceCheckState(resevidence);
+	}
+
+	@Override
+	public void updateResevidenceSendCheckState(xsjsglxt_resevidence resevidence) {
+		// TODO Auto-generated method stub
+		resevidenceDao.updateResevidenceSendCheckState(resevidence);
+	}
+
+	@Override
+	public List<xsjsglxt_circulation> getCirculationList(xsjsglxt_resevidence resevidence) {
+		// TODO Auto-generated method stub
+		return resevidenceDao.getcirculationByresevidenceId(resevidence);
+	}
+
+	@Override
+	public xsjsglxt_resevidence getResevidenceById(String string) {
+		// TODO Auto-generated method stub
+
+		return resevidenceDao.getByResevidenceNum(string);
 	}
 
 }

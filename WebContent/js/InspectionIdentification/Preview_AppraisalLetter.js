@@ -98,11 +98,18 @@ function Preview_AppraisalLetter(obj) {
 							+ '</h3>'
 							+ '<br>'
 							+ '<h3  style="text-align: right;">'
-							+ '<p>鉴定人：法医师 龙建平</p>'
-							+ '<p>法医师 龙建平</p>'
+							+ '<p>鉴定人：'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.appraisal_letter_man1_duty
+							+ ' '
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.appraisal_letter_man1_name
+							+ '</p>'
+							+ '<p>'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.appraisal_letter_man2_duty
+							+ ' '
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.appraisal_letter_man2_name
+							+ '</p>'
 							+ '<p>授权签字人 ：副主任法医师 刘蓉</p>'
-							+ '<p>2017年05月21日</p>'
-							+ '</h3>' + '<hr></div>';
+							+ '<p>2017年05月21日</p>' + '</h3>' + '<hr></div>';
 					jc.setContentAppend(con);
 				},
 				buttons : {
