@@ -1006,21 +1006,24 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			e.printStackTrace();
 		}
 		params.putAll(mapNotAcceptanceIdentifieder(id));
-		XwpfTUtil xwpfTUtil = new XwpfTUtil();
-		XWPFDocument doc;
-		String fileNameInResource = ServletActionContext.getServletContext()
-				.getRealPath("/DocTem/xsjsglxt_not_acceptance_return_receipt.doc");
-		InputStream is;
-		is = new FileInputStream(fileNameInResource);
-		doc = new XWPFDocument(is);
-		xwpfTUtil.replaceInPara(doc, params);
-		xwpfTUtil.replaceInTable(doc, params);
+		Configuration configuration = new Configuration();
+		configuration.setDefaultEncoding("utf-8");
+		// 设置默认的编码方式，将数据以utf-8的方式进行编码
+		configuration.setClassForTemplateLoading(this.getClass(), "");
+		Template t = configuration.getTemplate("xsjsglxt_not_acceptance_return_receipt.ftl", "utf-8");
 		OutputStream os = new FileOutputStream(lj + "kokokoko.doc");
-		doc.write(os);
-		xwpfTUtil.close(os);
-		xwpfTUtil.close(is);
-		os.flush();
-		os.close();
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
+		t.process(params, bw);
+		/*
+		 * XwpfTUtil xwpfTUtil = new XwpfTUtil(); XWPFDocument doc; String
+		 * fileNameInResource = ServletActionContext.getServletContext()
+		 * .getRealPath("/DocTem/xsjsglxt_not_acceptance_return_receipt.doc");
+		 * InputStream is; is = new FileInputStream(fileNameInResource); doc =
+		 * new XWPFDocument(is); xwpfTUtil.replaceInPara(doc, params);
+		 * xwpfTUtil.replaceInTable(doc, params); OutputStream os = new
+		 * FileOutputStream(lj + "kokokoko.doc"); doc.write(os);
+		 * xwpfTUtil.close(os); xwpfTUtil.close(is); os.flush(); os.close();
+		 */
 		return new File(lj + "kokokoko.doc");
 	}
 
@@ -2198,7 +2201,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_jobcard_number() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_jobcard_number().trim()
 								.length() > 0) {
-					tmp2 = tmp2 + xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_jobcard_number()
+					tmp2 = tmp2 + xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_jobcard_number()
 							.trim();
 				}
 				params.put("n3", "工作证：" + tmp1 + "  " + tmp2);
@@ -2217,9 +2220,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				//
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim().length() > 0) {
-					params.put("n14", "[ "
-							+ (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4)
-							+ " ]");
+					params.put("n14", (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4));
 					params.put("n15",
 							(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4));
 				} else {
