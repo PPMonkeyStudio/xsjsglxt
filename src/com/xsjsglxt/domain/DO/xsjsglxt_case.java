@@ -1,67 +1,74 @@
 package com.xsjsglxt.domain.DO;
 
+/**
+ * 
+ * @author 孙毅
+ *	修改时间：2018-04-17
+ */
 public class xsjsglxt_case {
-	
+
 	private String xsjsglxt_case_id;// 案件ID
-	
+
 	private String case_parallel;// 所属串并
-	
+
 	private String case_name;// 案件名称
-	
+
 	private String case_classify;// 案件分类
-	
+
 	private String case_totalCategory;// 案件总类别
-	
+
 	private String case_sonCategory;// 案件子类别
-	
+
 	private String case_extentOfInjury;// 危害程度
-	
+
 	private String case_receivingAlarmDate;// 接警时间
-	
+
 	private int case_register;// 是否立案
-	
+
+	private String case_registerTime;// 立案时间
+
 	private String case_address;// 案发地点
-	
+
 	private String case_makeTime;// 作案时段
-	
+
 	private String case_jurisdiction;// 发案辖区
-	
+
 	private String case_makeMeans;// 作案手段
-	
+
 	private String case_concreteMakeMeans;// 具体手段
-	
+
 	private String case_residence;// 处所
-	
+
 	private String case_concreteResidence;// 具体处所
-	
+
 	private String case_exit;// 进出口
-	
+
 	private String case_process;// 作案过程
-	
+
 	private String case_reporterName;// 报案人姓名
-	
+
 	private int case_reporterSex;// 报案人年龄
-	
+
 	private String case_reporterJobUnit;// 报案人工作单位
-	
+
 	private String case_reporterPhone;// 报案人联系电话
-	
+
 	private String case_reporterAddress;// 报案人家庭住址
-	
+
+	private String case_imageFile; // 物证图片
+
+	private String case_writeFile;// 笔录文件
+
+	private String case_senceImageFile;// 现场图文件
+
 	private String case_gmt_create;// 创建时间
-	
+
 	private String case_gmt_modified;// 修改时间
 
 	public xsjsglxt_case() {
-	
+
 		// TODO Auto-generated constructor stub
 	}
-
-	
-
-	
-
-
 
 	public xsjsglxt_case(String xsjsglxt_case_id, String case_parallel, String case_name, String case_classify,
 			String case_totalCategory, String case_sonCategory, String case_extentOfInjury,
@@ -70,7 +77,7 @@ public class xsjsglxt_case {
 			String case_concreteResidence, String case_exit, String case_process, String case_reporterName,
 			int case_reporterSex, String case_reporterJobUnit, String case_reporterPhone, String case_reporterAddress,
 			String case_gmt_create, String case_gmt_modified) {
-	
+
 		this.xsjsglxt_case_id = xsjsglxt_case_id;
 		this.case_parallel = case_parallel;
 		this.case_name = case_name;
@@ -97,12 +104,6 @@ public class xsjsglxt_case {
 		this.case_gmt_create = case_gmt_create;
 		this.case_gmt_modified = case_gmt_modified;
 	}
-
-
-
-
-
-
 
 	@Override
 	public String toString() {
@@ -188,13 +189,9 @@ public class xsjsglxt_case {
 		return case_register;
 	}
 
-
-
 	public void setCase_register(int case_register) {
 		this.case_register = case_register;
 	}
-
-
 
 	public String getCase_address() {
 		return case_address;
@@ -276,26 +273,13 @@ public class xsjsglxt_case {
 		this.case_reporterName = case_reporterName;
 	}
 
-
 	public int getCase_reporterSex() {
 		return case_reporterSex;
 	}
 
-
-
-
-
-
-
 	public void setCase_reporterSex(int case_reporterSex) {
 		this.case_reporterSex = case_reporterSex;
 	}
-
-
-
-
-
-
 
 	public String getCase_reporterJobUnit() {
 		return case_reporterJobUnit;
@@ -336,6 +320,37 @@ public class xsjsglxt_case {
 	public void setCase_gmt_modified(String case_gmt_modified) {
 		this.case_gmt_modified = case_gmt_modified;
 	}
-	
+
+	public String getCase_imageFile() {
+		return case_imageFile;
+	}
+
+	public void setCase_imageFile(String case_imageFile) {
+		this.case_imageFile = case_imageFile;
+	}
+
+	public String getCase_writeFile() {
+		return case_writeFile;
+	}
+
+	public void setCase_writeFile(String case_writeFile) {
+		this.case_writeFile = case_writeFile;
+	}
+
+	public String getCase_senceImageFile() {
+		return case_senceImageFile;
+	}
+
+	public void setCase_senceImageFile(String case_senceImageFile) {
+		this.case_senceImageFile = case_senceImageFile;
+	}
+
+	public String getCase_registerTime() {
+		return case_registerTime;
+	}
+
+	public void setCase_registerTime(String case_registerTime) {
+		this.case_registerTime = case_registerTime;
+	}
 
 }

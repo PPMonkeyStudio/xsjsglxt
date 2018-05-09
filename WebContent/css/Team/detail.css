@@ -1,0 +1,169 @@
+@CHARSET "UTF-8";
+html, body, ul, li, div, h3, a, span, input, button, p, label, details,
+	figure, figcaption, article, table, tr, th, td {
+	margin: 0px;
+	padding: 0px;
+	overflow: initial;
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+table tr th{
+	border:1px solid #eee5e5;
+}
+table tr td{
+	border:1px solid #eee5e5;
+	
+}
+/*表格奇数和偶数的样式  */
+.odd{
+	width:120px;
+}
+.even{
+width:190px;
+text-indent: 20px;
+overflow:hidden;
+	}
+.longBoxs table{
+	table-layout:fixed;/* 只有定义了表格的布局算法为fixed，下面td的定义才能起作用。 */
+} 
+
+.longBoxs tr:frist-child{
+	/* boreder-top:0px; */
+}
+.longBoxs td{
+	overflow:hidden;
+	border-top:0px;
+	height:35px;
+    width:100%; 
+    text-align:center;
+    word-break:keep-all;/* 不换行 */
+    white-space:nowrap;/* 不换行 */
+    overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+    text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。 */
+} 
+a:hover {
+	cursor: pointer;
+}
+/*staffDetail table.css  */
+#star-time {
+	background: url(../img/calender.jpg) 160px 2px no-repeat;
+}
+
+.photo {
+	width: 120px;
+	height: 150px;
+	border: 1px solid #dbd9d9;
+}
+
+.staff_body {
+	/* float: right;
+	width: 90%; */
+}
+/*功能按钮  */
+.button_return {
+	margin-right:15px;
+}
+
+/* .button_change {
+	position: absolute;
+	top: 120px;
+	left: 25px;
+} */
+
+#staffDetails label {
+	width: 120px;
+	margin-bottom: 0px !important;
+	font: 14px/40px "微软雅黑";
+	text-align: center;
+}
+/*长标签  */
+/* #staffDetails table tr td .staff_detail_label_long{
+	width:130px;
+} */
+#staffDetails table tr td input[type="text"] {
+	margin: 0 !important;
+	width: 230px;
+	height: 34px;
+}
+
+#staffDetails select {
+	margin: 0 !important;
+	width: 230px;
+	height: 34px;
+}
+
+#staffDetails table tr {
+	/* display:inline-block; */
+	margin-bottom: 5px;
+	height: 42px;
+}
+
+#staffDetails table tr td {
+	vertical-align: middle;
+}
+/*newStaff.css  */
+.photo-show {
+	width: 120px;
+	height: 150px;
+	margin-left:20px;
+	cursor: pointer;
+	overflow: hidden;
+	display: block;
+	*display: inline;
+	*zoom: 1
+	
+}
+
+.photo-file {
+	display: none !important;
+	opacity: 0;
+	filter: alpha(opacity = 0);
+	cursor: pointer;
+}
+/*标题分割线  */
+.staff_info_title {
+	    text-indent: 30px;
+  
+    margin-bottom: 10px;
+    display: inline-block;
+    font: 18px bold 微软雅黑;
+}
+/* 长表格样式start */
+.long_tableBox {
+	margin:50px 40px 50px 40px;
+}
+
+/*表格加上滚动条 start  */
+ .long_tb{
+	width:100%;
+	height:200px;
+	overflow-x:scroll;
+	overflow-y:scroll;
+}
+.longBoxs table {
+	width:100%;
+	margin: 0px;
+}
+/*表格加上滚动条 end  */
+.long_table tr{
+	border-top:0px;
+}
+.long_table td {
+	text-align: center;
+}
+/*学习经历模态框start  */
+.study_indication {
+	width:;
+}
+/*,   */
+#studyExp_form tr {
+	margin-top: 10px;
+}
+
+.modal input {
+	width: 480px;
+	height: 30px;
+	border: 1px solid #ccc;
+	text-indent: 10px;
+}
+/*学习经历模态框end  */
+/* 长表格样式end */

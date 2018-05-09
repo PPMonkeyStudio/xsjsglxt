@@ -133,6 +133,83 @@ public class ImageDaoImpl implements ImageDao {
 		return i.intValue();
 	}
 
+	/*
+	 * BY hy
+	 */
+	@Override
+	public int getCountImageInformationByPage_image(page_list_imageInformationVO page_list_imageInformation) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		Long i;
+		String startTime = "";
+		String stopTime = "9999-99-99";
+		String hql = "SELECT count(*) FROM xsjsglxt_image image WHERE 1 = 1 ";
+		// 1
+		if (page_list_imageInformation.getImage_number() != null
+				&& page_list_imageInformation.getImage_number().trim().length() > 0) {
+			String image_number = "%" + page_list_imageInformation.getImage_number() + "%";
+			hql = hql + " and image_number like '" + image_number + "'";
+
+		}
+		if (page_list_imageInformation.getStart_time() != null
+				&& page_list_imageInformation.getStart_time().trim().length() > 0) {
+			startTime = page_list_imageInformation.getStart_time();
+		}
+		if (page_list_imageInformation.getStop_time() != null
+				&& page_list_imageInformation.getStop_time().trim().length() > 0) {
+			stopTime = page_list_imageInformation.getStop_time();
+		}
+		hql = hql + " and image_gmt_create>='" + startTime + "' and image_gmt_create<='" + stopTime
+				+ "' order by image_gmt_create";
+		Query query = session.createQuery(hql);
+		query.setFirstResult(
+				(page_list_imageInformation.getPageIndex() - 1) * page_list_imageInformation.getPageSize());
+		query.setMaxResults(page_list_imageInformation.getPageSize());
+		i = (Long) query.uniqueResult();
+		System.out.println(hql);
+		session.clear();
+		return i.intValue();
+	}
+
+	/*
+	 * BY hy
+	 */
+	@Override
+	public List<xsjsglxt_image> getListImageInformatioByPage_image(
+			page_list_imageInformationVO page_list_imageInformation) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		String startTime = "";
+		String stopTime = "9999-99-99";
+		List<xsjsglxt_image> listImageInformationByPage = new ArrayList<xsjsglxt_image>();
+		String hql = "SELECT image FROM xsjsglxt_image image WHERE 1 = 1 ";
+		// 1
+		if (page_list_imageInformation.getImage_number() != null
+				&& page_list_imageInformation.getImage_number().trim().length() > 0) {
+			String image_number = "%" + page_list_imageInformation.getImage_number() + "%";
+			hql = hql + " and image_number like '" + image_number + "'";
+
+		}
+		if (page_list_imageInformation.getStart_time() != null
+				&& page_list_imageInformation.getStart_time().trim().length() > 0) {
+			startTime = page_list_imageInformation.getStart_time();
+		}
+		if (page_list_imageInformation.getStop_time() != null
+				&& page_list_imageInformation.getStop_time().trim().length() > 0) {
+			stopTime = page_list_imageInformation.getStop_time();
+		}
+		hql = hql + " and image_gmt_create>='" + startTime + "' and image_gmt_create<='" + stopTime
+				+ "' order by image_gmt_create";
+		Query query = session.createQuery(hql);
+		query.setFirstResult(
+				(page_list_imageInformation.getPageIndex() - 1) * page_list_imageInformation.getPageSize());
+		query.setMaxResults(page_list_imageInformation.getPageSize());
+		listImageInformationByPage = query.list();
+		System.out.println(hql);
+		session.clear();
+		return listImageInformationByPage;
+	}
+
 	@Override
 	public List<xsjsglxt_picture> getListImageInformatioByPage(
 			page_list_imageInformationVO page_list_imageInformation) {
@@ -333,4 +410,5 @@ public class ImageDaoImpl implements ImageDao {
 		ImageInformationList = query.list();
 		return ImageInformationList;
 	}
+
 }

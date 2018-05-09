@@ -80,22 +80,12 @@ a:hover {
 }
 
 .staff_body {
-	float: right;
-	width: 90%;
+	/* float: right;
+	width: 90%; */
 }
-/*功能按钮  */
-.button_return {
-	position: absolute;
-	top: 70px;
-	left: 25px;
+.button_return{
+	margin-right:15px;
 }
-
-.button_change {
-	position: absolute;
-	top: 120px;
-	left: 25px;
-}
-
 #staffDetails label {
 	width: 70px;
 	margin-bottom: 0px !important;
@@ -125,7 +115,6 @@ a:hover {
 
 #staffDetails table tr td {
 	vertical-align: middle;
-	width: 70px;
 }
 /*newStaff.css  */
 .photo-show {
@@ -151,11 +140,11 @@ a:hover {
 }
 /* 长表格样式start */
 .long_tableBox {
-	margin:50px 0 50px 0;
+	margin:50px 0 50px 40px;
 }
 /*表格加上滚动条 start  */
 .long_tb{
-	width:1000px;
+	width:100%;
 	height:200px;
 	overflow-x:scroll;
 	overflow-y:scroll;

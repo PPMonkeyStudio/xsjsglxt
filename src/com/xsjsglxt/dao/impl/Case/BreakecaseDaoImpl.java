@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import com.xsjsglxt.dao.Case.BreakecaseDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecase;
 import com.xsjsglxt.domain.DO.xsjsglxt_breakecasesuspect;
+import com.xsjsglxt.domain.DO.xsjsglxt_takeBreakeCase;
 import com.xsjsglxt.domain.DTO.Case.BreakeCasePageDTO;
 import com.xsjsglxt.domain.VO.Case.BreakeCaseListVO;
 
@@ -188,6 +189,8 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 				&& breakeCaseListVO.getQuery_breake_according().trim().length() > 0)
 			hql = hql + " and breake.breakecase_according like '%" + breakeCaseListVO.getQuery_breake_according()
 					+ "%'";
+
+		hql = hql + " order by breakecase_caseTime " + breakeCaseListVO.getQuery_breake_time_sort();
 		long count = (long) session.createQuery(hql).uniqueResult();
 		return (int) count;
 	}
@@ -200,7 +203,7 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 				+ "sence.snece_inquestId as snece_inquestId , " + "xCase.case_name as case_name , "
 				+ "breake.breakecase_type as breakecase_type , " + "breake.breakecase_person as breakecase_person , "
 				+ "breake.breakecase_according as breakecase_according , "
-				+ "breake.breakecase_caseTime as breakecase_caseTime)"
+				+ "breake.breakecase_caseTime as breakecase_caseTime ,breake.breakecase_case as case_id)"
 				+ " from xsjsglxt_breakecase as breake , xsjsglxt_case as xCase,xsjsglxt_snece as sence where breake.breakecase_case = xCase.xsjsglxt_case_id and sence.snece_case = xCase.xsjsglxt_case_id and 1=1";
 		if (breakeCaseListVO.getQuery_breake_person() != null
 				&& breakeCaseListVO.getQuery_breake_person().trim().length() > 0)
@@ -224,8 +227,40 @@ public class BreakecaseDaoImpl implements BreakecaseDao {
 		List<BreakeCasePageDTO> pageDTO = session.createQuery(hql)
 				.setFirstResult((breakeCaseListVO.getCurrPage() - 1) * breakeCaseListVO.getPageSize())
 				.setMaxResults(breakeCaseListVO.getPageSize()).list();
+		for (BreakeCasePageDTO breakeCasePageDTO : pageDTO) {
+			String hqlSuspect = "from xsjsglxt_breakecasesuspect where breakecaseSuspect_breakecase = '"
+					+ breakeCasePageDTO.getXsjsglxt_breakecase_id() + "'";
+			List<xsjsglxt_breakecasesuspect> listSuspect = session.createQuery(hqlSuspect).list();
+			if (listSuspect != null) {
+				breakeCasePageDTO.setBreakecase_suspect("");
+				for (int i = 0; i < listSuspect.size(); i++) {
+					if (i < (listSuspect.size() - 1)) {
+						breakeCasePageDTO.setBreakecase_suspect(breakeCasePageDTO.getBreakecase_suspect()
+								+ listSuspect.get(i).getBreakecaseSuspect_name() + "、");
+					} else {
+						breakeCasePageDTO.setBreakecase_suspect(breakeCasePageDTO.getBreakecase_suspect()
+								+ listSuspect.get(i).getBreakecaseSuspect_name());
+					}
+				}
+			}
+		}
 		breakeCaseListVO.setBreakeCaseDTOList(pageDTO);
 
+	}
+
+	@Override
+	public void saveTakeBreakeCase(xsjsglxt_takeBreakeCase dBreakeCase) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		session.save(dBreakeCase);
+	}
+
+	@Override
+	public List<xsjsglxt_takeBreakeCase> getTakeBreakeCaseByBreakeCaseId(String xsjsglxt_breakecase_id) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		String hql = "from xsjsglxt_takeBreakeCase where take_case ='" + xsjsglxt_breakecase_id + "'";
+		return session.createQuery(hql).list();
 	}
 
 }

@@ -17,4 +17,6 @@ public interface SchedulingService {
 
 	xsjsglxt_scheduling getSchedulingByDate(xsjsglxt_scheduling scheduling);
 
+	void schedulingStastics(com.xsjsglxt.domain.VO.Scheduling.schedulingTimeVO schedulingTimeVO);
+
 }

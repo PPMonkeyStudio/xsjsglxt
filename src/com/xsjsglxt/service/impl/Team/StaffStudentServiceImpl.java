@@ -52,6 +52,7 @@ public class StaffStudentServiceImpl implements StaffStudentService {
 		oldStudent.setStaffStudent_gmt_modified(TeamUtil.getStringSecond());
 		oldStudent.setStaffStudent_remarks(student.getStaffStudent_remarks());
 		oldStudent.setStaffStudent_address(student.getStaffStudent_address());
+		oldStudent.setStaffStudent_evection(student.getStaffStudent_evection());
 		oldStudent.setStaffStudent_startTime(student.getStaffStudent_startTime());
 		oldStudent.setStaffStudent_stopTime(student.getStaffStudent_stopTime());
 		return "updateSuccess";

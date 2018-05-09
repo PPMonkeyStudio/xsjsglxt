@@ -176,19 +176,20 @@ td {
 						<thead>
 							<tr id="trHead">
 								<td>案件类型</td>
-								<td>安源派出所</td>
-								<td>城郊派出所</td>
-								<td>凤凰派出所</td>
-								<td>后埠派出所</td>
-								<td>东大派出所</td>
-								<td>高坑派出所</td>
-								<td>青山派出所</td>
-								<td>八一派出所</td>
-								<td>白源派出所</td>		
-								<td>丹江派出所</td>		
-								<td>李子园派出所</td>
-								<td>五陂下派出所</td>
+								<td>安源</td>
+								<td>城郊</td>
+								<td>凤凰</td>
+								<td>后埠</td>
+								<td>东大</td>
+								<td>高坑</td>
+								<td>青山</td>
+								<td>八一</td>
+								<td>白源</td>		
+								<td>丹江</td>		
+								<td>李子园</td>
+								<td>五陂下</td>
 								<td>其他</td>
+								<td>汇总</td>
 							</tr>
 						</thead>
 						<tbody id="caseTBody">
@@ -207,6 +208,9 @@ td {
 								<td><span v-html="caseTime.liziyuanTime"></span></td>
 								<td><span v-html="caseTime.wupoxiaTime"></span></td>
 								<td><span v-html="caseTime.qitaTime"></span></td>
+								<td><span v-html="caseTime.anyuanTime+caseTime.chengjiaoTime+caseTime.fenghuangTime
+								+caseTime.houfuTime+caseTime.gaoKangTime+caseTime.dongDaTime+caseTime.qingshanTime+caseTime.bayiTime+
+								caseTime.baiyuanTime+caseTime.danjiangTime+caseTime.liziyuanTime+caseTime.wupoxiaTime+caseTime.qitaTime"></span></td>
 							</tr>
 							<tr name="caseTr">
 								<td>汇总</td>
@@ -223,6 +227,9 @@ td {
 								<td><span v-html="count[10]"></span></td>
 								<td><span v-html="count[11]"></span></td>
 								<td><span v-html="count[12]"></span></td>
+								<td><span v-html="count[0]+count[1]+count[2]+count[3]
+								+count[4]+count[5]+count[6]+count[7]
+								+count[8]+count[9]+count[10]+count[11]+count[12]"></span></td>
 							</tr>
 						</tbody>
 					</table>
@@ -248,8 +255,6 @@ td {
 		var caseContent = document.getElementById("caseContent").style.width;
 		var navbarHeight = document.getElementById("navbar").offsetHeight;
 		var panelMargin = navbarHeight + 20;
-		if(panelWidth<1440)
-			$('#trHead').attr("style","font-size:10px;");
 		document.getElementById("allContent").setAttribute(
 				"style",
 				"width:" + panelWidth + "px; float:right; margin-top:"
@@ -259,8 +264,6 @@ td {
 			var panelWidth = documentWidth - 160;
 			var navbarHeight = document.getElementById("navbar").offsetHeight;
 			var panelMargin = navbarHeight + 20;
-			if(panelWidth<1440)
-				$('#trHead').attr("style","font-size:10px;");
 			document.getElementById("allContent").setAttribute(
 					"style",
 					"width:" + panelWidth + "px; float:right; margin-top:"

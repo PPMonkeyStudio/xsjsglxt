@@ -52,19 +52,22 @@ public class StatisticsDaoImpl implements StatisticsDao {
 		return policemans;
 	}
 
+	// 使用正则表达式，避免一个人的名字中包含另一个人的名字
+
 	// 获得出警次数
 	@Override
 	public void getPolicemanOutTimes(policemanOutTimesDTO policemanDTO, OutTimeVO outTimeVO) {
 		// TODO Auto-generated method stub
 		Session session = this.getSession();
-		String hql = "select count(*) from xsjsglxt_snece as s , xsjsglxt_case as c where s.snece_case=c.xsjsglxt_case_id and s.snece_inquestPerson like '%"
-				+ policemanDTO.getPolicemanName() + "%'";
+		String hql = "select count(*) from xsjsglxt_snece as s ,xsjsglxt_case as c where s.snece_case=c.xsjsglxt_case_id and s.snece_inquestPerson REGEXP '(^"
+				+ policemanDTO.getPolicemanName() + "(,))|(^" + policemanDTO.getPolicemanName() + "$)|((,)"
+				+ policemanDTO.getPolicemanName() + "(,))|((,)" + policemanDTO.getPolicemanName() + "$)'";
 		if (outTimeVO.getTimeStart() != null && !"".equals(outTimeVO.getTimeStart().trim()))
 			hql = hql + " and c.case_receivingAlarmDate>='" + outTimeVO.getTimeStart() + "'";
 		if (outTimeVO.getTimeEnd() != null && !"".equals(outTimeVO.getTimeEnd().trim()))
 			hql = hql + " and c.case_receivingAlarmDate<='" + outTimeVO.getTimeEnd() + "'";
-		long num = (long) session.createQuery(hql).uniqueResult();
-		policemanDTO.setOutTimes(new Long(num).intValue());
+		BigInteger num = (BigInteger) session.createSQLQuery(hql).uniqueResult();
+		policemanDTO.setOutTimes(num.intValue());
 	}
 
 	// resevidence_extractPerson提取人
@@ -76,33 +79,34 @@ public class StatisticsDaoImpl implements StatisticsDao {
 	public void getEvidence(policemanOutTimesDTO policemanDTO, OutTimeVO outTimeVO) {
 		// TODO Auto-generated method stub
 		Session session = this.getSession();
-		String hql = "select count(*) from xsjsglxt_resevidence where resevidence_extractPerson like '%"
-				+ policemanDTO.getPolicemanName() + "%'";
+		String hql = "select count(*) from xsjsglxt_resevidence where resevidence_extractPerson  REGEXP '(^"
+				+ policemanDTO.getPolicemanName() + "(,))|(^" + policemanDTO.getPolicemanName() + "$)|((,)"
+				+ policemanDTO.getPolicemanName() + "(,))|((,)" + policemanDTO.getPolicemanName() + "$)'";
 		if (outTimeVO.getTimeStart() != null && !"".equals(outTimeVO.getTimeStart().trim()))
 			hql = hql + " and resevidence_extractTime >='" + outTimeVO.getTimeStart() + "'";
 		if (outTimeVO.getTimeEnd() != null && !"".equals(outTimeVO.getTimeEnd().trim()))
 			hql = hql + " and resevidence_extractTime <='" + outTimeVO.getTimeEnd() + "'";
 		for (int i = 0; i < RESEVIDENCE_TYPE.length; i++) {
 			String newHQL = hql + " and resevidence_type ='" + RESEVIDENCE_TYPE[i] + "'";
-			long count = (long) session.createQuery(newHQL).uniqueResult();
+			BigInteger count = (BigInteger) session.createSQLQuery(newHQL).uniqueResult();
 			switch (RESEVIDENCE_TYPE[i]) {
 			case "手印痕迹":
-				policemanDTO.setFingerprint(new Long(count).intValue());
+				policemanDTO.setFingerprint(count.intValue());
 				break;
 			case "足迹痕迹":
-				policemanDTO.setFootprint(new Long(count).intValue());
+				policemanDTO.setFootprint(count.intValue());
 				break;
 			case "工具痕迹":
-				policemanDTO.setInstrument(new Long(count).intValue());
+				policemanDTO.setInstrument(count.intValue());
 				break;
 			case "生物物证":
-				policemanDTO.setBiology(new Long(count).intValue());
+				policemanDTO.setBiology(count.intValue());
 				break;
 			case "理化物证":
-				policemanDTO.setPhysicochemical(new Long(count).intValue());
+				policemanDTO.setPhysicochemical(count.intValue());
 				break;
 			case "其他":
-				policemanDTO.setOther(new Long(count).intValue());
+				policemanDTO.setOther(count.intValue());
 				break;
 			}
 		}
@@ -113,8 +117,9 @@ public class StatisticsDaoImpl implements StatisticsDao {
 	public void getRadio(policemanOutTimesDTO policemanDTO, OutTimeVO outTimeVO) {
 		// TODO Auto-generated method stub
 		Session session = this.getSession();
-		String hql = "select count(*) from xsjsglxt_resevidence where resevidence_extractPerson like'%"
-				+ policemanDTO.getPolicemanName() + "%'";
+		String hql = "select count(*) from xsjsglxt_resevidence where resevidence_extractPerson REGEXP '(^"
+				+ policemanDTO.getPolicemanName() + "(,))|(^" + policemanDTO.getPolicemanName() + "$)|((,)"
+				+ policemanDTO.getPolicemanName() + "(,))|((,)" + policemanDTO.getPolicemanName() + "$)'";
 		if (outTimeVO.getTimeStart() != null && !"".equals(outTimeVO.getTimeStart().trim()))
 			hql = hql + " and resevidence_extractTime >='" + outTimeVO.getTimeStart() + "'";
 		if (outTimeVO.getTimeEnd() != null && !"".equals(outTimeVO.getTimeEnd().trim()))
@@ -139,15 +144,15 @@ public class StatisticsDaoImpl implements StatisticsDao {
 	public void getBreakeNum(policemanOutTimesDTO policemanDTO, OutTimeVO outTimeVO) {
 		// TODO Auto-generated method stub
 		Session session = this.getSession();
-		String hql = "select count(*) from xsjsglxt_breakecase where breakecase_person like '%"
-				+ policemanDTO.getPolicemanName() + "%'";
+		String hql = "select count(*) from xsjsglxt_breakecase where breakecase_person REGEXP '(^"
+				+ policemanDTO.getPolicemanName() + "(,))|(^" + policemanDTO.getPolicemanName() + "$)|((,)"
+				+ policemanDTO.getPolicemanName() + "(,))|((,)" + policemanDTO.getPolicemanName() + "$)'";
 		if (outTimeVO.getTimeStart() != null && outTimeVO.getTimeStart().trim().length() > 0)
 			hql = hql + " and breakecase_caseTime >='" + outTimeVO.getTimeStart() + "'";
 		if (outTimeVO.getTimeEnd() != null && outTimeVO.getTimeEnd().trim().length() > 0)
 			hql = hql + " and breakecase_caseTime<='" + outTimeVO.getTimeEnd() + "'";
-		System.out.println(hql);
-		long count = (long) session.createQuery(hql).uniqueResult();
-		policemanDTO.setBreakeNumber(new Long(count).intValue());
+		BigInteger bi = (BigInteger) session.createSQLQuery(hql).uniqueResult();
+		policemanDTO.setBreakeNumber(bi.intValue());
 	}
 
 	// 获得案件数量

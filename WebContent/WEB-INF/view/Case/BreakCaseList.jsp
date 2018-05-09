@@ -17,11 +17,10 @@
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-<meta http-equiv="description" content="This is my page">
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-<link rel="stylesheet" type="text/css" href="<%=basePath%>Case.css" />
+<%-- <link rel="stylesheet" type="text/css" href="<%=basePath%>Case.css" /> --%>
 <style type="text/css">
 #newQuery table tbody tr td input {
 	margin-top: 6px;
@@ -41,6 +40,16 @@
 i {
 	cursor: pointer;
 }
+
+.page_info span {
+	cursor: pointer;
+}
+/* td {
+	width: 250px;
+	word-break: break-all; /* 设置自动换行切不挤压其他td */
+}
+*
+/
 </style>
 </head>
 
@@ -62,7 +71,7 @@ i {
 					<button style="margin-left: 15px;" type="button"
 						class="btn btn-default" data-toggle="modal"
 						data-target="#newQuery">
-						<i class="fa fa-plus-square"></i> 刑事破案查询
+						<i class="fa fa-plus-square"></i> 刑事破案高级查询
 					</button>
 					<!--  data-toggle="modal" -->
 					<button id="breakCase_input" data-target="#breakCase_input"
@@ -86,28 +95,48 @@ i {
 								class="table table-hover table-condensed breakcase_table_info">
 								<thead>
 									<tr>
-										<th>全选<input type="checkbox" onclick="selectAll(this)"></th>
-										<th>所属案件</th>
-										<th>勘验编号</th>
-										<th>案件类型</th>
-										<th>破案人</th>
-										<th>破案方式</th>
-										<th>破案时间</th>
+										<th style="padding-left:5px;width: 70px;">全选<input
+											type="checkbox" onclick="selectAll(this)"></th>
+										<th><input type="text" onkeyup="dynamic_query(this)"
+											class="form-control"
+											query_name="breakeCaseListVO.query_case_name"
+											placeholder="案件名称"></th>
+										<th><input type="text" onkeyup="dynamic_query(this)"
+											class="form-control"
+											query_name="breakeCaseListVO.query_sence_inquestId"
+											placeholder="勘验编号"></th>
+										<!-- <th><input type="text" onkeyup="dynamic_query(this)"
+											class="form-control"
+											query_name="breakeCaseListVO.breakecase_type"
+											placeholder="案件类型"></th> -->
+										<th><input type="text" onkeyup="dynamic_query(this)"
+											class="form-control"
+											query_name="breakeCaseListVO.query_breake_person"
+											placeholder="破案人"></th>
+										<th><input type="text" onkeyup="dynamic_query(this)"
+											class="form-control" style="width: 90px;"
+											query_name="breakeCaseListVO.query_breake_according"
+											placeholder="破案方式"></th>
+										<th>嫌疑人</th>
+										<th style="padding-left:5px;"><select
+											onchange="dynamic_query(this)" class="form-control"
+											query_name="breakeCaseListVO.query_breake_time_sort">
+												<option selected="selected" value="desc">破案时间(降序)</option>
+												<option value="asc">破案时间(升序)</option>
+										</select></th>
 									</tr>
 								</thead>
 								<tbody>
 								</tbody>
 								<tfoot>
 									<tr>
-										<td colspan="8" style="font-size: 12px;" class="page_info"><a
-											onclick="firstPage()"><i class="fa fa-angle-double-left">首页</i>
-										</a>&nbsp&nbsp<a onclick="prePage()"><i
-												class="fa fa-angle-left"></i>上一页 </a>&nbsp&nbsp<a
-											onclick="nextPage()">下一页<i class="fa fa-angle-right"></i>
-										</a>&nbsp&nbsp <a onclick="lastPage()">尾页<i
-												class="fa fa-angle-double-right"></i>
-										</a> <br />
-											<p class='info'></p></td>
+										<td colspan="8" style="" class="page_info"><span
+											class='info'></span> <span onclick="firstPage()">首页</span> <span
+											onclick="prePage()">上一页 </span><span onclick="nextPage()">下一页
+										</span><span onclick="lastPage()">末页 </span> <input id="skipPage"
+											style="display: inline-block; text-align: center; width: 60px; height: 30px;">
+											<button onclick="toPage()" class="btn btn-default"
+												style="height: 30px; vertical-align:initial;">跳转</button></td>
 									</tr>
 								</tfoot>
 							</table>
@@ -190,6 +219,8 @@ i {
 	<!---------------------------------------------------------------------------------------------------->
 	<!-- SneceInput.js仅作为在查询模态框中（案件类别，选择处所，作案手段）的自动匹配子项使用 -->
 	<script type="text/javascript" src="<%=basePath%>js/Case/SneceInput.js"></script>
+	<script type="text/javascript"
+		src="<%=basePath%>js/Case/defaults-zh_CN.js"></script>
 	<script type="text/javascript"
 		src="<%=basePath%>js/Case/BreakCaseList.js"></script>
 	<script type="text/javascript">

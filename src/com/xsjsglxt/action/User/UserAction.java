@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.WebApplicationContext;
 
 import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionContext;
@@ -32,6 +34,11 @@ public class UserAction extends ActionSupport {
 
 	public String skipToUser() {
 		return "skipToUser";
+	}
+
+	public void test() {
+		ApplicationContext a = (ApplicationContext) ServletActionContext.getServletContext()
+				.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
 	}
 
 	public void skipToTechnologyIndex() {
@@ -59,7 +66,7 @@ public class UserAction extends ActionSupport {
 		} else {
 			xsjsglxt_user xu = userService.getUserById(user_id);
 			String result = gson.toJson(xu);
-			System.out.println(result);
+
 			pw.write(result);
 		}
 	}
@@ -81,7 +88,6 @@ public class UserAction extends ActionSupport {
 			// String result = (String) method.invoke(xu, null);
 			Gson gson = new Gson();
 			String result = gson.toJson(xu);
-			System.out.println(result);
 			pw.write(result);
 		}
 	}
@@ -101,6 +107,7 @@ public class UserAction extends ActionSupport {
 				ActionContext.getContext().getSession().put("user_id", xu.getUser_id());
 				ActionContext.getContext().getSession().put("user_name", xu.getUser_name());
 				ActionContext.getContext().getSession().put("userSession", xu);
+				ActionContext.getContext().getSession().put("user_unit", xu.getUser_units());
 				ActionContext.getContext().getSession().put("user_password", user_password);
 			} else {
 				pw.write("passwordError");
@@ -160,7 +167,6 @@ public class UserAction extends ActionSupport {
 		showUserVO suv = userService.getUserByPage(queryString, currPage);
 		Gson gson = new Gson();
 		String result = gson.toJson(suv);
-		System.out.println(result);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = response.getWriter();
@@ -236,7 +242,6 @@ public class UserAction extends ActionSupport {
 	 */
 
 	public void updateUser() {
-		System.out.println(user_password);
 		xsjsglxt_user xuGet = userService.getUserById(user_id);
 		xsjsglxt_user xu = new xsjsglxt_user();
 		xu.setUser_army_manager_power(user_army_manager_power);

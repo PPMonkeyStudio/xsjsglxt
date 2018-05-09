@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2017-12-19 8:29:39 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2018-4-21 14:01:15 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="com.xsjsglxt.domain.DO.xsjsglxt_handle" table="XSJSGLXT_HANDLE">
         <id name="xsjsglxt_handle_id" type="java.lang.String">
             <column name="XSJSGLXT_HANDLE_ID" />
             <generator class="assigned" />
         </id>
+        <property name="handle_Case" type="java.lang.String">
+            <column name="handle_case" />
+        </property>
         <property name="handle_orderNumber" type="java.lang.String">
             <column name="HANDLE_ORDERNUMBER" />
         </property>
@@ -37,6 +40,9 @@
         </property>
         <property name="handle_StartTimeaOfDetention" type="java.lang.String">
             <column name="HANDLE_STARTTIMEAOFDETENTION" />
+        </property>
+        <property name="handle_EndTimeaOfDetention" type="java.lang.String">
+            <column name="HANDLE_ENDTIMEAOFDETENTION" />
         </property>
         <property name="handle_arrestTime" type="java.lang.String">
             <column name="HANDLE_ARRESTTIME" />

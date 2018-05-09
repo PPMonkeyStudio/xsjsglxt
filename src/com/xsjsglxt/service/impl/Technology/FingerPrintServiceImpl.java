@@ -1,12 +1,10 @@
 package com.xsjsglxt.service.impl.Technology;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import com.xsjsglxt.dao.Technology.FingerPrintDao;
-import com.xsjsglxt.domain.DO.xsjsglxt_dna;
 import com.xsjsglxt.domain.DO.xsjsglxt_fingerprint;
 import com.xsjsglxt.domain.VO.Technology.FingerPrintVO;
 import com.xsjsglxt.service.Technology.FingerPrintService;
@@ -14,7 +12,7 @@ import com.xsjsglxt.service.Technology.FingerPrintService;
 import util.TeamUtil;
 
 public class FingerPrintServiceImpl implements FingerPrintService {
-	
+
 	private FingerPrintDao fingerPrintDao;
 
 	public FingerPrintDao getFingerPrintDao() {
@@ -44,7 +42,7 @@ public class FingerPrintServiceImpl implements FingerPrintService {
 	}
 
 	@Override
-public FingerPrintVO list_xsjsglxt_fingerprint(FingerPrintVO fingerprintVO) {
+	public FingerPrintVO list_xsjsglxt_fingerprint(FingerPrintVO fingerprintVO) {
 		int totalRecords = fingerPrintDao.count_fingerprint_all(fingerprintVO);
 		FingerPrintVO vo = new FingerPrintVO();
 		vo.setPageIndex(fingerprintVO.getPageIndex());
@@ -79,7 +77,7 @@ public FingerPrintVO list_xsjsglxt_fingerprint(FingerPrintVO fingerprintVO) {
 		fingerprint.setXsjsglxt_fingerprint_id(TeamUtil.getUuid());
 		fingerprint.setFingerprint_num(this.create_fingerprint_num());
 		fingerprint.setFingerprint_gmt_create(TeamUtil.getStringSecond());
-//		fingerprint.setFingerprint_gmt_modified(TeamUtil.getStringSecond());
+		// fingerprint.setFingerprint_gmt_modified(TeamUtil.getStringSecond());
 		int result = fingerPrintDao.saveFingerPrint(fingerprint);
 		if (result > 0) {
 			return 1;
@@ -91,16 +89,16 @@ public FingerPrintVO list_xsjsglxt_fingerprint(FingerPrintVO fingerprintVO) {
 	 * @author gxr
 	 * 生成指纹编号
 	 * */
-	private String create_fingerprint_num() {	
-		StringBuffer num = new StringBuffer("Z360302001");
+	private String create_fingerprint_num() {
+		StringBuffer num = new StringBuffer("Z360302001000");
 		String time = new SimpleDateFormat("yyyyMM").format(new Date());
 		int lastFour = fingerPrintDao.getFeild();
 		String four = "";
-		four = four.format("%04d", lastFour+1);
+		four = four.format("%04d", lastFour + 1);
 		num.append(time);
 		num.append(four);
-		return num.toString();	
-		
+		return num.toString();
+
 	}
 
 	@Override

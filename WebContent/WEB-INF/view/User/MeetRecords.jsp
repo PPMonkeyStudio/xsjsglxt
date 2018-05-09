@@ -20,12 +20,16 @@
 .showDiv{
 
 }
+#showList tr {
+	cursor: pointer;
+}
 </style>
 <title>会议记录</title>
 <!-- -----------------模态框js文件引入--------------------------------  -->
 <script type="text/javascript" src="<%=basePath %>js/meeting/writeMeetingRecord.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/meeting/showMeetRecods.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/meeting/managerMeetingRecord.js"></script>
+<script type="text/javascript" src="<%=basePath %>js/meeting/previewMeetingRecord.js"></script>
 </head>
 <body>
 	<!-----------------------------------------引入导航条 ------------------------------------------------------>
@@ -36,7 +40,7 @@
 			<div class="headDiv" style="height: 60px; padding-top:10px;">
 				<button class="btn btn-default" onclick="createConfirm()"><i class="fa fa-pencil-square-o"></i>填写会议记录表</button>
 				<div style="display:inline-block; float: right;">
-				<input placeholder="请输入会议内容" oninput="changeContent(this)" id="queryMeetingContent" class="form-control" style="width:250px; display: inline-block;">
+				<input placeholder="请输入搜索内容" oninput="changeContent(this)" id="queryMeetingContent" class="form-control" style="width:250px; display: inline-block;">
 				<label>时间筛选</label>
 				<input class="form-control startTime"  onchange="changeStartTime(this)" type= "text" id="query_start_time_start" style="width: 150px; display: inline-block;">至
 				<input class="form-control startTime"  onchange="changeStartTime(this)" type= "text" style="width: 150px; display: inline-block;" id="query_start_time_end">
@@ -44,11 +48,15 @@
 			</div>
 			<div id="loadingLayer"  style="margin: 0 auto; width: 45px;"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></div>
 			<div class="tableDiv hideDiv" id="contentDiv">
-				<table class="table table-bordered" style="text-align: center;">
+				<table class="table table-hover table-condensed" style="text-align: center;">
 					<thead>
-						<tr style="background-color: #696969; color: white;">
+						<tr>
+							<td><select class="form-control" id="querySort" onchange="changTimeSort()">
+								<option value="desc">会议开始时间（降序）</option>
+								<option value="asc">会议开始时间（升序）</option>
+							</select> </td>
 							<td><select class="form-control" id="queryTitle" onchange="changeQueryTitle(this)">
-								<option value=" ">所有</option>
+								<option value=" ">会议种类</option>
 								<option value="大队例会">大队例会</option>
 								<option value="支委会">支委会</option>
 								<option value="党课">党课</option>
@@ -58,12 +66,8 @@
 								<option value="工作总结会">工作总结会</option>
 								<option value="中队会议">中队会议</option>
 							</select></td>
-							<td>会议地点</td>
-							<td>会议主持人</td>
-							<td><select class="form-control" id="querySort" onchange="changTimeSort()">
-								<option value="desc">会议开始时间（降序）</option>
-								<option value="asc">会议开始时间（升序）</option>
-							</select> </td>
+							<td>会议主题</td>
+							<td>会议主持人</td>			
 							<td>会议结束时间</td>
 							<td>操作</td>
 						</tr>

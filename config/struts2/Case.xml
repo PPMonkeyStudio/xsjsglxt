@@ -11,8 +11,11 @@
 			<result name="page_CaseMergerList">/WEB-INF/view/Case/CaseMergerList.jsp</result>
 			<result name="page_CaseDetails">/WEB-INF/view/Case/CaseDetails.jsp</result>
 			<result name="page_CaseMerger">/WEB-INF/view/Case/CaseMerger.jsp</result>
-			<result name="page_CaseMaterials">/WEB-INF/view/Case/CaseMaterials.jsp</result>
+			<result name="page_CaseMaterials">/WEB-INF/view/Case/CaseMaterials_image.jsp</result>
 			<result name="page_Handle">/WEB-INF/view/Case/HandleList.jsp</result>
+			<result name="page_intoDetails">/WEB-INF/view/Case/CaseDetails_table.jsp</result>
+			<result name="page_printPage">/WEB-INF/view/Case/printPage.jsp</result>
+			<result name="intoEvidence">/WEB-INF/view/Case/EvidenceManager.jsp</result>
 		</action>
 		<action name="Resevidence_*" class="com.xsjsglxt.action.Case.ResevidenceAction"
 			method="{1}">
@@ -34,6 +37,7 @@
 		</action>
 		<action name="Handle_*" class="com.xsjsglxt.action.Case.HandleAction"
 			method="{1}">
+			<result name="introduce_page">/WEB-INF/view/introduceLetter/introduceLetter.jsp</result>
 		</action>
 		
 		<!-- gxr重构破案模块添加代码 -->

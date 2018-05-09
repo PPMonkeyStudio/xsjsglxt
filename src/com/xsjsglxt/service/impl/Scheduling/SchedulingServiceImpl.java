@@ -1,11 +1,15 @@
 package com.xsjsglxt.service.impl.Scheduling;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.xsjsglxt.dao.Scheduling.SchedulingDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_scheduling;
+import com.xsjsglxt.domain.DO.xsjsglxt_staff;
 import com.xsjsglxt.domain.DTO.Scheduling.schedulingDTO;
+import com.xsjsglxt.domain.DTO.Scheduling.schedulingTimeDTO;
 import com.xsjsglxt.domain.VO.Scheduling.SchedulingDTOListVO;
+import com.xsjsglxt.domain.VO.Scheduling.schedulingTimeVO;
 import com.xsjsglxt.service.Scheduling.SchedulingService;
 
 import util.TeamUtil;
@@ -101,7 +105,7 @@ public class SchedulingServiceImpl implements SchedulingService {
 	public void schedulingList(SchedulingDTOListVO schedulingListVO) {
 		// TODO Auto-generated method stub
 		int count = schedulingDao.getSchedulingCount(schedulingListVO);
-		schedulingListVO.setPageSize(10);
+		schedulingListVO.setPageSize(31);
 		schedulingListVO.setTotalCount(count);
 		schedulingListVO.setTotalPage((int) Math.ceil((double) count / schedulingListVO.getPageSize()));
 		List<schedulingDTO> dtoList = schedulingDao.getSchedulingByPage(schedulingListVO);
@@ -114,6 +118,34 @@ public class SchedulingServiceImpl implements SchedulingService {
 
 		xsjsglxt_scheduling r = schedulingDao.getSchedulingByDate(scheduling);
 		return r;
+	}
+
+	@Override
+	public void schedulingStastics(schedulingTimeVO schedulingTimeVO) {
+		// TODO Auto-generated method stub
+		System.out.println(schedulingTimeVO.getQueryName());
+		List<xsjsglxt_staff> stasticsStaff = schedulingDao.getStaffByQuery(schedulingTimeVO.getQueryName());
+		List<schedulingTimeDTO> list = new ArrayList<schedulingTimeDTO>();
+		if (stasticsStaff != null && stasticsStaff.size() > 0) {
+			for (xsjsglxt_staff xsjsglxt_staff : stasticsStaff) {
+				schedulingTimeDTO time = new schedulingTimeDTO();
+				time.setPolicemanName(xsjsglxt_staff.getXsjsglxt_name());
+				int schedulingCount = schedulingDao.getSchedulingTime(schedulingTimeVO,
+						xsjsglxt_staff.getXsjsglxt_name());
+				time.setSchedulingTime(schedulingCount + "天");
+				int outCount = schedulingDao.getOutTime(schedulingTimeVO, xsjsglxt_staff.getXsjsglxt_name());
+				time.setOutTime(outCount + "天");
+				int overCount = schedulingDao.getOverTime(schedulingTimeVO, xsjsglxt_staff.getXsjsglxt_name());
+				time.setOverTime(overCount + "天");
+				int patrolCount = schedulingDao.getPatrolTime(schedulingTimeVO, xsjsglxt_staff.getXsjsglxt_name());
+				time.setPatrolTime(patrolCount + "天");
+				int evectionCount = schedulingDao.getEvectionTime(schedulingTimeVO,
+						xsjsglxt_staff.getXsjsglxt_staff_id());
+				time.setEvectionTime(evectionCount + "次");
+				list.add(time);
+			}
+			schedulingTimeVO.setTimeDTOList(list);
+		}
 	}
 
 }

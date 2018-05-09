@@ -14,6 +14,11 @@
 <!---------------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------------->
 <title>案件串并</title>
+<style type="text/css">
+.page_info span {
+	cursor: pointer;
+}
+</style>
 </head>
 
 <body>
@@ -40,22 +45,56 @@
 					onclick="javascript:location.href='/xsjsglxt/case/Case_page_CaseMerger'">
 					<i class="fa fa-plus-square"></i> 添加案件串并
 				</button>
+				<!--  DELETE -->
+				<button id="delete-parallel" style="margin-left: 15px;"
+					type="button" class="btn btn-default">
+					<i class="fa fa-trash-o"></i> 删除所选破案
+				</button>
 			</div>
 			<div class="panel-body">
 				<table class="table table-hover table-condensed case_table_info">
 					<thead>
 						<tr>
-							<th>序号</th>
-							<th>串并号</th>
-							<th>串并名称</th>
-							<th>串并时间</th>
-							<th>串并人</th>
-							<th>破案情况</th>
-							<th>操作</th>
+							<th style="padding-left:5px;width: 70px;">全选<input
+								type="checkbox" onclick="selectAll(this)"></th>
+							<th><input type="text" onkeyup="dynamic_query(this)"
+								class="form-control" placeholder="串并号"
+								query_name="page_list_parallelInformation.parallel_num"></th>
+							<th><input type="text" onkeyup="dynamic_query(this)"
+								class="form-control" placeholder="串并名称"
+								query_name="page_list_parallelInformation.parallel_casename"></th>
+							<th><select onchange="dynamic_query(this)"
+								class="form-control"
+								query_name="page_list_parallelInformation.order">
+									<option selected="selected" value="desc">串并时间(降序)</option>
+									<option value="asc">串并时间(升序)</option>
+							</select></th>
+							<th><input type="text" onkeyup="dynamic_query(this)"
+								class="form-control" placeholder="串并人"
+								query_name="page_list_parallelInformation.parallel_person"></th>
+							<th><select onchange="dynamic_query(this)"
+								class="form-control"
+								query_name="page_list_parallelInformation.parallel_breakecaseSituation">
+									<option selected="selected" value="">破案情况(全)</option>
+									<option value="1">破案情况(是)</option>
+									<option value="0">破案情况(否)</option>
+							</select></th>
+							<th style="padding-left:5px;">操作</th>
 						</tr>
 					</thead>
 					<tbody>
 					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="8" style="" class="page_info"><span
+								class='info'></span> <span onclick="firstPage()">首页</span> <span
+								onclick="prePage()">上一页 </span><span onclick="nextPage()">下一页
+							</span><span onclick="lastPage()">末页 </span> <input id="skipPage"
+								style="display: inline-block; text-align: center; width: 60px; height: 30px;">
+								<button onclick="toPage()" class="btn btn-default"
+									style="height: 30px; vertical-align:initial;">跳转</button></td>
+						</tr>
+					</tfoot>
 				</table>
 			</div>
 		</div>
@@ -82,7 +121,7 @@
 						</tbody>
 					</table>
 					<form action="">
-						<table>
+						<table style="width: 80%; margin: auto;">
 							<tbody>
 								<tr>
 									<td>串并时间</td>
@@ -134,34 +173,27 @@
 				</div>
 				<div class="modal-body">
 					<form id="merger_info" action="">
-						<table width="60%" cellspacing="0" cellpadding="2" align="center">
+						<table width="80%" align="center">
 							<tbody>
 								<tr>
 									<td><div align="center">包含案件</div></td>
-									<td><input name="parallel.parallel_num"
-										style="margin-top: 6px;" class="form-control" maxlength="50"
-										type="text"></td>
+									<td colspan="3"><select name="parallel.parallel_num"
+										refresh="selectpicker" style="margin-top:6px;"
+										class="form-control"></select></td>
 								</tr>
-
 								<tr>
 									<td><div align="center">串并编号:</div></td>
-									<td><input name="parallel.parallel_num"
-										style="margin-top: 6px;" class="form-control" maxlength="50"
-										type="text"></td>
-								</tr>
-								<tr>
+									<td><input name="parallel.parallel_num" refresh="text"
+										style="margin-top: 6px;" class="form-control" type="text"></td>
 									<td><div align="center">串并名称:</div></td>
 									<td><input name="parallel.parallel_casename"
-										style="margin-top: 6px;" class="form-control" maxlength="50"
+										refresh="text" style="margin-top: 6px;" class="form-control"
 										type="text"></td>
 								</tr>
 								<tr>
 									<td><div align="center">串并人:</div></td>
-									<td><input name="parallel.parallel_person"
-										style="margin-top: 6px;" class="form-control" maxlength="10"
-										type="text"></td>
-								</tr>
-								<tr>
+									<td><input name="parallel.parallel_person" refresh="text"
+										style="margin-top: 6px;" class="form-control" type="text"></td>
 									<td><div align="center">破案情况:</div></td>
 									<td><label style="float: left;" class="fancy-radio">
 											<input name="register" onclick="buildCase_chose(this)"
@@ -176,7 +208,7 @@
 								<tr>
 									<td><div align="center">选择处所:</div></td>
 									<td><select name="parallel.parallel_accordingAddress"
-										style="margin-top: 6px;" class="form-control">
+										refresh="text" style="margin-top: 6px;" class="form-control">
 											<option value="" selected></option>
 											<option value="居民住宅">居民住宅</option>
 											<option value="出租屋">出租屋</option>
@@ -205,12 +237,9 @@
 											<option value="其他">其他</option>
 											<option value="无">无</option>
 									</select></td>
-
-								</tr>
-								<tr>
 									<td><div align="center">作案手段:</div></td>
 									<td><select name="parallel.parallel_makeMeans"
-										style="margin-top: 6px;" class="form-control">
+										refresh="text" style="margin-top: 6px;" class="form-control">
 											<option value="" selected></option>
 											<option value="撬防盗门">撬防盗门</option>
 											<option value="爬窗爬阳台">爬窗爬阳台</option>
@@ -248,7 +277,7 @@
 								<tr>
 									<td align="right"><div align="center">作案目标:</div></td>
 									<td><select name="parallel.parallel_makeTarget"
-										style="margin-top: 6px;" class="form-control">
+										refresh="text" style="margin-top: 6px;" class="form-control">
 											<option value="" selected=""></option>
 											<option value="各类财物">各类财物</option>
 											<option value="现金">现金</option>
@@ -263,11 +292,9 @@
 											<option value="其他">其他</option>
 											<option value="无">无</option>
 									</select></td>
-								</tr>
-								<tr>
 									<td align="right"><div align="center">选择时段:</div></td>
 									<td><select name="parallel.parallel_makeTime"
-										style="margin-top: 6px;" class="form-control">
+										refresh="text" style="margin-top: 6px;" class="form-control">
 											<option value="" selected></option>
 											<option value="昼">昼</option>
 											<option value="夜">夜</option>
@@ -278,13 +305,12 @@
 											<option value="深夜">深夜</option>
 											<option value="凌晨">凌晨</option>
 											<option value="其他">其他</option>
-									</select><input name="parallel." name="lists" id="lists"
-										value="2017110002,2017110001" type="hidden"></td>
+									</select></td>
 								</tr>
 								<tr>
 									<td align="right"><div align="center">技术并案:</div></td>
 									<td><select name="parallel.parallel_skillMerge"
-										style="margin-top: 6px;" class="form-control">
+										refresh="text" style="margin-top: 6px;" class="form-control">
 											<option value="" selected></option>
 											<option value="指纹">指纹</option>
 											<option value="足迹">足迹</option>
@@ -293,25 +319,24 @@
 											<option value="枪弹">枪弹</option>
 											<option value="其他">其他</option>
 									</select></td>
-								</tr>
-								<tr>
-									<td align="right"><div align="center">其他特点手段:</div></td>
-									<td><textarea name="parallel.parallel_othermakePoint"
-											style="margin-top: 6px;" class="form-control" name="qttd"
-											rows="2"></textarea></td>
-								</tr>
-								<tr>
 									<td nowrap="nowrap" align="right"><div align="center">串并时间:</div></td>
 									<td><input name="parallel.parallel_date"
 										style="margin-top: 6px;" class="form-control mydate"
 										value="2017/11/29" type="text"></td>
+								</tr>
+								<tr>
+									<td align="right"><div align="center">其他特点手段:</div></td>
+									<td colspan="3"><textarea class="form-control"
+											refresh="text" name="parallel.parallel_othermakePoint"
+											style="margin-top: 6px;" rows="2">
+										</textarea></td>
 								</tr>
 							</tbody>
 						</table>
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary finish_merger">串并</button>
+					<button type="button" class="btn btn-primary modify_merger">修改</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 				</div>
 			</div>
@@ -348,13 +373,13 @@
 	var panelWidth = documentWidth - 160;
 	var navbarHeight = document.getElementById("navbar").offsetHeight;
 	var panelMargin = navbarHeight + 20;
-	document.getElementById("allPanel").setAttribute("style","width:"+panelWidth+"px; float:right; margin-top:"+panelMargin+"px;");
-	window.onresize = function(){
+	document.getElementById("allPanel").setAttribute("style", "width:" + panelWidth + "px; float:right; margin-top:" + panelMargin + "px;");
+	window.onresize = function() {
 		var documentWidth = document.body.clientWidth;
 		var panelWidth = documentWidth - 160;
 		var navbarHeight = document.getElementById("navbar").offsetHeight;
 		var panelMargin = navbarHeight + 20;
-		document.getElementById("allPanel").setAttribute("style","width:"+panelWidth+"px; float:right; margin-top:"+panelMargin+"px;");
+		document.getElementById("allPanel").setAttribute("style", "width:" + panelWidth + "px; float:right; margin-top:" + panelMargin + "px;");
 	}
 </script>
 </html>

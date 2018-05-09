@@ -12,6 +12,7 @@ public class xsjsglxt_meeting {
 	private String meeting_title; // 会议标题
 	private String meeting_start_time; // 会议开始时间 精确到分
 	private String meeting_end_time; // 会议结束时间 精确到分
+	private String meeting_theme;// 会议主题
 	private String meeting_place; // 会议地点
 	private String meeting_compere; // 会议主持人
 	private String meeting_record_human; // 会议记录人
@@ -20,6 +21,14 @@ public class xsjsglxt_meeting {
 	private String meeting_content; // 会议内容
 	private String meeting_gmt_create; // 会议对象创建时间
 	private String meeting_gmt_modified; // 会议对象修改时间
+
+	public String getMeeting_theme() {
+		return meeting_theme;
+	}
+
+	public void setMeeting_theme(String meeting_theme) {
+		this.meeting_theme = meeting_theme;
+	}
 
 	public String getMeeting_id() {
 		return meeting_id;

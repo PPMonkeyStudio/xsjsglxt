@@ -1,9 +1,10 @@
 function Update_AppraisalLetter(obj) {
+
 	var json_list = EntrustmentBook_json;
 	var jc = $
 			.confirm({
 				icon : 'fa fa-ban',
-				title : '不受理委托鉴定',
+				title : '修改鉴定书',
 				content : '',
 				type : 'red',
 				columnClass : 'col-md-12',

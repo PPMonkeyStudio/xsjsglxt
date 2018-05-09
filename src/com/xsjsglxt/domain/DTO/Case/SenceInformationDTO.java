@@ -1,5 +1,7 @@
 package com.xsjsglxt.domain.DTO.Case;
 
+import java.util.List;
+
 import com.xsjsglxt.domain.DO.xsjsglxt_briefdetails;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost;
@@ -17,7 +19,7 @@ private xsjsglxt_case case1;
 //private xsjsglxt_lost lost;
 private xsjsglxt_picture picture ;
 private xsjsglxt_snece sence;
-//private xsjsglxt_resevidence resevidence;
+private List<xsjsglxt_resevidence> resevidence;
 
 
 public xsjsglxt_briefdetails getBriefdetails() {
@@ -33,24 +35,7 @@ public xsjsglxt_case getCase1() {
 public void setCase1(xsjsglxt_case case1) {
 	this.case1 = case1;
 }
-//public xsjsglxt_lost_computer getLost_computer() {
-//	return lost_computer;
-//}
-//public void setLost_computer(xsjsglxt_lost_computer lost_computer) {
-//	this.lost_computer = lost_computer;
-//}
-//public xsjsglxt_lost_mobilephone getLost_mobilephone() {
-//	return lost_mobilephone;
-//}
-//public void setLost_mobilephone(xsjsglxt_lost_mobilephone lost_mobilephone) {
-//	this.lost_mobilephone = lost_mobilephone;
-//}
-//public xsjsglxt_lost getLost() {
-//	return lost;
-//}
-//public void setLost(xsjsglxt_lost lost) {
-//	this.lost = lost;
-//}
+
 public xsjsglxt_picture getPicture() {
 	return picture;
 }
@@ -65,16 +50,35 @@ public void setSence(xsjsglxt_snece sence) {
 }
 public SenceInformationDTO(xsjsglxt_briefdetails briefdetails, xsjsglxt_case case1, xsjsglxt_picture picture,
 		xsjsglxt_snece sence) {
-
+	super();
 	this.briefdetails = briefdetails;
 	this.case1 = case1;
 	this.picture = picture;
 	this.sence = sence;
+}
+
+
+public SenceInformationDTO(xsjsglxt_briefdetails briefdetails, xsjsglxt_case case1, xsjsglxt_picture picture,
+		xsjsglxt_snece sence, List<xsjsglxt_resevidence> resevidence) {
+	super();
+	this.briefdetails = briefdetails;
+	this.case1 = case1;
+	this.picture = picture;
+	this.sence = sence;
+	this.resevidence = resevidence;
+}
+public List<xsjsglxt_resevidence> getResevidence() {
+	return resevidence;
+}
+public void setResevidence(List<xsjsglxt_resevidence> resevidence) {
+	this.resevidence = resevidence;
 }
 @Override
 public String toString() {
 	return "SenceInformationDTO [briefdetails=" + briefdetails + ", case1=" + case1 + ", picture=" + picture
 			+ ", sence=" + sence + "]";
 }
+
+
 
 }

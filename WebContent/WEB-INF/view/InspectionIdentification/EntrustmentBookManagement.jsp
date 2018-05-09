@@ -14,6 +14,11 @@
 
 <!---------------------------------------------------------------------------------------------------->
 <title>检验鉴定</title>
+<style type="text/css">
+	#bottomPage{
+		cursor: pointer;
+	}
+</style>
 </head>
 <body>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
@@ -34,14 +39,12 @@
 				<div style="height: 34px; margin: 0 0 20px 0;">
 
 					<input id="select_stop_time" class="form-control mydate"
-						placeholder="XXXX-XX-XX"
 						style="width: 150px; float: right; margin: 0 0 0 20px; text-align: center;"
 						type="text">
 					<%--  --%>
 					<span style="float: right; margin: 0 0 0 20px; line-height: 34px;">至</span>
 					<!--  -->
 					<input id="select_start_time" class="form-control mydate"
-						placeholder="XXXX-XX-XX"
 						style="width: 150px; float: right; text-align: center;"
 						type="text">
 					<%--  --%>
@@ -142,7 +145,17 @@
 						<i class="fa fa-trash-o"></i> 删除委托
 					</button>
 				</div>
-				<div style="margin: 0 auto; width: 400px; text-align: center;">
+
+				<div id="bottomPage" style="padding: 20px;">
+					<span>当前页数:<span id="span_pageIndex">1</span></span> <span>共:<span
+						id="span_totalPages">2</span>页
+					</span> 共 <span id="span_totalRecords">0</span> 条记录 <span
+						onclick="flip(1)" id="indexPage" class="pageOperation">首页</span> <span
+						onclick="flip(2)" id="previousPage" class="pageOperation">上一页</span>
+					<span onclick="flip(3)" id="nextPage" class="pageOperation">下一页</span>
+					<span onclick="flip(4)" id="lastPage" class="pageOperation">末页</span>
+				</div>
+<%-- 				<div style="margin: 0 auto; width: 400px; text-align: center;">
 					<button id="button_HomePage" class="btn btn-default"
 						onclick="flip(1)">首页</button>
 					<button id="button_PrePage" class="btn btn-default"
@@ -155,9 +168,8 @@
 				<div
 					style="margin: 20px auto 20px; width: 200px; text-align: center;">
 					第 <span id="span_pageIndex">1</span> 页 <br> 共 <span
-						id="span_totalPages">1</span> 页 <br> 共 <span
-						id="span_totalRecords">0</span> 条记录
-				</div>
+						id="span_totalPages">1</span> 页 <br>
+				</div> --%>
 			</div>
 			<!--  -->
 

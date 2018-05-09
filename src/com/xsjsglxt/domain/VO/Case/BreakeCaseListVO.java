@@ -9,12 +9,13 @@ public class BreakeCaseListVO {
 	private int totalPage;
 	private int totalCount;
 	private int pageSize;
-	private String query_sence_inquestId;
-	private String query_case_name;
-	private String query_breake_time_start;
-	private String query_breake_time_end;
-	private String query_breake_person;
-	private String query_breake_according;
+	private String query_sence_inquestId; // 查询
+	private String query_case_name; // 查询案件名
+	private String query_breake_time_start; // 查询破案时间起始
+	private String query_breake_time_end; // 查询破案时间结束
+	private String query_breake_person; // 查询破案人
+	private String query_breake_according;// 破案方式
+	private String query_breake_time_sort; // 破案时间升序降序
 	private List<BreakeCasePageDTO> breakeCaseDTOList;
 
 	/*
@@ -37,6 +38,14 @@ public class BreakeCaseListVO {
 
 	public void setQuery_breake_according(String query_breake_according) {
 		this.query_breake_according = query_breake_according;
+	}
+
+	public String getQuery_breake_time_sort() {
+		return query_breake_time_sort;
+	}
+
+	public void setQuery_breake_time_sort(String query_breake_time_sort) {
+		this.query_breake_time_sort = query_breake_time_sort;
 	}
 
 	/**

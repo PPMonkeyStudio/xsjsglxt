@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-4-21 16:24:43 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_takeBreakeCase" table="XSJSGLXT_TAKEBREAKECASE">
+        <id name="take_id" type="java.lang.String">
+            <column name="TAKE_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="take_name" type="java.lang.String">
+            <column name="TAKE_NAME" />
+        </property>
+        <property name="take_case" type="java.lang.String">
+            <column name="TAKE_CASE" />
+        </property>
+        <property name="take_gmt_create" type="java.lang.String">
+            <column name="TAKE_GMT_CREATE" />
+        </property>
+        <property name="take_gmt_modified" type="java.lang.String">
+            <column name="TAKE_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>

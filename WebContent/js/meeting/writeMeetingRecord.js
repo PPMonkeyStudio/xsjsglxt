@@ -18,7 +18,8 @@ var createConfirm = function() {
 						+ "<td>会议结束时间：</td><td><input placeholder='时分按格式手动精确（10:30英文冒号）' name='meet.meeting_end_time' type='text' class='form-control  mydate'></td></tr>"
 						+ "<tr><td>主持人：</td><td><select name='meet.meeting_compere' id='compere' style='width: 250px;' class='form-control selectpicker' data-live-search='true' title='请选择主持人'></select></td>"
 						+ "<td>记录人：</td><td><select name='meet.meeting_record_human' id='Recorder' style='width: 250px;' class='form-control selectpicker' data-live-search='true' title='请选择记录人'></select></td></tr>"
-						+ "<tr><td>参与人员</td><td colspan='3'><input name='meet.meeting_join_human' type='text' class='form-control' placeholder='请输入会议参与人员'></td></tr>"
+						+ "<tr><td>会议主题</td><td colspan=''><input name='meet.meeting_theme' type='text' class='form-control' placeholder='请输入会议主题'></td>"
+						+ "<td>参与人员</td><td colspan=''><input name='meet.meeting_join_human' type='text' class='form-control' placeholder='请输入会议参与人员'></td></tr>"
 						+ "<tr><td>请假人员</td><td colspan='3'><input name='meet.meeting_leave_human' type='text' class='form-control' placeholder='请输入会议请假人员'></td></tr>"
 						+ "<tr><td>会议内容</td><td colspan='3'><textarea name='meet.meeting_content' rows='10' class='form-control' placeholder='请输入会议内容'></textarea></td></tr>"
 						+ "<table></form></div>",
@@ -29,12 +30,12 @@ var createConfirm = function() {
 						action : function() {
 							var formData = new FormData(document
 									.getElementById("meetRecords"));
-							for (var i = 0; i < document.meetRecords.elements.length - 1; i++) {
-								if (document.meetRecords.elements[i].value == "") {
-									toastr.error("当前表单不能有空项");
-									document.meetRecords.elements[i].focus();
-									return false;
-								}
+							if ($('select[name="meet.meeting_compere"]').val() == ""
+									|| $(
+											'select[name="meet.meeting_record_human"]')
+											.val() == "") {
+								toastr.error("不能有空项哦");
+								return false;
 							}
 							$("#ConfirmTableDiv").hide();
 							$("#addLoadingLayer").show();

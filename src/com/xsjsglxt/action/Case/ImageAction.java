@@ -19,6 +19,8 @@ import com.xsjsglxt.domain.DTO.Case.ImageInformationDTO;
 import com.xsjsglxt.domain.VO.Case.page_list_imageInformationVO;
 import com.xsjsglxt.service.Case.ImageService;
 
+import util.TeamUtil;
+
 public class ImageAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
 	private ImageService imageService;
 	private HttpServletResponse http_response;
@@ -36,10 +38,11 @@ public class ImageAction extends ActionSupport implements ServletRequestAware, S
 	 */
 	public void saveCD() throws IOException {
 		try {
-
+			String uuid = TeamUtil.getUuid();
+			image.setXsjsglxt_image_id(uuid);
 			imageService.saveCD(image);
 			http_response.setContentType("text/html;charset=utf-8");
-			http_response.getWriter().write("success");
+			http_response.getWriter().write(uuid);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -117,7 +120,7 @@ public class ImageAction extends ActionSupport implements ServletRequestAware, S
 		imageService.updateImage(image);
 		// imageService.updatePicture(picture,image.getXsjsglxt_image_id());
 		http_response.setContentType("text/html;charset=utf-8");
-		http_response.getWriter().write(gson.toJson("success"));
+		http_response.getWriter().write("success");
 	}
 
 	/*
@@ -129,7 +132,7 @@ public class ImageAction extends ActionSupport implements ServletRequestAware, S
 		Gson gson = gsonBuilder.create();
 		imageService.updatePicture(picture);
 		http_response.setContentType("text/html;charset=utf-8");
-		http_response.getWriter().write(gson.toJson("success"));
+		http_response.getWriter().write("success");
 	}
 
 	/*
@@ -206,6 +209,24 @@ public class ImageAction extends ActionSupport implements ServletRequestAware, S
 
 	}
 
+	/*
+	 * 列表信息
+	 * 
+	 */
+	public void ListImageInformationByPage_image() throws IOException {
+
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
+		Gson gson = gsonBuilder.create();
+
+		page_list_imageInformation = imageService.VO_ImageInformation_By_Page(page_list_imageInformation);
+
+		http_response.setContentType("text/html;charset=utf-8");
+
+		http_response.getWriter().write(gson.toJson(page_list_imageInformation));
+
+	}
+
 	/**
 	 * 获取全部的光盘信息
 	 */
@@ -247,7 +268,7 @@ public class ImageAction extends ActionSupport implements ServletRequestAware, S
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
-		imageInformationDTO = imageService.ImageInformationOne(image,picture);
+		imageInformationDTO = imageService.ImageInformationOne(image, picture);
 		http_response.setContentType("text/html;charset=utf-8");
 
 		http_response.getWriter().write(gson.toJson(imageInformationDTO));

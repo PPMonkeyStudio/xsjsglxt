@@ -1,27 +1,27 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2018-4-11 21:11:59 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2018-4-17 14:07:50 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="com.xsjsglxt.domain.DO.xsjsglxt_breakecasesuspect" table="XSJSGLXT_BREAKECASESUSPECT">
         <id name="xsjsglxt_breakecaseSuspect_id" type="java.lang.String">
-            <column name="XSJSGLXT_BREAKECASESUSPECT_ID" />
+            <column name="xsjsglxt_breakecasesuspect_id" />
             <generator class="assigned" />
         </id>
         <property name="breakecaseSuspect_breakecase" type="java.lang.String">
-            <column name="BREAKECASESUSPECT_BREAKECASE" />
+            <column name="breakecasesuspect_breakecase" />
         </property>
         <property name="breakecaseSuspect_name" type="java.lang.String">
-            <column name="BREAKECASESUSPECT_NAME" />
+            <column name="breakecasesuspect_name" />
+        </property>
+        <property name="breakecaseSuspect_IDnum" type="java.lang.String">
+            <column name="BREAKECASESUSPECT_IDNUM" />
         </property>
         <property name="breakecaseSuspect_sex" type="java.lang.String">
             <column name="BREAKECASESUSPECT_SEX" />
         </property>
         <property name="breakecaseSuspect_birthday" type="java.lang.String">
             <column name="BREAKECASESUSPECT_BIRTHDAY" />
-        </property>
-        <property name="breakecaseSuspect_IDnum" type="java.lang.String">
-            <column name="BREAKECASESUSPECT_IDNUM" />
         </property>
         <property name="breakecaseSuspect_addrress" type="java.lang.String">
             <column name="BREAKECASESUSPECT_ADDRRESS" />

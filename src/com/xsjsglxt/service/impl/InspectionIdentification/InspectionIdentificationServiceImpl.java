@@ -32,6 +32,8 @@ import com.xsjsglxt.domain.DO.xsjsglxt_entrustment_sample;
 import com.xsjsglxt.domain.DO.xsjsglxt_identifieder_case_confirm_book;
 import com.xsjsglxt.domain.DO.xsjsglxt_inspection_record;
 import com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform;
+import com.xsjsglxt.domain.DTO.InspectionIdentification.CaseCheckDTO;
+import com.xsjsglxt.domain.DTO.InspectionIdentification.CaseMandateDTO;
 import com.xsjsglxt.domain.DTO.InspectionIdentification.EntrustmentBookManagementDTO;
 import com.xsjsglxt.domain.VO.InspectionIdentification.EntrustmentBookManagementVO;
 import com.xsjsglxt.service.InspectionIdentification.InspectionIdentificationService;
@@ -44,6 +46,60 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 
 	public void setInspectionIdentificationDao(InspectionIdentificationDao inspectionIdentificationDao) {
 		this.inspectionIdentificationDao = inspectionIdentificationDao;
+	}
+
+	/**
+	 * 根据案件id获取委托书列表
+	 * 
+	 * @param tranceCheckBook.getCheckCaseId()
+	 *            案件id
+	 * @return listEnstrustment委托书列表
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CaseMandateDTO> getListEnstrustmentByCaseId(String checkCaseId) {
+		String hql = "select new com.xsjsglxt.domain.DTO.InspectionIdentification.CaseMandateDTO("
+				+ "x.xsjsglxt_check_entrustment_book_id as xsjsglxt_check_entrustment_book_id , r.resevidence_name as resevidence_name,"
+				+ "x.check_entrustment_book_num as check_entrustment_book_num , x.check_entrustment_book_entrustment_unit as check_entrustment_book_entrustment_unit,"
+				+ "x.check_entrustment_book_entrustment_unit_name as check_entrustment_book_entrustment_unit_name ,x.check_entrustment_book_inspect_time as check_entrustment_book_inspect_time"
+				+ ") " + "from xsjsglxt_check_entrustment_book as x , xsjsglxt_resevidence as r "
+				+ "where x.checkEvidenceId = r.xsjsglxt_resevidence_id " + "and x.checkCaseId='" + checkCaseId + "'";
+		List<CaseMandateDTO> listEnstrustmentByCaseId = (List<CaseMandateDTO>) inspectionIdentificationDao
+				.listObject(hql);
+		return listEnstrustmentByCaseId;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<xsjsglxt_check_entrustment_book> getListEnstrustmentByEvidenceId(String checkEvidenceId) {
+		String hql = "from xsjsglxt_check_entrustment_book where checkEvidenceId='" + checkEvidenceId + "'";
+		List<xsjsglxt_check_entrustment_book> listEnstrustmentByEvidenceId = (List<xsjsglxt_check_entrustment_book>) inspectionIdentificationDao
+				.listObject(hql);
+		return listEnstrustmentByEvidenceId;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CaseCheckDTO> listInspectionRecordByCaseId(String inspectionCaseId) {
+		String hql = "select new com.xsjsglxt.domain.DTO.InspectionIdentification.CaseCheckDTO("
+				+ "x.xsjsglxt_inspection_record_id as xsjsglxt_inspection_record_id ,"
+				+ "r.resevidence_name as resevidence_name , x.inspection_start_time as inspection_start_time , x.inspection_method as inspection_method"
+				+ ", x.inspection_location as inspection_location , x.inspection_option as inspection_option"
+				+ ") from xsjsglxt_inspection_record as x , xsjsglxt_resevidence as r "
+				+ "where x.inspectionEvidenceId = r.xsjsglxt_resevidence_id " + "and x.inspectionCaseId='"
+				+ inspectionCaseId + "'";
+		List<CaseCheckDTO> listInspectionRecordByCaseId = (List<CaseCheckDTO>) inspectionIdentificationDao
+				.listObject(hql);
+		return listInspectionRecordByCaseId;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<xsjsglxt_inspection_record> listInspectionRecordByEvidenceId(String inspectionEvidenceId) {
+		String hql = "from xsjsglxt_inspection_record where =inspectionEvidenceId " + inspectionEvidenceId + "";
+		List<xsjsglxt_inspection_record> listInspectionRecordByEvidenceId = (List<xsjsglxt_inspection_record>) inspectionIdentificationDao
+				.listObject(hql);
+		return listInspectionRecordByEvidenceId;
 	}
 
 	// 保存痕迹检验委托书
@@ -336,8 +392,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		int i = 2;
 		int x = -1;
 
-		System.out.println("length:" + positionFile.length);
-
 		/*
 		 * 获取路径
 		 */
@@ -348,16 +402,10 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			lj = props.getProperty("lj");
 			// lj=F:\\
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 		String path = lj + "xsjsglxt/damage/";
 		// 将文件以及文件名格式化
-		for (String string : fileName) {
-			System.out.println("string:" + string);
-		}
-		System.out.println("-------------------");
-		System.out.println("name:" + fileName);
 		file = file(file, positionFile, "damage");
 		fileName = fileName(fileName, positionFile, "damage");
 		if (!("申请已受理".equals(entrustmentBookState(
@@ -431,7 +479,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			lj = props.getProperty("lj");
 			// lj=F:\\
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 
@@ -643,9 +690,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		// 将文件以及文件名格式化
 		updateDeathFile = file(updateDeathFile, positionFile, "death");
 		updateDeathFileName = fileName(updateDeathFileName, positionFile, "death");
-		for (String string : updateDeathFileName) {
-			System.out.println("name:" + string);
-		}
 		xsjsglxt_death_inspection_record death_inspection_record = new xsjsglxt_death_inspection_record();
 		death_inspection_record = inspectionIdentificationDao
 				.getDeathInspectionRecordOwnId(deathInspectionRecord.getXsjsglxt_death_inspection_record_id());
@@ -830,7 +874,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
 			lj = props.getProperty("lj");
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 		params.putAll(mapTranceCheckBook(id));
@@ -865,7 +908,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
 			lj = props.getProperty("lj");
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 		params.putAll(mapIdentifiederCaseConfirmBook(id));
@@ -900,7 +942,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
 			lj = props.getProperty("lj");
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 		params.putAll(mapAcceptanceIdentifieder(id));
@@ -935,7 +976,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
 			lj = props.getProperty("lj");
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 		params.putAll(mapNotAcceptanceIdentifieder(id));
@@ -993,7 +1033,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
 			lj = props.getProperty("lj");
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 		params.putAll(mapInspectionRecord(id));
@@ -1070,7 +1109,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
 			lj = props.getProperty("lj");
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 		params.putAll(mapDeathInspectionRecord(id));
@@ -1127,7 +1165,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
 			lj = props.getProperty("lj");
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 		params.putAll(mapDamageInspectionRecord(id));
@@ -1163,7 +1200,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
 			lj = props.getProperty("lj");
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 		params.putAll(mapAppraisalLetter(id));
@@ -1363,7 +1399,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
 			lj = props.getProperty("lj");
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 		xsjsglxt_damage_inspection_record xsjsglxt_damage_inspection_record = new xsjsglxt_damage_inspection_record();
@@ -1538,7 +1573,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
 			lj = props.getProperty("lj");
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 		xsjsglxt_death_inspection_record xsjsglxt_death_inspection_record = new xsjsglxt_death_inspection_record();
@@ -2855,7 +2889,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
 			lj = props.getProperty("lj");
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 		String path = lj + "xsjsglxt/damage/";
@@ -2931,7 +2964,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
 			lj = props.getProperty("lj");
 		} catch (Exception e) {
-			System.out.println("获取初始路径失败");
 			e.printStackTrace();
 		}
 		String path = lj + "xsjsglxt/death/";
@@ -3063,6 +3095,17 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			}
 		}
 		return fileName;
+	}
+
+	/**
+	 * @author 孙毅
+	 * 保存检验记录
+	 */
+
+	@Override
+	public void saveInspectionRecords(xsjsglxt_inspection_record inspectionRecord) {
+		// TODO Auto-generated method stub
+		inspectionIdentificationDao.saveInspectionRecords(inspectionRecord);
 	}
 
 }

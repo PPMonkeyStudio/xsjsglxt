@@ -9,24 +9,37 @@ import com.xsjsglxt.domain.VO.Case.page_list_ResevidenceInformationVO;
 
 public interface ResevidenceService {
 
-public void saveResevidence(xsjsglxt_resevidence resevidence);
+	public void saveResevidence(xsjsglxt_resevidence resevidence);
 
-public page_list_ResevidenceInformationVO VO_Resevidenceformation_By_PageAndSearch(
-		page_list_ResevidenceInformationVO page_list_ResevidenceInformation);
+	public page_list_ResevidenceInformationVO VO_Resevidenceformation_By_PageAndSearch(
+			page_list_ResevidenceInformationVO page_list_ResevidenceInformation);
 
-public ResevidenceInformationDTO ResevidenceInformationOne(xsjsglxt_resevidence resevidence);
-/*
- * 保存物证流转信息
- */
-public void saveCirculation(xsjsglxt_circulation circulation);
-/*
- * 删除物证
- */
-public boolean removeResevidenceInformationList(List<String> useResevidenceInformationNumList);
-/*
- * 修改物证信息
- */
-public void updateResevidenceIn(xsjsglxt_resevidence resevidence);
+	public ResevidenceInformationDTO ResevidenceInformationOne(xsjsglxt_resevidence resevidence);
 
+	/*
+	 * 保存物证流转信息
+	 */
+	public void saveCirculation(xsjsglxt_circulation circulation);
+
+	/*
+	 * 删除物证
+	 */
+	public boolean removeResevidenceInformationList(List<String> useResevidenceInformationNumList);
+
+	/*
+	 * 修改物证信息
+	 */
+	public void updateResevidenceIn(xsjsglxt_resevidence resevidence);
+
+	public void updateStatus(xsjsglxt_resevidence resevidence);
+
+	public void updateResevidenceCheckState(xsjsglxt_resevidence resevidence);
+
+	public void updateResevidenceSendCheckState(xsjsglxt_resevidence resevidence);
+
+	// 获取物证的全部送检状态
+	public List<xsjsglxt_circulation> getCirculationList(xsjsglxt_resevidence resevidence);
+
+	public xsjsglxt_resevidence getResevidenceById(String string);
 
 }

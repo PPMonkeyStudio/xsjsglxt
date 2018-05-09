@@ -7,9 +7,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.Technology.FingerPrintDao;
-import com.xsjsglxt.domain.DO.xsjsglxt_dna;
 import com.xsjsglxt.domain.DO.xsjsglxt_fingerprint;
 import com.xsjsglxt.domain.VO.Technology.FingerPrintVO;
+
+import util.TeamUtil;
 
 public class FingerPrintDaoImpl implements FingerPrintDao {
 
@@ -33,11 +34,13 @@ public class FingerPrintDaoImpl implements FingerPrintDao {
 			return 2;
 		}
 	}
-	
+
 	@Override
 	public int getFeild() {
 		Session session = getSession();
-		String hql = "select right(fingerprint_num,4) FROM xsjsglxt_fingerprint ORDER BY right(fingerprint_num,4) desc limit 1";
+		String year = TeamUtil.getCurrentYear();
+		String hql = "select right(fingerprint_num,4) FROM xsjsglxt_fingerprint  where LEFT(fingerprint_gmt_create,4) ='"
+				+ year + "' ORDER BY right(fingerprint_num,4)  desc limit 1";
 		/**
 		 * 这里要记得使用  createSQLQuery  可能hql并不支持这种用法
 		 */

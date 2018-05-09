@@ -102,7 +102,8 @@ public class MeetingDaoImpl implements MeetingDao {
 			hql = hql + " and meet.meeting_start_time <= '" + meetVO.getQuery_start_time_end() + "'";
 		}
 		if (meetVO.getQueryMeetingContent() != null && meetVO.getQueryMeetingContent().trim().length() > 0) {
-			hql = hql + " and meet.meeting_content like '%" + meetVO.getQueryMeetingContent() + "%'";
+			hql = hql + " and (meet.meeting_content like '%" + meetVO.getQueryMeetingContent()
+					+ "%' or meet.meeting_theme like '%" + meetVO.getQueryMeetingContent() + "%')";
 		}
 		long count = (long) this.getSession().createQuery(hql).uniqueResult();
 		this.getSession().clear();
@@ -114,7 +115,7 @@ public class MeetingDaoImpl implements MeetingDao {
 	public List<meetingSearchDTO> ListMeetRecordsBySearch(meetingByPageAndSerarchVO meetVO) {
 		// TODO Auto-generated method stub
 
-		String hql = "select new com.xsjsglxt.domain.DTO.User.meetingSearchDTO(meeting_id,meeting_title,meeting_start_time,meeting_end_time,meeting_place,meeting_compere) from xsjsglxt_meeting meet where 1=1";
+		String hql = "select new com.xsjsglxt.domain.DTO.User.meetingSearchDTO(meeting_id,meeting_title,meeting_start_time,meeting_end_time,meeting_theme,meeting_place,meeting_compere) from xsjsglxt_meeting meet where 1=1";
 		if (meetVO.getQuery_start_time_start() != null && meetVO.getQuery_start_time_start().trim().length() > 0) {
 			hql = hql + " and meet.meeting_start_time >= '" + meetVO.getQuery_start_time_start() + "'";
 		}
@@ -125,7 +126,8 @@ public class MeetingDaoImpl implements MeetingDao {
 			hql = hql + " and meet.meeting_start_time <= '" + meetVO.getQuery_start_time_end() + "'";
 		}
 		if (meetVO.getQueryMeetingContent() != null && meetVO.getQueryMeetingContent().trim().length() > 0) {
-			hql = hql + " and meet.meeting_content like '%" + meetVO.getQueryMeetingContent() + "%'";
+			hql = hql + " and (meet.meeting_content like '%" + meetVO.getQueryMeetingContent()
+					+ "%' or meet.meeting_theme like '%" + meetVO.getQueryMeetingContent() + "%')";
 		}
 		if (true) {
 			hql = hql + " order by meeting_start_time " + meetVO.getStartTimeSort();
@@ -134,7 +136,6 @@ public class MeetingDaoImpl implements MeetingDao {
 		Query query = session.createQuery(hql).setFirstResult((meetVO.getCurrPage() - 1) * meetVO.getPageSize())
 				.setMaxResults(meetVO.getPageSize());
 		List<meetingSearchDTO> list = query.list();
-		System.out.println(list.size());
 		session.clear();
 		return list;
 	}

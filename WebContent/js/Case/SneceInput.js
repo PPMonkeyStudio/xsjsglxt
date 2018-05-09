@@ -1,12 +1,35 @@
+var Case_Snece_lost = {
+	evidencelist : [],
+	picturelist : [],
+	computerlist : [],
+	mobilephonelist : [],
+	lostlist : [],
+};
+
+//序列化为对象======----自定义方法
+$.fn.extend({
+	serializeObject : function() {
+		if (this.length > 1) {
+			return false;
+		}
+		var arr = this.serializeArray();
+		var obj = new Object;
+		$.each(arr, function(k, v) {
+			obj[v.name] = v.value;
+		});
+		return obj;
+	}
+});
+
 $(function() {
 	$('.form_time').val(new Date().toLocaleDateString());
 
 	$.post('/xsjsglxt/case/Case_getSenceInquestId', function(xhr) {
 		$('input[name="sence.snece_inquestId"]').val(xhr);
-		//接警时间改变时勘验编号相应改变
+		// 接警时间改变时勘验编号相应改变
 		$('input[name="case1.case_receivingAlarmDate"]').blur(function() {
 			var time = new Date($(this).val());
-			//toastr.danger("请输入正确的时间");
+			// toastr.danger("请输入正确的时间");
 			if (time == "Invalid Date") {
 				toastr.error("请输入正确的时间");
 				return;
@@ -18,39 +41,73 @@ $(function() {
 			}
 			$('input[name="sence.snece_inquestId"]').val(xhr.substring(0, 10) + tear + month + xhr.substring(16, xhr.length));
 		});
-
 	}, 'json')
 
 	$('.sneceInformation_finish').click(function() {
-		if (($('select').val() == "" || $('select').val() == null) && ($('input').val() == "" || $('input').val() == null)) {
-			toastr.error("信息不能为空");
-			return;
-		}
-		$.ajax({
-			url : "/xsjsglxt/case/Case_saveSenceInformation",
-			type : "post",
-			timeout : 3000,
-			data : $('#sneceInformation').serialize(),
-			dataType : "json",
-			success : function(xhr_data) {
-				var reg = /^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$/;
-				var r = xhr_data.match(reg);
-				if (r == null) {
-					toastr.error("录入失败！");
-				} else {
-					toastr.success("录入成功！");
-					location.href = '/xsjsglxt/case/Case_page_CaseDetails?id=' + xhr_data;
-				}
+		var isValue = true;
+		$('#sneceInformation').find('.must').each(function() {
+			if ($(this).val() == "") {
+				toastr.error("信息不能为空");
+				isValue = false;
+				return false;
 			}
 		});
+		if (isValue) {
+			var sence_data = $('#sneceInformation').serializeObject();
+			if ($('input[name="case1.case_register"]').val() == 1) {
+				//sence_data += '&case1.case_registerTime=' + new Date().Format('yyyy-MM-dd');
+				sence_data["case1.case_registerTime"] = new Date().Format('yyyy-MM-dd');
+			}
+			var otherData = {};
+			for (var key_0 in Case_Snece_lost) {
+				for (var int = 0; int < Case_Snece_lost[key_0].length; int++) {
+					var obj = Case_Snece_lost[key_0][int];
+					for (var key in obj) {
+						var arry = key.split('.');
+						var key_9 = arry[0] + 'list[' + int + ']' + "." + arry[1];
+						otherData[key_9] = obj[key];
+					}
+				}
+			}
+			console.log(otherData);
+			var newData = $.extend({}, sence_data, otherData)
+			console.log(newData);
+			$.ajax({
+				url : "/xsjsglxt/case/Case_saveSenceInformation",
+				type : "post",
+				timeout : 3000,
+				data : newData,
+				dataType : "json",
+				success : function(xhr_data) {
+					var reg = /^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$/;
+					var r = xhr_data.match(reg);
+					if (r == null) {
+						toastr.error("录入失败！");
+					} else {
+						toastr.success("录入成功！");
+						location.href = '/xsjsglxt/case/Case_page_CaseDetails?id=' + xhr_data;
+					}
+				}
+			});
+		}
 	});
+
+	$.post('/xsjsglxt/team/Staff_getInquestPerson', {}, function(params) {
+		var leader = params.leader;
+		var human = params.human;
+		var suspectStr = '';
+		for (let index = 0; index < leader.length; index++) {
+			suspectStr += '<option value="' + leader[index]["xsjsglxt_name"] + '">' + leader[index]["xsjsglxt_name"] + '</option>';
+		}
+		for (let index = 0; index < human.length; index++) {
+			suspectStr += '<option value="' + human[index]["xsjsglxt_name"] + '">' + human[index]["xsjsglxt_name"] + '</option>';
+		}
+		$('select[name="sence.snece_inquestPerson"]').html(suspectStr).selectpicker('refresh');
+	}, 'json');
+
 })
 
-
-
-
-
-//-----------------------------------------------------------案件
+// -----------------------------------------------------------案件
 var sectionCase0 = new Array();
 sectionCase0[0] = [ "请选择案件子类别" ]
 
@@ -97,27 +154,34 @@ function setSectionCase(chapter) {
 	if (chapter > 3 && chapter != 13) {
 		$('.other_case').hide();
 	} else if (chapter == 13) {
-		//清空other_case的select元素，改为input元素
+		// 清空other_case的select元素，改为input元素
 		$('.main_case').next().remove();
-		$('.main_case').after('<input style="margin-top: 6px; width:65%;" class="other_case form-control" type="text">');
+		$('#other_case_td').html('<input type="text" name="case1.case_sonCategory" style="margin-top: 6px; width: 160px;" class="other_case form-control must">');
 	} else {
 		$('.other_case').empty().show();
 		var length = chapterCaseArr[chapter][2].length;
 		if ($('select[class="other_case form-control"]').length == 0) {
 			$('input[class="other_case form-control"]').remove();
-			$('.main_case').after('<select name="case1.case_sonCategory" style="margin-top: 6px; width:65%;"class="other_case form-control"></select>');
+			$('#other_case_td').html('<select name="case1.case_sonCategory" style="margin-top: 6px; width: 160px;" class="other_case form-control must"><option selected value="">请选择案件子类别</option></select>');
 		}
 		for (var i = 0; i < length; i++) {
 			$('.other_case').append("<option value='" + chapterCaseArr[chapter][2][i] + "'>" + chapterCaseArr[chapter][2][i] + "</option>");
 		}
 	}
-	$('.case_name').val(new Date().toLocaleDateString() + $('.case_place').val() + $('.main_case').val());
+
+	var receivingAlarmDate = new Date($('input[name="case1.case_receivingAlarmDate"]').val()).Format("yyyy.MM.dd");
+	$('.case_name').val('"' + receivingAlarmDate + '"' + $('.case_place').val() + $('.main_case').val());
+
 	$('.other_case').unbind().change(function() {
-		$('.case_name').val(new Date().toLocaleDateString() + $('.case_place').val() + $('.other_case').val());
+		$('.case_name').val('"' + receivingAlarmDate + '"' + $('.case_place').val() + $('.other_case').val());
 	})
 }
 
-//-----------------------------------------------------------作案手段
+function setCase_name() {
+	var receivingAlarmDate = new Date($('input[name="case1.case_receivingAlarmDate"]').val()).Format("yyyy.MM.dd");
+	$('.case_name').val('"' + receivingAlarmDate + '"' + $('.case_place').val() + $('.main_case').val());
+}
+// -----------------------------------------------------------作案手段
 var sectionMethod0 = new Array();
 sectionMethod0[0] = [ "具体手段" ]
 
@@ -215,7 +279,7 @@ function setSectionmMethod(chapter) {
 	}
 }
 
-//-----------------------------------------------------------处所
+// -----------------------------------------------------------处所
 var sectionAddress0 = new Array();
 sectionAddress0[0] = [ "具体处所" ]
 var sectionAddress1 = new Array();
@@ -263,6 +327,7 @@ chapterAddressArr[1] = [ "居民住宅", "居民住宅", sectionAddress1 ];
 chapterAddressArr[2] = [ "单位场所", "单位场所", sectionAddress2 ];
 chapterAddressArr[3] = [ "服务行业", "服务行业", sectionAddress3 ];
 chapterAddressArr[4] = [ "其它处所", "其它处所", sectionAddress4 ];
+
 function setSectionmAddress(chapter) {
 	$('.specific_space').empty();
 	var length = chapterAddressArr[chapter][2].length;
@@ -271,7 +336,26 @@ function setSectionmAddress(chapter) {
 	}
 }
 
-//-------------------------------------------------立案与否
+// -------------------------------------------------立案与否
 function buildCase_chose(obj) {
 	$('input[name="case1.case_register"]').val($(obj).val());
+}
+
+//日期扩展
+Date.prototype.Format = function(fmt) {
+	var o = {
+		"M+" : this.getMonth() + 1, //月份 
+		"d+" : this.getDate(), //日 
+		"h+" : this.getHours(), //小时 
+		"m+" : this.getMinutes(), //分 
+		"s+" : this.getSeconds(), //秒 
+		"q+" : Math.floor((this.getMonth() + 3) / 3), //季度 
+		"S" : this.getMilliseconds() //毫秒 
+	};
+	if (/(y+)/.test(fmt))
+		fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+	for (var k in o)
+		if (new RegExp("(" + k + ")").test(fmt))
+			fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+	return fmt;
 }

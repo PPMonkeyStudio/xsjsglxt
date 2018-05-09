@@ -20,12 +20,18 @@
 <script src="<%=basePath%>js/Scheduling/showSchedulingList.js"></script>
 <script src="<%=basePath%>js/Scheduling/selectCheckBox.js"></script>
 <script src="<%=basePath%>js/Scheduling/managerScheduling.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/Case/defaults-zh_CN.js"></script>
 <style type="text/css">
 .pageOperation {
 	cursor: pointer;
 }
 
 a {
+	cursor: pointer;
+}
+
+i {
 	cursor: pointer;
 }
 </style>
@@ -42,6 +48,14 @@ a {
 				<button class="btn btn-default managerRole"
 					onclick="createScheduling()">
 					<i class="fa fa-pencil-square-o"></i>增加值班
+				</button>
+				<button class="btn btn-default managerRole"
+					onclick="printCurrPage()">
+					<i class="fa fa-print"></i>导出值班表
+				</button>
+				<button class="btn btn-default managerRole"
+					onclick="intoStastics()">
+					<i class="fa fa-arrow-circle-right"></i>统计
 				</button>
 				<button class="btn btn-danger managerRole"
 					onclick="deleteScheduling()">
@@ -61,32 +75,45 @@ a {
 			<div id="loadingLayer" style="margin: 0 auto; width: 45px;">
 				<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
 			</div>
-			<div id="tableContent" style="margin-top: 10px; display: none;">
-				<table class="table table-bordered" style="text-align: center;">
+			<div id="tableContent" style="margin-top: 30px; display: none;">
+				<table class="table table-hover table-condensed"
+					style="text-align: center;">
 					<thead>
-						<tr>
-							<td rowspan="2"><label class="fancy-checkbox"> <input
-									onclick="selectAll(this)" type="checkbox" ><span>
-										全选 </span>
+						<tr style="height: 30; color: black;">
+							<td rowspan="2"><label> <input
+									onclick="selectAll(this)" type="checkbox"> 全选
 							</label></td>
 							<td rowspan="2">日期</td>
 							<td rowspan="2">带班领导</td>
-							<td colspan="2">主班</td>
-							<td rowspan="2">副班</td>
+							<td colspan="3">值班人员</td>
+							<td rowspan="2">巡逻人员</td>
+							<td rowspan="2">加班人员</td>
+							<td rowspan="2">外协人员</td>
+							<td rowspan="2">出差人员</td>
 						</tr>
-						<tr><td>侦查民警</td><td>技术民警</td></tr>
+						<tr style="height: 30; color: black;">
+							<td>侦查值班人员</td>
+							<td>技术值班人员</td>
+							<td>值班辅警</td>
+						</tr>
 					</thead>
 					<tbody>
 						<template v-for="schedulingDTO in vo.schedulingDTOList">
-						<tr>
-							<td><label class="fancy-checkbox"><input
-									type="checkbox" name="chooseCheckBox"
+						<tr style="height: 30;">
+							<td><label><input type="checkbox"
+									name="chooseCheckBox"
 									:value="schedulingDTO.xsjsglxt_scheduling_id"><span></span></label></td>
-							<td><a onclick="updateScheduling(this)" :id="schedulingDTO.xsjsglxt_scheduling_id">{{ schedulingDTO.scheduling_time }}</a></td>
+							<td><a onclick="updateScheduling(this)"
+								:id="schedulingDTO.xsjsglxt_scheduling_id">{{
+									schedulingDTO.scheduling_time }}</a></td>
 							<td>{{ schedulingDTO.scheduling_leader }}</td>
 							<td>{{ schedulingDTO.scheduling_main }}</td>
 							<td>{{ schedulingDTO.scheduling_mainTec }}</td>
 							<td>{{ schedulingDTO.scheduling_assistant }}</td>
+							<td>{{ schedulingDTO.scheduling_patrol }}</td>
+							<td>{{ schedulingDTO.scheduling_overtime }}</td>
+							<td>{{ schedulingDTO.scheduling_out_help }}</td>
+							<td>{{ schedulingDTO.scheduling_evection }}</td>
 						</tr>
 						</template>
 					</tbody>
@@ -122,6 +149,9 @@ a {
 			minDate : '1900/01/01', // 设置最小日期
 			maxDate : '2030/01/01', // 设置最大日期
 		});
+		$(function() {
+			$("tr").css("height", "30px");
+		})
 	</script>
 </body>
 </html>
