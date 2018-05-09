@@ -1,32 +1,33 @@
 package com.xsjsglxt.domain.DO;
 
 public class xsjsglxt_equipment {
-
-	//id
+	// id
 	private String xsjsglxt_equipment_id;
-	//序号
+	// 序号
 	private String equipment_serial_number;
-	//装备名称
+	// 装备种类
+	private String equipment_kind;
+	// 装备名称
 	private String equipment_name;
-	//装备类型
+	// 装备类型
 	private String equipment_type;
-	//装备特征
+	// 装备特征
 	private String equipment_feature;
-	//数量
+	// 数量
 	private Integer equipment_number;
-	//金额
+	// 金额
 	private String equipment_money;
-	//启用日期
+	// 启用日期
 	private String equipment_enablement_time;
-	//使用情况
+	// 使用情况
 	private String equipment_use_note;
-	//备注
+	// 备注
 	private String equipment_remark;
-	//创建时间
+	// 创建时间
 	private String equipment_gmt_create;
-	//修改时间
+	// 修改时间
 	private String equipment_gmt_modified;
-	
+
 	public String getXsjsglxt_equipment_id() {
 		return xsjsglxt_equipment_id;
 	}
@@ -123,6 +124,14 @@ public class xsjsglxt_equipment {
 		this.equipment_gmt_modified = equipment_gmt_modified;
 	}
 
+	public String getEquipment_kind() {
+		return equipment_kind;
+	}
+
+	public void setEquipment_kind(String equipment_kind) {
+		this.equipment_kind = equipment_kind;
+	}
+
 	@Override
 	public String toString() {
 		return "xsjsglxt_equipment [xsjsglxt_equipment_id=" + xsjsglxt_equipment_id + ", equipment_serial_number="
@@ -134,5 +143,4 @@ public class xsjsglxt_equipment {
 				+ equipment_gmt_modified + "]";
 	}
 
-	
 }

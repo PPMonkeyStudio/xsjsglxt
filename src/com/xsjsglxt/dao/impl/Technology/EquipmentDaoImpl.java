@@ -11,7 +11,7 @@ import com.xsjsglxt.domain.DO.xsjsglxt_equipment;
 import com.xsjsglxt.domain.VO.Technology.EquipmentVO;
 
 public class EquipmentDaoImpl implements EquipmentDao {
-	
+
 	private SessionFactory sessionFactory;
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
@@ -41,15 +41,16 @@ public class EquipmentDaoImpl implements EquipmentDao {
 			String search = "%" + equipmentVO.getSearch().trim() + "%";
 			hql = hql + " and equipment_serial_number like '" + search + "' or equipment_name like '" + search + "'";
 		}
+		if (equipmentVO.getSearchKind() != null && !"".equals(equipmentVO.getSearchKind().trim())) {
+			hql = hql + " and equipment_kind = '" + equipmentVO.getSearchKind() + "'";
+		}
 		hql = hql + " order by equipment_gmt_create";
 		Query query = session.createQuery(hql);
-		Long i = (Long)query.uniqueResult();
+		Long i = (Long) query.uniqueResult();
 		int count = i.intValue();
 		session.clear();
 		return count;
 	}
-	
-	
 
 	@Override
 	public int deleteEquipment(String xsjsglxt_equipment_id) {
@@ -63,16 +64,15 @@ public class EquipmentDaoImpl implements EquipmentDao {
 	@Override
 	public int modifiedEquipment(xsjsglxt_equipment equipment) {
 		Session session = getSession();
-		String hql = "update xsjsglxt_equipment set equipment_name='"+equipment.getEquipment_name()
-						+"', equipment_type='"+equipment.getEquipment_type()
-						+"' ,equipment_feature='" +equipment.getEquipment_feature()
-						+"', equipment_number='"+equipment.getEquipment_number()
-						+"',equipment_money='"+equipment.getEquipment_money()
-						+"', equipment_enablement_time='"+equipment.getEquipment_enablement_time()
-						+"',equipment_use_note='"+equipment.getEquipment_use_note()
-						+"' ,equipment_remark='"+equipment.getEquipment_remark()
-						+ "' ,equipment_gmt_modified='" + equipment.getEquipment_gmt_modified() 
-						+ "' where xsjsglxt_equipment_id='" + equipment.getXsjsglxt_equipment_id() + "'";
+		String hql = "update xsjsglxt_equipment set equipment_name='" + equipment.getEquipment_name()
+				+ "', equipment_type='" + equipment.getEquipment_type() + "' ,equipment_feature='"
+				+ equipment.getEquipment_feature() + "' ,equipment_kind='" + equipment.getEquipment_kind()
+				+ "', equipment_number='" + equipment.getEquipment_number() + "',equipment_money='"
+				+ equipment.getEquipment_money() + "', equipment_enablement_time='"
+				+ equipment.getEquipment_enablement_time() + "',equipment_use_note='"
+				+ equipment.getEquipment_use_note() + "' ,equipment_remark='" + equipment.getEquipment_remark()
+				+ "' ,equipment_gmt_modified='" + equipment.getEquipment_gmt_modified()
+				+ "' where xsjsglxt_equipment_id='" + equipment.getXsjsglxt_equipment_id() + "'";
 		Query query = session.createQuery(hql);
 		int result = query.executeUpdate();
 		return result;
@@ -83,8 +83,8 @@ public class EquipmentDaoImpl implements EquipmentDao {
 		Session session = getSession();
 		String hql = "from xsjsglxt_equipment where xsjsglxt_equipment_id='" + xsjsglxt_equipment_id + "'";
 		Query query = session.createQuery(hql);
-		xsjsglxt_equipment equipment  = (xsjsglxt_equipment) query.uniqueResult();
-		return equipment ;
+		xsjsglxt_equipment equipment = (xsjsglxt_equipment) query.uniqueResult();
+		return equipment;
 	}
 
 	@Override
@@ -93,7 +93,10 @@ public class EquipmentDaoImpl implements EquipmentDao {
 		String hql = "from xsjsglxt_equipment where 1=1";
 		if (equipmentVO.getSearch() != null && equipmentVO.getSearch().trim().length() > 0) {
 			String search = "%" + equipmentVO.getSearch().trim() + "%";
-			hql = hql + " and equipment_name like '" + search + "' or equipment_serial_number like '" +search+"'";
+			hql = hql + " and equipment_name like '" + search + "' or equipment_serial_number like '" + search + "'";
+		}
+		if (equipmentVO.getSearchKind() != null && !"".equals(equipmentVO.getSearchKind().trim())) {
+			hql = hql + " and equipment_kind = '" + equipmentVO.getSearchKind() + "'";
 		}
 		hql = hql + " order by equipment_gmt_create desc";
 		Query query = session.createQuery(hql);
@@ -104,7 +107,7 @@ public class EquipmentDaoImpl implements EquipmentDao {
 		return list;
 	}
 
-//	@Override
+	// @Override
 	public int getMaxSerialNum() {
 		Session session = getSession();
 		String hql = "select equipment_serial_number from xsjsglxt_equipment order by equipment_gmt_create desc limit 1";
