@@ -42,6 +42,7 @@ import com.xsjsglxt.service.InspectionIdentification.InspectionIdentificationSer
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
+import freemarker.template.TemplateNumberModel;
 import util.TeamUtil;
 import util.XwpfTUtil;
 
@@ -420,6 +421,8 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		damageInspectionRecord.setXsjsglxt_damage_inspection_record_id(TeamUtil.getUuid());
 		// 上传图片
 		for (int k = 0; k < file.length; k++) {
+			// String filename = new String(fileName[k].getBytes("GBK"),
+			// "ISO-8859-1");
 			path = lj + "xsjsglxt/damage/";
 			if (file[k] != null) {
 				path = path + damageInspectionRecord.getXsjsglxt_damage_inspection_record_id() + "_" + fileName[k];
@@ -433,6 +436,8 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			if (file[j] != null) {
 				x = j;
 			}
+			// String filename = new String(fileName[x].getBytes("GBK"),
+			// "ISO-8859-1");
 			switch (x) {
 			case 0:
 				damageInspectionRecord.setDamage_inspection_record_picture1(fileName[x]);
@@ -503,6 +508,8 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		for (int k = 0; k < file.length; k++) {
 			path = lj + "xsjsglxt/death/";
 			if (file[k] != null) {
+				// String filename = new String(fileName[k].getBytes("GBK"),
+				// "ISO-8859-1");
 				path = path + deathInspectionRecord.getXsjsglxt_death_inspection_record_id() + "_" + fileName[k];
 				File newFile = new File(path);
 				FileUtils.copyFile(file[k], newFile);
@@ -514,6 +521,8 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			if (file[j] != null) {
 				x = j;
 			}
+			// String filename = new String(fileName[x].getBytes("GBK"),
+			// "ISO-8859-1");
 			switch (x) {
 			case 0:
 				deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture1(fileName[x]);
@@ -704,6 +713,8 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		// 更改图片记录
 		for (int k = 0; k < updateDeathFile.length; k++) {
 			if (updateDeathFile[k] != null) {
+				// String imgName = new
+				// String(updateDeathFileName[k].getBytes("GBK"), "ISO-8859-1");
 				switch (k) {
 				case 0:
 					death_inspection_record = uploadDeath("尸表检验图1", updateDeathFile[k],
@@ -776,6 +787,9 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 
 		for (int k = 0; k < updateDamageFile.length; k++) {
 			if (updateDamageFile[k] != null) {
+				// String imgName = new
+				// String(updateDamageFileName[k].getBytes("GBK"),
+				// "ISO-8859-1");
 				switch (k) {
 				case 0:
 					xsjsglxt_damage_inspection_record = uploadDamage("损伤检验图1", updateDamageFile[k],
@@ -881,22 +895,26 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			e.printStackTrace();
 		}
 		params.putAll(mapTranceCheckBook(id));
-		XwpfTUtil xwpfTUtil = new XwpfTUtil();
-		XWPFDocument doc;
-		String fileNameInResource = ServletActionContext.getServletContext()
-				.getRealPath("/DocTem/xsjsglxt_entrustment_book.docx");
-		InputStream is;
-		is = new FileInputStream(fileNameInResource);
-		doc = new XWPFDocument(is);
-		xwpfTUtil.replaceInPara(doc, params);
-		xwpfTUtil.replaceInTable(doc, params);
-		OutputStream os = new FileOutputStream(lj + "kokokoko.docx");
-		doc.write(os);
-		xwpfTUtil.close(os);
-		xwpfTUtil.close(is);
-		os.flush();
-		os.close();
-		return new File(lj + "kokokoko.docx");
+
+		Configuration configuration = new Configuration();
+		configuration.setDefaultEncoding("utf-8");
+		// 设置默认的编码方式，将数据以utf-8的方式进行编码
+		configuration.setClassForTemplateLoading(this.getClass(), "");
+		Template t = configuration.getTemplate("xsjsglxt_entrustment_book.ftl", "utf-8");
+		OutputStream os = new FileOutputStream(lj + "kokokoko.doc");
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
+		t.process(params, bw);
+		/*
+		 * XwpfTUtil xwpfTUtil = new XwpfTUtil(); XWPFDocument doc; String
+		 * fileNameInResource = ServletActionContext.getServletContext()
+		 * .getRealPath("/DocTem/xsjsglxt_entrustment_book.doc"); InputStream
+		 * is; is = new FileInputStream(fileNameInResource); doc = new
+		 * XWPFDocument(is); xwpfTUtil.replaceInPara(doc, params);
+		 * xwpfTUtil.replaceInTable(doc, params); OutputStream os = new
+		 * FileOutputStream(lj + "kokokoko.doc"); doc.write(os);
+		 * xwpfTUtil.close(os); xwpfTUtil.close(is); os.flush(); os.close();
+		 */
+		return new File(lj + "kokokoko.doc");
 	}
 
 	// 导出确认书
@@ -915,22 +933,25 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			e.printStackTrace();
 		}
 		params.putAll(mapIdentifiederCaseConfirmBook(id));
-		XwpfTUtil xwpfTUtil = new XwpfTUtil();
-		XWPFDocument doc;
-		String fileNameInResource = ServletActionContext.getServletContext()
-				.getRealPath("/DocTem/xsjsglxt_confirm_book.docx");
-		InputStream is;
-		is = new FileInputStream(fileNameInResource);
-		doc = new XWPFDocument(is);
-		xwpfTUtil.replaceInPara(doc, params);
-		xwpfTUtil.replaceInTable(doc, params);
-		OutputStream os = new FileOutputStream(lj + "kokokoko.docx");
-		doc.write(os);
-		xwpfTUtil.close(os);
-		xwpfTUtil.close(is);
-		os.flush();
-		os.close();
-		return new File(lj + "kokokoko.docx");
+		Configuration configuration = new Configuration();
+		configuration.setDefaultEncoding("utf-8");
+		// 设置默认的编码方式，将数据以utf-8的方式进行编码
+		configuration.setClassForTemplateLoading(this.getClass(), "");
+		Template t = configuration.getTemplate("xsjsglxt_confirm_book.ftl", "utf-8");
+		OutputStream os = new FileOutputStream(lj + "kokokoko.doc");
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
+		t.process(params, bw);
+		/*
+		 * XwpfTUtil xwpfTUtil = new XwpfTUtil(); XWPFDocument doc; String
+		 * fileNameInResource = ServletActionContext.getServletContext()
+		 * .getRealPath("/DocTem/xsjsglxt_confirm_book.doc"); InputStream is; is
+		 * = new FileInputStream(fileNameInResource); doc = new
+		 * XWPFDocument(is); xwpfTUtil.replaceInPara(doc, params);
+		 * xwpfTUtil.replaceInTable(doc, params); OutputStream os = new
+		 * FileOutputStream(lj + "kokokoko.doc"); doc.write(os);
+		 * xwpfTUtil.close(os); xwpfTUtil.close(is); os.flush(); os.close();
+		 */
+		return new File(lj + "kokokoko.doc");
 	}
 
 	// 导出受理回执表
@@ -957,22 +978,16 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		OutputStream os = new FileOutputStream(lj + "kokokoko.doc");
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
 		t.process(params, bw);
-/*		XwpfTUtil xwpfTUtil = new XwpfTUtil();
-		XWPFDocument doc;
-		String fileNameInResource = ServletActionContext.getServletContext()
-				.getRealPath("/DocTem/xsjsglxt_acceptance_return_receipt.docx");
-		InputStream is;
-		is = new FileInputStream(fileNameInResource);
-		doc = new XWPFDocument(is);
-		xwpfTUtil.replaceInPara(doc, params);
-		xwpfTUtil.replaceInTable(doc, params);
-		OutputStream os = new FileOutputStream(lj + "kokokoko.docx");
-		doc.write(os);
-		xwpfTUtil.close(os);
-		xwpfTUtil.close(is);
-		os.flush();
-		os.close();
-*/		return new File(lj + "kokokoko.doc");
+		/*
+		 * XwpfTUtil xwpfTUtil = new XwpfTUtil(); XWPFDocument doc; String
+		 * fileNameInResource = ServletActionContext.getServletContext()
+		 * .getRealPath("/DocTem/xsjsglxt_acceptance_return_receipt.doc");
+		 * InputStream is; is = new FileInputStream(fileNameInResource); doc =
+		 * new XWPFDocument(is); xwpfTUtil.replaceInPara(doc, params);
+		 * xwpfTUtil.replaceInTable(doc, params); OutputStream os = new
+		 * FileOutputStream(lj + "kokokoko.doc"); doc.write(os);
+		 * xwpfTUtil.close(os); xwpfTUtil.close(is); os.flush(); os.close();
+		 */ return new File(lj + "kokokoko.doc");
 
 	}
 
@@ -994,19 +1009,19 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		XwpfTUtil xwpfTUtil = new XwpfTUtil();
 		XWPFDocument doc;
 		String fileNameInResource = ServletActionContext.getServletContext()
-				.getRealPath("/DocTem/xsjsglxt_not_acceptance_return_receipt.docx");
+				.getRealPath("/DocTem/xsjsglxt_not_acceptance_return_receipt.doc");
 		InputStream is;
 		is = new FileInputStream(fileNameInResource);
 		doc = new XWPFDocument(is);
 		xwpfTUtil.replaceInPara(doc, params);
 		xwpfTUtil.replaceInTable(doc, params);
-		OutputStream os = new FileOutputStream(lj + "kokokoko.docx");
+		OutputStream os = new FileOutputStream(lj + "kokokoko.doc");
 		doc.write(os);
 		xwpfTUtil.close(os);
 		xwpfTUtil.close(is);
 		os.flush();
 		os.close();
-		return new File(lj + "kokokoko.docx");
+		return new File(lj + "kokokoko.doc");
 	}
 
 	// 导出不受理回执的编号
@@ -1048,22 +1063,25 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			e.printStackTrace();
 		}
 		params.putAll(mapInspectionRecord(id));
-		XwpfTUtil xwpfTUtil = new XwpfTUtil();
-		XWPFDocument doc;
-		String fileNameInResource = ServletActionContext.getServletContext()
-				.getRealPath("/DocTem/xsjsglxt_inspection_record.docx");
-		InputStream is;
-		is = new FileInputStream(fileNameInResource);
-		doc = new XWPFDocument(is);
-		xwpfTUtil.replaceInPara(doc, params);
-		xwpfTUtil.replaceInTable(doc, params);
-		OutputStream os = new FileOutputStream(lj + "kokokoko.docx");
-		doc.write(os);
-		xwpfTUtil.close(os);
-		xwpfTUtil.close(is);
-		os.flush();
-		os.close();
-		return new File(lj + "kokokoko.docx");
+		Configuration configuration = new Configuration();
+		configuration.setDefaultEncoding("utf-8");
+		// 设置默认的编码方式，将数据以utf-8的方式进行编码
+		configuration.setClassForTemplateLoading(this.getClass(), "");
+		Template t = configuration.getTemplate("xsjsglxt_inspection_record.ftl", "utf-8");
+		OutputStream os = new FileOutputStream(lj + "kokokoko.doc");
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
+		t.process(params, bw);
+		/*
+		 * XwpfTUtil xwpfTUtil = new XwpfTUtil(); XWPFDocument doc; String
+		 * fileNameInResource = ServletActionContext.getServletContext()
+		 * .getRealPath("/DocTem/xsjsglxt_inspection_record.doc"); InputStream
+		 * is; is = new FileInputStream(fileNameInResource); doc = new
+		 * XWPFDocument(is); xwpfTUtil.replaceInPara(doc, params);
+		 * xwpfTUtil.replaceInTable(doc, params); OutputStream os = new
+		 * FileOutputStream(lj + "kokokoko.doc"); doc.write(os);
+		 * xwpfTUtil.close(os); xwpfTUtil.close(is); os.flush(); os.close();
+		 */
+		return new File(lj + "kokokoko.doc");
 	}
 
 	// 痕迹检验记录名称
@@ -1124,23 +1142,25 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			e.printStackTrace();
 		}
 		params.putAll(mapDeathInspectionRecord(id));
-		String fileNameInResource = ServletActionContext.getServletContext()
-				.getRealPath("/DocTem/xsjsglxt_death_inspection_record.docx");
-		XWPFTemplate template = XWPFTemplate.compile(fileNameInResource);
-		template.render(params);
-		FileOutputStream out;
-		try {
-			out = new FileOutputStream(lj + "kokokoko.docx");
-			template.write(out);
-			out.flush();
-			out.close();
-			template.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return new File(lj + "kokokoko.docx");
+		Configuration configuration = new Configuration();
+		configuration.setDefaultEncoding("utf-8");
+		// 设置默认的编码方式，将数据以utf-8的方式进行编码
+		configuration.setClassForTemplateLoading(this.getClass(), "");
+		Template t = configuration.getTemplate("xsjsglxt_death_inspection_record.ftl", "utf-8");
+		OutputStream os = new FileOutputStream(lj + "kokokoko.doc");
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
+		t.process(params, bw);
+		/*
+		 * String fileNameInResource = ServletActionContext.getServletContext()
+		 * .getRealPath("/DocTem/xsjsglxt_death_inspection_record.doc");
+		 * XWPFTemplate template = XWPFTemplate.compile(fileNameInResource);
+		 * template.render(params); FileOutputStream out; try { out = new
+		 * FileOutputStream(lj + "kokokoko.doc"); template.write(out);
+		 * out.flush(); out.close(); template.close(); } catch
+		 * (FileNotFoundException e) { e.printStackTrace(); } catch (IOException
+		 * e) { e.printStackTrace(); }
+		 */
+		return new File(lj + "kokokoko.doc");
 	}
 
 	// 导出损伤检验记录名称
@@ -1180,23 +1200,27 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			e.printStackTrace();
 		}
 		params.putAll(mapDamageInspectionRecord(id));
-		String fileNameInResource = ServletActionContext.getServletContext()
-				.getRealPath("/DocTem/xsjsglxt_damage_inspection_record.docx");
-		XWPFTemplate template = XWPFTemplate.compile(fileNameInResource);
-		template.render(params);
-		FileOutputStream out;
-		try {
-			out = new FileOutputStream(lj + "kokokoko.docx");
-			template.write(out);
-			out.flush();
-			out.close();
-			template.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return new File(lj + "kokokoko.docx");
+
+		Configuration configuration = new Configuration();
+		configuration.setDefaultEncoding("utf-8");
+		// 设置默认的编码方式，将数据以utf-8的方式进行编码
+		configuration.setClassForTemplateLoading(this.getClass(), "");
+		Template t = configuration.getTemplate("xsjsglxt_damage_inspection_record.ftl", "utf-8");
+		OutputStream os = new FileOutputStream(lj + "kokokoko.doc");
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
+		t.process(params, bw);
+
+		/*
+		 * String fileNameInResource = ServletActionContext.getServletContext()
+		 * .getRealPath("/DocTem/xsjsglxt_damage_inspection_record.doc");
+		 * XWPFTemplate template = XWPFTemplate.compile(fileNameInResource);
+		 * template.render(params); FileOutputStream out; try { out = new
+		 * FileOutputStream(lj + "kokokoko.doc"); template.write(out);
+		 * out.flush(); out.close(); template.close(); } catch
+		 * (FileNotFoundException e) { e.printStackTrace(); } catch (IOException
+		 * e) { e.printStackTrace(); }
+		 */
+		return new File(lj + "kokokoko.doc");
 	}
 
 	// 导出鉴定书
@@ -1216,12 +1240,12 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		}
 		params.putAll(mapAppraisalLetter(id));
 		String fileNameInResource = ServletActionContext.getServletContext()
-				.getRealPath("/DocTem/xsjsglxt_appraisal_letter.docx");
+				.getRealPath("/DocTem/xsjsglxt_appraisal_letter.doc");
 		XWPFTemplate template = XWPFTemplate.compile(fileNameInResource);
 		template.render(params);
 		FileOutputStream out;
 		try {
-			out = new FileOutputStream(lj + "kokokoko.docx");
+			out = new FileOutputStream(lj + "kokokoko.doc");
 			template.write(out);
 			out.flush();
 			out.close();
@@ -1231,7 +1255,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return new File(lj + "kokokoko.docx");
+		return new File(lj + "kokokoko.doc");
 	}
 
 	@Override
@@ -1543,8 +1567,11 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				String fileName = lj + "/xsjsglxt/damage/";
 				fileName = fileName + xsjsglxt_damage_inspection_record.getXsjsglxt_damage_inspection_record_id() + "_"
 						+ xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture1().trim();
-				params.put("d15", new PictureRenderData(640, 550, ".png",
-						BytePictureUtils.getLocalByteArray(new File(fileName))));
+				params.put("d15", TeamUtil.getImgStr(fileName));
+				/*
+				 * params.put("d15", new PictureRenderData(640, 550, ".png",
+				 * BytePictureUtils.getLocalByteArray(new File(fileName))));
+				 */
 			} else {
 				params.put("d15", "");
 			}
@@ -1553,8 +1580,11 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				String fileName = lj + "/xsjsglxt/damage/";
 				fileName = fileName + xsjsglxt_damage_inspection_record.getXsjsglxt_damage_inspection_record_id() + "_"
 						+ xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture2().trim();
-				params.put("d16", new PictureRenderData(640, 550, ".png",
-						BytePictureUtils.getLocalByteArray(new File(fileName))));
+				params.put("d16", TeamUtil.getImgStr(fileName));
+				/*
+				 * params.put("d16", new PictureRenderData(640, 550, ".png",
+				 * BytePictureUtils.getLocalByteArray(new File(fileName))));
+				 */
 			} else {
 				params.put("d16", "");
 			}
@@ -1563,8 +1593,11 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				String fileName = lj + "/xsjsglxt/damage/";
 				fileName = fileName + xsjsglxt_damage_inspection_record.getXsjsglxt_damage_inspection_record_id() + "_"
 						+ xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture3().trim();
-				params.put("d17", new PictureRenderData(640, 550, ".png",
-						BytePictureUtils.getLocalByteArray(new File(fileName))));
+				params.put("d17", TeamUtil.getImgStr(fileName));
+				/*
+				 * params.put("d17", new PictureRenderData(640, 550, ".png",
+				 * BytePictureUtils.getLocalByteArray(new File(fileName))));
+				 */
 			} else {
 				params.put("d17", "");
 			}
@@ -1600,15 +1633,13 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				// 属于委托书中的内容
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim().length() > 0) {
-					params.put("t1", "["
-							+ (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4)
-							+ "]");
+					params.put("t1",
+							(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4));
 					params.put("t2",
-							(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4)
-									+ "号");
+							(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4));
 				} else {
-					params.put("t1", "[无]");
-					params.put("t2", "号");
+					params.put("t1", "");
+					params.put("t2", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim().length() > 0) {
@@ -1652,66 +1683,56 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				}
 				listEntrustmentSample = inspectionIdentificationDao.getListEntrustmentSampleByEnId(
 						xsjsglxt_death_inspection_record.getDeath_inspection_record_belong_entrustment_book().trim());
-				List<Object> tableContent = new ArrayList<Object>();
+				List<Map<String, Object>> newList = new ArrayList<Map<String, Object>>();
 				for (xsjsglxt_entrustment_sample xsjsglxt_entrustment_sample : listEntrustmentSample) {
-					String kk = "";
+					Map<String, Object> map = new HashMap<String, Object>();
 					if (xsjsglxt_entrustment_sample.getEntrustment_sample_num() != null
 							&& xsjsglxt_entrustment_sample.getEntrustment_sample_num().trim().length() > 0) {
-						kk = kk + xsjsglxt_entrustment_sample.getEntrustment_sample_num() + ";";
+						map.put("Num", xsjsglxt_entrustment_sample.getEntrustment_sample_num().trim());
 					} else {
-						kk = kk + "" + ";";
+						map.put("Num", "");
 					}
 					if (xsjsglxt_entrustment_sample.getEntrustment_sample_name() != null
 							&& xsjsglxt_entrustment_sample.getEntrustment_sample_name().trim().length() > 0) {
-						kk = kk + xsjsglxt_entrustment_sample.getEntrustment_sample_name() + ";";
+						map.put("Name", xsjsglxt_entrustment_sample.getEntrustment_sample_name().trim());
 					} else {
-						kk = kk + "" + ";";
+						map.put("Name", "");
 					}
 					if (xsjsglxt_entrustment_sample.getEntrustment_sample_position() != null
 							&& xsjsglxt_entrustment_sample.getEntrustment_sample_position().trim().length() > 0) {
-						kk = kk + xsjsglxt_entrustment_sample.getEntrustment_sample_position() + ";";
+						map.put("buwei", xsjsglxt_entrustment_sample.getEntrustment_sample_position().trim());
 					} else {
-						kk = kk + "" + ";";
+						map.put("buwei", "");
 					}
 					if (xsjsglxt_entrustment_sample.getEntrustment_sample_way() != null
 							&& xsjsglxt_entrustment_sample.getEntrustment_sample_way().trim().length() > 0) {
-						kk = kk + xsjsglxt_entrustment_sample.getEntrustment_sample_way() + ";";
+						map.put("fangfa", xsjsglxt_entrustment_sample.getEntrustment_sample_way().trim());
 					} else {
-						kk = kk + "" + ";";
+						map.put("fangfa", "");
 					}
 					if (xsjsglxt_entrustment_sample.getEntrustment_sample_amount() != null
 							&& xsjsglxt_entrustment_sample.getEntrustment_sample_amount().trim().length() > 0) {
-						kk = kk + xsjsglxt_entrustment_sample.getEntrustment_sample_amount() + ";";
+						map.put("shuliang", xsjsglxt_entrustment_sample.getEntrustment_sample_amount().trim());
 					} else {
-						kk = kk + "" + ";";
+						map.put("shuliang", "");
 					}
 					if (xsjsglxt_entrustment_sample.getEntrustment_sample_packaging() != null
 							&& xsjsglxt_entrustment_sample.getEntrustment_sample_packaging().trim().length() > 0) {
-						kk = kk + xsjsglxt_entrustment_sample.getEntrustment_sample_packaging() + ";";
+						map.put("baozhuang", xsjsglxt_entrustment_sample.getEntrustment_sample_packaging().trim());
 					} else {
-						kk = kk + "" + ";";
+						map.put("baozhuang", "");
 					}
 					if (xsjsglxt_entrustment_sample.getEntrustment_sample_use() != null
 							&& xsjsglxt_entrustment_sample.getEntrustment_sample_use().trim().length() > 0) {
-						kk = kk + xsjsglxt_entrustment_sample.getEntrustment_sample_use() + ";";
+						map.put("yongtu", xsjsglxt_entrustment_sample.getEntrustment_sample_use().trim());
 					} else {
-						kk = kk + "" + ";";
+						map.put("yongtu", "");
 					}
-					tableContent.add(kk);
+					newList.add(map);
 				}
-				// com.deepoove.poi.data.style.Style
-				// 表头
-				List<RenderData> tableHead = new ArrayList<RenderData>();
-				tableHead.add(new TextRenderData("d0d0d0", "编号"));
-				tableHead.add(new TextRenderData("d0d0d0", "检材名称"));
-				tableHead.add(new TextRenderData("d0d0d0", "提取部位"));
-				tableHead.add(new TextRenderData("d0d0d0", "提取方法"));
-				tableHead.add(new TextRenderData("d0d0d0", "数量"));
-				tableHead.add(new TextRenderData("d0d0d0", "包装"));
-				tableHead.add(new TextRenderData("d0d0d0", "用途"));
-				TableRenderData tables = new TableRenderData(tableHead, tableContent, "re", 7000);
-				params.put("t42", tables);
+				params.put("newList", newList);
 			}
+
 			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_undertake_personnel() != null
 					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_undertake_personnel().trim()
 							.length() > 0) {
@@ -1893,8 +1914,11 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				fileName = fileName + xsjsglxt_death_inspection_record.getXsjsglxt_death_inspection_record_id() + "_"
 						+ xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture1()
 								.trim();
-				params.put("t29", new PictureRenderData(640, 550, ".png",
-						BytePictureUtils.getLocalByteArray(new File(fileName))));
+				/*
+				 * params.put("t29", new PictureRenderData(640, 550, ".png",
+				 * BytePictureUtils.getLocalByteArray(new File(fileName))));
+				 */
+				params.put("t29", TeamUtil.getImgStr(fileName));
 			} else {
 				params.put("t29", "");
 			}
@@ -1905,8 +1929,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				fileName = fileName + xsjsglxt_death_inspection_record.getXsjsglxt_death_inspection_record_id() + "_"
 						+ xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture2()
 								.trim();
-				params.put("t30", new PictureRenderData(640, 550, ".png",
-						BytePictureUtils.getLocalByteArray(new File(fileName))));
+				params.put("t30", TeamUtil.getImgStr(fileName));
 			} else {
 				params.put("t30", "");
 			}
@@ -1917,8 +1940,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				fileName = fileName + xsjsglxt_death_inspection_record.getXsjsglxt_death_inspection_record_id() + "_"
 						+ xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture3()
 								.trim();
-				params.put("t31", new PictureRenderData(640, 550, ".png",
-						BytePictureUtils.getLocalByteArray(new File(fileName))));
+				params.put("t31", TeamUtil.getImgStr(fileName));
 			} else {
 				params.put("t31", "");
 			}
@@ -1928,8 +1950,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				String fileName = lj + "/xsjsglxt/death/";
 				fileName = fileName + xsjsglxt_death_inspection_record.getXsjsglxt_death_inspection_record_id() + "_"
 						+ xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomy_picture1().trim();
-				params.put("t39", new PictureRenderData(640, 550, ".png",
-						BytePictureUtils.getLocalByteArray(new File(fileName))));
+				params.put("t39", TeamUtil.getImgStr(fileName));
 			} else {
 				params.put("t39", "");
 			}
@@ -1939,8 +1960,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				String fileName = lj + "/xsjsglxt/death/";
 				fileName = fileName + xsjsglxt_death_inspection_record.getXsjsglxt_death_inspection_record_id() + "_"
 						+ xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomy_picture2().trim();
-				params.put("t40", new PictureRenderData(640, 550, ".png",
-						BytePictureUtils.getLocalByteArray(new File(fileName))));
+				params.put("t40", TeamUtil.getImgStr(fileName));
 			} else {
 				params.put("t40", "");
 			}
@@ -1950,8 +1970,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				String fileName = lj + "/xsjsglxt/death/";
 				fileName = fileName + xsjsglxt_death_inspection_record.getXsjsglxt_death_inspection_record_id() + "_"
 						+ xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomy_picture3().trim();
-				params.put("t41", new PictureRenderData(640, 550, ".png",
-						BytePictureUtils.getLocalByteArray(new File(fileName))));
+				params.put("t41", TeamUtil.getImgStr(fileName));
 			} else {
 				params.put("t41", "");
 			}
@@ -2030,8 +2049,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim()
 								.length() > 0) {
 					params.put("h1",
-							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim()
-									+ "记录");
+							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim());
 					params.put("h5",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim());
 				} else {
@@ -2403,9 +2421,8 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 								.getIdentifieder_case_confirm_book_belong_entrustment_book().trim());
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim().length() > 0) {
-					params.put("q1", "["
-							+ (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4)
-							+ "]");
+					params.put("q1",
+							(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4));
 					params.put("q2",
 							(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4));
 				} else {
@@ -2631,8 +2648,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				params.put("x1",
 						"[" + (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4)
 								+ "]");
-				params.put("x2",
-						(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4));
+				params.put("x2", (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4));
 			} else {
 				params.put("x1", "");
 				params.put("x2", "");
@@ -2640,8 +2656,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim()
 							.length() > 0) {
-				params.put("x3",
-						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
+				params.put("x3", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
 			} else {
 				params.put("x3", "");
 			}
@@ -2654,32 +2669,28 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name().trim()
 							.length() > 0) {
-				params.put("x5",
-						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name().trim());
+				params.put("x5", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name().trim());
 			} else {
 				params.put("x5", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name().trim()
 							.length() > 0) {
-				params.put("x8",
-						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name().trim());
+				params.put("x8", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name().trim());
 			} else {
 				params.put("x8", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_duty() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_duty().trim()
 							.length() > 0) {
-				params.put("x6",
-						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_duty().trim());
+				params.put("x6", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_duty().trim());
 			} else {
 				params.put("x6", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_duty() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_duty().trim()
 							.length() > 0) {
-				params.put("x9",
-						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_duty().trim());
+				params.put("x9", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_duty().trim());
 			} else {
 				params.put("x9", "");
 			}
@@ -2821,8 +2832,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation().trim()
 							.length() > 0) {
-				params.put("x26",
-						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation().trim());
+				params.put("x26", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation().trim());
 			} else {
 				params.put("x26", "");
 			}
@@ -3110,8 +3120,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	}
 
 	/**
-	 * @author 孙毅
-	 * 保存检验记录
+	 * @author 孙毅 保存检验记录
 	 */
 
 	@Override
