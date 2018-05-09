@@ -103,7 +103,8 @@
 							</table>
 							<div id="bottomPage" style="padding: 20px;">
 								<span>当前页数:<span id="currPage">{{ currPage }}</span></span> <span>共:<span
-									id="totalPage">{{ totalPage }}</span>页
+									id="totalPage">{{ totalPage }}</span>页<span>共:<span
+									id="totalPage">{{ totalCount }}</span>条记录数
 								</span> <span onclick="firstPage()" id="indexPage"
 									class="pageOperation">首页</span> <span onclick="prePage()"
 									id="previousPage" class="pageOperation">上一页</span> <span
