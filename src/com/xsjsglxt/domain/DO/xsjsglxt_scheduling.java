@@ -4,8 +4,10 @@ public class xsjsglxt_scheduling {
 	private String xsjsglxt_scheduling_id; // 排班表id
 	private String scheduling_leader; // 带班领导
 	private String scheduling_main; // 主班
-	private String scheduling_main_technology; // 技术`主班
-	private String scheduling_assistant; // 副班
+	private String scheduling_main_technology; // 技术主班
+	private String scheduling_main_doctor; // 法医主班
+	private String scheduling_assistant_tech; // 技术 副班
+	private String scheduling_assistant_spy; // 侦查 副班
 	private String scheduling_patrol;// 设置巡逻
 	private String scheduling_overtime; // 加班
 	private String scheduling_out_help;// 外出协助
@@ -14,12 +16,28 @@ public class xsjsglxt_scheduling {
 	private String scheduling_gmt_create;
 	private String scheduling_gmt_modified;
 
-	@Override
-	public String toString() {
-		return "xsjsglxt_scheduling [xsjsglxt_scheduling_id=" + xsjsglxt_scheduling_id + ", scheduling_leader="
-				+ scheduling_leader + ", scheduling_main=" + scheduling_main + ", scheduling_assistant="
-				+ scheduling_assistant + ", scheduling_gmt_create=" + scheduling_gmt_create
-				+ ", scheduling_gmt_modified=" + scheduling_gmt_modified + "]";
+	public String getScheduling_main_doctor() {
+		return scheduling_main_doctor;
+	}
+
+	public void setScheduling_main_doctor(String scheduling_main_doctor) {
+		this.scheduling_main_doctor = scheduling_main_doctor;
+	}
+
+	public String getScheduling_assistant_tech() {
+		return scheduling_assistant_tech;
+	}
+
+	public void setScheduling_assistant_tech(String scheduling_assistant_tech) {
+		this.scheduling_assistant_tech = scheduling_assistant_tech;
+	}
+
+	public String getScheduling_assistant_spy() {
+		return scheduling_assistant_spy;
+	}
+
+	public void setScheduling_assistant_spy(String scheduling_assistant_spy) {
+		this.scheduling_assistant_spy = scheduling_assistant_spy;
 	}
 
 	public String getScheduling_evection() {
@@ -92,14 +110,6 @@ public class xsjsglxt_scheduling {
 
 	public void setScheduling_main(String scheduling_main) {
 		this.scheduling_main = scheduling_main;
-	}
-
-	public String getScheduling_assistant() {
-		return scheduling_assistant;
-	}
-
-	public void setScheduling_assistant(String scheduling_assistant) {
-		this.scheduling_assistant = scheduling_assistant;
 	}
 
 	public String getScheduling_gmt_create() {

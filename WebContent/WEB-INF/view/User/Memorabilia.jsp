@@ -81,10 +81,9 @@ tbody tr:hover {
 						</tr>
 					</thead>
 					<tbody>
-						<tr v-for="memorabilia in memorabiliaList"
-							:id='memorabilia.memorabilia_id'
-							onclick='previewMemorabilia(this)'>
-							<td>{{ memorabilia.memorabilia_time }}</td>
+						<tr v-for="memorabilia in memorabiliaList">
+							<td :id='memorabilia.memorabilia_id'
+							onclick='previewMemorabilia(this)' style="color:blue;">{{ memorabilia.memorabilia_time }}</td>
 							<td><span v-html="memorabilia.memorabilia_title"></span></td>
 							<td><span v-html="memorabilia.memorabilia_join_human"></span></td>
 							<td>
@@ -102,7 +101,8 @@ tbody tr:hover {
 				</table>
 				<div id="bottomPage" style="padding: 20px;">
 					<span>当前页数:<span id="currPage">{{ currPage }}</span></span> <span>共:<span
-						id="totalPage">{{ pageCount }}</span>页
+						id="totalPage">{{ pageCount }}</span>页<span>共:<span
+						id="totalCount">{{ totalCount }}</span>条记录数
 					</span> <span onclick="skipToIndexPage()" id="indexPage"
 						class="pageOperation">首页</span> <span
 						onclick="skipToPrimaryPage()" id="previousPage"

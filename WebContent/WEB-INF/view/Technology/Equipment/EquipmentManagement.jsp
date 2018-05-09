@@ -59,6 +59,13 @@
 						<span class="input-group-addon"> <i class="fa fa-search"></i>
 						</span>
 					</div>
+					<div  style="width: 300px; float: right; margin-right:10px;" >
+						<select id="input_searchKind" class="form-control" onchange="List_Equipment_By_PageAndSearch(1)">
+							<option value="">筛选装备种类</option>
+							<option value="侦查">侦查</option>
+							<option value="技术">技术</option>
+						</select>
+					</div>
 				</div>
 				<table id="table_Equipment" class="table table-hover table-bordered"
 					style="text-align: center; margin: 20px 0;">

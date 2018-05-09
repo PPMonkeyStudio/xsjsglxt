@@ -179,7 +179,14 @@ function setSectionCase(chapter) {
 
 function setCase_name() {
 	var receivingAlarmDate = new Date($('input[name="case1.case_receivingAlarmDate"]').val()).Format("yyyy.MM.dd");
-	$('.case_name').val('"' + receivingAlarmDate + '"' + $('.case_place').val() + $('.main_case').val());
+	if ($('.other_case').val()) {
+		$('.case_name').val('"' + receivingAlarmDate + '"' + $('.case_place').val() + $('.other_case').val());
+	} else if ($('.main_case').val()) {
+		$('.case_name').val('"' + receivingAlarmDate + '"' + $('.case_place').val() + $('.main_case').val());
+	} else {
+		$('.case_name').val('"' + receivingAlarmDate + '"' + $('.case_place').val());
+	}
+
 }
 // -----------------------------------------------------------作案手段
 var sectionMethod0 = new Array();

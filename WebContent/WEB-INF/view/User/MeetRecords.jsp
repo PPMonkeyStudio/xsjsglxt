@@ -80,7 +80,7 @@
 			
 			<div id="bottomPage" style="padding: 20px;">
 				<span>当前页数:<span id="currPage">1</span></span>
-				<span>共:<span id="totalPage">2</span>页</span>
+				<span>共:<span id="totalPage">1</span>页</span><span>共:<span id="totalCount">0</span>条记录数</span>
 				<span  onclick="skipToIndexPage()" id="indexPage" class="pageOperation">首页</span>
 				<span onclick="skipToPrimaryPage()" id="previousPage" class="pageOperation">上一页</span>
 				<span onclick="skipToNextPage()" id="nextPage" class="pageOperation">下一页</span>

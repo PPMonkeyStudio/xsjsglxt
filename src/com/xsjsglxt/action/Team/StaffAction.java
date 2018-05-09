@@ -42,6 +42,7 @@ public class StaffAction extends ActionSupport {
 	private String staff_imageFileName;
 	private policemanListVO policemanVO;
 	private String xsjsglxt_staff_id;
+	private String query_duty;
 
 	// 进入修改页面
 
@@ -52,6 +53,29 @@ public class StaffAction extends ActionSupport {
 	// 进入打印页
 	public String intoPrintPage() {
 		return "intoPrintPage";
+	}
+
+	public void getAllStaff() {
+		if (query_duty != null)
+			try {
+				query_duty = new String(query_duty.getBytes("ISO-8859-1"), "utf-8");
+			} catch (UnsupportedEncodingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		List<xsjsglxt_staff> list = staffService.getAllStaffByDuty(query_duty);
+		Gson gson = new Gson();
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write(gson.toJson(list));
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	// 通过职位分类人员
@@ -487,4 +511,13 @@ public class StaffAction extends ActionSupport {
 	public void setStaff_imageFileName(String staff_imageFileName) {
 		this.staff_imageFileName = staff_imageFileName;
 	}
+
+	public String getQuery_duty() {
+		return query_duty;
+	}
+
+	public void setQuery_duty(String query_duty) {
+		this.query_duty = query_duty;
+	}
+
 }

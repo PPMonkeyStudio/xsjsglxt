@@ -36,4 +36,6 @@ public interface StaffService {
 	List<xsjsglxt_staff> getHandleCenter();
 
 	List<xsjsglxt_staff> getHandleCheck();
+
+	List<xsjsglxt_staff> getAllStaffByDuty(String duty);
 }
