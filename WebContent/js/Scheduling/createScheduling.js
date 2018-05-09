@@ -49,6 +49,9 @@ var chooseStaff = function(inputId) {
 							if (staffData.length > 0)
 								document.getElementById(inputId).value = staffData
 										.join('、');
+							else {
+								document.getElementById(inputId).value = "";
+							}
 							switch (inputId) {
 							case "leader":
 								postData.leader = staffData;

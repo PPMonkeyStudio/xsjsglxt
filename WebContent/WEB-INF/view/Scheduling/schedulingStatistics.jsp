@@ -66,7 +66,7 @@ i {
 							<td>巡逻天数</td>
 							<td>加班天数</td>
 							<td>外协天数</td>
-							<td>加班次数</td>	
+							<td>出差次数</td>	
 						</tr>
 					</thead>
 					<tbody>

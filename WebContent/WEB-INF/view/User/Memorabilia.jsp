@@ -81,10 +81,9 @@ tbody tr:hover {
 						</tr>
 					</thead>
 					<tbody>
-						<tr v-for="memorabilia in memorabiliaList"
-							:id='memorabilia.memorabilia_id'
-							onclick='previewMemorabilia(this)'>
-							<td>{{ memorabilia.memorabilia_time }}</td>
+						<tr v-for="memorabilia in memorabiliaList">
+							<td :id='memorabilia.memorabilia_id'
+							onclick='previewMemorabilia(this)' style="color:blue;">{{ memorabilia.memorabilia_time }}</td>
 							<td><span v-html="memorabilia.memorabilia_title"></span></td>
 							<td><span v-html="memorabilia.memorabilia_join_human"></span></td>
 							<td>

@@ -48,10 +48,10 @@ li a {
 				<li><a
 					href="<%=basePath%>FingerPrint/FingerPrintManagement_FingerPrintManagementPage"><i class="fa fa-id-card-o"></i>指纹</a></li>
 				</template>
-				<template v-if="user_technology_manager_power">
+<%-- 				<template v-if="user_technology_manager_power">
 				<li><a
 					href="<%=basePath%>Equipment/EquipmentManagement_EquipmentManagementPage"><i class="fa fa-bank"></i>器材装备</a></li>
-				</template>
+				</template> --%>
 				<template v-if="false">
 				<li><a
 					href="<%=basePath%>ContrastFingerPrint/ContrastFingerPrintManagement_ContrastFingerPrintManagementPage">比对指纹</a></li>
