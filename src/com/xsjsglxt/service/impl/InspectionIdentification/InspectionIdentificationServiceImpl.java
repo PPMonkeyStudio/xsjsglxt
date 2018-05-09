@@ -1241,23 +1241,34 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		params.putAll(mapAppraisalLetter(id));
-		String fileNameInResource = ServletActionContext.getServletContext()
-				.getRealPath("/DocTem/xsjsglxt_appraisal_letter.doc");
-		XWPFTemplate template = XWPFTemplate.compile(fileNameInResource);
-		template.render(params);
-		FileOutputStream out;
-		try {
-			out = new FileOutputStream(lj + "kokokoko.doc");
-			template.write(out);
-			out.flush();
-			out.close();
-			template.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		Configuration configuration = new Configuration();
+		configuration.setDefaultEncoding("utf-8");
+		// 设置默认的编码方式，将数据以utf-8的方式进行编码
+		configuration.setClassForTemplateLoading(this.getClass(), "");
+		params.putAll(mapLetter(id));
+		xsjsglxt_appraisal_letter xsjsglxt_appraisal_letter = new xsjsglxt_appraisal_letter();
+		xsjsglxt_appraisal_letter = inspectionIdentificationDao.getAppraisalLetterByOwnId(id);
+		String name = "";
+		if (xsjsglxt_appraisal_letter != null) {
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_type() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_type().trim().length() > 0) {
+				switch (xsjsglxt_appraisal_letter.getAppraisal_letter_type().trim()) {
+				case "损伤":
+					name = "xsjsglxt_appraisal_letter.ftl";
+					break;
+				case "尸体":
+					name = "xsjsglxt_appraisal_letter.ftl";
+					break;
+				case "痕迹":
+					name = "xsjsglxt_inspection_appraisal_letter.ftl";
+					break;
+				}
+			}
 		}
+		Template t = configuration.getTemplate(name, "utf-8");
+		OutputStream os = new FileOutputStream(lj + "kokokoko.doc");
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
+		t.process(params, bw);
 		return new File(lj + "kokokoko.doc");
 	}
 
@@ -1278,7 +1289,241 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	 * 
 	 * 
 	 */
-	// 鉴定文书记录
+	// 鉴定文书
+	public Map<String, Object> mapLetter(String id) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		xsjsglxt_appraisal_letter xsjsglxt_appraisal_letter = new xsjsglxt_appraisal_letter();
+		xsjsglxt_appraisal_letter = inspectionIdentificationDao.getAppraisalLetterByOwnId(id);
+		if (xsjsglxt_appraisal_letter != null) {
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_type() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_type().trim().length() > 0) {
+				switch (xsjsglxt_appraisal_letter.getAppraisal_letter_type().trim()) {
+				case "损伤":
+					params.putAll(mapFaAppraisalLetter(id));
+					break;
+				case "尸体":
+					params.putAll(mapFaAppraisalLetter(id));
+					break;
+				case "痕迹":
+					params.putAll(mapAppraisalLetter(id));
+					break;
+				}
+			}
+		}
+		return params;
+	}
+
+	// 法医鉴定文书记录
+	public Map<String, Object> mapFaAppraisalLetter(String id) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		xsjsglxt_appraisal_letter xsjsglxt_appraisal_letter = new xsjsglxt_appraisal_letter();
+		xsjsglxt_check_entrustment_book xsjsglxt_check_entrustment_book = new xsjsglxt_check_entrustment_book();
+		xsjsglxt_appraisal_letter = inspectionIdentificationDao.getAppraisalLetterByOwnId(id);
+		if (xsjsglxt_appraisal_letter != null) {
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_type() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_type().trim().length() > 0) {
+				switch (xsjsglxt_appraisal_letter.getAppraisal_letter_type().trim()) {
+				case "损伤":
+					if (xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book() != null
+							&& xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim()
+									.length() > 0) {
+						xsjsglxt_damage_inspection_record xsjsglxt_damage_inspection_record = new xsjsglxt_damage_inspection_record();
+						xsjsglxt_damage_inspection_record = inspectionIdentificationDao.getDamageInspectionRecordById(
+								xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim());
+						if (xsjsglxt_damage_inspection_record != null) {
+							String kk = "姓名：";
+							if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_name() != null
+									&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_name().trim()
+											.length() > 0) {
+								kk = kk + xsjsglxt_damage_inspection_record.getDamage_inspection_record_name().trim()
+										+ "，性别：";
+							} else {
+								kk = kk + "无" + "，性别：";
+							}
+							if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_sex() != null
+									&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_sex().trim()
+											.length() > 0) {
+								kk = kk + xsjsglxt_damage_inspection_record.getDamage_inspection_record_sex().trim()
+										+ "，身份证号：";
+							} else {
+								kk = kk + "无" + "，身份证号：";
+							}
+							if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_idcard() != null
+									&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_idcard().trim()
+											.length() > 0) {
+								kk = kk + xsjsglxt_damage_inspection_record.getDamage_inspection_record_idcard().trim();
+							} else {
+								kk = kk + "无";
+							}
+							params.put("p5", kk);
+						} else {
+							params.put("p5", "");
+						}
+						params.put("p10", "");
+					} else {
+						params.put("p10", "");
+						params.put("p5", "");
+					}
+					break;
+				case "尸体":
+					if (xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book() != null
+							&& xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim()
+									.length() > 0) {
+						xsjsglxt_death_inspection_record xsjsglxt_death_inspection_record = new xsjsglxt_death_inspection_record();
+						xsjsglxt_death_inspection_record = inspectionIdentificationDao.getDeathInspectionRecordById(
+								xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim());
+						if (xsjsglxt_death_inspection_record != null) {
+							String kk = "姓名：";
+							if (xsjsglxt_death_inspection_record.getDeath_inspection_record_death_name() != null
+									&& xsjsglxt_death_inspection_record.getDeath_inspection_record_death_name().trim()
+											.length() > 0) {
+								kk = kk + xsjsglxt_death_inspection_record.getDeath_inspection_record_death_name()
+										.trim() + "，性别：";
+							} else {
+								kk = kk + "无" + "，性别：";
+							}
+							if (xsjsglxt_death_inspection_record.getDeath_inspection_record_death_sex() != null
+									&& xsjsglxt_death_inspection_record.getDeath_inspection_record_death_sex().trim()
+											.length() > 0) {
+								kk = kk + xsjsglxt_death_inspection_record.getDeath_inspection_record_death_sex()
+										.trim();
+							} else {
+								kk = kk + "无";
+							}
+							params.put("p5", kk);
+							if (xsjsglxt_death_inspection_record.getDeath_inspection_record_inspect_place() != null
+									&& xsjsglxt_death_inspection_record.getDeath_inspection_record_inspect_place()
+											.trim().length() > 0) {
+								params.put("p10", xsjsglxt_death_inspection_record
+										.getDeath_inspection_record_inspect_place().trim());
+							} else {
+								params.put("p10", "");
+							}
+						} else {
+							params.put("p5", "");
+							params.put("p10", "");
+						}
+
+					} else {
+						params.put("p5", "");
+						params.put("p10", "");
+					}
+					break;
+				}
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_num() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_num().trim().length() > 0) {
+				params.put("p1", (xsjsglxt_appraisal_letter.getAppraisal_letter_num().trim()).substring(0, 4));
+				params.put("p2", (xsjsglxt_appraisal_letter.getAppraisal_letter_num().trim()).substring(4));
+			} else {
+				params.put("p1", "");
+				params.put("p2", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation().trim().length() > 0) {
+				params.put("p6", xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation().trim());
+			} else {
+				params.put("p6", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_simple_case_situation() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_simple_case_situation().trim().length() > 0) {
+				params.put("p7", xsjsglxt_appraisal_letter.getAppraisal_letter_simple_case_situation().trim());
+			} else {
+				params.put("p7", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_date() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_date().trim().length() > 0) {
+				params.put("p9", xsjsglxt_appraisal_letter.getAppraisal_letter_date().trim());
+			} else {
+				params.put("p9", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_inspection() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_inspection().trim().length() > 0) {
+				params.put("p11", xsjsglxt_appraisal_letter.getAppraisal_letter_inspection().trim());
+			} else {
+				params.put("p11", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_argumentation() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_argumentation().trim().length() > 0) {
+				params.put("p12", xsjsglxt_appraisal_letter.getAppraisal_letter_argumentation().trim());
+			} else {
+				params.put("p12", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_expert_opinion() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_expert_opinion().trim().length() > 0) {
+				params.put("p13", xsjsglxt_appraisal_letter.getAppraisal_letter_expert_opinion().trim());
+			} else {
+				params.put("p13", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_man1_duty() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_man1_duty().trim().length() > 0) {
+				params.put("p14", xsjsglxt_appraisal_letter.getAppraisal_letter_man1_duty().trim());
+			} else {
+				params.put("p14", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_man2_duty() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_man2_duty().trim().length() > 0) {
+				params.put("p16", xsjsglxt_appraisal_letter.getAppraisal_letter_man2_duty().trim());
+			} else {
+				params.put("p16", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_man1_name() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_man1_name().trim().length() > 0) {
+				params.put("p15", xsjsglxt_appraisal_letter.getAppraisal_letter_man1_name().trim());
+			} else {
+				params.put("p15", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_man2_name() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_man2_name().trim().length() > 0) {
+				params.put("p17", xsjsglxt_appraisal_letter.getAppraisal_letter_man2_name().trim());
+			} else {
+				params.put("p17", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_date() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_date().trim().length() > 0) {
+				params.put("p18", xsjsglxt_appraisal_letter.getAppraisal_letter_date().trim());
+			} else {
+				params.put("p18", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim().length() > 0) {
+				xsjsglxt_check_entrustment_book = inspectionIdentificationDao.getCheckEntrustmentBookById(
+						xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim());
+				// 委托书.委托单位
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim()
+								.length() > 0) {
+					params.put("p3",
+							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
+				} else {
+					params.put("p3", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim()
+								.length() > 0) {
+					params.put("p4", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim());
+				} else {
+					params.put("p4", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim()
+								.length() > 0) {
+					params.put("p8",
+							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim());
+				} else {
+					params.put("p8", "");
+				}
+			} else {
+				params.put("p3", "");
+				params.put("p4", "");
+				params.put("p8", "");
+			}
+
+		}
+		return params;
+	}
+
+	// 痕迹鉴定文书记录
 	public Map<String, Object> mapAppraisalLetter(String id) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		// 委托书表_委托单位_送检人
@@ -1341,8 +1586,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			}
 			if (xsjsglxt_appraisal_letter.getAppraisal_letter_num() != null
 					&& xsjsglxt_appraisal_letter.getAppraisal_letter_num().trim().length() > 0) {
-				params.put("j1",
-						"[" + (xsjsglxt_appraisal_letter.getAppraisal_letter_num().trim()).substring(0, 4) + "]");
+				params.put("j1", (xsjsglxt_appraisal_letter.getAppraisal_letter_num().trim()).substring(0, 4));
 				params.put("j2", (xsjsglxt_appraisal_letter.getAppraisal_letter_num().trim()).substring(4));
 			} else {
 				params.put("j1", "");
@@ -2220,7 +2464,8 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				//
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim().length() > 0) {
-					params.put("n14", (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4));
+					params.put("n14",
+							(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4));
 					params.put("n15",
 							(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4));
 				} else {
