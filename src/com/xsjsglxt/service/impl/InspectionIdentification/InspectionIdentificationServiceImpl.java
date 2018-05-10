@@ -1360,9 +1360,13 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 							params.put("p5", "");
 						}
 						params.put("p10", "");
+						params.put("p19", "法医学人体损伤程度鉴定书");
+						params.put("p20", "损");
 					} else {
 						params.put("p10", "");
 						params.put("p5", "");
+						params.put("p19", "法医学人体损伤程度鉴定书");
+						params.put("p20", "损");
 					}
 					break;
 				case "尸体":
@@ -1403,10 +1407,13 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 							params.put("p5", "");
 							params.put("p10", "");
 						}
-
+						params.put("p19", "法医学尸体检验鉴定书");
+						params.put("p20", "尸检");
 					} else {
 						params.put("p5", "");
 						params.put("p10", "");
+						params.put("p19", "法医学尸体检验鉴定书");
+						params.put("p20", "尸检");
 					}
 					break;
 				}
@@ -1419,12 +1426,17 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				params.put("p1", "");
 				params.put("p2", "");
 			}
-			if (xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation() != null
-					&& xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation().trim().length() > 0) {
-				params.put("p6", xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation().trim());
-			} else {
-				params.put("p6", "");
-			}
+
+			/*
+			 * if
+			 * (xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation()
+			 * != null &&
+			 * xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation().
+			 * trim().length() > 0) { params.put("p6",
+			 * xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation().
+			 * trim()); } else { params.put("p6", ""); }
+			 */
+
 			if (xsjsglxt_appraisal_letter.getAppraisal_letter_simple_case_situation() != null
 					&& xsjsglxt_appraisal_letter.getAppraisal_letter_simple_case_situation().trim().length() > 0) {
 				params.put("p7", xsjsglxt_appraisal_letter.getAppraisal_letter_simple_case_situation().trim());
@@ -1513,10 +1525,19 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				} else {
 					params.put("p8", "");
 				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation().trim()
+								.length() > 0) {
+					params.put("p6",
+							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation().trim());
+				} else {
+					params.put("p6", "");
+				}
 			} else {
 				params.put("p3", "");
 				params.put("p4", "");
 				params.put("p8", "");
+				params.put("p6", "");
 			}
 
 		}
