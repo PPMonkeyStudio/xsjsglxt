@@ -63,7 +63,7 @@ function Create_EntrustmentBook(type) {
 						+ '<option value="男">男</option>'
 						+ '<option value="女">女</option>'
 						+ '</select></td></tr>'
-						+ '<tr><td>单位：</td><td><input class="form-control" name="tranceCheckBook.check_entrustment_book_entrustmentor_unit" /></td><td><span style="color:#D9534F;">*</span> 电话：</td><td><input class="form-control" name="tranceCheckBook.check_entrustment_book_entrustmentor_phone" /></td></tr>'
+						+ '<tr><td>身份证：</td><td><input class="form-control" name="tranceCheckBook.check_entrustment_book_entrustmentor_unit" /></td><td><span style="color:#D9534F;">*</span> 电话：</td><td><input class="form-control" name="tranceCheckBook.check_entrustment_book_entrustmentor_phone" /></td></tr>'
 						+ '<tr><td>住址：</td><td><input class="form-control" name="tranceCheckBook.check_entrustment_book_entrustmentor_address" /></td><td>年龄：</td><td><input class="form-control" name="tranceCheckBook.check_entrustment_book_entrustmentor_age" /></td></tr>'
 						+ '</tbody>'
 						+ '</table>'
