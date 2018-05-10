@@ -98,7 +98,7 @@ function Preview_EntrustmentBook(obj) {
 							+ '</td><td style="width:100px;">电话</td><td>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_phone
 							+ '</td></tr>'
-							+ '<tr><td>单位</td><td colspan="3">'
+							+ '<tr><td>身份证</td><td colspan="3">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_unit
 							+ '</td><td>住址</td><td colspan="3">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_address
@@ -113,7 +113,10 @@ function Preview_EntrustmentBook(obj) {
 									.replace(/\n/g, "<br>").replace(/ /g,
 											"&nbsp;")
 							+ '</td></tr>'
-							+ '<tr><td colspan="2">送检的检材和样本等情况（包括名称、数量、性状、包装，检材提取部位和方法等）</td><td colspan="7" style="text-align: left;">'
+							+ '<tr><td colspan="2">'
+							+ (type == '痕迹' ? '送检的检材和样本等情况（包括名称、数量、性状、包装，检材提取部位和方法等）'
+									: '送检材料')
+					'</td><td colspan="7" style="text-align: left;">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_sample_situation
 									.replace(/\n/g, "<br>").replace(/ /g,
 											"&nbsp;")
@@ -132,11 +135,8 @@ function Preview_EntrustmentBook(obj) {
 									.substring(5, 7)
 							+ '月'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_inspect_time
-									.substring(8, 10)
-							+ '日'
-							+ '</span></td></tr>'
-							+ '</tbody>'
-							+ '</table>'
+									.substring(8, 10) + '日'
+							+ '</span></td></tr>' + '</tbody>' + '</table>'
 							+ '<hr></div>';
 					jc.setContentAppend(con);
 					/*
