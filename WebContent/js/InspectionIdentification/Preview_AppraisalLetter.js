@@ -83,7 +83,7 @@ function Preview_AppraisalLetter(obj) {
 									+ '<p>六、鉴定要求：'
 									+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request
 									+ '</p>'
-									+ '<p>七、检验日期：	</p>'
+									+ '<p>七、检验时间：	</p>'
 									+ ''// (八)检验地点，但无此字段
 									+ '<p>'
 									+ '九、检验：'
