@@ -107,23 +107,7 @@
 <w:b/>
 <w:sz w:val="44"/>
 </w:rPr>
-<w:t>法医学人体</w:t>
-</w:r>
-<w:r>
-<w:rPr>
-<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
-<w:b/>
-<w:sz w:val="44"/>
-</w:rPr>
-<w:t>损伤</w:t>
-</w:r>
-<w:r w:rsidRPr="00C50D6A">
-<w:rPr>
-<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
-<w:b/>
-<w:sz w:val="44"/>
-</w:rPr>
-<w:t>程度鉴定书</w:t>
+<w:t>${p19}</w:t>
 </w:r>
 <w:r w:rsidR="00627218">
 <w:rPr>
@@ -226,7 +210,7 @@
 <w:sz w:val="30"/>
 <w:szCs w:val="30"/>
 </w:rPr>
-<w:t>损</w:t>
+<w:t>${p20}</w:t>
 </w:r>
 <w:r w:rsidR="00627218" w:rsidRPr="001B723B">
 <w:rPr>
