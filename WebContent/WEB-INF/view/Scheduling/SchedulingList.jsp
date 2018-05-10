@@ -117,11 +117,11 @@ i {
 							<td rowspan="2">出差人员</td>
 						</tr>
 						<tr style="height: 30; color: black;">
-							<td>侦查值班人员</td>
-							<td>技术值班人员</td>
-							<td>法医值班人员</td>
-							<td>侦查值班辅警</td>
-							<td>技术值班辅警</td>
+							<td>侦查值班</td>
+							<td>技术值班</td>
+							<td>法医值班</td>
+							<td>侦查辅警</td>
+							<td>技术辅警</td>
 						</tr>
 					</thead>
 					<tbody>
