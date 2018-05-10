@@ -1,6 +1,6 @@
 package com.xsjsglxt.domain.DO;
 
-//痕迹检验委托书表
+//委托书
 public class xsjsglxt_check_entrustment_book {
 	private String checkEvidenceId;// 物证id
 	private String checkCaseId;// 案件id

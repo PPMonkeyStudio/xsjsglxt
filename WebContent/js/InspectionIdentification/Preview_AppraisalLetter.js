@@ -34,7 +34,11 @@ function Preview_AppraisalLetter(obj) {
 				onContentReady : function() {
 
 					var con = '<div style="margin:0 20px 0 0;"><hr>'
-							+ '<h3  style="text-align: right;">编号：【'
+							+ '<h3  style="text-align: right;">'
+							+ (json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request == '死因鉴定' ? '（安）公（法）鉴（尸检）字'
+									: (json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request == '损伤鉴定' ? '（安）公（司）鉴（损）字'
+											: '（安）公（司）鉴（痕）字'))
+							+ '【'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.appraisal_letter_num
 									.substring(0, 4)
 							+ '】第'
@@ -42,7 +46,10 @@ function Preview_AppraisalLetter(obj) {
 									.substring(4)
 							+ '号</h3>'
 							+ '<h3  style="text-align: left;">'
-							+ '<p>一、绪论</p>'
+							+ '<p>'
+							+ (json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request != '损伤鉴定' ? '一、绪论'
+									: '')
+							+ '</p>'
 							+ '<p>（一）委托单位：'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_unit
 							+ '</p>'
@@ -53,17 +60,26 @@ function Preview_AppraisalLetter(obj) {
 							+ '</p>'
 							+ '<p>（三）受理日期：'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_gmt_create
-							+ '</p>'
-							+ '<p>（四）案件情况摘要：'
+									.substring(0, 4)
+							+ '年'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_gmt_create
+									.substring(5, 7)
+							+ '月'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_identifieder_case_confirm_book.identifieder_case_confirm_book_gmt_create
+									.substring(8, 11)
+							+ '日</p>'
+							+ '<p>（四）案情摘要：'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_simple_case_situation
 							+ '</p>'
-							+ '<p>（五）检材和样本：'
-							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_sample_situation
+							+ '<p>（五）'
+							+ (json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_type != '法医' ? '检材和样本：'
+									: '检验对象：')
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.appraisal_letter_sample_situation
 							+ '</p>'
 							+ '<p>（六）鉴定要求：'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request
 							+ '</p>'
-							+ '<p>（七）检验开始日期：	</p>'
+							+ '<p>（七）检验日期：	</p>'
 							+ (json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request == '损伤鉴定' ? ''
 									: (json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request == '死因鉴定' ? '<p>（八）检验地点：'
 											+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_inspect_place
@@ -74,7 +90,10 @@ function Preview_AppraisalLetter(obj) {
 							+ '</h3>'
 							+ '<br>'
 							+ '<h3  style="text-align: left;">'
-							+ '<p>二、检验</p><p>'
+							+ '<p>'
+							+ (json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request != '损伤鉴定' ? '二、检验'
+									: '（九）检验')
+							+ '</p><p>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.appraisal_letter_inspection
 									.replace(/\n/g, "<br>").replace(/ /g,
 											"&nbsp;")
@@ -82,7 +101,10 @@ function Preview_AppraisalLetter(obj) {
 							+ '</h3>'
 							+ '<br>'
 							+ '<h3  style="text-align: left;">'
-							+ '<p>三、论证</p><p>'
+							+ '<p>'
+							+ (json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request != '损伤鉴定' ? '三、论证：'
+									: '（十）分析说明：')
+							+ '</p><p>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.appraisal_letter_argumentation
 									.replace(/\n/g, "<br>").replace(/ /g,
 											"&nbsp;")
@@ -90,7 +112,10 @@ function Preview_AppraisalLetter(obj) {
 							+ '</h3>'
 							+ '<br>'
 							+ '<h3  style="text-align: left;">'
-							+ '<p>四、鉴定意见</p><p>'
+							+ '<p>'
+							+ (json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request != '损伤鉴定' ? '四、鉴定意见：'
+									: '（十一）鉴定意见：')
+							+ '</p><p>'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.appraisal_letter_expert_opinion
 									.replace(/\n/g, "<br>").replace(/ /g,
 											"&nbsp;")
@@ -108,8 +133,23 @@ function Preview_AppraisalLetter(obj) {
 							+ ' '
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.appraisal_letter_man2_name
 							+ '</p>'
-							+ '<p>授权签字人 ：副主任法医师 刘蓉</p>'
-							+ '<p>2017年05月21日</p>' + '</h3>' + '<hr></div>';
+							+ '<p>授权签字人 ：'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.appraisal_letter_authorization_duty
+							+ ' '
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.appraisal_letter_authorization_name
+							+ '</p>'
+							+ '<p>'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.appraisal_letter_gmt_create
+									.substring(0, 4)
+							+ '年'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.appraisal_letter_gmt_create
+									.substring(5, 7)
+							+ '月'
+							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_appraisal_letter.appraisal_letter_gmt_create
+									.substring(8, 11)
+							+ '日</p>'
+							+ '</h3>'
+							+ '<hr></div>';
 					jc.setContentAppend(con);
 				},
 				buttons : {
