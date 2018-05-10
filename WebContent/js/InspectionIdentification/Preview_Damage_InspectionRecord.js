@@ -89,7 +89,7 @@ function Preview_Damage_InspectionRecord(obj) {
 							+ '</td>'
 							+ '</tr>'
 							+ '<tr>'
-							+ '<td style="width:200px;">尸表检验图：</td>'
+							+ '<td style="width:200px;">损伤检验图：</td>'
 							+ '<td colspan="5">'
 							+ '<p>'
 							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDamagePicture?imgName='

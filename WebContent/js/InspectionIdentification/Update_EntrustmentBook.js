@@ -2,7 +2,7 @@ function Update_EntrustmentBook(obj) {
 	var json_list = EntrustmentBook_json;
 	var jc = $
 			.confirm({
-				title : '检验鉴定委托书（通用）（修改）',
+				title : '检验鉴定委托书（修改）',
 				content : '',
 				type : 'blue',
 				columnClass : 'col-md-12',
@@ -97,7 +97,7 @@ function Update_EntrustmentBook(obj) {
 							+ '<option value="男">男</option>'
 							+ '<option value="女">女</option>'
 							+ '</select></td></tr>'
-							+ '<tr><td>单位：</td><td><input class="form-control" name="tranceCheckBook.check_entrustment_book_entrustmentor_unit" value="'
+							+ '<tr><td>身份证：</td><td><input class="form-control" name="tranceCheckBook.check_entrustment_book_entrustmentor_unit" value="'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_unit
 							+ '"/></td><td><span style="color:#D9534F;">*</span> 电话：</td><td><input class="form-control" name="tranceCheckBook.check_entrustment_book_entrustmentor_phone" value="'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_phone

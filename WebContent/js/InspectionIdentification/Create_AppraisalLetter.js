@@ -67,7 +67,7 @@ function Create_AppraisalLetter(obj) {
 								+ '，年龄：'
 								+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_age
 								+ '，身份证号：'
-								+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.damage_inspection_record_idcard
+								+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_unit
 								+ '。';
 						document
 								.getElementsByName("appraisalLetter.appraisal_letter_inspection")[0].value = '      （一）萍乡市中医院病历摘要（2017006297）：颜鑫，男，30岁，因刺伤致腹部疼痛1小时入院，查体：左下腹部见一大小约2×3cm伤口，深约6cm，进入腹腔，活动性出血，压痛。伤者于2017年4月22日01时50分在全麻下行剖腹探查+左下大网膜、腹膜、腹直肌修补+左下腹创扩创清创术，术中见：左下腹直肌断裂，左下腹腹膜挫裂，大小约4×5cm，大网膜挫伤，大小约2×2cm，并见活动性出血。术后诊断：腹部刺伤：左腹直肌断裂、腹膜挫裂、大网膜挫伤。'
@@ -92,8 +92,8 @@ function Create_AppraisalLetter(obj) {
 								+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_sex
 								+ '，年龄：'
 								+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_age
-								+ '，家庭住址：'
-								+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_address
+								+ '，身份证号：'
+								+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_unit
 								+ '。';
 						document
 								.getElementsByName("appraisalLetter.appraisal_letter_inspection")[0].value = '      本鉴定检验方法按照中华人民共和国公共行业标准《法医学尸体解剖》（GA/T147－1996）、《法医学尸表检验》（GA/T149－1996）、《机械性损伤尸体检验》（GA/T168-1997） 、《机械性窒息尸体检验》（GA/T 150-1996）、《猝死尸体的检验》（GA/T170-1997）、《中毒案件检材包装、贮存、运送及送检规则》（GA/T194-1998）、《法医病理学检材的提取、保存与送检》（GA/T148-1996）、《中毒尸体检验规范》（GA/T167-1997）'
