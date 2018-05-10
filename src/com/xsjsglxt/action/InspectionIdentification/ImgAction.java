@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
 import org.apache.struts2.ServletActionContext;
@@ -13,7 +14,7 @@ public class ImgAction {
 	private InputStream inputStream;
 
 	// 获取尸体检验记录中的表
-	public String getDeathPicture() {
+	public String getDeathPicture() throws UnsupportedEncodingException {
 		/*
 		 * 获取路径
 		 */
@@ -27,10 +28,12 @@ public class ImgAction {
 			e.printStackTrace();
 		}
 		String path = "";
-		if (("_undefined").equals(imgName.substring(imgName.indexOf("_"))) || ("_").equals(imgName.substring(imgName.indexOf("_"))) || imgName == null) {
+		if (("_undefined").equals(imgName.substring(imgName.indexOf("_")))
+				|| ("_").equals(imgName.substring(imgName.indexOf("_"))) || imgName == null) {
 			path = ServletActionContext.getServletContext().getRealPath("/img/default.png");
 		} else {
-			path = lj + "xsjsglxt/death/" + imgName;
+			String name = new String(imgName.getBytes("ISO-8859-1"), "UTF-8");
+			path = lj + "xsjsglxt/death/" + name;
 		}
 		File file = new File(path);
 		try {
@@ -49,7 +52,7 @@ public class ImgAction {
 	}
 
 	// 获取损伤检验记录中的表
-	public String getDamagePicture() {
+	public String getDamagePicture() throws UnsupportedEncodingException {
 		/*
 		 * 获取路径
 		 */
@@ -63,10 +66,12 @@ public class ImgAction {
 			e.printStackTrace();
 		}
 		String path = "";
-		if (("_undefined").equals(imgName.substring(imgName.indexOf("_"))) || ("_").equals(imgName.substring(imgName.indexOf("_"))) || imgName == null) {
+		if (("_undefined").equals(imgName.substring(imgName.indexOf("_")))
+				|| ("_").equals(imgName.substring(imgName.indexOf("_"))) || imgName == null) {
 			path = ServletActionContext.getServletContext().getRealPath("/img/default.png");
 		} else {
-			path = lj + "xsjsglxt/damage/" + imgName;
+			String name = new String(imgName.getBytes("ISO-8859-1"), "UTF-8");
+			path = lj + "xsjsglxt/damage/" + name;
 		}
 		File file = new File(path);
 		try {

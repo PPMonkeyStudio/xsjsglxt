@@ -105,8 +105,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	}
 
 	/**
-	 * @author 孙毅
-	 * 保存检验记录
+	 * @author 孙毅 保存检验记录
 	 */
 
 	public void saveInspectionRecord() {
@@ -381,7 +380,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void updateDamageInspectionRecord() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			System.out.println("lplp:" + damageInspectionRecord.getDamage_inspection_record_belong_entrustment_book());
+			//System.out.println("lplp:" + damageInspectionRecord.getDamage_inspection_record_belong_entrustment_book());
 			response.getWriter().write("" + inspectionIdentificationService
 					.updateDamageInspectionRecord(damageInspectionRecord, death, deathFileName, positionFile));
 		} catch (IOException e) {
@@ -406,7 +405,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		File exportTranceCheckBookFile = inspectionIdentificationService
 				.exportTranceCheckBook(tranceCheckBook.getXsjsglxt_check_entrustment_book_id());
 		fileName = new String(("鉴定委托书" + inspectionIdentificationService
-				.exportTraceCheckBookName(tranceCheckBook.getXsjsglxt_check_entrustment_book_id()) + ".docx")
+				.exportTraceCheckBookName(tranceCheckBook.getXsjsglxt_check_entrustment_book_id()) + ".doc")
 						.getBytes("GBK"),
 				"ISO-8859-1");
 		inputStream = new FileInputStream(exportTranceCheckBookFile);
@@ -421,9 +420,9 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		fileName = inspectionIdentificationService.exportIdentifiederCaseConfirmBookName(
 				identifiederCaseConfirmBook.getXsjsglxt_identifieder_case_confirm_book_id());
 		if (fileName != null) {
-			fileName = new String(("检验事项确认书：" + fileName + ".docx").getBytes("GBK"), "ISO-8859-1");
+			fileName = new String(("检验事项确认书：" + fileName + ".doc").getBytes("GBK"), "ISO-8859-1");
 		} else {
-			fileName = new String(("鉴定事项确认书：" + ".docx").getBytes("GBK"), "ISO-8859-1");
+			fileName = new String(("鉴定事项确认书：" + ".doc").getBytes("GBK"), "ISO-8859-1");
 		}
 		inputStream = new FileInputStream(exportConfirmBookFile);
 		exportConfirmBookFile.delete();
@@ -438,9 +437,9 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		fileName = inspectionIdentificationService.exportIdentifiederCaseConfirmBookName(
 				identifiederCaseConfirmBook.getXsjsglxt_identifieder_case_confirm_book_id());
 		if (fileName != null) {
-			fileName = new String(("受理回执单：" + fileName + ".docx").getBytes("GBK"), "ISO-8859-1");
+			fileName = new String(("受理回执单：" + fileName + ".doc").getBytes("GBK"), "ISO-8859-1");
 		} else {
-			fileName = new String(("受理回执单：" + ".docx").getBytes("GBK"), "ISO-8859-1");
+			fileName = new String(("受理回执单：" + ".doc").getBytes("GBK"), "ISO-8859-1");
 		}
 		inputStream = new FileInputStream(exportAcceptanceReturnReceiptFile);
 		exportAcceptanceReturnReceiptFile.delete();
@@ -456,9 +455,9 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		fileName = inspectionIdentificationService.exportNotAccetpBookName(
 				notAcceptanceEntrustmentInform.getXsjsglxt_not_acceptance_entrustment_inform_id());
 		if (fileName != null) {
-			fileName = new String(("不受理受理回执单：" + fileName + ".docx").getBytes("GBK"), "ISO-8859-1");
+			fileName = new String(("不受理受理回执单：" + fileName + ".doc").getBytes("GBK"), "ISO-8859-1");
 		} else {
-			fileName = new String(("不受理回执单：" + ".docx").getBytes("GBK"), "ISO-8859-1");
+			fileName = new String(("不受理回执单：" + ".doc").getBytes("GBK"), "ISO-8859-1");
 		}
 		inputStream = new FileInputStream(exportNotAcceptanceIdentifiederFile);
 		exportNotAcceptanceIdentifiederFile.delete();
@@ -473,9 +472,9 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		fileName = inspectionIdentificationService
 				.exportInspectionRecordName(inspectionRecord.getXsjsglxt_inspection_record_id());
 		if (fileName != null) {
-			fileName = new String(("痕迹检验记录：" + fileName + ".docx").getBytes("GBK"), "ISO-8859-1");
+			fileName = new String(("痕迹检验记录：" + fileName + ".doc").getBytes("GBK"), "ISO-8859-1");
 		} else {
-			fileName = new String(("痕迹检验记录：" + ".docx").getBytes("GBK"), "ISO-8859-1");
+			fileName = new String(("痕迹检验记录：" + ".doc").getBytes("GBK"), "ISO-8859-1");
 		}
 		inputStream = new FileInputStream(exportInspectionRecordFile);
 		exportInspectionRecordFile.delete();
@@ -489,9 +488,9 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		fileName = inspectionIdentificationService
 				.exportDeathInspectionRecordName(deathInspectionRecord.getXsjsglxt_death_inspection_record_id());
 		if (fileName != null) {
-			fileName = new String(("死因检验记录：" + fileName + ".docx").getBytes("GBK"), "ISO-8859-1");
+			fileName = new String(("死因检验记录：" + fileName + ".doc").getBytes("GBK"), "ISO-8859-1");
 		} else {
-			fileName = new String(("死因检验记录：" + ".docx").getBytes("GBK"), "ISO-8859-1");
+			fileName = new String(("死因检验记录：" + ".doc").getBytes("GBK"), "ISO-8859-1");
 		}
 		inputStream = new FileInputStream(exportDeathInspectionRecordFile);
 		exportDeathInspectionRecordFile.delete();
@@ -505,9 +504,9 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		fileName = inspectionIdentificationService
 				.exportDamageInspectionRecordName(damageInspectionRecord.getXsjsglxt_damage_inspection_record_id());
 		if (fileName != null) {
-			fileName = new String(("损伤检验记录：" + fileName + ".docx").getBytes("GBK"), "ISO-8859-1");
+			fileName = new String(("损伤检验记录：" + fileName + ".doc").getBytes("GBK"), "ISO-8859-1");
 		} else {
-			fileName = new String(("损伤检验记录：" + ".docx").getBytes("GBK"), "ISO-8859-1");
+			fileName = new String(("损伤检验记录：" + ".doc").getBytes("GBK"), "ISO-8859-1");
 		}
 		inputStream = new FileInputStream(exportDamageInspectionRecordFile);
 		exportDamageInspectionRecordFile.delete();
@@ -523,16 +522,15 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 		fileName = inspectionIdentificationService
 				.exportAppraisalLetterName(appraisalLetter.getXsjsglxt_appraisal_letter_id());
 		if (fileName != null) {
-			fileName = new String(("鉴定书：" + fileName + ".docx").getBytes("GBK"), "ISO-8859-1");
+			fileName = new String(("鉴定书：" + fileName + ".doc").getBytes("GBK"), "ISO-8859-1");
 		} else {
-			fileName = new String(("鉴定书：" + ".docx").getBytes("GBK"), "ISO-8859-1");
+			fileName = new String(("鉴定书：" + ".doc").getBytes("GBK"), "ISO-8859-1");
 		}
 		inputStream = new FileInputStream(exportAppraisalLetterFile);
 		exportAppraisalLetterFile.delete();
 		return "export";
 	}
 
-	//
 	/**
 	 * 
 	 * 
