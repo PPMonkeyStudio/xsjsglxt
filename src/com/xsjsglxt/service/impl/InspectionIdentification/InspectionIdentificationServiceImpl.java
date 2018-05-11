@@ -1339,12 +1339,12 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			} else {
 				params.put("p7", "");
 			}
-			if (xsjsglxt_appraisal_letter.getAppraisal_letter_date() != null
-					&& xsjsglxt_appraisal_letter.getAppraisal_letter_date().trim().length() > 0) {
-				params.put("p9", xsjsglxt_appraisal_letter.getAppraisal_letter_date().trim());
-			} else {
-				params.put("p9", "");
-			}
+			/*
+			 * if (xsjsglxt_appraisal_letter.getAppraisal_letter_date() != null
+			 * && xsjsglxt_appraisal_letter.getAppraisal_letter_date().trim().
+			 * length() > 0) { params.put("p9", "fdfd"); } else {
+			 * params.put("p9", "fdfd"); }
+			 */
 			if (xsjsglxt_appraisal_letter.getAppraisal_letter_inspection() != null
 					&& xsjsglxt_appraisal_letter.getAppraisal_letter_inspection().trim().length() > 0) {
 				params.put("p11", xsjsglxt_appraisal_letter.getAppraisal_letter_inspection().trim());
@@ -1408,6 +1408,8 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			// 委托书
 			if (xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book() != null
 					&& xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim().length() > 0) {
+				xsjsglxt_check_entrustment_book = inspectionIdentificationDao.getCheckEntrustmentBookById(
+						xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim());
 				// 委托书.委托单位
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim()
@@ -1452,7 +1454,14 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				xsjsglxt_damage_inspection_record xsjsglxt_damage_inspection_record = new xsjsglxt_damage_inspection_record();
 				xsjsglxt_damage_inspection_record = inspectionIdentificationDao.getDamageInspectionRecordById(
 						xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim());
+				
 				if (xsjsglxt_damage_inspection_record != null) {
+					if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_time() != null
+							&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_time().trim().length() > 0) {
+						params.put("p9", xsjsglxt_damage_inspection_record.getDamage_inspection_record_time().trim());
+					} else {
+						params.put("p9", "");
+					}
 					String kk = "姓名：";
 					if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_name() != null
 							&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_name().trim()
@@ -1482,6 +1491,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				params.put("p10", "");
 			} else {
 				params.put("p10", "");
+				params.put("p9", "");
 				params.put("p5", "");
 			}
 		}
