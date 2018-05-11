@@ -412,20 +412,20 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 
 	// 导出检验委托书
 	public void exportTranceCheckBook() throws Exception {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.putAll(inspectionIdentificationService
-				.mapTranceCheckBook(tranceCheckBook.getXsjsglxt_check_entrustment_book_id()));
 		Configuration configuration = new Configuration();
 		configuration.setDefaultEncoding("utf-8");
 		// 设置默认的编码方式，将数据以utf-8的方式进行编码
 		configuration.setClassForTemplateLoading(this.getClass(), "");
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.putAll(inspectionIdentificationService
+				.mapTranceCheckBook(tranceCheckBook.getXsjsglxt_check_entrustment_book_id()));
 		String filename = new String(("鉴定委托书" + inspectionIdentificationService
 				.exportTraceCheckBookName(tranceCheckBook.getXsjsglxt_check_entrustment_book_id()) + ".doc")
 						.getBytes("GBK"),
 				"ISO-8859-1");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/msword");
-		response.addHeader("Content-Disposition", "attachment;filename=\"" + filename + ".doc\"");
+		response.addHeader("Content-Disposition", "attachment;filename=\"" + filename);
 		PrintWriter pw = response.getWriter();
 		Template t = configuration.getTemplate("xsjsglxt_entrustment_book.ftl", "utf-8");
 		t.process(params, pw);
@@ -434,121 +434,205 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	}
 
 	// 导出确认书
-	public String exportConfirmBook() throws Exception {
-		File exportConfirmBookFile = inspectionIdentificationService.exportIdentifiederCaseConfirmBook(
+	public void exportConfirmBook() throws Exception {
+		Configuration configuration = new Configuration();
+		configuration.setDefaultEncoding("utf-8");
+		// 设置默认的编码方式，将数据以utf-8的方式进行编码
+		configuration.setClassForTemplateLoading(this.getClass(), "");
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.putAll(inspectionIdentificationService.mapIdentifiederCaseConfirmBook(
+				identifiederCaseConfirmBook.getXsjsglxt_identifieder_case_confirm_book_id()));
+		String filename = inspectionIdentificationService.exportIdentifiederCaseConfirmBookName(
 				identifiederCaseConfirmBook.getXsjsglxt_identifieder_case_confirm_book_id());
-		fileName = inspectionIdentificationService.exportIdentifiederCaseConfirmBookName(
-				identifiederCaseConfirmBook.getXsjsglxt_identifieder_case_confirm_book_id());
-		if (fileName != null) {
-			fileName = new String(("检验事项确认书：" + fileName + ".doc").getBytes("GBK"), "ISO-8859-1");
+		if (filename != null) {
+			filename = new String(("检验事项确认书：" + filename + ".doc").getBytes("GBK"), "ISO-8859-1");
 		} else {
-			fileName = new String(("鉴定事项确认书：" + ".doc").getBytes("GBK"), "ISO-8859-1");
+			filename = new String(("鉴定事项确认书：" + ".doc").getBytes("GBK"), "ISO-8859-1");
 		}
-		inputStream = new FileInputStream(exportConfirmBookFile);
-		exportConfirmBookFile.delete();
-		return "exportConfirmBook";
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/msword");
+		response.addHeader("Content-Disposition", "attachment;filename=\"" + filename);
+		PrintWriter pw = response.getWriter();
+		Template t = configuration.getTemplate("xsjsglxt_confirm_book.ftl", "utf-8");
+		t.process(params, pw);
+		pw.flush();
+		pw.close();
+
 	}
 
 	// 导出受理回执
 	// 接收：确认书ID
-	public String exportAcceptanceReturnReceipt() throws Exception {
-		File exportAcceptanceReturnReceiptFile = inspectionIdentificationService.exportAcceptanceReturnReceipt(
+	public void exportAcceptanceReturnReceipt() throws Exception {
+		Configuration configuration = new Configuration();
+		configuration.setDefaultEncoding("utf-8");
+		// 设置默认的编码方式，将数据以utf-8的方式进行编码
+		configuration.setClassForTemplateLoading(this.getClass(), "");
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.putAll(inspectionIdentificationService.mapAcceptanceIdentifieder(
+				identifiederCaseConfirmBook.getXsjsglxt_identifieder_case_confirm_book_id()));
+		String filename = inspectionIdentificationService.exportIdentifiederCaseConfirmBookName(
 				identifiederCaseConfirmBook.getXsjsglxt_identifieder_case_confirm_book_id());
-		fileName = inspectionIdentificationService.exportIdentifiederCaseConfirmBookName(
-				identifiederCaseConfirmBook.getXsjsglxt_identifieder_case_confirm_book_id());
-		if (fileName != null) {
-			fileName = new String(("受理回执单：" + fileName + ".doc").getBytes("GBK"), "ISO-8859-1");
+		if (filename != null) {
+			filename = new String(("受理回执单：" + filename + ".doc").getBytes("GBK"), "ISO-8859-1");
 		} else {
-			fileName = new String(("受理回执单：" + ".doc").getBytes("GBK"), "ISO-8859-1");
+			filename = new String(("受理回执单：" + ".doc").getBytes("GBK"), "ISO-8859-1");
 		}
-		inputStream = new FileInputStream(exportAcceptanceReturnReceiptFile);
-		exportAcceptanceReturnReceiptFile.delete();
-		return "exportAcceptanceReturnReceipt";
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/msword");
+		response.addHeader("Content-Disposition", "attachment;filename=\"" + filename);
+		PrintWriter pw = response.getWriter();
+		Template t = configuration.getTemplate("xsjsglxt_acceptance_return_receipt.ftl", "utf-8");
+		t.process(params, pw);
+		pw.flush();
+		pw.close();
+
 	}
 
 	//
-	public String exportNotAcceptanceIdentifieder() throws Exception {
-
-		File exportNotAcceptanceIdentifiederFile = inspectionIdentificationService.exportNotAcceptanceIdentifieder(
+	public void exportNotAcceptanceIdentifieder() throws Exception {
+		Configuration configuration = new Configuration();
+		configuration.setDefaultEncoding("utf-8");
+		// 设置默认的编码方式，将数据以utf-8的方式进行编码
+		configuration.setClassForTemplateLoading(this.getClass(), "");
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.putAll(inspectionIdentificationService.mapNotAcceptanceIdentifieder(
+				notAcceptanceEntrustmentInform.getXsjsglxt_not_acceptance_entrustment_inform_id()));
+		String filename = inspectionIdentificationService.exportNotAccetpBookName(
 				notAcceptanceEntrustmentInform.getXsjsglxt_not_acceptance_entrustment_inform_id());
-		// 获取委托书编号
-		fileName = inspectionIdentificationService.exportNotAccetpBookName(
-				notAcceptanceEntrustmentInform.getXsjsglxt_not_acceptance_entrustment_inform_id());
-		if (fileName != null) {
-			fileName = new String(("不受理受理回执单：" + fileName + ".doc").getBytes("GBK"), "ISO-8859-1");
+		if (filename != null) {
+			filename = new String(("不受理受理回执单：" + filename + ".doc").getBytes("GBK"), "ISO-8859-1");
 		} else {
-			fileName = new String(("不受理回执单：" + ".doc").getBytes("GBK"), "ISO-8859-1");
+			filename = new String(("不受理回执单：" + ".doc").getBytes("GBK"), "ISO-8859-1");
 		}
-		inputStream = new FileInputStream(exportNotAcceptanceIdentifiederFile);
-		exportNotAcceptanceIdentifiederFile.delete();
-		return "exportNotAcceptanceIdentifieder";
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/msword");
+		response.addHeader("Content-Disposition", "attachment;filename=\"" + filename);
+		PrintWriter pw = response.getWriter();
+		Template t = configuration.getTemplate("xsjsglxt_not_acceptance_return_receipt.ftl", "utf-8");
+		t.process(params, pw);
+		pw.flush();
+		pw.close();
 	}
 
 	//
-	public String exportInspectionRecord() throws Exception {
-		File exportInspectionRecordFile = inspectionIdentificationService
-				.exportInspectionRecord(inspectionRecord.getXsjsglxt_inspection_record_id());
-		// 获取委托书编号
-		fileName = inspectionIdentificationService
+	public void exportInspectionRecord() throws Exception {
+		Configuration configuration = new Configuration();
+		configuration.setDefaultEncoding("utf-8");
+		// 设置默认的编码方式，将数据以utf-8的方式进行编码
+		configuration.setClassForTemplateLoading(this.getClass(), "");
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.putAll(inspectionIdentificationService
+				.mapInspectionRecord(inspectionRecord.getXsjsglxt_inspection_record_id()));
+		String filename = inspectionIdentificationService
 				.exportInspectionRecordName(inspectionRecord.getXsjsglxt_inspection_record_id());
-		if (fileName != null) {
-			fileName = new String(("痕迹检验记录：" + fileName + ".doc").getBytes("GBK"), "ISO-8859-1");
+		if (filename != null) {
+			filename = new String(("痕迹检验记录：" + filename + ".doc").getBytes("GBK"), "ISO-8859-1");
 		} else {
-			fileName = new String(("痕迹检验记录：" + ".doc").getBytes("GBK"), "ISO-8859-1");
+			filename = new String(("痕迹检验记录：" + ".doc").getBytes("GBK"), "ISO-8859-1");
 		}
-		inputStream = new FileInputStream(exportInspectionRecordFile);
-		exportInspectionRecordFile.delete();
-		return "export";
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/msword");
+		response.addHeader("Content-Disposition", "attachment;filename=\"" + filename);
+		PrintWriter pw = response.getWriter();
+		Template t = configuration.getTemplate("xsjsglxt_inspection_record.ftl", "utf-8");
+		t.process(params, pw);
+		pw.flush();
+		pw.close();
 	}
 
 	//
-	public String exportDeathInspectionRecord() throws Exception {
-		File exportDeathInspectionRecordFile = inspectionIdentificationService
-				.exportDeathInspectionRecord(deathInspectionRecord.getXsjsglxt_death_inspection_record_id());
-		fileName = inspectionIdentificationService
+	public void exportDeathInspectionRecord() throws Exception {
+		Configuration configuration = new Configuration();
+		configuration.setDefaultEncoding("utf-8");
+		// 设置默认的编码方式，将数据以utf-8的方式进行编码
+		configuration.setClassForTemplateLoading(this.getClass(), "");
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.putAll(inspectionIdentificationService
+				.mapDeathInspectionRecord(deathInspectionRecord.getXsjsglxt_death_inspection_record_id()));
+		String filename = inspectionIdentificationService
 				.exportDeathInspectionRecordName(deathInspectionRecord.getXsjsglxt_death_inspection_record_id());
-		if (fileName != null) {
-			fileName = new String(("死因检验记录：" + fileName + ".doc").getBytes("GBK"), "ISO-8859-1");
+		if (filename != null) {
+			filename = new String(("死因检验记录：" + filename + ".doc").getBytes("GBK"), "ISO-8859-1");
 		} else {
-			fileName = new String(("死因检验记录：" + ".doc").getBytes("GBK"), "ISO-8859-1");
+			filename = new String(("死因检验记录：" + ".doc").getBytes("GBK"), "ISO-8859-1");
 		}
-		inputStream = new FileInputStream(exportDeathInspectionRecordFile);
-		exportDeathInspectionRecordFile.delete();
-		return "export";
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/msword");
+		response.addHeader("Content-Disposition", "attachment;filename=\"" + filename);
+		PrintWriter pw = response.getWriter();
+		Template t = configuration.getTemplate("xsjsglxt_death_inspection_record.ftl", "utf-8");
+		t.process(params, pw);
+		pw.flush();
+		pw.close();
 	}
 
 	//
-	public String exportDamageInspectionRecord() throws Exception {
-		File exportDamageInspectionRecordFile = inspectionIdentificationService
-				.exportDamageInspectionRecord(damageInspectionRecord.getXsjsglxt_damage_inspection_record_id());
-		fileName = inspectionIdentificationService
+	public void exportDamageInspectionRecord() throws Exception {
+		Configuration configuration = new Configuration();
+		configuration.setDefaultEncoding("utf-8");
+		// 设置默认的编码方式，将数据以utf-8的方式进行编码
+		configuration.setClassForTemplateLoading(this.getClass(), "");
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.putAll(inspectionIdentificationService
+				.mapDamageInspectionRecord(damageInspectionRecord.getXsjsglxt_damage_inspection_record_id()));
+		String filename = inspectionIdentificationService
 				.exportDamageInspectionRecordName(damageInspectionRecord.getXsjsglxt_damage_inspection_record_id());
-		if (fileName != null) {
-			fileName = new String(("损伤检验记录：" + fileName + ".doc").getBytes("GBK"), "ISO-8859-1");
+		if (filename != null) {
+			filename = new String(("损伤检验记录：" + filename + ".doc").getBytes("GBK"), "ISO-8859-1");
 		} else {
-			fileName = new String(("损伤检验记录：" + ".doc").getBytes("GBK"), "ISO-8859-1");
+			filename = new String(("损伤检验记录：" + ".doc").getBytes("GBK"), "ISO-8859-1");
 		}
-		inputStream = new FileInputStream(exportDamageInspectionRecordFile);
-		exportDamageInspectionRecordFile.delete();
-		return "export";
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/msword");
+		response.addHeader("Content-Disposition", "attachment;filename=\"" + filename);
+		PrintWriter pw = response.getWriter();
+		Template t = configuration.getTemplate("xsjsglxt_damage_inspection_record.ftl", "utf-8");
+		t.process(params, pw);
+		pw.flush();
+		pw.close();
 	}
 
 	//
-	public String exportAppraisalLetter() throws Exception {
-		System.out.println("ll");
-		System.out.println("appraisalLetter:" + appraisalLetter);
-		File exportAppraisalLetterFile = inspectionIdentificationService
-				.exportAppraisalLetter(appraisalLetter.getXsjsglxt_appraisal_letter_id());
-		fileName = inspectionIdentificationService
-				.exportAppraisalLetterName(appraisalLetter.getXsjsglxt_appraisal_letter_id());
-		if (fileName != null) {
-			fileName = new String(("鉴定书：" + fileName + ".doc").getBytes("GBK"), "ISO-8859-1");
-		} else {
-			fileName = new String(("鉴定书：" + ".doc").getBytes("GBK"), "ISO-8859-1");
+	public void exportAppraisalLetter() throws Exception {
+		Configuration configuration = new Configuration();
+		configuration.setDefaultEncoding("utf-8");
+		// 设置默认的编码方式，将数据以utf-8的方式进行编码
+		configuration.setClassForTemplateLoading(this.getClass(), "");
+		Map<String, Object> params = new HashMap<String, Object>();
+		String name = "";
+		switch (inspectionIdentificationService
+				.getAppraisalLetterType(appraisalLetter.getXsjsglxt_appraisal_letter_id())) {
+		case "损伤":
+			params.putAll(inspectionIdentificationService
+					.mapSunShangAppraisalLetter(appraisalLetter.getXsjsglxt_appraisal_letter_id()));
+			name = "xsjsglxt_sunshang_appraisal_letter.ftl";
+			break;
+		case "尸体":
+			params.putAll(inspectionIdentificationService
+					.mapHenShiAppraisalLetter(appraisalLetter.getXsjsglxt_appraisal_letter_id()));
+			name = "xsjsglxt_inspection_appraisal_letter.ftl";
+			break;
+		case "痕迹":
+			params.putAll(inspectionIdentificationService
+					.mapHenShiAppraisalLetter(appraisalLetter.getXsjsglxt_appraisal_letter_id()));
+			name = "xsjsglxt_inspection_appraisal_letter.ftl";
+			break;
 		}
-		inputStream = new FileInputStream(exportAppraisalLetterFile);
-		exportAppraisalLetterFile.delete();
-		return "export";
+		String filename = inspectionIdentificationService
+				.exportAppraisalLetterName(appraisalLetter.getXsjsglxt_appraisal_letter_id());
+		if (filename != null) {
+			filename = new String(("鉴定书：" + filename + ".doc").getBytes("GBK"), "ISO-8859-1");
+		} else {
+			filename = new String(("鉴定书：" + ".doc").getBytes("GBK"), "ISO-8859-1");
+		}
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/msword");
+		response.addHeader("Content-Disposition", "attachment;filename=\"" + filename);
+		PrintWriter pw = response.getWriter();
+		Template t = configuration.getTemplate(name, "utf-8");
+		t.process(params, pw);
+		pw.flush();
+		pw.close();
 	}
 
 	/**
