@@ -3,6 +3,7 @@ package com.xsjsglxt.service.InspectionIdentification;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter;
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
@@ -99,4 +100,8 @@ public interface InspectionIdentificationService {
 
 	public void saveInspectionRecords(xsjsglxt_inspection_record inspectionRecord);
 
+	
+	public Map<String, Object> mapTranceCheckBook(String id);
+	
+	
 }
