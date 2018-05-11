@@ -23,7 +23,6 @@ window.onload = function() {
 		data : {
 			allData : {},
 			letter_admin_power : ''
-
 		}
 	});
 	loadData();

@@ -132,6 +132,7 @@ table tr:hover {
 				<div id="bottomPage" style="padding: 20px;">
 					<span>当前页数:<span id="currPage">{{ allData.currPage }}</span></span>
 					<span>共:<span id="totalPage">{{ allData.totalPage }}</span>页
+					<span>共:<span id="totalCount">{{ allData.totalCount }}</span>条数据
 					</span> <span onclick="skipToIndexPage()" id="indexPage"
 						class="pageOperation">首页</span> <span
 						onclick="skipToPrimaryPage()" id="previousPage"
