@@ -1,11 +1,18 @@
 package com.xsjsglxt.action.InspectionIdentification;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,6 +36,8 @@ import com.xsjsglxt.domain.DTO.InspectionIdentification.CaseMandateDTO;
 import com.xsjsglxt.domain.VO.InspectionIdentification.EntrustmentBookManagementVO;
 import com.xsjsglxt.service.InspectionIdentification.InspectionIdentificationService;
 
+import freemarker.template.Configuration;
+import freemarker.template.Template;
 import util.TeamUtil;
 
 @SuppressWarnings("serial")
@@ -380,7 +389,8 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void updateDamageInspectionRecord() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			//System.out.println("lplp:" + damageInspectionRecord.getDamage_inspection_record_belong_entrustment_book());
+			// System.out.println("lplp:" +
+			// damageInspectionRecord.getDamage_inspection_record_belong_entrustment_book());
 			response.getWriter().write("" + inspectionIdentificationService
 					.updateDamageInspectionRecord(damageInspectionRecord, death, deathFileName, positionFile));
 		} catch (IOException e) {
@@ -401,16 +411,26 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	}
 
 	// 导出检验委托书
-	public String exportTranceCheckBook() throws Exception {
-		File exportTranceCheckBookFile = inspectionIdentificationService
-				.exportTranceCheckBook(tranceCheckBook.getXsjsglxt_check_entrustment_book_id());
-		fileName = new String(("鉴定委托书" + inspectionIdentificationService
+	public void exportTranceCheckBook() throws Exception {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.putAll(inspectionIdentificationService
+				.mapTranceCheckBook(tranceCheckBook.getXsjsglxt_check_entrustment_book_id()));
+		Configuration configuration = new Configuration();
+		configuration.setDefaultEncoding("utf-8");
+		// 设置默认的编码方式，将数据以utf-8的方式进行编码
+		configuration.setClassForTemplateLoading(this.getClass(), "");
+		String filename = new String(("鉴定委托书" + inspectionIdentificationService
 				.exportTraceCheckBookName(tranceCheckBook.getXsjsglxt_check_entrustment_book_id()) + ".doc")
 						.getBytes("GBK"),
 				"ISO-8859-1");
-		inputStream = new FileInputStream(exportTranceCheckBookFile);
-		exportTranceCheckBookFile.delete();
-		return "exportTranceCheckBook";
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/msword");
+		response.addHeader("Content-Disposition", "attachment;filename=\"" + filename + ".doc\"");
+		PrintWriter pw = response.getWriter();
+		Template t = configuration.getTemplate("xsjsglxt_entrustment_book.ftl", "utf-8");
+		t.process(params, pw);
+		pw.flush();
+		pw.close();
 	}
 
 	// 导出确认书
