@@ -62,21 +62,21 @@ public interface InspectionIdentificationService {
 	// 这个获取得到的是委托书的编号
 	public String exportNotAccetpBookName(String id);
 
-	public File exportTranceCheckBook(String id) throws Exception;
+	//public File exportTranceCheckBook(String id) throws Exception;
 
-	public File exportIdentifiederCaseConfirmBook(String id) throws Exception;
+	//public File exportIdentifiederCaseConfirmBook(String id) throws Exception;
 
-	public File exportAcceptanceReturnReceipt(String id) throws Exception;
+	//public File exportAcceptanceReturnReceipt(String id) throws Exception;
 
-	public File exportNotAcceptanceIdentifieder(String id) throws Exception;
+	//public File exportNotAcceptanceIdentifieder(String id) throws Exception;
 
-	public File exportInspectionRecord(String id) throws Exception;
+	//public File exportInspectionRecord(String id) throws Exception;
 
-	public File exportDeathInspectionRecord(String id) throws Exception;
+	//public File exportDeathInspectionRecord(String id) throws Exception;
 
-	public File exportDamageInspectionRecord(String id) throws Exception;
+	//public File exportDamageInspectionRecord(String id) throws Exception;
 
-	public File exportAppraisalLetter(String id) throws Exception;
+	//public File exportAppraisalLetter(String id) throws Exception;
 
 	public String exportAppraisalLetterName(String xsjsglxt_appraisal_letter_id);
 
@@ -100,8 +100,34 @@ public interface InspectionIdentificationService {
 
 	public void saveInspectionRecords(xsjsglxt_inspection_record inspectionRecord);
 
-	
+	// 委托书
 	public Map<String, Object> mapTranceCheckBook(String id);
-	
-	
+
+	// 确认书
+	public Map<String, Object> mapIdentifiederCaseConfirmBook(String id);
+
+	// 受理回执
+	public Map<String, Object> mapAcceptanceIdentifieder(String id);
+
+	// 不受理回执
+	public Map<String, Object> mapNotAcceptanceIdentifieder(String id);
+
+	// 痕迹检验 记录
+	public Map<String, Object> mapInspectionRecord(String id);
+
+	// 死因检验记录
+	public Map<String, Object> mapDeathInspectionRecord(String id);
+
+	// 损伤检验记录
+	public Map<String, Object> mapDamageInspectionRecord(String id);
+
+	// 获取鉴定书类型
+	public String getAppraisalLetterType(String id);
+
+	// 损伤鉴定书
+	public Map<String, Object> mapSunShangAppraisalLetter(String id);
+
+	// 痕迹以及尸体鉴定书
+	public Map<String, Object> mapHenShiAppraisalLetter(String id);
+
 }

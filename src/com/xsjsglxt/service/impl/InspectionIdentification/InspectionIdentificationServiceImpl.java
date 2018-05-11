@@ -879,118 +879,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		return null;
 	}
 
-	// 导出委托书
-	@Override
-	public File exportTranceCheckBook(String id) throws Exception {
-		Map<String, Object> params = new HashMap<String, Object>();
-		/*
-		 * 获取路径
-		 */
-		String lj = "";
-		try {
-			Properties props = new Properties();
-			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
-			lj = props.getProperty("lj");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		params.putAll(mapTranceCheckBook(id));
-
-		Configuration configuration = new Configuration();
-		configuration.setDefaultEncoding("utf-8");
-		// 设置默认的编码方式，将数据以utf-8的方式进行编码
-		configuration.setClassForTemplateLoading(this.getClass(), "");
-		Template t = configuration.getTemplate("xsjsglxt_entrustment_book.ftl", "utf-8");
-		OutputStream os = new FileOutputStream(lj + "kokokoko.doc");
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
-		t.process(params, bw);
-		/*
-		 * XwpfTUtil xwpfTUtil = new XwpfTUtil(); XWPFDocument doc; String
-		 * fileNameInResource = ServletActionContext.getServletContext()
-		 * .getRealPath("/DocTem/xsjsglxt_entrustment_book.doc"); InputStream
-		 * is; is = new FileInputStream(fileNameInResource); doc = new
-		 * XWPFDocument(is); xwpfTUtil.replaceInPara(doc, params);
-		 * xwpfTUtil.replaceInTable(doc, params); OutputStream os = new
-		 * FileOutputStream(lj + "kokokoko.doc"); doc.write(os);
-		 * xwpfTUtil.close(os); xwpfTUtil.close(is); os.flush(); os.close();
-		 */
-		return new File(lj + "kokokoko.doc");
-	}
-
-	// 导出确认书
-	@Override
-	public File exportIdentifiederCaseConfirmBook(String id) throws Exception {
-		Map<String, Object> params = new HashMap<String, Object>();
-		/*
-		 * 获取路径
-		 */
-		String lj = "";
-		try {
-			Properties props = new Properties();
-			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
-			lj = props.getProperty("lj");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		params.putAll(mapIdentifiederCaseConfirmBook(id));
-		Configuration configuration = new Configuration();
-		configuration.setDefaultEncoding("utf-8");
-		// 设置默认的编码方式，将数据以utf-8的方式进行编码
-		configuration.setClassForTemplateLoading(this.getClass(), "");
-		Template t = configuration.getTemplate("xsjsglxt_confirm_book.ftl", "utf-8");
-		OutputStream os = new FileOutputStream(lj + "kokokoko.doc");
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
-		t.process(params, bw);
-		/*
-		 * XwpfTUtil xwpfTUtil = new XwpfTUtil(); XWPFDocument doc; String
-		 * fileNameInResource = ServletActionContext.getServletContext()
-		 * .getRealPath("/DocTem/xsjsglxt_confirm_book.doc"); InputStream is; is
-		 * = new FileInputStream(fileNameInResource); doc = new
-		 * XWPFDocument(is); xwpfTUtil.replaceInPara(doc, params);
-		 * xwpfTUtil.replaceInTable(doc, params); OutputStream os = new
-		 * FileOutputStream(lj + "kokokoko.doc"); doc.write(os);
-		 * xwpfTUtil.close(os); xwpfTUtil.close(is); os.flush(); os.close();
-		 */
-		return new File(lj + "kokokoko.doc");
-	}
-
-	// 导出受理回执表
-	@Override
-	public File exportAcceptanceReturnReceipt(String id) throws Exception {
-		Map<String, Object> params = new HashMap<String, Object>();
-		/*
-		 * 获取路径
-		 */
-		String lj = "";
-		try {
-			Properties props = new Properties();
-			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
-			lj = props.getProperty("lj");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		params.putAll(mapAcceptanceIdentifieder(id));
-		Configuration configuration = new Configuration();
-		configuration.setDefaultEncoding("utf-8");
-		// 设置默认的编码方式，将数据以utf-8的方式进行编码
-		configuration.setClassForTemplateLoading(this.getClass(), "");
-		Template t = configuration.getTemplate("xsjsglxt_acceptance_return_receipt.ftl", "utf-8");
-		OutputStream os = new FileOutputStream(lj + "kokokoko.doc");
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
-		t.process(params, bw);
-		/*
-		 * XwpfTUtil xwpfTUtil = new XwpfTUtil(); XWPFDocument doc; String
-		 * fileNameInResource = ServletActionContext.getServletContext()
-		 * .getRealPath("/DocTem/xsjsglxt_acceptance_return_receipt.doc");
-		 * InputStream is; is = new FileInputStream(fileNameInResource); doc =
-		 * new XWPFDocument(is); xwpfTUtil.replaceInPara(doc, params);
-		 * xwpfTUtil.replaceInTable(doc, params); OutputStream os = new
-		 * FileOutputStream(lj + "kokokoko.doc"); doc.write(os);
-		 * xwpfTUtil.close(os); xwpfTUtil.close(is); os.flush(); os.close();
-		 */ return new File(lj + "kokokoko.doc");
-
-	}
-
 	// 导出不受理告知
 	public File exportNotAcceptanceIdentifieder(String id) throws Exception {
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -1014,16 +902,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		OutputStream os = new FileOutputStream(lj + "kokokoko.doc");
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
 		t.process(params, bw);
-		/*
-		 * XwpfTUtil xwpfTUtil = new XwpfTUtil(); XWPFDocument doc; String
-		 * fileNameInResource = ServletActionContext.getServletContext()
-		 * .getRealPath("/DocTem/xsjsglxt_not_acceptance_return_receipt.doc");
-		 * InputStream is; is = new FileInputStream(fileNameInResource); doc =
-		 * new XWPFDocument(is); xwpfTUtil.replaceInPara(doc, params);
-		 * xwpfTUtil.replaceInTable(doc, params); OutputStream os = new
-		 * FileOutputStream(lj + "kokokoko.doc"); doc.write(os);
-		 * xwpfTUtil.close(os); xwpfTUtil.close(is); os.flush(); os.close();
-		 */
 		return new File(lj + "kokokoko.doc");
 	}
 
@@ -1048,43 +926,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			}
 		}
 		return null;
-	}
-
-	// 导出痕迹检验记录
-	@Override
-	public File exportInspectionRecord(String id) throws Exception {
-		Map<String, Object> params = new HashMap<String, Object>();
-		/*
-		 * 获取路径
-		 */
-		String lj = "";
-		try {
-			Properties props = new Properties();
-			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
-			lj = props.getProperty("lj");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		params.putAll(mapInspectionRecord(id));
-		Configuration configuration = new Configuration();
-		configuration.setDefaultEncoding("utf-8");
-		// 设置默认的编码方式，将数据以utf-8的方式进行编码
-		configuration.setClassForTemplateLoading(this.getClass(), "");
-		Template t = configuration.getTemplate("xsjsglxt_inspection_record.ftl", "utf-8");
-		OutputStream os = new FileOutputStream(lj + "kokokoko.doc");
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
-		t.process(params, bw);
-		/*
-		 * XwpfTUtil xwpfTUtil = new XwpfTUtil(); XWPFDocument doc; String
-		 * fileNameInResource = ServletActionContext.getServletContext()
-		 * .getRealPath("/DocTem/xsjsglxt_inspection_record.doc"); InputStream
-		 * is; is = new FileInputStream(fileNameInResource); doc = new
-		 * XWPFDocument(is); xwpfTUtil.replaceInPara(doc, params);
-		 * xwpfTUtil.replaceInTable(doc, params); OutputStream os = new
-		 * FileOutputStream(lj + "kokokoko.doc"); doc.write(os);
-		 * xwpfTUtil.close(os); xwpfTUtil.close(is); os.flush(); os.close();
-		 */
-		return new File(lj + "kokokoko.doc");
 	}
 
 	// 痕迹检验记录名称
@@ -1129,42 +970,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		return null;
 	}
 
-	// 导出死因检验记录
-	@Override
-	public File exportDeathInspectionRecord(String id) throws Exception {
-		Map<String, Object> params = new HashMap<String, Object>();
-		/*
-		 * 获取路径
-		 */
-		String lj = "";
-		try {
-			Properties props = new Properties();
-			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
-			lj = props.getProperty("lj");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		params.putAll(mapDeathInspectionRecord(id));
-		Configuration configuration = new Configuration();
-		configuration.setDefaultEncoding("utf-8");
-		// 设置默认的编码方式，将数据以utf-8的方式进行编码
-		configuration.setClassForTemplateLoading(this.getClass(), "");
-		Template t = configuration.getTemplate("xsjsglxt_death_inspection_record.ftl", "utf-8");
-		OutputStream os = new FileOutputStream(lj + "kokokoko.doc");
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
-		t.process(params, bw);
-		/*
-		 * String fileNameInResource = ServletActionContext.getServletContext()
-		 * .getRealPath("/DocTem/xsjsglxt_death_inspection_record.doc");
-		 * XWPFTemplate template = XWPFTemplate.compile(fileNameInResource);
-		 * template.render(params); FileOutputStream out; try { out = new
-		 * FileOutputStream(lj + "kokokoko.doc"); template.write(out);
-		 * out.flush(); out.close(); template.close(); } catch
-		 * (FileNotFoundException e) { e.printStackTrace(); } catch (IOException
-		 * e) { e.printStackTrace(); }
-		 */
-		return new File(lj + "kokokoko.doc");
-	}
 
 	// 导出损伤检验记录名称
 	@Override
@@ -1187,90 +992,19 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		return null;
 	}
 
-	// 导出损伤检验记录表
-	@Override
-	public File exportDamageInspectionRecord(String id) throws Exception {
-		Map<String, Object> params = new HashMap<String, Object>();
-		/*
-		 * 获取路径
-		 */
-		String lj = "";
-		try {
-			Properties props = new Properties();
-			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
-			lj = props.getProperty("lj");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		params.putAll(mapDamageInspectionRecord(id));
-
-		Configuration configuration = new Configuration();
-		configuration.setDefaultEncoding("utf-8");
-		// 设置默认的编码方式，将数据以utf-8的方式进行编码
-		configuration.setClassForTemplateLoading(this.getClass(), "");
-		Template t = configuration.getTemplate("xsjsglxt_damage_inspection_record.ftl", "utf-8");
-		OutputStream os = new FileOutputStream(lj + "kokokoko.doc");
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
-		t.process(params, bw);
-
-		/*
-		 * String fileNameInResource = ServletActionContext.getServletContext()
-		 * .getRealPath("/DocTem/xsjsglxt_damage_inspection_record.doc");
-		 * XWPFTemplate template = XWPFTemplate.compile(fileNameInResource);
-		 * template.render(params); FileOutputStream out; try { out = new
-		 * FileOutputStream(lj + "kokokoko.doc"); template.write(out);
-		 * out.flush(); out.close(); template.close(); } catch
-		 * (FileNotFoundException e) { e.printStackTrace(); } catch (IOException
-		 * e) { e.printStackTrace(); }
-		 */
-		return new File(lj + "kokokoko.doc");
-	}
-
-	// 导出鉴定书
-	@Override
-	public File exportAppraisalLetter(String id) throws Exception {
-		Map<String, Object> params = new HashMap<String, Object>();
-		/*
-		 * 获取路径
-		 */
-		String lj = "";
-		try {
-			Properties props = new Properties();
-			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
-			lj = props.getProperty("lj");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		Configuration configuration = new Configuration();
-		configuration.setDefaultEncoding("utf-8");
-		// 设置默认的编码方式，将数据以utf-8的方式进行编码
-		configuration.setClassForTemplateLoading(this.getClass(), "");
-		params.putAll(mapLetter(id));
+	// 获取鉴定书类型
+	public String getAppraisalLetterType(String id) {
 		xsjsglxt_appraisal_letter xsjsglxt_appraisal_letter = new xsjsglxt_appraisal_letter();
 		xsjsglxt_appraisal_letter = inspectionIdentificationDao.getAppraisalLetterByOwnId(id);
-		String name = "";
 		if (xsjsglxt_appraisal_letter != null) {
 			if (xsjsglxt_appraisal_letter.getAppraisal_letter_type() != null
 					&& xsjsglxt_appraisal_letter.getAppraisal_letter_type().trim().length() > 0) {
-				switch (xsjsglxt_appraisal_letter.getAppraisal_letter_type().trim()) {
-				case "损伤":
-					name = "xsjsglxt_sunshang_appraisal_letter.ftl";
-					break;
-				case "尸体":
-					name = "xsjsglxt_inspection_appraisal_letter.ftl";
-					break;
-				case "痕迹":
-					name = "xsjsglxt_inspection_appraisal_letter.ftl";
-					break;
-				}
+				return xsjsglxt_appraisal_letter.getAppraisal_letter_type().trim();
 			}
 		}
-		Template t = configuration.getTemplate(name, "utf-8");
-		OutputStream os = new FileOutputStream(lj + "kokokoko.doc");
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
-		t.process(params, bw);
-		return new File(lj + "kokokoko.doc");
+		return "";
 	}
+
 
 	@Override
 	public String exportAppraisalLetterName(String xsjsglxt_appraisal_letter_id) {
@@ -1289,29 +1023,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	 * 
 	 * 
 	 */
-	// 鉴定文书
-	public Map<String, Object> mapLetter(String id) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		xsjsglxt_appraisal_letter xsjsglxt_appraisal_letter = new xsjsglxt_appraisal_letter();
-		xsjsglxt_appraisal_letter = inspectionIdentificationDao.getAppraisalLetterByOwnId(id);
-		if (xsjsglxt_appraisal_letter != null) {
-			if (xsjsglxt_appraisal_letter.getAppraisal_letter_type() != null
-					&& xsjsglxt_appraisal_letter.getAppraisal_letter_type().trim().length() > 0) {
-				switch (xsjsglxt_appraisal_letter.getAppraisal_letter_type().trim()) {
-				case "损伤":
-					params.putAll(mapSunShangAppraisalLetter(id));
-					break;
-				case "尸体":
-					params.putAll(mapHenShiAppraisalLetter(id));
-					break;
-				case "痕迹":
-					params.putAll(mapHenShiAppraisalLetter(id));
-					break;
-				}
-			}
-		}
-		return params;
-	}
 
 	/**
 	 * 损伤
@@ -1339,12 +1050,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			} else {
 				params.put("p7", "");
 			}
-			/*
-			 * if (xsjsglxt_appraisal_letter.getAppraisal_letter_date() != null
-			 * && xsjsglxt_appraisal_letter.getAppraisal_letter_date().trim().
-			 * length() > 0) { params.put("p9", "fdfd"); } else {
-			 * params.put("p9", "fdfd"); }
-			 */
 			if (xsjsglxt_appraisal_letter.getAppraisal_letter_inspection() != null
 					&& xsjsglxt_appraisal_letter.getAppraisal_letter_inspection().trim().length() > 0) {
 				params.put("p11", xsjsglxt_appraisal_letter.getAppraisal_letter_inspection().trim());
@@ -1437,10 +1142,9 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim()
 								.length() > 0) {
-					params.put("p8",
-							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim());
+					params.put("p8", "损伤程度评定（按照2014年1月1日起实施的《人体损伤程度鉴定标准》进行鉴定）");
 				} else {
-					params.put("p8", "");
+					params.put("p8", "损伤程度评定（按照2014年1月1日起实施的《人体损伤程度鉴定标准》进行鉴定）");
 				}
 			} else {
 				params.put("p3", "");
@@ -1454,10 +1158,11 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				xsjsglxt_damage_inspection_record xsjsglxt_damage_inspection_record = new xsjsglxt_damage_inspection_record();
 				xsjsglxt_damage_inspection_record = inspectionIdentificationDao.getDamageInspectionRecordById(
 						xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim());
-				
+
 				if (xsjsglxt_damage_inspection_record != null) {
 					if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_time() != null
-							&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_time().trim().length() > 0) {
+							&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_time().trim()
+									.length() > 0) {
 						params.put("p9", xsjsglxt_damage_inspection_record.getDamage_inspection_record_time().trim());
 					} else {
 						params.put("p9", "");
