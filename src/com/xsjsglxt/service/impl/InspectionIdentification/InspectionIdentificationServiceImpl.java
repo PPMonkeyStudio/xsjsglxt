@@ -970,7 +970,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		return null;
 	}
 
-
 	// 导出损伤检验记录名称
 	@Override
 	public String exportDamageInspectionRecordName(String xsjsglxt_damage_inspection_record_id) {
@@ -1004,7 +1003,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		}
 		return "";
 	}
-
 
 	@Override
 	public String exportAppraisalLetterName(String xsjsglxt_appraisal_letter_id) {
@@ -2553,7 +2551,9 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				} else {
 					params.put("q18", "");
 				}
-				if ("痕迹检验".equals(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_type())) {
+				if ("痕迹".equals(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_type())) {
+					params.put("q30", "痕");
+					params.put("q29", "单位");
 					params.put("q19", "/");
 					params.put("q20", "/");
 					params.put("q21", "/");
@@ -2561,6 +2561,8 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 					params.put("q23", "/");
 					params.put("q24", "/");
 				} else {
+					params.put("q29", "身份证");
+					params.put("q30", "法");
 					if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name() != null
 							&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name().trim()
 									.length() > 0) {
@@ -2593,11 +2595,11 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 					} else {
 						params.put("q22", "");
 					}
-					if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
-							&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim()
+					if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_unit() != null
+							&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_unit().trim()
 									.length() > 0) {
 						params.put("q23",
-								xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
+								xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_unit().trim());
 					} else {
 						params.put("q23", "");
 					}
@@ -2655,11 +2657,11 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		// 根据ID获取委托书
 		xsjsglxt_check_entrustment_book = inspectionIdentificationDao.getCheckEntrustmentBookById(id);
 		if (xsjsglxt_check_entrustment_book != null) {
+
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim().length() > 0) {
 				params.put("x1",
-						"[" + (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4)
-								+ "]");
+						(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4));
 				params.put("x2", (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4));
 			} else {
 				params.put("x1", "");
@@ -2768,7 +2770,9 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			} else {
 				params.put("x17", "");
 			}
-			if ("痕迹检验".equals(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_type())) {
+			if ("痕迹".equals(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_type())) {
+				params.put("x29", "痕");
+				params.put("x30", "单位");
 				params.put("x18", "/");
 				params.put("x19", "/");
 				params.put("x20", "/");
@@ -2776,6 +2780,8 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				params.put("x22", "/");
 				params.put("x23", "/");
 			} else {
+				params.put("x29", "法");
+				params.put("x30", "身份证");
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name().trim()
 								.length() > 0) {
@@ -2808,11 +2814,11 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				} else {
 					params.put("x21", "");
 				}
-				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
-						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim()
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_unit() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_unit().trim()
 								.length() > 0) {
 					params.put("x22",
-							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
+							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_unit().trim());
 				} else {
 					params.put("x22", "");
 				}
