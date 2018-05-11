@@ -83,8 +83,18 @@ function Preview_AppraisalLetter(obj) {
 									+ '<p>六、鉴定要求：'
 									+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request
 									+ '</p>'
-									+ '<p>七、检验时间：	</p>'
-									+ ''// (八)检验地点，但无此字段
+									+ '<p>七、检验时间：'
+									+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.damage_inspection_record_time
+											.substring(0, 4)
+									+ '年'
+									+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.damage_inspection_record_time
+											.substring(5, 7)
+									+ '月'
+									+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.damage_inspection_record_time
+											.substring(8, 11)
+									+ '日'
+									+ '</p>'
+									+ '<p>八、检验地点：	</p>'
 									+ '<p>'
 									+ '九、检验：'
 									+ '</p><p>'
@@ -176,13 +186,32 @@ function Preview_AppraisalLetter(obj) {
 											+ '<p>（六）鉴定要求：'
 											+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request
 											+ '</p>'
-											+ '<p>（七）检验开始日期：	</p>'
-											+ (json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request == '死因鉴定' ? '<p>（八）检验地点：'
-													+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_inspect_place
-													+ '</p>'
-													: '<p>（八）检验地点：'
-															+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_location
-															+ '</p>')
+											+ '<p>（七）检验开始日期：'
+											+ (json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request == '死因鉴定' ? (json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_inspect_time
+													.substring(0, 4)
+													+ '年'
+													+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_inspect_time
+															.substring(5, 7)
+													+ '月'
+													+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_inspect_time
+															.substring(8, 11) + '日')
+													: (json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_start_time
+															.substring(0, 4)
+															+ '年'
+															+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_start_time
+																	.substring(
+																			5,
+																			7)
+															+ '月'
+															+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_start_time
+																	.substring(
+																			8,
+																			11) + '日'))
+											+ '</p>'
+											+ '<p>（八）检验地点：'
+											+ (json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request == '死因鉴定' ? json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_inspect_place
+													: json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_location)
+											+ '</p>'
 											+ '</h3>'
 											+ '<br>'
 											+ '<h3  style="text-align: left;">'
