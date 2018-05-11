@@ -94,7 +94,8 @@ function Create_EntrustmentBook(type) {
 						+ '<h4>原鉴定情况：</h4>'
 						+ '<textarea class="form-control" style="resize: none;height:100px;" name="tranceCheckBook.check_entrustment_book_old_entrustment_situation" ></textarea>'
 						+ '<h4><span style="color:#D9534F;">*</span>'
-
+						+ (type == '痕迹' ? '送检的检材和样本等情况（包括名称、数量、性状、包装，检材提取部位和方法等）'
+								: '送检材料')
 						+ '：</h4>'
 						+ '<textarea class="form-control" style="resize: none;height:100px;" name="tranceCheckBook.check_entrustment_book_sample_situation" ></textarea>'
 						+ '<br>'
