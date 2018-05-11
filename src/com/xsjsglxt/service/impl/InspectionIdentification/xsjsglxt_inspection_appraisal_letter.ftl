@@ -34,20 +34,21 @@
 <w:pPr>
 <w:spacing w:line="560" w:lineRule="exact"/>
 <w:rPr>
-<w:rFonts w:hint="eastAsia"/>
 <w:b/>
 <w:kern w:val="0"/>
 <w:sz w:val="44"/>
 <w:szCs w:val="44"/>
 </w:rPr>
 </w:pPr>
+<w:bookmarkStart w:id="0" w:name="_GoBack"/>
+<w:bookmarkEnd w:id="0"/>
 </w:p>
 <w:p w:rsidR="00E76654" w:rsidRPr="00A8540C" w:rsidRDefault="00AD5DBE" w:rsidP="007A4643">
 <w:pPr>
 <w:spacing w:line="640" w:lineRule="exact"/>
 <w:jc w:val="center"/>
 <w:rPr>
-<w:rFonts w:ascii="黑体" w:eastAsia="黑体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:rFonts w:ascii="黑体" w:eastAsia="黑体" w:hAnsi="宋体"/>
 <w:b/>
 <w:sz w:val="44"/>
 <w:szCs w:val="36"/>
@@ -74,13 +75,12 @@
 <w:t>区公安司法鉴定中心</w:t>
 </w:r>
 </w:p>
-<w:p w:rsidR="00E76654" w:rsidRPr="007A4643" w:rsidRDefault="00E76654" w:rsidP="007A4643">
+<w:p w:rsidR="00E76654" w:rsidRPr="007A4643" w:rsidRDefault="008D5F64" w:rsidP="007A4643">
 <w:pPr>
 <w:spacing w:line="640" w:lineRule="exact"/>
 <w:ind w:rightChars="-70" w:right="-147"/>
 <w:jc w:val="center"/>
 <w:rPr>
-<w:rFonts w:hint="eastAsia"/>
 <w:sz w:val="44"/>
 </w:rPr>
 </w:pPr>
@@ -96,15 +96,11 @@
 </v:line>
 </w:pict>
 </w:r>
-<w:r w:rsidRPr="00A8540C">
+<w:r w:rsidR="00DC19A7" w:rsidRPr="00DC19A7">
 <w:rPr>
-<w:rFonts w:ascii="黑体" w:eastAsia="黑体" w:hint="eastAsia"/>
-<w:b/>
-<w:kern w:val="0"/>
 <w:sz w:val="44"/>
-<w:szCs w:val="44"/>
 </w:rPr>
-<w:t>鉴定书</w:t>
+<w:t>${j23}</w:t>
 </w:r>
 </w:p>
 <w:p w:rsidR="00E76654" w:rsidRPr="007A4643" w:rsidRDefault="00E76654" w:rsidP="007A4643">
@@ -113,7 +109,7 @@
 <w:ind w:rightChars="-241" w:right="-506"/>
 <w:jc w:val="center"/>
 <w:rPr>
-<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312" w:hint="eastAsia"/>
+<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312"/>
 <w:sz w:val="30"/>
 <w:szCs w:val="32"/>
 </w:rPr>
@@ -127,14 +123,14 @@
 </w:rPr>
 <w:t xml:space="preserve">   </w:t>
 </w:r>
-<w:r w:rsidR="003D4BF6">
+<w:r w:rsidR="002457F1">
 <w:rPr>
 <w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312" w:hint="eastAsia"/>
 <w:spacing w:val="-20"/>
 <w:sz w:val="32"/>
 <w:szCs w:val="32"/>
 </w:rPr>
-<w:t xml:space="preserve">                            </w:t>
+<w:t xml:space="preserve">                        </w:t>
 </w:r>
 <w:r w:rsidR="00F74674">
 <w:rPr>
@@ -197,7 +193,25 @@
 <w:sz w:val="30"/>
 <w:szCs w:val="32"/>
 </w:rPr>
-<w:t>（痕）</w:t>
+<w:t>（</w:t>
+</w:r>
+<w:r w:rsidR="0071323D" w:rsidRPr="0071323D">
+<w:rPr>
+<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312"/>
+<w:spacing w:val="-20"/>
+<w:sz w:val="30"/>
+<w:szCs w:val="32"/>
+</w:rPr>
+<w:t>${j21}</w:t>
+</w:r>
+<w:r w:rsidR="001E1140">
+<w:rPr>
+<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312" w:hint="eastAsia"/>
+<w:spacing w:val="-20"/>
+<w:sz w:val="30"/>
+<w:szCs w:val="32"/>
+</w:rPr>
+<w:t>）</w:t>
 </w:r>
 <w:r>
 <w:rPr>
@@ -267,7 +281,7 @@
 <w:pPr>
 <w:spacing w:line="560" w:lineRule="exact"/>
 <w:rPr>
-<w:rFonts w:ascii="黑体" w:eastAsia="黑体" w:hint="eastAsia"/>
+<w:rFonts w:ascii="黑体" w:eastAsia="黑体"/>
 <w:sz w:val="32"/>
 <w:szCs w:val="32"/>
 </w:rPr>
@@ -285,7 +299,7 @@
 <w:pPr>
 <w:spacing w:line="560" w:lineRule="exact"/>
 <w:rPr>
-<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312" w:hint="eastAsia"/>
+<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312"/>
 <w:sz w:val="32"/>
 <w:szCs w:val="32"/>
 </w:rPr>
@@ -319,7 +333,7 @@
 <w:pPr>
 <w:spacing w:line="560" w:lineRule="exact"/>
 <w:rPr>
-<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312" w:hint="eastAsia"/>
+<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312"/>
 <w:sz w:val="32"/>
 <w:szCs w:val="32"/>
 </w:rPr>
@@ -353,7 +367,7 @@
 <w:pPr>
 <w:spacing w:line="560" w:lineRule="exact"/>
 <w:rPr>
-<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312" w:hint="eastAsia"/>
+<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312"/>
 <w:sz w:val="32"/>
 <w:szCs w:val="32"/>
 </w:rPr>
@@ -366,13 +380,13 @@
 </w:rPr>
 <w:t>（三）</w:t>
 </w:r>
-<w:r w:rsidR="00645317">
+<w:r w:rsidR="002265E3">
 <w:rPr>
 <w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312" w:hint="eastAsia"/>
 <w:sz w:val="32"/>
 <w:szCs w:val="32"/>
 </w:rPr>
-<w:t>送检</w:t>
+<w:t>受理</w:t>
 </w:r>
 <w:r w:rsidR="00E76654" w:rsidRPr="007A4643">
 <w:rPr>
@@ -395,7 +409,7 @@
 <w:pPr>
 <w:spacing w:line="560" w:lineRule="exact"/>
 <w:rPr>
-<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312" w:hint="eastAsia"/>
+<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312"/>
 <w:sz w:val="32"/>
 <w:szCs w:val="32"/>
 </w:rPr>
@@ -437,7 +451,7 @@
 <w:pPr>
 <w:spacing w:line="560" w:lineRule="exact"/>
 <w:rPr>
-<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312" w:hAnsi="宋体"/>
 <w:sz w:val="32"/>
 <w:szCs w:val="32"/>
 </w:rPr>
@@ -450,13 +464,13 @@
 </w:rPr>
 <w:t>（五）</w:t>
 </w:r>
-<w:r w:rsidR="004D798D">
+<w:r w:rsidR="009D015B" w:rsidRPr="009D015B">
 <w:rPr>
-<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312" w:hAnsi="宋体"/>
 <w:sz w:val="32"/>
 <w:szCs w:val="32"/>
 </w:rPr>
-<w:t>送检物证</w:t>
+<w:t>${j22}</w:t>
 </w:r>
 <w:r w:rsidR="00E76654" w:rsidRPr="007A4643">
 <w:rPr>
@@ -467,12 +481,12 @@
 <w:t>：</w:t>
 </w:r>
 </w:p>
-<w:p w:rsidR="00E76654" w:rsidRPr="007A4643" w:rsidRDefault="00F854C8" w:rsidP="0044099F">
+<w:p w:rsidR="00E76654" w:rsidRDefault="00F854C8" w:rsidP="0044099F">
 <w:pPr>
 <w:spacing w:line="560" w:lineRule="exact"/>
 <w:ind w:firstLine="570"/>
 <w:rPr>
-<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312" w:hint="eastAsia"/>
+<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312"/>
 <w:sz w:val="32"/>
 <w:szCs w:val="32"/>
 </w:rPr>
@@ -486,11 +500,130 @@
 <w:t>${j7}</w:t>
 </w:r>
 </w:p>
-<w:p w:rsidR="00E76654" w:rsidRPr="00DA6029" w:rsidRDefault="00E76654" w:rsidP="00A801EE">
+<w:p w:rsidR="00932689" w:rsidRPr="00112CA9" w:rsidRDefault="00932689" w:rsidP="00932689">
 <w:pPr>
-<w:spacing w:line="560" w:lineRule="exact"/>
+<w:ind w:rightChars="-70" w:right="-147"/>
 <w:rPr>
-<w:rFonts w:ascii="黑体" w:eastAsia="黑体" w:hint="eastAsia"/>
+<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312" w:hAnsi="宋体"/>
+<w:sz w:val="32"/>
+<w:szCs w:val="32"/>
+</w:rPr>
+</w:pPr>
+<w:r>
+<w:rPr>
+<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312" w:hint="eastAsia"/>
+<w:sz w:val="32"/>
+<w:szCs w:val="32"/>
+</w:rPr>
+<w:t>（六）</w:t>
+</w:r>
+<w:r w:rsidRPr="00112CA9">
+<w:rPr>
+<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312" w:hint="eastAsia"/>
+<w:sz w:val="32"/>
+<w:szCs w:val="32"/>
+</w:rPr>
+<w:t>鉴定要求：</w:t>
+</w:r>
+</w:p>
+<w:p w:rsidR="00444A0E" w:rsidRDefault="008C786E" w:rsidP="00444A0E">
+<w:pPr>
+<w:ind w:firstLine="420"/>
+<w:rPr>
+<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312"/>
+<w:sz w:val="32"/>
+<w:szCs w:val="32"/>
+</w:rPr>
+</w:pPr>
+<w:r w:rsidRPr="008C786E">
+<w:rPr>
+<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312"/>
+<w:sz w:val="32"/>
+<w:szCs w:val="32"/>
+</w:rPr>
+<w:t>${j18}</w:t>
+</w:r>
+</w:p>
+<w:p w:rsidR="00B06E32" w:rsidRDefault="000644F1" w:rsidP="005958CF">
+<w:pPr>
+<w:rPr>
+<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312"/>
+<w:sz w:val="32"/>
+<w:szCs w:val="32"/>
+</w:rPr>
+</w:pPr>
+<w:r>
+<w:rPr>
+<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312" w:hint="eastAsia"/>
+<w:sz w:val="32"/>
+<w:szCs w:val="32"/>
+</w:rPr>
+<w:t>（七）</w:t>
+</w:r>
+<w:r w:rsidRPr="008A1401">
+<w:rPr>
+<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312" w:hint="eastAsia"/>
+<w:sz w:val="32"/>
+<w:szCs w:val="32"/>
+</w:rPr>
+<w:t>检验开始日期：</w:t>
+</w:r>
+<w:r w:rsidR="004F4329" w:rsidRPr="008A1401">
+<w:rPr>
+<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312" w:hint="eastAsia"/>
+<w:sz w:val="32"/>
+<w:szCs w:val="32"/>
+</w:rPr>
+<w:t xml:space="preserve"> </w:t>
+</w:r>
+<w:r w:rsidR="00A75E28" w:rsidRPr="00A75E28">
+<w:rPr>
+<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312"/>
+<w:sz w:val="32"/>
+<w:szCs w:val="32"/>
+</w:rPr>
+<w:t>${j19}</w:t>
+</w:r>
+</w:p>
+<w:p w:rsidR="00461CE6" w:rsidRDefault="00C31E1C" w:rsidP="00562F08">
+<w:pPr>
+<w:rPr>
+<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312"/>
+<w:kern w:val="0"/>
+<w:sz w:val="32"/>
+<w:szCs w:val="32"/>
+</w:rPr>
+</w:pPr>
+<w:r>
+<w:rPr>
+<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312" w:hint="eastAsia"/>
+<w:sz w:val="32"/>
+<w:szCs w:val="32"/>
+</w:rPr>
+<w:t>（八）</w:t>
+</w:r>
+<w:r w:rsidRPr="008A1401">
+<w:rPr>
+<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312" w:hint="eastAsia"/>
+<w:sz w:val="32"/>
+<w:szCs w:val="32"/>
+</w:rPr>
+<w:t>检验地点：</w:t>
+</w:r>
+<w:r w:rsidR="00DF4266" w:rsidRPr="00DF4266">
+<w:rPr>
+<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312"/>
+<w:kern w:val="0"/>
+<w:sz w:val="32"/>
+<w:szCs w:val="32"/>
+</w:rPr>
+<w:t>${j20}</w:t>
+</w:r>
+</w:p>
+<w:p w:rsidR="00E76654" w:rsidRPr="00DA6029" w:rsidRDefault="00E76654" w:rsidP="00562F08">
+<w:pPr>
+<w:rPr>
+<w:rFonts w:ascii="黑体" w:eastAsia="黑体"/>
 <w:sz w:val="32"/>
 <w:szCs w:val="32"/>
 </w:rPr>
@@ -527,7 +660,7 @@
 <w:pPr>
 <w:spacing w:line="560" w:lineRule="exact"/>
 <w:rPr>
-<w:rFonts w:ascii="黑体" w:eastAsia="黑体" w:hint="eastAsia"/>
+<w:rFonts w:ascii="黑体" w:eastAsia="黑体"/>
 <w:sz w:val="32"/>
 <w:szCs w:val="32"/>
 </w:rPr>
@@ -540,8 +673,6 @@
 </w:rPr>
 <w:t>三、论证</w:t>
 </w:r>
-<w:bookmarkStart w:id="0" w:name="_GoBack"/>
-<w:bookmarkEnd w:id="0"/>
 </w:p>
 <w:p w:rsidR="00576764" w:rsidRDefault="00C01E7A" w:rsidP="00576764">
 <w:pPr>
@@ -566,7 +697,7 @@
 <w:pPr>
 <w:spacing w:line="560" w:lineRule="exact"/>
 <w:rPr>
-<w:rFonts w:ascii="黑体" w:eastAsia="黑体" w:hint="eastAsia"/>
+<w:rFonts w:ascii="黑体" w:eastAsia="黑体"/>
 <w:sz w:val="32"/>
 <w:szCs w:val="32"/>
 </w:rPr>
@@ -733,6 +864,7 @@
 <w:sz w:val="32"/>
 <w:szCs w:val="32"/>
 </w:rPr>
+<w:lastRenderedPageBreak/>
 <w:t>授权签字人:</w:t>
 </w:r>
 <w:r w:rsidR="00CF648F">
@@ -774,7 +906,7 @@
 <w:spacing w:line="360" w:lineRule="auto"/>
 <w:ind w:left="4200" w:firstLine="420"/>
 <w:rPr>
-<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312" w:hint="eastAsia"/>
+<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312"/>
 <w:sz w:val="32"/>
 <w:szCs w:val="32"/>
 </w:rPr>
@@ -785,7 +917,7 @@
 <w:spacing w:line="360" w:lineRule="auto"/>
 <w:ind w:firstLineChars="900" w:firstLine="2880"/>
 <w:rPr>
-<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312" w:hint="eastAsia"/>
+<w:rFonts w:ascii="仿宋_GB2312" w:eastAsia="仿宋_GB2312"/>
 <w:sz w:val="32"/>
 <w:szCs w:val="32"/>
 </w:rPr>
@@ -823,14 +955,14 @@
 <pkg:xmlData>
 <w:footnotes mc:Ignorable="w14 w15 wp14" xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml" xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup" xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape">
 <w:footnote w:type="separator" w:id="-1">
-<w:p w:rsidR="00925D2F" w:rsidRDefault="00925D2F">
+<w:p w:rsidR="008D5F64" w:rsidRDefault="008D5F64">
 <w:r>
 <w:separator/>
 </w:r>
 </w:p>
 </w:footnote>
 <w:footnote w:type="continuationSeparator" w:id="0">
-<w:p w:rsidR="00925D2F" w:rsidRDefault="00925D2F">
+<w:p w:rsidR="008D5F64" w:rsidRDefault="008D5F64">
 <w:r>
 <w:continuationSeparator/>
 </w:r>
@@ -843,14 +975,14 @@
 <pkg:xmlData>
 <w:endnotes mc:Ignorable="w14 w15 wp14" xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml" xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup" xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape">
 <w:endnote w:type="separator" w:id="-1">
-<w:p w:rsidR="00925D2F" w:rsidRDefault="00925D2F">
+<w:p w:rsidR="008D5F64" w:rsidRDefault="008D5F64">
 <w:r>
 <w:separator/>
 </w:r>
 </w:p>
 </w:endnote>
 <w:endnote w:type="continuationSeparator" w:id="0">
-<w:p w:rsidR="00925D2F" w:rsidRDefault="00925D2F">
+<w:p w:rsidR="008D5F64" w:rsidRDefault="008D5F64">
 <w:r>
 <w:continuationSeparator/>
 </w:r>
@@ -886,7 +1018,7 @@
 <w:spacing w:line="340" w:lineRule="exact"/>
 <w:ind w:leftChars="-85" w:left="-178" w:rightChars="-156" w:right="-328"/>
 <w:rPr>
-<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:hint="eastAsia"/>
+<w:rFonts w:ascii="宋体" w:hAnsi="宋体"/>
 <w:szCs w:val="21"/>
 </w:rPr>
 </w:pPr>
@@ -897,9 +1029,6 @@
 <w:snapToGrid w:val="0"/>
 <w:spacing w:line="340" w:lineRule="exact"/>
 <w:ind w:leftChars="-85" w:left="-178" w:rightChars="-156" w:right="-328"/>
-<w:rPr>
-<w:rFonts w:hint="eastAsia"/>
-</w:rPr>
 </w:pPr>
 <w:r>
 <w:rPr>
@@ -981,7 +1110,7 @@
 </w:rPr>
 <w:fldChar w:fldCharType="separate"/>
 </w:r>
-<w:r w:rsidR="008C3B80">
+<w:r w:rsidR="003E3693">
 <w:rPr>
 <w:noProof/>
 <w:kern w:val="0"/>
@@ -1029,12 +1158,12 @@
 </w:rPr>
 <w:t xml:space="preserve"> </w:t>
 </w:r>
-<w:r w:rsidR="0043216F">
+<w:r w:rsidR="007669FB">
 <w:rPr>
 <w:rFonts w:hint="eastAsia"/>
 <w:kern w:val="0"/>
 </w:rPr>
-<w:t>4</w:t>
+<w:t>2</w:t>
 </w:r>
 <w:r>
 <w:rPr>
@@ -1385,7 +1514,7 @@
 <pkg:part pkg:name="/word/settings.xml" pkg:contentType="application/vnd.openxmlformats-officedocument.wordprocessingml.settings+xml">
 <pkg:xmlData>
 <w:settings mc:Ignorable="w14 w15" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml" xmlns:sl="http://schemas.openxmlformats.org/schemaLibrary/2006/main">
-<w:zoom w:percent="100"/>
+<w:zoom w:percent="110"/>
 <w:bordersDoNotSurroundHeader/>
 <w:bordersDoNotSurroundFooter/>
 <w:stylePaneFormatFilter w:val="3F01" w:allStyles="1" w:customStyles="0" w:latentStyles="0" w:stylesInUse="0" w:headingStyles="0" w:numberingStyles="0" w:tableStyles="0" w:directFormattingOnRuns="1" w:directFormattingOnParagraphs="1" w:directFormattingOnNumbering="1" w:directFormattingOnTables="1" w:clearFormatting="1" w:top3HeadingStyles="1" w:visibleStyles="0" w:alternateStyleNames="0"/>
@@ -1440,16 +1569,22 @@
 <w:rsids>
 <w:rsidRoot w:val="00864A1A"/>
 <w:rsid w:val="00032CF8"/>
+<w:rsid w:val="000644F1"/>
 <w:rsid w:val="0009732D"/>
 <w:rsid w:val="000A1601"/>
 <w:rsid w:val="000C389C"/>
 <w:rsid w:val="001711A6"/>
 <w:rsid w:val="001A5DDE"/>
 <w:rsid w:val="001B4077"/>
+<w:rsid w:val="001C3713"/>
 <w:rsid w:val="001C5B72"/>
 <w:rsid w:val="001E1140"/>
+<w:rsid w:val="002265E3"/>
+<w:rsid w:val="002457F1"/>
 <w:rsid w:val="002563CA"/>
+<w:rsid w:val="002A6682"/>
 <w:rsid w:val="002C50A1"/>
+<w:rsid w:val="002C6949"/>
 <w:rsid w:val="002F433A"/>
 <w:rsid w:val="0034781D"/>
 <w:rsid w:val="0036606C"/>
@@ -1457,6 +1592,7 @@
 <w:rsid w:val="003930FB"/>
 <w:rsid w:val="003D4BF6"/>
 <w:rsid w:val="003E039E"/>
+<w:rsid w:val="003E3693"/>
 <w:rsid w:val="003E536F"/>
 <w:rsid w:val="003E7161"/>
 <w:rsid w:val="003F0B85"/>
@@ -1467,18 +1603,24 @@
 <w:rsid w:val="0043216F"/>
 <w:rsid w:val="0044099F"/>
 <w:rsid w:val="00441C1E"/>
+<w:rsid w:val="00444A0E"/>
 <w:rsid w:val="00454782"/>
+<w:rsid w:val="00461CE6"/>
 <w:rsid w:val="004706A0"/>
 <w:rsid w:val="004B0365"/>
 <w:rsid w:val="004D1B45"/>
 <w:rsid w:val="004D798D"/>
 <w:rsid w:val="004E6B94"/>
 <w:rsid w:val="004F0D9C"/>
+<w:rsid w:val="004F4329"/>
 <w:rsid w:val="00505719"/>
 <w:rsid w:val="00534E65"/>
 <w:rsid w:val="00560874"/>
+<w:rsid w:val="00562F08"/>
+<w:rsid w:val="00564433"/>
 <w:rsid w:val="00576764"/>
 <w:rsid w:val="005838F8"/>
+<w:rsid w:val="005958CF"/>
 <w:rsid w:val="005E3DCC"/>
 <w:rsid w:val="005E6B23"/>
 <w:rsid w:val="005F52E3"/>
@@ -1488,7 +1630,10 @@
 <w:rsid w:val="00645317"/>
 <w:rsid w:val="00694E75"/>
 <w:rsid w:val="006A66AE"/>
+<w:rsid w:val="0071323D"/>
 <w:rsid w:val="007267D0"/>
+<w:rsid w:val="007669FB"/>
+<w:rsid w:val="00785141"/>
 <w:rsid w:val="007A4643"/>
 <w:rsid w:val="007B0498"/>
 <w:rsid w:val="007B3000"/>
@@ -1502,33 +1647,47 @@
 <w:rsid w:val="0087138D"/>
 <w:rsid w:val="00897272"/>
 <w:rsid w:val="008C3B80"/>
+<w:rsid w:val="008C786E"/>
+<w:rsid w:val="008D5F64"/>
 <w:rsid w:val="008E3CB2"/>
 <w:rsid w:val="0091067D"/>
 <w:rsid w:val="00925D2F"/>
+<w:rsid w:val="00932689"/>
+<w:rsid w:val="009D015B"/>
 <w:rsid w:val="00A269DC"/>
 <w:rsid w:val="00A451F2"/>
 <w:rsid w:val="00A648A8"/>
 <w:rsid w:val="00A676F4"/>
+<w:rsid w:val="00A75E28"/>
 <w:rsid w:val="00A801EE"/>
 <w:rsid w:val="00A8540C"/>
 <w:rsid w:val="00AA29F1"/>
 <w:rsid w:val="00AD5DBE"/>
 <w:rsid w:val="00AD66E8"/>
 <w:rsid w:val="00AE15E3"/>
+<w:rsid w:val="00B06E32"/>
+<w:rsid w:val="00B7045B"/>
 <w:rsid w:val="00B76569"/>
 <w:rsid w:val="00B97703"/>
+<w:rsid w:val="00BB46D4"/>
 <w:rsid w:val="00C01E7A"/>
 <w:rsid w:val="00C21B2A"/>
+<w:rsid w:val="00C31E1C"/>
+<w:rsid w:val="00C529F5"/>
 <w:rsid w:val="00CB2F0C"/>
+<w:rsid w:val="00CC692B"/>
 <w:rsid w:val="00CD39CC"/>
 <w:rsid w:val="00CF648F"/>
 <w:rsid w:val="00D04821"/>
+<w:rsid w:val="00D159B3"/>
 <w:rsid w:val="00D17B45"/>
 <w:rsid w:val="00D526AE"/>
 <w:rsid w:val="00D745CA"/>
 <w:rsid w:val="00D8533C"/>
 <w:rsid w:val="00DA6029"/>
 <w:rsid w:val="00DB442C"/>
+<w:rsid w:val="00DC19A7"/>
+<w:rsid w:val="00DF4266"/>
 <w:rsid w:val="00E72B9E"/>
 <w:rsid w:val="00E76654"/>
 <w:rsid w:val="00F21D5C"/>
@@ -1587,7 +1746,6 @@
 </w:div>
 </w:divs>
 <w:optimizeForBrowser/>
-<w:targetScreenSz w:val="800x600"/>
 </w:webSettings>
 </pkg:xmlData>
 </pkg:part>
@@ -1619,6 +1777,50 @@
 <w:lsdException w:name="Subtitle" w:qFormat="1"/>
 <w:lsdException w:name="Strong" w:qFormat="1"/>
 <w:lsdException w:name="Emphasis" w:qFormat="1"/>
+<w:lsdException w:name="Normal Table" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Simple 1" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Simple 2" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Simple 3" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Classic 1" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Classic 2" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Classic 3" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Classic 4" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Colorful 1" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Colorful 2" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Colorful 3" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Columns 1" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Columns 2" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Columns 3" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Columns 4" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Columns 5" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Grid 1" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Grid 2" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Grid 3" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Grid 4" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Grid 5" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Grid 6" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Grid 7" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Grid 8" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table List 1" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table List 2" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table List 3" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table List 4" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table List 5" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table List 6" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table List 7" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table List 8" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table 3D effects 1" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table 3D effects 2" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table 3D effects 3" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Contemporary" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Elegant" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Professional" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Subtle 1" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Subtle 2" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Web 1" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Web 2" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Web 3" w:semiHidden="1" w:unhideWhenUsed="1"/>
+<w:lsdException w:name="Table Theme" w:semiHidden="1" w:unhideWhenUsed="1"/>
 <w:lsdException w:name="Placeholder Text" w:semiHidden="1" w:uiPriority="99"/>
 <w:lsdException w:name="No Spacing" w:uiPriority="1" w:qFormat="1"/>
 <w:lsdException w:name="Light Shading" w:uiPriority="60"/>
@@ -1850,11 +2052,15 @@
 </w:style>
 <w:style w:type="character" w:default="1" w:styleId="a0">
 <w:name w:val="Default Paragraph Font"/>
+<w:uiPriority w:val="1"/>
 <w:semiHidden/>
+<w:unhideWhenUsed/>
 </w:style>
 <w:style w:type="table" w:default="1" w:styleId="a1">
 <w:name w:val="Normal Table"/>
+<w:uiPriority w:val="99"/>
 <w:semiHidden/>
+<w:unhideWhenUsed/>
 <w:tblPr>
 <w:tblInd w:w="0" w:type="dxa"/>
 <w:tblCellMar>
@@ -1867,7 +2073,9 @@
 </w:style>
 <w:style w:type="numbering" w:default="1" w:styleId="a2">
 <w:name w:val="No List"/>
+<w:uiPriority w:val="99"/>
 <w:semiHidden/>
+<w:unhideWhenUsed/>
 </w:style>
 <w:style w:type="paragraph" w:styleId="a3">
 <w:name w:val="Balloon Text"/>
@@ -1966,7 +2174,7 @@
 <w:charset w:val="86"/>
 <w:family w:val="modern"/>
 <w:pitch w:val="fixed"/>
-<w:sig w:usb0="00000001" w:usb1="080E0000" w:usb2="00000010" w:usb3="00000000" w:csb0="00040000" w:csb1="00000000"/>
+<w:sig w:usb0="00000000" w:usb1="080E0000" w:usb2="00000010" w:usb3="00000000" w:csb0="00040000" w:csb1="00000000"/>
 </w:font>
 <w:font w:name="黑体">
 <w:altName w:val="SimHei"/>
@@ -2004,8 +2212,8 @@
 <cp:lastModifiedBy>Administrator</cp:lastModifiedBy>
 <cp:revision>2</cp:revision>
 <cp:lastPrinted>2017-10-19T08:47:00Z</cp:lastPrinted>
-<dcterms:created xsi:type="dcterms:W3CDTF">2018-05-09T15:37:00Z</dcterms:created>
-<dcterms:modified xsi:type="dcterms:W3CDTF">2018-05-09T15:37:00Z</dcterms:modified>
+<dcterms:created xsi:type="dcterms:W3CDTF">2018-05-10T12:51:00Z</dcterms:created>
+<dcterms:modified xsi:type="dcterms:W3CDTF">2018-05-10T12:51:00Z</dcterms:modified>
 </cp:coreProperties>
 </pkg:xmlData>
 </pkg:part>
@@ -2263,18 +2471,18 @@
 <pkg:xmlData>
 <Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes">
 <Template>Normal.dotm</Template>
-<TotalTime>1</TotalTime>
-<Pages>1</Pages>
-<Words>41</Words>
-<Characters>238</Characters>
+<TotalTime>0</TotalTime>
+<Pages>2</Pages>
+<Words>49</Words>
+<Characters>285</Characters>
 <Application>Microsoft Office Word</Application>
 <DocSecurity>0</DocSecurity>
-<Lines>1</Lines>
+<Lines>2</Lines>
 <Paragraphs>1</Paragraphs>
 <ScaleCrop>false</ScaleCrop>
 <Company>新美公司</Company>
 <LinksUpToDate>false</LinksUpToDate>
-<CharactersWithSpaces>278</CharactersWithSpaces>
+<CharactersWithSpaces>333</CharactersWithSpaces>
 <SharedDoc>false</SharedDoc>
 <HyperlinksChanged>false</HyperlinksChanged>
 <AppVersion>15.0000</AppVersion>
