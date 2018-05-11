@@ -114,7 +114,7 @@ function Preview_EntrustmentBook(obj) {
 											"&nbsp;")
 							+ '</td></tr>'
 							+ '<tr><td colspan="2">'
-							+ (type == '痕迹' ? '送检的检材和样本等情况（包括名称、数量、性状、包装，检材提取部位和方法等）'
+							+ (json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request == '痕迹' ? '送检的检材和样本等情况（包括名称、数量、性状、包装，检材提取部位和方法等）'
 									: '送检材料')
 					'</td><td colspan="7" style="text-align: left;">'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_sample_situation
