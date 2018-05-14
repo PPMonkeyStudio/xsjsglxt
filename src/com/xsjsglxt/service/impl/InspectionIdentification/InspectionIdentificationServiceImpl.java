@@ -2300,6 +2300,18 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				xsjsglxt_check_entrustment_book = inspectionIdentificationDao
 						.getCheckEntrustmentBookById(xsjsglxt_identifieder_case_confirm_book
 								.getIdentifieder_case_confirm_book_belong_entrustment_book().trim());
+
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_type() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_type().trim().length() > 0) {
+					if ("痕迹".equals(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_type())) {
+						params.put("a17", "痕");
+					} else {
+						params.put("a17", "法");
+					}
+				} else {
+					params.put("a17", "");
+				}
+
 				// 将属于委托书表中的数据替换进去
 				// 第一个：委托日期
 				// 因为再存储的时候,日期的格式一定一致,所以不会出现错误
