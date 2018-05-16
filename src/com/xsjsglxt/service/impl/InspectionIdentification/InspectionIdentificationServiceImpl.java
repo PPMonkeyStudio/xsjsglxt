@@ -2408,21 +2408,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			} else {
 				params.put("a13", "");
 			}
-			// 这个领取日期似乎不是那么好确定
-			if (xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_receive_data() != null
-					&& xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_receive_data().trim()
-							.length() > 0) {
-				params.put("a14", TeamUtil.timeToYear(xsjsglxt_identifieder_case_confirm_book
-						.getIdentifieder_case_confirm_book_receive_data().trim()));
-				params.put("a15", TeamUtil.timeToMonth(xsjsglxt_identifieder_case_confirm_book
-						.getIdentifieder_case_confirm_book_receive_data().trim()));
-				params.put("a16", TeamUtil.timeToDay(xsjsglxt_identifieder_case_confirm_book
-						.getIdentifieder_case_confirm_book_receive_data().trim()));
-			} else {
-				params.put("a14", "");
-				params.put("a15", "");
-				params.put("a16", "");
-			}
+			
 		}
 		return params;
 	}
