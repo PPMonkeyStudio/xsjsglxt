@@ -154,14 +154,15 @@
 								<tbody>
 									<tr>
 										<td>序号</td>
-										<td><input class="form-control" readonly="readonly"
-											style="width: 100px;" name="handle.handle_orderNumber"
+										<td width="50px;"><input class="form-control"
+											readonly="readonly" name="handle.handle_orderNumber"
 											type="text"></td>
-										<td>案件名称</td>
-										<td><select class="form-control" data-live-search="true"
-											name="handle.handle_Case"></select></td>
-										<td>违法嫌疑人姓名</td>
+										<td width="70px">案件名称</td>
 										<td><input class="form-control"
+											name="handle.handle_administrativeCase"> <%-- <select class="form-control" data-live-search="true"
+											name="handle.handle_Case"></select> --%></td>
+										<td width="130px">违法嫌疑人姓名</td>
+										<td width="70px;"><input class="form-control"
 											name="handle.handle_suspectName" type="text"></td>
 									</tr>
 								</tbody>
