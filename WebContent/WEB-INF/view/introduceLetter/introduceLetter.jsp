@@ -123,7 +123,7 @@ table tr:hover {
 										v-if="letter.introduce_approve_status=='已审批' && letter_admin_power">
 									<button class="btn btn-primary"
 										:id='letter.xsjsglxt_introduce_letter_id'
-										onclick='showApproveStup(this)'><i class="fa fa-table"></i>查看审批存根</button>
+										onclick='showApproveStup(this)'><i class="fa fa-table"></i>存根</button>
 									</template>
 								</td>
 					</tr>

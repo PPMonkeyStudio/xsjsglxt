@@ -183,9 +183,11 @@ var outAll = function() {
 var changeDuty = function(event) {
 	$
 			.ajax({
-				type : 'GET',
-				url : '/xsjsglxt/team/Staff_getAllStaff?query_duty='
-						+ event.value,
+				type : 'POST',
+				url : '/xsjsglxt/team/Staff_getAllStaff',
+				data : {
+					'query_duty' : event.value
+				},
 				success : function(data) {
 					var jsonData = JSON.parse(data);
 					var str = '';
@@ -218,14 +220,15 @@ var createScheduling = function() {
 				useBootstrap : false,
 				title : '<i class="fa fa-pencil-square-o"></i>新增排班',
 				type : 'green',
-				content : '<table class="table bordered-table" style="text-align:center;"><tr><td><button onclick="chooseStaff(\'leader\')" class="btn btn-default">带班领导</button></td><td colspan="2"  class="contentName"><input id="leader" style="width: 250px;" class="form-control" readonly="true"></td></tr>'
-						+ '<tr><td><button onclick="chooseStaff(\'main\')" class="btn btn-default">侦查民警</button></td><td colspan="2" class="contentName"><input id="main" style="width: 250px;" class="form-control" readonly="true"></td></tr>'
-						+ '<tr><td><button onclick="chooseStaff(\'mainTech\')" class="btn btn-default">技术民警</button></td><td class="contentName"><input id="mainTech" style="width: 250px;" class="form-control" readonly="true"></td><td><select class="form-control" id="personNumber"><option value="1">单人</option><option value="2">双人</option></select></td></tr>'
-						+ '<tr><td><button onclick="chooseStaff(\'mainDoctor\')" class="btn btn-default">法医民警</button></td><td colspan="2" class="contentName"><input id="mainDoctor" style="width: 250px;" class="form-control" readonly="true"></td></tr>'
-						+ '<tr><td><button onclick="chooseStaff(\'assistantSpy\')" class="btn btn-default">侦查辅警</button></td><td colspan="2" class="contentName"><input id="assistantSpy" style="width: 250px;" class="form-control" readonly="true"></td></tr>'
-						+ '<tr><td><button onclick="chooseStaff(\'assistantTech\')" class="btn btn-default">技术辅警</button></td><td colspan="2" class="contentName"><input id="assistantTech" style="width: 250px;" class="form-control" readonly="true"></td></tr>'
-						+ '<tr><td>值班首日：</td><td colspan="2"><input id="scheTime" style="width:250px" class="form-control timeDate"></td></tr>'
-						+ '<tr><td>安排天数：</td><td colspan="2"><input id="dayTime" style="width:250px" class="form-control" placeholder="请输入数字"></td></tr></table>',
+				content : '<table class="table bordered-table" style="text-align:center;">'
+						+ '<tr><td>带班领导：</td><td   class="contentName"><input id="leader" style="width: 250px;" class="form-control" readonly="true"></td><td colspan="2" style="text-align:left;"><button onclick="chooseStaff(\'leader\')" class="btn btn-default"><i class="fa fa-plus-square"></i></button></td></tr>'
+						+ '<tr><td>侦查民警：</td><td  class="contentName"><input id="main" style="width: 250px;" class="form-control" readonly="true"></td><td colspan="2" style="text-align:left;"><button onclick="chooseStaff(\'main\')" class="btn btn-default"><i class="fa fa-plus-square"></i></button></td></tr>'
+						+ '<tr><td>技术民警：</td><td class="contentName"><input id="mainTech" style="width: 250px;" class="form-control" readonly="true"></td><td colspan="1" style="text-align:left;"><button onclick="chooseStaff(\'mainTech\')" class="btn btn-default"><i class="fa fa-plus-square"></i></button></td><td><select class="form-control" id="personNumber"><option value="1">单人</option><option value="2">双人</option></select></td></tr>'
+						+ '<tr><td>法医民警：</td><td  class="contentName"><input id="mainDoctor" style="width: 250px;" class="form-control" readonly="true"></td><td colspan="2" style="text-align:left;"><button onclick="chooseStaff(\'mainDoctor\')" class="btn btn-default"><i class="fa fa-plus-square"></i></button></td></tr>'
+						+ '<tr><td>侦查辅警：</td><td  class="contentName"><input id="assistantSpy" style="width: 250px;" class="form-control" readonly="true"></td><td colspan="2" style="text-align:left;"><button onclick="chooseStaff(\'assistantSpy\')" class="btn btn-default"><i class="fa fa-plus-square"></i></button></td></tr>'
+						+ '<tr><td>技术辅警：</td><td  class="contentName"><input id="assistantTech" style="width: 250px;" class="form-control" readonly="true"></td><td colspan="2" style="text-align:left;"><button onclick="chooseStaff(\'assistantTech\')" class="btn btn-default"><i class="fa fa-plus-square"></i></button></td></tr>'
+						+ '<tr><td>值班首日：</td><td colspan="3"><input id="scheTime" style="width:250px" class="form-control timeDate"></td></tr>'
+						+ '<tr><td>安排天数：</td><td colspan="3"><input id="dayTime" style="width:250px" class="form-control" placeholder="请输入数字"></td></tr></table>',
 				buttons : {
 					save : {
 						text : '<i class="fa fa-upload" aria-hidden="true"></i>保存',

@@ -56,13 +56,6 @@ public class StaffAction extends ActionSupport {
 	}
 
 	public void getAllStaff() {
-		if (query_duty != null)
-			try {
-				query_duty = new String(query_duty.getBytes("ISO-8859-1"), "utf-8");
-			} catch (UnsupportedEncodingException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
 		List<xsjsglxt_staff> list = staffService.getAllStaffByDuty(query_duty);
 		Gson gson = new Gson();
 		HttpServletResponse response = ServletActionContext.getResponse();
