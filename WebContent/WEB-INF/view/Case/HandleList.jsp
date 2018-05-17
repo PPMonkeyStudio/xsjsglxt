@@ -161,8 +161,8 @@
 										<td><input class="form-control"
 											name="handle.handle_administrativeCase"> <%-- <select class="form-control" data-live-search="true"
 											name="handle.handle_Case"></select> --%></td>
-										<td width="130px">违法嫌疑人姓名</td>
-										<td width="70px;"><input class="form-control"
+										<td width="110px">违法嫌疑人姓名</td>
+										<td width="150px;"><input class="form-control"
 											name="handle.handle_suspectName" type="text"></td>
 									</tr>
 								</tbody>
@@ -190,7 +190,7 @@
 											name="handle.handle_detentionDay">
 												<option value="3">3天</option>
 												<option value="7">7天</option>
-												<option value="20">20天</option>
+												<option value="30">30天</option>
 										</select></td>
 									</tr>
 									<tr>

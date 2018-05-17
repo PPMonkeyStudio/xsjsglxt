@@ -258,6 +258,14 @@ $(function() {
 		}
 	});
 
+	$('select[name="handle.handle_detentionDay"]').change(function() {
+		var begindate = $('input[name="handle.handle_StartTimeaOfDetention"]').val();
+		if (begindate) {
+			var days = $(this).val();
+			$('input[name="handle.handle_arrestTime"]').val(addDate(begindate, days));
+		}
+	});
+
 })
 
 function get_ListHandleInformationByPageAndSearch(data) {
