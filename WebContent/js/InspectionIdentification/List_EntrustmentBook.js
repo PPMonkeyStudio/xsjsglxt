@@ -92,7 +92,12 @@ function List_EntrustmentBook(pageIndex) {
 					 */
 					new_td = document.createElement("td");
 					new_tr.appendChild(new_td);
-					new_td.innerHTML = EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_type;
+					if (EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_type == "痕迹") {
+						new_td.innerHTML = "通用";
+					} else {
+						new_td.innerHTML = EntrustmentBook_json.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_type;
+					}
+
 					/*
 					 * 状态
 					 */

@@ -1,13 +1,8 @@
 package com.xsjsglxt.action.InspectionIdentification;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -189,7 +184,6 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 
 	// 点击进入检验鉴定委托管理
 	public String EntrustmentBookManagement() {
-		System.out.println("asdasd:\nsfsffs");
 		return "EntrustmentBookManagement";
 	}
 
