@@ -90,6 +90,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	 * @return listEnstrustment委托书列表
 	 */
 	public void getListEntrustmentByCaseId() {
+
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
@@ -179,6 +180,7 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 
 	// 点击进入检验鉴定委托管理
 	public String EntrustmentBookManagement() {
+		System.out.println("asdasd:\nsfsffs");
 		return "EntrustmentBookManagement";
 	}
 
@@ -380,7 +382,8 @@ public class InspectionIdentificationAction extends ActionSupport implements Ser
 	public void updateDamageInspectionRecord() {
 		try {
 			response.setContentType("text/html;charset=utf-8");
-			//System.out.println("lplp:" + damageInspectionRecord.getDamage_inspection_record_belong_entrustment_book());
+			// System.out.println("lplp:" +
+			// damageInspectionRecord.getDamage_inspection_record_belong_entrustment_book());
 			response.getWriter().write("" + inspectionIdentificationService
 					.updateDamageInspectionRecord(damageInspectionRecord, death, deathFileName, positionFile));
 		} catch (IOException e) {
