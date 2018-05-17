@@ -9,5 +9,10 @@
 				/WEB-INF/view/Statistics/staftistics_main.jsp
 			</result>
 		</action>
+		<action name="Expenditure_*" class="com.xsjsglxt.action.Statistics.ExpenditureAction" method="{1}">
+			<result name="intoMain">
+				/WEB-INF/view/Statistics/expenditure_main.jsp
+			</result>
+		</action>
 	</package>
 </struts>
