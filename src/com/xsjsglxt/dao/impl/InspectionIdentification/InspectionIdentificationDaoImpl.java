@@ -189,7 +189,7 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 		}
 		hql = hql + " and check_entrustment_book_inspect_time>='" + startTime
 				+ "' and check_entrustment_book_inspect_time<='" + stopTime
-				+ "' order by check_entrustment_book_inspect_time,check_entrustment_book_num desc";
+				+ "' order by check_entrustment_book_inspect_time desc";
 		Query query = getSession().createQuery(hql);
 		query.setFirstResult((checkEntrustmentBookVO.getPageIndex() - 1) * checkEntrustmentBookVO.getPageSize());
 		query.setMaxResults(checkEntrustmentBookVO.getPageSize());
@@ -576,8 +576,7 @@ public class InspectionIdentificationDaoImpl implements InspectionIdentification
 	}
 
 	/**
-	 * @author 孙毅
-	 * 保存检验记录
+	 * @author 孙毅 保存检验记录
 	 */
 
 	@Override

@@ -20,8 +20,6 @@
 <script src="<%=basePath%>js/Scheduling/showSchedulingList.js"></script>
 <script src="<%=basePath%>js/Scheduling/selectCheckBox.js"></script>
 <script src="<%=basePath%>js/Scheduling/managerScheduling.js"></script>
-<script type="text/javascript"
-	src="<%=basePath%>js/Case/defaults-zh_CN.js"></script>
 <style type="text/css">
 .pageOperation {
 	cursor: pointer;
@@ -117,11 +115,11 @@ i {
 							<td rowspan="2">出差人员</td>
 						</tr>
 						<tr style="height: 30; color: black;">
-							<td>侦查值班人员</td>
-							<td>技术值班人员</td>
-							<td>法医值班人员</td>
-							<td>侦查值班辅警</td>
-							<td>技术值班辅警</td>
+							<td>侦查值班</td>
+							<td>技术值班</td>
+							<td>法医值班</td>
+							<td>侦查辅警</td>
+							<td>技术辅警</td>
 						</tr>
 					</thead>
 					<tbody>

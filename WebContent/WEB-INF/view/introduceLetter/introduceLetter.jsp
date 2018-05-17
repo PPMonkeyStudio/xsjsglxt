@@ -123,7 +123,7 @@ table tr:hover {
 										v-if="letter.introduce_approve_status=='已审批' && letter_admin_power">
 									<button class="btn btn-primary"
 										:id='letter.xsjsglxt_introduce_letter_id'
-										onclick='showApproveStup(this)'><i class="fa fa-table"></i>查看审批存根</button>
+										onclick='showApproveStup(this)'><i class="fa fa-table"></i>存根</button>
 									</template>
 								</td>
 					</tr>
@@ -132,6 +132,7 @@ table tr:hover {
 				<div id="bottomPage" style="padding: 20px;">
 					<span>当前页数:<span id="currPage">{{ allData.currPage }}</span></span>
 					<span>共:<span id="totalPage">{{ allData.totalPage }}</span>页
+					<span>共:<span id="totalCount">{{ allData.totalCount }}</span>条数据
 					</span> <span onclick="skipToIndexPage()" id="indexPage"
 						class="pageOperation">首页</span> <span
 						onclick="skipToPrimaryPage()" id="previousPage"

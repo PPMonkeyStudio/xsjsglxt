@@ -423,14 +423,6 @@
 </w:rPr>
 <w:t>${p5}</w:t>
 </w:r>
-<w:r>
-<w:rPr>
-<w:rFonts w:ascii="仿宋" w:eastAsia="仿宋" w:hAnsi="仿宋" w:hint="eastAsia"/>
-<w:sz w:val="30"/>
-<w:szCs w:val="30"/>
-</w:rPr>
-<w:t>.</w:t>
-</w:r>
 </w:p>
 <w:p w:rsidR="00DB39DF" w:rsidRPr="00DB39DF" w:rsidRDefault="00DB39DF" w:rsidP="008B18B3">
 <w:pPr>
@@ -457,14 +449,6 @@
 <w:szCs w:val="30"/>
 </w:rPr>
 <w:t>${p6}</w:t>
-</w:r>
-<w:r>
-<w:rPr>
-<w:rFonts w:ascii="仿宋" w:eastAsia="仿宋" w:hAnsi="仿宋" w:hint="eastAsia"/>
-<w:sz w:val="30"/>
-<w:szCs w:val="30"/>
-</w:rPr>
-<w:t>。</w:t>
 </w:r>
 </w:p>
 <w:p w:rsidR="00A82383" w:rsidRPr="001B723B" w:rsidRDefault="00DB39DF" w:rsidP="008B18B3">
@@ -500,14 +484,6 @@
 <w:szCs w:val="30"/>
 </w:rPr>
 <w:t>${p7}</w:t>
-</w:r>
-<w:r w:rsidR="0052057A" w:rsidRPr="001B723B">
-<w:rPr>
-<w:rFonts w:ascii="仿宋" w:eastAsia="仿宋" w:hAnsi="仿宋" w:hint="eastAsia"/>
-<w:sz w:val="32"/>
-<w:szCs w:val="32"/>
-</w:rPr>
-<w:t>。</w:t>
 </w:r>
 </w:p>
 <w:p w:rsidR="00A82383" w:rsidRPr="001B723B" w:rsidRDefault="00DB39DF" w:rsidP="008B18B3">
@@ -857,8 +833,6 @@
 </w:rPr>
 <w:t>${p15}</w:t>
 </w:r>
-<w:bookmarkStart w:id="0" w:name="_GoBack"/>
-<w:bookmarkEnd w:id="0"/>
 </w:p>
 <w:p w:rsidR="006025C3" w:rsidRDefault="006025C3" w:rsidP="005076EE">
 <w:pPr>
@@ -927,6 +901,51 @@
 <w:t>${p17}</w:t>
 </w:r>
 </w:p>
+<w:p w:rsidR="00500896" w:rsidRDefault="00766332" w:rsidP="00766332">
+<w:pPr>
+<w:spacing w:line="520" w:lineRule="exact"/>
+<w:ind w:left="660" w:firstLineChars="700" w:firstLine="2100"/>
+<w:rPr>
+<w:rFonts w:ascii="仿宋" w:eastAsia="仿宋" w:hAnsi="仿宋"/>
+<w:sz w:val="30"/>
+<w:szCs w:val="30"/>
+</w:rPr>
+</w:pPr>
+<w:r>
+<w:rPr>
+<w:rFonts w:ascii="仿宋" w:eastAsia="仿宋" w:hAnsi="仿宋" w:hint="eastAsia"/>
+<w:sz w:val="30"/>
+<w:szCs w:val="30"/>
+</w:rPr>
+<w:t>授权签字人：</w:t>
+</w:r>
+<w:r w:rsidR="00B34F92" w:rsidRPr="00B34F92">
+<w:rPr>
+<w:rFonts w:ascii="仿宋" w:eastAsia="仿宋" w:hAnsi="仿宋"/>
+<w:sz w:val="30"/>
+<w:szCs w:val="30"/>
+</w:rPr>
+<w:t>${p19}</w:t>
+</w:r>
+<w:r w:rsidR="00B34F92">
+<w:rPr>
+<w:rFonts w:ascii="仿宋" w:eastAsia="仿宋" w:hAnsi="仿宋"/>
+<w:sz w:val="30"/>
+<w:szCs w:val="30"/>
+</w:rPr>
+<w:t xml:space="preserve">    </w:t>
+</w:r>
+<w:bookmarkStart w:id="0" w:name="_GoBack"/>
+<w:bookmarkEnd w:id="0"/>
+<w:r w:rsidR="00B34F92" w:rsidRPr="00B34F92">
+<w:rPr>
+<w:rFonts w:ascii="仿宋" w:eastAsia="仿宋" w:hAnsi="仿宋"/>
+<w:sz w:val="30"/>
+<w:szCs w:val="30"/>
+</w:rPr>
+<w:t>${p20}</w:t>
+</w:r>
+</w:p>
 <w:p w:rsidR="005076EE" w:rsidRDefault="005076EE" w:rsidP="005076EE">
 <w:pPr>
 <w:spacing w:line="520" w:lineRule="exact"/>
@@ -946,13 +965,13 @@
 <w:t xml:space="preserve">       </w:t>
 </w:r>
 </w:p>
-<w:p w:rsidR="005076EE" w:rsidRDefault="005076EE" w:rsidP="005076EE">
+<w:p w:rsidR="00E83041" w:rsidRDefault="005076EE" w:rsidP="00E83041">
 <w:pPr>
 <w:spacing w:line="520" w:lineRule="exact"/>
 <w:ind w:right="600"/>
 <w:jc w:val="center"/>
 <w:rPr>
-<w:rFonts w:ascii="仿宋" w:eastAsia="仿宋" w:hAnsi="仿宋" w:hint="eastAsia"/>
+<w:rFonts w:ascii="仿宋" w:eastAsia="仿宋" w:hAnsi="仿宋"/>
 <w:sz w:val="30"/>
 <w:szCs w:val="30"/>
 </w:rPr>
@@ -963,9 +982,41 @@
 <w:sz w:val="30"/>
 <w:szCs w:val="30"/>
 </w:rPr>
-<w:t xml:space="preserve">                          </w:t>
+<w:t xml:space="preserve">                         </w:t>
 </w:r>
-<w:r w:rsidR="00983494" w:rsidRPr="00983494">
+<w:r w:rsidR="00FF7C50">
+<w:rPr>
+<w:rFonts w:ascii="仿宋" w:eastAsia="仿宋" w:hAnsi="仿宋"/>
+<w:sz w:val="30"/>
+<w:szCs w:val="30"/>
+</w:rPr>
+<w:tab/>
+</w:r>
+<w:r w:rsidR="00FF7C50">
+<w:rPr>
+<w:rFonts w:ascii="仿宋" w:eastAsia="仿宋" w:hAnsi="仿宋"/>
+<w:sz w:val="30"/>
+<w:szCs w:val="30"/>
+</w:rPr>
+<w:tab/>
+</w:r>
+<w:r w:rsidR="00FF7C50">
+<w:rPr>
+<w:rFonts w:ascii="仿宋" w:eastAsia="仿宋" w:hAnsi="仿宋"/>
+<w:sz w:val="30"/>
+<w:szCs w:val="30"/>
+</w:rPr>
+<w:tab/>
+</w:r>
+<w:r>
+<w:rPr>
+<w:rFonts w:ascii="仿宋" w:eastAsia="仿宋" w:hAnsi="仿宋" w:hint="eastAsia"/>
+<w:sz w:val="30"/>
+<w:szCs w:val="30"/>
+</w:rPr>
+<w:t xml:space="preserve"> </w:t>
+</w:r>
+<w:r w:rsidR="001D7C43">
 <w:rPr>
 <w:rFonts w:ascii="仿宋" w:eastAsia="仿宋" w:hAnsi="仿宋"/>
 <w:sz w:val="30"/>
@@ -974,10 +1025,10 @@
 <w:t>${p18}</w:t>
 </w:r>
 </w:p>
-<w:p w:rsidR="00A82383" w:rsidRPr="001B723B" w:rsidRDefault="005076EE" w:rsidP="005076EE">
+<w:p w:rsidR="00A82383" w:rsidRPr="001B723B" w:rsidRDefault="005076EE" w:rsidP="00E83041">
 <w:pPr>
-<w:spacing w:line="480" w:lineRule="exact"/>
-<w:ind w:rightChars="85" w:right="178"/>
+<w:spacing w:line="520" w:lineRule="exact"/>
+<w:ind w:right="600"/>
 <w:rPr>
 <w:rFonts w:ascii="仿宋" w:eastAsia="仿宋" w:hAnsi="仿宋" w:hint="eastAsia"/>
 <w:sz w:val="30"/>
@@ -990,7 +1041,23 @@
 <w:sz w:val="30"/>
 <w:szCs w:val="30"/>
 </w:rPr>
-<w:t xml:space="preserve">             </w:t>
+<w:t xml:space="preserve"> </w:t>
+</w:r>
+<w:r w:rsidR="00E83041">
+<w:rPr>
+<w:rFonts w:ascii="仿宋" w:eastAsia="仿宋" w:hAnsi="仿宋" w:hint="eastAsia"/>
+<w:sz w:val="30"/>
+<w:szCs w:val="30"/>
+</w:rPr>
+<w:t>附件：伤者</w:t>
+</w:r>
+<w:r w:rsidR="00E83041">
+<w:rPr>
+<w:rFonts w:ascii="仿宋" w:eastAsia="仿宋" w:hAnsi="仿宋" w:hint="eastAsia"/>
+<w:sz w:val="30"/>
+<w:szCs w:val="30"/>
+</w:rPr>
+<w:t>损伤照片</w:t>
 </w:r>
 </w:p>
 <w:sectPr w:rsidR="00A82383" w:rsidRPr="001B723B" w:rsidSect="008111E3">
@@ -1009,14 +1076,14 @@
 <pkg:xmlData>
 <w:footnotes mc:Ignorable="w14 w15 wp14" xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml" xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup" xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape">
 <w:footnote w:type="separator" w:id="-1">
-<w:p w:rsidR="00124823" w:rsidRDefault="00124823">
+<w:p w:rsidR="00335D0F" w:rsidRDefault="00335D0F">
 <w:r>
 <w:separator/>
 </w:r>
 </w:p>
 </w:footnote>
 <w:footnote w:type="continuationSeparator" w:id="0">
-<w:p w:rsidR="00124823" w:rsidRDefault="00124823">
+<w:p w:rsidR="00335D0F" w:rsidRDefault="00335D0F">
 <w:r>
 <w:continuationSeparator/>
 </w:r>
@@ -1029,14 +1096,14 @@
 <pkg:xmlData>
 <w:endnotes mc:Ignorable="w14 w15 wp14" xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml" xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup" xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape">
 <w:endnote w:type="separator" w:id="-1">
-<w:p w:rsidR="00124823" w:rsidRDefault="00124823">
+<w:p w:rsidR="00335D0F" w:rsidRDefault="00335D0F">
 <w:r>
 <w:separator/>
 </w:r>
 </w:p>
 </w:endnote>
 <w:endnote w:type="continuationSeparator" w:id="0">
-<w:p w:rsidR="00124823" w:rsidRDefault="00124823">
+<w:p w:rsidR="00335D0F" w:rsidRDefault="00335D0F">
 <w:r>
 <w:continuationSeparator/>
 </w:r>
@@ -1133,7 +1200,7 @@
 </w:rPr>
 <w:fldChar w:fldCharType="separate"/>
 </w:r>
-<w:r w:rsidR="00975558">
+<w:r w:rsidR="008A7F09">
 <w:rPr>
 <w:noProof/>
 <w:kern w:val="0"/>
@@ -1209,7 +1276,7 @@
 </w:rPr>
 <w:fldChar w:fldCharType="separate"/>
 </w:r>
-<w:r w:rsidR="00975558">
+<w:r w:rsidR="008A7F09">
 <w:rPr>
 <w:noProof/>
 <w:kern w:val="0"/>
@@ -1525,7 +1592,7 @@
 <pkg:part pkg:name="/word/settings.xml" pkg:contentType="application/vnd.openxmlformats-officedocument.wordprocessingml.settings+xml">
 <pkg:xmlData>
 <w:settings mc:Ignorable="w14 w15" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml" xmlns:sl="http://schemas.openxmlformats.org/schemaLibrary/2006/main">
-<w:zoom w:percent="100"/>
+<w:zoom w:percent="110"/>
 <w:embedSystemFonts/>
 <w:bordersDoNotSurroundHeader/>
 <w:bordersDoNotSurroundFooter/>
@@ -1590,7 +1657,6 @@
 <w:rsid w:val="000C010D"/>
 <w:rsid w:val="000C1A95"/>
 <w:rsid w:val="0011462A"/>
-<w:rsid w:val="00124823"/>
 <w:rsid w:val="00125063"/>
 <w:rsid w:val="00125C06"/>
 <w:rsid w:val="00126134"/>
@@ -1606,13 +1672,17 @@
 <w:rsid w:val="00192A9A"/>
 <w:rsid w:val="001A16F9"/>
 <w:rsid w:val="001A5C07"/>
+<w:rsid w:val="001A7117"/>
 <w:rsid w:val="001B23EF"/>
 <w:rsid w:val="001B2D3F"/>
 <w:rsid w:val="001B723B"/>
 <w:rsid w:val="001C2D88"/>
+<w:rsid w:val="001D1F9F"/>
 <w:rsid w:val="001D5300"/>
+<w:rsid w:val="001D7C43"/>
 <w:rsid w:val="001E00E0"/>
 <w:rsid w:val="001E0432"/>
+<w:rsid w:val="001E4F8E"/>
 <w:rsid w:val="001E75D1"/>
 <w:rsid w:val="00202606"/>
 <w:rsid w:val="00206877"/>
@@ -1642,6 +1712,7 @@
 <w:rsid w:val="00332F56"/>
 <w:rsid w:val="0033327F"/>
 <w:rsid w:val="003332FF"/>
+<w:rsid w:val="00335D0F"/>
 <w:rsid w:val="00371FDD"/>
 <w:rsid w:val="00380226"/>
 <w:rsid w:val="003D1F6B"/>
@@ -1661,6 +1732,7 @@
 <w:rsid w:val="004B511B"/>
 <w:rsid w:val="004E729B"/>
 <w:rsid w:val="004E79D5"/>
+<w:rsid w:val="00500896"/>
 <w:rsid w:val="005076EE"/>
 <w:rsid w:val="0052057A"/>
 <w:rsid w:val="00522A1A"/>
@@ -1674,11 +1746,14 @@
 <w:rsid w:val="005D0186"/>
 <w:rsid w:val="005D0E2F"/>
 <w:rsid w:val="005D5101"/>
+<w:rsid w:val="00602302"/>
 <w:rsid w:val="006025C3"/>
 <w:rsid w:val="00610FB3"/>
+<w:rsid w:val="00612443"/>
 <w:rsid w:val="00621444"/>
 <w:rsid w:val="00624948"/>
 <w:rsid w:val="00627218"/>
+<w:rsid w:val="00635C13"/>
 <w:rsid w:val="00646892"/>
 <w:rsid w:val="00660BE8"/>
 <w:rsid w:val="00682468"/>
@@ -1693,6 +1768,7 @@
 <w:rsid w:val="00743BCA"/>
 <w:rsid w:val="00746AA1"/>
 <w:rsid w:val="00746BBA"/>
+<w:rsid w:val="00766332"/>
 <w:rsid w:val="00771EC8"/>
 <w:rsid w:val="0078616B"/>
 <w:rsid w:val="007A3BBC"/>
@@ -1706,8 +1782,10 @@
 <w:rsid w:val="00862B25"/>
 <w:rsid w:val="008711BD"/>
 <w:rsid w:val="00874261"/>
+<w:rsid w:val="00891D15"/>
 <w:rsid w:val="008A3616"/>
 <w:rsid w:val="008A42FB"/>
+<w:rsid w:val="008A7F09"/>
 <w:rsid w:val="008B18B3"/>
 <w:rsid w:val="008B5D92"/>
 <w:rsid w:val="008C28EE"/>
@@ -1720,7 +1798,6 @@
 <w:rsid w:val="009547DD"/>
 <w:rsid w:val="00954957"/>
 <w:rsid w:val="00954F16"/>
-<w:rsid w:val="00975558"/>
 <w:rsid w:val="0097645D"/>
 <w:rsid w:val="00983494"/>
 <w:rsid w:val="00986CB0"/>
@@ -1755,6 +1832,7 @@
 <w:rsid w:val="00B22732"/>
 <w:rsid w:val="00B25A1B"/>
 <w:rsid w:val="00B322E1"/>
+<w:rsid w:val="00B34F92"/>
 <w:rsid w:val="00B420BA"/>
 <w:rsid w:val="00B559FA"/>
 <w:rsid w:val="00B65A59"/>
@@ -1767,6 +1845,7 @@
 <w:rsid w:val="00C20D5F"/>
 <w:rsid w:val="00C24C0F"/>
 <w:rsid w:val="00C25C6B"/>
+<w:rsid w:val="00C30E54"/>
 <w:rsid w:val="00C37854"/>
 <w:rsid w:val="00C6471B"/>
 <w:rsid w:val="00C84643"/>
@@ -1777,6 +1856,7 @@
 <w:rsid w:val="00CE06AD"/>
 <w:rsid w:val="00CF2701"/>
 <w:rsid w:val="00CF4730"/>
+<w:rsid w:val="00D0100C"/>
 <w:rsid w:val="00D023F5"/>
 <w:rsid w:val="00D14A57"/>
 <w:rsid w:val="00D1644D"/>
@@ -1790,19 +1870,21 @@
 <w:rsid w:val="00D86A94"/>
 <w:rsid w:val="00D90C65"/>
 <w:rsid w:val="00DB39DF"/>
+<w:rsid w:val="00DC34C0"/>
 <w:rsid w:val="00DD2DFA"/>
 <w:rsid w:val="00DE44BB"/>
-<w:rsid w:val="00DF1579"/>
 <w:rsid w:val="00DF3198"/>
 <w:rsid w:val="00E0171A"/>
 <w:rsid w:val="00E045F4"/>
 <w:rsid w:val="00E077E4"/>
 <w:rsid w:val="00E17EAA"/>
+<w:rsid w:val="00E41C0F"/>
 <w:rsid w:val="00E4592B"/>
 <w:rsid w:val="00E465C8"/>
 <w:rsid w:val="00E53B90"/>
 <w:rsid w:val="00E61863"/>
 <w:rsid w:val="00E80F37"/>
+<w:rsid w:val="00E83041"/>
 <w:rsid w:val="00E85D1D"/>
 <w:rsid w:val="00EB70BA"/>
 <w:rsid w:val="00EE7BD0"/>
@@ -1818,6 +1900,7 @@
 <w:rsid w:val="00FB4A8C"/>
 <w:rsid w:val="00FC676F"/>
 <w:rsid w:val="00FC73DD"/>
+<w:rsid w:val="00FF7C50"/>
 </w:rsids>
 <m:mathPr>
 <m:mathFont m:val="Cambria Math"/>
@@ -1844,7 +1927,7 @@
 <w:decimalSymbol w:val="."/>
 <w:listSeparator w:val=","/>
 <w15:chartTrackingRefBased/>
-<w15:docId w15:val="{B4DAE658-E0C7-424B-8067-C11B92BEF7C3}"/>
+<w15:docId w15:val="{2059C882-6B3A-4D1B-9242-DEC33A8AFE29}"/>
 </w:settings>
 </pkg:xmlData>
 </pkg:part>
@@ -2211,16 +2294,16 @@
 <Template>Normal.dotm</Template>
 <TotalTime>0</TotalTime>
 <Pages>1</Pages>
-<Words>62</Words>
-<Characters>357</Characters>
+<Words>65</Words>
+<Characters>374</Characters>
 <Application>Microsoft Office Word</Application>
 <DocSecurity>0</DocSecurity>
-<Lines>2</Lines>
+<Lines>3</Lines>
 <Paragraphs>1</Paragraphs>
 <ScaleCrop>false</ScaleCrop>
 <Company>Microsoft China</Company>
 <LinksUpToDate>false</LinksUpToDate>
-<CharactersWithSpaces>418</CharactersWithSpaces>
+<CharactersWithSpaces>438</CharactersWithSpaces>
 <SharedDoc>false</SharedDoc>
 <HyperlinksChanged>false</HyperlinksChanged>
 <AppVersion>15.0000</AppVersion>
@@ -2237,8 +2320,8 @@
 <cp:lastModifiedBy>Administrator</cp:lastModifiedBy>
 <cp:revision>2</cp:revision>
 <cp:lastPrinted>2017-04-24T08:46:00Z</cp:lastPrinted>
-<dcterms:created xsi:type="dcterms:W3CDTF">2018-05-09T17:02:00Z</dcterms:created>
-<dcterms:modified xsi:type="dcterms:W3CDTF">2018-05-09T17:02:00Z</dcterms:modified>
+<dcterms:created xsi:type="dcterms:W3CDTF">2018-05-10T13:09:00Z</dcterms:created>
+<dcterms:modified xsi:type="dcterms:W3CDTF">2018-05-10T13:09:00Z</dcterms:modified>
 </cp:coreProperties>
 </pkg:xmlData>
 </pkg:part>

@@ -45,7 +45,6 @@
 			<!--  -->
 			<div class="panel-body">
 				<div style="height: 34px;">
-
 					<div style="width: 500px; float: left;">
 						<button class="btn btn-default" onclick="CreateEquipment()">
 							<i class="fa fa-plus-square"></i> 新增器材装备
@@ -59,7 +58,7 @@
 						<span class="input-group-addon"> <i class="fa fa-search"></i>
 						</span>
 					</div>
-					<div  style="width: 300px; float: right; margin-right:10px;" >
+					<div  style="float: right; margin-right:10px;" >
 						<select id="input_searchKind" class="form-control" onchange="List_Equipment_By_PageAndSearch(1)">
 							<option value="">筛选装备种类</option>
 							<option value="侦查">侦查</option>

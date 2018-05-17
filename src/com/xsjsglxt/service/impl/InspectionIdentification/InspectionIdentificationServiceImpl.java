@@ -879,118 +879,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		return null;
 	}
 
-	// 导出委托书
-	@Override
-	public File exportTranceCheckBook(String id) throws Exception {
-		Map<String, Object> params = new HashMap<String, Object>();
-		/*
-		 * 获取路径
-		 */
-		String lj = "";
-		try {
-			Properties props = new Properties();
-			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
-			lj = props.getProperty("lj");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		params.putAll(mapTranceCheckBook(id));
-
-		Configuration configuration = new Configuration();
-		configuration.setDefaultEncoding("utf-8");
-		// 设置默认的编码方式，将数据以utf-8的方式进行编码
-		configuration.setClassForTemplateLoading(this.getClass(), "");
-		Template t = configuration.getTemplate("xsjsglxt_entrustment_book.ftl", "utf-8");
-		OutputStream os = new FileOutputStream(lj + "kokokoko.doc");
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
-		t.process(params, bw);
-		/*
-		 * XwpfTUtil xwpfTUtil = new XwpfTUtil(); XWPFDocument doc; String
-		 * fileNameInResource = ServletActionContext.getServletContext()
-		 * .getRealPath("/DocTem/xsjsglxt_entrustment_book.doc"); InputStream
-		 * is; is = new FileInputStream(fileNameInResource); doc = new
-		 * XWPFDocument(is); xwpfTUtil.replaceInPara(doc, params);
-		 * xwpfTUtil.replaceInTable(doc, params); OutputStream os = new
-		 * FileOutputStream(lj + "kokokoko.doc"); doc.write(os);
-		 * xwpfTUtil.close(os); xwpfTUtil.close(is); os.flush(); os.close();
-		 */
-		return new File(lj + "kokokoko.doc");
-	}
-
-	// 导出确认书
-	@Override
-	public File exportIdentifiederCaseConfirmBook(String id) throws Exception {
-		Map<String, Object> params = new HashMap<String, Object>();
-		/*
-		 * 获取路径
-		 */
-		String lj = "";
-		try {
-			Properties props = new Properties();
-			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
-			lj = props.getProperty("lj");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		params.putAll(mapIdentifiederCaseConfirmBook(id));
-		Configuration configuration = new Configuration();
-		configuration.setDefaultEncoding("utf-8");
-		// 设置默认的编码方式，将数据以utf-8的方式进行编码
-		configuration.setClassForTemplateLoading(this.getClass(), "");
-		Template t = configuration.getTemplate("xsjsglxt_confirm_book.ftl", "utf-8");
-		OutputStream os = new FileOutputStream(lj + "kokokoko.doc");
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
-		t.process(params, bw);
-		/*
-		 * XwpfTUtil xwpfTUtil = new XwpfTUtil(); XWPFDocument doc; String
-		 * fileNameInResource = ServletActionContext.getServletContext()
-		 * .getRealPath("/DocTem/xsjsglxt_confirm_book.doc"); InputStream is; is
-		 * = new FileInputStream(fileNameInResource); doc = new
-		 * XWPFDocument(is); xwpfTUtil.replaceInPara(doc, params);
-		 * xwpfTUtil.replaceInTable(doc, params); OutputStream os = new
-		 * FileOutputStream(lj + "kokokoko.doc"); doc.write(os);
-		 * xwpfTUtil.close(os); xwpfTUtil.close(is); os.flush(); os.close();
-		 */
-		return new File(lj + "kokokoko.doc");
-	}
-
-	// 导出受理回执表
-	@Override
-	public File exportAcceptanceReturnReceipt(String id) throws Exception {
-		Map<String, Object> params = new HashMap<String, Object>();
-		/*
-		 * 获取路径
-		 */
-		String lj = "";
-		try {
-			Properties props = new Properties();
-			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
-			lj = props.getProperty("lj");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		params.putAll(mapAcceptanceIdentifieder(id));
-		Configuration configuration = new Configuration();
-		configuration.setDefaultEncoding("utf-8");
-		// 设置默认的编码方式，将数据以utf-8的方式进行编码
-		configuration.setClassForTemplateLoading(this.getClass(), "");
-		Template t = configuration.getTemplate("xsjsglxt_acceptance_return_receipt.ftl", "utf-8");
-		OutputStream os = new FileOutputStream(lj + "kokokoko.doc");
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
-		t.process(params, bw);
-		/*
-		 * XwpfTUtil xwpfTUtil = new XwpfTUtil(); XWPFDocument doc; String
-		 * fileNameInResource = ServletActionContext.getServletContext()
-		 * .getRealPath("/DocTem/xsjsglxt_acceptance_return_receipt.doc");
-		 * InputStream is; is = new FileInputStream(fileNameInResource); doc =
-		 * new XWPFDocument(is); xwpfTUtil.replaceInPara(doc, params);
-		 * xwpfTUtil.replaceInTable(doc, params); OutputStream os = new
-		 * FileOutputStream(lj + "kokokoko.doc"); doc.write(os);
-		 * xwpfTUtil.close(os); xwpfTUtil.close(is); os.flush(); os.close();
-		 */ return new File(lj + "kokokoko.doc");
-
-	}
-
 	// 导出不受理告知
 	public File exportNotAcceptanceIdentifieder(String id) throws Exception {
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -1014,16 +902,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		OutputStream os = new FileOutputStream(lj + "kokokoko.doc");
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
 		t.process(params, bw);
-		/*
-		 * XwpfTUtil xwpfTUtil = new XwpfTUtil(); XWPFDocument doc; String
-		 * fileNameInResource = ServletActionContext.getServletContext()
-		 * .getRealPath("/DocTem/xsjsglxt_not_acceptance_return_receipt.doc");
-		 * InputStream is; is = new FileInputStream(fileNameInResource); doc =
-		 * new XWPFDocument(is); xwpfTUtil.replaceInPara(doc, params);
-		 * xwpfTUtil.replaceInTable(doc, params); OutputStream os = new
-		 * FileOutputStream(lj + "kokokoko.doc"); doc.write(os);
-		 * xwpfTUtil.close(os); xwpfTUtil.close(is); os.flush(); os.close();
-		 */
 		return new File(lj + "kokokoko.doc");
 	}
 
@@ -1048,43 +926,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			}
 		}
 		return null;
-	}
-
-	// 导出痕迹检验记录
-	@Override
-	public File exportInspectionRecord(String id) throws Exception {
-		Map<String, Object> params = new HashMap<String, Object>();
-		/*
-		 * 获取路径
-		 */
-		String lj = "";
-		try {
-			Properties props = new Properties();
-			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
-			lj = props.getProperty("lj");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		params.putAll(mapInspectionRecord(id));
-		Configuration configuration = new Configuration();
-		configuration.setDefaultEncoding("utf-8");
-		// 设置默认的编码方式，将数据以utf-8的方式进行编码
-		configuration.setClassForTemplateLoading(this.getClass(), "");
-		Template t = configuration.getTemplate("xsjsglxt_inspection_record.ftl", "utf-8");
-		OutputStream os = new FileOutputStream(lj + "kokokoko.doc");
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
-		t.process(params, bw);
-		/*
-		 * XwpfTUtil xwpfTUtil = new XwpfTUtil(); XWPFDocument doc; String
-		 * fileNameInResource = ServletActionContext.getServletContext()
-		 * .getRealPath("/DocTem/xsjsglxt_inspection_record.doc"); InputStream
-		 * is; is = new FileInputStream(fileNameInResource); doc = new
-		 * XWPFDocument(is); xwpfTUtil.replaceInPara(doc, params);
-		 * xwpfTUtil.replaceInTable(doc, params); OutputStream os = new
-		 * FileOutputStream(lj + "kokokoko.doc"); doc.write(os);
-		 * xwpfTUtil.close(os); xwpfTUtil.close(is); os.flush(); os.close();
-		 */
-		return new File(lj + "kokokoko.doc");
 	}
 
 	// 痕迹检验记录名称
@@ -1129,43 +970,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		return null;
 	}
 
-	// 导出死因检验记录
-	@Override
-	public File exportDeathInspectionRecord(String id) throws Exception {
-		Map<String, Object> params = new HashMap<String, Object>();
-		/*
-		 * 获取路径
-		 */
-		String lj = "";
-		try {
-			Properties props = new Properties();
-			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
-			lj = props.getProperty("lj");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		params.putAll(mapDeathInspectionRecord(id));
-		Configuration configuration = new Configuration();
-		configuration.setDefaultEncoding("utf-8");
-		// 设置默认的编码方式，将数据以utf-8的方式进行编码
-		configuration.setClassForTemplateLoading(this.getClass(), "");
-		Template t = configuration.getTemplate("xsjsglxt_death_inspection_record.ftl", "utf-8");
-		OutputStream os = new FileOutputStream(lj + "kokokoko.doc");
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
-		t.process(params, bw);
-		/*
-		 * String fileNameInResource = ServletActionContext.getServletContext()
-		 * .getRealPath("/DocTem/xsjsglxt_death_inspection_record.doc");
-		 * XWPFTemplate template = XWPFTemplate.compile(fileNameInResource);
-		 * template.render(params); FileOutputStream out; try { out = new
-		 * FileOutputStream(lj + "kokokoko.doc"); template.write(out);
-		 * out.flush(); out.close(); template.close(); } catch
-		 * (FileNotFoundException e) { e.printStackTrace(); } catch (IOException
-		 * e) { e.printStackTrace(); }
-		 */
-		return new File(lj + "kokokoko.doc");
-	}
-
 	// 导出损伤检验记录名称
 	@Override
 	public String exportDamageInspectionRecordName(String xsjsglxt_damage_inspection_record_id) {
@@ -1187,89 +991,17 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		return null;
 	}
 
-	// 导出损伤检验记录表
-	@Override
-	public File exportDamageInspectionRecord(String id) throws Exception {
-		Map<String, Object> params = new HashMap<String, Object>();
-		/*
-		 * 获取路径
-		 */
-		String lj = "";
-		try {
-			Properties props = new Properties();
-			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
-			lj = props.getProperty("lj");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		params.putAll(mapDamageInspectionRecord(id));
-
-		Configuration configuration = new Configuration();
-		configuration.setDefaultEncoding("utf-8");
-		// 设置默认的编码方式，将数据以utf-8的方式进行编码
-		configuration.setClassForTemplateLoading(this.getClass(), "");
-		Template t = configuration.getTemplate("xsjsglxt_damage_inspection_record.ftl", "utf-8");
-		OutputStream os = new FileOutputStream(lj + "kokokoko.doc");
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
-		t.process(params, bw);
-
-		/*
-		 * String fileNameInResource = ServletActionContext.getServletContext()
-		 * .getRealPath("/DocTem/xsjsglxt_damage_inspection_record.doc");
-		 * XWPFTemplate template = XWPFTemplate.compile(fileNameInResource);
-		 * template.render(params); FileOutputStream out; try { out = new
-		 * FileOutputStream(lj + "kokokoko.doc"); template.write(out);
-		 * out.flush(); out.close(); template.close(); } catch
-		 * (FileNotFoundException e) { e.printStackTrace(); } catch (IOException
-		 * e) { e.printStackTrace(); }
-		 */
-		return new File(lj + "kokokoko.doc");
-	}
-
-	// 导出鉴定书
-	@Override
-	public File exportAppraisalLetter(String id) throws Exception {
-		Map<String, Object> params = new HashMap<String, Object>();
-		/*
-		 * 获取路径
-		 */
-		String lj = "";
-		try {
-			Properties props = new Properties();
-			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
-			lj = props.getProperty("lj");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		Configuration configuration = new Configuration();
-		configuration.setDefaultEncoding("utf-8");
-		// 设置默认的编码方式，将数据以utf-8的方式进行编码
-		configuration.setClassForTemplateLoading(this.getClass(), "");
-		params.putAll(mapLetter(id));
+	// 获取鉴定书类型
+	public String getAppraisalLetterType(String id) {
 		xsjsglxt_appraisal_letter xsjsglxt_appraisal_letter = new xsjsglxt_appraisal_letter();
 		xsjsglxt_appraisal_letter = inspectionIdentificationDao.getAppraisalLetterByOwnId(id);
-		String name = "";
 		if (xsjsglxt_appraisal_letter != null) {
 			if (xsjsglxt_appraisal_letter.getAppraisal_letter_type() != null
 					&& xsjsglxt_appraisal_letter.getAppraisal_letter_type().trim().length() > 0) {
-				switch (xsjsglxt_appraisal_letter.getAppraisal_letter_type().trim()) {
-				case "损伤":
-					name = "xsjsglxt_appraisal_letter.ftl";
-					break;
-				case "尸体":
-					name = "xsjsglxt_appraisal_letter.ftl";
-					break;
-				case "痕迹":
-					name = "xsjsglxt_inspection_appraisal_letter.ftl";
-					break;
-				}
+				return xsjsglxt_appraisal_letter.getAppraisal_letter_type().trim();
 			}
 		}
-		Template t = configuration.getTemplate(name, "utf-8");
-		OutputStream os = new FileOutputStream(lj + "kokokoko.doc");
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
-		t.process(params, bw);
-		return new File(lj + "kokokoko.doc");
+		return "";
 	}
 
 	@Override
@@ -1289,128 +1021,19 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	 * 
 	 * 
 	 */
-	// 鉴定文书
-	public Map<String, Object> mapLetter(String id) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		xsjsglxt_appraisal_letter xsjsglxt_appraisal_letter = new xsjsglxt_appraisal_letter();
-		xsjsglxt_appraisal_letter = inspectionIdentificationDao.getAppraisalLetterByOwnId(id);
-		if (xsjsglxt_appraisal_letter != null) {
-			if (xsjsglxt_appraisal_letter.getAppraisal_letter_type() != null
-					&& xsjsglxt_appraisal_letter.getAppraisal_letter_type().trim().length() > 0) {
-				switch (xsjsglxt_appraisal_letter.getAppraisal_letter_type().trim()) {
-				case "损伤":
-					params.putAll(mapFaAppraisalLetter(id));
-					break;
-				case "尸体":
-					params.putAll(mapFaAppraisalLetter(id));
-					break;
-				case "痕迹":
-					params.putAll(mapAppraisalLetter(id));
-					break;
-				}
-			}
-		}
-		return params;
-	}
 
-	// 法医鉴定文书记录
-	public Map<String, Object> mapFaAppraisalLetter(String id) {
+	/**
+	 * 损伤
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Map<String, Object> mapSunShangAppraisalLetter(String id) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		xsjsglxt_appraisal_letter xsjsglxt_appraisal_letter = new xsjsglxt_appraisal_letter();
 		xsjsglxt_check_entrustment_book xsjsglxt_check_entrustment_book = new xsjsglxt_check_entrustment_book();
 		xsjsglxt_appraisal_letter = inspectionIdentificationDao.getAppraisalLetterByOwnId(id);
 		if (xsjsglxt_appraisal_letter != null) {
-			if (xsjsglxt_appraisal_letter.getAppraisal_letter_type() != null
-					&& xsjsglxt_appraisal_letter.getAppraisal_letter_type().trim().length() > 0) {
-				switch (xsjsglxt_appraisal_letter.getAppraisal_letter_type().trim()) {
-				case "损伤":
-					if (xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book() != null
-							&& xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim()
-									.length() > 0) {
-						xsjsglxt_damage_inspection_record xsjsglxt_damage_inspection_record = new xsjsglxt_damage_inspection_record();
-						xsjsglxt_damage_inspection_record = inspectionIdentificationDao.getDamageInspectionRecordById(
-								xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim());
-						if (xsjsglxt_damage_inspection_record != null) {
-							String kk = "姓名：";
-							if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_name() != null
-									&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_name().trim()
-											.length() > 0) {
-								kk = kk + xsjsglxt_damage_inspection_record.getDamage_inspection_record_name().trim()
-										+ "，性别：";
-							} else {
-								kk = kk + "无" + "，性别：";
-							}
-							if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_sex() != null
-									&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_sex().trim()
-											.length() > 0) {
-								kk = kk + xsjsglxt_damage_inspection_record.getDamage_inspection_record_sex().trim()
-										+ "，身份证号：";
-							} else {
-								kk = kk + "无" + "，身份证号：";
-							}
-							if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_idcard() != null
-									&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_idcard().trim()
-											.length() > 0) {
-								kk = kk + xsjsglxt_damage_inspection_record.getDamage_inspection_record_idcard().trim();
-							} else {
-								kk = kk + "无";
-							}
-							params.put("p5", kk);
-						} else {
-							params.put("p5", "");
-						}
-						params.put("p10", "");
-					} else {
-						params.put("p10", "");
-						params.put("p5", "");
-					}
-					break;
-				case "尸体":
-					if (xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book() != null
-							&& xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim()
-									.length() > 0) {
-						xsjsglxt_death_inspection_record xsjsglxt_death_inspection_record = new xsjsglxt_death_inspection_record();
-						xsjsglxt_death_inspection_record = inspectionIdentificationDao.getDeathInspectionRecordById(
-								xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim());
-						if (xsjsglxt_death_inspection_record != null) {
-							String kk = "姓名：";
-							if (xsjsglxt_death_inspection_record.getDeath_inspection_record_death_name() != null
-									&& xsjsglxt_death_inspection_record.getDeath_inspection_record_death_name().trim()
-											.length() > 0) {
-								kk = kk + xsjsglxt_death_inspection_record.getDeath_inspection_record_death_name()
-										.trim() + "，性别：";
-							} else {
-								kk = kk + "无" + "，性别：";
-							}
-							if (xsjsglxt_death_inspection_record.getDeath_inspection_record_death_sex() != null
-									&& xsjsglxt_death_inspection_record.getDeath_inspection_record_death_sex().trim()
-											.length() > 0) {
-								kk = kk + xsjsglxt_death_inspection_record.getDeath_inspection_record_death_sex()
-										.trim();
-							} else {
-								kk = kk + "无";
-							}
-							params.put("p5", kk);
-							if (xsjsglxt_death_inspection_record.getDeath_inspection_record_inspect_place() != null
-									&& xsjsglxt_death_inspection_record.getDeath_inspection_record_inspect_place()
-											.trim().length() > 0) {
-								params.put("p10", xsjsglxt_death_inspection_record
-										.getDeath_inspection_record_inspect_place().trim());
-							} else {
-								params.put("p10", "");
-							}
-						} else {
-							params.put("p5", "");
-							params.put("p10", "");
-						}
-
-					} else {
-						params.put("p5", "");
-						params.put("p10", "");
-					}
-					break;
-				}
-			}
 			if (xsjsglxt_appraisal_letter.getAppraisal_letter_num() != null
 					&& xsjsglxt_appraisal_letter.getAppraisal_letter_num().trim().length() > 0) {
 				params.put("p1", (xsjsglxt_appraisal_letter.getAppraisal_letter_num().trim()).substring(0, 4));
@@ -1419,23 +1042,11 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				params.put("p1", "");
 				params.put("p2", "");
 			}
-			if (xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation() != null
-					&& xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation().trim().length() > 0) {
-				params.put("p6", xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation().trim());
-			} else {
-				params.put("p6", "");
-			}
 			if (xsjsglxt_appraisal_letter.getAppraisal_letter_simple_case_situation() != null
 					&& xsjsglxt_appraisal_letter.getAppraisal_letter_simple_case_situation().trim().length() > 0) {
 				params.put("p7", xsjsglxt_appraisal_letter.getAppraisal_letter_simple_case_situation().trim());
 			} else {
 				params.put("p7", "");
-			}
-			if (xsjsglxt_appraisal_letter.getAppraisal_letter_date() != null
-					&& xsjsglxt_appraisal_letter.getAppraisal_letter_date().trim().length() > 0) {
-				params.put("p9", xsjsglxt_appraisal_letter.getAppraisal_letter_date().trim());
-			} else {
-				params.put("p9", "");
 			}
 			if (xsjsglxt_appraisal_letter.getAppraisal_letter_inspection() != null
 					&& xsjsglxt_appraisal_letter.getAppraisal_letter_inspection().trim().length() > 0) {
@@ -1485,6 +1096,19 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			} else {
 				params.put("p18", "");
 			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_authorization_duty() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_authorization_duty().trim().length() > 0) {
+				params.put("p19", xsjsglxt_appraisal_letter.getAppraisal_letter_authorization_duty().trim());
+			} else {
+				params.put("p19", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_authorization_name() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_authorization_name().trim().length() > 0) {
+				params.put("p20", xsjsglxt_appraisal_letter.getAppraisal_letter_authorization_name().trim());
+			} else {
+				params.put("p20", "");
+			}
+			// 委托书
 			if (xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book() != null
 					&& xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim().length() > 0) {
 				xsjsglxt_check_entrustment_book = inspectionIdentificationDao.getCheckEntrustmentBookById(
@@ -1505,26 +1129,80 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				} else {
 					params.put("p4", "");
 				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation().trim()
+								.length() > 0) {
+					params.put("p6",
+							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation().trim());
+				} else {
+					params.put("p6", "");
+				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim()
 								.length() > 0) {
-					params.put("p8",
-							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim());
+					params.put("p8", "损伤程度评定（按照2014年1月1日起实施的《人体损伤程度鉴定标准》进行鉴定）");
 				} else {
-					params.put("p8", "");
+					params.put("p8", "损伤程度评定（按照2014年1月1日起实施的《人体损伤程度鉴定标准》进行鉴定）");
 				}
 			} else {
 				params.put("p3", "");
 				params.put("p4", "");
+				params.put("p6", "");
 				params.put("p8", "");
 			}
+			// 检验记录
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim().length() > 0) {
+				xsjsglxt_damage_inspection_record xsjsglxt_damage_inspection_record = new xsjsglxt_damage_inspection_record();
+				xsjsglxt_damage_inspection_record = inspectionIdentificationDao.getDamageInspectionRecordById(
+						xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim());
 
+				if (xsjsglxt_damage_inspection_record != null) {
+					if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_time() != null
+							&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_time().trim()
+									.length() > 0) {
+						params.put("p9", xsjsglxt_damage_inspection_record.getDamage_inspection_record_time().trim());
+					} else {
+						params.put("p9", "");
+					}
+					String kk = "姓名：";
+					if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_name() != null
+							&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_name().trim()
+									.length() > 0) {
+						kk = kk + xsjsglxt_damage_inspection_record.getDamage_inspection_record_name().trim() + "，性别：";
+					} else {
+						kk = kk + "无" + "，性别：";
+					}
+					if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_sex() != null
+							&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_sex().trim()
+									.length() > 0) {
+						kk = kk + xsjsglxt_damage_inspection_record.getDamage_inspection_record_sex().trim() + "，身份证号：";
+					} else {
+						kk = kk + "无" + "，身份证号：";
+					}
+					if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_idcard() != null
+							&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_idcard().trim()
+									.length() > 0) {
+						kk = kk + xsjsglxt_damage_inspection_record.getDamage_inspection_record_idcard().trim();
+					} else {
+						kk = kk + "无";
+					}
+					params.put("p5", kk);
+				} else {
+					params.put("p5", "");
+				}
+				params.put("p10", "");
+			} else {
+				params.put("p10", "");
+				params.put("p9", "");
+				params.put("p5", "");
+			}
 		}
 		return params;
 	}
 
-	// 痕迹鉴定文书记录
-	public Map<String, Object> mapAppraisalLetter(String id) {
+	// 痕迹以及尸体的鉴定书
+	public Map<String, Object> mapHenShiAppraisalLetter(String id) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		// 委托书表_委托单位_送检人
 		// 确认书表_送检日期
@@ -1532,13 +1210,96 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		xsjsglxt_check_entrustment_book xsjsglxt_check_entrustment_book = new xsjsglxt_check_entrustment_book();
 		xsjsglxt_appraisal_letter xsjsglxt_appraisal_letter = new xsjsglxt_appraisal_letter();
 		xsjsglxt_identifieder_case_confirm_book xsjsglxt_identifieder_case_confirm_book = new xsjsglxt_identifieder_case_confirm_book();
+		xsjsglxt_inspection_record xsjsglxt_inspection_record = new xsjsglxt_inspection_record();
 		//
 		xsjsglxt_appraisal_letter = inspectionIdentificationDao.getAppraisalLetterByOwnId(id);
 		if (xsjsglxt_appraisal_letter != null) {
-			if (xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book() != null
-					&& xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim().length() > 0) {
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_type() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_type().trim().length() > 0) {
 				xsjsglxt_check_entrustment_book = inspectionIdentificationDao.getCheckEntrustmentBookById(
 						xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim());
+				switch (xsjsglxt_appraisal_letter.getAppraisal_letter_type().trim()) {
+				case "尸体":
+					params.put("j23", "法医学尸体检验鉴定书");
+					params.put("j21", "尸检");
+					params.put("j22", "检验对象");
+					if (xsjsglxt_check_entrustment_book != null) {
+						String jianyanduixiang = "姓名：";
+						if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name() != null
+								&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name().trim()
+										.length() > 0) {
+							jianyanduixiang = jianyanduixiang + xsjsglxt_check_entrustment_book
+									.getCheck_entrustment_book_entrustmentor_name().trim() + "，性别：";
+						} else {
+							jianyanduixiang = jianyanduixiang + "无，性别：";
+						}
+						if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_sex() != null
+								&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_sex().trim()
+										.length() > 0) {
+							jianyanduixiang = jianyanduixiang + xsjsglxt_check_entrustment_book
+									.getCheck_entrustment_book_entrustmentor_sex().trim() + "，身份证号：";
+						} else {
+							jianyanduixiang = jianyanduixiang + "无，身份证号：";
+						}
+						// 这个字段已经更改为身份证
+						if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit_name() != null
+								&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit_name()
+										.trim().length() > 0) {
+							jianyanduixiang = jianyanduixiang + xsjsglxt_check_entrustment_book
+									.getCheck_entrustment_book_entrustment_unit_name().trim();
+						} else {
+							jianyanduixiang = jianyanduixiang + "无";
+						}
+						params.put("j7", jianyanduixiang);
+					} else {
+						params.put("j7", "");
+					}
+					break;
+				case "痕迹":
+					params.put("j23", "鉴定书");
+					params.put("j21", "痕");
+					params.put("j22", "送检物证");
+					if (xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation() != null
+							&& xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation().trim().length() > 0) {
+						params.put("j7", xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation().trim());
+					} else {
+						params.put("j7", "");
+					}
+					break;
+				}
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim().length() > 0) {
+				xsjsglxt_inspection_record = inspectionIdentificationDao.getInspectionRecordById(
+						xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim());
+				// 检验时间
+				if (xsjsglxt_inspection_record != null) {
+					if (xsjsglxt_inspection_record.getInspection_start_time() != null
+							&& xsjsglxt_inspection_record.getInspection_start_time().trim().length() > 0) {
+						params.put("j19", xsjsglxt_inspection_record.getInspection_start_time().trim());
+					} else {
+						params.put("j19", "");
+					}
+					if (xsjsglxt_inspection_record.getInspection_location() != null
+							&& xsjsglxt_inspection_record.getInspection_location().trim().length() > 0) {
+						params.put("j20", xsjsglxt_inspection_record.getInspection_location().trim());
+					} else {
+						params.put("j20", "");
+					}
+				} else {
+					params.put("j19", "");
+					params.put("j20", "");
+				}
+				xsjsglxt_check_entrustment_book = inspectionIdentificationDao.getCheckEntrustmentBookById(
+						xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim());
+				// 鉴定要求
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim()
+								.length() > 0) {
+					params.put("j18", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request());
+				} else {
+					params.put("j18", "");
+				}
 				// 委托书
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim()
@@ -1569,16 +1330,16 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				xsjsglxt_identifieder_case_confirm_book = inspectionIdentificationDao
 						.getIdentifiederCaseConfirmBookById(
 								xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim());
-				// 确认书
-				if (xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_inspection_date() != null
-						&& xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_inspection_date()
+				// 确认书受理日期
+				if (xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_date() != null
+						&& xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_date()
 								.trim().length() > 0) {
 					String time = TeamUtil.timeToYear(xsjsglxt_identifieder_case_confirm_book
-							.getIdentifieder_case_confirm_book_inspection_date().trim()) + " 年 ";
+							.getIdentifieder_case_confirm_book_acceptance_date().trim()) + " 年 ";
 					time = time + TeamUtil.timeToMonth(xsjsglxt_identifieder_case_confirm_book
-							.getIdentifieder_case_confirm_book_inspection_date().trim()) + " 月 ";
+							.getIdentifieder_case_confirm_book_acceptance_date().trim()) + " 月 ";
 					time = time + TeamUtil.timeToDay(xsjsglxt_identifieder_case_confirm_book
-							.getIdentifieder_case_confirm_book_inspection_date().trim()) + " 日 ";
+							.getIdentifieder_case_confirm_book_acceptance_date().trim()) + " 日 ";
 					params.put("j5", time);
 				} else {
 					params.put("j5", "");
@@ -1598,12 +1359,16 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			} else {
 				params.put("j6", "");
 			}
-			if (xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation() != null
-					&& xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation().trim().length() > 0) {
-				params.put("j7", xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation().trim());
-			} else {
-				params.put("j7", "");
-			}
+			/*
+			 * if
+			 * (xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation()
+			 * != null &&
+			 * xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation().
+			 * trim().length() > 0) { params.put("j7",
+			 * xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation().
+			 * trim()); } else { params.put("j7", ""); }
+			 */
+
 			if (xsjsglxt_appraisal_letter.getAppraisal_letter_inspection() != null
 					&& xsjsglxt_appraisal_letter.getAppraisal_letter_inspection().trim().length() > 0) {
 				params.put("j8", xsjsglxt_appraisal_letter.getAppraisal_letter_inspection().trim());
@@ -1664,7 +1429,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			} else {
 				params.put("j17", "");
 			}
-
 		}
 		return params;
 
@@ -2536,6 +2300,18 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				xsjsglxt_check_entrustment_book = inspectionIdentificationDao
 						.getCheckEntrustmentBookById(xsjsglxt_identifieder_case_confirm_book
 								.getIdentifieder_case_confirm_book_belong_entrustment_book().trim());
+
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_type() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_type().trim().length() > 0) {
+					if ("痕迹".equals(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_type())) {
+						params.put("a17", "痕");
+					} else {
+						params.put("a17", "法");
+					}
+				} else {
+					params.put("a17", "");
+				}
+
 				// 将属于委托书表中的数据替换进去
 				// 第一个：委托日期
 				// 因为再存储的时候,日期的格式一定一致,所以不会出现错误
@@ -2632,21 +2408,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			} else {
 				params.put("a13", "");
 			}
-			// 这个领取日期似乎不是那么好确定
-			if (xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_receive_data() != null
-					&& xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_receive_data().trim()
-							.length() > 0) {
-				params.put("a14", TeamUtil.timeToYear(xsjsglxt_identifieder_case_confirm_book
-						.getIdentifieder_case_confirm_book_receive_data().trim()));
-				params.put("a15", TeamUtil.timeToMonth(xsjsglxt_identifieder_case_confirm_book
-						.getIdentifieder_case_confirm_book_receive_data().trim()));
-				params.put("a16", TeamUtil.timeToDay(xsjsglxt_identifieder_case_confirm_book
-						.getIdentifieder_case_confirm_book_receive_data().trim()));
-			} else {
-				params.put("a14", "");
-				params.put("a15", "");
-				params.put("a16", "");
-			}
+			
 		}
 		return params;
 	}
@@ -2787,7 +2549,9 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				} else {
 					params.put("q18", "");
 				}
-				if ("痕迹检验".equals(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_type())) {
+				if ("痕迹".equals(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_type())) {
+					params.put("q30", "痕");
+					params.put("q29", "单位");
 					params.put("q19", "/");
 					params.put("q20", "/");
 					params.put("q21", "/");
@@ -2795,6 +2559,8 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 					params.put("q23", "/");
 					params.put("q24", "/");
 				} else {
+					params.put("q29", "身份证");
+					params.put("q30", "法");
 					if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name() != null
 							&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name().trim()
 									.length() > 0) {
@@ -2827,11 +2593,11 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 					} else {
 						params.put("q22", "");
 					}
-					if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
-							&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim()
+					if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_unit() != null
+							&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_unit().trim()
 									.length() > 0) {
 						params.put("q23",
-								xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
+								xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_unit().trim());
 					} else {
 						params.put("q23", "");
 					}
@@ -2889,11 +2655,11 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		// 根据ID获取委托书
 		xsjsglxt_check_entrustment_book = inspectionIdentificationDao.getCheckEntrustmentBookById(id);
 		if (xsjsglxt_check_entrustment_book != null) {
+
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim().length() > 0) {
 				params.put("x1",
-						"[" + (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4)
-								+ "]");
+						(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4));
 				params.put("x2", (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4));
 			} else {
 				params.put("x1", "");
@@ -3002,7 +2768,9 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			} else {
 				params.put("x17", "");
 			}
-			if ("痕迹检验".equals(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_type())) {
+			if ("痕迹".equals(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_type())) {
+				params.put("x29", "痕");
+				params.put("x30", "单位");
 				params.put("x18", "/");
 				params.put("x19", "/");
 				params.put("x20", "/");
@@ -3010,6 +2778,8 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				params.put("x22", "/");
 				params.put("x23", "/");
 			} else {
+				params.put("x29", "法");
+				params.put("x30", "身份证");
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name().trim()
 								.length() > 0) {
@@ -3042,11 +2812,11 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				} else {
 					params.put("x21", "");
 				}
-				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
-						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim()
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_unit() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_unit().trim()
 								.length() > 0) {
 					params.put("x22",
-							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
+							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_unit().trim());
 				} else {
 					params.put("x22", "");
 				}
