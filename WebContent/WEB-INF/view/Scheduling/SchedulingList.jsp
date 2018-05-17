@@ -42,8 +42,8 @@ i {
 #no_choose li {
 	list-style-type: none;
 	color: black;
-	font-size: 18px;
-	padding: 5px;
+	font-size: 16px;
+	padding-left: 5px;
 }
 #choose_ li:hover {
 	cursor:pointer;
@@ -55,8 +55,8 @@ i {
 #choose_ li {
 	list-style-type: none;
 	color: black;
-	font-size: 18px;
-	padding: 5px;
+	font-size: 16px;
+	padding-left: 5px;
 }
 </style>
 </head>
