@@ -69,9 +69,15 @@ function Create_AppraisalLetter(obj) {
 								+ '，身份证号：'
 								+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_unit
 								+ '。';
+						// document
+						// .getElementsByName("appraisalLetter.appraisal_letter_inspection")[0].value
+						// = '
+						// （一）萍乡市中医院病历摘要（2017006297）：颜鑫，男，30岁，因刺伤致腹部疼痛1小时入院，查体：左下腹部见一大小约2×3cm伤口，深约6cm，进入腹腔，活动性出血，压痛。伤者于2017年4月22日01时50分在全麻下行剖腹探查+左下大网膜、腹膜、腹直肌修补+左下腹创扩创清创术，术中见：左下腹直肌断裂，左下腹腹膜挫裂，大小约4×5cm，大网膜挫伤，大小约2×2cm，并见活动性出血。术后诊断：腹部刺伤：左腹直肌断裂、腹膜挫裂、大网膜挫伤。'
+						// + '\n
+						// （二）检验所见：神清，问答切题，卧于病床。左下腹见一10.5CM纵行手术扩创口，创口已缝合。';
 						document
-								.getElementsByName("appraisalLetter.appraisal_letter_inspection")[0].value = '      （一）萍乡市中医院病历摘要（2017006297）：颜鑫，男，30岁，因刺伤致腹部疼痛1小时入院，查体：左下腹部见一大小约2×3cm伤口，深约6cm，进入腹腔，活动性出血，压痛。伤者于2017年4月22日01时50分在全麻下行剖腹探查+左下大网膜、腹膜、腹直肌修补+左下腹创扩创清创术，术中见：左下腹直肌断裂，左下腹腹膜挫裂，大小约4×5cm，大网膜挫伤，大小约2×2cm，并见活动性出血。术后诊断：腹部刺伤：左腹直肌断裂、腹膜挫裂、大网膜挫伤。'
-								+ '\n      （二）检验所见：神清，问答切题，卧于病床。左下腹见一10.5CM纵行手术扩创口，创口已缝合。';
+								.getElementsByName("appraisalLetter.appraisal_letter_inspection")[0].value = json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.damage_inspection_record_inspection;
+
 						document
 								.getElementsByName("appraisalLetter.appraisal_letter_argumentation")[0].value = '      伤者因锐器伤致腹壁穿透伤、左腹直肌断裂、腹膜挫裂、大网膜挫伤，并行手术治疗，手术扩创口长度长达10.5cm。根据2014年1月1日《人体损伤程度鉴定标准》第5.7.4i)、5.11.3b)之规定，已构成轻伤二级。';
 						document

@@ -96,21 +96,21 @@ function Preview_Damage_InspectionRecord(obj) {
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.xsjsglxt_damage_inspection_record_id
 							+ '_'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.damage_inspection_record_picture1
-							+ '" onclick="()" style="width:300px; margin:20px auto;"  />'
+							+ '" onclick="()" style="width:300px; margin:20px auto;border:4px dashed  #EAEAEE;"  />'
 							+ '</p>'
 							+ '<p>'
 							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDamagePicture?imgName='
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.xsjsglxt_damage_inspection_record_id
 							+ '_'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.damage_inspection_record_picture2
-							+ '" onclick="()" style="width:300px; margin:20px auto;"  />'
+							+ '" onclick="()" style="width:300px; margin:20px auto;border:4px dashed  #EAEAEE;"  />'
 							+ '</p>'
 							+ '<p>'
 							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDamagePicture?imgName='
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.xsjsglxt_damage_inspection_record_id
 							+ '_'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.damage_inspection_record_picture3
-							+ '" onclick="()" style="width:300px; margin:20px auto;"  />'
+							+ '" onclick="()" style="width:300px; margin:20px auto;border:4px dashed  #EAEAEE;"  />'
 							+ '</p>'
 							+ '</td>'
 							+ '</tr>'

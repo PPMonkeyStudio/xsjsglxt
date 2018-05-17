@@ -91,17 +91,17 @@ function Update_Damage_InspectionRecord(obj) {
 							+ '<tr>'
 							+ '<td>损伤检验图：</td>'
 							+ '<td>'
-							+ '<p><img style="width:150px;margin:10px auto;"  src="/xsjsglxt/inspectionIdentific/img_getDamagePicture?imgName='
+							+ '<p><img style="width:150px;margin:10px auto;border:4px dashed  #EAEAEE;"  src="/xsjsglxt/inspectionIdentific/img_getDamagePicture?imgName='
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.xsjsglxt_damage_inspection_record_id
 							+ '_'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.damage_inspection_record_picture1
 							+ '" onclick="()"  /></p>'
-							+ '<p><img style="width:150px;margin:10px auto;" src="/xsjsglxt/inspectionIdentific/img_getDamagePicture?imgName='
+							+ '<p><img style="width:150px;margin:10px auto;border:4px dashed  #EAEAEE;" src="/xsjsglxt/inspectionIdentific/img_getDamagePicture?imgName='
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.xsjsglxt_damage_inspection_record_id
 							+ '_'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.damage_inspection_record_picture2
 							+ '" onclick="()" /></p>'
-							+ '<p><img style="width:150px;margin:10px auto;" src="/xsjsglxt/inspectionIdentific/img_getDamagePicture?imgName='
+							+ '<p><img style="width:150px;margin:10px auto;border:4px dashed  #EAEAEE;" src="/xsjsglxt/inspectionIdentific/img_getDamagePicture?imgName='
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.xsjsglxt_damage_inspection_record_id
 							+ '_'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.damage_inspection_record_picture3
