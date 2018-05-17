@@ -167,21 +167,21 @@ function Preview_Death_InspectionRecord(obj) {
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.xsjsglxt_death_inspection_record_id
 							+ '_'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_autopsy_table_test_picture1
-							+ '" onclick="()" style="width:300px; margin:20px auto;"  />'
+							+ '" onclick="()" style="width:300px; margin:20px auto;border:4px dashed  #EAEAEE;"  />'
 							+ '</p>'
 							+ '<p>'
 							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDeathPicture?imgName='
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.xsjsglxt_death_inspection_record_id
 							+ '_'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_autopsy_table_test_picture2
-							+ '" onclick="()" style="width:300px; margin:20px auto;"  />'
+							+ '" onclick="()" style="width:300px; margin:20px auto;border:4px dashed  #EAEAEE;"  />'
 							+ '</p>'
 							+ '<p>'
 							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDeathPicture?imgName='
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.xsjsglxt_death_inspection_record_id
 							+ '_'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_autopsy_table_test_picture3
-							+ '" onclick="()" style="width:300px; margin:20px auto;"  />'
+							+ '" onclick="()" style="width:300px; margin:20px auto;border:4px dashed  #EAEAEE;"  />'
 							+ '</p>'
 							+ '</td>'
 							+ '</tr>'
@@ -193,21 +193,21 @@ function Preview_Death_InspectionRecord(obj) {
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.xsjsglxt_death_inspection_record_id
 							+ '_'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_anatomy_picture1
-							+ '"  style="width:300px; margin:20px auto;" />'
+							+ '"  style="width:300px; margin:20px auto;border:4px dashed  #EAEAEE;" />'
 							+ '</p>'
 							+ '<p>'
 							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDeathPicture?imgName='
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.xsjsglxt_death_inspection_record_id
 							+ '_'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_anatomy_picture2
-							+ '"  style="width:300px; margin:20px auto;"  />'
+							+ '"  style="width:300px; margin:20px auto;border:4px dashed #EAEAEE;"  />'
 							+ '</p>'
 							+ '<p>'
 							+ '<img id="img1" src="/xsjsglxt/inspectionIdentific/img_getDeathPicture?imgName='
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.xsjsglxt_death_inspection_record_id
 							+ '_'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_death_inspection_record.death_inspection_record_anatomy_picture3
-							+ '"  style="width:300px; margin:20px auto;"  />'
+							+ '"  style="width:300px; margin:20px auto;border:4px dashed  #EAEAEE;"  />'
 							+ '</p>'
 							+ '</td>'
 							+ '</tr>'
