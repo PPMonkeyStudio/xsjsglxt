@@ -52,11 +52,6 @@ li a {
 					href="<%=basePath%>FingerPrint/FingerPrintManagement_FingerPrintManagementPage"><i
 						class="fa fa-id-card-o"></i>指纹</a></li>
 				</template>
-				<template v-if="user_technology_manager_power">
-				<li><a
-					href="<%=basePath%>statistics/Expenditure_intoMain"><i
-						class="fa fa-cny"></i>经费管理</a></li>
-				</template>
 				<%-- 				<template v-if="user_technology_manager_power">
 				<li><a
 					href="<%=basePath%>Equipment/EquipmentManagement_EquipmentManagementPage"><i class="fa fa-bank"></i>器材装备</a></li>
