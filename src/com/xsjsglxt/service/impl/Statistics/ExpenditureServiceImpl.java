@@ -1,7 +1,10 @@
 package com.xsjsglxt.service.impl.Statistics;
 
+import java.util.List;
+
 import com.xsjsglxt.dao.Statistics.ExpenditureDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_expenditure;
+import com.xsjsglxt.domain.VO.Statistics.ExpenditureVO;
 import com.xsjsglxt.service.Statistics.ExpenditureService;
 
 import util.TeamUtil;
@@ -56,6 +59,26 @@ public class ExpenditureServiceImpl implements ExpenditureService {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public xsjsglxt_expenditure getExpenditureById(String expenditure_id) {
+		// TODO Auto-generated method stub
+		xsjsglxt_expenditure expenditure = expenditureDao.getExpenditureById(expenditure_id);
+		return expenditure;
+	}
+
+	@Override
+	public void searchExpenditureByPage(ExpenditureVO expenditureVO) {
+		// TODO Auto-generated method stub
+		int count = expenditureDao.getCountBySearch(expenditureVO);
+		expenditureVO.setPageSize(10);
+		expenditureVO.setTotalCount(count);
+		expenditureVO.setTotalPage((int) Math.ceil((double) count / expenditureVO.getPageSize()));
+		List<xsjsglxt_expenditure> expenditures = expenditureDao.getSearchExpenditureByPage(expenditureVO);
+		expenditureVO.setExpenditures(expenditures);
+		int totalMoney = expenditureDao.getTotalMoneyBySearch(expenditureVO);
+		expenditureVO.setTotalMoney(totalMoney);
 	}
 
 }
