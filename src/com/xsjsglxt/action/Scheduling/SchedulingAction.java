@@ -41,10 +41,14 @@ public class SchedulingAction extends ActionSupport {
 	private SchedulingDTOListVO schedulingListVO;
 	private schedulingTimeVO schedulingTimeVO;
 	private int scheduling_days;
+	private String indexDays;
 	private String[] leader;
 	private String[] main;
 	private String[] mainTech;
-	private String[] assistatn;
+	private String[] mainDoctor;
+	private String[] assistantSpy;
+	private String[] assistantTech;
+	private String mainTechType;
 
 	public String page_list() {
 		return "intoScheduling";
@@ -98,7 +102,7 @@ public class SchedulingAction extends ActionSupport {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Date d = null;
 			try {
-				d = sdf.parse(scheduling.getScheduling_time());
+				d = sdf.parse(indexDays);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -109,13 +113,19 @@ public class SchedulingAction extends ActionSupport {
 			schedulingTemp = new xsjsglxt_scheduling();
 			schedulingTemp.setScheduling_leader(leader[i % leader.length]);
 			schedulingTemp.setScheduling_main(main[i % main.length]);
-			schedulingTemp.setScheduling_main_technology(mainTech[i % mainTech.length]);
-			if (i % assistatn.length + 1 >= assistatn.length) {
-				schedulingTemp.setScheduling_assistant(assistatn[i % assistatn.length] + "、" + assistatn[0]);
-			} else {
-				schedulingTemp.setScheduling_assistant(
-						assistatn[i % assistatn.length] + "、" + assistatn[i % assistatn.length + 1]);
+			if (mainTechType.equals("1"))
+				schedulingTemp.setScheduling_main_technology(mainTech[i % mainTech.length]);
+			else {
+				if (i % mainTech.length + 1 >= mainTech.length) {
+					schedulingTemp.setScheduling_main_technology(mainTech[i % mainTech.length] + "、" + mainTech[0]);
+				} else {
+					schedulingTemp.setScheduling_main_technology(
+							mainTech[i % mainTech.length] + "、" + mainTech[i % mainTech.length + 1]);
+				}
 			}
+			schedulingTemp.setScheduling_main_doctor(mainDoctor[i % mainDoctor.length]);
+			schedulingTemp.setScheduling_assistant_spy(assistantSpy[i % assistantSpy.length]);
+			schedulingTemp.setScheduling_assistant_tech(assistantTech[i % assistantTech.length]);
 			schedulingTemp.setScheduling_time(sdf.format(c.getTime()));
 			c.clear();
 			boolean flag = schedulingService.saveScheduling(schedulingTemp);
@@ -209,36 +219,39 @@ public class SchedulingAction extends ActionSupport {
 		schedulingListVO
 				.setQueryTimeEnd(new String(schedulingListVO.getQueryTimeEnd().getBytes("ISO-8859-1"), "utf-8"));
 		schedulingListVO.setQuery_name(new String(schedulingListVO.getQuery_name().getBytes("ISO-8859-1"), "utf-8"));
-		String[] heard = { "日期", "带班领导", "侦查值班人员", "技术值班人员", "值班辅警", "巡逻人员", "加班人员", "外协人员", "出差人员" };
+		String[] heard = { "日期", "带班领导", "侦查值班人员", "技术值班人员", "法医值班人员", "技术值班辅警", "侦查值班辅警", "巡逻人员", "加班人员", "外协人员",
+				"出差人员" };
 		schedulingService.schedulingList(schedulingListVO);
 		List<schedulingDTO> dtoList = schedulingListVO.getSchedulingDTOList();
 		List<Map<String, String>> dataList = new ArrayList<Map<String, String>>();
 		for (schedulingDTO schedulingDTO : dtoList) {
 			Map<String, String> map = new HashMap<String, String>();
-			map.put("1", schedulingDTO.getScheduling_time());
-			map.put("2", schedulingDTO.getScheduling_leader());
-			map.put("3", schedulingDTO.getScheduling_main());
-			map.put("4", schedulingDTO.getScheduling_mainTec());
-			map.put("5", schedulingDTO.getScheduling_assistant());
+			map.put("0", schedulingDTO.getScheduling_time());
+			map.put("1", schedulingDTO.getScheduling_leader());
+			map.put("2", schedulingDTO.getScheduling_main());
+			map.put("3", schedulingDTO.getScheduling_mainTec());
+			map.put("4", schedulingDTO.getScheduling_main_doctor());
+			map.put("5", schedulingDTO.getScheduling_assistant_tech());
+			map.put("6", schedulingDTO.getScheduling_assistant_spy());
 			if (schedulingDTO.getScheduling_patrol() == null)
-				map.put("6", "");
-			else {
-				map.put("6", schedulingDTO.getScheduling_patrol());
-			}
-			if (schedulingDTO.getScheduling_overtime() == null)
 				map.put("7", "");
 			else {
-				map.put("7", schedulingDTO.getScheduling_overtime());
+				map.put("7", schedulingDTO.getScheduling_patrol());
 			}
-			if (schedulingDTO.getScheduling_out_help() == null)
+			if (schedulingDTO.getScheduling_overtime() == null)
 				map.put("8", "");
 			else {
-				map.put("8", schedulingDTO.getScheduling_out_help());
+				map.put("8", schedulingDTO.getScheduling_overtime());
 			}
-			if (schedulingDTO.getScheduling_evection() == null)
+			if (schedulingDTO.getScheduling_out_help() == null)
 				map.put("9", "");
 			else {
-				map.put("9", schedulingDTO.getScheduling_evection());
+				map.put("9", schedulingDTO.getScheduling_out_help());
+			}
+			if (schedulingDTO.getScheduling_evection() == null)
+				map.put("10", "");
+			else {
+				map.put("10", schedulingDTO.getScheduling_evection());
 			}
 			dataList.add(map);
 		}
@@ -352,12 +365,28 @@ public class SchedulingAction extends ActionSupport {
 		this.mainTech = mainTech;
 	}
 
-	public String[] getAssistatn() {
-		return assistatn;
+	public String[] getMainDoctor() {
+		return mainDoctor;
 	}
 
-	public void setAssistatn(String[] assistatn) {
-		this.assistatn = assistatn;
+	public void setMainDoctor(String[] mainDoctor) {
+		this.mainDoctor = mainDoctor;
+	}
+
+	public String[] getAssistantSpy() {
+		return assistantSpy;
+	}
+
+	public void setAssistantSpy(String[] assistantSpy) {
+		this.assistantSpy = assistantSpy;
+	}
+
+	public String[] getAssistantTech() {
+		return assistantTech;
+	}
+
+	public void setAssistantTech(String[] assistantTech) {
+		this.assistantTech = assistantTech;
 	}
 
 	public void setScheduling_id(String[] scheduling_id) {
@@ -370,6 +399,22 @@ public class SchedulingAction extends ActionSupport {
 
 	public void setSchedulingTimeVO(schedulingTimeVO schedulingTimeVO) {
 		this.schedulingTimeVO = schedulingTimeVO;
+	}
+
+	public String getMainTechType() {
+		return mainTechType;
+	}
+
+	public void setMainTechType(String mainTechType) {
+		this.mainTechType = mainTechType;
+	}
+
+	public String getIndexDays() {
+		return indexDays;
+	}
+
+	public void setIndexDays(String indexDays) {
+		this.indexDays = indexDays;
 	}
 
 }

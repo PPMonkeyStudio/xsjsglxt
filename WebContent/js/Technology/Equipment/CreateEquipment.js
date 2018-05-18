@@ -4,6 +4,7 @@ function CreateEquipment() {
 				columnClass : 'col-md-6 col-md-offset-3',
 				title : '器材装备录入',
 				content : '<table class="table table-hover"><tbody>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>装备种类：</th><td colspan="2"><select type="text" id="input_kind" class="form-control" ><option value="侦查">侦查</option><option value="技术">技术</option></select></td></tr>'
 						+ '<tr><th><span style="color:red;">*&nbsp;</span>装备名称：</th><td colspan="2"><input type="text" id="input_name" class="form-control" /></td></tr>'
 						+ '<tr><th><span style="color:red;">*&nbsp;</span>装备类型：</th><td colspan="2"><input type="text" id="input_type" class="form-control" /></td></tr>'
 						+ '<tr><th>装备特征：</th>'
@@ -41,11 +42,11 @@ function CreateEquipment() {
 								.getElementById("input_enablement_time");
 						var textarea_remark = document
 								.getElementById("textarea_remark");
-						
+
 						/*
 						 * 装备名称、装备类型、金额、使用情况不能为空
 						 */
-						
+
 						if (input_name.value == "") {
 							toastr.error("装备名称不能为空！");
 							return false;
@@ -79,6 +80,8 @@ function CreateEquipment() {
 								}
 							}
 						}
+						formData.append("equipment.equipment_kind", $(
+								'#input_kind').val());
 						formData.append("equipment.equipment_name",
 								input_name.value);
 						formData.append("equipment.equipment_type",
@@ -120,19 +123,22 @@ function CreateEquipment() {
 					取消 : function() {
 
 					}
-				},onContentReady : function() {
-					var select_feature=document.getElementById("select_feature");
-					var input_feature=document.getElementById("input_feature");
-					if(select_feature.value=="其他"){
-						input_feature.value="";
-						input_feature.disabled="";
-					}else{
-						input_feature.value=select_feature.value;
-						input_feature.disabled="disabled"; 
+				},
+				onContentReady : function() {
+					var select_feature = document
+							.getElementById("select_feature");
+					var input_feature = document
+							.getElementById("input_feature");
+					if (select_feature.value == "其他") {
+						input_feature.value = "";
+						input_feature.disabled = "";
+					} else {
+						input_feature.value = select_feature.value;
+						input_feature.disabled = "disabled";
 					}
 					laydate.render({
-						elem : '#input_enablement_time' ,// 指定元素启用时间
-							value : new Date()
+						elem : '#input_enablement_time',// 指定元素启用时间
+						value : new Date()
 					});
 				}
 			});

@@ -20,8 +20,6 @@
 <script src="<%=basePath%>js/Scheduling/showSchedulingList.js"></script>
 <script src="<%=basePath%>js/Scheduling/selectCheckBox.js"></script>
 <script src="<%=basePath%>js/Scheduling/managerScheduling.js"></script>
-<script type="text/javascript"
-	src="<%=basePath%>js/Case/defaults-zh_CN.js"></script>
 <style type="text/css">
 .pageOperation {
 	cursor: pointer;
@@ -33,6 +31,32 @@ a {
 
 i {
 	cursor: pointer;
+}
+#no_choose li:hover {
+	cursor:pointer;
+	background-color: #ddd;
+}
+#no_choose {
+	padding:0;
+}
+#no_choose li {
+	list-style-type: none;
+	color: black;
+	font-size: 16px;
+	padding-left: 5px;
+}
+#choose_ li:hover {
+	cursor:pointer;
+	background-color: #ddd;
+}
+#choose_ {
+	padding:0;
+}
+#choose_ li {
+	list-style-type: none;
+	color: black;
+	font-size: 16px;
+	padding-left: 5px;
 }
 </style>
 </head>
@@ -53,8 +77,7 @@ i {
 					onclick="printCurrPage()">
 					<i class="fa fa-print"></i>导出值班表
 				</button>
-				<button class="btn btn-default managerRole"
-					onclick="intoStastics()">
+				<button class="btn btn-default managerRole" onclick="intoStastics()">
 					<i class="fa fa-arrow-circle-right"></i>统计
 				</button>
 				<button class="btn btn-danger managerRole"
@@ -85,16 +108,18 @@ i {
 							</label></td>
 							<td rowspan="2">日期</td>
 							<td rowspan="2">带班领导</td>
-							<td colspan="3">值班人员</td>
+							<td colspan="5">值班人员</td>
 							<td rowspan="2">巡逻人员</td>
 							<td rowspan="2">加班人员</td>
 							<td rowspan="2">外协人员</td>
 							<td rowspan="2">出差人员</td>
 						</tr>
 						<tr style="height: 30; color: black;">
-							<td>侦查值班人员</td>
-							<td>技术值班人员</td>
-							<td>值班辅警</td>
+							<td>侦查值班</td>
+							<td>技术值班</td>
+							<td>法医值班</td>
+							<td>侦查辅警</td>
+							<td>技术辅警</td>
 						</tr>
 					</thead>
 					<tbody>
@@ -109,7 +134,9 @@ i {
 							<td>{{ schedulingDTO.scheduling_leader }}</td>
 							<td>{{ schedulingDTO.scheduling_main }}</td>
 							<td>{{ schedulingDTO.scheduling_mainTec }}</td>
-							<td>{{ schedulingDTO.scheduling_assistant }}</td>
+							<td>{{ schedulingDTO.scheduling_main_doctor }}</td>
+							<td>{{ schedulingDTO.scheduling_assistant_spy }}</td>
+							<td>{{ schedulingDTO.scheduling_assistant_tech }}</td>
 							<td>{{ schedulingDTO.scheduling_patrol }}</td>
 							<td>{{ schedulingDTO.scheduling_overtime }}</td>
 							<td>{{ schedulingDTO.scheduling_out_help }}</td>

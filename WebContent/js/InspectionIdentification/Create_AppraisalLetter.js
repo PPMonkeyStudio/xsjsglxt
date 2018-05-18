@@ -66,14 +66,20 @@ function Create_AppraisalLetter(obj) {
 								+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_sex
 								+ '，年龄：'
 								+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_age
-								+ '，家庭住址：'
-								+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_address
+								+ '，身份证号：'
+								+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_unit
 								+ '。';
+						// document
+						// .getElementsByName("appraisalLetter.appraisal_letter_inspection")[0].value
+						// = '
+						// （一）萍乡市中医院病历摘要（2017006297）：颜鑫，男，30岁，因刺伤致腹部疼痛1小时入院，查体：左下腹部见一大小约2×3cm伤口，深约6cm，进入腹腔，活动性出血，压痛。伤者于2017年4月22日01时50分在全麻下行剖腹探查+左下大网膜、腹膜、腹直肌修补+左下腹创扩创清创术，术中见：左下腹直肌断裂，左下腹腹膜挫裂，大小约4×5cm，大网膜挫伤，大小约2×2cm，并见活动性出血。术后诊断：腹部刺伤：左腹直肌断裂、腹膜挫裂、大网膜挫伤。'
+						// + '\n
+						// （二）检验所见：神清，问答切题，卧于病床。左下腹见一10.5CM纵行手术扩创口，创口已缝合。';
 						document
-								.getElementsByName("appraisalLetter.appraisal_letter_inspection")[0].value = '      （一）萍乡市中医院病历摘要（2017006297）：颜鑫，男，30岁，因刺伤致腹部疼痛1小时入院，查体：左下腹部见一大小约2×3cm伤口，深约6cm，进入腹腔，活动性出血，压痛。伤者于2017年4月22日01时50分在全麻下行剖腹探查+左下大网膜、腹膜、腹直肌修补+左下腹创扩创清创术，术中见：左下腹直肌断裂，左下腹腹膜挫裂，大小约4×5cm，大网膜挫伤，大小约2×2cm，并见活动性出血。术后诊断：腹部刺伤：左腹直肌断裂、腹膜挫裂、大网膜挫伤。'
-								+ '\n      （二）检验所见：神清，问答切题，卧于病床。左下腹见一10.5CM纵行手术扩创口，创口已缝合。';
+								.getElementsByName("appraisalLetter.appraisal_letter_inspection")[0].value = json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_damage_inspection_record.damage_inspection_record_inspection;
+
 						document
-								.getElementsByName("appraisalLetter.appraisal_letter_argumentation")[0].value = '      伤者因锐器伤致腹壁穿透伤、左腹直肌断裂、腹膜挫裂、大网膜挫伤，并行手术治疗，手术扩创口长度长达10.5cm。根据赣高法[2013]226号《人体损伤程度鉴定标准》第5.7.4i)、5.11.3b)之规定，已构成轻伤二级。';
+								.getElementsByName("appraisalLetter.appraisal_letter_argumentation")[0].value = '      伤者因锐器伤致腹壁穿透伤、左腹直肌断裂、腹膜挫裂、大网膜挫伤，并行手术治疗，手术扩创口长度长达10.5cm。根据2014年1月1日《人体损伤程度鉴定标准》第5.7.4i)、5.11.3b)之规定，已构成轻伤二级。';
 						document
 								.getElementsByName("appraisalLetter.appraisal_letter_expert_opinion")[0].value = '      '
 								+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_name
@@ -81,9 +87,9 @@ function Create_AppraisalLetter(obj) {
 						break;
 					}
 					case "死因鉴定": {
-						jc.setTitle("<p>萍乡市安源区公安司法鉴定中心</p><p>法医学尸体检验报告书</p>");
+						jc.setTitle("<p>萍乡市安源区公安司法鉴定中心</p><p>法医学尸体检验鉴定书</p>");
 						document
-								.getElementById("td_appraisal_letter_sample_situation").innerHTML = '检材和样本';
+								.getElementById("td_appraisal_letter_sample_situation").innerHTML = '检验对象';
 
 						document
 								.getElementsByName("appraisalLetter.appraisal_letter_sample_situation")[0].value = '姓名：'
@@ -92,8 +98,8 @@ function Create_AppraisalLetter(obj) {
 								+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_sex
 								+ '，年龄：'
 								+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_age
-								+ '，家庭住址：'
-								+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_address
+								+ '，身份证号：'
+								+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_unit
 								+ '。';
 						document
 								.getElementsByName("appraisalLetter.appraisal_letter_inspection")[0].value = '      本鉴定检验方法按照中华人民共和国公共行业标准《法医学尸体解剖》（GA/T147－1996）、《法医学尸表检验》（GA/T149－1996）、《机械性损伤尸体检验》（GA/T168-1997） 、《机械性窒息尸体检验》（GA/T 150-1996）、《猝死尸体的检验》（GA/T170-1997）、《中毒案件检材包装、贮存、运送及送检规则》（GA/T194-1998）、《法医病理学检材的提取、保存与送检》（GA/T148-1996）、《中毒尸体检验规范》（GA/T167-1997）'
@@ -115,89 +121,137 @@ function Create_AppraisalLetter(obj) {
 						break;
 					}
 					case "指纹检验鉴定": {
-						jc.setTitle("<p>萍乡市安源区公安司法鉴定中心</p><p>法医学尸体检验报告书</p>");
+						jc.setTitle("<p>萍乡市安源区公安司法鉴定中心</p><p>鉴定书</p>");
 						document
 								.getElementById("td_appraisal_letter_sample_situation").innerHTML = '检材和样本';
 						document
 								.getElementsByName("appraisalLetter.appraisal_letter_sample_situation")[0].value = json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_sample_situation;
-						// 检验
+						/*
+						 * 检验
+						 */
+						// document
+						// .getElementsByName("appraisalLetter.appraisal_letter_inspection")[0].value
+						// = ' 本次检验采用IFSC 07-02-01-2006指纹鉴定法（公安部物证鉴定中心）'
+						// + '\n
+						// 现场玻璃门上提取的指纹，用照相法加以固定，类型是斗型纹。指纹纹线较清晰，特征稳定，有鉴定价值。经细致寻找，发现稳定的细节特征10个，构成同一认定的条件。'
+						// + '\n
+						// 送检犯罪嫌疑人沈裕的十指指纹捺印样本是油墨捺印，用照相法加以固定，指印纹线清晰，特征稳定，可供同一认定。'
+						// + '\n
+						// 将现场指纹与沈裕的捺印十指纹进行逐一比对检验，发现丁招龙的左手中指指纹所出现的10个细节特征与现场指纹的10个细节特征相吻合，因而构成了同一认定的依据。（见照片二）';
 						document
-								.getElementsByName("appraisalLetter.appraisal_letter_inspection")[0].value = '      本次检验采用IFSC 07-02-01-2006指纹鉴定法（公安部物证鉴定中心）'
-								+ '\n      现场玻璃门上提取的指纹，用照相法加以固定，类型是斗型纹。指纹纹线较清晰，特征稳定，有鉴定价值。经细致寻找，发现稳定的细节特征10个，构成同一认定的条件。'
-								+ '\n      送检犯罪嫌疑人沈裕的十指指纹捺印样本是油墨捺印，用照相法加以固定，指印纹线清晰，特征稳定，可供同一认定。'
-								+ '\n      将现场指纹与沈裕的捺印十指纹进行逐一比对检验，发现丁招龙的左手中指指纹所出现的10个细节特征与现场指纹的10个细节特征相吻合，因而构成了同一认定的依据。（见照片二）';
-						// 论证
+								.getElementsByName("appraisalLetter.appraisal_letter_inspection")[0].value = json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_process;
+
+						/*
+						 * 论证
+						 */
 						document
-								.getElementsByName("appraisalLetter.appraisal_letter_argumentation")[0].value = '      '
-								+ '\n      经过比对检验，现场提取的指纹和沈裕的左手中指指纹二者类型、纹线流向以及各个细节特征的大小、长短距离、位置关系均相一致，构成同一认定的客观依据。';
-						// 结论
+								.getElementsByName("appraisalLetter.appraisal_letter_argumentation")[0].value = ' '
+								+ '\n经过比对检验，现场提取的指纹和沈裕的左手中指指纹二者类型、纹线流向以及各个细节特征的大小、长短距离、位置关系均相一致，构成同一认定的客观依据。';
+
+						/*
+						 * 结论
+						 */
+						// document
+						// .getElementsByName("appraisalLetter.appraisal_letter_expert_opinion")[0].value
+						// = ' 现场玻璃门上提取的指纹是犯罪嫌疑人沈裕所留。';
 						document
-								.getElementsByName("appraisalLetter.appraisal_letter_expert_opinion")[0].value = '      现场玻璃门上提取的指纹是犯罪嫌疑人沈裕所留。';
+								.getElementsByName("appraisalLetter.appraisal_letter_expert_opinion")[0].value = json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_option;
 						break;
 					}
 					case "足迹检验鉴定": {
-						jc.setTitle("<p>萍乡市安源区公安司法鉴定中心</p><p>法医学尸体检验报告书</p>");
+						jc.setTitle("<p>萍乡市安源区公安司法鉴定中心</p><p>鉴定书</p>");
 						document
 								.getElementById("td_appraisal_letter_sample_situation").innerHTML = '检材和样本';
 						document
 								.getElementsByName("appraisalLetter.appraisal_letter_sample_situation")[0].value = json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_sample_situation;
+
+						// document
+						// .getElementsByName("appraisalLetter.appraisal_letter_inspection")[0].value
+						// = ' 本次检验采用IFSC 06-01-03-2006足迹鉴定法（公安部物证鉴定中心）'
+						// + '\n 1、对现场鞋印的检验：'
+						// + '\n
+						// 现场鞋印系遗留在现场厨房灶台瓷砖表面的灰尘减层鞋印,无明显变形，为右脚所留。通过观察鞋印大小及花纹种类、鞋印边缘虚实部位及长短、边缘磨损块痕清晰，能够客观地反映出鞋印形象特征和特定磨损情况的稳定特征，具有鉴定价值。经检验，现场鞋印全长28.9厘米，前掌宽10.8厘米，后跟宽8.7厘米。鞋印前掌为条状波浪形花纹，后跟为波浪小花纹。进一步检验发现，在现场鞋印前掌及后跟部位发现细节特征10处（详见附件一现场照片）。'
+						// + '\n 2、对样本鞋印的检验：'
+						// + '\n
+						// 样本为马海小者所穿自用鞋行走的灰尘鞋印，拍照提取。鞋底花纹清晰完整，可供比对。初步检验鞋印全长28.9厘米，前掌宽10.8厘米，后跟宽8.7厘米，鞋印前掌为条状波浪形花纹，后跟为波浪小花纹。进一步检验发现，在现场鞋印前掌及后跟部位发现10处细节特征（详见附件二捺印照片）。'
+						// + '\n 3、比对检验：'
+						// + '\n
+						// 比较检验检材与样本，发现检材鞋印与样本鞋印大小及花纹种类相同，细节特征处反映清晰。在鞋印特征标注处，反映出鞋底具有同样的损伤特征系同一鞋所留。（详见附件三特征比对照片）。';
 						document
-								.getElementsByName("appraisalLetter.appraisal_letter_inspection")[0].value = '      本次检验采用IFSC 06-01-03-2006足迹鉴定法（公安部物证鉴定中心）'
-								+ '\n      1、对现场鞋印的检验：'
-								+ '\n      现场鞋印系遗留在现场厨房灶台瓷砖表面的灰尘减层鞋印,无明显变形，为右脚所留。通过观察鞋印大小及花纹种类、鞋印边缘虚实部位及长短、边缘磨损块痕清晰，能够客观地反映出鞋印形象特征和特定磨损情况的稳定特征，具有鉴定价值。经检验，现场鞋印全长28.9厘米，前掌宽10.8厘米，后跟宽8.7厘米。鞋印前掌为条状波浪形花纹，后跟为波浪小花纹。进一步检验发现，在现场鞋印前掌及后跟部位发现细节特征10处（详见附件一现场照片）。'
-								+ '\n      2、对样本鞋印的检验：'
-								+ '\n      样本为马海小者所穿自用鞋行走的灰尘鞋印，拍照提取。鞋底花纹清晰完整，可供比对。初步检验鞋印全长28.9厘米，前掌宽10.8厘米，后跟宽8.7厘米，鞋印前掌为条状波浪形花纹，后跟为波浪小花纹。进一步检验发现，在现场鞋印前掌及后跟部位发现10处细节特征（详见附件二捺印照片）。'
-								+ '\n      3、比对检验：'
-								+ '\n      比较检验检材与样本，发现检材鞋印与样本鞋印大小及花纹种类相同，细节特征处反映清晰。在鞋印特征标注处，反映出鞋底具有同样的损伤特征系同一鞋所留。（详见附件三特征比对照片）。';
+								.getElementsByName("appraisalLetter.appraisal_letter_inspection")[0].value = json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_process;
+
 						document
 								.getElementsByName("appraisalLetter.appraisal_letter_argumentation")[0].value = '      现场鞋印和样本鞋印，均为右脚鞋印，鞋印尺寸大小一致，鞋底花纹相同、种类同一，可供检验的特定特征系穿用形成，稳定可靠。对应位置上出现的10处特定特征形态、位置、角度、大小以及相互之间的距离均相吻合，这些特征的总合反映了两者之间具有本质上的同一，是其他鞋所不能重复出现，完全构成了同一认定的客观依据（详见附件三特征比对照片）。';
+						// document
+						// .getElementsByName("appraisalLetter.appraisal_letter_expert_opinion")[0].value
+						// = ' 送检的的现场鞋印是马海小者右脚鞋所留。';
 						document
-								.getElementsByName("appraisalLetter.appraisal_letter_expert_opinion")[0].value = '      送检的的现场鞋印是马海小者右脚鞋所留。';
+								.getElementsByName("appraisalLetter.appraisal_letter_expert_opinion")[0].value = json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_option;
 						break;
 					}
 					case "整体分离检验鉴定": {
-						jc.setTitle("<p>萍乡市安源区公安司法鉴定中心</p><p>法医学尸体检验报告书</p>");
+						jc.setTitle("<p>萍乡市安源区公安司法鉴定中心</p><p>鉴定书</p>");
 						document
 								.getElementById("td_appraisal_letter_sample_situation").innerHTML = '检材和样本';
 						document
 								.getElementsByName("appraisalLetter.appraisal_letter_sample_situation")[0].value = json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_sample_situation;
+						// document
+						// .getElementsByName("appraisalLetter.appraisal_letter_inspection")[0].value
+						// = ' 本次检验采用JXPX-06-3004-2010整体分离鉴定法（公安物证鉴定中心）'
+						// + '\n
+						// 检材是事故现场提取的一块长6.8cm的不规则黑色塑料残片，正面呈平面状，背面呈凹状，有陈旧的灰尘附着痕迹（详见检验照片一）。'
+						// + '\n
+						// 样本是赣J34199客车车头上提取的一块长3.1cm的不规则黑色色塑料残片，正面平面状，背面呈凹状，有陈旧的灰尘附着痕迹（详见检验照片一）。'
+						// + '\n 比较检验检材与样本发现两者颜色、质地、新旧程度及灰尘附着情形相同。'
+						// + '\n 将检材与样本的分离缘进行拼接，分离缘凹凸互补，一一对应，分离线相互吻合（详见检验照片二）。';
 						document
-								.getElementsByName("appraisalLetter.appraisal_letter_inspection")[0].value = '      本次检验采用JXPX-06-3004-2010整体分离鉴定法（公安物证鉴定中心）'
-								+ '\n      检材是事故现场提取的一块长6.8cm的不规则黑色塑料残片，正面呈平面状，背面呈凹状，有陈旧的灰尘附着痕迹（详见检验照片一）。'
-								+ '\n      样本是赣J34199客车车头上提取的一块长3.1cm的不规则黑色色塑料残片，正面平面状，背面呈凹状，有陈旧的灰尘附着痕迹（详见检验照片一）。'
-								+ '\n      比较检验检材与样本发现两者颜色、质地、新旧程度及灰尘附着情形相同。'
-								+ '\n      将检材与样本的分离缘进行拼接，分离缘凹凸互补，一一对应，分离线相互吻合（详见检验照片二）。';
+								.getElementsByName("appraisalLetter.appraisal_letter_inspection")[0].value = json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_process;
 						document
 								.getElementsByName("appraisalLetter.appraisal_letter_argumentation")[0].value = '      检材与样本的颜色、质地和新旧程度相同，分离缘吻合完好，具有排它性，两者原属于同一整体。';
+						// document
+						// .getElementsByName("appraisalLetter.appraisal_letter_expert_opinion")[0].value
+						// = ' 送检的赣J34199客车上提取的一块塑料残片与事故现场提取的一块塑料残片两者原属于是同一整体。';
 						document
-								.getElementsByName("appraisalLetter.appraisal_letter_expert_opinion")[0].value = '      送检的赣J34199客车上提取的一块塑料残片与事故现场提取的一块塑料残片两者原属于是同一整体。';
+								.getElementsByName("appraisalLetter.appraisal_letter_expert_opinion")[0].value = json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_option;
 						break;
 					}
 					case "车辆痕迹检验鉴定": {
-						jc.setTitle("<p>萍乡市安源区公安司法鉴定中心</p><p>法医学尸体检验报告书</p>");
+						jc.setTitle("<p>萍乡市安源区公安司法鉴定中心</p><p>鉴定书</p>");
 						document
 								.getElementById("td_appraisal_letter_sample_situation").innerHTML = '检材和样本';
 						document
 								.getElementsByName("appraisalLetter.appraisal_letter_sample_situation")[0].value = json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_sample_situation;
+						// document
+						// .getElementsByName("appraisalLetter.appraisal_letter_inspection")[0].value
+						// = ' 本次检验采用IFSC 06-02-02-2006车体痕迹鉴定法（公安部物证鉴定中心）'
+						// + '\n
+						// （一）赣J93Q97是一辆银灰色豪爵铃木踏板车，长1900mm、宽620mm、高1250mm、重120KG,对豪爵铃木踏板车的检验发现：'
+						// + '\n 前轮：三根轮辐断裂。'
+						// + '\n
+						// 踏板车左侧：前端保险杠见擦划痕，后端保险杠上见擦划痕，车身尾部上见擦划痕，后视镜与车分离，发动机上见擦划痕。'
+						// + '\n
+						// 踏板车右侧：前轮轴杆上距地22.5cm处见擦划痕，前端保险杠上距地61cm处见长20cm擦划痕，踏脚板处保险杠上距地40cm处见“8×2.5cm”向内凹陷痕，中边条距地33cm处见17cm断裂痕，距地33cm处见长24cm擦划痕。'
+						// + '\n
+						// （二）赣J9J210是一辆银灰色五羊本田踏板车，长2000mm、宽640mm、高1300mm、重116KG,对五羊本田踏板车的检验发现：'
+						// + '\n
+						// 踏板车左侧：发动机上距地高22cm处见“3×0.3cm”向内凹陷痕；后端保险杠上见擦划痕迹；前端保险杠上见擦划痕迹，左转向灯处见擦划痕迹，启动杆向外侧发生严重形变，距地高23.5cm处见“0.1×0.1cm”。'
+						// + '\n 踏板车右侧：未见新鲜痕迹。'
+						// + '\n 踏板车尾部：车牌上见“11×5cm”擦划痕。'
+						// + '\n
+						// （三）赣K69935是一辆黄色江淮格尔发K3X后八轮工程车，长10545mm、宽2495mm、高3500mm、重15900KG,对江淮格尔发K3X后八轮工程车的检验发现：'
+						// + '\n 后八轮工程车未见擦划、碰撞痕迹。';
 						document
-								.getElementsByName("appraisalLetter.appraisal_letter_inspection")[0].value = '      本次检验采用IFSC 06-02-02-2006车体痕迹鉴定法（公安部物证鉴定中心）'
-								+ '\n      （一）赣J93Q97是一辆银灰色豪爵铃木踏板车，长1900mm、宽620mm、高1250mm、重120KG,对豪爵铃木踏板车的检验发现：'
-								+ '\n            前轮：三根轮辐断裂。'
-								+ '\n            踏板车左侧：前端保险杠见擦划痕，后端保险杠上见擦划痕，车身尾部上见擦划痕，后视镜与车分离，发动机上见擦划痕。'
-								+ '\n            踏板车右侧：前轮轴杆上距地22.5cm处见擦划痕，前端保险杠上距地61cm处见长20cm擦划痕，踏脚板处保险杠上距地40cm处见“8×2.5cm”向内凹陷痕，中边条距地33cm处见17cm断裂痕，距地33cm处见长24cm擦划痕。'
-								+ '\n      （二）赣J9J210是一辆银灰色五羊本田踏板车，长2000mm、宽640mm、高1300mm、重116KG,对五羊本田踏板车的检验发现：'
-								+ '\n            踏板车左侧：发动机上距地高22cm处见“3×0.3cm”向内凹陷痕；后端保险杠上见擦划痕迹；前端保险杠上见擦划痕迹，左转向灯处见擦划痕迹，启动杆向外侧发生严重形变，距地高23.5cm处见“0.1×0.1cm”。'
-								+ '\n            踏板车右侧：未见新鲜痕迹。'
-								+ '\n            踏板车尾部：车牌上见“11×5cm”擦划痕。'
-								+ '\n      （三）赣K69935是一辆黄色江淮格尔发K3X后八轮工程车，长10545mm、宽2495mm、高3500mm、重15900KG,对江淮格尔发K3X后八轮工程车的检验发现：'
-								+ '\n            后八轮工程车未见擦划、碰撞痕迹。';
+								.getElementsByName("appraisalLetter.appraisal_letter_inspection")[0].value = json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_process;
 						document
 								.getElementsByName("appraisalLetter.appraisal_letter_argumentation")[0].value = '      赣J93Q97二轮踏板摩托车右侧前轮轴杆上的痕迹、右侧前端保险杠上的痕迹、右侧踏脚板处保险杠上的痕迹、右侧中边条上的痕迹、前轮三根轮辐断裂痕迹与赣J9J210二轮踏板摩托左侧车尾部发动机、左侧启动杆、尾部牌照处痕迹，位置、高度相当。分析系赣J93Q97二轮踏板摩托车与赣J9J210二轮踏板摩托车追尾形成。'
 								+ '\n      赣J93Q97二轮踏板摩托车左侧前端保险杠上痕迹，左侧后端保险杠上痕迹，左侧车身尾部上痕迹，左侧发动机上痕迹，左侧后视镜与车分离和赣J9J210二轮踏板摩托车左侧后端保险杠上痕迹，左侧前端保险杠上痕迹，左转向灯处痕迹，分析系倒地形成。'
 								+ '\n      赣K69935后八轮工程车上未见明显撞击痕迹，分析赣J93Q97二轮踏板摩托车与赣K69935后八轮工程车未发生接触性碰撞。';
+						// document
+						// .getElementsByName("appraisalLetter.appraisal_letter_expert_opinion")[0].value
+						// = ' 1、赣J93Q97二轮踏板摩托车与赣J9J210二轮踏板摩托车发生追尾碰撞。'
+						// + '\n 2、赣J93Q97二轮踏板摩托车与赣K69935后八轮工程车未发生接触性碰撞。';
 						document
-								.getElementsByName("appraisalLetter.appraisal_letter_expert_opinion")[0].value = '      1、赣J93Q97二轮踏板摩托车与赣J9J210二轮踏板摩托车发生追尾碰撞。'
-								+ '\n      2、赣J93Q97二轮踏板摩托车与赣K69935后八轮工程车未发生接触性碰撞。';
+								.getElementsByName("appraisalLetter.appraisal_letter_expert_opinion")[0].value = json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_inspection_record.inspection_option;
 						break;
 					}
 					default: {

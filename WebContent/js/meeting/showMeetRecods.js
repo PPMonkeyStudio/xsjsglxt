@@ -64,6 +64,7 @@ var ajaxSetTable = function(jsonData) {
 			jsonData.totalCount);
 	$("#currPage").html(jsonData.currPage);
 	$("#totalPage").html(jsonData.pageCount);
+	$("#totalCount").html(jsonData.totalCount);
 	var tableContent = "";
 	for (var i = 0; i < jsonData.meetDTO.length; i++) {
 		tableContent = tableContent

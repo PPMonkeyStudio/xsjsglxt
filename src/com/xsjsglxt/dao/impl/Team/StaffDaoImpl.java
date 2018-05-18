@@ -212,4 +212,14 @@ public class StaffDaoImpl implements StaffDao {
 		String hql = "from xsjsglxt_staff where staff_duty ='侦查民警'";
 		return session.createQuery(hql).list();
 	}
+
+	@Override
+	public List<xsjsglxt_staff> getAllStaff(String duty) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		String hql = "from xsjsglxt_staff where 1=1";
+		if (duty != null && !"".equals(duty.trim()))
+			hql = hql + " and staff_duty = '" + duty + "'";
+		return session.createQuery(hql).list();
+	}
 }

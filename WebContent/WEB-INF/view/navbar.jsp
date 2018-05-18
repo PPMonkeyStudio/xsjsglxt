@@ -83,7 +83,10 @@
 						<li class="teacher_control"><a
 							href="<%=basePath%>user/Meeting_skipToMeetRecords">会议记录</a></li>
 						<li class="teacher_control"><a
+							href="<%=basePath%>Equipment/EquipmentManagement_EquipmentManagementPage">器材装备</a></li>
+						<li class="teacher_control"><a
 							href="<%=basePath%>user/Memorabilia_skipToMemorabilia">大事记</a></li>
+
 					</ul></li>
 				</template>
 				<li class="leader_control dropdown" style="float: left;"><a

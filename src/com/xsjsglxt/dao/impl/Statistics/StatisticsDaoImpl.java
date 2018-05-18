@@ -43,10 +43,11 @@ public class StatisticsDaoImpl implements StatisticsDao {
 	@Override
 	public List<xsjsglxt_staff> getPolicemanByName(String policemanName) {
 		// TODO Auto-generated method stub
-		String hql = "from xsjsglxt_staff where 1=1";
+		String hql = "from xsjsglxt_staff where staff_duty not in ('侦查民警','内勤民警')";
 		if (policemanName != null && !"".equals(policemanName)) {
 			hql = hql + " and xsjsglxt_name like '%" + policemanName + "%'";
 		}
+		System.out.println();
 		Session session = this.getSession();
 		List<xsjsglxt_staff> policemans = session.createQuery(hql).list();
 		return policemans;

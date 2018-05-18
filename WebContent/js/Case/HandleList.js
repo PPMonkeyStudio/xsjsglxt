@@ -113,9 +113,11 @@ $(function() {
 
 	//办案添加
 	$('#Handle_input').on('show.bs.modal', function() {
-		$.post('/xsjsglxt/case/Handle_xuhao', function(json_data, text_data) {
-			$('input[name="handle.handle_orderNumber"]').val(json_data);
-		}, 'json');
+		if (!$('input[name="handle.handle_orderNumber"]').val()) {
+			$.post('/xsjsglxt/case/Handle_xuhao', function(json_data, text_data) {
+				$('input[name="handle.handle_orderNumber"]').val(json_data);
+			}, 'json');
+		}
 	})
 	//清除内容
 	$(".modal").on('hidden.bs.modal', function() {
@@ -126,14 +128,14 @@ $(function() {
 	})
 	//中对长和办案民警
 	$("#Handle_input").on('show.bs.modal', function() {
-		$.post('/xsjsglxt/case/Case_AllCase', {}, function(Case_data) {
+		/*$.post('/xsjsglxt/case/Case_AllCase', {}, function(Case_data) {
 			//所有案件循环
 			var option = '';
 			for (var len = 0; len < Case_data.length; len++) {
 				option += '<option value="' + Case_data[len].xsjsglxt_case_id + '">' + Case_data[len].case_name + '</option>';
 			}
 			$('select[name="handle.handle_Case"]').html(option).selectpicker('refresh');
-		}, 'json');
+		}, 'json');*/
 		$.post('/xsjsglxt/team/Staff_getHandleCenter', {}, function(msg) {
 			$('select[name="handle.handle_squadronleader"]').html(function() {
 				var option = "";
@@ -159,7 +161,7 @@ $(function() {
 		var dta = $('input[name="handle.handle_StartTimeaOfDetention"]').val();
 		var day = $('select[name="handle.handle_detentionDay"]').val();
 		var time_end = '&handle.handle_EndTimeaOfDetention=' + addDate(dta, day);
-		handl_data += '&handle.handle_administrativeCase=' + $('select[name="handle.handle_Case"] option:selected').text();
+		//handl_data += '&handle.handle_administrativeCase=' + $('select[name="handle.handle_Case"] option:selected').text();
 		handl_data += time_end;
 		$.post('/xsjsglxt/case/Handle_saveHandle', handl_data, function(xhr) {
 			$('#Handle_input').modal('hide');
@@ -179,7 +181,7 @@ $(function() {
 		var day = $('select[name="handle.handle_detentionDay"]').val();
 		var time_end = '&handle.handle_EndTimeaOfDetention=' + addDate(dta, day);
 		var id = $('.handle_modify').attr('id');
-		handl_data += '&handle.handle_administrativeCase=' + $('select[name="handle.handle_Case"] option:selected').text();
+		//handl_data += '&handle.handle_administrativeCase=' + $('select[name="handle.handle_Case"] option:selected').text();
 		handl_data += time_end;
 		handl_data += '&handle.xsjsglxt_handle_id=' + id;
 		$.post('/xsjsglxt/case/Handle_updateHandleInformation', handl_data, function(xhr) {

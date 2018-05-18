@@ -33,13 +33,14 @@
 							document.getElementById("leader").innerHTML = result.scheduling_leader;
 							document.getElementById("main").innerHTML = result.scheduling_main;
 							document.getElementById("mainTech").innerHTML = result.scheduling_main_technology;
-							document.getElementById("assistant").innerHTML = result.scheduling_assistant;
+							document.getElementById("assistant").innerHTML = result.scheduling_assistant_tech
+									+ "、" + result.scheduling_assistant_spy;
 							if (result.scheduling_patrol != null)
 								document.getElementById("patrol").innerHTML = result.scheduling_patrol;
-/* 							if (result.scheduling_out_help != null)
-								document.getElementById("outHelp").innerHTML = result.scheduling_out_help;
-							if (result.scheduling_overtime != null)
-								document.getElementById("overtime").innerHTML = result.scheduling_overtime; */
+							/* 							if (result.scheduling_out_help != null)
+							 document.getElementById("outHelp").innerHTML = result.scheduling_out_help;
+							 if (result.scheduling_overtime != null)
+							 document.getElementById("overtime").innerHTML = result.scheduling_overtime; */
 						}
 					}
 				});
@@ -91,7 +92,7 @@
 	list-style-type: none;
 	color: black;
 	font-size: 18px;
-	padding:5px;
+	padding: 5px;
 }
 
 .message li:nth-child(even) {
@@ -145,18 +146,20 @@
 							</template>
 							<template v-if="user_army_manager_power">
 							<li><a
+								href="<%=basePath%>Equipment/EquipmentManagement_EquipmentManagementPage"><span>器材装备</span></a></li>
+							</template>
+							<template v-if="user_army_manager_power">
+							<li><a
 								href="<%=basePath%>user/Memorabilia_skipToMemorabilia"><span>大事记</span></a></li>
 							</template>
+
+
 						</ul></li>
 					<li><a class=""><i class="lnr lnr-license"></i> <span>技术信息</span></a>
 						<ul class="nav" style="background-color: #13599d;">
 							<template v-if="user_technology_manager_power">
 							<li><a
 								href="<%=basePath%>DNA/DNAManagement_DNAManagementPage"><span>DNA录入</span></a></li>
-							</template>
-							<template v-if="user_technology_manager_power">
-							<li><a
-								href="<%=basePath%>Equipment/EquipmentManagement_EquipmentManagementPage"><span>器材装备录入</span></a></li>
 							</template>
 						</ul></li>
 				</ul>
@@ -177,8 +180,8 @@
 							<h3 class="panel-title" id="schedulingH3">
 								今日值班 带班领导：<span id="leader"></span> 侦查民警：<span id="main"></span>
 								技术民警：<span id="mainTech"></span> 辅警：<span id="assistant"></span>
-								今日巡逻：<span id="patrol"></span><br><br>
-<%-- 								今日加班：<span id="overtime"></span>
+								今日巡逻：<span id="patrol"></span><br> <br>
+								<%-- 								今日加班：<span id="overtime"></span>
 								今日外协：<span id="outHelp"></span> --%>
 							</h3>
 							<p class="panel-subtitle" style="margin-top: 20px;">
@@ -206,7 +209,7 @@
 								<div class="mesaageDIV"
 									style="border: 1px solid #BFBFBF; box-shadow: 0px 0px 10px 5px #aaa; width: 280px; height: 400px; float: right; margin-right: 60px;">
 									<ul class="message" id="detention">
-										
+
 									</ul>
 								</div>
 							</div>

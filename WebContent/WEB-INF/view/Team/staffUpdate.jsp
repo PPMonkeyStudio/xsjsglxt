@@ -150,12 +150,15 @@
 										<option>副大队长</option>
 										<option>副教导员</option>
 										<option>中队长</option>
+										<option>室主任</option>
+										<option>指导员</option>
 										<option>副中队长</option>
 										<option>侦查民警</option>
 										<option>技术民警</option>
 										<option>法医民警</option>
 										<option>内勤民警</option>
-										<option>辅警</option>
+										<option>侦查辅警</option>
+										<option>技术辅警</option>
 								</select></td>
 
 								<td><label class="staff_info_label">入警时间</label></td>

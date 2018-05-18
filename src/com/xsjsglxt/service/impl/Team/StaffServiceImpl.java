@@ -127,4 +127,10 @@ public class StaffServiceImpl implements StaffService {
 		// TODO Auto-generated method stub
 		return staffDao.getHandleCheck();
 	}
+
+	@Override
+	public List<xsjsglxt_staff> getAllStaffByDuty(String duty) {
+		// TODO Auto-generated method stub
+		return staffDao.getAllStaff(duty);
+	}
 }
