@@ -23,6 +23,7 @@ window.onload = function() {
 		data : {
 			currPage : '',
 			pageCount : '',
+			totalCount : '',
 			memorabiliaList : ''
 		}
 	});
@@ -117,6 +118,7 @@ var loadData = function() {
 			var jsonData = JSON.parse(data);
 			allInformation.currPage = jsonData.currPage;
 			allInformation.pageCount = jsonData.pageCount;
+			allInformation.totalCount = jsonData.totalCount;
 			allInformation.memorabiliaList = jsonData.memorabiliaListDTO;
 			memorabilia.currPage = jsonData.currPage;
 			memorabilia.pageCount = jsonData.pageCount;

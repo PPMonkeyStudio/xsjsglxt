@@ -35,4 +35,6 @@ public interface StaffDao {
 	List<xsjsglxt_staff> getHandleCenter();
 
 	List<xsjsglxt_staff> getHandleCheck();
+
+	List<xsjsglxt_staff> getAllStaff(String duty);
 }

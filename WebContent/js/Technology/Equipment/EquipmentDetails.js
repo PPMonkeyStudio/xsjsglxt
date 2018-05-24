@@ -6,6 +6,7 @@ function EquipmentDetails(button) {
 				content : '<table class="table table-hover"><tbody>'
 						+ '<tr  style="display:none;"><th>equipmentId：</th><td colspan="2"><input type="text" id="input_equipment_id" class="form-control" disabled /></td></tr>'
 						+ '<tr><th>装备序号：</th><td colspan="2"><input type="text" id="input_serial_number" class="form-control" disabled /></td></tr>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>装备种类：</th><td colspan="2"><select type="text" id="input_kind" class="form-control" ><option value="侦查">侦查</option><option value="技术">技术</option></select></td></tr>'
 						+ '<tr><th><span style="color:red;">*&nbsp;</span>装备名称：</th><td colspan="2"><input type="text" id="input_name" class="form-control" /></td></tr>'
 						+ '<tr><th><span style="color:red;">*&nbsp;</span>装备类型：</th><td colspan="2"><input type="text" id="input_type" class="form-control" /></td></tr>'
 						+ '<tr><th>装备特征：</th>'
@@ -86,6 +87,8 @@ function EquipmentDetails(button) {
 								}
 							}
 						}
+						formData.append("equipment.equipment_kind", $(
+								'#input_kind').val());
 						formData.append("equipment.xsjsglxt_equipment_id",
 								input_equipment_id.value);
 						formData.append("equipment.equipment_serial_number",
@@ -136,26 +139,30 @@ function EquipmentDetails(button) {
 					for (var num = 0; num < equipment_VO.list_xsjsglxt_equipment.length; num++) {
 						var xsjsglxt_equipment_id = equipment_VO.list_xsjsglxt_equipment[num].xsjsglxt_equipment_id;
 						if (xsjsglxt_equipment_id == button_id) {
-							//装备id
+							// 装备id
 							var input_equipment_id = document
 									.getElementById("input_equipment_id");
 							input_equipment_id.value = equipment_VO.list_xsjsglxt_equipment[num].xsjsglxt_equipment_id;
-							//装备序号
+							// 装备序号
 							var input_serial_number = document
 									.getElementById("input_serial_number");
 							input_serial_number.value = equipment_VO.list_xsjsglxt_equipment[num].equipment_serial_number;
-							//装备名称
+							// 装备种类
+							$('#input_kind')
+									.val(
+											equipment_VO.list_xsjsglxt_equipment[num].equipment_kind);
+							// 装备名称
 							var input_name = document
 									.getElementById("input_name");
 							input_name.value = equipment_VO.list_xsjsglxt_equipment[num].equipment_name;
-							//装备类型
+							// 装备类型
 							var input_type = document
 									.getElementById("input_type");
 							input_type.value = equipment_VO.list_xsjsglxt_equipment[num].equipment_type;
 							if (input_type.value == "undefined") {
 								input_type.value = "";
 							}
-							//装备特征
+							// 装备特征
 							var select_feature = document
 									.getElementById("select_feature");
 							var input_feature = document
@@ -163,52 +170,52 @@ function EquipmentDetails(button) {
 							switch (equipment_VO.list_xsjsglxt_equipment[num].equipment_feature) {
 							case "不限":
 								select_feature.value = equipment_VO.list_xsjsglxt_equipment[num].equipment_feature;
-								input_feature.value=select_feature.value;
-								input_feature.disabled="disabled"; 
+								input_feature.value = select_feature.value;
+								input_feature.disabled = "disabled";
 								break;
 							case "痕迹":
 								select_feature.value = equipment_VO.list_xsjsglxt_equipment[num].equipment_feature;
-								input_feature.value=select_feature.value;
-								input_feature.disabled="disabled"; 
+								input_feature.value = select_feature.value;
+								input_feature.disabled = "disabled";
 								break;
 							case "法医":
 								select_feature.value = equipment_VO.list_xsjsglxt_equipment[num].equipment_feature;
-								input_feature.value=select_feature.value;
-								input_feature.disabled="disabled"; 
+								input_feature.value = select_feature.value;
+								input_feature.disabled = "disabled";
 								break;
 							case "影像":
 								select_feature.value = equipment_VO.list_xsjsglxt_equipment[num].equipment_feature;
-								input_feature.value=select_feature.value;
-								input_feature.disabled="disabled"; 
+								input_feature.value = select_feature.value;
+								input_feature.disabled = "disabled";
 								break;
 							case "技管":
 								select_feature.value = equipment_VO.list_xsjsglxt_equipment[num].equipment_feature;
-								input_feature.value=select_feature.value;
-								input_feature.disabled="disabled"; 
+								input_feature.value = select_feature.value;
+								input_feature.disabled = "disabled";
 								break;
 
 							default:
-								select_feature.value="其他";
+								select_feature.value = "其他";
 								input_feature.value = equipment_VO.list_xsjsglxt_equipment[num].equipment_feature;
-								input_feature.disabled="";
+								input_feature.disabled = "";
 								break;
 							}
-							//数量
+							// 数量
 							var input_number = document
 									.getElementById("input_number");
 							input_number.value = equipment_VO.list_xsjsglxt_equipment[num].equipment_number;
-							if(input_number.value=="undefined"){
-								input_number.value="";
+							if (input_number.value == "undefined") {
+								input_number.value = "";
 							}
-							//金额
+							// 金额
 							var input_money = document
 									.getElementById("input_money");
 							input_money.value = equipment_VO.list_xsjsglxt_equipment[num].equipment_money;
-							//启用日期
+							// 启用日期
 							var input_enablement_time = document
 									.getElementById("input_enablement_time");
 							input_enablement_time.value = equipment_VO.list_xsjsglxt_equipment[num].equipment_enablement_time;
-							//使用情况
+							// 使用情况
 							var input_use_note = document
 									.getElementsByName("input_use_note");
 							var use_note_value = equipment_VO.list_xsjsglxt_equipment[num].equipment_use_note;
@@ -228,7 +235,7 @@ function EquipmentDetails(button) {
 							}
 							// 执行一个laydate实例
 							laydate.render({
-								elem : '#input_enablement_time' ,// 指定元素启用时间
+								elem : '#input_enablement_time',// 指定元素启用时间
 							});
 
 						}

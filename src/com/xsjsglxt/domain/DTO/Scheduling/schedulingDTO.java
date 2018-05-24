@@ -5,7 +5,9 @@ public class schedulingDTO {
 	private String scheduling_leader; // 带班领导
 	private String scheduling_main; // 侦查民警主班
 	private String scheduling_mainTec; // 技术民警主班
-	private String scheduling_assistant;// 辅班
+	private String scheduling_main_doctor; // 法医主班
+	private String scheduling_assistant_tech; // 技术 副班
+	private String scheduling_assistant_spy; // 侦查 副班
 	private String scheduling_overtime;// 今日加班
 	private String scheduling_out_help;// 今日外协
 	private String scheduling_evection;// 出差
@@ -13,19 +15,46 @@ public class schedulingDTO {
 	private String scheduling_patrol;
 
 	public schedulingDTO(String xsjsglxt_scheduling_id, String scheduling_leader, String scheduling_main,
-			String scheduling_mainTec, String scheduling_assistant, String scheduling_overtime,
-			String scheduling_out_help, String scheduling_evection, String scheduling_time, String scheduling_patrol) {
+			String scheduling_mainTec, String scheduling_main_doctor, String scheduling_assistant_tech,
+			String scheduling_assistant_spy, String scheduling_overtime, String scheduling_out_help,
+			String scheduling_evection, String scheduling_time, String scheduling_patrol) {
 		super();
 		this.xsjsglxt_scheduling_id = xsjsglxt_scheduling_id;
 		this.scheduling_leader = scheduling_leader;
 		this.scheduling_main = scheduling_main;
 		this.scheduling_mainTec = scheduling_mainTec;
-		this.scheduling_assistant = scheduling_assistant;
+		this.scheduling_main_doctor = scheduling_main_doctor;
+		this.scheduling_assistant_tech = scheduling_assistant_tech;
+		this.scheduling_assistant_spy = scheduling_assistant_spy;
 		this.scheduling_overtime = scheduling_overtime;
 		this.scheduling_out_help = scheduling_out_help;
 		this.scheduling_evection = scheduling_evection;
 		this.scheduling_time = scheduling_time;
 		this.scheduling_patrol = scheduling_patrol;
+	}
+
+	public String getScheduling_main_doctor() {
+		return scheduling_main_doctor;
+	}
+
+	public void setScheduling_main_doctor(String scheduling_main_doctor) {
+		this.scheduling_main_doctor = scheduling_main_doctor;
+	}
+
+	public String getScheduling_assistant_tech() {
+		return scheduling_assistant_tech;
+	}
+
+	public void setScheduling_assistant_tech(String scheduling_assistant_tech) {
+		this.scheduling_assistant_tech = scheduling_assistant_tech;
+	}
+
+	public String getScheduling_assistant_spy() {
+		return scheduling_assistant_spy;
+	}
+
+	public void setScheduling_assistant_spy(String scheduling_assistant_spy) {
+		this.scheduling_assistant_spy = scheduling_assistant_spy;
 	}
 
 	public String getScheduling_evection() {
@@ -90,14 +119,6 @@ public class schedulingDTO {
 
 	public void setScheduling_main(String scheduling_main) {
 		this.scheduling_main = scheduling_main;
-	}
-
-	public String getScheduling_assistant() {
-		return scheduling_assistant;
-	}
-
-	public void setScheduling_assistant(String scheduling_assistant) {
-		this.scheduling_assistant = scheduling_assistant;
 	}
 
 	public String getScheduling_time() {

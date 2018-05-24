@@ -2,7 +2,7 @@ function Update_EntrustmentBook(obj) {
 	var json_list = EntrustmentBook_json;
 	var jc = $
 			.confirm({
-				title : '检验鉴定委托书（通用）（修改）',
+				title : '检验鉴定委托书（修改）',
 				content : '',
 				type : 'blue',
 				columnClass : 'col-md-12',
@@ -97,7 +97,7 @@ function Update_EntrustmentBook(obj) {
 							+ '<option value="男">男</option>'
 							+ '<option value="女">女</option>'
 							+ '</select></td></tr>'
-							+ '<tr><td>单位：</td><td><input class="form-control" name="tranceCheckBook.check_entrustment_book_entrustmentor_unit" value="'
+							+ '<tr><td><span style="color:#D9534F;">*</span> 身份证：</td><td><input class="form-control" name="tranceCheckBook.check_entrustment_book_entrustmentor_unit" value="'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_unit
 							+ '"/></td><td><span style="color:#D9534F;">*</span> 电话：</td><td><input class="form-control" name="tranceCheckBook.check_entrustment_book_entrustmentor_phone" value="'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustmentor_phone
@@ -142,7 +142,10 @@ function Update_EntrustmentBook(obj) {
 							+ '<textarea class="form-control" style="resize: none;height:100px;" name="tranceCheckBook.check_entrustment_book_old_entrustment_situation" >'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_old_entrustment_situation
 							+ '</textarea>'
-							+ '<h4><span style="color:#D9534F;">*</span> 送检的检材和样本等情况（包括名称、数量、性状、包装，检材提取部位和方法等）：</h4>'
+							+ '<h4><span style="color:#D9534F;">*</span> '
+							+ ((json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request != '死因鉴定' && json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_entrustment_request != '损伤鉴定') ? '送检的检材和样本等情况（包括名称、数量、性状、包装，检材提取部位和方法等）'
+									: '送检材料')
+							+ '：</h4>'
 							+ '<textarea class="form-control" style="resize: none;height:100px;" name="tranceCheckBook.check_entrustment_book_sample_situation" >'
 							+ json_list.listEntrustmentBookManagementDTO[num].xsjsglxt_check_entrustment_book.check_entrustment_book_sample_situation
 							+ '</textarea>'

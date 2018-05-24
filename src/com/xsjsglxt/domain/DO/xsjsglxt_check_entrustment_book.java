@@ -1,6 +1,6 @@
 package com.xsjsglxt.domain.DO;
 
-//痕迹检验委托书表
+//委托书
 public class xsjsglxt_check_entrustment_book {
 	private String checkEvidenceId;// 物证id
 	private String checkCaseId;// 案件id
@@ -20,7 +20,7 @@ public class xsjsglxt_check_entrustment_book {
 	private String check_entrustment_book_entrustmentor_sex;// 被鉴定人性别
 	private String check_entrustment_book_entrustmentor_age;// 被鉴定人年龄
 	private String check_entrustment_book_entrustmentor_phone;// 被鉴定人电话
-	private String check_entrustment_book_entrustmentor_unit;// 被鉴定人单位
+	private String check_entrustment_book_entrustmentor_unit;// 被鉴定人身份证号码
 	private String check_entrustment_book_entrustmentor_address;// 被鉴定人现住址
 	private String check_entrustment_book_inspect_time;// 委托日期
 	private String check_entrustment_book_communication_address;// 通信地址

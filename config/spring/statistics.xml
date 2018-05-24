@@ -8,13 +8,22 @@
 	<bean id="statisticsAction" class="com.xsjsglxt.action.Statistics.StatisticsAction" scope="prototype">
 		<property name="statisticsService" ref="statisticsService"></property>
 	</bean>
+	<bean id="expenditureAction" class="com.xsjsglxt.action.Statistics.ExpenditureAction" scope="prototype">
+		<property name="expenditureService" ref="expenditureService"></property>
+	</bean>
 	
 	<!-- service配置 -->
 	<bean id="statisticsService" class="com.xsjsglxt.service.impl.Statistics.StatisticsServiceImpl">
 		<property name="statisticsDao" ref="statisticsDao"></property>
 	</bean>
+	<bean id="expenditureService" class="com.xsjsglxt.service.impl.Statistics.ExpenditureServiceImpl">
+		<property name="expenditureDao" ref="expenditureDao"></property>
+	</bean>
 	<!-- dao配置 -->
 	<bean id="statisticsDao" class="com.xsjsglxt.dao.impl.Statistics.StatisticsDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="expenditureDao" class="com.xsjsglxt.dao.impl.Statistics.ExpenditureDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 

@@ -97,7 +97,9 @@ public class SchedulingDaoImpl implements SchedulingDao {
 		String hql = "select count(*) from xsjsglxt_scheduling where 1=1";
 		if (schedulingListVO.getQuery_name() != null && !"".equals(schedulingListVO.getQuery_name().trim()))
 			hql = hql + " and ( scheduling_main like '%" + schedulingListVO.getQuery_name()
-					+ "%' or scheduling_assistant like '%" + schedulingListVO.getQuery_name()
+					+ "%' or scheduling_assistant_tech like '%" + schedulingListVO.getQuery_name()
+					+ "%' or scheduling_assistant_spy like '%" + schedulingListVO.getQuery_name()
+					+ "%' or scheduling_main_doctor like '%" + schedulingListVO.getQuery_name()
 					+ "%' or scheduling_leader like '%" + schedulingListVO.getQuery_name()
 					+ "%' or scheduling_main_technology like '%" + schedulingListVO.getQuery_name()
 					+ "%' or scheduling_patrol like '%" + schedulingListVO.getQuery_name()
@@ -115,10 +117,12 @@ public class SchedulingDaoImpl implements SchedulingDao {
 	@Override
 	public List<schedulingDTO> getSchedulingByPage(SchedulingDTOListVO schedulingListVO) {
 		// TODO Auto-generated method stub
-		String hql = "select new com.xsjsglxt.domain.DTO.Scheduling.schedulingDTO(xsjsglxt_scheduling_id,scheduling_leader,scheduling_main , scheduling_main_technology as scheduling_mainTec,scheduling_assistant,scheduling_overtime,scheduling_out_help,scheduling_evection,scheduling_time, scheduling_patrol as scheduling_patrol) from xsjsglxt_scheduling where 1=1";
+		String hql = "select new com.xsjsglxt.domain.DTO.Scheduling.schedulingDTO(xsjsglxt_scheduling_id,scheduling_leader,scheduling_main , scheduling_main_technology as scheduling_mainTec, scheduling_main_doctor ,scheduling_assistant_tech,scheduling_assistant_spy,scheduling_overtime,scheduling_out_help,scheduling_evection,scheduling_time, scheduling_patrol as scheduling_patrol) from xsjsglxt_scheduling where 1=1";
 		if (schedulingListVO.getQuery_name() != null && !"".equals(schedulingListVO.getQuery_name().trim()))
 			hql = hql + " and ( scheduling_main like '%" + schedulingListVO.getQuery_name()
-					+ "%' or scheduling_assistant like '%" + schedulingListVO.getQuery_name()
+					+ "%' or scheduling_assistant_tech like '%" + schedulingListVO.getQuery_name()
+					+ "%' or scheduling_assistant_spy like '%" + schedulingListVO.getQuery_name()
+					+ "%' or scheduling_main_doctor like '%" + schedulingListVO.getQuery_name()
 					+ "%' or scheduling_leader like '%" + schedulingListVO.getQuery_name()
 					+ "%' or scheduling_patrol like '%" + schedulingListVO.getQuery_name()
 					+ "%' or scheduling_main_technology like '%" + schedulingListVO.getQuery_name()
@@ -151,8 +155,10 @@ public class SchedulingDaoImpl implements SchedulingDao {
 	public int getSchedulingTime(schedulingTimeVO schedulingTimeVO, String xsjsglxt_name) {
 		// TODO Auto-generated method stub
 		String hql = "select count(*) from xsjsglxt_scheduling where (scheduling_leader = '" + xsjsglxt_name
-				+ "' or scheduling_main = '" + xsjsglxt_name + "' or scheduling_main_technology = '" + xsjsglxt_name
-				+ "' or scheduling_assistant REGEXP '(^" + xsjsglxt_name + "、)|(、" + xsjsglxt_name + "$)')";
+				+ "' or scheduling_main = '" + xsjsglxt_name + "' or scheduling_main_doctor = '" + xsjsglxt_name
+				+ "' or scheduling_main_technology REGEXP '(^" + xsjsglxt_name + "、)|(^" + xsjsglxt_name + "$)|(、"
+				+ xsjsglxt_name + "、)|(、" + xsjsglxt_name + "$)'" + " or scheduling_assistant_tech = '" + xsjsglxt_name
+				+ "'  or scheduling_assistant_spy = '" + xsjsglxt_name + "')";
 		if (schedulingTimeVO.getQueryTimeStart() != null && !"".equals(schedulingTimeVO.getQueryTimeStart().trim())) {
 			hql = hql + " and scheduling_time >= '" + schedulingTimeVO.getQueryTimeStart() + "'";
 		}
@@ -168,7 +174,7 @@ public class SchedulingDaoImpl implements SchedulingDao {
 	public int getOutTime(schedulingTimeVO schedulingTimeVO, String xsjsglxt_name) {
 		// TODO Auto-generated method stub
 		String hql = "select count(*) from xsjsglxt_scheduling where scheduling_out_help REGEXP '(^" + xsjsglxt_name
-				+ ",)|(^" + xsjsglxt_name + "$)|(," + xsjsglxt_name + ",)|(," + xsjsglxt_name + "$)'";
+				+ "、)|(^" + xsjsglxt_name + "$)|(、" + xsjsglxt_name + "、)|(、" + xsjsglxt_name + "$)'";
 		if (schedulingTimeVO.getQueryTimeStart() != null && !"".equals(schedulingTimeVO.getQueryTimeStart().trim())) {
 			hql = hql + " and scheduling_time >= '" + schedulingTimeVO.getQueryTimeStart() + "'";
 		}
@@ -184,7 +190,7 @@ public class SchedulingDaoImpl implements SchedulingDao {
 	public int getOverTime(schedulingTimeVO schedulingTimeVO, String xsjsglxt_name) {
 		// TODO Auto-generated method stub
 		String hql = "select count(*) from xsjsglxt_scheduling where scheduling_overtime REGEXP '(^" + xsjsglxt_name
-				+ ",)|(^" + xsjsglxt_name + "$)|(," + xsjsglxt_name + ",)|(," + xsjsglxt_name + "$)'";
+				+ "、)|(^" + xsjsglxt_name + "$)|(、" + xsjsglxt_name + "、)|(、" + xsjsglxt_name + "$)'";
 		if (schedulingTimeVO.getQueryTimeStart() != null && !"".equals(schedulingTimeVO.getQueryTimeStart().trim())) {
 			hql = hql + " and scheduling_time >= '" + schedulingTimeVO.getQueryTimeStart() + "'";
 		}
@@ -200,7 +206,7 @@ public class SchedulingDaoImpl implements SchedulingDao {
 	public int getPatrolTime(schedulingTimeVO schedulingTimeVO, String xsjsglxt_name) {
 		// TODO Auto-generated method stub
 		String hql = "select count(*) from xsjsglxt_scheduling where scheduling_patrol REGEXP '(^" + xsjsglxt_name
-				+ ",)|(^" + xsjsglxt_name + "$)|(," + xsjsglxt_name + ",)|(," + xsjsglxt_name + "$)'";
+				+ "、)|(^" + xsjsglxt_name + "$)|(、" + xsjsglxt_name + "、)|(、" + xsjsglxt_name + "$)'";
 		if (schedulingTimeVO.getQueryTimeStart() != null && !"".equals(schedulingTimeVO.getQueryTimeStart().trim())) {
 			hql = hql + " and scheduling_time >= '" + schedulingTimeVO.getQueryTimeStart() + "'";
 		}

@@ -67,16 +67,18 @@ var updateScheduling = function(event) {
 				useBootstrap : false,
 				title : '<i class="fa fa-pencil-square-o"></i>修改排班',
 				type : 'green',
-				content : '<table class="table bordered-table">'
-						+ '<tr><td>今日巡逻：</td><td class="loadingLay" style="text-align:center;"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></td><td class="contentName" style="display:none;"><select data-selected-text-format="count > 8" id="patrol" style="width: 250px;" data-dropup-auto="false" multiple class="form-control selectpicker" data-live-search="true" title="请选择巡逻人员"></select></td></tr>'
-						+ '<tr><td>今日加班：</td><td class="loadingLay"  style="text-align:center;"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></td><td class="contentName" style="display:none;"><select data-selected-text-format="count > 8" id="overtime" style="width: 250px;" data-dropup-auto="false" multiple class="form-control selectpicker" data-live-search="true" title="请选择加班人员"></select></td></tr>'
-						+ '<tr><td>今日外协：</td><td class="loadingLay"  style="text-align:center;"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></td><td class="contentName" style="display:none;"><select data-selected-text-format="count > 8" id="outHelp" style="width: 250px;" data-dropup-auto="false" multiple class="form-control selectpicker" data-live-search="true" title="请选择外协人员"></select></td></tr>'
-						+ '<tr><td>今日出差：</td><td class="loadingLay"  style="text-align:center;"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></td><td class="contentName" style="display:none;"><select data-selected-text-format="count > 8" id="evection" style="width: 250px;" data-dropup-auto="false" multiple class="form-control selectpicker" data-live-search="true" title="请选择出差人员"></select></td></tr>'
-						+ '<tr><td>带班领导：</td><td style="text-align:center;" class="loadingLay"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></td><td class="contentName" style="display:none;"><select data-selected-text-format="count > 8" id="leader" style="width: 250px;" class="form-control selectpicker" data-live-search="true" title="请选择主班领导"></select></td></tr>'
-						+ '<tr><td>侦查民警：</td><td class="loadingLay" style="text-align:center;"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></td></td><td class="contentName" style="display:none;"><select data-selected-text-format="count > 8" id="main" style="width: 250px;" class="form-control selectpicker" data-live-search="true" title="请选择侦查民警"></select></td></tr>'
-						+ '<tr><td>技术民警：</td><td class="loadingLay" style="text-align:center;"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></td></td><td class="contentName" style="display:none;"><select data-selected-text-format="count > 8" id="mainTech" style="width: 250px;" class="form-control selectpicker" data-live-search="true" title="请选择技术民警"></select></td></tr>'
-						+ '<tr><td>辅警：</td><td class="loadingLay" style="text-align:center;"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></td><td class="contentName" style="display:none;"><select id="assistant" multiple style="width: 250px;" class="form-control selectpicker" data-live-search="true" title="请选择辅警"></select></td></tr>'
-						+ '<tr><td>值班时间：</td><td><input id="scheTime" style="250px" class="form-control timeDate"></td></tr></table>',
+				content : '<form id="update_"><table class="table bordered-table">'
+						+ '<tr><td>今日巡逻：</td><td class="contentName"><input name="scheduling.scheduling_patrol" id="patrol" style="width: 250px;" class="form-control"  readonly="true"></td><td><button onclick="chooseStaff(\'patrol\');return false;" class="btn btn-default"><i class="fa fa-pencil-square-o"></i></button></td></tr>'
+						+ '<tr><td>今日加班：</td><td class="contentName"><input name="scheduling.scheduling_overtime" id="overtime" style="width: 250px;" class="form-control"  readonly="true"></td><td><button onclick="chooseStaff(\'overtime\');return false;" class="btn btn-default"><i class="fa fa-pencil-square-o"></i></button></td></tr>'
+						+ '<tr><td>今日外协：</td><td class="contentName"><input name="scheduling.scheduling_out_help" id="outHelp" style="width: 250px;" class="form-control"  readonly="true"></td><td><button onclick="chooseStaff(\'outHelp\');return false;" class="btn btn-default"><i class="fa fa-pencil-square-o"></i></button></td></tr>'
+						+ '<tr><td>今日出差：</td><td class="contentName"><input name="scheduling.scheduling_evection" id="evection" style="width: 250px;" class="form-control"  readonly="true"></td><td><button onclick="chooseStaff(\'evection\');return false;" class="btn btn-default"><i class="fa fa-pencil-square-o"></i></button></td></tr>'
+						+ '<tr><td>带班领导：</td><td class="contentName"><input name="scheduling.scheduling_leader" id="leader" style="width: 250px;" class="form-control"  readonly="true"></td><td><button onclick="chooseStaff(\'leader\');return false;" class="btn btn-default"><i class="fa fa-pencil-square-o"></i></button></td></tr>'
+						+ '<tr><td>侦查民警：</td><td class="contentName"><input name="scheduling.scheduling_main" id="main" style="width: 250px;" class="form-control"  readonly="true"></td><td><button onclick="chooseStaff(\'main\');return false;" class="btn btn-default"><i class="fa fa-pencil-square-o"></i></button></td></tr>'
+						+ '<tr><td>技术民警：</td><td class="contentName"><input name="scheduling.scheduling_main_technology" id="mainTech" style="width: 250px;" class="form-control"  readonly="true"></td><td><button onclick="chooseStaff(\'mainTech\');return false;" class="btn btn-default"><i class="fa fa-pencil-square-o"></i></button></td></tr>'
+						+ '<tr><td>法医民警：</td><td class="contentName"><input name="scheduling.scheduling_main_doctor" id="mainDoctor" style="width: 250px;" class="form-control" readonly="true"></td><td><button onclick="chooseStaff(\'mainDoctor\');return false;" class="btn btn-default"><i class="fa fa-pencil-square-o"></i></button></td></tr>'
+						+ '<tr><td>侦查辅警：</td><td class="contentName"><input name="scheduling.scheduling_assistant_tech" id="assistantSpy" style="width: 250px;" class="form-control" readonly="true"></td><td><button onclick="chooseStaff(\'assistantSpy\');return false;" class="btn btn-default"><i class="fa fa-pencil-square-o"></i></button></td></tr>'
+						+ '<tr><td>技术辅警：</td><td class="contentName"><input name="scheduling.scheduling_assistant_spy" id="assistantTech" style="width: 250px;" class="form-control" readonly="true"></td><td><button onclick="chooseStaff(\'assistantTech\');return false;" class="btn btn-default"><i class="fa fa-pencil-square-o"></i></button></td></tr>'
+						+ '<tr><td>值班时间：</td><td><input name="scheduling.scheduling_time" id="scheTime" style="250px" class="form-control timeDate"></td></tr></table></form>',
 
 				buttons : {
 					save : {
@@ -85,49 +87,33 @@ var updateScheduling = function(event) {
 						action : function() {
 							if ($('#leader').val() != ''
 									&& $('#main').val() != ''
-									&& $('#assistant').val() != ''
+									&& $('#mainTech').val() != ''
+									&& $('#mainDoctor').val() != ''
+									&& $('#assistantTech').val() != ''
+									&& $('#assistantSpy').val() != ''
 									&& $('#scheTime').val() != '') {
-								var postData = {
-									'scheduling.scheduling_leader' : $(
-											'#leader').val(),
-									'scheduling.scheduling_main' : $('#main')
-											.val(),
-									'scheduling.scheduling_assistant' : $(
-											'#assistant').selectpicker('val')
-											.join('、'),
-									'scheduling.scheduling_time' : $(
-											'#scheTime').val(),
-									'scheduling.xsjsglxt_scheduling_id' : event.id,
-									'scheduling.scheduling_patrol' : $(
-											'#patrol').selectpicker('val')
-											.join(','),
-									'scheduling.scheduling_overtime' : $(
-											'#overtime').selectpicker('val')
-											.join(','),
-									'scheduling.scheduling_out_help' : $(
-											'#outHelp').selectpicker('val')
-											.join(','),
-									'scheduling.scheduling_evection' : $(
-											'#evection').selectpicker('val')
-											.join(','),
-									'scheduling.scheduling_main_technology' : $(
-											'#mainTech').val()
-								}
+								var formData = new FormData(document
+										.getElementById("update_"));
+								formData.append(
+										"scheduling.xsjsglxt_scheduling_id",
+										event.id);
 								$
 										.ajax({
 											url : '/xsjsglxt/scheduling/Scheduling_updateScheduling',
 											type : 'POST',
-											data : postData,
+											data : formData,
+											contentType : false, // 注意这里应设为false
+											processData : false,
 											success : function(data) {
 												if (data == "updateSuccess") {
 													toastr.success("修改成功");
+													queryConditionTemp.currPage = 1;
 													loadScheduling();
 												} else {
-													toastr.error("您修改的日期已经被占用");
-													return false;
+													toastr.error("修改失败");
 												}
 											}
-										});
+										})
 							} else {
 								toastr.error("不能有空项");
 								return false;
@@ -143,211 +129,40 @@ var updateScheduling = function(event) {
 					}
 				},
 				onContentReady : function() {
-					// 为下拉列表添加姓名
+					var d = {
+						'scheduling.xsjsglxt_scheduling_id' : event.id
+					};
 					$
 							.ajax({
-								url : '/xsjsglxt/team/Staff_getSchedulingStaff',
-								type : 'GET',
+								url : '/xsjsglxt/scheduling/Scheduling_getSchedulingById',
+								type : 'POST',
+								data : d,
 								success : function(data) {
-									var result = JSON.parse(data);
-									for (var i = 0; i < result.staffLeader.length; i++) {
-										$('#leader')
-												.append(
-														"<option value='"
-																+ result.staffLeader[i].xsjsglxt_name
-																+ "'>"
-																+ result.staffLeader[i].xsjsglxt_name
-																+ "</option>");
-									}
-									for (var i = 0; i < result.staffMain.length; i++) {
-										$('#main')
-												.append(
-														"<option value='"
-																+ result.staffMain[i].xsjsglxt_name
-																+ "'>"
-																+ result.staffMain[i].xsjsglxt_name
-																+ "</option>");
-									}
-									for (var i = 0; i < result.staffMainTech.length; i++) {
-										$('#mainTech')
-												.append(
-														"<option value='"
-																+ result.staffMainTech[i].xsjsglxt_name
-																+ "'>"
-																+ result.staffMainTech[i].xsjsglxt_name
-																+ "</option>");
-									}
-									for (var i = 0; i < result.staffAssitant.length; i++) {
-										$('#assistant')
-												.append(
-														"<option value='"
-																+ result.staffAssitant[i].xsjsglxt_name
-																+ "'>"
-																+ result.staffAssitant[i].xsjsglxt_name
-																+ "</option>");
-									}
-									$
-											.ajax({
-												url : '/xsjsglxt/team/Staff_getAllPolicemans',
-												type : 'GET',
-												success : function(data) {
-													var results = JSON
-															.parse(data);
-													for (var i = 0; i < results.length; i++) {
-														$('#patrol')
-																.append(
-																		"<option value='"
-																				+ results[i].xsjsglxt_name
-																				+ "'>"
-																				+ results[i].xsjsglxt_name
-																				+ "</option>");
-														for (var i = 0; i < results.length; i++) {
-															$('#overtime')
-																	.append(
-																			"<option value='"
-																					+ results[i].xsjsglxt_name
-																					+ "'>"
-																					+ results[i].xsjsglxt_name
-																					+ "</option>");
-														}
-														for (var i = 0; i < results.length; i++) {
-															$('#outHelp')
-																	.append(
-																			"<option value='"
-																					+ results[i].xsjsglxt_name
-																					+ "'>"
-																					+ results[i].xsjsglxt_name
-																					+ "</option>");
-														}
-														for (var i = 0; i < results.length; i++) {
-															$('#evection')
-																	.append(
-																			"<option value='"
-																					+ results[i].xsjsglxt_name
-																					+ "'>"
-																					+ results[i].xsjsglxt_name
-																					+ "</option>");
-														}
-													}
-													var d = {
-														'scheduling.xsjsglxt_scheduling_id' : event.id
-													};
-													$
-															.ajax({
-																url : '/xsjsglxt/scheduling/Scheduling_getSchedulingById',
-																type : 'POST',
-																data : d,
-																success : function(
-																		data) {
-																	var result = JSON
-																			.parse(data);
-																	$('#leader')
-																			.selectpicker(
-																					'val',
-																					result.scheduling_leader);
-																	$('#main')
-																			.selectpicker(
-																					'val',
-																					result.scheduling_main);
-																	$(
-																			'#mainTech')
-																			.selectpicker(
-																					'val',
-																					result.scheduling_main_technology);
-																	$(
-																			'#assistant')
-																			.selectpicker(
-																					'val',
-																					result.scheduling_assistant
-																							.split("、"));
-																	if (result.scheduling_patrol != null
-																			&& result.scheduling_patrol
-																					.indexOf(',') > 0) {
-																		$(
-																				'#patrol')
-																				.selectpicker(
-																						'val',
-																						result.scheduling_patrol
-																								.split(','));
-																	} else {
-																		$(
-																				'#patrol')
-																				.selectpicker(
-																						'val',
-																						result.scheduling_patrol);
-																	}
-																	if (result.scheduling_overtime != null
-																			&& result.scheduling_overtime
-																					.indexOf(',') > 0) {
-																		$(
-																				'#overtime')
-																				.selectpicker(
-																						'val',
-																						result.scheduling_overtime
-																								.split(','));
-																	} else {
-																		$(
-																				'#overtime')
-																				.selectpicker(
-																						'val',
-																						result.scheduling_overtime);
-																	}
-																	if (result.scheduling_out_help != null
-																			&& result.scheduling_out_help
-																					.indexOf(',') > 0) {
-																		$(
-																				'#outHelp')
-																				.selectpicker(
-																						'val',
-																						result.scheduling_out_help
-																								.split(','));
-																	} else {
-																		$(
-																				'#outHelp')
-																				.selectpicker(
-																						'val',
-																						result.scheduling_out_help);
-																	}
-																	if (result.scheduling_evection != null
-																			&& result.scheduling_evection
-																					.indexOf(',') > 0) {
-																		$(
-																				'#evection')
-																				.selectpicker(
-																						'val',
-																						result.scheduling_evection
-																								.split(','));
-																	} else {
-																		$(
-																				'#evection')
-																				.selectpicker(
-																						'val',
-																						result.scheduling_evection);
-																	}
-																	$(
-																			'#scheTime')
-																			.val(
-																					result.scheduling_time);
-
-																	$(
-																			".selectpicker")
-																			.selectpicker(
-																					'refresh');
-																	$(
-																			".loadingLay")
-																			.hide();
-																	$(
-																			".contentName")
-																			.show();
-																}
-
-															});
-												}
-											});
-
+									var jsonData = JSON.parse(data);
+									$('#leader')
+											.val(jsonData.scheduling_leader);
+									$('#main').val(jsonData.scheduling_main);
+									$('#mainTech')
+											.val(
+													jsonData.scheduling_main_technology);
+									$('#mainDoctor').val(
+											jsonData.scheduling_main_doctor);
+									$('#assistantTech').val(
+											jsonData.scheduling_assistant_tech);
+									$('#assistantSpy').val(
+											jsonData.scheduling_assistant_spy);
+									$('#patrol')
+											.val(jsonData.scheduling_patrol);
+									$('#overtime').val(
+											jsonData.scheduling_overtime);
+									$('#outHelp').val(
+											jsonData.scheduling_out_help);
+									$('#evection').val(
+											jsonData.scheduling_evection);
+									$('#scheTime')
+											.val(jsonData.scheduling_time);
 								}
 							});
-
 					$.datetimepicker.setLocale('ch');
 					$('.timeDate').datetimepicker({
 						yearStart : 1900, // 设置最小年份

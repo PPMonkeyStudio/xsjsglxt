@@ -1,12 +1,11 @@
 package com.xsjsglxt.service.impl.InspectionIdentification;
 
+import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,15 +13,8 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.struts2.ServletActionContext;
 
-import com.deepoove.poi.XWPFTemplate;
-import com.deepoove.poi.data.PictureRenderData;
-import com.deepoove.poi.data.RenderData;
-import com.deepoove.poi.data.TableRenderData;
-import com.deepoove.poi.data.TextRenderData;
-import com.deepoove.poi.util.BytePictureUtils;
 import com.xsjsglxt.dao.InspectionIdentification.InspectionIdentificationDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_appraisal_letter;
 import com.xsjsglxt.domain.DO.xsjsglxt_check_entrustment_book;
@@ -38,8 +30,9 @@ import com.xsjsglxt.domain.DTO.InspectionIdentification.EntrustmentBookManagemen
 import com.xsjsglxt.domain.VO.InspectionIdentification.EntrustmentBookManagementVO;
 import com.xsjsglxt.service.InspectionIdentification.InspectionIdentificationService;
 
+import freemarker.template.Configuration;
+import freemarker.template.Template;
 import util.TeamUtil;
-import util.XwpfTUtil;
 
 public class InspectionIdentificationServiceImpl implements InspectionIdentificationService {
 	private InspectionIdentificationDao inspectionIdentificationDao;
@@ -416,6 +409,8 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		damageInspectionRecord.setXsjsglxt_damage_inspection_record_id(TeamUtil.getUuid());
 		// 上传图片
 		for (int k = 0; k < file.length; k++) {
+			// String filename = new String(fileName[k].getBytes("GBK"),
+			// "ISO-8859-1");
 			path = lj + "xsjsglxt/damage/";
 			if (file[k] != null) {
 				path = path + damageInspectionRecord.getXsjsglxt_damage_inspection_record_id() + "_" + fileName[k];
@@ -429,6 +424,8 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			if (file[j] != null) {
 				x = j;
 			}
+			// String filename = new String(fileName[x].getBytes("GBK"),
+			// "ISO-8859-1");
 			switch (x) {
 			case 0:
 				damageInspectionRecord.setDamage_inspection_record_picture1(fileName[x]);
@@ -499,6 +496,8 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		for (int k = 0; k < file.length; k++) {
 			path = lj + "xsjsglxt/death/";
 			if (file[k] != null) {
+				// String filename = new String(fileName[k].getBytes("GBK"),
+				// "ISO-8859-1");
 				path = path + deathInspectionRecord.getXsjsglxt_death_inspection_record_id() + "_" + fileName[k];
 				File newFile = new File(path);
 				FileUtils.copyFile(file[k], newFile);
@@ -510,6 +509,8 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			if (file[j] != null) {
 				x = j;
 			}
+			// String filename = new String(fileName[x].getBytes("GBK"),
+			// "ISO-8859-1");
 			switch (x) {
 			case 0:
 				deathInspectionRecord.setDeath_inspection_record_autopsy_table_test_picture1(fileName[x]);
@@ -700,6 +701,8 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		// 更改图片记录
 		for (int k = 0; k < updateDeathFile.length; k++) {
 			if (updateDeathFile[k] != null) {
+				// String imgName = new
+				// String(updateDeathFileName[k].getBytes("GBK"), "ISO-8859-1");
 				switch (k) {
 				case 0:
 					death_inspection_record = uploadDeath("尸表检验图1", updateDeathFile[k],
@@ -772,6 +775,9 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 
 		for (int k = 0; k < updateDamageFile.length; k++) {
 			if (updateDamageFile[k] != null) {
+				// String imgName = new
+				// String(updateDamageFileName[k].getBytes("GBK"),
+				// "ISO-8859-1");
 				switch (k) {
 				case 0:
 					xsjsglxt_damage_inspection_record = uploadDamage("损伤检验图1", updateDamageFile[k],
@@ -861,109 +867,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		return null;
 	}
 
-	// 导出委托书
-	@Override
-	public File exportTranceCheckBook(String id) throws Exception {
-		Map<String, Object> params = new HashMap<String, Object>();
-		/*
-		 * 获取路径
-		 */
-		String lj = "";
-		try {
-			Properties props = new Properties();
-			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
-			lj = props.getProperty("lj");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		params.putAll(mapTranceCheckBook(id));
-		XwpfTUtil xwpfTUtil = new XwpfTUtil();
-		XWPFDocument doc;
-		String fileNameInResource = ServletActionContext.getServletContext()
-				.getRealPath("/DocTem/xsjsglxt_entrustment_book.docx");
-		InputStream is;
-		is = new FileInputStream(fileNameInResource);
-		doc = new XWPFDocument(is);
-		xwpfTUtil.replaceInPara(doc, params);
-		xwpfTUtil.replaceInTable(doc, params);
-		OutputStream os = new FileOutputStream(lj + "kokokoko.docx");
-		doc.write(os);
-		xwpfTUtil.close(os);
-		xwpfTUtil.close(is);
-		os.flush();
-		os.close();
-		return new File(lj + "kokokoko.docx");
-	}
-
-	// 导出确认书
-	@Override
-	public File exportIdentifiederCaseConfirmBook(String id) throws Exception {
-		Map<String, Object> params = new HashMap<String, Object>();
-		/*
-		 * 获取路径
-		 */
-		String lj = "";
-		try {
-			Properties props = new Properties();
-			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
-			lj = props.getProperty("lj");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		params.putAll(mapIdentifiederCaseConfirmBook(id));
-		XwpfTUtil xwpfTUtil = new XwpfTUtil();
-		XWPFDocument doc;
-		String fileNameInResource = ServletActionContext.getServletContext()
-				.getRealPath("/DocTem/xsjsglxt_confirm_book.docx");
-		InputStream is;
-		is = new FileInputStream(fileNameInResource);
-		doc = new XWPFDocument(is);
-		xwpfTUtil.replaceInPara(doc, params);
-		xwpfTUtil.replaceInTable(doc, params);
-		OutputStream os = new FileOutputStream(lj + "kokokoko.docx");
-		doc.write(os);
-		xwpfTUtil.close(os);
-		xwpfTUtil.close(is);
-		os.flush();
-		os.close();
-		return new File(lj + "kokokoko.docx");
-	}
-
-	// 导出受理回执表
-	@Override
-	public File exportAcceptanceReturnReceipt(String id) throws Exception {
-		Map<String, Object> params = new HashMap<String, Object>();
-		/*
-		 * 获取路径
-		 */
-		String lj = "";
-		try {
-			Properties props = new Properties();
-			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
-			lj = props.getProperty("lj");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		params.putAll(mapAcceptanceIdentifieder(id));
-		XwpfTUtil xwpfTUtil = new XwpfTUtil();
-		XWPFDocument doc;
-		String fileNameInResource = ServletActionContext.getServletContext()
-				.getRealPath("/DocTem/xsjsglxt_acceptance_return_receipt.docx");
-		InputStream is;
-		is = new FileInputStream(fileNameInResource);
-		doc = new XWPFDocument(is);
-		xwpfTUtil.replaceInPara(doc, params);
-		xwpfTUtil.replaceInTable(doc, params);
-		OutputStream os = new FileOutputStream(lj + "kokokoko.docx");
-		doc.write(os);
-		xwpfTUtil.close(os);
-		xwpfTUtil.close(is);
-		os.flush();
-		os.close();
-		return new File(lj + "kokokoko.docx");
-
-	}
-
 	// 导出不受理告知
 	public File exportNotAcceptanceIdentifieder(String id) throws Exception {
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -979,22 +882,15 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			e.printStackTrace();
 		}
 		params.putAll(mapNotAcceptanceIdentifieder(id));
-		XwpfTUtil xwpfTUtil = new XwpfTUtil();
-		XWPFDocument doc;
-		String fileNameInResource = ServletActionContext.getServletContext()
-				.getRealPath("/DocTem/xsjsglxt_not_acceptance_return_receipt.docx");
-		InputStream is;
-		is = new FileInputStream(fileNameInResource);
-		doc = new XWPFDocument(is);
-		xwpfTUtil.replaceInPara(doc, params);
-		xwpfTUtil.replaceInTable(doc, params);
-		OutputStream os = new FileOutputStream(lj + "kokokoko.docx");
-		doc.write(os);
-		xwpfTUtil.close(os);
-		xwpfTUtil.close(is);
-		os.flush();
-		os.close();
-		return new File(lj + "kokokoko.docx");
+		Configuration configuration = new Configuration();
+		configuration.setDefaultEncoding("utf-8");
+		// 设置默认的编码方式，将数据以utf-8的方式进行编码
+		configuration.setClassForTemplateLoading(this.getClass(), "");
+		Template t = configuration.getTemplate("xsjsglxt_not_acceptance_return_receipt.ftl", "utf-8");
+		OutputStream os = new FileOutputStream(lj + "kokokoko.doc");
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
+		t.process(params, bw);
+		return new File(lj + "kokokoko.doc");
 	}
 
 	// 导出不受理回执的编号
@@ -1018,40 +914,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			}
 		}
 		return null;
-	}
-
-	// 导出痕迹检验记录
-	@Override
-	public File exportInspectionRecord(String id) throws Exception {
-		Map<String, Object> params = new HashMap<String, Object>();
-		/*
-		 * 获取路径
-		 */
-		String lj = "";
-		try {
-			Properties props = new Properties();
-			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
-			lj = props.getProperty("lj");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		params.putAll(mapInspectionRecord(id));
-		XwpfTUtil xwpfTUtil = new XwpfTUtil();
-		XWPFDocument doc;
-		String fileNameInResource = ServletActionContext.getServletContext()
-				.getRealPath("/DocTem/xsjsglxt_inspection_record.docx");
-		InputStream is;
-		is = new FileInputStream(fileNameInResource);
-		doc = new XWPFDocument(is);
-		xwpfTUtil.replaceInPara(doc, params);
-		xwpfTUtil.replaceInTable(doc, params);
-		OutputStream os = new FileOutputStream(lj + "kokokoko.docx");
-		doc.write(os);
-		xwpfTUtil.close(os);
-		xwpfTUtil.close(is);
-		os.flush();
-		os.close();
-		return new File(lj + "kokokoko.docx");
 	}
 
 	// 痕迹检验记录名称
@@ -1096,41 +958,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		return null;
 	}
 
-	// 导出死因检验记录
-	@Override
-	public File exportDeathInspectionRecord(String id) throws Exception {
-		Map<String, Object> params = new HashMap<String, Object>();
-		/*
-		 * 获取路径
-		 */
-		String lj = "";
-		try {
-			Properties props = new Properties();
-			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
-			lj = props.getProperty("lj");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		params.putAll(mapDeathInspectionRecord(id));
-		String fileNameInResource = ServletActionContext.getServletContext()
-				.getRealPath("/DocTem/xsjsglxt_death_inspection_record.docx");
-		XWPFTemplate template = XWPFTemplate.compile(fileNameInResource);
-		template.render(params);
-		FileOutputStream out;
-		try {
-			out = new FileOutputStream(lj + "kokokoko.docx");
-			template.write(out);
-			out.flush();
-			out.close();
-			template.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return new File(lj + "kokokoko.docx");
-	}
-
 	// 导出损伤检验记录名称
 	@Override
 	public String exportDamageInspectionRecordName(String xsjsglxt_damage_inspection_record_id) {
@@ -1152,74 +979,17 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		return null;
 	}
 
-	// 导出损伤检验记录表
-	@Override
-	public File exportDamageInspectionRecord(String id) throws Exception {
-		Map<String, Object> params = new HashMap<String, Object>();
-		/*
-		 * 获取路径
-		 */
-		String lj = "";
-		try {
-			Properties props = new Properties();
-			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
-			lj = props.getProperty("lj");
-		} catch (Exception e) {
-			e.printStackTrace();
+	// 获取鉴定书类型
+	public String getAppraisalLetterType(String id) {
+		xsjsglxt_appraisal_letter xsjsglxt_appraisal_letter = new xsjsglxt_appraisal_letter();
+		xsjsglxt_appraisal_letter = inspectionIdentificationDao.getAppraisalLetterByOwnId(id);
+		if (xsjsglxt_appraisal_letter != null) {
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_type() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_type().trim().length() > 0) {
+				return xsjsglxt_appraisal_letter.getAppraisal_letter_type().trim();
+			}
 		}
-		params.putAll(mapDamageInspectionRecord(id));
-		String fileNameInResource = ServletActionContext.getServletContext()
-				.getRealPath("/DocTem/xsjsglxt_damage_inspection_record.docx");
-		XWPFTemplate template = XWPFTemplate.compile(fileNameInResource);
-		template.render(params);
-		FileOutputStream out;
-		try {
-			out = new FileOutputStream(lj + "kokokoko.docx");
-			template.write(out);
-			out.flush();
-			out.close();
-			template.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return new File(lj + "kokokoko.docx");
-	}
-
-	// 导出鉴定书
-	@Override
-	public File exportAppraisalLetter(String id) throws Exception {
-		Map<String, Object> params = new HashMap<String, Object>();
-		/*
-		 * 获取路径
-		 */
-		String lj = "";
-		try {
-			Properties props = new Properties();
-			props.load(this.getClass().getClassLoader().getResourceAsStream("file.properties"));
-			lj = props.getProperty("lj");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		params.putAll(mapAppraisalLetter(id));
-		String fileNameInResource = ServletActionContext.getServletContext()
-				.getRealPath("/DocTem/xsjsglxt_appraisal_letter.docx");
-		XWPFTemplate template = XWPFTemplate.compile(fileNameInResource);
-		template.render(params);
-		FileOutputStream out;
-		try {
-			out = new FileOutputStream(lj + "kokokoko.docx");
-			template.write(out);
-			out.flush();
-			out.close();
-			template.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return new File(lj + "kokokoko.docx");
+		return "";
 	}
 
 	@Override
@@ -1239,8 +1009,188 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	 * 
 	 * 
 	 */
-	// 鉴定文书记录
-	public Map<String, Object> mapAppraisalLetter(String id) {
+
+	/**
+	 * 损伤
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Map<String, Object> mapSunShangAppraisalLetter(String id) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		xsjsglxt_appraisal_letter xsjsglxt_appraisal_letter = new xsjsglxt_appraisal_letter();
+		xsjsglxt_check_entrustment_book xsjsglxt_check_entrustment_book = new xsjsglxt_check_entrustment_book();
+		xsjsglxt_appraisal_letter = inspectionIdentificationDao.getAppraisalLetterByOwnId(id);
+		if (xsjsglxt_appraisal_letter != null) {
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_num() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_num().trim().length() > 0) {
+				params.put("p1", (xsjsglxt_appraisal_letter.getAppraisal_letter_num().trim()).substring(0, 4));
+				params.put("p2", (xsjsglxt_appraisal_letter.getAppraisal_letter_num().trim()).substring(4));
+			} else {
+				params.put("p1", "");
+				params.put("p2", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_simple_case_situation() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_simple_case_situation().trim().length() > 0) {
+				params.put("p7", xsjsglxt_appraisal_letter.getAppraisal_letter_simple_case_situation().trim());
+			} else {
+				params.put("p7", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_inspection() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_inspection().trim().length() > 0) {
+				params.put("p11", xsjsglxt_appraisal_letter.getAppraisal_letter_inspection().trim());
+			} else {
+				params.put("p11", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_argumentation() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_argumentation().trim().length() > 0) {
+				params.put("p12", xsjsglxt_appraisal_letter.getAppraisal_letter_argumentation().trim());
+			} else {
+				params.put("p12", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_expert_opinion() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_expert_opinion().trim().length() > 0) {
+				params.put("p13", xsjsglxt_appraisal_letter.getAppraisal_letter_expert_opinion().trim());
+			} else {
+				params.put("p13", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_man1_duty() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_man1_duty().trim().length() > 0) {
+				params.put("p14", xsjsglxt_appraisal_letter.getAppraisal_letter_man1_duty().trim());
+			} else {
+				params.put("p14", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_man2_duty() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_man2_duty().trim().length() > 0) {
+				params.put("p16", xsjsglxt_appraisal_letter.getAppraisal_letter_man2_duty().trim());
+			} else {
+				params.put("p16", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_man1_name() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_man1_name().trim().length() > 0) {
+				params.put("p15", xsjsglxt_appraisal_letter.getAppraisal_letter_man1_name().trim());
+			} else {
+				params.put("p15", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_man2_name() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_man2_name().trim().length() > 0) {
+				params.put("p17", xsjsglxt_appraisal_letter.getAppraisal_letter_man2_name().trim());
+			} else {
+				params.put("p17", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_date() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_date().trim().length() > 0) {
+				params.put("p18", xsjsglxt_appraisal_letter.getAppraisal_letter_date().trim());
+			} else {
+				params.put("p18", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_authorization_duty() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_authorization_duty().trim().length() > 0) {
+				params.put("p19", xsjsglxt_appraisal_letter.getAppraisal_letter_authorization_duty().trim());
+			} else {
+				params.put("p19", "");
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_authorization_name() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_authorization_name().trim().length() > 0) {
+				params.put("p20", xsjsglxt_appraisal_letter.getAppraisal_letter_authorization_name().trim());
+			} else {
+				params.put("p20", "");
+			}
+			// 委托书
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim().length() > 0) {
+				xsjsglxt_check_entrustment_book = inspectionIdentificationDao.getCheckEntrustmentBookById(
+						xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim());
+				// 委托书.委托单位
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim()
+								.length() > 0) {
+					params.put("p3",
+							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
+				} else {
+					params.put("p3", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim()
+								.length() > 0) {
+					params.put("p4", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim());
+				} else {
+					params.put("p4", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation().trim()
+								.length() > 0) {
+					params.put("p6",
+							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation().trim());
+				} else {
+					params.put("p6", "");
+				}
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim()
+								.length() > 0) {
+					params.put("p8", "损伤程度评定（按照2014年1月1日起实施的《人体损伤程度鉴定标准》进行鉴定）");
+				} else {
+					params.put("p8", "损伤程度评定（按照2014年1月1日起实施的《人体损伤程度鉴定标准》进行鉴定）");
+				}
+			} else {
+				params.put("p3", "");
+				params.put("p4", "");
+				params.put("p6", "");
+				params.put("p8", "");
+			}
+			// 检验记录
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim().length() > 0) {
+				xsjsglxt_damage_inspection_record xsjsglxt_damage_inspection_record = new xsjsglxt_damage_inspection_record();
+				xsjsglxt_damage_inspection_record = inspectionIdentificationDao.getDamageInspectionRecordById(
+						xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim());
+
+				if (xsjsglxt_damage_inspection_record != null) {
+					if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_time() != null
+							&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_time().trim()
+									.length() > 0) {
+						params.put("p9", xsjsglxt_damage_inspection_record.getDamage_inspection_record_time().trim());
+					} else {
+						params.put("p9", "");
+					}
+					String kk = "姓名：";
+					if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_name() != null
+							&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_name().trim()
+									.length() > 0) {
+						kk = kk + xsjsglxt_damage_inspection_record.getDamage_inspection_record_name().trim() + "，性别：";
+					} else {
+						kk = kk + "无" + "，性别：";
+					}
+					if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_sex() != null
+							&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_sex().trim()
+									.length() > 0) {
+						kk = kk + xsjsglxt_damage_inspection_record.getDamage_inspection_record_sex().trim() + "，身份证号：";
+					} else {
+						kk = kk + "无" + "，身份证号：";
+					}
+					if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_idcard() != null
+							&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_idcard().trim()
+									.length() > 0) {
+						kk = kk + xsjsglxt_damage_inspection_record.getDamage_inspection_record_idcard().trim();
+					} else {
+						kk = kk + "无";
+					}
+					params.put("p5", kk);
+				} else {
+					params.put("p5", "");
+				}
+				params.put("p10", "");
+			} else {
+				params.put("p10", "");
+				params.put("p9", "");
+				params.put("p5", "");
+			}
+		}
+		return params;
+	}
+
+	// 痕迹以及尸体的鉴定书
+	public Map<String, Object> mapHenShiAppraisalLetter(String id) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		// 委托书表_委托单位_送检人
 		// 确认书表_送检日期
@@ -1248,13 +1198,96 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		xsjsglxt_check_entrustment_book xsjsglxt_check_entrustment_book = new xsjsglxt_check_entrustment_book();
 		xsjsglxt_appraisal_letter xsjsglxt_appraisal_letter = new xsjsglxt_appraisal_letter();
 		xsjsglxt_identifieder_case_confirm_book xsjsglxt_identifieder_case_confirm_book = new xsjsglxt_identifieder_case_confirm_book();
+		xsjsglxt_inspection_record xsjsglxt_inspection_record = new xsjsglxt_inspection_record();
 		//
 		xsjsglxt_appraisal_letter = inspectionIdentificationDao.getAppraisalLetterByOwnId(id);
 		if (xsjsglxt_appraisal_letter != null) {
-			if (xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book() != null
-					&& xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim().length() > 0) {
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_type() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_type().trim().length() > 0) {
 				xsjsglxt_check_entrustment_book = inspectionIdentificationDao.getCheckEntrustmentBookById(
 						xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim());
+				switch (xsjsglxt_appraisal_letter.getAppraisal_letter_type().trim()) {
+				case "尸体":
+					params.put("j23", "法医学尸体检验鉴定书");
+					params.put("j21", "尸检");
+					params.put("j22", "检验对象");
+					if (xsjsglxt_check_entrustment_book != null) {
+						String jianyanduixiang = "姓名：";
+						if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name() != null
+								&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name().trim()
+										.length() > 0) {
+							jianyanduixiang = jianyanduixiang + xsjsglxt_check_entrustment_book
+									.getCheck_entrustment_book_entrustmentor_name().trim() + "，性别：";
+						} else {
+							jianyanduixiang = jianyanduixiang + "无，性别：";
+						}
+						if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_sex() != null
+								&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_sex().trim()
+										.length() > 0) {
+							jianyanduixiang = jianyanduixiang + xsjsglxt_check_entrustment_book
+									.getCheck_entrustment_book_entrustmentor_sex().trim() + "，身份证号：";
+						} else {
+							jianyanduixiang = jianyanduixiang + "无，身份证号：";
+						}
+						// 这个字段已经更改为身份证
+						if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit_name() != null
+								&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit_name()
+										.trim().length() > 0) {
+							jianyanduixiang = jianyanduixiang + xsjsglxt_check_entrustment_book
+									.getCheck_entrustment_book_entrustment_unit_name().trim();
+						} else {
+							jianyanduixiang = jianyanduixiang + "无";
+						}
+						params.put("j7", jianyanduixiang);
+					} else {
+						params.put("j7", "");
+					}
+					break;
+				case "痕迹":
+					params.put("j23", "鉴定书");
+					params.put("j21", "痕");
+					params.put("j22", "送检物证");
+					if (xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation() != null
+							&& xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation().trim().length() > 0) {
+						params.put("j7", xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation().trim());
+					} else {
+						params.put("j7", "");
+					}
+					break;
+				}
+			}
+			if (xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book() != null
+					&& xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim().length() > 0) {
+				xsjsglxt_inspection_record = inspectionIdentificationDao.getInspectionRecordById(
+						xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim());
+				// 检验时间
+				if (xsjsglxt_inspection_record != null) {
+					if (xsjsglxt_inspection_record.getInspection_start_time() != null
+							&& xsjsglxt_inspection_record.getInspection_start_time().trim().length() > 0) {
+						params.put("j19", xsjsglxt_inspection_record.getInspection_start_time().trim());
+					} else {
+						params.put("j19", "");
+					}
+					if (xsjsglxt_inspection_record.getInspection_location() != null
+							&& xsjsglxt_inspection_record.getInspection_location().trim().length() > 0) {
+						params.put("j20", xsjsglxt_inspection_record.getInspection_location().trim());
+					} else {
+						params.put("j20", "");
+					}
+				} else {
+					params.put("j19", "");
+					params.put("j20", "");
+				}
+				xsjsglxt_check_entrustment_book = inspectionIdentificationDao.getCheckEntrustmentBookById(
+						xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim());
+				// 鉴定要求
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim()
+								.length() > 0) {
+					params.put("j18", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request());
+				} else {
+					params.put("j18", "");
+				}
 				// 委托书
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim()
@@ -1285,16 +1318,16 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				xsjsglxt_identifieder_case_confirm_book = inspectionIdentificationDao
 						.getIdentifiederCaseConfirmBookById(
 								xsjsglxt_appraisal_letter.getAppraisal_letter_belong_entrustment_book().trim());
-				// 确认书
-				if (xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_inspection_date() != null
-						&& xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_inspection_date()
+				// 确认书受理日期
+				if (xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_date() != null
+						&& xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_date()
 								.trim().length() > 0) {
 					String time = TeamUtil.timeToYear(xsjsglxt_identifieder_case_confirm_book
-							.getIdentifieder_case_confirm_book_inspection_date().trim()) + " 年 ";
+							.getIdentifieder_case_confirm_book_acceptance_date().trim()) + " 年 ";
 					time = time + TeamUtil.timeToMonth(xsjsglxt_identifieder_case_confirm_book
-							.getIdentifieder_case_confirm_book_inspection_date().trim()) + " 月 ";
+							.getIdentifieder_case_confirm_book_acceptance_date().trim()) + " 月 ";
 					time = time + TeamUtil.timeToDay(xsjsglxt_identifieder_case_confirm_book
-							.getIdentifieder_case_confirm_book_inspection_date().trim()) + " 日 ";
+							.getIdentifieder_case_confirm_book_acceptance_date().trim()) + " 日 ";
 					params.put("j5", time);
 				} else {
 					params.put("j5", "");
@@ -1302,8 +1335,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			}
 			if (xsjsglxt_appraisal_letter.getAppraisal_letter_num() != null
 					&& xsjsglxt_appraisal_letter.getAppraisal_letter_num().trim().length() > 0) {
-				params.put("j1",
-						"[" + (xsjsglxt_appraisal_letter.getAppraisal_letter_num().trim()).substring(0, 4) + "]");
+				params.put("j1", (xsjsglxt_appraisal_letter.getAppraisal_letter_num().trim()).substring(0, 4));
 				params.put("j2", (xsjsglxt_appraisal_letter.getAppraisal_letter_num().trim()).substring(4));
 			} else {
 				params.put("j1", "");
@@ -1315,12 +1347,16 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			} else {
 				params.put("j6", "");
 			}
-			if (xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation() != null
-					&& xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation().trim().length() > 0) {
-				params.put("j7", xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation().trim());
-			} else {
-				params.put("j7", "");
-			}
+			/*
+			 * if
+			 * (xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation()
+			 * != null &&
+			 * xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation().
+			 * trim().length() > 0) { params.put("j7",
+			 * xsjsglxt_appraisal_letter.getAppraisal_letter_sample_situation().
+			 * trim()); } else { params.put("j7", ""); }
+			 */
+
 			if (xsjsglxt_appraisal_letter.getAppraisal_letter_inspection() != null
 					&& xsjsglxt_appraisal_letter.getAppraisal_letter_inspection().trim().length() > 0) {
 				params.put("j8", xsjsglxt_appraisal_letter.getAppraisal_letter_inspection().trim());
@@ -1381,7 +1417,6 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			} else {
 				params.put("j17", "");
 			}
-
 		}
 		return params;
 
@@ -1513,8 +1548,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 			}
 			if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_inspection() != null
 					&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_inspection().trim().length() > 0) {
-				params.put("d13",
-						xsjsglxt_damage_inspection_record.getDamage_inspection_record_inspection().trim().length());
+				params.put("d13", xsjsglxt_damage_inspection_record.getDamage_inspection_record_inspection().trim());
 			} else {
 				params.put("d13", "");
 			}
@@ -1531,30 +1565,45 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				String fileName = lj + "/xsjsglxt/damage/";
 				fileName = fileName + xsjsglxt_damage_inspection_record.getXsjsglxt_damage_inspection_record_id() + "_"
 						+ xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture1().trim();
-				params.put("d15", new PictureRenderData(640, 550, ".png",
-						BytePictureUtils.getLocalByteArray(new File(fileName))));
+
+				System.out.println("kk:" + fileName);
+				params.put("d15", TeamUtil.getImgStr(fileName));
+				/*
+				 * params.put("d15", new PictureRenderData(640, 550, ".png",
+				 * BytePictureUtils.getLocalByteArray(new File(fileName))));
+				 */
 			} else {
-				params.put("d15", "");
+				params.put("d15", TeamUtil
+						.getImgStr(ServletActionContext.getServletContext().getRealPath("/img/damage_img1.jpg")));
+
 			}
 			if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture2() != null
 					&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture2().trim().length() > 0) {
 				String fileName = lj + "/xsjsglxt/damage/";
 				fileName = fileName + xsjsglxt_damage_inspection_record.getXsjsglxt_damage_inspection_record_id() + "_"
 						+ xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture2().trim();
-				params.put("d16", new PictureRenderData(640, 550, ".png",
-						BytePictureUtils.getLocalByteArray(new File(fileName))));
+				params.put("d16", TeamUtil.getImgStr(fileName));
+				/*
+				 * params.put("d16", new PictureRenderData(640, 550, ".png",
+				 * BytePictureUtils.getLocalByteArray(new File(fileName))));
+				 */
 			} else {
-				params.put("d16", "");
+				params.put("d16", TeamUtil
+						.getImgStr(ServletActionContext.getServletContext().getRealPath("/img/damage_img2.jpg")));
 			}
 			if (xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture3() != null
 					&& xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture3().trim().length() > 0) {
 				String fileName = lj + "/xsjsglxt/damage/";
 				fileName = fileName + xsjsglxt_damage_inspection_record.getXsjsglxt_damage_inspection_record_id() + "_"
 						+ xsjsglxt_damage_inspection_record.getDamage_inspection_record_picture3().trim();
-				params.put("d17", new PictureRenderData(640, 550, ".png",
-						BytePictureUtils.getLocalByteArray(new File(fileName))));
+				params.put("d17", TeamUtil.getImgStr(fileName));
+				/*
+				 * params.put("d17", new PictureRenderData(640, 550, ".png",
+				 * BytePictureUtils.getLocalByteArray(new File(fileName))));
+				 */
 			} else {
-				params.put("d17", "");
+				params.put("d17", TeamUtil
+						.getImgStr(ServletActionContext.getServletContext().getRealPath("/img/damage_img3.jpg")));
 			}
 
 		}
@@ -1588,15 +1637,13 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				// 属于委托书中的内容
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim().length() > 0) {
-					params.put("t1", "["
-							+ (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4)
-							+ "]");
+					params.put("t1",
+							(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4));
 					params.put("t2",
-							(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4)
-									+ "号");
+							(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4));
 				} else {
-					params.put("t1", "[无]");
-					params.put("t2", "号");
+					params.put("t1", "");
+					params.put("t2", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim().length() > 0) {
@@ -1640,66 +1687,56 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				}
 				listEntrustmentSample = inspectionIdentificationDao.getListEntrustmentSampleByEnId(
 						xsjsglxt_death_inspection_record.getDeath_inspection_record_belong_entrustment_book().trim());
-				List<Object> tableContent = new ArrayList<Object>();
+				List<Map<String, Object>> newList = new ArrayList<Map<String, Object>>();
 				for (xsjsglxt_entrustment_sample xsjsglxt_entrustment_sample : listEntrustmentSample) {
-					String kk = "";
+					Map<String, Object> map = new HashMap<String, Object>();
 					if (xsjsglxt_entrustment_sample.getEntrustment_sample_num() != null
 							&& xsjsglxt_entrustment_sample.getEntrustment_sample_num().trim().length() > 0) {
-						kk = kk + xsjsglxt_entrustment_sample.getEntrustment_sample_num() + ";";
+						map.put("Num", xsjsglxt_entrustment_sample.getEntrustment_sample_num().trim());
 					} else {
-						kk = kk + "" + ";";
+						map.put("Num", "");
 					}
 					if (xsjsglxt_entrustment_sample.getEntrustment_sample_name() != null
 							&& xsjsglxt_entrustment_sample.getEntrustment_sample_name().trim().length() > 0) {
-						kk = kk + xsjsglxt_entrustment_sample.getEntrustment_sample_name() + ";";
+						map.put("Name", xsjsglxt_entrustment_sample.getEntrustment_sample_name().trim());
 					} else {
-						kk = kk + "" + ";";
+						map.put("Name", "");
 					}
 					if (xsjsglxt_entrustment_sample.getEntrustment_sample_position() != null
 							&& xsjsglxt_entrustment_sample.getEntrustment_sample_position().trim().length() > 0) {
-						kk = kk + xsjsglxt_entrustment_sample.getEntrustment_sample_position() + ";";
+						map.put("buwei", xsjsglxt_entrustment_sample.getEntrustment_sample_position().trim());
 					} else {
-						kk = kk + "" + ";";
+						map.put("buwei", "");
 					}
 					if (xsjsglxt_entrustment_sample.getEntrustment_sample_way() != null
 							&& xsjsglxt_entrustment_sample.getEntrustment_sample_way().trim().length() > 0) {
-						kk = kk + xsjsglxt_entrustment_sample.getEntrustment_sample_way() + ";";
+						map.put("fangfa", xsjsglxt_entrustment_sample.getEntrustment_sample_way().trim());
 					} else {
-						kk = kk + "" + ";";
+						map.put("fangfa", "");
 					}
 					if (xsjsglxt_entrustment_sample.getEntrustment_sample_amount() != null
 							&& xsjsglxt_entrustment_sample.getEntrustment_sample_amount().trim().length() > 0) {
-						kk = kk + xsjsglxt_entrustment_sample.getEntrustment_sample_amount() + ";";
+						map.put("shuliang", xsjsglxt_entrustment_sample.getEntrustment_sample_amount().trim());
 					} else {
-						kk = kk + "" + ";";
+						map.put("shuliang", "");
 					}
 					if (xsjsglxt_entrustment_sample.getEntrustment_sample_packaging() != null
 							&& xsjsglxt_entrustment_sample.getEntrustment_sample_packaging().trim().length() > 0) {
-						kk = kk + xsjsglxt_entrustment_sample.getEntrustment_sample_packaging() + ";";
+						map.put("baozhuang", xsjsglxt_entrustment_sample.getEntrustment_sample_packaging().trim());
 					} else {
-						kk = kk + "" + ";";
+						map.put("baozhuang", "");
 					}
 					if (xsjsglxt_entrustment_sample.getEntrustment_sample_use() != null
 							&& xsjsglxt_entrustment_sample.getEntrustment_sample_use().trim().length() > 0) {
-						kk = kk + xsjsglxt_entrustment_sample.getEntrustment_sample_use() + ";";
+						map.put("yongtu", xsjsglxt_entrustment_sample.getEntrustment_sample_use().trim());
 					} else {
-						kk = kk + "" + ";";
+						map.put("yongtu", "");
 					}
-					tableContent.add(kk);
+					newList.add(map);
 				}
-				// com.deepoove.poi.data.style.Style
-				// 表头
-				List<RenderData> tableHead = new ArrayList<RenderData>();
-				tableHead.add(new TextRenderData("d0d0d0", "编号"));
-				tableHead.add(new TextRenderData("d0d0d0", "检材名称"));
-				tableHead.add(new TextRenderData("d0d0d0", "提取部位"));
-				tableHead.add(new TextRenderData("d0d0d0", "提取方法"));
-				tableHead.add(new TextRenderData("d0d0d0", "数量"));
-				tableHead.add(new TextRenderData("d0d0d0", "包装"));
-				tableHead.add(new TextRenderData("d0d0d0", "用途"));
-				TableRenderData tables = new TableRenderData(tableHead, tableContent, "re", 7000);
-				params.put("t42", tables);
+				params.put("newList", newList);
 			}
+
 			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_undertake_personnel() != null
 					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_undertake_personnel().trim()
 							.length() > 0) {
@@ -1881,10 +1918,14 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				fileName = fileName + xsjsglxt_death_inspection_record.getXsjsglxt_death_inspection_record_id() + "_"
 						+ xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture1()
 								.trim();
-				params.put("t29", new PictureRenderData(640, 550, ".png",
-						BytePictureUtils.getLocalByteArray(new File(fileName))));
+				/*
+				 * params.put("t29", new PictureRenderData(640, 550, ".png",
+				 * BytePictureUtils.getLocalByteArray(new File(fileName))));
+				 */
+				params.put("t29", TeamUtil.getImgStr(fileName));
 			} else {
-				params.put("t29", "");
+				params.put("t29", TeamUtil
+						.getImgStr(ServletActionContext.getServletContext().getRealPath("/img/death_img1.jpg")));
 			}
 			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture2() != null
 					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture2().trim()
@@ -1893,10 +1934,10 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				fileName = fileName + xsjsglxt_death_inspection_record.getXsjsglxt_death_inspection_record_id() + "_"
 						+ xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture2()
 								.trim();
-				params.put("t30", new PictureRenderData(640, 550, ".png",
-						BytePictureUtils.getLocalByteArray(new File(fileName))));
+				params.put("t30", TeamUtil.getImgStr(fileName));
 			} else {
-				params.put("t30", "");
+				params.put("t30", TeamUtil
+						.getImgStr(ServletActionContext.getServletContext().getRealPath("/img/death_img2.jpg")));
 			}
 			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture3() != null
 					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture3().trim()
@@ -1905,10 +1946,10 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				fileName = fileName + xsjsglxt_death_inspection_record.getXsjsglxt_death_inspection_record_id() + "_"
 						+ xsjsglxt_death_inspection_record.getDeath_inspection_record_autopsy_table_test_picture3()
 								.trim();
-				params.put("t31", new PictureRenderData(640, 550, ".png",
-						BytePictureUtils.getLocalByteArray(new File(fileName))));
+				params.put("t31", TeamUtil.getImgStr(fileName));
 			} else {
-				params.put("t31", "");
+				params.put("t31", TeamUtil
+						.getImgStr(ServletActionContext.getServletContext().getRealPath("/img/death_img3.jpg")));
 			}
 			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomy_picture1() != null
 					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomy_picture1().trim()
@@ -1916,10 +1957,10 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				String fileName = lj + "/xsjsglxt/death/";
 				fileName = fileName + xsjsglxt_death_inspection_record.getXsjsglxt_death_inspection_record_id() + "_"
 						+ xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomy_picture1().trim();
-				params.put("t39", new PictureRenderData(640, 550, ".png",
-						BytePictureUtils.getLocalByteArray(new File(fileName))));
+				params.put("t39", TeamUtil.getImgStr(fileName));
 			} else {
-				params.put("t39", "");
+				params.put("t39", TeamUtil
+						.getImgStr(ServletActionContext.getServletContext().getRealPath("/img/death_img4.jpg")));
 			}
 			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomy_picture2() != null
 					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomy_picture2().trim()
@@ -1927,10 +1968,10 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				String fileName = lj + "/xsjsglxt/death/";
 				fileName = fileName + xsjsglxt_death_inspection_record.getXsjsglxt_death_inspection_record_id() + "_"
 						+ xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomy_picture2().trim();
-				params.put("t40", new PictureRenderData(640, 550, ".png",
-						BytePictureUtils.getLocalByteArray(new File(fileName))));
+				params.put("t40", TeamUtil.getImgStr(fileName));
 			} else {
-				params.put("t40", "");
+				params.put("t40", TeamUtil
+						.getImgStr(ServletActionContext.getServletContext().getRealPath("/img/death_img5.jpg")));
 			}
 			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomy_picture3() != null
 					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomy_picture3().trim()
@@ -1938,10 +1979,10 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				String fileName = lj + "/xsjsglxt/death/";
 				fileName = fileName + xsjsglxt_death_inspection_record.getXsjsglxt_death_inspection_record_id() + "_"
 						+ xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomy_picture3().trim();
-				params.put("t41", new PictureRenderData(640, 550, ".png",
-						BytePictureUtils.getLocalByteArray(new File(fileName))));
+				params.put("t41", TeamUtil.getImgStr(fileName));
 			} else {
-				params.put("t41", "");
+				params.put("t41", TeamUtil
+						.getImgStr(ServletActionContext.getServletContext().getRealPath("/img/death_img6.png")));
 			}
 			if (xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomic_time() != null
 					&& xsjsglxt_death_inspection_record.getDeath_inspection_record_anatomic_time().trim()
@@ -2017,100 +2058,99 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim()
 								.length() > 0) {
-					params.put("${h1}",
-							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim()
-									+ "记录");
-					params.put("${h5}",
+					params.put("h1",
+							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim());
+					params.put("h5",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim());
 				} else {
-					params.put("${h1}", "");
-					params.put("${h5}", "");
+					params.put("h1", "");
+					params.put("h5", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation().trim()
 								.length() > 0) {
-					params.put("${h2}",
+					params.put("h2",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation().trim());
 				} else {
-					params.put("${h2}", "");
+					params.put("h2", "");
 				}
 			}
 			if (xsjsglxt_inspection_record.getInspection_check_material_situation() != null
 					&& xsjsglxt_inspection_record.getInspection_check_material_situation().trim().length() > 0) {
-				params.put("${h3}", xsjsglxt_inspection_record.getInspection_check_material_situation().trim());
+				params.put("h3", xsjsglxt_inspection_record.getInspection_check_material_situation().trim());
 			} else {
-				params.put("${h3}", "");
+				params.put("h3", "");
 			}
 			if (xsjsglxt_inspection_record.getInspection_sample_situation() != null
 					&& xsjsglxt_inspection_record.getInspection_sample_situation().trim().length() > 0) {
-				params.put("${h4}", xsjsglxt_inspection_record.getInspection_sample_situation().trim());
+				params.put("h4", xsjsglxt_inspection_record.getInspection_sample_situation().trim());
 			} else {
-				params.put("${h4}", "");
+				params.put("h4", "");
 			}
 			if (xsjsglxt_inspection_record.getInspection_equipment() != null
 					&& xsjsglxt_inspection_record.getInspection_equipment().trim().length() > 0) {
-				params.put("${h6}", xsjsglxt_inspection_record.getInspection_equipment().trim());
+				params.put("h6", xsjsglxt_inspection_record.getInspection_equipment().trim());
 			} else {
-				params.put("${h6}", "");
+				params.put("h6", "");
 			}
 			if (xsjsglxt_inspection_record.getInspection_method() != null
 					&& xsjsglxt_inspection_record.getInspection_method().trim().length() > 0) {
-				params.put("${h7}", xsjsglxt_inspection_record.getInspection_method().trim());
+				params.put("h7", xsjsglxt_inspection_record.getInspection_method().trim());
 			} else {
-				params.put("${h7}", "");
+				params.put("h7", "");
 			}
 			if (xsjsglxt_inspection_record.getInspection_location() != null
 					&& xsjsglxt_inspection_record.getInspection_location().trim().length() > 0) {
-				params.put("${h14}", xsjsglxt_inspection_record.getInspection_location().trim());
+				params.put("h14", xsjsglxt_inspection_record.getInspection_location().trim());
 			} else {
-				params.put("${h14}", "");
+				params.put("h14", "");
 			}
 			if (xsjsglxt_inspection_record.getInspection_people() != null
 					&& xsjsglxt_inspection_record.getInspection_people().trim().length() > 0) {
-				params.put("${h15}", xsjsglxt_inspection_record.getInspection_people().trim());
+				params.put("h15", xsjsglxt_inspection_record.getInspection_people().trim());
 			} else {
-				params.put("${h15}", "");
+				params.put("h15", "");
 			}
 			if (xsjsglxt_inspection_record.getInspection_process() != null
 					&& xsjsglxt_inspection_record.getInspection_process().trim().length() > 0) {
-				params.put("${h16}", xsjsglxt_inspection_record.getInspection_process().trim());
+				params.put("h16", xsjsglxt_inspection_record.getInspection_process().trim());
 			} else {
-				params.put("${h16}", "");
+				params.put("h16", "");
 			}
 			if (xsjsglxt_inspection_record.getInspection_option() != null
 					&& xsjsglxt_inspection_record.getInspection_option().trim().length() > 0) {
-				params.put("${h17}", xsjsglxt_inspection_record.getInspection_option().trim());
+				params.put("h17", xsjsglxt_inspection_record.getInspection_option().trim());
 			} else {
-				params.put("${h17}", "");
+				params.put("h17", "");
 			}
 			if (xsjsglxt_inspection_record.getInspection_mark() != null
 					&& xsjsglxt_inspection_record.getInspection_mark().trim().length() > 0) {
-				params.put("${h18}", xsjsglxt_inspection_record.getInspection_mark().trim());
+				params.put("h18", xsjsglxt_inspection_record.getInspection_mark().trim());
 			} else {
-				params.put("${h18}", "");
+				params.put("h18", "");
 			}
 
 			// 检验开始时间
 			if (xsjsglxt_inspection_record.getInspection_start_time() != null
 					&& xsjsglxt_inspection_record.getInspection_start_time().trim().length() > 0) {
-				params.put("${h8}", TeamUtil.timeToYear(xsjsglxt_inspection_record.getInspection_start_time().trim()));
-				params.put("${h9}", TeamUtil.timeToMonth(xsjsglxt_inspection_record.getInspection_start_time().trim()));
-				params.put("${h10}", TeamUtil.timeToDay(xsjsglxt_inspection_record.getInspection_start_time().trim()));
+				params.put("h8", TeamUtil.timeToYear(xsjsglxt_inspection_record.getInspection_start_time().trim()));
+				params.put("h9", TeamUtil.timeToMonth(xsjsglxt_inspection_record.getInspection_start_time().trim()));
+				params.put("h10", TeamUtil.timeToDay(xsjsglxt_inspection_record.getInspection_start_time().trim()));
 			} else {
-				params.put("${h8}", "");
-				params.put("${h9}", "");
-				params.put("${h10}", "");
+				params.put("h8", "");
+				params.put("h9", "");
+				params.put("h10", "");
 			}
 			// 检验结束时间
 			if (xsjsglxt_inspection_record.getInspection_stop_time() != null
 					&& xsjsglxt_inspection_record.getInspection_stop_time().trim().length() > 0) {
-				params.put("${h11}", TeamUtil.timeToYear(xsjsglxt_inspection_record.getInspection_stop_time().trim()));
-				params.put("${h12}", TeamUtil.timeToMonth(xsjsglxt_inspection_record.getInspection_stop_time().trim()));
-				params.put("${h13}", TeamUtil.timeToDay(xsjsglxt_inspection_record.getInspection_stop_time().trim()));
+				params.put("h11", TeamUtil.timeToYear(xsjsglxt_inspection_record.getInspection_stop_time().trim()));
+				params.put("h12", TeamUtil.timeToMonth(xsjsglxt_inspection_record.getInspection_stop_time().trim()));
+				params.put("h13", TeamUtil.timeToDay(xsjsglxt_inspection_record.getInspection_stop_time().trim()));
 			} else {
-				params.put("${h11}", "");
-				params.put("${h12}", "");
-				params.put("${h13}", "");
+				params.put("h11", "");
+				params.put("h12", "");
+				params.put("h13", "");
 			}
 		}
 		return params;
@@ -2137,10 +2177,10 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim()
 								.length() > 0) {
-					params.put("${n1}",
+					params.put("n1",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
 				} else {
-					params.put("${n1}", "");
+					params.put("n1", "");
 				}
 				// 送检人
 				String temp1 = "";
@@ -2155,7 +2195,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 								.length() > 0) {
 					temp2 = temp2 + xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name().trim();
 				}
-				params.put("${n2}", temp1 + "  " + temp2);
+				params.put("n2", temp1 + "  " + temp2);
 				// 送检人编号
 				String tmp1 = "";
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_jobcard_number() != null
@@ -2168,77 +2208,76 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_jobcard_number() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_jobcard_number().trim()
 								.length() > 0) {
-					tmp2 = tmp2 + xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_jobcard_number()
+					tmp2 = tmp2 + xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_jobcard_number()
 							.trim();
 				}
-				params.put("${n3}", "工作证：" + tmp1 + "  " + tmp2);
+				params.put("n3", "工作证：" + tmp1 + "  " + tmp2);
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim().length() > 0) {
-					params.put("${n4}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim());
+					params.put("n4", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim());
 				} else {
-					params.put("${n4}", "");
+					params.put("n4", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num().trim().length() > 0) {
-					params.put("${n5}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num().trim());
+					params.put("n5", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num().trim());
 				} else {
-					params.put("${n5}", "");
+					params.put("n5", "");
 				}
 				//
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim().length() > 0) {
-					params.put("${n14}", "[ "
-							+ (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4)
-							+ " ]");
-					params.put("${n15}",
+					params.put("n14",
+							(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4));
+					params.put("n15",
 							(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4));
 				} else {
-					params.put("${n14}", "");
-					params.put("${n15}", "");
+					params.put("n14", "");
+					params.put("n15", "");
 				}
 			}
 			if (xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_reason() != null
 					&& xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_reason().trim()
 							.length() > 0) {
-				params.put("${n6}",
+				params.put("n6",
 						xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_reason().trim()
 								+ "，故不予受理。");
 			} else {
-				params.put("${n6}", "");
+				params.put("n6", "");
 			}
 			if (xsjsglxt_not_acceptance_entrustment_inform
 					.getNot_acceptance_entrustment_inform_inputhuman_name() != null
 					&& xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_inputhuman_name()
 							.trim().length() > 0) {
-				params.put("${n7}", xsjsglxt_not_acceptance_entrustment_inform
+				params.put("n7", xsjsglxt_not_acceptance_entrustment_inform
 						.getNot_acceptance_entrustment_inform_inputhuman_name().trim());
 			} else {
-				params.put("${n7}", "");
+				params.put("n7", "");
 			}
 			if (xsjsglxt_not_acceptance_entrustment_inform
 					.getNot_acceptance_entrustment_inform_approvalhuman_name() != null
 					&& xsjsglxt_not_acceptance_entrustment_inform
 							.getNot_acceptance_entrustment_inform_approvalhuman_name().trim().length() > 0) {
-				params.put("${n8}", xsjsglxt_not_acceptance_entrustment_inform
+				params.put("n8", xsjsglxt_not_acceptance_entrustment_inform
 						.getNot_acceptance_entrustment_inform_approvalhuman_name().trim());
 			} else {
-				params.put("${n8}", "");
+				params.put("n8", "");
 			}
 			if (xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_approval_time() != null
 					&& xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_approval_time()
 							.trim().length() > 0) {
-				params.put("${n9}", xsjsglxt_not_acceptance_entrustment_inform
+				params.put("n9", xsjsglxt_not_acceptance_entrustment_inform
 						.getNot_acceptance_entrustment_inform_approval_time().trim());
 			} else {
-				params.put("${n9}", "");
+				params.put("n9", "");
 			}
 			if (xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_reason() != null
 					&& xsjsglxt_not_acceptance_entrustment_inform.getNot_acceptance_entrustment_inform_reason().trim()
 							.length() > 0) {
-				params.put("${n12}", xsjsglxt_not_acceptance_entrustment_inform
+				params.put("n12", xsjsglxt_not_acceptance_entrustment_inform
 						.getNot_acceptance_entrustment_inform_reason().trim());
 			} else {
-				params.put("${n12}", "");
+				params.put("n12", "");
 			}
 		}
 		return params;
@@ -2260,6 +2299,18 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				xsjsglxt_check_entrustment_book = inspectionIdentificationDao
 						.getCheckEntrustmentBookById(xsjsglxt_identifieder_case_confirm_book
 								.getIdentifieder_case_confirm_book_belong_entrustment_book().trim());
+
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_type() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_type().trim().length() > 0) {
+					if ("痕迹".equals(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_type())) {
+						params.put("a17", "痕");
+					} else {
+						params.put("a17", "法");
+					}
+				} else {
+					params.put("a17", "");
+				}
+
 				// 将属于委托书表中的数据替换进去
 				// 第一个：委托日期
 				// 因为再存储的时候,日期的格式一定一致,所以不会出现错误
@@ -2267,34 +2318,34 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim()
 								.length() > 0) {
-					params.put("${a1}", TeamUtil.timeToYear(
+					params.put("a1", TeamUtil.timeToYear(
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim()));
 				} else {
-					params.put("${a1}", "");
+					params.put("a1", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim()
 								.length() > 0) {
-					params.put("${a2}", TeamUtil.timeToMonth(
+					params.put("a2", TeamUtil.timeToMonth(
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim()));
 				} else {
-					params.put("${a2}", "");
+					params.put("a2", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim()
 								.length() > 0) {
-					params.put("${a3}", TeamUtil.timeToDay(
+					params.put("a3", TeamUtil.timeToDay(
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim()));
 				} else {
-					params.put("${a3}", "");
+					params.put("a3", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim()
 								.length() > 0) {
-					params.put("${a4}",
+					params.put("a4",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
 				} else {
-					params.put("${a4}", "");
+					params.put("a4", "");
 				}
 				String temp1 = "";
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name() != null
@@ -2308,69 +2359,55 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 								.length() > 0) {
 					temp2 = temp2 + xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name().trim();
 				}
-				params.put("${a5}", temp1 + "  " + temp2);
+				params.put("a5", temp1 + "  " + temp2);
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim().length() > 0) {
-					params.put("${a6}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim());
-					params.put("${a7}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim());
+					params.put("a6", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim());
+					params.put("a7", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim());
 				} else {
-					params.put("${a6}", "");
-					params.put("${a7}", "");
+					params.put("a6", "");
+					params.put("a7", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim().length() > 0) {
-					params.put("${a8}",
+					params.put("a8",
 							(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4));
-					params.put("${a9}",
+					params.put("a9",
 							(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4));
 				} else {
-					params.put("${a8}", "");
-					params.put("${a9}", "");
+					params.put("a8", "");
+					params.put("a9", "");
 				}
 			}
 			if (xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_num() != null
 					&& xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_num().trim()
 							.length() > 0) {
-				params.put("${a10}", (xsjsglxt_identifieder_case_confirm_book
+				params.put("a10", (xsjsglxt_identifieder_case_confirm_book
 						.getIdentifieder_case_confirm_book_acceptance_num().trim()).substring(0, 4));
-				params.put("${a11}", (xsjsglxt_identifieder_case_confirm_book
+				params.put("a11", (xsjsglxt_identifieder_case_confirm_book
 						.getIdentifieder_case_confirm_book_acceptance_num().trim()).substring(4));
 			} else {
-				params.put("${a10}", "");
-				params.put("${a11}", "");
+				params.put("a10", "");
+				params.put("a11", "");
 			}
 			if (xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_major() != null
 					&& xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_major()
 							.trim().length() > 0) {
-				params.put("${a12}", xsjsglxt_identifieder_case_confirm_book
+				params.put("a12", xsjsglxt_identifieder_case_confirm_book
 						.getIdentifieder_case_confirm_book_acceptance_major().trim());
 			} else {
-				params.put("${a12}", "");
+				params.put("a12", "");
 			}
 			if (xsjsglxt_identifieder_case_confirm_book
 					.getIdentifieder_case_confirm_book_acceptance_human_name() != null
 					&& xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_human_name()
 							.trim().length() > 0) {
-				params.put("${a13}", xsjsglxt_identifieder_case_confirm_book
+				params.put("a13", xsjsglxt_identifieder_case_confirm_book
 						.getIdentifieder_case_confirm_book_acceptance_human_name().trim());
 			} else {
-				params.put("${a13}", "");
+				params.put("a13", "");
 			}
-			// 这个领取日期似乎不是那么好确定
-			if (xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_receive_data() != null
-					&& xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_receive_data().trim()
-							.length() > 0) {
-				params.put("${a14}", TeamUtil.timeToYear(xsjsglxt_identifieder_case_confirm_book
-						.getIdentifieder_case_confirm_book_receive_data().trim()));
-				params.put("${a15}", TeamUtil.timeToMonth(xsjsglxt_identifieder_case_confirm_book
-						.getIdentifieder_case_confirm_book_receive_data().trim()));
-				params.put("${a16}", TeamUtil.timeToDay(xsjsglxt_identifieder_case_confirm_book
-						.getIdentifieder_case_confirm_book_receive_data().trim()));
-			} else {
-				params.put("${a14}", "");
-				params.put("${a15}", "");
-				params.put("${a16}", "");
-			}
+
 		}
 		return params;
 	}
@@ -2391,217 +2428,220 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 								.getIdentifieder_case_confirm_book_belong_entrustment_book().trim());
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim().length() > 0) {
-					params.put("${q1}", "["
-							+ (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4)
-							+ "]");
-					params.put("${q2}",
+					params.put("q1",
+							(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4));
+					params.put("q2",
 							(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4));
 				} else {
-					params.put("${q1}", "");
-					params.put("${q2}", "");
+					params.put("q1", "");
+					params.put("q2", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit_name() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit_name().trim()
 								.length() > 0) {
-					params.put("${q3}",
+					params.put("q3",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit_name().trim());
 				} else {
-					params.put("${q3}", "");
+					params.put("q3", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim()
 								.length() > 0) {
-					params.put("${q4}",
+					params.put("q4",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
 				} else {
-					params.put("${q4}", "");
+					params.put("q4", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim().length() > 0) {
-					params.put("${q5}",
+					params.put("q5",
 							(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4));
-					params.put("${q6}",
+					params.put("q6",
 							(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4));
 				} else {
-					params.put("${q5}", "");
-					params.put("${q6}", "");
+					params.put("q5", "");
+					params.put("q6", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name().trim()
 								.length() > 0) {
-					params.put("${q7}",
+					params.put("q7",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name().trim());
 				} else {
-					params.put("${q7}", "");
+					params.put("q7", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name().trim()
 								.length() > 0) {
-					params.put("${q10}",
+					params.put("q10",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name().trim());
 				} else {
-					params.put("${q10}", "");
+					params.put("q10", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_duty() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_duty().trim()
 								.length() > 0) {
-					params.put("${q8}",
+					params.put("q8",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_duty().trim());
 				} else {
-					params.put("${q8}", "");
+					params.put("q8", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_duty() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_duty().trim()
 								.length() > 0) {
-					params.put("${q11}",
+					params.put("q11",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_duty().trim());
 				} else {
-					params.put("${q11}", "");
+					params.put("q11", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_jobcard_number() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_jobcard_number().trim()
 								.length() > 0) {
-					params.put("${q9}", xsjsglxt_check_entrustment_book
+					params.put("q9", xsjsglxt_check_entrustment_book
 							.getCheck_entrustment_book_inspectors1_jobcard_number().trim());
 				} else {
-					params.put("${q9}", "");
+					params.put("q9", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_jobcard_number() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_jobcard_number().trim()
 								.length() > 0) {
-					params.put("${q12}", xsjsglxt_check_entrustment_book
+					params.put("q12", xsjsglxt_check_entrustment_book
 							.getCheck_entrustment_book_inspectors2_jobcard_number().trim());
 				} else {
-					params.put("${q12}", "");
+					params.put("q12", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_communication_address() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_communication_address().trim()
 								.length() > 0) {
-					params.put("${q13}",
+					params.put("q13",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_communication_address().trim());
 				} else {
-					params.put("${q13}", "");
+					params.put("q13", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_zip_code() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_zip_code().trim().length() > 0) {
-					params.put("${q14}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_zip_code().trim());
+					params.put("q14", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_zip_code().trim());
 				} else {
-					params.put("${q14}", "");
+					params.put("q14", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_phone() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_phone().trim().length() > 0) {
-					params.put("${q15}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_phone().trim());
+					params.put("q15", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_phone().trim());
 				} else {
-					params.put("${q15}", "");
+					params.put("q15", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_fax_num() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_fax_num().trim().length() > 0) {
-					params.put("${q16}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_fax_num().trim());
+					params.put("q16", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_fax_num().trim());
 				} else {
-					params.put("${q16}", "");
+					params.put("q16", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim().length() > 0) {
-					params.put("${q17}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim());
+					params.put("q17", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim());
 				} else {
-					params.put("${q17}", "");
+					params.put("q17", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num().trim().length() > 0) {
-					params.put("${q18}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num().trim());
+					params.put("q18", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num().trim());
 				} else {
-					params.put("${q18}", "");
+					params.put("q18", "");
 				}
-				if ("痕迹检验".equals(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_type())) {
-					params.put("${q19}", "/");
-					params.put("${q20}", "/");
-					params.put("${q21}", "/");
-					params.put("${q22}", "/");
-					params.put("${q23}", "/");
-					params.put("${q24}", "/");
+				if ("痕迹".equals(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_type())) {
+					params.put("q30", "痕");
+					params.put("q29", "单位");
+					params.put("q19", "/");
+					params.put("q20", "/");
+					params.put("q21", "/");
+					params.put("q22", "/");
+					params.put("q23", "/");
+					params.put("q24", "/");
 				} else {
+					params.put("q29", "身份证");
+					params.put("q30", "法");
 					if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name() != null
 							&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name().trim()
 									.length() > 0) {
-						params.put("${q19}",
+						params.put("q19",
 								xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name().trim());
 					} else {
-						params.put("${q19}", "");
+						params.put("q19", "");
 					}
 					if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_sex() != null
 							&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_sex().trim()
 									.length() > 0) {
-						params.put("${q20}",
+						params.put("q20",
 								xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_sex().trim());
 					} else {
-						params.put("${q20}", "");
+						params.put("q20", "");
 					}
 					if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_age() != null
 							&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_age().trim()
 									.length() > 0) {
-						params.put("${q21}",
+						params.put("q21",
 								xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_age().trim());
 					} else {
-						params.put("${q21}", "");
+						params.put("q21", "");
 					}
 					if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_phone() != null
 							&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_phone().trim()
 									.length() > 0) {
-						params.put("${q22}",
+						params.put("q22",
 								xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_phone().trim());
 					} else {
-						params.put("${q22}", "");
+						params.put("q22", "");
 					}
-					if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
-							&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim()
+					if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_unit() != null
+							&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_unit().trim()
 									.length() > 0) {
-						params.put("${q23}",
-								xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
+						params.put("q23",
+								xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_unit().trim());
 					} else {
-						params.put("${q23}", "");
+						params.put("q23", "");
 					}
 					if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_address() != null
 							&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_address().trim()
 									.length() > 0) {
-						params.put("${q24}", xsjsglxt_check_entrustment_book
+						params.put("q24", xsjsglxt_check_entrustment_book
 								.getCheck_entrustment_book_entrustmentor_address().trim());
 					} else {
-						params.put("${q24}", "");
+						params.put("q24", "");
 					}
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation().trim()
 								.length() > 0) {
-					params.put("${q25}",
+					params.put("q25",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation().trim());
 				} else {
-					params.put("${q25}", "");
+					params.put("q25", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation().trim()
 								.length() > 0) {
-					params.put("${q26}",
+					params.put("q26",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation().trim());
 				} else {
-					params.put("${q26}", "");
+					params.put("q26", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim()
 								.length() > 0) {
-					params.put("${q27}",
+					params.put("q27",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim());
 				} else {
-					params.put("${q27}", "");
+					params.put("q27", "");
 				}
 			}
 			if (xsjsglxt_identifieder_case_confirm_book
 					.getIdentifieder_case_confirm_book_acceptance_human_name() != null
 					&& xsjsglxt_identifieder_case_confirm_book.getIdentifieder_case_confirm_book_acceptance_human_name()
 							.trim().length() > 0) {
-				params.put("${q28}", xsjsglxt_identifieder_case_confirm_book
+				params.put("q28", xsjsglxt_identifieder_case_confirm_book
 						.getIdentifieder_case_confirm_book_acceptance_human_name().trim());
 			} else {
-				params.put("${q28}", "");
+				params.put("q28", "");
 			}
 		}
 		return params;
@@ -2614,221 +2654,218 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 		// 根据ID获取委托书
 		xsjsglxt_check_entrustment_book = inspectionIdentificationDao.getCheckEntrustmentBookById(id);
 		if (xsjsglxt_check_entrustment_book != null) {
+
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim().length() > 0) {
-				params.put("${x1}",
-						"[" + (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4)
-								+ "]");
-				params.put("${x2}",
-						(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4));
+				params.put("x1",
+						(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(0, 4));
+				params.put("x2", (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_num().trim()).substring(4));
 			} else {
-				params.put("${x1}", "");
-				params.put("${x2}", "");
+				params.put("x1", "");
+				params.put("x2", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim()
 							.length() > 0) {
-				params.put("${x3}",
-						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
+				params.put("x3", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
 			} else {
-				params.put("${x3}", "");
+				params.put("x3", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim().length() > 0) {
-				params.put("${x4}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim());
+				params.put("x4", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspect_time().trim());
 			} else {
-				params.put("${x4}", "");
+				params.put("x4", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name().trim()
 							.length() > 0) {
-				params.put("${x5}",
-						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name().trim());
+				params.put("x5", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_name().trim());
 			} else {
-				params.put("${x5}", "");
+				params.put("x5", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name().trim()
 							.length() > 0) {
-				params.put("${x8}",
-						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name().trim());
+				params.put("x8", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_name().trim());
 			} else {
-				params.put("${x8}", "");
+				params.put("x8", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_duty() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_duty().trim()
 							.length() > 0) {
-				params.put("${x6}",
-						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_duty().trim());
+				params.put("x6", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_duty().trim());
 			} else {
-				params.put("${x6}", "");
+				params.put("x6", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_duty() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_duty().trim()
 							.length() > 0) {
-				params.put("${x9}",
-						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_duty().trim());
+				params.put("x9", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_duty().trim());
 			} else {
-				params.put("${x9}", "");
+				params.put("x9", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_jobcard_number() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_jobcard_number().trim()
 							.length() > 0) {
-				params.put("${x7}",
+				params.put("x7",
 						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors1_jobcard_number().trim());
 			} else {
-				params.put("${x7}", "");
+				params.put("x7", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_jobcard_number() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_jobcard_number().trim()
 							.length() > 0) {
-				params.put("${x10}",
+				params.put("x10",
 						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_inspectors2_jobcard_number().trim());
 			} else {
-				params.put("${x10}", "");
+				params.put("x10", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_communication_address() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_communication_address().trim()
 							.length() > 0) {
-				params.put("${x11}",
+				params.put("x11",
 						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_communication_address().trim());
 			} else {
-				params.put("${x11}", "");
+				params.put("x11", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_zip_code() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_zip_code().trim().length() > 0) {
-				params.put("${x12}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_zip_code().trim());
+				params.put("x12", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_zip_code().trim());
 			} else {
-				params.put("${x12}", "");
+				params.put("x12", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_phone() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_phone().trim().length() > 0) {
-				params.put("${x13}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_phone().trim());
+				params.put("x13", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_phone().trim());
 			} else {
-				params.put("${x13}", "");
+				params.put("x13", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_fax_num() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_fax_num().trim().length() > 0) {
-				params.put("${x14}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_fax_num().trim());
+				params.put("x14", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_fax_num().trim());
 			} else {
-				params.put("${x14}", "");
+				params.put("x14", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit_name() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit_name().trim()
 							.length() > 0) {
-				params.put("${x15}",
+				params.put("x15",
 						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit_name().trim());
 			} else {
-				params.put("${x15}", "");
+				params.put("x15", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim().length() > 0) {
-				params.put("${x16}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim());
+				params.put("x16", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_name().trim());
 			} else {
-				params.put("${x16}", "");
+				params.put("x16", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num().trim().length() > 0) {
-				params.put("${x17}", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num().trim());
+				params.put("x17", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_case_num().trim());
 			} else {
-				params.put("${x17}", "");
+				params.put("x17", "");
 			}
-			if ("痕迹检验".equals(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_type())) {
-				params.put("${x18}", "/");
-				params.put("${x19}", "/");
-				params.put("${x20}", "/");
-				params.put("${x21}", "/");
-				params.put("${x22}", "/");
-				params.put("${x23}", "/");
+			if ("痕迹".equals(xsjsglxt_check_entrustment_book.getCheck_entrustment_book_type())) {
+				params.put("x29", "痕");
+				params.put("x30", "单位");
+				params.put("x18", "/");
+				params.put("x19", "/");
+				params.put("x20", "/");
+				params.put("x21", "/");
+				params.put("x22", "/");
+				params.put("x23", "/");
 			} else {
+				params.put("x29", "法");
+				params.put("x30", "身份证");
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name().trim()
 								.length() > 0) {
-					params.put("${x18}",
+					params.put("x18",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_name().trim());
 				} else {
-					params.put("${x18}", "");
+					params.put("x18", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_sex() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_sex().trim()
 								.length() > 0) {
-					params.put("${x19}",
+					params.put("x19",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_sex().trim());
 				} else {
-					params.put("${x19}", "");
+					params.put("x19", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_age() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_age().trim()
 								.length() > 0) {
-					params.put("${x20}",
+					params.put("x20",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_age().trim());
 				} else {
-					params.put("${x20}", "");
+					params.put("x20", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_phone() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_phone().trim()
 								.length() > 0) {
-					params.put("${x21}",
+					params.put("x21",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_phone().trim());
 				} else {
-					params.put("${x21}", "");
+					params.put("x21", "");
 				}
-				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit() != null
-						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim()
+				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_unit() != null
+						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_unit().trim()
 								.length() > 0) {
-					params.put("${x22}",
-							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_unit().trim());
+					params.put("x22",
+							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_unit().trim());
 				} else {
-					params.put("${x22}", "");
+					params.put("x22", "");
 				}
 				if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_address() != null
 						&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_address().trim()
 								.length() > 0) {
-					params.put("${x23}",
+					params.put("x23",
 							xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustmentor_address().trim());
 				} else {
-					params.put("${x23}", "");
+					params.put("x23", "");
 				}
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation().trim()
 							.length() > 0) {
-				params.put("${x24}",
+				params.put("x24",
 						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_simple_case_situation().trim());
 			} else {
-				params.put("${x24}", "");
+				params.put("x24", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_old_entrustment_situation() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_old_entrustment_situation().trim()
 							.length() > 0) {
-				params.put("${x25}",
+				params.put("x25",
 						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_old_entrustment_situation().trim());
 			} else {
-				params.put("${x25}", "");
+				params.put("x25", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation().trim()
 							.length() > 0) {
-				params.put("${x26}",
-						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation().trim());
+				params.put("x26", xsjsglxt_check_entrustment_book.getCheck_entrustment_book_sample_situation().trim());
 			} else {
-				params.put("${x26}", "");
+				params.put("x26", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim()
 							.length() > 0) {
-				params.put("${x27}",
+				params.put("x27",
 						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_entrustment_request().trim());
 			} else {
-				params.put("${x27}", "");
+				params.put("x27", "");
 			}
 			if (xsjsglxt_check_entrustment_book.getCheck_entrustment_book_responsible_person() != null
 					&& xsjsglxt_check_entrustment_book.getCheck_entrustment_book_responsible_person().trim()
 							.length() > 0) {
-				params.put("${x28}",
+				params.put("x28",
 						xsjsglxt_check_entrustment_book.getCheck_entrustment_book_responsible_person().trim());
 			} else {
-				params.put("${x28}", "");
+				params.put("x28", "");
 			}
 		}
 		return params;
@@ -3098,8 +3135,7 @@ public class InspectionIdentificationServiceImpl implements InspectionIdentifica
 	}
 
 	/**
-	 * @author 孙毅
-	 * 保存检验记录
+	 * @author 孙毅 保存检验记录
 	 */
 
 	@Override
