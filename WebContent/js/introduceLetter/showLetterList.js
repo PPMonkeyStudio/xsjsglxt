@@ -103,7 +103,6 @@ var loadData = function() {
 		type : 'POST',
 		data : queryData,
 		success : function(data) {
-			letterVue.allData = JSON.parse(data);
 			queryConditionTemp.currPage = letterVue.allData.currPage;
 			queryConditionTemp.pageSize = letterVue.allData.pageSize;
 			queryConditionTemp.totalPage = letterVue.allData.totalPage;
