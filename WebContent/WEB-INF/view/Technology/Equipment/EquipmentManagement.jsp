@@ -22,7 +22,7 @@
 <script type="text/javascript"
 	src="<%=basePath%>js/Technology/Equipment/List_Equipment_By_PageAndSearch.js"></script>
 <!---------------------------------------------------------------------------------------------------->
-<title>技术管理 > 器材装备</title>
+<title>器材装备</title>
 <style type="text/css">
 	#bottomPage{
 		cursor: pointer;
@@ -31,12 +31,10 @@
 </head>
 <body>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
-
-	<jsp:include page="/technologyManager.jsp" flush="true"></jsp:include>
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------->
-	<div id="allPanel">
+	<div id="allPanel" style="margin: 80px 0 0 0; float: left; width: 100%; overflow: hidden;">
 		<div class="panel" style="width: 95%; margin: 20px auto;">
 			<!--  -->
 			<div class="panel-heading">
@@ -129,25 +127,5 @@
 
 <script type="text/javascript">
 	List_Equipment_By_PageAndSearch(1);
-</script>
-<script type="text/javascript">
-	var documentWidth = document.body.clientWidth;
-	var panelWidth = documentWidth - 160;
-	var navbarHeight = document.getElementById("navbar").offsetHeight;
-	var panelMargin = navbarHeight + 20;
-	document.getElementById("allPanel").setAttribute(
-			"style",
-			"width:" + panelWidth + "px; float:right; margin-top:"
-					+ panelMargin + "px;");
-	window.onresize = function() {
-		var documentWidth = document.body.clientWidth;
-		var panelWidth = documentWidth - 160;
-		var navbarHeight = document.getElementById("navbar").offsetHeight;
-		var panelMargin = navbarHeight + 20;
-		document.getElementById("allPanel").setAttribute(
-				"style",
-				"width:" + panelWidth + "px; float:right; margin-top:"
-						+ panelMargin + "px;");
-	}
 </script>
 </html>

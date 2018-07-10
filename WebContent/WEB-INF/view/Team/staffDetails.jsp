@@ -103,7 +103,7 @@
 								<td class="odd"><label class="staff_info_label">入警时间</label></td>
 								<td class="even">{{ returnData.staff_thePoliceTime }}</td>
 
-								<td class="odd"><label class="staff_info_label">是否&nbsp;&nbsp;正式</label></td>
+								<td class="odd"><label class="staff_info_label">警&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;种</label></td>
 								<td class="even">{{ returnData.staff_isItFormal }}</td>
 
 							</tr>

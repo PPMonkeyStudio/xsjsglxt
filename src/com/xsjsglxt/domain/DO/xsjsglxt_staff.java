@@ -23,7 +23,7 @@ public class xsjsglxt_staff {
 	private String staff_joinWorkTime;
 	private String staff_alarm;
 	private String staff_thePoliceTime;
-	private String staff_isItFormal;
+	private String staff_isItFormal; // 警种
 	private String staff_phone;
 	private String staff_appliactionFormTime; // 提交申请书时间
 	private String staff_delevopObjectTime;// 发展对象时间

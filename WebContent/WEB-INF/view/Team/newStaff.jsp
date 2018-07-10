@@ -160,18 +160,14 @@
 								<td><label class="staff_info_label">入警时间</label></td>
 								<td><input name="policeman.staff_thePoliceTime"
 									class="form-control staff_thePoliceTime" type="text"></td>
-
-
-								<td><label class="staff_info_label">是否&nbsp;&nbsp;正式</label></td>
-								<td><label style="float: left; width: 50px;"
-									class="fancy-radio "> <input name="format_content"
-										onclick="isFormat(this)" type="radio" value="是"> <span><i></i>是</span>
-								</label> <label style="float: left; margin-left: 10px; width: 50px;"
-									class="fancy-radio "> <input name="format_content"
-										onclick="isNotFormat(this)" type="radio" value="否"> <span><i></i>否</span>
-								</label> <input type="hidden" name="policeman.staff_isItFormal"
-									id="format" /></td>
-
+								<td><label class="staff_info_label">警种</label></td>
+								<td><select name="policeman.staff_isItFormal"
+									class="form-control">
+										<option value=""></option>
+										<option value="侦查">侦查</option>
+										<option value="技术">技术</option>
+										<option value="辅警">辅警</option>
+								</select>
 							</tr>
 							<tr>
 								<td><label class="staff_info_label">政治面貌</label></td>

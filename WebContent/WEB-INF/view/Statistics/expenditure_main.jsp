@@ -20,9 +20,8 @@
 <body>
 	<!-----------------------------------------引入导航条 ------------------------------------------------------>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
-	<jsp:include page="/technologyManager.jsp" flush="true"></jsp:include>
 	<!-----------------------------------------主体内容 -------------------------------------------------------->
-	<div id="allPanel">
+	<div id="allPanel" style="margin: 80px 0 0 0; float: left; width: 100%; overflow: hidden;">
 		<div class="panel" style="width: 95%; margin: 20px auto;">
 			<div style="padding: 10px;">
 				<button class="btn btn-default managerRole" onclick="saveExpenditure()">
@@ -115,25 +114,5 @@
 		minDate : '1900/01/01', // 设置最小日期
 		maxDate : '2100/01/01', // 设置最大日期
 	});
-</script>
-<script type="text/javascript">
-	var documentWidth = document.body.clientWidth;
-	var panelWidth = documentWidth - 160;
-	var navbarHeight = document.getElementById("navbar").offsetHeight;
-	var panelMargin = navbarHeight + 20;
-	document.getElementById("allPanel").setAttribute(
-			"style",
-			"width:" + panelWidth + "px; float:right; margin-top:"
-					+ panelMargin + "px;");
-	window.onresize = function() {
-		var documentWidth = document.body.clientWidth;
-		var panelWidth = documentWidth - 160;
-		var navbarHeight = document.getElementById("navbar").offsetHeight;
-		var panelMargin = navbarHeight + 20;
-		document.getElementById("allPanel").setAttribute(
-				"style",
-				"width:" + panelWidth + "px; float:right; margin-top:"
-						+ panelMargin + "px;");
-	}
 </script>
 </html>

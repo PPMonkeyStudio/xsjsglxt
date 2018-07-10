@@ -165,16 +165,14 @@
 								<td><input name="policeman.staff_thePoliceTime"
 									class="form-control staff_thePoliceTime time" type="text"></td>
 
-								<td><label class="staff_info_label">是否&nbsp;&nbsp;正式</label></td>
-								<td><label style="float: left; width: 50px;"
-									class="fancy-radio "> <input name="format_content"
-										onclick="isFormat(this)" type="radio" value="是"> <span><i></i>是</span>
-								</label> <label style="float: left; margin-left: 10px; width: 50px;"
-									class="fancy-radio "> <input name="format_content"
-										onclick="isNotFormat(this)" type="radio" value="否"> <span><i></i>否</span>
-								</label> <input type="hidden" name="policeman.staff_isItFormal"
-									id="format" /></td>
-
+								<td><label class="staff_info_label">警种</label></td>
+								<td><select id="staff_isItFormal" name="policeman.staff_isItFormal"
+									class="form-control">
+										<option value=""></option>
+										<option value="侦查">侦查</option>
+										<option value="技术">技术</option>
+										<option value="辅警">辅警</option>
+								</select>
 							</tr>
 							<tr>
 								<td><label class="staff_info_label">政治面貌</label></td>
@@ -880,7 +878,7 @@
 
 						<table>
 							<tbody>
-							    <tr>
+								<tr>
 									<td><label class="staff_info_label">起始时间</label></td>
 									<td><input style="font-size: 12px;"
 										class="staffFurlough_startTime time"></td>
@@ -901,13 +899,13 @@
 									<td><input style="font-size: 12px;"
 										class="staffFurlough_mainContent" type="text"></td>
 								</tr>
-								
+
 								<tr>
 									<td><label class="staff_info_label">天数</label></td>
 									<td><input type="text" class="staffFurlough_days" /></td>
 								</tr>
-								
-								
+
+
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
@@ -952,7 +950,8 @@
 							<tbody>
 								<tr>
 									<td><label class="staff_info_label">类别</label></td>
-									<td><select class="form-control staffStudent_evectionRelive">
+									<td><select
+										class="form-control staffStudent_evectionRelive">
 											<option>学习</option>
 											<option>出差</option>
 									</select></td>
@@ -1347,7 +1346,7 @@
 
 						<table>
 							<tbody>
-							<tr>
+								<tr>
 									<td><label class="staff_info_label">起始时间</label></td>
 									<td><input style="font-size: 12px;"
 										class="staffFurlough_startTimeRelive time"></td>
@@ -1369,13 +1368,13 @@
 									<td><input style="font-size: 12px;"
 										class="staffFurlough_mainContentRelive" type="text"></td>
 								</tr>
-								
+
 								<tr>
 									<td><label class="staff_info_label">天数</label></td>
 									<td><input type="text" class="staffFurlough_daysRelive" /></td>
 								</tr>
-								
-								
+
+
 								<tr>
 									<td><label class="staff_info_label">备注</label></td>
 									<td colspan="6"><textarea id="staff_contactsRemark"
