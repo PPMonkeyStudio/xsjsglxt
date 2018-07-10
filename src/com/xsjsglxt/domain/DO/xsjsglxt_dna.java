@@ -22,6 +22,8 @@ public class xsjsglxt_dna {
 	private String dna_record_organization;
 	// 建档人
 	private String dna_organizer;
+	// 接收人
+	private String dna_receiver;
 	// 建档时间
 	private String dna_record_time;
 	// 交档时间
@@ -161,6 +163,14 @@ public class xsjsglxt_dna {
 
 	public void setDna_gmt_modified(String dna_gmt_modified) {
 		this.dna_gmt_modified = dna_gmt_modified;
+	}
+
+	public String getDna_receiver() {
+		return dna_receiver;
+	}
+
+	public void setDna_receiver(String dna_receiver) {
+		this.dna_receiver = dna_receiver;
 	}
 
 }

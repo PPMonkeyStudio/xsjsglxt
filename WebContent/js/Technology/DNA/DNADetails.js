@@ -22,6 +22,7 @@ function DNADetails(button) {
 						+ '<tr><th><span style="color:red;">*&nbsp;</span>违法事实：</th><td><input type="text" id="input_illegalFact" class="form-control" /></td></tr>'
 						+ '<tr><th><span style="color:red;">*&nbsp;</span>建档单位：</th><td><input type="text" id="input_inputtingUnit" class="form-control" /></td></tr>'
 						+ '<tr><th><span style="color:red;">*&nbsp;</span>建档人：</th><td><input type="text" id="input_inputtingPerson" class="form-control" /></td></tr>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>接收人：</th><td><input type="text" id="input_receiver" class="form-control" /></td></tr>'
 						+ '<tr><th><span style="color:red;">*&nbsp;</span>建档时间：</th><td><input type="text" id="input_inputtingTime" class="form-control" /></td></tr>'
 						+ '<tr><th><span style="color:red;">*&nbsp;</span>交档时间：</th><td><input type="text" id="input_makingTime"  class="form-control" /></td></tr>'
 						+ '<tr><th>备注：</th><td><textarea class="form-control" id="textarea_remark" rows="5" style="resize:none;"></textarea></td></tr>'
@@ -51,9 +52,14 @@ function DNADetails(button) {
 								.getElementById("input_makingTime");
 						var textarea_remark = document
 								.getElementById("textarea_remark");
-
+						var input_receiver = document
+								.getElementById("input_receiver");
 						if (input_name.value == "") {
 							toastr.error("姓名不能为空！");
+							return false;
+						}
+						if (input_receiver.value == "") {
+							toastr.error("接收人不能为空！");
 							return false;
 						}
 						if (input_IDCard.value == "") {
@@ -138,7 +144,8 @@ function DNADetails(button) {
 								input_makingTime.value);
 						formData
 								.append("dna.dna_remark", textarea_remark.value);
-
+						formData.append("dna.dna_receiver",
+								input_receiver.value)
 						xhr.open("POST",
 								"/xsjsglxt/DNA/DNAManagement_modifiedDNA");
 						xhr.send(formData);
@@ -206,7 +213,9 @@ function DNADetails(button) {
 							var input_makingTime = document
 									.getElementById("input_makingTime");
 							input_makingTime.value = DNA_VO.list_xsjsglxt_dna[num].dna_submit_time;
-
+							var input_receiver = document
+									.getElementById("input_receiver");
+							input_receiver.value = DNA_VO.list_xsjsglxt_dna[num].dna_receiver;
 							var textarea_remark = document
 									.getElementById("textarea_remark");
 							textarea_remark.value = DNA_VO.list_xsjsglxt_dna[num].dna_remark;

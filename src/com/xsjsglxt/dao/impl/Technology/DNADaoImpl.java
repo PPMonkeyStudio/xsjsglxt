@@ -124,7 +124,8 @@ public class DNADaoImpl implements DNADao {
 				+ "',dna_record_organization='" + dna.getDna_record_organization() + "' ,dna_organizer='"
 				+ dna.getDna_organizer() + "' ,dna_record_time='" + dna.getDna_record_time() + "' ,dna_submit_time='"
 				+ dna.getDna_submit_time() + "',dna_remark='" + dna.getDna_remark() + "' ,dna_gmt_modified='"
-				+ dna.getDna_gmt_modified() + "'";
+				+ dna.getDna_gmt_modified() + "' ,dna_receiver ='" + dna.getDna_receiver()
+				+ "' where xsjsglxt_dna_id = '" + dna.getXsjsglxt_dna_id() + "'";
 		Query query = session.createQuery(hql);
 		int result = query.executeUpdate();
 		return result;

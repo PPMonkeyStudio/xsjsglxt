@@ -46,7 +46,7 @@ td {
 				<button class="btn btn-default" id="goFieldPage"
 					onclick="changePage(this)" style="">现场统计</button>
 				<button class="btn btn-default" onclick="changePage(this)"
-					style="margin-left: 30px;" id="goCasePage">辖区案件统计</button>
+					style="margin-left: 30px;" id="goCasePage">现场案件统计</button>
 			</div>
 			<!-- --------------------------出警次数统计--------------------------------------------- -->
 			<div id="fieldPage" id="fieldPage"

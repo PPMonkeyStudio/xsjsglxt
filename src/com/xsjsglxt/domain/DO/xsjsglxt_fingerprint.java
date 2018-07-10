@@ -2,38 +2,39 @@ package com.xsjsglxt.domain.DO;
 
 public class xsjsglxt_fingerprint {
 
-	
-	//ID
+	// ID
 	private String xsjsglxt_fingerprint_id;
-	//指纹卡编号
+	// 指纹卡编号
 	private String fingerprint_num;
-	//姓名
+	// 姓名
 	private String fingerprint_name;
-	//性别
+	// 性别
 	private String fingerprint_sex;
-	//出生日期
+	// 出生日期
 	private String fingerprint_birthday;
-	//身份证号
+	// 身份证号
 	private String fingerprint_identity;
-	//住址
+	// 住址
 	private String fingerprint_address;
-	//违法事实
+	// 违法事实
 	private String fingerprint_illegal_fact;
-	//建档单位
+	// 建档单位
 	private String fingerprint_record_organization;
-	//建档人
+	// 建档人
 	private String fingerprint_organizer;
-	//建档时间
+	// 接收人
+	private String fingerprint_receiver;
+	// 建档时间
 	private String fingerprint_record_time;
-	//交档时间
+	// 交档时间
 	private String fingerprint_submit_time;
-	//备注
+	// 备注
 	private String fingerprint_remark;
-	//创建时间
+	// 创建时间
 	private String fingerprint_gmt_create;
-	//修改时间
+	// 修改时间
 	private String fingerprint_gmt_modified;
-	
+
 	@Override
 	public String toString() {
 		return "xsjsglxt_fingerprint [xsjsglxt_fingerprint_id=" + xsjsglxt_fingerprint_id + ", fingerprint_num="
@@ -165,6 +166,14 @@ public class xsjsglxt_fingerprint {
 
 	public void setFingerprint_gmt_modified(String fingerprint_gmt_modified) {
 		this.fingerprint_gmt_modified = fingerprint_gmt_modified;
+	}
+
+	public String getFingerprint_receiver() {
+		return fingerprint_receiver;
+	}
+
+	public void setFingerprint_receiver(String fingerprint_receiver) {
+		this.fingerprint_receiver = fingerprint_receiver;
 	}
 
 }

@@ -20,6 +20,7 @@ function CreateDNA() {
 						+ '<tr><th><span style="color:red;">*&nbsp;</span>违法事实：</th><td><input type="text" id="input_illegalFact" class="form-control" /></td></tr>'
 						+ '<tr><th><span style="color:red;">*&nbsp;</span>建档单位：</th><td><input type="text" id="input_inputtingUnit" class="form-control" /></td></tr>'
 						+ '<tr><th><span style="color:red;">*&nbsp;</span>建档人：</th><td><input type="text" id="input_inputtingPerson" class="form-control" /></td></tr>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>接收人：</th><td><input type="text" id="input_receiver" class="form-control" /></td></tr>'
 						+ '<tr><th><span style="color:red;">*&nbsp;</span>建档时间：</th><td><input type="text" id="input_inputtingTime" class="form-control" /></td></tr>'
 						+ '<tr><th><span style="color:red;">*&nbsp;</span>交档时间：</th><td><input type="text" id="input_makingTime"  class="form-control" /></td></tr>'
 						+ '<tr><th>备注：</th><td><textarea class="form-control" id="textarea_remark" rows="5" style="resize:none;"></textarea></td></tr>'
@@ -46,11 +47,17 @@ function CreateDNA() {
 								.getElementById("input_makingTime");
 						var textarea_remark = document
 								.getElementById("textarea_remark");
+						var input_receiver = document
+								.getElementById("input_receiver");
 						/*
 						 * 姓名、性别、身份证号、出生日期、违法事实、建档单位、建档人、建档时间、交档事件不为空
 						 */
 						if (input_name.value == "") {
 							toastr.error("姓名不能为空！");
+							return false;
+						}
+						if (input_receiver.value == "") {
+							toastr.error("接收人不能为空！");
 							return false;
 						}
 						if (input_IDCard.value == "") {
@@ -131,11 +138,11 @@ function CreateDNA() {
 								input_makingTime.value);
 						formData
 								.append("dna.dna_remark", textarea_remark.value);
-
+						formData.append("dna.dna_receiver",
+								input_receiver.value)
 						xhr.open("POST",
 								"/xsjsglxt/DNA/DNAManagement_CreateDNA");
 						xhr.send(formData);
-
 					},
 					取消 : function() {
 

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2018-4-17 14:07:50 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2018-7-10 14:15:11 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="com.xsjsglxt.domain.DO.xsjsglxt_fingerprint" table="XSJSGLXT_FINGERPRINT">
         <id name="xsjsglxt_fingerprint_id" type="java.lang.String">
@@ -34,6 +34,9 @@
         </property>
         <property name="fingerprint_organizer" type="java.lang.String">
             <column name="FINGERPRINT_ORGANIZER" />
+        </property>
+        <property name="fingerprint_receiver" type="java.lang.String">
+            <column name="FINGERPRINT_RECEIVER" />
         </property>
         <property name="fingerprint_record_time" type="java.lang.String">
             <column name="FINGERPRINT_RECORD_TIME" />

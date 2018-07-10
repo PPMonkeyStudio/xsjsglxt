@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2018-4-17 14:07:50 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2018-7-10 14:15:11 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="com.xsjsglxt.domain.DO.xsjsglxt_breakecasesuspect" table="XSJSGLXT_BREAKECASESUSPECT">
         <id name="xsjsglxt_breakecaseSuspect_id" type="java.lang.String">
-            <column name="xsjsglxt_breakecasesuspect_id" />
+            <column name="XSJSGLXT_BREAKECASESUSPECT_ID" />
             <generator class="assigned" />
         </id>
         <property name="breakecaseSuspect_breakecase" type="java.lang.String">
-            <column name="breakecasesuspect_breakecase" />
+            <column name="BREAKECASESUSPECT_BREAKECASE" />
         </property>
         <property name="breakecaseSuspect_name" type="java.lang.String">
-            <column name="breakecasesuspect_name" />
+            <column name="BREAKECASESUSPECT_NAME" />
         </property>
         <property name="breakecaseSuspect_IDnum" type="java.lang.String">
             <column name="BREAKECASESUSPECT_IDNUM" />

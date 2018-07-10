@@ -171,7 +171,6 @@
 										<option value=""></option>
 										<option value="侦查">侦查</option>
 										<option value="技术">技术</option>
-										<option value="辅警">辅警</option>
 								</select>
 							</tr>
 							<tr>

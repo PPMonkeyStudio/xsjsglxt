@@ -22,6 +22,7 @@ function FingerPrintDetails(button) {
 						+ '<tr><th><span style="color:red;">*&nbsp;</span>违法事实：</th><td><input type="text" id="input_illegalFact" class="form-control" /></td></tr>'
 						+ '<tr><th><span style="color:red;">*&nbsp;</span>建档单位：</th><td><input type="text" id="input_inputtingUnit" class="form-control" /></td></tr>'
 						+ '<tr><th><span style="color:red;">*&nbsp;</span>建档人：</th><td><input type="text" id="input_inputtingPerson" class="form-control" /></td></tr>'
+						+ '<tr><th><span style="color:red;">*&nbsp;</span>接收人：</th><td><input type="text" id="input_receiver" class="form-control" /></td></tr>'
 						+ '<tr><th><span style="color:red;">*&nbsp;</span>建档时间：</th><td><input type="text" id="input_inputtingTime" class="form-control" /></td></tr>'
 						+ '<tr><th><span style="color:red;">*&nbsp;</span>交档时间：</th><td><input type="text" id="input_makingTime"  class="form-control" /></td></tr>'
 						+ '<tr><th>备注：</th><td><textarea class="form-control" id="textarea_remark" rows="5" style="resize:none;"></textarea></td></tr>'
@@ -51,6 +52,8 @@ function FingerPrintDetails(button) {
 								.getElementById("input_makingTime");
 						var textarea_remark = document
 								.getElementById("textarea_remark");
+						var input_receiver = document
+								.getElementById("input_receiver");
 						/*
 						 * 姓名、性别、身份证号、出生日期、违法事实、建档单位、建档人、建档时间、交档事件不为空
 						 */
@@ -58,20 +61,24 @@ function FingerPrintDetails(button) {
 							toastr.error("姓名不能为空！");
 							return false;
 						}
+						if (input_receiver.value == "") {
+							toastr.error("接收人不能为空！");
+							return false;
+						}
 						if (input_IDCard.value == "") {
 							toastr.error("身份证号不能为空！");
 							return false;
-						}else{
-							//判断身份证号并获取出生日期
-							var result=FingerPrintGetBirth();
-							if(result==false){
+						} else {
+							// 判断身份证号并获取出生日期
+							var result = FingerPrintGetBirth();
+							if (result == false) {
 								return false;
 							}
 						}
-						/*if (input_birth.value == "") {
-							toastr.error("出生日期不能为空！");
-							return false;
-						}*/
+						/*
+						 * if (input_birth.value == "") {
+						 * toastr.error("出生日期不能为空！"); return false; }
+						 */
 						if (input_illegalFact.value == "") {
 							toastr.error("违法事实不能为空！");
 							return false;
@@ -144,7 +151,8 @@ function FingerPrintDetails(button) {
 								input_makingTime.value);
 						formData.append("fingerprint.fingerprint_remark",
 								textarea_remark.value);
-
+						formData.append("fingerprint.fingerprint_receiver",
+								input_receiver.value)
 						xhr
 								.open("POST",
 										"/xsjsglxt/FingerPrint/FingerPrintManagement_modifiedFingerPrint");
@@ -217,7 +225,9 @@ function FingerPrintDetails(button) {
 							var input_makingTime = document
 									.getElementById("input_makingTime");
 							input_makingTime.value = fingerPrint_VO.list_xsjsglxt_fingerprint[num].fingerprint_submit_time;
-
+							var input_receiver = document
+									.getElementById("input_receiver");
+							input_receiver.value = fingerPrint_VO.list_xsjsglxt_fingerprint[num].fingerprint_receiver;
 							var textarea_remark = document
 									.getElementById("textarea_remark");
 							textarea_remark.value = fingerPrint_VO.list_xsjsglxt_fingerprint[num].fingerprint_remark;
@@ -226,13 +236,13 @@ function FingerPrintDetails(button) {
 							}
 
 						}
-					} 
+					}
 					// 执行一个laydate实例
 					laydate.render({
-						elem : '#input_inputtingTime' ,// 指定元素建档时间
+						elem : '#input_inputtingTime',// 指定元素建档时间
 					});
 					laydate.render({
-						elem : '#input_makingTime' ,// 指定元素交档时间
+						elem : '#input_makingTime',// 指定元素交档时间
 					});
 				}
 			});

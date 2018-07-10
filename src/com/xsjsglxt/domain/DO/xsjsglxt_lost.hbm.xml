@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2018-4-22 14:17:56 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2018-7-10 14:15:11 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="com.xsjsglxt.domain.DO.xsjsglxt_lost" table="XSJSGLXT_LOST">
         <id name="xsjsglxt_lost_id" type="java.lang.String">

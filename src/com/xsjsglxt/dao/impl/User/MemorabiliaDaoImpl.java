@@ -87,7 +87,8 @@ public class MemorabiliaDaoImpl implements MemorabiliaDao {
 		String hql = "select count(*) from xsjsglxt_memorabilia where 1=1";
 		if (memorabiliaVO.getSearchContent() != null && memorabiliaVO.getSearchContent().trim().length() > 0) {
 			hql = hql + " and memorabilia_title like '%" + memorabiliaVO.getSearchContent()
-					+ "%' and memorabilia_join_human like '%" + memorabiliaVO.getSearchContent() + "%'";
+					+ "%' and memorabilia_join_human like '%" + memorabiliaVO.getSearchContent()
+					+ "%' and memorabilia_content like '%" + memorabiliaVO.getSearchContent() + "%'";
 		}
 		if (memorabiliaVO.getCreate_time_start() != null && memorabiliaVO.getCreate_time_start().trim().length() > 0) {
 			hql = hql + " and memorabilia_time >= '" + memorabiliaVO.getCreate_time_start() + "'";
@@ -109,7 +110,8 @@ public class MemorabiliaDaoImpl implements MemorabiliaDao {
 		String hql = "select new com.xsjsglxt.domain.DTO.User.memorabiliaListDTO(m.memorabilia_id as memorabilia_id,m.memorabilia_title as memorabilia_title,m.memorabilia_join_human as memorabilia_join_human,m.memorabilia_time as memorabilia_time) from xsjsglxt_memorabilia m where 1=1";
 		if (memorabiliaVO.getSearchContent() != null && memorabiliaVO.getSearchContent().trim().length() > 0) {
 			hql = hql + " and m.memorabilia_title like '%" + memorabiliaVO.getSearchContent()
-					+ "%' or m.memorabilia_join_human like '%" + memorabiliaVO.getSearchContent() + "%'";
+					+ "%' and m.memorabilia_join_human like '%" + memorabiliaVO.getSearchContent()
+					+ "%' and m.memorabilia_content like '%" + memorabiliaVO.getSearchContent() + "%'";
 		}
 		if (memorabiliaVO.getCreate_time_start() != null && memorabiliaVO.getCreate_time_start().trim().length() > 0) {
 			hql = hql + " and memorabilia_time >= '" + memorabiliaVO.getCreate_time_start() + "'";

@@ -1,5 +1,10 @@
 package com.xsjsglxt.domain.DO;
 
+/**
+ * 
+ * @author 孙毅
+ * 大事记
+ */
 public class xsjsglxt_memorabilia {
 	private String memorabilia_id;
 	private String memorabilia_title;

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2018-4-17 14:07:50 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2018-7-10 14:15:11 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="com.xsjsglxt.domain.DO.xsjsglxt_not_acceptance_entrustment_inform" table="XSJSGLXT_NOT_ACCEPTANCE_ENTRUSTMENT_INFORM">
         <id name="xsjsglxt_not_acceptance_entrustment_inform_id" type="java.lang.String">

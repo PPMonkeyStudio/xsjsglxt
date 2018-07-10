@@ -103,7 +103,8 @@ public class FingerPrintDaoImpl implements FingerPrintDao {
 				+ fingerprint.getFingerprint_record_time() + "' ,fingerprint_submit_time='"
 				+ fingerprint.getFingerprint_submit_time() + "',fingerprint_remark='"
 				+ fingerprint.getFingerprint_remark() + "' ,fingerprint_gmt_modified='"
-				+ fingerprint.getFingerprint_gmt_modified() + "' where xsjsglxt_fingerprint_id='"
+				+ fingerprint.getFingerprint_gmt_modified() + "',fingerprint_receiver ='"
+				+ fingerprint.getFingerprint_receiver() + "' where xsjsglxt_fingerprint_id='"
 				+ fingerprint.getXsjsglxt_fingerprint_id() + "'";
 		Query query = session.createQuery(hql);
 		int result = query.executeUpdate();
