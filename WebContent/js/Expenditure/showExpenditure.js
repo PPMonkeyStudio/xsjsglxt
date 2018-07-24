@@ -26,7 +26,7 @@ $(function() {
 })
 
 function loadData() {
-	$('#allInformation').hide();
+	$('#hideBody').hide();
 	$('#loadingLayer').show();
 	var queryData = {
 		'expenditureVO.searchStartTime' : queryTemp.searchStartTime,
@@ -45,7 +45,7 @@ function loadData() {
 			var returnData = JSON.parse(data);
 			expenditureVue.showData = returnData;
 			$('#loadingLayer').hide();
-			$('#allInformation').show();
+			$('#hideBody').show();
 		}
 	})
 }

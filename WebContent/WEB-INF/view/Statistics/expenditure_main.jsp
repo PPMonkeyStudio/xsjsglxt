@@ -11,9 +11,9 @@
 			+ path + "/";
 %>
 <style type="text/css">
-	.pageOperation{
-		cursor: pointer;
-	}
+.pageOperation {
+	cursor: pointer;
+}
 </style>
 <title>经费管理</title>
 </head>
@@ -21,31 +21,32 @@
 	<!-----------------------------------------引入导航条 ------------------------------------------------------>
 	<s:action name="User_navbar" namespace="/user" executeResult="true" />
 	<!-----------------------------------------主体内容 -------------------------------------------------------->
-	<div id="allPanel" style="margin: 80px 0 0 0; float: left; width: 100%; overflow: hidden;">
+	<div id="allPanel"
+		style="margin: 80px 0 0 0; float: left; width: 100%; overflow: hidden;">
 		<div class="panel" style="width: 95%; margin: 20px auto;">
 			<div style="padding: 10px;">
-				<button class="btn btn-default managerRole" onclick="saveExpenditure()">
+				<button class="btn btn-default managerRole"
+					onclick="saveExpenditure()">
 					<i class="fa fa-plus-square"></i>增加报账
 				</button>
 				<div id="query" style="float: right;">
 					<label>时间筛选</label> <input class="form-control startTime"
 						onchange="changeSearch(this)" type="text" id="timeStart"
 						style="width: 150px; display: inline-block;">至 <input
-						class="form-control startTime" onchange="changeSearch(this)" type="text"
-						style="width: 150px; display: inline-block;" id="timeEnd">
+						class="form-control startTime" onchange="changeSearch(this)"
+						type="text" style="width: 150px; display: inline-block;"
+						id="timeEnd">
 				</div>
 			</div>
-			<div id="loadingLayer"
-				style="margin: 0 auto; width: 45px; display: none;">
-				<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-			</div>
-			<div id="allInformation" style="margin-top: 10px;">
+			<div style="margin-top: 10px;" id="allInformation">
 				<table class="table table-hover table-condensed"
 					style="text-align: center;">
 					<thead>
 						<tr>
-							<td><input oninput="changeSearch(this)" class="form-control" placeholder="姓名" id="_name"></td>
-							<td><select onchange="changeSearch(this)" class="form-control" id="_type">
+							<td><input oninput="changeSearch(this)" class="form-control"
+								placeholder="姓名" id="_name"></td>
+							<td><select onchange="changeSearch(this)"
+								class="form-control" id="_type">
 									<option value="">经费种类</option>
 									<option value="出差">出差</option>
 									<option value="学习">学习</option>
@@ -53,16 +54,18 @@
 									<option value="特情">特情</option>
 									<option value="其他">其他</option>
 							</select></td>
-							<td><select onchange="changeSearch(this)" class="form-control" id="_sort">
+							<td><select onchange="changeSearch(this)"
+								class="form-control" id="_sort">
 									<option value="desc">报账时间（降序）</option>
 									<option value="asc">报账时间（升序）</option>
 							</select></td>
-							<td><input oninput="changeSearch(this)" placeholder="所属中队" class="form-control" id="_detachment"></td>
+							<td><input oninput="changeSearch(this)" placeholder="所属中队"
+								class="form-control" id="_detachment"></td>
 							<td>金额（单位：元）</td>
 							<td>操作</td>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody id="hideBody">
 						<template v-for="expenditure in showData.expenditures">
 						<tr>
 							<td>{{ expenditure.expenditure_name }}</td>
@@ -70,18 +73,28 @@
 							<td>{{ expenditure.expenditure_time }}</td>
 							<td>{{ expenditure.expenditure_detachment }}</td>
 							<td>{{ expenditure.expenditure_money }}</td>
-							<td><button onclick="updateExpenditure(this)" :id="expenditure.expenditure_id" class="btn btn-default"><i class="fa fa-pencil-square-o"></i>修改</button>
-								<button onclick="deleteExpenditure(this)" :id="expenditure.expenditure_id" class="btn btn-danger"><i class="fa fa-trash-o"></i>删除</button>
-							</td>
+							<td><button onclick="updateExpenditure(this)"
+									:id="expenditure.expenditure_id" class="btn btn-default">
+									<i class="fa fa-pencil-square-o"></i>修改
+								</button>
+								<button onclick="deleteExpenditure(this)"
+									:id="expenditure.expenditure_id" class="btn btn-danger">
+									<i class="fa fa-trash-o"></i>删除
+								</button></td>
 						</tr>
 						</template>
 					</tbody>
 				</table>
+				<div id="loadingLayer"
+					style="margin: 0 auto; width: 45px; display: none;">
+					<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+				</div>
 				<div id="bottomPage" style="padding: 20px;">
-				<span>总计：{{ showData.totalMoney }}元</span>
-					<span>当前页数:<span id="currPage"></span></span> <span>共:<span
-						id="totalPage">{{ showData.totalPage }}</span>页
-					</span><span>共:<span id="totalCount">{{ showData.totalCount }}</span>条记录数
+					<span>总计：{{ showData.totalMoney }}元</span> <span>当前页数:<span
+						id="currPage"></span></span> <span>共:<span id="totalPage">{{
+							showData.totalPage }}</span>页
+					</span><span>共:<span id="totalCount">{{ showData.totalCount
+							}}</span>条记录数
 					</span> <span onclick="skipToIndexPage()" id="indexPage"
 						class="pageOperation">首页</span> <span
 						onclick="skipToPrimaryPage()" id="previousPage"
@@ -99,9 +112,12 @@
 		</div>
 	</div>
 </body>
-<script type="text/javascript" src="<%=basePath %>js/Expenditure/showExpenditure.js"></script>
-<script type="text/javascript" src="<%=basePath %>js/Expenditure/createExpenditure.js"></script>
-<script type="text/javascript" src="<%=basePath %>js/Expenditure/managerExpenditure.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/Expenditure/showExpenditure.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/Expenditure/createExpenditure.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/Expenditure/managerExpenditure.js"></script>
 
 <script type="text/javascript">
 	$.datetimepicker.setLocale('ch');

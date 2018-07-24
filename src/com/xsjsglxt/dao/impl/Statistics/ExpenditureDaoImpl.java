@@ -88,9 +88,9 @@ public class ExpenditureDaoImpl implements ExpenditureDao {
 		if (expenditureVO.getSearchEndTime() != null && !"".equals(expenditureVO.getSearchEndTime().trim()))
 			hql = hql + " and expenditure_time <= '" + expenditureVO.getSearchEndTime() + "'";
 		if (expenditureVO.getSearchDetachment() != null && !"".equals(expenditureVO.getSearchDetachment().trim()))
-			hql = hql + " and expenditure_detachment like '" + expenditureVO.getSearchDetachment() + "'";
+			hql = hql + " and expenditure_detachment like '%" + expenditureVO.getSearchDetachment() + "%'";
 		if (expenditureVO.getSearchName() != null && !"".equals(expenditureVO.getSearchName().trim()))
-			hql = hql + " and expenditure_name like '" + expenditureVO.getSearchName() + "'";
+			hql = hql + " and expenditure_name like '%" + expenditureVO.getSearchName() + "%'";
 		if (expenditureVO.getSearchType() != null && !"".equals(expenditureVO.getSearchType().trim()))
 			hql = hql + " and expenditure_type = '" + expenditureVO.getSearchType() + "'";
 		long count = (long) session.createQuery(hql).uniqueResult();
@@ -107,12 +107,13 @@ public class ExpenditureDaoImpl implements ExpenditureDao {
 		if (expenditureVO.getSearchEndTime() != null && !"".equals(expenditureVO.getSearchEndTime().trim()))
 			hql = hql + " and expenditure_time <= '" + expenditureVO.getSearchEndTime() + "'";
 		if (expenditureVO.getSearchDetachment() != null && !"".equals(expenditureVO.getSearchDetachment().trim()))
-			hql = hql + " and expenditure_detachment like '" + expenditureVO.getSearchDetachment() + "'";
+			hql = hql + " and expenditure_detachment like '%" + expenditureVO.getSearchDetachment() + "%'";
 		if (expenditureVO.getSearchName() != null && !"".equals(expenditureVO.getSearchName().trim()))
-			hql = hql + " and expenditure_name like '" + expenditureVO.getSearchName() + "'";
+			hql = hql + " and expenditure_name like '%" + expenditureVO.getSearchName() + "%'";
 		if (expenditureVO.getSearchType() != null && !"".equals(expenditureVO.getSearchType().trim()))
 			hql = hql + " and expenditure_type = '" + expenditureVO.getSearchType() + "'";
 		hql = hql + " order by expenditure_time " + expenditureVO.getSearchSort();
+		System.out.println(hql);
 		Query query = session.createQuery(hql);
 		List<xsjsglxt_expenditure> expenditures = query
 				.setFirstResult((expenditureVO.getCurrPage() - 1) * expenditureVO.getPageSize())
