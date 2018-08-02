@@ -47,5 +47,8 @@
         <property name="scheduling_gmt_modified" type="java.lang.String">
             <column name="SCHEDULING_GMT_MODIFIED" />
         </property>
+        <property name="scheduling_log" type="java.lang.String">
+            <column name="SCHEDULING_LOG" />
+        </property>
     </class>
 </hibernate-mapping>

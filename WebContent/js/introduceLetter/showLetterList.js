@@ -67,7 +67,7 @@ var skipToLastPage = function() {
 
 var skipToArbitrarilyPage = function() {
 	if ($('#skipPage').val() > queryConditionTemp.totalPage
-			|| $('#skipPage').val() < 1) {
+		|| $('#skipPage').val() < 1) {
 		toastr.error("不存在此页");
 	} else {
 		queryConditionTemp.currPage = $('#skipPage').val();
@@ -103,6 +103,7 @@ var loadData = function() {
 		type : 'POST',
 		data : queryData,
 		success : function(data) {
+			letterVue.allData = JSON.parse(data);
 			queryConditionTemp.currPage = letterVue.allData.currPage;
 			queryConditionTemp.pageSize = letterVue.allData.pageSize;
 			queryConditionTemp.totalPage = letterVue.allData.totalPage;
@@ -110,6 +111,7 @@ var loadData = function() {
 			letterVue.letter_admin_power = userPowerDTO.user_letter_power;
 			$('#loadingLayer').hide();
 			$('#allInformation').show();
+
 		}
 	});
 }

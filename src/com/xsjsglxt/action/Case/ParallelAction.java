@@ -31,24 +31,20 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 	private page_list_parallelInformationVO page_list_parallelInformation;
 	private List<String> useParallelInformationNumList;
 	private String caeNumList;
-	
+
 	private ParallelInformationDTO parallelInformationDTO;
 
 	/*
-	 *保存串并案件信息
+	 * 保存串并案件信息
 	 * 
 	 */
 	public void saveparallel() {
-
 		try {
-
 			parallelService.saveParallel(caeNumList, parallel);
 			http_response.setContentType("text/html;charset=utf-8");
 			http_response.getWriter().write("success");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-
 		}
 	}
 
@@ -69,10 +65,10 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 	}
 
 	/*
-	 *串并案件的详细信息
+	 * 串并案件的详细信息
 	 * 
 	 */
-	public void ParallelInformationOne() throws IOException{
+	public void ParallelInformationOne() throws IOException {
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
@@ -81,6 +77,7 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 
 		http_response.getWriter().write(gson.toJson(parallelInformationDTO));
 	}
+
 	/*
 	 * 获得串并编号
 	 *
@@ -90,43 +87,44 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
 		String ParallelNum = parallelService.getMaxParallelNum();
-		System.out.println("串并号"+ParallelNum);
+		System.out.println("串并号" + ParallelNum);
 		http_response.setContentType("text/html;charset=utf-8");
 		http_response.getWriter().write(gson.toJson(ParallelNum));
-	}   
+	}
+
 	/*
-	 *修改串并案件的信息 
+	 * 修改串并案件的信息
 	 */
-	public void updateParallel() throws IOException{
-		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// 格式化json数据
-		Gson gson = gsonBuilder.create();
+	public void updateParallel() throws IOException {
 		parallelService.updateParallel(parallel);
 		http_response.setContentType("text/html;charset=utf-8");
-		http_response.getWriter().write(gson.toJson("success"));
+		http_response.getWriter().write("success");
 	}
-	/*
-	 *删除信息 
-	 */
-	public void remove_ParallelInformationList(){
 
-		if(	parallelService.remove_ParallelInformationList( useParallelInformationNumList)){
+	/*
+	 * 删除信息
+	 */
+	public void remove_ParallelInformationList() {
+
+		if (parallelService.remove_ParallelInformationList(useParallelInformationNumList)) {
 			http_response.setContentType("text/html;charset=utf-8");
 			try {
 				http_response.getWriter().write("success");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}}else{
-				http_response.setContentType("text/html;charset=utf-8");
-				try {
-					http_response.getWriter().write("error");
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 			}
+		} else {
+			http_response.setContentType("text/html;charset=utf-8");
+			try {
+				http_response.getWriter().write("error");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
+
 	@Override
 	public void setServletResponse(HttpServletResponse arg0) {
 		// TODO Auto-generated method stub
@@ -163,8 +161,6 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 		this.http_request = http_request;
 	}
 
-	
-
 	public xsjsglxt_case getCase1() {
 		return case1;
 	}
@@ -188,10 +184,6 @@ public class ParallelAction extends ActionSupport implements ServletRequestAware
 	public void setPage_list_parallelInformation(page_list_parallelInformationVO page_list_parallelInformation) {
 		this.page_list_parallelInformation = page_list_parallelInformation;
 	}
-
-	
-
-	
 
 	public String getCaeNumList() {
 		return caeNumList;

@@ -15,6 +15,7 @@ public class xsjsglxt_scheduling {
 	private String scheduling_time; // 时间
 	private String scheduling_gmt_create;
 	private String scheduling_gmt_modified;
+	private String scheduling_log;// 日志
 
 	public String getScheduling_main_doctor() {
 		return scheduling_main_doctor;
@@ -126,5 +127,13 @@ public class xsjsglxt_scheduling {
 
 	public void setScheduling_gmt_modified(String scheduling_gmt_modified) {
 		this.scheduling_gmt_modified = scheduling_gmt_modified;
+	}
+
+	public String getScheduling_log() {
+		return scheduling_log;
+	}
+
+	public void setScheduling_log(String scheduling_log) {
+		this.scheduling_log = scheduling_log;
 	}
 }

@@ -70,6 +70,10 @@ public boolean deleteParallelById(String xsjsglxt_parallel_id);
 
 
 
+public void updateObject(Object object);
+
+
+
 
 
 

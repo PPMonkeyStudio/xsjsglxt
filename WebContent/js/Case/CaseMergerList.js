@@ -1,3 +1,20 @@
+//序列化工具
+$.fn.serializeObject = function() {
+	var o = {};
+	var a = this.serializeArray();
+	$.each(a, function() {
+		if (o[this.name]) {
+			if (!o[this.name].push) {
+				o[this.name] = [ o[this.name] ];
+			}
+			o[this.name].push(this.value || '');
+		} else {
+			o[this.name] = this.value || '';
+		}
+	});
+	return o;
+};
+
 var query_data = {
 	"page_list_parallelInformation.pageIndex" : "1",
 	"page_list_parallelInformation.start_time" : "",
@@ -23,13 +40,11 @@ var page_infomantion = {
 
 var selectAll = function(event) {
 	if (event.checked) {
-		console.log("选中了");
 		var che = document.getElementsByName("chooseCheckBox");
 		for (var int = 0; int < che.length; int++) {
 			che[int].checked = true;
 		}
 	} else {
-		console.log("没选中");
 		var che = document.getElementsByName("chooseCheckBox");
 		for (var int = 0; int < che.length; int++) {
 			che[int].checked = false;
@@ -40,9 +55,11 @@ var selectAll = function(event) {
 var modifi_delete = function() {
 	var type = $(this).text().trim();
 	var id = $(this).siblings('input').val();
+	var parallel = '';
 	$.post('/xsjsglxt/case/Parallel_ParallelInformationOne', {
 		"parallel.xsjsglxt_parallel_id" : id
 	}, function(xhr_data) {
+		parallel = xhr_data;
 		$('#CaseMerger_modification table tbody').find('input,select,textarea').each(function() {
 			if ($(this).attr('name')) {
 				var name = $(this).attr('name');
@@ -62,19 +79,64 @@ var modifi_delete = function() {
 			for (var len = 0; len < Case_data.length; len++) {
 				option += '<option value="' + Case_data[len].xsjsglxt_case_id + '">' + Case_data[len].case_name + '</option>';
 			}
-			$('select[name="parallel.parallel_num"]').html(option).selectpicker('refresh').selectpicker('val', caseID);
+			$('select[id="caeNumList"]').html(option).selectpicker('refresh').selectpicker('val', caseID);
 			//除去加载提示
 			$('#breakCase_modification .load_remind').remove();
 		}, 'json');
+
 		//确认修改按钮添加事件
 		$('.modify_merger').unbind().click(function() {
-			$.post('/xsjsglxt/case/Parallel_updateParallel', $('#CaseMerger_modification form').serialize(), function(msg) {
+			console.log($.extend({}, $('#CaseMerger_modification form').serializeObject(), {
+				"parallel.xsjsglxt_parallel_id" : parallel.parallel["xsjsglxt_parallel_id"],
+				"parallel.parallel_gmt_create" : parallel.parallel["parallel_gmt_create"],
+				"caeNumList" : $('#caeNumList').val().join(',')
+			}));
+			//save方法已经做修改，当成update方法使用
+			$.post('/xsjsglxt/case/Parallel_saveparallel', $.extend({}, $('#CaseMerger_modification form').serializeObject(), {
+				"parallel.xsjsglxt_parallel_id" : parallel.parallel["xsjsglxt_parallel_id"],
+				"parallel.parallel_gmt_create" : parallel.parallel["parallel_gmt_create"],
+				"caeNumList" : $('#caeNumList').val().join(',')
+			}), function(msg) {
 				if (msg == "success") {
 					toastr.info('修改成功');
 					$('#CaseMerger_modification').modal('hide');
 					get_ListParallelInformationByPageAndSearch(query_data);
 				}
 			}, 'text');
+		})
+
+		$('#modal_viewCase').unbind().click(function() {
+			let viewCaseConfirm = $.confirm({
+				boxWidth : '700px',
+				useBootstrap : false,
+				title : '包含的案件信息',
+				type : 'dark',
+				content : `
+					<div id="caseInfo" style="width:96%">
+					</div>
+				`,
+				buttons : {
+					close : {
+						text : "<i class='fa fa-times'></i>关闭",
+						btnClass : "btn-red",
+						action : function() {}
+					}
+				},
+				onContentReady : function() {
+					let content_html = '<form class="form-horizontal">';
+					parallel.caseList.forEach(function(elt, i) {
+						content_html += `
+						<div class="form-group">
+							<label class="col-sm-2 control-label">第${i + 1}个案件</label>
+							<div class="col-sm-10">
+								<p class="form-control-static">${elt.case_name}</p>
+							</div>
+						</div>`
+					})
+					content_html += `</form>`;
+					viewCaseConfirm.$content.find("#caseInfo").html(content_html);
+				}
+			});
 		})
 	}, 'json');
 }
@@ -132,7 +194,7 @@ $(function() {
 	//模态框清除数据
 	$('#CaseMerger_modification').on('hidden.bs.modal', function() {
 		var refresh = '';
-		$(value).find('input,select,textarea').each(function() {
+		$(this).find('input,select,textarea').each(function() {
 			refresh = $(this).attr("refresh");
 			//文本刷新
 			if (refresh == "text") {
@@ -142,7 +204,6 @@ $(function() {
 			else if (refresh == "selectpicker") {
 				$(this).selectpicker('deselectAll');
 			} else {
-
 			}
 		});
 	})

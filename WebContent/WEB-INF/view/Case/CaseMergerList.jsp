@@ -77,7 +77,7 @@
 								query_name="page_list_parallelInformation.parallel_breakecaseSituation">
 									<option selected="selected" value="">破案情况(全)</option>
 									<option value="1">破案情况(是)</option>
-									<option value="0">破案情况(否)</option>
+									<option value="2">破案情况(否)</option>
 							</select></th>
 							<th style="padding-left:5px;">操作</th>
 						</tr>
@@ -173,13 +173,19 @@
 				</div>
 				<div class="modal-body">
 					<form id="merger_info" action="">
-						<table width="80%" align="center">
+						<table width="90%" align="center">
 							<tbody>
 								<tr>
-									<td><div align="center">包含案件</div></td>
-									<td colspan="3"><select name="parallel.parallel_num"
-										refresh="selectpicker" style="margin-top:6px;"
-										class="form-control"></select></td>
+									<td>
+										<div align="center">
+											包含案件 <i id="modal_viewCase" style="cursor: pointer;"
+												class="fa fa-book"></i>
+										</div>
+									</td>
+									<td colspan="3"><select id="caeNumList"
+										multiple="multiple" class="form-control selectpicker"
+										data-selected-text-format="count > 2" refresh="selectpicker"
+										style="margin-top:6px;"></select></td>
 								</tr>
 								<tr>
 									<td><div align="center">串并编号:</div></td>
@@ -194,16 +200,19 @@
 									<td><div align="center">串并人:</div></td>
 									<td><input name="parallel.parallel_person" refresh="text"
 										style="margin-top: 6px;" class="form-control" type="text"></td>
+
 									<td><div align="center">破案情况:</div></td>
 									<td><label style="float: left;" class="fancy-radio">
 											<input name="register" onclick="buildCase_chose(this)"
-											type="radio" value="1"> <span><i></i>是</span>
+											type="radio" name="parallel.parallel_breakecaseSituation"
+											value="1"> <span><i></i>是</span>
 									</label><label style="float: left; margin-left: 10px;"
 										class="fancy-radio"> <input name="register"
 											onclick="buildCase_chose(this)" type="radio" value="2">
 											<span><i></i>否</span>
 									</label> <input name="parallel.parallel_breakecaseSituation"
 										type="hidden" name=""></td>
+
 								</tr>
 								<tr>
 									<td><div align="center">选择处所:</div></td>
@@ -345,6 +354,8 @@
 		<!-- /.modal -->
 	</div>
 </body>
+<script type="text/javascript"
+	src="<%=basePath%>js/Case/defaults-zh_CN.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>js/Case/CaseMergerList.js"></script>
 <script type="text/javascript">

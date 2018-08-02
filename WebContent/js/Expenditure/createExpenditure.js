@@ -6,10 +6,10 @@ function saveExpenditure() {
 	$
 			.confirm({
 				title : '添加报账',
-				cloumnClass : '600px',
+				//cloumnClass : '400px',
 				useBootstrap : false,
 				content : '<table class="table bordered-table" style="margin:0 auto;">'
-						+ '<tr><td>报账人：</td><td><select id="human_" class="form-control selectpicker" multiple '
+						+ '<tr><td style="width: 120px;">报账人：</td><td><select id="human_" class="form-control selectpicker" multiple '
 						+ ' data-live-search="true" title="请选择报账人"></select></td></tr>'
 						+ '<tr><td>报账种类：</td><td><select id="type_" class="form-control">'
 						+ '<option value="出差">出差</option>'

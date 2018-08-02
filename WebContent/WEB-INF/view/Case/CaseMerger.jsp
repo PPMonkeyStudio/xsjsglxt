@@ -58,13 +58,13 @@
 								onkeyup="dynamic_query(this)" class="form-control"
 								query_name="page_list_senceInformation.snece_inquestId"
 								placeholder="勘验编号"></th>
-							<th><select onchange="dynamic_query(this)"
+							<th width="150px;"><select onchange="dynamic_query(this)"
 								class="form-control"
 								query_name="page_list_senceInformation.order">
-									<option selected="selected" value="desc">接警时间(降序)</option>
-									<option value="asc">接警时间(升序)</option>
+									<option selected="selected" value="desc">接警时间(降)</option>
+									<option value="asc">接警时间(升)</option>
 							</select></th>
-							<th width="150px;"><input type="text"
+							<th><input type="text"
 								onkeyup="dynamic_query(this)" class="form-control"
 								query_name="page_list_senceInformation.case_address"
 								placeholder="案发地点"></th>
@@ -72,11 +72,11 @@
 								onkeyup="dynamic_query(this)" class="form-control"
 								query_name="page_list_senceInformation.case_totalCategory"
 								placeholder="案件子类别"></th>
-							<th><input type="text" onkeyup="dynamic_query(this)"
+							<th style="width: 250px;"><input type="text" onkeyup="dynamic_query(this)"
 								class="form-control"
 								query_name="page_list_senceInformation.case_reporterName"
 								placeholder="报案人"></th>
-							<th style="padding-left:5px;"><input type="text"
+							<th style="padding-left:5px; width: 250px;"><input type="text"
 								onkeyup="dynamic_query(this)" class="form-control"
 								query_name="page_list_senceInformation.snece_inquestPerson"
 								placeholder="主勘人员"></th>
@@ -458,6 +458,7 @@
 <!-- SneceInput.js仅作为在查询模态框中（案件类别，选择处所，作案手段）的自动匹配子项使用 -->
 <script type="text/javascript" src="<%=basePath%>js/Case/SneceInput.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/Case/CaseMerger.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/icheck.js"></script>
 <script type="text/javascript">
 	$.datetimepicker.setLocale('ch');
 	$('.mydate').datetimepicker({

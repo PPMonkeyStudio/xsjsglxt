@@ -116,7 +116,8 @@ function get_ListSneceInformationByPageAndSearch(data) {
 				+ data_list.sence.snece_inquestId
 				+ '</a></td>';
 			str += '<td>' + new Date(data_list.case1.case_receivingAlarmDate).Format('yyyy-MM-dd') + '</td>';
-			str += '<td>' + (data_list.case1.case_address).replace("萍乡市安源区", "") + '</td>';
+			//str += '<td>' + (data_list.case1.case_address).replace("萍乡市安源区", "") + '</td>';
+			str += '<td>' + (data_list.case1.case_address) + '</td>';
 			str += '<td>' + data_list.case1.case_sonCategory + '</td>';
 			str += '<td>' + data_list.case1.case_reporterName + ',' + data_list.case1.case_reporterPhone + '</td>';
 			str += '<td>'

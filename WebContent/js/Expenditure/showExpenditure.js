@@ -19,7 +19,7 @@ $(function() {
 	expenditureVue = new Vue({
 		el : '#allInformation',
 		data : {
-			showData : ''
+			showData : '',
 		}
 	});
 	loadData();
@@ -86,7 +86,7 @@ function skipToLastPage() {
 }
 function skipToArbitrarilyPage() {
 	if ($('#skipPage').val() > expenditureVue.showData.totalPage
-			|| $('#skipPage').val() < 1) {
+		|| $('#skipPage').val() < 1) {
 		toastr.error("不存在此页");
 	} else {
 		queryTemp.currPage = $('#skipPage').val();

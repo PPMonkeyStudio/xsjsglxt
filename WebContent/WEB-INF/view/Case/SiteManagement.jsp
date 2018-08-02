@@ -81,8 +81,11 @@ i {
 							<table class="table table-hover table-condensed case_table_info">
 								<thead>
 									<tr>
-										<th style="padding-left:5px;width: 70px;">全选<input
-											type="checkbox" onclick="selectAll(this)"></th>
+										<th style="padding-left:5px;width: 70px;">
+											<label style="cursor: pointer;">
+												<input type="checkbox" onclick="selectAll(this)">全选
+											</label>
+										</th>
 										<th width="120px;"><input type="text"
 											onkeyup="dynamic_query(this)" class="form-control"
 											query_name="page_list_senceInformation.snece_inquestId"
@@ -342,4 +345,6 @@ i {
 		});
 	</script>
 </body>
+<link rel="stylesheet" href="<%=basePath%>css/square/blue.css" />
+<script type="text/javascript" src="<%=basePath%>js/icheck.js"></script>
 </html>

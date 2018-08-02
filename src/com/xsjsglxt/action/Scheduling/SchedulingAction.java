@@ -30,8 +30,7 @@ import util.ExportExcelCollection;
 
 /**
  * 
- * @author 孙毅
- * 排班action
+ * @author 孙毅 排班action
  */
 public class SchedulingAction extends ActionSupport {
 	private SchedulingService schedulingService;
@@ -174,7 +173,23 @@ public class SchedulingAction extends ActionSupport {
 			e.printStackTrace();
 		}
 	}
-
+	// ----------------------修改值日志
+	public void updateSchedulingLog(){
+		boolean flag = false;
+		flag = schedulingService.updateSchedulingLog(scheduling);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			PrintWriter pw = response.getWriter();
+			if (flag) {
+				pw.write("updateSuccess");
+			} else {
+				pw.write("updateError");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	// ----------------------修改值班表
 	public void updateScheduling() {
 		boolean flag = false;
@@ -416,5 +431,4 @@ public class SchedulingAction extends ActionSupport {
 	public void setIndexDays(String indexDays) {
 		this.indexDays = indexDays;
 	}
-
 }

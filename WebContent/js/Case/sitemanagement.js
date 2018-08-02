@@ -119,7 +119,7 @@ function get_ListSneceInformationByPageAndSearch(data) {
 		for (var len = 0; len < xhr.SenceInformationDTOList.length; len++) {
 			var data_list = xhr.SenceInformationDTOList[len];
 			str += '<tr id="' + data_list.case1.xsjsglxt_case_id + '">';
-			str += '<td><input name="chooseCheckBox" id="' + data_list.case1.xsjsglxt_case_id + '" type="checkbox"></td>';
+			str += '<td><label><input name="chooseCheckBox" id="' + data_list.case1.xsjsglxt_case_id + '" type="checkbox"></label></td>';
 			str += '<td><a href="/xsjsglxt/case/Case_ page_intoDetails?id='
 				+ data_list.case1.xsjsglxt_case_id
 				+ '">'

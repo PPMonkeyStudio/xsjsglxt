@@ -19,4 +19,10 @@ public interface SchedulingService {
 
 	void schedulingStastics(com.xsjsglxt.domain.VO.Scheduling.schedulingTimeVO schedulingTimeVO);
 
+	/**
+	 * 只更新日志信息
+	 * @param scheduling
+	 * @return
+	 */
+	boolean updateSchedulingLog(xsjsglxt_scheduling scheduling);
 }

@@ -17,8 +17,7 @@ import com.xsjsglxt.domain.VO.Scheduling.schedulingTimeVO;
 
 /**
  * 
- * @author 孙毅
- *排班dao层
+ * @author 孙毅 排班dao层
  */
 public class SchedulingDaoImpl implements SchedulingDao {
 	private SessionFactory sessionFactory;
@@ -233,4 +232,5 @@ public class SchedulingDaoImpl implements SchedulingDao {
 		BigInteger count = (BigInteger) session.createSQLQuery(hql).uniqueResult();
 		return count.intValue();
 	}
+
 }

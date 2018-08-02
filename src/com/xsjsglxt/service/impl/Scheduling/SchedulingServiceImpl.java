@@ -2,6 +2,8 @@ package com.xsjsglxt.service.impl.Scheduling;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 import com.xsjsglxt.dao.Scheduling.SchedulingDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_scheduling;
@@ -16,8 +18,7 @@ import util.TeamUtil;
 
 /**
  * 
- * @author 孙毅
- *	排班service
+ * @author 孙毅 排班service
  */
 public class SchedulingServiceImpl implements SchedulingService {
 	private SchedulingDao schedulingDao;
@@ -136,9 +137,9 @@ public class SchedulingServiceImpl implements SchedulingService {
 				int outCount = schedulingDao.getOutTime(schedulingTimeVO, xsjsglxt_staff.getXsjsglxt_name());
 				time.setOutTime(outCount + "天");
 				int overCount = schedulingDao.getOverTime(schedulingTimeVO, xsjsglxt_staff.getXsjsglxt_name());
-				time.setOverTime(overCount + "天");
+				time.setOverTime(overCount + "次");
 				int patrolCount = schedulingDao.getPatrolTime(schedulingTimeVO, xsjsglxt_staff.getXsjsglxt_name());
-				time.setPatrolTime(patrolCount + "天");
+				time.setPatrolTime(patrolCount + "次");
 				int evectionCount = schedulingDao.getEvectionTime(schedulingTimeVO,
 						xsjsglxt_staff.getXsjsglxt_staff_id());
 				time.setEvectionTime(evectionCount + "次");
@@ -148,4 +149,14 @@ public class SchedulingServiceImpl implements SchedulingService {
 		}
 	}
 
+	@Override
+	public boolean updateSchedulingLog(xsjsglxt_scheduling scheduling) {
+		try {
+			schedulingDao.updateScheduling(scheduling);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
 }

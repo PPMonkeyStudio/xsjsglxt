@@ -154,7 +154,7 @@ i {
 	<!-- 新建查询-模态框（Modal） -->
 	<div class="modal fade" id="newQuery" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
+		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
@@ -163,7 +163,7 @@ i {
 				</div>
 				<div class="modal-body">
 					<form id="query_infomantion_inmodal" action="">
-						<table style="width: 50%; margin: auto;" class="Query_table">
+						<table style="width: 100%; margin: auto;" class="Query_table">
 							<tbody>
 								<tr>
 									<td>勘验编号:</td>

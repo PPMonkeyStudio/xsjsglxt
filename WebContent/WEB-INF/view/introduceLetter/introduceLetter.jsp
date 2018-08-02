@@ -100,50 +100,58 @@ table tr:hover {
 						<td><label><input type="checkbox"
 								name="chooseCheckBox"
 								:value="letter.xsjsglxt_introduce_letter_id"><span></span></label></td>
-								<td :id="letter.xsjsglxt_introduce_letter_id" onclick="previewLetter(this)" style="color:blue;">{{ letter.introduce_letter_serial_number }}</td>
+						<td :id="letter.xsjsglxt_introduce_letter_id"
+							onclick="previewLetter(this)" style="color:blue;">{{
+							letter.introduce_letter_serial_number }}</td>
 						<td>{{ letter.introduce_letter_tounit }}</td>
 						<td>{{ letter.introduce_letter_introduceMan }}</td>
 						<td>{{ letter.introduce_letter_number }}</td>
 						<td>{{ letter.introduce_time }}</td>
 						<td>
-									<button :id='letter.xsjsglxt_introduce_letter_id'
-										onclick='exportLetter(this)'  class="btn btn-info"><i class='fa fa-print'></i>导出</button>
-									<template v-if="letter_admin_power">
-									<button class="btn btn-default"
-										:id='letter.xsjsglxt_introduce_letter_id'
-										onclick='updateLetter(this)'><i class='fa fa-pencil-square-o'></i>修改</button>
-									</template>
-									<template
-										v-if="letter.introduce_approve_status=='未审批' && letter_admin_power">
-									<button class="btn btn-primary"
-										:id='letter.xsjsglxt_introduce_letter_id'
-										onclick='approveLetter(this)'><i class="fa fa-dot-circle-o"></i>审批</button>
-									</template>
-									<template
-										v-if="letter.introduce_approve_status=='已审批' && letter_admin_power">
-									<button class="btn btn-primary"
-										:id='letter.xsjsglxt_introduce_letter_id'
-										onclick='showApproveStup(this)'><i class="fa fa-table"></i>存根</button>
-									</template>
-								</td>
+							<button :id='letter.xsjsglxt_introduce_letter_id'
+								onclick='exportLetter(this)' class="btn btn-info">
+								<i class='fa fa-print'></i>导出
+							</button> <template v-if="letter_admin_power">
+							<button class="btn btn-default"
+								:id='letter.xsjsglxt_introduce_letter_id'
+								onclick='updateLetter(this)'>
+								<i class='fa fa-pencil-square-o'></i>修改
+							</button>
+							</template> <template
+								v-if="letter.introduce_approve_status=='未审批' && letter_admin_power">
+							<button class="btn btn-primary"
+								:id='letter.xsjsglxt_introduce_letter_id'
+								onclick='approveLetter(this)'>
+								<i class="fa fa-dot-circle-o"></i>审批
+							</button>
+							</template> <template
+								v-if="letter.introduce_approve_status=='已审批' && letter_admin_power">
+							<button class="btn btn-primary"
+								:id='letter.xsjsglxt_introduce_letter_id'
+								onclick='showApproveStup(this)'>
+								<i class="fa fa-table"></i>存根
+							</button>
+							</template>
+						</td>
 					</tr>
 					</template>
 				</table>
 				<div id="bottomPage" style="padding: 20px;">
 					<span>当前页数:<span id="currPage">{{ allData.currPage }}</span></span>
-					<span>共:<span id="totalPage">{{ allData.totalPage }}</span>页
-					<span>共:<span id="totalCount">{{ allData.totalCount }}</span>条数据
+					<span>共:<span id="totalPage">{{ allData.totalPage }}</span>页</span>
+						<span>共:<span id="totalCount">{{allData.totalCount}}</span>条数据
 					</span> <span onclick="skipToIndexPage()" id="indexPage"
 						class="pageOperation">首页</span> <span
 						onclick="skipToPrimaryPage()" id="previousPage"
 						class="pageOperation">上一页</span> <span onclick="skipToNextPage()"
 						id="nextPage" class="pageOperation">下一页</span> <span
 						onclick="skipToLastPage()" id="lastPage" class="pageOperation">末页</span>
-					<span> <input id="skipPage" class="form-control" type="text"
-						style="display: inline-block; text-align: center; width: 60px; height: 30px;"
-						class="queryInput">
-						<button onclick="skipToArbitrarilyPage()" class="btn btn-default"
-							style="height: 30px;">跳转</button>
+						<span> <input id="skipPage" class="form-control"
+							type="text"
+							style="display: inline-block; text-align: center; width: 60px; height: 30px;"
+							class="queryInput">
+							<button onclick="skipToArbitrarilyPage()" class="btn btn-default"
+								style="height: 30px;">跳转</button>
 					</span>
 				</div>
 			</div>

@@ -37,6 +37,27 @@ var page_infomantion = {
 	HaveNextPage : false,
 }
 
+
+var Vm = new Vue({
+	el : "#vue-main",
+	data : {
+		peopleNum : [ '0' ],
+		dayShow : [ false ],
+		caseCategory : 1 //案件类别
+	},
+	methods : {
+		processingTypeChoose (event, index) {
+			if (this.caseCategory == 1) {
+				if (event.target.value == "1") {
+					this.dayShow[index] = true;
+				} else {
+					this.dayShow[index] = false;
+				}
+			}
+		}
+	}
+});
+
 // 选择全部
 var selectAll = function(event) {
 	if (event.checked) {

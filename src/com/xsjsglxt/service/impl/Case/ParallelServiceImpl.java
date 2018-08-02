@@ -39,18 +39,29 @@ public class ParallelServiceImpl implements ParallelService {
 	@Override
 	public void saveParallel(String caeNumList, xsjsglxt_parallel parallel) {
 		// TODO Auto-generated method stub
-		parallel.setXsjsglxt_parallel_id(TeamUtil.getUuid());
-		parallel.setParallel_gmt_create(TeamUtil.getStringSecond());
-		parallel.setParallel_gmt_modified(parallel.getParallel_gmt_create());
-		parallelDao.saveparallel(parallel);
-
+		// parallel 串并信息
+		// caeNumList 案件ID集合
+		String uuid = TeamUtil.getUuid();
+		String id = parallel.getXsjsglxt_parallel_id();
+		boolean haveID = id != null && !"".equals(id);
+		if (haveID) {
+			uuid = id;
+		} else {
+			parallel.setParallel_gmt_create(TeamUtil.getStringSecond());
+		}
+		parallel.setXsjsglxt_parallel_id(uuid);
+		parallel.setParallel_gmt_modified(TeamUtil.getStringSecond());
+		if (haveID) {
+			parallelDao.updateObject(parallel);
+		} else {
+			parallelDao.saveparallel(parallel);
+		}
+		System.out.println(caeNumList);
 		List<String> result = Arrays.asList(caeNumList.split(","));
-		System.out.println("a" + caeNumList);
-		System.out.println("b" + result);
 		for (String Case_id : result) {
 			xsjsglxt_case xsjsglxt_case = parallelDao.getCaseByNum(Case_id);
-			xsjsglxt_case.setCase_parallel(parallel.getXsjsglxt_parallel_id());
-			parallelDao.save(xsjsglxt_case);
+			xsjsglxt_case.setCase_parallel(uuid);
+			parallelDao.updateObject(xsjsglxt_case);
 		}
 	}
 
@@ -108,14 +119,16 @@ public class ParallelServiceImpl implements ParallelService {
 	public ParallelInformationDTO ParallelInformationOne(xsjsglxt_parallel parallel) {
 		// TODO Auto-generated method stub
 		parallel = parallelDao.getparallelById(parallel);
-		List<xsjsglxt_case> caseList=new ArrayList<xsjsglxt_case>();
+		List<xsjsglxt_case> caseList = new ArrayList<xsjsglxt_case>();
 		caseList = parallelDao.getcaseByparallelId(parallel);
-		
-//		xsjsglxt_snece snece = parallelDao.getsneceByCaseId(case1);
-//		xsjsglxt_briefdetails briefdetails = parallelDao.getbriefdetailsByCaseId(case1);
-//		xsjsglxt_resevidence resevidence = parallelDao.getresevidenceByCaseId(case1);
-		ParallelInformationDTO parallelInformationDTO = new ParallelInformationDTO(parallel, null, null, null,
-				null,caseList);
+
+		// xsjsglxt_snece snece = parallelDao.getsneceByCaseId(case1);
+		// xsjsglxt_briefdetails briefdetails =
+		// parallelDao.getbriefdetailsByCaseId(case1);
+		// xsjsglxt_resevidence resevidence =
+		// parallelDao.getresevidenceByCaseId(case1);
+		ParallelInformationDTO parallelInformationDTO = new ParallelInformationDTO(parallel, null, null, null, null,
+				caseList);
 		return parallelInformationDTO;
 	}
 

@@ -42,7 +42,8 @@ public class StaffAction extends ActionSupport {
 	private String staff_imageFileName;
 	private policemanListVO policemanVO;
 	private String xsjsglxt_staff_id;
-	private String query_duty;
+	private String query_duty;//职务筛选
+	private String query_auty;//警种筛选
 
 	// 进入修改页面
 
@@ -56,7 +57,7 @@ public class StaffAction extends ActionSupport {
 	}
 
 	public void getAllStaff() {
-		List<xsjsglxt_staff> list = staffService.getAllStaffByDuty(query_duty);
+		List<xsjsglxt_staff> list = staffService.getAllStaffByDuty(query_duty,query_auty);
 		Gson gson = new Gson();
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
@@ -511,6 +512,14 @@ public class StaffAction extends ActionSupport {
 
 	public void setQuery_duty(String query_duty) {
 		this.query_duty = query_duty;
+	}
+
+	public String getQuery_auty() {
+		return query_auty;
+	}
+
+	public void setQuery_auty(String query_auty) {
+		this.query_auty = query_auty;
 	}
 
 }
