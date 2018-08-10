@@ -22,8 +22,10 @@ import org.apache.struts2.interceptor.ServletResponseAware;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionSupport;
-import com.xsjsglxt.domain.DO.xsjsglxt_handle;
+import com.xsjsglxt.domain.DO.XsjsglxtHandle;
+import com.xsjsglxt.domain.DO.XsjsglxtHandleSuspect;
 import com.xsjsglxt.domain.DO.xsjsglxt_introduce_letter;
+import com.xsjsglxt.domain.DTO.Case.HandleSuspectDTO;
 import com.xsjsglxt.domain.VO.Case.IntroduceLetterVO;
 import com.xsjsglxt.domain.VO.Case.page_list_HandleInformationVO;
 import com.xsjsglxt.service.Case.HandleService;
@@ -35,7 +37,9 @@ import freemarker.template.TemplateException;
 public class HandleAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
 	private HandleService handleService;
 
-	private xsjsglxt_handle handle;
+	private XsjsglxtHandle handle;
+	private XsjsglxtHandleSuspect suspect;
+	private List<XsjsglxtHandleSuspect> handleSuspect;
 	private List<String> useHandleInformationNumList;
 	private HttpServletResponse http_response;
 	private HttpServletRequest http_request;
@@ -46,8 +50,7 @@ public class HandleAction extends ActionSupport implements ServletRequestAware, 
 
 	// ---------------------------------------------介绍信内容-----------------------------------------
 	/**
-	 * @author 孙毅
-	 * 介绍信
+	 * @author 孙毅 介绍信
 	 */
 
 	public String into_introduce_page() {
@@ -186,15 +189,36 @@ public class HandleAction extends ActionSupport implements ServletRequestAware, 
 	 * 保存办案信息
 	 */
 	public void saveHandle() throws IOException {
+		http_response.setContentType("text/html;charset=utf-8");
 		try {
-
-			handleService.saveHandle(handle);
-			http_response.setContentType("text/html;charset=utf-8");
-			http_response.getWriter().write("success");
+			boolean result = handleService.saveHandle(handle, handleSuspect);
+			if (result) {
+				http_response.getWriter().write("success");
+			} else {
+				http_response.getWriter().write("error");
+			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			http_response.setContentType("text/html;charset=utf-8");
+			http_response.getWriter().write("error");
+		}
+	}
+
+	/**
+	 * 保存嫌疑人信息
+	 * 
+	 * @throws IOException
+	 */
+	public void saveSuspect() throws IOException {
+		http_response.setContentType("text/html;charset=utf-8");
+		try {
+			boolean result = handleService.saveSuspect(suspect);
+			if (result) {
+				http_response.getWriter().write("success");
+			} else {
+				http_response.getWriter().write("error");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 			http_response.getWriter().write("error");
 		}
 	}
@@ -202,14 +226,13 @@ public class HandleAction extends ActionSupport implements ServletRequestAware, 
 	/*
 	 * 得到序号
 	 */
-	public void xuhao() throws IOException {
-		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();// 格式化json数据
-		Gson gson = gsonBuilder.create();
-		int Id = handleService.getMaxId();
-		http_response.setContentType("text/html;charset=utf-8");
-		http_response.getWriter().write(gson.toJson(Id));
-	}
+	/*
+	 * public void xuhao() throws IOException { GsonBuilder gsonBuilder = new
+	 * GsonBuilder(); gsonBuilder.setPrettyPrinting();// 格式化json数据 Gson gson =
+	 * gsonBuilder.create(); int Id = handleService.getMaxId();
+	 * http_response.setContentType("text/html;charset=utf-8");
+	 * http_response.getWriter().write(gson.toJson(Id)); }
+	 */
 
 	/*
 	 * 列表信息
@@ -239,19 +262,86 @@ public class HandleAction extends ActionSupport implements ServletRequestAware, 
 		http_response.getWriter().write(gson.toJson(handle));
 	}
 
+	/**
+	 * 嫌疑人详情信息
+	 * 
+	 * @throws IOException
+	 */
+	public void SuspectInformation() throws IOException {
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();// 格式化json数据
+		Gson gson = gsonBuilder.create();
+		List<HandleSuspectDTO> listDTO = handleService.SuspectInformation(handle, suspect);
+		http_response.setContentType("text/html;charset=utf-8");
+
+		http_response.getWriter().write(gson.toJson(listDTO));
+	}
+
 	/*
 	 * 修改信息
 	 */
 	public void updateHandleInformation() throws IOException {
+		http_response.setContentType("text/html;charset=utf-8");
 		try {
-
-			handleService.updateHandleInformation(handle);
-			http_response.setContentType("text/html;charset=utf-8");
-			http_response.getWriter().write("success");
+			boolean flag = handleService.updateHandleInformation(handle);
+			if (flag)
+				http_response.getWriter().write("success");
+			else
+				http_response.getWriter().write("error");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			http_response.setContentType("text/html;charset=utf-8");
+			http_response.getWriter().write("error");
+		}
+	}
+
+	/*
+	 * 修改嫌疑人
+	 */
+	public void updateSuspect() throws IOException {
+		http_response.setContentType("text/html;charset=utf-8");
+		try {
+			boolean flag = handleService.updateSuspect(suspect);
+			if (flag)
+				http_response.getWriter().write("success");
+			else
+				http_response.getWriter().write("error");
+		} catch (IOException e) {
+			e.printStackTrace();
+			http_response.getWriter().write("error");
+		}
+	}
+	
+	/**
+	 * 删除办案
+	 */
+	public void removeHandle() throws IOException {
+		http_response.setContentType("text/html;charset=utf-8");
+		try {
+			boolean flag = handleService.removeHandle(handle);
+			if (flag)
+				http_response.getWriter().write("success");
+			else
+				http_response.getWriter().write("error");
+		} catch (IOException e) {
+			e.printStackTrace();
+			http_response.getWriter().write("error");
+		}
+	}
+
+	/**
+	 * 删除嫌疑人
+	 * @throws IOException
+	 */
+	public void removeSuspect() throws IOException {
+		http_response.setContentType("text/html;charset=utf-8");
+		try {
+			boolean flag = handleService.removeSuspect(suspect);
+			if (flag)
+				http_response.getWriter().write("success");
+			else
+				http_response.getWriter().write("error");
+		} catch (IOException e) {
+			e.printStackTrace();
 			http_response.getWriter().write("error");
 		}
 	}
@@ -259,26 +349,18 @@ public class HandleAction extends ActionSupport implements ServletRequestAware, 
 	/*
 	 * 删除信息
 	 */
-	public void remove_HandleInformationList() {
-
-		if (handleService.remove_HandleInformationList(useHandleInformationNumList)) {
-			http_response.setContentType("text/html;charset=utf-8");
-			try {
-				http_response.getWriter().write("success");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else {
-			http_response.setContentType("text/html;charset=utf-8");
-			try {
-				http_response.getWriter().write("error");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
+	/*
+	 * public void remove_HandleInformationList() {
+	 * 
+	 * if
+	 * (handleService.remove_HandleInformationList(useHandleInformationNumList))
+	 * { http_response.setContentType("text/html;charset=utf-8"); try {
+	 * http_response.getWriter().write("success"); } catch (IOException e) { //
+	 * TODO Auto-generated catch block e.printStackTrace(); } } else {
+	 * http_response.setContentType("text/html;charset=utf-8"); try {
+	 * http_response.getWriter().write("error"); } catch (IOException e) { //
+	 * TODO Auto-generated catch block e.printStackTrace(); } } }
+	 */
 
 	/*
 	 * 所有的中队长、办案民警
@@ -287,16 +369,15 @@ public class HandleAction extends ActionSupport implements ServletRequestAware, 
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();// 格式化json数据
 		Gson gson = gsonBuilder.create();
-		List<xsjsglxt_handle> handleList = new ArrayList<xsjsglxt_handle>();
-		handleList = handleService.allPoliceInHandlingCases();
+		// List<xsjsglxt_handle> handleList = new ArrayList<xsjsglxt_handle>();
+		// handleList = handleService.allPoliceInHandlingCases();
 		http_response.setContentType("text/html;charset=utf-8");
 
-		http_response.getWriter().write(gson.toJson(handleList));
+		// http_response.getWriter().write(gson.toJson(handleList));
 	}
 
 	/**
-	 * @author 孙毅
-	 * 获得办理时间超期的案件
+	 * @author 孙毅 获得办理时间超期的案件
 	 */
 
 	public void getHandleExceedTime() {
@@ -316,19 +397,18 @@ public class HandleAction extends ActionSupport implements ServletRequestAware, 
 	}
 
 	/**
-	 * @author 孙毅
-	 * 获得拘留天数到期
+	 * @author 孙毅 获得拘留天数到期
 	 * 
 	 */
 
 	public void getDetention() {
-		List<xsjsglxt_handle> list = handleService.getDetention();
+		// List<xsjsglxt_handle> list = handleService.getDetention();
 		Gson gson = new Gson();
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		try {
 			PrintWriter pw = response.getWriter();
-			pw.write(gson.toJson(list));
+			// pw.write(gson.toJson(list));
 			pw.flush();
 			pw.close();
 		} catch (IOException e) {
@@ -338,19 +418,18 @@ public class HandleAction extends ActionSupport implements ServletRequestAware, 
 	}
 
 	/**
-	 * @author 孙毅
-	 * 获得取保候审超期提醒
+	 * @author 孙毅 获得取保候审超期提醒
 	 * 
 	 */
 
 	public void getOutTime() {
-		Map<String, List<xsjsglxt_handle>> map = handleService.getOutTime();
+		// Map<String, List<xsjsglxt_handle>> map = handleService.getOutTime();
 		Gson gson = new Gson();
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=utf-8");
 		try {
 			PrintWriter pw = response.getWriter();
-			pw.write(gson.toJson(map));
+			// pw.write(gson.toJson(map));
 			pw.flush();
 			pw.close();
 		} catch (IOException e) {
@@ -395,11 +474,11 @@ public class HandleAction extends ActionSupport implements ServletRequestAware, 
 		this.http_request = http_request;
 	}
 
-	public xsjsglxt_handle getHandle() {
+	public XsjsglxtHandle getHandle() {
 		return handle;
 	}
 
-	public void setHandle(xsjsglxt_handle handle) {
+	public void setHandle(XsjsglxtHandle handle) {
 		this.handle = handle;
 	}
 
@@ -441,6 +520,22 @@ public class HandleAction extends ActionSupport implements ServletRequestAware, 
 
 	public void setLetter_id(String[] letter_id) {
 		this.letter_id = letter_id;
+	}
+
+	public List<XsjsglxtHandleSuspect> getHandleSuspect() {
+		return handleSuspect;
+	}
+
+	public void setHandleSuspect(List<XsjsglxtHandleSuspect> handleSuspect) {
+		this.handleSuspect = handleSuspect;
+	}
+
+	public XsjsglxtHandleSuspect getSuspect() {
+		return suspect;
+	}
+
+	public void setSuspect(XsjsglxtHandleSuspect suspect) {
+		this.suspect = suspect;
 	}
 
 }

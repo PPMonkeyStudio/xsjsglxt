@@ -4,12 +4,15 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.xsjsglxt.domain.DO.xsjsglxt_contrast_fingerprint;
 import com.xsjsglxt.domain.DO.xsjsglxt_dna;
+import com.xsjsglxt.domain.VO.Case.page_list_HandleInformationVO;
 import com.xsjsglxt.domain.VO.Technology.DNAVO;
+import com.xsjsglxt.service.Case.HandleService;
 import com.xsjsglxt.service.Technology.ContrastFingerPrintService;
 import com.xsjsglxt.service.Technology.DNAService;
 
@@ -20,6 +23,14 @@ public class ContrastTest {
 	@Resource
 	private ContrastFingerPrintService contrast;
 
+	@Autowired
+	private HandleService handleService;
+	@Test
+	public void myTest(){
+		page_list_HandleInformationVO page_list_HandleInformationVO = new page_list_HandleInformationVO();
+		System.out.println(handleService.VO_HandleInformation_By_PageAndSearch(page_list_HandleInformationVO));
+	}
+	
 /*	@Test
 	public void list() {
 		DNAVO vo = new DNAVO();

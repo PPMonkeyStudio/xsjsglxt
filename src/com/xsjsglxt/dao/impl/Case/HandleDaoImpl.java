@@ -16,8 +16,10 @@ import org.hibernate.SessionFactory;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.xsjsglxt.dao.Case.HandleDao;
-import com.xsjsglxt.domain.DO.xsjsglxt_handle;
+import com.xsjsglxt.domain.DO.XsjsglxtHandle;
+import com.xsjsglxt.domain.DO.XsjsglxtHandleSuspect;
 import com.xsjsglxt.domain.DO.xsjsglxt_introduce_letter;
+import com.xsjsglxt.domain.DTO.Case.HandleSuspectDTO;
 import com.xsjsglxt.domain.VO.Case.IntroduceLetterVO;
 import com.xsjsglxt.domain.VO.Case.page_list_HandleInformationVO;
 
@@ -37,343 +39,134 @@ public class HandleDaoImpl implements HandleDao {
 		return this.sessionFactory.getCurrentSession();
 	}
 
-	@Override
-	public void saveHandle(xsjsglxt_handle handle) {
-		// TODO Auto-generated method stub
-		try {
-			getSession().saveOrUpdate(handle);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	/*
+	 * @Override public void saveHandle(xsjsglxt_handle handle) { // TODO
+	 * Auto-generated method stub try { getSession().saveOrUpdate(handle); }
+	 * catch (Exception e) { // TODO Auto-generated catch block
+	 * e.printStackTrace(); } }
+	 */
 
 	@Override
 	public int getCountHandleInformationByPage(page_list_HandleInformationVO page_list_HandleInformation) {
-		// TODO Auto-generated method stub
 		Session session = getSession();
+		System.out.println(page_list_HandleInformation);
 		Long i;
-		String hql = "select count(*) from xsjsglxt_handle  where 1=1 ";
-		// 拘留起始时间
-		String handle_StartTimeaOfDetention_start_time = "";
-		String handle_StartTimeaOfDetention_stop_time = "9999-99-99";
-		// 逮捕时间
-		String handle_arrestTime_start_time = "";
-		String handle_arrestTime_stop_time = "9999-99-99";
-		// 起诉时间
-		String handle_prosecuteTime_start_time = "";
-		String handle_prosecuteTime_stop_time = "9999-99-99";
-		// 退查时间
-		String handle_checkbackTime_start_time = "";
-		String handle_checkbackTime_stop_time = "9999-99-99";
-		// 取保候审时间
-		String handle_pbatTime_start_time = "";
-		String handle_pbatTime_stop_time = "9999-99-99";
-		// 监视居住时间
-		String handle_lhusTime_start_time = "";
-		String handle_lhusTime_stop_time = "9999-99-99";
-		// 1
-		if (page_list_HandleInformation.getHandle_administrativeCase() != null
-				&& page_list_HandleInformation.getHandle_administrativeCase().trim().length() > 0) {
-			String handle_administrativeCase = "%" + page_list_HandleInformation.getHandle_administrativeCase() + "%";
-			hql = hql + " and handle_administrativeCase like '" + handle_administrativeCase + "'";
-
-		}
-		// 2
-		if (page_list_HandleInformation.getHandle_detentionDay() != null
-				&& page_list_HandleInformation.getHandle_detentionDay().trim().length() > 0) {
-			String handle_detentionDay = "%" + page_list_HandleInformation.getHandle_detentionDay() + "%";
-			hql = hql + " and handle_detentionDay like '" + handle_detentionDay + "'";
-		}
-		// 3
-		if (page_list_HandleInformation.getHandle_squadronleader() != null
-				&& page_list_HandleInformation.getHandle_squadronleader().trim().length() > 0) {
-			String handle_squadronleader = "%" + page_list_HandleInformation.getHandle_squadronleader() + "%";
-			hql = hql + " and handle_squadronleader like '" + handle_squadronleader + "'";
-		}
-		// 4
-		if (page_list_HandleInformation.getHandle_PoliceInHandlingCases() != null
-				&& page_list_HandleInformation.getHandle_PoliceInHandlingCases().trim().length() > 0) {
-			String handle_PoliceInHandlingCases = "%" + page_list_HandleInformation.getHandle_PoliceInHandlingCases()
-					+ "%";
-			hql = hql + " and handle_PoliceInHandlingCases like '" + handle_PoliceInHandlingCases + "'";
-		}
-		// 拘留起始时间
-		if (page_list_HandleInformation.getHandle_StartTimeaOfDetention_start_time() != null
-				&& page_list_HandleInformation.getHandle_StartTimeaOfDetention_start_time().trim().length() > 0) {
-			handle_StartTimeaOfDetention_start_time = page_list_HandleInformation
-					.getHandle_StartTimeaOfDetention_start_time();
-		}
-		if (page_list_HandleInformation.getHandle_StartTimeaOfDetention_stop_time() != null
-				&& page_list_HandleInformation.getHandle_StartTimeaOfDetention_stop_time().trim().length() > 0) {
-			handle_StartTimeaOfDetention_stop_time = page_list_HandleInformation
-					.getHandle_StartTimeaOfDetention_stop_time();
-		}
-		hql = hql + " and handle_StartTimeaOfDetention>='" + handle_StartTimeaOfDetention_start_time
-				+ "' and handle_StartTimeaOfDetention<='" + handle_StartTimeaOfDetention_stop_time + "'";
-		// 逮捕时间
-		if (page_list_HandleInformation.getHandle_arrestTime_start_time() != null
-				&& page_list_HandleInformation.getHandle_arrestTime_start_time().trim().length() > 0) {
-			handle_arrestTime_start_time = page_list_HandleInformation.getHandle_arrestTime_start_time();
-		}
-		if (page_list_HandleInformation.getHandle_arrestTime_stop_time() != null
-				&& page_list_HandleInformation.getHandle_arrestTime_stop_time().trim().length() > 0) {
-			handle_arrestTime_stop_time = page_list_HandleInformation.getHandle_arrestTime_stop_time();
-		}
-		hql = hql + " and handle_arrestTime>='" + handle_arrestTime_start_time + "' and handle_arrestTime<='"
-				+ handle_arrestTime_stop_time + "'";
-		// 起诉时间
-		if (page_list_HandleInformation.getHandle_prosecuteTime_start_time() != null
-				&& page_list_HandleInformation.getHandle_prosecuteTime_start_time().trim().length() > 0) {
-			handle_prosecuteTime_start_time = page_list_HandleInformation.getHandle_prosecuteTime_start_time();
-		}
-		if (page_list_HandleInformation.getHandle_prosecuteTime_stop_time() != null
-				&& page_list_HandleInformation.getHandle_prosecuteTime_stop_time().trim().length() > 0) {
-			handle_prosecuteTime_stop_time = page_list_HandleInformation.getHandle_prosecuteTime_stop_time();
-		}
-		hql = hql + " and handle_prosecuteTime>='" + handle_prosecuteTime_start_time + "' and handle_prosecuteTime<='"
-				+ handle_prosecuteTime_stop_time + "'";
-		// 退查时间
-		if (page_list_HandleInformation.getHandle_checkbackTime_start_time() != null
-				&& page_list_HandleInformation.getHandle_checkbackTime_start_time().trim().length() > 0) {
-			handle_checkbackTime_start_time = page_list_HandleInformation.getHandle_checkbackTime_start_time();
-		}
-		if (page_list_HandleInformation.getHandle_checkbackTime_stop_time() != null
-				&& page_list_HandleInformation.getHandle_checkbackTime_stop_time().trim().length() > 0) {
-			handle_checkbackTime_stop_time = page_list_HandleInformation.getHandle_checkbackTime_stop_time();
-		}
-		hql = hql + " and handle_checkbackTime>='" + handle_checkbackTime_start_time + "' and handle_checkbackTime<='"
-				+ handle_checkbackTime_stop_time + "'";
-		// 取保候审时间
-		if (page_list_HandleInformation.getHandle_pbatTime_start_time() != null
-				&& page_list_HandleInformation.getHandle_pbatTime_start_time().trim().length() > 0) {
-			handle_pbatTime_start_time = page_list_HandleInformation.getHandle_pbatTime_start_time();
-		}
-		if (page_list_HandleInformation.getHandle_pbatTime_stop_time() != null
-				&& page_list_HandleInformation.getHandle_pbatTime_stop_time().trim().length() > 0) {
-			handle_pbatTime_stop_time = page_list_HandleInformation.getHandle_pbatTime_stop_time();
-		}
-		hql = hql + " and handle_pbatTime>='" + handle_pbatTime_start_time + "' and handle_pbatTime<='"
-				+ handle_pbatTime_stop_time + "'";
-		// 监视居住时间
-		if (page_list_HandleInformation.getHandle_lhusTime_start_time() != null
-				&& page_list_HandleInformation.getHandle_lhusTime_start_time().trim().length() > 0) {
-			handle_lhusTime_start_time = page_list_HandleInformation.getHandle_lhusTime_start_time();
-		}
-		if (page_list_HandleInformation.getHandle_lhusTime_stop_time() != null
-				&& page_list_HandleInformation.getHandle_lhusTime_stop_time().trim().length() > 0) {
-			handle_lhusTime_stop_time = page_list_HandleInformation.getHandle_lhusTime_stop_time();
-		}
-		hql = hql + " and handle_lhusTime>='" + handle_lhusTime_start_time + "' and handle_lhusTime<='"
-				+ handle_lhusTime_stop_time + "'order by handle_gnt_create ";
+		String hql = "select count(DISTINCT Handle) from XsjsglxtHandle Handle,XsjsglxtHandleSuspect suspect where "
+				+ " suspect.xsjsglxtHandleId = Handle.xsjsglxtHandleId "
+				+ " and Handle.handleAdministrativeCase like :handle_administrativeCase "
+				+ " and Handle.handleSponsoredPolice like :handleSponsoredPolice "
+				+ " and Handle.handleAdministrativeType like :handleAdministrativeType "
+				+ " and suspect.handleSuspectName like :handleSuspectName "
+				+ " and suspect.handleSuspectHandling like :handleSuspectHandling ";
+		// String handle_lhusTime_start_time = "";
+		// String handle_lhusTime_stop_time = "9999-99-99";
 		Query query = session.createQuery(hql);
+		query.setParameter("handle_administrativeCase", page_list_HandleInformation.getHandle_administrativeCase());
+		query.setParameter("handleSponsoredPolice", page_list_HandleInformation.getHandleSponsoredPolice());
+		query.setParameter("handleAdministrativeType", page_list_HandleInformation.getHandleAdministrativeType());
+		query.setParameter("handleSuspectName", page_list_HandleInformation.getHandle_handleSuspectName());
+		query.setParameter("handleSuspectHandling", page_list_HandleInformation.getHandle_handleSuspectHandling());
 		i = (Long) query.uniqueResult();
 		session.clear();
 		return i.intValue();
 	}
 
 	@Override
-	public List<xsjsglxt_handle> getListHandleInformatioByPage(
+	public List<HandleSuspectDTO> getListHandleInformatioByPage(
 			page_list_HandleInformationVO page_list_HandleInformation) {
-		// TODO Auto-generated method stub
 		Session session = getSession();
-		List<xsjsglxt_handle> listHandleInformationByPage = new ArrayList<xsjsglxt_handle>();
-		String hql = "from xsjsglxt_handle  where 1=1 ";
-		// 拘留起始时间
-		String handle_StartTimeaOfDetention_start_time = "";
-		String handle_StartTimeaOfDetention_stop_time = "9999-99-99";
-		// 逮捕时间
-		String handle_arrestTime_start_time = "";
-		String handle_arrestTime_stop_time = "9999-99-99";
-		// 起诉时间
-		String handle_prosecuteTime_start_time = "";
-		String handle_prosecuteTime_stop_time = "9999-99-99";
-		// 退查时间
-		String handle_checkbackTime_start_time = "";
-		String handle_checkbackTime_stop_time = "9999-99-99";
-		// 取保候审时间
-		String handle_pbatTime_start_time = "";
-		String handle_pbatTime_stop_time = "9999-99-99";
-		// 监视居住时间
-		String handle_lhusTime_start_time = "";
-		String handle_lhusTime_stop_time = "9999-99-99";
-		// 1
-		if (page_list_HandleInformation.getHandle_administrativeCase() != null
-				&& page_list_HandleInformation.getHandle_administrativeCase().trim().length() > 0) {
-			String handle_administrativeCase = "%" + page_list_HandleInformation.getHandle_administrativeCase() + "%";
-			hql = hql + " and handle_administrativeCase like '" + handle_administrativeCase + "'";
-
-		}
-		// 2
-		if (page_list_HandleInformation.getHandle_detentionDay() != null
-				&& page_list_HandleInformation.getHandle_detentionDay().trim().length() > 0) {
-			String handle_detentionDay = "%" + page_list_HandleInformation.getHandle_detentionDay() + "%";
-			hql = hql + " and handle_detentionDay like '" + handle_detentionDay + "'";
-		}
-		// 3
-		if (page_list_HandleInformation.getHandle_squadronleader() != null
-				&& page_list_HandleInformation.getHandle_squadronleader().trim().length() > 0) {
-			String handle_squadronleader = "%" + page_list_HandleInformation.getHandle_squadronleader() + "%";
-			hql = hql + " and handle_squadronleader like '" + handle_squadronleader + "'";
-		}
-		// 4
-		if (page_list_HandleInformation.getHandle_PoliceInHandlingCases() != null
-				&& page_list_HandleInformation.getHandle_PoliceInHandlingCases().trim().length() > 0) {
-			String handle_PoliceInHandlingCases = "%" + page_list_HandleInformation.getHandle_PoliceInHandlingCases()
-					+ "%";
-			hql = hql + " and handle_PoliceInHandlingCases like '" + handle_PoliceInHandlingCases + "'";
-		}
-		// 拘留起始时间
-		if (page_list_HandleInformation.getHandle_StartTimeaOfDetention_start_time() != null
-				&& page_list_HandleInformation.getHandle_StartTimeaOfDetention_start_time().trim().length() > 0) {
-			handle_StartTimeaOfDetention_start_time = page_list_HandleInformation
-					.getHandle_StartTimeaOfDetention_start_time();
-		}
-		if (page_list_HandleInformation.getHandle_StartTimeaOfDetention_stop_time() != null
-				&& page_list_HandleInformation.getHandle_StartTimeaOfDetention_stop_time().trim().length() > 0) {
-			handle_StartTimeaOfDetention_stop_time = page_list_HandleInformation
-					.getHandle_StartTimeaOfDetention_stop_time();
-		}
-		hql = hql + " and handle_StartTimeaOfDetention>='" + handle_StartTimeaOfDetention_start_time
-				+ "' and handle_StartTimeaOfDetention<='" + handle_StartTimeaOfDetention_stop_time + "'";
-		// 逮捕时间
-		if (page_list_HandleInformation.getHandle_arrestTime_start_time() != null
-				&& page_list_HandleInformation.getHandle_arrestTime_start_time().trim().length() > 0) {
-			handle_arrestTime_start_time = page_list_HandleInformation.getHandle_arrestTime_start_time();
-		}
-		if (page_list_HandleInformation.getHandle_arrestTime_stop_time() != null
-				&& page_list_HandleInformation.getHandle_arrestTime_stop_time().trim().length() > 0) {
-			handle_arrestTime_stop_time = page_list_HandleInformation.getHandle_arrestTime_stop_time();
-		}
-		hql = hql + " and handle_arrestTime>='" + handle_arrestTime_start_time + "' and handle_arrestTime<='"
-				+ handle_arrestTime_stop_time + "'";
-		// 起诉时间
-		if (page_list_HandleInformation.getHandle_prosecuteTime_start_time() != null
-				&& page_list_HandleInformation.getHandle_prosecuteTime_start_time().trim().length() > 0) {
-			handle_prosecuteTime_start_time = page_list_HandleInformation.getHandle_prosecuteTime_start_time();
-		}
-		if (page_list_HandleInformation.getHandle_prosecuteTime_stop_time() != null
-				&& page_list_HandleInformation.getHandle_prosecuteTime_stop_time().trim().length() > 0) {
-			handle_prosecuteTime_stop_time = page_list_HandleInformation.getHandle_prosecuteTime_stop_time();
-		}
-		hql = hql + " and handle_prosecuteTime>='" + handle_prosecuteTime_start_time + "' and handle_prosecuteTime<='"
-				+ handle_prosecuteTime_stop_time + "'";
-		// 退查时间
-		if (page_list_HandleInformation.getHandle_checkbackTime_start_time() != null
-				&& page_list_HandleInformation.getHandle_checkbackTime_start_time().trim().length() > 0) {
-			handle_checkbackTime_start_time = page_list_HandleInformation.getHandle_checkbackTime_start_time();
-		}
-		if (page_list_HandleInformation.getHandle_checkbackTime_stop_time() != null
-				&& page_list_HandleInformation.getHandle_checkbackTime_stop_time().trim().length() > 0) {
-			handle_checkbackTime_stop_time = page_list_HandleInformation.getHandle_checkbackTime_stop_time();
-		}
-		hql = hql + " and handle_checkbackTime>='" + handle_checkbackTime_start_time + "' and handle_checkbackTime<='"
-				+ handle_checkbackTime_stop_time + "'";
-		// 取保候审时间
-		if (page_list_HandleInformation.getHandle_pbatTime_start_time() != null
-				&& page_list_HandleInformation.getHandle_pbatTime_start_time().trim().length() > 0) {
-			handle_pbatTime_start_time = page_list_HandleInformation.getHandle_pbatTime_start_time();
-		}
-		if (page_list_HandleInformation.getHandle_pbatTime_stop_time() != null
-				&& page_list_HandleInformation.getHandle_pbatTime_stop_time().trim().length() > 0) {
-			handle_pbatTime_stop_time = page_list_HandleInformation.getHandle_pbatTime_stop_time();
-		}
-		hql = hql + " and handle_pbatTime>='" + handle_pbatTime_start_time + "' and handle_pbatTime<='"
-				+ handle_pbatTime_stop_time + "'";
-		// 监视居住时间
-		if (page_list_HandleInformation.getHandle_lhusTime_start_time() != null
-				&& page_list_HandleInformation.getHandle_lhusTime_start_time().trim().length() > 0) {
-			handle_lhusTime_start_time = page_list_HandleInformation.getHandle_lhusTime_start_time();
-		}
-		if (page_list_HandleInformation.getHandle_lhusTime_stop_time() != null
-				&& page_list_HandleInformation.getHandle_lhusTime_stop_time().trim().length() > 0) {
-			handle_lhusTime_stop_time = page_list_HandleInformation.getHandle_lhusTime_stop_time();
-		}
-		hql = hql + " and handle_lhusTime>='" + handle_lhusTime_start_time + "' and handle_lhusTime<='"
-				+ handle_lhusTime_stop_time + "'order by handle_gnt_create ";
+		String hql = "select DISTINCT new com.xsjsglxt.domain.DTO.Case.HandleSuspectDTO(Handle) from XsjsglxtHandle Handle,XsjsglxtHandleSuspect suspect where "
+				+ " suspect.xsjsglxtHandleId = Handle.xsjsglxtHandleId "
+				+ " and Handle.handleAdministrativeCase like :handle_administrativeCase "
+				+ " and Handle.handleSponsoredPolice like :handleSponsoredPolice "
+				+ " and Handle.handleAdministrativeType like :handleAdministrativeType "
+				+ " and suspect.handleSuspectName like :handleSuspectName "
+				+ " and suspect.handleSuspectHandling like :handleSuspectHandling ";
+		// String handle_lhusTime_start_time = "";
+		// String handle_lhusTime_stop_time = "9999-99-99";
 		Query query = session.createQuery(hql);
+		query.setParameter("handle_administrativeCase", page_list_HandleInformation.getHandle_administrativeCase());
+		query.setParameter("handleSponsoredPolice", page_list_HandleInformation.getHandleSponsoredPolice());
+		query.setParameter("handleAdministrativeType", page_list_HandleInformation.getHandleAdministrativeType());
+		query.setParameter("handleSuspectName", page_list_HandleInformation.getHandle_handleSuspectName());
+		query.setParameter("handleSuspectHandling", page_list_HandleInformation.getHandle_handleSuspectHandling());
 		query.setFirstResult(
 				(page_list_HandleInformation.getPageIndex() - 1) * page_list_HandleInformation.getPageSize());
 		query.setMaxResults(page_list_HandleInformation.getPageSize());
-		listHandleInformationByPage = query.list();
-
+		List<HandleSuspectDTO> list = query.list();
 		session.clear();
-		return listHandleInformationByPage;
+		return list;
 	}
 
 	@Override
-	public xsjsglxt_handle HandleInformationOne(xsjsglxt_handle handle) {
-		// TODO Auto-generated method stub
+	public List<XsjsglxtHandleSuspect> getHandleSuspectByHandId(XsjsglxtHandle xsjsglxtHandle) {
 		Session session = getSession();
-
-		String hql = "from xsjsglxt_handle handle where handle.xsjsglxt_handle_id='" + handle.getXsjsglxt_handle_id()
-				+ "'";
-
+		String hql = "select suspect from XsjsglxtHandleSuspect suspect where "
+				+ " suspect.xsjsglxtHandleId = :HandleId ";
 		Query query = session.createQuery(hql);
-
-		handle = (xsjsglxt_handle) query.uniqueResult();
-
-		return handle;
+		query.setParameter("HandleId", xsjsglxtHandle.getXsjsglxtHandleId());
+		List<XsjsglxtHandleSuspect> list = query.list();
+		return list;
 	}
 
 	@Override
-	public void updateHandleInformation(xsjsglxt_handle handle) {
-		// TODO Auto-generated method stub
+	public XsjsglxtHandle HandleInformationOne(XsjsglxtHandle handle) {
+		Session session = getSession();
+		String hql = "from XsjsglxtHandle handle where handle.xsjsglxtHandleId='" + handle.getXsjsglxtHandleId() + "'";
+		Query query = session.createQuery(hql);
+		return (XsjsglxtHandle) query.uniqueResult();
+	}
+
+	@Override
+	public boolean updateHandleInformation(XsjsglxtHandle handle) {
 		try {
-			getSession().saveOrUpdate(handle);
+			getSession().update(handle);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return false;
 		}
-	}
-
-	@Override
-	public xsjsglxt_handle getHandleByNum(String handle_id) {
-		// TODO Auto-generated method stub
-		Session session = getSession();
-		xsjsglxt_handle HandleInformation = null;
-		String hql = "from xsjsglxt_handle handle where handle.xsjsglxt_handle_id='" + handle_id + "'";
-		Query query = session.createQuery(hql);
-		HandleInformation = (xsjsglxt_handle) query.uniqueResult();
-		return HandleInformation;
-	}
-
-	@Override
-	public boolean deleteHandleById(String xsjsglxt_handle_id) {
-		// TODO Auto-generated method stub
-		Session session = getSession();
-		String hql = "delete from xsjsglxt_handle where xsjsglxt_handle_id='" + xsjsglxt_handle_id + "'";
-		Query query = session.createQuery(hql);
-		query.executeUpdate();
-		xsjsglxt_handle xh = (xsjsglxt_handle) session.get(xsjsglxt_handle.class, xsjsglxt_handle_id);
-		String hqlUpdate = "update xsjsglxt_handle set handle_orderNumber = handle_orderNumber-1 where handle_orderNumber>'"
-				+ xh.getHandle_orderNumber() + "'";
-		session.createQuery(hqlUpdate).executeUpdate();
 		return true;
 	}
 
-	@Override
-	public int getMaxId() {
-		// TODO Auto-generated method stub
-		Session session = getSession();
-		Long i;
-		String hql = "select count(*) from xsjsglxt_handle  where 1=1 ";
-		Query query = session.createQuery(hql);
-		i = (Long) query.uniqueResult();
-		session.clear();
-		return i.intValue();
+	/*
+	 * @Override public xsjsglxt_handle getHandleByNum(String handle_id) { //
+	 * TODO Auto-generated method stub Session session = getSession();
+	 * xsjsglxt_handle HandleInformation = null; String hql =
+	 * "from xsjsglxt_handle handle where handle.xsjsglxt_handle_id='" +
+	 * handle_id + "'"; Query query = session.createQuery(hql);
+	 * HandleInformation = (xsjsglxt_handle) query.uniqueResult(); return
+	 * HandleInformation; }
+	 */
 
-	}
+	/*
+	 * @Override public boolean deleteHandleById(String xsjsglxt_handle_id) { //
+	 * TODO Auto-generated method stub Session session = getSession(); String
+	 * hql = "delete from xsjsglxt_handle where xsjsglxt_handle_id='" +
+	 * xsjsglxt_handle_id + "'"; Query query = session.createQuery(hql);
+	 * query.executeUpdate(); xsjsglxt_handle xh = (xsjsglxt_handle)
+	 * session.get(xsjsglxt_handle.class, xsjsglxt_handle_id); String hqlUpdate
+	 * =
+	 * "update xsjsglxt_handle set handle_orderNumber = handle_orderNumber-1 where handle_orderNumber>'"
+	 * + xh.getHandle_orderNumber() + "'";
+	 * session.createQuery(hqlUpdate).executeUpdate(); return true; }
+	 */
 
-	@Override
-	public List<xsjsglxt_handle> allPoliceInHandlingCases() {
-		// TODO Auto-generated method stub
-		Session session = getSession();
-		String hql = "from xsjsglxt_handle";
-		Query query = session.createQuery(hql);
-		List<xsjsglxt_handle> AllPoliceInHandlingCasesList = query.list();
-		return AllPoliceInHandlingCasesList;
-	}
+	/*
+	 * @Override public int getMaxId() { // TODO Auto-generated method stub
+	 * Session session = getSession(); Long i; String hql =
+	 * "select count(*) from xsjsglxt_handle  where 1=1 "; Query query =
+	 * session.createQuery(hql); i = (Long) query.uniqueResult();
+	 * session.clear(); return i.intValue();
+	 * 
+	 * }
+	 */
+
+	/*
+	 * @Override public List<xsjsglxt_handle> allPoliceInHandlingCases() { //
+	 * TODO Auto-generated method stub Session session = getSession(); String
+	 * hql = "from xsjsglxt_handle"; Query query = session.createQuery(hql);
+	 * List<xsjsglxt_handle> AllPoliceInHandlingCasesList = query.list(); return
+	 * AllPoliceInHandlingCasesList; }
+	 */
 
 	@Override
 	public List<String> getHandleExceedTime(String oldTime) {
@@ -385,40 +178,33 @@ public class HandleDaoImpl implements HandleDao {
 		return caseList;
 	}
 
-	@Override
-	public Map<String, List<xsjsglxt_handle>> getOutTime() {
-		// TODO Auto-generated method stub
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Calendar c = Calendar.getInstance();
-		c.add(Calendar.DATE, 30);
-		Session session = this.getSession();
-		List<xsjsglxt_handle> thirtyDays = session.createQuery("from xsjsglxt_handle where handle_pbatTime='"
-				+ sdf.format(c.getTime()) + "' order by handle_pbat desc").list();
-		c.clear();
-		Calendar c1 = Calendar.getInstance();
-		c1.add(Calendar.YEAR, -1);
-		List<xsjsglxt_handle> outTime = session
-				.createQuery("from xsjsglxt_handle where handle_pbatTime='" + sdf.format(c1.getTime()) + "'").list();
-		Map<String, List<xsjsglxt_handle>> map = new HashMap<String, List<xsjsglxt_handle>>();
-		map.put("thirtyDays", thirtyDays);
-		map.put("outTime", outTime);
-		c1.clear();
-		return map;
-	}
+	/*
+	 * @Override public Map<String, List<xsjsglxt_handle>> getOutTime() { //
+	 * TODO Auto-generated method stub SimpleDateFormat sdf = new
+	 * SimpleDateFormat("yyyy-MM-dd"); Calendar c = Calendar.getInstance();
+	 * c.add(Calendar.DATE, 30); Session session = this.getSession();
+	 * List<xsjsglxt_handle> thirtyDays =
+	 * session.createQuery("from xsjsglxt_handle where handle_pbatTime='" +
+	 * sdf.format(c.getTime()) + "' order by handle_pbat desc").list();
+	 * c.clear(); Calendar c1 = Calendar.getInstance(); c1.add(Calendar.YEAR,
+	 * -1); List<xsjsglxt_handle> outTime = session
+	 * .createQuery("from xsjsglxt_handle where handle_pbatTime='" +
+	 * sdf.format(c1.getTime()) + "'").list(); Map<String,
+	 * List<xsjsglxt_handle>> map = new HashMap<String,
+	 * List<xsjsglxt_handle>>(); map.put("thirtyDays", thirtyDays);
+	 * map.put("outTime", outTime); c1.clear(); return map; }
+	 */
 
-	@Override
-	public List<xsjsglxt_handle> getDetention() {
-		// TODO Auto-generated method stub
-		Calendar c = Calendar.getInstance();
-		c.add(Calendar.DATE, 1);
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Session session = this.getSession();
-
-		return session
-				.createQuery("from xsjsglxt_handle where handle_EndTimeaOfDetention='" + sdf.format(c.getTime()) + "'")
-				.list();
-	}
-
+	/*
+	 * @Override public List<xsjsglxt_handle> getDetention() { // TODO
+	 * Auto-generated method stub Calendar c = Calendar.getInstance();
+	 * c.add(Calendar.DATE, 1); SimpleDateFormat sdf = new
+	 * SimpleDateFormat("yyyy-MM-dd"); Session session = this.getSession();
+	 * 
+	 * return session
+	 * .createQuery("from xsjsglxt_handle where handle_EndTimeaOfDetention='" +
+	 * sdf.format(c.getTime()) + "'") .list(); }
+	 */
 	// 通过筛选年份过的介绍信最大的id
 	@Override
 	public int getLetterMaxId() {
@@ -533,6 +319,76 @@ public class HandleDaoImpl implements HandleDao {
 			// TODO: handle exception
 			return "updateError";
 		}
+	}
+
+	@Override
+	public boolean saveObject(Object object) {
+		try {
+			Session session = this.getSession();
+			session.save(object);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public XsjsglxtHandle getHandleByHandleId(XsjsglxtHandle handle) {
+		Session session = this.getSession();
+		String hql = "select han from XsjsglxtHandle han where han.xsjsglxtHandleId = :hanid";
+		Query query = session.createQuery(hql);
+		query.setParameter("hanid", handle.getXsjsglxtHandleId());
+		XsjsglxtHandle xsjsglxtHandle = (XsjsglxtHandle) query.uniqueResult();
+		session.clear();
+		return xsjsglxtHandle;
+	}
+
+	@Override
+	public List<XsjsglxtHandleSuspect> getSuspectBySuspectId(XsjsglxtHandleSuspect suspect) {
+		Session session = this.getSession();
+		String hql = "select sus from XsjsglxtHandleSuspect sus where sus.xsjsglxiHandleSuspectId = :susid";
+		Query query = session.createQuery(hql);
+		query.setParameter("susid", suspect.getXsjsglxiHandleSuspectId());
+		List<XsjsglxtHandleSuspect> list = query.list();
+		session.clear();
+		return list;
+	}
+
+	@Override
+	public boolean updateObject(XsjsglxtHandleSuspect suspect) {
+		try {
+			Session session = this.getSession();
+			session.update(suspect);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public boolean removeSuspect(XsjsglxtHandleSuspect suspect) {
+		try {
+			Session session = this.getSession();
+			session.delete(suspect);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public boolean removeHandle(XsjsglxtHandle handle) {
+		try {
+			Session session = this.getSession();
+			session.delete(handle);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
 }

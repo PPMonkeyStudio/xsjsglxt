@@ -2,9 +2,10 @@ package com.xsjsglxt.service.Case;
 
 import java.util.List;
 import java.util.Map;
-
-import com.xsjsglxt.domain.DO.xsjsglxt_handle;
+import com.xsjsglxt.domain.DO.XsjsglxtHandle;
+import com.xsjsglxt.domain.DO.XsjsglxtHandleSuspect;
 import com.xsjsglxt.domain.DO.xsjsglxt_introduce_letter;
+import com.xsjsglxt.domain.DTO.Case.HandleSuspectDTO;
 import com.xsjsglxt.domain.VO.Case.IntroduceLetterVO;
 import com.xsjsglxt.domain.VO.Case.page_list_HandleInformationVO;
 
@@ -12,7 +13,7 @@ public interface HandleService {
 	/*
 	 * 保存办案信息
 	 */
-	public void saveHandle(xsjsglxt_handle handle);
+	public boolean saveHandle(XsjsglxtHandle handle, List<XsjsglxtHandleSuspect> handleSuspect);
 
 	/*
 	 * 列表信息
@@ -20,21 +21,24 @@ public interface HandleService {
 	public page_list_HandleInformationVO VO_HandleInformation_By_PageAndSearch(
 			page_list_HandleInformationVO page_list_HandleInformation);
 
-	public xsjsglxt_handle HandleInformationOne(xsjsglxt_handle handle);
+	public XsjsglxtHandle HandleInformationOne(XsjsglxtHandle handle);
 
-	public void updateHandleInformation(xsjsglxt_handle handle);
+	public boolean updateHandleInformation(XsjsglxtHandle handle);
 
-	public boolean remove_HandleInformationList(List<String> useHandleInformationNumList);
+	// public boolean remove_HandleInformationList(List<String>
+	// useHandleInformationNumList);
 
-	public int getMaxId();
+	// public int getMaxId();
 
-	public List<xsjsglxt_handle> allPoliceInHandlingCases();
+	// public List<xsjsglxt_handle> allPoliceInHandlingCases();
 
 	public List<String> getHandleExceedTime();
 
-	public Map<String, List<xsjsglxt_handle>> getOutTime();
-
-	public List<xsjsglxt_handle> getDetention();
+	/*
+	 * public Map<String, List<xsjsglxt_handle>> getOutTime();
+	 * 
+	 * public List<xsjsglxt_handle> getDetention();
+	 */
 
 	public String saveIntroduceLetter(xsjsglxt_introduce_letter xsjsglxt_introduce_letter);
 
@@ -49,5 +53,15 @@ public interface HandleService {
 	public xsjsglxt_introduce_letter getIntroduceLetterByIdObject(String xsjsglxt_introduce_letter_id);
 
 	public String updateApproveStatus(xsjsglxt_introduce_letter letter);
+
+	public boolean saveSuspect(XsjsglxtHandleSuspect suspect);
+
+	public List<HandleSuspectDTO> SuspectInformation(XsjsglxtHandle handle, XsjsglxtHandleSuspect suspect);
+
+	public boolean updateSuspect(XsjsglxtHandleSuspect suspect);
+
+	public boolean removeSuspect(XsjsglxtHandleSuspect suspect);
+
+	public boolean removeHandle(XsjsglxtHandle handle);
 
 }

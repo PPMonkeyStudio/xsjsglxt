@@ -8,11 +8,13 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 import com.xsjsglxt.dao.Case.HandleDao;
-import com.xsjsglxt.domain.DO.xsjsglxt_handle;
 import com.xsjsglxt.domain.DO.xsjsglxt_introduce_letter;
+import com.xsjsglxt.domain.DTO.Case.HandleSuspectDTO;
 import com.xsjsglxt.domain.VO.Case.IntroduceLetterVO;
 import com.xsjsglxt.domain.VO.Case.page_list_HandleInformationVO;
 import com.xsjsglxt.service.Case.HandleService;
+import com.xsjsglxt.domain.DO.XsjsglxtHandle;
+import com.xsjsglxt.domain.DO.XsjsglxtHandleSuspect;
 
 import util.TeamUtil;
 
@@ -28,23 +30,46 @@ public class HandleServiceImpl implements HandleService {
 	}
 
 	@Override
-	public void saveHandle(xsjsglxt_handle handle) {
-		// TODO Auto-generated method stub
-		handle.setXsjsglxt_handle_id(TeamUtil.getUuid());
-		handle.setHandle_gnt_create(TeamUtil.getStringSecond());
-		handle.setHandle_gmt_modified(handle.getHandle_gnt_create());
-		handleDao.saveHandle(handle);
+	public boolean saveHandle(XsjsglxtHandle handle, List<XsjsglxtHandleSuspect> handleSuspect) {
+		boolean handleSave = false;
+		// boolean suspectSave = false;
+		String uid = TeamUtil.getUuid();
+		handle.setXsjsglxtHandleId(uid);
+		handle.setHandleGntCreate(TeamUtil.getStringSecond());
+		handle.setHandleGmtModified(TeamUtil.getStringSecond());
+
+		// for (XsjsglxtHandleSuspect xsjsglxtHandleSuspect : handleSuspect) {
+		// xsjsglxtHandleSuspect.setXsjsglxiHandleSuspectId(TeamUtil.getUuid());
+		// xsjsglxtHandleSuspect.setXsjsglxtHandleId(uid);
+		// xsjsglxtHandleSuspect.setHandleGmtCreate(TeamUtil.getStringSecond());
+		// xsjsglxtHandleSuspect.setHandleGmtModified(TeamUtil.getStringSecond());
+		// suspectSave = handleDao.saveObject(xsjsglxtHandleSuspect);
+		// }
+
+		handleSave = handleDao.saveObject(handle);
+		// if (handleSave && suspectSave) {
+		// return true;
+		// }
+		if (handleSave)
+			return true;
+		return false;
+	}
+
+	@Override
+	public boolean saveSuspect(XsjsglxtHandleSuspect suspect) {
+		suspect.setXsjsglxiHandleSuspectId(TeamUtil.getUuid());
+		suspect.setHandleGmtCreate(TeamUtil.getStringSecond());
+		suspect.setHandleGmtModified(TeamUtil.getStringSecond());
+		return handleDao.saveObject(suspect);
 	}
 
 	@Override
 	public page_list_HandleInformationVO VO_HandleInformation_By_PageAndSearch(
 			page_list_HandleInformationVO page_list_HandleInformation) {
-		// TODO Auto-generated method stub
-		List<xsjsglxt_handle> listHandle = new ArrayList<xsjsglxt_handle>();
+		List<HandleSuspectDTO> handleSuspectDTOList = new ArrayList<HandleSuspectDTO>();
 		// BreakecaseInformationDTO breakecaseInformationDTO;
-
 		int i = handleDao.getCountHandleInformationByPage(page_list_HandleInformation);
-		System.out.println("总记录" + i);
+
 		page_list_HandleInformation.setTotalRecords(i);
 		page_list_HandleInformation.setTotalPages(((i - 1) / page_list_HandleInformation.getPageSize()) + 1);
 		if (page_list_HandleInformation.getPageIndex() <= 1) {
@@ -59,52 +84,58 @@ public class HandleServiceImpl implements HandleService {
 		}
 
 		// 符合条件的记录
-		listHandle = handleDao.getListHandleInformatioByPage(page_list_HandleInformation);
+		handleSuspectDTOList = handleDao.getListHandleInformatioByPage(page_list_HandleInformation);
 
-		page_list_HandleInformation.setListHandle(listHandle);
+		for (int j = 0, len = handleSuspectDTOList.size(); j < len; j++) {
+			handleSuspectDTOList.get(j).setListSuspect(
+					handleDao.getHandleSuspectByHandId(handleSuspectDTOList.get(j).getXsjsglxtHandle()));
+		}
+
+		page_list_HandleInformation.setListSuspectDTO(handleSuspectDTOList);
 
 		return page_list_HandleInformation;
 	}
 
 	@Override
-	public xsjsglxt_handle HandleInformationOne(xsjsglxt_handle handle) {
-		// TODO Auto-generated method stub
+	public XsjsglxtHandle HandleInformationOne(XsjsglxtHandle handle) {
 		return handleDao.HandleInformationOne(handle);
 	}
 
 	@Override
-	public void updateHandleInformation(xsjsglxt_handle handle) {
-		// TODO Auto-generated method stub
-		handle.setHandle_gmt_modified(TeamUtil.getStringSecond());
-		handleDao.updateHandleInformation(handle);
+	public List<HandleSuspectDTO> SuspectInformation(XsjsglxtHandle handle, XsjsglxtHandleSuspect suspect) {
+		List<HandleSuspectDTO> handleSuspectDTOList = new ArrayList<HandleSuspectDTO>();
+		HandleSuspectDTO handleSuspectDTO = new HandleSuspectDTO();
+		handleSuspectDTO.setXsjsglxtHandle(handleDao.getHandleByHandleId(handle));
+		handleSuspectDTO.setListSuspect(handleDao.getSuspectBySuspectId(suspect));
+		handleSuspectDTOList.add(handleSuspectDTO);
+		return handleSuspectDTOList;
 	}
 
 	@Override
-	public boolean remove_HandleInformationList(List<String> useHandleInformationNumList) {
-		// TODO Auto-generated method stub
-		boolean flag = false;
-		for (String handle_id : useHandleInformationNumList) {
-			xsjsglxt_handle xsjsglxt_handle = handleDao.getHandleByNum(handle_id);
-			flag = handleDao.deleteHandleById(xsjsglxt_handle.getXsjsglxt_handle_id());// ����
-
-		}
-		return flag;
+	public boolean updateHandleInformation(XsjsglxtHandle handle) {
+		handle.setHandleGmtModified(TeamUtil.getStringSecond());
+		return handleDao.updateHandleInformation(handle);
 	}
 
-	@Override
-	public int getMaxId() {
-		// TODO Auto-generated method stub
-		int i = handleDao.getMaxId();
-		return (i + 1);
-	}
-
-	@Override
-	public List<xsjsglxt_handle> allPoliceInHandlingCases() {
-		// TODO Auto-generated method stub
-
-		return handleDao.allPoliceInHandlingCases();
-	}
-
+	/*
+	 * @Override public boolean remove_HandleInformationList(List<String>
+	 * useHandleInformationNumList) { // TODO Auto-generated method stub boolean
+	 * flag = false; for (String handle_id : useHandleInformationNumList) {
+	 * xsjsglxt_handle xsjsglxt_handle = handleDao.getHandleByNum(handle_id);
+	 * flag =
+	 * handleDao.deleteHandleById(xsjsglxt_handle.getXsjsglxt_handle_id());//
+	 * ����
+	 * 
+	 * } return flag; }
+	 * 
+	 * @Override public int getMaxId() { // TODO Auto-generated method stub int
+	 * i = handleDao.getMaxId(); return (i + 1); }
+	 * 
+	 * @Override public List<xsjsglxt_handle> allPoliceInHandlingCases() { //
+	 * TODO Auto-generated method stub
+	 * 
+	 * return handleDao.allPoliceInHandlingCases(); }
+	 */
 	@Override
 	public List<String> getHandleExceedTime() {
 		// TODO Auto-generated method stub
@@ -118,19 +149,15 @@ public class HandleServiceImpl implements HandleService {
 		return caseList;
 	}
 
-	@Override
-	public Map<String, List<xsjsglxt_handle>> getOutTime() {
-		// TODO Auto-generated method stub
-		return handleDao.getOutTime();
-	}
-
-	@Override
-	public List<xsjsglxt_handle> getDetention() {
-		// TODO Auto-generated method stub
-
-		return handleDao.getDetention();
-	}
-
+	/*
+	 * @Override public Map<String, List<xsjsglxt_handle>> getOutTime() { //
+	 * TODO Auto-generated method stub return handleDao.getOutTime(); }
+	 * 
+	 * @Override public List<xsjsglxt_handle> getDetention() { // TODO
+	 * Auto-generated method stub
+	 * 
+	 * return handleDao.getDetention(); }
+	 */
 	@Override
 	public String saveIntroduceLetter(xsjsglxt_introduce_letter xsjsglxt_introduce_letter) {
 		// TODO Auto-generated method stub
@@ -191,16 +218,32 @@ public class HandleServiceImpl implements HandleService {
 
 	@Override
 	public xsjsglxt_introduce_letter getIntroduceLetterByIdObject(String xsjsglxt_introduce_letter_id) {
-		// TODO Auto-generated method stub
 		xsjsglxt_introduce_letter letter = handleDao.getIntroduceLetterById(xsjsglxt_introduce_letter_id);
 		return letter;
 	}
 
 	@Override
 	public String updateApproveStatus(xsjsglxt_introduce_letter letter) {
-		// TODO Auto-generated method stub
-
 		return handleDao.updateApproveStatus(letter);
 	}
 
+	@Override
+	public boolean updateSuspect(XsjsglxtHandleSuspect suspect) {
+		suspect.setHandleGmtModified(TeamUtil.getStringSecond());
+		return handleDao.updateObject(suspect);
+	}
+
+	@Override
+	public boolean removeSuspect(XsjsglxtHandleSuspect suspect) {
+		return handleDao.removeSuspect(suspect);
+	}
+
+	@Override
+	public boolean removeHandle(XsjsglxtHandle handle) {
+		List<XsjsglxtHandleSuspect> list = handleDao.getHandleSuspectByHandId(handle);
+		for (XsjsglxtHandleSuspect xsjsglxtHandleSuspect : list) {
+			handleDao.removeSuspect(xsjsglxtHandleSuspect);
+		}
+		return handleDao.removeHandle(handle);
+	}
 }

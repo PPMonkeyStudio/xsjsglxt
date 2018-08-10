@@ -86,32 +86,18 @@
 							</div>
 							<div class="panel-body">
 								<table
-									class="table table-hover table-condensed table-bordered Handle_table_info">
+									class="table table-condensed table-bordered Handle_table_info">
 									<thead>
 										<tr>
 											<td style="padding-left: 5px;" rowspan="2"><input
 												type="checkbox" onclick="selectAll(this)"><br>全选</td>
-											<td style="padding-left: 5px;" rowspan="2"><span
-												style="line-height: 70px;">序号</span></td>
-											<td rowspan="2"><span style="line-height: 70px;">案件名称</span></td>
-											<td rowspan="2"><span style="line-height: 70px;">嫌疑人</span></td>
-											<td colspan="6"><span>处理方式</span></td>
-											<td colspan="4"><span>涉案财物</span></td>
-											<td style="padding-left: 5px;" colspan="2"><span>承办人员</span></td>
-										</tr>
-										<tr>
-											<td style="padding-left: 5px;"><span>行政拘留</span></td>
-											<td><span>逮捕</span></td>
-											<td><span>起诉</span></td>
-											<td><span>退查</span></td>
-											<td><span>取保候审</span></td>
-											<td><span>监视居住</span></td>
-											<td><span>财物名称</span></td>
-											<td><span>上交时间</span></td>
-											<td><span>处理时间</span></td>
+											<td><span>案件名称</span></td>
+											<td><span>嫌疑人</span></td>
+											<td><span>性别</span></td>
 											<td><span>处理方式</span></td>
-											<td><span>中队长</span></td>
-											<td style="padding-left: 5px;"><span>办案民警</span></td>
+											<td><span>处理时间</span></td>
+											<td><span>随身财务</span></td>
+											<td><span>主办民警</span></td>
 										</tr>
 									</thead>
 									<tbody>
@@ -141,7 +127,7 @@
 		<!-- -模态框（Modal） -->
 		<div class="modal fade" id="Handle_input" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog" style="width:1000px;">
+			<div class="modal-dialog" style="width: 700px;">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"
@@ -155,134 +141,29 @@
 									<tbody>
 										<tr>
 											<td width="70px">案件名称</td>
-											<td colspan="4"><input class="form-control"
-												name="handle.handle_administrativeCase"></td>
-											<td>案件类别</td>
-											<td><select v-model="caseCategory" class="form-control">
-													<option value="1">刑事案件</option>
-													<option value="2">行政案件</option>
-											</select></td>
+											<td colspan="3"><input class="form-control"
+												id="handle_administrativeCase"></td>
 										</tr>
 										<tr>
 											<td width="70px">主办民警</td>
 											<td><input class="form-control"
-												name="handle.handle_suspectName" type="text"></td>
+												id="handleSponsoredPolice" type="text"></td>
 											<td width="70px">协办民警</td>
 											<td><input class="form-control"
-												name="handle.handle_suspectName" type="text"></td>
+												id="handleAssistingPolice" type="text"></td>
+										</tr>
+										<tr>
 											<td width="70px">侦查所长</td>
 											<td><input class="form-control"
-												name="handle.handle_suspectName" type="text"></td>
-											<td width="140px;">
-												<button type="button" class="btn btn-default"
-													@click="peopleNum.push(peopleNum[peopleNum.length-1]+1)">
-													<i class="fa fa-plus-square"></i> 添加嫌疑人
-												</button>
-											</td>
-											<!-- <td width="70px;"><input class="form-control"
-											name="handle.handle_suspectName" type="text"></td> -->
+												id="handleSquadronLeader" type="text"></td>
+											<td>案件类别</td>
+											<td><select v-model="caseCategory" class="form-control"
+												id="caseCategory">
+													<option value="刑事案件">刑事案件</option>
+													<option value="行政案件">行政案件</option>
+											</select></td>
 										</tr>
 									</tbody>
-								</table>
-								<table class="table table-condensed" width="100%">
-									<caption>嫌疑人基本情况</caption>
-									<template v-for="(num,index) in peopleNum">
-									<tbody>
-										<tr>
-											<td colspan="10"></td>
-										</tr>
-										<tr>
-											<td width="70px;">姓名</td>
-											<td width="85px;"><input type="text"
-												class="form-control"></td>
-
-											<td width="70px;">身份证号</td>
-											<td width="200px;"><input type="text"
-												class="form-control" /></td>
-
-											<td width="70px;">性别</td>
-											<td width="140px;"><input class="form-control"
-												type="text" /></td>
-
-											<td width="70px;">抓获时间</td>
-											<td width="140px;"><input type="text"
-												class="form-control mydate" /></td>
-
-											<td width="70px;">涉嫌罪名</td>
-											<td width="140px;"><input class="form-control"
-												type="text" /></td>
-										</tr>
-										<tr>
-											<td width="70px;">物品名称</td>
-											<td colspan="3"><input type="text" class="form-control"></td>
-
-											<td width="70px;">交移时间</td>
-											<td width="140px;"><input type="text"
-												class="form-control mydate"></td>
-
-											<td width="70px;">交移人</td>
-											<td width="140px;"><input type="text"
-												class="form-control"></td>
-
-											<td width="70px;">接收人</td>
-											<td width="140px;"><input type="text"
-												class="form-control"></td>
-										</tr>
-										<tr>
-											<td width="70px;">处理方式</td>
-											<td colspan="3"><input type="text" class="form-control"></td>
-
-											<td width="70px;">处理时间</td>
-											<td width="140px;"><input type="text"
-												class="form-control mydate"></td>
-
-											<td>照片</td>
-											<td colspan="2"></td>
-											<td><a href="javascript:;">添加</a></td>
-										</tr>
-										<tr>
-											<td colspan="2" style="text-align: left;">处理情况:</td>
-
-											<td width="70px;">处理类型</td>
-											<td width="200px;"><select id=""
-												@change="processingTypeChoose($event,index)"
-												class="form-control">
-													<option value="0">选择类型</option>
-													<!-- 刑事 -->
-													<template v-if="caseCategory==1">
-													<option value="1">拘留</option>
-													<option value="2">逮捕</option>
-													<option value="3">起诉</option>
-													<option value="4">退查</option>
-													<option value="5">监视居住</option>
-													<option value="6">取保候审</option>
-													<option value="7">释放</option>
-													</template>
-													<!-- 行政 -->
-													<template v-if="caseCategory==2">
-													<option value="8">拘留</option>
-													<option value="9">罚款</option>
-													</template>
-											</select></td>
-
-											<td width="70px;"><span timeIndex="index">起始时间</span></td>
-											<td width="140px;"><input type="text"
-												class="form-control mydate"></td>
-
-											<td width="70px;"><span
-												v-show="dayShow[index]&&caseCategory==1">天数</span></td>
-											<td width="140px;"><select
-												v-show="dayShow[index]&&caseCategory==1"
-												class="form-control">
-													<option value="3">3天</option>
-													<option value="7">7天</option>
-													<option value="30">30天</option>
-											</select></td>
-											<td></td>
-											<td><a href="javascript:;" @click="peopleNum.pop()">移除该嫌疑人</a></td>
-										</tr>
-									</tbody>
-									</template>
 								</table>
 							</div>
 						</form>
@@ -290,7 +171,8 @@
 					<div class="modal-footer">
 						<button id="" style="display: none;" type="button"
 							class="btn btn-primary handle_modify">修改</button>
-						<button type="button" class="btn btn-primary handle_input">添加</button>
+						<button type="button" class="btn btn-primary"
+							onclick="handleInput()">添加</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 					</div>
 				</div>
