@@ -2,8 +2,6 @@ package com.xsjsglxt.service.impl.Scheduling;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 import com.xsjsglxt.dao.Scheduling.SchedulingDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_scheduling;
@@ -76,6 +74,9 @@ public class SchedulingServiceImpl implements SchedulingService {
 	public boolean updateScheduling(xsjsglxt_scheduling scheduling) {
 		// TODO Auto-generated method stub
 		xsjsglxt_scheduling oldScheduling = schedulingDao.getSchedulingByDate(scheduling);
+		scheduling.setScheduling_log(oldScheduling.getScheduling_log());
+		scheduling.setScheduling_gun_send(oldScheduling.getScheduling_gun_send());
+		scheduling.setScheduling_gun_reveiver(oldScheduling.getScheduling_gun_reveiver());
 		if (oldScheduling != null && oldScheduling.getXsjsglxt_scheduling_id() != null
 				&& oldScheduling.getXsjsglxt_scheduling_id().trim().length() > 0) {
 			if (!oldScheduling.getXsjsglxt_scheduling_id().trim()
@@ -152,7 +153,11 @@ public class SchedulingServiceImpl implements SchedulingService {
 	@Override
 	public boolean updateSchedulingLog(xsjsglxt_scheduling scheduling) {
 		try {
-			schedulingDao.updateScheduling(scheduling);
+			xsjsglxt_scheduling oldScheduling = schedulingDao.getSchedulingById(scheduling.getXsjsglxt_scheduling_id());
+			oldScheduling.setScheduling_log(scheduling.getScheduling_log());
+			oldScheduling.setScheduling_gun_reveiver(scheduling.getScheduling_gun_reveiver());
+			oldScheduling.setScheduling_gun_send(scheduling.getScheduling_gun_send());
+			oldScheduling.setScheduling_gmt_modified(TeamUtil.getStringSecond());
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;

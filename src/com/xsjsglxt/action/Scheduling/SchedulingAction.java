@@ -80,21 +80,6 @@ public class SchedulingAction extends ActionSupport {
 
 	// -----------------------保存值班表
 	public void saveScheduling() {
-		// boolean flag = schedulingService.saveScheduling(scheduling);
-		// HttpServletResponse response = ServletActionContext.getResponse();
-		// response.setContentType("text/html;charset=utf-8");
-		// try {
-		// PrintWriter pw = response.getWriter();
-		// if (flag) {
-		// pw.write("saveSuccess");
-		// } else {
-		// pw.write("saveError"); // 改日期已被占用
-		// }
-		// pw.flush();
-		// pw.close();
-		// } catch (IOException e) {
-		// e.printStackTrace();
-		// }
 		// ------------------------获得所有待排班人员
 		xsjsglxt_scheduling schedulingTemp = null;
 		for (int i = 0; i < scheduling_days; i++) {
@@ -106,9 +91,10 @@ public class SchedulingAction extends ActionSupport {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			System.out.println(indexDays);
 			Calendar c = Calendar.getInstance();
 			c.setTime(d);
-			c.set(Calendar.DAY_OF_MONTH, i + 1);
+			c.add(Calendar.DAY_OF_MONTH, i);
 			schedulingTemp = new xsjsglxt_scheduling();
 			schedulingTemp.setScheduling_leader(leader[i % leader.length]);
 			schedulingTemp.setScheduling_main(main[i % main.length]);
@@ -125,6 +111,7 @@ public class SchedulingAction extends ActionSupport {
 			schedulingTemp.setScheduling_main_doctor(mainDoctor[i % mainDoctor.length]);
 			schedulingTemp.setScheduling_assistant_spy(assistantSpy[i % assistantSpy.length]);
 			schedulingTemp.setScheduling_assistant_tech(assistantTech[i % assistantTech.length]);
+			System.out.println(sdf.format(c.getTime()));
 			schedulingTemp.setScheduling_time(sdf.format(c.getTime()));
 			c.clear();
 			boolean flag = schedulingService.saveScheduling(schedulingTemp);
@@ -173,8 +160,9 @@ public class SchedulingAction extends ActionSupport {
 			e.printStackTrace();
 		}
 	}
+
 	// ----------------------修改值日志
-	public void updateSchedulingLog(){
+	public void updateSchedulingLog() {
 		boolean flag = false;
 		flag = schedulingService.updateSchedulingLog(scheduling);
 		HttpServletResponse response = ServletActionContext.getResponse();
@@ -190,6 +178,7 @@ public class SchedulingAction extends ActionSupport {
 			e.printStackTrace();
 		}
 	}
+
 	// ----------------------修改值班表
 	public void updateScheduling() {
 		boolean flag = false;

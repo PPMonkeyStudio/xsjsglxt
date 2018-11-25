@@ -1,9 +1,10 @@
 package com.xsjsglxt.domain.DO;
 
+//连带破案表
 public class xsjsglxt_takeBreakeCase {
-	private String take_id;
-	private String take_name;
-	private String take_case;
+	private String take_id;// 连带破案id
+	private String take_name;// 连带破案名
+	private String take_case;// 所属破案
 	private String take_gmt_create;
 	private String take_gmt_modified;
 

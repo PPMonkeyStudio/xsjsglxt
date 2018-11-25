@@ -1,25 +1,23 @@
 package com.xsjsglxt.domain.DO;
 
+//痕迹检验记录表
 public class xsjsglxt_inspection_record {
 
-	// 物证id
-	private String inspectionEvidenceId;
-	// 案件id
-	private String inspectionCaseId;
-
-	private String xsjsglxt_inspection_record_id;
-	private String inspection_belong_entrustment_book;
-	private String inspection_check_material_situation;
-	private String inspection_sample_situation;
-	private String inspection_equipment;
-	private String inspection_method;
-	private String inspection_start_time;
-	private String inspection_stop_time;
-	private String inspection_location;
-	private String inspection_people;
-	private String inspection_process;
-	private String inspection_option;
-	private String inspection_mark;
+	private String xsjsglxt_inspection_record_id;// 检验记录ID
+	private String inspection_belong_entrustment_book;// 所属委托书
+	private String inspectionEvidenceId; // 物证id
+	private String inspectionCaseId; // 案件id
+	private String inspection_check_material_situation;// 检材情况
+	private String inspection_sample_situation;// 样本情况
+	private String inspection_equipment;// 检验设备
+	private String inspection_method;// 检验方法
+	private String inspection_start_time;// 检验开始时间
+	private String inspection_stop_time;// 检验结束时间
+	private String inspection_location;// 检验地点
+	private String inspection_people;// 检验人
+	private String inspection_process;// 检验过程
+	private String inspection_option;// 检验意见
+	private String inspection_mark;// 备注
 	private String inspection_gmt_create;
 	private String inspection_gmt_modified;
 

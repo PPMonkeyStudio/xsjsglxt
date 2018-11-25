@@ -7,12 +7,12 @@ package com.xsjsglxt.domain.DO;
  *       警员工作调动表
  */
 public class xsjsglxt_staffMove {
-	private String xsjsglxt_staffMove_id;
-	private String staffMove_staff;
-	private String staffMove_inTime;
-	private String staffMove_outTime;
-	private String staffMove_guard;
-	private String staffMove_remarks;
+	private String xsjsglxt_staffMove_id;// 工作调动id
+	private String staffMove_staff;// 所属警员
+	private String staffMove_inTime;// 调入时间
+	private String staffMove_outTime;// 调出时间
+	private String staffMove_guard;// 是否在岗
+	private String staffMove_remarks;// 备注
 	private String staffMove_gmt_create;
 	private String staffMove_gmt_modified;
 

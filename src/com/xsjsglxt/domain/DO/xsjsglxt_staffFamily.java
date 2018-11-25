@@ -7,17 +7,17 @@ package com.xsjsglxt.domain.DO;
  *       警员家庭成员信息
  */
 public class xsjsglxt_staffFamily {
-	private String xsjsglxt_staffFamily_id;
-	private String staffFamily_staff;
-	private String staffFamily_contactsRelationship;
-	private String staffFamily_name;
-	private String staffFamily_IDcard;
-	private String staffFamily_birthday;
-	private String staffFamily_tel;
-	private String staffFamily_WeiXin;
-	private String staffFamily_workSpace;
-	private String staffFamily_duty;
-	private String staffFamily_remarks;
+	private String xsjsglxt_staffFamily_id;// 家庭成员id
+	private String staffFamily_staff;// 所属警员
+	private String staffFamily_contactsRelationship;// 关系
+	private String staffFamily_name;// 名字
+	private String staffFamily_IDcard;// 身份证号码
+	private String staffFamily_birthday;// 出生日期
+	private String staffFamily_tel;// 手机号码
+	private String staffFamily_WeiXin;// 微信号
+	private String staffFamily_workSpace;// 工作地点
+	private String staffFamily_duty;// 职务
+	private String staffFamily_remarks;// 备注
 	private String staffFamily_gmt_create;
 	private String staffFamily_gmt_modified;
 

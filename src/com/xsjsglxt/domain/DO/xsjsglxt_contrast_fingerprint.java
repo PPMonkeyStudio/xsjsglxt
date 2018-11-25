@@ -1,5 +1,6 @@
 package com.xsjsglxt.domain.DO;
 
+//废表
 public class xsjsglxt_contrast_fingerprint {
 	private String contrast_fingerprint_id;// ID
 	private String contrast_fingerprint_time;// 对比时间

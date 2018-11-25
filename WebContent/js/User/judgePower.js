@@ -46,7 +46,6 @@ function deleteByPower(userBlock, useClassName, managerClassName) {
 				});
 				break;
 			}
-			// $("#hideLayer").hide();
 		}
 	}
 }

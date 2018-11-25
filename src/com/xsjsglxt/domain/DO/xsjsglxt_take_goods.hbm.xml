@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-10-20 17:11:45 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_take_goods" table="XSJSGLXT_TAKE_GOODS">
+        <id name="goods_id" type="java.lang.String">
+            <column name="GOODS_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="goods_suspect" type="java.lang.String">
+            <column name="GOODS_SUSPECT" />
+        </property>
+        <property name="goods_name" type="java.lang.String">
+            <column name="GOODS_NAME" />
+        </property>
+        <property name="goods_time" type="java.lang.String">
+            <column name="GOODS_TIME" />
+        </property>
+        <property name="goods_send_man" type="java.lang.String">
+            <column name="GOODS_SEND_MAN" />
+        </property>
+        <property name="goods_receive_man" type="java.lang.String">
+            <column name="GOODS_RECEIVE_MAN" />
+        </property>
+        <property name="goods_process_method" type="java.lang.String">
+            <column name="GOODS_PROCESS_METHOD" />
+        </property>
+        <property name="goods_process_time" type="java.lang.String">
+            <column name="GOODS_PROCESS_TIME" />
+        </property>
+        <property name="goods_photo_path" type="java.lang.String">
+            <column name="GOODS_PHOTO_PATH" />
+        </property>
+        <property name="goods_gmt_create" type="java.lang.String">
+            <column name="GOODS_GMT_CREATE" />
+        </property>
+        <property name="goods_gmt_modified" type="java.lang.String">
+            <column name="GOODS_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>

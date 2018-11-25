@@ -8,14 +8,25 @@
 		scope="prototype">
 		<property name="handleService" ref="handleService"></property>
 	</bean>
+	<bean id="dealCaseAction" class="com.xsjsglxt.action.Case.DealCaseAction">
+		<property name="dealCaseService" ref="dealCaseService"></property>
+	</bean>
 
 	<bean id="handleService" class="com.xsjsglxt.service.impl.Case.HandleServiceImpl">
 		<property name="handleDao" ref="handleDao"></property>
 	</bean>
+	<bean id="dealCaseService" class="com.xsjsglxt.service.impl.Case.DealCaseServiceImpl">
+		<property name="dealCaseDao" ref="dealCaseDao"></property>
+	</bean>
+
 
 	<bean id="handleDao" class="com.xsjsglxt.dao.impl.Case.HandleDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<bean id="dealCaseDao" class="com.xsjsglxt.dao.impl.Case.DealCaseDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
 
 
 </beans>

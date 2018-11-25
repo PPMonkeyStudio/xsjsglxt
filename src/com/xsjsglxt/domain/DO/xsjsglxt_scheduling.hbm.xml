@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2018-7-10 14:15:11 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2018-11-17 12:39:41 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="com.xsjsglxt.domain.DO.xsjsglxt_scheduling" table="XSJSGLXT_SCHEDULING">
         <id name="xsjsglxt_scheduling_id" type="java.lang.String">
@@ -41,14 +41,20 @@
         <property name="scheduling_time" type="java.lang.String">
             <column name="SCHEDULING_TIME" />
         </property>
+        <property name="scheduling_log" type="java.lang.String">
+            <column name="SCHEDULING_LOG" />
+        </property>
+        <property name="scheduling_gun_reveiver" type="java.lang.String">
+            <column name="SCHEDULING_GUN_REVEIVER" />
+        </property>
+        <property name="scheduling_gun_send" type="java.lang.String">
+            <column name="SCHEDULING_GUN_SEND" />
+        </property>
         <property name="scheduling_gmt_create" type="java.lang.String">
             <column name="SCHEDULING_GMT_CREATE" />
         </property>
         <property name="scheduling_gmt_modified" type="java.lang.String">
             <column name="SCHEDULING_GMT_MODIFIED" />
-        </property>
-        <property name="scheduling_log" type="java.lang.String">
-            <column name="SCHEDULING_LOG" />
         </property>
     </class>
 </hibernate-mapping>

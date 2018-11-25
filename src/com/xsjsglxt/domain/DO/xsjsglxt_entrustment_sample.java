@@ -1,25 +1,30 @@
 package com.xsjsglxt.domain.DO;
 
+//检材表
 public class xsjsglxt_entrustment_sample {
-	private String xsjsglxt_entrustment_sample_id;
-	private String entrustment_sample_belong_entrustment_book;
-	private String entrustment_sample_num;
-	private String entrustment_sample_name;
-	private String entrustment_sample_position;
-	private String entrustment_sample_way;
-	private String entrustment_sample_amount;
-	private String entrustment_sample_packaging;
-	private String entrustment_sample_use;
+	private String xsjsglxt_entrustment_sample_id;// id
+	private String entrustment_sample_belong_entrustment_book;// 所属委托书
+	private String entrustment_sample_num;// 编号
+	private String entrustment_sample_name;// 检材名称
+	private String entrustment_sample_position;// 提取部位
+	private String entrustment_sample_way;// 提取方法
+	private String entrustment_sample_amount;// 数量
+	private String entrustment_sample_packaging;// 包装
+	private String entrustment_sample_use;// 用途
 	private String entrustment_sample_gmt_create;
 	private String entrustment_sample_gmt_modified;
 
 	@Override
 	public String toString() {
-		return "xsjsglxt_entrustment_sample [xsjsglxt_entrustment_sample_id=" + xsjsglxt_entrustment_sample_id + ", entrustment_sample_belong_entrustment_book="
-				+ entrustment_sample_belong_entrustment_book + ", entrustment_sample_num=" + entrustment_sample_num + ", entrustment_sample_name=" + entrustment_sample_name
-				+ ", entrustment_sample_position=" + entrustment_sample_position + ", entrustment_sample_way=" + entrustment_sample_way + ", entrustment_sample_amount="
-				+ entrustment_sample_amount + ", entrustment_sample_packaging=" + entrustment_sample_packaging + ", entrustment_sample_use=" + entrustment_sample_use
-				+ ", entrustment_sample_gmt_create=" + entrustment_sample_gmt_create + ", entrustment_sample_gmt_modified=" + entrustment_sample_gmt_modified + "]";
+		return "xsjsglxt_entrustment_sample [xsjsglxt_entrustment_sample_id=" + xsjsglxt_entrustment_sample_id
+				+ ", entrustment_sample_belong_entrustment_book=" + entrustment_sample_belong_entrustment_book
+				+ ", entrustment_sample_num=" + entrustment_sample_num + ", entrustment_sample_name="
+				+ entrustment_sample_name + ", entrustment_sample_position=" + entrustment_sample_position
+				+ ", entrustment_sample_way=" + entrustment_sample_way + ", entrustment_sample_amount="
+				+ entrustment_sample_amount + ", entrustment_sample_packaging=" + entrustment_sample_packaging
+				+ ", entrustment_sample_use=" + entrustment_sample_use + ", entrustment_sample_gmt_create="
+				+ entrustment_sample_gmt_create + ", entrustment_sample_gmt_modified=" + entrustment_sample_gmt_modified
+				+ "]";
 	}
 
 	public String getXsjsglxt_entrustment_sample_id() {

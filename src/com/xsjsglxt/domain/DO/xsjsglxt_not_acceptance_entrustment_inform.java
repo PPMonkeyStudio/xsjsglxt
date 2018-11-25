@@ -1,24 +1,31 @@
 package com.xsjsglxt.domain.DO;
 
+//不受理委托鉴定告知表
 public class xsjsglxt_not_acceptance_entrustment_inform {
-	private String xsjsglxt_not_acceptance_entrustment_inform_id;
-	private String not_acceptance_entrustment_inform_belong_entrustment_book;
-	private String not_acceptance_entrustment_inform_reason;
-	private String not_acceptance_entrustment_inform_inputhuman_name;
-	private String not_acceptance_entrustment_inform_approvalhuman_name;
-	private String not_acceptance_entrustment_inform_approval_time;
-	private String not_acceptance_entrustment_inform_gmt_create;
-	private String not_acceptance_entrustment_inform_gmt_modified;
+	private String xsjsglxt_not_acceptance_entrustment_inform_id;// 不受理委托鉴定告知ID
+	private String not_acceptance_entrustment_inform_belong_entrustment_book;// 所属委托书
+	private String not_acceptance_entrustment_inform_reason;// 不予受理理由
+	private String not_acceptance_entrustment_inform_inputhuman_name;// 填表人
+	private String not_acceptance_entrustment_inform_approvalhuman_name;// 批准人
+	private String not_acceptance_entrustment_inform_approval_time;// 批准时间
+	private String not_acceptance_entrustment_inform_gmt_create;//
+	private String not_acceptance_entrustment_inform_gmt_modified;//
 
 	@Override
 	public String toString() {
-		return "xsjsglxt_not_acceptance_entrustment_inform [xsjsglxt_not_acceptance_entrustment_inform_id=" + xsjsglxt_not_acceptance_entrustment_inform_id
-				+ ", not_acceptance_entrustment_inform_belong_entrustment_book=" + not_acceptance_entrustment_inform_belong_entrustment_book
-				+ ", not_acceptance_entrustment_inform_reason=" + not_acceptance_entrustment_inform_reason + ", not_acceptance_entrustment_inform_inputhuman_name="
-				+ not_acceptance_entrustment_inform_inputhuman_name + ", not_acceptance_entrustment_inform_approvalhuman_name="
-				+ not_acceptance_entrustment_inform_approvalhuman_name + ", not_acceptance_entrustment_inform_approval_time=" + not_acceptance_entrustment_inform_approval_time
-				+ ", not_acceptance_entrustment_inform_gmt_create=" + not_acceptance_entrustment_inform_gmt_create + ", not_acceptance_entrustment_inform_gmt_modified="
-				+ not_acceptance_entrustment_inform_gmt_modified + "]";
+		return "xsjsglxt_not_acceptance_entrustment_inform [xsjsglxt_not_acceptance_entrustment_inform_id="
+				+ xsjsglxt_not_acceptance_entrustment_inform_id
+				+ ", not_acceptance_entrustment_inform_belong_entrustment_book="
+				+ not_acceptance_entrustment_inform_belong_entrustment_book
+				+ ", not_acceptance_entrustment_inform_reason=" + not_acceptance_entrustment_inform_reason
+				+ ", not_acceptance_entrustment_inform_inputhuman_name="
+				+ not_acceptance_entrustment_inform_inputhuman_name
+				+ ", not_acceptance_entrustment_inform_approvalhuman_name="
+				+ not_acceptance_entrustment_inform_approvalhuman_name
+				+ ", not_acceptance_entrustment_inform_approval_time=" + not_acceptance_entrustment_inform_approval_time
+				+ ", not_acceptance_entrustment_inform_gmt_create=" + not_acceptance_entrustment_inform_gmt_create
+				+ ", not_acceptance_entrustment_inform_gmt_modified=" + not_acceptance_entrustment_inform_gmt_modified
+				+ "]";
 	}
 
 	public String getXsjsglxt_not_acceptance_entrustment_inform_id() {
@@ -57,7 +64,8 @@ public class xsjsglxt_not_acceptance_entrustment_inform {
 		this.xsjsglxt_not_acceptance_entrustment_inform_id = xsjsglxt_not_acceptance_entrustment_inform_id;
 	}
 
-	public void setNot_acceptance_entrustment_inform_belong_entrustment_book(String not_acceptance_entrustment_inform_belong_entrustment_book) {
+	public void setNot_acceptance_entrustment_inform_belong_entrustment_book(
+			String not_acceptance_entrustment_inform_belong_entrustment_book) {
 		this.not_acceptance_entrustment_inform_belong_entrustment_book = not_acceptance_entrustment_inform_belong_entrustment_book;
 	}
 
@@ -65,15 +73,18 @@ public class xsjsglxt_not_acceptance_entrustment_inform {
 		this.not_acceptance_entrustment_inform_reason = not_acceptance_entrustment_inform_reason;
 	}
 
-	public void setNot_acceptance_entrustment_inform_inputhuman_name(String not_acceptance_entrustment_inform_inputhuman_name) {
+	public void setNot_acceptance_entrustment_inform_inputhuman_name(
+			String not_acceptance_entrustment_inform_inputhuman_name) {
 		this.not_acceptance_entrustment_inform_inputhuman_name = not_acceptance_entrustment_inform_inputhuman_name;
 	}
 
-	public void setNot_acceptance_entrustment_inform_approvalhuman_name(String not_acceptance_entrustment_inform_approvalhuman_name) {
+	public void setNot_acceptance_entrustment_inform_approvalhuman_name(
+			String not_acceptance_entrustment_inform_approvalhuman_name) {
 		this.not_acceptance_entrustment_inform_approvalhuman_name = not_acceptance_entrustment_inform_approvalhuman_name;
 	}
 
-	public void setNot_acceptance_entrustment_inform_approval_time(String not_acceptance_entrustment_inform_approval_time) {
+	public void setNot_acceptance_entrustment_inform_approval_time(
+			String not_acceptance_entrustment_inform_approval_time) {
 		this.not_acceptance_entrustment_inform_approval_time = not_acceptance_entrustment_inform_approval_time;
 	}
 
@@ -81,7 +92,8 @@ public class xsjsglxt_not_acceptance_entrustment_inform {
 		this.not_acceptance_entrustment_inform_gmt_create = not_acceptance_entrustment_inform_gmt_create;
 	}
 
-	public void setNot_acceptance_entrustment_inform_gmt_modified(String not_acceptance_entrustment_inform_gmt_modified) {
+	public void setNot_acceptance_entrustment_inform_gmt_modified(
+			String not_acceptance_entrustment_inform_gmt_modified) {
 		this.not_acceptance_entrustment_inform_gmt_modified = not_acceptance_entrustment_inform_gmt_modified;
 	}
 

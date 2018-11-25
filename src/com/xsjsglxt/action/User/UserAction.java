@@ -81,11 +81,6 @@ public class UserAction extends ActionSupport {
 			pw.write("exception");
 		} else {
 			xsjsglxt_user xu = userService.getUserById(user_id);
-			// userBlock = userBlock.substring(0, 1).toUpperCase() +
-			// userBlock.substring(1);
-			// System.out.println(userBlock);
-			// Method method = xu.getClass().getMethod("get" + userBlock, null);
-			// String result = (String) method.invoke(xu, null);
 			Gson gson = new Gson();
 			String result = gson.toJson(xu);
 			pw.write(result);

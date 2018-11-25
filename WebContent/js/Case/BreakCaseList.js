@@ -69,7 +69,7 @@ var SuspectData = `<table class="table">
 <tr><td>姓名</th><td><input class="form-control must" name="breakecaseSuspect_name" type="text" value=""></td>
     <td>身份证号</th><td><input class="form-control must su-IDnum" name="breakecaseSuspect_IDnum" type="text" value=""></td></tr>
 <tr><td>性别</th><td><input class="form-control must su-sex" name="breakecaseSuspect_sex" type="text" value=""></td>
-    <td>生日</th><td><input class="form-control must su-birthday" name="breakecaseSuspect_birthday" type="text" value=""></td></tr>
+    <td>生日</th><td><input class="form-control must mydate su-birthday" name="breakecaseSuspect_birthday" type="text" value=""></td></tr>
 <tr><td>住址</th><td><input class="form-control must" name="breakecaseSuspect_addrress" type="text" value=""></td>
 	<td>是否抓获</th><td><select class="form-control must" name="breakecaseSuspect_capture"><option>是</option><option>否</ption>
 <option>其他</option></select></td></tr>
@@ -560,7 +560,7 @@ function Suspect_mo_del(TypeBreakeCase, type) {
 								<tr><td>姓名</td><td><input class="form-control must" name="breakecaseSuspect_name" type="text" value="${all_td.eq(0).text()}"></td>
 									<td>身份证号</td><td><input class="form-control must" name="breakecaseSuspect_IDnum" type="text" value="${all_td.eq(1).text()}"></td></tr>
 								<tr><td>性别</td><td><input class="form-control must" name="breakecaseSuspect_sex" type="text" value="${all_td.eq(2).text()}"></td>
-									<td>生日</td><td><input class="form-control must" name="breakecaseSuspect_birthday" type="text" value="${all_td.eq(3).text()}"></td></tr>
+									<td>生日</td><td><input class="form-control must mydate" name="breakecaseSuspect_birthday" type="text" value="${all_td.eq(3).text()}"></td></tr>
 								<tr><td>住址</td><td><input class="form-control must" name="breakecaseSuspect_addrress" type="text" value="${all_td.eq(4).text()}"></td>
 									<td>是否抓获</td><td><select class="form-control must" name="breakecaseSuspect_capture" type="text" value="${all_td.eq(5).text()}"><option>是</option><option>否</option></select></td></tr>
 								<tr><td>抓获单位</td><td><input class="form-control must" name="breakecaseSuspect_captureUnit" type="text" value="${all_td.eq(6).text()}"></td>

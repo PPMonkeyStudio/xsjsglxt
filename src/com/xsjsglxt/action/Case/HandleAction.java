@@ -359,6 +359,8 @@ public class HandleAction extends ActionSupport implements ServletRequestAware, 
 		}
 	}
 
+	// -----------------------------------setter/getter----------------------------
+
 	@Override
 	public void setServletResponse(HttpServletResponse arg0) {
 		// TODO Auto-generated method stub

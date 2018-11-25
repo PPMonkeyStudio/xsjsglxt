@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-10-20 17:11:45 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xsjsglxt.domain.DO.xsjsglxt_suspect_infor" table="XSJSGLXT_SUSPECT_INFOR">
+        <id name="suspect_id" type="java.lang.String">
+            <column name="SUSPECT_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="suspect_case" type="java.lang.String">
+            <column name="SUSPECT_CASE" />
+        </property>
+        <property name="suspect_name" type="java.lang.String">
+            <column name="SUSPECT_NAME" />
+        </property>
+        <property name="suspect_sex" type="int">
+            <column name="SUSPECT_SEX" />
+        </property>
+        <property name="suspect_identification" type="java.lang.String">
+            <column name="SUSPECT_IDENTIFICATION" />
+        </property>
+        <property name="suspect_captured_time" type="java.lang.String">
+            <column name="SUSPECT_CAPTURED_TIME" />
+        </property>
+        <property name="suspect_crime_name" type="java.lang.String">
+            <column name="SUSPECT_CRIME_NAME" />
+        </property>
+        <property name="suspect_process_type" type="int">
+            <column name="SUSPECT_PROCESS_TYPE" />
+        </property>
+        <property name="suspect_start_time" type="java.lang.String">
+            <column name="SUSPECT_START_TIME" />
+        </property>
+        <property name="suspect_process_long" type="int">
+            <column name="SUSPECT_PROCESS_LONG" />
+        </property>
+        <property name="suspect_warn_time" type="int">
+            <column name="SUSPECT_WARN_TIME" />
+        </property>
+
+        <property name="suspect_end_time" type="java.lang.String">
+            <column name="SUSPECT_END_TIME" />
+        </property>
+        <property name="suspect_gmt_create" type="java.lang.String">
+            <column name="SUSPECT_GMT_CREATE" />
+        </property>
+        <property name="suspect_gmt_modified" type="java.lang.String">
+            <column name="SUSPECT_GMT_MODIFIED" />
+        </property>
+    </class>
+</hibernate-mapping>

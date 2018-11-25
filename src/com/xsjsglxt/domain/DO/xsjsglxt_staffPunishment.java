@@ -7,11 +7,11 @@ package com.xsjsglxt.domain.DO;
  *        警员处分情况类
  */
 public class xsjsglxt_staffPunishment {
-	private String xsjsglxt_staffPunishment_id;
+	private String xsjsglxt_staffPunishment_id;// 处分id
 	private String staffPunishment_staff;
-	private String staffPunishment_situation;
-	private String staffPunishment_Time;
-	private String staffPunishment_remarks;
+	private String staffPunishment_situation;// 处分情况
+	private String staffPunishment_Time;// 处分时间
+	private String staffPunishment_remarks;// 备注
 	private String staffPunishment_gmt_create;
 	private String staffPunishment_gmt_modified;
 

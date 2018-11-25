@@ -7,14 +7,14 @@ package com.xsjsglxt.domain.DO;
  *       警员休假情况表
  */
 public class xsjsglxt_staffFurlough {
-	private String xsjsglxt_staffFurlough_id;
-	private String staffFurlough_staff;
-	private String staffFurlough_mainContent;
-	private String staffFurlough_startTime;
-	private String staffFurlough_days;
-	private String staffFurlough_whetherStop;
-	private String staffFurlough_stopTime;
-	private String staffFurlough_remarks;
+	private String xsjsglxt_staffFurlough_id;// 休假id
+	private String staffFurlough_staff;// 所属警员
+	private String staffFurlough_mainContent;// 请假事由
+	private String staffFurlough_startTime;// 开始时间
+	private String staffFurlough_days;// 天数
+	private String staffFurlough_whetherStop;// 是否销假
+	private String staffFurlough_stopTime;// 结束时间
+	private String staffFurlough_remarks;// 备注
 	private String staffFurlough_gmt_create;
 	private String staffFurlough_gmt_modified;
 

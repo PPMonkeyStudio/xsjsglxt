@@ -1,10 +1,10 @@
 package com.xsjsglxt.domain.DO;
 
-//委托书
+//检验委托书表
 public class xsjsglxt_check_entrustment_book {
+	private String xsjsglxt_check_entrustment_book_id;// 痕迹检验委托书ID
 	private String checkEvidenceId;// 物证id
 	private String checkCaseId;// 案件id
-	private String xsjsglxt_check_entrustment_book_id;// 痕迹检验委托书ID
 	private String check_entrustment_book_physical_evidence;// 所属物证
 	private String check_entrustment_book_num;// 委托书编号
 	private String check_entrustment_book_entrustment_unit;// 鉴定委托单位

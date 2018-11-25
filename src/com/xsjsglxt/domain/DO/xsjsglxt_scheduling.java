@@ -13,9 +13,11 @@ public class xsjsglxt_scheduling {
 	private String scheduling_out_help;// 外出协助
 	private String scheduling_evection;// 出差人员
 	private String scheduling_time; // 时间
+	private String scheduling_log;// 日志
+	private String scheduling_gun_reveiver;// 枪支接收人
+	private String scheduling_gun_send;// 枪支移交人
 	private String scheduling_gmt_create;
 	private String scheduling_gmt_modified;
-	private String scheduling_log;// 日志
 
 	public String getScheduling_main_doctor() {
 		return scheduling_main_doctor;
@@ -135,5 +137,21 @@ public class xsjsglxt_scheduling {
 
 	public void setScheduling_log(String scheduling_log) {
 		this.scheduling_log = scheduling_log;
+	}
+
+	public String getScheduling_gun_reveiver() {
+		return scheduling_gun_reveiver;
+	}
+
+	public void setScheduling_gun_reveiver(String scheduling_gun_reveiver) {
+		this.scheduling_gun_reveiver = scheduling_gun_reveiver;
+	}
+
+	public String getScheduling_gun_send() {
+		return scheduling_gun_send;
+	}
+
+	public void setScheduling_gun_send(String scheduling_gun_send) {
+		this.scheduling_gun_send = scheduling_gun_send;
 	}
 }

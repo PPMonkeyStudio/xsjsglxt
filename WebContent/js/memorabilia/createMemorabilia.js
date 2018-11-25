@@ -9,7 +9,7 @@ var createConfirm = function() {
 				title : '<i class="fa fa-pencil-square-o"></i>填写大事记',
 				type : 'green',
 				content : "<div id='addLoadingLayer' class='hideDiv' style='margin: 0 auto; width: 45px;'><i class='fa fa-spinner fa-spin fa-3x fa-fw'></i></div>"
-						+ "<div id='confirmDiv'><form id='memorabiliaForm' name='memorabiliaForm'><table class='table table-bordered' style='text-align: center;'>"
+						+ "<div id='confirmDiv'><form id='memorabiliaForm' name='memorabiliaForm'><table class='table table-bordered'>"
 						+ "<tr><td>大事记标题：</td><td><input name='memorabilia.memorabilia_title' class='form-control' type='text'></td>"
 						+ "<td>时间：</td><td><input name='memorabilia.memorabilia_time' class='form-control timeDate' type='text'></td></tr>"
 						+ "<tr><td>参与人员：</td><td colspan='3'><input name='memorabilia.memorabilia_join_human' class='form-control' type='text'></td></tr>"

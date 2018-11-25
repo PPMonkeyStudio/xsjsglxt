@@ -7,11 +7,11 @@ package com.xsjsglxt.domain.DO;
  *       警员违纪情况类
  */
 public class xsjsglxt_staffPrinciple {
-	private String xsjsglxt_staffPrinciple_id;
-	private String staffPrinciple_staff;
-	private String staffPrinciple_situation;
-	private String staffPrinciple_Time;
-	private String staffPrinciple_remarks;
+	private String xsjsglxt_staffPrinciple_id;// 违纪id
+	private String staffPrinciple_staff;// 所属警员
+	private String staffPrinciple_situation;// 违纪情况
+	private String staffPrinciple_Time;// 违纪时间
+	private String staffPrinciple_remarks;// 备注
 	private String staffPrinciple_gmt_create;
 	private String staffPrinciple_gmt_modified;
 

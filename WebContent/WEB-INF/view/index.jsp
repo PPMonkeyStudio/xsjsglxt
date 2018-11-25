@@ -37,10 +37,6 @@
 									+ "、" + result.scheduling_assistant_spy;
 							if (result.scheduling_patrol != null)
 								document.getElementById("patrol").innerHTML = result.scheduling_patrol;
-							/* 							if (result.scheduling_out_help != null)
-							 document.getElementById("outHelp").innerHTML = result.scheduling_out_help;
-							 if (result.scheduling_overtime != null)
-							 document.getElementById("overtime").innerHTML = result.scheduling_overtime; */
 						}
 					}
 				});
@@ -187,31 +183,24 @@
 							<p class="panel-subtitle" style="margin-top: 20px;">
 								当前时间是：<span id="current_time"></span>
 							</p>
-
 						</div>
-						<div class="panel-body">
-							<div style="height: 40px;">
-								<h3 style="display: inline-block; margin-left: 130px;">办理通知</h3>
-								<h3 style="display: inline-block; margin-left: 270px;">拘留通知</h3>
-								<h3 style="display: inline-block; margin-left: 210px;">取保候审通知</h3>
-							</div>
-							<div style="height: 550px; width: 980px; margin: 40px;">
-								<div class="mesaageDIV"
-									style="border: 1px solid #BFBFBF; box-shadow: 0px 0px 10px 5px #aaa; width: 300px; height: 400px; float: left; margin-right: 10px;">
-									<ul class="message" id="handleExceed">
-									</ul>
-								</div>
-								<div class="mesaageDIV"
-									style="border: 1px solid #BFBFBF; box-shadow: 0px 0px 10px 5px #aaa; width: 280px; height: 400px; float: right;">
-									<ul class="message" id="pending">
-									</ul>
-								</div>
-								<div class="mesaageDIV"
-									style="border: 1px solid #BFBFBF; box-shadow: 0px 0px 10px 5px #aaa; width: 280px; height: 400px; float: right; margin-right: 60px;">
-									<ul class="message" id="detention">
-
-									</ul>
-								</div>
+						<div class="panel panel-default" id="messagePanel">
+							<div class="panel-body">
+								<h3>通知：</h3>
+								<br>
+								<template v-if="messageList === 'no'"> 暂无通知 </template>
+								<template v-else> <template
+									v-for="message in messageList"> 【{{ message.name
+								}}】嫌疑人的<template v-if="message.type == 0">【拘留】</template>
+								<template v-if="message.type == 1">【逮捕】</template>
+								<template v-if="message.type == 2">【起诉】</template>
+								<template v-if="message.type==3">【退查】</template>
+								<template v-if="message.type == 4">【监视居住】</template>
+								<template v-if="message.type==5">【取保候审】</template>
+								<template v-if="message.type == 6">【释放】</template>时间快到期，请办案民警【{{
+								message.policeName }}】尽快处理
+								<hr>
+								</template> </template>
 							</div>
 						</div>
 					</div>
@@ -221,14 +210,31 @@
 		</div>
 		<!-- END MAIN CONTENT -->
 	</div>
-	<!-- END MAIN -->
-	</div>
 	<!-- END WRAPPER -->
 	<script type="text/javascript">
+		var messageVue = new Vue({
+			el : '#messagePanel',
+			data : {
+				messageList : ''
+			}
+		});
 		var sliderVue = new Vue({
 			el : '#sidebar-nav',
 			data : userPowerDTO
 		});
+		$.ajax({
+			url : '/xsjsglxt/case/DealCase_getMessage',
+			type : 'GET',
+			success : function(data) {
+				var d = JSON.parse(data);
+				if(d.length == 0){
+					messageVue.messageList = 'no';
+				}else{
+					messageVue.messageList = d;
+				}
+		
+			}
+		})
 	</script>
 </body>
 <script type="text/javascript">
@@ -238,5 +244,5 @@
 						"position: relative; overflow: hidden; width: auto; height: 100%;");
 	});
 </script>
-<script src="<%=basePath%>js/index/message_detention.js"></script>
+<%-- <script src="<%=basePath%>js/index/message_detention.js"></script> --%>
 </html>

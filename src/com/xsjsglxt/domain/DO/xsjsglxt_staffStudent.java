@@ -10,10 +10,10 @@ public class xsjsglxt_staffStudent {
 	private String xsjsglxt_staffStudent_id;
 	private String staffStudent_staff;
 	private String staffStudent_evection; // 出差还是学习
-	private String staffStudent_address;
-	private String staffStudent_startTime;
-	private String staffStudent_stopTime;
-	private String staffStudent_remarks;
+	private String staffStudent_address;// 学习地点
+	private String staffStudent_startTime;// 学习开始时间
+	private String staffStudent_stopTime;// 学习结束时间
+	private String staffStudent_remarks;// 备注
 	private String staffStudent_gmt_create;
 	private String staffStudent_gmt_modified;
 

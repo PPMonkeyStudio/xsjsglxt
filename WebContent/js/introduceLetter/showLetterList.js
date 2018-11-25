@@ -30,7 +30,7 @@ window.onload = function() {
 
 var skipToIndexPage = function() {
 	if (queryConditionTemp.currPage == 1) {
-		toastr.error("已经是最后一页");
+		toastr.error("已经是第一页");
 	} else {
 		queryConditionTemp.currPage = 1;
 		loadData();
@@ -57,7 +57,7 @@ var skipToPrimaryPage = function() {
 }
 var skipToLastPage = function() {
 	if (queryConditionTemp.currPage == queryConditionTemp.totalPage) {
-		toastr.error("已经是最后一页了");
+		toastr.error("已经是最后一页");
 	} else {
 		queryConditionTemp.currPage = queryConditionTemp.totalPage
 		loadData();
@@ -67,7 +67,7 @@ var skipToLastPage = function() {
 
 var skipToArbitrarilyPage = function() {
 	if ($('#skipPage').val() > queryConditionTemp.totalPage
-		|| $('#skipPage').val() < 1) {
+			|| $('#skipPage').val() < 1) {
 		toastr.error("不存在此页");
 	} else {
 		queryConditionTemp.currPage = $('#skipPage').val();

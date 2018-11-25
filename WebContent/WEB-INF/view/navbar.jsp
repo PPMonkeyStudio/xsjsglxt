@@ -61,7 +61,7 @@
 			style=" background-color: #13599d;">
 		<div
 			style="width: auto; float: left; line-height: 78px; margin: 0 0 0 30px; font-size: 30px; color: white;">
-			<img alt="" src="<%=basePath%>img/hui.png">安源刑侦信息管理系统
+			<img alt="" src="<%=basePath%>img/hui.png">刑侦信息管理系统
 		</div>
 		<div id="navbar-menu">
 			<ul style="margin: 0 0 0 20px;" class="nav navbar-nav navbar-left">

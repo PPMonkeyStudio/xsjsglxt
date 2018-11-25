@@ -12,7 +12,7 @@ public class xsjsglxt_breakecase {
 
 	private String breakecase_caseTime;// 破案时间
 
-	private String breakecase_waitbreakecase;// 带破案件
+	private String breakecase_waitbreakecase;// 带破案件(冗余字段)
 
 	private String breakecase_person;// 破案人
 

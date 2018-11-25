@@ -1,5 +1,6 @@
 package com.xsjsglxt.domain.DO;
 
+//废表
 public class xsjsglxt_handle {
 	private String xsjsglxt_handle_id;// 办案ID
 	private String handle_Case;// 案件id

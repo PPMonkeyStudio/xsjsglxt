@@ -62,7 +62,6 @@ public class SchedulingDaoImpl implements SchedulingDao {
 		// TODO Auto-generated method stub
 		Session session = this.getSession();
 		xsjsglxt_scheduling s = (xsjsglxt_scheduling) session.get(xsjsglxt_scheduling.class, xsjsglxt_scheduling_id);
-		session.clear();
 		return s;
 	}
 
@@ -86,6 +85,7 @@ public class SchedulingDaoImpl implements SchedulingDao {
 	public void updateScheduling(xsjsglxt_scheduling scheduling) {
 		// TODO Auto-generated method stub
 		Session session = this.getSession();
+		session.clear();
 		session.saveOrUpdate(scheduling);
 	}
 

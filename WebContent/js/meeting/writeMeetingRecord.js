@@ -7,7 +7,7 @@ var createConfirm = function() {
 				type : 'green',
 				title : "<i class='fa fa-pencil-square-o'></i>填写会议记录书",
 				content : "<div id='addLoadingLayer' class='hideDiv' style='margin: 0 auto; width: 45px;'><i class='fa fa-spinner fa-spin fa-3x fa-fw'></i></div>"
-						+ "<div id='ConfirmTableDiv'><form id='meetRecords' name='meetRecords'><table class='table table-bordered' style='text-align: center;'>"
+						+ "<div id='ConfirmTableDiv'><form id='meetRecords' name='meetRecords'><table class='table table-bordered'>"
 						+ "<tr><td>会议类型：</td><td>"
 						+ "<select class='form-control' name='meet.meeting_title'><option value='大队例会'>大队例会</option>"
 						+ "<option value='支委会'>支委会</option><option value='党课'>党课</option>"

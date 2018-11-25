@@ -60,7 +60,7 @@ var updateMeetingRecords = function(dom) {
 								columnClass : "col-md-12",
 								title : "<i class='fa fa-pencil-square-o'></i>修改大事记",
 								type : 'yellow',
-								content : "<form id='UpdateMemorabiliaForm' name='UpdateMemorabiliaForm'><table class='table table-bordered' style='text-align: center;'>"
+								content : "<form id='UpdateMemorabiliaForm' name='UpdateMemorabiliaForm'><table class='table table-bordered'>"
 										+ "<tr><td>大事记标题：</td><td><input name='memorabilia.memorabilia_title' value='"
 										+ jsonData.memorabilia_title
 										+ "' class='form-control' type='text'></td>"

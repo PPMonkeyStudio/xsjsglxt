@@ -1,5 +1,6 @@
 package com.xsjsglxt.domain.DO;
 
+//物证表
 public class xsjsglxt_resevidence {
 
 	private String xsjsglxt_resevidence_id;// 物证ID

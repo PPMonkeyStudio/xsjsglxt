@@ -6,11 +6,11 @@ package com.xsjsglxt.domain.DO;
  * 大事记
  */
 public class xsjsglxt_memorabilia {
-	private String memorabilia_id;
-	private String memorabilia_title;
-	private String memorabilia_time;
-	private String memorabilia_join_human;
-	private String memorabilia_content;
+	private String memorabilia_id;// 大事记id
+	private String memorabilia_title;// 大事记标题
+	private String memorabilia_time;// 大事记发生时间
+	private String memorabilia_join_human;// 大事记参与人员
+	private String memorabilia_content;// 大事记内容
 	private String memorabilia_gmt_create;
 	private String memorabilia_gmt_modified;
 

@@ -109,8 +109,9 @@ i {
 					style="text-align: center;">
 					<thead>
 						<tr style="height: 30; color: black;">
-							<td rowspan="2"><label class="fancy-checkbox" style="cursor: pointer;"> <input
-									onclick="selectAll(this)" type="checkbox"> 全选
+							<td rowspan="2"><label class="fancy-checkbox"
+								style="cursor: pointer;"> <input
+									onclick="selectAll(this)" type="checkbox" class="form-control"> 全选
 							</label></td>
 							<td rowspan="2">日期</td>
 							<td rowspan="2">带班领导</td>
@@ -132,8 +133,8 @@ i {
 					<tbody>
 						<template v-for="schedulingDTO in vo.schedulingDTOList">
 						<tr style="height: 30;">
-							<td><label class="fancy-checkbox"><input type="checkbox"
-									name="chooseCheckBox"
+							<td><label class="fancy-checkbox"><input
+									type="checkbox" name="chooseCheckBox"
 									:value="schedulingDTO.xsjsglxt_scheduling_id"><span></span></label></td>
 							<td><a onclick="updateScheduling(this)"
 								:id="schedulingDTO.xsjsglxt_scheduling_id">{{
@@ -148,31 +149,8 @@ i {
 							<td>{{ schedulingDTO.scheduling_overtime }}</td>
 							<td>{{ schedulingDTO.scheduling_out_help }}</td>
 							<td>{{ schedulingDTO.scheduling_evection }}</td>
-							<td>
-								
-								<template v-if="nowDate==schedulingDTO.scheduling_time">
-									<a :id="schedulingDTO.xsjsglxt_scheduling_id" onclick="updateLog(this)">修改记录</a>
-								</template>
-								<template v-else>
-									<s:if test='#session.userSession.user_army_manager_power=="jurisdiction_admin"'>
-										<a :id="schedulingDTO.xsjsglxt_scheduling_id" onclick="updateLog(this)">修改记录</a>
-									</s:if>
-									<s:else>
-										<a :id="schedulingDTO.xsjsglxt_scheduling_id" onclick="viewLog(this)">查看记录</a>
-									</s:else>
-								</template>
-								<%-- <s:if test='#session.userSession.user_army_manager_power=="jurisdiction_admin"'>
-									<template v-if="nowDate==schedulingDTO.scheduling_time">
-										<a :id="schedulingDTO.xsjsglxt_scheduling_id" onclick="updateLog(this)">修改记录</a>
-									</template>
-									<template v-else>
-										<a :id="schedulingDTO.xsjsglxt_scheduling_id" onclick="viewLog(this)">查看记录</a>
-									</template>
-								</s:if> 
-								<s:else>
-									<a :id="schedulingDTO.xsjsglxt_scheduling_id" onclick="viewLog(this)">查看记录</a>
-								</s:else> --%>
-							</td>
+							<td><a :id="schedulingDTO.xsjsglxt_scheduling_id"
+								onclick="updateLog(this)">修改</a>|<a :id="schedulingDTO.xsjsglxt_scheduling_id" onclick="viewLog(this)">预览</a></a></td>
 						</tr>
 						</template>
 					</tbody>
@@ -212,6 +190,6 @@ i {
 		})
 	</script>
 </body>
-	<link rel="stylesheet" href="<%=basePath%>css/square/blue.css" />
-	<script type="text/javascript" src="<%=basePath%>js/icheck.js"></script>
+<link rel="stylesheet" href="<%=basePath%>css/square/blue.css" />
+<script type="text/javascript" src="<%=basePath%>js/icheck.js"></script>
 </html>

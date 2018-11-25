@@ -7,11 +7,11 @@ package com.xsjsglxt.domain.DO;
  *       警员立功获奖情况表
  */
 public class xsjsglxt_staffReward {
-	private String xsjsglxt_staffReward_id;
+	private String xsjsglxt_staffReward_id;// 奖励id
 	private String staffReward_staff;
-	private String staffReward_situation;
-	private String staffReward_Time;
-	private String staffReward_remarks;
+	private String staffReward_situation;// 奖励情况
+	private String staffReward_Time;// 奖励时间
+	private String staffReward_remarks;// 备注
 	private String staffReward_gmt_create;
 	private String staffReward_gmt_modified;
 

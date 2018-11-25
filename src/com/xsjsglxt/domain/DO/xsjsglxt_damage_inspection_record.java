@@ -1,24 +1,25 @@
 package com.xsjsglxt.domain.DO;
 
+//损伤检验记录表
 public class xsjsglxt_damage_inspection_record {
 
-	private String xsjsglxt_damage_inspection_record_id;
-	private String damage_inspection_record_belong_entrustment_book;
-	private String damage_inspection_record_name;
-	private String damage_inspection_record_sex;
-	private String damage_inspection_record_birth_date;
-	private String damage_inspection_record_occupation;
-	private String damage_inspection_record_unit_service;
-	private String damage_inspection_record_idcard;
-	private String damage_inspection_record_adress;
-	private String damage_inspection_record_damage_time;
-	private String damage_inspection_record_time;
-	private String damage_inspection_record_phone;
-	private String damage_inspection_record_inspection;
-	private String damage_inspection_record_inspection_man;
-	private String damage_inspection_record_picture1;
-	private String damage_inspection_record_picture2;
-	private String damage_inspection_record_picture3;
+	private String xsjsglxt_damage_inspection_record_id;// 损伤检验记录ID
+	private String damage_inspection_record_belong_entrustment_book;// 所属委托书
+	private String damage_inspection_record_name;// 姓名
+	private String damage_inspection_record_sex;// 性别
+	private String damage_inspection_record_birth_date;// 出生日期
+	private String damage_inspection_record_occupation;// 职业
+	private String damage_inspection_record_unit_service;// 服务处所
+	private String damage_inspection_record_idcard;// 身份证号码
+	private String damage_inspection_record_adress;// 住址
+	private String damage_inspection_record_damage_time;// 受伤时间
+	private String damage_inspection_record_time;// 检验时间
+	private String damage_inspection_record_phone;// 联系方式
+	private String damage_inspection_record_inspection;// 检验所见
+	private String damage_inspection_record_inspection_man;// 检查人
+	private String damage_inspection_record_picture1;// 损伤检验图1
+	private String damage_inspection_record_picture2;// 损伤检验图2
+	private String damage_inspection_record_picture3;// 损伤检验图3
 	private String damage_inspection_record_gmt_create;
 	private String damage_inspection_record_gmt_modified;
 
@@ -102,7 +103,8 @@ public class xsjsglxt_damage_inspection_record {
 		this.xsjsglxt_damage_inspection_record_id = xsjsglxt_damage_inspection_record_id;
 	}
 
-	public void setDamage_inspection_record_belong_entrustment_book(String damage_inspection_record_belong_entrustment_book) {
+	public void setDamage_inspection_record_belong_entrustment_book(
+			String damage_inspection_record_belong_entrustment_book) {
 		this.damage_inspection_record_belong_entrustment_book = damage_inspection_record_belong_entrustment_book;
 	}
 
@@ -176,16 +178,24 @@ public class xsjsglxt_damage_inspection_record {
 
 	@Override
 	public String toString() {
-		return "xsjsglxt_damage_inspection_record [xsjsglxt_damage_inspection_record_id=" + xsjsglxt_damage_inspection_record_id
-				+ ", damage_inspection_record_belong_entrustment_book=" + damage_inspection_record_belong_entrustment_book + ", damage_inspection_record_name="
-				+ damage_inspection_record_name + ", damage_inspection_record_sex=" + damage_inspection_record_sex + ", damage_inspection_record_birth_date="
-				+ damage_inspection_record_birth_date + ", damage_inspection_record_occupation=" + damage_inspection_record_occupation + ", damage_inspection_record_unit_service="
-				+ damage_inspection_record_unit_service + ", damage_inspection_record_idcard=" + damage_inspection_record_idcard + ", damage_inspection_record_adress="
-				+ damage_inspection_record_adress + ", damage_inspection_record_damage_time=" + damage_inspection_record_damage_time + ", damage_inspection_record_time="
-				+ damage_inspection_record_time + ", damage_inspection_record_phone=" + damage_inspection_record_phone + ", damage_inspection_record_inspection="
-				+ damage_inspection_record_inspection + ", damage_inspection_record_inspection_man=" + damage_inspection_record_inspection_man
-				+ ", damage_inspection_record_picture1=" + damage_inspection_record_picture1 + ", damage_inspection_record_picture2=" + damage_inspection_record_picture2
-				+ ", damage_inspection_record_picture3=" + damage_inspection_record_picture3 + ", damage_inspection_record_gmt_create=" + damage_inspection_record_gmt_create
+		return "xsjsglxt_damage_inspection_record [xsjsglxt_damage_inspection_record_id="
+				+ xsjsglxt_damage_inspection_record_id + ", damage_inspection_record_belong_entrustment_book="
+				+ damage_inspection_record_belong_entrustment_book + ", damage_inspection_record_name="
+				+ damage_inspection_record_name + ", damage_inspection_record_sex=" + damage_inspection_record_sex
+				+ ", damage_inspection_record_birth_date=" + damage_inspection_record_birth_date
+				+ ", damage_inspection_record_occupation=" + damage_inspection_record_occupation
+				+ ", damage_inspection_record_unit_service=" + damage_inspection_record_unit_service
+				+ ", damage_inspection_record_idcard=" + damage_inspection_record_idcard
+				+ ", damage_inspection_record_adress=" + damage_inspection_record_adress
+				+ ", damage_inspection_record_damage_time=" + damage_inspection_record_damage_time
+				+ ", damage_inspection_record_time=" + damage_inspection_record_time
+				+ ", damage_inspection_record_phone=" + damage_inspection_record_phone
+				+ ", damage_inspection_record_inspection=" + damage_inspection_record_inspection
+				+ ", damage_inspection_record_inspection_man=" + damage_inspection_record_inspection_man
+				+ ", damage_inspection_record_picture1=" + damage_inspection_record_picture1
+				+ ", damage_inspection_record_picture2=" + damage_inspection_record_picture2
+				+ ", damage_inspection_record_picture3=" + damage_inspection_record_picture3
+				+ ", damage_inspection_record_gmt_create=" + damage_inspection_record_gmt_create
 				+ ", damage_inspection_record_gmt_modified=" + damage_inspection_record_gmt_modified + "]";
 	}
 

@@ -45,5 +45,10 @@
 			method="{1}">
 			<result name="page_BreakCaseList">/WEB-INF/view/Case/BreakCaseList.jsp</result>
 		</action>
+		
+		<action name="DealCase_*" class="com.xsjsglxt.action.Case.DealCaseAction" method="{1}">
+			<result name="intoSuspectList">/WEB-INF/view/Case/SuspectInforList.jsp</result>
+		</action>
+		
 	</package>
 </struts>

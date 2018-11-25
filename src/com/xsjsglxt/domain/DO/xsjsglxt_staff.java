@@ -8,34 +8,34 @@ package com.xsjsglxt.domain.DO;
  */
 
 public class xsjsglxt_staff {
-	private String xsjsglxt_staff_id;
-	private String xsjsglxt_name;
-	private String xsjsglxt_sex;
-	private String xsjsglxt_age;
-	private String xsjsglxt_nation;
-	private String xsjsglxt_nativePlace;
-	private String staff_birthday;
-	private String staff_idNumber;
-	private String staff_address;
-	private String staff_MaxEducationalBackground;
-	private String staff_politicalStatus;
-	private String staff_joinPartyTime;
-	private String staff_joinWorkTime;
-	private String staff_alarm;
-	private String staff_thePoliceTime;
+	private String xsjsglxt_staff_id;// 警员id
+	private String xsjsglxt_name;// 警员名字
+	private String xsjsglxt_sex;// 警员性别
+	private String xsjsglxt_age;// 警员年龄
+	private String xsjsglxt_nation;// 警员民族
+	private String xsjsglxt_nativePlace;// 警员籍贯
+	private String staff_birthday;// 警员出生日期
+	private String staff_idNumber;// 警员身份证号码
+	private String staff_address;// 警员住址
+	private String staff_MaxEducationalBackground;// 警员最高学历
+	private String staff_politicalStatus;// 政治面貌
+	private String staff_joinPartyTime;// 入党时间
+	private String staff_joinWorkTime;// 参加工作时间
+	private String staff_alarm;// 警员警号
+	private String staff_thePoliceTime;// 警员入警时间
 	private String staff_isItFormal; // 警种
-	private String staff_phone;
+	private String staff_phone;// 警员手机号码
 	private String staff_appliactionFormTime; // 提交申请书时间
 	private String staff_delevopObjectTime;// 发展对象时间
 	private String staff_degree;// 学位
-	private String staff_throughThePolice;
-	private String staff_homephone;
-	private String staff_QQ;
-	private String staff_weixin;
-	private String staff_outEmail;
-	private String staff_inEmail;
-	private String staff_photo;
-	private String staff_duty;
+	private String staff_throughThePolice;// 警务通号
+	private String staff_homephone;// 警员家庭电话
+	private String staff_QQ;// 警员qq
+	private String staff_weixin;// 警员微信
+	private String staff_outEmail;// 警员外网邮箱
+	private String staff_inEmail;// 警员内网邮箱
+	private String staff_photo;// 警员照片
+	private String staff_duty;// 警员职务
 	private String staff_gmt_create;
 	private String staff_gmt_modified;
 

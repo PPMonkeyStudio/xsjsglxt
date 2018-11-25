@@ -9,11 +9,11 @@ package com.xsjsglxt.domain.DO;
 public class xsjsglxt_staffWork {
 	private String xsjsglxt_staffWork_id;
 	private String staffWork_staff;
-	private String staffWork_address;
-	private String staffWork_duty;
-	private String staffWork_startTime;
-	private String staffWork_stopTime;
-	private String staffWork_remarks;
+	private String staffWork_address;// 工作地点
+	private String staffWork_duty;// 工作职务
+	private String staffWork_startTime;// 开始时间
+	private String staffWork_stopTime;// 结束时间
+	private String staffWork_remarks;// 备注
 	private String staffWork_gmt_create;
 	private String staffWork_gmt_modified;
 

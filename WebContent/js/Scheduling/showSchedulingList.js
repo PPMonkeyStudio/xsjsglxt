@@ -16,13 +16,13 @@ window.onload = function() {
 	$('input[type="checkbox"]').attr("checked", false);
 	var currDate = new Date();
 	var currMonth = currDate.getMonth() + 1;
-	if (currMonth <= 10) {
+	if (currMonth < 10) {
 		currMonth = '0' + currMonth;
 	}
 	queryConditionTemp.queryTimeStart = currDate.getFullYear() + '-'
-		+ currMonth + '-01';
+			+ currMonth + '-01';
 	queryConditionTemp.queryTimeEnd = currDate.getFullYear() + '-' + currMonth
-		+ '-31';
+			+ '-31';
 	$('#timeStart').val(currDate.getFullYear() + '-' + currMonth + '-01');
 	$('#timeEnd').val(currDate.getFullYear() + '-' + currMonth + '-31');
 	schedulingVue = new Vue({
@@ -42,7 +42,7 @@ var changeSort = function() {
 }
 var skipToArbitrarilyPage = function() {
 	if ($('#skipPage').val() >= 1
-		&& $('#skipPage').val() <= schedulingVue.vo.totalPage) {
+			&& $('#skipPage').val() <= schedulingVue.vo.totalPage) {
 		queryConditionTemp.currPage = $('#skipPage').val();
 		loadScheduling();
 	} else {
@@ -106,11 +106,9 @@ var loadScheduling = function() {
 	});
 }
 
+// Util
 
-
-//Util
-
-//获取当前时间，格式YYYY-MM-DD
+// 获取当前时间，格式YYYY-MM-DD
 function getNowFormatDate() {
 	var date = new Date();
 	var seperator1 = "-";

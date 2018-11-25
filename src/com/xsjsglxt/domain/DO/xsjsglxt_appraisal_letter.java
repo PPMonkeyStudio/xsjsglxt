@@ -1,37 +1,44 @@
 package com.xsjsglxt.domain.DO;
 
+//鉴定文书表
 public class xsjsglxt_appraisal_letter {
-	private String xsjsglxt_appraisal_letter_id;
-	private String appraisal_letter_belong_entrustment_book;
-	private String appraisal_letter_num;
-	private String appraisal_letter_simple_case_situation;
-	private String appraisal_letter_sample_situation;
-	private String appraisal_letter_man1_duty;
-	private String appraisal_letter_man1_name;
-	private String appraisal_letter_man2_duty;
-	private String appraisal_letter_man2_name;
-	private String appraisal_letter_authorization_duty;
-	private String appraisal_letter_authorization_name;
-	private String appraisal_letter_mark;
-	private String appraisal_letter_date;
-	private String appraisal_letter_inspection;
-	private String appraisal_letter_argumentation;
-	private String appraisal_letter_expert_opinion;
-	private String appraisal_letter_type;
+	private String xsjsglxt_appraisal_letter_id;// 鉴定文书ID
+	private String appraisal_letter_belong_entrustment_book;// 所属委托书
+	private String appraisal_letter_num;// 鉴定书编号
+	private String appraisal_letter_simple_case_situation;// 案件情况摘要
+	private String appraisal_letter_sample_situation;// 检材和样本（或检验对象）
+	private String appraisal_letter_man1_duty;// 鉴定人1职务
+	private String appraisal_letter_man1_name;// 鉴定人1姓名
+	private String appraisal_letter_man2_duty;// 鉴定人2职务
+	private String appraisal_letter_man2_name;// 鉴定人2姓名
+	private String appraisal_letter_authorization_duty;// 授权签字人职务
+	private String appraisal_letter_authorization_name;// 授权签字人姓名
+	private String appraisal_letter_mark;// 备注
+	private String appraisal_letter_date;// 鉴定日期
+	private String appraisal_letter_inspection;// 检验
+	private String appraisal_letter_argumentation;// 论证
+	private String appraisal_letter_expert_opinion;// 鉴定意见
+	private String appraisal_letter_type;// 鉴定文书类型
 	private String appraisal_letter_gmt_create;
 	private String appraisal_letter_gmt_modified;
 
 	@Override
 	public String toString() {
-		return "xsjsglxt_appraisal_letter [xsjsglxt_appraisal_letter_id=" + xsjsglxt_appraisal_letter_id + ", appraisal_letter_belong_entrustment_book="
-				+ appraisal_letter_belong_entrustment_book + ", appraisal_letter_num=" + appraisal_letter_num + ", appraisal_letter_simple_case_situation="
-				+ appraisal_letter_simple_case_situation + ", appraisal_letter_sample_situation=" + appraisal_letter_sample_situation + ", appraisal_letter_man1_duty="
-				+ appraisal_letter_man1_duty + ", appraisal_letter_man1_name=" + appraisal_letter_man1_name + ", appraisal_letter_man2_duty=" + appraisal_letter_man2_duty
-				+ ", appraisal_letter_man2_name=" + appraisal_letter_man2_name + ", appraisal_letter_authorization_duty=" + appraisal_letter_authorization_duty
-				+ ", appraisal_letter_authorization_name=" + appraisal_letter_authorization_name + ", appraisal_letter_mark=" + appraisal_letter_mark + ", appraisal_letter_date="
-				+ appraisal_letter_date + ", appraisal_letter_inspection=" + appraisal_letter_inspection + ", appraisal_letter_argumentation=" + appraisal_letter_argumentation
-				+ ", appraisal_letter_expert_opinion=" + appraisal_letter_expert_opinion + ", appraisal_letter_type=" + appraisal_letter_type + ", appraisal_letter_gmt_create="
-				+ appraisal_letter_gmt_create + ", appraisal_letter_gmt_modified=" + appraisal_letter_gmt_modified + "]";
+		return "xsjsglxt_appraisal_letter [xsjsglxt_appraisal_letter_id=" + xsjsglxt_appraisal_letter_id
+				+ ", appraisal_letter_belong_entrustment_book=" + appraisal_letter_belong_entrustment_book
+				+ ", appraisal_letter_num=" + appraisal_letter_num + ", appraisal_letter_simple_case_situation="
+				+ appraisal_letter_simple_case_situation + ", appraisal_letter_sample_situation="
+				+ appraisal_letter_sample_situation + ", appraisal_letter_man1_duty=" + appraisal_letter_man1_duty
+				+ ", appraisal_letter_man1_name=" + appraisal_letter_man1_name + ", appraisal_letter_man2_duty="
+				+ appraisal_letter_man2_duty + ", appraisal_letter_man2_name=" + appraisal_letter_man2_name
+				+ ", appraisal_letter_authorization_duty=" + appraisal_letter_authorization_duty
+				+ ", appraisal_letter_authorization_name=" + appraisal_letter_authorization_name
+				+ ", appraisal_letter_mark=" + appraisal_letter_mark + ", appraisal_letter_date="
+				+ appraisal_letter_date + ", appraisal_letter_inspection=" + appraisal_letter_inspection
+				+ ", appraisal_letter_argumentation=" + appraisal_letter_argumentation
+				+ ", appraisal_letter_expert_opinion=" + appraisal_letter_expert_opinion + ", appraisal_letter_type="
+				+ appraisal_letter_type + ", appraisal_letter_gmt_create=" + appraisal_letter_gmt_create
+				+ ", appraisal_letter_gmt_modified=" + appraisal_letter_gmt_modified + "]";
 	}
 
 	public String getAppraisal_letter_simple_case_situation() {
