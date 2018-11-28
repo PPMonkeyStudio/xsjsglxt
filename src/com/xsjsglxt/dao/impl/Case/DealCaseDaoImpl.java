@@ -10,7 +10,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import com.google.gson.Gson;
 import com.xsjsglxt.dao.Case.DealCaseDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_handle_case;
 import com.xsjsglxt.domain.DO.xsjsglxt_suspect_infor;
@@ -190,7 +189,6 @@ public class DealCaseDaoImpl implements DealCaseDao {
 				.setFirstResult((handleCaseListVO.getCurrPage() - 1) * handleCaseListVO.getPageSize())
 				.setMaxResults(handleCaseListVO.getPageSize());
 		List<xsjsglxt_handle_case> handleList = query.list();
-		// System.out.println(handleList.get(0).getHandle_case_id());
 		return handleList;
 	}
 
@@ -389,8 +387,6 @@ public class DealCaseDaoImpl implements DealCaseDao {
 				+ "' and infor.suspect_process_type = '1'";
 		Session session = this.getSession();
 		List<MessageDTO> list = session.createQuery(hql).list();
-		Gson gson = new Gson();
-		System.out.println(gson.toJson(list));
 		return list;
 	}
 

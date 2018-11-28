@@ -61,7 +61,6 @@ public class ImageDaoImpl implements ImageDao {
 		String yearAndMonth = TeamUtil.yearAndMonth();
 		String li = "";
 		String hql = "select right(image_number,4) from xsjsglxt_image ORDER BY right(image_number,4) desc limit 1";
-		System.out.println(hql);
 		Query query = getSession().createSQLQuery(hql);
 		li = (String) query.uniqueResult();
 		if (li == null || li.trim().length() <= 0) {
@@ -83,7 +82,6 @@ public class ImageDaoImpl implements ImageDao {
 		String li = "";
 
 		String hql = "select right(picture_identifier,4) from xsjsglxt_picture ORDER BY right(picture_identifier,4) desc limit 1";
-		System.out.println(hql);
 		Query query = getSession().createSQLQuery(hql);
 		li = (String) query.uniqueResult();
 		if (li == null || li.trim().length() <= 0) {
@@ -166,7 +164,6 @@ public class ImageDaoImpl implements ImageDao {
 				(page_list_imageInformation.getPageIndex() - 1) * page_list_imageInformation.getPageSize());
 		query.setMaxResults(page_list_imageInformation.getPageSize());
 		i = (Long) query.uniqueResult();
-		System.out.println(hql);
 		session.clear();
 		return i.intValue();
 	}
@@ -205,7 +202,6 @@ public class ImageDaoImpl implements ImageDao {
 				(page_list_imageInformation.getPageIndex() - 1) * page_list_imageInformation.getPageSize());
 		query.setMaxResults(page_list_imageInformation.getPageSize());
 		listImageInformationByPage = query.list();
-		System.out.println(hql);
 		session.clear();
 		return listImageInformationByPage;
 	}
@@ -248,7 +244,6 @@ public class ImageDaoImpl implements ImageDao {
 				(page_list_imageInformation.getPageIndex() - 1) * page_list_imageInformation.getPageSize());
 		query.setMaxResults(page_list_imageInformation.getPageSize());
 		listImageInformationByPage = query.list();
-		System.out.println(hql);
 		session.clear();
 		return listImageInformationByPage;
 	}

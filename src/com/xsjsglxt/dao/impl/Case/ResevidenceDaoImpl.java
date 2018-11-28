@@ -107,7 +107,6 @@ public class ResevidenceDaoImpl implements ResevidenceDao {
 				(page_list_ResevidenceInformation.getPageIndex() - 1) * page_list_ResevidenceInformation.getPageSize());
 		query.setMaxResults(page_list_ResevidenceInformation.getPageSize());
 		listResevidenceInformationByPage = query.list();
-		System.out.println(hql);
 		session.clear();
 		return listResevidenceInformationByPage;
 	}

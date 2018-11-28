@@ -124,7 +124,6 @@ public class ParallelDaoImpl implements ParallelDao {
 		}
 		hql = hql + " and parallel_date>='" + startTime + "' and parallel_date<='" + stopTime
 				+ "' order by parallel_date " + order;
-		System.out.println(hql);
 		Query query = session.createQuery(hql);
 		i = (Long) query.uniqueResult();
 		session.clear();
@@ -274,7 +273,6 @@ public class ParallelDaoImpl implements ParallelDao {
 		// String hql = "select substring(parallel_num,-1,4) from
 		// xsjsglxt_parallel where substring(parallel_num,1,8)='"+year+"' order
 		// by substring(parallel_num,-1,4) desc limit 1";
-		System.out.println(hql);
 		Query query = getSession().createSQLQuery(hql);
 		li = (String) query.uniqueResult();
 		if (li == null || li.trim().length() <= 0) {
@@ -283,7 +281,6 @@ public class ParallelDaoImpl implements ParallelDao {
 		}
 		i = Integer.parseInt(li);
 		getSession().clear();
-		System.out.println("数量" + i);
 		return i;
 
 	}

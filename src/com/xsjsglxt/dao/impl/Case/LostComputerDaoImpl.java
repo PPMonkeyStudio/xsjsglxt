@@ -9,9 +9,7 @@ import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.Case.LostComputerDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
-import com.xsjsglxt.domain.DO.xsjsglxt_lost;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost_computer;
-import com.xsjsglxt.domain.DO.xsjsglxt_lost_mobilephone;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
 import com.xsjsglxt.domain.VO.Case.page_list_CasematerialVO;
 
@@ -24,15 +22,17 @@ public class LostComputerDaoImpl implements LostComputerDao {
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
-	} 
+	}
+
 	public Session getSession() {
 
 		return this.sessionFactory.getCurrentSession();
 	}
-/*
- * 保存电脑信息
- * 
- */
+
+	/*
+	 * 保存电脑信息
+	 * 
+	 */
 	@Override
 	public void saveLostComputer(xsjsglxt_lost_computer lost_computer) {
 		// TODO Auto-generated method stub
@@ -50,28 +50,29 @@ public class LostComputerDaoImpl implements LostComputerDao {
 		Session session = getSession();
 		Long i;
 		String hql = "select count(*) from xsjsglxt_lost_computer where 1=1 order by lost_computer_gmt_create";
-		//1
+		// 1
 		if (page_list_Casematerial.getLost_computer_brand() != null
 				&& page_list_Casematerial.getLost_computer_brand().trim().length() > 0) {
 			String lost_computer_brand = "%" + page_list_Casematerial.getLost_computer_brand() + "%";
 			hql = hql + " and lost_computer_brand like '" + lost_computer_brand + "'";
-				
+
 		}
-		//2
+		// 2
 		if (page_list_Casematerial.getLost_computer_internetAccount() != null
 				&& page_list_Casematerial.getLost_computer_internetAccount().trim().length() > 0) {
-			String lost_computer_internetAccount = "%" + page_list_Casematerial.getLost_computer_internetAccount() + "%";
+			String lost_computer_internetAccount = "%" + page_list_Casematerial.getLost_computer_internetAccount()
+					+ "%";
 			hql = hql + " and lost_computer_internetAccount like '" + lost_computer_internetAccount + "'";
-				
+
 		}
-		//3
+		// 3
 		if (page_list_Casematerial.getLost_computer_MAC() != null
 				&& page_list_Casematerial.getLost_computer_MAC().trim().length() > 0) {
 			String lost_computer_MAC = "%" + page_list_Casematerial.getLost_computer_MAC() + "%";
 			hql = hql + " and lost_computer_MAC like '" + lost_computer_MAC + "'";
-				
+
 		}
-		Query query = session.createQuery(hql);	
+		Query query = session.createQuery(hql);
 		i = (Long) query.uniqueResult();
 		session.clear();
 		return i.intValue();
@@ -84,33 +85,32 @@ public class LostComputerDaoImpl implements LostComputerDao {
 		Session session = getSession();
 		List<xsjsglxt_lost_computer> listLostComputerInformationByPage = new ArrayList<xsjsglxt_lost_computer>();
 		String hql = "from xsjsglxt_lost_computer where 1=1 order by lost_computer_gmt_create";
-		//1
-				if (page_list_Casematerial.getLost_computer_brand() != null
-						&& page_list_Casematerial.getLost_computer_brand().trim().length() > 0) {
-					String lost_computer_brand = "%" + page_list_Casematerial.getLost_computer_brand() + "%";
-					hql = hql + " and lost_computer_brand like '" + lost_computer_brand + "'";
-						
-				}
-				//2
-				if (page_list_Casematerial.getLost_computer_internetAccount() != null
-						&& page_list_Casematerial.getLost_computer_internetAccount().trim().length() > 0) {
-					String lost_computer_internetAccount = "%" + page_list_Casematerial.getLost_computer_internetAccount() + "%";
-					hql = hql + " and lost_computer_internetAccount like '" + lost_computer_internetAccount + "'";
-						
-				}
-				//3
-				if (page_list_Casematerial.getLost_computer_MAC() != null
-						&& page_list_Casematerial.getLost_computer_MAC().trim().length() > 0) {
-					String lost_computer_MAC = "%" + page_list_Casematerial.getLost_computer_MAC() + "%";
-					hql = hql + " and lost_computer_MAC like '" + lost_computer_MAC + "'";
-						
-				}
-		Query query = session.createQuery(hql);	
-		query.setFirstResult(
-				(page_list_Casematerial.getPageIndex() - 1) * page_list_Casematerial.getPageSize());
+		// 1
+		if (page_list_Casematerial.getLost_computer_brand() != null
+				&& page_list_Casematerial.getLost_computer_brand().trim().length() > 0) {
+			String lost_computer_brand = "%" + page_list_Casematerial.getLost_computer_brand() + "%";
+			hql = hql + " and lost_computer_brand like '" + lost_computer_brand + "'";
+
+		}
+		// 2
+		if (page_list_Casematerial.getLost_computer_internetAccount() != null
+				&& page_list_Casematerial.getLost_computer_internetAccount().trim().length() > 0) {
+			String lost_computer_internetAccount = "%" + page_list_Casematerial.getLost_computer_internetAccount()
+					+ "%";
+			hql = hql + " and lost_computer_internetAccount like '" + lost_computer_internetAccount + "'";
+
+		}
+		// 3
+		if (page_list_Casematerial.getLost_computer_MAC() != null
+				&& page_list_Casematerial.getLost_computer_MAC().trim().length() > 0) {
+			String lost_computer_MAC = "%" + page_list_Casematerial.getLost_computer_MAC() + "%";
+			hql = hql + " and lost_computer_MAC like '" + lost_computer_MAC + "'";
+
+		}
+		Query query = session.createQuery(hql);
+		query.setFirstResult((page_list_Casematerial.getPageIndex() - 1) * page_list_Casematerial.getPageSize());
 		query.setMaxResults(page_list_Casematerial.getPageSize());
 		listLostComputerInformationByPage = query.list();
-		System.out.println(hql);
 		session.clear();
 		return listLostComputerInformationByPage;
 	}
@@ -119,7 +119,8 @@ public class LostComputerDaoImpl implements LostComputerDao {
 	public xsjsglxt_case getCaseByxsjsglxt_lost_computer_id(xsjsglxt_lost_computer lost_computer) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
-		String hql = "from xsjsglxt_case case1 where case1.xsjsglxt_case_id='" + lost_computer.getLost_computer_case() + "'";
+		String hql = "from xsjsglxt_case case1 where case1.xsjsglxt_case_id='" + lost_computer.getLost_computer_case()
+				+ "'";
 
 		Query query = session.createQuery(hql);
 
@@ -147,11 +148,12 @@ public class LostComputerDaoImpl implements LostComputerDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 
-		String hql = "from xsjsglxt_lost_computer lost_computer where lost_computer.xsjsglxt_lost_computer_id='" + lost_computer.getXsjsglxt_lost_computer_id() + "'";
+		String hql = "from xsjsglxt_lost_computer lost_computer where lost_computer.xsjsglxt_lost_computer_id='"
+				+ lost_computer.getXsjsglxt_lost_computer_id() + "'";
 
 		Query query = session.createQuery(hql);
 
-		 lost_computer = (xsjsglxt_lost_computer) query.uniqueResult();
+		lost_computer = (xsjsglxt_lost_computer) query.uniqueResult();
 
 		return lost_computer;
 	}
@@ -172,19 +174,21 @@ public class LostComputerDaoImpl implements LostComputerDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 		xsjsglxt_lost_computer Lost_computerInformation = null;
-		String hql = "from xsjsglxt_lost_computer lost_computer where lost_computer.xsjsglxt_lost_computer_id='" + lost_computer_id + "'";
+		String hql = "from xsjsglxt_lost_computer lost_computer where lost_computer.xsjsglxt_lost_computer_id='"
+				+ lost_computer_id + "'";
 		Query query = session.createQuery(hql);
 		Lost_computerInformation = (xsjsglxt_lost_computer) query.uniqueResult();
-       return Lost_computerInformation;
+		return Lost_computerInformation;
 	}
 
 	@Override
 	public boolean deleteLost_computerById(String xsjsglxt_lost_computer_id) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
-		String hql = "delete from xsjsglxt_lost_computer where xsjsglxt_lost_computer_id='" + xsjsglxt_lost_computer_id + "'";
+		String hql = "delete from xsjsglxt_lost_computer where xsjsglxt_lost_computer_id='" + xsjsglxt_lost_computer_id
+				+ "'";
 		Query query = session.createQuery(hql);
 		query.executeUpdate();
-       return true;
+		return true;
 	}
 }

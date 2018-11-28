@@ -9,7 +9,6 @@ import org.hibernate.SessionFactory;
 
 import com.xsjsglxt.dao.Case.LostDao;
 import com.xsjsglxt.domain.DO.xsjsglxt_case;
-import com.xsjsglxt.domain.DO.xsjsglxt_handle;
 import com.xsjsglxt.domain.DO.xsjsglxt_lost;
 import com.xsjsglxt.domain.DO.xsjsglxt_snece;
 import com.xsjsglxt.domain.VO.Case.page_list_CasematerialVO;
@@ -23,28 +22,31 @@ public class LostDaoImpl implements LostDao {
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
-	} 
+	}
+
 	public Session getSession() {
 
 		return this.sessionFactory.getCurrentSession();
 	}
-/*
- * 保存遗失物品
- */
+
+	/*
+	 * 保存遗失物品
+	 */
 	@Override
 	public void save(xsjsglxt_lost lost) {
 		// TODO Auto-generated method stub
 		try {
 			getSession().save(lost);
-			
+
 		} catch (Error e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-/*
- * 遗失物品记录数
- */
+
+	/*
+	 * 遗失物品记录数
+	 */
 	@Override
 	public int getCountLostInformationByPage(page_list_CasematerialVO page_list_Casematerial) {
 		// TODO Auto-generated method stub
@@ -55,9 +57,9 @@ public class LostDaoImpl implements LostDao {
 				&& page_list_Casematerial.getLost_name().trim().length() > 0) {
 			String lost_name = "%" + page_list_Casematerial.getLost_name() + "%";
 			hql = hql + " and lost_name like '" + lost_name + "'";
-				
+
 		}
-		Query query = session.createQuery(hql);	
+		Query query = session.createQuery(hql);
 		i = (Long) query.uniqueResult();
 		session.clear();
 		return i.intValue();
@@ -73,14 +75,12 @@ public class LostDaoImpl implements LostDao {
 				&& page_list_Casematerial.getLost_name().trim().length() > 0) {
 			String lost_name = "%" + page_list_Casematerial.getLost_name() + "%";
 			hql = hql + " and lost_name like '" + lost_name + "'";
-				
+
 		}
-		Query query = session.createQuery(hql);	
-		query.setFirstResult(
-				(page_list_Casematerial.getPageIndex() - 1) * page_list_Casematerial.getPageSize());
+		Query query = session.createQuery(hql);
+		query.setFirstResult((page_list_Casematerial.getPageIndex() - 1) * page_list_Casematerial.getPageSize());
 		query.setMaxResults(page_list_Casematerial.getPageSize());
 		listLostInformationByPage = query.list();
-		System.out.println(hql);
 		session.clear();
 		return listLostInformationByPage;
 	}
@@ -88,7 +88,7 @@ public class LostDaoImpl implements LostDao {
 	@Override
 	public xsjsglxt_case getCaseByxsjsglxt_lost_id(xsjsglxt_lost lost) {
 		// TODO Auto-generated method stub
-		
+
 		Session session = getSession();
 
 		String hql = "from xsjsglxt_case case1 where case1.xsjsglxt_case_id='" + lost.getLost_case() + "'";
@@ -123,7 +123,7 @@ public class LostDaoImpl implements LostDao {
 
 		Query query = session.createQuery(hql);
 
-		 lost = (xsjsglxt_lost) query.uniqueResult();
+		lost = (xsjsglxt_lost) query.uniqueResult();
 
 		return lost;
 	}
@@ -147,7 +147,7 @@ public class LostDaoImpl implements LostDao {
 		String hql = "from xsjsglxt_lost lost where lost.xsjsglxt_lost_id='" + lost_id + "'";
 		Query query = session.createQuery(hql);
 		LostInformation = (xsjsglxt_lost) query.uniqueResult();
-       return LostInformation;
+		return LostInformation;
 	}
 
 	@Override
@@ -157,7 +157,6 @@ public class LostDaoImpl implements LostDao {
 		String hql = "delete from xsjsglxt_lost where xsjsglxt_lost_id='" + xsjsglxt_lost_id + "'";
 		Query query = session.createQuery(hql);
 		query.executeUpdate();
-       return true;
+		return true;
 	}
 }
-
